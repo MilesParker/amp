@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test AXF IDE
+Bundle-SymbolicName: org.eclipse.amp.axf.ide.test;singleton:=true
+Bundle-Version: 0.2.0
+Bundle-Activator: org.eclipse.axf.ide.test.Activator
+Bundle-Vendor: eclipse.org
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.amp.axf.ide;bundle-version="0.2.0",
+ org.eclipse.swtbot.eclipse.finder;bundle-version="2.0.0",
+ org.eclipse.swtbot.swt.finder;bundle-version="2.0.0",
+ org.junit4;bundle-version="4.5.0",
+ org.eclipse.core.resources;bundle-version="3.5.0",
+ org.eclipse.amp.axf.core;bundle-version="0.2.0",
+ org.eclipse.amp.axf.views;bundle-version="0.2.0",
+ org.eclipse.amp.agf.chart;bundle-version="0.2.0",
+ org.eclipse.amp.agf.core;bundle-version="0.2.0",
+ org.eclipse.amp.agf.ide;bundle-version="0.2.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
