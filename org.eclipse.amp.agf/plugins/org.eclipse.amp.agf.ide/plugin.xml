@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.viewActions">
+     <viewContribution
+           id="org.eclipse.amp.view.GEFView.contribution"
+           targetID="org.eclipse.amp.view.GEFView">
+        <action
+              class="org.eclipse.amp.agf.ide.ZoomFitWidthAction"
+              icon="icons/etool16/size_to_control_width.gif"
+              id="org.eclipse.amp.axf.ui.fitWidth"
+              label="Width"
+              menubarPath="org.eclipse.amp.axf.ui.menu.Fit/fitgroup"
+              state="false"
+              style="radio"
+              toolbarPath="fitgroup"
+              tooltip="Enlarge or reduce size to fit within view width.">
+        </action>
+        <action
+              class="org.eclipse.amp.agf.ide.ZoomFitHeightAction"
+              icon="icons/etool16/size_to_control_height.gif"
+              id="org.eclipse.amp.axf.ui.fitHeight"
+              label="Height"
+              menubarPath="org.eclipse.amp.axf.ui.menu.Fit/fitgroup"
+              state="false"
+              style="radio"
+              toolbarPath="fitgroup"
+              tooltip="Enlarge or reduce size to fit within view height.">
+        </action>
+        <action
+              class="org.eclipse.amp.agf.ide.ZoomFitAllAction"
+              icon="icons/etool16/size_to_control.gif"
+              id="org.eclipse.amp.axf.ui.fitAll"
+              label="Both"
+              menubarPath="org.eclipse.amp.axf.ui.menu.Fit/fitgroup"
+              state="true"
+              style="radio"
+              toolbarPath="fitgroup"
+              tooltip="Enlarge or reduce size to fit within view.">
+        </action>
+        <action
+              class="org.eclipse.amp.agf.ide.ZoomFreeAction"
+              icon="icons/etool16/autosize.gif"
+              id="org.eclipse.amp.axf.ui.fitFree"
+              label="Free"
+              menubarPath="org.eclipse.amp.axf.ui.menu.Fit/fitgroup"
+              state="false"
+              style="radio"
+              toolbarPath="fitgroup"
+              tooltip="Allow view size to remain the same regardless of view size.">
+        </action>
+        <action
+              class="org.eclipse.amp.agf.ide.ZoomInAction"
+              icon="icons/etool16/zoomplus.gif"
+              id="org.eclipse.amp.axf.ui.zoomIn"
+              label="Zoom In"
+              menubarPath="additions"
+              style="push"
+              toolbarPath="zoomGroup"
+              tooltip="Make view larger.">
+        </action>
+        <action
+              class="org.eclipse.amp.agf.ide.ZoomOutAction"
+              icon="icons/etool16/zoomminus.gif"
+              id="org.eclipse.amp.axf.ui.zoomOut"
+              label="Zoom Out"
+              menubarPath="additions"
+              style="push"
+              toolbarPath="zoomGroup"
+              tooltip="Make view smaller.">
+        </action>
+        <menu
+              id="org.eclipse.amp.axf.ui.menu.Fit"
+              label="Fit"
+              path="fitgroup">
+           <separator
+                 name="fitgroup">
+           </separator>
+        </menu>
+     </viewContribution>
+        </extension>
+
+</plugin>

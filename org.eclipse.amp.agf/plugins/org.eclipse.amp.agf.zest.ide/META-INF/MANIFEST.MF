@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-Vendor: %providerName
+Bundle-SymbolicName: org.eclipse.amp.agf.zest.ide;singleton:=true
+Bundle-Version: 0.2.0.qualifier
+Bundle-Activator: org.eclipse.amp.agf.zest.ide.AMPZestPlugin
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.amp.agf.zest,
+ org.eclipse.zest.core;bundle-version="1.1.0",
+ org.eclipse.zest.layouts;bundle-version="1.1.0",
+ org.eclipse.amp.axf.ide,
+ org.eclipse.amp.axf.views
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

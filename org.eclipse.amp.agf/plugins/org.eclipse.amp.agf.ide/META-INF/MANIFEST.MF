@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-Name: %pluginName
+Bundle-Vendor: %providerName
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.eclipse.amp.agf.ide;singleton:=true
+Bundle-Version: 0.2.0.qualifier
+Bundle-Activator: org.eclipse.amp.agf.ide.AGFIDEPlugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui,
+ org.eclipse.gef;bundle-version="3.5.0",
+ org.eclipse.amp.agf.core,
+ org.eclipse.amp.axf.views,
+ org.eclipse.amp.axf.ide
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

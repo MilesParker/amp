@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+     <view
+           allowMultiple="true"
+           category="org.eclipse.amp.axf.views"
+           class="org.eclipse.amp.agf.zest.ZestViewPart"
+           icon="icons/etool16/graph.gif"
+           id="org.eclipse.amp.view.ZestView"
+           name="Graph View"
+           restorable="true">
+     </view>
+   </extension>
+
+  <extension
+        point="org.eclipse.ui.viewActions">
+     <viewContribution
+           id="org.eclipse.amp.escape.view.graph"
+           targetID="org.eclipse.amp.view.ZestView">
+        <action
+              class="org.eclipse.amp.agf.zest.ide.SpringLayoutAction"
+              icon="icons/etool16/layout_spring.gif"
+              id="org.eclipse.amp.view.graph.spring"
+              label="Spring Layout"
+              menubarPath="additions"
+              state="true"
+              style="radio"
+              toolbarPath="layoutgroup"
+              tooltip="Layout nodes using spring connections.">
+        </action>
+        <action
+              class="org.eclipse.amp.agf.zest.ide.SpringLayoutModAction"
+              icon="icons/etool16/layout_spring_custom.gif"
+              id="org.eclipse.amp.view.graphspringmod"
+              label="Customize Spring Layout"
+              menubarPath="additions"
+              style="push"
+              toolbarPath="additions"
+              tooltip="Layout nodes using spring connections.">
+        </action>
+        <action
+              class="org.eclipse.amp.agf.zest.ide.RadialLayoutAction"
+              icon="icons/etool16/layout_radial.gif"
+              id="org.eclipse.amp.view.graph.Radial"
+              label="Radial Layout"
+              menubarPath="additions"
+              state="false"
+              style="radio"
+              toolbarPath="layoutgroup"
+              tooltip="Layout nodes using radial tree.">
+        </action>
+        <action
+              class="org.eclipse.amp.agf.zest.ide.TreeHorizLayoutAction"
+              icon="icons/etool16/layout_tree_right.gif"
+              id="org.eclipse.amp.view.TreeRight"
+              label="Tree Layout (Horizontal)"
+              menubarPath="additions"
+              state="false"
+              style="radio"
+              toolbarPath="layoutgroup"
+              tooltip="Layout nodes using tree connections to right.">
+        </action>
+        <action
+              class="org.eclipse.amp.agf.zest.ide.TreeVertLayoutAction"
+              icon="icons/etool16/layout_tree_down.gif"
+              id="org.eclipse.amp.view.graph.TreeDown"
+              label="Tree Layout"
+              menubarPath="additions"
+              state="false"
+              style="radio"
+              toolbarPath="layoutgroup"
+              tooltip="Layout nodes using tree connections down.">
+        </action>
+        <menu
+              id="org.eclipse.amp.axf.ui.layout"
+              label="Layout"
+              path="layoutgroup">
+        </menu>
+     </viewContribution>
+ </extension>
+</plugin>
