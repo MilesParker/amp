@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+
+<plugin>
+	<extension point="org.eclipse.ui.commands">
+		<command categoryId="org.eclipse.amp.axf.ui" id="org.eclipse.amp.escape.runtime.execute"
+			name="Execute">
+		</command>
+		<command categoryId="org.eclipse.amp.axf.ui"
+			id="org.eclipse.amp.escape.runtime.executeHeadless" name="Execute Headless">
+		</command>
+		<command categoryId="org.eclipse.amp.axf.ui"
+			id="org.eclipse.amp.escape.runtime.executeParam" name="Execute">
+		</command>
+		<command categoryId="org.eclipse.amp.axf.ui"
+			id="org.eclipse.amp.escape.runtime.executeParamHeadless" name="Execute Headless">
+		</command>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="popup:org.eclipse.ui.popup.any">
+			<command commandId="org.eclipse.amp.escape.runtime.execute"
+				icon="icons/etool16/execute.gif" style="push" tooltip="Execute the model.">
+				<visibleWhen checkEnabled="true">
+				</visibleWhen>
+			</command>
+			<command commandId="org.eclipse.amp.escape.runtime.executeHeadless"
+				icon="icons/etool16/execute_headless.gif" style="push" tooltip="Execute the model.">
+				<visibleWhen checkEnabled="true">
+				</visibleWhen>
+			</command>
+		</menuContribution>
+		<menuContribution
+			locationURI="toolbar:org.eclipse.amp.escape.ide.launch?after=additions">
+			<command commandId="org.eclipse.amp.escape.runtime.execute"
+				icon="icons/etool16/execute.gif" label="Execute" style="push"
+				tooltip="Load and start an Escape model.">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="org.eclipse.amp.escape.allowexecute">
+					</reference>
+				</visibleWhen>
+			</command>
+			<command commandId="org.eclipse.amp.escape.runtime.executeHeadless"
+				icon="icons/etool16/execute_headless.gif" label="Execute Headless" style="push"
+				tooltip="Load and start an Escape model in non-graphical mode.">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="org.eclipse.amp.escape.allowexecute">
+					</reference>
+				</visibleWhen>
+			</command>
+			<command commandId="org.eclipse.amp.escape.runtime.executeParam"
+				icon="icons/etool16/execute.gif" label="Execute" style="push"
+				tooltip="Load and start an Escape model.">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
+					</reference>
+				</visibleWhen>
+			</command>
+			<command commandId="org.eclipse.amp.escape.runtime.executeParamHeadless"
+				icon="icons/etool16/execute_headless.gif" label="Execute Headless" style="push"
+				tooltip="Load and start an Escape model in non-graphical mode.">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
+					</reference>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+		<menuContribution locationURI="menu:org.eclipse.amp.axf.ui.menu?after=additions">
+			<command commandId="org.eclipse.amp.escape.runtime.execute"
+				icon="icons/etool16/execute.gif" label="Execute" style="push"
+				tooltip="Load and start an Escape model.">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="org.eclipse.amp.escape.allowexecute">
+					</reference>
+				</visibleWhen>
+			</command>
+			<command commandId="org.eclipse.amp.escape.runtime.executeHeadless"
+				icon="icons/etool16/execute_headless.gif" label="Execute Headless" style="push"
+				tooltip="Load and start an Escape model in non-graphical mode.">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="org.eclipse.amp.escape.allowexecute">
+					</reference>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+		
+		<menuContribution locationURI="popup:org.eclipse.ui.popup.any">
+			<command commandId="org.eclipse.amp.escape.runtime.executeParam"
+				icon="icons/etool16/execute.gif" style="push" tooltip="Execute the model.">
+				<visibleWhen checkEnabled="true">
+				</visibleWhen>
+			</command>
+			<command commandId="org.eclipse.amp.escape.runtime.executeParamHeadless"
+				icon="icons/etool16/execute_headless.gif" style="push" tooltip="Execute the model.">
+				<visibleWhen checkEnabled="true">
+				</visibleWhen>
+			</command>
+		</menuContribution>
+		<menuContribution locationURI="menu:org.eclipse.amp.axf.ui.menu?after=additions">
+			<command commandId="org.eclipse.amp.escape.runtime.executeParam"
+				icon="icons/etool16/execute.gif" label="Execute" style="push"
+				tooltip="Load and start an Escape model.">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
+					</reference>
+				</visibleWhen>
+			</command>
+			<command commandId="org.eclipse.amp.escape.runtime.executeParamHeadless"
+				icon="icons/etool16/execute_headless.gif" label="Execute Headless" style="push"
+				tooltip="Load and start an Escape model in non-graphical mode.">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
+					</reference>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+  <menuContribution
+        locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+     <toolbar
+           id="org.eclipse.amp.escape.ide.launch">
+     </toolbar>
+  </menuContribution>
+	</extension>
+	<extension point="org.eclipse.core.expressions.definitions">
+		<definition id="org.eclipse.amp.escape.allowexecute">
+			<or>
+				<with variable="selection">
+					<iterate ifEmpty="false">
+							<adapt type="org.eclipse.jdt.core.ICompilationUnit">
+							</adapt>
+					</iterate>
+				</with>
+			</or>
+		</definition>
+		<definition id="org.eclipse.amp.escape.allowexecuteParam">
+			<or>
+				<with variable="selection">
+					<iterate ifEmpty="false">
+							<adapt type="org.eclipse.core.resources.IResource">
+								<or>
+									<test property="org.eclipse.core.resources.name" value="*.apar">
+									</test>
+								</or>
+							</adapt>
+					</iterate>
+				</with>
+			</or>
+		</definition>
+	</extension>
+	<extension point="org.eclipse.ui.handlers">
+		<handler class="org.eclipse.amp.escape.command.ExecuteJavaHandler"
+			commandId="org.eclipse.amp.escape.runtime.execute">
+			<activeWhen>
+				<reference definitionId="org.eclipse.amp.escape.allowexecute">
+				</reference>
+			</activeWhen>
+			<enabledWhen>
+				<reference definitionId="org.eclipse.amp.escape.allowexecute">
+				</reference>
+			</enabledWhen>
+		</handler>
+		<handler class="org.eclipse.amp.escape.command.ExecuteJavaHeadlessHandler"
+			commandId="org.eclipse.amp.escape.runtime.executeHeadless">
+			<activeWhen>
+				<reference definitionId="org.eclipse.amp.escape.allowexecute">
+				</reference>
+			</activeWhen>
+			<enabledWhen>
+				<reference definitionId="org.eclipse.amp.escape.allowexecute">
+				</reference>
+			</enabledWhen>
+		</handler>
+		<handler class="org.eclipse.amp.escape.command.ExecuteParameterHandler"
+			commandId="org.eclipse.amp.escape.runtime.executeParam">
+			<activeWhen>
+				<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
+				</reference>
+			</activeWhen>
+			<enabledWhen>
+				<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
+				</reference>
+			</enabledWhen>
+		</handler>
+		<handler class="org.eclipse.amp.escape.command.ExecuteParameterHeadlessHandler"
+			commandId="org.eclipse.amp.escape.runtime.executeParamHeadless">
+			<activeWhen>
+				<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
+				</reference>
+			</activeWhen>
+			<enabledWhen>
+				<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
+				</reference>
+			</enabledWhen>
+		</handler>
+	</extension>
+	<extension point="org.eclipse.ui.bindings">
+		<key commandId="org.eclipse.amp.escape.runtime.execute" contextId="org.eclipse.ui.contexts.window"
+			schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" sequence="M1+L">
+		</key>
+	</extension>
+	<extension point="org.eclipse.ui.editors">
+		<editor class="org.eclipse.ui.editors.text.TextEditor" default="false"
+			extensions="apar" icon="icons/etool16/run_parameter.gif" id="org.eclipse.amp.escape.ide.parameterEditor"
+			name="Parameter Editor">
+		</editor>
+		<editor class="org.eclipse.ui.editors.text.TextEditor" default="false"
+			extensions="atest" icon="icons/etool16/test_file.gif" id="org.eclipse.amp.escape.ide.testEditor"
+			name="Test Editor">
+		</editor>
+	</extension>
+	<extension point="org.eclipse.ui.newWizards">
+		<wizard category="org.eclipse.amp.wizards"
+			class="org.eclipse.amp.escape.ide.ParameterFileWizard" icon="icons/etool16/run_parameter.gif"
+			id="org.eclipse.amp.escape.wizards.newParameters" name="Parameter File">
+		</wizard>
+		<wizard category="org.eclipse.amp.wizards" class="org.eclipse.amp.escape.ide.TestRunFileWizard"
+			icon="icons/etool16/test_file.gif" id="org.eclipse.amp.escape.wizards.newTest"
+			name="Test File">
+		</wizard>
+	</extension>
+
+	<extension point="org.eclipse.ui.perspectiveExtensions">
+		<perspectiveExtension targetID="org.eclipse.amp.axf.ExecutionPerspective">
+			<view id="org.eclipse.amp.view.GEFView:*" ratio=".8"
+				relationship="right" relative="org.eclipse.ui.editorss" visible="false">
+			</view>
+			<view id="org.eclipse.amp.view.GEF3DView:*" ratio=".8"
+				relationship="right" relative="org.eclipse.ui.editorss" visible="false">
+			</view>
+			<view id="org.eclipse.amp.escape.view.GraphicsView:*" ratio=".8"
+				relationship="right" relative="org.eclipse.ui.editorss" visible="false">
+			</view>
+			<view id="org.eclipse.amp.view.TreeView:*" ratio=".8"
+				relationship="right" relative="org.eclipse.ui.editorss" visible="false">
+			</view>
+			<viewShortcut id="org.eclipse.amp.escape.view.GraphicsView">
+			</viewShortcut>
+			<viewShortcut id="org.eclipse.amp.view.TreeView">
+			</viewShortcut>
+		</perspectiveExtension>
+		<!--
+			<perspectiveExtension targetID="???"> <perspectiveShortcut
+			id="org.eclipse.amp.axf.ExecutionPerspective"> </perspectiveShortcut>
+			<newWizardShortcut id="org.eclipse.amp.escape.wizards.newProject">
+			</newWizardShortcut> <newWizardShortcut
+			id="org.eclipse.amp.escape.wizards.newParameters">
+			</newWizardShortcut> <newWizardShortcut
+			id="org.eclipse.amp.escape.wizards.newTest"> </newWizardShortcut>
+			</perspectiveExtension> <perspectiveExtension
+			targetID="org.eclipse.jdt.ui.JavaPerspective"> <perspectiveShortcut
+			id="org.eclipse.amp.axf.ExecutionPerspective"> </perspectiveShortcut>
+			</perspectiveExtension>
+		-->
+	</extension>
+	<extension point="org.eclipse.ui.editors">
+		<editor class="org.eclipse.ui.editors.text.TextEditor" default="false"
+			extensions="apar" icon="icons/etool16/run_parameter.gif" id="org.eclipse.amp.escape.ide.ParameterEditor"
+			name="Model Parameters">
+		</editor>
+		<editor class="org.eclipse.ui.editors.text.TextEditor" default="false"
+			extensions="atest" icon="icons/etool16/test_file.gif" id="org.eclipse.amp.escape.ide.TestEditor"
+			name="Model Test">
+		</editor>
+	</extension>
+</plugin>
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2009/06/26 07:25:03 mparker Exp $
+-->
+
+<plugin>
+
+  <extension
+        point="org.eclipse.core.runtime.adapters">
+     <factory
+           adaptableType="org.eclipse.amp.axf.core.IModel"
+           class="org.eclipse.amp.escape.ascape.adapt.Ascape3DAdapterFactory">
+        <adapter
+              type="org.eclipse.amp.agf3d.I3DModelFactoryProvider">
+        </adapter>
+     </factory>
+  </extension>
+</plugin>
+

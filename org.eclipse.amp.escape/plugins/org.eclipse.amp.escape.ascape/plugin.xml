@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2009/06/26 07:25:01 mparker Exp $
+-->
+
+<plugin>
+
+  <extension
+        point="org.eclipse.core.runtime.adapters">
+     <factory
+           adaptableType="org.eclipse.amp.axf.ide.ModelViewManager"
+           class="org.eclipse.amp.escape.ascape.adapt.AscapeAdapterFactory">
+        <adapter
+              type="org.eclipse.jface.viewers.ILabelProvider">
+        </adapter>
+     </factory>
+     <factory
+           adaptableType="org.eclipse.amp.axf.view.ModelViewPart"
+           class="org.eclipse.amp.escape.ascape.adapt.AscapeAdapterFactory">
+        <adapter
+              type="org.eclipse.ui.views.properties.IPropertySourceProvider">
+        </adapter>
+     </factory>
+     <factory
+           adaptableType="org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel"
+           class="org.eclipse.amp.escape.ascape.adapt.AscapeAdapterFactory">
+        <adapter
+              type="org.eclipse.ui.views.properties.IPropertySource">
+        </adapter>
+     </factory>
+     <factory
+           adaptableType="org.ascape.model.Agent"
+           class="org.eclipse.amp.escape.ascape.adapt.AscapeAdapterFactory">
+        <adapter
+              type="org.eclipse.ui.views.properties.IPropertySource">
+        </adapter>
+     </factory>
+  </extension>
+</plugin>
+

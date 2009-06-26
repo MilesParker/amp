@@ -1,0 +1,17 @@
+package org.eclipse.amp.escape.amf.ide;
+
+import org.eclipse.core.resources.IResource;
+import org.metaabm.ide.ResourceJobHandler;
+
+public class GenerateEscapeHandler extends ResourceJobHandler {
+
+    @Override
+    public void execute(IResource resource) {
+        EscapeModelBuilder.getEscapeBuilderDefault().setCurrentMonitor(getMonitor());
+        EscapeModelBuilder.getEscapeBuilderDefault().handleModifiedResource(resource);
+        EscapeModelStyles2Builder.getEscapeBuilderDefault().setCurrentMonitor(getMonitor());
+        EscapeModelStyles2Builder.getEscapeBuilderDefault().handleModifiedResource(resource);
+        // EscapeGraphicsBuilder.getEscapeBuilderDefault().setCurrentMonitor(getMonitor());
+        // EscapeGraphicsBuilder.getEscapeBuilderDefault().handleModifiedResource(resource);
+    }
+}

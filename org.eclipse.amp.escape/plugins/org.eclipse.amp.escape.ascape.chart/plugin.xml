@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+  <extension
+        id="org.eclipse.amp.escape.customizer"
+        name="Customizers"
+        point="org.eclipse.ui.views">
+     <view
+           allowMultiple="false"
+           category="org.eclipse.amp.axf.views"
+           class="org.eclipse.amp.escape.ascape.chart.ChartCustomizer"
+           icon="icons/obj16/selectformat.gif"
+           id="org.eclipse.amp.view.customizer.Chart"
+           name="Chart Customizer"
+           restorable="true">
+     </view>
+  </extension>
+  <extension
+        point="org.eclipse.ui.perspectiveExtensions">
+     <perspectiveExtension
+           targetID="org.eclipse.amp.axf.ExecutionPerspective">
+        <view
+              id="org.eclipse.amp.view.customizer.Chart"
+              relationship="stack"
+              relative="org.eclipse.ui.views.PropertySheet"
+              visible="true">
+        </view>
+        <viewShortcut
+              id="org.eclipse.amp.view.customizer.Chart">
+        </viewShortcut>
+     </perspectiveExtension>
+  </extension>
+
+  <extension
+        point="org.eclipse.core.runtime.adapters">
+     <factory
+           adaptableType="org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel"
+           class="org.eclipse.amp.escape.ascape.chart.AscapeChartAdapterFactory">
+        <adapter
+              type="org.eclipse.amp.agf.chart.IDataProvider">
+        </adapter>
+     </factory>
+  </extension>
+  <extension
+        point="org.eclipse.ui.viewActions">
+     <viewContribution
+           id="org.eclipse.amp.view.customizer.Chart.clear"
+           targetID="org.eclipse.amp.view.customizer.Chart">
+        <action
+              class="org.eclipse.amp.escape.ascape.chart.ClearSelectionAction"
+              icon="icons/obj16/progress_rem.gif"
+              id="org.eclipse.amp.escape.charts.dataclear"
+              label="Clear Selection"
+              menubarPath="additions"
+              state="false"
+              toolbarPath="customGroup"
+              tooltip="Clear all selected chart series.">
+        </action>
+     </viewContribution>
+  </extension>
+</plugin>
