@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.1 2009/06/24 03:17:07 mparker Exp $
+ $Id: plugin.xml,v 1.2 2009/06/26 05:03:17 mparker Exp $
 -->
 
 <plugin>
@@ -163,9 +163,6 @@
        </menuContribution>
        <menuContribution
              locationURI="toolbar:org.eclipse.amp.axf.ui.execute">
-                   <separator
-                         name="org.eclipse.amp.axf.ide.separator2">
-                   </separator>
                    <command
                          commandId="org.eclipse.amp.axf.ui.start"
                          disabledIcon="icons/dtool16/run_exc.gif"
