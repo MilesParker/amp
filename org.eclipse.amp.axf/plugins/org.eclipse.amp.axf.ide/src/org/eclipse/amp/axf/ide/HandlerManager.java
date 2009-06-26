@@ -60,7 +60,7 @@ public class HandlerManager {
         handlers.add(handler);
         handlerActivations.add(handlerService.activateHandler(id, handler));
         ModelViewManager manager = AXFWorkbenchPlugin.getDefault().getManager();
-        manager.getWorkbenchListeners().addListener(handler);
+        manager.getActiveModelListeners().addListener(handler);
         manager.getManagerListeners().addModelManagerListener(handler);
     }
 

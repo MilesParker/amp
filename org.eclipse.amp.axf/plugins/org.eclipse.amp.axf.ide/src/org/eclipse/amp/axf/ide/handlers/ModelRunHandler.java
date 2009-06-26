@@ -100,11 +100,11 @@ public abstract class ModelRunHandler extends AbstractHandler implements ILifeCy
         }
     }
 
-    public void observing(IObservationProvider model) {
+    public synchronized void observing(IObservationProvider model) {
         this.model = (IModel) model;
     }
 
-    public void observationEnd(IObservationProvider model) {
+    public synchronized void observationEnd(IObservationProvider model) {
         this.model = null;
     }
 
@@ -113,7 +113,7 @@ public abstract class ModelRunHandler extends AbstractHandler implements ILifeCy
         notifyChange();
     }
 
-    public void modelActivated(IObservationProvider model) {
+    public synchronized void modelActivated(IObservationProvider model) {
         this.model = (IModel) model;
         notifyChange();
     }

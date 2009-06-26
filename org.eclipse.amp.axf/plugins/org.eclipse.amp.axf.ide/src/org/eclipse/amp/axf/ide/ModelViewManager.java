@@ -60,6 +60,47 @@ import org.eclipse.ui.statushandlers.StatusManager;
 @SuppressWarnings("restriction")
 public class ModelViewManager implements IAdapterFactory {
 
+    /**
+     * 
+     * @author mparker
+     * 
+     */
+    private final class ActivationListener implements IPartListener {
+        private void assignPart(final IWorkbenchPart part) {
+            if (part instanceof IModelPart && ((IModelPart) part).getAdapter(IModel.class) != null) {
+                new Thread() {
+                    public void run() {
+                        IModel model = (IModel) ((IModelPart) part).getAdapter(IModel.class);
+                        setActiveModel(model);
+                    }
+                }.start();
+            }
+        }
+
+        public void partBroughtToTop(IWorkbenchPart part) {
+            assignPart(part);
+        }
+
+        public void partActivated(final IWorkbenchPart part) {
+            assignPart(part);
+        }
+
+        public void partClosed(final IWorkbenchPart part) {
+            new Thread() {
+                public void run() {
+                    removed((IViewPart) part);
+                }
+            }.start();
+        }
+
+        public void partDeactivated(IWorkbenchPart part) {
+        }
+
+        public void partOpened(IWorkbenchPart part) {
+            assignPart(part);
+        }
+    }
+
     public static final String EXECUTION_PERSPECTIVE_ID = "org.eclipse.amp.axf.ExecutionPerspective";
 
     private IContextService contextService;
@@ -72,15 +113,15 @@ public class ModelViewManager implements IAdapterFactory {
 
     List<IViewPart> views = new ArrayList<IViewPart>();
 
-    Map<IEngine, IModel> runnerForModel = new HashMap<IEngine, IModel>();
+    Map<IEngine, IModel> runnerForModel;
 
     Map<IModel, IEngine> modelForRunner = new HashMap<IModel, IEngine>();
 
     Map<Object, IModel> modelForArbitrary = new HashMap<Object, IModel>();
 
-    Map<IModel, List<IViewPart>> viewsForModel = new HashMap<IModel, List<IViewPart>>();
+    Map<IModel, List<IViewPart>> viewsForModel;
 
-    LifeCycleListeners workbenchListeners = new LifeCycleListeners();
+    LifeCycleListeners activeModelListeners;
 
     ModelManagerListeners managerListeners = new ModelManagerListeners();
 
@@ -97,6 +138,8 @@ public class ModelViewManager implements IAdapterFactory {
     private SelectionSynchronizer editSelection;
 
     private String priorPerspectiveID;
+
+    private StatusLineView statusLineView;
 
     /**
      * Instantiates a new model view manager.
@@ -126,7 +169,7 @@ public class ModelViewManager implements IAdapterFactory {
         final IModel oldModel = this.activeModel;
         this.activeModel = newModel;
         if (newModel != oldModel) {
-            workbenchListeners.replaceModel(oldModel, newModel);
+            getActiveModelListeners().replaceModel(oldModel, newModel);
             if (newModel != null) {
                 managerListeners.notifyModelActivated(newModel);
             }
@@ -391,7 +434,7 @@ public class ModelViewManager implements IAdapterFactory {
         } else {
             StatusManager.getManager().handle(
                                               new Status(Status.WARNING, "org.eclipse.amp.axf.ui",
-                                                         "Removing a model that no longer exists:" + model));
+                                                         "Removing a model that no longer exists:" + model, new Exception()));
         }
     }
 
@@ -401,106 +444,55 @@ public class ModelViewManager implements IAdapterFactory {
         return wb.getWorkbenchWindows()[0].getPages()[0];
     }
 
-    private void activate() {
+    private synchronized void activate() {
         final IWorkbench wb = AXFWorkbenchPlugin.getDefault().getWorkbench();
 
-        if (wb != null) {
-            wb.addWorkbenchListener(new IWorkbenchListener() {
-                public void postShutdown(IWorkbench workbench) {
-                }
+        wb.addWorkbenchListener(new IWorkbenchListener() {
+            public void postShutdown(IWorkbench workbench) {
+            }
 
-                public boolean preShutdown(IWorkbench workbench, boolean forced) {
-                    if (!forced) {
-                        synchronized (ModelViewManager.this) {
-                            for (IModel model : new ArrayList<IModel>(getModels())) {
-                                remove(model);
-                            }
+            public boolean preShutdown(IWorkbench workbench, boolean forced) {
+                if (!forced) {
+                    synchronized (ModelViewManager.this) {
+                        for (IModel model : new ArrayList<IModel>(getModels())) {
+                            remove(model);
                         }
                     }
-                    return true;
                 }
-            });
+                return true;
+            }
+        });
 
-            modelActivationListener = new IPartListener() {
-                public void partActivated(final IWorkbenchPart part) {
-                    assignPart(part);
-                    // if (updated != null) {
-                    // }
+        viewsForModel = new HashMap<IModel, List<IViewPart>>();
+        runnerForModel = new HashMap<IEngine, IModel>();
+        modelActivationListener = new ActivationListener();
+        activeModelListeners = new LifeCycleListeners();
+
+        getPage().addPartListener(modelActivationListener);
+        statusLineView = StatusLineView.getDefault();
+        getPage().addPartListener(statusLineView);
+        getActiveModelListeners().addListener(statusLineView);
+        activatePerspective(wb, EXECUTION_PERSPECTIVE_ID, false);
+        wb.getDisplay().syncExec(new Runnable() {
+            public void run() {
+                try {
+                    contextService = (IContextService) wb.getService(IContextService.class);
+                    ideContext = contextService.activateContext("org.eclipse.amp.axf.executionContext");
+                    partContext = contextService.activateContext("org.eclipse.amp.axf.activeEditorContext");
+
+                } catch (Exception e) {
+                    throw new RuntimeException("Couldn't activate services.", e);
                 }
-
-                private void assignPart(final IWorkbenchPart part) {
-                    if (part instanceof IModelPart && ((IModelPart) part).getAdapter(IModel.class) != null) {
-                        new Thread() {
-                            public void run() {
-                                IModel model = (IModel) ((IModelPart) part).getAdapter(IModel.class);
-                                setActiveModel(model);
-                            }
-                        }.start();
-                    }
-                }
-
-                public void partBroughtToTop(IWorkbenchPart part) {
-                    assignPart(part);
-                }
-
-                public void partClosed(final IWorkbenchPart part) {
-                    new Thread() {
-                        public void run() {
-                            removed((IViewPart) part);
-                        }
-                    }.start();
-                }
-
-                public void partDeactivated(IWorkbenchPart part) {
-                }
-
-                public void partOpened(IWorkbenchPart part) {
-                    assignPart(part);
-                }
-
-                // private SpeedSliderWindowControl getSpeedControl(final IWorkbenchPart part) {
-                // IViewSite site = (IViewSite) part.getSite();
-                // IActionBars actionBars = site.getActionBars();
-                // return (SpeedSliderWindowControl) actionBars.getMenuManager()
-                // .find("org.eclipse.amp.axf.view.ui.slider");
-                // };
-            };
-            getPage().addPartListener(modelActivationListener);
-            activatePerspective(wb, EXECUTION_PERSPECTIVE_ID, false);
-            wb.getDisplay().syncExec(new Runnable() {
-                private StatusLineView statusView;
-
-                public void run() {
-                    try {
-                        contextService = (IContextService) wb.getService(IContextService.class);
-                        ideContext = contextService.activateContext("org.eclipse.amp.axf.executionContext");
-                        partContext = contextService.activateContext("org.eclipse.amp.axf.activeEditorContext");
-
-                        handlers.activate();
-                        handlers.addHandler("org.eclipse.amp.axf.ui.start", new StartHandler());
-                        handlers.addHandler("org.eclipse.amp.axf.ui.stop", new StopHandler());
-                        handlers.addHandler("org.eclipse.amp.axf.ui.pause", new PauseHandler());
-                        handlers.addHandler("org.eclipse.amp.axf.ui.resume", new ResumeHandler());
-                        handlers.addHandler("org.eclipse.amp.axf.ui.restart", new RestartHandler());
-                        handlers.addHandler("org.eclipse.amp.axf.ui.close", new CloseHandler());
-                        handlers.addHandler("org.eclipse.amp.axf.ui.step", new StepHandler());
-                        // if (statusView == null) {
-                        // statusView = new StatusLineView();
-                        // new Thread() {
-                        // public void run() {
-                        // workbenchListeners.addListener(statusView);
-                        // addModelManagerListener(statusView);
-                        // };
-                        // }.start();
-                        // }
-                    } catch (Exception e) {
-                        throw new RuntimeException("Couldn't activate services.", e);
-                    }
-                }
-            });
-        } else {
-            throw new RuntimeException("Attempted to activate a service with no workbench available.");
-        }
+            }
+        });
+        handlers.activate();
+        handlers.addHandler("org.eclipse.amp.axf.ui.start", new StartHandler());
+        handlers.addHandler("org.eclipse.amp.axf.ui.stop", new StopHandler());
+        handlers.addHandler("org.eclipse.amp.axf.ui.pause", new PauseHandler());
+        handlers.addHandler("org.eclipse.amp.axf.ui.resume", new ResumeHandler());
+        handlers.addHandler("org.eclipse.amp.axf.ui.restart", new RestartHandler());
+        handlers.addHandler("org.eclipse.amp.axf.ui.close", new CloseHandler());
+        handlers.addHandler("org.eclipse.amp.axf.ui.step", new StepHandler());
     }
 
     private void activatePerspective(final IWorkbench wb, final String perspectiveID, final boolean editors) {
@@ -522,10 +514,9 @@ public class ModelViewManager implements IAdapterFactory {
         });
     }
 
-    private void deactivate() {
+    private synchronized void deactivate() {
         final IWorkbench wb = AXFWorkbenchPlugin.getDefault().getWorkbench();
         if (wb != null) {
-            workbenchListeners = new LifeCycleListeners();
             wb.getDisplay().syncExec(new Runnable() {
                 public void run() {
                     if (contextService != null) {
@@ -536,27 +527,15 @@ public class ModelViewManager implements IAdapterFactory {
                 }
             });
             getPage().removePartListener(modelActivationListener);
-            // while (views.size() > 0) {
-            // try {
-            // Thread.sleep(50);
-            // } catch (InterruptedException e) {
-            // }
-            // }
+            getPage().removePartListener(statusLineView);
             if (priorPerspectiveID != null) {
                 activatePerspective(wb, priorPerspectiveID, true);
             }
+            // We don't want references to these resources hanging around if not needed
             modelActivationListener = null;
+            statusLineView = null;
+            activeModelListeners = null;
         }
-    }
-
-    private void waitForUpdate(int count) {
-        while (updateCount < count) {
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-            }
-        }
-        updateCount = 0;
     }
 
     /**
@@ -607,13 +586,12 @@ public class ModelViewManager implements IAdapterFactory {
         this.editSelection = editSelection;
     }
 
-
     public ModelManagerListeners getManagerListeners() {
         return managerListeners;
     }
 
-    public LifeCycleListeners getWorkbenchListeners() {
-        return workbenchListeners;
+    public LifeCycleListeners getActiveModelListeners() {
+        return activeModelListeners;
     }
 
     public HandlerManager getHandlers() {

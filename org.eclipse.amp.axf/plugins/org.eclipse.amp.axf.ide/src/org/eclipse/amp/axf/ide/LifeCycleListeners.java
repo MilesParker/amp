@@ -31,7 +31,7 @@ public class LifeCycleListeners {
 
     List<ILifeCycleListener> workbenchListeners = new ArrayList<ILifeCycleListener>();
 
-    public synchronized void replaceModel(IModel oldModel, IModel newModel) {
+    public void replaceModel(IModel oldModel, IModel newModel) {
         if (oldModel != null) {
             for (final ILifeCycleListener listener : workbenchListeners) {
                 oldModel.removeModelListener(listener);

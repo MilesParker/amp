@@ -17,9 +17,9 @@ package org.eclipse.amp.axf.ide.view;
 
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.core.IObservationProvider;
-import org.eclipse.amp.axf.ide.IModelWorkbenchListener;
 import org.eclipse.amp.axf.view.SWTAsyncModelListener;
 import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.IWorkbenchPart;
@@ -28,14 +28,17 @@ import org.eclipse.ui.IWorkbenchPart;
 /**
  * The Class StatusLineView.
  */
-public class StatusLineView extends SWTAsyncModelListener implements IModelWorkbenchListener {
+public class StatusLineView extends SWTAsyncModelListener implements IPartListener {
 
     IViewPart part;
+
+    // There should only be one status line view at a time..
+    private static StatusLineView view;
 
     /**
      * Instantiates a new status line view.
      */
-    public StatusLineView() {
+    private StatusLineView() {
         super(null, "Status Line View", 100);
     }
 
@@ -100,31 +103,22 @@ public class StatusLineView extends SWTAsyncModelListener implements IModelWorkb
     }
 
     /**
-     * @param model
-     * @see org.eclipse.amp.axf.ide.IModelWorkbenchListener#modelActivated(org.eclipse.amp.axf.core.IObservationProvider)
+     * @param part
+     * @see org.eclipse.ui.IPartListener#partActivated(org.eclipse.ui.IWorkbenchPart)
      */
-    public void modelActivated(IObservationProvider model) {
-    }
-
-    /**
-     * @param model
-     * @see org.eclipse.amp.axf.ide.IModelWorkbenchListener#modelAdded(org.eclipse.amp.axf.core.IObservationProvider)
-     */
-    public void modelAdded(IObservationProvider model) {
-    }
-
-    /**
-     * @param model
-     * @see org.eclipse.amp.axf.ide.IModelWorkbenchListener#modelRemoved(org.eclipse.amp.axf.core.IObservationProvider)
-     */
-    public void modelRemoved(IObservationProvider model) {
+    public void partActivated(IWorkbenchPart part) {
+        assignPart(part);
     }
 
     /**
      * @param part
-     * @see org.eclipse.amp.axf.ide.IModelWorkbenchListener#viewActivated(org.eclipse.ui.IWorkbenchPart)
+     * @see org.eclipse.ui.IPartListener#partBroughtToTop(org.eclipse.ui.IWorkbenchPart)
      */
-    public void viewActivated(IWorkbenchPart part) {
+    public void partBroughtToTop(IWorkbenchPart part) {
+        assignPart(part);
+    }
+
+    private void assignPart(IWorkbenchPart part) {
         if (part instanceof IViewPart) {
             this.part = (IViewPart) part;
         } else {
@@ -134,18 +128,32 @@ public class StatusLineView extends SWTAsyncModelListener implements IModelWorkb
 
     /**
      * @param part
-     * @see org.eclipse.amp.axf.ide.IModelWorkbenchListener#viewAdded(org.eclipse.ui.IWorkbenchPart)
+     * @see org.eclipse.ui.IPartListener#partClosed(org.eclipse.ui.IWorkbenchPart)
      */
-    public void viewAdded(IWorkbenchPart part) {
+    public void partClosed(IWorkbenchPart part) {
+        if (part == this.part) {
+            this.part = null;
+        }
     }
 
     /**
      * @param part
-     * @see org.eclipse.amp.axf.ide.IModelWorkbenchListener#viewRemoved(org.eclipse.ui.IWorkbenchPart)
+     * @see org.eclipse.ui.IPartListener#partDeactivated(org.eclipse.ui.IWorkbenchPart)
      */
-    public void viewRemoved(IWorkbenchPart part) {
-        if (part == this.part) {
-            this.part = null;
+    public void partDeactivated(IWorkbenchPart part) {
+    }
+
+    /**
+     * @param part
+     * @see org.eclipse.ui.IPartListener#partOpened(org.eclipse.ui.IWorkbenchPart)
+     */
+    public void partOpened(IWorkbenchPart part) {
+    }
+
+    public static StatusLineView getDefault() {
+        if (view == null) {
+            view = new StatusLineView();
         }
+        return view;
     }
 }
