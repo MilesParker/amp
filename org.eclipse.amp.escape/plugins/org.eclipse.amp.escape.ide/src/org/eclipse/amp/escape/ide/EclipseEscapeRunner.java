@@ -116,7 +116,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
                                               new Status(Status.ERROR, project.getName(), "Could not read class: "
                                                          + modelClassName
                                                          + ". Please ensure that the class exists in class path.", e),
-                                                         StatusManager.SHOW);
+                                                         StatusManager.SHOW | StatusManager.LOG);
             dispose();
             return;
         }
