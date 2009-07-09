@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.1 2009/06/26 07:25:03 mparker Exp $
+ $Id: plugin.xml,v 1.2 2009/07/09 16:56:46 mparker Exp $
 -->
 
 <plugin>
@@ -73,12 +73,12 @@
              name="Execute Headless">
        </command>
        <command
-             categoryId="org.metaabm.gen.category"
+             categoryId="org.eclipse.amp.amf.gen.category"
              id="org.eclipse.amp.amf.gen.escape"
              name="Generate Escape Model">
        </command>
        <command
-             categoryId="org.metaabm.gen.category"
+             categoryId="org.eclipse.amp.amf.gen.category"
              id="org.eclipse.amp.amf.gen.escape.3D"
              name="Generate Escape 3D Graphics">
        </command>
@@ -266,7 +266,7 @@
     <extension
           point="org.eclipse.ui.perspectiveExtensions">
        <perspectiveExtension
-             targetID="org.metaabm.ide.MetaABMPerspective">
+             targetID="org.eclipse.amp.amf.ide.MetaABMPerspective">
           <newWizardShortcut
                 id="org.eclipse.amp.escape.wizards.newProject">
           </newWizardShortcut>

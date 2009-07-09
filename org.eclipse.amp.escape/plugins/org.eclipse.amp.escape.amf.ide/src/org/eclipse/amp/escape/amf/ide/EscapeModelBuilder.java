@@ -1,8 +1,8 @@
 package org.eclipse.amp.escape.amf.ide;
 
+import org.eclipse.amp.amf.gen.ide.MetaABMBuilder;
 import org.eclipse.amp.escape.gen.EscapeGenActivator;
 import org.metaabm.gen.ascape.AscapeGenActivator;
-import org.metaabm.ide.MetaABMBuilder;
 
 
 public class EscapeModelBuilder extends MetaABMBuilder {

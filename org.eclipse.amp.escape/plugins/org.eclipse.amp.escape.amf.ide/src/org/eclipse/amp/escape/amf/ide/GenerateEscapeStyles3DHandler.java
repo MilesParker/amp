@@ -1,7 +1,7 @@
 package org.eclipse.amp.escape.amf.ide;
 
+import org.eclipse.amp.amf.gen.ide.ResourceJobHandler;
 import org.eclipse.core.resources.IResource;
-import org.metaabm.ide.ResourceJobHandler;
 
 public class GenerateEscapeStyles3DHandler extends ResourceJobHandler {
 

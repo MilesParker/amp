@@ -3,12 +3,12 @@ package org.eclipse.amp.escape.amf.ide;
 import java.io.IOException;
 import java.util.List;
 
+import org.eclipse.amp.amf.gen.ide.MetaABMProjectWizard;
 import org.eclipse.amp.escape.ide.EscapeIDEPlugin;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jdt.core.JavaCore;
-import org.metaabm.ide.MetaABMProjectWizard;
 
 public class EscapeAMFProjectWizard extends MetaABMProjectWizard {
 
