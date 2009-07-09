@@ -6,10 +6,8 @@ import org.eclipse.amp.axf.view.IModelPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef3d.editparts.ScalableFreeformRootEditPart3D;
-import org.eclipse.gef3d.preferences.ScenePreferenceListener;
 import org.eclipse.gef3d.tools.CameraTool;
 import org.eclipse.gef3d.ui.parts.GraphicalViewer3DImpl;
-import org.eclipse.gef3d.ui.parts.IScene;
 import org.eclipse.swt.widgets.Composite;
 
 public class GEF3DViewPart extends EditPartViewPart {
@@ -17,16 +15,16 @@ public class GEF3DViewPart extends EditPartViewPart {
     /**
      * The preference listener for this editor.
      */
-    protected ScenePreferenceListener sceneListener;
+    // protected ScenePreferenceListener sceneListener;
 
     public void createPartControl(Composite parent) {
         super.createPartControl(parent);
         parent.addDisposeListener(((GraphicalViewer3DImpl) viewer).getLightweightSystem3D());
 
-        if (viewer instanceof IScene) {
-            sceneListener = new ScenePreferenceListener((IScene) viewer);
-            sceneListener.start();
-        }
+        // if (viewer instanceof IScene) {
+        // sceneListener = new ScenePreferenceListener((IScene) viewer);
+        // sceneListener.start();
+        // }
     }
 
     EditPartListener rootListener;
@@ -59,9 +57,9 @@ public class GEF3DViewPart extends EditPartViewPart {
     @Override
     public void dispose() {
 
-        if (sceneListener != null) {
-            sceneListener.stop();
-        }
+        // if (sceneListener != null) {
+        // sceneListener.stop();
+        // }
 
         super.dispose();
     }
