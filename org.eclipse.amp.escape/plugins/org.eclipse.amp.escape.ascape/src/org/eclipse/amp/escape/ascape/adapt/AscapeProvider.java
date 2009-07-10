@@ -142,11 +142,11 @@ ICompositionProvider {
         final Array2D array2D = getArray2D((Scape) getUnwrapped(located));
         if (array2D != null) {
             return new ILocation() {
-                public int getY() {
+                public int getX() {
                     return ((Coordinate2DDiscrete) array2D.getExtent()).getXValue();
                 }
 
-                public int getX() {
+                public int getY() {
                     return ((Coordinate2DDiscrete) array2D.getExtent()).getYValue();
                 }
             };
