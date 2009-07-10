@@ -65,34 +65,6 @@ public class SolidShape extends AbstractModelShape {
 
         };
 
-        Runnable texture = new Runnable() {
-
-            public void run() {
-                g3d.glBegin(Graphics3DDraw.GL_QUADS);
-                g3d.glNormal3f(0, 0, -1);
-                g3d.glTexCoord2f(0, 1);
-                g3d.glVertex3f(0, 0, 0);
-                g3d.glTexCoord2f(0, 0);
-                g3d.glVertex3f(0, 1, 0);
-                g3d.glTexCoord2f(1, 0);
-                g3d.glVertex3f(1, 1, 0);
-                g3d.glTexCoord2f(1, 1);
-                g3d.glVertex3f(1, 0, 0);
-
-                g3d.glNormal3f(0, 0, 1);
-                g3d.glTexCoord2f(1, 1);
-                g3d.glVertex3f(1, 0, 0);
-                g3d.glTexCoord2f(1, 0);
-                g3d.glVertex3f(1, 1, 0);
-                g3d.glTexCoord2f(0, 0);
-                g3d.glVertex3f(0, 1, 0);
-                g3d.glTexCoord2f(0, 1);
-                g3d.glVertex3f(0, 0, 0);
-                g3d.glEnd();
-            }
-
-        };
-
         Runnable rest = new Runnable() {
             public void run() {
                 renderRest();

@@ -32,6 +32,8 @@ import org.eclipse.swt.widgets.Display;
 
 public class ScapeEdit3DPart extends ScapeEditPart {
 
+    IModel model;
+
     private final class RenderUpdateListener extends SWTAsyncModelListener {
         private final Figure figure;
 
@@ -41,6 +43,7 @@ public class ScapeEdit3DPart extends ScapeEditPart {
         }
 
         public void observeCreate(IObservationProvider observed) {
+            model = (IModel) observed;
             super.observeCreate(observed);
             animateCamera = false;
             moveCameraHelicopter();
@@ -116,26 +119,27 @@ public class ScapeEdit3DPart extends ScapeEditPart {
             IFigure3D agentFigure = (IFigure3D) editPart.getFigure();
             IVector3f endPoint = new Vector3fImpl((float) GenericEditPart.SCALE * location.getX(),
                                                   (float) GenericEditPart.SCALE * location.getY(), -GenericEditPart.SCALE);
-            // if (((Scape) getMemberProvider().getParent(getModel())).getPeriod() > 0) {
-            // IVector3f startPoint;
-            // Vector3f addPoint;
-            // if (animationStep == 0) {
-            // startPoint = agentFigure.getPosition3D().getLocation3D();
-            // startPoints.put(agent, startPoint);
-            // addPoint = new Vector3fImpl();
-            // calculateDelta(startPoint, endPoint, addPoint, animationStepCount);
-            // addPoints.put(agent, addPoint);
-            // } else {
-            // startPoint = startPoints.get(agent);
-            // addPoint = addPoints.get(agent);
-            // }
-            // Vector3f intermediatePoint = new Vector3fImpl();
-            // IVector3f currentPoint = agentFigure.getPosition3D().getLocation3D();
-            // Math3DVector3f.add(currentPoint, addPoint, intermediatePoint);
-            // agentFigure.getPosition3D().setLocation3D(intermediatePoint);
-            // } else {
-            agentFigure.getPosition3D().setLocation3D(endPoint);
-            // }
+            if (animationStepCount > 1 && model != null && model.getPeriod() > 0) {
+                IVector3f startPoint;
+                Vector3f addPoint;
+                if (animationStep == 0) {
+                    startPoint = agentFigure.getPosition3D().getLocation3D();
+                    startPoints.put(agent, startPoint);
+                    addPoint = new Vector3fImpl();
+                    calculateDelta(startPoint, endPoint, addPoint, animationStepCount);
+                    addPoints.put(agent, addPoint);
+                } else {
+                    startPoint = startPoints.get(agent);
+                    addPoint = addPoints.get(agent);
+                }
+                Vector3f intermediatePoint = new Vector3fImpl();
+                IVector3f currentPoint = agentFigure.getPosition3D().getLocation3D();
+                Math3DVector3f.add(currentPoint, addPoint, intermediatePoint);
+                agentFigure.getPosition3D().setLocation3D(intermediatePoint);
+
+            } else {
+                agentFigure.getPosition3D().setLocation3D(endPoint);
+            }
         }
     }
 
@@ -172,8 +176,8 @@ public class ScapeEdit3DPart extends ScapeEditPart {
                                                                                        * targetZ));
     }
 
-    private void moveCamera(final IVector3f endPoint, final IVector3f targetPoint) {
-        final ICamera camera = ((IScene) getViewer()).getCamera();
+    private void moveCamera(final IVector3f endPoint, final IVector3f endLookPoint) {
+        final ICamera camera = getCamera();
         if (animateCamera) {
             new Thread() {
                 public void run() {
@@ -183,42 +187,63 @@ public class ScapeEdit3DPart extends ScapeEditPart {
                     camera.getPosition(startPoint);
                     Vector3f addPoint = new Vector3fImpl();
                     calculateDelta(startPoint, endPoint, addPoint, moveCount);
-                    // Display.getDefault().syncExec(new Runnable() {
-                    // public void run() {
-                    // camera.lookAt(targetPoint, new Vector3fImpl(0, 0, 1));
-                    // }
-                    // });
-                    Display.getDefault().syncExec(new Runnable() {
-                        public void run() {
-                            camera.lookAt(targetPoint, new Vector3fImpl(0, 0, 1));
-                        }
-                    });
-                    for (int i = 0; i < moveCount - 1; i++) {
-                        Math3DVector3f.add(startPoint, addPoint, startPoint);
-                        Display.getDefault().syncExec(new Runnable() {
-                            public void run() {
-                                camera.moveTo(startPoint.getX(), startPoint.getY(), startPoint.getZ());
+
+                    if (!cancelCamera) {
+                        for (int i = 0; i < moveCount - 1; i++) {
+                            Math3DVector3f.add(startPoint, addPoint, startPoint);
+                            moveToNow(startPoint);
+                            if (cancelCamera) {
+                                break;
                             }
-                        });
-                        if (i % 10 == 0) {
+                        }
+                        // moveToNow((Vector3f) endPoint);
+                    }
+                    final Vector3fImpl upVector = new Vector3fImpl(0, 0, 1);
+                    final Vector3f currentLookPoint = new Vector3fImpl();
+                    camera.getViewDirection(currentLookPoint);
+                    Math3DVector3f.add(currentLookPoint, endPoint, currentLookPoint);
+                    Vector3f addLookPoint = new Vector3fImpl();
+                    calculateDelta(currentLookPoint, endLookPoint, addLookPoint, moveCount);
+                    if (!cancelCamera) {
+                        for (int i = 0; i < moveCount - 1; i++) {
+                            Math3DVector3f.add(currentLookPoint, addLookPoint, currentLookPoint);
                             Display.getDefault().syncExec(new Runnable() {
                                 public void run() {
-                                    camera.lookAt(targetPoint, new Vector3fImpl(0, 0, 1));
+                                    camera.lookAt(currentLookPoint, upVector);
                                 }
                             });
+                            if (cancelCamera) {
+                                break;
+                            }
                         }
-                        if (cancelCamera) {
-                            break;
-                        }
+                        Display.getDefault().syncExec(new Runnable() {
+                            public void run() {
+                                // Take care of any small deltas
+                                // camera.lookAt(endLookPoint, upVector);
+                            }
+                        });
                     }
-                    camera.lookAt(targetPoint, new Vector3fImpl(0, 0, 1));
                     cameraMoving = false;
                 }
+
             }.start();
         } else {
             camera.moveTo(endPoint.getX(), endPoint.getY(), endPoint.getZ());
-            camera.lookAt(targetPoint, new Vector3fImpl(0, -0, 1));
+            camera.lookAt(endLookPoint, new Vector3fImpl(0, -0, 1));
         }
+    }
+
+    private void moveToNow(final Vector3f movePoint) {
+        Display.getDefault().syncExec(new Runnable() {
+            public void run() {
+                getCamera().moveTo(movePoint.getX(), movePoint.getY(), movePoint.getZ());
+            }
+        });
+    }
+
+    private ICamera getCamera() {
+        final ICamera camera = ((IScene) getViewer()).getCamera();
+        return camera;
     }
 
     public boolean isAnimateCamera() {

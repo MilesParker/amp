@@ -3,6 +3,8 @@ package org.eclipse.amp.agf3d;
 import org.eclipse.amp.agf.gef.EditPartListener;
 import org.eclipse.amp.agf.gef.EditPartViewPart;
 import org.eclipse.amp.axf.view.IModelPart;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.gef.EditPartFactory;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef3d.editparts.ScalableFreeformRootEditPart3D;
@@ -29,6 +31,23 @@ public class GEF3DViewPart extends EditPartViewPart {
 
     EditPartListener rootListener;
     private CameraTool camera;
+
+    public EditPartFactory createFactory() {
+        return getFactory3DProvider().getEditPart3DFactory();
+    }
+
+    public I3DModelFactoryProvider getFactory3DProvider() {
+        if (getModel() instanceof I3DModelFactoryProvider) {
+            return (I3DModelFactoryProvider) getModel();
+        } else {
+            I3DModelFactoryProvider adapter = (I3DModelFactoryProvider) Platform.getAdapterManager()
+                    .getAdapter(getModel(), I3DModelFactoryProvider.class);
+            if (adapter == null) {
+                throw new RuntimeException("No I3DModelFactoryProvider adapter defined for: " + getModel());
+            }
+            return adapter;
+        }
+    }
 
     public void createModelListeners() {
         if (viewer.getContents() instanceof IModelPart) {
