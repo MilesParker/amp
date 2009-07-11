@@ -94,8 +94,9 @@ public abstract class SWTAsyncModelListener extends SWTThreadModelListener {
     @Override
     public void stateChange(Object key, Object observed) {
         IModel model = (IModel) observed;
-        if (model.getEngine().isPaused() || System.currentTimeMillis() > lastUpdate + minTimeBetweenUpdates
-                && model.getPeriod() % ((TimeGranularity) model.getEngine().getUpdateGranularity()).getUpdateFrequency() == 0) {
+        if (!model.getEngine().isPaused()
+            && (System.currentTimeMillis() > lastUpdate + minTimeBetweenUpdates || model.getPeriod()
+                % ((TimeGranularity) model.getEngine().getUpdateGranularity()).getUpdateFrequency() == 0)) {
             updating = true;
             ReportingRunner runnable = new ReportingRunner((LifeCycleState) key, model);
             if (AXFViewPlugin.getDefault() != null) {
