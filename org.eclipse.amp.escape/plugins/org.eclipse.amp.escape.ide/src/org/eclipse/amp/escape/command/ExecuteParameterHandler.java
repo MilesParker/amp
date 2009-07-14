@@ -7,12 +7,12 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
+ * Contributors:
  *   Metascape - Initial API and Implementation
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.escape.command;
 
 import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
@@ -72,11 +72,13 @@ public class ExecuteParameterHandler extends ExecuteHandler {
         }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.eclipse.amp.escape.command.ExecuteHandler#handleSelect(java.lang.Object)
      */
     protected boolean handleSelect(Object sel) {
         return sel instanceof IResource && ((IResource) sel).getFileExtension() != null
-            && ((IResource) sel).getFileExtension().equals("apar");
+        && ((IResource) sel).getFileExtension().equals("apar");
     }
 }
