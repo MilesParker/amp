@@ -182,7 +182,7 @@ public class ScapeEdit3DPart extends ScapeEditPart {
             new Thread() {
                 public void run() {
                     cameraMoving = true;
-                    int moveCount = 25;
+                    int moveCount = 50;
                     final Vector3f startPoint = new Vector3fImpl();
                     camera.getPosition(startPoint);
                     Vector3f addPoint = new Vector3fImpl();
