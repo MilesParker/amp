@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<workflow>
+	<property name="outputPath" value="../" />
+    <property name="buildProject" value="com.metascape.gen.ext" />
+	<property name="modelPath" value="graphics/" />
+	<property name="modelFile" value="DemographicPrisoners_sDilemma.metaabm" />
+    <property name="testing" value="false" />
+
+	<cartridge file="model/generate_base.mwe">
+		<outputPath value="${outputPath}" />
+		<modelPath value="${modelPath}" />
+		<modelFile value="${modelFile}" />
+        <testing value="${testing}" />
+        <buildProject value="${buildProject}" />
+	</cartridge>
+
+	<component adviceTarget="javaGenerator" id="reflectionAdvice"
+		class="org.eclipse.xpand2.GeneratorAdvice">
+		<advice value="metaabm::ext::tmpl::ExtAspect" />
+	</component>
+</workflow>

@@ -1,0 +1,32 @@
+import emf;
+import metaabm;
+import metaabm::act;
+import metaabm::function;
+
+extension metaabm::tmpl::names;
+extension metaabm::tmpl::types;
+
+int styleRows(IID agent) :
+	0;
+
+int styleRows(SAgent agent) :
+	agent.styles.size;
+
+List[AEvaluate] graphicLeafs(ARoot rootAct) :
+	rootAct.allTargets.typeSelect(AEvaluate).select(a | a.function.id() == "graphicFill" || a.function.id() == "graphicOutline");
+
+
+String setTo(SAttribute attr, String val) :
+	attr.owner.id() + "." + attr.setterName() + "(" + val + ")";
+
+List setterSpace(SState attr) :
+	attr.options.collect(a | {attr.label + " is "+ a.label, attr.setTo(a.typeName())});
+
+List setterSpace(SAttribute attr) :
+	attr.sType == SAttributeType::Boolean ? {{attr.label + " is True", attr.setTo("true")}, {attr.label + " is False", attr.setTo("false")}} : {};
+	
+List setterSpace(SStyle style) :
+	style.agent.attributes.setterSpace();
+	
+String graphicName(SStyle style, Object setter) :
+	(style.label + ((String) ((List) setter).first())).replaceAll(" ","");

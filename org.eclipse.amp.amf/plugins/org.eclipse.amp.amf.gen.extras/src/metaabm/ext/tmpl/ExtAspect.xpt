@@ -1,0 +1,167 @@
+«IMPORT emf»
+«IMPORT metaabm»
+«IMPORT metaabm::act»
+«IMPORT metaabm::function»
+«IMPORT metaabm::tmpl::Java»
+
+«EXTENSION metaabm::tmpl::types»
+«EXTENSION metaabm::tmpl::names» 
+«EXTENSION metaabm::tmpl::infer»
+«EXTENSION metaabm::tmpl::util»
+«EXTENSION metaabm::tmpl::projections»
+«EXTENSION metaabm::tmpl::infer»
+«EXTENSION metaabm::ext::tmpl::inferext»
+
+«AROUND metaabm::tmpl::Java::ClassFile FOR IID-»
+	«IF !SState.isInstance(this)»
+    «FILE javaFileLoc().replaceFirst("srcgen", "srcutil").replaceFirst(".java", "GraphicsWriter.java")-»
+    «EXPAND metaabm::tmpl::Java::ClassText»
+    «ENDFILE-»
+    «EXPAND HTMLFile»
+    «ENDIF»
+«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassFile FOR SStyle-»«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SAgent-» extends org.eclipse.amp.amf.gen.key.GraphicsKeyWriter«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SStyle-» implements org.eclipse.amp.amf.gen.key.DrawFeature«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassName FOR IID-»«impl().className»GraphicsWriter«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::Methods FOR IID-»«ENDAROUND»
+
+«DEFINE ExtConstructorBody FOR IID-»«ENDDEFINE»
+«DEFINE ExtConstructorBody FOR SAgent-»
+		super("«typeName()»");
+«ENDDEFINE»
+«AROUND metaabm::tmpl::Java::Constructor FOR IID-»
+	 public «EXPAND metaabm::tmpl::Java::ClassName»() {
+		«EXPAND ExtConstructorBody-»
+	 }
+«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ActivityPotentialMethod (AAct within) FOR AMethod-»«ENDAROUND»
+«AROUND metaabm::tmpl::Java::SetterClient FOR Object-»«ENDAROUND»
+
+«DEFINE DrawAgentStyle FOR SAgent»
+    «FOREACH styles AS style»
+	«FOREACH style.setterSpace() AS setter»
+    {
+	    org.eclipse.amp.amf.gen.key.DrawFeature «style.id()» = new «style.implementation.qualifiedName»GraphicsWriter();
+	    «typeName()»GraphicsWriter «id()» = new «typeName()»GraphicsWriter();
+	    «((List) setter).last()»;
+	    //«id()».set«owner.implementation.className»(new «owner.implementation.qualifiedName»());
+	    drawStyle(«style.id()», «id()», "«style.graphicName(setter)»", "«label»", "«style.label»", "«((List) setter).first()»");
+    }
+    «ENDFOREACH»
+    «ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE DrawAgentStyles FOR SContext»
+    public void drawAllStyles() {
+	«EXPAND DrawAgentStyle-»
+	«FOREACH agents AS agent»
+	«agent.typeName()»GraphicsWriter «agent.id()» = new «agent.typeName()»GraphicsWriter();
+	«agent.id()».setGraphics(getGraphics());
+	«agent.id()».drawAllStyles();
+	«ENDFOREACH»
+    }
+«ENDDEFINE»
+«DEFINE DrawAgentStyles FOR SAgent»
+    public void drawAllStyles() {
+	«EXPAND DrawAgentStyle-»
+	}
+«ENDDEFINE»
+
+«DEFINE IncrementStyles(String parent) FOR SAgent»
+	«FOREACH styles AS style»
+	«FOREACH style.setterSpace() AS setter»
+	addStyle("«style.label»");
+	«ENDFOREACH»
+	«ENDFOREACH»
+«ENDDEFINE»
+«DEFINE IncrementStyles(String parent) FOR SContext»
+	«EXPAND IncrementStyles(parent) FOREACH agents»
+«ENDDEFINE»
+
+«AROUND metaabm::tmpl::Java::Body FOR SAgent-»
+	«EXPAND DrawAgentStyles-»
+	public void writeAllStyles() {
+		«EXPAND IncrementStyles(id())-»
+		createGraphics();
+		drawAllStyles();
+		write();
+	}
+
+	«EXPAND metaabm::tmpl::Java::MethodPotential (null) FOREACH allGenericFunctions()-»
+	
+	public static void main(String[] args) {
+		«typeName()»GraphicsWriter «id()» = new «typeName()»GraphicsWriter();
+		«id()».writeAllStyles();
+	}
+«ENDAROUND»
+
+«DEFINE DrawStyle FOR AAct-»
+	«reference.typeName()»GraphicsWriter «selector().id()» = («reference.typeName()»GraphicsWriter) object;
+	«EXPAND metaabm::tmpl::Java::Block ({}, false, true)-»
+«ENDDEFINE»
+«DEFINE DrawStyle FOR IAct-»«ENDDEFINE»
+«DEFINE DrawStyle FOR AGroup-»
+	«EXPAND DrawStyle FOREACH roots-»
+«ENDDEFINE»
+
+«AROUND metaabm::tmpl::Java::Body FOR SStyle-»
+    public void draw(java.awt.Graphics2D g, Object object, int width, int height) {
+    	java.awt.Shape shape = null;
+    	«EXPAND DrawStyle FOR rootActivity-»
+	}
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AEvaluate-»
+	«IF function.id().startsWith("color")-»
+		«targetDef.proceed()»
+		g.setColor(«id()»);
+	«ELSEIF function.id() == "shapeOval"-»
+		shape = new java.awt.geom.Ellipse2D.Double(0, 0, width - 2, height - 2);
+	«ELSEIF function.id() == "shapeRectangle"-»
+		«IF !reference.isHost()-»
+		shape = new java.awt.geom.Rectangle2D.Double(0, 0, width - 1, height - 1);
+		«ELSE-»
+		shape = new java.awt.geom.Rectangle2D.Double(0, 0, width, height);
+		«ENDIF-»
+	«ELSEIF function.id() == "shapeMarker"-»
+        shape = new java.awt.geom.Ellipse2D.Double(width * .25 - 1, width * .25 - 1, width * .5 - 1, width * .5 - 1);
+	«ELSEIF function.id().startsWith("graphicFill")-»
+        ((java.awt.Graphics2D) g).fill(shape);
+	«ELSEIF function.id().startsWith("graphicOutline")-»
+        ((java.awt.Graphics2D) g).draw(shape);
+    «ELSE»
+    	«targetDef.proceed()»
+	«ENDIF-»
+«ENDAROUND»
+
+«DEFINE DrawAgentRows FOR SContext-»
+	«FOREACH agents AS agent-»
+	«FOREACH agent.styles AS style-»
+	«FOREACH style.setterSpace() AS setter-»
+			<TR><TH align="left">«agent.label»</TH><TH align="left">«style.label»</TH><TH align="left">«((List) setter).first()»</TH><TH align="left"><IMG src="«style.graphicName(setter)»Symbol.png"/></TH></TR>
+	«ENDFOREACH»
+	«ENDFOREACH»
+	«ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE HTMLFile FOR IID-»«ENDDEFINE»
+«DEFINE HTMLFile FOR SContext-»
+	«FILE implementation.basePath + "/doc/" + implementation.className + "GraphicsKey.html"»
+		<HTML>
+			<HEAD>
+				<TITLE>«label» Graphic Style Key</TITLE>
+			</HEAD>
+			<BODY>
+				<H1>«label» Graphic Style Key</H1>
+				<P>Style Key for: «description»</P>		
+				<TABLE CELLPADDING="10px" border="1" RULES=ALL FRAME=VOID>
+				<TH align="left">Agent</TH><TH align="left">Style</TH><TH align="left">State</TH><TH align="left">Symbol</TH>
+				«EXPAND DrawAgentRows-»
+				</TABLE>
+			<P>Generated by metascape IDE: «timestamp()».</P>
+			</BODY>
+		</HTML>
+	«ENDFILE»
+«ENDDEFINE»

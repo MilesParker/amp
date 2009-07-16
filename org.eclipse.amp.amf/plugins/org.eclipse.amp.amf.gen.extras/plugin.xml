@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2009/07/16 20:59:51 mparker Exp $
+-->
+
+<plugin>
+   
+
+    <extension
+          point="org.eclipse.ui.handlers">
+       <handler
+             class="org.eclipse.amp.amf.gen.ext.GenerateKeyHandler"
+             commandId="org.eclipse.amp.amf.gen.graphickey">
+       </handler>
+       <handler
+             class="org.eclipse.amp.amf.gen.ext.GenerateTextHandler"
+             commandId="org.eclipse.amp.amf.gen.text">
+       </handler>
+       <handler
+             class="org.eclipse.amp.amf.gen.ext.GenerateTestCaseHandler"
+             commandId="org.eclipse.amp.amf.gen.testcase">
+       </handler>
+    </extension>
+    <extension
+          point="org.eclipse.ui.commands">
+       <command
+             categoryId="org.eclipse.amp.amf.gen.category"
+             id="org.eclipse.amp.amf.gen.graphickey"
+             name="Generate Key for Graphics">
+       </command>
+       <command
+             categoryId="org.eclipse.amp.amf.gen.category"
+             id="org.eclipse.amp.amf.gen.text"
+             name="Generate Raw Text">
+       </command>
+       <command
+             categoryId="org.eclipse.amp.amf.gen.category"
+             id="org.eclipse.amp.amf.gen.testcase"
+             name="Generate Test Case">
+       </command>
+    </extension>
+    <extension
+          point="org.eclipse.ui.menus">
+       <menuContribution
+             locationURI="popup:org.metaabm.ide.generateMenuID">
+          <command
+                commandId="org.eclipse.amp.amf.gen.graphickey"
+                icon="icons/full/obj16/Graphics.gif"
+                label="Graphic Legends"
+                style="push"
+                tooltip="Generate a table for each agent showing states for graphics.">
+             <visibleWhen
+                   checkEnabled="false">
+                <reference
+                      definitionId="org.metaabm.metaABMFile">
+                </reference>
+             </visibleWhen>
+          </command>
+          <command
+                commandId="org.eclipse.amp.amf.gen.text"
+                icon="icons/full/obj16/Text.gif"
+                label="Text Documentation"
+                style="push"
+                tooltip="Generate text snippets for use in documents.">
+             <visibleWhen
+                   checkEnabled="false">
+                <reference
+                      definitionId="org.metaabm.metaABMFile">
+                </reference>
+             </visibleWhen>
+          </command>
+          <command
+                commandId="org.eclipse.amp.amf.gen.testcase"
+                icon="icons/full/obj16/junit.gif"
+                id="GenerateTestCase"
+                label="Test Cases"
+                style="push"
+                tooltip="Generate JUnit test cases for all model components.">
+             <visibleWhen
+                   checkEnabled="false">
+                <reference
+                      definitionId="org.metaabm.metaABMFile">
+                </reference>
+             </visibleWhen>
+          </command>
+       </menuContribution>
+    </extension> 
+</plugin>
+
