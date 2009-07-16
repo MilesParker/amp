@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Scenario>
+<repast.simphony.dataLoader.engine.ClassNameDataLoaderAction context="Demographic Prisoner_s Dilemma" file="repast.simphony.dataLoader.engine.ClassNameDataLoaderAction_0.xml" />
+
+<repast.simphony.action.display context="Demographic Prisoner_s Dilemma" file="repast.simphony.action.display_gameSpace.xml" />
+
+
+<repast.simphony.data.engine.DefaultDataGathererDescriptorAction context="Demographic Prisoner_s Dilemma" file="repast.simphony.data.engine.DefaultDataGathererDescriptorAction_player.xml" />
+
+</Scenario>
+	

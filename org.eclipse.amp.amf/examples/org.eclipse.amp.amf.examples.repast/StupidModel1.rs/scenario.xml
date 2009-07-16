@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Scenario>
+<repast.simphony.dataLoader.engine.ClassNameDataLoaderAction context="StupidModel1" file="repast.simphony.dataLoader.engine.ClassNameDataLoaderAction_0.xml" />
+
+<repast.simphony.action.display context="StupidModel1" file="repast.simphony.action.display_grid2D.xml" />
+
+
+<repast.simphony.data.engine.DefaultDataGathererDescriptorAction context="Demographic Prisoner_s Dilemma" file="repast.simphony.data.engine.DefaultDataGathererDescriptorAction_bug.xml" />
+
+</Scenario>
+	

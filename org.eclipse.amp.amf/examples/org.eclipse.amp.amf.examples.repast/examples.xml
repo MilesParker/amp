@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Generate Repast Examples" default="allGenerateOnly">
+
+	<property name="modelPath" value="${baseDir}/model/brook/" />
+	<property name="modelFile" value="DemographicPrisoner_sDilemma.metaabm" />
+	<property name="modelScoreDir" value="demographicPrisoner_sDilemma.rs" />
+
+	<property name="workspace.metaABM" value="../" />
+	<property name="workspace.repast" value="/Developer/Projects/simphony-alpha2-workspace/" />
+
+	<property name="oawWorkflow" value="model/generate_repast.oaw" />
+
+	<import file="../org.metaabm.examples.repast/paths.xml" />
+	<import file="../org.metaabm.gen/tasks.xml"/>
+</project>

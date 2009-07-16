@@ -1,0 +1,207 @@
+<repast.simphony.data.engine.DefaultDataGathererDescriptor>
+  <dataSetId class="string">demographicPrisoner_sDilemmaSet</dataSetId>
+  <scheduleParameters>
+    <start>1.0</start>
+    <interval>1.0</interval>
+    <priority>-Infinity</priority>
+    <duration>-1.0</duration>
+    <frequency>REPEAT</frequency>
+  </scheduleParameters>
+  <dataMappingContainer class="repast.simphony.data.logging.gather.DefaultDataMappingContainer">
+    <nameMappingTable/>
+    <mappingNameTable/>
+  </dataMappingContainer>
+  <aggregateContainer class="repast.simphony.data.logging.gather.DefaultAggregateDataMappingContainer">
+    <nameMappingTable>
+      <entry>
+        <string>Tick</string>
+        <repast.simphony.data.logging.gather.DefaultTimeDataMapping/>
+      </entry>
+      <entry>
+        <string>Player Count</string>
+        <repast.simphony.data.logging.gather.aggregate.CountMapping>
+          <type>Count</type>
+        </repast.simphony.data.logging.gather.aggregate.CountMapping>
+      </entry>
+	
+      <entry>
+        <string>Age Sum</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>edu.brook.Player</class>
+              <name>getAge</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+          <type>Sum</type>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+
+      <entry>
+        <string>Age Min</string>
+        <repast.simphony.data.logging.gather.aggregate.MinMapping>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>edu.brook.Player</class>
+              <name>getAge</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+          <type>Min</type>
+        </repast.simphony.data.logging.gather.aggregate.MinMapping>
+      </entry>
+
+      <entry>
+        <string>Age Max</string>
+        <repast.simphony.data.logging.gather.aggregate.MaxMapping>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>edu.brook.Player</class>
+              <name>getAge</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+          <type>Max</type>
+        </repast.simphony.data.logging.gather.aggregate.MaxMapping>
+      </entry>
+
+      <entry>
+        <string>Age Mean</string>
+        <repast.simphony.data.logging.gather.aggregate.MeanMapping>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>edu.brook.Player</class>
+              <name>getAge</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+          <type>Mean</type>
+        </repast.simphony.data.logging.gather.aggregate.MeanMapping>
+      </entry>
+
+	
+      <entry>
+        <string>Wealth Sum</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>edu.brook.Player</class>
+              <name>getWealth</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+          <type>Sum</type>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+
+      <entry>
+        <string>Wealth Min</string>
+        <repast.simphony.data.logging.gather.aggregate.MinMapping>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>edu.brook.Player</class>
+              <name>getWealth</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+          <type>Min</type>
+        </repast.simphony.data.logging.gather.aggregate.MinMapping>
+      </entry>
+
+      <entry>
+        <string>Wealth Max</string>
+        <repast.simphony.data.logging.gather.aggregate.MaxMapping>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>edu.brook.Player</class>
+              <name>getWealth</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+          <type>Max</type>
+        </repast.simphony.data.logging.gather.aggregate.MaxMapping>
+      </entry>
+
+      <entry>
+        <string>Wealth Mean</string>
+        <repast.simphony.data.logging.gather.aggregate.MeanMapping>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>edu.brook.Player</class>
+              <name>getWealth</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+          <type>Mean</type>
+        </repast.simphony.data.logging.gather.aggregate.MeanMapping>
+      </entry>
+
+
+    </nameMappingTable>
+    <mappingNameTable>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.CountMapping reference="../../../nameMappingTable/entry[2]/repast.simphony.data.logging.gather.aggregate.CountMapping"/>
+        <string>Player Count</string>
+      </entry>
+		
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[3]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>Age Sum</string>
+      </entry>
+
+		
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.MinMapping reference="../../../nameMappingTable/entry[4]/repast.simphony.data.logging.gather.aggregate.MinMapping"/>
+        <string>Age Min</string>
+      </entry>
+
+		
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.MaxMapping reference="../../../nameMappingTable/entry[5]/repast.simphony.data.logging.gather.aggregate.MaxMapping"/>
+        <string>Age Max</string>
+      </entry>
+
+		
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.MeanMapping reference="../../../nameMappingTable/entry[6]/repast.simphony.data.logging.gather.aggregate.MeanMapping"/>
+        <string>Age Mean</string>
+      </entry>
+
+		
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[7]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>Wealth Sum</string>
+      </entry>
+
+		
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.MinMapping reference="../../../nameMappingTable/entry[8]/repast.simphony.data.logging.gather.aggregate.MinMapping"/>
+        <string>Wealth Min</string>
+      </entry>
+
+		
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.MaxMapping reference="../../../nameMappingTable/entry[9]/repast.simphony.data.logging.gather.aggregate.MaxMapping"/>
+        <string>Wealth Max</string>
+      </entry>
+
+		
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.MeanMapping reference="../../../nameMappingTable/entry[10]/repast.simphony.data.logging.gather.aggregate.MeanMapping"/>
+        <string>Wealth Mean</string>
+      </entry>
+
+
+
+      <entry>
+        <repast.simphony.data.logging.gather.DefaultTimeDataMapping reference="../../../nameMappingTable/entry/repast.simphony.data.logging.gather.DefaultTimeDataMapping"/>
+        <string>Tick</string>
+      </entry>
+    </mappingNameTable>
+    <alternatedNameTable/>
+    <nameAlternatedTable/>
+  </aggregateContainer>
+  <agentClass>edu.brook.Player</agentClass>
+  <name>Demographic Prisoner_s Dilemma Data Set</name>
+</repast.simphony.data.engine.DefaultDataGathererDescriptor>

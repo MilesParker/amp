@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Scenario>
+<repast.dataLoader.engine.ClassNameDataLoaderAction context="Generated Act Model" file="repast.dataLoader.engine.ClassNameDataLoaderAction_0.xml" />
+
+<repast.action.display context="Generated Act Model" file="repast.action.display_territory.xml" />
+
+<repast.action.display context="Generated Act Model" file="repast.action.display_testNetwork.xml" />
+
+</Scenario>
+	

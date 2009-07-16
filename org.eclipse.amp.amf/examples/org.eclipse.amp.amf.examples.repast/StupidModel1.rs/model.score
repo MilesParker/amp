@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ASCII"?>
+<score:SContext xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:score="http://scoreabm.org/score" label="StupidModel1" ID="stupidModel1" pluralLabel="StupidModel1s">
+  <attributes label="Bug Count" ID="bugCount" sType="INTEGER" defaultValue="100"/>
+  <attributes label="Habitat Count" ID="habitatCount" sType="INTEGER"/>
+  <attributes label="Bug Vision" ID="bugVision" sType="INTEGER" defaultValue="4"/>
+  <implementation package="org.metaabm.examples.stupid1" className="StupidModel1" basePath="/Volumes/Resources/Developer/repos/metaabm/org.metaabm.examples.repast" mode="GENERATE" srcDir="srcgen"/>
+  <agents label="Bug" ID="bug" pluralLabel="Bugs">
+    <implementation className="Bug" basePath="/Volumes/Resources/Developer/repos/metaabm/org.metaabm.examples.repast" mode="GENERATE" srcDir="srcgen"/>
+  </agents>
+  <agents label="Habitat" ID="habitat" pluralLabel="Habitats">
+    <implementation className="Habitat" basePath="/Volumes/Resources/Developer/repos/metaabm/org.metaabm.examples.repast" mode="GENERATE" srcDir="srcgen"/>
+  </agents>
+  <projections xsi:type="score:SGrid" label="Grid 2D" ID="grid2D" pluralLabel="Grid 2Ds" dimensionality="2" borderRule="PERIODIC"/>
+</score:SContext>

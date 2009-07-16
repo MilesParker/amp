@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<workflow> 
+	<property name="outputPath" value="../"/>
+	<property name="modelPath" value=""/>
+	<property name="modelFile" value="model.metaabm"/>
+	<!--The following is here to support running as a project when project directories are not in the same workspace. 
+	Workspaces calliong this method programmatically should set this value to ""-->
+
+	<cartridge file="generate_repast.oaw">
+       <outputPath value="${outputPath}"/>
+       <modelPath value="${modelPath}"/>
+       <modelFile value="${modelFile}"/>
+	</cartridge>
+	
+	<component adviceTarget="javaGenerator" 
+       id="repastTestAdvice" 
+       class="oaw.xpand2.GeneratorAdvice"> 
+		           	<advice value="metaabm::repast::tmpl::RepastAspect"/> 
+   	</component> 
+</workflow> 
