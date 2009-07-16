@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2009/07/16 21:05:37 mparker Exp $
+-->
+
+<plugin>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            id="org.eclipse.amp.amf.ide.launching.ui.AscapeLaunchConfigType"
+            modes="run, debug"
+            name="Ascape Model"
+            delegate="org.eclipse.jdt.launching.JavaLaunchDelegate"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="org.eclipse.amp.amf.ide.ascape.AscapeLaunchConfigTabGroup"
+            id="org.eclipse.amp.amf.ide.launching.ui.AscapeLaunchConfigTabGroup"
+            type="org.eclipse.amp.amf.ide.launching.ui.AscapeLaunchConfigType"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="org.eclipse.amp.amf.ide.launching.ui.AscapeLaunchConfigType"
+            icon="icons/obj16/Ascape16.gif"
+            id="org.eclipse.amp.amf.ide.launching.ui.AscapeLaunchConfigTypeImage"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            label="Ascape Model"
+            icon="icons/obj16/Ascape16.gif"
+            category="org.eclipse.ui.externaltools"
+            class="org.eclipse.amp.amf.ide.ascape.AscapeLaunchAction"
+            modes="run, debug"
+            id="org.eclipse.amp.amf.ide.launching.ui.AscapeShortcut">
+        <contextualLaunch>
+           <enablement>
+             <with variable="selection">
+               <count value="1"/>
+               <iterate>
+                 <test property="org.eclipse.debug.ui.matchesPattern" value="*.metaabm"/>
+               </iterate>
+             </with>
+           </enablement>
+           <contextLabel
+         	  mode="run"
+         	  label="Ascape Model"/>
+          <contextLabel
+         	  mode="debug"
+         	  label="Ascape Model"/>
+  		 </contextualLaunch>
+      </shortcut>
+   </extension>
+	<extension
+          id="ascapeBuilder"
+          name="MetaABM for Ascape"
+          point="org.eclipse.core.resources.builders">
+       <builder
+             hasNature="false">
+          <run class="org.eclipse.amp.amf.ide.ascape.AscapeModelBuilder"/>
+       </builder>
+    </extension> 
+    <extension point="org.eclipse.ui.newWizards">
+    <wizard
+          category="org.eclipse.amp.amf.ide.wizards"
+          class="org.eclipse.amp.amf.ide.ascape.AscapeProjectWizard"
+          descriptionImage="icons/obj16/Ascape16.gif"
+          icon="icons/obj16/Ascape16.gif"
+          id="org.eclipse.amp.amf.ide.ascape.wizards.newProject"
+          name="Ascape MetaABM Project"
+          project="true">
+      <description>Creates a new project for generating Ascape implementations from MetaABM models.</description>
+    </wizard>
+    </extension>
+    <extension point="org.eclipse.ui.perspectiveExtensions"> 
+        <perspectiveExtension 
+            targetID="org.eclipse.amp.amf.AgentModelingPerspective"> 
+            <newWizardShortcut id="org.eclipse.amp.amf.ide.ascape.wizards.newProject"/> 
+        </perspectiveExtension>
+    </extension>
+    <extension
+          point="org.eclipse.ui.handlers">
+       <handler
+             class="org.eclipse.amp.amf.ide.ascape.GenerateAscapeHandler"
+             commandId="org.eclipse.amp.amf.gen.ascape">
+       </handler>
+    </extension>
+    <extension
+          point="org.eclipse.ui.commands">
+       <command
+             categoryId="org.eclipse.amp.amf.gen.category"
+             id="org.eclipse.amp.amf.gen.ascape"
+             name="Generate Ascape Model">
+       </command>
+    </extension>
+    <extension
+          point="org.eclipse.ui.menus">
+       <menuContribution
+             locationURI="popup:org.metaabm.ide.generateMenuID">
+          <command
+                commandId="org.eclipse.amp.amf.gen.ascape"
+                icon="icons/obj16/Ascape16.gif"
+                label="Ascape"
+                style="push"
+                tooltip="Manually generate Ascape implementation. (It usually makes more sense to use a builder.)">
+             <visibleWhen
+                   checkEnabled="false">
+                <reference
+                      definitionId="org.metaabm.metaABMFile">
+                </reference>
+             </visibleWhen>
+          </command>
+       </menuContribution>
+    </extension> 
+</plugin>
+
