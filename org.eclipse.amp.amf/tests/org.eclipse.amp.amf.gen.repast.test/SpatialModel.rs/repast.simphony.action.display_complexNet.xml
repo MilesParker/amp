@@ -1,0 +1,49 @@
+<repast.simphony.visualization.engine.DefaultDisplayDescriptor>
+  <type>TWO_D</type>
+  <styles>
+  </styles>
+  <layerOrder>
+    <entry>
+      <string>org.metaabm.gen.test.ComplexMovementAgent</string>
+      <int>1</int>
+    </entry>
+    <entry>
+      <string>org.metaabm.gen.test.ComplexLocation</string>
+      <int>0</int>
+    </entry>
+  </layerOrder>
+  <netStyles/>
+  <frequency>ON_MOVE</frequency>
+  <schedParams>
+    <start>1.0</start>
+    <interval>1.0</interval>
+    <priority>-Infinity</priority>
+    <duration>-1.0</duration>
+    <frequency>REPEAT</frequency>
+  </schedParams>
+  <layoutProjection>Complex Net</layoutProjection>
+  <layoutInterval>0</layoutInterval>
+  <projections>
+    <repast.score.impl.SNetworkImpl>
+      <name>Complex Net</name>
+    </repast.score.impl.SNetworkImpl>
+  </projections>
+  <valueLayers/>
+
+  <projectionDescriptors>
+    <entry>
+      <string>Complex Net</string>
+      <repast.simphony.visualization.>
+        <proj class="repast.score.impl.SNetworkImpl" reference="../../../../projections/repast.score.impl.SNetworkImpl"/>
+        <props>
+
+        </props>
+      </repast.simphony.visualization.>
+    </entry>
+  </projectionDescriptors>
+  <props>
+
+  </props>
+  <name>Spatial Model Display</name>
+</repast.simphony.visualization.engine.DefaultDisplayDescriptor>
+	

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="ASCII"?>
+<score:SContext xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:score="http://scoreabm.org/score" label="Basic Movement Model" ID="basicMovementModel" pluralLabel="Basic Movement Models" description="Most recent version.">
+  <attributes label="Area Count" ID="areaCount" sType="INTEGER"/>
+  <attributes label="Network Agent Count" ID="networkAgentCount" sType="INTEGER"/>
+  <attributes label="Basic Movement Agent Count" ID="basicMovementAgentCount" sType="INTEGER"/>
+  <attributes label="Complex Space Agent Count" ID="complexSpaceAgentCount" sType="INTEGER"/>
+  <attributes label="Act Non Movement Person Count" ID="actNonMovementPersonCount" sType="INTEGER"/>
+  <attributes label="Basic Movement State Agent Count" ID="basicMovementStateAgentCount" sType="INTEGER"/>
+  <implementation package="org.eclipse.amp.amf.gen.test" className="BasicMovementModel" basePath="/Volumes/Resources/Developer/repos/eclipse/org.metaabm.gen.repast.test" mode="GENERATE" srcDir="srcgen"/>
+  <agents label="Basic Movement Agent" ID="basicMovementAgent" pluralLabel="Generate Act People">
+    <attributes label="Vision" ID="vision" sType="INTEGER" defaultValue="20"/>
+    <attributes label="Moving Toward Goal" ID="movingTowardGoal" defaultValue="true"/>
+    <attributes label="Success" ID="success"/>
+    <implementation package="" className="BasicMovementAgent" basePath="/Volumes/Resources/Developer/repos/eclipse/org.metaabm.gen.repast.test" mode="GENERATE" srcDir=""/>
+  </agents>
+  <agents label="Basic Cell" ID="basicCell" pluralLabel="Basic Cells">
+    <attributes label="Goal" ID="goal"/>
+    <attributes label="Goal 2" ID="goal2"/>
+    <attributes label="Goal 3" ID="goal3"/>
+    <implementation className="BasicCell" basePath="/Volumes/Resources/Developer/repos/eclipse/org.metaabm.gen.repast.test" mode="GENERATE" srcDir=""/>
+  </agents>
+  <agents label="Network Agent" ID="networkAgent" pluralLabel="Network Agents">
+    <attributes label="Vision" ID="vision" sType="INTEGER"/>
+    <attributes label="Moving Toward Goal" ID="movingTowardGoal" defaultValue="true"/>
+    <implementation package="" className="NetworkAgent" basePath="/Volumes/Resources/Developer/repos/eclipse/org.metaabm.gen.repast.test" mode="GENERATE" srcDir=""/>
+  </agents>
+  <agents label="Basic Movement State Agent" ID="basicMovementStateAgent" pluralLabel="Basic Movement State Agents">
+    <attributes label="State" ID="state" defaultValue="Option 1"/>
+    <attributes label="Some Boolean" ID="someBoolean"/>
+    <implementation className="BasicMovementStateAgent" basePath="/Volumes/Resources/Developer/repos/eclipse/org.metaabm.gen.repast.test" mode="GENERATE" srcDir="srcgen"/>
+  </agents>
+  <projections xsi:type="score:SGrid" label="Grid" ID="grid" pluralLabel="Grids" description="" dimensionality="2" borderRule="STRICT"/>
+  <projections xsi:type="score:SNetwork" label="Test Network" ID="testNetwork" pluralLabel="Test Networks"/>
+</score:SContext>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ASCII"?>
+<score:SContext xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:score="http://scoreabm.org/score" label="Spatial Model" ID="spatialModel" pluralLabel="Spatial Models">
+  <attributes label="Complex Movement Agent Count" ID="complexMovementAgentCount" sType="INTEGER" defaultValue="1"/>
+  <attributes label="Complex Location Count" ID="complexLocationCount" sType="INTEGER"/>
+  <attributes label="Spatial Model Agent Count" ID="spatialModelAgentCount" sType="INTEGER"/>
+  <attributes label="Good Boundary" ID="goodBoundary" defaultValue="1,1,4,4"/>
+  <implementation package="org.eclipse.amp.amf.gen.test" className="SpatialModel" basePath="/Volumes/Resources/Developer/repos/eclipse/org.metaabm.gen.repast.test" mode="GENERATE" srcDir="srcgen"/>
+  <agents label="Complex Movement Agent" ID="complexMovementAgent" pluralLabel="Complex Movement Agents">
+    <attributes label="Some Boolean" ID="someBoolean"/>
+    <attributes label="Within Space" ID="withinSpace" defaultValue="1,1,3,3"/>
+    <attributes label="Result" ID="result" sType="INTEGER"/>
+    <attributes label="Spatial State" ID="spatialState" defaultValue="Option 1"/>
+    <attributes label="Vision" ID="vision" sType="INTEGER" defaultValue="4"/>
+    <implementation className="ComplexMovementAgent" basePath="/Volumes/Resources/Developer/repos/eclipse/org.metaabm.gen.repast.test" mode="GENERATE" srcDir="srcgen"/>
+  </agents>
+  <agents label="Complex Location" ID="complexLocation" pluralLabel="Complex Locations">
+    <attributes label="Location Good" ID="locationGood"/>
+    <implementation className="ComplexLocation" basePath="/Volumes/Resources/Developer/repos/eclipse/org.metaabm.gen.repast.test" mode="GENERATE" srcDir="srcgen"/>
+  </agents>
+  <projections xsi:type="score:SGrid" label="Grid 2D" ID="grid2D" pluralLabel="Grid 2Ds" dimensionality="2"/>
+  <projections xsi:type="score:SNetwork" label="Complex Net" ID="complexNet" pluralLabel="Complex Nets"/>
+</score:SContext>

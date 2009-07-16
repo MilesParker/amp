@@ -1,0 +1,126 @@
+<repast.simphony.data.engine.DefaultDataGathererDescriptor>
+  <dataSetId class="string">basicModelSet</dataSetId>
+  <scheduleParameters>
+    <start>1.0</start>
+    <interval>1.0</interval>
+    <priority>-Infinity</priority>
+    <duration>-1.0</duration>
+    <frequency>REPEAT</frequency>
+  </scheduleParameters>
+  <dataMappingContainer class="repast.simphony.data.logging.gather.DefaultDataMappingContainer">
+    <nameMappingTable/>
+    <mappingNameTable/>
+  </dataMappingContainer>
+  <aggregateContainer class="repast.simphony.data.logging.gather.DefaultAggregateDataMappingContainer">
+    <nameMappingTable>
+      <entry>
+        <string>Tick</string>
+        <repast.simphony.data.logging.gather.DefaultTimeDataMapping/>
+      </entry>
+      <entry>
+        <string>State Agent Count</string>
+        <repast.simphony.data.logging.gather.aggregate.CountMapping>
+          <type>Count</type>
+        </repast.simphony.data.logging.gather.aggregate.CountMapping>
+      </entry>
+	
+      <entry>
+        <string>Primary Color Sum</string>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>org.metaabm.gen.test.StateAgent</class>
+              <name>getPrimaryColor</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+          <type>Sum</type>
+        </repast.simphony.data.logging.gather.aggregate.SumMapping>
+      </entry>
+
+      <entry>
+        <string>Primary Color Min</string>
+        <repast.simphony.data.logging.gather.aggregate.MinMapping>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>org.metaabm.gen.test.StateAgent</class>
+              <name>getPrimaryColor</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+          <type>Min</type>
+        </repast.simphony.data.logging.gather.aggregate.MinMapping>
+      </entry>
+
+      <entry>
+        <string>Primary Color Max</string>
+        <repast.simphony.data.logging.gather.aggregate.MaxMapping>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>org.metaabm.gen.test.StateAgent</class>
+              <name>getPrimaryColor</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+          <type>Max</type>
+        </repast.simphony.data.logging.gather.aggregate.MaxMapping>
+      </entry>
+
+      <entry>
+        <string>Primary Color Mean</string>
+        <repast.simphony.data.logging.gather.aggregate.MeanMapping>
+          <decorated class="repast.simphony.data.logging.gather.MethodMapping">
+            <method>
+              <class>org.metaabm.gen.test.StateAgent</class>
+              <name>getPrimaryColor</name>
+              <parameter-types/>
+            </method>
+          </decorated>
+          <type>Mean</type>
+        </repast.simphony.data.logging.gather.aggregate.MeanMapping>
+      </entry>
+
+
+    </nameMappingTable>
+    <mappingNameTable>
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.CountMapping reference="../../../nameMappingTable/entry[2]/repast.simphony.data.logging.gather.aggregate.CountMapping"/>
+        <string>State Agent Count</string>
+      </entry>
+		
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.SumMapping reference="../../../nameMappingTable/entry[3]/repast.simphony.data.logging.gather.aggregate.SumMapping"/>
+        <string>Primary Color Sum</string>
+      </entry>
+
+		
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.MinMapping reference="../../../nameMappingTable/entry[4]/repast.simphony.data.logging.gather.aggregate.MinMapping"/>
+        <string>Primary Color Min</string>
+      </entry>
+
+		
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.MaxMapping reference="../../../nameMappingTable/entry[5]/repast.simphony.data.logging.gather.aggregate.MaxMapping"/>
+        <string>Primary Color Max</string>
+      </entry>
+
+		
+      <entry>
+        <repast.simphony.data.logging.gather.aggregate.MeanMapping reference="../../../nameMappingTable/entry[6]/repast.simphony.data.logging.gather.aggregate.MeanMapping"/>
+        <string>Primary Color Mean</string>
+      </entry>
+
+
+
+      <entry>
+        <repast.simphony.data.logging.gather.DefaultTimeDataMapping reference="../../../nameMappingTable/entry/repast.simphony.data.logging.gather.DefaultTimeDataMapping"/>
+        <string>Tick</string>
+      </entry>
+    </mappingNameTable>
+    <alternatedNameTable/>
+    <nameAlternatedTable/>
+  </aggregateContainer>
+  <agentClass>org.metaabm.gen.test.StateAgent</agentClass>
+  <name>Basic Model Data Set</name>
+</repast.simphony.data.engine.DefaultDataGathererDescriptor>

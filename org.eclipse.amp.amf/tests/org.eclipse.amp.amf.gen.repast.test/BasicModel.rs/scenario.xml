@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Scenario>
+<repast.simphony.dataLoader.engine.ClassNameDataLoaderAction context="Basic Model" file="repast.simphony.dataLoader.engine.ClassNameDataLoaderAction_0.xml" />
+
+
+<repast.simphony.data.engine.DefaultDataGathererDescriptorAction context="Demographic Prisoner_s Dilemma" file="repast.simphony.data.engine.DefaultDataGathererDescriptorAction_operationsAgent.xml" />
+
+<repast.simphony.data.engine.DefaultDataGathererDescriptorAction context="Demographic Prisoner_s Dilemma" file="repast.simphony.data.engine.DefaultDataGathererDescriptorAction_stateAgent.xml" />
+
+<repast.simphony.data.engine.DefaultDataGathererDescriptorAction context="Demographic Prisoner_s Dilemma" file="repast.simphony.data.engine.DefaultDataGathererDescriptorAction_methodsAgent.xml" />
+</Scenario>
+	

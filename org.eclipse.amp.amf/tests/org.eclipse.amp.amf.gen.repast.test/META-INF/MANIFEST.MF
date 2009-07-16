@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ManifestVersion: 2
+Bundle-Name: metaABM repast Generator Test
+Bundle-SymbolicName: org.eclipse.amp.amf.gen.repast.test
+Bundle-Version: 0.2.0.qualifier
+Bundle-Vendor: Eclipse.org
+Require-Bundle: 
+ org.eclipse.amp.amf.gen;bundle-version="0.2.0",
+ org.eclipse.amp.amf.gen.test;bundle-version="0.2.0",
+ org.eclipse.jdt.junit;bundle-version="3.5.0",
+ org.apache.commons.lang,
+ org.junit;bundle-version="3.8.2"
+Export-Package: 
+ org.metaabm.gen.repast.test,
+ org.metaabm.gen.test
+Bundle-ClassPath: .

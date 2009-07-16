@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ASCII"?>
+<score:SContext xmlns:score="http://scoreabm.org/score" label="Basic Model" ID="basicModel" pluralLabel="Basic Models">
+  <attributes label="Some Flag" ID="someFlag" defaultValue="true"/>
+  <attributes label="Generated Member Agent Count" ID="generatedMemberAgentCount" sType="INTEGER" defaultValue="10"/>
+  <attributes label="Some Integer" ID="someInteger" sType="INTEGER" defaultValue="45"/>
+  <attributes label="Some Float" ID="someFloat" defaultValue="1.8"/>
+  <attributes label="Operations Agent Count" ID="operationsAgentCount" sType="INTEGER"/>
+  <attributes label="State Agent Count" ID="stateAgentCount" sType="INTEGER"/>
+  <attributes label="Methods Agent Count" ID="methodsAgentCount" sType="INTEGER"/>
+  <implementation package="org.eclipse.amp.amf.gen.test" className="BasicModel" basePath="/Volumes/Resources/Developer/repos/eclipse/org.metaabm.gen.repast.test" mode="GENERATE" srcDir="srcgen"/>
+  <agents label="Operations Agent" ID="operationsAgent" pluralLabel="Operations Agents">
+    <attributes label="Float 12" ID="float12" gatherData="true" defaultValue="12.0"/>
+    <attributes label="Float 20" ID="float20" defaultValue="20"/>
+    <attributes label="Float 1p8" ID="float1p8" defaultValue="1.8"/>
+    <attributes label="Result Boolean" ID="resultBoolean" gatherData="true" defaultValue="false"/>
+    <attributes label="Float Result 1" ID="floatResult1" units=""/>
+    <attributes label="Complex Result Correct" ID="complexResultCorrect" defaultValue="false"/>
+    <attributes label="Complex Result Value" ID="complexResultValue" sType="INTEGER"/>
+    <attributes label="Constant3" ID="constant3" sType="INTEGER" defaultValue="3"/>
+    <attributes label="Count Changes" ID="countChanges" sType="INTEGER" defaultValue="0"/>
+    <attributes label="Temp 1" ID="temp1" sType="INTEGER" defaultValue="1"/>
+    <attributes label="Int 1" ID="int1" sType="INTEGER" defaultValue="1"/>
+    <attributes label="Int 2" ID="int2" sType="INTEGER" defaultValue="2"/>
+    <attributes label="Int 3" ID="int3" sType="INTEGER" defaultValue="3"/>
+    <attributes label="Int 4" ID="int4" sType="INTEGER" defaultValue="4"/>
+    <attributes label="Int 10" ID="int10" sType="INTEGER" defaultValue="10"/>
+    <attributes label="Boolean 1" ID="boolean1"/>
+    <attributes label="Boolean 2" ID="boolean2"/>
+    <implementation package="" className="OperationsAgent" basePath="/Volumes/Resources/Developer/repos/eclipse/org.metaabm.gen.repast.test" mode="GENERATE" srcDir=""/>
+  </agents>
+  <agents label="State Agent" ID="stateAgent" pluralLabel="State Agents">
+    <attributes label="Primary Color" ID="primaryColor" gatherData="true" defaultValue="Red"/>
+    <implementation className="StateAgent" basePath="/Volumes/Resources/Developer/repos/eclipse/org.metaabm.gen.repast.test" mode="GENERATE" srcDir="srcgen"/>
+  </agents>
+  <agents label="Methods Agent" ID="methodsAgent" pluralLabel="Methods Agents">
+    <attributes label="Integer 1" ID="integer1" sType="INTEGER" defaultValue="1"/>
+    <implementation className="MethodsAgent" basePath="/Volumes/Resources/Developer/repos/eclipse/org.metaabm.gen.repast.test" mode="GENERATE" srcDir="srcgen"/>
+  </agents>
+</score:SContext>
