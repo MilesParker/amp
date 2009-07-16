@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="test"
+	name="Create Runnable Jar for Project org.ascape.all">
+	<target name="test">
+		<junit printsummary="yes" haltonfailure="yes">
+			<formatter type="plain" />
+			<test name="org.eclipse.amp.amf.gen.test.GenerateBaseTest" />
+		</junit>
+	</target>
+</project>

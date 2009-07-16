@@ -1,0 +1,30 @@
+Testsuite: org.metaabm.gen.test.GenerateBaseTest
+Tests run: 1, Failures: 0, Errors: 1, Time elapsed: 0 sec
+
+	Caused an ERROR
+org.metaabm.gen.test.GenerateBaseTest
+java.lang.ClassNotFoundException: org.metaabm.gen.test.GenerateBaseTest
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:200)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:188)
+	at org.eclipse.ant.internal.core.AntClassLoader.findClass(AntClassLoader.java:54)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:316)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:251)
+	at java.lang.ClassLoader.loadClassInternal(ClassLoader.java:374)
+	at java.lang.Class.forName0(Native Method)
+	at java.lang.Class.forName(Class.java:169)
+	at org.eclipse.ant.internal.core.ant.EclipseDefaultExecutor.executeTargets(EclipseDefaultExecutor.java:32)
+	at org.eclipse.ant.internal.core.ant.InternalAntRunner.run(InternalAntRunner.java:623)
+	at org.eclipse.ant.internal.core.ant.InternalAntRunner.run(InternalAntRunner.java:495)
+	at org.eclipse.ant.core.AntRunner.run(AntRunner.java:513)
+	at org.eclipse.ant.core.AntRunner.start(AntRunner.java:600)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:194)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:368)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:179)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:556)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:511)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1284)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1260)
+
