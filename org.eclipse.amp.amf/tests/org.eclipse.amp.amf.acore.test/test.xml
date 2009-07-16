@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Core Test" default="test">
+
+	<property name="workspace.metaABM" value="../"/>
+	<property name="asTest" value="true" />
+
+	<import file="${workspace.metaABM}/org.metaabm.core/paths.xml" />
+
+	<target name="test">
+		<mkdir dir="test.reports" />
+		<junit printsummary="yes" haltonfailure="yes" maxmemory="200m" dir="test">
+			<jvmarg value="-Dsrcpath=${workspace.metaABM}/org.metaabm.core.test/src -Dclasspath=${path.compile}" />
+			<classpath>
+				<path refid="path.compile" />
+				<path refid="path.core" />
+				<path refid="path.core.lib" />
+				<path path="bin"/>
+			</classpath>
+			<test name="org.metaabm.tests.MetaABMCoreAllTests" todir="test.reports">
+				<formatter type="plain" usefile="no" />
+			</test>
+		</junit>
+	</target>
+
+</project>

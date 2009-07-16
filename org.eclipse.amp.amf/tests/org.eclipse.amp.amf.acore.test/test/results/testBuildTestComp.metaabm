@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:metaabm="http://metaabm.org/metaabm.org/structure" ID="root">
+  <attributes ID="contextVar"/>
+  <rootActivity xsi:type="act:AGroup" ID="rootActGroup">
+    <members xsi:type="act:ABuild" ID="buildTest" targets="//@rootActivity/@members[ID='createTest']"/>
+    <members xsi:type="act:ACreateAgents" ID="createTest" sources="//@rootActivity/@members[ID='buildTest']" agent="//@agents[ID='childAgent']"/>
+    <members xsi:type="act:ASet" ID="setTest" attribute="//@agents[ID='subContext']/@attributes[ID='subAttr']"/>
+  </rootActivity>
+  <agents ID="childAgent" pluralLabel="childAgents"/>
+  <agents xsi:type="metaabm:SContext" ID="subContext">
+    <attributes ID="subAttr"/>
+    <rootActivity xsi:type="act:AGroup" ID="rootActGroup">
+      <members xsi:type="act:ASet" label="setSubTest" attribute="//@attributes[ID='contextVar']"/>
+    </rootActivity>
+  </agents>
+</metaabm:SContext>

@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ManifestVersion: 2
+Bundle-Name: Test Core Functions
+Bundle-SymbolicName: org.eclipse.amp.amf.acore.test
+Bundle-Version: 0.2.0.qualifier
+Bundle-Activator: org.metaabm.core.test.Activator
+Require-Bundle: 
+ org.eclipse.core.runtime,
+ org.eclipse.amp.amf.acore;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi,
+ org.junit4;bundle-version="4.3.1"
+Bundle-ActivationPolicy: lazy
+Export-Package: org.metaabm.act.tests,
+ org.metaabm.core.test,
+ org.metaabm.function.tests,
+ org.metaabm.tests
+Bundle-Vendor: Eclipse.org
