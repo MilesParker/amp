@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ASCII"?>
+<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:metaabm="http://metaabm.org/metaabm.org/structure">
+  <attributes label="Test Attribute" ID="testAttribute" pluralLabel="Test Attributes"/>
+</metaabm:SContext>

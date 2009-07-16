@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ASCII"?>
+<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:metaabm="http://metaabm.org/metaabm.org/structure" label="Root Context" ID="rootContext" pluralLabel="Root Contexts">
+  <attributes label="Test Agent 3 Count" ID="testAgent3Count" pluralLabel="Test Agent 3 Counts" description="The number of test agent 3s to create." sType="INTEGER"/>
+  <attributes label="Root Context Context Count" ID="rootContextContextCount" pluralLabel="Root Context Context Counts" description="The number of root context contexts to create." sType="INTEGER"/>
+  <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
+    <members xsi:type="act:ABuild" label="Build Root Context" ID="buildRootContext" targets="//@rootActivity/@members[ID='createTestAgent3s'] //@rootActivity/@members[ID='createRootContextContexts']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="/" pluralLabel="Build Root Contexts"/>
+    <members xsi:type="act:ACreateAgents" label="Create Test Agent 3s" ID="createTestAgent3s" sources="//@rootActivity/@members[ID='buildRootContext']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="//@agents[ID='testAgent3']" agentCount="//@attributes[ID='testAgent3Count']"/>
+    <members xsi:type="act:ACreateAgents" label="Create Root Context Contexts" ID="createRootContextContexts" sources="//@rootActivity/@members[ID='buildRootContext']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="//@agents[ID='rootContextContext']" agentCount="//@attributes[ID='rootContextContextCount']"/>
+  </rootActivity>
+  <implementation className="RootContext"/>
+  <agents label="Test Agent 3" ID="testAgent3" pluralLabel="Test Agent 3s">
+    <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups"/>
+    <implementation className="TestAgent3"/>
+    <styles xsi:type="metaabm:SStyle2D" label="Test Agent 3 Style 2D" ID="testAgent3Style2D" pluralLabel="Test Agent 3 Style 2Ds">
+      <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups"/>
+      <implementation className="TestAgent3Style2D"/>
+    </styles>
+  </agents>
+  <agents xsi:type="metaabm:SContext" label="Root Context Context" ID="rootContextContext" pluralLabel="Root Context Contexts">
+    <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups"/>
+    <implementation className="RootContextContext"/>
+  </agents>
+</metaabm:SContext>

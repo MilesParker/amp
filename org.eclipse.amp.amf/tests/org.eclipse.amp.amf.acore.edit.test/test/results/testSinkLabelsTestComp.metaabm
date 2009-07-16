@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ASCII"?>
+<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/metaabm.org/structure" label="Root Context" ID="rootContext" pluralLabel="Root Contexts">
+  <attributes label="Root Context Agent Count" ID="rootContextAgentCount" pluralLabel="Root Context Agent Counts" description="The number of root context agents to create." sType="INTEGER"/>
+  <attributes label="Root Context Context Count" ID="rootContextContextCount" pluralLabel="Root Context Context Counts" description="The number of root context contexts to create." sType="INTEGER"/>
+  <attributes label="C" ID="c" pluralLabel="Cs"/>
+  <attributes label="B" ID="b" pluralLabel="Bs"/>
+  <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
+    <members xsi:type="act:ABuild" label="Build Root Context" ID="buildRootContext" targets="//@rootActivity/@members[ID='createRootContextAgents'] //@rootActivity/@members[ID='createRootContextContexts']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="/" pluralLabel="Build Root Contexts"/>
+    <members xsi:type="act:ACreateAgents" label="Create Root Context Agents" ID="createRootContextAgents" sources="//@rootActivity/@members[ID='buildRootContext']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="//@agents[ID='rootContextAgent']" agentCount="//@attributes[ID='rootContextAgentCount']"/>
+    <members xsi:type="act:ACreateAgents" label="Create Root Context Contexts" ID="createRootContextContexts" sources="//@rootActivity/@members[ID='buildRootContext']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="//@agents[ID='rootContextContext']" agentCount="//@attributes[ID='rootContextContextCount']"/>
+    <members xsi:type="act:ARule" label="Root Context Rule" ID="rootContextRule" targets="//@rootActivity/@members[ID='setTo']" selected="//@rootActivity/@members[ID='rootContextRule']" agent="/" pluralLabel="Root Context Rules"/>
+    <members xsi:type="act:ASet" label="Set [?] To [?]" ID="setTo" sources="//@rootActivity/@members[ID='rootContextRule'] //@rootActivity/@members[ID='at0Every0']" targets="//@rootActivity/@members[ID='at0Every0CAddB']" selected="//@rootActivity/@members[ID='at0Every0']"/>
+    <members xsi:type="act:ASchedule" label="At 0 Every 0" ID="at0Every0" targets="//@rootActivity/@members[ID='setTo'] //@rootActivity/@members[ID='at0Every0NotCQuery']" selected="//@rootActivity/@members[ID='at0Every0']" agent="/" pluralLabel="At 0 Every 0s"/>
+    <members xsi:type="act:AQuery" label="At 0 Every 0: Not C Query" ID="at0Every0NotCQuery" sources="//@rootActivity/@members[ID='at0Every0']" targets="//@rootActivity/@members[ID='at0Every0_NotCQueryAndCAddB_'] //@rootActivity/@members[ID='at0Every0_NotCQueryOrCAddB_'] //@rootActivity/@members[ID='not_At0Every0_NotCQueryOrCAddB__']" selected="//@rootActivity/@members[ID='at0Every0']">
+      <inputs selected="//@rootActivity/@members[ID='at0Every0']" value="//@attributes[ID='c']"/>
+      <function xsi:type="function:FLogicalOperator" href="../../../org.eclipse.amp.amf.acore/src/model/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='operators']/@subs[ID='logicalOperators']/@functions[ID='not']"/>
+    </members>
+    <members xsi:type="act:AEvaluate" label="At 0 Every 0: C Add B" ID="at0Every0CAddB" sources="//@rootActivity/@members[ID='setTo']" targets="//@rootActivity/@members[ID='at0Every0_NotCQueryAndCAddB_'] //@rootActivity/@members[ID='at0Every0_NotCQueryOrCAddB_'] //@rootActivity/@members[ID='not_At0Every0_NotCQueryOrCAddB__']" selected="//@rootActivity/@members[ID='at0Every0']">
+      <inputs selected="//@rootActivity/@members[ID='at0Every0']" value="//@attributes[ID='c']"/>
+      <inputs selected="//@rootActivity/@members[ID='at0Every0']" value="//@attributes[ID='b']"/>
+      <function xsi:type="function:FOperator" href="../../../org.eclipse.amp.amf.acore/src/model/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='operators']/@subs[ID='numericOperators']/@functions[ID='add']"/>
+    </members>
+    <members xsi:type="act:AAll" label="At 0 Every 0 (Not C Query &amp; C Add B)" ID="at0Every0_NotCQueryAndCAddB_" sources="//@rootActivity/@members[ID='at0Every0NotCQuery'] //@rootActivity/@members[ID='at0Every0CAddB']" targets="//@rootActivity/@members[ID='at0Every0_At0Every0_NotCQueryAndCAddB_AndAt0Every0_NotCQueryOrCAddB__']" selected="//@rootActivity/@members[ID='at0Every0']"/>
+    <members xsi:type="act:AAny" label="At 0 Every 0 (Not C Query | C Add B)" ID="at0Every0_NotCQueryOrCAddB_" sources="//@rootActivity/@members[ID='at0Every0NotCQuery'] //@rootActivity/@members[ID='at0Every0CAddB']" targets="//@rootActivity/@members[ID='at0Every0_At0Every0_NotCQueryAndCAddB_AndAt0Every0_NotCQueryOrCAddB__']" selected="//@rootActivity/@members[ID='at0Every0']"/>
+    <members xsi:type="act:ANone" label="!(At 0 Every 0 (Not C Query | C Add B))" ID="not_At0Every0_NotCQueryOrCAddB__" sources="//@rootActivity/@members[ID='at0Every0NotCQuery'] //@rootActivity/@members[ID='at0Every0CAddB']" selected="//@rootActivity/@members[ID='at0Every0']"/>
+    <members xsi:type="act:AAll" label="At 0 Every 0 (At 0 Every 0 (Not C Query &amp; C Add B) &amp; At 0 Every 0 (Not C Query | C Add B))" ID="at0Every0_At0Every0_NotCQueryAndCAddB_AndAt0Every0_NotCQueryOrCAddB__" sources="//@rootActivity/@members[ID='at0Every0_NotCQueryAndCAddB_'] //@rootActivity/@members[ID='at0Every0_NotCQueryOrCAddB_']" selected="//@rootActivity/@members[ID='at0Every0']"/>
+  </rootActivity>
+  <implementation className="RootContext"/>
+  <agents label="Root Context Agent" ID="rootContextAgent" pluralLabel="Root Context Agents">
+    <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups"/>
+    <implementation className="RootContextAgent"/>
+  </agents>
+  <agents xsi:type="metaabm:SContext" label="Root Context Context" ID="rootContextContext" pluralLabel="Root Context Contexts">
+    <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups"/>
+    <implementation className="RootContextContext"/>
+  </agents>
+</metaabm:SContext>

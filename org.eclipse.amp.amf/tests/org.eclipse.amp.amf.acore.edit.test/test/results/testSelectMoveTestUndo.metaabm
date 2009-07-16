@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ASCII"?>
+<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:metaabm="http://metaabm.org/metaabm.org/structure" label="Root Context" ID="rootContext" pluralLabel="Root Contexts">
+  <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
+    <members xsi:type="act:ARule" label="Rule" ID="rule" targets="//@rootActivity/@members[ID='eval1']" selected="//@rootActivity/@members[ID='rule']" agent="/" pluralLabel="Rules"/>
+    <members xsi:type="act:AEvaluate" label="Eval1" ID="eval1" sources="//@rootActivity/@members[ID='rule']" targets="//@rootActivity/@members[ID='select1']" selected="//@rootActivity/@members[ID='rule']"/>
+    <members xsi:type="act:ASelect" label="Select1" ID="select1" sources="//@rootActivity/@members[ID='eval1']" targets="//@rootActivity/@members[ID='move'] //@rootActivity/@members[ID='eval2']" selected="//@rootActivity/@members[ID='rule']" agent="/"/>
+    <members xsi:type="act:AMove" label="Move" ID="move" sources="//@rootActivity/@members[ID='select1']" selected="//@rootActivity/@members[ID='rule']" destination="//@rootActivity/@members[ID='select1']"/>
+    <members xsi:type="act:AEvaluate" label="Eval2" ID="eval2" sources="//@rootActivity/@members[ID='select1']" selected="//@rootActivity/@members[ID='select1']"/>
+    <members xsi:type="act:ARule" label="TargetRule" ID="targetRule" targets="//@rootActivity/@members[ID='targetEval1']" selected="//@rootActivity/@members[ID='targetRule']" agent="/" pluralLabel="TargetRules"/>
+    <members xsi:type="act:AEvaluate" label="TargetEval1" ID="targetEval1" sources="//@rootActivity/@members[ID='targetRule']" selected="//@rootActivity/@members[ID='targetRule']"/>
+  </rootActivity>
+  <implementation className="RootContext"/>
+</metaabm:SContext>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/metaabm.org/structure" label="Root Context" ID="rootContext" pluralLabel="Root Contexts">
+  <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
+    <members xsi:type="act:ARule" label="Root Context Rule" ID="rootContextRule" targets="//@rootActivity/@members[ID='rootContextRuleNotQuery']" selected="//@rootActivity/@members[ID='rootContextRule']" agent="/" pluralLabel="Root Context Rules"/>
+    <members xsi:type="act:AQuery" label="Root Context Rule: Not [?] Query" ID="rootContextRuleNotQuery" sources="//@rootActivity/@members[ID='rootContextRule']" selected="//@rootActivity/@members[ID='rootContextRule']">
+      <inputs selected="//@rootActivity/@members[ID='rootContextRule']"/>
+      <function xsi:type="function:FLogicalOperator" href="../../../org.eclipse.amp.amf.acore/src/model/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='operators']/@subs[ID='logicalOperators']/@functions[ID='not']"/>
+    </members>
+  </rootActivity>
+  <implementation className="RootContext"/>
+</metaabm:SContext>

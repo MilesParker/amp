@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Edit Test" default="test">
+
+	<property name="workspace.metaABM" value="../"/>
+
+	<import file="${workspace.metaABM}/org.metaabm.core/paths.xml" />
+	<import file="${workspace.metaABM}/org.eclipse.amp.amf.acore.edit/paths.xml" />
+
+	<target name="test">
+		<mkdir dir="test.reports" />
+		<junit printsummary="yes" haltonfailure="yes" maxmemory="200m" dir="test">
+			<jvmarg value="-Dsrcpath=${workspace.metaABM}/org.metaabm.core/test -Dclasspath=${path.compile}" />
+			<classpath>
+				<path refid="path.compile" />
+				<path refid="path.core" />
+				<path refid="path.core.lib" />
+				<path refid="path.edit" />
+				<path refid="path.edit.lib" />
+			</classpath>
+			<test name="org.eclipse.amp.amf.acore.edit.commands.test.AllCommandTests" todir="test.reports">
+				<formatter type="plain" usefile="no" />
+			</test>
+		</junit>
+	</target>
+
+</project>

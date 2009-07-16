@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ASCII"?>
+<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:metaabm="http://metaabm.org/metaabm.org/structure" label="Root Context" ID="rootContext" pluralLabel="Root Contexts">
+  <attributes label="Wombat Count" ID="wombatCount" pluralLabel="Wombat Counts" description="The number of wolfs to create." sType="INTEGER"/>
+  <attributes label="Root Context Context Count" ID="rootContextContextCount" pluralLabel="Root Context Context Counts" description="The number of root context contexts to create." sType="INTEGER"/>
+  <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
+    <members xsi:type="act:ABuild" label="Build Root Context" ID="buildRootContext" targets="//@rootActivity/@members[ID='createWolfs'] //@rootActivity/@members[ID='createRootContextContexts']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="/" pluralLabel="Build Root Contexts"/>
+    <members xsi:type="act:ACreateAgents" label="Create Wolfs" ID="createWolfs" sources="//@rootActivity/@members[ID='buildRootContext']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="//@agents[ID='wombat']" agentCount="//@attributes[ID='wombatCount']"/>
+    <members xsi:type="act:ACreateAgents" label="Create Root Context Contexts" ID="createRootContextContexts" sources="//@rootActivity/@members[ID='buildRootContext']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="//@agents[ID='rootContextContext']" agentCount="//@attributes[ID='rootContextContextCount']"/>
+  </rootActivity>
+  <implementation className="RootContext"/>
+  <agents label="Wombat" ID="wombat" pluralLabel="Wolves">
+    <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups"/>
+    <implementation className="Wombat"/>
+  </agents>
+  <agents xsi:type="metaabm:SContext" label="Root Context Context" ID="rootContextContext" pluralLabel="Root Context Contexts">
+    <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups"/>
+    <implementation className="RootContextContext"/>
+  </agents>
+</metaabm:SContext>
