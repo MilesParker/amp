@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Build Test and Run Repast Models">
+	<!--No longer used-->
+	<property name="outputPath" value="${workspace.metaABM}/org.metaabm.gen.repast.test/"/>
+	<property name="oawWorkflow" value="model/generate_repast.oaw" />
+
+	<property name="workspace.metaABM" value="../" />
+	<property name="workspace.repast" value="/Developer/Java/simphony-alpha2-workspace" />
+
+	<!-- <import file="${workspace.metaABM}/org.eclipse.amp.amf.acore.editor/paths.xml" /> -->
+	
+	<path id="path.compile">
+		<pathelement path="${eclipse.home}/plugins/repast.simphony.core/bin/" />
+		<pathelement path="${eclipse.home}/plugins/repast.simphony.core.lib/" />
+		<pathelement path="${eclipse.home}/plugins/repast.simphony.core/lib/colt-1.2.0.jar" />
+		<pathelement path="${eclipse.home}/plugins/repast.simphony.core/lib/collections-generic-4.01.jar" />
+		<pathelement path="${eclipse.home}/plugins/repast.simphony.data/bin/" />
+		<pathelement path="${eclipse.home}/plugins/repast.simphony.dataLoader/bin" />
+		<path refid="path.compile.gen"/>
+	</path>
+	
+	<path id="path.workflow">
+		<path refid="path.workflow.gen"/>
+		<pathelement path="${workspace.metaABM}/org.metaabm.gen.repast/bin" />
+		<pathelement path="${workspace.metaABM}/org.metaabm.ide.repast/bin" />
+		<pathelement path="${eclipse.home}/plugins/repast.simphony.score/bin" />
+	</path>
+
+	<path id="path.workflow.resources">
+		<path refid="path.workflow.resources.gen"/>
+		<pathelement path="${workspace.metaABM}/org.metaabm.examples.repast/bin" />
+	</path>
+</project>

@@ -1,0 +1,77 @@
+import metaabm;
+import metaabm::act;
+import metaabm::function;
+import emf;
+
+extension metaabm::tmpl::types;
+extension metaabm::tmpl::names;
+extension metaabm::tmpl::infer;
+extension metaabm::tmpl::projections;
+extension metaabm::repast::tmpl::projectionsrepast;
+
+cached String rsFileName(SImplemented impl) :
+	impl.implementation.className + ".rs/";
+		
+cached String expressionQuery(AAll logic) :
+	" ";
+	
+cached String expressionQuery(ALogic logic) :
+	"**Error: " + logic.label + "***";
+	
+cached String queryMethod(ALogic logic) :
+	"Unknown";
+	
+cached String queryMethod(AAll logic) :
+	"AndQuery";
+	
+cached String queryMethod(AAny logic) :
+	"OrQuery";
+	
+cached String queryMethod(ANone logic) :
+	"AndQuery";
+	
+cached Boolean underTesting(IID obj) :
+	true;
+	
+cached Boolean underTesting(SContext ctx) :
+	false;
+
+cached String repastType(EObject obj) :
+	(obj.metaType.toString() + "Impl").replaceAll("metaabm::","repast.score.impl.");
+	
+cached Boolean suppressAccessor(IID id) :
+	false;
+	
+cached Boolean suppressAccessor(SAttributeArray arr) :
+	true;
+	
+cached String contingentQuery(AAct act, Boolean condition, String contingent) :
+	(condition ? "repast.simphony.query.Query<Object> " : "") + act.id() + "Query" + (condition ? contingent : "");
+	
+cached Boolean projectionDescriptor(SProjection proj) :
+	"";
+	
+cached Boolean projectionDescriptor(SGrid proj) :
+	"grid.GridProjectionDescriptor";
+	
+cached Boolean projectionDescriptor(SContinuousSpace proj) :
+	"continuous.ContinuousProjectionDescriptor";
+	
+cached Boolean projectionDescriptor(SGeography proj) :
+	"gis.GisProjectionDescriptor";
+	
+cached Boolean projectionDecorator(SProjection proj) :
+	"";
+	
+cached Boolean projectionDecorator(SGrid proj) :
+	"grid.GridDecorator";
+	
+cached Boolean projectionDecorator(SContinuousSpace proj) :
+	"continuous.ContinuousDecorator";
+	
+cached Boolean displayType(SProjection proj) :
+	"TWO_D";
+	
+cached Boolean displayType(SGeography proj) :
+	"GIS";
+	

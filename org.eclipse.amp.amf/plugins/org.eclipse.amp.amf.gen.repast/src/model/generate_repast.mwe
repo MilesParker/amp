@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<workflow> 
+	<property name="outputPath" value="./"/>
+	<property name="modelPath" value="test/" />
+	<property name="modelFile" value="TestGeneration.metaabm" />
+    <property name="testing" value="false" />
+    <property name="fullStats" value="true" />
+    <property name="genStats" value="single" />
+    <property name="genComments" value="true" />
+	    <property name="orgImports" value="true" />
+    <property name="format" value="true" />
+    <property name="buildProject" value="org.eclipse.amp.amf.gen.test"/>
+
+	<cartridge file="model/generate_base.mwe">
+       <outputPath value="${outputPath}"/>
+       <modelPath value="${modelPath}"/>
+       <modelFile value="${modelFile}"/>
+        <testing value="${testing}" />
+        <buildProject value="${buildProject}" />
+        <fullStats value="${fullStats}" />
+        <genComments value="${genComments}" />
+        <orgImports value="${orgImports}" />
+        <genStats value="${genStats}" />
+        <format value="${format}" />
+	</cartridge>
+
+	<component adviceTarget="javaGenerator" 
+       id="reflectionAdvice" class="org.eclipse.xpand2.GeneratorAdvice"> 
+      <advice value="metaabm::repast::tmpl::RepastAspect" />
+	</component> 
+
+    <bean id="metaabm" class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel"/>
+   	
+	<component id="scenarioGenerator" class="org.eclipse.xpand2.Generator" skipOnErrors="true" fileEncoding="iso-8859-1">
+		<metaModel idRef="metaabm"/>
+	    <outlet path="${outputPath}" overwrite="true"/> 
+        <globalVarDef name="testing" value="'${testing}'"/> 
+        <globalVarDef name="buildProject" value="'${buildProject}'"/> 
+		<expand value="metaabm::repast::tmpl::Scenario::Model FOR model"/>
+		<fileEncoding value="ISO-8859-1"/> 
+	</component>
+</workflow> 

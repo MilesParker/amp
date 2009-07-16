@@ -1,0 +1,60 @@
+import metaabm;
+import metaabm::act;
+import emf;
+
+extension metaabm::tmpl::projections;
+extension metaabm::tmpl::infer;
+
+//Author: Miles Parker«ENDREM»
+
+String spacePkg(SProjection proj) :			
+	"undefined";
+
+String spacePkg(SGrid proj) :			
+	"grid";
+
+String spacePkg(SContinuousSpace proj) :			
+	"continuous";
+
+String spacePkg(SNetwork proj) :			
+	"graph";
+	
+String spaceClassName(SNetwork net) :			
+	"Network";
+	
+String spaceClassName(SProjection proj) :			
+	proj.spacePkg().toFirstUpper();
+
+String spaceQueryName(SNeighborhoodType type) :			
+	type.toString() == "VON_NEUMANN" 
+		? "VNQuery" 
+		: (type.toString() == "MOORE" 
+			? "MooreQuery"
+			: "GridWithin");
+	
+String spaceQueryName(SNetwork net) :			
+	"NetPathWithin";
+	
+String spaceQueryName(SProjection proj) :			
+	proj.spaceClassName();
+
+String spaceQueryName(SGrid grid) :			
+	grid.neighborhood.spaceQueryName();
+	
+String queryParams(AAct act, SProjection proj, List[AAct] path) : 
+	act.actDistance(path);
+
+String queryParams(AAct act, SGrid grid, List[AAct] path) : 
+	(grid.neighborhood.spaceQueryName() == "GridWithin") ? act.actDistance(path) : (act.actDistance(path) + ", " + act.actDistance(path));
+	
+String queryClass(SProjection proj) :			
+	"repast.simphony.query.space." + proj.spacePkg() + "." + proj.spaceQueryName();
+	
+String borderRuleName(SNDimensional proj) :	
+	proj.borderRule.toString().toLowerCase().toFirstUpper() + "Borders";	
+
+String borderRuleName(SGrid proj) :	
+	(proj.borderRule.toString() == "PERIODIC")  ? "WrapAroundBorders" : proj.borderRule.toString().toLowerCase().toFirstUpper() + "Borders";	
+	
+String newBorder(SNDimensional proj):
+	"new repast.simphony.space." + proj.spacePkg() + "." + proj.borderRuleName() + "()";
