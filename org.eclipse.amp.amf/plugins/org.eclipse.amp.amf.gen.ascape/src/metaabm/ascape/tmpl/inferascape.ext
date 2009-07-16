@@ -1,0 +1,224 @@
+import metaabm;
+import metaabm::act;
+import metaabm::function;
+import emf;
+
+extension metaabm::tmpl::types;
+extension metaabm::tmpl::names;
+extension metaabm::tmpl::infer;
+extension metaabm::ascape::tmpl::namesascape;
+
+cached String toHost(String wrapped) :
+	"((org.ascape.model.CellOccupant" + ") " + wrapped.expl() + ").getHostCell()";
+			
+cached String toAgent(String wrapped) :
+	"((org.ascape.model.HostCell" + ") " + wrapped.expl() + ").getOccupant()";
+    
+cached String asHost(ASelect act) :
+    act.agent.isHost() 
+        ? act.selid()
+        : act.selid().toHost();
+    
+cached String asAgent(ASelect act) :
+    !act.agent.isHost() 
+        ? act.selid()
+        : act.selid().toAgent();
+    
+cached String asAgent(SAgent agent) :
+    !agent.isHost() 
+        ? agent.id()
+        : agent.id().toAgent();
+
+cached Boolean returnsHost(AAct act) :
+    act.selector().space != null &&  act.selector().space.isHost() && (!act.hasControl("neighbor") || act.hasControl("available"));
+
+cached Boolean findFromHost(AAct act) :
+    !act.selector().selected.agent.isHost() && act.returnsHost();
+
+cached String convertedAgent(AAct act, String wrapped) :
+    act.convertToAgent() ? wrapped.toAgent() : wrapped;
+
+cached Boolean convertToAgent(AAct act) :
+    act.selector().space != null && act.selector().space.isHost() && !act.selector().agent.isHost() && act.returnsHost();
+
+cached Boolean convertToHost(AAct act) :
+    (act.selector().space != null && act.selector().space.isHost() && act.selector().agent.isHost() && !act.returnsHost()) || (act.hasControl("here") && !act.selector().selected.agent.isHost() && act.selector().agent.isHost());
+
+cached String convertedHost(AAct act, String wrapped) :
+    act.convertToHost() ? wrapped.toHost() : wrapped;
+
+cached Boolean convert(AAct act) :
+    act.convertToAgent() || act.convertToHost();
+
+cached String converted(AAct act, String wrapped) :
+    act.selector().space.isHost() ? act.convertedAgent(act.convertedHost(wrapped)) : wrapped;
+
+cached String actMover(AAct act) :
+	act.selfrom().selid().pre();
+ 
+cached String method(AAct act, List[AAct] path, Boolean inner) :
+    act.id();
+ 
+cached String method(ADie act, List[AAct] path, Boolean inner) :
+    "die";
+ 
+cached String method(ALeave act, List[AAct] path, Boolean inner) :
+    "leave";
+ 
+cached String method(AMove act, List[AAct] path, Boolean inner) :
+    path.last().hasControl("toward") ? "moveToward" : 
+    	(path.last().hasControl("away") ? "moveAway" : "moveTo");
+ 
+cached String graphCall(ANetwork act) :
+    "InternalError in inferascape.ext";
+
+cached String network(ANetwork net) :
+	"((" + pkgs() + "Graph) " + net.selected.getterPath(net.within, false) + ".getSpace()).";
+
+cached String call(AMove act, List[AAct] path, Boolean inner) :
+		act.selected.asAgent().pre() + act.method(path, inner) + "(" + act.destination.asHost().expl() + ");";
+
+cached String call(ACreateAgents act, List[AAct] path, Boolean inner) :
+	act.agent.typeName() + " " + act.id() + " = (" + act.agent.typeName() + ")" + act.getterPath(act.reference.parent(), inner) + "." + act.agent.getterName() + "().getSpace().newLocation(false);";
+	
+cached String call(ADie act, List[AAct] path, Boolean inner) :
+		act.selected.local(act.selected.id()).expl().pre() + "die();";
+
+cached String call(ALeave act, List[AAct] path, Boolean inner) :
+        act.selected.local(act.selected.id()).expl().pre() + "leave();";
+
+cached String call(AReplace act, List[AAct] path, Boolean inner) :
+		act.network() + "replaceNeighbor(" + act.actMover().expl() + ", " + act.findDest() + ", " + act.directed + ");";
+
+cached String call(AConnect act, List[AAct] path, Boolean inner) :
+		act.network() + "addNeighborSafe(" + act.selfrom().local(act.selfrom().id()).expl() + ", " + act.findDest() +", " + act.directed + ");";
+
+cached String call(ADisconnect act, List[AAct] path, Boolean inner) :
+		act.network() + "clearNeighbors(" + act.actMover().expl() + ");";
+     
+cached String call(AAct act, List[AAct] path, Boolean inner) :
+    act.method(path, inner) + "()";
+ 
+cached String call(AReplace act, Boolean inner) :
+	"((" + pkgs() + "Graph) " + act.dest().getterPath(act.within, inner) + ".getSpace())." + act.graphCall();
+ 
+cached String call(ANetwork act, Boolean inner) :
+	"((" + pkgs() + "Graph) " + act.dest().getterPath(act.within, inner) + ".getSpace())." + act.graphCall();
+    
+cached String graphCall(AConnect act) :
+    "addNeighborSafe(" + act.actMover().expl() + ",  " + act.dest().id() + ", " + act.directed + ")";
+
+cached String graphCall(ADisconnect act) :
+    "clearNeighbors(" + act.actMover().expl()+ ")";
+
+cached String graphCall(AReplace act) :
+    "replaceNeighbor(" + act.actMover().expl() + ", " + act.findDest() + ", " + act.directed + ")";
+		
+cached Boolean conditionForAscape(AControl act) :
+	(act.conditionFor() || act.convertToAgent() || !act.selector().agent.isHost()) && !act.hasControl("here") && !act.selector().isRoot();
+        
+cached Boolean conditionForAscape(ASelect act) :
+    act.conditionFor() || act.convertToAgent();
+        
+cached Boolean conditionForAscape(AAct act) :
+    false;
+
+cached String conditionParam(AAct act) :
+	act.conditionForAscape() ? act.selector().selid() + "Condition" : ((act.hasControl("available") && act.hasControl("within")) ? "null" : "");
+
+cached String findSpace(AAct act) :
+    act.selector().space != null ? "((org.ascape.model.space.Discrete)" + act.selector().getterPath(act.selector().space, false) + ".getSpace())." : "getScape().";
+ 
+cached Boolean allTerms(AAct act) :
+    (act.hasControl("nearest") || act.hasControl("within"));
+
+cached String locationAgent(AAct act) :
+    act.findFromHost() ? act.selector().selected.selid().toHost() : act.selector().selected.selid();
+
+cached String locationTerm(AAct act) :
+    (act.hasControl("includeSelf") || act.hasControl("neighbor") || act.allTerms()) ? act.locationAgent().expl() : "";
+
+cached Boolean conditionTerm(AAct act, AAct last) :
+    act.conditionForAscape() 
+        ? act.selector().selid() + "Condition"
+        : (act.allTerms() ? "null" : "");
+
+cached String includeSelfTerm(AAct act) :
+    act.hasControl("includeSelf") 
+        ? "true"
+        : (act.allTerms() ? "false" : "");
+
+cached String distanceTerm(AAct act, List[AAct] path) :
+    act.allTerms() ? act.actDistance(path) : "";
+
+cached String findParams(AAct act, List[AAct] path) :
+    {act.locationTerm(), act.conditionParam(), act.includeSelfTerm(), act.distanceTerm(path)}.select(e | e.length > 0).toString(", ");
+
+cached String nearestTerm(AAct act) :
+    act.hasControl("nearest") ? "Nearest" : "";
+
+cached String randomTerm(AAct act) :
+    !(act.hasControl("nearest")) ? "Random" : "";
+
+cached String availableTerm(AAct act) :
+    act.hasControl("available") ? "Available" : "";
+    
+cached String withinTerm(AAct act) :
+    act.hasControl("within") && !act.hasControl("nearest") && !act.hasControl("available") ? "Within" : "";
+
+cached String neighborTerm(AAct act) :
+    act.hasControl("neighbor") ? "Neighbor" : "";
+
+cached String findMethod(AAct act) :
+    "find" + act.nearestTerm() + act.randomTerm() + act.availableTerm() + act.withinTerm() + act.neighborTerm();
+
+//        : (act.hasControl("here") 
+//        	? "(" + act.selector().selected.asHost().expl() + "==" + act.rootSelected.asHost().expl() + " ? " + act.selector().selected.selid().expl() + " : null);"
+
+cached String findStatement(AAct act, List[AAct] path) :
+    !act.selector().isRoot() && !act.hasControl("here") && !(act.hasControl("toward") && act.controlCompound().spatial().size == 1)
+        ? act.findSpace() + act.findMethod() + "(" + act.findParams(path) + ")"
+        : act.selector().selected.selid().expl();
+
+cached Collection[AAct] hereQueries(AAct act) :
+	((Collection[AAct]) act.selector().targets.intersect(act.allSources)).controlFunction("here");
+
+cached SAttribute outer(SAttribute inner, SAttribute outer) :
+	outer == inner ? inner : outer;
+
+cached String statSig(SAttribute attr) :
+	attr.numeric() ? "double getValue" : "boolean meetsCondition";
+
+cached Boolean statCond(SAttribute typed) :
+	typed.sType == SAttributeType::Boolean;
+
+cached Boolean statCond(SState outer) :
+	true;
+
+cached String statCondTerm(SAttribute typed) :
+	statCond(typed) ? "Cond" : "";
+
+cached String statLabel(SAttribute inner, SAttribute outer, String desc) :
+	inner.parent().label + " " + desc.spaceTrail() + (outer != inner ? outer.label.spaceTrail() : "") + inner.label;
+
+cached int gridDimSize(SGrid grid) : 
+	grid.attributes.size > 1 ? grid.attributes.get(1).defaultValue.asInteger() : 20;
+
+cached int agentPixelSize(SGrid grid) : 
+	(grid.gridDimSize() < 100) ? (400 / grid.gridDimSize()) : 3;
+		
+cached List[AAct] orderBuild(List[AAct] acts) :
+	acts.sortBy(e | (e.metaType == ACreateAgents ? -2 : 0) + ((e.metaType == ACreateAgents && ((ACreateAgents) e).agent.isHost()) ? 4 : 0));
+	
+
+String setTo(SAttribute attr, String val) :
+	((SAgent) attr.owner).asAgent() + "." + attr.setterName() + "(" + val + ")";
+	
+List setterSpace(SState attr) :
+	attr.options.collect(a | {a.label + " " + attr.label, attr.setTo(a.typeName())});
+
+List setterSpace(SAttribute attr) :
+	attr.sType == SAttributeType::Boolean ? {{"is " + attr.label, attr.setTo("true")}, {"is not " + attr.label, attr.setTo("false")}} : {};
+	
+List setterSpace(SStyle style) :
+	style.agent.attributes.setterSpace();	

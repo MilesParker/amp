@@ -1,0 +1,293 @@
+«IMPORT emf»
+«IMPORT metaabm»
+«IMPORT metaabm::act»
+«IMPORT metaabm::function»
+«IMPORT metaabm::tmpl::Java»
+
+«EXTENSION metaabm::tmpl::types»
+«EXTENSION metaabm::tmpl::names» 
+«EXTENSION metaabm::tmpl::infer»
+«EXTENSION metaabm::tmpl::util»
+«EXTENSION metaabm::tmpl::projections»
+«EXTENSION metaabm::ascape::tmpl::namesascape»
+«EXTENSION metaabm::ascape::tmpl::inferascape»
+
+«DEFINE AgentBody FOR SAgent-»
+	«IF owner != null»
+	public «owner.typeName()» «owner.getterName()»() {
+		return («owner.typeName()») getScape().getRoot();
+	}
+	«ENDIF»
+	«IF parent != null && !((SContext) parent).projections.typeSelect(SNetwork).isEmpty-»
+	public java.util.List getNetwork() {
+		return ((«pkgs()»Graph) «((SContext) parent).getterName()»().«((SContext) parent).projections.typeSelect(SNetwork).get(0).getterName()»().getSpace()).getNeighborsFor(this);
+	}
+	«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE ScapeBody FOR SContext-»
+    «EXPAND metaabm::tmpl::Java::UtilBody-»
+    
+	«EXPAND metaabm::tmpl::Java::Field FOREACH agents-»
+    
+	«EXPAND metaabm::tmpl::Java::Accessor FOREACH agents-»
+    
+	/**
+	 * Creates the members of «label». 
+	 */
+	public void createScape() {
+		super.createScape();
+		setName(toString());
+		«IF (rootActivity != null)-»
+			«EXPAND CreateScape (0) FOREACH agents-»
+			«EXPAND CreateScape (0) FOR rootActivity-»
+		«ENDIF-»
+		«IF (rootActivity != null)-»
+			«EXPAND CreateScape (1) FOREACH agents-»
+			«EXPAND CreateScape (1) FOR rootActivity-»
+		«ENDIF-»
+		«IF (rootActivity != null)-»
+			«EXPAND CreateScape (2) FOREACH agents-»
+			«EXPAND CreateScape (2) FOR rootActivity-»
+		«ENDIF-»
+		«EXPAND metaabm::tmpl::Java::Builder FOREACH projections-»
+		«EXPAND metaabm::tmpl::Java::Builder FOREACH agents-»
+		«IF rootActivity != null-»
+			«EXPAND metaabm::tmpl::Java::Builder FOR rootActivity-»
+		«ENDIF-»
+	}
+	
+	/**
+	 * Creates UI views for «label».
+	 */
+	public void createGraphicViews() {
+		super.createGraphicViews();
+		«IF (rootActivity != null)-»
+			«EXPAND ViewBuilder FOR rootActivity-»
+		«ENDIF-»
+	}
+	
+    public void scapeSetup(«pkgm()»event.ScapeEvent scapeEvent) {
+        //Set the size of the scape populations, e.g. for mutable scapes that need to have their size reset
+        «EXPAND metaabm::tmpl::Java::ProtectedRegion("ScapeSetup")»
+		«IF (rootActivity != null)-»
+			«EXPAND Setup FOR rootActivity-»
+		«ENDIF-»
+    }
+«ENDDEFINE»
+
+«DEFINE NameAccessor FOR SAgent-»
+    public String getName() {
+    	if (name == null) {
+	        return "«label» " + uniqueID;
+	    } else {
+	    	return name;
+	    }
+    }
+«ENDDEFINE»
+
+«DEFINE Conditional (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
+    «IF conditionForAscape()-»
+        «pkgu()»Conditional «selector().id()»Condition = new «pkgu()»Conditional() {
+            private static final long serialVersionUID = 6846144446402098985L;
+
+            public boolean meetsCondition(Object «selector().id()»Cell) {
+                «IF findFromHost()-»
+                    «selector().id()»Cell = «converted(selector().id() + "Cell")»;
+                «ENDIF-»
+                if («selector().id()»Cell instanceof «selector().typeName()») {
+                    «selector().typeName()» «selector().id()» = («selector().typeName()») «selector().id()»Cell;
+	                «IF selector().targets.queries().nonSpatial().intersect(allSources).size > 0-»
+	                «EXPAND metaabm::tmpl::Java::InnerEvaluation(path, false)-»
+	                return «selector().targets.queries().nonSpatial().intersect(allSources).toList().expressionSink(path, false)»;
+	                «ELSE-»
+	                return true;
+	                «ENDIF-»
+                } else {
+                    return false;
+                }
+            }
+        };
+    «ENDIF-»
+«ENDDEFINE»    
+
+«DEFINE BeginQuery (List[metaabm::act::AAct] path, Boolean inner) FOR AAct»
+    «IF !convert()-»
+    «selector().typeName()» «selector().id()» = («selector().typeName()») «findStatement(path)»;
+    «ELSE-»
+    «selector().typeName()» «selector().id()» = null;
+    «pkgs()»Location «selector().id()»Location = «findStatement(path)»;
+    if («selector().id()»Location != null) {
+        «selector().id()» = («selector().typeName()») «converted(selector().id() + "Location")»;
+    }
+    «ENDIF-»
+    if («selector().id()» «metaType != ANone ? "!=" : "=="» null) {
+    «IF expression(path, inner) != "" && hasControl("here") && !selector().isRoot()-»
+        if («expression(path, inner)») {
+    «ENDIF-»
+«ENDDEFINE»
+«DEFINE EndQuery (List[metaabm::act::AAct] path, Boolean inner) FOR AAct»
+    «IF expression(path, inner) != "" && hasControl("here") && !selector().isRoot()-»}
+    «ENDIF-»}
+«ENDDEFINE»
+
+«DEFINE BeginSerial(List[AAct] path, Boolean inner) FOR AControl-»
+    «IF selector().isRoot() && selector().agent.isHost() && !controlFunctions({"available", "withinBoundaries"}).isEmpty-»
+        if («EXPAND metaabm::tmpl::Java::FunctionInnerBlock(path, false) FOREACH controlFunctions({"available", "withinBoundaries"}) SEPARATOR "&&"-») {
+    «ENDIF-»
+«ENDDEFINE»
+«DEFINE EndSerial(List[AAct] path, Boolean inner) FOR AControl-»
+    «IF selector().isRoot() && selector().agent.isHost() && !controlFunctions({"available", "withinBoundaries"}).isEmpty-»}
+    «ENDIF-»
+«ENDDEFINE»
+
+«DEFINE Setup FOR ACreateAgents-»
+	«IF !agent.isHost()-»
+		«agent.fieldName()».setSize(«agentCount.id()»);
+	«ENDIF-»
+«ENDDEFINE»
+«DEFINE Setup FOR IAct-»«ENDDEFINE»
+«DEFINE Setup FOR AGroup-»
+	«EXPAND Setup FOREACH members-»
+«ENDDEFINE»
+
+«DEFINE CreateScape(int stage) FOR ABuildSpace-»«ENDDEFINE»
+«DEFINE CreateScape(int stage) FOR ABuildNetwork-»
+		«IF stage == 0-»
+        «projection.fieldName()» = new «pkgm()»Scape(new «projection.spaceClass()»());
+        «projection.fieldName()».setName("«label»");
+		add(«projection.fieldName()»);
+		«ENDIF-»
+«ENDDEFINE»
+«DEFINE CreateScape(int stage) FOR ABuildGrid-»
+		«IF stage == 0-»
+	        «projection.fieldName()» = new «pkgm()»Scape(new «projection.spaceClass()»());
+	        «projection.fieldName()».setPrototypeAgent(new «fillAgent.typeName()»());
+	        «projection.fieldName()».setExtent(new «projection.coordinateType()»(«projection.getterName()»Dimensions()));
+	        «projection.fieldName()».setName("«label»");
+	        «IF projection.periodic() != ""-»
+	        ((«pkgs()»CollectionSpace) «projection.fieldName()».getSpace()).setPeriodic(«projection.periodic()»);
+	        «ENDIF-»
+			add(«projection.fieldName()»);
+			org.ascape.model.Scape «fillAgent.fieldName()» = «projection.id()»;
+		«ELSEIF stage == 1-»
+	        «FOREACH agents AS agent-»
+	        «agent.proto()».setHostScape(«projection.fieldName()»);
+	        «ENDFOREACH-»
+        	«IF ((AGroup) fillAgent.rootActivity).members.isEmpty-»
+				«projection.fieldName()».getRules().clear();
+			«ENDIF-»
+        «ENDIF-»
+«ENDDEFINE»
+«DEFINE CreateScape(int stage) FOR SAgent-»
+	«IF !isHost()»
+		«IF stage == 0-»
+		«typeName()» «proto()» = new «typeName()»();
+		«fieldName()» = new «pkgm()»Scape();
+		«fieldName()».setName("«label»");
+		«fieldName()».setPrototypeAgent(«proto()»);
+        «fieldName()».setExecutionOrder(«pkgm()»Scape.RULE_ORDER);
+		«ELSEIF stage == 1»
+		add(«fieldName()»);
+		«ELSEIF stage == 2»
+		«EXPAND StatBuilder-»
+		«ENDIF-»
+	«ENDIF»
+«ENDDEFINE»
+«DEFINE CreateScape(int stage) FOR AGroup-»
+	«EXPAND CreateScape(stage) FOREACH members.orderBuild()-»
+«ENDDEFINE»
+«DEFINE CreateScape(int stage) FOR IAct-»«ENDDEFINE»
+
+«DEFINE StatBuilderBody(SAttribute outer, String mod) FOR SAttribute-»
+            public final «statSig()»(Object «parent().id()») {
+                return «mod» «expression((List[AAct]) {}, true)»;
+            }
+«ENDDEFINE»
+
+«DEFINE StatBuilderInner(SAttribute outer) FOR SAttribute-»
+    «IF outer.sType == SAttributeType::Boolean»
+		«EXPAND StatBuilderAdd (outer, "", "")-»
+		«EXPAND StatBuilderAdd (outer, "!", "Not")-»
+	«ENDIF»
+«ENDDEFINE»
+
+«DEFINE StatBuilderInner(SState outer) FOR SAttribute-»
+		«FOREACH outer.options AS option-»
+		«EXPAND StatBuilderAdd (outer, option.typeName() + " == ", option.label)-»
+		«ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE StatBuilderAdd(SAttribute outer, String mod, String desc) FOR SAttribute-»
+    «((SAgent) parent()).fieldName()».addStatCollector(new org.ascape.util.data.StatCollector«outer(outer).statCondTerm()»CSAMM("«statLabel(outer, desc)»") {
+		private static final long serialVersionUID = 6846144446402098985L;
+		«IF outer != this-»
+		«EXPAND StatBuilderBody (outer, mod) FOR outer-»
+		«ENDIF-»
+		«EXPAND StatBuilderBody (outer, !sType.numeric() ? mod : "")-»
+    });
+    «IF genStats() == "cross"-»
+    	«EXPAND StatBuilderInner(this) FOREACH parent().attributes.select(a | a.numeric() && a.gatherData)-»
+	«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE StatBuilder FOR SAttribute-»
+	«IF gatherData-»
+	«IF numeric()»
+		«EXPAND StatBuilderAdd (this, "", "")-»
+	«ELSEIF boolean()»
+		«EXPAND StatBuilderAdd (this, "", "is")-»
+		«EXPAND StatBuilderAdd (this, "!", "is not")-»
+	«ENDIF»
+	«ENDIF-»
+«ENDDEFINE»
+«DEFINE StatBuilder FOR SState-»
+	«IF gatherData-»
+		«FOREACH options AS option-»
+		«EXPAND StatBuilderAdd (this, option.typeName() + " == ", option.label)-»
+		«ENDFOREACH-»
+	«ENDIF-»
+«ENDDEFINE»
+«DEFINE StatBuilder FOR SAgent-»
+	«IF genStats() != "none"»
+        «fieldName()».addStatCollector(new org.ascape.util.data.StatCollectorCSA("«label» Population") {
+				private static final long serialVersionUID = 684614444640209893L;
+				
+                @SuppressWarnings("unused")
+                public final boolean meetsCondition(Object object) {return true;}
+        });
+		«EXPAND StatBuilder FOREACH attributes-»
+	«ENDIF»
+«ENDDEFINE»
+
+«DEFINE ChildBuilder FOR ARule-»
+		«reference.fieldName()».addRule(new «pkgm()»rule.Rule("«label»") {
+			private static final long serialVersionUID = 6846144446402098981L;
+			public void execute(«pkgm()»Agent a) {
+				((«reference.implementation.qualifiedName») a).«id()»();
+			}
+		});
+«ENDDEFINE»
+«DEFINE ChildBuilder FOR AInitialize-»
+		«REM»Initialize is automatically invoked by default from framework«ENDREM»
+		«reference.fieldName()».addInitialRule(new «pkgm()»rule.Rule("«label»") {
+			private static final long serialVersionUID = 6846144446402098982L;
+			public void execute(«pkgm()»Agent a) {
+				((«reference.implementation.qualifiedName») a).«id()»();
+			}
+		});
+«ENDDEFINE»
+«DEFINE ChildBuilder FOR AGroup-»
+	«EXPAND ChildBuilder FOREACH roots-»
+«ENDDEFINE»
+«DEFINE ChildBuilder FOR IAct-»«ENDDEFINE»
+
+«DEFINE ViewBuilder FOR IAct-»«ENDDEFINE»
+«DEFINE ViewBuilder FOR AGroup-»
+	«EXPAND ViewBuilder FOREACH members-»
+«ENDDEFINE»
+«DEFINE ViewBuilder FOR ABuildGrid-»
+«ENDDEFINE»
+
+
+«REM»«AROUND metaabm::tmpl::Java::Evaluation(*) FOR Object»«LET timesec() AS start»«targetDef.proceed()»//«timelapse(start)»«ENDLET»«ENDAROUND»«ENDREM»

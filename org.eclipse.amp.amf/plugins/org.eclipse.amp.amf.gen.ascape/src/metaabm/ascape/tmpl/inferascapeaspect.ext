@@ -1,0 +1,8 @@
+import metaabm;
+import metaabm::act;
+import metaabm::function;
+import emf;
+
+around expression(ALiteral value, List[AAct] path, Boolean inner) :
+	"yikes";
+	

@@ -1,0 +1,261 @@
+«IMPORT emf»
+«IMPORT metaabm»
+«IMPORT metaabm::act»
+«IMPORT metaabm::function»
+
+«EXTENSION metaabm::tmpl::types»
+«EXTENSION metaabm::tmpl::names» 
+«EXTENSION metaabm::tmpl::infer»
+«EXTENSION metaabm::tmpl::util»
+«EXTENSION metaabm::tmpl::projections»
+«EXTENSION metaabm::ascape::tmpl::namesascape»
+«EXTENSION metaabm::ascape::tmpl::inferascape»
+«IMPORT ScapeAspect»
+
+
+«AROUND metaabm::tmpl::Java::ExtendType FOR SProjection-»«pkgm()-»Scape«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ExtendType FOR SContext-»«typeName()-»«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ExtendType FOR SAgent-»«pkgm()-»Scape«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-» extends «pkgm()»Scape«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SAgent-» extends «pkgm()»«IF isHost()-»HostCell«ELSE-»CellOccupant«ENDIF-»«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SStyle-» extends org.ascape.util.vis.DrawFeature«ENDAROUND»
+
+
+«AROUND metaabm::tmpl::Java::Body FOR SAgent-»
+	«targetDef.proceed()»
+	«EXPAND metaabm::ascape::tmpl::ScapeAspect::AgentBody-»
+
+    public java.awt.Color getColor() {
+    	return java.awt.Color.LIGHT_GRAY;
+    }
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::Body FOR SContext-»
+    «EXPAND metaabm::ascape::tmpl::ScapeAspect::ScapeBody-»
+
+	public static void main(String[] args) {
+		(new org.ascape.runtime.swing.SwingRunner()).open("«implementation.qualifiedName»", args);
+	}
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::Body FOR SStyle-»
+	«targetDef.proceed()»
+    public void draw(java.awt.Graphics g, Object object, int width, int height) {
+    	java.awt.Shape shape = null;
+		«IF agent.isHost()-»
+			«agent.typeName()» «rootActivity.id()» = («agent.typeName()») object;
+			«FOREACH ((AGroup) rootActivity).roots AS act»«agent.typeName()» «act.id()» = «rootActivity.id()»;«ENDFOREACH»
+			«EXPAND metaabm::tmpl::Java::ActionBody-»
+		«ELSE-»
+	        «pkgm()»HostCell «rootActivity.id()»Cell = («pkgm()»HostCell) object;
+	        if («rootActivity.id()»Cell.getOccupant() instanceof «agent.typeName()») {
+				«agent.typeName()» «rootActivity.id()» = («agent.typeName()») «rootActivity.id()»Cell.getOccupant();
+				«FOREACH ((AGroup) rootActivity).roots AS act»«agent.typeName()» «act.id()» = «rootActivity.id()»;«ENDFOREACH»
+				«EXPAND metaabm::tmpl::Java::ActionBody-»
+			}
+		«ENDIF-»
+	}
+«ENDAROUND»
+
+«AROUND metaabm::ascape::tmpl::ScapeAspect::ViewBuilder FOR AGroup-»
+	{
+    «targetDef.proceed()-»
+    }
+	{
+	org.ascape.view.vis.ChartView chart = new org.ascape.view.vis.ChartView();
+    addView(chart);
+	//if (getRunner().getEnvironment() instanceof org.ascape.runtime.applet.AppletEnvironment) {
+    //    chart.getChart().getLegend().setAnchor(com.jrefinery.chart.Legend.SOUTH);
+	//}
+	java.awt.Graphics dummyGraphics = new java.awt.image.BufferedImage(10, 10, java.awt.image.BufferedImage.TYPE_INT_RGB).getGraphics();
+
+    «FOREACH ((SContext) reference).agents AS agent»
+    org.ascape.model.Scape «agent.id()»Scape = new «agent.owner.typeName()»();
+    «agent.id()»Scape.setRunner(new org.ascape.runtime.NonGraphicRunner());
+	«agent.typeName()» «agent.id()» = new «agent.typeName()»() {
+                public void requestUpdate() {
+                }
+            };
+    «agent.id()»Scape.add(«agent.id()»);
+	«IF !agent.isHost()»
+	org.ascape.model.HostCell «agent.id()»Host = new org.ascape.model.HostCell() {
+                public void requestUpdate() {
+                }
+            };
+	«agent.id()»Host.setOccupant((org.ascape.model.CellOccupant) «agent.id()»);
+	«ENDIF»
+    «FOREACH agent.styles AS style»
+	«style.typeName()» «style.id()» = new «style.typeName()»();
+	«FOREACH style.setterSpace() AS setter»
+    «((List) setter).last()»;
+	«IF agent.isHost()»
+    «style.id()».draw(dummyGraphics, «agent.id()», 4, 4);
+    «ELSE»
+    «style.id()».draw(dummyGraphics, «agent.id()»Host, 4, 4);
+    «ENDIF»
+    {
+    java.awt.Color agentColor = dummyGraphics.getColor();
+	chart.addSeries("Count «agent.typeName()» «((List) setter).first()»", agentColor);
+	}
+    «ENDFOREACH-»
+    «ENDFOREACH-»
+    «ENDFOREACH-»
+    }
+«ENDAROUND»
+
+«DEFINE StyleBuilder (SProjection projection) FOR SStyle-»
+        «IF appropriate(projection, this)-»
+        org.ascape.util.vis.DrawFeature «id()» = new «implementation.qualifiedName»();
+        «id()».setName("«label»");
+        «projection.fieldName()».addDrawFeature(«id()»);
+        «ENDIF-»
+«ENDDEFINE»
+«DEFINE StyleSelector (SProjection projection) FOR SStyle-»
+        «IF appropriate(projection, this)-»
+        «projection.id()»View.getDrawSelection().setSelected(«id()», true);
+        «ENDIF-»
+«ENDDEFINE»
+«DEFINE StyleSelector (SProjection projection) FOR SProjection-»«ENDDEFINE»
+«DEFINE StyleSelector (SProjection projection) FOR SGrid-»
+        «id()»View.getDrawSelection().setSelected(«id()»View.agents_oval_cells_draw_feature, false);
+        «id()»View.getDrawSelection().setSelected(«id()»View.cells_fill_draw_feature, true);
+        «id()»View.getDrawSelection().moveToFront(«id()»View.cells_fill_draw_feature);
+«ENDDEFINE»
+«AROUND metaabm::ascape::tmpl::ScapeAspect::ViewBuilder FOR ABuildGrid-»
+	«IF (projection.defaultView() != null)-»
+		«projection.defaultView()» «projection.id()»View = new «projection.defaultView()»();
+		«projection.id()»View.setAgentSize(«((SGrid) projection).agentPixelSize()»);
+		«projection.fieldName()».addView(«projection.id()»View);
+		«IF !((SContext) reference).projections.typeSelect(SNetwork).isEmpty-»
+		«projection.id()»View.setDrawNetwork(true);
+		«ENDIF-»
+        «EXPAND StyleBuilder (projection) FOREACH fillAgent.styles-»
+        «FOREACH agents AS buildAgent-»
+        «EXPAND StyleBuilder (projection) FOREACH buildAgent.styles-»
+        «ENDFOREACH-»
+        «FOREACH agents AS buildAgent-»
+        «EXPAND StyleSelector (projection) FOREACH buildAgent.styles-»
+        «ENDFOREACH-»
+        «EXPAND StyleSelector (projection) FOREACH fillAgent.styles-»
+        «EXPAND StyleSelector (projection) FOR projection-»
+	«ENDIF-»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AEvaluate-»
+	«IF function.id().startsWith("color")-»
+		«targetDef.proceed()»
+		g.setColor(«id()»);
+	«ELSEIF function.id() == "shapeOval"-»
+		shape = new java.awt.geom.Ellipse2D.Double(0, 0, width - 2, height - 2);
+	«ELSEIF function.id() == "shapeRectangle"-»
+		«IF !reference.isHost()-»
+		shape = new java.awt.geom.Rectangle2D.Double(0, 0, width - 1, height - 1);
+		«ELSE-»
+		shape = new java.awt.geom.Rectangle2D.Double(0, 0, width, height);
+		«ENDIF-»
+	«ELSEIF function.id() == "shapeMarker"-»
+        shape = new java.awt.geom.Ellipse2D.Double(width * .25 - 1, width * .25 - 1, width * .5 - 1, width * .5 - 1);
+	«ELSEIF function.id().startsWith("graphicFill")-»
+        ((java.awt.Graphics2D) g).fill(shape);
+	«ELSEIF function.id().startsWith("graphicOutline")-»
+        ((java.awt.Graphics2D) g).draw(shape);
+    «ELSE-»
+	 	«IF selected == rootSelected || allTargets.typeSelect(ASet).collect(e | e.parameter).size > 0»
+			«targetDef.proceed()»
+		«ENDIF-»
+	«ENDIF-»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::FunctionInnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ASink-»
+    «IF function.id() == "randomUnit"-»
+        getRandom().nextDouble()
+    «ELSEIF function.id() == "randomIs"-»
+        getRandom().nextBoolean()
+    «ELSEIF function.id() == "uniformDistribution"-»
+        randomInRange(«inputs.expression(path, inner).toString(", ")»);
+	«ELSEIF function.id() == "timeNow"-»
+		«path.last().accessPath(this, inner)»getScape().getPeriod()
+    «ELSEIF function.id() == "available"-»
+        isAvailable()
+    «ELSEIF function.id() == "withinBoundaries"-»
+        «expressionSink(path, function, inner)»
+	«ELSE-»
+		«targetDef.proceed()»
+	«ENDIF-»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::OtherAccessors FOR SAgent-»
+	«targetDef.proceed()»
+    «EXPAND metaabm::ascape::tmpl::ScapeAspect::NameAccessor-»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::Builder FOR SAgent-»
+	«IF (rootActivity != null)-»
+		«EXPAND metaabm::ascape::tmpl::ScapeAspect::ChildBuilder FOR rootActivity-»
+	«ENDIF-»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::ConditionBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
+	«EXPAND metaabm::ascape::tmpl::ScapeAspect::Conditional(path, inner)»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::BeginQueryBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AAct»
+	«EXPAND metaabm::ascape::tmpl::ScapeAspect::BeginQuery(path, inner)»
+«ENDAROUND»
+«AROUND metaabm::tmpl::Java::EndQueryBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AAct»
+	«EXPAND metaabm::ascape::tmpl::ScapeAspect::EndQuery(path, inner)»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::BeginSerialBlock(List[AAct] path, Boolean inner) FOR AControl-»
+	«EXPAND metaabm::ascape::tmpl::ScapeAspect::BeginSerial(path, inner)»
+    «targetDef.proceed()»
+«ENDAROUND»
+«AROUND metaabm::tmpl::Java::EndSerialBlock(List[AAct] path, Boolean inner) FOR AControl-»
+	«EXPAND metaabm::ascape::tmpl::ScapeAspect::EndSerial(path, inner)»
+    «targetDef.proceed()»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AMove-»
+	«call(path, inner)»
+«ENDAROUND»
+«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ACreateAgents-»
+	«call(path, inner)»
+«ENDAROUND»
+«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ADie-»
+	«call(path, inner)»
+«ENDAROUND»
+«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ALeave-»
+	«call(path, inner)»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AReplace-»
+	«call(path, inner)»
+«ENDAROUND»
+«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AConnect-»
+	«call(path, inner)»
+«ENDAROUND»
+«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ADisconnect»
+	«call(path, inner)»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::MethodPotential (metaabm::act::AAct within) FOR FFunction-»
+	«IF (id() == "withinBoundaries") || (id() == "distance")-»
+		«EXPAND metaabm::tmpl::Java::Method-»
+	«ELSE-»
+		«targetDef.proceed()»
+	«ENDIF-»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::ActionBody FOR FFunction-»
+	«IF id() == "withinBoundaries"-»
+        «pkgs()»Coordinate2DDiscrete coor = («pkgs()»Coordinate2DDiscrete) getCoordinate();
+        return (coor.getYValue() >= bounds[0]
+                && coor.getXValue() >= bounds[1]
+                && coor.getYValue() <= bounds[2]
+                && coor.getXValue() <= bounds[3]);
+    «ELSE-»
+    	«targetDef.proceed()»
+	«ENDIF-»
+«ENDAROUND»
+

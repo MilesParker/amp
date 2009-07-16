@@ -1,0 +1,77 @@
+import metaabm;
+import metaabm::act;
+import metaabm::function;
+import emf;
+
+extension metaabm::tmpl::names;
+
+cached String proto(SAgent agent) :         
+    agent.id() + "Proto";
+
+cached pkga() : "org.ascape.";
+
+cached pkgm() : pkga() + "model.";
+
+cached pkgu() : pkga() + "util.";
+
+cached pkgs() : pkgm() + "space.";
+    
+cached String spaceType(SNDimensional proj) :           
+    "UnknownCoordinate";
+    
+cached String spaceType(SContinuousSpace proj) :            
+    "Continuous";
+    
+cached String spaceType(SGrid proj) :           
+    "Discrete";
+
+cached String spaceClass(SNeighborhoodType type) :          
+    type.toString() == "VON_NEUMANN" ? "VonNeumann" : type.toString().toLowerCase().toFirstUpper();
+
+cached String spaceClass(SProjection proj) :            
+    "UnkownSpaceClass";
+    
+cached String spaceClass(SGrid proj) :          
+    pkgs() + "Array2D" + proj.neighborhood.spaceClass();
+    
+cached String spaceClass(SContinuousSpace proj) :           
+    pkgs() + "Continuous2D";
+    
+cached String spaceClass(SNetwork proj) :           
+    pkgs() + "Graph";
+
+cached String periodic(SProjection proj) :
+    "";
+
+cached String periodic(SNDimensional proj) :
+    ((proj.borderRule.toString() == "STRICT") || (proj.borderRule.toString() == "BOUNCY")) ? "false" : "true"
+    ;
+    
+cached Integer dimension(SProjection proj) :
+    0;
+    
+cached Integer dimension(SNDimensional  proj) :
+    proj.dimensionality;
+
+cached String defaultView(SProjection proj) :           
+    null;
+    
+cached String defaultView(SGrid proj) :         
+     (proj.dimension() == 1) ?
+        "org.ascape.view.vis.Scrolling1DView" : 
+        ((proj.dimension() == 2) ?
+        "org.ascape.view.vis.Overhead2DView" :
+        null)
+;
+    
+cached String defaultView(SContinuousSpace proj) :          
+     (proj.dimension() == 2) ?
+        "org.ascape.view.vis.Overhead2DContinuousView" :
+        null;
+    
+cached String coordinateType(SProjection proj) :            
+    "UnknownCoordinate";
+    
+cached String coordinateType(SNDimensional proj) :          
+    "org.ascape.model.space.Coordinate" + proj.dimension() + "D" + spaceType(proj);
+    
