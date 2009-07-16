@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2009/07/16 20:49:35 mparker Exp $
+-->
+
+<plugin>
+    <extension point="org.eclipse.ui.newWizards">
+    <category
+          id="org.eclipse.amp.amf.ide.wizards"
+          name="MetaABM">
+    </category>
+    <wizard
+          category="org.eclipse.amp.amf.ide.wizards"
+          class="org.metaabm.ide.CustomMetaABMModelWizard"
+          icon="icons/full/obj16/MetaPerspective.gif"
+          id="org.eclipse.amp.amf.ide.wizards.metaabmmodel"
+          name="MetaABM Model"
+          project="false">
+      <description>Creates a new MetaABM model for use in this project.</description>
+      <selection class = "org.eclipse.core.resources.IResource" />
+    </wizard>
+  </extension>
+  <extension point = "org.eclipse.ui.editors">
+        <editor
+        id = "org.eclipse.amp.amf.ide.editor"
+        name = "MetaABM Editor"
+        icon = "icons/full/obj16/MetaPerspective.gif"
+        extensions = "metaabm"
+        class = "org.metaabm.ide.MetaABMEditor" 
+        contributorClass="org.metaabm.ide.MetaABMEditorActionBarContributor" >
+    </editor>
+    </extension>
+ <extension
+       id="modelproblem"
+       name="MetaABM Model Problem"
+       point="org.eclipse.core.resources.markers">
+    <super
+          type="org.eclipse.core.resources.problemmarker">
+    </super>
+    <persistent
+          value="true">
+    </persistent>
+    <attribute
+          name="modelElement">
+          </attribute>
+ </extension>
+    <extension
+          point="org.eclipse.ui.menus">
+       <menuContribution
+             locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+          <toolbar
+                id="org.eclipse.amp.amf.acore.editor.options">
+             <separator
+                   name="include">
+             </separator>
+             <separator
+                   name="layout">
+             </separator>
+          </toolbar>
+       </menuContribution>
+    </extension> 
+    <extension
+          point="org.eclipse.ui.editorActions">
+       <editorContribution
+             id="org.eclipse.amp.amf.ide.editor.display.attribute_references"
+             targetID="org.eclipse.amp.amf.ide.editor">
+          <action
+                class="org.metaabm.ide.DisplayAttributeReferencesAction"
+                definitionId="org.eclipse.amp.amf.ide.editor.display.attribute_references"
+                icon="icons/full/obj16/AInput.gif"
+                id="org.eclipse.amp.amf.ide.editor.toggleDisplayReferences"
+                label="Display Text"
+                state="false"
+                style="toggle"
+                toolbarPath="toolbar:org.eclipse.amp.amf.acore.editor.options?after=include">
+          </action>
+       </editorContribution>
+    </extension>
+    <extension
+          point="org.eclipse.ui.commands">
+       <category
+             id="org.eclipse.amp.amf.ide.editor.options"
+             name="Editor Options">
+       </category>
+       <command
+             categoryId="org.eclipse.amp.amf.ide.editor.options"
+             id="org.eclipse.amp.amf.ide.editor.display.attribute_references"
+             name="Display Attribute References">
+       </command>
+    </extension>
+    <extension
+          point="org.eclipse.ui.perspectiveExtensions">
+       <perspectiveExtension
+             targetID="org.eclipse.amp.amf.AgentModelingPerspective">
+          <newWizardShortcut
+                id="org.eclipse.amp.amf.ide.wizards.metaabmmodel">
+          </newWizardShortcut>
+       </perspectiveExtension>
+    </extension>
+  </plugin>

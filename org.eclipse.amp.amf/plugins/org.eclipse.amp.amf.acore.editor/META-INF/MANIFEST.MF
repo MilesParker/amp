@@ -1,0 +1,22 @@
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: 
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.emf.ecore.editor,
+ org.eclipse.emf.java,
+ org.eclipse.amp.amf.acore,
+ org.eclipse.amp.amf.acore.edit,
+ org.eclipse.emf.ecore.xmi;bundle-version="2.5.0"
+Bundle-SymbolicName: org.eclipse.amp.amf.acore.editor;singleton=true
+Bundle-Version: 0.2.0.qualifier
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Provide-Package: org.metaabm.act.ide,
+ org.metaabm.function.ide,
+ org.metaabm.ide,
+ org.metaabm.ide.prefs
+Bundle-Activator: org.metaabm.ide.MetaABMModelerPlugin$Implementation
+Bundle-ClassPath: .
+Eclipse-BuddyPolicy: global
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: %providerName
