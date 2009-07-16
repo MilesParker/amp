@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metaabm:SContext xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:metaabm="http://metaabm.org/structure" label="gis" ID="gis" pluralLabel="giss">
+  <attributes label="gis Agent Count" ID="gisAgentCount" pluralLabel="gis Agent Counts" description="The number of gis agents to create." sType="INTEGER"/>
+  <attributes label="gis Agent Copy Count" ID="gisAgentCopyCount" pluralLabel="gis Agent Copy Counts" description="The number of gis agent copys to create." sType="INTEGER"/>
+  <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
+    <members xsi:type="act:ABuild" label="Build gis" ID="buildgis" targets="//@rootActivity/@members[ID='creategisAgents'] //@rootActivity/@members[ID='buildGeography']" selected="//@rootActivity/@members[ID='buildgis']" agent="/" pluralLabel="Build giss"/>
+    <members xsi:type="act:ACreateAgents" label="Create gis Agents" ID="creategisAgents" sources="//@rootActivity/@members[ID='buildgis']" selected="//@rootActivity/@members[ID='buildgis']" agent="//@agents[ID='gisAgent']" agentCount="//@attributes[ID='gisAgentCount']"/>
+    <members xsi:type="act:ABuildGeography" label="Build Geography" ID="buildGeography" sources="//@rootActivity/@members[ID='buildgis']" selected="//@rootActivity/@members[ID='buildgis']" pluralLabel="Build Geographys" projection="//@projections[ID='geography']"/>
+  </rootActivity>
+  <implementation package="org.metaabm.examples.ascape" className="gis" basePath=""/>
+  <agents label="gis Agent" ID="gisAgent" pluralLabel="gis Agents">
+    <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups"/>
+    <implementation className="gisAgent"/>
+  </agents>
+  <projections xsi:type="metaabm:SGeography" label="Geography" ID="geography" pluralLabel="Geographys"/>
+</metaabm:SContext>

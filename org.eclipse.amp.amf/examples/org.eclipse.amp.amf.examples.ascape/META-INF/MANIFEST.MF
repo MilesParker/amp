@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ascape MetaABM Project Examples
+Bundle-SymbolicName: org.eclipse.amp.amf.examples.ascape
+Bundle-Version: 5.1.0.qualifier
+Require-Bundle: org.ascape.core,
+ org.apache.commons.lang,
+ org.ascape.ui.swing;bundle-version="5.2.0"
