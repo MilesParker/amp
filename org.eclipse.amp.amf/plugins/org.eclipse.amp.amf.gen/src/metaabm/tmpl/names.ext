@@ -1,0 +1,279 @@
+import metaabm;
+import metaabm::act;
+import metaabm::function;
+import emf;
+
+extension metaabm::tmpl::types;
+extension metaabm::tmpl::util;
+
+//Author: Miles Parker
+
+cached String expl(String orginal) :
+    (orginal == "") ? "this" : orginal;
+
+cached String pre(String original) :
+    ((original == "") || (original == "this")) ? "" : original + ".";
+
+cached String post(String original) :
+    ((original == "") || (original == "this")) ? "" : "." + original;
+
+cached String term(String original) :
+    original.length == 0 ? "" : original + ", ";
+
+cached String spaceTrail(String original) :
+    original.length == 0 ? "" : original + " ";
+
+cached String spaceLead(String original) :
+    original.length == 0 ? "" : " " + original;
+
+cached String spaceInner(String original) :
+    original.length == 0 ? "" : " " + original + " ";
+
+cached String comment(IID id) :
+	comment(id.id());
+
+cached String comment(String str) :
+	"/*" + str + "*/";
+
+cached String parens(String enclosed) :
+    "(" + enclosed + ")";
+
+cached String parens(List[EObject] enclosed, String sep) :
+    (enclosed.size > 1) 
+        ? parens(enclosed.toString(sep))
+        : (enclosed.size > 0 ? enclosed.get(0) : "");
+	
+cached String intab(List list) :		
+	list.collect(" ").toString("");
+
+cached String paramLocation(AInput input) :
+	input.parent().parent().getterName() + "()";
+
+cached String paramBase(AInput input) :
+	input.paramLocation() + "." + input.value.getterName();
+		   
+// the name of the return variable
+// produced by an evaluator
+cached String varName(IID id) :
+	id.id();
+
+cached String varName(ALiteral id) :
+	id.valueLiteral;
+
+cached String varName(SAttribute value) :
+	!value.immutable ? value.getterName() + "()" : value.defaultValue;
+	
+cached String sid(AAct act, ASelect sel) :			
+	act.id() + ((sel.space != null) ? sel.space.internalName() : "UD");
+	
+cached String comment(List[IID] ids) :
+	comment(ids.collect(e | e.id()).toString());
+
+cached String inferredName(SNamed named, SAgent owner) :
+   named.ID;       
+
+cached String inferredName(SNamed named, SNamed owner) :
+   owner.ID + named.ID.toFirstUpper();
+   
+cached String internalName(SNamed named, SNamed owner) :
+   named.inferredName(owner).toFirstUpper();
+
+cached String internalName(SAttribute attr) :
+	attr.internalName(attr.owner).toFirstUpper();
+
+cached String internalName(SNamed named) :
+	named.ID.toFirstUpper();
+
+cached String id(IID id) :
+	id.ID.toFirstLower();
+
+//hack for Ascape method name issue
+cached String id(AInitialize id) :
+	id.ID != "initialize" ? id.ID : "intializeNonFramework";
+
+cached List[String] ids(List[IID] ids) :
+	ids.collect(e | e.id());
+    
+cached String libid(FFunction fun) :
+    (fun.eContainer.metaType == FLibrary) ? ((FLibrary) fun.eContainer).id() : "";
+
+cached String usageLabel(IID id) :
+	id.label;
+
+cached String usageLabel(AInput id) :
+	id.sink.label + "[" +id.sink.inputs.indexOf(id) + "]";
+
+//cached String usageLabel(AInput id) :
+//	id.value.usageLabel();
+
+cached String usageLabel(SImplementation id) :
+	id.target.usageLabel();
+
+cached String usageLabel(EObject object) :
+	object.toString();
+
+cached String methodName(IID val) :
+	val.id().length > 0 ? val.id() : "//noMethodNameFor" + val.metaType;
+
+cached String fieldNameAttr(SAttribute attr) :
+	attr.internalName(attr.owner).toFirstLower();
+
+cached String dimFieldName(SNamed owner):
+	owner.id() + "Dimensions";
+	
+cached String dimFieldDefinition(SAttribute attr, int dim):
+	attr.owner.dimFieldName() + "[" + dim + "]";
+
+cached String fieldNameDim(SAttribute attr) :
+	switch (attr.label) {
+		case "Length" : dimFieldDefinition(attr, 0)
+		case "Width" : dimFieldDefinition(attr, 0)
+		case "Height" : dimFieldDefinition(attr, 1)
+		case "X Extent" : dimFieldDefinition(attr, 0)
+		case "Y Extent" : dimFieldDefinition(attr, 1)
+		case "Z Extent" : dimFieldDefinition(attr, 2)
+		default : attr.fieldNameAttr()
+	};
+	
+cached fieldExists(SAttribute named, SNDimensional owner) :
+	named.fieldNameDim() == named.fieldNameAttr();
+	
+cached fieldExists(SAttribute named, SNamed owner) :
+	true;
+	
+cached fieldExists(SAttribute named) :
+	named.fieldExists(named.owner);
+	
+cached fieldExists(IID named) :
+	true;
+	
+cached isSource(AAct activity) :
+	activity.sources.size == 0;
+	
+cached isSource(ABuild builder) :
+	false;
+	
+cached isScheduled(AAct action) :
+	false;
+	
+cached isScheduled(ASchedule schedule) :
+	true;
+	
+cached String fieldName(SAttribute named, SNDimensional owner) :
+	named.fieldNameDim();
+
+cached String fieldName(SAttribute named, SNamed owner) :
+	named.fieldNameAttr();
+
+cached String fieldName(SAttribute named) :
+	named.fieldName(named.owner);
+
+//cached String fieldName(SContext named) :
+//	"model";
+
+cached String fieldName(SAgent named) :
+	named.ID + "List";
+
+cached String fieldName(IID id) :
+	id.id();
+
+cached String paramName(SAttribute named, SNDimensional owner) :
+	named.fieldNameAttr();
+
+cached String paramName(SAttribute named, SNamed owner) :
+	named.fieldName();
+
+cached String paramName(SAttribute named) :
+	named.paramName(named.owner);
+
+cached String paramName(IID named) :
+	named.ID;
+
+cached String setterName(SNamed named) :
+   'set'+named.internalName();
+   
+cached String setterName(IID named) :
+   'set'+named.ID.toFirstUpper();
+
+cached String gettterPrefix(SAttribute attr) :
+	attr.sType != SAttributeType::Boolean ? 'get' : 'is';
+
+cached String gettterPrefix(IID named) :
+	'get';
+        
+cached String interface(SImplemented id) :
+    testing() ? " implements " + id.interid() : "";
+
+cached String interid(SImplemented id) :
+    "I" + id.implementation.className;
+   
+cached String getterName(SNamed named) :
+   named.gettterPrefix() + named.internalName();
+   
+cached String getterName(IID named) :
+   named.gettterPrefix() + named.ID.toFirstUpper();
+   
+cached String getterName(SAttribute attr) :
+   attr.id() != "self" ? attr.gettterPrefix() + attr.internalName() : "";
+   
+cached String getterName(AInput input) :
+	input.value.getterName();
+       
+cached String descrText(IID id) :
+	id.metaType.toString() + " " + id.label;
+       
+cached String descrText(SNamed named) :
+	!(named.description  == "[none]")
+		? named.description
+		: named.label + " value. (No description defined.)";
+
+cached String descrText(ABuild builder) :
+	"Build internal state for " + builder.reference.label + ".";
+
+cached String descrText(ACreateAgents agents) :
+	"Create " + agents.reference.pluralLabel + ".";
+
+cached String descrText(AWatch rule) :
+	"Watch for changes in " + rule.attribute.label + ".";
+
+cached String fileLocation(SImplemented agent) :
+	agent.implementation.javaFileLoc;
+		
+cached String paramEntry(FArgumentPrototype proto) :			
+	proto.typeName() + " " + proto.id();
+	
+cached String paramEntry(AInput input) :			
+	input.value.typeName() + " " + input.value.id();
+		
+cached String methodParamList(IID source) :			
+	"";
+	
+String methodParamList(FFunction function) :			
+	(function != null && function.inputPrototypes != null) ? function.inputPrototypes.collect(e | e.paramEntry()).toString(", ") : "";
+
+String paramDisplayName(SAttribute attr) :
+	attr.paramDisplayName(attr.owner);
+
+String paramDisplayName(SAttribute attr, SProjection proj) :
+	proj.label + " " + attr.label;
+
+String paramDisplayName(SAttribute attr, SNamed named) :
+	attr.label;
+
+String paramid(SAttribute attr) :
+	attr.paramid(attr.owner);
+
+String paramid(SAttribute attr, SProjection proj) :
+	attr.internalName().toFirstLower();
+
+String paramid(SAttribute attr, SNamed named) :
+	attr.ID;
+	
+String metaName(EObject obj) :
+	obj.metaType.toString().replaceAll("metaabm::","org.metaabm.").replaceAll("act::","act.").replaceAll("function::","function.");
+		
+String metaDesc(EObject obj) :
+	obj.metaType.toString().replaceAll("metaabm::act::A","").replaceAll("metaabm::function::F","").replaceAll("metaabm::S","").replaceAll("metaabm::I","");
+	
+String shapeName(SStyleShape style) :
+	style.shape.toString().toLowerCase().toFirstUpper();

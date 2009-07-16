@@ -1,0 +1,40 @@
+//Author: Miles Parker
+import emf;
+
+cached Boolean testing() : ((Boolean) GLOBALVAR testing);
+        
+cached String buildProject() : ((String) GLOBALVAR buildProject);
+
+cached Boolean genComments() : (GLOBALVAR genComments) == "true";
+
+cached String genStats() : (GLOBALVAR genStats);
+  
+Integer timesec() :
+	JAVA org.metaabm.gen.util.GeneratorUtils.timesec();
+  
+String timestamp() :
+	JAVA org.metaabm.gen.util.GeneratorUtils.timestamp();
+  
+String timelapse(Integer startTime) :
+	JAVA org.metaabm.gen.util.GeneratorUtils.timelapse(java.lang.Integer);
+
+cached List missingFeatures(EObject source) :
+	JAVA org.metaabm.gen.util.GeneratorUtils.getMissingFeatures(org.eclipse.emf.ecore.EObject);
+
+cached List[String] missingNames(EObject source) :
+	JAVA org.metaabm.gen.util.GeneratorUtils.getMissingNames(org.eclipse.emf.ecore.EObject);
+ 
+cached boolean validateID(String id) :
+	JAVA org.metaabm.gen.util.GeneratorUtils.isValidID(java.lang.String);
+ 
+Void workItemDone(Object monitor) :
+	JAVA org.metaabm.gen.util.GeneratorUtils.workItemDone(org.eclipse.core.runtime.IProgressMonitor);
+ 
+Void workName(Object monitor, String name) :
+	JAVA org.metaabm.gen.util.GeneratorUtils.workName(org.eclipse.core.runtime.IProgressMonitor, java.lang.String);
+ 
+Void workBegin(Object monitor, String name, Integer total) :
+	JAVA org.metaabm.gen.util.GeneratorUtils.workBegin(org.eclipse.core.runtime.IProgressMonitor, java.lang.String, java.lang.Integer);
+ 
+Void workRemaining(Object monitor, String total) :
+	JAVA org.metaabm.gen.util.GeneratorUtils.workRemaining(org.eclipse.core.runtime.IProgressMonitor, java.lang.Integer);

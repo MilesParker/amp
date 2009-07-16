@@ -1,0 +1,473 @@
+import emf;
+import metaabm;
+import metaabm::act;
+import metaabm::function;
+
+extension metaabm::tmpl::names;
+extension metaabm::tmpl::types;
+
+//Author: Miles Parker
+
+cached Boolean isEven(List items, Object item) :
+	(items.indexOf(item) / 2 == items.indexOf(item) / 2.0);
+
+cached List[ABuildGrid] hosts(SAgent agent) :
+	((AGroup) agent.owner.rootActivity).members.typeSelect(metaabm::act::ABuildGrid).select(act | act.fillAgent == agent);
+
+cached Boolean isHost(SProjection proj) :
+	false;
+
+cached Boolean isHost(SGrid proj) :
+	true;
+
+cached Boolean isHost(SAgent agent) :
+	!hosts(agent).isEmpty;
+	
+cached String short(IID id) :
+	id.id().length >= 3 ? id.id().subString(0, 2) : "*BAD ID for "+ id.label + "*";
+
+cached String findDest(AAct act) :
+	act.dest().id();
+
+cached String actWithinDistance(AQuery query, List[AAct] path) :
+    query.inputs.size == 1 ? ((AInput) query.inputs.get(0)).expression(path, false) : "Double.MAX_VALUE";
+
+cached String actDistance(IID act, List[AAct] path) : "";
+
+cached String actDistance(AAct act, List[AAct] path) :
+    act.hasControl("neighbor") 
+        ? "1"
+        : (act.hasControl("within") 
+            ? act.controlFunction("within").actWithinDistance(path) 
+            : "Double.MAX_VALUE");
+    
+cached Boolean isRoot(AAct act) :
+    act == act.rootSelected;
+        
+cached Boolean local(AAct act) :
+    act.selected == act.rootSelected;
+
+cached String local(ASelect sel, String name) :
+	sel.isRoot() ? "" : name;
+
+cached String selid(ASelect sel) :
+    sel.isRoot() ? "" : sel.id();
+	
+cached Boolean styleRule(AAct act) :
+	SStyle.isInstance(act.eContainer.eContainer);
+	
+cached Boolean color(FFunction function) :
+	function.id().startsWith("color");
+	
+cached Boolean shape(FFunction function) :
+	function.id().startsWith("shape");
+	
+cached IID innerValue(IID value) :
+	value;
+
+cached IID innerValue(AAct act) :
+	act.dest();
+	
+cached String accessPathInner(IID value, SImplemented owner, Boolean inner) :
+	inner ? "((" + owner.implementation.className + ")" + owner.innerValue().id() + ")." : "";
+		
+cached String accessPathContext(AAct act, IID value, Boolean inner) :
+	(value.destAgent() == act.reference.owner) ? act.reference.owner.getterName() + "()." : "";
+		
+cached String accessPathSelected(AAct act, EObject value, Boolean inner) :
+	((SAttribute.isInstance(value.valueSource())) && ((!inner && (value.dest() != null && value.dest() != act.rootSelected)) || (inner && value.dest() != act))
+	   ? value.dest().id()
+	   : "");
+        
+cached String accessPathStyle(AAct act) :
+    (act.styleRule())
+       ? act.selector().id()  + "." 
+       : "";
+	
+cached String accessPath(IID source, IID id, Boolean inner) :
+	"";
+
+cached String accessPath(AAct act, IID value, Boolean inner) :
+	 act.accessPathStyle() + act.accessPathSelected(value, inner).pre() + act.accessPathInner(value.destAgent(), inner) + act.accessPathContext(value, inner);
+	
+cached String getterPath(IID source, IID value, Boolean inner) :
+	(value != null)
+	? source.accessPath(value, inner) + value.getterName() + "()"
+	: "**Bad Value From**" + source.label;
+	
+cached String setterPath(IID source, IID attr) :
+	source.accessPath(attr, false) + attr.setterName();
+
+cached SAgent destAgent(IID id) :
+    id.parent();
+       
+cached SAgent destAgent(AInput input) :
+    input.selected.parent();
+       
+cached SAgent destAgent(AAct act) :
+    act.dest().parent();
+       
+cached SAgent destAgent(ASet setter) :
+    setter.attribute.parent();
+
+cached ASelect dest(EObject id) :
+	null;
+
+cached ASelect dest(AInput input) :
+	input.selected;
+
+cached ASelect dest(AAct act) :
+	act.selected;
+
+cached ASelect dest(ATransform trans) :
+	trans.destination;
+
+//List[ASelect] inferOwner(ASet setter) :
+//	setter.allSources.typeSelect(ASelect).select(e|e.agent == ((SAttribute) setter.value).owner);
+
+cached ASelect selfor(AAct act) :
+	act.dest();
+
+cached ASelect selfor(ASet set) :
+	set.selfrom();
+
+//ASelect dest(ASet act) :
+//	(act.selected.agent == ((SAttribute) act.value).owner) ? act.selected : act.rootSelected;
+
+cached ASelect selfrom(AAct act) :
+	act.selected;
+
+cached ASelect selfrom(ASelect act) :
+	(act.selected.selected  == act.rootSelected) ? act.rootSelected : act.selected;
+	   
+cached ASelect selfrom(ASet act) :
+	(act.selected.agent == act.selected.selected) ? act.selected : act.rootSelected;
+
+cached List[AAct] inSelection(List[AAct] candidates, ASelect act) :
+    candidates.select(a | a.selected == act);
+
+cached List[AAct] inSelection(ASelect act) :
+    act.allTargets.inSelection(act);
+
+cached ASelect selector(AAct act) :
+    act.selected;
+
+cached ASelect selector(ASelect act) :
+    act;
+    
+cached Boolean isSpatialControl(AAct control) :
+    false;
+
+cached Boolean isSpatialControl(AQuery control) :
+    control.function.libid() == "spatial";
+
+cached List[AControl] controls(AAct start, List[AAct] candidates) :
+	candidates.typeSelect(AControl).inSelection(start.dest());
+
+cached List[AControl] queries(AAct start, List[AAct] candidates) :
+    candidates.typeSelect(AQuery).inSelection(start.dest());
+
+cached List[AControl] controls(AAct act) :
+	act.controls(act.sources);
+
+cached List[AControl] allControls(AAct act) :
+	act.controls(act.allSources);
+
+cached List[AControl] spatial(Collection[AAct] candidates) :
+	candidates.select(e | e.isSpatialControl());
+
+cached List[AControl] nonSpatial(List[AAct] candidates) :
+	candidates.select(e | !e.isSpatialControl());
+
+cached List[AControl] logic(List[AAct] candidates) :
+	candidates.typeSelect(ALogic);
+
+cached List[AAct] nonLogic(List[AAct] candidates) :
+	candidates.without(candidates.logic());
+
+cached List[FFunction] functions(List[AAct] candidates) :
+	candidates.queries().collect(e|e.function);	
+	
+cached List[AQuery] queries(List[AAct] candidates) :
+	candidates.typeSelect(AQuery);
+
+cached List[AControl] flow(List[AAct] candidates) :
+	candidates.select(e | !e.isSpatialControl());
+
+cached List[AControl] priorControls(AAct act) :
+	act.sources.typeSelect(AControl).size > 0 ? act.sources.typeSelect(AControl) : act.sources.typeSelect(AControl);
+
+cached List[AControl] priorFlows(AAct act) :
+	act.sources.typeSelect(AControl).flow().size > 0 ? act.sources.typeSelect(AControl).flow() : act.sources.typeSelect(AControl).priorFlows();
+
+cached List[AControl] priorSpatials(AAct act) :
+	act.controls().spatial().addAll(act.controls().logic().addAll(act.controls().spatial()).priorSpatials());
+
+cached List[AControl] priorSpaceControl(AAct act, ASelect sel) :
+	act.priorSpatials().select(a | a.selected == sel);
+
+cached Boolean expressIf(AAct act, List[AAct] path, Boolean inner) :
+	(act.expression(path, inner) != "") && act.targetStatements().size > 0 && act.controlCompound().spatial().isEmpty;
+
+cached int depth(AAct act, List[AAct] candidates) :
+	candidates.contains(act.sources) ? act.sources.intersect(candidates).collect( a | a.depth(candidates)).sortBy(e | e).last() : 0;
+
+cached int queryOrder(AAct act, List[AAct] candidates) : -2 * candidates.size + candidates.last().targets.indexOf(act);
+
+cached int queryOrder(ASink act, List[AAct] candidates) :
+        switch (act.function.id()) {
+            case "toward" : 1
+            case "nearest" : 2
+            case "existsIn" : 3
+            case "here" : 4
+            case "neighbor" : 5
+            case "within" : 6
+            case "withinBoundaries" : 7
+            case "includeSelf" : 8
+            case "away" : 9
+            case "available" : 1
+            case "colorRGB" : 1
+            case "drawOval" : 2
+            default : -candidates.size + candidates.last().targets.indexOf(act)
+        };
+
+cached List[AAct] expansionOrder(List[AAct] candidates) :
+    candidates.sortBy(a | a.queryOrder(candidates));
+
+cached Boolean expandSpatialBlock(AAct act) : false;
+
+cached Boolean expandSpatialBlock(AControl act) :
+    (act.controlCompound().spatial().size > 0 && act.controlCompound().expansionOrder().first() == act) || act.selected.space == null;
+
+cached Boolean expandSpatialBlock(ASelect act) :
+    act.space != null && act.controlCompound().spatial().isEmpty && act.inSelection().spatial().isEmpty && act.allTargets.typeSelect(ACommand).exists(a | (a.selected == act) || (a.dest() == act));
+
+cached Boolean expandSpatialBlock(ACreateAgents act) :
+    false;
+	
+cached Boolean expand(AAct act, List[AAct] path) :
+	true;
+
+cached Boolean expand(AControl act, List[AAct] path) :
+	path.contains(act.selected);// && (act.sources.typeSelect(ALogic).size == 0 || act.sources.select(a | a.selected == act.selected || a == act.selected).last() == path.last());
+
+cached Boolean expand(ALogic act, List[AAct] path) :
+	path.contains(act.selected) && (act.sources.select(a | a.selected == act.selected || a == act.selected).last() == path.last());
+           
+cached Boolean conditionFor(AAct act) :
+    !act.controlCompound().nonSpatial().typeSelect(AQuery).isEmpty && !act.selector().isRoot();
+           
+cached Boolean conditionFor(ASelect act) :
+    !act.targets.nonSpatial().typeSelect(AQuery).isEmpty;
+
+cached Boolean queryFor(AAct act) :
+    !act.selector().isRoot() || (!act.isRoot() && act.controlCompound().isEmpty);
+    	
+cached List[AAct] expansionSerial(AAct act, List[AAct] path) :
+	act.targets.union(act.targets.controlLeafs().flatten()).typeReject(ANone).select(a | a.expand(path)).toList().expansionOrder();
+
+cached Collection[AAct] typeReject(Collection[AAct] candidates, Object rejectType) :
+    candidates.select(e | e.metaType != rejectType);
+
+cached List[AAct] expansionNegate(AAct act, List[AAct] path) :
+	act.targets.typeSelect(AControl).controlCompound().select(a | a.controlTerminal() && a.metaType == ANone && a.expand(path)).toList().expansionOrder();
+
+cached List[AAct] priorSelect(AAct act, ASelect sel) :
+	act.sources.collect(e | (e.selected == sel ? e : e.priorSelect(sel))).flatten();
+
+cached Boolean isQueryPoint(AAct act) :
+	(act.controls().spatial().size > 0);
+
+cached single(List list) : list.size == 1 ? list.get(0) : null;
+
+cached AAct findQueryPoint(AAct act, List[AAct] path) :
+	path.select(a | a.selected == a.selected && a.isQueryPoint()).single();
+
+//Set of target controls wth no further target controls
+cached List[AControl] controlLeafs(AControl act) :
+	act.targetControls().logic().size == 0 ? {act} : act.targetControls().controlLeafs().flatten();
+
+//Set of target controls wth no further target controls
+cached List[AControl] controlLeafs(AAct act) :
+    {};
+
+//Set of all source controls with no intervening statements
+cached List[AControl] controlSources(AControl act) :
+	{act}.addAll(act.sourceControls().controlSources()).flatten().toSet().toList();
+
+cached List[AControl] controlSources(AQuery act) :
+	{act};
+
+//Set of all joint controls including source
+cached List[AControl] controlCompound(AControl act) :
+	act.controlLeafs().controlSources().flatten().toSet().toList();
+
+cached List[AControl] controlCompound(AAct act) :
+	act.sourceControls().controlCompound().flatten().toSet().toList();
+
+//Set of source controls wth no further source controls
+cached Boolean controlTerminal(AAct act) :
+    act.targets.intersect(act.controlCompound()).isEmpty;
+
+cached Boolean hasControl(AAct act, String id) :
+    act.controlCompound().queries().exists(e | e.function.id() == id);
+
+cached AQuery controlFunction(AAct act, String id) :
+    act.controlCompound().queries().select(e | e.function.id() == id).first();
+
+cached List[AQuery] controlFunctions(AAct act, List[String] fids) :
+    act.controlCompound().queries().select(e | fids.contains(e.function.id()));
+
+cached List[AControl] sourceControls(AAct act) :
+	act.sources.typeSelect(AControl).inSelection(act.selected);
+
+cached List[AAct] sourceStatements(AAct act) :
+	act.sources.without(act.controls().flow());
+
+cached List[AAct] targetStatements(AAct act) :
+	act.targets.without(act.targets.typeSelect(AControl));
+
+cached List[AControl] targetControls(AAct act) :
+	act.targets.typeSelect(AControl).inSelection(act.selected);
+
+cached List[ANone] nones(AAct act) :
+	act.targets.typeSelect(ANone);
+
+cached List[AAct] nextNegate(AAct act) :
+	act.nones().addAll(act.targets.without(act.nones()).nextNegate()).toSet().toList();
+
+cached List[AAct] nextControls(AAct act) :
+	act.targetControls().select(t | t.targetStatements().size > 0).addAll(act.targetControls().nextControls()).toSet().toList();
+
+cached List[AAct] previousControls(AAct act) :
+	act.sourceControls().select(t | t.sourceStatements().size > 0).addAll(act.sourceControls().previousControls()).toSet().toList();
+	
+cached List[AAct] nextStatements(AAct act) :
+	act.targetStatements().addAll(act.targetControls().nextStatements()).toSet().toList();
+	
+cached List[AControl] previousStatements(AAct act) :
+	act.sourceStatements().addAll(act.controls().flow().previousStatements()).toSet().toList();
+
+cached List[AAct] allActs(SAgent agent) :
+	((AGroup) agent.rootActivity).members;
+
+cached List[FFunction] allGenericFunctions(SAgent agent) :
+	agent.eRootContainer.eAllContents.typeSelect(SAgent).allActs().typeSelect(ASink).select(e|e.selected.agent == agent).collect(e | e.function).typeSelect(FGeneric).toSet();
+
+cached Boolean hasPathFrom(AAct candidate, List[AAct] path) :
+	candidate.allSources.contains(path.last());
+
+cached Boolean bound(IID val, List[AAct] path) :
+	false;
+
+cached Boolean bound(ALiteral val, List[AAct] path) :
+	true;
+
+cached Boolean bound(AEvaluate val, List[AAct] path) :
+	path.contains(val);
+
+cached String bind(IID val, List[AAct] path, Boolean inner) :
+	((val != null) && bound(val, path)) ? ((IValue) val).varName() : val.expression((List[AAct]) path, inner);
+
+cached String bind(SStateValue value, List[AAct] path, Boolean inner) :
+    value.typeName();
+
+cached String expressionIn(IValue value, List[AAct] path, Boolean inner) :
+	value.bind(path, inner);
+
+cached String expressionIn(AEvaluate value, List[AAct] path, Boolean inner) :
+	value.id();
+
+cached String expression(AInput input, List[AAct] path, Boolean inner) :
+	input.value == null
+		? path.typeSelect(ASink).remove(input.sink).toList().last().id()
+		: (input.value.id() != "self" 
+			? path.last().accessPathSelected(input, inner).pre() + input.value.expressionIn(path, inner) 
+			: input.selected.selid().expl());
+
+cached String expression(ALiteral value, List[AAct] path, Boolean inner) :
+	value.valueLiteral;
+
+cached String expression(IID value, List[AAct] path, Boolean inner) :
+	"/* No specific expression defined for: "+value.id()+"*/";
+
+cached String expression(ITyped value, List[AAct] path, Boolean inner) :
+	value.typeName();
+
+//cached AEvaluate lastEvaluate(List[AAct] path) :
+//	AEvaluate.isInstance(path.last()) ? path.last() : lastEvaluate(path.withoutLast());
+
+cached String expression(SAttribute attr, List[AAct] path, Boolean inner) :
+	!attr.immutable ? path.last().getterPath(attr, inner) : attr.defaultValue();
+	
+//cached String expression(SAttribute attr, List[AAct] path, Boolean inner) :
+//	attr.id() != "path" ? (!attr.immutable ? path.last().getterPath(attr, inner) : attr.defaultValue()) : lastEvaluate(path).id();
+
+cached String expressionLogic(List[AControl] items, List[AAct] path, Boolean inner, String sep) :
+    parens(items.bind(path, inner), sep);
+
+cached String expressionLogic(ALogic logic, List[AAct] path, Boolean inner, String sep) :
+	expressionLogic(logic.priorFlows(), path, inner, sep);
+
+cached String expression(AAll logic, List[AAct] path, Boolean inner) :
+	logic.expressionLogic(path, inner, "&&");
+
+cached String expression(AAny logic, List[AAct] path, Boolean inner) :
+	logic.expressionLogic(path, inner, "||");
+
+cached String expression(ANone logic, List[AAct] path, Boolean inner) :
+	"!(" + logic.expressionLogic(path, inner, "||") + ")";
+	
+cached String expression(AAct act, List[AAct] path, Boolean inner) :
+	act.priorFlows().bind(path, inner).toString("||");
+
+cached String expression(AQuery query, List[AAct] path, Boolean inner) :
+	query.isSpatialControl() ? "" : 
+			query.expressionSink(path, query.function, inner) + ((query.priorFlows().size > 0) ? " && " + query.priorFlows().bind(path, inner).toString("||") : "");
+
+cached String expressionSink(List[ASink] items, List[AAct] path, Boolean inner) :
+    parens(items.collect(s | s.expressionSink(path, s.function, inner)).toString("&&"));
+
+cached String expression(AEvaluate eval, List[AAct] path, Boolean inner) :
+	eval.expressionSink(path, eval.function, inner);
+
+cached String expressionSink(ASink sink, List[AAct] path, FFunction function, Boolean inner) :
+	path.last().accessPath(sink, inner) + function.id()  + "(" + sink.inputs.expression(path, inner).toString(", ") + ")";
+
+cached String expressionSink(ASink sink, List[AAct] path, FOperator op, Boolean inner) :
+	((op.arity == 0) 
+		? op.symbol :
+		((op.arity == 1) ? ((op.symbol != "++") ? op.symbol + sink.inputs.get(0).expression(path, inner) : sink.inputs.get(0).expression(path, inner) + " + 1") :
+		((op.arity == 2) ? sink.inputs.get(0).expression(path, inner) + op.symbol + ((sink.inputs.size > 1) ? sink.inputs.get(1).expression(path, inner) : "[?]")
+		: "Unknown Arity: " + op.symbol + " arity: " + op.arity)))
+	;
+	
+cached List[AWatch] watchers(SAttribute attr, IID parent) :
+	{};
+	
+cached List[AWatch] watchers(SAttribute attr, SAgent parent) :
+	((AGroup) parent.rootActivity).members.typeSelect(AWatch).select(a | a.attribute == attr);
+	
+cached List[AWatch] watchers(SAttribute attr) :
+	watchers(attr, attr.parent());
+	
+cached List[ASet] setters(SAttribute attr) :
+	((AGroup) ((SAgent) attr.owner).rootActivity).members.typeSelect(ASet).select(a | a.attribute == attr);
+	
+cached List[ASet] sets(AWatch watch) :
+	watch.allTargets.typeSelect(ASet);
+	
+cached List[AWatch] watches(ASet set) :
+	set.attribute.watchers();
+	
+List[ASet] setsStart(AWatch current, SAttribute attr) :
+	current.sets().select(e | e.attribute == attr);
+	
+List[AWatch] watchCycle(AWatch current, SAttribute attr, Collection chain) :
+	let cycle = current.setsStart(attr) :
+	cycle.isEmpty
+		? current.sets().flatten().collect(e | ((List[AWatch]) ((ASet) e).watches().flatten()).watchCycle(attr, {current}).flatten()).flatten()
+		: chain.add(current);
+	
+List[AWatch] watchCycle(AWatch current, SAttribute attr) :
+		watchCycle(current, attr, {});

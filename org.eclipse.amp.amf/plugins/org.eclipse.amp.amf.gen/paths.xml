@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="metaABM Generator Paths">
+
+	<property name="workspace.metaABM" value="../"/>
+
+<!--	<import file="${workspace.metaABM}/org.metaabm.core/paths.xml" /> -->
+
+	<path id="path.compile.gen">
+		<fileset dir="${workspace.metaABM}/org.metaabm.core/lib">
+			<include name="commons-lang-2.2.jar"/>
+			<include name="junit.jar"/>
+		</fileset>
+	</path>
+
+	<path id="path.workflow.gen">
+		<path refid="path.core.lib"/>
+		<fileset dir="${eclipse.home}/plugins">
+			<include name="org.openarchitectureware.*" />
+			<include name="org.eclipse.emf.importer.ecore_2.3.1*.jar" />
+		</fileset>
+		<fileset dir="${workspace.metaABM}/org.metaabm.gen/lib">
+			<include name="xercesImpl.jar"/>
+			<include name="xml-apis.jar"/>
+		</fileset>
+	</path>
+		
+	<path id="path.workflow.resources.gen">
+		<path refid="path.core"/>
+		<pathelement path="${workspace.metaABM}/org.metaabm.gen/lib/antlr-2.7.6.jar" />
+		<pathelement path="${workspace.metaABM}/org.metaabm.gen/lib/jalopy-1.5-rc3p1.jar" />
+		<pathelement path="${workspace.metaABM}/org.metaabm.gen/lib/log4j-1.2.14.jar" />
+		<pathelement path="${workspace.metaABM}/org.metaabm.gen/lib/hybridlabs-beautifier-1.1.8.jar" />
+ 		<pathelement path="${workspace.metaABM}/org.metaabm.gen/bin/" />
+ 		<pathelement path="${workspace.metaABM}/org.metaabm.gen.test/bin/" />
+	</path>
+
+</project>

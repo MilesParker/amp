@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<workflow>	
+	<property name="outputPath" value="./"/>
+	<property name="modelPath" value="test/"/>
+	<property name="modelFile" value="TestGeneration.metaabm"/>
+	<property name="prPath" value="./"/>
+	<property name="asTest" value="false"/>
+	
+	<bean class="org.eclipse.emf.Setup">
+      <uriMap to="model/core_library.metaabm" from="http://metaabm.org/core_library.metaabm" />
+      <uriMap to="model/metaabm.xsd" from="http://metaabm.org/structure" />
+      <uriMap to="model/metaabm.act.xsd" from="http://metaabm.org/act" />
+      <uriMap to="model/metaabm.function.xsd" from="http://metaabm.org/function" />
+   	</bean> 
+   
+	<component id="xmiParser" class="org.openarchitectureware.emf.XmiReader">
+		<modelFile value="${modelPath}${modelFile}"/>
+		<metaModelPackage value="org.metaabm.MetaABMPackage"/> 
+		<outputSlot value="model"/>
+	</component>
+   	
+	<component class="org.openarchitectureware.check.CheckComponent">
+		<metaModel id="model" class="org.openarchitectureware.type.emf.EmfMetaModel">
+		  <metaModelPackage value="org.metaabm.MetaABMPackage"/> 
+		</metaModel>
+		<checkFile value="metaabm::tmpl::edit"/>
+		<emfAllChildrenSlot value="model"/>
+   	</component>
+
+	<component id="javaGenerator" class="org.openarchitectureware.xpand2.Generator" skipOnErrors="true" fileEncoding="iso-8859-1">
+		<metaModel id="model" class="org.openarchitectureware.type.emf.EmfMetaModel">
+		  <metaModelPackage value="org.metaabm.MetaABMPackage"/> 
+		</metaModel>
+		<expand value="metaabm::tmpl::Java::Model FOR model"/>
+	    <outlet path="${outputPath}" overwrite="true"/> 
+		<globalVarDef name="asTest" value="${asTest}"/> 
+		<beautifier class="org.hybridlabs.source.formatter.JavaImportBeautifier" organizeImports="true" format="true"/>		
+		<fileEncoding value="ISO-8859-1"/> 
+<!--	    <prSrcPaths value="${prPath}"/> 
+		<prExcludes value=".svn"/> -->
+   	</component>  
+</workflow>

@@ -1,0 +1,36 @@
+import emf;
+import metaabm;
+import metaabm::act;
+import metaabm::function;
+
+extension metaabm::tmpl::names;
+extension metaabm::tmpl::infer;
+
+cached Boolean appropriate(SProjection projection, SStyle style) : 
+	false;
+	
+cached Boolean appropriate(SNDimensional projection, SStyle2D style) :
+	projection.dimensionality == 2;
+			
+cached Boolean appropriate(SNDimensional projection, SStyle3D style) :
+	projection.dimensionality == 3;
+
+cached String actIncludeSelf(AAct act) :
+	act.hasControl("includeSelf") ? "true" : "false";
+		
+cached String projectionType(SGrid grid) :
+	grid.dimensionality.toString() + "-Dimensional Grid";
+	
+cached String projectionType(SProjection projection) :
+	"Unknown Projection Type";
+	
+cached String projectionType(SNetwork network) :
+	"Network";
+	
+cached String projectionType(SContinuousSpace space) :
+	space.dimensionality.toString() + "-Dimensional Continuous Space";
+	
+cached String projectionType(SGeography geog) :
+	"Geographic Space";
+	
+	

@@ -1,0 +1,41 @@
+«IMPORT emf»
+«IMPORT metaabm»
+«IMPORT metaabm::act»
+«IMPORT metaabm::function»
+«IMPORT metaabm::tmpl::Java»
+
+«EXTENSION metaabm::tmpl::names»
+«EXTENSION metaabm::tmpl::types»
+«EXTENSION metaabm::tmpl::infer»
+«EXTENSION metaabm::tmpl::util»
+
+«DEFINE Model FOR SContext-»
+    «FILE javaFileLoc().replaceFirst("srcgen", "src").replaceFirst(typeName(), "All" + typeName() + "Tests")-»
+package «package()»;
+
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+
+@RunWith(Suite.class)
+@Suite.SuiteClasses( {«allAgents.collect(a | a.typeName() + ".class").toString(", ")» })
+public class All«impl().className»Tests {
+
+}
+    «ENDFILE-»
+«ENDDEFINE»
+
+«AROUND metaabm::tmpl::Java::ActivityMethod FOR IID-»
+	@org.junit.Test
+    public «methodTypeName()» «methodName()»(«methodParamList()») {
+        «PROTECT CSTART "/*" CEND "*/" ID typeName() + "_" + methodName() + "_Pre"»
+        //Pre-Conditions Here
+        «ENDPROTECT»
+        getAgent().«methodName()»();
+        «PROTECT CSTART "/*" CEND "*/" ID typeName() + "_" + methodName() +  "_Post"»
+        //Post-Conditions Here
+        «ENDPROTECT»
+    }
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::OtherAccessors FOR SContext-»«ENDAROUND»
+«AROUND metaabm::tmpl::Java::OtherAccessors FOR SAgent-»«ENDAROUND»

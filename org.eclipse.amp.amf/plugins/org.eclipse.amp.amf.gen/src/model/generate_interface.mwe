@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<workflow>
+	<property name="outputPath" value="../" />
+	<property name="modelPath" value="test/" />
+	<property name="modelFile" value="TestGeneration.metaabm" />
+    <property name="testing" value="false" />
+    <property name="buildProject" value="org.eclipse.amp.amf.gen.test"/>
+    <property name="srcDir" value="src"/>
+
+	<!--The following is here to support running as a project when project directories are not in the same workspace. 
+	Workspaces calliong this method programmatically should set this value to ""-->
+	<cartridge file="model/generate_base.mwe">
+		<outputPath value="${outputPath}" />
+		<modelPath value="${modelPath}" />
+		<modelFile value="${modelFile}" />
+		<testing value="${testing}" />
+        <buildProject value="${buildProject}" />
+        <srcDir value="${srcDir}" />
+	</cartridge>
+	
+	<component adviceTarget="javaGenerator" id="reflectionAdvice"
+		class="org.eclipse.xpand2.GeneratorAdvice">
+		<advice value="metaabm::tmpl::InterfaceAspect" />
+	</component>
+</workflow>

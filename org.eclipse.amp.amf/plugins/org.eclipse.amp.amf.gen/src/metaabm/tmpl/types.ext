@@ -1,0 +1,225 @@
+import metaabm;
+import metaabm::act;
+import metaabm::function;
+import emf;
+
+cached String srcDir() : ((String) GLOBALVAR srcDir);
+
+cached IValue valueSource(Object input) :
+	null;
+	
+cached IValue valueSource(IID value) :
+	value;
+
+cached IValue valueSource(AInput input) :
+	input.value;
+       
+cached SAgent parent(EObject obj) :
+    obj.eContainer;
+       
+cached SAgent parent(SAttribute attr) :
+    attr.owner;
+       
+cached SAgent parent(SProjection proj) :
+    proj.owner;
+       
+cached SAgent parent(AAct act) :
+    act.reference;
+
+cached SAgent parent(SAgent parent) :
+    parent.owner;
+       
+cached SAgent parent(AInput input) :
+    input.sink.parent();
+    
+cached String package(SImplemented target) :
+    target.implementation.derivedPackage;
+ 
+cached String package(IID target) : 
+    target.parent().package();
+
+cached qualName(SImplemented target) :
+    target.implementation.qualifiedName;
+ 
+cached qualName(IID id) : 
+    id.package() + "." + id.parent().typeName();
+
+cached Boolean defaultSrc() :
+	srcDir() == "srcgen";
+
+cached String javaFileLoc(SImplemented target) : 
+    target.implementation.javaFileLoc;
+
+cached String javaFileLoc(IID target) :  
+    target.impl().javaFileLoc.replaceFirst(target.parent().typeName(), target.typeName());
+    
+cached SImplementation impl(IID id) : id != id.parent() ? id.parent().impl() : null;
+
+cached SImplementation impl(SImplemented target) : target.implementation;
+       
+cached String defaultValue(SAttribute attr):
+    attr.defaultValue != null 
+    ? (attr.sType != SAttributeType::Symbol ? attr.defaultValue : "\"" + attr.defaultValue + "\"") 
+    : switch (attr.sType) {
+            case SAttributeType::Integer : "0"
+            case SAttributeType::Real : "0.0"
+            case SAttributeType::Boolean : "false"
+            case SAttributeType::Symbol : "\"\""
+            default : "null"
+       };
+       
+cached String defaultValueQuoted(SAttribute attr):
+    attr.sType == SAttributeType::Symbol ? attr.defaultValue() : "\"" + attr.defaultValue() + "\""; 
+       
+cached String defaultValueQuoted(SState attr):
+    "\"" + attr.defaultOption.ID + "\""; 
+
+cached String defaultValue(SState state):
+    state.defaultOption.typeName();
+    
+cached String defaultValue(SAttributeArray attr):
+    attr.defaultValue != null ? "{" + attr.defaultValue + "}" : "new " + attr.sType.typeName() + "[" + attr.size+ "]";
+    
+cached String defaultValue(IID attr):
+    "null";
+
+cached Boolean numeric(SAttributeType type) :
+	type == SAttributeType::Numeric || type == SAttributeType::Real || type == SAttributeType::Integer;
+
+cached Boolean numeric(ITyped typed) :
+	typed.sType.numeric();
+
+cached Boolean numeric(SState typed) :
+	false;
+
+cached Boolean numeric(SStateValue typed) :
+	false;
+
+cached Boolean boolean(SAttributeType type) :
+	type == SAttributeType::Boolean;
+
+cached Boolean boolean(ITyped typed) :
+	typed.sType.boolean();
+
+cached List[IValue] filterTypes(List[Object] inputs, Object attrType) :
+	inputs.select(e | e.valueSource() != null && e.valueSource().resultType() == attrType);
+
+cached Boolean hasType(List[IValue] inputs, Object attrType) :
+	inputs.filterTypes(attrType).size > 0;
+
+cached Boolean allType(List[IValue] inputs, Object attrType) :
+	inputs.size > 0 && inputs.filterTypes(attrType).size == inputs.size;
+
+cached SAttributeType resultType(Object object) :
+	SAttributeType::Undefined;
+
+cached SAttributeType resultType(IValue value) :
+	null;
+
+cached SAttributeType resultType(ALiteral literal) :
+	(literal.valueLiteral.toUpperCase() == "TRUE" || literal.valueLiteral.toUpperCase() == "FALSE") 
+		? SAttributeType::Boolean
+		: (literal.valueLiteral.contains(".") 
+			? SAttributeType::Real
+			: SAttributeType::Integer);
+
+cached SAttributeType resultType(List[IValue] inputs) :
+    inputs.hasType(SAttributeType::Symbol)
+        ? SAttributeType::Symbol
+		: (inputs.hasType(SAttributeType::Boolean)
+			? (inputs.allType(SAttributeType::Boolean) 
+				? SAttributeType::Boolean
+				: SAttributeType::Undefined)
+			: (inputs.hasType(SAttributeType::Real)
+					? SAttributeType::Real
+					: (inputs.allType(SAttributeType::Integer)
+						? SAttributeType::Integer
+						: SAttributeType::Numeric)));
+
+cached SAttributeType resultType(SAttribute value) :
+	value.sType;
+
+cached SAttributeType resultType(ITyped typed) :
+	typed.sType;
+
+cached Boolean abstractType(SAttributeType attrType) :
+	attrType == SAttributeType::Undefined || attrType == SAttributeType::Numeric;
+
+cached SAttributeType resultType(FGenericFunction f) :
+	(!f.outputPrototypes.resultType().abstractType())
+		? f.outputPrototypes.resultType()
+		: f.inputPrototypes.resultType();
+
+cached SAttributeType resultType(FFunction f) :
+	f.inputPrototypes.resultType();
+
+cached SAttributeType resultType(FLogical f) :
+	SAttributeType::Boolean;
+
+cached SAttributeType resultType(AEvaluate sink) :
+	(!sink.function.resultType().abstractType())
+		? sink.function.resultType()
+		: sink.inputs.resultType();
+
+cached SAttributeType resultType(AQuery sink) :
+	SAttributeType::Boolean;
+    
+cached String typeName(IID target) : target.ID.toFirstUpper();
+ 
+cached String typeName(SImplemented target) : target.implementation.className;
+ 
+cached String typeName(ASelect target) : target.agent.typeName();
+    
+cached String typeName(SAttributeType attrType) :
+    switch (attrType) {
+        case SAttributeType::Numeric : "double"
+        case SAttributeType::Real : "double"
+        case SAttributeType::Integer : "int"
+        case SAttributeType::Boolean : "boolean"
+        case SAttributeType::Symbol : "String"
+        case SAttributeType::Undefined : "[Undefined]"
+        default : "[Error]"
+    };
+    
+cached String typeLongName(SAttributeType attrType) :
+    switch (attrType) {
+        case SAttributeType::Numeric : "Real"
+        case SAttributeType::Real : "Real"
+        case SAttributeType::Integer : "Integer"
+        case SAttributeType::Boolean : "Boolean"
+        case SAttributeType::Symbol : "String"
+        case SAttributeType::Undefined : "[Undefined]"
+        default : "[Error]"
+    };
+	
+cached String typeName(ASink sink) :			
+	sink.resultType().typeName();
+
+cached String typeName(SState attr) :
+    attr.ID.toFirstUpper() + "Enum";
+
+cached String typeName(SStateValue option) :
+    option.set.typeName() + "." + option.ID;
+
+cached String typeName(ITyped attr) :
+	attr.sType.typeName();
+	
+cached String typeName(ITypedArray attr) :			
+	attr.sType.typeName() + "[]";
+	
+cached String typeName(SGrid ctx) :
+	"Grid";
+   
+cached String methodTypeName(AAct val) :
+	"void";
+   
+cached String methodTypeName(AEvaluate val) :
+	val.typeName();
+	
+cached String methodTypeName(IID val) :
+	val.typeName();
+	
+cached String methodTypeName(FFunction val) :
+	val.resultType().typeName();
+
+    

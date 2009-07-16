@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<workflow>	
+	<property name="outputPath" value="./"/>
+	<property name="modelPath" value="test/"/>
+	<property name="modelFile" value="TestGeneration.metaabm"/>
+    <property name="srcDir" value="doc"/>
+	
+    <bean class="org.eclipse.xtend.typesystem.emf.Setup">
+      <uriMap to="model/core_library.metaabm" from="http://metaabm.org/core_library.metaabm" />
+   	</bean> 
+      
+    <bean id="metaabm" class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel"/>
+   
+	<component id="xmiParser" class="org.eclipse.emf.mwe.utils.Reader">
+        <uri value="${modelPath}"/>
+        <modelSlot value="model"/>
+  	</component>
+	
+	<component id="htmlGenerator" class="org.eclipse.xpand2.Generator" skipOnErrors="true" fileEncoding="iso-8859-1">
+		<metaModel idRef="metaabm"/>
+	    <outlet path="${outputPath}" overwrite="true"/> 
+		<expand value="metaabm::tmpl::HtmlDoc::Model FOR model"/>
+		<fileEncoding value="ISO-8859-1"/> 
+	</component>    
+	
+	<component id="htmlGeneratorSimple" class="org.eclipse.xpand2.Generator" skipOnErrors="true" fileEncoding="iso-8859-1">
+		<metaModel idRef="metaabm"/>
+	    <outlet path="${outputPath}" overwrite="true"/> 
+		<expand value="metaabm::tmpl::HtmlDocSimple::Model FOR model"/>
+		<fileEncoding value="ISO-8859-1"/> 
+	</component>    
+</workflow>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Generation Tasks" default="allGenerateOnly">
+	<!--No longer used/maintained -->
+	<property name="modelPath" value="${basedir}/"/>
+	<property name="modelFile" value="TestGeneration.metaabm" />
+	<property name="modelScoreDir" value="../" />
+	<property name="outputPath" value="${basedir}" />
+	<property name="asTest" value="false" />
+
+	<path id="path.workflow.all">
+		<path refid="path.workflow" />
+		<path refid="path.workflow.resources" />
+	</path>
+
+<!--	<import file="paths.xml"/>
+
+	<taskdef name="oaw4" classname="org.openarchitectureware.workflow.ant.WorkflowAntTask" classpathref="path.workflow.gen" /> -->
+	
+	<target name="generate">
+		<oaw4 file="${oawWorkflow}" >
+			<param name="baseDir" value="${basedir}" />
+			<param name="modelFile" value="${modelFile}" />
+			<param name="modelPath" value="${modelPath}" />
+			<param name="outputPath" value="${outputPath}" />
+			<param name="modelScoreDir" value="${modelScoreDir}" />
+			<param name="workflow.metaABM" value="${workflow.metaABM}" />
+			<param name="testing" value="${testing}" />
+			<classpath>
+				<path refid="path.workflow.all" />
+			</classpath>
+		</oaw4>
+	</target>
+
+	<target name="modeldocs">
+		<oaw4 file="model/generate_html_docs.oaw" >
+			<param name="baseDir" value="${basedir}" />
+			<param name="modelFile" value="${modelFile}" />
+			<param name="modelPath" value="${modelPath}" />
+			<param name="outputPath" value="${outputPath}" />
+			<classpath>
+				<path refid="path.workflow.all" />
+			</classpath>
+		</oaw4>
+	</target>
+
+	<target name="allGenerateOnly">
+		<antcall inheritall="false" target="generateOnly">
+			<param name='baseDir' value='${basedir}' />
+			<param name="modelFile" value="TestGeneration.metaabm" />
+			<param name="outputPath" value="${outputPath}" />
+			<param name="testing" value="${testing}" />
+		</antcall> 
+		<antcall inheritall="false" target="generateOnly">
+			<param name='baseDir' value='${basedir}' />
+			<param name="modelFile" value="TestActs.metaabm" />
+			<param name="outputPath" value="${outputPath}" />
+			<param name="testing" value="${testing}" />
+		</antcall>
+	</target>
+
+	<target name="allTests">
+		<antcall inheritall="false" target="generateTest">
+			<param name='baseDir' value='${basedir}' />
+			<param name="modelFile" value="TestGeneration.metaabm" />
+			<param name="outputPath" value="${outputPath}" />
+			<param name="testing" value="${testing}" />
+		</antcall> 
+		<antcall inheritall="false" target="generateTest">
+			<param name='baseDir' value='${basedir}' />
+			<param name="modelFile" value="TestActs.metaabm" />
+			<param name="outputPath" value="${outputPath}" />
+			<param name="testing" value="${testing}" />
+		</antcall>
+	</target>
+
+	<target name="basicTests">
+		<antcall inheritall="false" target="generateTest">
+			<param name='baseDir' value='${basedir}' />
+			<param name="modelFile" value="TestGeneration.metaabm" />
+			<param name="outputPath" value="${outputPath}" />
+			<param name="testing" value="${testing}" />
+		</antcall> 
+	</target>
+
+	<target name="build">
+		<javac srcdir="srcgen" destdir="bin" classpathref="path.compile" debug="true"/>
+	</target>
+
+	<target name="test">
+		<mkdir dir="test.reports" />
+		<junit printsummary="yes" haltonfailure="yes" maxmemory="200m" dir="test">
+			<jvmarg value="-Dsrcpath=${workspace.metaABM}/org.metaabm.gen/test -Dclasspath=${path.compile}" />
+			<classpath>
+				<pathelement location="bin" />
+				<path refid="path.compile" />
+			</classpath>
+			<test name="org.eclipse.amp.amf.gen.test.AllTests" todir="test.reports">
+				<formatter type="plain" usefile="no" />
+			</test>
+		</junit>
+	</target>
+
+	<target name="generateOnly" depends="generate,build" />
+
+	<target name="generateTest" depends="generate,build,test" />
+</project>

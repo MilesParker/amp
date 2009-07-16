@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--  This task simply deletes the craetion icons that are built automatically on genmodel generate edit code.
+      If these aren't removed, the editor will use these instead of auto-generating icons based on regular icons.  -->
+
+<project name="Generate MetaABM" default="build">
+
+<!--	<taskdef name="emf.Ecore2XSD" classpath="lib/org.metascape.emf.ant_1.0.0.jar" classname="org.metascape.emf.ant.Ecore2XSDGeneratorTask" />
+	<taskdef name="emf.Ecore2Java" classpath="lib/emf.ant.tasks.jar;lib/importer.ecore.tasks.jar" classname="org.eclipse.emf.importer.ecore.taskdefs.EcoreGeneratorTask" /> -->
+
+	<target name="reconGenModel" description="generates metaabm model, edit, editor and tests">
+		<emf.Ecore2Java model="../org.metaabm.core/src/model/metaabm.ecore" genModel="../org.metaabm.core/src/model/metaabm.genmodel" reconcileGenModel="reload" generateJavaCode="false">
+		</emf.Ecore2Java>
+	</target>
+
+	<target name="generateJava" description="generates metaabm model, edit, editor and tests">
+		<emf.Ecore2Java model="../org.metaabm.core/model/src/metaabm.ecore" genModel="../org.metaabm.core/src/model/metaabm.genmodel" modelProject="./" reconcileGenModel="keep">
+		</emf.Ecore2Java>
+	</target>
+
+	<target name="generateXSD" description="generates metaabm XSD">
+		<emf.Ecore2XSD genModel="../org.metaabm.core/src/model/metaabm.genmodel" targetDir="../org.metaabm.core/src/model" />
+	</target>
+
+	<target name="removeIcons" description="removes creation icons">
+		<delete>
+			<fileset dir="../org.eclipse.amp.amf.acore.edit/icons/full/ctool16/" includes="**/*.gif" />
+		</delete>
+	</target>
+
+	<target name="build" depends="reconGenModel,generateJava,removeIcons" />
+	<target name="test" description="runs tests for the project" unless="build.test">
+		<mkdir dir="${dir.reports}" />
+		<mkdir dir="${dir.work}" />
+		<junit printsummary="yes" haltonfailure="yes" fork="on" maxmemory="200m" dir="${dir.work}">
+
+			<classpath>
+				<pathelement path="../org.eclipse.amp.amf.acore.edit/bin/" />
+				<pathelement path="../org.metaabm.core/bin/" />
+			</classpath>
+
+			<test name="org.metaabm.tests.MetaABMAllTests" todir="${dir.reports}">
+				<formatter type="plain" usefile="no" />
+			</test>
+
+		</junit>
+	</target>
+
+</project>

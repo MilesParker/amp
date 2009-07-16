@@ -1,0 +1,206 @@
+«IMPORT metaabm»
+«IMPORT metaabm::act»
+
+«EXTENSION metaabm::tmpl::infer» 
+«EXTENSION metaabm::tmpl::util»
+«EXTENSION metaabm::tmpl::names»
+«EXTENSION metaabm::tmpl::types»
+«EXTENSION metaabm::tmpl::projections»
+
+«REM»Author: Tom Howe, Miles Parker«ENDREM»
+
+«DEFINE AttributesTable FOR SAgent-»
+		<table CELLPADDING="10px" rules="groups">
+			<thead align="left"><tr><th>Name</th><th>Type</th><th>Default Value</th></tr></thead>
+		«FOREACH attributes AS attribute-»
+					<tbody «REM»«IF attributes.isEven(attribute)» bgcolor="#FFFFC6"«ENDIF»«ENDREM»><tr><td>«attribute.label-»</td>
+						<td>«attribute.sType.typeLongName()-»</td>
+						<td>«attribute.defaultValue-»</td></tr>
+					<tr><td colspan="3"><i>«attribute.description-»</i></td></tr></tbody>
+		«ENDFOREACH-»
+		</table>
+«ENDDEFINE»
+
+«DEFINE ActsTable FOR SAgent-»
+		<table CELLPADDING="10px">
+			<thead align="left"><tr><th>Act</th><th>Description</th></tr></thead>
+		«FOREACH ((AGroup) rootActivity).roots AS root-»
+					<tr>
+						<td><i>«root.label-»</i></td>
+						<td>«root.descrText()-»</td>
+					</tr>
+		«ENDFOREACH-»
+		</table>
+«ENDDEFINE»
+
+«DEFINE ProjTable FOR SContext-»
+		<table CELLPADDING="10px">
+			<thead align="left"><tr><th>Name</th><th>Description</th><th>Type</th></tr></thead>
+			«FOREACH projections AS projection-»
+					<tr>
+						<td><i>«projection.label-»</i></td>
+						<td>«projection.description-»</td>
+						<td>«projection.projectionType()-»</td>
+					</tr>
+			«ENDFOREACH-»
+		</table>
+«ENDDEFINE»
+
+«DEFINE Model FOR SContext-»
+	«FILE (implementation.basePath + "/doc/" + implementation.className + ".html") -»
+		<HTML>
+			<HEAD>
+				<TITLE>«label-»</TITLE>
+				<STYLE TYPE="text/css">
+					body,
+					html {
+    					margin:0;
+    					padding:0;
+    					
+    					color:#000;
+    				}
+    				body {
+    					min-width:750px;
+    				}
+					#wrap {
+    					
+    					margin:0 auto;
+    					width:1024px;
+    				}
+    				#header {
+    					border-bottom: solid 1px #BEBFAA;   						
+    					left: 220px;
+    				}
+					#nav {
+    					
+    				}
+					#nav ul{
+   						margin:0;
+    					padding:0;
+    					list-style:none;
+    				}
+					#nav li{
+    					display:inline;
+    					margin:0;
+    					padding:0;
+    				}
+    				#main {
+    					border-left: solid 1px #BEBFAA;   						
+    					
+    					float:left;
+    					width:800px;
+    				}
+					#sidebarfake {
+      					float:left;
+    					width:200px;
+    				}
+					#sidebar {
+  						position: fixed;
+      					float:left;
+    					width:200px;
+    				}
+					#footer {
+    					border-top: solid 1px #BEBFAA;   						
+    					
+    					clear:both;
+    				}
+    				
+					#section {
+  						background: #FFFFDC;
+   						border-bottom: solid 1px black;
+   						border-left: solid 1px #BEBFAA;
+   						border-right: solid 1px black;
+   						border-top: solid 1px #BEBFAA;
+   						margin: 2em 1em 1em 2em;
+   						padding: 0.5em 2em 2em 2em;
+   						text-align: justify;
+					}
+					#section h1 {
+   						text-align: left;
+   						font-family: sans-serif;
+					}
+					#section p {
+   						text-indent: 2em;
+					}
+					#section p.noindent {
+   						text-indent: 0;
+					}
+					
+					#agent {
+  						border-bottom: solid 1px black;
+   						border-left: solid 1px #BEBFAA;
+   						border-right: solid 1px black;
+   						border-top: solid 1px #BEBFAA;
+   						margin: 2em 1em 1em 2em;
+   						padding: 0.5em 2em 2em 2em;
+   						text-align: justify;
+					}
+
+					#agents {
+						border-bottom: solid 1px black;
+						border-left: solid 1px #BEBFAA;
+						border-right: solid 1px black;
+						border-top: solid 1px #BEBFAA;
+						margin: 2em 1em 1em 2em;
+						padding: 0.5em 2em 2em 2em;
+						text-align: justify;
+					}
+				</STYLE>
+			</HEAD>
+			<BODY>
+			<div id="wrap">
+    			<div id="header">
+    				<H1>«label-»</H1>
+					<P>«description-»</P>
+    			</div>
+    			<div id="sidebarfake">
+    				<H1>   </H1>
+    			</div>
+    			<div id="sidebar">
+			    <ul>
+    					<li><a href="#parlink">Parameters</a></li>
+    					<li><a href="#behaviorlink">Behaviors</a></li>
+    					<li><a href="#agentslink">Agents</a>
+    					<ul>
+    				«FOREACH agents AS agentlink-»
+    					<li><a href="#«agentlink.id()-»link">«agentlink.label-»</a></li>
+    				«ENDFOREACH-»
+    					</ul></li>
+    					<li><a href="#projlink">Projections</a></li>
+    				</ul>    				
+    			</div>
+    			<div id="main">
+    					<div id="agent">
+    					<h3><a name="parlink">Parameters</a></h3>
+								«EXPAND AttributesTable-»
+    					<h3><a name="behaviorlink">Behaviors</a></h3>
+								«EXPAND ActsTable-»
+						</div>
+    					<div id="agents">
+    					<h1><a name="agentslink">Agents</a></h1>
+							«FOREACH agents AS agent-»
+								<div id="agent">
+									<H2><a name="«agent.id()-»link"/>«agent.label-»</a></H2>
+									«agent.description-»
+									<H3>Attributes</H3>
+									«EXPAND AttributesTable FOR agent-»
+									<H3>Behaviors</H3>
+									«EXPAND ActsTable FOR agent-»
+								</div>
+							«ENDFOREACH-»
+						</div>
+					<div id="section">
+						<H2><a name="projlink"/>Projections:</a></H2>
+						«EXPAND ProjTable-»
+					</div>			    			
+    			</div>
+			    
+    			<div id="footer">
+    				<P>Generated by metaabm system: «timestamp()-».</P>
+    			</div>
+			</div>
+			</BODY>
+		</HTML>
+	«ENDFILE-»
+
+«ENDDEFINE» 
