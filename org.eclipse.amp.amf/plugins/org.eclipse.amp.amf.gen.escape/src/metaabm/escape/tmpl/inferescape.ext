@@ -1,0 +1,19 @@
+import emf;
+import metaabm;
+import metaabm::act;
+import metaabm::function;
+
+extension metaabm::tmpl::names;
+extension metaabm::tmpl::types;
+
+String setTo(SAttribute attr, String val) :
+	attr.owner.id() + "." + attr.setterName() + "(" + val + ")";
+	
+List setterSpace(SState attr) :
+	attr.options.collect(a | {a.label + " " + attr.label, attr.setTo(a.typeName())});
+
+List setterSpace(SAttribute attr) :
+	attr.sType == SAttributeType::Boolean ? {{attr.label + " is True", attr.setTo("true")}, {attr.label + " is False", attr.setTo("false")}} : {};
+	
+List setterSpace(SStyle style) :
+	style.agent.attributes.setterSpace();
