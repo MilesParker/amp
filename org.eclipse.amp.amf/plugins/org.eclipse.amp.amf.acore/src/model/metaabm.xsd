@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:metaabm="http://metaabm.org/structure" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="metaabm" ecore:package="org.metaabm" targetNamespace="http://metaabm.org/structure">
+  <xsd:import namespace="http://www.eclipse.org/emf/2002/Ecore" schemaLocation="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.xsd"/>
+  <xsd:element ecore:ignore="true" name="IID" type="metaabm:IID"/>
+  <xsd:element ecore:ignore="true" name="ITyped" type="metaabm:ITyped"/>
+  <xsd:element ecore:ignore="true" name="ITypedArray" type="metaabm:ITypedArray"/>
+  <xsd:element ecore:ignore="true" name="IValue" type="metaabm:IValue"/>
+  <xsd:element ecore:ignore="true" name="IArtifact" type="metaabm:IArtifact"/>
+  <xsd:element ecore:ignore="true" name="IAct" type="metaabm:IAct"/>
+  <xsd:element ecore:ignore="true" name="SNamed" type="metaabm:SNamed"/>
+  <xsd:element ecore:ignore="true" name="SAttributed" type="metaabm:SAttributed"/>
+  <xsd:element ecore:ignore="true" name="SActable" type="metaabm:SActable"/>
+  <xsd:element ecore:ignore="true" name="SAttribute" type="metaabm:SAttribute"/>
+  <xsd:element ecore:ignore="true" name="SAttributeArray" type="metaabm:SAttributeArray"/>
+  <xsd:element ecore:ignore="true" name="SState" type="metaabm:SState"/>
+  <xsd:element ecore:ignore="true" name="SStateValue" type="metaabm:SStateValue"/>
+  <xsd:element ecore:ignore="true" name="SAgent" type="metaabm:SAgent"/>
+  <xsd:element ecore:ignore="true" name="SContext" type="metaabm:SContext"/>
+  <xsd:element ecore:ignore="true" name="SProjection" type="metaabm:SProjection"/>
+  <xsd:element ecore:ignore="true" name="SNDimensional" type="metaabm:SNDimensional"/>
+  <xsd:element ecore:ignore="true" name="SContinuousSpace" type="metaabm:SContinuousSpace"/>
+  <xsd:element ecore:ignore="true" name="SGrid" type="metaabm:SGrid"/>
+  <xsd:element ecore:ignore="true" name="SNetwork" type="metaabm:SNetwork"/>
+  <xsd:element ecore:ignore="true" name="SGeography" type="metaabm:SGeography"/>
+  <xsd:element ecore:ignore="true" name="SValueLayer" type="metaabm:SValueLayer"/>
+  <xsd:element ecore:ignore="true" name="SStyle" type="metaabm:SStyle"/>
+  <xsd:element ecore:ignore="true" name="SStyle2D" type="metaabm:SStyle2D"/>
+  <xsd:element ecore:ignore="true" name="SStyleShape" type="metaabm:SStyleShape"/>
+  <xsd:element ecore:ignore="true" name="SStyle3D" type="metaabm:SStyle3D"/>
+  <xsd:element ecore:ignore="true" name="SImplemented" type="metaabm:SImplemented"/>
+  <xsd:element ecore:ignore="true" name="SImplementation" type="metaabm:SImplementation"/>
+  <xsd:complexType abstract="true" name="IID">
+    <xsd:attribute name="label" type="ecore:EString" use="required"/>
+    <xsd:attribute ecore:name="ID" name="ID" type="ecore:EString" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" ecore:interface="true" name="ITyped">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:IID">
+        <xsd:attribute ecore:default="INTEGER" ecore:unsettable="false" name="sType" type="metaabm:SAttributeType" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" ecore:interface="true" name="ITypedArray">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:ITyped">
+        <xsd:attribute ecore:unsettable="false" name="size" type="ecore:EInt"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" ecore:interface="true" name="IValue">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:IID">
+        <xsd:sequence>
+          <xsd:element ecore:derived="true" ecore:transient="true" ecore:unique="true" ecore:volatile="true" maxOccurs="unbounded" minOccurs="0" name="availableTypes" type="metaabm:SAttributeType"/>
+        </xsd:sequence>
+        <xsd:attribute ecore:changeable="false" ecore:derived="true" ecore:reference="xsd:anyType" ecore:transient="true" ecore:volatile="true" name="accessors" type="xsd:IDREFS"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" ecore:interface="true" name="IArtifact">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:IID"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" ecore:interface="true" name="IAct">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:IID"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="SNamed">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:IID">
+        <xsd:attribute name="pluralLabel" type="ecore:EString"/>
+        <xsd:attribute name="description" type="ecore:EString"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="SAttributed">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SNamed">
+        <xsd:sequence>
+          <xsd:element ecore:keys="ID" ecore:opposite="owner" ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="attributes" type="metaabm:SAttribute"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="SActable">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SAttributed">
+        <xsd:sequence>
+          <xsd:element ecore:keys="ID" ecore:resolveProxies="true" minOccurs="0" name="rootActivity" type="metaabm:IAct"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="metaabm:IValue metaabm:ITyped" name="SAttribute">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SNamed">
+        <xsd:attribute ecore:opposite="attributes" ecore:reference="metaabm:SAttributed" name="owner" type="xsd:anyURI" use="required"/>
+        <xsd:attribute ecore:unsettable="false" name="gatherData" type="ecore:EBoolean"/>
+        <xsd:attribute name="defaultValue" type="ecore:EString"/>
+        <xsd:attribute name="units" type="ecore:EString"/>
+        <xsd:attribute ecore:default="false" ecore:unsettable="false" name="immutable" type="ecore:EBoolean" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="metaabm:ITypedArray" name="SAttributeArray">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SAttribute"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType name="SAttributeType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration ecore:name="Boolean" ecore:value="100" value="BOOLEAN"/>
+      <xsd:enumeration ecore:name="Integer" ecore:value="101" value="INTEGER"/>
+      <xsd:enumeration ecore:name="Real" ecore:value="150" value="REAL"/>
+      <xsd:enumeration ecore:name="Symbol" ecore:value="200" value="SYMBOL"/>
+      <xsd:enumeration ecore:name="Undefined" ecore:value="0" value="UNDEFINED"/>
+      <xsd:enumeration ecore:name="Numeric" ecore:value="110" value="NUMERIC"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="SState">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SAttribute">
+        <xsd:sequence>
+          <xsd:element ecore:opposite="set" ecore:resolveProxies="true" maxOccurs="unbounded" name="options" type="metaabm:SStateValue"/>
+        </xsd:sequence>
+        <xsd:attribute ecore:reference="metaabm:SStateValue" name="defaultOption" type="xsd:anyURI"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="metaabm:IValue" name="SStateValue">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SNamed">
+        <xsd:attribute ecore:opposite="options" ecore:reference="metaabm:SState" name="set" type="xsd:anyURI" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="metaabm:SImplemented" name="SAgent">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SActable">
+        <xsd:sequence>
+          <xsd:element ecore:keys="ID" ecore:opposite="agent" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="styles" type="metaabm:SStyle"/>
+        </xsd:sequence>
+        <xsd:attribute ecore:opposite="agents" ecore:reference="metaabm:SContext" name="owner" type="xsd:anyURI"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SContext">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SAgent">
+        <xsd:sequence>
+          <xsd:element ecore:keys="ID" ecore:opposite="owner" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="agents" type="metaabm:SAgent"/>
+          <xsd:element ecore:keys="ID" ecore:opposite="owner" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="projections" type="metaabm:SProjection"/>
+          <xsd:element ecore:keys="ID" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="valueLayers" type="metaabm:SValueLayer"/>
+          <xsd:element ecore:keys="ID" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="library" type="metaabm:IArtifact"/>
+        </xsd:sequence>
+        <xsd:attribute ecore:derived="true" ecore:reference="metaabm:SAgent" ecore:transient="true" ecore:volatile="true" name="allAgents">
+          <xsd:simpleType>
+            <xsd:list itemType="xsd:anyURI"/>
+          </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute ecore:derived="true" ecore:reference="metaabm:SContext" ecore:transient="true" ecore:volatile="true" name="allContexts">
+          <xsd:simpleType>
+            <xsd:list itemType="xsd:anyURI"/>
+          </xsd:simpleType>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" ecore:implements="metaabm:IID" name="SProjection">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SAttributed">
+        <xsd:attribute ecore:opposite="projections" ecore:reference="metaabm:SContext" name="owner" type="xsd:anyURI"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="SNDimensional">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SProjection">
+        <xsd:attribute default="0" ecore:unsettable="false" name="dimensionality" type="ecore:EInt"/>
+        <xsd:attribute default="STICKY" ecore:unsettable="false" name="borderRule" type="metaabm:SBorderRule"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType name="SBorderRule">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration ecore:name="Sticky" ecore:value="1000" value="STICKY"/>
+      <xsd:enumeration ecore:name="Strict" ecore:value="100" value="STRICT"/>
+      <xsd:enumeration ecore:name="Bouncy" ecore:value="2000" value="BOUNCY"/>
+      <xsd:enumeration ecore:name="Periodic" ecore:value="3000" value="PERIODIC"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="SContinuousSpace">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SNDimensional"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SGrid">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SNDimensional">
+        <xsd:attribute default="false" ecore:unsettable="false" name="multiOccupant" type="ecore:EBoolean"/>
+        <xsd:attribute ecore:unsettable="false" name="neighborhood" type="metaabm:SNeighborhoodType" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType name="SNeighborhoodType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration ecore:name="Euclidian" ecore:value="10" value="EUCLIDIAN"/>
+      <xsd:enumeration ecore:name="Moore" ecore:value="20" value="MOORE"/>
+      <xsd:enumeration ecore:name="VonNeumann" ecore:value="30" value="VON_NEUMANN"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="SNetwork">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SProjection">
+        <xsd:attribute ecore:unsettable="false" name="directed" type="ecore:EBoolean"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SGeography">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SProjection"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SValueLayer">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SNamed"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" ecore:implements="metaabm:SImplemented" name="SStyle">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SActable">
+        <xsd:attribute ecore:opposite="styles" ecore:reference="metaabm:SAgent" name="agent" type="xsd:anyURI" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SStyle2D">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SStyle"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SStyleShape">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SStyle2D">
+        <xsd:attribute ecore:unsettable="false" name="shape" type="metaabm:SShapeType" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="SStyle3D">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SStyle"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="SImplemented">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:IID">
+        <xsd:sequence>
+          <xsd:element ecore:opposite="target" ecore:resolveProxies="true" name="implementation" type="metaabm:SImplementation"/>
+        </xsd:sequence>
+        <xsd:attribute ecore:changeable="false" ecore:derived="true" ecore:reference="metaabm:SImplemented" ecore:transient="true" ecore:volatile="true" name="parent" type="xsd:anyURI"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType name="SImplementationMode">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration ecore:name="Generate" ecore:value="1000" value="GENERATE"/>
+      <xsd:enumeration ecore:name="GenerateProtected" ecore:value="1500" value="GENERATE_PROTECTED"/>
+      <xsd:enumeration ecore:name="GenerateEmpty" ecore:value="1600" value="GENERATE_EMPTY"/>
+      <xsd:enumeration ecore:name="Load" ecore:value="2000" value="LOAD"/>
+      <xsd:enumeration ecore:name="External" ecore:value="3000" value="EXTERNAL"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="SImplementation">
+    <xsd:attribute name="package" type="ecore:EString"/>
+    <xsd:attribute name="className" type="ecore:EString" use="required"/>
+    <xsd:attribute name="basePath" type="ecore:EString">
+      <xsd:annotation>
+        <xsd:documentation>The relative or absolute path to the base directory containing implementing code, e.g. \"../myproject\", \"/MyDrive/local/myproject\".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ecore:default="GENERATE" ecore:unsettable="false" name="mode" type="metaabm:SImplementationMode" use="required"/>
+    <xsd:attribute ecore:opposite="implementation" ecore:reference="metaabm:SImplemented" name="target" type="xsd:anyURI" use="required"/>
+    <xsd:attribute ecore:changeable="false" ecore:derived="true" ecore:transient="true" ecore:volatile="true" name="qualifiedName" type="ecore:EString"/>
+    <xsd:attribute ecore:changeable="false" ecore:derived="true" ecore:transient="true" ecore:volatile="true" name="derivedPath" type="ecore:EString"/>
+    <xsd:attribute ecore:changeable="false" ecore:derived="true" ecore:transient="true" ecore:volatile="true" name="derivedPackage" type="ecore:EString"/>
+    <xsd:attribute ecore:changeable="false" ecore:derived="true" ecore:transient="true" ecore:volatile="true" name="javaFileLoc" type="ecore:EString">
+      <xsd:annotation>
+        <xsd:documentation>The precise location of any related java file, e.g. \"../projectdir/srcgen/org/foo/MyClass.java\" or \"/root/projectdir/srcgen/org/foo/MyClass.java\".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute default="srcgen" ecore:unsettable="false" name="srcDir" type="ecore:EString"/>
+    <xsd:attribute default="bin" ecore:unsettable="false" name="binDir" type="ecore:EString"/>
+    <xsd:attribute ecore:changeable="false" ecore:derived="true" ecore:transient="true" ecore:volatile="true" name="classFileLoc" type="ecore:EString">
+      <xsd:annotation>
+        <xsd:documentation>The precise location of any related binary class file, e.g. \"../projectdir/bin/org/foo/MyClass.class\" or \"/root/projectdir/bin/org/foo/MyClass.class\".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute ecore:changeable="false" ecore:derived="true" ecore:transient="true" ecore:volatile="true" name="derivedBinDir" type="ecore:EString"/>
+    <xsd:attribute ecore:changeable="false" ecore:derived="true" ecore:transient="true" ecore:volatile="true" name="derivedSrcDir" type="ecore:EString"/>
+  </xsd:complexType>
+  <xsd:simpleType name="SShapeType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration ecore:name="Point" ecore:value="1" value="POINT"/>
+      <xsd:enumeration ecore:name="Line" ecore:value="2" value="LINE"/>
+      <xsd:enumeration ecore:name="Polygon" ecore:value="3" value="POLYGON"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>

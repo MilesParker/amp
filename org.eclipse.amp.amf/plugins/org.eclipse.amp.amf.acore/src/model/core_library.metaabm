@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/structure" label="Functions" ID="functions" pluralLabel="Functions">
+  <attributes label="True" ID="true" pluralLabel="Truth" defaultValue="true" immutable="true"/>
+  <attributes label="False" ID="false" pluralLabel="Falses" description="" defaultValue="false" immutable="true"/>
+  <attributes label="Zero" ID="zero" pluralLabel="Zeros" description="The value 0." sType="INTEGER" defaultValue="0" units="" immutable="true"/>
+  <attributes label="Unit" ID="unit" pluralLabel="Units" description="The unit value, e.g. 1." sType="INTEGER" defaultValue="1" immutable="true"/>
+  <attributes label="Path" ID="path" pluralLabel="Paths" sType="UNDEFINED"/>
+  <attributes label="Self" ID="self" pluralLabel="Selfs" sType="UNDEFINED"/>
+  <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Acts"/>
+  <implementation package="score.core.functions" className="Functions" basePath=""/>
+  <library xsi:type="function:FLibrary" label="Core Functions" ID="coreFunctions" pluralLabel="Core Functionss">
+    <subs label="Operators" ID="operators" pluralLabel="Operators">
+      <subs label="Logical Operators" ID="logicalOperators" pluralLabel="">
+        <functions xsi:type="function:FLogicalOperator" label="Not" ID="not" pluralLabel="" symbol="!">
+          <inputPrototypes label="Argument 0" ID="arg0" pluralLabel="Argument 0s" description=""/>
+        </functions>
+        <functions xsi:type="function:FLogicalOperator" label="Equal" ID="equal" pluralLabel="Equals" symbol="==">
+          <inputPrototypes label="Argument 0" ID="arg0" sType="UNDEFINED" pluralLabel="Argument 0s" description=""/>
+          <inputPrototypes label="Argument 1" ID="arg1" sType="UNDEFINED" pluralLabel="Argument 1s" description=""/>
+        </functions>
+        <functions xsi:type="function:FLogicalOperator" label="Identical" ID="identical" pluralLabel="Identicals" symbol="==">
+          <inputPrototypes label="Argument 0" ID="arg0" sType="UNDEFINED" pluralLabel="Argument 0s" description=""/>
+          <inputPrototypes label="Argument 1" ID="arg1" sType="UNDEFINED" pluralLabel="Argument 1s" description=""/>
+        </functions>
+        <functions xsi:type="function:FLogicalOperator" label="Greater" ID="greater" pluralLabel="Greaters" symbol=">">
+          <inputPrototypes label="Argument 0" ID="arg0" sType="NUMERIC" pluralLabel="Argument 0s" description=""/>
+          <inputPrototypes label="Argument 1" ID="arg1" sType="NUMERIC" pluralLabel="Argument 1s" description=""/>
+        </functions>
+        <functions xsi:type="function:FLogicalOperator" label="Lesser" ID="lesser" pluralLabel="Lessers" symbol="&lt;">
+          <inputPrototypes label="Argument 0" ID="arg0" sType="NUMERIC" pluralLabel="Argument 0s" description=""/>
+          <inputPrototypes label="Argument 1" ID="arg1" sType="NUMERIC" pluralLabel="Argument 1s" description=""/>
+        </functions>
+        <functions xsi:type="function:FLogicalOperator" label="Greater or Equal" ID="greaterorEqual" pluralLabel="Greater or Equals" symbol=">=">
+          <inputPrototypes label="Argument 0" ID="arg0" sType="NUMERIC" pluralLabel="Argument 0s" description=""/>
+          <inputPrototypes label="Argument 1" ID="arg1" sType="NUMERIC" pluralLabel="Argument 1s" description=""/>
+        </functions>
+        <functions xsi:type="function:FLogicalOperator" label="Lesser or Equal" ID="lesserorEqual" pluralLabel="Lesser or Equals" symbol="&lt;=">
+          <inputPrototypes label="Argument 0" ID="arg0" sType="NUMERIC" pluralLabel="Argument 0s" description=""/>
+          <inputPrototypes label="Argument 1" ID="arg1" sType="NUMERIC" pluralLabel="Argument 1s" description=""/>
+        </functions>
+        <functions xsi:type="function:FLogicalOperator" label="True" ID="true" pluralLabel="Trues" symbol="true"/>
+        <functions xsi:type="function:FLogicalOperator" label="False" ID="false" pluralLabel="Falses" symbol="false"/>
+        <functions xsi:type="function:FLogicalOperator" label="Identity" ID="identity" pluralLabel="Identities" symbol="">
+          <inputPrototypes label="Argument 0" ID="arg0" sType="UNDEFINED" pluralLabel="Argument 0s" description=""/>
+        </functions>
+        <functions xsi:type="function:FLogicalOperator" label="Different" ID="different" pluralLabel="Differents" symbol="!=">
+          <inputPrototypes label="Argument 0" ID="argument0" sType="UNDEFINED" pluralLabel="Argument 0s"/>
+          <inputPrototypes label="Argument 1" ID="argument1" sType="UNDEFINED" pluralLabel="Argument 1s"/>
+        </functions>
+      </subs>
+      <subs label="Numeric Operators" ID="numericOperators" pluralLabel="">
+        <functions xsi:type="function:FOperator" label="Negative Value" ID="neg" pluralLabel="Negative Values" symbol="-">
+          <inputPrototypes label="Argument 0" ID="arg0" sType="NUMERIC" pluralLabel="Argument 0s" description=""/>
+        </functions>
+        <functions xsi:type="function:FOperator" label="Add" ID="add" pluralLabel="Adds" symbol="+">
+          <inputPrototypes label="Argument 0" ID="arg0" sType="NUMERIC" pluralLabel="Argument 0s" description=""/>
+          <inputPrototypes label="Argument 1" ID="arg1" sType="NUMERIC" pluralLabel="Argument 1s" description=""/>
+        </functions>
+        <functions xsi:type="function:FOperator" label="Subtract" ID="sub" pluralLabel="Subtracts" symbol="-">
+          <inputPrototypes label="Argument 0" ID="arg0" sType="NUMERIC" pluralLabel="Argument 0s" description=""/>
+          <inputPrototypes label="Argument 1" ID="arg1" sType="NUMERIC" pluralLabel="Argument 1s" description=""/>
+        </functions>
+        <functions xsi:type="function:FOperator" label="Multiply" ID="mul" pluralLabel="Multiplies" symbol="*">
+          <inputPrototypes label="Argument 0" ID="arg0" sType="NUMERIC" pluralLabel="Argument 0s" description=""/>
+          <inputPrototypes label="Argument 1" ID="arg1" sType="NUMERIC" pluralLabel="Argument 1s" description=""/>
+        </functions>
+        <functions xsi:type="function:FOperator" label="Divide" ID="div" pluralLabel="Divides" symbol="/">
+          <inputPrototypes label="Argument 0" ID="arg0" sType="NUMERIC" pluralLabel="Argument 0s" description=""/>
+          <inputPrototypes label="Argument 1" ID="arg1" sType="NUMERIC" pluralLabel="Argument 1s" description=""/>
+        </functions>
+        <functions xsi:type="function:FOperator" label="Power" ID="pow" pluralLabel="Powers" symbol="^">
+          <inputPrototypes label="Argument 0" ID="arg0" sType="NUMERIC" pluralLabel="Argument 0s" description=""/>
+          <inputPrototypes label="Argument 1" ID="arg1" sType="NUMERIC" pluralLabel="Argument 1s" description=""/>
+        </functions>
+        <functions xsi:type="function:FOperator" label="Modulo" ID="mod" pluralLabel="Modulos" symbol="%">
+          <inputPrototypes label="Argument 0" ID="arg0" sType="NUMERIC" pluralLabel="Argument 0s" description=""/>
+          <inputPrototypes label="Argument 1" ID="arg1" sType="NUMERIC" pluralLabel="Argument 1s" description=""/>
+        </functions>
+        <functions xsi:type="function:FOperator" label="Increment" ID="increment" pluralLabel="Increments" description="Incremented numeric value by 1 unit. Not transformative of initial value like C!" symbol="++">
+          <inputPrototypes label="Argument 0" ID="arg0" sType="NUMERIC" pluralLabel="Argument 0s" description=""/>
+        </functions>
+        <functions xsi:type="function:FOperator" label="Decrement" ID="decrement" pluralLabel="Decrements" description="Decrement numeric value by 1 unit." symbol="--">
+          <inputPrototypes label="Argument 0" ID="arg0" sType="NUMERIC" pluralLabel="Argument 0s" description=""/>
+        </functions>
+        <functions xsi:type="function:FOperator" label="Unit Value" ID="unit" pluralLabel="Unit Values" description="The value of one common unit, e.g. 1." symbol="1"/>
+        <functions xsi:type="function:FOperator" label="Zero Value" ID="zero" pluralLabel="Zero Values" description="The value of no units, e.g. zero." symbol="0"/>
+        <functions xsi:type="function:FOperator" label="Original Value" ID="original" pluralLabel="Original Values" description="The original value, e.g. the value for the value client at time 0." symbol="o"/>
+      </subs>
+    </subs>
+    <subs label="Spatial" ID="spatial" pluralLabel="Spatials">
+      <functions xsi:type="function:FGenericLogical" label="Nearest " ID="nearest" pluralLabel="Nearests"/>
+      <functions xsi:type="function:FGenericLogical" label="Toward" ID="toward" pluralLabel="Towards"/>
+      <functions xsi:type="function:FGenericLogical" label="Within" ID="within" pluralLabel="Withins">
+        <inputPrototypes label="Distance" ID="distance" sType="NUMERIC" pluralLabel="Distances" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericLogical" label="Neighbor" ID="neighbor" pluralLabel="Neighbors" description=""/>
+      <functions xsi:type="function:FGenericLogical" label="Include Self" ID="includeSelf" pluralLabel="Include Selfs"/>
+      <functions xsi:type="function:FGenericLogical" label="Within 2D Boundary" ID="withinBoundaries" pluralLabel="Within 2D Boundarys">
+        <inputPrototypes xsi:type="function:FArgumentArrayPrototype" label="Bounds" ID="bounds" sType="NUMERIC" pluralLabel="Bounds" size="4"/>
+      </functions>
+      <functions xsi:type="function:FGenericLogical" label="Here" ID="here" pluralLabel="Heres"/>
+      <functions xsi:type="function:FGenericLogical" label="Available" ID="available" pluralLabel="Availables"/>
+      <functions xsi:type="function:FGenericFunction" label="Distance" ID="distance" pluralLabel="Distances">
+        <outputPrototypes label="Distance Between Agents" ID="distance" sType="REAL"/>
+      </functions>
+      <functions xsi:type="function:FGenericLogical" label="Away" ID="away" pluralLabel="Aways" description=""/>
+      <functions xsi:type="function:FGenericLogical" label="Minimize" ID="minimize" pluralLabel="Minimizes"/>
+      <functions xsi:type="function:FGenericLogical" label="Maximize" ID="maximize" pluralLabel="Maximizes"/>
+      <functions xsi:type="function:FGenericLogical" label="Location 2D" ID="location2D" pluralLabel="Location 2Ds">
+        <inputPrototypes label="X" ID="x" sType="REAL" pluralLabel="Xs"/>
+        <inputPrototypes label="Y" ID="y" sType="REAL" pluralLabel="Ys"/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Boundary 2D" ID="boundary2D" pluralLabel="Boundary 2Ds">
+        <outputPrototypes label="X" ID="x" sType="REAL" pluralLabel="Xs"/>
+        <outputPrototypes label="Y" ID="y" sType="REAL" pluralLabel="Ys"/>
+      </functions>
+    </subs>
+    <subs label="Random" ID="random" pluralLabel="Randoms">
+      <functions xsi:type="function:FGenericFunction" label="Random In Range" ID="randomInRange" pluralLabel="Random In Ranges">
+        <inputPrototypes label="Minimum Value" ID="min" sType="NUMERIC" pluralLabel="Minimum Values" description="The minimum value (inclusive)."/>
+        <inputPrototypes label="Maximum Value" ID="max" sType="NUMERIC" pluralLabel="Maximum Values" description="The maximum value (inclusive)."/>
+        <outputPrototypes label="Random Number" ID="randomNumber" sType="NUMERIC" pluralLabel="Random Numbers" description="Resulting Number"/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Random To Limit" ID="randomToLimit" pluralLabel="Random To Limits">
+        <inputPrototypes label="Maximum Value" ID="max" sType="NUMERIC" pluralLabel="Maximum Values" description="The maximum value (inclusive)."/>
+        <outputPrototypes label="Random Number" ID="randomNumber" sType="NUMERIC" pluralLabel="Random Numbers"/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Random Unit" ID="randomUnit" pluralLabel="Random Units">
+        <outputPrototypes label="Random Value" ID="randomValue" sType="REAL" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericLogical" label="Random Boolean" ID="randomIs" pluralLabel="Random Booleans"/>
+      <functions xsi:type="function:FGenericFunction" label="Random Weighted" ID="randomWeighted" pluralLabel="Random Weighteds" description="An indexed value weighted against a probability distribution. The total probability must sum to 1.0. For example, an input of {.1,.2,.7} under a unifrom distribution would would have 10% probability of producing &quot;0&quot; , 20%  for &quot;1&quot; and 70% for &quot;2&quot;.">
+        <inputPrototypes xsi:type="function:FArgumentArrayPrototype" label="Weights" ID="weights" sType="REAL" pluralLabel="Weightss" size="-1"/>
+        <outputPrototypes label="Result" ID="result" sType="INTEGER" pluralLabel="Results"/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Random Member" ID="randomMember" pluralLabel="Random Members">
+        <inputPrototypes xsi:type="function:FArgumentArrayPrototype" label="List" ID="list" sType="REAL" pluralLabel="Lists" size="-1"/>
+        <outputPrototypes label="Member" ID="member" sType="UNDEFINED" pluralLabel="Members"/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Random State" ID="randomState" pluralLabel="Random States">
+        <inputPrototypes label="Strategy Enum" ID="strategyEnum" sType="UNDEFINED" pluralLabel="Strategy Enums"/>
+        <outputPrototypes label="Selected Strategy" ID="selectedStrategy" pluralLabel="Selected Strategys"/>
+      </functions>
+    </subs>
+    <subs label="Graphic" ID="graphic" pluralLabel="Graphics">
+      <functions xsi:type="function:FGenericFunction" label="Shape Oval" ID="shapeOval" pluralLabel="Shape Ovals" description="Draw a generic oval."/>
+      <functions xsi:type="function:FGenericFunction" label="Shape Rectangle" ID="shapeRectangle" pluralLabel="Shape Rectangles"/>
+      <functions xsi:type="function:FGenericFunction" label="Shape Marker" ID="shapeMarker" pluralLabel="Shape Markers"/>
+      <functions xsi:type="function:FGenericFunction" label="Graphic Outline" ID="graphicOutline" pluralLabel="Graphic Outlines"/>
+      <functions xsi:type="function:FGenericFunction" label="Graphic Fill" ID="graphicFill" pluralLabel="Graphic Fills"/>
+      <functions xsi:type="function:FGenericFunction" label="Shape Inset" ID="shapeInset" pluralLabel="Shape Insets">
+        <inputPrototypes label="Value" ID="value" sType="INTEGER" pluralLabel="Values" description="Number of nominal pixels to inset."/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Color RGB" ID="colorRGB" pluralLabel="Color RGBs">
+        <inputPrototypes label="Red Component" ID="red" sType="REAL" pluralLabel="Red Components" description="A value from 0.0 to 1.0."/>
+        <inputPrototypes label="Green Component" ID="green" sType="REAL" pluralLabel="Green Components" description="A value from 0.0 to 1.0."/>
+        <inputPrototypes label="Blue Component" ID="blue" sType="REAL" pluralLabel="Blue Components" description="A value from 0.0 to 1.0."/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Color Red" ID="colorRed" pluralLabel="Color Reds"/>
+      <functions xsi:type="function:FGenericFunction" label="Color Yellow" ID="colorYellow" pluralLabel="Color Yellows"/>
+      <functions xsi:type="function:FGenericFunction" label="Color Blue" ID="colorBlue" pluralLabel="Color Blues"/>
+      <functions xsi:type="function:FGenericFunction" label="Color Orange" ID="colorOrange" pluralLabel="Color Oranges"/>
+      <functions xsi:type="function:FGenericFunction" label="Color Green" ID="colorGreen" pluralLabel="Color Greens"/>
+      <functions xsi:type="function:FGenericFunction" label="Color Purple" ID="colorPurple" pluralLabel="Color Purples"/>
+      <functions xsi:type="function:FGenericFunction" label="Color Black" ID="colorBlack" pluralLabel="Color Blacks"/>
+      <functions xsi:type="function:FGenericFunction" label="Color White" ID="colorWhite" pluralLabel="Color Whites"/>
+      <functions xsi:type="function:FGenericFunction" label="Color Gray" ID="colorGray" pluralLabel="Color Grays"/>
+      <functions xsi:type="function:FGenericFunction" label="Shape Marker 2" ID="shapeMarker2" pluralLabel="Shape Marker 2s"/>
+      <functions xsi:type="function:FGenericFunction" label="Shape Marker 3" ID="shapeMarker3" pluralLabel="Shape Marker 3s"/>
+    </subs>
+    <subs label="Time" ID="time" pluralLabel="Times">
+      <functions xsi:type="function:FGenericFunction" label="Now" ID="timeNow" pluralLabel="Nows">
+        <outputPrototypes label="Period" ID="period" sType="INTEGER" pluralLabel="Periods" description="The current period."/>
+      </functions>
+    </subs>
+    <subs label="Math" ID="math" pluralLabel="Maths">
+      <functions xsi:type="function:FGenericFunction" label="Sine" ID="sin" pluralLabel="Sines" description="">
+        <inputPrototypes label="A" ID="a" sType="REAL" pluralLabel="As" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Cosine" ID="cos" pluralLabel="Cosines" description="">
+        <inputPrototypes label="A" ID="a" sType="REAL" pluralLabel="As" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Tangent" ID="tan" pluralLabel="Tangents" description="">
+        <inputPrototypes label="A" ID="a" sType="REAL" pluralLabel="As" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Arc Sine" ID="asin" pluralLabel="Arc Sines" description="">
+        <inputPrototypes label="A" ID="a" sType="REAL" pluralLabel="As" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Arc Cosine" ID="acos" pluralLabel="Arc Cosines" description="">
+        <inputPrototypes label="A" ID="a" sType="REAL" pluralLabel="As" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Arc Tangent" ID="atan" pluralLabel="Arc Tangents" description="">
+        <inputPrototypes label="A" ID="a" sType="REAL" pluralLabel="As" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Convert Degree to Radians" ID="toRadians" pluralLabel="Convert Degree to Radianss" description="">
+        <inputPrototypes label="Angdeg" ID="angdeg" sType="REAL" pluralLabel="Angdegs" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Convert Radians to Degrees" ID="toDegrees" pluralLabel="Convert Radians to Degreess" description="">
+        <inputPrototypes label="Angrad" ID="angrad" sType="REAL" pluralLabel="Angrads" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Exp" ID="exp" pluralLabel="Exps" description="">
+        <inputPrototypes label="A" ID="a" sType="REAL" pluralLabel="As" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Log" ID="log" pluralLabel="Logs" description="">
+        <inputPrototypes label="A" ID="a" sType="REAL" pluralLabel="As" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Log b10" ID="log10" pluralLabel="Log b10s" description="">
+        <inputPrototypes label="A" ID="a" sType="REAL" pluralLabel="As" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Square Root" ID="squareRoot" pluralLabel="Square Roots" description="">
+        <inputPrototypes label="A" ID="a" sType="REAL" pluralLabel="As" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Cube Root" ID="cbrt" pluralLabel="Cube Roots" description="">
+        <inputPrototypes label="A" ID="a" sType="REAL" pluralLabel="As" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Remainder" ID="IEEEremainder" pluralLabel="Remainders" description="">
+        <inputPrototypes label="F1" ID="f1" sType="REAL" pluralLabel="F1s" description=""/>
+        <inputPrototypes label="F2" ID="f2" sType="REAL" pluralLabel="F2s" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Ceiling" ID="ceil" pluralLabel="Ceilings" description="">
+        <inputPrototypes label="A" ID="a" sType="REAL" pluralLabel="As" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Floor" ID="floor" pluralLabel="Floors" description="">
+        <inputPrototypes label="A" ID="a" sType="REAL" pluralLabel="As" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Rount" ID="rint" pluralLabel="Rounts" description="">
+        <inputPrototypes label="A" ID="a" sType="REAL" pluralLabel="As" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Arc Tangent Rectangular" ID="atan2" pluralLabel="Arc Tangent Rectangulars" description="">
+        <inputPrototypes label="Y" ID="y" sType="REAL" pluralLabel="Ys" description=""/>
+        <inputPrototypes label="X" ID="x" sType="REAL" pluralLabel="Xs" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Power" ID="pow" pluralLabel="Powers" description="">
+        <inputPrototypes label="A" ID="a" sType="REAL" pluralLabel="As" description=""/>
+        <inputPrototypes label="B" ID="b" sType="REAL" pluralLabel="Bs" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Absolute Value" ID="abs" pluralLabel="Absolute Values" description="">
+        <inputPrototypes label="A" ID="a" sType="REAL" pluralLabel="As" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Maximum" ID="max" pluralLabel="Maximums" description="">
+        <inputPrototypes label="A" ID="a" sType="REAL" pluralLabel="As" description=""/>
+        <inputPrototypes label="B" ID="b" sType="REAL" pluralLabel="Bs" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Minimum" ID="min" pluralLabel="Minimums" description="">
+        <inputPrototypes label="A" ID="a" sType="REAL" pluralLabel="As" description=""/>
+        <inputPrototypes label="B" ID="b" sType="REAL" pluralLabel="Bs" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="ULP" ID="ulp" pluralLabel="ULPs" description="">
+        <inputPrototypes label="D" ID="d" sType="REAL" pluralLabel="Ds" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Sign" ID="signum" pluralLabel="Signs" description="">
+        <inputPrototypes label="D" ID="d" sType="REAL" pluralLabel="Ds" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Hyperbolic Sine" ID="sinh" pluralLabel="Hyperbolic Sines" description="">
+        <inputPrototypes label="X" ID="x" sType="REAL" pluralLabel="Xs" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Hyperbolic Cosine" ID="cosh" pluralLabel="Hyperbolic Cosines" description="">
+        <inputPrototypes label="X" ID="x" sType="REAL" pluralLabel="Xs" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Hyperbolic Tan" ID="tanh" pluralLabel="Hyperbolic Tans" description="">
+        <inputPrototypes label="X" ID="x" sType="REAL" pluralLabel="Xs" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Hypotuneuse" ID="hypotuneuse" pluralLabel="Hypotuneuses" description="">
+        <inputPrototypes label="X" ID="x" sType="REAL" pluralLabel="Xs" description=""/>
+        <inputPrototypes label="Y" ID="y" sType="REAL" pluralLabel="Ys" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Expm1" ID="expm1" pluralLabel="Expm1s" description="">
+        <inputPrototypes label="X" ID="x" sType="REAL" pluralLabel="Xs" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Log1p" ID="log1p" pluralLabel="Log1ps" description="">
+        <inputPrototypes label="X" ID="x" sType="REAL" pluralLabel="Xs" description=""/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
+      </functions>
+    </subs>
+    <subs label="List" ID="list" pluralLabel="Lists">
+      <functions xsi:type="function:FGenericFunction" label="Item" ID="item" pluralLabel="Items">
+        <inputPrototypes xsi:type="function:FArgumentArrayPrototype" label="List" ID="list" sType="UNDEFINED" pluralLabel="Lists" size="-1"/>
+        <inputPrototypes label="Index" ID="index" sType="INTEGER" pluralLabel="Indexs"/>
+        <outputPrototypes label="Member" ID="member" sType="UNDEFINED" pluralLabel="Members"/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Length" ID="length" pluralLabel="Lengths">
+        <inputPrototypes xsi:type="function:FArgumentArrayPrototype" label="List" ID="list" sType="UNDEFINED" pluralLabel="Lists" size="-1"/>
+        <outputPrototypes label="Value" ID="value" sType="INTEGER" pluralLabel="Values"/>
+      </functions>
+    </subs>
+    <subs label="Distribution" ID="distribution" pluralLabel="Distributions">
+      <functions xsi:type="function:FGenericFunction" label="Uniform Cross Distribution" ID="uniformCrossDistribution" pluralLabel="Uniform Cross Distributions">
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="States" ID="states" sType="UNDEFINED" pluralLabel="Statess"/>
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="Minimum" ID="minimum" sType="REAL" pluralLabel="Minimums"/>
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="Maximum" ID="maximum" sType="REAL" pluralLabel="Maximums"/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results"/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Uniform Additive Distribution" ID="uniformAdditiveDistribution" pluralLabel="Uniform Additive Distributions">
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="States" ID="states" sType="UNDEFINED" pluralLabel="States"/>
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="Minimum" ID="minimum" sType="REAL" pluralLabel="Minimums"/>
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="Maximum" ID="maximum" sType="REAL" pluralLabel="Maximums"/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results"/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Cross Distribution" ID="crossDistribution" pluralLabel="Cross Distributions">
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="States" ID="states" sType="UNDEFINED" pluralLabel="Statess"/>
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="Value" ID="value" sType="REAL" pluralLabel="Values"/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results"/>
+      </functions>
+      <functions xsi:type="function:FGenericFunction" label="Additive Distribution" ID="additiveDistribution" pluralLabel="Additive Distributions">
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="States" ID="states" sType="UNDEFINED" pluralLabel="Statess"/>
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="Factor" ID="factor" sType="REAL" pluralLabel="Factors"/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results"/>
+      </functions>
+    </subs>
+  </library>
+</metaabm:SContext>

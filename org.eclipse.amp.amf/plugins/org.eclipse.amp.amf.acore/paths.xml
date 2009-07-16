@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="metaABM Core Paths">
+	
+	<path id="path.compile" path="${workspace.metaABM}/org.eclipse.amp.amf.acore/lib/junit.jar"/>
+
+	<path id="path.core.lib">
+		<fileset dir="${eclipse.home}/plugins">
+			<include name="org.apache.commons.cli_1.0.0.jar" />
+			<include name="org.antlr_3.0.0/antlr-3.0-patched.jar" />
+			<include name="org.antlr.runtime_3.0.0/antlr-runtime-3.0.jar" />
+			<include name="org.apache.commons.logging_1.0.4*.jar" />
+			<include name="org.apache.log4j*.jar" />
+			<include name="org.eclipse.emf.ecore_2.4.0.*.jar" />
+			<include name="org.eclipse.emf.common_2.4.0.*.jar" />
+			<include name="org.eclipse.emf.ecore.xmi_2.4.0.*.jar" />
+			<include name="org.eclipse.xsd_2.4.0.*.jar" />
+		</fileset>
+		<fileset dir="${workspace.metaABM}/org.eclipse.amp.amf.acore/lib">
+			<include name="commons-collections-3.2.jar"/>
+			<include name="commons-lang-2.2.jar"/>
+		</fileset>
+	</path>
+	
+	<path id="path.core">
+		<pathelement path="${workspace.metaABM}/org.eclipse.amp.amf.acore/bin/" />
+		<pathelement path="${workspace.metaABM}/org.eclipse.amp.amf.acore.test/bin/" />
+	</path>
+</project>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xsd2ecore:XSD2EcoreMappingRoot xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsd2ecore="http://www.eclipse.org/emf/2002/XSD2Ecore" inputs="metaabm.ecore#/"
+    outputs="MetaABMXMI.xsd#/">
+  <nested inputs="metaabm.ecore#/" outputs="MetaABMXMI.xsd#/">
+    <nested inputs="metaabm.ecore#//SAttributeType" outputs="MetaABMXMI.xsd#//SAttributeType;XSDSimpleTypeDefinition">
+      <nested inputs="metaabm.ecore#//SAttributeType/Boolean" outputs="MetaABMXMI.xsd#//SAttributeType;XSDSimpleTypeDefinition/XSDEnumerationFacet"/>
+      <nested inputs="metaabm.ecore#//SAttributeType/Integer" outputs="MetaABMXMI.xsd#//SAttributeType;XSDSimpleTypeDefinition/XSDEnumerationFacet=1"/>
+      <nested inputs="metaabm.ecore#//SAttributeType/Real" outputs="MetaABMXMI.xsd#//SAttributeType;XSDSimpleTypeDefinition/XSDEnumerationFacet=2"/>
+      <nested inputs="metaabm.ecore#//SAttributeType/Symbol" outputs="MetaABMXMI.xsd#//SAttributeType;XSDSimpleTypeDefinition/XSDEnumerationFacet=3"/>
+      <nested inputs="metaabm.ecore#//SAttributeType/Undefined" outputs="MetaABMXMI.xsd#//SAttributeType;XSDSimpleTypeDefinition/XSDEnumerationFacet=4"/>
+      <nested inputs="metaabm.ecore#//SAttributeType/Numeric" outputs="MetaABMXMI.xsd#//SAttributeType;XSDSimpleTypeDefinition/XSDEnumerationFacet=5"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//SBorderRule" outputs="MetaABMXMI.xsd#//SBorderRule;XSDSimpleTypeDefinition=1">
+      <nested inputs="metaabm.ecore#//SBorderRule/Sticky" outputs="MetaABMXMI.xsd#//SBorderRule;XSDSimpleTypeDefinition=1/XSDEnumerationFacet"/>
+      <nested inputs="metaabm.ecore#//SBorderRule/Strict" outputs="MetaABMXMI.xsd#//SBorderRule;XSDSimpleTypeDefinition=1/XSDEnumerationFacet=1"/>
+      <nested inputs="metaabm.ecore#//SBorderRule/Bouncy" outputs="MetaABMXMI.xsd#//SBorderRule;XSDSimpleTypeDefinition=1/XSDEnumerationFacet=2"/>
+      <nested inputs="metaabm.ecore#//SBorderRule/Periodic" outputs="MetaABMXMI.xsd#//SBorderRule;XSDSimpleTypeDefinition=1/XSDEnumerationFacet=3"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//SNeighborhoodType" outputs="MetaABMXMI.xsd#//SNeighborhoodType;XSDSimpleTypeDefinition=2">
+      <nested inputs="metaabm.ecore#//SNeighborhoodType/Euclidian" outputs="MetaABMXMI.xsd#//SNeighborhoodType;XSDSimpleTypeDefinition=2/XSDEnumerationFacet"/>
+      <nested inputs="metaabm.ecore#//SNeighborhoodType/Moore" outputs="MetaABMXMI.xsd#//SNeighborhoodType;XSDSimpleTypeDefinition=2/XSDEnumerationFacet=1"/>
+      <nested inputs="metaabm.ecore#//SNeighborhoodType/VonNeumann" outputs="MetaABMXMI.xsd#//SNeighborhoodType;XSDSimpleTypeDefinition=2/XSDEnumerationFacet=2"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//SImplementationMode" outputs="MetaABMXMI.xsd#//SImplementationMode;XSDSimpleTypeDefinition=3">
+      <nested inputs="metaabm.ecore#//SImplementationMode/Generate" outputs="MetaABMXMI.xsd#//SImplementationMode;XSDSimpleTypeDefinition=3/XSDEnumerationFacet"/>
+      <nested inputs="metaabm.ecore#//SImplementationMode/GenerateProtected" outputs="MetaABMXMI.xsd#//SImplementationMode;XSDSimpleTypeDefinition=3/XSDEnumerationFacet=1"/>
+      <nested inputs="metaabm.ecore#//SImplementationMode/GenerateEmpty" outputs="MetaABMXMI.xsd#//SImplementationMode;XSDSimpleTypeDefinition=3/XSDEnumerationFacet=2"/>
+      <nested inputs="metaabm.ecore#//SImplementationMode/Load" outputs="MetaABMXMI.xsd#//SImplementationMode;XSDSimpleTypeDefinition=3/XSDEnumerationFacet=3"/>
+      <nested inputs="metaabm.ecore#//SImplementationMode/External" outputs="MetaABMXMI.xsd#//SImplementationMode;XSDSimpleTypeDefinition=3/XSDEnumerationFacet=4"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//SShapeType" outputs="MetaABMXMI.xsd#//SShapeType;XSDSimpleTypeDefinition=4">
+      <nested inputs="metaabm.ecore#//SShapeType/Point" outputs="MetaABMXMI.xsd#//SShapeType;XSDSimpleTypeDefinition=4/XSDEnumerationFacet"/>
+      <nested inputs="metaabm.ecore#//SShapeType/Line" outputs="MetaABMXMI.xsd#//SShapeType;XSDSimpleTypeDefinition=4/XSDEnumerationFacet=1"/>
+      <nested inputs="metaabm.ecore#//SShapeType/Polygon" outputs="MetaABMXMI.xsd#//SShapeType;XSDSimpleTypeDefinition=4/XSDEnumerationFacet=2"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//IID" outputs="MetaABMXMI.xsd#//IID;XSDComplexTypeDefinition">
+      <nested inputs="metaabm.ecore#//IID/label" outputs="MetaABMXMI.xsd#//IID;XSDComplexTypeDefinition/XSDAttributeUse=1"/>
+      <nested inputs="metaabm.ecore#//IID/ID" outputs="MetaABMXMI.xsd#//IID;XSDComplexTypeDefinition/XSDAttributeUse=2"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//IID" outputs="MetaABMXMI.xsd#//IID;XSDElementDeclaration"/>
+    <nested inputs="metaabm.ecore#//ITyped" outputs="MetaABMXMI.xsd#//ITyped;XSDComplexTypeDefinition=1">
+      <nested inputs="metaabm.ecore#//ITyped/sType" outputs="MetaABMXMI.xsd#//ITyped;XSDComplexTypeDefinition=1/XSDAttributeUse"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//ITyped" outputs="MetaABMXMI.xsd#//ITyped;XSDElementDeclaration=1"/>
+    <nested inputs="metaabm.ecore#//ITypedArray" outputs="MetaABMXMI.xsd#//ITypedArray;XSDComplexTypeDefinition=2">
+      <nested inputs="metaabm.ecore#//ITypedArray/size" outputs="MetaABMXMI.xsd#//ITypedArray;XSDComplexTypeDefinition=2/XSDAttributeUse"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//ITypedArray" outputs="MetaABMXMI.xsd#//ITypedArray;XSDElementDeclaration=2"/>
+    <nested inputs="metaabm.ecore#//IValue" outputs="MetaABMXMI.xsd#//IValue;XSDComplexTypeDefinition=3"/>
+    <nested inputs="metaabm.ecore#//IValue" outputs="MetaABMXMI.xsd#//IValue;XSDElementDeclaration=3"/>
+    <nested inputs="metaabm.ecore#//IArtifact" outputs="MetaABMXMI.xsd#//IArtifact;XSDComplexTypeDefinition=4"/>
+    <nested inputs="metaabm.ecore#//IArtifact" outputs="MetaABMXMI.xsd#//IArtifact;XSDElementDeclaration=4"/>
+    <nested inputs="metaabm.ecore#//IAct" outputs="MetaABMXMI.xsd#//IAct;XSDComplexTypeDefinition=5"/>
+    <nested inputs="metaabm.ecore#//IAct" outputs="MetaABMXMI.xsd#//IAct;XSDElementDeclaration=5"/>
+    <nested inputs="metaabm.ecore#//SNamed" outputs="MetaABMXMI.xsd#//SNamed;XSDComplexTypeDefinition=6">
+      <nested inputs="metaabm.ecore#//SNamed/pluralLabel" outputs="MetaABMXMI.xsd#//SNamed;XSDComplexTypeDefinition=6/XSDAttributeUse"/>
+      <nested inputs="metaabm.ecore#//SNamed/description" outputs="MetaABMXMI.xsd#//SNamed;XSDComplexTypeDefinition=6/XSDAttributeUse=1"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//SNamed" outputs="MetaABMXMI.xsd#//SNamed;XSDElementDeclaration=6"/>
+    <nested inputs="metaabm.ecore#//SAttributed" outputs="MetaABMXMI.xsd#//SAttributed;XSDComplexTypeDefinition=7">
+      <nested inputs="metaabm.ecore#//SAttributed/attributes" outputs="MetaABMXMI.xsd#//SAttributed;XSDComplexTypeDefinition=7/XSDParticle/XSDModelGroup/XSDParticle"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//SAttributed" outputs="MetaABMXMI.xsd#//SAttributed;XSDElementDeclaration=7"/>
+    <nested inputs="metaabm.ecore#//SActable" outputs="MetaABMXMI.xsd#//SActable;XSDComplexTypeDefinition=8">
+      <nested inputs="metaabm.ecore#//SActable/rootActivity" outputs="MetaABMXMI.xsd#//SActable;XSDComplexTypeDefinition=8/XSDParticle/XSDModelGroup/XSDParticle"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//SActable" outputs="MetaABMXMI.xsd#//SActable;XSDElementDeclaration=8"/>
+    <nested inputs="metaabm.ecore#//SAttribute" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9">
+      <nested inputs="metaabm.ecore#//SAttribute/gatherData" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDAttributeUse=1"/>
+      <nested inputs="metaabm.ecore#//SAttribute/defaultValue" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDAttributeUse=2"/>
+      <nested inputs="metaabm.ecore#//SAttribute/units" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDAttributeUse=3"/>
+      <nested inputs="metaabm.ecore#//SAttribute/immutable" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDAttributeUse=4"/>
+      <nested inputs="metaabm.ecore#//SAttribute/owner" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDAttributeUse=5"/>
+      <nested inputs="metaabm.ecore#//SAttribute/owner" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDParticle/XSDModelGroup/XSDParticle"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//ITyped/sType" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDAttributeUse"/>
+    <nested inputs="metaabm.ecore#//SAttribute" outputs="MetaABMXMI.xsd#//SAttribute;XSDElementDeclaration=9"/>
+    <nested inputs="metaabm.ecore#//SAttributeArray" outputs="MetaABMXMI.xsd#//SAttributeArray;XSDComplexTypeDefinition=10"/>
+    <nested inputs="metaabm.ecore#//ITypedArray/size" outputs="MetaABMXMI.xsd#//SAttributeArray;XSDComplexTypeDefinition=10/XSDAttributeUse"/>
+    <nested inputs="metaabm.ecore#//SAttributeArray" outputs="MetaABMXMI.xsd#//SAttributeArray;XSDElementDeclaration=10"/>
+    <nested inputs="metaabm.ecore#//SState" outputs="MetaABMXMI.xsd#//SState;XSDComplexTypeDefinition=11">
+      <nested inputs="metaabm.ecore#//SState/options" outputs="MetaABMXMI.xsd#//SState;XSDComplexTypeDefinition=11/XSDParticle/XSDModelGroup/XSDParticle"/>
+      <nested inputs="metaabm.ecore#//SState/defaultOption" outputs="MetaABMXMI.xsd#//SState;XSDComplexTypeDefinition=11/XSDAttributeUse"/>
+      <nested inputs="metaabm.ecore#//SState/defaultOption" outputs="MetaABMXMI.xsd#//SState;XSDComplexTypeDefinition=11/XSDParticle/XSDModelGroup/XSDParticle=1"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//SState" outputs="MetaABMXMI.xsd#//SState;XSDElementDeclaration=11"/>
+    <nested inputs="metaabm.ecore#//SStateValue" outputs="MetaABMXMI.xsd#//SStateValue;XSDComplexTypeDefinition=12">
+      <nested inputs="metaabm.ecore#//SStateValue/set" outputs="MetaABMXMI.xsd#//SStateValue;XSDComplexTypeDefinition=12/XSDAttributeUse"/>
+      <nested inputs="metaabm.ecore#//SStateValue/set" outputs="MetaABMXMI.xsd#//SStateValue;XSDComplexTypeDefinition=12/XSDParticle/XSDModelGroup/XSDParticle"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//SStateValue" outputs="MetaABMXMI.xsd#//SStateValue;XSDElementDeclaration=12"/>
+    <nested inputs="metaabm.ecore#//SAgent" outputs="MetaABMXMI.xsd#//SAgent;XSDComplexTypeDefinition=13">
+      <nested inputs="metaabm.ecore#//SAgent/styles" outputs="MetaABMXMI.xsd#//SAgent;XSDComplexTypeDefinition=13/XSDParticle/XSDModelGroup/XSDParticle=1"/>
+      <nested inputs="metaabm.ecore#//SAgent/owner" outputs="MetaABMXMI.xsd#//SAgent;XSDComplexTypeDefinition=13/XSDAttributeUse"/>
+      <nested inputs="metaabm.ecore#//SAgent/owner" outputs="MetaABMXMI.xsd#//SAgent;XSDComplexTypeDefinition=13/XSDParticle/XSDModelGroup/XSDParticle=2"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//SImplemented/implementation" outputs="MetaABMXMI.xsd#//SAgent;XSDComplexTypeDefinition=13/XSDParticle/XSDModelGroup/XSDParticle"/>
+    <nested inputs="metaabm.ecore#//SAgent" outputs="MetaABMXMI.xsd#//SAgent;XSDElementDeclaration=13"/>
+    <nested inputs="metaabm.ecore#//SContext" outputs="MetaABMXMI.xsd#//SContext;XSDComplexTypeDefinition=14">
+      <nested inputs="metaabm.ecore#//SContext/agents" outputs="MetaABMXMI.xsd#//SContext;XSDComplexTypeDefinition=14/XSDParticle/XSDModelGroup/XSDParticle"/>
+      <nested inputs="metaabm.ecore#//SContext/projections" outputs="MetaABMXMI.xsd#//SContext;XSDComplexTypeDefinition=14/XSDParticle/XSDModelGroup/XSDParticle=1"/>
+      <nested inputs="metaabm.ecore#//SContext/valueLayers" outputs="MetaABMXMI.xsd#//SContext;XSDComplexTypeDefinition=14/XSDParticle/XSDModelGroup/XSDParticle=2"/>
+      <nested inputs="metaabm.ecore#//SContext/library" outputs="MetaABMXMI.xsd#//SContext;XSDComplexTypeDefinition=14/XSDParticle/XSDModelGroup/XSDParticle=3"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//SContext" outputs="MetaABMXMI.xsd#//SContext;XSDElementDeclaration=14"/>
+    <nested inputs="metaabm.ecore#//SProjection" outputs="MetaABMXMI.xsd#//SProjection;XSDComplexTypeDefinition=15">
+      <nested inputs="metaabm.ecore#//SProjection/owner" outputs="MetaABMXMI.xsd#//SProjection;XSDComplexTypeDefinition=15/XSDAttributeUse"/>
+      <nested inputs="metaabm.ecore#//SProjection/owner" outputs="MetaABMXMI.xsd#//SProjection;XSDComplexTypeDefinition=15/XSDParticle/XSDModelGroup/XSDParticle"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//SProjection" outputs="MetaABMXMI.xsd#//SProjection;XSDElementDeclaration=15"/>
+    <nested inputs="metaabm.ecore#//SNDimensional" outputs="MetaABMXMI.xsd#//SNDimensional;XSDComplexTypeDefinition=16">
+      <nested inputs="metaabm.ecore#//SNDimensional/dimensionality" outputs="MetaABMXMI.xsd#//SNDimensional;XSDComplexTypeDefinition=16/XSDAttributeUse"/>
+      <nested inputs="metaabm.ecore#//SNDimensional/borderRule" outputs="MetaABMXMI.xsd#//SNDimensional;XSDComplexTypeDefinition=16/XSDAttributeUse=1"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//SNDimensional" outputs="MetaABMXMI.xsd#//SNDimensional;XSDElementDeclaration=16"/>
+    <nested inputs="metaabm.ecore#//SContinuousSpace" outputs="MetaABMXMI.xsd#//SContinuousSpace;XSDComplexTypeDefinition=17"/>
+    <nested inputs="metaabm.ecore#//SContinuousSpace" outputs="MetaABMXMI.xsd#//SContinuousSpace;XSDElementDeclaration=17"/>
+    <nested inputs="metaabm.ecore#//SGrid" outputs="MetaABMXMI.xsd#//SGrid;XSDComplexTypeDefinition=18">
+      <nested inputs="metaabm.ecore#//SGrid/multiOccupant" outputs="MetaABMXMI.xsd#//SGrid;XSDComplexTypeDefinition=18/XSDAttributeUse"/>
+      <nested inputs="metaabm.ecore#//SGrid/neighborhood" outputs="MetaABMXMI.xsd#//SGrid;XSDComplexTypeDefinition=18/XSDAttributeUse=1"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//SGrid" outputs="MetaABMXMI.xsd#//SGrid;XSDElementDeclaration=18"/>
+    <nested inputs="metaabm.ecore#//SNetwork" outputs="MetaABMXMI.xsd#//SNetwork;XSDComplexTypeDefinition=19">
+      <nested inputs="metaabm.ecore#//SNetwork/directed" outputs="MetaABMXMI.xsd#//SNetwork;XSDComplexTypeDefinition=19/XSDAttributeUse"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//SNetwork" outputs="MetaABMXMI.xsd#//SNetwork;XSDElementDeclaration=19"/>
+    <nested inputs="metaabm.ecore#//SGeography" outputs="MetaABMXMI.xsd#//SGeography;XSDComplexTypeDefinition=20"/>
+    <nested inputs="metaabm.ecore#//SGeography" outputs="MetaABMXMI.xsd#//SGeography;XSDElementDeclaration=20"/>
+    <nested inputs="metaabm.ecore#//SValueLayer" outputs="MetaABMXMI.xsd#//SValueLayer;XSDComplexTypeDefinition=21"/>
+    <nested inputs="metaabm.ecore#//SValueLayer" outputs="MetaABMXMI.xsd#//SValueLayer;XSDElementDeclaration=21"/>
+    <nested inputs="metaabm.ecore#//SStyle" outputs="MetaABMXMI.xsd#//SStyle;XSDComplexTypeDefinition=22">
+      <nested inputs="metaabm.ecore#//SStyle/agent" outputs="MetaABMXMI.xsd#//SStyle;XSDComplexTypeDefinition=22/XSDAttributeUse"/>
+      <nested inputs="metaabm.ecore#//SStyle/agent" outputs="MetaABMXMI.xsd#//SStyle;XSDComplexTypeDefinition=22/XSDParticle/XSDModelGroup/XSDParticle=1"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//SImplemented/implementation" outputs="MetaABMXMI.xsd#//SStyle;XSDComplexTypeDefinition=22/XSDParticle/XSDModelGroup/XSDParticle"/>
+    <nested inputs="metaabm.ecore#//SStyle" outputs="MetaABMXMI.xsd#//SStyle;XSDElementDeclaration=22"/>
+    <nested inputs="metaabm.ecore#//SStyle2D" outputs="MetaABMXMI.xsd#//SStyle2D;XSDComplexTypeDefinition=23"/>
+    <nested inputs="metaabm.ecore#//SStyle2D" outputs="MetaABMXMI.xsd#//SStyle2D;XSDElementDeclaration=23"/>
+    <nested inputs="metaabm.ecore#//SStyleShape" outputs="MetaABMXMI.xsd#//SStyleShape;XSDComplexTypeDefinition=24">
+      <nested inputs="metaabm.ecore#//SStyleShape/shape" outputs="MetaABMXMI.xsd#//SStyleShape;XSDComplexTypeDefinition=24/XSDAttributeUse"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//SStyleShape" outputs="MetaABMXMI.xsd#//SStyleShape;XSDElementDeclaration=24"/>
+    <nested inputs="metaabm.ecore#//SStyle3D" outputs="MetaABMXMI.xsd#//SStyle3D;XSDComplexTypeDefinition=25"/>
+    <nested inputs="metaabm.ecore#//SStyle3D" outputs="MetaABMXMI.xsd#//SStyle3D;XSDElementDeclaration=25"/>
+    <nested inputs="metaabm.ecore#//SImplemented" outputs="MetaABMXMI.xsd#//SImplemented;XSDComplexTypeDefinition=26">
+      <nested inputs="metaabm.ecore#//SImplemented/implementation" outputs="MetaABMXMI.xsd#//SImplemented;XSDComplexTypeDefinition=26/XSDParticle/XSDModelGroup/XSDParticle"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//SImplemented" outputs="MetaABMXMI.xsd#//SImplemented;XSDElementDeclaration=26"/>
+    <nested inputs="metaabm.ecore#//SImplementation" outputs="MetaABMXMI.xsd#//SImplementation;XSDComplexTypeDefinition=27">
+      <nested inputs="metaabm.ecore#//SImplementation/package" outputs="MetaABMXMI.xsd#//SImplementation;XSDComplexTypeDefinition=27/XSDAttributeUse=1"/>
+      <nested inputs="metaabm.ecore#//SImplementation/className" outputs="MetaABMXMI.xsd#//SImplementation;XSDComplexTypeDefinition=27/XSDAttributeUse=2"/>
+      <nested inputs="metaabm.ecore#//SImplementation/basePath" outputs="MetaABMXMI.xsd#//SImplementation;XSDComplexTypeDefinition=27/XSDAttributeUse=3"/>
+      <nested inputs="metaabm.ecore#//SImplementation/mode" outputs="MetaABMXMI.xsd#//SImplementation;XSDComplexTypeDefinition=27/XSDAttributeUse=4"/>
+      <nested inputs="metaabm.ecore#//SImplementation/srcDir" outputs="MetaABMXMI.xsd#//SImplementation;XSDComplexTypeDefinition=27/XSDAttributeUse=5"/>
+      <nested inputs="metaabm.ecore#//SImplementation/binDir" outputs="MetaABMXMI.xsd#//SImplementation;XSDComplexTypeDefinition=27/XSDAttributeUse=6"/>
+      <nested inputs="metaabm.ecore#//SImplementation/target" outputs="MetaABMXMI.xsd#//SImplementation;XSDComplexTypeDefinition=27/XSDAttributeUse=7"/>
+      <nested inputs="metaabm.ecore#//SImplementation/target" outputs="MetaABMXMI.xsd#//SImplementation;XSDComplexTypeDefinition=27/XSDParticle/XSDModelGroup/XSDParticle"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//SImplementation" outputs="MetaABMXMI.xsd#//SImplementation;XSDElementDeclaration=27"/>
+  </nested>
+</xsd2ecore:XSD2EcoreMappingRoot>

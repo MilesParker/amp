@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xsd2ecore:XSD2EcoreMappingRoot xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsd2ecore="http://www.eclipse.org/emf/2002/XSD2Ecore" inputs="metaabm.ecore#//function"
+    outputs="MetaABMFunctionXML.xsd#/">
+  <nested inputs="metaabm.ecore#//function" outputs="MetaABMFunctionXML.xsd#/">
+    <nested inputs="metaabm.ecore#//function/FArgumentPrototype" outputs="MetaABMFunctionXML.xsd#//FArgumentPrototype;XSDComplexTypeDefinition">
+      <nested inputs="metaabm.ecore#//function/FArgumentPrototype/optional" outputs="MetaABMFunctionXML.xsd#//FArgumentPrototype;XSDComplexTypeDefinition/XSDAttributeUse=2"/>
+      <nested inputs="metaabm.ecore#//function/FArgumentPrototype/inputFunction" outputs="MetaABMFunctionXML.xsd#//FArgumentPrototype;XSDComplexTypeDefinition/XSDAttributeUse=3"/>
+      <nested inputs="metaabm.ecore#//function/FArgumentPrototype/outputFunction"
+          outputs="MetaABMFunctionXML.xsd#//FArgumentPrototype;XSDComplexTypeDefinition/XSDAttributeUse=4"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//function/FArgumentPrototype" outputs="MetaABMFunctionXML.xsd#//FArgumentPrototype;XSDElementDeclaration"/>
+    <nested inputs="metaabm.ecore#//function/FArgumentArrayPrototype" outputs="MetaABMFunctionXML.xsd#//FArgumentArrayPrototype;XSDComplexTypeDefinition=1"/>
+    <nested inputs="metaabm.ecore#//function/FArgumentArrayPrototype" outputs="MetaABMFunctionXML.xsd#//FArgumentArrayPrototype;XSDElementDeclaration=1"/>
+    <nested inputs="metaabm.ecore#//function/FFunction" outputs="MetaABMFunctionXML.xsd#//FFunction;XSDComplexTypeDefinition=2">
+      <nested inputs="metaabm.ecore#//function/FFunction/inputPrototypes" outputs="MetaABMFunctionXML.xsd#//FFunction;XSDComplexTypeDefinition=2/XSDParticle/XSDModelGroup/XSDParticle"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//function/FLogical" outputs="MetaABMFunctionXML.xsd#//FLogical;XSDComplexTypeDefinition=3"/>
+    <nested inputs="metaabm.ecore#//function/FOperator" outputs="MetaABMFunctionXML.xsd#//FOperator;XSDComplexTypeDefinition=4">
+      <nested inputs="metaabm.ecore#//function/FOperator/symbol" outputs="MetaABMFunctionXML.xsd#//FOperator;XSDComplexTypeDefinition=4/XSDAttributeUse=2"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//function/FOperator" outputs="MetaABMFunctionXML.xsd#//FOperator;XSDElementDeclaration=2"/>
+    <nested inputs="metaabm.ecore#//function/FLogicalOperator" outputs="MetaABMFunctionXML.xsd#//FLogicalOperator;XSDComplexTypeDefinition=5"/>
+    <nested inputs="metaabm.ecore#//function/FLogicalOperator" outputs="MetaABMFunctionXML.xsd#//FLogicalOperator;XSDElementDeclaration=3"/>
+    <nested inputs="metaabm.ecore#//function/FGeneric" outputs="MetaABMFunctionXML.xsd#//FGeneric;XSDComplexTypeDefinition=6"/>
+    <nested inputs="metaabm.ecore#//function/FGenericFunction" outputs="MetaABMFunctionXML.xsd#//FGenericFunction;XSDComplexTypeDefinition=7">
+      <nested inputs="metaabm.ecore#//function/FGenericFunction/outputPrototypes"
+          outputs="MetaABMFunctionXML.xsd#//FGenericFunction;XSDComplexTypeDefinition=7/XSDParticle/XSDModelGroup/XSDParticle"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//function/FGenericFunction" outputs="MetaABMFunctionXML.xsd#//FGenericFunction;XSDElementDeclaration=4"/>
+    <nested inputs="metaabm.ecore#//function/FGenericLogical" outputs="MetaABMFunctionXML.xsd#//FGenericLogical;XSDComplexTypeDefinition=8"/>
+    <nested inputs="metaabm.ecore#//function/FGenericLogical" outputs="MetaABMFunctionXML.xsd#//FGenericLogical;XSDElementDeclaration=5"/>
+    <nested inputs="metaabm.ecore#//function/FLibrary" outputs="MetaABMFunctionXML.xsd#//FLibrary;XSDComplexTypeDefinition=9">
+      <nested inputs="metaabm.ecore#//function/FLibrary/functions" outputs="MetaABMFunctionXML.xsd#//FLibrary;XSDComplexTypeDefinition=9/XSDParticle/XSDModelGroup/XSDParticle"/>
+      <nested inputs="metaabm.ecore#//function/FLibrary/subs" outputs="MetaABMFunctionXML.xsd#//FLibrary;XSDComplexTypeDefinition=9/XSDParticle/XSDModelGroup/XSDParticle=1"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//function/FLibrary" outputs="MetaABMFunctionXML.xsd#//FLibrary;XSDElementDeclaration=6"/>
+    <nested inputs="metaabm.ecore#//function/FImplementedLibrary" outputs="MetaABMFunctionXML.xsd#//FImplementedLibrary;XSDComplexTypeDefinition=10"/>
+    <nested inputs="metaabm.ecore#//function/FLibrary/functions" outputs="MetaABMFunctionXML.xsd#//FImplementedLibrary;XSDComplexTypeDefinition=10/XSDParticle/XSDModelGroup/XSDParticle"/>
+    <nested inputs="metaabm.ecore#//function/FLibrary/subs" outputs="MetaABMFunctionXML.xsd#//FImplementedLibrary;XSDComplexTypeDefinition=10/XSDParticle/XSDModelGroup/XSDParticle=1"/>
+    <nested inputs="metaabm.ecore#//function/FImplementedLibrary" outputs="MetaABMFunctionXML.xsd#//FImplementedLibrary;XSDElementDeclaration=7"/>
+    <nested inputs="metaabm.ecore#//function/FMultiArgumentPrototype" outputs="MetaABMFunctionXML.xsd#//FMultiArgumentPrototype;XSDComplexTypeDefinition=11"/>
+    <nested inputs="metaabm.ecore#//function/FMultiArgumentPrototype" outputs="MetaABMFunctionXML.xsd#//FMultiArgumentPrototype;XSDElementDeclaration=8"/>
+  </nested>
+  <nested inputs="metaabm.ecore#//SNamed/pluralLabel" outputs="MetaABMFunctionXML.xsd#//FArgumentPrototype;XSDComplexTypeDefinition/XSDAttributeUse"/>
+  <nested inputs="metaabm.ecore#//SNamed/description" outputs="MetaABMFunctionXML.xsd#//FArgumentPrototype;XSDComplexTypeDefinition/XSDAttributeUse=1"/>
+  <nested inputs="metaabm.ecore#//ITypedArray/size" outputs="MetaABMFunctionXML.xsd#//FArgumentArrayPrototype;XSDComplexTypeDefinition=1/XSDAttributeUse"/>
+  <nested inputs="metaabm.ecore#//SNamed/pluralLabel" outputs="MetaABMFunctionXML.xsd#//FOperator;XSDComplexTypeDefinition=4/XSDAttributeUse"/>
+  <nested inputs="metaabm.ecore#//SNamed/description" outputs="MetaABMFunctionXML.xsd#//FOperator;XSDComplexTypeDefinition=4/XSDAttributeUse=1"/>
+  <nested inputs="metaabm.ecore#//SNamed/pluralLabel" outputs="MetaABMFunctionXML.xsd#//FGeneric;XSDComplexTypeDefinition=6/XSDAttributeUse"/>
+  <nested inputs="metaabm.ecore#//SNamed/description" outputs="MetaABMFunctionXML.xsd#//FGeneric;XSDComplexTypeDefinition=6/XSDAttributeUse=1"/>
+  <nested inputs="metaabm.ecore#//SNamed/pluralLabel" outputs="MetaABMFunctionXML.xsd#//FImplementedLibrary;XSDComplexTypeDefinition=10/XSDAttributeUse"/>
+  <nested inputs="metaabm.ecore#//SNamed/description" outputs="MetaABMFunctionXML.xsd#//FImplementedLibrary;XSDComplexTypeDefinition=10/XSDAttributeUse=1"/>
+</xsd2ecore:XSD2EcoreMappingRoot>
