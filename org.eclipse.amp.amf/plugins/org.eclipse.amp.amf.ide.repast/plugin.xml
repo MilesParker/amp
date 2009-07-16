@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2009/07/16 21:06:38 mparker Exp $
+-->
+
+<plugin> 
+  <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            id="org.eclipse.amp.amf.ide.launching.ui.RepastLaunchConfigType"
+            modes="run, debug"
+            name="Simphony Model"
+            delegate="org.eclipse.jdt.launching.JavaLaunchDelegate"
+            sourceLocatorId="org.eclipse.pde.ui.launcher.PDESourceLookupDirector"
+            sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="org.eclipse.amp.amf.ide.repast.RepastLaunchConfigTabGroup"
+            id="org.eclipse.amp.amf.ide.launching.ui.RepastLaunchConfigTabGroup"
+            type="org.eclipse.amp.amf.ide.launching.ui.RepastLaunchConfigType"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="org.eclipse.amp.amf.ide.launching.ui.RepastLaunchConfigType"
+            icon="icons/obj16/Repast16.gif"
+            id="org.eclipse.amp.amf.ide.launching.ui.RepastLaunchConfigTypeImage"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            label="Simphony Model"
+            icon="icons/obj16/Repast16.gif"
+            category="org.eclipse.ui.externaltools"
+            class="org.eclipse.amp.amf.ide.repast.RepastLaunchAction"
+            modes="run, debug"
+            id="org.eclipse.amp.amf.ide.launching.ui.RepastShortcut">
+        <contextualLaunch>
+           <enablement>
+             <with variable="selection">
+               <count value="1"/>
+               <iterate>
+                  <or>
+                     <test
+                           property="org.eclipse.debug.ui.matchesPattern"
+                           value="*.metaabm">
+                     </test>
+                     <test
+                           property="org.eclipse.debug.ui.matchesPattern"
+                           value="*.score">
+                     </test>
+                     <test
+                           property="org.eclipse.debug.ui.matchesPattern"
+                           value="*.rs">
+                     </test>
+                  </or>
+               </iterate>
+             </with>
+           </enablement>
+           <contextLabel
+         	  mode="run"
+         	  label="Simphony Model"/>
+          <contextLabel
+         	  mode="debug"
+         	  label="Simphony Model"/>
+  		 </contextualLaunch>
+      </shortcut>
+   </extension>
+	<extension
+          id="repastBuilder"
+          name="MetaABM for Repast"
+          point="org.eclipse.core.resources.builders">
+       <builder
+             hasNature="false">
+          <run class="org.eclipse.amp.amf.ide.repast.RepastModelBuilder"/>
+       </builder>
+    </extension> 
+    <extension point="org.eclipse.ui.newWizards">
+    <wizard
+          category="org.eclipse.amp.amf.ide.wizards"
+          class="org.eclipse.amp.amf.ide.repast.RepastProjectWizard"
+          descriptionImage="icons/obj16/Repast16.gif"
+          icon="icons/obj16/Repast16.gif"
+          id="org.eclipse.amp.amf.ide.repast.wizards.newProject"
+          name="Simphony MetaABM Project"
+          project="true">
+      <description>Creates a new project for generating Repast implementations from MetaABM models.</description>
+    </wizard>
+    <wizard
+          category="org.eclipse.amp.amf.ide.wizards"
+          class="org.eclipse.amp.amf.ide.repast.RepastBareProjectWizard"
+          descriptionImage="icons/obj16/Repast16.gif"
+          icon="icons/obj16/Repast16.gif"
+          id="org.eclipse.amp.amf.ide.repast.wizards.newBareProject"
+          name="Simphony Basic Project"
+          project="true">
+       <description>
+          Creates a new project for bare Java (POJO) projects. Does not support MetaABM or Simphony visual editing tools.
+       </description>
+    </wizard>
+    </extension>
+    <extension point="org.eclipse.ui.perspectiveExtensions"> 
+        <perspectiveExtension 
+            targetID="org.eclipse.amp.amf.AgentModelingPerspective"> 
+            <newWizardShortcut id="org.eclipse.amp.amf.ide.repast.wizards.newProject"/>
+            <newWizardShortcut
+                  id="org.eclipse.amp.amf.ide.repast.wizards.newBareProject">
+            </newWizardShortcut> 
+        </perspectiveExtension>
+    </extension> 
+    <extension
+          point="org.eclipse.ui.handlers">
+       <handler
+             class="org.eclipse.amp.amf.ide.repast.GenerateRepastHandler"
+             commandId="org.eclipse.amp.amf.gen.repast.Generate">
+          <activeWhen>
+             <reference
+                   definitionId="org.metaabm.metaABMFile">
+             </reference>
+          </activeWhen>
+          <enabledWhen>
+             <reference
+                   definitionId="org.metaabm.metaABMFile">
+             </reference>
+          </enabledWhen>
+       </handler>
+    </extension>
+    <extension
+          point="org.eclipse.ui.commands">
+       <command
+             categoryId="org.eclipse.amp.amf.gen.category"
+             id="org.eclipse.amp.amf.gen.repast.Generate"
+             name="Generate Simphony Model">
+       </command>
+    </extension>
+    <extension
+          point="org.eclipse.ui.menus">
+       <menuContribution
+             locationURI="popup:org.metaabm.ide.generateMenuID">
+          <command
+                commandId="org.eclipse.amp.amf.gen.repast.Generate"
+                icon="icons/obj16/Repast16.gif"
+                label="Simphony"
+                style="push"
+                tooltip="Manually generate Repast Simphony implementation. (It usually makes more sense to use a builder.)">
+             <visibleWhen
+                   checkEnabled="true">
+             </visibleWhen>
+          </command>
+       </menuContribution>
+ </extension>
+</plugin>
+
