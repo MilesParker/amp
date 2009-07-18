@@ -1,0 +1,36 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.eclipse.amp.amf.parameters
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0
+Bundle-SymbolicName: org.eclipse.amp.amf.parameters; singleton:=true
+Eclipse-RegisterBuddy: org.eclipse.xtext.log4j
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.generator;resolution:=optional,
+ de.itemis.xtext.antlr;resolution:=optional,
+ org.apache.commons.logging;resolution:=optional,
+ org.eclipse.emf.codegen.ecore;resolution:=optional,
+ org.eclipse.xtext.log4j;resolution:=optional,
+ org.eclipse.emf.mwe.utils;resolution:=optional,
+ org.eclipse.emf.mwe.core;resolution:=optional,
+ com.ibm.icu;resolution:=optional,
+ org.eclipse.xtext.xtend;resolution:=optional,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime,
+ org.eclipse.amp.amf.acore;bundle-version="0.2.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.amp.amf.parameters,
+ org.eclipse.amp.amf.parameters.aPar,
+ org.eclipse.amp.amf.parameters.aPar.impl,
+ org.eclipse.amp.amf.parameters.aPar.util,
+ org.eclipse.amp.amf.parameters.formatting,
+ org.eclipse.amp.amf.parameters.parseTreeConstruction,
+ org.eclipse.amp.amf.parameters.parser.antlr,
+ org.eclipse.amp.amf.parameters.parser.antlr.internal,
+ org.eclipse.amp.amf.parameters.scoping,
+ org.eclipse.amp.amf.parameters.services,
+ org.eclipse.amp.amf.parameters.validation
+

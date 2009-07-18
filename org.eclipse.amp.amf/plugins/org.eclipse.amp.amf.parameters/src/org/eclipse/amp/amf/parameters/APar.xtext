@@ -1,0 +1,43 @@
+grammar org.eclipse.amp.amf.parameters.APar with org.eclipse.xtext.common.Terminals
+
+generate aPar "http://www.eclipse.org/amp/amf/parameters/APar"
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import 'platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.ecore'
+
+terminal FLOAT :
+	INT "." INT;
+
+Model :
+	model+=Import
+	(incorporates+=Import)*
+	(parameters+=Parameter)*;
+	
+Import :
+	'model' importURI=STRING;
+
+Incorporates :
+	'incorporates' importURI=STRING;
+
+Parameter :
+	attribute=[SAttribute|STRING] value=Value;
+
+Value :
+	value=(IntValue | FloatValue | StringValue | BooleanValue);
+
+IntValue :
+	value=INT;
+
+FloatValue :
+	value=FLOAT;
+
+StringValue :
+	value=STRING;
+
+BooleanValue :
+	value=BOOLEAN;
+	
+enum Engine :
+	STOP_PERIOD = 'STOP PERIOD';	
+	
+enum BOOLEAN :
+	TRUE = 'TRUE' | TRUE = 'true' | FALSE = 'FALSE' | FALSE = 'false';

@@ -1,0 +1,87 @@
+/**
+ * <copyright>
+ *
+ * Copyright (c) 2009 Metascape, LLC.
+ * All rights reserved.   This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *   Metascape - Initial API and Implementation
+ *
+ * </copyright>
+ *
+ */
+
+package org.eclipse.amp.amf.parameters;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.IScopedElement;
+import org.eclipse.xtext.scoping.impl.DefaultScopeProvider;
+import org.eclipse.xtext.scoping.impl.ScopedElement;
+import org.eclipse.xtext.xtend.scoping.Scope;
+import org.metaabm.MetaABMPackage;
+import org.metaabm.SAttribute;
+import org.metaabm.SAttributed;
+
+/**
+ * 
+ * @author mparker
+ *
+ */
+public class AParScopeProvider extends DefaultScopeProvider {
+    /**
+     * @param context
+     * @param type
+     * @return
+     * @see org.eclipse.xtext.scoping.impl.DefaultScopeProvider#getScope(org.eclipse.emf.ecore.EObject,
+     *      org.eclipse.emf.ecore.EClass)
+     */
+    public IScope getScope(EObject context, EClass type) {
+        return super.getScope(context, type);
+        // ScopedElements.allInResource(context.eResource().eAdapters(), type, getImportUriResolver())
+    }
+
+    /**
+     * @param context
+     * @param reference
+     * @return
+     * @see org.eclipse.xtext.scoping.impl.DefaultScopeProvider#getScope(org.eclipse.emf.ecore.EObject,
+     *      org.eclipse.emf.ecore.EReference)
+     */
+    public IScope getScope(EObject context, EReference reference) {
+        // todo optimization -- for obscure reasons we need to get the references loaded this way but it doesn't have to
+        // happen every time.
+        IScope defaultScope = super.getScope(context, reference);
+        if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAttribute()) {
+            EList<Resource> resources = context.eResource().getResourceSet().getResources();
+            List<IScopedElement> allElems = new ArrayList<IScopedElement>();
+            for (Resource resource : resources) {
+                EObject content = resource.getContents().get(0);
+                if (content instanceof SAttributed) {
+                    for (SAttribute attr : ((SAttributed) content).getAttributes()) {
+                        // don't want to allow parameter entries that can't be changed..which is also why we don't get
+                        // core attributes.
+                        if (!attr.isImmutable()) {
+                            allElems.add(ScopedElement.create(attr.getLabel(), attr));
+                        }
+                    };
+                }
+            }
+            Scope scope = new Scope();
+            scope.setOuterScope(defaultScope);
+            scope.setElements(allElems);
+            return scope;
+        }
+        return defaultScope;
+    }
+}
