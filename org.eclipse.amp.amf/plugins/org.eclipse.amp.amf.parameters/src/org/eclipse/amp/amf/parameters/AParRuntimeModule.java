@@ -3,6 +3,7 @@
  */
 package org.eclipse.amp.amf.parameters;
 
+import org.eclipse.amp.amf.parameters.scoping.AParScopeProvider;
 import org.eclipse.xtext.linking.ILinkingService;
 import org.eclipse.xtext.scoping.IScopeProvider;
 

@@ -38,9 +38,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="BooleanValue">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//BOOLEAN"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Engine">
-    <eLiterals name="STOP_PERIOD" literal="STOP PERIOD"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="BOOLEAN">
     <eLiterals name="TRUE" literal="TRUE"/>
     <eLiterals name="FALSE" value="2" literal="FALSE"/>

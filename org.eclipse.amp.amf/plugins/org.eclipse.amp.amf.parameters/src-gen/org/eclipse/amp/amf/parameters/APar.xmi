@@ -10,29 +10,19 @@
     <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel">
       <ePackage href="http://metaabm.org/structure#/"/>
     </metamodelDeclarations>
-    <rules xsi:type="xtext:TerminalRule" name="FLOAT">
-      <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      </type>
-      <alternatives xsi:type="xtext:Group">
-        <tokens xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
-        <tokens xsi:type="xtext:Keyword" value="."/>
-        <tokens xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
-      </alternatives>
-    </rules>
     <rules xsi:type="xtext:ParserRule" name="Model">
       <type metamodel="/0/@metamodelDeclarations.0">
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/amp/amf/parameters/APar#//Model"/>
       </type>
       <alternatives xsi:type="xtext:Group">
         <tokens xsi:type="xtext:Assignment" feature="model" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.2"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.1"/>
         </tokens>
         <tokens xsi:type="xtext:Assignment" cardinality="*" feature="incorporates" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.2"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.1"/>
         </tokens>
         <tokens xsi:type="xtext:Assignment" cardinality="*" feature="parameters" operator="+=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.4"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.3"/>
         </tokens>
       </alternatives>
     </rules>
@@ -72,7 +62,7 @@
           </terminal>
         </tokens>
         <tokens xsi:type="xtext:Assignment" feature="value" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.4"/>
         </tokens>
       </alternatives>
     </rules>
@@ -82,10 +72,10 @@
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
         <terminal xsi:type="xtext:Alternatives">
+          <groups xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
           <groups xsi:type="xtext:RuleCall" rule="/0/@rules.6"/>
           <groups xsi:type="xtext:RuleCall" rule="/0/@rules.7"/>
           <groups xsi:type="xtext:RuleCall" rule="/0/@rules.8"/>
-          <groups xsi:type="xtext:RuleCall" rule="/0/@rules.9"/>
         </terminal>
       </alternatives>
     </rules>
@@ -102,7 +92,7 @@
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/amp/amf/parameters/APar#//FloatValue"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.0"/>
+        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.9"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="StringValue">
@@ -118,16 +108,17 @@
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/amp/amf/parameters/APar#//BooleanValue"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.11"/>
+        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.10"/>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:EnumRule" name="Engine">
-      <type metamodel="/0/@metamodelDeclarations.0">
-        <classifier xsi:type="ecore:EEnum" href="http://www.eclipse.org/amp/amf/parameters/APar#//Engine"/>
+    <rules xsi:type="xtext:TerminalRule" name="FLOAT">
+      <type metamodel="/0/@metamodelDeclarations.1">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
-      <alternatives xsi:type="xtext:EnumLiteralDeclaration">
-        <enumLiteral href="http://www.eclipse.org/amp/amf/parameters/APar#//Engine/STOP_PERIOD"/>
-        <literal value="STOP PERIOD"/>
+      <alternatives xsi:type="xtext:Group">
+        <tokens xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
+        <tokens xsi:type="xtext:Keyword" value="."/>
+        <tokens xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:EnumRule" name="BOOLEAN">

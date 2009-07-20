@@ -69,6 +69,88 @@ import org.eclipse.amp.amf.parameters.services.AParGrammarAccess;
 
 
 
+// Entry rule entryRuleModel
+entryRuleModel returns [EObject current=null] :
+	{ currentNode = createCompositeNode(grammarAccess.getModelRule(), currentNode); }
+	 iv_ruleModel=ruleModel 
+	 { $current=$iv_ruleModel.current; } 
+	 EOF 
+;
+
+// Rule Model
+ruleModel returns [EObject current=null] 
+    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
+((	
+	
+	    
+	    { 
+	        currentNode=createCompositeNode(grammarAccess.getModelAccess().getModelImportParserRuleCall_0_0(), currentNode); 
+	    }
+	    lv_model_0=ruleImport 
+	    {
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getModelRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        
+	        try {
+	       		add($current, "model", lv_model_0, "Import", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+	
+)(	
+	
+	    
+	    { 
+	        currentNode=createCompositeNode(grammarAccess.getModelAccess().getIncorporatesImportParserRuleCall_1_0(), currentNode); 
+	    }
+	    lv_incorporates_1=ruleImport 
+	    {
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getModelRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        
+	        try {
+	       		add($current, "incorporates", lv_incorporates_1, "Import", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+	
+)*(	
+	
+	    
+	    { 
+	        currentNode=createCompositeNode(grammarAccess.getModelAccess().getParametersParameterParserRuleCall_2_0(), currentNode); 
+	    }
+	    lv_parameters_2=ruleParameter 
+	    {
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getModelRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        
+	        try {
+	       		add($current, "parameters", lv_parameters_2, "Parameter", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+	
+)*);
+
+
+
 
 
 // Entry rule entryRuleImport
@@ -401,8 +483,6 @@ ruleBooleanValue returns [EObject current=null]
 	    }
 	
 );
-
-
 
 
 

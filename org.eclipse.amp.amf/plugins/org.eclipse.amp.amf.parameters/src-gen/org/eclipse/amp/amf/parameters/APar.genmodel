@@ -3,12 +3,6 @@
   <genPackages prefix="APar" basePackage="org.eclipse.amp.amf.parameters" disposableProviderFactory="true">
     <ecorePackage href="APar.ecore#/"/>
     <genEnums typeSafeEnumCompatible="false">
-      <ecoreEnum href="APar.ecore#//Engine"/>
-      <genEnumLiterals>
-        <ecoreEnumLiteral href="APar.ecore#//Engine/STOP_PERIOD"/>
-      </genEnumLiterals>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false">
       <ecoreEnum href="APar.ecore#//BOOLEAN"/>
       <genEnumLiterals>
         <ecoreEnumLiteral href="APar.ecore#//BOOLEAN/TRUE"/>

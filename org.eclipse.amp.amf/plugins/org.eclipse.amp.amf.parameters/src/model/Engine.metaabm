@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:metaabm="http://metaabm.org/metaabm.org/structure" label="Engine" ID="engine" pluralLabel="Engines">
+  <attributes label="Stop Period" ID="stopPeriod" pluralLabel="Stop Periods" sType="INTEGER"/>
+  <attributes label="Pause Period" ID="pausePeriod" pluralLabel="Pause Periods" sType="INTEGER"/>
+  <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups"/>
+  <implementation package="org.eclipse.amp.amf.parameters" className="Engine" basePath="" mode="LOAD"/>
+</metaabm:SContext>

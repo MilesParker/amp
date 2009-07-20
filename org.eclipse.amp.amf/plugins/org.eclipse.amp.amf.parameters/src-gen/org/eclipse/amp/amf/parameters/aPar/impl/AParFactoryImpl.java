@@ -92,8 +92,6 @@ public class AParFactoryImpl extends EFactoryImpl implements AParFactory
   {
     switch (eDataType.getClassifierID())
     {
-      case AParPackage.ENGINE:
-        return createEngineFromString(eDataType, initialValue);
       case AParPackage.BOOLEAN:
         return createBOOLEANFromString(eDataType, initialValue);
       default:
@@ -111,8 +109,6 @@ public class AParFactoryImpl extends EFactoryImpl implements AParFactory
   {
     switch (eDataType.getClassifierID())
     {
-      case AParPackage.ENGINE:
-        return convertEngineToString(eDataType, instanceValue);
       case AParPackage.BOOLEAN:
         return convertBOOLEANToString(eDataType, instanceValue);
       default:
@@ -217,28 +213,6 @@ public class AParFactoryImpl extends EFactoryImpl implements AParFactory
   {
     BooleanValueImpl booleanValue = new BooleanValueImpl();
     return booleanValue;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Engine createEngineFromString(EDataType eDataType, String initialValue)
-  {
-    Engine result = Engine.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertEngineToString(EDataType eDataType, Object instanceValue)
-  {
-    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

@@ -20,10 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopedElement;
 import org.eclipse.xtext.scoping.impl.DefaultScopeProvider;
@@ -36,7 +38,7 @@ import org.metaabm.SAttributed;
 /**
  * 
  * @author mparker
- *
+ * 
  */
 public class AParScopeProvider extends DefaultScopeProvider {
     /**
@@ -63,7 +65,13 @@ public class AParScopeProvider extends DefaultScopeProvider {
         // happen every time.
         IScope defaultScope = super.getScope(context, reference);
         if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAttribute()) {
-            EList<Resource> resources = context.eResource().getResourceSet().getResources();
+            ResourceSet resourceSet = context.eResource().getResourceSet();
+            resourceSet
+            .getResource(
+                         URI
+                         .createURI("platform:/plugin/org.eclipse.amp.amf.parameters/org/eclipse/amp/amf/parameters/Engine.metaabm"),
+                         true);
+            EList<Resource> resources = resourceSet.getResources();
             List<IScopedElement> allElems = new ArrayList<IScopedElement>();
             for (Resource resource : resources) {
                 EObject content = resource.getContents().get(0);
@@ -74,7 +82,8 @@ public class AParScopeProvider extends DefaultScopeProvider {
                         if (!attr.isImmutable()) {
                             allElems.add(ScopedElement.create(attr.getLabel(), attr));
                         }
-                    };
+                    }
+                    ;
                 }
             }
             Scope scope = new Scope();

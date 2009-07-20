@@ -340,16 +340,6 @@ public interface AParPackage extends EPackage
   int BOOLEAN_VALUE_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link org.eclipse.amp.amf.parameters.aPar.Engine <em>Engine</em>}' enum.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.amp.amf.parameters.aPar.Engine
-   * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getEngine()
-   * @generated
-   */
-  int ENGINE = 9;
-
-  /**
    * The meta object id for the '{@link org.eclipse.amp.amf.parameters.aPar.BOOLEAN <em>BOOLEAN</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -357,7 +347,7 @@ public interface AParPackage extends EPackage
    * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getBOOLEAN()
    * @generated
    */
-  int BOOLEAN = 10;
+  int BOOLEAN = 9;
 
 
   /**
@@ -583,16 +573,6 @@ public interface AParPackage extends EPackage
   EAttribute getBooleanValue_Value();
 
   /**
-   * Returns the meta object for enum '{@link org.eclipse.amp.amf.parameters.aPar.Engine <em>Engine</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Engine</em>'.
-   * @see org.eclipse.amp.amf.parameters.aPar.Engine
-   * @generated
-   */
-  EEnum getEngine();
-
-  /**
    * Returns the meta object for enum '{@link org.eclipse.amp.amf.parameters.aPar.BOOLEAN <em>BOOLEAN</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -810,16 +790,6 @@ public interface AParPackage extends EPackage
      * @generated
      */
     EAttribute BOOLEAN_VALUE__VALUE = eINSTANCE.getBooleanValue_Value();
-
-    /**
-     * The meta object literal for the '{@link org.eclipse.amp.amf.parameters.aPar.Engine <em>Engine</em>}' enum.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.amp.amf.parameters.aPar.Engine
-     * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getEngine()
-     * @generated
-     */
-    EEnum ENGINE = eINSTANCE.getEngine();
 
     /**
      * The meta object literal for the '{@link org.eclipse.amp.amf.parameters.aPar.BOOLEAN <em>BOOLEAN</em>}' enum.

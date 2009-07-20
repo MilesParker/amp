@@ -8,7 +8,6 @@ package org.eclipse.amp.amf.parameters.aPar.impl;
 import org.eclipse.amp.amf.parameters.aPar.AParFactory;
 import org.eclipse.amp.amf.parameters.aPar.AParPackage;
 import org.eclipse.amp.amf.parameters.aPar.BooleanValue;
-import org.eclipse.amp.amf.parameters.aPar.Engine;
 import org.eclipse.amp.amf.parameters.aPar.FloatValue;
 import org.eclipse.amp.amf.parameters.aPar.Import;
 import org.eclipse.amp.amf.parameters.aPar.Incorporates;
@@ -98,13 +97,6 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
    * @generated
    */
   private EClass booleanValueEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EEnum engineEEnum = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -394,16 +386,6 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EEnum getEngine()
-  {
-    return engineEEnum;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EEnum getBOOLEAN()
   {
     return booleanEEnum;
@@ -470,7 +452,6 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
     createEAttribute(booleanValueEClass, BOOLEAN_VALUE__VALUE);
 
     // Create enums
-    engineEEnum = createEEnum(ENGINE);
     booleanEEnum = createEEnum(BOOLEAN);
   }
 
@@ -539,9 +520,6 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
     initEAttribute(getBooleanValue_Value(), this.getBOOLEAN(), "value", null, 0, 1, BooleanValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
-    initEEnum(engineEEnum, Engine.class, "Engine");
-    addEEnumLiteral(engineEEnum, Engine.STOP_PERIOD);
-
     initEEnum(booleanEEnum, org.eclipse.amp.amf.parameters.aPar.BOOLEAN.class, "BOOLEAN");
     addEEnumLiteral(booleanEEnum, org.eclipse.amp.amf.parameters.aPar.BOOLEAN.TRUE);
     addEEnumLiteral(booleanEEnum, org.eclipse.amp.amf.parameters.aPar.BOOLEAN.FALSE);
