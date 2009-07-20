@@ -51,6 +51,30 @@ import org.eclipse.amp.amf.parameters.services.AParGrammarAccess;
 
 
 
+// Entry rule entryRuleModel
+entryRuleModel :
+{ before(grammarAccess.getModelRule()); }
+	 ruleModel
+{ after(grammarAccess.getModelRule()); } 
+	 EOF 
+;
+
+// Rule Model
+ruleModel 
+    @init {
+		int stackSize = keepStackSize();
+    }
+ :
+(
+{ before(grammarAccess.getModelAccess().getGroup()); }
+(rule__Model__Group){ after(grammarAccess.getModelAccess().getGroup()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 
 
 // Entry rule entryRuleImport
@@ -269,8 +293,6 @@ finally {
 
 
 
-
-
 // Rule BOOLEAN
 ruleBOOLEAN
     @init {
@@ -354,6 +376,46 @@ finally {
 }
 
 
+rule__Model__Group
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getModelAccess().getModelAssignment_0()); }
+(	
+(
+{ before(grammarAccess.getModelAccess().getModelImportParserRuleCall_0_0()); }
+	ruleImport{ after(grammarAccess.getModelAccess().getModelImportParserRuleCall_0_0()); }
+)
+ 
+){ after(grammarAccess.getModelAccess().getModelAssignment_0()); }
+)
+(
+{ before(grammarAccess.getModelAccess().getIncorporatesAssignment_1()); }
+(	
+(
+{ before(grammarAccess.getModelAccess().getIncorporatesImportParserRuleCall_1_0()); }
+	ruleImport{ after(grammarAccess.getModelAccess().getIncorporatesImportParserRuleCall_1_0()); }
+)
+ 
+)*{ after(grammarAccess.getModelAccess().getIncorporatesAssignment_1()); }
+)
+(
+{ before(grammarAccess.getModelAccess().getParametersAssignment_2()); }
+(	
+(
+{ before(grammarAccess.getModelAccess().getParametersParameterParserRuleCall_2_0()); }
+	ruleParameter{ after(grammarAccess.getModelAccess().getParametersParameterParserRuleCall_2_0()); }
+)
+ 
+)*{ after(grammarAccess.getModelAccess().getParametersAssignment_2()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
 
 rule__Import__Group
     @init {
