@@ -103,6 +103,30 @@ finally {
 
 
 
+// Entry rule entryRuleIncorporates
+entryRuleIncorporates :
+{ before(grammarAccess.getIncorporatesRule()); }
+	 ruleIncorporates
+{ after(grammarAccess.getIncorporatesRule()); } 
+	 EOF 
+;
+
+// Rule Incorporates
+ruleIncorporates 
+    @init {
+		int stackSize = keepStackSize();
+    }
+ :
+(
+{ before(grammarAccess.getIncorporatesAccess().getGroup()); }
+(rule__Incorporates__Group){ after(grammarAccess.getIncorporatesAccess().getGroup()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 
 
 // Entry rule entryRuleParameter
@@ -395,8 +419,8 @@ rule__Model__Group
 { before(grammarAccess.getModelAccess().getIncorporatesAssignment_1()); }
 (	
 (
-{ before(grammarAccess.getModelAccess().getIncorporatesImportParserRuleCall_1_0()); }
-	ruleImport{ after(grammarAccess.getModelAccess().getIncorporatesImportParserRuleCall_1_0()); }
+{ before(grammarAccess.getModelAccess().getIncorporatesIncorporatesParserRuleCall_1_0()); }
+	ruleIncorporates{ after(grammarAccess.getModelAccess().getIncorporatesIncorporatesParserRuleCall_1_0()); }
 )
  
 )*{ after(grammarAccess.getModelAccess().getIncorporatesAssignment_1()); }
@@ -444,6 +468,32 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__Incorporates__Group
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getIncorporatesAccess().getIncorporatesKeyword_0()); }
+
+	'incorporates' 
+{ after(grammarAccess.getIncorporatesAccess().getIncorporatesKeyword_0()); }
+)
+(
+{ before(grammarAccess.getIncorporatesAccess().getImportURIAssignment_1()); }
+(	
+(
+{ before(grammarAccess.getIncorporatesAccess().getImportURISTRINGTerminalRuleCall_1_0()); }
+	RULE_STRING{ after(grammarAccess.getIncorporatesAccess().getImportURISTRINGTerminalRuleCall_1_0()); }
+)
+ 
+){ after(grammarAccess.getIncorporatesAccess().getImportURIAssignment_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
 
 rule__Parameter__Group
     @init {
@@ -482,6 +532,8 @@ finally {
 
 
 RULE_FLOAT : RULE_INT '.' RULE_INT;
+
+RULE_QUALIFIED_NAME : RULE_ID ('.' RULE_ID)*;
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

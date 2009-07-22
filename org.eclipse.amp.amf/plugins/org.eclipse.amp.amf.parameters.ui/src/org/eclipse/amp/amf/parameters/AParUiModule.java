@@ -3,6 +3,7 @@
  */
 package org.eclipse.amp.amf.parameters;
 
+
 /**
  * Use this class to register components to be used within the IDE.
  */
