@@ -3,24 +3,16 @@
  */
 package org.eclipse.amp.amf.parameters;
 
-import org.eclipse.amp.amf.parameters.scoping.AParScopeProvider;
-import org.eclipse.xtext.linking.ILinkingService;
-import org.eclipse.xtext.scoping.IScopeProvider;
+import org.eclipse.amp.amf.parameters.scoping.AParImportResolver;
+import org.eclipse.xtext.scoping.impl.ImportUriResolver;
+
 
 /**
  * Use this class to register components to be used within the IDE.
  */
 public class AParRuntimeModule extends org.eclipse.amp.amf.parameters.AbstractAParRuntimeModule {
 
-    /**
-     * @return
-     * @see org.eclipse.xtext.service.DefaultRuntimeModule#bindILinkingService()
-     */
-    public Class<? extends ILinkingService> bindILinkingService() {
-        return AParLinkingService.class;
-    }
-
-    public Class<? extends IScopeProvider> bindIScopeProvider() {
-        return AParScopeProvider.class;
+    public Class<? extends ImportUriResolver> bindImportUriResolver() {
+        return AParImportResolver.class;
     }
 }

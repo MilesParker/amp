@@ -50,11 +50,11 @@ protected class ThisRootNode extends RootToken {
 /************ begin Rule Model ****************
  *
  * Model:
- *   model+=Import incorporates+=Import* parameters+=Parameter*;
+ *   model+=Import incorporates+=Incorporates* parameters+=Parameter*;
  *
  **/
 
-// model+=Import incorporates+=Import* parameters+=Parameter*
+// model+=Import incorporates+=Incorporates* parameters+=Parameter*
 protected class Model_Group extends GroupToken {
 	
 	public Model_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -121,7 +121,7 @@ protected class Model_ModelAssignment_0 extends AssignmentToken  {
 	}	
 }
 
-// incorporates+=Import*
+// incorporates+=Incorporates*
 protected class Model_IncorporatesAssignment_1 extends AssignmentToken  {
 	
 	public Model_IncorporatesAssignment_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -134,7 +134,7 @@ protected class Model_IncorporatesAssignment_1 extends AssignmentToken  {
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new Import_Group(this, this, 0, inst);
+			case 0: return new Incorporates_Group(this, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -144,9 +144,9 @@ protected class Model_IncorporatesAssignment_1 extends AssignmentToken  {
 		IInstanceDescription obj = current.cloneAndConsume("incorporates");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getImportRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getIncorporatesRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getModelAccess().getIncorporatesImportParserRuleCall_1_0(); 
+				element = grammarAccess.getModelAccess().getIncorporatesIncorporatesParserRuleCall_1_0(); 
 				consumed = obj;
 				return param;
 			}

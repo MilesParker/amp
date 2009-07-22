@@ -9,6 +9,7 @@ import java.util.Collection;
 
 import org.eclipse.amp.amf.parameters.aPar.AParPackage;
 import org.eclipse.amp.amf.parameters.aPar.Import;
+import org.eclipse.amp.amf.parameters.aPar.Incorporates;
 import org.eclipse.amp.amf.parameters.aPar.Model;
 import org.eclipse.amp.amf.parameters.aPar.Parameter;
 
@@ -59,7 +60,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @generated
    * @ordered
    */
-  protected EList<Import> incorporates;
+  protected EList<Incorporates> incorporates;
 
   /**
    * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
@@ -111,11 +112,11 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Import> getIncorporates()
+  public EList<Incorporates> getIncorporates()
   {
     if (incorporates == null)
     {
-      incorporates = new EObjectContainmentEList<Import>(Import.class, this, AParPackage.MODEL__INCORPORATES);
+      incorporates = new EObjectContainmentEList<Incorporates>(Incorporates.class, this, AParPackage.MODEL__INCORPORATES);
     }
     return incorporates;
   }
@@ -191,7 +192,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         return;
       case AParPackage.MODEL__INCORPORATES:
         getIncorporates().clear();
-        getIncorporates().addAll((Collection<? extends Import>)newValue);
+        getIncorporates().addAll((Collection<? extends Incorporates>)newValue);
         return;
       case AParPackage.MODEL__PARAMETERS:
         getParameters().clear();

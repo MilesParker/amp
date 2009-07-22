@@ -109,9 +109,9 @@ ruleModel returns [EObject current=null]
 	
 	    
 	    { 
-	        currentNode=createCompositeNode(grammarAccess.getModelAccess().getIncorporatesImportParserRuleCall_1_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getModelAccess().getIncorporatesIncorporatesParserRuleCall_1_0(), currentNode); 
 	    }
-	    lv_incorporates_1=ruleImport 
+	    lv_incorporates_1=ruleIncorporates 
 	    {
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getModelRule().getType().getClassifier());
@@ -119,7 +119,7 @@ ruleModel returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		add($current, "incorporates", lv_incorporates_1, "Import", currentNode);
+	       		add($current, "incorporates", lv_incorporates_1, "Incorporates", currentNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
@@ -195,6 +195,49 @@ ruleImport returns [EObject current=null]
 ));
 
 
+
+
+
+// Entry rule entryRuleIncorporates
+entryRuleIncorporates returns [EObject current=null] :
+	{ currentNode = createCompositeNode(grammarAccess.getIncorporatesRule(), currentNode); }
+	 iv_ruleIncorporates=ruleIncorporates 
+	 { $current=$iv_ruleIncorporates.current; } 
+	 EOF 
+;
+
+// Rule Incorporates
+ruleIncorporates returns [EObject current=null] 
+    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
+('incorporates' 
+    {
+        createLeafNode(grammarAccess.getIncorporatesAccess().getIncorporatesKeyword_0(), null); 
+    }
+(	
+	
+	    lv_importURI_1=	RULE_STRING
+	{
+		createLeafNode(grammarAccess.getIncorporatesAccess().getImportURISTRINGTerminalRuleCall_1_0(), "importURI"); 
+	}
+ 
+	    {
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getIncorporatesRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode, $current);
+	        }
+	        
+	        try {
+	       		set($current, "importURI", lv_importURI_1, "STRING", lastConsumedNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
+	
+));
 
 
 
@@ -522,6 +565,8 @@ ruleBOOLEAN returns [Enumerator current=null]
 
 
 RULE_FLOAT : RULE_INT '.' RULE_INT;
+
+RULE_QUALIFIED_NAME : RULE_ID ('.' RULE_ID)*;
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

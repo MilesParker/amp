@@ -23,15 +23,15 @@ public class AParGrammarAccess implements IGrammarAccess {
 		private final Assignment cModelAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cModelImportParserRuleCall_0_0 = (RuleCall)cModelAssignment_0.eContents().get(0);
 		private final Assignment cIncorporatesAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cIncorporatesImportParserRuleCall_1_0 = (RuleCall)cIncorporatesAssignment_1.eContents().get(0);
+		private final RuleCall cIncorporatesIncorporatesParserRuleCall_1_0 = (RuleCall)cIncorporatesAssignment_1.eContents().get(0);
 		private final Assignment cParametersAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cParametersParameterParserRuleCall_2_0 = (RuleCall)cParametersAssignment_2.eContents().get(0);
 		
 		//Model:
-		//  model+=Import incorporates+=Import* parameters+=Parameter*;
+		//  model+=Import incorporates+=Incorporates* parameters+=Parameter*;
 		public ParserRule getRule() { return rule; }
 
-		//model+=Import incorporates+=Import* parameters+=Parameter*
+		//model+=Import incorporates+=Incorporates* parameters+=Parameter*
 		public Group getGroup() { return cGroup; }
 
 		//model+=Import
@@ -40,11 +40,11 @@ public class AParGrammarAccess implements IGrammarAccess {
 		//Import
 		public RuleCall getModelImportParserRuleCall_0_0() { return cModelImportParserRuleCall_0_0; }
 
-		//incorporates+=Import*
+		//incorporates+=Incorporates*
 		public Assignment getIncorporatesAssignment_1() { return cIncorporatesAssignment_1; }
 
-		//Import
-		public RuleCall getIncorporatesImportParserRuleCall_1_0() { return cIncorporatesImportParserRuleCall_1_0; }
+		//Incorporates
+		public RuleCall getIncorporatesIncorporatesParserRuleCall_1_0() { return cIncorporatesIncorporatesParserRuleCall_1_0; }
 
 		//parameters+=Parameter*
 		public Assignment getParametersAssignment_2() { return cParametersAssignment_2; }
@@ -242,10 +242,11 @@ public class AParGrammarAccess implements IGrammarAccess {
 		private final EnumLiteralDeclaration cFALSEEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
 		private final Keyword cFALSEFalseKeyword_3_0 = (Keyword)cFALSEEnumLiteralDeclaration_3.eContents().get(0);
 		
-		//enum BOOLEAN returns BOOLEAN : TRUE | TRUE = "true" | FALSE | FALSE = "false" ;
+		//enum BOOLEAN:
+		//  TRUE | TRUE="true" | FALSE | FALSE="false";
 		public EnumRule getRule() { return rule; }
 
-		//TRUE | TRUE = "true" | FALSE | FALSE = "false"
+		//TRUE | TRUE="true" | FALSE | FALSE="false"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//TRUE
@@ -254,7 +255,7 @@ public class AParGrammarAccess implements IGrammarAccess {
 		//"TRUE"
 		public Keyword getTRUETRUEKeyword_0_0() { return cTRUETRUEKeyword_0_0; }
 
-		//TRUE = "true"
+		//TRUE="true"
 		public EnumLiteralDeclaration getTRUEEnumLiteralDeclaration_1() { return cTRUEEnumLiteralDeclaration_1; }
 
 		//"true"
@@ -266,7 +267,7 @@ public class AParGrammarAccess implements IGrammarAccess {
 		//"FALSE"
 		public Keyword getFALSEFALSEKeyword_2_0() { return cFALSEFALSEKeyword_2_0; }
 
-		//FALSE = "false"
+		//FALSE="false"
 		public EnumLiteralDeclaration getFALSEEnumLiteralDeclaration_3() { return cFALSEEnumLiteralDeclaration_3; }
 
 		//"false"
@@ -283,6 +284,7 @@ public class AParGrammarAccess implements IGrammarAccess {
 	private StringValueElements pStringValue;
 	private BooleanValueElements pBooleanValue;
 	private TerminalRule tFLOAT;
+	private TerminalRule tQUALIFIED_NAME;
 	private BOOLEANElements unknownRuleBOOLEAN;
 	
 	private final GrammarProvider grammarProvider;
@@ -307,7 +309,7 @@ public class AParGrammarAccess implements IGrammarAccess {
 
 	
 	//Model:
-	//  model+=Import incorporates+=Import* parameters+=Parameter*;
+	//  model+=Import incorporates+=Incorporates* parameters+=Parameter*;
 	public ModelElements getModelAccess() {
 		return (pModel != null) ? pModel : (pModel = new ModelElements());
 	}
@@ -402,7 +404,14 @@ public class AParGrammarAccess implements IGrammarAccess {
 		return (tFLOAT != null) ? tFLOAT : (tFLOAT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "FLOAT"));
 	} 
 
-	//enum BOOLEAN returns BOOLEAN : TRUE | TRUE = "true" | FALSE | FALSE = "false" ;
+	//terminal QUALIFIED_NAME:
+	//  ID ("." ID)*;
+	public TerminalRule getQUALIFIED_NAMERule() {
+		return (tQUALIFIED_NAME != null) ? tQUALIFIED_NAME : (tQUALIFIED_NAME = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "QUALIFIED_NAME"));
+	} 
+
+	//enum BOOLEAN:
+	//  TRUE | TRUE="true" | FALSE | FALSE="false";
 	public BOOLEANElements getBOOLEANAccess() {
 		return (unknownRuleBOOLEAN != null) ? unknownRuleBOOLEAN : (unknownRuleBOOLEAN = new BOOLEANElements());
 	}
@@ -412,38 +421,38 @@ public class AParGrammarAccess implements IGrammarAccess {
 	}
 
 	//terminal ID:
-	//  "^" ? ( "a" .. "z" | "A" .. "Z" | "_" ) ( "a" .. "z" | "A" .. "Z" | "_" | "0" .. "9" ) *;
+	//  "^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
 	public TerminalRule getIDRule() {
 		return gaTerminals.getIDRule();
 	} 
 
 	//terminal INT returns ecore::EInt:
-	//  "0" .. "9" +;
+	//  "0".."9"+;
 	public TerminalRule getINTRule() {
 		return gaTerminals.getINTRule();
 	} 
 
 	//terminal STRING:
-	//  "\"" ( "\\" ( "b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\" ) | ! ( "\\" | "\"" ) ) * "\"" | "\'" ( "\\" ( "b" |
-	//  "t" | "n" | "f" | "r" | "\"" | "\'" | "\\" ) | ! ( "\\" | "\'" ) ) * "\'";
+	//  "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"" | "\'" ("\\" ("b" |
+	//  "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
 	public TerminalRule getSTRINGRule() {
 		return gaTerminals.getSTRINGRule();
 	} 
 
 	//terminal ML_COMMENT:
-	//  "/ *" -> "* /";
+	//  "/ *"->"* /";
 	public TerminalRule getML_COMMENTRule() {
 		return gaTerminals.getML_COMMENTRule();
 	} 
 
 	//terminal SL_COMMENT:
-	//  "//" ! ( "\n" | "\r" ) * ( "\r" ? "\n" ) ?;
+	//  "//" !("\n" | "\r")* ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {
 		return gaTerminals.getSL_COMMENTRule();
 	} 
 
 	//terminal WS:
-	//  ( " " | "\t" | "\r" | "\n" ) +;
+	//  (" " | "\t" | "\r" | "\n")+;
 	public TerminalRule getWSRule() {
 		return gaTerminals.getWSRule();
 	} 

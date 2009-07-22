@@ -47,7 +47,7 @@ public interface Model extends EObject
 
   /**
    * Returns the value of the '<em><b>Incorporates</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.amp.amf.parameters.aPar.Import}.
+   * The list contents are of type {@link org.eclipse.amp.amf.parameters.aPar.Incorporates}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Incorporates</em>' containment reference list isn't clear,
@@ -59,7 +59,7 @@ public interface Model extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<Import> getIncorporates();
+  EList<Incorporates> getIncorporates();
 
   /**
    * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.

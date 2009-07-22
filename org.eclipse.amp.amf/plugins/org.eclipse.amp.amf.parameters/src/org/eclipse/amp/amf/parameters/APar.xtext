@@ -6,9 +6,9 @@ import 'platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.ecore'
 
 Model :
 	model+=Import
-	(incorporates+=Import)*
+	(incorporates+=Incorporates)*
 	(parameters+=Parameter)*;
-	
+
 Import :
 	'model' importURI=STRING;
 
@@ -36,6 +36,7 @@ BooleanValue :
 terminal FLOAT :
 	INT "." INT;
 
+terminal QUALIFIED_NAME : ID ('.' ID)*;
 	
 enum BOOLEAN :
 	TRUE = 'TRUE' | TRUE = 'true' | FALSE = 'FALSE' | FALSE = 'false';
