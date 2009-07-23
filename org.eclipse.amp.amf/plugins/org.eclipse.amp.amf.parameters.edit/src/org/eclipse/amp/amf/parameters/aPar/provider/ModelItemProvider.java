@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ModelItemProvider.java,v 1.1 2009/07/18 01:08:02 mparker Exp $
+ * $Id: ModelItemProvider.java,v 1.2 2009/07/23 04:01:18 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 
@@ -163,35 +163,12 @@ public class ModelItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (AParPackage.Literals.MODEL__INCORPORATES,
-                 AParFactory.eINSTANCE.createImport()));
+                 AParFactory.eINSTANCE.createIncorporates()));
 
         newChildDescriptors.add
             (createChildParameter
                 (AParPackage.Literals.MODEL__PARAMETERS,
                  AParFactory.eINSTANCE.createParameter()));
-    }
-
-    /**
-     * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
-        Object childFeature = feature;
-        Object childObject = child;
-
-        boolean qualify =
-            childFeature == AParPackage.Literals.MODEL__MODEL ||
-            childFeature == AParPackage.Literals.MODEL__INCORPORATES;
-
-        if (qualify) {
-            return getString
-                ("_UI_CreateChild_text2",
-                 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
-        }
-        return super.getCreateChildText(owner, feature, child, selection);
     }
 
     /**

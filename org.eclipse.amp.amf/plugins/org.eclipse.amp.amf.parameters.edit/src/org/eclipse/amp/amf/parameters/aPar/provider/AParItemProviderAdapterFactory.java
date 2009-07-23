@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AParItemProviderAdapterFactory.java,v 1.1 2009/07/18 01:07:57 mparker Exp $
+ * $Id: AParItemProviderAdapterFactory.java,v 1.2 2009/07/23 04:01:17 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 
@@ -168,29 +168,6 @@ public class AParItemProviderAdapterFactory extends AParAdapterFactory implement
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.Value} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ValueItemProvider valueItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.Value}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createValueAdapter() {
-        if (valueItemProvider == null) {
-            valueItemProvider = new ValueItemProvider(this);
-        }
-
-        return valueItemProvider;
-    }
-
-    /**
      * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.IntValue} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -257,29 +234,6 @@ public class AParItemProviderAdapterFactory extends AParAdapterFactory implement
         }
 
         return stringValueItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.BooleanValue} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected BooleanValueItemProvider booleanValueItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.BooleanValue}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createBooleanValueAdapter() {
-        if (booleanValueItemProvider == null) {
-            booleanValueItemProvider = new BooleanValueItemProvider(this);
-        }
-
-        return booleanValueItemProvider;
     }
 
     /**
@@ -385,11 +339,9 @@ public class AParItemProviderAdapterFactory extends AParAdapterFactory implement
         if (importItemProvider != null) importItemProvider.dispose();
         if (incorporatesItemProvider != null) incorporatesItemProvider.dispose();
         if (parameterItemProvider != null) parameterItemProvider.dispose();
-        if (valueItemProvider != null) valueItemProvider.dispose();
         if (intValueItemProvider != null) intValueItemProvider.dispose();
         if (floatValueItemProvider != null) floatValueItemProvider.dispose();
         if (stringValueItemProvider != null) stringValueItemProvider.dispose();
-        if (booleanValueItemProvider != null) booleanValueItemProvider.dispose();
     }
 
 }
