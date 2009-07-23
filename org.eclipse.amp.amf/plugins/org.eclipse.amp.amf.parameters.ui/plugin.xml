@@ -6,12 +6,13 @@
     <extension
             point="org.eclipse.ui.editors">
         <editor
-            class="org.eclipse.amp.amf.parameters.AParExecutableExtensionFactory:org.eclipse.xtext.ui.core.editor.XtextEditor"
-            contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
-            default="true"
-            extensions="apar"
-            id="org.eclipse.amp.amf.parameters.APar"
-            name="APar Editor">
+              class="org.eclipse.amp.amf.parameters.AParExecutableExtensionFactory:org.eclipse.xtext.ui.core.editor.XtextEditor"
+              contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+              default="true"
+              extensions="apar"
+              icon="icons/etool16/run_parameter.gif"
+              id="org.eclipse.amp.amf.parameters.APar"
+              name="APar Editor">
         </editor>
     </extension>
     <extension

@@ -3,11 +3,7 @@
  */
 package org.eclipse.amp.amf.parameters.labeling;
 
-import org.eclipse.amp.amf.parameters.aPar.BooleanValue;
-import org.eclipse.amp.amf.parameters.aPar.FloatValue;
-import org.eclipse.amp.amf.parameters.aPar.IntValue;
 import org.eclipse.amp.amf.parameters.aPar.Parameter;
-import org.eclipse.amp.amf.parameters.aPar.StringValue;
 import org.eclipse.xtext.ui.core.DefaultLabelProvider;
 import org.metaabm.IID;
 
@@ -24,25 +20,9 @@ public class AParLabelProvider extends DefaultLabelProvider{
             text += "?";
         }
         if (parameter.getValue() != null) {
-            text += "=" + text(parameter.getValue().getValue());
+            text += "=" + text(parameter.getValue());
         }
         return text;
-    }
-
-    String text(IntValue value) {
-        return Integer.toString(value.getValue());
-    }
-
-    String text(FloatValue value) {
-        return value.getValue();
-    }
-
-    String text(BooleanValue value) {
-        return value.getValue().getLiteral();
-    }
-
-    String text(StringValue value) {
-        return value.getValue();
     }
 
     String image(Parameter parameter) {
