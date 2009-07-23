@@ -9,12 +9,6 @@
 		<command categoryId="org.eclipse.amp.axf.ui"
 			id="org.eclipse.amp.escape.runtime.executeHeadless" name="Execute Headless">
 		</command>
-		<command categoryId="org.eclipse.amp.axf.ui"
-			id="org.eclipse.amp.escape.runtime.executeParam" name="Execute">
-		</command>
-		<command categoryId="org.eclipse.amp.axf.ui"
-			id="org.eclipse.amp.escape.runtime.executeParamHeadless" name="Execute Headless">
-		</command>
 	</extension>
 	<extension point="org.eclipse.ui.menus">
 		<menuContribution locationURI="popup:org.eclipse.ui.popup.any">
@@ -47,22 +41,6 @@
 					</reference>
 				</visibleWhen>
 			</command>
-			<command commandId="org.eclipse.amp.escape.runtime.executeParam"
-				icon="icons/etool16/execute.gif" label="Execute" style="push"
-				tooltip="Load and start an Escape model.">
-				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
-					</reference>
-				</visibleWhen>
-			</command>
-			<command commandId="org.eclipse.amp.escape.runtime.executeParamHeadless"
-				icon="icons/etool16/execute_headless.gif" label="Execute Headless" style="push"
-				tooltip="Load and start an Escape model in non-graphical mode.">
-				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
-					</reference>
-				</visibleWhen>
-			</command>
 		</menuContribution>
 		<menuContribution locationURI="menu:org.eclipse.amp.axf.ui.menu?after=additions">
 			<command commandId="org.eclipse.amp.escape.runtime.execute"
@@ -83,36 +61,6 @@
 			</command>
 		</menuContribution>
 		
-		<menuContribution locationURI="popup:org.eclipse.ui.popup.any">
-			<command commandId="org.eclipse.amp.escape.runtime.executeParam"
-				icon="icons/etool16/execute.gif" style="push" tooltip="Execute the model.">
-				<visibleWhen checkEnabled="true">
-				</visibleWhen>
-			</command>
-			<command commandId="org.eclipse.amp.escape.runtime.executeParamHeadless"
-				icon="icons/etool16/execute_headless.gif" style="push" tooltip="Execute the model.">
-				<visibleWhen checkEnabled="true">
-				</visibleWhen>
-			</command>
-		</menuContribution>
-		<menuContribution locationURI="menu:org.eclipse.amp.axf.ui.menu?after=additions">
-			<command commandId="org.eclipse.amp.escape.runtime.executeParam"
-				icon="icons/etool16/execute.gif" label="Execute" style="push"
-				tooltip="Load and start an Escape model.">
-				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
-					</reference>
-				</visibleWhen>
-			</command>
-			<command commandId="org.eclipse.amp.escape.runtime.executeParamHeadless"
-				icon="icons/etool16/execute_headless.gif" label="Execute Headless" style="push"
-				tooltip="Load and start an Escape model in non-graphical mode.">
-				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
-					</reference>
-				</visibleWhen>
-			</command>
-		</menuContribution>
   <menuContribution
         locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
      <toolbar
@@ -126,20 +74,6 @@
 				<with variable="selection">
 					<iterate ifEmpty="false">
 							<adapt type="org.eclipse.jdt.core.ICompilationUnit">
-							</adapt>
-					</iterate>
-				</with>
-			</or>
-		</definition>
-		<definition id="org.eclipse.amp.escape.allowexecuteParam">
-			<or>
-				<with variable="selection">
-					<iterate ifEmpty="false">
-							<adapt type="org.eclipse.core.resources.IResource">
-								<or>
-									<test property="org.eclipse.core.resources.name" value="*.apar">
-									</test>
-								</or>
 							</adapt>
 					</iterate>
 				</with>
@@ -169,43 +103,11 @@
 				</reference>
 			</enabledWhen>
 		</handler>
-		<handler class="org.eclipse.amp.escape.command.ExecuteParameterHandler"
-			commandId="org.eclipse.amp.escape.runtime.executeParam">
-			<activeWhen>
-				<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
-				</reference>
-			</activeWhen>
-			<enabledWhen>
-				<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
-				</reference>
-			</enabledWhen>
-		</handler>
-		<handler class="org.eclipse.amp.escape.command.ExecuteParameterHeadlessHandler"
-			commandId="org.eclipse.amp.escape.runtime.executeParamHeadless">
-			<activeWhen>
-				<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
-				</reference>
-			</activeWhen>
-			<enabledWhen>
-				<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
-				</reference>
-			</enabledWhen>
-		</handler>
 	</extension>
 	<extension point="org.eclipse.ui.bindings">
 		<key commandId="org.eclipse.amp.escape.runtime.execute" contextId="org.eclipse.ui.contexts.window"
 			schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" sequence="M1+L">
 		</key>
-	</extension>
-	<extension point="org.eclipse.ui.editors">
-		<editor class="org.eclipse.ui.editors.text.TextEditor" default="false"
-			extensions="apar" icon="icons/etool16/run_parameter.gif" id="org.eclipse.amp.escape.ide.parameterEditor"
-			name="Parameter Editor">
-		</editor>
-		<editor class="org.eclipse.ui.editors.text.TextEditor" default="false"
-			extensions="atest" icon="icons/etool16/test_file.gif" id="org.eclipse.amp.escape.ide.testEditor"
-			name="Test Editor">
-		</editor>
 	</extension>
 	<extension point="org.eclipse.ui.newWizards">
 		<wizard category="org.eclipse.amp.wizards"
@@ -213,7 +115,7 @@
 			id="org.eclipse.amp.escape.wizards.newParameters" name="Parameter File">
 		</wizard>
 		<wizard category="org.eclipse.amp.wizards" class="org.eclipse.amp.escape.ide.TestRunFileWizard"
-			icon="icons/etool16/test_file.gif" id="org.eclipse.amp.escape.wizards.newTest"
+			icon="icons/test_file.gif" id="org.eclipse.amp.escape.wizards.newTest"
 			name="Test File">
 		</wizard>
 	</extension>
@@ -257,7 +159,7 @@
 			name="Model Parameters">
 		</editor>
 		<editor class="org.eclipse.ui.editors.text.TextEditor" default="false"
-			extensions="atest" icon="icons/etool16/test_file.gif" id="org.eclipse.amp.escape.ide.TestEditor"
+			extensions="atest" icon="icons/test_file.gif" id="org.eclipse.amp.escape.ide.TestEditor"
 			name="Model Test">
 		</editor>
 	</extension>
