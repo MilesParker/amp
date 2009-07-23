@@ -15,7 +15,6 @@ import org.eclipse.amp.amf.parameters.aPar.IntValue;
 import org.eclipse.amp.amf.parameters.aPar.Model;
 import org.eclipse.amp.amf.parameters.aPar.Parameter;
 import org.eclipse.amp.amf.parameters.aPar.StringValue;
-import org.eclipse.amp.amf.parameters.aPar.Value;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -62,13 +61,6 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
    * @generated
    */
   private EClass parameterEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass valueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -286,26 +278,6 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getValue()
-  {
-    return valueEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getValue_Value()
-  {
-    return (EReference)valueEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getIntValue()
   {
     return intValueEClass;
@@ -436,9 +408,6 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
     createEReference(parameterEClass, PARAMETER__ATTRIBUTE);
     createEReference(parameterEClass, PARAMETER__VALUE);
 
-    valueEClass = createEClass(VALUE);
-    createEReference(valueEClass, VALUE__VALUE);
-
     intValueEClass = createEClass(INT_VALUE);
     createEAttribute(intValueEClass, INT_VALUE__VALUE);
 
@@ -502,10 +471,7 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
 
     initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getParameter_Attribute(), theMetaABMPackage.getSAttribute(), null, "attribute", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getParameter_Value(), this.getValue(), null, "value", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getValue_Value(), ecorePackage.getEObject(), null, "value", null, 0, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getParameter_Value(), ecorePackage.getEObject(), null, "value", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(intValueEClass, IntValue.class, "IntValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getIntValue_Value(), ecorePackage.getEInt(), "value", null, 0, 1, IntValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

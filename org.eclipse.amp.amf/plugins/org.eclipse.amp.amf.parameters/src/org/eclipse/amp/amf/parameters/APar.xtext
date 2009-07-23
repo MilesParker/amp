@@ -16,10 +16,7 @@ Incorporates :
 	'incorporates' importURI=STRING;
 
 Parameter :
-	attribute=[SAttribute|STRING] value=Value;
-
-Value :
-	value=(IntValue | FloatValue | StringValue | BooleanValue);
+	attribute=[SAttribute|STRING] "=" value=(IntValue|StringValue|FloatValue|BooleanValue);
 
 IntValue :
 	value=INT;
@@ -33,10 +30,8 @@ StringValue :
 BooleanValue :
 	value=BOOLEAN;
 
+enum BOOLEAN :
+	TRUE = "true" | FALSE = "false";
+
 terminal FLOAT :
 	INT "." INT;
-
-terminal QUALIFIED_NAME : ID ('.' ID)*;
-	
-enum BOOLEAN :
-	TRUE = 'TRUE' | TRUE = 'true' | FALSE = 'FALSE' | FALSE = 'false';

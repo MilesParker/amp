@@ -63,12 +63,12 @@ public interface Parameter extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' containment reference.
-   * @see #setValue(Value)
+   * @see #setValue(EObject)
    * @see org.eclipse.amp.amf.parameters.aPar.AParPackage#getParameter_Value()
    * @model containment="true"
    * @generated
    */
-  Value getValue();
+  EObject getValue();
 
   /**
    * Sets the value of the '{@link org.eclipse.amp.amf.parameters.aPar.Parameter#getValue <em>Value</em>}' containment reference.
@@ -78,6 +78,6 @@ public interface Parameter extends EObject
    * @see #getValue()
    * @generated
    */
-  void setValue(Value value);
+  void setValue(EObject value);
 
 } // Parameter

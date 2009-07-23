@@ -17,8 +17,4 @@
            target="platform:/plugin/org.eclipse.amp.amf.parameters/src/model/Engine.metaabm">
      </mapping>
   </extension>
-
-
-
-
 </plugin>

@@ -30,7 +30,7 @@ public enum BOOLEAN implements Enumerator
    * @generated
    * @ordered
    */
-  TRUE(0, "TRUE", "TRUE"),
+  TRUE(0, "TRUE", "true"),
 
   /**
    * The '<em><b>FALSE</b></em>' literal object.
@@ -40,7 +40,7 @@ public enum BOOLEAN implements Enumerator
    * @generated
    * @ordered
    */
-  FALSE(2, "FALSE", "FALSE");
+  FALSE(1, "FALSE", "false");
 
   /**
    * The '<em><b>TRUE</b></em>' literal value.
@@ -51,7 +51,7 @@ public enum BOOLEAN implements Enumerator
    * </p>
    * <!-- end-user-doc -->
    * @see #TRUE
-   * @model
+   * @model literal="true"
    * @generated
    * @ordered
    */
@@ -66,11 +66,11 @@ public enum BOOLEAN implements Enumerator
    * </p>
    * <!-- end-user-doc -->
    * @see #FALSE
-   * @model
+   * @model literal="false"
    * @generated
    * @ordered
    */
-  public static final int FALSE_VALUE = 2;
+  public static final int FALSE_VALUE = 1;
 
   /**
    * An array of all the '<em><b>BOOLEAN</b></em>' enumerators.

@@ -36,11 +36,10 @@ protected class ThisRootNode extends RootToken {
 			case 1: return new Import_Group(this, this, 1, inst);
 			case 2: return new Incorporates_Group(this, this, 2, inst);
 			case 3: return new Parameter_Group(this, this, 3, inst);
-			case 4: return new Value_ValueAssignment(this, this, 4, inst);
-			case 5: return new IntValue_ValueAssignment(this, this, 5, inst);
-			case 6: return new FloatValue_ValueAssignment(this, this, 6, inst);
-			case 7: return new StringValue_ValueAssignment(this, this, 7, inst);
-			case 8: return new BooleanValue_ValueAssignment(this, this, 8, inst);
+			case 4: return new IntValue_ValueAssignment(this, this, 4, inst);
+			case 5: return new FloatValue_ValueAssignment(this, this, 5, inst);
+			case 6: return new StringValue_ValueAssignment(this, this, 6, inst);
+			case 7: return new BooleanValue_ValueAssignment(this, this, 7, inst);
 			default: return null;
 		}	
 	}	
@@ -385,11 +384,13 @@ protected class Incorporates_ImportURIAssignment_1 extends AssignmentToken  {
 /************ begin Rule Parameter ****************
  *
  * Parameter:
- *   attribute=[SAttribute|STRING] value=Value;
+ *   attribute=[SAttribute|STRING] "=" value=( IntValue | StringValue | FloatValue |
+ *   BooleanValue );
  *
  **/
 
-// attribute=[SAttribute|STRING] value=Value
+// attribute=[SAttribute|STRING] "=" value=( IntValue | StringValue | FloatValue |
+// BooleanValue )
 protected class Parameter_Group extends GroupToken {
 	
 	public Parameter_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -402,7 +403,7 @@ protected class Parameter_Group extends GroupToken {
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new Parameter_ValueAssignment_1(parent, this, 0, inst);
+			case 0: return new Parameter_ValueAssignment_2(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -446,84 +447,47 @@ protected class Parameter_AttributeAssignment_0 extends AssignmentToken  {
 
 }
 
-// value=Value
-protected class Parameter_ValueAssignment_1 extends AssignmentToken  {
+// "="
+protected class Parameter_EqualsSignKeyword_1 extends KeywordToken  {
 	
-	public Parameter_ValueAssignment_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Parameter_EqualsSignKeyword_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
-	public Assignment getGrammarElement() {
-		return grammarAccess.getParameterAccess().getValueAssignment_1();
+	public Keyword getGrammarElement() {
+		return grammarAccess.getParameterAccess().getEqualsSignKeyword_1();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new Value_ValueAssignment(this, this, 0, inst);
+			case 0: return new Parameter_AttributeAssignment_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
 		
-	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("value",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("value");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
-			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getValueRule().getType().getClassifier())) {
-				type = AssignmentType.PRC;
-				element = grammarAccess.getParameterAccess().getValueValueParserRuleCall_1_0(); 
-				consumed = obj;
-				return param;
-			}
-		}
-		return null;
-	}
-
-	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
-		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
-		switch(index) {
-			case 0: return new Parameter_AttributeAssignment_0(parent, next, actIndex, consumed);
-			default: return null;
-		}	
-	}	
 }
 
-
-/************ end Rule Parameter ****************/
-
-
-/************ begin Rule Value ****************
- *
- * Value:
- *   value=( IntValue | FloatValue | StringValue | BooleanValue );
- *
- **/
-
-// value=( IntValue | FloatValue | StringValue | BooleanValue )
-protected class Value_ValueAssignment extends AssignmentToken  {
+// value=( IntValue | StringValue | FloatValue | BooleanValue )
+protected class Parameter_ValueAssignment_2 extends AssignmentToken  {
 	
-	public Value_ValueAssignment(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Parameter_ValueAssignment_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getValueAccess().getValueAssignment();
+		return grammarAccess.getParameterAccess().getValueAssignment_2();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
 			case 0: return new IntValue_ValueAssignment(this, this, 0, inst);
-			case 1: return new FloatValue_ValueAssignment(this, this, 1, inst);
-			case 2: return new StringValue_ValueAssignment(this, this, 2, inst);
+			case 1: return new StringValue_ValueAssignment(this, this, 1, inst);
+			case 2: return new FloatValue_ValueAssignment(this, this, 2, inst);
 			case 3: return new BooleanValue_ValueAssignment(this, this, 3, inst);
 			default: return null;
 		}	
 	}	
 		
-	public IInstanceDescription tryConsume() {
-		if(!current.isInstanceOf(grammarAccess.getValueRule().getType().getClassifier())) return null;
-		return tryConsumeVal();
-	}
 	protected IInstanceDescription tryConsumeVal() {
 		if((value = current.getConsumable("value",true)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("value");
@@ -531,16 +495,7 @@ protected class Value_ValueAssignment extends AssignmentToken  {
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getIntValueRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getValueAccess().getValueIntValueParserRuleCall_0_0(); 
-				consumed = obj;
-				return param;
-			}
-		}
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
-			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getFloatValueRule().getType().getClassifier())) {
-				type = AssignmentType.PRC;
-				element = grammarAccess.getValueAccess().getValueFloatValueParserRuleCall_0_1(); 
+				element = grammarAccess.getParameterAccess().getValueIntValueParserRuleCall_2_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -549,7 +504,16 @@ protected class Value_ValueAssignment extends AssignmentToken  {
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getStringValueRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getValueAccess().getValueStringValueParserRuleCall_0_2(); 
+				element = grammarAccess.getParameterAccess().getValueStringValueParserRuleCall_2_0_1(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IInstanceDescription param = getDescr((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getFloatValueRule().getType().getClassifier())) {
+				type = AssignmentType.PRC;
+				element = grammarAccess.getParameterAccess().getValueFloatValueParserRuleCall_2_0_2(); 
 				consumed = obj;
 				return param;
 			}
@@ -558,7 +522,7 @@ protected class Value_ValueAssignment extends AssignmentToken  {
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getBooleanValueRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getValueAccess().getValueBooleanValueParserRuleCall_0_3(); 
+				element = grammarAccess.getParameterAccess().getValueBooleanValueParserRuleCall_2_0_3(); 
 				consumed = obj;
 				return param;
 			}
@@ -569,12 +533,14 @@ protected class Value_ValueAssignment extends AssignmentToken  {
 	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
 		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
 		switch(index) {
-			default: return parent.createParentFollower(next, actIndex , index, consumed);
+			case 0: return new Parameter_EqualsSignKeyword_1(parent, next, actIndex, consumed);
+			default: return null;
 		}	
 	}	
 }
 
-/************ end Rule Value ****************/
+
+/************ end Rule Parameter ****************/
 
 
 /************ begin Rule IntValue ****************

@@ -62,15 +62,6 @@ public interface AParFactory extends EFactory
   Parameter createParameter();
 
   /**
-   * Returns a new object of class '<em>Value</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Value</em>'.
-   * @generated
-   */
-  Value createValue();
-
-  /**
    * Returns a new object of class '<em>Int Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

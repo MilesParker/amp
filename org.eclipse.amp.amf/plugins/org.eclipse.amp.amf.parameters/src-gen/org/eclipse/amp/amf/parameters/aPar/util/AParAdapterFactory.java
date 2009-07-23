@@ -98,11 +98,6 @@ public class AParAdapterFactory extends AdapterFactoryImpl
         return createParameterAdapter();
       }
       @Override
-      public Adapter caseValue(Value object)
-      {
-        return createValueAdapter();
-      }
-      @Override
       public Adapter caseIntValue(IntValue object)
       {
         return createIntValueAdapter();
@@ -200,21 +195,6 @@ public class AParAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createParameterAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.parameters.aPar.Value <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.amp.amf.parameters.aPar.Value
-   * @generated
-   */
-  public Adapter createValueAdapter()
   {
     return null;
   }

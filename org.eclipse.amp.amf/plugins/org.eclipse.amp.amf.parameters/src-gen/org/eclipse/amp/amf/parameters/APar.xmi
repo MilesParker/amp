@@ -61,22 +61,15 @@
             <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
           </terminal>
         </tokens>
+        <tokens xsi:type="xtext:Keyword" value="="/>
         <tokens xsi:type="xtext:Assignment" feature="value" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.4"/>
+          <terminal xsi:type="xtext:Alternatives">
+            <groups xsi:type="xtext:RuleCall" rule="/0/@rules.4"/>
+            <groups xsi:type="xtext:RuleCall" rule="/0/@rules.6"/>
+            <groups xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+            <groups xsi:type="xtext:RuleCall" rule="/0/@rules.7"/>
+          </terminal>
         </tokens>
-      </alternatives>
-    </rules>
-    <rules xsi:type="xtext:ParserRule" name="Value">
-      <type metamodel="/0/@metamodelDeclarations.0">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/amp/amf/parameters/APar#//Value"/>
-      </type>
-      <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
-        <terminal xsi:type="xtext:Alternatives">
-          <groups xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
-          <groups xsi:type="xtext:RuleCall" rule="/0/@rules.6"/>
-          <groups xsi:type="xtext:RuleCall" rule="/0/@rules.7"/>
-          <groups xsi:type="xtext:RuleCall" rule="/0/@rules.8"/>
-        </terminal>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="IntValue">
@@ -108,7 +101,22 @@
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/amp/amf/parameters/APar#//BooleanValue"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.11"/>
+        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.8"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:EnumRule" name="BOOLEAN">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EEnum" href="http://www.eclipse.org/amp/amf/parameters/APar#//BOOLEAN"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <groups xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipse.org/amp/amf/parameters/APar#//BOOLEAN/TRUE"/>
+          <literal value="true"/>
+        </groups>
+        <groups xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipse.org/amp/amf/parameters/APar#//BOOLEAN/FALSE"/>
+          <literal value="false"/>
+        </groups>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="FLOAT">
@@ -119,41 +127,6 @@
         <tokens xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
         <tokens xsi:type="xtext:Keyword" value="."/>
         <tokens xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
-      </alternatives>
-    </rules>
-    <rules xsi:type="xtext:TerminalRule" name="QUALIFIED_NAME">
-      <type metamodel="/0/@metamodelDeclarations.1">
-        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      </type>
-      <alternatives xsi:type="xtext:Group">
-        <tokens xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
-        <tokens xsi:type="xtext:Group" cardinality="*">
-          <tokens xsi:type="xtext:Keyword" value="."/>
-          <tokens xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
-        </tokens>
-      </alternatives>
-    </rules>
-    <rules xsi:type="xtext:EnumRule" name="BOOLEAN">
-      <type metamodel="/0/@metamodelDeclarations.0">
-        <classifier xsi:type="ecore:EEnum" href="http://www.eclipse.org/amp/amf/parameters/APar#//BOOLEAN"/>
-      </type>
-      <alternatives xsi:type="xtext:Alternatives">
-        <groups xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/amp/amf/parameters/APar#//BOOLEAN/TRUE"/>
-          <literal value="TRUE"/>
-        </groups>
-        <groups xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/amp/amf/parameters/APar#//BOOLEAN/TRUE"/>
-          <literal value="true"/>
-        </groups>
-        <groups xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/amp/amf/parameters/APar#//BOOLEAN/FALSE"/>
-          <literal value="FALSE"/>
-        </groups>
-        <groups xsi:type="xtext:EnumLiteralDeclaration">
-          <enumLiteral href="http://www.eclipse.org/amp/amf/parameters/APar#//BOOLEAN/FALSE"/>
-          <literal value="false"/>
-        </groups>
       </alternatives>
     </rules>
   </xtext:Grammar>

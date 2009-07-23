@@ -200,34 +200,6 @@ public interface AParPackage extends EPackage
   int PARAMETER_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.ValueImpl <em>Value</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.amp.amf.parameters.aPar.impl.ValueImpl
-   * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getValue()
-   * @generated
-   */
-  int VALUE = 4;
-
-  /**
-   * The feature id for the '<em><b>Value</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int VALUE__VALUE = 0;
-
-  /**
-   * The number of structural features of the '<em>Value</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int VALUE_FEATURE_COUNT = 1;
-
-  /**
    * The meta object id for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.IntValueImpl <em>Int Value</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -235,7 +207,7 @@ public interface AParPackage extends EPackage
    * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getIntValue()
    * @generated
    */
-  int INT_VALUE = 5;
+  int INT_VALUE = 4;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -263,7 +235,7 @@ public interface AParPackage extends EPackage
    * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getFloatValue()
    * @generated
    */
-  int FLOAT_VALUE = 6;
+  int FLOAT_VALUE = 5;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -291,7 +263,7 @@ public interface AParPackage extends EPackage
    * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getStringValue()
    * @generated
    */
-  int STRING_VALUE = 7;
+  int STRING_VALUE = 6;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -319,7 +291,7 @@ public interface AParPackage extends EPackage
    * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getBooleanValue()
    * @generated
    */
-  int BOOLEAN_VALUE = 8;
+  int BOOLEAN_VALUE = 7;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -347,7 +319,7 @@ public interface AParPackage extends EPackage
    * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getBOOLEAN()
    * @generated
    */
-  int BOOLEAN = 9;
+  int BOOLEAN = 8;
 
 
   /**
@@ -466,27 +438,6 @@ public interface AParPackage extends EPackage
    * @generated
    */
   EReference getParameter_Value();
-
-  /**
-   * Returns the meta object for class '{@link org.eclipse.amp.amf.parameters.aPar.Value <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Value</em>'.
-   * @see org.eclipse.amp.amf.parameters.aPar.Value
-   * @generated
-   */
-  EClass getValue();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.eclipse.amp.amf.parameters.aPar.Value#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Value</em>'.
-   * @see org.eclipse.amp.amf.parameters.aPar.Value#getValue()
-   * @see #getValue()
-   * @generated
-   */
-  EReference getValue_Value();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.amp.amf.parameters.aPar.IntValue <em>Int Value</em>}'.
@@ -700,24 +651,6 @@ public interface AParPackage extends EPackage
      * @generated
      */
     EReference PARAMETER__VALUE = eINSTANCE.getParameter_Value();
-
-    /**
-     * The meta object literal for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.ValueImpl <em>Value</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.amp.amf.parameters.aPar.impl.ValueImpl
-     * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getValue()
-     * @generated
-     */
-    EClass VALUE = eINSTANCE.getValue();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference VALUE__VALUE = eINSTANCE.getValue_Value();
 
     /**
      * The meta object literal for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.IntValueImpl <em>Int Value</em>}' class.

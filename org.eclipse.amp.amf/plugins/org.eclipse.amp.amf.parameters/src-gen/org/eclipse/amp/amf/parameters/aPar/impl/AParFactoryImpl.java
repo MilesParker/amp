@@ -72,7 +72,6 @@ public class AParFactoryImpl extends EFactoryImpl implements AParFactory
       case AParPackage.IMPORT: return createImport();
       case AParPackage.INCORPORATES: return createIncorporates();
       case AParPackage.PARAMETER: return createParameter();
-      case AParPackage.VALUE: return createValue();
       case AParPackage.INT_VALUE: return createIntValue();
       case AParPackage.FLOAT_VALUE: return createFloatValue();
       case AParPackage.STRING_VALUE: return createStringValue();
@@ -158,17 +157,6 @@ public class AParFactoryImpl extends EFactoryImpl implements AParFactory
   {
     ParameterImpl parameter = new ParameterImpl();
     return parameter;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Value createValue()
-  {
-    ValueImpl value = new ValueImpl();
-    return value;
   }
 
   /**

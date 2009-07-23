@@ -7,12 +7,12 @@ package org.eclipse.amp.amf.parameters.aPar.impl;
 
 import org.eclipse.amp.amf.parameters.aPar.AParPackage;
 import org.eclipse.amp.amf.parameters.aPar.Parameter;
-import org.eclipse.amp.amf.parameters.aPar.Value;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -54,7 +54,7 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * @generated
    * @ordered
    */
-  protected Value value;
+  protected EObject value;
 
   /**
    * <!-- begin-user-doc -->
@@ -125,7 +125,7 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * <!-- end-user-doc -->
    * @generated
    */
-  public Value getValue()
+  public EObject getValue()
   {
     return value;
   }
@@ -135,9 +135,9 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetValue(Value newValue, NotificationChain msgs)
+  public NotificationChain basicSetValue(EObject newValue, NotificationChain msgs)
   {
-    Value oldValue = value;
+    EObject oldValue = value;
     value = newValue;
     if (eNotificationRequired())
     {
@@ -152,7 +152,7 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(Value newValue)
+  public void setValue(EObject newValue)
   {
     if (newValue != value)
     {
@@ -217,7 +217,7 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
         setAttribute((SAttribute)newValue);
         return;
       case AParPackage.PARAMETER__VALUE:
-        setValue((Value)newValue);
+        setValue((EObject)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -237,7 +237,7 @@ public class ParameterImpl extends MinimalEObjectImpl.Container implements Param
         setAttribute((SAttribute)null);
         return;
       case AParPackage.PARAMETER__VALUE:
-        setValue((Value)null);
+        setValue((EObject)null);
         return;
     }
     super.eUnset(featureID);

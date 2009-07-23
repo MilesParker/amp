@@ -45,12 +45,6 @@
       </genFeatures>
     </genClasses>
     <genClasses>
-      <ecoreClass href="APar.ecore#//Value"/>
-      <genFeatures property="None" children="true" createChild="true">
-        <ecoreFeature xsi:type="ecore:EReference" href="APar.ecore#//Value/value"/>
-      </genFeatures>
-    </genClasses>
-    <genClasses>
       <ecoreClass href="APar.ecore#//IntValue"/>
       <genFeatures createChild="false">
         <ecoreFeature xsi:type="ecore:EAttribute" href="APar.ecore#//IntValue/value"/>
