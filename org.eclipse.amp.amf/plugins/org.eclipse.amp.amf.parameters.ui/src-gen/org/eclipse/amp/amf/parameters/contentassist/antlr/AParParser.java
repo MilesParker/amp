@@ -44,10 +44,22 @@ public class AParParser extends AbstractContentAssistParser {
 				{
 					put(grammarAccess.getParameterAccess().getValueAlternatives_2_0(), "rule__Parameter__ValueAlternatives_2_0");
 					put(grammarAccess.getBOOLEANAccess().getAlternatives(), "rule__BOOLEAN__Alternatives");
-					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group");
-					put(grammarAccess.getImportAccess().getGroup(), "rule__Import__Group");
-					put(grammarAccess.getIncorporatesAccess().getGroup(), "rule__Incorporates__Group");
-					put(grammarAccess.getParameterAccess().getGroup(), "rule__Parameter__Group");
+					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
+					put(grammarAccess.getImportAccess().getGroup(), "rule__Import__Group__0");
+					put(grammarAccess.getIncorporatesAccess().getGroup(), "rule__Incorporates__Group__0");
+					put(grammarAccess.getParameterAccess().getGroup(), "rule__Parameter__Group__0");
+					put(grammarAccess.getModelAccess().getNameAssignment_0(), "rule__Model__NameAssignment_0");
+					put(grammarAccess.getModelAccess().getModelAssignment_1(), "rule__Model__ModelAssignment_1");
+					put(grammarAccess.getModelAccess().getIncorporatesAssignment_2(), "rule__Model__IncorporatesAssignment_2");
+					put(grammarAccess.getModelAccess().getParametersAssignment_3(), "rule__Model__ParametersAssignment_3");
+					put(grammarAccess.getImportAccess().getImportURIAssignment_1(), "rule__Import__ImportURIAssignment_1");
+					put(grammarAccess.getIncorporatesAccess().getImportURIAssignment_1(), "rule__Incorporates__ImportURIAssignment_1");
+					put(grammarAccess.getParameterAccess().getAttributeAssignment_0(), "rule__Parameter__AttributeAssignment_0");
+					put(grammarAccess.getParameterAccess().getValueAssignment_2(), "rule__Parameter__ValueAssignment_2");
+					put(grammarAccess.getIntValueAccess().getValueAssignment(), "rule__IntValue__ValueAssignment");
+					put(grammarAccess.getRealValueAccess().getValueAssignment(), "rule__RealValue__ValueAssignment");
+					put(grammarAccess.getStringValueAccess().getValueAssignment(), "rule__StringValue__ValueAssignment");
+					put(grammarAccess.getBooleanValueAccess().getValueAssignment(), "rule__BooleanValue__ValueAssignment");
 				}
 			};
 		}
