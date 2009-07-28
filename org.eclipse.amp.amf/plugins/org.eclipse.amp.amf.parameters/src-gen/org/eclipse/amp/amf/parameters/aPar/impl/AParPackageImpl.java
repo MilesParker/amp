@@ -8,12 +8,12 @@ package org.eclipse.amp.amf.parameters.aPar.impl;
 import org.eclipse.amp.amf.parameters.aPar.AParFactory;
 import org.eclipse.amp.amf.parameters.aPar.AParPackage;
 import org.eclipse.amp.amf.parameters.aPar.BooleanValue;
-import org.eclipse.amp.amf.parameters.aPar.FloatValue;
 import org.eclipse.amp.amf.parameters.aPar.Import;
 import org.eclipse.amp.amf.parameters.aPar.Incorporates;
 import org.eclipse.amp.amf.parameters.aPar.IntValue;
 import org.eclipse.amp.amf.parameters.aPar.Model;
 import org.eclipse.amp.amf.parameters.aPar.Parameter;
+import org.eclipse.amp.amf.parameters.aPar.RealValue;
 import org.eclipse.amp.amf.parameters.aPar.StringValue;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -74,7 +74,7 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass floatValueEClass = null;
+  private EClass realValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -178,9 +178,9 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getModel_Model()
+  public EAttribute getModel_Name()
   {
-    return (EReference)modelEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)modelEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -188,7 +188,7 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getModel_Incorporates()
+  public EReference getModel_Model()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(1);
   }
@@ -198,9 +198,19 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getModel_Parameters()
+  public EReference getModel_Incorporates()
   {
     return (EReference)modelEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getModel_Parameters()
+  {
+    return (EReference)modelEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -298,9 +308,9 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getFloatValue()
+  public EClass getRealValue()
   {
-    return floatValueEClass;
+    return realValueEClass;
   }
 
   /**
@@ -308,9 +318,9 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getFloatValue_Value()
+  public EAttribute getRealValue_Value()
   {
-    return (EAttribute)floatValueEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)realValueEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -394,6 +404,7 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
 
     // Create classes and their features
     modelEClass = createEClass(MODEL);
+    createEAttribute(modelEClass, MODEL__NAME);
     createEReference(modelEClass, MODEL__MODEL);
     createEReference(modelEClass, MODEL__INCORPORATES);
     createEReference(modelEClass, MODEL__PARAMETERS);
@@ -411,8 +422,8 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
     intValueEClass = createEClass(INT_VALUE);
     createEAttribute(intValueEClass, INT_VALUE__VALUE);
 
-    floatValueEClass = createEClass(FLOAT_VALUE);
-    createEAttribute(floatValueEClass, FLOAT_VALUE__VALUE);
+    realValueEClass = createEClass(REAL_VALUE);
+    createEAttribute(realValueEClass, REAL_VALUE__VALUE);
 
     stringValueEClass = createEClass(STRING_VALUE);
     createEAttribute(stringValueEClass, STRING_VALUE__VALUE);
@@ -459,6 +470,7 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getModel_Name(), ecorePackage.getEString(), "name", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Model(), this.getImport(), null, "model", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Incorporates(), this.getIncorporates(), null, "incorporates", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Parameters(), this.getParameter(), null, "parameters", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -476,8 +488,8 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
     initEClass(intValueEClass, IntValue.class, "IntValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getIntValue_Value(), ecorePackage.getEInt(), "value", null, 0, 1, IntValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(floatValueEClass, FloatValue.class, "FloatValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getFloatValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, FloatValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(realValueEClass, RealValue.class, "RealValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRealValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, RealValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(stringValueEClass, StringValue.class, "StringValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getStringValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, StringValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

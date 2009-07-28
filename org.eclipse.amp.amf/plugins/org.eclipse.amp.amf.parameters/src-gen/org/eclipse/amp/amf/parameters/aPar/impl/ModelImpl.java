@@ -13,6 +13,7 @@ import org.eclipse.amp.amf.parameters.aPar.Incorporates;
 import org.eclipse.amp.amf.parameters.aPar.Model;
 import org.eclipse.amp.amf.parameters.aPar.Parameter;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -20,6 +21,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -32,6 +34,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.amp.amf.parameters.aPar.impl.ModelImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.parameters.aPar.impl.ModelImpl#getModel <em>Model</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.parameters.aPar.impl.ModelImpl#getIncorporates <em>Incorporates</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.parameters.aPar.impl.ModelImpl#getParameters <em>Parameters</em>}</li>
@@ -42,6 +45,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 {
+  /**
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getModel() <em>Model</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -91,6 +114,29 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   protected EClass eStaticClass()
   {
     return AParPackage.Literals.MODEL;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AParPackage.MODEL__NAME, oldName, name));
   }
 
   /**
@@ -165,6 +211,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
+      case AParPackage.MODEL__NAME:
+        return getName();
       case AParPackage.MODEL__MODEL:
         return getModel();
       case AParPackage.MODEL__INCORPORATES:
@@ -186,6 +234,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
+      case AParPackage.MODEL__NAME:
+        setName((String)newValue);
+        return;
       case AParPackage.MODEL__MODEL:
         getModel().clear();
         getModel().addAll((Collection<? extends Import>)newValue);
@@ -212,6 +263,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
+      case AParPackage.MODEL__NAME:
+        setName(NAME_EDEFAULT);
+        return;
       case AParPackage.MODEL__MODEL:
         getModel().clear();
         return;
@@ -235,6 +289,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
+      case AParPackage.MODEL__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case AParPackage.MODEL__MODEL:
         return model != null && !model.isEmpty();
       case AParPackage.MODEL__INCORPORATES:
@@ -243,6 +299,23 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         return parameters != null && !parameters.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(')');
+    return result.toString();
   }
 
 } //ModelImpl

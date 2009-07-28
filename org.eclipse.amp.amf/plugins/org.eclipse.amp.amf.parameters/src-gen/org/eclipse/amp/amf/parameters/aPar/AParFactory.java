@@ -71,13 +71,13 @@ public interface AParFactory extends EFactory
   IntValue createIntValue();
 
   /**
-   * Returns a new object of class '<em>Float Value</em>'.
+   * Returns a new object of class '<em>Real Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Float Value</em>'.
+   * @return a new object of class '<em>Real Value</em>'.
    * @generated
    */
-  FloatValue createFloatValue();
+  RealValue createRealValue();
 
   /**
    * Returns a new object of class '<em>String Value</em>'.

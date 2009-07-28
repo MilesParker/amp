@@ -20,37 +20,45 @@ public class AParGrammarAccess implements IGrammarAccess {
 	public class ModelElements implements IParserRuleAccess {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Model");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cModelAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cModelImportParserRuleCall_0_0 = (RuleCall)cModelAssignment_0.eContents().get(0);
-		private final Assignment cIncorporatesAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cIncorporatesIncorporatesParserRuleCall_1_0 = (RuleCall)cIncorporatesAssignment_1.eContents().get(0);
-		private final Assignment cParametersAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cParametersParameterParserRuleCall_2_0 = (RuleCall)cParametersAssignment_2.eContents().get(0);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameSTRINGTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Assignment cModelAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cModelImportParserRuleCall_1_0 = (RuleCall)cModelAssignment_1.eContents().get(0);
+		private final Assignment cIncorporatesAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cIncorporatesIncorporatesParserRuleCall_2_0 = (RuleCall)cIncorporatesAssignment_2.eContents().get(0);
+		private final Assignment cParametersAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cParametersParameterParserRuleCall_3_0 = (RuleCall)cParametersAssignment_3.eContents().get(0);
 		
 		//Model:
-		//  model+=Import incorporates+=Incorporates* parameters+=Parameter*;
+		//  name=STRING? model+=Import incorporates+=Incorporates* parameters+=Parameter*;
 		public ParserRule getRule() { return rule; }
 
-		//model+=Import incorporates+=Incorporates* parameters+=Parameter*
+		//name=STRING? model+=Import incorporates+=Incorporates* parameters+=Parameter*
 		public Group getGroup() { return cGroup; }
 
+		//name=STRING?
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+
+		//STRING
+		public RuleCall getNameSTRINGTerminalRuleCall_0_0() { return cNameSTRINGTerminalRuleCall_0_0; }
+
 		//model+=Import
-		public Assignment getModelAssignment_0() { return cModelAssignment_0; }
+		public Assignment getModelAssignment_1() { return cModelAssignment_1; }
 
 		//Import
-		public RuleCall getModelImportParserRuleCall_0_0() { return cModelImportParserRuleCall_0_0; }
+		public RuleCall getModelImportParserRuleCall_1_0() { return cModelImportParserRuleCall_1_0; }
 
 		//incorporates+=Incorporates*
-		public Assignment getIncorporatesAssignment_1() { return cIncorporatesAssignment_1; }
+		public Assignment getIncorporatesAssignment_2() { return cIncorporatesAssignment_2; }
 
 		//Incorporates
-		public RuleCall getIncorporatesIncorporatesParserRuleCall_1_0() { return cIncorporatesIncorporatesParserRuleCall_1_0; }
+		public RuleCall getIncorporatesIncorporatesParserRuleCall_2_0() { return cIncorporatesIncorporatesParserRuleCall_2_0; }
 
 		//parameters+=Parameter*
-		public Assignment getParametersAssignment_2() { return cParametersAssignment_2; }
+		public Assignment getParametersAssignment_3() { return cParametersAssignment_3; }
 
 		//Parameter
-		public RuleCall getParametersParameterParserRuleCall_2_0() { return cParametersParameterParserRuleCall_2_0; }
+		public RuleCall getParametersParameterParserRuleCall_3_0() { return cParametersParameterParserRuleCall_3_0; }
 	}
 
 	public class ImportElements implements IParserRuleAccess {
@@ -112,15 +120,15 @@ public class AParGrammarAccess implements IGrammarAccess {
 		private final Alternatives cValueAlternatives_2_0 = (Alternatives)cValueAssignment_2.eContents().get(0);
 		private final RuleCall cValueIntValueParserRuleCall_2_0_0 = (RuleCall)cValueAlternatives_2_0.eContents().get(0);
 		private final RuleCall cValueStringValueParserRuleCall_2_0_1 = (RuleCall)cValueAlternatives_2_0.eContents().get(1);
-		private final RuleCall cValueFloatValueParserRuleCall_2_0_2 = (RuleCall)cValueAlternatives_2_0.eContents().get(2);
+		private final RuleCall cValueRealValueParserRuleCall_2_0_2 = (RuleCall)cValueAlternatives_2_0.eContents().get(2);
 		private final RuleCall cValueBooleanValueParserRuleCall_2_0_3 = (RuleCall)cValueAlternatives_2_0.eContents().get(3);
 		
 		//Parameter:
-		//  attribute=[SAttribute|STRING] "=" value=( IntValue | StringValue | FloatValue |
+		//  attribute=[SAttribute|STRING] "=" value=( IntValue | StringValue | RealValue |
 		//  BooleanValue );
 		public ParserRule getRule() { return rule; }
 
-		//attribute=[SAttribute|STRING] "=" value=( IntValue | StringValue | FloatValue |
+		//attribute=[SAttribute|STRING] "=" value=( IntValue | StringValue | RealValue |
 		//BooleanValue )
 		public Group getGroup() { return cGroup; }
 
@@ -136,10 +144,10 @@ public class AParGrammarAccess implements IGrammarAccess {
 		//"="
 		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
 
-		//value=( IntValue | StringValue | FloatValue | BooleanValue )
+		//value=( IntValue | StringValue | RealValue | BooleanValue )
 		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
 
-		//IntValue|StringValue|FloatValue|BooleanValue
+		//IntValue|StringValue|RealValue|BooleanValue
 		public Alternatives getValueAlternatives_2_0() { return cValueAlternatives_2_0; }
 
 		//IntValue
@@ -148,8 +156,8 @@ public class AParGrammarAccess implements IGrammarAccess {
 		//StringValue
 		public RuleCall getValueStringValueParserRuleCall_2_0_1() { return cValueStringValueParserRuleCall_2_0_1; }
 
-		//FloatValue
-		public RuleCall getValueFloatValueParserRuleCall_2_0_2() { return cValueFloatValueParserRuleCall_2_0_2; }
+		//RealValue
+		public RuleCall getValueRealValueParserRuleCall_2_0_2() { return cValueRealValueParserRuleCall_2_0_2; }
 
 		//BooleanValue
 		public RuleCall getValueBooleanValueParserRuleCall_2_0_3() { return cValueBooleanValueParserRuleCall_2_0_3; }
@@ -171,20 +179,20 @@ public class AParGrammarAccess implements IGrammarAccess {
 		public RuleCall getValueINTTerminalRuleCall_0() { return cValueINTTerminalRuleCall_0; }
 	}
 
-	public class FloatValueElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "FloatValue");
+	public class RealValueElements implements IParserRuleAccess {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RealValue");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueFLOATTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		private final RuleCall cValueREALTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
-		//FloatValue:
-		//  value=FLOAT;
+		//RealValue:
+		//  value=REAL;
 		public ParserRule getRule() { return rule; }
 
-		//value=FLOAT
+		//value=REAL
 		public Assignment getValueAssignment() { return cValueAssignment; }
 
-		//FLOAT
-		public RuleCall getValueFLOATTerminalRuleCall_0() { return cValueFLOATTerminalRuleCall_0; }
+		//REAL
+		public RuleCall getValueREALTerminalRuleCall_0() { return cValueREALTerminalRuleCall_0; }
 	}
 
 	public class StringValueElements implements IParserRuleAccess {
@@ -253,11 +261,11 @@ public class AParGrammarAccess implements IGrammarAccess {
 	private IncorporatesElements pIncorporates;
 	private ParameterElements pParameter;
 	private IntValueElements pIntValue;
-	private FloatValueElements pFloatValue;
+	private RealValueElements pRealValue;
 	private StringValueElements pStringValue;
 	private BooleanValueElements pBooleanValue;
 	private BOOLEANElements unknownRuleBOOLEAN;
-	private TerminalRule tFLOAT;
+	private TerminalRule tREAL;
 	
 	private final GrammarProvider grammarProvider;
 
@@ -281,7 +289,7 @@ public class AParGrammarAccess implements IGrammarAccess {
 
 	
 	//Model:
-	//  model+=Import incorporates+=Incorporates* parameters+=Parameter*;
+	//  name=STRING? model+=Import incorporates+=Incorporates* parameters+=Parameter*;
 	public ModelElements getModelAccess() {
 		return (pModel != null) ? pModel : (pModel = new ModelElements());
 	}
@@ -311,7 +319,7 @@ public class AParGrammarAccess implements IGrammarAccess {
 	}
 
 	//Parameter:
-	//  attribute=[SAttribute|STRING] "=" value=( IntValue | StringValue | FloatValue |
+	//  attribute=[SAttribute|STRING] "=" value=( IntValue | StringValue | RealValue |
 	//  BooleanValue );
 	public ParameterElements getParameterAccess() {
 		return (pParameter != null) ? pParameter : (pParameter = new ParameterElements());
@@ -331,14 +339,14 @@ public class AParGrammarAccess implements IGrammarAccess {
 		return getIntValueAccess().getRule();
 	}
 
-	//FloatValue:
-	//  value=FLOAT;
-	public FloatValueElements getFloatValueAccess() {
-		return (pFloatValue != null) ? pFloatValue : (pFloatValue = new FloatValueElements());
+	//RealValue:
+	//  value=REAL;
+	public RealValueElements getRealValueAccess() {
+		return (pRealValue != null) ? pRealValue : (pRealValue = new RealValueElements());
 	}
 	
-	public ParserRule getFloatValueRule() {
-		return getFloatValueAccess().getRule();
+	public ParserRule getRealValueRule() {
+		return getRealValueAccess().getRule();
 	}
 
 	//StringValue:
@@ -371,10 +379,10 @@ public class AParGrammarAccess implements IGrammarAccess {
 		return getBOOLEANAccess().getRule();
 	}
 
-	//terminal FLOAT:
-	//  INT "." INT;
-	public TerminalRule getFLOATRule() {
-		return (tFLOAT != null) ? tFLOAT : (tFLOAT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "FLOAT"));
+	//terminal REAL:
+	//  "-"? INT ("." INT)?;
+	public TerminalRule getREALRule() {
+		return (tREAL != null) ? tREAL : (tREAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "REAL"));
 	} 
 
 	//terminal ID:

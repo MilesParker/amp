@@ -73,7 +73,7 @@ public class AParFactoryImpl extends EFactoryImpl implements AParFactory
       case AParPackage.INCORPORATES: return createIncorporates();
       case AParPackage.PARAMETER: return createParameter();
       case AParPackage.INT_VALUE: return createIntValue();
-      case AParPackage.FLOAT_VALUE: return createFloatValue();
+      case AParPackage.REAL_VALUE: return createRealValue();
       case AParPackage.STRING_VALUE: return createStringValue();
       case AParPackage.BOOLEAN_VALUE: return createBooleanValue();
       default:
@@ -175,10 +175,10 @@ public class AParFactoryImpl extends EFactoryImpl implements AParFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public FloatValue createFloatValue()
+  public RealValue createRealValue()
   {
-    FloatValueImpl floatValue = new FloatValueImpl();
-    return floatValue;
+    RealValueImpl realValue = new RealValueImpl();
+    return realValue;
   }
 
   /**

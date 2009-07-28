@@ -5,6 +5,7 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 import 'platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.ecore'
 
 Model :
+	(name=STRING)?
 	model+=Import
 	(incorporates+=Incorporates)*
 	(parameters+=Parameter)*;
@@ -16,13 +17,13 @@ Incorporates :
 	'incorporates' importURI=STRING;
 
 Parameter :
-	attribute=[SAttribute|STRING] "=" value=(IntValue|StringValue|FloatValue|BooleanValue);
+	attribute=[SAttribute|STRING] "=" value=(IntValue|StringValue|RealValue|BooleanValue);
 
 IntValue :
 	value=INT;
 
-FloatValue :
-	value=FLOAT;
+RealValue :
+	value=REAL;
 
 StringValue :
 	value=STRING;
@@ -33,5 +34,5 @@ BooleanValue :
 enum BOOLEAN :
 	TRUE = "true" | FALSE = "false";
 
-terminal FLOAT :
-	INT "." INT;
+terminal REAL :
+	"-"? INT ("." INT)?;

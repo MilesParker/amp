@@ -54,7 +54,7 @@ public class AParImportResolver extends ImportUriResolver {
         return convertURI(importModel, importModel.getImportURI());
     }
 
-    private static String convertURI(EObject projectObject, String uri) {
+    public static String convertURI(EObject projectObject, String uri) {
         URI fileURI = projectObject.eResource().getURI();
         if (uri.startsWith("|")) {
             // Project relative

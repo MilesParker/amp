@@ -103,9 +103,9 @@ public class AParAdapterFactory extends AdapterFactoryImpl
         return createIntValueAdapter();
       }
       @Override
-      public Adapter caseFloatValue(FloatValue object)
+      public Adapter caseRealValue(RealValue object)
       {
-        return createFloatValueAdapter();
+        return createRealValueAdapter();
       }
       @Override
       public Adapter caseStringValue(StringValue object)
@@ -215,16 +215,16 @@ public class AParAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.parameters.aPar.FloatValue <em>Float Value</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.parameters.aPar.RealValue <em>Real Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.amp.amf.parameters.aPar.FloatValue
+   * @see org.eclipse.amp.amf.parameters.aPar.RealValue
    * @generated
    */
-  public Adapter createFloatValueAdapter()
+  public Adapter createRealValueAdapter()
   {
     return null;
   }

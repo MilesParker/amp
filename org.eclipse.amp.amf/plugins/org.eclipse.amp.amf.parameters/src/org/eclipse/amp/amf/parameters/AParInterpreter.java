@@ -24,17 +24,18 @@ import java.util.Set;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.eclipse.amp.amf.parameters.aPar.BooleanValue;
-import org.eclipse.amp.amf.parameters.aPar.FloatValue;
 import org.eclipse.amp.amf.parameters.aPar.Import;
 import org.eclipse.amp.amf.parameters.aPar.Incorporates;
 import org.eclipse.amp.amf.parameters.aPar.IntValue;
 import org.eclipse.amp.amf.parameters.aPar.Model;
 import org.eclipse.amp.amf.parameters.aPar.Parameter;
+import org.eclipse.amp.amf.parameters.aPar.RealValue;
 import org.eclipse.amp.amf.parameters.aPar.StringValue;
 import org.eclipse.amp.amf.parameters.scoping.AParImportResolver;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -53,12 +54,14 @@ public class AParInterpreter {
     private String[] args;
     private List<Parameter> parameters;
     private SContext model;
-    private String rootPath;
+    private IPath rootPath;
+    private IPath filePath;
 
     public AParInterpreter(IResource modelResource) {
         IProject project = modelResource.getProject();
         ResourceSet resources = new ResourceSetImpl();
-        URI aparLoc = URI.createPlatformResourceURI(((IFile) modelResource).getFullPath().toString(), true);
+        filePath = ((IFile) modelResource).getFullPath();
+        URI aparLoc = URI.createPlatformResourceURI(filePath.toString(), true);
         Resource apar = resources.getResource(aparLoc, true);
         Model aparModel = (Model) apar.getContents().get(0);
         Import importModel = aparModel.getModel().get(0);
@@ -67,16 +70,16 @@ public class AParInterpreter {
         model = (SContext) amfModel.getContents().get(0);
 
         modelClass = model.getImplementation().getQualifiedName();
-        runName = model.getLabel() + " [" + modelResource.getName() + "]";
+        runName = model.getLabel() + "_" + modelResource.getName();
         parameters = collect(aparModel, new HashSet<String>());
 
         args = new String[parameters.size()];
         int i = 0;
-        rootPath = project.getLocation().addTrailingSeparator().toOSString();
+        rootPath = project.getLocation();
 
         for (Parameter parameter : parameters) {
             String value = value(parameter);
-            value = StringUtils.replace(value, "|", rootPath);
+            value = StringUtils.replace(value, "|", rootPath.addTrailingSeparator().toOSString());
             if (parameter.getAttribute().getLabel() != null) {
                 args[i] = parameter.getAttribute().getLabel().replaceAll(" ", "") + "=" + value;
             } else {
@@ -92,8 +95,8 @@ public class AParInterpreter {
             return ((StringValue) param.getValue()).getValue();
         } else if (param.getValue() instanceof IntValue) {
             return Integer.toString(((IntValue) param.getValue()).getValue());
-        } else if (param.getValue() instanceof FloatValue) {
-            return ((FloatValue) param.getValue()).getValue();
+        } else if (param.getValue() instanceof RealValue) {
+            return ((RealValue) param.getValue()).getValue();
         } else if (param.getValue() instanceof BooleanValue) {
             return ((BooleanValue) param.getValue()).getValue().getLiteral();
         }
@@ -124,6 +127,10 @@ public class AParInterpreter {
      */
     public SContext getTargetModel() {
         return model;
+    }
+
+    public IPath getFilePath() {
+        return filePath;
     }
 
     /**

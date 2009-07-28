@@ -37,7 +37,7 @@ protected class ThisRootNode extends RootToken {
 			case 2: return new Incorporates_Group(this, this, 2, inst);
 			case 3: return new Parameter_Group(this, this, 3, inst);
 			case 4: return new IntValue_ValueAssignment(this, this, 4, inst);
-			case 5: return new FloatValue_ValueAssignment(this, this, 5, inst);
+			case 5: return new RealValue_ValueAssignment(this, this, 5, inst);
 			case 6: return new StringValue_ValueAssignment(this, this, 6, inst);
 			case 7: return new BooleanValue_ValueAssignment(this, this, 7, inst);
 			default: return null;
@@ -49,11 +49,11 @@ protected class ThisRootNode extends RootToken {
 /************ begin Rule Model ****************
  *
  * Model:
- *   model+=Import incorporates+=Incorporates* parameters+=Parameter*;
+ *   name=STRING? model+=Import incorporates+=Incorporates* parameters+=Parameter*;
  *
  **/
 
-// model+=Import incorporates+=Incorporates* parameters+=Parameter*
+// name=STRING? model+=Import incorporates+=Incorporates* parameters+=Parameter*
 protected class Model_Group extends GroupToken {
 	
 	public Model_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -66,9 +66,9 @@ protected class Model_Group extends GroupToken {
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new Model_ParametersAssignment_2(parent, this, 0, inst);
-			case 1: return new Model_IncorporatesAssignment_1(parent, this, 1, inst);
-			case 2: return new Model_ModelAssignment_0(parent, this, 2, inst);
+			case 0: return new Model_ParametersAssignment_3(parent, this, 0, inst);
+			case 1: return new Model_IncorporatesAssignment_2(parent, this, 1, inst);
+			case 2: return new Model_ModelAssignment_1(parent, this, 2, inst);
 			default: return null;
 		}	
 	}	
@@ -79,15 +79,45 @@ protected class Model_Group extends GroupToken {
 	}
 }
 
-// model+=Import
-protected class Model_ModelAssignment_0 extends AssignmentToken  {
+// name=STRING?
+protected class Model_NameAssignment_0 extends AssignmentToken  {
 	
-	public Model_ModelAssignment_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Model_NameAssignment_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getModelAccess().getModelAssignment_0();
+		return grammarAccess.getModelAccess().getNameAssignment_0();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			default: return parent.createParentFollower(this, index, index, inst);
+		}	
+	}	
+		
+	protected IInstanceDescription tryConsumeVal() {
+		if((value = current.getConsumable("name",false)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("name");
+		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
+			type = AssignmentType.LRC;
+			element = grammarAccess.getModelAccess().getNameSTRINGTerminalRuleCall_0_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+// model+=Import
+protected class Model_ModelAssignment_1 extends AssignmentToken  {
+	
+	public Model_ModelAssignment_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public Assignment getGrammarElement() {
+		return grammarAccess.getModelAccess().getModelAssignment_1();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -104,7 +134,7 @@ protected class Model_ModelAssignment_0 extends AssignmentToken  {
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getImportRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getModelAccess().getModelImportParserRuleCall_0_0(); 
+				element = grammarAccess.getModelAccess().getModelImportParserRuleCall_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -115,20 +145,21 @@ protected class Model_ModelAssignment_0 extends AssignmentToken  {
 	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
 		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
 		switch(index) {
-			default: return parent.createParentFollower(next, actIndex , index, consumed);
+			case 0: return new Model_NameAssignment_0(parent, next, actIndex, consumed);
+			default: return parent.createParentFollower(next, actIndex , index - 1, consumed);
 		}	
 	}	
 }
 
 // incorporates+=Incorporates*
-protected class Model_IncorporatesAssignment_1 extends AssignmentToken  {
+protected class Model_IncorporatesAssignment_2 extends AssignmentToken  {
 	
-	public Model_IncorporatesAssignment_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Model_IncorporatesAssignment_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getModelAccess().getIncorporatesAssignment_1();
+		return grammarAccess.getModelAccess().getIncorporatesAssignment_2();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -145,7 +176,7 @@ protected class Model_IncorporatesAssignment_1 extends AssignmentToken  {
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getIncorporatesRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getModelAccess().getIncorporatesIncorporatesParserRuleCall_1_0(); 
+				element = grammarAccess.getModelAccess().getIncorporatesIncorporatesParserRuleCall_2_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -156,22 +187,22 @@ protected class Model_IncorporatesAssignment_1 extends AssignmentToken  {
 	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
 		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Model_IncorporatesAssignment_1(parent, next, actIndex, consumed);
-			case 1: return new Model_ModelAssignment_0(parent, next, actIndex, consumed);
+			case 0: return new Model_IncorporatesAssignment_2(parent, next, actIndex, consumed);
+			case 1: return new Model_ModelAssignment_1(parent, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
 // parameters+=Parameter*
-protected class Model_ParametersAssignment_2 extends AssignmentToken  {
+protected class Model_ParametersAssignment_3 extends AssignmentToken  {
 	
-	public Model_ParametersAssignment_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Model_ParametersAssignment_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getModelAccess().getParametersAssignment_2();
+		return grammarAccess.getModelAccess().getParametersAssignment_3();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -188,7 +219,7 @@ protected class Model_ParametersAssignment_2 extends AssignmentToken  {
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getParameterRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getModelAccess().getParametersParameterParserRuleCall_2_0(); 
+				element = grammarAccess.getModelAccess().getParametersParameterParserRuleCall_3_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -199,9 +230,9 @@ protected class Model_ParametersAssignment_2 extends AssignmentToken  {
 	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
 		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Model_ParametersAssignment_2(parent, next, actIndex, consumed);
-			case 1: return new Model_IncorporatesAssignment_1(parent, next, actIndex, consumed);
-			case 2: return new Model_ModelAssignment_0(parent, next, actIndex, consumed);
+			case 0: return new Model_ParametersAssignment_3(parent, next, actIndex, consumed);
+			case 1: return new Model_IncorporatesAssignment_2(parent, next, actIndex, consumed);
+			case 2: return new Model_ModelAssignment_1(parent, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -384,12 +415,12 @@ protected class Incorporates_ImportURIAssignment_1 extends AssignmentToken  {
 /************ begin Rule Parameter ****************
  *
  * Parameter:
- *   attribute=[SAttribute|STRING] "=" value=( IntValue | StringValue | FloatValue |
+ *   attribute=[SAttribute|STRING] "=" value=( IntValue | StringValue | RealValue |
  *   BooleanValue );
  *
  **/
 
-// attribute=[SAttribute|STRING] "=" value=( IntValue | StringValue | FloatValue |
+// attribute=[SAttribute|STRING] "=" value=( IntValue | StringValue | RealValue |
 // BooleanValue )
 protected class Parameter_Group extends GroupToken {
 	
@@ -467,7 +498,7 @@ protected class Parameter_EqualsSignKeyword_1 extends KeywordToken  {
 		
 }
 
-// value=( IntValue | StringValue | FloatValue | BooleanValue )
+// value=( IntValue | StringValue | RealValue | BooleanValue )
 protected class Parameter_ValueAssignment_2 extends AssignmentToken  {
 	
 	public Parameter_ValueAssignment_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -482,7 +513,7 @@ protected class Parameter_ValueAssignment_2 extends AssignmentToken  {
 		switch(index) {
 			case 0: return new IntValue_ValueAssignment(this, this, 0, inst);
 			case 1: return new StringValue_ValueAssignment(this, this, 1, inst);
-			case 2: return new FloatValue_ValueAssignment(this, this, 2, inst);
+			case 2: return new RealValue_ValueAssignment(this, this, 2, inst);
 			case 3: return new BooleanValue_ValueAssignment(this, this, 3, inst);
 			default: return null;
 		}	
@@ -511,9 +542,9 @@ protected class Parameter_ValueAssignment_2 extends AssignmentToken  {
 		}
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getFloatValueRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getRealValueRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getParameterAccess().getValueFloatValueParserRuleCall_2_0_2(); 
+				element = grammarAccess.getParameterAccess().getValueRealValueParserRuleCall_2_0_2(); 
 				consumed = obj;
 				return param;
 			}
@@ -587,22 +618,22 @@ protected class IntValue_ValueAssignment extends AssignmentToken  {
 /************ end Rule IntValue ****************/
 
 
-/************ begin Rule FloatValue ****************
+/************ begin Rule RealValue ****************
  *
- * FloatValue:
- *   value=FLOAT;
+ * RealValue:
+ *   value=REAL;
  *
  **/
 
-// value=FLOAT
-protected class FloatValue_ValueAssignment extends AssignmentToken  {
+// value=REAL
+protected class RealValue_ValueAssignment extends AssignmentToken  {
 	
-	public FloatValue_ValueAssignment(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public RealValue_ValueAssignment(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getFloatValueAccess().getValueAssignment();
+		return grammarAccess.getRealValueAccess().getValueAssignment();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -612,7 +643,7 @@ protected class FloatValue_ValueAssignment extends AssignmentToken  {
 	}	
 		
 	public IInstanceDescription tryConsume() {
-		if(!current.isInstanceOf(grammarAccess.getFloatValueRule().getType().getClassifier())) return null;
+		if(!current.isInstanceOf(grammarAccess.getRealValueRule().getType().getClassifier())) return null;
 		return tryConsumeVal();
 	}
 	protected IInstanceDescription tryConsumeVal() {
@@ -620,7 +651,7 @@ protected class FloatValue_ValueAssignment extends AssignmentToken  {
 		IInstanceDescription obj = current.cloneAndConsume("value");
 		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
 			type = AssignmentType.LRC;
-			element = grammarAccess.getFloatValueAccess().getValueFLOATTerminalRuleCall_0();
+			element = grammarAccess.getRealValueAccess().getValueREALTerminalRuleCall_0();
 			return obj;
 		}
 		return null;
@@ -628,7 +659,7 @@ protected class FloatValue_ValueAssignment extends AssignmentToken  {
 
 }
 
-/************ end Rule FloatValue ****************/
+/************ end Rule RealValue ****************/
 
 
 /************ begin Rule StringValue ****************

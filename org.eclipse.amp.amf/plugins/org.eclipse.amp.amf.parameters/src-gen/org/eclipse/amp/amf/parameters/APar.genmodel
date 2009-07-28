@@ -13,6 +13,9 @@
     </genEnums>
     <genClasses>
       <ecoreClass href="APar.ecore#//Model"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="APar.ecore#//Model/name"/>
+      </genFeatures>
       <genFeatures property="None" children="true" createChild="true">
         <ecoreFeature xsi:type="ecore:EReference" href="APar.ecore#//Model/model"/>
       </genFeatures>
@@ -51,9 +54,9 @@
       </genFeatures>
     </genClasses>
     <genClasses>
-      <ecoreClass href="APar.ecore#//FloatValue"/>
+      <ecoreClass href="APar.ecore#//RealValue"/>
       <genFeatures createChild="false">
-        <ecoreFeature xsi:type="ecore:EAttribute" href="APar.ecore#//FloatValue/value"/>
+        <ecoreFeature xsi:type="ecore:EAttribute" href="APar.ecore#//RealValue/value"/>
       </genFeatures>
     </genClasses>
     <genClasses>

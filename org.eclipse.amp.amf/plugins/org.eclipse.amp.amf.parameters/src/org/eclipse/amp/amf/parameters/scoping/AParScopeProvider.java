@@ -22,7 +22,6 @@ import java.util.List;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -45,18 +44,6 @@ import org.metaabm.SProjection;
  * 
  */
 public class AParScopeProvider extends DefaultScopeProvider {
-
-    /**
-     * @param context
-     * @param type
-     * @return
-     * @see org.eclipse.xtext.scoping.impl.DefaultScopeProvider#getScope(org.eclipse.emf.ecore.EObject,
-     *      org.eclipse.emf.ecore.EClass)
-     */
-    public IScope getScope(EObject context, EClass type) {
-        return super.getScope(context, type);
-        // ScopedElements.allInResource(context.eResource().eAdapters(), type, getImportUriResolver())
-    }
 
     /**
      * @param context
@@ -104,7 +91,7 @@ public class AParScopeProvider extends DefaultScopeProvider {
     // addElem(dummyAttr, "");
     // }
 
-    private void findAttributes(SAttributed attributed, List<IScopedElement> allElems, String qualifier) {
+    protected void findAttributes(SAttributed attributed, List<IScopedElement> allElems, String qualifier) {
         for (SAttribute attr : attributed.getAttributes()) {
             // don't want to allow parameter entries that can't be changed..which is also why we don't get
             // core attributes.

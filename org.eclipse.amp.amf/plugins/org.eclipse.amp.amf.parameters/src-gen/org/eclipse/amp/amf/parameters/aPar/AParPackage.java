@@ -71,13 +71,22 @@ public interface AParPackage extends EPackage
   int MODEL = 0;
 
   /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODEL__NAME = 0;
+
+  /**
    * The feature id for the '<em><b>Model</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL__MODEL = 0;
+  int MODEL__MODEL = 1;
 
   /**
    * The feature id for the '<em><b>Incorporates</b></em>' containment reference list.
@@ -86,7 +95,7 @@ public interface AParPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MODEL__INCORPORATES = 1;
+  int MODEL__INCORPORATES = 2;
 
   /**
    * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
@@ -95,7 +104,7 @@ public interface AParPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MODEL__PARAMETERS = 2;
+  int MODEL__PARAMETERS = 3;
 
   /**
    * The number of structural features of the '<em>Model</em>' class.
@@ -104,7 +113,7 @@ public interface AParPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MODEL_FEATURE_COUNT = 3;
+  int MODEL_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.ImportImpl <em>Import</em>}' class.
@@ -228,14 +237,14 @@ public interface AParPackage extends EPackage
   int INT_VALUE_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.FloatValueImpl <em>Float Value</em>}' class.
+   * The meta object id for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.RealValueImpl <em>Real Value</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.eclipse.amp.amf.parameters.aPar.impl.FloatValueImpl
-   * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getFloatValue()
+   * @see org.eclipse.amp.amf.parameters.aPar.impl.RealValueImpl
+   * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getRealValue()
    * @generated
    */
-  int FLOAT_VALUE = 5;
+  int REAL_VALUE = 5;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -244,16 +253,16 @@ public interface AParPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FLOAT_VALUE__VALUE = 0;
+  int REAL_VALUE__VALUE = 0;
 
   /**
-   * The number of structural features of the '<em>Float Value</em>' class.
+   * The number of structural features of the '<em>Real Value</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FLOAT_VALUE_FEATURE_COUNT = 1;
+  int REAL_VALUE_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.StringValueImpl <em>String Value</em>}' class.
@@ -331,6 +340,17 @@ public interface AParPackage extends EPackage
    * @generated
    */
   EClass getModel();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.parameters.aPar.Model#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.eclipse.amp.amf.parameters.aPar.Model#getName()
+   * @see #getModel()
+   * @generated
+   */
+  EAttribute getModel_Name();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.parameters.aPar.Model#getModel <em>Model</em>}'.
@@ -461,25 +481,25 @@ public interface AParPackage extends EPackage
   EAttribute getIntValue_Value();
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.amp.amf.parameters.aPar.FloatValue <em>Float Value</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.amp.amf.parameters.aPar.RealValue <em>Real Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Float Value</em>'.
-   * @see org.eclipse.amp.amf.parameters.aPar.FloatValue
+   * @return the meta object for class '<em>Real Value</em>'.
+   * @see org.eclipse.amp.amf.parameters.aPar.RealValue
    * @generated
    */
-  EClass getFloatValue();
+  EClass getRealValue();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.parameters.aPar.FloatValue#getValue <em>Value</em>}'.
+   * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.parameters.aPar.RealValue#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Value</em>'.
-   * @see org.eclipse.amp.amf.parameters.aPar.FloatValue#getValue()
-   * @see #getFloatValue()
+   * @see org.eclipse.amp.amf.parameters.aPar.RealValue#getValue()
+   * @see #getRealValue()
    * @generated
    */
-  EAttribute getFloatValue_Value();
+  EAttribute getRealValue_Value();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.amp.amf.parameters.aPar.StringValue <em>String Value</em>}'.
@@ -565,6 +585,14 @@ public interface AParPackage extends EPackage
      * @generated
      */
     EClass MODEL = eINSTANCE.getModel();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MODEL__NAME = eINSTANCE.getModel_Name();
 
     /**
      * The meta object literal for the '<em><b>Model</b></em>' containment reference list feature.
@@ -671,14 +699,14 @@ public interface AParPackage extends EPackage
     EAttribute INT_VALUE__VALUE = eINSTANCE.getIntValue_Value();
 
     /**
-     * The meta object literal for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.FloatValueImpl <em>Float Value</em>}' class.
+     * The meta object literal for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.RealValueImpl <em>Real Value</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.amp.amf.parameters.aPar.impl.FloatValueImpl
-     * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getFloatValue()
+     * @see org.eclipse.amp.amf.parameters.aPar.impl.RealValueImpl
+     * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getRealValue()
      * @generated
      */
-    EClass FLOAT_VALUE = eINSTANCE.getFloatValue();
+    EClass REAL_VALUE = eINSTANCE.getRealValue();
 
     /**
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -686,7 +714,7 @@ public interface AParPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FLOAT_VALUE__VALUE = eINSTANCE.getFloatValue_Value();
+    EAttribute REAL_VALUE__VALUE = eINSTANCE.getRealValue_Value();
 
     /**
      * The meta object literal for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.StringValueImpl <em>String Value</em>}' class.
