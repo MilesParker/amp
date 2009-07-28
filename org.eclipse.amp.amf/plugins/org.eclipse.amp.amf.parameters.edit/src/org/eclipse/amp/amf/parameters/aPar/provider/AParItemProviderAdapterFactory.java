@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AParItemProviderAdapterFactory.java,v 1.2 2009/07/23 04:01:17 mparker Exp $
+ * $Id: AParItemProviderAdapterFactory.java,v 1.3 2009/07/28 20:56:29 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 
@@ -191,26 +191,26 @@ public class AParItemProviderAdapterFactory extends AParAdapterFactory implement
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.FloatValue} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.RealValue} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected FloatValueItemProvider floatValueItemProvider;
+    protected RealValueItemProvider realValueItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.FloatValue}.
+     * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.RealValue}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createFloatValueAdapter() {
-        if (floatValueItemProvider == null) {
-            floatValueItemProvider = new FloatValueItemProvider(this);
+    public Adapter createRealValueAdapter() {
+        if (realValueItemProvider == null) {
+            realValueItemProvider = new RealValueItemProvider(this);
         }
 
-        return floatValueItemProvider;
+        return realValueItemProvider;
     }
 
     /**
@@ -234,6 +234,29 @@ public class AParItemProviderAdapterFactory extends AParAdapterFactory implement
         }
 
         return stringValueItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.BooleanValue} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected BooleanValueItemProvider booleanValueItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.BooleanValue}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createBooleanValueAdapter() {
+        if (booleanValueItemProvider == null) {
+            booleanValueItemProvider = new BooleanValueItemProvider(this);
+        }
+
+        return booleanValueItemProvider;
     }
 
     /**
@@ -340,8 +363,9 @@ public class AParItemProviderAdapterFactory extends AParAdapterFactory implement
         if (incorporatesItemProvider != null) incorporatesItemProvider.dispose();
         if (parameterItemProvider != null) parameterItemProvider.dispose();
         if (intValueItemProvider != null) intValueItemProvider.dispose();
-        if (floatValueItemProvider != null) floatValueItemProvider.dispose();
+        if (realValueItemProvider != null) realValueItemProvider.dispose();
         if (stringValueItemProvider != null) stringValueItemProvider.dispose();
+        if (booleanValueItemProvider != null) booleanValueItemProvider.dispose();
     }
 
 }

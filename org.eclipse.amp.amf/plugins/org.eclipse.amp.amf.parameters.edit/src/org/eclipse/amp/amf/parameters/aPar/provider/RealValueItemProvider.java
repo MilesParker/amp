@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FloatValueItemProvider.java,v 1.1 2009/07/18 01:07:54 mparker Exp $
+ * $Id: RealValueItemProvider.java,v 1.1 2009/07/28 20:56:29 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 
@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.amp.amf.parameters.aPar.AParPackage;
-import org.eclipse.amp.amf.parameters.aPar.FloatValue;
+import org.eclipse.amp.amf.parameters.aPar.RealValue;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -30,12 +30,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.amp.amf.parameters.aPar.FloatValue} object.
+ * This is the item provider adapter for a {@link org.eclipse.amp.amf.parameters.aPar.RealValue} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class FloatValueItemProvider
+public class RealValueItemProvider
     extends ItemProviderAdapter
     implements
         IEditingDomainItemProvider,
@@ -49,7 +49,7 @@ public class FloatValueItemProvider
      * <!-- end-user-doc -->
      * @generated
      */
-    public FloatValueItemProvider(AdapterFactory adapterFactory) {
+    public RealValueItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -80,9 +80,9 @@ public class FloatValueItemProvider
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_FloatValue_value_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_FloatValue_value_feature", "_UI_FloatValue_type"),
-                 AParPackage.Literals.FLOAT_VALUE__VALUE,
+                 getString("_UI_RealValue_value_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_RealValue_value_feature", "_UI_RealValue_type"),
+                 AParPackage.Literals.REAL_VALUE__VALUE,
                  true,
                  false,
                  false,
@@ -92,14 +92,14 @@ public class FloatValueItemProvider
     }
 
     /**
-     * This returns FloatValue.gif.
+     * This returns RealValue.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/FloatValue"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/RealValue"));
     }
 
     /**
@@ -110,10 +110,10 @@ public class FloatValueItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((FloatValue)object).getValue();
+        String label = ((RealValue)object).getValue();
         return label == null || label.length() == 0 ?
-            getString("_UI_FloatValue_type") :
-            getString("_UI_FloatValue_type") + " " + label;
+            getString("_UI_RealValue_type") :
+            getString("_UI_RealValue_type") + " " + label;
     }
 
     /**
@@ -127,8 +127,8 @@ public class FloatValueItemProvider
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
 
-        switch (notification.getFeatureID(FloatValue.class)) {
-            case AParPackage.FLOAT_VALUE__VALUE:
+        switch (notification.getFeatureID(RealValue.class)) {
+            case AParPackage.REAL_VALUE__VALUE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ParameterItemProvider.java,v 1.2 2009/07/23 04:01:17 mparker Exp $
+ * $Id: ParameterItemProvider.java,v 1.3 2009/07/28 20:56:29 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 
@@ -209,12 +209,17 @@ public class ParameterItemProvider
         newChildDescriptors.add
             (createChildParameter
                 (AParPackage.Literals.PARAMETER__VALUE,
-                 AParFactory.eINSTANCE.createFloatValue()));
+                 AParFactory.eINSTANCE.createRealValue()));
 
         newChildDescriptors.add
             (createChildParameter
                 (AParPackage.Literals.PARAMETER__VALUE,
                  AParFactory.eINSTANCE.createStringValue()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (AParPackage.Literals.PARAMETER__VALUE,
+                 AParFactory.eINSTANCE.createBooleanValue()));
 
         newChildDescriptors.add
             (createChildParameter
