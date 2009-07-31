@@ -105,7 +105,10 @@ public abstract class ModelRunHandler extends AbstractHandler implements ILifeCy
     }
 
     public synchronized void observationEnd(IObservationProvider model) {
-        this.model = null;
+        // we may have a lagging model notification from another model
+        if (model == this.model) {
+            this.model = null;
+        }
     }
 
     public void stateChange(Object key, Object updated) {

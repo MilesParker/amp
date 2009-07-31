@@ -25,6 +25,7 @@ import org.eclipse.amp.axf.core.IEngine;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.ide.handlers.CloseHandler;
+import org.eclipse.amp.axf.ide.handlers.ModelRunHandler;
 import org.eclipse.amp.axf.ide.handlers.PauseHandler;
 import org.eclipse.amp.axf.ide.handlers.RestartHandler;
 import org.eclipse.amp.axf.ide.handlers.ResumeHandler;
@@ -486,13 +487,19 @@ public class ModelViewManager implements IAdapterFactory {
             }
         });
         handlers.activate();
-        handlers.addHandler("org.eclipse.amp.axf.ui.start", new StartHandler());
-        handlers.addHandler("org.eclipse.amp.axf.ui.stop", new StopHandler());
-        handlers.addHandler("org.eclipse.amp.axf.ui.pause", new PauseHandler());
-        handlers.addHandler("org.eclipse.amp.axf.ui.resume", new ResumeHandler());
-        handlers.addHandler("org.eclipse.amp.axf.ui.restart", new RestartHandler());
-        handlers.addHandler("org.eclipse.amp.axf.ui.close", new CloseHandler());
-        handlers.addHandler("org.eclipse.amp.axf.ui.step", new StepHandler());
+        addHandler("org.eclipse.amp.axf.ui.start", new StartHandler());
+        addHandler("org.eclipse.amp.axf.ui.stop", new StopHandler());
+        addHandler("org.eclipse.amp.axf.ui.pause", new PauseHandler());
+        addHandler("org.eclipse.amp.axf.ui.resume", new ResumeHandler());
+        addHandler("org.eclipse.amp.axf.ui.restart", new RestartHandler());
+        addHandler("org.eclipse.amp.axf.ui.close", new CloseHandler());
+        addHandler("org.eclipse.amp.axf.ui.step", new StepHandler());
+    }
+
+    public void addHandler(String id, ModelRunHandler handler) {
+        handlers.addHandler(id, handler);
+        getActiveModelListeners().addListener(handler);
+        getManagerListeners().addModelManagerListener(handler);
     }
 
     private void activatePerspective(final IWorkbench wb, final String perspectiveID, final boolean editors) {

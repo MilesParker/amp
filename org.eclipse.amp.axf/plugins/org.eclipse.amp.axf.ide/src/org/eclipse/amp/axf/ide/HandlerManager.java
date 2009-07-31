@@ -59,9 +59,6 @@ public class HandlerManager {
     protected synchronized void addHandler(String id, final ModelRunHandler handler) {
         handlers.add(handler);
         handlerActivations.add(handlerService.activateHandler(id, handler));
-        ModelViewManager manager = AXFWorkbenchPlugin.getDefault().getManager();
-        manager.getActiveModelListeners().addListener(handler);
-        manager.getManagerListeners().addModelManagerListener(handler);
     }
 
     public synchronized void notifyHandlers() {
