@@ -1,0 +1,377 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id: AresPackageImpl.java,v 1.1 2009/07/31 21:48:18 mparker Exp $
+ */
+package org.eclipse.amp.amf.testing.ares.impl;
+
+import org.eclipse.amp.amf.parameters.aPar.AParPackage;
+
+import org.eclipse.amp.amf.testing.aTest.ATestPackage;
+
+import org.eclipse.amp.amf.testing.ares.AresFactory;
+import org.eclipse.amp.amf.testing.ares.AresPackage;
+import org.eclipse.amp.amf.testing.ares.Failure;
+import org.eclipse.amp.amf.testing.ares.Issue;
+import org.eclipse.amp.amf.testing.ares.Result;
+import org.eclipse.amp.amf.testing.ares.Run;
+
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import org.metaabm.MetaABMPackage;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model <b>Package</b>.
+ * <!-- end-user-doc -->
+ * @generated
+ */
+public class AresPackageImpl extends EPackageImpl implements AresPackage {
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass runEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass failureEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum resultEEnum = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EEnum issueEEnum = null;
+
+    /**
+     * Creates an instance of the model <b>Package</b>, registered with
+     * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+     * package URI value.
+     * <p>Note: the correct way to create the package is via the static
+     * factory method {@link #init init()}, which also performs
+     * initialization of the package, or returns the registered package,
+     * if one already exists.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.emf.ecore.EPackage.Registry
+     * @see org.eclipse.amp.amf.testing.ares.AresPackage#eNS_URI
+     * @see #init()
+     * @generated
+     */
+    private AresPackageImpl() {
+        super(eNS_URI, AresFactory.eINSTANCE);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private static boolean isInited = false;
+
+    /**
+     * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+     * 
+     * <p>This method is used to initialize {@link AresPackage#eINSTANCE} when that field is accessed.
+     * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #eNS_URI
+     * @see #createPackageContents()
+     * @see #initializePackageContents()
+     * @generated
+     */
+    public static AresPackage init() {
+        if (isInited) return (AresPackage)EPackage.Registry.INSTANCE.getEPackage(AresPackage.eNS_URI);
+
+        // Obtain or create and register package
+        AresPackageImpl theAresPackage = (AresPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof AresPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new AresPackageImpl());
+
+        isInited = true;
+
+        // Initialize simple dependencies
+        AParPackage.eINSTANCE.eClass();
+        ATestPackage.eINSTANCE.eClass();
+
+        // Create package meta-data objects
+        theAresPackage.createPackageContents();
+
+        // Initialize created meta-data
+        theAresPackage.initializePackageContents();
+
+        // Mark meta-data to indicate it can't be changed
+        theAresPackage.freeze();
+
+  
+        // Update the registry and return the package
+        EPackage.Registry.INSTANCE.put(AresPackage.eNS_URI, theAresPackage);
+        return theAresPackage;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getRun() {
+        return runEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getRun_Model() {
+        return (EReference)runEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getRun_TestModel() {
+        return (EReference)runEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getRun_ParameterModel() {
+        return (EReference)runEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRun_Result() {
+        return (EAttribute)runEClass.getEStructuralFeatures().get(3);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getRun_Parameters() {
+        return (EReference)runEClass.getEStructuralFeatures().get(4);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getRun_Constraints() {
+        return (EReference)runEClass.getEStructuralFeatures().get(5);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRun_Started() {
+        return (EAttribute)runEClass.getEStructuralFeatures().get(6);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRun_Finished() {
+        return (EAttribute)runEClass.getEStructuralFeatures().get(7);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getFailure() {
+        return failureEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getFailure_Constraint() {
+        return (EReference)failureEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getFailure_Issue() {
+        return (EAttribute)failureEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getFailure_ActualValue() {
+        return (EAttribute)failureEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EEnum getResult() {
+        return resultEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EEnum getIssue() {
+        return issueEEnum;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public AresFactory getAresFactory() {
+        return (AresFactory)getEFactoryInstance();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private boolean isCreated = false;
+
+    /**
+     * Creates the meta-model objects for the package.  This method is
+     * guarded to have no affect on any invocation but its first.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void createPackageContents() {
+        if (isCreated) return;
+        isCreated = true;
+
+        // Create classes and their features
+        runEClass = createEClass(RUN);
+        createEReference(runEClass, RUN__MODEL);
+        createEReference(runEClass, RUN__TEST_MODEL);
+        createEReference(runEClass, RUN__PARAMETER_MODEL);
+        createEAttribute(runEClass, RUN__RESULT);
+        createEReference(runEClass, RUN__PARAMETERS);
+        createEReference(runEClass, RUN__CONSTRAINTS);
+        createEAttribute(runEClass, RUN__STARTED);
+        createEAttribute(runEClass, RUN__FINISHED);
+
+        failureEClass = createEClass(FAILURE);
+        createEReference(failureEClass, FAILURE__CONSTRAINT);
+        createEAttribute(failureEClass, FAILURE__ISSUE);
+        createEAttribute(failureEClass, FAILURE__ACTUAL_VALUE);
+
+        // Create enums
+        resultEEnum = createEEnum(RESULT);
+        issueEEnum = createEEnum(ISSUE);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private boolean isInitialized = false;
+
+    /**
+     * Complete the initialization of the package and its meta-model.  This
+     * method is guarded to have no affect on any invocation but its first.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void initializePackageContents() {
+        if (isInitialized) return;
+        isInitialized = true;
+
+        // Initialize package
+        setName(eNAME);
+        setNsPrefix(eNS_PREFIX);
+        setNsURI(eNS_URI);
+
+        // Obtain other dependent packages
+        MetaABMPackage theMetaABMPackage = (MetaABMPackage)EPackage.Registry.INSTANCE.getEPackage(MetaABMPackage.eNS_URI);
+        ATestPackage theATestPackage = (ATestPackage)EPackage.Registry.INSTANCE.getEPackage(ATestPackage.eNS_URI);
+        AParPackage theAParPackage = (AParPackage)EPackage.Registry.INSTANCE.getEPackage(AParPackage.eNS_URI);
+
+        // Create type parameters
+
+        // Set bounds for type parameters
+
+        // Add supertypes to classes
+
+        // Initialize classes and features; add operations and parameters
+        initEClass(runEClass, Run.class, "Run", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getRun_Model(), theMetaABMPackage.getSContinuousSpace(), null, "model", null, 1, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRun_TestModel(), theATestPackage.getModel(), null, "testModel", null, 1, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRun_ParameterModel(), theAParPackage.getModel(), null, "parameterModel", null, 0, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRun_Result(), this.getResult(), "result", "", 0, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRun_Parameters(), theAParPackage.getParameter(), null, "parameters", null, 0, -1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRun_Constraints(), theATestPackage.getConstraint(), null, "constraints", null, 0, -1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRun_Started(), ecorePackage.getEDate(), "started", null, 0, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRun_Finished(), ecorePackage.getEDate(), "finished", null, 0, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(failureEClass, Failure.class, "Failure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getFailure_Constraint(), theATestPackage.getConstraint(), null, "constraint", null, 0, 1, Failure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getFailure_Issue(), this.getIssue(), "issue", null, 1, 1, Failure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getFailure_ActualValue(), ecorePackage.getEDouble(), "actualValue", null, 1, 1, Failure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        // Initialize enums and add enum literals
+        initEEnum(resultEEnum, Result.class, "Result");
+        addEEnumLiteral(resultEEnum, Result.INCOMPLETE);
+        addEEnumLiteral(resultEEnum, Result.SUCCESS);
+        addEEnumLiteral(resultEEnum, Result.FAILURE);
+
+        initEEnum(issueEEnum, Issue.class, "Issue");
+        addEEnumLiteral(issueEEnum, Issue.BELOW_RANGE);
+        addEEnumLiteral(issueEEnum, Issue.ABOVE_RANGE);
+
+        // Create resource
+        createResource(eNS_URI);
+    }
+
+} //AresPackageImpl

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ASCII"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.amp.amf.testing/src-gen" editDirectory="/org.eclipse.amp.amf.testing.edit/src" editorDirectory="/org.eclipse.amp.amf.testing.editor/src" modelPluginID="org.eclipse.amp.amf.testing" forceOverwrite="true" modelName="ATest" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.amp.amf.testing.edit" editorPluginID="org.eclipse.amp.amf.testing.editor">
+  <genPackages prefix="ATest" basePackage="org.eclipse.amp.amf.testing" disposableProviderFactory="true">
+    <ecorePackage href="ATest.ecore#/"/>
+    <genEnums typeSafeEnumCompatible="false">
+      <ecoreEnum href="ATest.ecore#//Measure"/>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="ATest.ecore#//Measure/COUNT"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="ATest.ecore#//Measure/AVERAGE"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="ATest.ecore#//Measure/SUM"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="ATest.ecore#//Measure/MINIMUM"/>
+      </genEnumLiterals>
+      <genEnumLiterals>
+        <ecoreEnumLiteral href="ATest.ecore#//Measure/MAXIMUM"/>
+      </genEnumLiterals>
+    </genEnums>
+    <genClasses>
+      <ecoreClass href="ATest.ecore#//Model"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ATest.ecore#//Model/name"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ATest.ecore#//Model/description"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ATest.ecore#//Model/tests"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ATest.ecore#//Model/contraints"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ATest.ecore#//Tests"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ATest.ecore#//Tests/importURI"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ATest.ecore#//Constraint"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ATest.ecore#//Constraint/measure"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ATest.ecore#//Constraint/agent"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ATest.ecore#//Constraint/attribute"/>
+      </genFeatures>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ATest.ecore#//Constraint/qualifier"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ATest.ecore#//Constraint/minValue"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="ATest.ecore#//Constraint/maxValue"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ATest.ecore#//IntValue"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ATest.ecore#//IntValue/value"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="ATest.ecore#//RealValue"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="ATest.ecore#//RealValue/value"/>
+      </genFeatures>
+    </genClasses>
+  </genPackages>
+  <usedGenPackages href="platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.genmodel#//metaabm"/>
+</genmodel:GenModel>
