@@ -127,7 +127,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
         // getModel().addModelListener(new ModelMonitorView(modelMonitor));
         // getModel().addModelListener(new ControlViewProxy());
         try {
-            open(args, false);
+            open(args, true);
         } catch (RuntimeException e) {
             dispose();
             throw e;
@@ -243,6 +243,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
             setCloseRequested(true);
             Thread closeThread = new Thread(this, "Close Escape Model") {
                 public void run() {
+                    setPaused(false);
                     EclipseEscapeRunner.super.close();
                 }
             };
