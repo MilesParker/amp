@@ -1,0 +1,4 @@
+"Test Model Test"
+model "TestModel.metaabm"
+"Maximum Age"=1000
+"Stop Period"=50

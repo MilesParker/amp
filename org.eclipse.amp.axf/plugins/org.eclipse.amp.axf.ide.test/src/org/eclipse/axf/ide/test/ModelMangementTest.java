@@ -123,7 +123,7 @@ public class ModelMangementTest extends TestCase {
         assertEquals(gefViews().size(), 0);
     }
 
-    public void testTwo() {
+    public void utestTwo() {
         bot.sleep(2000);
         // start new
         launchModel();
@@ -140,7 +140,7 @@ public class ModelMangementTest extends TestCase {
 
         List<IViewPart> viewsA_1 = manager().getViews(modelA_1);
         assertEquals(viewsA_1.size(), 1);
-        activateFirstView(viewsA_1);
+        activateView(viewsA_1);
         bot.sleep(2000);
         assertEquals(activeModel(), modelA_1);
 
@@ -150,28 +150,26 @@ public class ModelMangementTest extends TestCase {
 
         List<IViewPart> viewsA_2 = manager().getViews(modelA_2);
         assertEquals(viewsA_2.size(), 1);
-        activateFirstView(viewsA_2);
+        activateView(viewsA_2);
         bot.sleep(2000);
         assertEquals(activeModel(), modelA_2);
         assertTrue(!activeModel().getEngine().isPaused());
 
-        activateFirstView(viewsA_1);
+        activateView(viewsA_1);
         bot.sleep(2000);
         assertTrue(activeModel().getEngine().isPaused());
-        control().menu("Resume").click();
-        bot.sleep(2000);
 
         // rapid cycle
-        for (int i = 0; i < 10; i++) {
-            activateFirstView(viewsA_1);
+        for (int i = 0; i < 4; i++) {
+            activateView(viewsA_1);
             bot.sleep(500);
             assertEquals(activeModel(), modelA_1);
             assertTrue(control().menu("Restart").isEnabled());
-            assertTrue(control().menu("Pause").isEnabled());
+            assertTrue(!control().menu("Pause").isEnabled());
             assertTrue(control().menu("Stop").isEnabled());
-            assertTrue(!control().menu("Resume").isEnabled());
+            assertTrue(control().menu("Resume").isEnabled());
             assertTrue(!control().menu("Start").isEnabled());
-            activateFirstView(viewsA_2);
+            activateView(viewsA_2);
             bot.sleep(500);
             assertEquals(activeModel(), modelA_2);
             assertTrue(control().menu("Restart").isEnabled());
@@ -185,10 +183,18 @@ public class ModelMangementTest extends TestCase {
         control().menu("Close").click();
         bot.sleep(4000);
         assertEquals(manager().getModels().size(), 1);
-        assertTrue(manager().getActiveModel() == modelA_2);
+        assertTrue(manager().getActiveModel() == modelA_1);
         assertEquals(gefViews().size(), 1);
-        subTestPauseResume(modelA_2);
-        subTestStopStartRestart(modelA_2);
+        activateView(viewsA_1);
+        assertTrue(control().menu("Restart").isEnabled());
+        assertTrue(!control().menu("Pause").isEnabled());
+        assertTrue(control().menu("Stop").isEnabled());
+        assertTrue(control().menu("Resume").isEnabled());
+        assertTrue(!control().menu("Start").isEnabled());
+        control().menu("Resume").click();
+        bot.sleep(1500);
+        subTestPauseResume(modelA_1);
+        subTestStopStartRestart(modelA_1);
         control().menu("Close").click();
         bot.sleep(2000);
         assertEquals(gefViews().size(), 0);
@@ -196,6 +202,64 @@ public class ModelMangementTest extends TestCase {
         assertNull(manager().getActiveModel());
     }
 
+    public void testStopPause() {
+        bot.sleep(2000);
+        // start new
+        launchModel();
+        IModel modelA_1 = activeModel();
+        control().menu("Pause").click();
+        bot.sleep(1000);
+        assertTrue(activeModel().getEngine().isPaused());
+
+        // start another
+        launchModel();
+
+        control().menu("Close").click();
+        bot.sleep(2000);
+        assertTrue(activeModel().getEngine().isPaused());
+        assertEquals(activeModel(), modelA_1);
+        assertEquals(manager().getModels().size(), 1);
+        assertTrue(control().menu("Restart").isEnabled());
+        assertTrue(!control().menu("Pause").isEnabled());
+        assertTrue(control().menu("Stop").isEnabled());
+        assertTrue(control().menu("Resume").isEnabled());
+        assertTrue(!control().menu("Start").isEnabled());
+
+        control().menu("Close").click();
+        bot.sleep(2000);
+        assertNull(manager().getActiveModel());
+        assertNull(control().menu("Restart"));
+    }
+
+    public void utestStopTwo() {
+        bot.sleep(2000);
+        // start new
+        launchModel();
+        IModel modelA_1 = activeModel();
+
+        // start another
+        launchModel();
+        IModel modelA_2 = activeModel();
+
+        control().menu("Close").click();
+        bot.sleep(2000);
+        assertEquals(activeModel(), modelA_1);
+        assertEquals(manager().getModels().size(), 1);
+        assertTrue(modelA_1.getEngine().isRunning());
+        assertFalse(modelA_2.getEngine().isRunning());
+        if (!control().menu("Restart").isEnabled()) {
+            assertTrue(control().menu("Restart").isEnabled());
+        }
+        assertTrue(control().menu("Pause").isEnabled());
+        assertTrue(control().menu("Stop").isEnabled());
+        assertTrue(!control().menu("Resume").isEnabled());
+        assertTrue(!control().menu("Start").isEnabled());
+
+        control().menu("Close").click();
+        bot.sleep(2000);
+        assertNull(manager().getActiveModel());
+        assertTrue(control() == null || control().menu("Start") == null);
+    }
     private void launchModel() {
         tree().setFocus();
         tree().select(testProjectName);
@@ -238,7 +302,7 @@ public class ModelMangementTest extends TestCase {
         assertEquals(count, 2);
     }
 
-    private void activateFirstView(final List<IViewPart> views) {
+    private void activateView(final List<IViewPart> views) {
         Display.getDefault().asyncExec(new Runnable() {
 
             public void run() {
@@ -285,11 +349,11 @@ public class ModelMangementTest extends TestCase {
         return bot.menu("Control");
     }
 
-    private ModelViewManager manager() {
+    public static ModelViewManager manager() {
         return AXFWorkbenchPlugin.getDefault().getManager();
     }
 
-    private IModel activeModel() {
+    public static IModel activeModel() {
         return (IModel) AXFWorkbenchPlugin.getDefault().getManager().getActiveModel();
     }
 

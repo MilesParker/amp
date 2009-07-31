@@ -1,0 +1,4 @@
+"Test Model Test"
+Average("Player":"Age") =[450,550]
+Maximum("Player":"Age") =[900,1000]
+Minimum("Player":"Age") =[0,100]
