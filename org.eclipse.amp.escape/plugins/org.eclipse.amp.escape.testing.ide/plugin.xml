@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.amp.amf.testing.ide.ExecuteParameterTestHandler"
+            commandId="org.eclipse.amp.escape.runtime.test">
+         <activeWhen>
+            <reference
+                  definitionId="org.eclipse.amp.escape.allowtest">
+            </reference>
+         </activeWhen>
+         <enabledWhen>
+            <reference
+                  definitionId="org.eclipse.amp.escape.allowtest">
+            </reference>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="org.eclipse.amp.amf.testing.ide.ExecuteParameterTestHandler5"
+            commandId="org.eclipse.amp.escape.runtime.test5">
+         <activeWhen>
+            <reference
+                  definitionId="org.eclipse.amp.escape.allowtest">
+            </reference>
+         </activeWhen>
+         <enabledWhen>
+            <reference
+                  definitionId="org.eclipse.amp.escape.allowtest">
+            </reference>
+         </enabledWhen>
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="toolbar:org.eclipse.amp.escape.ide.launch?after=additions">
+         <command
+               commandId="org.eclipse.amp.escape.runtime.test"
+               icon="icons/etool16/test_run.gif"
+               label="Test Once"
+               style="push"
+               tooltip="Execute a test of specified conditions.">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="org.eclipse.amp.escape.allowtest">
+               </reference>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.amp.escape.runtime.test5"
+               icon="icons/etool16/test_run.gif"
+               label="Test 5 Times"
+               style="push"
+               tooltip="Execute five tests of specified conditions.">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="org.eclipse.amp.escape.allowtest">
+               </reference>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.eclipse.ui.popup.any">
+         <command
+               commandId="org.eclipse.amp.escape.runtime.test"
+               icon="icons/etool16/test_run.gif"
+               label="Test Once"
+               style="push"
+               tooltip="Execute a test of specified conditions.">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="org.eclipse.amp.escape.allowtest">
+               </reference>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.amp.escape.runtime.test5"
+               icon="icons/etool16/test_run.gif"
+               label="Test 5 Times"
+               style="push"
+               tooltip="Execute 5 tests on specified conditions.">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="org.eclipse.amp.escape.allowtest">
+               </reference>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="menu:org.eclipse.amp.axf.ui.menu?after=additions">
+         <command
+               commandId="org.eclipse.amp.escape.runtime.test"
+               icon="icons/etool16/test_run.gif"
+               label="Test Once"
+               style="push"
+               tooltip="Execute a test of specified conditions.">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="org.eclipse.amp.escape.allowtest">
+               </reference>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.eclipse.amp.escape.runtime.test5"
+               icon="icons/etool16/test_run.gif"
+               label="Test 5 Times"
+               style="push"
+               tooltip="Execute five tests of specified conditions.">
+            <visibleWhen
+                  checkEnabled="false">
+               <reference
+                     definitionId="org.eclipse.amp.escape.allowtest">
+               </reference>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+ <extension point="org.eclipse.core.expressions.definitions">
+      <definition
+            id="org.eclipse.amp.escape.allowtest">
+            <or>
+         <with
+               variable="selection">
+            <iterate
+                        ifEmpty="false"
+                        operator="or">
+       <or>
+          <adapt
+                type="org.eclipse.core.resources.IFile">
+             <or>
+                <test
+                      property="org.eclipse.core.resources.name"
+                      value="*.atest">
+                </test>
+             </or>
+          </adapt>
+          <adapt
+                type="org.eclipse.core.resources.IFolder">
+          </adapt></or>
+            </iterate>
+         </with>
+            </or>
+      </definition>
+   </extension>
+ <extension
+       point="org.eclipse.ui.commands">
+    <command
+          categoryId="org.eclipse.amp.axf.ui"
+          id="org.eclipse.amp.escape.runtime.test"
+          name="Test">
+    </command>
+    <command
+          categoryId="org.eclipse.amp.axf.ui"
+          id="org.eclipse.amp.escape.runtime.test5"
+          name="Test 5">
+    </command>
+ </extension> 
+</plugin>
