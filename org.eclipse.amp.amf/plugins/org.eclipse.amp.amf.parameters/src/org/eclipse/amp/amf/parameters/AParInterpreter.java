@@ -37,6 +37,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -100,7 +101,7 @@ public class AParInterpreter {
         } else if (param.getValue() instanceof BooleanValue) {
             return ((BooleanValue) param.getValue()).getValue().getLiteral();
         }
-        throw new RuntimeException("No value assigned for: " + param);
+        throw new RuntimeException("Bad value assigned for: " + param.getAttribute() + ": " + param.getValue());
     }
 
     List<Parameter> collect(Model apar, Set<String> overridden) {
@@ -148,8 +149,27 @@ public class AParInterpreter {
         return args;
     }
 
+    public String getArgsString() {
+        String argString = "";
+        for (Parameter param : parameters) {
+            argString += param.getAttribute().getID() + "\t" + valueOf(param.getValue()) + "\r";
+        }
+        return argString.substring(0, argString.length() - 1);
+    }
+
     public List<Parameter> getParameters() {
         return parameters;
+    }
+
+    public double valueOf(EObject constraintValue) {
+        if (constraintValue instanceof IntValue) {
+            return ((IntValue) constraintValue).getValue();
+        } else if (constraintValue instanceof RealValue) {
+            return Double.valueOf(((RealValue) constraintValue).getValue());
+        } else if (constraintValue == null) {
+            return Double.NaN;
+        }
+        throw new RuntimeException("Unexpected value for constraint.");
     }
 
 }

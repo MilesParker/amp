@@ -14,7 +14,7 @@ T15 : 'true' ;
 T16 : 'false' ;
 
 // $ANTLR src "../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g" 537
-RULE_REAL : '-'? RULE_INT ('.' RULE_INT)?;
+RULE_REAL : '-'? RULE_INT '.' RULE_INT;
 
 // $ANTLR src "../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g" 539
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;

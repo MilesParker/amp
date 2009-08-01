@@ -129,10 +129,8 @@
       <alternatives xsi:type="xtext:Group">
         <tokens xsi:type="xtext:Keyword" cardinality="?" value="-"/>
         <tokens xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
-        <tokens xsi:type="xtext:Group" cardinality="?">
-          <tokens xsi:type="xtext:Keyword" value="."/>
-          <tokens xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
-        </tokens>
+        <tokens xsi:type="xtext:Keyword" value="."/>
+        <tokens xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
       </alternatives>
     </rules>
   </xtext:Grammar>

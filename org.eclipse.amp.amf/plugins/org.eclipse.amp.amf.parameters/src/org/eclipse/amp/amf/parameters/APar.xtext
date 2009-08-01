@@ -35,4 +35,4 @@ enum BOOLEAN :
 	TRUE = "true" | FALSE = "false";
 
 terminal REAL :
-	"-"? INT ("." INT)?;
+	"-"? INT "." INT;

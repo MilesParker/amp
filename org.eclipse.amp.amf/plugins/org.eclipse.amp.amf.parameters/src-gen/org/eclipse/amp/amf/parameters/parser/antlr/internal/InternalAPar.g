@@ -534,7 +534,7 @@ ruleBOOLEAN returns [Enumerator current=null]
 
 
 
-RULE_REAL : '-'? RULE_INT ('.' RULE_INT)?;
+RULE_REAL : '-'? RULE_INT '.' RULE_INT;
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
