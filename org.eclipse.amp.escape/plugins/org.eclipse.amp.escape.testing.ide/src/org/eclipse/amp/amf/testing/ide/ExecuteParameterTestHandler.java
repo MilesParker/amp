@@ -19,11 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.ascape.runtime.Runner;
-import org.ascape.util.data.DataSeries;
 import org.eclipse.amp.amf.parameters.AParInterpreter;
 import org.eclipse.amp.amf.testing.ATestInterpreter;
-import org.eclipse.amp.amf.testing.aTest.Constraint;
-import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
 import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -81,35 +78,12 @@ public class ExecuteParameterTestHandler extends AbstractHandler {
                         AParInterpreter apar = atest.getAparInterpreter();
                         EclipseEscapeRunner runner = new EclipseEscapeRunner() {
                             protected synchronized void runMainLoop() {
+                                TestRun singleTest = new TestRun(atest, this, status);
                                 super.runMainLoop();
-                                List<Constraint> constraints = atest.getAtestModel().getContraints();
-                                for (Constraint constraint : constraints) {
-                                    String constraintName = constraint.getMeasure().getLiteral() + " "
-                                    + constraint.getAgent().getLabel() + " "
-                                    + constraint.getAttribute().getLabel();
-                                    DataSeries ds = ((ScapeWrapperModel) getModel())
-                                    .getScape().getData()
-                                    .getSeries(constraintName);
-                                    ds = ds.getDataSeries(constraint.getMeasure().getName());
-                                    if (ds != null) {
-                                        if (ds.getValue() < atest.valueOf(constraint.getMinValue())) {
-                                            System.err.println(constraint.getMeasure() + " " + ds.getValue()
-                                                               + " < " + constraint.getMinValue());
-                                        } else if (ds.getValue() > atest.valueOf(constraint
-                                                                                 .getMaxValue())) {
-                                            System.err.println(constraint.getMeasure() + " " + ds.getValue()
-                                                               + " > " + constraint.getMaxValue());
-                                        } else {
-                                            System.err.println(constraint.getMeasure() + " " + ds.getValue() + " [ "
-                                                               + constraint.getMinValue() + ", " + constraint.getMaxValue() + "]");
-                                        }
-                                    } else {
-                                        status.add(new Status(Status.ERROR, "org.eclipse.amp.amf.testing",
-                                                              "Data Series not found for:" + constraintName));
-                                    }
-                                }
+                                singleTest.performTest();
                                 close();
                             }
+
                         };
                         runner.setMonitor(monitor);
                         runner.setAutoRestart(false);
