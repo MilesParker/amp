@@ -18,6 +18,7 @@ package org.eclipse.axf.ide.test;
 
 import junit.framework.TestCase;
 
+import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
 import org.eclipse.swtbot.eclipse.finder.widgets.SWTBotView;
 import org.eclipse.swtbot.swt.finder.exceptions.WidgetNotFoundException;
@@ -70,7 +71,8 @@ public class TestExecutionTest extends TestCase {
         bot.sleep(2000);
 
         control().menu("Test Once").click();
-        bot.sleep(2500);
+        bot.sleep(4000);
+        assertEquals(AXFWorkbenchPlugin.getDefault().getManager().getModels().size(), 0);
 
     }
 
