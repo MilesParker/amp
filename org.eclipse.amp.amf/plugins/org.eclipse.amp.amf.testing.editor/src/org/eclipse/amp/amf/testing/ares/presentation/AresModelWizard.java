@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresModelWizard.java,v 1.1 2009/07/31 21:50:19 mparker Exp $
+ * $Id: AresModelWizard.java,v 1.2 2009/08/01 02:24:38 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.presentation;
 
@@ -399,8 +399,7 @@ public class AresModelWizard extends Wizard implements INewWizard {
          * @generated
          */
         public void createControl(Composite parent) {
-            Composite composite = new Composite(parent, SWT.NONE);
-            {
+            Composite composite = new Composite(parent, SWT.NONE); {
                 GridLayout layout = new GridLayout();
                 layout.numColumns = 1;
                 layout.verticalSpacing = 12;
