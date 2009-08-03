@@ -9,9 +9,7 @@ Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  de.itemis.xtext.antlr;resolution:=optional,
- org.apache.commons.logging;resolution:=optional,
  org.eclipse.emf.codegen.ecore;resolution:=optional,
- org.eclipse.xtext.log4j;resolution:=optional,
  org.eclipse.emf.mwe.utils;resolution:=optional,
  org.eclipse.emf.mwe.core;resolution:=optional,
  com.ibm.icu;resolution:=optional,
@@ -61,4 +59,6 @@ Export-Package: org.eclipse.amp.amf.parameters;uses:="org.eclipse.xtext,org.ecli
  org.eclipse.amp.amf.parameters.services;uses:="org.eclipse.xtext,org.eclipse.xtext.common.services,org.eclipse.xtext.service",
  org.eclipse.amp.amf.parameters.validation;uses:="org.eclipse.xtext.validation"
 Bundle-ClassPath: .
+Import-Package: org.apache.commons.collections,
+ org.apache.commons.lang
 
