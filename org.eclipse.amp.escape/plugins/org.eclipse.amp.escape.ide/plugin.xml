@@ -109,7 +109,7 @@
 			schemeId="org.eclipse.ui.defaultAcceleratorConfiguration" sequence="M1+L">
 		</key>
 	</extension>
-	<extension point="org.eclipse.ui.newWizards">
+<!--	<extension point="org.eclipse.ui.newWizards">
 		<wizard category="org.eclipse.amp.wizards"
 			class="org.eclipse.amp.escape.ide.ParameterFileWizard" icon="icons/etool16/run_parameter.gif"
 			id="org.eclipse.amp.escape.wizards.newParameters" name="Parameter File">
@@ -118,7 +118,7 @@
 			icon="icons/test_file.gif" id="org.eclipse.amp.escape.wizards.newTest"
 			name="Test File">
 		</wizard>
-	</extension>
+	</extension>-->
 
 	<extension point="org.eclipse.ui.perspectiveExtensions">
 		<perspectiveExtension targetID="org.eclipse.amp.axf.ExecutionPerspective">
@@ -153,7 +153,7 @@
 			</perspectiveExtension>
 		-->
 	</extension>
-	<extension point="org.eclipse.ui.editors">
+<!--	<extension point="org.eclipse.ui.editors">
 		<editor class="org.eclipse.ui.editors.text.TextEditor" default="false"
 			extensions="apar" icon="icons/etool16/run_parameter.gif" id="org.eclipse.amp.escape.ide.ParameterEditor"
 			name="Model Parameters">
@@ -162,6 +162,6 @@
 			extensions="atest" icon="icons/test_file.gif" id="org.eclipse.amp.escape.ide.TestEditor"
 			name="Model Test">
 		</editor>
-	</extension>
+	</extension>-->
 </plugin>
 
