@@ -47,8 +47,8 @@ import org.metaabm.provider.MetaABMItemProvider;
  * @generated
  */
 public class ASetItemProvider extends AAccessorItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier. <!--
      * begin-user-doc --> <!-- end-user-doc -->
@@ -83,10 +83,10 @@ public class ASetItemProvider extends AAccessorItemProvider implements IEditingD
      */
     protected void addParameterPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_ASet_parameter_feature"),
-            getString("_UI_PropertyDescriptor_description", "_UI_ASet_parameter_feature", "_UI_ASet_type"),
-            MetaABMActPackage.Literals.ASET__PARAMETER, true, false, true, null, getString("_UI_ActPropertyCategory"),
-            null) {
+                                                               .getRootAdapterFactory(), getResourceLocator(), getString("_UI_ASet_parameter_feature"),
+                                                               getString("_UI_PropertyDescriptor_description", "_UI_ASet_parameter_feature", "_UI_ASet_type"),
+                                                               MetaABMActPackage.Literals.ASET__PARAMETER, true, false, true, null, getString("_UI_ActPropertyCategory"),
+                                                               null) {
             @SuppressWarnings("unchecked")
             public Collection<?> getChoiceOfValues(Object object) {
                 ASet set = (ASet) object;
@@ -129,9 +129,11 @@ public class ASetItemProvider extends AAccessorItemProvider implements IEditingD
         ASet set = (ASet) object;
         MetaABMItemProvider valueProvider = providerFor(set.getAttribute());
         MetaABMItemProvider parameterProvider = providerFor(set.getParameter());
-        String selected = set.getSelected() != set.getGroup() ? set.getSelected().getLabel() + " " : "";
+        String selected = set.getSelected() != null && set.getSelected() != set.getGroup() ? set.getSelected()
+                .getLabel()
+            + " " : "";
         return "Set " + selected + (valueProvider != null ? valueProvider.getText(set.getAttribute()) : "[?]") + " to "
-            + (parameterProvider != null ? parameterProvider.getText(set.getParameter()) : "[?]");
+        + (parameterProvider != null ? parameterProvider.getText(set.getParameter()) : "[?]");
     }
 
     /**
@@ -150,7 +152,7 @@ public class ASetItemProvider extends AAccessorItemProvider implements IEditingD
     public String suggestLabel(IID object) {
         ASet acc = (ASet) object;
         return "Set " + (acc.getAttribute() != null ? acc.getAttribute().getLabel() : "[?]") + " To "
-            + (acc.getParameter() != null ? acc.getParameter().getLabel() : "[?]");
+        + (acc.getParameter() != null ? acc.getParameter().getLabel() : "[?]");
     }
 
     public String suggestID(IID object) {
