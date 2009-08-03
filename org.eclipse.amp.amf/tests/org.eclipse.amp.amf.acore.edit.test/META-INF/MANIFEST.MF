@@ -14,3 +14,4 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.amp.amf.acore.edit.commands.test,
  org.eclipse.amp.amf.acore.edit.test
+Import-Package: org.apache.commons.lang
