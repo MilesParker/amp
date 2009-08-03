@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RunImpl.java,v 1.1 2009/07/31 21:48:18 mparker Exp $
+ * $Id: RunImpl.java,v 1.2 2009/08/03 17:15:29 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.impl;
 
@@ -15,6 +15,7 @@ import org.eclipse.amp.amf.testing.aTest.Constraint;
 import org.eclipse.amp.amf.testing.aTest.Model;
 
 import org.eclipse.amp.amf.testing.ares.AresPackage;
+import org.eclipse.amp.amf.testing.ares.Failure;
 import org.eclipse.amp.amf.testing.ares.Result;
 import org.eclipse.amp.amf.testing.ares.Run;
 
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.metaabm.SContext;
 import org.metaabm.SContinuousSpace;
 
 /**
@@ -43,13 +45,14 @@ import org.metaabm.SContinuousSpace;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.amp.amf.testing.ares.impl.RunImpl#getModel <em>Model</em>}</li>
- *   <li>{@link org.eclipse.amp.amf.testing.ares.impl.RunImpl#getTestModel <em>Test Model</em>}</li>
- *   <li>{@link org.eclipse.amp.amf.testing.ares.impl.RunImpl#getParameterModel <em>Parameter Model</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.testing.ares.impl.RunImpl#getTest <em>Test</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.testing.ares.impl.RunImpl#getParameterization <em>Parameterization</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.testing.ares.impl.RunImpl#getResult <em>Result</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.testing.ares.impl.RunImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.testing.ares.impl.RunImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.testing.ares.impl.RunImpl#getStarted <em>Started</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.testing.ares.impl.RunImpl#getFinished <em>Finished</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.testing.ares.impl.RunImpl#getFailures <em>Failures</em>}</li>
  * </ul>
  * </p>
  *
@@ -64,27 +67,27 @@ public class RunImpl extends EObjectImpl implements Run {
      * @generated
      * @ordered
      */
-    protected SContinuousSpace model;
+    protected SContext model;
 
     /**
-     * The cached value of the '{@link #getTestModel() <em>Test Model</em>}' reference.
+     * The cached value of the '{@link #getTest() <em>Test</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getTestModel()
+     * @see #getTest()
      * @generated
      * @ordered
      */
-    protected Model testModel;
+    protected Model test;
 
     /**
-     * The cached value of the '{@link #getParameterModel() <em>Parameter Model</em>}' reference.
+     * The cached value of the '{@link #getParameterization() <em>Parameterization</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getParameterModel()
+     * @see #getParameterization()
      * @generated
      * @ordered
      */
-    protected org.eclipse.amp.amf.parameters.aPar.Model parameterModel;
+    protected org.eclipse.amp.amf.parameters.aPar.Model parameterization;
 
     /**
      * The default value of the '{@link #getResult() <em>Result</em>}' attribute.
@@ -117,7 +120,7 @@ public class RunImpl extends EObjectImpl implements Run {
     protected EList<Parameter> parameters;
 
     /**
-     * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' reference list.
+     * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #getConstraints()
@@ -167,6 +170,16 @@ public class RunImpl extends EObjectImpl implements Run {
     protected Date finished = FINISHED_EDEFAULT;
 
     /**
+     * The cached value of the '{@link #getFailures() <em>Failures</em>}' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getFailures()
+     * @generated
+     * @ordered
+     */
+    protected EList<Failure> failures;
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -190,10 +203,10 @@ public class RunImpl extends EObjectImpl implements Run {
      * <!-- end-user-doc -->
      * @generated
      */
-    public SContinuousSpace getModel() {
+    public SContext getModel() {
         if (model != null && model.eIsProxy()) {
             InternalEObject oldModel = (InternalEObject)model;
-            model = (SContinuousSpace)eResolveProxy(oldModel);
+            model = (SContext)eResolveProxy(oldModel);
             if (model != oldModel) {
                 if (eNotificationRequired())
                     eNotify(new ENotificationImpl(this, Notification.RESOLVE, AresPackage.RUN__MODEL, oldModel, model));
@@ -207,7 +220,7 @@ public class RunImpl extends EObjectImpl implements Run {
      * <!-- end-user-doc -->
      * @generated
      */
-    public SContinuousSpace basicGetModel() {
+    public SContext basicGetModel() {
         return model;
     }
 
@@ -216,8 +229,8 @@ public class RunImpl extends EObjectImpl implements Run {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setModel(SContinuousSpace newModel) {
-        SContinuousSpace oldModel = model;
+    public void setModel(SContext newModel) {
+        SContext oldModel = model;
         model = newModel;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.RUN__MODEL, oldModel, model));
@@ -228,16 +241,16 @@ public class RunImpl extends EObjectImpl implements Run {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Model getTestModel() {
-        if (testModel != null && testModel.eIsProxy()) {
-            InternalEObject oldTestModel = (InternalEObject)testModel;
-            testModel = (Model)eResolveProxy(oldTestModel);
-            if (testModel != oldTestModel) {
+    public Model getTest() {
+        if (test != null && test.eIsProxy()) {
+            InternalEObject oldTest = (InternalEObject)test;
+            test = (Model)eResolveProxy(oldTest);
+            if (test != oldTest) {
                 if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, AresPackage.RUN__TEST_MODEL, oldTestModel, testModel));
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, AresPackage.RUN__TEST, oldTest, test));
             }
         }
-        return testModel;
+        return test;
     }
 
     /**
@@ -245,8 +258,8 @@ public class RunImpl extends EObjectImpl implements Run {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Model basicGetTestModel() {
-        return testModel;
+    public Model basicGetTest() {
+        return test;
     }
 
     /**
@@ -254,11 +267,11 @@ public class RunImpl extends EObjectImpl implements Run {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setTestModel(Model newTestModel) {
-        Model oldTestModel = testModel;
-        testModel = newTestModel;
+    public void setTest(Model newTest) {
+        Model oldTest = test;
+        test = newTest;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.RUN__TEST_MODEL, oldTestModel, testModel));
+            eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.RUN__TEST, oldTest, test));
     }
 
     /**
@@ -266,16 +279,16 @@ public class RunImpl extends EObjectImpl implements Run {
      * <!-- end-user-doc -->
      * @generated
      */
-    public org.eclipse.amp.amf.parameters.aPar.Model getParameterModel() {
-        if (parameterModel != null && parameterModel.eIsProxy()) {
-            InternalEObject oldParameterModel = (InternalEObject)parameterModel;
-            parameterModel = (org.eclipse.amp.amf.parameters.aPar.Model)eResolveProxy(oldParameterModel);
-            if (parameterModel != oldParameterModel) {
+    public org.eclipse.amp.amf.parameters.aPar.Model getParameterization() {
+        if (parameterization != null && parameterization.eIsProxy()) {
+            InternalEObject oldParameterization = (InternalEObject)parameterization;
+            parameterization = (org.eclipse.amp.amf.parameters.aPar.Model)eResolveProxy(oldParameterization);
+            if (parameterization != oldParameterization) {
                 if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, AresPackage.RUN__PARAMETER_MODEL, oldParameterModel, parameterModel));
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, AresPackage.RUN__PARAMETERIZATION, oldParameterization, parameterization));
             }
         }
-        return parameterModel;
+        return parameterization;
     }
 
     /**
@@ -283,8 +296,8 @@ public class RunImpl extends EObjectImpl implements Run {
      * <!-- end-user-doc -->
      * @generated
      */
-    public org.eclipse.amp.amf.parameters.aPar.Model basicGetParameterModel() {
-        return parameterModel;
+    public org.eclipse.amp.amf.parameters.aPar.Model basicGetParameterization() {
+        return parameterization;
     }
 
     /**
@@ -292,11 +305,11 @@ public class RunImpl extends EObjectImpl implements Run {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setParameterModel(org.eclipse.amp.amf.parameters.aPar.Model newParameterModel) {
-        org.eclipse.amp.amf.parameters.aPar.Model oldParameterModel = parameterModel;
-        parameterModel = newParameterModel;
+    public void setParameterization(org.eclipse.amp.amf.parameters.aPar.Model newParameterization) {
+        org.eclipse.amp.amf.parameters.aPar.Model oldParameterization = parameterization;
+        parameterization = newParameterization;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.RUN__PARAMETER_MODEL, oldParameterModel, parameterModel));
+            eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.RUN__PARAMETERIZATION, oldParameterization, parameterization));
     }
 
     /**
@@ -339,7 +352,7 @@ public class RunImpl extends EObjectImpl implements Run {
      */
     public EList<Constraint> getConstraints() {
         if (constraints == null) {
-            constraints = new EObjectResolvingEList<Constraint>(Constraint.class, this, AresPackage.RUN__CONSTRAINTS);
+            constraints = new EObjectContainmentEList<Constraint>(Constraint.class, this, AresPackage.RUN__CONSTRAINTS);
         }
         return constraints;
     }
@@ -391,11 +404,27 @@ public class RunImpl extends EObjectImpl implements Run {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EList<Failure> getFailures() {
+        if (failures == null) {
+            failures = new EObjectContainmentEList<Failure>(Failure.class, this, AresPackage.RUN__FAILURES);
+        }
+        return failures;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case AresPackage.RUN__PARAMETERS:
                 return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
+            case AresPackage.RUN__CONSTRAINTS:
+                return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
+            case AresPackage.RUN__FAILURES:
+                return ((InternalEList<?>)getFailures()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -411,12 +440,12 @@ public class RunImpl extends EObjectImpl implements Run {
             case AresPackage.RUN__MODEL:
                 if (resolve) return getModel();
                 return basicGetModel();
-            case AresPackage.RUN__TEST_MODEL:
-                if (resolve) return getTestModel();
-                return basicGetTestModel();
-            case AresPackage.RUN__PARAMETER_MODEL:
-                if (resolve) return getParameterModel();
-                return basicGetParameterModel();
+            case AresPackage.RUN__TEST:
+                if (resolve) return getTest();
+                return basicGetTest();
+            case AresPackage.RUN__PARAMETERIZATION:
+                if (resolve) return getParameterization();
+                return basicGetParameterization();
             case AresPackage.RUN__RESULT:
                 return getResult();
             case AresPackage.RUN__PARAMETERS:
@@ -427,6 +456,8 @@ public class RunImpl extends EObjectImpl implements Run {
                 return getStarted();
             case AresPackage.RUN__FINISHED:
                 return getFinished();
+            case AresPackage.RUN__FAILURES:
+                return getFailures();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -441,13 +472,13 @@ public class RunImpl extends EObjectImpl implements Run {
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case AresPackage.RUN__MODEL:
-                setModel((SContinuousSpace)newValue);
+                setModel((SContext)newValue);
                 return;
-            case AresPackage.RUN__TEST_MODEL:
-                setTestModel((Model)newValue);
+            case AresPackage.RUN__TEST:
+                setTest((Model)newValue);
                 return;
-            case AresPackage.RUN__PARAMETER_MODEL:
-                setParameterModel((org.eclipse.amp.amf.parameters.aPar.Model)newValue);
+            case AresPackage.RUN__PARAMETERIZATION:
+                setParameterization((org.eclipse.amp.amf.parameters.aPar.Model)newValue);
                 return;
             case AresPackage.RUN__RESULT:
                 setResult((Result)newValue);
@@ -466,6 +497,10 @@ public class RunImpl extends EObjectImpl implements Run {
             case AresPackage.RUN__FINISHED:
                 setFinished((Date)newValue);
                 return;
+            case AresPackage.RUN__FAILURES:
+                getFailures().clear();
+                getFailures().addAll((Collection<? extends Failure>)newValue);
+                return;
         }
         super.eSet(featureID, newValue);
     }
@@ -479,13 +514,13 @@ public class RunImpl extends EObjectImpl implements Run {
     public void eUnset(int featureID) {
         switch (featureID) {
             case AresPackage.RUN__MODEL:
-                setModel((SContinuousSpace)null);
+                setModel((SContext)null);
                 return;
-            case AresPackage.RUN__TEST_MODEL:
-                setTestModel((Model)null);
+            case AresPackage.RUN__TEST:
+                setTest((Model)null);
                 return;
-            case AresPackage.RUN__PARAMETER_MODEL:
-                setParameterModel((org.eclipse.amp.amf.parameters.aPar.Model)null);
+            case AresPackage.RUN__PARAMETERIZATION:
+                setParameterization((org.eclipse.amp.amf.parameters.aPar.Model)null);
                 return;
             case AresPackage.RUN__RESULT:
                 setResult(RESULT_EDEFAULT);
@@ -502,6 +537,9 @@ public class RunImpl extends EObjectImpl implements Run {
             case AresPackage.RUN__FINISHED:
                 setFinished(FINISHED_EDEFAULT);
                 return;
+            case AresPackage.RUN__FAILURES:
+                getFailures().clear();
+                return;
         }
         super.eUnset(featureID);
     }
@@ -516,10 +554,10 @@ public class RunImpl extends EObjectImpl implements Run {
         switch (featureID) {
             case AresPackage.RUN__MODEL:
                 return model != null;
-            case AresPackage.RUN__TEST_MODEL:
-                return testModel != null;
-            case AresPackage.RUN__PARAMETER_MODEL:
-                return parameterModel != null;
+            case AresPackage.RUN__TEST:
+                return test != null;
+            case AresPackage.RUN__PARAMETERIZATION:
+                return parameterization != null;
             case AresPackage.RUN__RESULT:
                 return result != RESULT_EDEFAULT;
             case AresPackage.RUN__PARAMETERS:
@@ -530,6 +568,8 @@ public class RunImpl extends EObjectImpl implements Run {
                 return STARTED_EDEFAULT == null ? started != null : !STARTED_EDEFAULT.equals(started);
             case AresPackage.RUN__FINISHED:
                 return FINISHED_EDEFAULT == null ? finished != null : !FINISHED_EDEFAULT.equals(finished);
+            case AresPackage.RUN__FAILURES:
+                return failures != null && !failures.isEmpty();
         }
         return super.eIsSet(featureID);
     }

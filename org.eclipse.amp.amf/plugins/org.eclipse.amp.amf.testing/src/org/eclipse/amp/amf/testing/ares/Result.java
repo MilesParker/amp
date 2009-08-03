@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Result.java,v 1.1 2009/07/31 21:48:19 mparker Exp $
+ * $Id: Result.java,v 1.2 2009/08/03 17:15:29 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares;
 
@@ -105,10 +105,10 @@ public enum Result implements Enumerator {
      */
     private static final Result[] VALUES_ARRAY =
         new Result[] {
-            INCOMPLETE,
-            SUCCESS,
-            FAILURE,
-        };
+        INCOMPLETE,
+        SUCCESS,
+        FAILURE,
+    };
 
     /**
      * A public read-only list of all the '<em><b>Result</b></em>' enumerators.
@@ -204,7 +204,7 @@ public enum Result implements Enumerator {
      * @generated
      */
     public int getValue() {
-      return value;
+        return value;
     }
 
     /**
@@ -213,7 +213,7 @@ public enum Result implements Enumerator {
      * @generated
      */
     public String getName() {
-      return name;
+        return name;
     }
 
     /**
@@ -222,18 +222,18 @@ public enum Result implements Enumerator {
      * @generated
      */
     public String getLiteral() {
-      return literal;
+        return literal;
     }
 
     /**
-     * Returns the literal value of the enumerator, which is its string representation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     * 
      * @generated
      */
     @Override
     public String toString() {
         return literal;
     }
-    
+
 } //Result

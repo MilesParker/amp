@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Run.java,v 1.1 2009/07/31 21:48:19 mparker Exp $
+ * $Id: Run.java,v 1.2 2009/08/03 17:15:29 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares;
 
@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.metaabm.SContext;
 import org.metaabm.SContinuousSpace;
 
 /**
@@ -28,13 +29,14 @@ import org.metaabm.SContinuousSpace;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.amp.amf.testing.ares.Run#getModel <em>Model</em>}</li>
- *   <li>{@link org.eclipse.amp.amf.testing.ares.Run#getTestModel <em>Test Model</em>}</li>
- *   <li>{@link org.eclipse.amp.amf.testing.ares.Run#getParameterModel <em>Parameter Model</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.testing.ares.Run#getTest <em>Test</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.testing.ares.Run#getParameterization <em>Parameterization</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.testing.ares.Run#getResult <em>Result</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.testing.ares.Run#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.testing.ares.Run#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.testing.ares.Run#getStarted <em>Started</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.testing.ares.Run#getFinished <em>Finished</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.testing.ares.Run#getFailures <em>Failures</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,12 +54,12 @@ public interface Run extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Model</em>' reference.
-     * @see #setModel(SContinuousSpace)
+     * @see #setModel(SContext)
      * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Model()
      * @model required="true"
      * @generated
      */
-    SContinuousSpace getModel();
+    SContext getModel();
 
     /**
      * Sets the value of the '{@link org.eclipse.amp.amf.testing.ares.Run#getModel <em>Model</em>}' reference.
@@ -67,59 +69,59 @@ public interface Run extends EObject {
      * @see #getModel()
      * @generated
      */
-    void setModel(SContinuousSpace value);
+    void setModel(SContext value);
 
     /**
-     * Returns the value of the '<em><b>Test Model</b></em>' reference.
+     * Returns the value of the '<em><b>Test</b></em>' reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Test Model</em>' reference isn't clear,
+     * If the meaning of the '<em>Test</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Test Model</em>' reference.
-     * @see #setTestModel(Model)
-     * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_TestModel()
+     * @return the value of the '<em>Test</em>' reference.
+     * @see #setTest(Model)
+     * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Test()
      * @model required="true"
      * @generated
      */
-    Model getTestModel();
+    Model getTest();
 
     /**
-     * Sets the value of the '{@link org.eclipse.amp.amf.testing.ares.Run#getTestModel <em>Test Model</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.amp.amf.testing.ares.Run#getTest <em>Test</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Test Model</em>' reference.
-     * @see #getTestModel()
+     * @param value the new value of the '<em>Test</em>' reference.
+     * @see #getTest()
      * @generated
      */
-    void setTestModel(Model value);
+    void setTest(Model value);
 
     /**
-     * Returns the value of the '<em><b>Parameter Model</b></em>' reference.
+     * Returns the value of the '<em><b>Parameterization</b></em>' reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Parameter Model</em>' reference isn't clear,
+     * If the meaning of the '<em>Parameterization</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Parameter Model</em>' reference.
-     * @see #setParameterModel(org.eclipse.amp.amf.parameters.aPar.Model)
-     * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_ParameterModel()
-     * @model
+     * @return the value of the '<em>Parameterization</em>' reference.
+     * @see #setParameterization(org.eclipse.amp.amf.parameters.aPar.Model)
+     * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Parameterization()
+     * @model required="true"
      * @generated
      */
-    org.eclipse.amp.amf.parameters.aPar.Model getParameterModel();
+    org.eclipse.amp.amf.parameters.aPar.Model getParameterization();
 
     /**
-     * Sets the value of the '{@link org.eclipse.amp.amf.testing.ares.Run#getParameterModel <em>Parameter Model</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.amp.amf.testing.ares.Run#getParameterization <em>Parameterization</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Parameter Model</em>' reference.
-     * @see #getParameterModel()
+     * @param value the new value of the '<em>Parameterization</em>' reference.
+     * @see #getParameterization()
      * @generated
      */
-    void setParameterModel(org.eclipse.amp.amf.parameters.aPar.Model value);
+    void setParameterization(org.eclipse.amp.amf.parameters.aPar.Model value);
 
     /**
      * Returns the value of the '<em><b>Result</b></em>' attribute.
@@ -168,7 +170,7 @@ public interface Run extends EObject {
     EList<Parameter> getParameters();
 
     /**
-     * Returns the value of the '<em><b>Constraints</b></em>' reference list.
+     * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
      * The list contents are of type {@link org.eclipse.amp.amf.testing.aTest.Constraint}.
      * <!-- begin-user-doc -->
      * <p>
@@ -176,9 +178,9 @@ public interface Run extends EObject {
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Constraints</em>' reference list.
+     * @return the value of the '<em>Constraints</em>' containment reference list.
      * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Constraints()
-     * @model
+     * @model containment="true"
      * @generated
      */
     EList<Constraint> getConstraints();
@@ -234,5 +236,21 @@ public interface Run extends EObject {
      * @generated
      */
     void setFinished(Date value);
+
+    /**
+     * Returns the value of the '<em><b>Failures</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.amp.amf.testing.ares.Failure}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Failures</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Failures</em>' containment reference list.
+     * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Failures()
+     * @model containment="true"
+     * @generated
+     */
+    EList<Failure> getFailures();
 
 } // Run

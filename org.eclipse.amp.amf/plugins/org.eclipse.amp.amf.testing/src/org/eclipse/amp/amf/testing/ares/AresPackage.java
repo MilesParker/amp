@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresPackage.java,v 1.1 2009/07/31 21:48:19 mparker Exp $
+ * $Id: AresPackage.java,v 1.2 2009/08/03 17:15:29 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares;
 
@@ -80,22 +80,22 @@ public interface AresPackage extends EPackage {
     int RUN__MODEL = 0;
 
     /**
-     * The feature id for the '<em><b>Test Model</b></em>' reference.
+     * The feature id for the '<em><b>Test</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int RUN__TEST_MODEL = 1;
+    int RUN__TEST = 1;
 
     /**
-     * The feature id for the '<em><b>Parameter Model</b></em>' reference.
+     * The feature id for the '<em><b>Parameterization</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int RUN__PARAMETER_MODEL = 2;
+    int RUN__PARAMETERIZATION = 2;
 
     /**
      * The feature id for the '<em><b>Result</b></em>' attribute.
@@ -116,7 +116,7 @@ public interface AresPackage extends EPackage {
     int RUN__PARAMETERS = 4;
 
     /**
-     * The feature id for the '<em><b>Constraints</b></em>' reference list.
+     * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -143,13 +143,22 @@ public interface AresPackage extends EPackage {
     int RUN__FINISHED = 7;
 
     /**
+     * The feature id for the '<em><b>Failures</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RUN__FAILURES = 8;
+
+    /**
      * The number of structural features of the '<em>Run</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int RUN_FEATURE_COUNT = 8;
+    int RUN_FEATURE_COUNT = 9;
 
     /**
      * The meta object id for the '{@link org.eclipse.amp.amf.testing.ares.impl.FailureImpl <em>Failure</em>}' class.
@@ -198,6 +207,61 @@ public interface AresPackage extends EPackage {
     int FAILURE_FEATURE_COUNT = 3;
 
     /**
+     * The meta object id for the '{@link org.eclipse.amp.amf.testing.ares.impl.RunSetImpl <em>Run Set</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.amp.amf.testing.ares.impl.RunSetImpl
+     * @see org.eclipse.amp.amf.testing.ares.impl.AresPackageImpl#getRunSet()
+     * @generated
+     */
+    int RUN_SET = 2;
+
+    /**
+     * The feature id for the '<em><b>Result</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RUN_SET__RESULT = 0;
+
+    /**
+     * The feature id for the '<em><b>Started</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RUN_SET__STARTED = 1;
+
+    /**
+     * The feature id for the '<em><b>Finished</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RUN_SET__FINISHED = 2;
+
+    /**
+     * The feature id for the '<em><b>Runs</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RUN_SET__RUNS = 3;
+
+    /**
+     * The number of structural features of the '<em>Run Set</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int RUN_SET_FEATURE_COUNT = 4;
+
+    /**
      * The meta object id for the '{@link org.eclipse.amp.amf.testing.ares.Result <em>Result</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -205,7 +269,7 @@ public interface AresPackage extends EPackage {
      * @see org.eclipse.amp.amf.testing.ares.impl.AresPackageImpl#getResult()
      * @generated
      */
-    int RESULT = 2;
+    int RESULT = 3;
 
     /**
      * The meta object id for the '{@link org.eclipse.amp.amf.testing.ares.Issue <em>Issue</em>}' enum.
@@ -215,7 +279,7 @@ public interface AresPackage extends EPackage {
      * @see org.eclipse.amp.amf.testing.ares.impl.AresPackageImpl#getIssue()
      * @generated
      */
-    int ISSUE = 3;
+    int ISSUE = 4;
 
 
     /**
@@ -240,26 +304,26 @@ public interface AresPackage extends EPackage {
     EReference getRun_Model();
 
     /**
-     * Returns the meta object for the reference '{@link org.eclipse.amp.amf.testing.ares.Run#getTestModel <em>Test Model</em>}'.
+     * Returns the meta object for the reference '{@link org.eclipse.amp.amf.testing.ares.Run#getTest <em>Test</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Test Model</em>'.
-     * @see org.eclipse.amp.amf.testing.ares.Run#getTestModel()
+     * @return the meta object for the reference '<em>Test</em>'.
+     * @see org.eclipse.amp.amf.testing.ares.Run#getTest()
      * @see #getRun()
      * @generated
      */
-    EReference getRun_TestModel();
+    EReference getRun_Test();
 
     /**
-     * Returns the meta object for the reference '{@link org.eclipse.amp.amf.testing.ares.Run#getParameterModel <em>Parameter Model</em>}'.
+     * Returns the meta object for the reference '{@link org.eclipse.amp.amf.testing.ares.Run#getParameterization <em>Parameterization</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Parameter Model</em>'.
-     * @see org.eclipse.amp.amf.testing.ares.Run#getParameterModel()
+     * @return the meta object for the reference '<em>Parameterization</em>'.
+     * @see org.eclipse.amp.amf.testing.ares.Run#getParameterization()
      * @see #getRun()
      * @generated
      */
-    EReference getRun_ParameterModel();
+    EReference getRun_Parameterization();
 
     /**
      * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.testing.ares.Run#getResult <em>Result</em>}'.
@@ -284,10 +348,10 @@ public interface AresPackage extends EPackage {
     EReference getRun_Parameters();
 
     /**
-     * Returns the meta object for the reference list '{@link org.eclipse.amp.amf.testing.ares.Run#getConstraints <em>Constraints</em>}'.
+     * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.testing.ares.Run#getConstraints <em>Constraints</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the reference list '<em>Constraints</em>'.
+     * @return the meta object for the containment reference list '<em>Constraints</em>'.
      * @see org.eclipse.amp.amf.testing.ares.Run#getConstraints()
      * @see #getRun()
      * @generated
@@ -315,6 +379,17 @@ public interface AresPackage extends EPackage {
      * @generated
      */
     EAttribute getRun_Finished();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.testing.ares.Run#getFailures <em>Failures</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Failures</em>'.
+     * @see org.eclipse.amp.amf.testing.ares.Run#getFailures()
+     * @see #getRun()
+     * @generated
+     */
+    EReference getRun_Failures();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.amp.amf.testing.ares.Failure <em>Failure</em>}'.
@@ -358,6 +433,60 @@ public interface AresPackage extends EPackage {
      * @generated
      */
     EAttribute getFailure_ActualValue();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.amp.amf.testing.ares.RunSet <em>Run Set</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Run Set</em>'.
+     * @see org.eclipse.amp.amf.testing.ares.RunSet
+     * @generated
+     */
+    EClass getRunSet();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.testing.ares.RunSet#getResult <em>Result</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Result</em>'.
+     * @see org.eclipse.amp.amf.testing.ares.RunSet#getResult()
+     * @see #getRunSet()
+     * @generated
+     */
+    EAttribute getRunSet_Result();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.testing.ares.RunSet#getStarted <em>Started</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Started</em>'.
+     * @see org.eclipse.amp.amf.testing.ares.RunSet#getStarted()
+     * @see #getRunSet()
+     * @generated
+     */
+    EAttribute getRunSet_Started();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.testing.ares.RunSet#getFinished <em>Finished</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Finished</em>'.
+     * @see org.eclipse.amp.amf.testing.ares.RunSet#getFinished()
+     * @see #getRunSet()
+     * @generated
+     */
+    EAttribute getRunSet_Finished();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.testing.ares.RunSet#getRuns <em>Runs</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Runs</em>'.
+     * @see org.eclipse.amp.amf.testing.ares.RunSet#getRuns()
+     * @see #getRunSet()
+     * @generated
+     */
+    EReference getRunSet_Runs();
 
     /**
      * Returns the meta object for enum '{@link org.eclipse.amp.amf.testing.ares.Result <em>Result</em>}'.
@@ -420,20 +549,20 @@ public interface AresPackage extends EPackage {
         EReference RUN__MODEL = eINSTANCE.getRun_Model();
 
         /**
-         * The meta object literal for the '<em><b>Test Model</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Test</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference RUN__TEST_MODEL = eINSTANCE.getRun_TestModel();
+        EReference RUN__TEST = eINSTANCE.getRun_Test();
 
         /**
-         * The meta object literal for the '<em><b>Parameter Model</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Parameterization</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference RUN__PARAMETER_MODEL = eINSTANCE.getRun_ParameterModel();
+        EReference RUN__PARAMETERIZATION = eINSTANCE.getRun_Parameterization();
 
         /**
          * The meta object literal for the '<em><b>Result</b></em>' attribute feature.
@@ -452,7 +581,7 @@ public interface AresPackage extends EPackage {
         EReference RUN__PARAMETERS = eINSTANCE.getRun_Parameters();
 
         /**
-         * The meta object literal for the '<em><b>Constraints</b></em>' reference list feature.
+         * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
@@ -474,6 +603,14 @@ public interface AresPackage extends EPackage {
          * @generated
          */
         EAttribute RUN__FINISHED = eINSTANCE.getRun_Finished();
+
+        /**
+         * The meta object literal for the '<em><b>Failures</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference RUN__FAILURES = eINSTANCE.getRun_Failures();
 
         /**
          * The meta object literal for the '{@link org.eclipse.amp.amf.testing.ares.impl.FailureImpl <em>Failure</em>}' class.
@@ -508,6 +645,48 @@ public interface AresPackage extends EPackage {
          * @generated
          */
         EAttribute FAILURE__ACTUAL_VALUE = eINSTANCE.getFailure_ActualValue();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.amp.amf.testing.ares.impl.RunSetImpl <em>Run Set</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.amp.amf.testing.ares.impl.RunSetImpl
+         * @see org.eclipse.amp.amf.testing.ares.impl.AresPackageImpl#getRunSet()
+         * @generated
+         */
+        EClass RUN_SET = eINSTANCE.getRunSet();
+
+        /**
+         * The meta object literal for the '<em><b>Result</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute RUN_SET__RESULT = eINSTANCE.getRunSet_Result();
+
+        /**
+         * The meta object literal for the '<em><b>Started</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute RUN_SET__STARTED = eINSTANCE.getRunSet_Started();
+
+        /**
+         * The meta object literal for the '<em><b>Finished</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute RUN_SET__FINISHED = eINSTANCE.getRunSet_Finished();
+
+        /**
+         * The meta object literal for the '<em><b>Runs</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference RUN_SET__RUNS = eINSTANCE.getRunSet_Runs();
 
         /**
          * The meta object literal for the '{@link org.eclipse.amp.amf.testing.ares.Result <em>Result</em>}' enum.

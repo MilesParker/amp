@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresFactory.java,v 1.1 2009/07/31 21:48:19 mparker Exp $
+ * $Id: AresFactory.java,v 1.2 2009/08/03 17:15:29 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares;
 
@@ -42,6 +42,15 @@ public interface AresFactory extends EFactory {
      * @generated
      */
     Failure createFailure();
+
+    /**
+     * Returns a new object of class '<em>Run Set</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Run Set</em>'.
+     * @generated
+     */
+    RunSet createRunSet();
 
     /**
      * Returns the package supported by this factory.

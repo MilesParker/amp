@@ -35,8 +35,9 @@ protected class ThisRootNode extends RootToken {
 			case 0: return new Model_Group(this, this, 0, inst);
 			case 1: return new Tests_Group(this, this, 1, inst);
 			case 2: return new Constraint_Group(this, this, 2, inst);
-			case 3: return new IntValue_ValueAssignment(this, this, 3, inst);
-			case 4: return new RealValue_ValueAssignment(this, this, 4, inst);
+			case 3: return new Value_Alternatives(this, this, 3, inst);
+			case 4: return new IntValue_ValueAssignment(this, this, 4, inst);
+			case 5: return new RealValue_ValueAssignment(this, this, 5, inst);
 			default: return null;
 		}	
 	}	
@@ -319,14 +320,12 @@ protected class Tests_ImportURIAssignment_1 extends AssignmentToken  {
  *
  * Constraint:
  *   measure=Measure "(" agent=[SAgent|STRING] ":" attribute=[SAttribute|STRING] (":"
- *   qualifier=[SStateValue|STRING])? ")" ("=" "[" minValue=( IntValue | RealValue ) ","
- *   maxValue=( IntValue | RealValue ) "]");
+ *   qualifier=[SStateValue|STRING])? ")" ("=" "[" minValue=Value "," maxValue=Value "]");
  *
  **/
 
 // measure=Measure "(" agent=[SAgent|STRING] ":" attribute=[SAttribute|STRING] (":"
-// qualifier=[SStateValue|STRING])? ")" ("=" "[" minValue=( IntValue | RealValue ) ","
-// maxValue=( IntValue | RealValue ) "]")
+// qualifier=[SStateValue|STRING])? ")" ("=" "[" minValue=Value "," maxValue=Value "]")
 protected class Constraint_Group extends GroupToken {
 	
 	public Constraint_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -584,7 +583,7 @@ protected class Constraint_RightParenthesisKeyword_6 extends KeywordToken  {
 		
 }
 
-// "=" "[" minValue=( IntValue | RealValue ) "," maxValue=( IntValue | RealValue ) "]"
+// "=" "[" minValue=Value "," maxValue=Value "]"
 protected class Constraint_Group_7 extends GroupToken {
 	
 	public Constraint_Group_7(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -644,7 +643,7 @@ protected class Constraint_LeftSquareBracketKeyword_7_1 extends KeywordToken  {
 		
 }
 
-// minValue=( IntValue | RealValue )
+// minValue=Value
 protected class Constraint_MinValueAssignment_7_2 extends AssignmentToken  {
 	
 	public Constraint_MinValueAssignment_7_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -657,8 +656,7 @@ protected class Constraint_MinValueAssignment_7_2 extends AssignmentToken  {
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new IntValue_ValueAssignment(this, this, 0, inst);
-			case 1: return new RealValue_ValueAssignment(this, this, 1, inst);
+			case 0: return new Value_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -668,18 +666,9 @@ protected class Constraint_MinValueAssignment_7_2 extends AssignmentToken  {
 		IInstanceDescription obj = current.cloneAndConsume("minValue");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getIntValueRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getValueRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getConstraintAccess().getMinValueIntValueParserRuleCall_7_2_0_0(); 
-				consumed = obj;
-				return param;
-			}
-		}
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
-			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getRealValueRule().getType().getClassifier())) {
-				type = AssignmentType.PRC;
-				element = grammarAccess.getConstraintAccess().getMinValueRealValueParserRuleCall_7_2_0_1(); 
+				element = grammarAccess.getConstraintAccess().getMinValueValueParserRuleCall_7_2_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -716,7 +705,7 @@ protected class Constraint_CommaKeyword_7_3 extends KeywordToken  {
 		
 }
 
-// maxValue=( IntValue | RealValue )
+// maxValue=Value
 protected class Constraint_MaxValueAssignment_7_4 extends AssignmentToken  {
 	
 	public Constraint_MaxValueAssignment_7_4(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -729,8 +718,7 @@ protected class Constraint_MaxValueAssignment_7_4 extends AssignmentToken  {
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new IntValue_ValueAssignment(this, this, 0, inst);
-			case 1: return new RealValue_ValueAssignment(this, this, 1, inst);
+			case 0: return new Value_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -740,18 +728,9 @@ protected class Constraint_MaxValueAssignment_7_4 extends AssignmentToken  {
 		IInstanceDescription obj = current.cloneAndConsume("maxValue");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getIntValueRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getValueRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getConstraintAccess().getMaxValueIntValueParserRuleCall_7_4_0_0(); 
-				consumed = obj;
-				return param;
-			}
-		}
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
-			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getRealValueRule().getType().getClassifier())) {
-				type = AssignmentType.PRC;
-				element = grammarAccess.getConstraintAccess().getMaxValueRealValueParserRuleCall_7_4_0_1(); 
+				element = grammarAccess.getConstraintAccess().getMaxValueValueParserRuleCall_7_4_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -791,6 +770,104 @@ protected class Constraint_RightSquareBracketKeyword_7_5 extends KeywordToken  {
 
 
 /************ end Rule Constraint ****************/
+
+
+/************ begin Rule Value ****************
+ *
+ * Value:
+ *   IntValue|RealValue;
+ *
+ **/
+
+// IntValue|RealValue
+protected class Value_Alternatives extends AlternativesToken {
+
+	public Value_Alternatives(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public Alternatives getGrammarElement() {
+		return grammarAccess.getValueAccess().getAlternatives();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new Value_IntValueParserRuleCall_0(parent, this, 0, inst);
+			case 1: return new Value_RealValueParserRuleCall_1(parent, this, 1, inst);
+			default: return null;
+		}	
+	}	
+		
+	public IInstanceDescription tryConsume() {
+		if(!current.isInstanceOf(grammarAccess.getValueRule().getType().getClassifier())) return null;
+		return tryConsumeVal();
+	}
+}
+
+// IntValue
+protected class Value_IntValueParserRuleCall_0 extends RuleCallToken {
+	
+	public Value_IntValueParserRuleCall_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getValueAccess().getIntValueParserRuleCall_0();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new IntValue_ValueAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}	
+		
+	protected IInstanceDescription tryConsumeVal() {
+		if(checkForRecursion(IntValue_ValueAssignment.class, current)) return null;
+		if(!current.isInstanceOf(grammarAccess.getIntValueRule().getType().getClassifier())) return null;
+		return current;
+	}
+	
+	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
+		switch(index) {
+			default: return parent.createParentFollower(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+// RealValue
+protected class Value_RealValueParserRuleCall_1 extends RuleCallToken {
+	
+	public Value_RealValueParserRuleCall_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getValueAccess().getRealValueParserRuleCall_1();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new RealValue_ValueAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}	
+		
+	protected IInstanceDescription tryConsumeVal() {
+		if(checkForRecursion(RealValue_ValueAssignment.class, current)) return null;
+		if(!current.isInstanceOf(grammarAccess.getRealValueRule().getType().getClassifier())) return null;
+		return current;
+	}
+	
+	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
+		switch(index) {
+			default: return parent.createParentFollower(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+
+/************ end Rule Value ****************/
 
 
 /************ begin Rule IntValue ****************

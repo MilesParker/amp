@@ -17,19 +17,33 @@
       <genEnumLiterals ecoreEnumLiteral="ares.ecore#//Issue/AboveRange"/>
     </genEnums>
     <genClasses ecoreClass="ares.ecore#//Run">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ares.ecore#//Run/model"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ares.ecore#//Run/testModel"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ares.ecore#//Run/parameterModel"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference ares.ecore#//Run/model"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference ares.ecore#//Run/test"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference ares.ecore#//Run/parameterization"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ares.ecore#//Run/result"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ares.ecore#//Run/parameters"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ares.ecore#//Run/constraints"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference ares.ecore#//Run/parameters"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ares.ecore#//Run/constraints"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ares.ecore#//Run/started"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ares.ecore#//Run/finished"/>
+      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference ares.ecore#//Run/failures"/>
     </genClasses>
     <genClasses ecoreClass="ares.ecore#//Failure">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ares.ecore#//Failure/constraint"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          propertySortChoices="true" ecoreFeature="ecore:EReference ares.ecore#//Failure/constraint"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ares.ecore#//Failure/issue"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ares.ecore#//Failure/actualValue"/>
+    </genClasses>
+    <genClasses ecoreClass="ares.ecore#//RunSet">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EAttribute ares.ecore#//RunSet/result"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EAttribute ares.ecore#//RunSet/started"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EAttribute ares.ecore#//RunSet/finished"/>
+      <genFeatures children="true" createChild="false" ecoreFeature="ecore:EReference ares.ecore#//RunSet/runs"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

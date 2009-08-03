@@ -14,10 +14,13 @@ Tests :
 	'TESTS' importURI=STRING;
 
 Constraint :
-	measure=Measure "(" agent=[SAgent|STRING]":"attribute=[SAttribute|STRING] (":" qualifier=[SStateValue|STRING])? ")" ("=" "[" minValue=(IntValue|RealValue) "," maxValue=(IntValue|RealValue) "]");
+	measure=Measure "(" agent=[SAgent|STRING]":"attribute=[SAttribute|STRING] (":" qualifier=[SStateValue|STRING])? ")" ("=" "[" minValue=Value "," maxValue=Value "]");
 
 enum Measure :
 	COUNT = "Count" | AVERAGE = "Average" | SUM = "Sum" | MINIMUM = "Minimum" | MAXIMUM = "Maximum";
+
+Value :
+	IntValue | RealValue;
 
 IntValue :
 	value=INT;
@@ -26,7 +29,7 @@ RealValue :
 	value=REAL;
 
 terminal REAL :
-	"-"? INT ("." INT)?;
+	"-"? INT "." INT;
 	
 terminal PLAIN_STRING	: 
   '«'( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'«'|'»') )*'»';

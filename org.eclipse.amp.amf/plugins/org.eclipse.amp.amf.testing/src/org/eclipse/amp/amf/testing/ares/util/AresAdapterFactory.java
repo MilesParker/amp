@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresAdapterFactory.java,v 1.1 2009/07/31 21:48:20 mparker Exp $
+ * $Id: AresAdapterFactory.java,v 1.2 2009/08/03 17:15:30 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.util;
 
@@ -80,6 +80,10 @@ public class AresAdapterFactory extends AdapterFactoryImpl {
                 return createFailureAdapter();
             }
             @Override
+            public Adapter caseRunSet(RunSet object) {
+                return createRunSetAdapter();
+            }
+            @Override
             public Adapter defaultCase(EObject object) {
                 return createEObjectAdapter();
             }
@@ -124,6 +128,20 @@ public class AresAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createFailureAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.testing.ares.RunSet <em>Run Set</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.amp.amf.testing.ares.RunSet
+     * @generated
+     */
+    public Adapter createRunSetAdapter() {
         return null;
     }
 

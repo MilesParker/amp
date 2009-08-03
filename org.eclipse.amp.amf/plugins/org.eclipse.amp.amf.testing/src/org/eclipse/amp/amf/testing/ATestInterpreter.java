@@ -69,7 +69,7 @@ public class ATestInterpreter {
         }
     }
 
-    public Model getAtestModel() {
+    public Model getModel() {
         return atestModel;
     }
 
@@ -101,5 +101,4 @@ public class ATestInterpreter {
         }
         throw new RuntimeException("Unexpected value for constraint.");
     }
-
 }

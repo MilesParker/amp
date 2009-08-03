@@ -4,41 +4,34 @@
 package org.eclipse.amp.amf.testing.scoping;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.amp.amf.parameters.AParInterpreter;
+import org.eclipse.amp.amf.parameters.aPar.Model;
+import org.eclipse.amp.amf.parameters.scoping.AParImportResolver;
 import org.eclipse.amp.amf.parameters.scoping.AParScopeProvider;
 import org.eclipse.amp.amf.testing.aTest.Constraint;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ui.statushandlers.StatusManager;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopedElement;
 import org.eclipse.xtext.scoping.impl.ScopedElement;
-import org.eclipse.xtext.scoping.impl.SimpleScope;
 import org.eclipse.xtext.xtend.scoping.Scope;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAgent;
-import org.metaabm.SContext;
 import org.metaabm.SState;
 import org.metaabm.SStateValue;
 
 /**
  * This class contains custom scoping description.
  * 
- * see : http://www.eclipse.org/Xtext/documentation/latest/xtext.html#scoping
- * on how and when to use it
- *
+ * see : http://www.eclipse.org/Xtext/documentation/latest/xtext.html#scoping on how and when to use it
+ * 
  */
 public class ATestScopeProvider extends AParScopeProvider {
-
-    SContext context;
 
     /**
      * @param object
@@ -48,27 +41,27 @@ public class ATestScopeProvider extends AParScopeProvider {
      *      org.eclipse.emf.ecore.EReference)
      */
     public IScope getScope(EObject object, EReference reference) {
-        if (context == null) {
+        IScope defaultScope = super.getScope(object, reference);
+        if (object instanceof Constraint) {
+            Constraint constraint = (Constraint) object;
+            List<IScopedElement> allElems = new ArrayList<IScopedElement>();
             ResourceSet resourceSet = object.eResource().getResourceSet();
             URI testFileURI = object.eResource().getURI();
             testFileURI = testFileURI.trimFileExtension().appendFileExtension("apar");
             Resource aparAnalog = resourceSet.getResource(testFileURI, true);
-            if (aparAnalog == null) {
-                StatusManager.getManager().handle(
-                                                  new Status(Status.WARNING, "org.eclipse.amp.amf.parameters",
-                                                  "Couldn't locate engine context."));
-            } else {
-                AParInterpreter interpreter = new AParInterpreter(ResourcesPlugin.getWorkspace().getRoot()
-                                                                  .getFile(new Path(testFileURI.toPlatformString(true))));
-                context = interpreter.getTargetModel();
-            }
-        }
-        if (object instanceof Constraint) {
-            Constraint constraint = (Constraint) object;
-            List<IScopedElement> allElems = new ArrayList<IScopedElement>();
+            Model aparModel = (Model) aparAnalog.getContents().get(0);
+            Resource agentModel = resourceSet.getResource(URI.createURI(AParImportResolver
+                                                                        .convertURI(aparModel.getModel().get(0)), true), true);
+
             if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAgent()) {
-                for (SAgent agent : context.getAgents()) {
-                    allElems.add(ScopedElement.create(agent.getLabel(), agent));
+                for (Resource resource : resourceSet.getResources()) {
+                    for (Iterator<EObject> iter = resource.getAllContents(); iter.hasNext();) {
+                        EObject next = iter.next();
+                        if (next instanceof SAgent) {
+                            SAgent sAgent = (SAgent) next;
+                            allElems.add(ScopedElement.create(sAgent.getLabel(), sAgent));
+                        }
+                    }
                 }
             } else if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAttribute()) {
                 if (constraint.getAgent() != null) {
@@ -86,7 +79,9 @@ public class ATestScopeProvider extends AParScopeProvider {
                     return Scope.NULLSCOPE;
                 }
             }
-            SimpleScope attrScope = new SimpleScope(allElems);
+            Scope attrScope = new Scope();
+            attrScope.setOuterScope(defaultScope);
+            attrScope.setElements(allElems);
             return attrScope;
         }
         return super.getScope(object, reference);

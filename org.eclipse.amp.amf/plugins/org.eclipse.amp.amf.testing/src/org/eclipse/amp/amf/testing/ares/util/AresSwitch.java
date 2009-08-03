@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresSwitch.java,v 1.1 2009/07/31 21:48:19 mparker Exp $
+ * $Id: AresSwitch.java,v 1.2 2009/08/03 17:15:30 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.util;
 
@@ -99,6 +99,12 @@ public class AresSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case AresPackage.RUN_SET: {
+                RunSet runSet = (RunSet)theEObject;
+                T result = caseRunSet(runSet);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             default: return defaultCase(theEObject);
         }
     }
@@ -130,6 +136,21 @@ public class AresSwitch<T> {
      * @generated
      */
     public T caseFailure(Failure object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Run Set</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Run Set</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseRunSet(RunSet object) {
         return null;
     }
 

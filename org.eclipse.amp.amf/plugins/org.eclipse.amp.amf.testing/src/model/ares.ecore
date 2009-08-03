@@ -4,19 +4,22 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ares"
     nsURI="http://eclipse.org/amp/ares" nsPrefix="ares">
   <eClassifiers xsi:type="ecore:EClass" name="Run">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1" eType="ecore:EClass ../../../org.eclipse.amp.amf.acore/src/model/metaabm.ecore#//SContinuousSpace"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="testModel" lowerBound="1"
-        eType="ecore:EClass ../../src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Model"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parameterModel" eType="ecore:EClass ../../../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//Model"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1" eType="ecore:EClass ../../../org.eclipse.amp.amf.acore/src/model/metaabm.ecore#//SContext"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="test" lowerBound="1" eType="ecore:EClass ../../src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Model"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameterization" lowerBound="1"
+        eType="ecore:EClass ../../../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//Model"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="result" eType="#//Result"
         defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="ecore:EClass ../../../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//Parameter"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
-        eType="ecore:EClass ../../src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Constraint"/>
+        eType="ecore:EClass ../../src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Constraint"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="started" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="finished" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="failures" upperBound="-1"
+        eType="#//Failure" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Result">
     <eLiterals name="Incomplete" value="1" literal="INCOMPLETE"/>
@@ -32,5 +35,13 @@
   <eClassifiers xsi:type="ecore:EEnum" name="Issue">
     <eLiterals name="BelowRange" value="10" literal="BELOW_RANGE"/>
     <eLiterals name="AboveRange" value="15" literal="ABOVE_RANGE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RunSet">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="result" lowerBound="1"
+        eType="#//Result"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="started" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="finished" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="runs" upperBound="-1" eType="#//Run"
+        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

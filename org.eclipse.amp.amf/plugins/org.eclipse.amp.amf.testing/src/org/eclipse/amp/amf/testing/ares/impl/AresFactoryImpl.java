@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresFactoryImpl.java,v 1.1 2009/07/31 21:48:18 mparker Exp $
+ * $Id: AresFactoryImpl.java,v 1.2 2009/08/03 17:15:29 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.impl;
 
@@ -63,6 +63,7 @@ public class AresFactoryImpl extends EFactoryImpl implements AresFactory {
         switch (eClass.getClassifierID()) {
             case AresPackage.RUN: return createRun();
             case AresPackage.FAILURE: return createFailure();
+            case AresPackage.RUN_SET: return createRunSet();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -120,6 +121,16 @@ public class AresFactoryImpl extends EFactoryImpl implements AresFactory {
     public Failure createFailure() {
         FailureImpl failure = new FailureImpl();
         return failure;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public RunSet createRunSet() {
+        RunSetImpl runSet = new RunSetImpl();
+        return runSet;
     }
 
     /**

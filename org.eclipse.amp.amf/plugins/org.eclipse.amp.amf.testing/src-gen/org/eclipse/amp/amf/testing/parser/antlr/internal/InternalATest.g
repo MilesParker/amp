@@ -327,32 +327,23 @@ ruleConstraint returns [EObject current=null]
     }
 (	
 	
-	    lv_minValue_10=(	{ 
-        currentNode=createCompositeNode(grammarAccess.getConstraintAccess().getMinValueIntValueParserRuleCall_7_2_0_0(), currentNode); 
-    }
-	ruleIntValue	{ 
-        currentNode = currentNode.getParent();
-    }
-
-    |	{ 
-        currentNode=createCompositeNode(grammarAccess.getConstraintAccess().getMinValueRealValueParserRuleCall_7_2_0_1(), currentNode); 
-    }
-	ruleRealValue	{ 
-        currentNode = currentNode.getParent();
-    }
-)
- 
+	    
+	    { 
+	        currentNode=createCompositeNode(grammarAccess.getConstraintAccess().getMinValueValueParserRuleCall_7_2_0(), currentNode); 
+	    }
+	    lv_minValue_10=ruleValue 
 	    {
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getConstraintRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
 	        }
 	        
 	        try {
-	       		set($current, "minValue", lv_minValue_10, null, lastConsumedNode);
+	       		set($current, "minValue", lv_minValue_10, "Value", currentNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
+	        currentNode = currentNode.getParent();
 	    }
 	
 )',' 
@@ -361,32 +352,23 @@ ruleConstraint returns [EObject current=null]
     }
 (	
 	
-	    lv_maxValue_12=(	{ 
-        currentNode=createCompositeNode(grammarAccess.getConstraintAccess().getMaxValueIntValueParserRuleCall_7_4_0_0(), currentNode); 
-    }
-	ruleIntValue	{ 
-        currentNode = currentNode.getParent();
-    }
-
-    |	{ 
-        currentNode=createCompositeNode(grammarAccess.getConstraintAccess().getMaxValueRealValueParserRuleCall_7_4_0_1(), currentNode); 
-    }
-	ruleRealValue	{ 
-        currentNode = currentNode.getParent();
-    }
-)
- 
+	    
+	    { 
+	        currentNode=createCompositeNode(grammarAccess.getConstraintAccess().getMaxValueValueParserRuleCall_7_4_0(), currentNode); 
+	    }
+	    lv_maxValue_12=ruleValue 
 	    {
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getConstraintRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
 	        }
 	        
 	        try {
-	       		set($current, "maxValue", lv_maxValue_12, null, lastConsumedNode);
+	       		set($current, "maxValue", lv_maxValue_12, "Value", currentNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
+	        currentNode = currentNode.getParent();
 	    }
 	
 )']' 
@@ -394,6 +376,46 @@ ruleConstraint returns [EObject current=null]
         createLeafNode(grammarAccess.getConstraintAccess().getRightSquareBracketKeyword_7_5(), null); 
     }
 ));
+
+
+
+
+
+// Entry rule entryRuleValue
+entryRuleValue returns [EObject current=null] :
+	{ currentNode = createCompositeNode(grammarAccess.getValueRule(), currentNode); }
+	 iv_ruleValue=ruleValue 
+	 { $current=$iv_ruleValue.current; } 
+	 EOF 
+;
+
+// Rule Value
+ruleValue returns [EObject current=null] 
+    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
+(
+    { 
+        currentNode=createCompositeNode(grammarAccess.getValueAccess().getIntValueParserRuleCall_0(), currentNode); 
+    }
+    this_IntValue_0=ruleIntValue
+    { 
+        $current = $this_IntValue_0.current; 
+        currentNode = currentNode.getParent();
+    }
+
+    |
+    { 
+        currentNode=createCompositeNode(grammarAccess.getValueAccess().getRealValueParserRuleCall_1(), currentNode); 
+    }
+    this_RealValue_1=ruleRealValue
+    { 
+        $current = $this_RealValue_1.current; 
+        currentNode = currentNode.getParent();
+    }
+);
 
 
 
@@ -520,7 +542,7 @@ ruleMeasure returns [Enumerator current=null]
 
 
 
-RULE_REAL : '-'? RULE_INT ('.' RULE_INT)?;
+RULE_REAL : '-'? RULE_INT '.' RULE_INT;
 
 RULE_PLAIN_STRING : '\u00AB' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\u00AB'|'\u00BB')))* '\u00BB';
 

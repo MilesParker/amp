@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresPackageImpl.java,v 1.1 2009/07/31 21:48:18 mparker Exp $
+ * $Id: AresPackageImpl.java,v 1.2 2009/08/03 17:15:29 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.impl;
 
@@ -17,6 +17,7 @@ import org.eclipse.amp.amf.testing.ares.Issue;
 import org.eclipse.amp.amf.testing.ares.Result;
 import org.eclipse.amp.amf.testing.ares.Run;
 
+import org.eclipse.amp.amf.testing.ares.RunSet;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -47,6 +48,13 @@ public class AresPackageImpl extends EPackageImpl implements AresPackage {
      * @generated
      */
     private EClass failureEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass runSetEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -150,7 +158,7 @@ public class AresPackageImpl extends EPackageImpl implements AresPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getRun_TestModel() {
+    public EReference getRun_Test() {
         return (EReference)runEClass.getEStructuralFeatures().get(1);
     }
 
@@ -159,7 +167,7 @@ public class AresPackageImpl extends EPackageImpl implements AresPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getRun_ParameterModel() {
+    public EReference getRun_Parameterization() {
         return (EReference)runEClass.getEStructuralFeatures().get(2);
     }
 
@@ -213,6 +221,15 @@ public class AresPackageImpl extends EPackageImpl implements AresPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EReference getRun_Failures() {
+        return (EReference)runEClass.getEStructuralFeatures().get(8);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EClass getFailure() {
         return failureEClass;
     }
@@ -242,6 +259,51 @@ public class AresPackageImpl extends EPackageImpl implements AresPackage {
      */
     public EAttribute getFailure_ActualValue() {
         return (EAttribute)failureEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getRunSet() {
+        return runSetEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRunSet_Result() {
+        return (EAttribute)runSetEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRunSet_Started() {
+        return (EAttribute)runSetEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getRunSet_Finished() {
+        return (EAttribute)runSetEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getRunSet_Runs() {
+        return (EReference)runSetEClass.getEStructuralFeatures().get(3);
     }
 
     /**
@@ -292,18 +354,25 @@ public class AresPackageImpl extends EPackageImpl implements AresPackage {
         // Create classes and their features
         runEClass = createEClass(RUN);
         createEReference(runEClass, RUN__MODEL);
-        createEReference(runEClass, RUN__TEST_MODEL);
-        createEReference(runEClass, RUN__PARAMETER_MODEL);
+        createEReference(runEClass, RUN__TEST);
+        createEReference(runEClass, RUN__PARAMETERIZATION);
         createEAttribute(runEClass, RUN__RESULT);
         createEReference(runEClass, RUN__PARAMETERS);
         createEReference(runEClass, RUN__CONSTRAINTS);
         createEAttribute(runEClass, RUN__STARTED);
         createEAttribute(runEClass, RUN__FINISHED);
+        createEReference(runEClass, RUN__FAILURES);
 
         failureEClass = createEClass(FAILURE);
         createEReference(failureEClass, FAILURE__CONSTRAINT);
         createEAttribute(failureEClass, FAILURE__ISSUE);
         createEAttribute(failureEClass, FAILURE__ACTUAL_VALUE);
+
+        runSetEClass = createEClass(RUN_SET);
+        createEAttribute(runSetEClass, RUN_SET__RESULT);
+        createEAttribute(runSetEClass, RUN_SET__STARTED);
+        createEAttribute(runSetEClass, RUN_SET__FINISHED);
+        createEReference(runSetEClass, RUN_SET__RUNS);
 
         // Create enums
         resultEEnum = createEEnum(RESULT);
@@ -346,19 +415,26 @@ public class AresPackageImpl extends EPackageImpl implements AresPackage {
 
         // Initialize classes and features; add operations and parameters
         initEClass(runEClass, Run.class, "Run", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getRun_Model(), theMetaABMPackage.getSContinuousSpace(), null, "model", null, 1, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getRun_TestModel(), theATestPackage.getModel(), null, "testModel", null, 1, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getRun_ParameterModel(), theAParPackage.getModel(), null, "parameterModel", null, 0, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRun_Model(), theMetaABMPackage.getSContext(), null, "model", null, 1, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRun_Test(), theATestPackage.getModel(), null, "test", null, 1, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRun_Parameterization(), theAParPackage.getModel(), null, "parameterization", null, 1, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getRun_Result(), this.getResult(), "result", "", 0, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRun_Parameters(), theAParPackage.getParameter(), null, "parameters", null, 0, -1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getRun_Constraints(), theATestPackage.getConstraint(), null, "constraints", null, 0, -1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRun_Constraints(), theATestPackage.getConstraint(), null, "constraints", null, 0, -1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getRun_Started(), ecorePackage.getEDate(), "started", null, 0, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getRun_Finished(), ecorePackage.getEDate(), "finished", null, 0, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRun_Failures(), this.getFailure(), null, "failures", null, 0, -1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(failureEClass, Failure.class, "Failure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getFailure_Constraint(), theATestPackage.getConstraint(), null, "constraint", null, 0, 1, Failure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getFailure_Issue(), this.getIssue(), "issue", null, 1, 1, Failure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getFailure_ActualValue(), ecorePackage.getEDouble(), "actualValue", null, 1, 1, Failure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(runSetEClass, RunSet.class, "RunSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getRunSet_Result(), this.getResult(), "result", null, 1, 1, RunSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRunSet_Started(), ecorePackage.getEDate(), "started", null, 0, 1, RunSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRunSet_Finished(), ecorePackage.getEDate(), "finished", null, 0, 1, RunSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRunSet_Runs(), this.getRun(), null, "runs", null, 0, -1, RunSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(resultEEnum, Result.class, "Result");
