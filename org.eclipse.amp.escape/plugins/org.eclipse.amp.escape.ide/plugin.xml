@@ -13,12 +13,12 @@
 	<extension point="org.eclipse.ui.menus">
 		<menuContribution locationURI="popup:org.eclipse.ui.popup.any">
 			<command commandId="org.eclipse.amp.escape.runtime.execute"
-				icon="icons/etool16/execute.gif" style="push" tooltip="Execute the model.">
+				icon="icons/etool16/run_param.gif" style="push" tooltip="Execute the model.">
 				<visibleWhen checkEnabled="true">
 				</visibleWhen>
 			</command>
 			<command commandId="org.eclipse.amp.escape.runtime.executeHeadless"
-				icon="icons/etool16/execute_headless.gif" style="push" tooltip="Execute the model.">
+				icon="icons/etool16/run_param_headless.gif" style="push" tooltip="Execute the model.">
 				<visibleWhen checkEnabled="true">
 				</visibleWhen>
 			</command>
@@ -26,7 +26,7 @@
 		<menuContribution
 			locationURI="toolbar:org.eclipse.amp.escape.ide.launch?after=additions">
 			<command commandId="org.eclipse.amp.escape.runtime.execute"
-				icon="icons/etool16/execute.gif" label="Execute" style="push"
+				icon="icons/etool16/run_param.gif" label="Execute" style="push"
 				tooltip="Load and start an Escape model.">
 				<visibleWhen checkEnabled="false">
 					<reference definitionId="org.eclipse.amp.escape.allowexecute">
@@ -34,7 +34,7 @@
 				</visibleWhen>
 			</command>
 			<command commandId="org.eclipse.amp.escape.runtime.executeHeadless"
-				icon="icons/etool16/execute_headless.gif" label="Execute Headless" style="push"
+				icon="icons/etool16/run_param_headless.gif" label="Execute Headless" style="push"
 				tooltip="Load and start an Escape model in non-graphical mode.">
 				<visibleWhen checkEnabled="false">
 					<reference definitionId="org.eclipse.amp.escape.allowexecute">
@@ -44,7 +44,7 @@
 		</menuContribution>
 		<menuContribution locationURI="menu:org.eclipse.amp.axf.ui.menu?after=additions">
 			<command commandId="org.eclipse.amp.escape.runtime.execute"
-				icon="icons/etool16/execute.gif" label="Execute" style="push"
+				icon="icons/etool16/run_param.gif" label="Execute" style="push"
 				tooltip="Load and start an Escape model.">
 				<visibleWhen checkEnabled="false">
 					<reference definitionId="org.eclipse.amp.escape.allowexecute">
@@ -52,7 +52,7 @@
 				</visibleWhen>
 			</command>
 			<command commandId="org.eclipse.amp.escape.runtime.executeHeadless"
-				icon="icons/etool16/execute_headless.gif" label="Execute Headless" style="push"
+				icon="icons/etool16/run_param_headless.gif" label="Execute Headless" style="push"
 				tooltip="Load and start an Escape model in non-graphical mode.">
 				<visibleWhen checkEnabled="false">
 					<reference definitionId="org.eclipse.amp.escape.allowexecute">
