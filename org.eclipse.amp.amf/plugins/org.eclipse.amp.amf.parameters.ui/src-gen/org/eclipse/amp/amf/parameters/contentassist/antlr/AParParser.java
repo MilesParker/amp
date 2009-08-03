@@ -42,7 +42,7 @@ public class AParParser extends AbstractContentAssistParser {
 		if (nameMappings == null) {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				{
-					put(grammarAccess.getParameterAccess().getValueAlternatives_2_0(), "rule__Parameter__ValueAlternatives_2_0");
+					put(grammarAccess.getValueAccess().getAlternatives(), "rule__Value__Alternatives");
 					put(grammarAccess.getBOOLEANAccess().getAlternatives(), "rule__BOOLEAN__Alternatives");
 					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group");
 					put(grammarAccess.getImportAccess().getGroup(), "rule__Import__Group");

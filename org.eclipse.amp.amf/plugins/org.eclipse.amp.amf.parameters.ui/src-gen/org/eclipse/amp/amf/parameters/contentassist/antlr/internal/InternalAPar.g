@@ -155,6 +155,32 @@ finally {
 
 
 
+// Entry rule entryRuleValue
+entryRuleValue :
+{ before(grammarAccess.getValueRule()); }
+	 ruleValue
+{ after(grammarAccess.getValueRule()); } 
+	 EOF 
+;
+
+// Rule Value
+ruleValue 
+    @init {
+		int stackSize = keepStackSize();
+    }
+ :
+(
+{ before(grammarAccess.getValueAccess().getAlternatives()); }
+(rule__Value__Alternatives){ after(grammarAccess.getValueAccess().getAlternatives()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRuleIntValue
 entryRuleIntValue :
 { before(grammarAccess.getIntValueRule()); }
@@ -302,29 +328,29 @@ finally {
 
 
 
-rule__Parameter__ValueAlternatives_2_0
+rule__Value__Alternatives
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getParameterAccess().getValueIntValueParserRuleCall_2_0_0()); }
-	ruleIntValue{ after(grammarAccess.getParameterAccess().getValueIntValueParserRuleCall_2_0_0()); }
+{ before(grammarAccess.getValueAccess().getIntValueParserRuleCall_0()); }
+	ruleIntValue{ after(grammarAccess.getValueAccess().getIntValueParserRuleCall_0()); }
 )
 
     |(
-{ before(grammarAccess.getParameterAccess().getValueStringValueParserRuleCall_2_0_1()); }
-	ruleStringValue{ after(grammarAccess.getParameterAccess().getValueStringValueParserRuleCall_2_0_1()); }
+{ before(grammarAccess.getValueAccess().getStringValueParserRuleCall_1()); }
+	ruleStringValue{ after(grammarAccess.getValueAccess().getStringValueParserRuleCall_1()); }
 )
 
     |(
-{ before(grammarAccess.getParameterAccess().getValueRealValueParserRuleCall_2_0_2()); }
-	ruleRealValue{ after(grammarAccess.getParameterAccess().getValueRealValueParserRuleCall_2_0_2()); }
+{ before(grammarAccess.getValueAccess().getRealValueParserRuleCall_2()); }
+	ruleRealValue{ after(grammarAccess.getValueAccess().getRealValueParserRuleCall_2()); }
 )
 
     |(
-{ before(grammarAccess.getParameterAccess().getValueBooleanValueParserRuleCall_2_0_3()); }
-	ruleBooleanValue{ after(grammarAccess.getParameterAccess().getValueBooleanValueParserRuleCall_2_0_3()); }
+{ before(grammarAccess.getValueAccess().getBooleanValueParserRuleCall_3()); }
+	ruleBooleanValue{ after(grammarAccess.getValueAccess().getBooleanValueParserRuleCall_3()); }
 )
 
 ;
@@ -489,9 +515,8 @@ rule__Parameter__Group
 { before(grammarAccess.getParameterAccess().getValueAssignment_2()); }
 (	
 (
-{ before(grammarAccess.getParameterAccess().getValueAlternatives_2_0()); }
-(rule__Parameter__ValueAlternatives_2_0)
-{ after(grammarAccess.getParameterAccess().getValueAlternatives_2_0()); }
+{ before(grammarAccess.getParameterAccess().getValueValueParserRuleCall_2_0()); }
+	ruleValue{ after(grammarAccess.getParameterAccess().getValueValueParserRuleCall_2_0()); }
 )
  
 ){ after(grammarAccess.getParameterAccess().getValueAssignment_2()); }
