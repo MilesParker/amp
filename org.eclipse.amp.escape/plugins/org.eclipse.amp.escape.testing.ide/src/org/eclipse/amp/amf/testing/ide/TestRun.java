@@ -16,32 +16,26 @@
 
 package org.eclipse.amp.amf.testing.ide;
 
-import java.io.IOException;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import org.ascape.util.data.DataSeries;
+import org.eclipse.amp.amf.parameters.AParInterpreter;
 import org.eclipse.amp.amf.testing.ATestInterpreter;
 import org.eclipse.amp.amf.testing.aTest.Constraint;
 import org.eclipse.amp.amf.testing.ares.Failure;
 import org.eclipse.amp.amf.testing.ares.Issue;
 import org.eclipse.amp.amf.testing.ares.Result;
 import org.eclipse.amp.amf.testing.ares.Run;
+import org.eclipse.amp.amf.testing.ares.RunSet;
 import org.eclipse.amp.amf.testing.ares.impl.AresFactoryImpl;
 import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * 
@@ -49,8 +43,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
  * 
  */
 public class TestRun {
-
-    MultiStatus status;
 
     EclipseEscapeRunner runner;
 
@@ -62,48 +54,54 @@ public class TestRun {
 
     private boolean success;
 
-    public TestRun(ATestInterpreter atest, EclipseEscapeRunner runner, MultiStatus status) {
+    private RunSet runSet;
+
+    private IProject project;
+
+    public TestRun(RunSet runSet, IProject project, ATestInterpreter atest) {
         super();
         this.atest = atest;
-        this.runner = runner;
-        this.status = status;
+        this.runSet = runSet;
+        this.project = project;
     }
 
     protected void initialize() {
-        List<Constraint> constraints = atest.getAtestModel().getContraints();
-        ResourceSet resourceSet = new ResourceSetImpl();
-
-        IProject project = atest.getResource().getProject();
-        IFolder resultsFolder = project.getFolder("results");
-        IFile resultsFile = resultsFolder.getFile(atest.getResource().getProjectRelativePath().removeFileExtension()
-                                                  .addFileExtension("ares").lastSegment());
-        URI fileURI = URI.createPlatformResourceURI(project.getName() + "/" + resultsFile.getProjectRelativePath(),
-                                                    true);
-        Resource resource = resourceSet.createResource(fileURI);
-
         run = AresFactoryImpl.eINSTANCE.createRun();
-        if (run != null) {
-            resource.getContents().add(run);
-        } else {
-            throw new RuntimeException("Couldn't create resource.");
-        }
-        run.getConstraints().addAll(constraints);
+        runSet.getRuns().add(run);
+        run.setParameterization(atest.getAparInterpreter().getModel());
+        // Note that we need to clone for case where constraints or parameters change.
+        run.setModel(atest.getAparInterpreter().getTargetModel());
+        run.getConstraints().addAll(EcoreUtil.copyAll(atest.getModel().getContraints()));
+        run.getParameters().addAll(EcoreUtil.copyAll(atest.getAparInterpreter().getModel().getParameters()));
+        run.setTest(atest.getModel());
         run.setStarted(new Date());
         run.setResult(Result.INCOMPLETE);
-        Map<Object, Object> options = new HashMap<Object, Object>();
-        try {
-            resource.save(options);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
-    protected void performTest() {
-        List<Constraint> constraints = run.getConstraints();
+    protected void runTest(final IProgressMonitor monitor, final MultiStatus status) {
+        AParInterpreter apar = atest.getAparInterpreter();
+        EclipseEscapeRunner runner = new EclipseEscapeRunner() {
+            protected synchronized void runMainLoop() {
+                super.runMainLoop();
+                runEclipse(this, monitor, status);
+                close();
+            }
+        };
+        runner.setMonitor(monitor);
+        runner.setAutoRestart(false);
+        runner.open(project, apar.getTargetModel().getImplementation().getQualifiedName(), atest.getResource()
+                    .getName(), apar.getArgs());
+    }
+
+    private void runEclipse(EclipseEscapeRunner runner, IProgressMonitor monitor, MultiStatus status) {
+        initialize();
         success = true;
-        for (Constraint constraint : constraints) {
-            String constraintName = constraint.getMeasure().getLiteral() + " " + constraint.getAgent().getLabel() + " "
-            + constraint.getAttribute().getLabel();
+        for (Constraint constraint : run.getConstraints()) {
+            String constraintName = constraint.getMeasure().getLiteral() + " " + constraint.getAgent().getLabel() + " ";
+            if (constraint.getQualifier() != null) {
+                constraintName += constraint.getQualifier().getLabel() + " ";
+            }
+            constraintName += constraint.getAttribute().getLabel();
             int seriesIndex = runner.getData().getIndexOfSeries(constraintName);
             if (seriesIndex >= 0) {
                 DataSeries ds = runner.getData().getSeries(constraintName);
@@ -131,13 +129,19 @@ public class TestRun {
         } else {
             run.setResult(Result.FAILURE);
         }
+        run.setFinished(new Date());
     }
 
     private void fail(Constraint constraint, Issue issue, double value) {
         Failure f = AresFactoryImpl.eINSTANCE.createFailure();
+        run.getFailures().add(f);
         f.setConstraint(constraint);
         f.setActualValue(value);
         f.setIssue(issue);
         success = false;
+    }
+
+    public Run getRun() {
+        return run;
     }
 }

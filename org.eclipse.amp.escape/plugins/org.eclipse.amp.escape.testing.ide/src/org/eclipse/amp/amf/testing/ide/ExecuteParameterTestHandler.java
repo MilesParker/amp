@@ -19,9 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.ascape.runtime.Runner;
-import org.eclipse.amp.amf.parameters.AParInterpreter;
 import org.eclipse.amp.amf.testing.ATestInterpreter;
-import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -68,29 +66,13 @@ public class ExecuteParameterTestHandler extends AbstractHandler {
                     addResource((IResource) obj);
                 }
             }
+            Runner.setDisplayGraphics(false);
 
             Job escapeRun = new Job("Run " + name) {
                 protected IStatus run(IProgressMonitor monitor) {
                     final MultiStatus status = new MultiStatus("org.eclipse.amp.amf.testing.ide", Status.OK,
                                                                "Executing Tests", null);
-                    Runner.setDisplayGraphics(false);
-                    for (final ATestInterpreter atest : interpreters) {
-                        AParInterpreter apar = atest.getAparInterpreter();
-                        EclipseEscapeRunner runner = new EclipseEscapeRunner() {
-                            protected synchronized void runMainLoop() {
-                                TestRun singleTest = new TestRun(atest, this, status);
-                                super.runMainLoop();
-                                singleTest.performTest();
-                                close();
-                            }
-
-                        };
-                        runner.setMonitor(monitor);
-                        runner.setAutoRestart(false);
-                        runner.open(project, apar.getTargetModel().getImplementation().getQualifiedName(), atest
-                                    .getResource().getName(), apar.getArgs());
-
-                    }
+                    new TestRunSet(project, interpreters).runTests(monitor, status);
                     return status;
                 }
             };
