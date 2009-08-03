@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.1 2009/07/31 21:50:19 mparker Exp $
+ $Id: plugin.xml,v 1.2 2009/08/03 17:15:52 mparker Exp $
 -->
 
 <plugin>
@@ -36,4 +36,29 @@
       </editor>
    </extension>
 
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.amp.amf.testing.aTest.presentation.ATestModelWizardID"
+            name="%_UI_ATestModelWizard_label"
+            class="org.eclipse.amp.amf.testing.aTest.presentation.ATestModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ATestModelFile.gif">
+         <description>%_UI_ATestModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.amp.amf.testing.aTest.presentation.ATestEditorID"
+            name="%_UI_ATestEditor_label"
+            icon="icons/full/obj16/ATestModelFile.gif"
+            extensions="atest"
+            class="org.eclipse.amp.amf.testing.aTest.presentation.ATestEditor"
+            contributorClass="org.eclipse.amp.amf.testing.aTest.presentation.ATestActionBarContributor">
+      </editor>
+   </extension>
 </plugin>

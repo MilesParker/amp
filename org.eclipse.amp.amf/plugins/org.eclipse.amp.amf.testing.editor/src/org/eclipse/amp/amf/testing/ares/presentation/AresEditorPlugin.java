@@ -2,11 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresEditorPlugin.java,v 1.1 2009/07/31 21:50:19 mparker Exp $
+ * $Id: AresEditorPlugin.java,v 1.2 2009/08/03 17:15:52 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.presentation;
 
 import org.eclipse.amp.amf.parameters.aPar.provider.AParEditPlugin;
+import org.eclipse.amp.amf.testing.aTest.provider.ATestEditPlugin;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -45,6 +46,7 @@ public final class AresEditorPlugin extends EMFPlugin {
         super
             (new ResourceLocator [] {
                 AParEditPlugin.INSTANCE,
+                ATestEditPlugin.INSTANCE,
                 MetaABMEditPlugin.INSTANCE,
             });
     }

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresEditor.java,v 1.1 2009/07/31 21:50:19 mparker Exp $
+ * $Id: AresEditor.java,v 1.2 2009/08/03 17:15:52 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.presentation;
 
@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.amp.amf.parameters.aPar.provider.AParItemProviderAdapterFactory;
+import org.eclipse.amp.amf.testing.aTest.provider.ATestItemProviderAdapterFactory;
 import org.eclipse.amp.amf.testing.ares.provider.AresItemProviderAdapterFactory;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -662,6 +663,7 @@ public class AresEditor
         adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new AresItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new AParItemProviderAdapterFactory());
+        adapterFactory.addAdapterFactory(new ATestItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new MetaABMItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new MetaABMFunctionItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new MetaABMActItemProviderAdapterFactory());
@@ -1543,7 +1545,7 @@ public class AresEditor
      * @generated
      */
     protected void doSaveAs(URI uri, IEditorInput editorInput) {
-        editingDomain.getResourceSet().getResources().get(0).setURI(uri);
+        (editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
         setInputWithNotify(editorInput);
         setPartName(editorInput.getName());
         IProgressMonitor progressMonitor =
