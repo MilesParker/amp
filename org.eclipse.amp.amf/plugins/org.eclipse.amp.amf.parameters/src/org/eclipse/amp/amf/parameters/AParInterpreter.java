@@ -57,6 +57,7 @@ public class AParInterpreter {
     private SContext model;
     private IPath rootPath;
     private IPath filePath;
+    private Model aparModel;
 
     public AParInterpreter(IResource modelResource) {
         IProject project = modelResource.getProject();
@@ -64,7 +65,7 @@ public class AParInterpreter {
         filePath = ((IFile) modelResource).getFullPath();
         URI aparLoc = URI.createPlatformResourceURI(filePath.toString(), true);
         Resource apar = resources.getResource(aparLoc, true);
-        Model aparModel = (Model) apar.getContents().get(0);
+        aparModel = (Model) apar.getContents().get(0);
         Import importModel = aparModel.getModel().get(0);
         URI platformURI = URI.createURI(AParImportResolver.convertURI(importModel));
         Resource amfModel = resources.getResource(platformURI, true);
@@ -157,10 +158,6 @@ public class AParInterpreter {
         return argString.substring(0, argString.length() - 1);
     }
 
-    public List<Parameter> getParameters() {
-        return parameters;
-    }
-
     public double valueOf(EObject constraintValue) {
         if (constraintValue instanceof IntValue) {
             return ((IntValue) constraintValue).getValue();
@@ -172,4 +169,7 @@ public class AParInterpreter {
         throw new RuntimeException("Unexpected value for constraint.");
     }
 
+    public Model getModel() {
+        return aparModel;
+    }
 }

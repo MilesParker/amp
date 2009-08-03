@@ -117,19 +117,13 @@ public class AParGrammarAccess implements IGrammarAccess {
 		private final RuleCall cAttributeSAttributeSTRINGTerminalRuleCall_0_0_1 = (RuleCall)cAttributeSAttributeCrossReference_0_0.eContents().get(1);
 		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Alternatives cValueAlternatives_2_0 = (Alternatives)cValueAssignment_2.eContents().get(0);
-		private final RuleCall cValueIntValueParserRuleCall_2_0_0 = (RuleCall)cValueAlternatives_2_0.eContents().get(0);
-		private final RuleCall cValueStringValueParserRuleCall_2_0_1 = (RuleCall)cValueAlternatives_2_0.eContents().get(1);
-		private final RuleCall cValueRealValueParserRuleCall_2_0_2 = (RuleCall)cValueAlternatives_2_0.eContents().get(2);
-		private final RuleCall cValueBooleanValueParserRuleCall_2_0_3 = (RuleCall)cValueAlternatives_2_0.eContents().get(3);
+		private final RuleCall cValueValueParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
 		
 		//Parameter:
-		//  attribute=[SAttribute|STRING] "=" value=( IntValue | StringValue | RealValue |
-		//  BooleanValue );
+		//  attribute=[SAttribute|STRING] "=" value=Value;
 		public ParserRule getRule() { return rule; }
 
-		//attribute=[SAttribute|STRING] "=" value=( IntValue | StringValue | RealValue |
-		//BooleanValue )
+		//attribute=[SAttribute|STRING] "=" value=Value
 		public Group getGroup() { return cGroup; }
 
 		//attribute=[SAttribute|STRING]
@@ -144,23 +138,39 @@ public class AParGrammarAccess implements IGrammarAccess {
 		//"="
 		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
 
-		//value=( IntValue | StringValue | RealValue | BooleanValue )
+		//value=Value
 		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
 
+		//Value
+		public RuleCall getValueValueParserRuleCall_2_0() { return cValueValueParserRuleCall_2_0; }
+	}
+
+	public class ValueElements implements IParserRuleAccess {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Value");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cIntValueParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cStringValueParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cRealValueParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cBooleanValueParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		
+		//Value:
+		//  IntValue|StringValue|RealValue|BooleanValue;
+		public ParserRule getRule() { return rule; }
+
 		//IntValue|StringValue|RealValue|BooleanValue
-		public Alternatives getValueAlternatives_2_0() { return cValueAlternatives_2_0; }
+		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//IntValue
-		public RuleCall getValueIntValueParserRuleCall_2_0_0() { return cValueIntValueParserRuleCall_2_0_0; }
+		public RuleCall getIntValueParserRuleCall_0() { return cIntValueParserRuleCall_0; }
 
 		//StringValue
-		public RuleCall getValueStringValueParserRuleCall_2_0_1() { return cValueStringValueParserRuleCall_2_0_1; }
+		public RuleCall getStringValueParserRuleCall_1() { return cStringValueParserRuleCall_1; }
 
 		//RealValue
-		public RuleCall getValueRealValueParserRuleCall_2_0_2() { return cValueRealValueParserRuleCall_2_0_2; }
+		public RuleCall getRealValueParserRuleCall_2() { return cRealValueParserRuleCall_2; }
 
 		//BooleanValue
-		public RuleCall getValueBooleanValueParserRuleCall_2_0_3() { return cValueBooleanValueParserRuleCall_2_0_3; }
+		public RuleCall getBooleanValueParserRuleCall_3() { return cBooleanValueParserRuleCall_3; }
 	}
 
 	public class IntValueElements implements IParserRuleAccess {
@@ -259,6 +269,7 @@ public class AParGrammarAccess implements IGrammarAccess {
 	private ImportElements pImport;
 	private IncorporatesElements pIncorporates;
 	private ParameterElements pParameter;
+	private ValueElements pValue;
 	private IntValueElements pIntValue;
 	private RealValueElements pRealValue;
 	private StringValueElements pStringValue;
@@ -318,14 +329,23 @@ public class AParGrammarAccess implements IGrammarAccess {
 	}
 
 	//Parameter:
-	//  attribute=[SAttribute|STRING] "=" value=( IntValue | StringValue | RealValue |
-	//  BooleanValue );
+	//  attribute=[SAttribute|STRING] "=" value=Value;
 	public ParameterElements getParameterAccess() {
 		return (pParameter != null) ? pParameter : (pParameter = new ParameterElements());
 	}
 	
 	public ParserRule getParameterRule() {
 		return getParameterAccess().getRule();
+	}
+
+	//Value:
+	//  IntValue|StringValue|RealValue|BooleanValue;
+	public ValueElements getValueAccess() {
+		return (pValue != null) ? pValue : (pValue = new ValueElements());
+	}
+	
+	public ParserRule getValueRule() {
+		return getValueAccess().getRule();
 	}
 
 	//IntValue:

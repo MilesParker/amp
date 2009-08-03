@@ -5,7 +5,6 @@
  */
 package org.eclipse.amp.amf.parameters.aPar;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,32 +22,32 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface StringValue extends EObject
+public interface StringValue extends Value
 {
   /**
-   * Returns the value of the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
+     * Returns the value of the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Value</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(String)
-   * @see org.eclipse.amp.amf.parameters.aPar.AParPackage#getStringValue_Value()
-   * @model
-   * @generated
-   */
+     * @return the value of the '<em>Value</em>' attribute.
+     * @see #setValue(String)
+     * @see org.eclipse.amp.amf.parameters.aPar.AParPackage#getStringValue_Value()
+     * @model
+     * @generated
+     */
   String getValue();
 
   /**
-   * Sets the value of the '{@link org.eclipse.amp.amf.parameters.aPar.StringValue#getValue <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * Sets the value of the '{@link org.eclipse.amp.amf.parameters.aPar.StringValue#getValue <em>Value</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' attribute.
-   * @see #getValue()
-   * @generated
-   */
+     * @param value the new value of the '<em>Value</em>' attribute.
+     * @see #getValue()
+     * @generated
+     */
   void setValue(String value);
 
 } // StringValue

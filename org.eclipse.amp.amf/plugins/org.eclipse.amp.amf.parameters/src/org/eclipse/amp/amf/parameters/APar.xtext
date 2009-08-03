@@ -17,7 +17,10 @@ Incorporates :
 	'incorporates' importURI=STRING;
 
 Parameter :
-	attribute=[SAttribute|STRING] "=" value=(IntValue|StringValue|RealValue|BooleanValue);
+	attribute=[SAttribute|STRING] "=" value=Value;
+
+Value :
+	IntValue|StringValue|RealValue|BooleanValue;
 
 IntValue :
 	value=INT;

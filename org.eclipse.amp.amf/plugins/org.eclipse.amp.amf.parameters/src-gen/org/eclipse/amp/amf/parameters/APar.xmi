@@ -66,13 +66,19 @@
         </tokens>
         <tokens xsi:type="xtext:Keyword" value="="/>
         <tokens xsi:type="xtext:Assignment" feature="value" operator="=">
-          <terminal xsi:type="xtext:Alternatives">
-            <groups xsi:type="xtext:RuleCall" rule="/0/@rules.4"/>
-            <groups xsi:type="xtext:RuleCall" rule="/0/@rules.6"/>
-            <groups xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
-            <groups xsi:type="xtext:RuleCall" rule="/0/@rules.7"/>
-          </terminal>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.4"/>
         </tokens>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="Value">
+      <type metamodel="/0/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/amp/amf/parameters/APar#//Value"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <groups xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
+        <groups xsi:type="xtext:RuleCall" rule="/0/@rules.7"/>
+        <groups xsi:type="xtext:RuleCall" rule="/0/@rules.6"/>
+        <groups xsi:type="xtext:RuleCall" rule="/0/@rules.8"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="IntValue">
@@ -88,7 +94,7 @@
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/amp/amf/parameters/APar#//RealValue"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.9"/>
+        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.10"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="StringValue">
@@ -104,7 +110,7 @@
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/amp/amf/parameters/APar#//BooleanValue"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.8"/>
+        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.9"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:EnumRule" name="BOOLEAN">
