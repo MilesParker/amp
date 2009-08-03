@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AParItemProviderAdapterFactory.java,v 1.3 2009/07/28 20:56:29 mparker Exp $
+ * $Id: AParItemProviderAdapterFactory.java,v 1.4 2009/08/03 17:15:49 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 
@@ -165,6 +165,29 @@ public class AParItemProviderAdapterFactory extends AParAdapterFactory implement
         }
 
         return parameterItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.Value} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ValueItemProvider valueItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.Value}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createValueAdapter() {
+        if (valueItemProvider == null) {
+            valueItemProvider = new ValueItemProvider(this);
+        }
+
+        return valueItemProvider;
     }
 
     /**
@@ -362,6 +385,7 @@ public class AParItemProviderAdapterFactory extends AParAdapterFactory implement
         if (importItemProvider != null) importItemProvider.dispose();
         if (incorporatesItemProvider != null) incorporatesItemProvider.dispose();
         if (parameterItemProvider != null) parameterItemProvider.dispose();
+        if (valueItemProvider != null) valueItemProvider.dispose();
         if (intValueItemProvider != null) intValueItemProvider.dispose();
         if (realValueItemProvider != null) realValueItemProvider.dispose();
         if (stringValueItemProvider != null) stringValueItemProvider.dispose();

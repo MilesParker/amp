@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: BooleanValueItemProvider.java,v 1.3 2009/07/28 20:56:29 mparker Exp $
+ * $Id: BooleanValueItemProvider.java,v 1.4 2009/08/03 17:15:49 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 
@@ -37,7 +37,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class BooleanValueItemProvider
-    extends ItemProviderAdapter
+    extends ValueItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -147,17 +147,6 @@ public class BooleanValueItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-    }
-
-    /**
-     * Return the resource locator for this item provider's resources.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public ResourceLocator getResourceLocator() {
-        return AParEditPlugin.INSTANCE;
     }
 
 }

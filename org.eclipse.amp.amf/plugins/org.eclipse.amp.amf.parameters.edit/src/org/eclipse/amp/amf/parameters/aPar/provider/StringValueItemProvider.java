@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StringValueItemProvider.java,v 1.1 2009/07/18 01:07:51 mparker Exp $
+ * $Id: StringValueItemProvider.java,v 1.2 2009/08/03 17:15:49 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 
@@ -36,7 +36,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class StringValueItemProvider
-    extends ItemProviderAdapter
+    extends ValueItemProvider
     implements
         IEditingDomainItemProvider,
         IStructuredItemContentProvider,
@@ -145,17 +145,6 @@ public class StringValueItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-    }
-
-    /**
-     * Return the resource locator for this item provider's resources.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public ResourceLocator getResourceLocator() {
-        return AParEditPlugin.INSTANCE;
     }
 
 }
