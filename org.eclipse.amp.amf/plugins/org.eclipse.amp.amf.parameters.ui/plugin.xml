@@ -10,7 +10,7 @@
               contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
               default="true"
               extensions="apar"
-              icon="icons/etool16/run_parameter.gif"
+              icon="icons/etool16/parameter_file.gif"
               id="org.eclipse.amp.amf.parameters.APar"
               name="APar Editor">
         </editor>
