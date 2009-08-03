@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RunItemProvider.java,v 1.1 2009/07/31 21:49:33 mparker Exp $
+ * $Id: RunItemProvider.java,v 1.2 2009/08/03 17:15:48 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.provider;
 
@@ -10,19 +10,13 @@ package org.eclipse.amp.amf.testing.ares.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.amp.amf.parameters.aPar.AParFactory;
-
 import org.eclipse.amp.amf.testing.ares.AresPackage;
 import org.eclipse.amp.amf.testing.ares.Result;
 import org.eclipse.amp.amf.testing.ares.Run;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -41,13 +35,13 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class RunItemProvider
-    extends ItemProviderAdapter
-    implements
-        IEditingDomainItemProvider,
-        IStructuredItemContentProvider,
-        ITreeItemContentProvider,
-        IItemLabelProvider,
-        IItemPropertySource {
+extends ItemProviderAdapter
+implements
+IEditingDomainItemProvider,
+IStructuredItemContentProvider,
+ITreeItemContentProvider,
+IItemLabelProvider,
+IItemPropertySource {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
@@ -70,9 +64,10 @@ public class RunItemProvider
             super.getPropertyDescriptors(object);
 
             addModelPropertyDescriptor(object);
-            addTestModelPropertyDescriptor(object);
-            addParameterModelPropertyDescriptor(object);
+            addTestPropertyDescriptor(object);
+            addParameterizationPropertyDescriptor(object);
             addResultPropertyDescriptor(object);
+            addParametersPropertyDescriptor(object);
             addConstraintsPropertyDescriptor(object);
             addStartedPropertyDescriptor(object);
             addFinishedPropertyDescriptor(object);
@@ -94,53 +89,53 @@ public class RunItemProvider
                  getString("_UI_Run_model_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_Run_model_feature", "_UI_Run_type"),
                  AresPackage.Literals.RUN__MODEL,
-                 true,
                  false,
-                 true,
+                 false,
+                 false,
                  null,
                  null,
                  null));
     }
 
     /**
-     * This adds a property descriptor for the Test Model feature.
+     * This adds a property descriptor for the Test feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addTestModelPropertyDescriptor(Object object) {
+    protected void addTestPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_Run_testModel_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Run_testModel_feature", "_UI_Run_type"),
-                 AresPackage.Literals.RUN__TEST_MODEL,
-                 true,
+                 getString("_UI_Run_test_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Run_test_feature", "_UI_Run_type"),
+                 AresPackage.Literals.RUN__TEST,
                  false,
-                 true,
+                 false,
+                 false,
                  null,
                  null,
                  null));
     }
 
     /**
-     * This adds a property descriptor for the Parameter Model feature.
+     * This adds a property descriptor for the Parameterization feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addParameterModelPropertyDescriptor(Object object) {
+    protected void addParameterizationPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
             (createItemPropertyDescriptor
                 (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
                  getResourceLocator(),
-                 getString("_UI_Run_parameterModel_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Run_parameterModel_feature", "_UI_Run_type"),
-                 AresPackage.Literals.RUN__PARAMETER_MODEL,
-                 true,
+                 getString("_UI_Run_parameterization_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Run_parameterization_feature", "_UI_Run_type"),
+                 AresPackage.Literals.RUN__PARAMETERIZATION,
                  false,
-                 true,
+                 false,
+                 false,
                  null,
                  null,
                  null));
@@ -169,6 +164,28 @@ public class RunItemProvider
     }
 
     /**
+     * This adds a property descriptor for the Parameters feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addParametersPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_Run_parameters_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Run_parameters_feature", "_UI_Run_type"),
+                 AresPackage.Literals.RUN__PARAMETERS,
+                 false,
+                 false,
+                 true,
+                 null,
+                 null,
+                 null));
+    }
+
+    /**
      * This adds a property descriptor for the Constraints feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -182,7 +199,7 @@ public class RunItemProvider
                  getString("_UI_Run_constraints_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_Run_constraints_feature", "_UI_Run_type"),
                  AresPackage.Literals.RUN__CONSTRAINTS,
-                 true,
+                 false,
                  false,
                  true,
                  null,
@@ -246,7 +263,11 @@ public class RunItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(AresPackage.Literals.RUN__PARAMETERS);
+            childrenFeatures.add(AresPackage.Literals.RUN__MODEL);
+            childrenFeatures.add(AresPackage.Literals.RUN__TEST);
+            childrenFeatures.add(AresPackage.Literals.RUN__PARAMETERIZATION);
+            childrenFeatures.add(AresPackage.Literals.RUN__CONSTRAINTS);
+            childrenFeatures.add(AresPackage.Literals.RUN__FAILURES);
         }
         return childrenFeatures;
     }
@@ -265,29 +286,33 @@ public class RunItemProvider
     }
 
     /**
-     * This returns Run.gif.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+     * This returns Run.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @generated NOT
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/Run"));
+        Run run = (Run) object;
+        if (run.getResult() == Result.SUCCESS) {
+            return overlayImage(object, getResourceLocator().getImage("full/obj16/Success"));
+        } else if (run.getResult() == Result.FAILURE) {
+            return overlayImage(object, getResourceLocator().getImage("full/obj16/Failure"));
+        } else {
+            return overlayImage(object, getResourceLocator().getImage("full/obj16/Incomplete"));
+        }
     }
 
     /**
-     * This returns the label text for the adapted class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+     * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @generated NOT
      */
     @Override
     public String getText(Object object) {
-        Result labelValue = ((Run)object).getResult();
-        String label = labelValue == null ? null : labelValue.toString();
-        return label == null || label.length() == 0 ?
-            getString("_UI_Run_type") :
-            getString("_UI_Run_type") + " " + label;
+        Run run = (Run) object;
+        String label = run.getTest().eResource().getURI().trimFileExtension().lastSegment() + " (" + run.getResult()
+            + ")";
+        return label;
     }
 
     /**
@@ -307,7 +332,7 @@ public class RunItemProvider
             case AresPackage.RUN__FINISHED:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
-            case AresPackage.RUN__PARAMETERS:
+            case AresPackage.RUN__FAILURES:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -324,11 +349,6 @@ public class RunItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-
-        newChildDescriptors.add
-            (createChildParameter
-                (AresPackage.Literals.RUN__PARAMETERS,
-                 AParFactory.eINSTANCE.createParameter()));
     }
 
     /**

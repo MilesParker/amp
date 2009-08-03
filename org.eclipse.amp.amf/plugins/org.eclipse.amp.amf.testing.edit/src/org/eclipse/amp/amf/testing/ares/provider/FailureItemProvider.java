@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FailureItemProvider.java,v 1.1 2009/07/31 21:49:33 mparker Exp $
+ * $Id: FailureItemProvider.java,v 1.2 2009/08/03 17:15:48 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.provider;
 
@@ -10,15 +10,14 @@ package org.eclipse.amp.amf.testing.ares.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.amp.amf.testing.aTest.Constraint;
 import org.eclipse.amp.amf.testing.ares.AresPackage;
 import org.eclipse.amp.amf.testing.ares.Failure;
 import org.eclipse.amp.amf.testing.ares.Issue;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -37,13 +36,13 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class FailureItemProvider
-    extends ItemProviderAdapter
-    implements
-        IEditingDomainItemProvider,
-        IStructuredItemContentProvider,
-        ITreeItemContentProvider,
-        IItemLabelProvider,
-        IItemPropertySource {
+extends ItemProviderAdapter
+implements
+IEditingDomainItemProvider,
+IStructuredItemContentProvider,
+ITreeItemContentProvider,
+IItemLabelProvider,
+IItemPropertySource {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
@@ -86,7 +85,7 @@ public class FailureItemProvider
                  getString("_UI_Failure_constraint_feature"),
                  getString("_UI_PropertyDescriptor_description", "_UI_Failure_constraint_feature", "_UI_Failure_type"),
                  AresPackage.Literals.FAILURE__CONSTRAINT,
-                 true,
+                 false,
                  false,
                  true,
                  null,
@@ -139,29 +138,75 @@ public class FailureItemProvider
     }
 
     /**
-     * This returns Failure.gif.
+     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/Failure"));
+    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+        if (childrenFeatures == null) {
+            super.getChildrenFeatures(object);
+            childrenFeatures.add(AresPackage.Literals.FAILURE__CONSTRAINT);
+        }
+        return childrenFeatures;
     }
 
     /**
-     * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
+    protected EStructuralFeature getChildFeature(Object object, Object child) {
+        // Check the type of the specified child object and return the proper feature to use for
+        // adding (see {@link AddCommand}) it as a child.
+
+        return super.getChildFeature(object, child);
+    }
+
+    /**
+     * This returns Failure.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    public Object getImage(Object object) {
+        Failure failure = (Failure) object;
+        if (failure.getIssue() == Issue.ABOVE_RANGE) {
+            return overlayImage(object, getResourceLocator().getImage("full/obj16/MaxExclusive"));
+        } else if (failure.getIssue() == Issue.BELOW_RANGE) {
+            return overlayImage(object, getResourceLocator().getImage("full/obj16/MinExclusive"));
+        } else {
+            return overlayImage(object, getResourceLocator().getImage("full/obj16/Failure"));
+        }
+    }
+
+    /**
+     * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
     public String getText(Object object) {
-        Issue labelValue = ((Failure)object).getIssue();
-        String label = labelValue == null ? null : labelValue.toString();
-        return label == null || label.length() == 0 ?
-            getString("_UI_Failure_type") :
-            getString("_UI_Failure_type") + " " + label;
+        Failure failure = (Failure) object;
+        Constraint constraint = failure.getConstraint();
+        String label = constraint.getMeasure() != null ? constraint.getMeasure() + " ":"";
+        label += constraint.getAttribute() != null ? constraint.getAttribute().getLabel() + " " : "";
+        label += constraint.getQualifier() != null ? constraint.getQualifier().getLabel() + " " : "";
+        label += failure.getActualValue() + " ";
+        if (failure.getIssue() == Issue.ABOVE_RANGE) {
+            label += "> [";
+        } else if (failure.getIssue() == Issue.BELOW_RANGE) {
+            label += "< [";
+        } else {
+            label += "ERROR";
+        }
+        label += constraint.getMinValue() != null ? constraint.getMinValue() + ", " : "";
+        label += constraint.getMaxValue() != null ? constraint.getMaxValue() + "]" : "";
+        return label;
     }
 
     /**

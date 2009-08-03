@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.1 2009/07/31 21:49:33 mparker Exp $
+ $Id: plugin.xml,v 1.2 2009/08/03 17:15:48 mparker Exp $
 -->
 
 <plugin>
@@ -14,6 +14,15 @@
       <factory
             uri="http://eclipse.org/amp/ares"
             class="org.eclipse.amp.amf.testing.ares.provider.AresItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+      <factory
+            uri="http://eclipse.org/amp/atest"
+            class="org.eclipse.amp.amf.testing.aTest.provider.ATestItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

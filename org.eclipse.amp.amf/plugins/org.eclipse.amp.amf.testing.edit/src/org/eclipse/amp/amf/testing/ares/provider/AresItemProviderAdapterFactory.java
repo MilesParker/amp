@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresItemProviderAdapterFactory.java,v 1.1 2009/07/31 21:49:33 mparker Exp $
+ * $Id: AresItemProviderAdapterFactory.java,v 1.2 2009/08/03 17:15:48 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.provider;
 
@@ -122,6 +122,29 @@ public class AresItemProviderAdapterFactory extends AresAdapterFactory implement
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.testing.ares.RunSet} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected RunSetItemProvider runSetItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.amp.amf.testing.ares.RunSet}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createRunSetAdapter() {
+        if (runSetItemProvider == null) {
+            runSetItemProvider = new RunSetItemProvider(this);
+        }
+
+        return runSetItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -222,6 +245,7 @@ public class AresItemProviderAdapterFactory extends AresAdapterFactory implement
     public void dispose() {
         if (runItemProvider != null) runItemProvider.dispose();
         if (failureItemProvider != null) failureItemProvider.dispose();
+        if (runSetItemProvider != null) runSetItemProvider.dispose();
     }
 
 }
