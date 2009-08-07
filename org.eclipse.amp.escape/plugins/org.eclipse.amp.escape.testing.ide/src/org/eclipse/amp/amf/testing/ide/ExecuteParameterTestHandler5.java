@@ -22,11 +22,12 @@ package org.eclipse.amp.amf.testing.ide;
  */
 public class ExecuteParameterTestHandler5 extends ExecuteParameterTestHandler {
 
+
     /**
-     * @param test
-     * @see org.eclipse.amp.escape.testng.ExecuteParameterTestHandler#assignSettings(org.testng.xml.XmlTest)
+     * @return
+     * @see org.eclipse.amp.amf.testing.ide.ExecuteParameterTestHandler#getRunsPerTest()
      */
-    // protected void assignSettings(XmlTest test) {
-    // test.addParameter("testCount", "5");
-    // }
+    public int getRunsPerTest() {
+        return 5;
+    }
 }

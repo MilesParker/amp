@@ -22,9 +22,9 @@ import org.ascape.util.data.DataSeries;
 import org.eclipse.amp.amf.parameters.AParInterpreter;
 import org.eclipse.amp.amf.testing.ATestInterpreter;
 import org.eclipse.amp.amf.testing.aTest.Constraint;
-import org.eclipse.amp.amf.testing.ares.Failure;
+import org.eclipse.amp.amf.testing.ares.ConstraintTest;
 import org.eclipse.amp.amf.testing.ares.Issue;
-import org.eclipse.amp.amf.testing.ares.Result;
+import org.eclipse.amp.amf.testing.ares.ResultType;
 import org.eclipse.amp.amf.testing.ares.Run;
 import org.eclipse.amp.amf.testing.ares.RunSet;
 import org.eclipse.amp.amf.testing.ares.impl.AresFactoryImpl;
@@ -36,6 +36,7 @@ import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.metaabm.SAttributeType;
 
 /**
  * 
@@ -75,70 +76,93 @@ public class TestRun {
         run.getParameters().addAll(EcoreUtil.copyAll(atest.getAparInterpreter().getModel().getParameters()));
         run.setTest(atest.getModel());
         run.setStarted(new Date());
-        run.setResult(Result.INCOMPLETE);
+        run.setResult(ResultType.INCOMPLETE);
     }
 
-    protected void runTest(final IProgressMonitor monitor, final MultiStatus status) {
+    protected void runTest(final IProgressMonitor parentMonitor, final MultiStatus status) {
+        initialize();
         AParInterpreter apar = atest.getAparInterpreter();
-        EclipseEscapeRunner runner = new EclipseEscapeRunner() {
+        final EclipseEscapeRunner runner = new EclipseEscapeRunner() {
             protected synchronized void runMainLoop() {
                 super.runMainLoop();
-                runEclipse(this, monitor, status);
+                if (!parentMonitor.isCanceled()) {
+                    evaluateTest(this, status);
+                }
                 close();
             }
         };
-        runner.setMonitor(monitor);
+        new Thread("Watch Run Set Monitor") {
+            public void run() {
+                while (!runner.isRunning()) {
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                    }
+                }
+                while (runner.isRunning() && !runner.isCloseRequested()) {
+                    if (parentMonitor.isCanceled()) {
+                        runner.close();
+                    }
+                    try {
+                        Thread.sleep(250);
+                    } catch (InterruptedException e) {
+                    }
+                }
+            };
+        }.start();
         runner.setAutoRestart(false);
         runner.open(project, apar.getTargetModel().getImplementation().getQualifiedName(), atest.getResource()
                     .getName(), apar.getArgs());
     }
 
-    private void runEclipse(EclipseEscapeRunner runner, IProgressMonitor monitor, MultiStatus status) {
-        initialize();
+    private void evaluateTest(EclipseEscapeRunner runner, MultiStatus status) {
         success = true;
         for (Constraint constraint : run.getConstraints()) {
             String constraintName = constraint.getMeasure().getLiteral() + " " + constraint.getAgent().getLabel() + " ";
             if (constraint.getQualifier() != null) {
                 constraintName += constraint.getQualifier().getLabel() + " ";
             }
+            if (constraint.getAttribute().getSType() == SAttributeType.BOOLEAN_LITERAL) {
+                constraintName += "is ";
+            }
             constraintName += constraint.getAttribute().getLabel();
             int seriesIndex = runner.getData().getIndexOfSeries(constraintName);
             if (seriesIndex >= 0) {
                 DataSeries ds = runner.getData().getSeries(constraintName);
                 if (ds != null) {
-                    if (ds.getValue() < atest.valueOf(constraint.getMinValue())) {
-                        System.err.println(constraint.getMeasure() + " " + ds.getValue() + " < "
-                                           + constraint.getMinValue());
-                        fail(constraint, Issue.BELOW_RANGE, ds.getValue());
-                    } else if (ds.getValue() > atest.valueOf(constraint.getMaxValue())) {
-                        System.err.println(constraint.getMeasure() + " " + ds.getValue() + " > "
-                                           + constraint.getMaxValue());
-                        fail(constraint, Issue.ABOVE_RANGE, ds.getValue());
+                    if (ds.getValue() < ATestInterpreter.doubleValue(constraint.getMinValue())) {
+                        result(constraint, Issue.BELOW_RANGE, ds.getValue());
+                    } else if (ds.getValue() > ATestInterpreter.doubleValue(constraint.getMaxValue())) {
+                        result(constraint, Issue.ABOVE_RANGE, ds.getValue());
                     } else {
-                        System.err.println(constraint.getMeasure() + " " + ds.getValue() + " [ "
-                                           + constraint.getMinValue() + ", " + constraint.getMaxValue() + "]");
+                        result(constraint, Issue.NONE, ds.getValue());
                     }
+                } else {
+                    result(constraint, Issue.NOT_FOUND, Double.NaN);
                 }
             } else {
                 status.add(new Status(Status.ERROR, "org.eclipse.amp.amf.testing", "Data Series not found for:"
                                       + constraintName));
+                result(constraint, Issue.NOT_FOUND, Double.NaN);
             }
         }
         if (success) {
-            run.setResult(Result.SUCCESS);
+            run.setResult(ResultType.SUCCESS);
         } else {
-            run.setResult(Result.FAILURE);
+            run.setResult(ResultType.FAILURE);
         }
         run.setFinished(new Date());
     }
 
-    private void fail(Constraint constraint, Issue issue, double value) {
-        Failure f = AresFactoryImpl.eINSTANCE.createFailure();
-        run.getFailures().add(f);
-        f.setConstraint(constraint);
-        f.setActualValue(value);
-        f.setIssue(issue);
-        success = false;
+    private void result(Constraint constraint, Issue issue, double value) {
+        ConstraintTest res = AresFactoryImpl.eINSTANCE.createConstraintTest();
+        run.getResults().add(res);
+        res.setConstraint(constraint);
+        res.setActualValue(value);
+        res.setIssue(issue);
+        if (issue != Issue.NONE) {
+            success = false;
+        }
     }
 
     public Run getRun() {

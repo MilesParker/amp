@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.ascape.runtime.Runner;
-import org.eclipse.amp.amf.testing.ATestInterpreter;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -44,9 +43,8 @@ import org.eclipse.ui.handlers.HandlerUtil;
  */
 public class ExecuteParameterTestHandler extends AbstractHandler {
 
-    List<ATestInterpreter> interpreters;
+    List<IResource> testResources;
     private IProject project;
-    private String name;
 
     /**
      * @param event
@@ -55,7 +53,7 @@ public class ExecuteParameterTestHandler extends AbstractHandler {
      * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
      */
     public Object execute(ExecutionEvent event) throws ExecutionException {
-        interpreters = new ArrayList<ATestInterpreter>();
+        testResources = new ArrayList<IResource>();
         ISelection selection = HandlerUtil.getCurrentSelection(event);
         if (!selection.isEmpty() && selection instanceof IStructuredSelection
                 && ((StructuredSelection) selection).size() > 0) {
@@ -68,18 +66,21 @@ public class ExecuteParameterTestHandler extends AbstractHandler {
             }
             Runner.setDisplayGraphics(false);
 
+            final String name = "T" + System.currentTimeMillis();
+            // for (IResource resource : testResources) {
+            // name += resource.getName().replaceAll("\\.atest", "");
+            // }
+
             Job escapeRun = new Job("Run " + name) {
                 protected IStatus run(IProgressMonitor monitor) {
                     final MultiStatus status = new MultiStatus("org.eclipse.amp.amf.testing.ide", Status.OK,
                                                                "Executing Tests", null);
-                    new TestRunSet(project, interpreters).runTests(monitor, status);
+                    new TestRunSet(project, testResources, name, getRunsPerTest()).runTests(monitor, status);
                     return status;
                 }
             };
             escapeRun.setPriority(Job.LONG);
             escapeRun.schedule();
-
-            name = "";
         }
         return null;
     }
@@ -88,7 +89,7 @@ public class ExecuteParameterTestHandler extends AbstractHandler {
         if (res instanceof IFile) {
             IFile file = (IFile) res;
             if (file.getFileExtension().equals("atest")) {
-                interpreters.add(new ATestInterpreter(res));
+                testResources.add(res);
             }
         } else if (res instanceof IFolder) {
             IFolder folder = (IFolder) res;
@@ -132,6 +133,10 @@ public class ExecuteParameterTestHandler extends AbstractHandler {
             }
         }
         return false;
+    }
+
+    public int getRunsPerTest() {
+        return 1;
     }
 
     // private void executeTests() {
