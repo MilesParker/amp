@@ -56,6 +56,7 @@ public class ExecuteParameterHandler extends ExecuteHandler {
             IProject project = modelResource.getProject();
             if (modelResource.getFileExtension().equals("apar")) {
                 AParInterpreter interpreter = new AParInterpreter(modelResource);
+                interpreter.load();
                 eclipseRunner.open(project, interpreter.getTargetModel().getImplementation().getQualifiedName(),
                                    interpreter.getRunName(), interpreter.getArgs());
             }
