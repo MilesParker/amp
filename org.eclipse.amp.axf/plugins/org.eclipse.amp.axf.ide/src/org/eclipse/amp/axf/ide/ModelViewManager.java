@@ -87,11 +87,13 @@ public class ModelViewManager implements IAdapterFactory {
         }
 
         public void partClosed(final IWorkbenchPart part) {
-            new Thread() {
-                public void run() {
-                    removed((IViewPart) part);
-                }
-            }.start();
+            if (part instanceof IModelPart && ((IModelPart) part).getAdapter(IModel.class) != null) {
+                new Thread() {
+                    public void run() {
+                        removed((IViewPart) part);
+                    }
+                }.start();
+            }
         }
 
         public void partDeactivated(IWorkbenchPart part) {

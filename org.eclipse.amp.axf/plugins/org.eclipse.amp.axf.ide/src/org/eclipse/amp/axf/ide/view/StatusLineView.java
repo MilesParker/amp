@@ -17,6 +17,7 @@ package org.eclipse.amp.axf.ide.view;
 
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.core.IObservationProvider;
+import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
 import org.eclipse.amp.axf.view.SWTAsyncModelListener;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IPartListener;
@@ -40,6 +41,7 @@ public class StatusLineView extends SWTAsyncModelListener implements IPartListen
      */
     private StatusLineView() {
         super(null, "Status Line View", 100);
+        setWaitForUpdate(false);
     }
 
     /**
@@ -64,19 +66,20 @@ public class StatusLineView extends SWTAsyncModelListener implements IPartListen
      */
     public void update(IModel model) {
         // IViewPart viewPart = (IViewPart) part.getAdapter(IViewPart.class);
-
-        String msg = model.getName();
-        msg += " " + model.getTimeDescription();
-        if (model.getEngine().isPaused()) {
-            msg += " [PAUSED]";
-        } else {
-            msg += " " + model.getEngine().getUpdateGranularity();
+        if (model == AXFWorkbenchPlugin.getDefault().getManager().getActiveModel()) {
+            String msg = model.getName();
+            msg += " " + model.getTimeDescription();
+            if (model.getEngine().isPaused()) {
+                msg += " [PAUSED]";
+            } else {
+                msg += " " + model.getEngine().getUpdateGranularity();
+            }
+            updateMessage(msg);
         }
-        updateMessage(msg);
     }
 
-    private void updateMessage(String msg) {
-        if (part instanceof IViewPart) {
+    private void updateMessage(final String msg) {
+        if (part != null) {
             IViewSite site = (IViewSite) part.getSite();
             IActionBars actionBars = site.getActionBars();
             actionBars.getStatusLineManager().setMessage(msg);
