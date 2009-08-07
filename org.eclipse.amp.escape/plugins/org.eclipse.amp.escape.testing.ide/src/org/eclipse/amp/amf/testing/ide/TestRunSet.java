@@ -170,7 +170,7 @@ public class TestRunSet {
                                         + (testsCompleted - testSuccessCount) + " failures)");
                         monitor.worked(1);
                         if (testsCompleted % MAX_THREADS == 0) {
-
+                            saveResults();
                         }
                     }
                 }

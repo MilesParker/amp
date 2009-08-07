@@ -104,7 +104,7 @@ public class TestRun {
                         runner.close();
                     }
                     try {
-                        Thread.sleep(250);
+                        Thread.sleep(1000);
                     } catch (InterruptedException e) {
                     }
                 }
