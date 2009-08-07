@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ParameterItemProvider.java,v 1.4 2009/08/03 17:15:49 mparker Exp $
+ * $Id: ParameterItemProvider.java,v 1.5 2009/08/07 00:05:07 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 
@@ -75,18 +75,18 @@ IItemPropertySource {
      */
     protected void addAttributePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-        (createItemPropertyDescriptor
-         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-          getResourceLocator(),
-          getString("_UI_Parameter_attribute_feature"),
-          getString("_UI_PropertyDescriptor_description", "_UI_Parameter_attribute_feature", "_UI_Parameter_type"),
-          AParPackage.Literals.PARAMETER__ATTRIBUTE,
-          true,
-          false,
-          true,
-          null,
-          null,
-          null));
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_Parameter_attribute_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Parameter_attribute_feature", "_UI_Parameter_type"),
+                 AParPackage.Literals.PARAMETER__ATTRIBUTE,
+                 true,
+                 false,
+                 true,
+                 null,
+                 null,
+                 null));
     }
 
     /**
@@ -127,7 +127,7 @@ IItemPropertySource {
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/" + "Parameter"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/Parameter"));
     }
 
     /**
@@ -172,29 +172,29 @@ IItemPropertySource {
         super.collectNewChildDescriptors(newChildDescriptors, object);
 
         newChildDescriptors.add
-        (createChildParameter
-         (AParPackage.Literals.PARAMETER__VALUE,
-          AParFactory.eINSTANCE.createValue()));
+            (createChildParameter
+                (AParPackage.Literals.PARAMETER__VALUE,
+                 AParFactory.eINSTANCE.createValue()));
 
         newChildDescriptors.add
-        (createChildParameter
-         (AParPackage.Literals.PARAMETER__VALUE,
-          AParFactory.eINSTANCE.createIntValue()));
+            (createChildParameter
+                (AParPackage.Literals.PARAMETER__VALUE,
+                 AParFactory.eINSTANCE.createIntValue()));
 
         newChildDescriptors.add
-        (createChildParameter
-         (AParPackage.Literals.PARAMETER__VALUE,
-          AParFactory.eINSTANCE.createRealValue()));
+            (createChildParameter
+                (AParPackage.Literals.PARAMETER__VALUE,
+                 AParFactory.eINSTANCE.createRealValue()));
 
         newChildDescriptors.add
-        (createChildParameter
-         (AParPackage.Literals.PARAMETER__VALUE,
-          AParFactory.eINSTANCE.createStringValue()));
+            (createChildParameter
+                (AParPackage.Literals.PARAMETER__VALUE,
+                 AParFactory.eINSTANCE.createStringValue()));
 
         newChildDescriptors.add
-        (createChildParameter
-         (AParPackage.Literals.PARAMETER__VALUE,
-          AParFactory.eINSTANCE.createBooleanValue()));
+            (createChildParameter
+                (AParPackage.Literals.PARAMETER__VALUE,
+                 AParFactory.eINSTANCE.createBooleanValue()));
     }
 
     /**

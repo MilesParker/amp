@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RealValueItemProvider.java,v 1.2 2009/08/03 17:15:49 mparker Exp $
+ * $Id: RealValueItemProvider.java,v 1.3 2009/08/07 00:05:07 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 
@@ -72,18 +72,18 @@ IItemPropertySource {
      */
     protected void addValuePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-        (createItemPropertyDescriptor
-         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-          getResourceLocator(),
-          getString("_UI_RealValue_value_feature"),
-          getString("_UI_PropertyDescriptor_description", "_UI_RealValue_value_feature", "_UI_RealValue_type"),
-          AParPackage.Literals.REAL_VALUE__VALUE,
-          true,
-          false,
-          false,
-          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-          null,
-          null));
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_RealValue_value_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_RealValue_value_feature", "_UI_RealValue_type"),
+                 AParPackage.Literals.REAL_VALUE__VALUE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**

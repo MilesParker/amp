@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IntValueItemProvider.java,v 1.2 2009/08/03 17:15:49 mparker Exp $
+ * $Id: IntValueItemProvider.java,v 1.3 2009/08/07 00:05:07 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 
@@ -86,7 +86,7 @@ public class IntValueItemProvider
                  true,
                  false,
                  false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
     }
@@ -110,8 +110,10 @@ public class IntValueItemProvider
      */
     @Override
     public String getText(Object object) {
-        IntValue intValue = (IntValue)object;
-        return getString("_UI_IntValue_type") + " " + intValue.getValue();
+        String label = ((IntValue)object).getValue();
+        return label == null || label.length() == 0 ?
+            getString("_UI_IntValue_type") :
+            getString("_UI_IntValue_type") + " " + label;
     }
 
     /**
