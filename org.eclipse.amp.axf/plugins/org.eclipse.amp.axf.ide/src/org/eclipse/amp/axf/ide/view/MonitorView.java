@@ -7,12 +7,12 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
+ * Contributors:
  *   Metascape - Initial API and Implementation
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.axf.ide.view;
 
 import org.eclipse.amp.axf.core.AbstractLifecycleListener;
@@ -49,6 +49,6 @@ public abstract class MonitorView extends AbstractLifecycleListener {
     public void observing(IObservationProvider model) {
         super.observing(model);
         // TODO change to label provider
-        modelDesc = ((IModel) model).getName() + " [" + model.getClass() + "]";
+        modelDesc = ((IModel) model).getName();
     }
 }

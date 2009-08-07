@@ -7,12 +7,12 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
+ * Contributors:
  *   Metascape - Initial API and Implementation
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.axf.ide.view;
 
 import org.eclipse.amp.axf.core.IModel;
@@ -41,7 +41,7 @@ public class RunMonitorView extends MonitorView {
     @Override
     public void observing(IObservationProvider model) {
         super.observing(model);
-        String mainDesc = "Run " + modelDesc;
+        String mainDesc = "Running " + modelDesc;
         monitor.setTaskName(mainDesc);
     }
 
@@ -58,16 +58,19 @@ public class RunMonitorView extends MonitorView {
         }
     }
 
+    long lastUpdatePeriod = 0;
+
     /**
      * @param model
      * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeUpdate(org.eclipse.amp.axf.core.IObservationProvider)
      */
     @Override
     public void observeUpdate(IObservationProvider model) {
-        if (((IModel) model).getPeriod() % 10 == 0) {
+        if (((IModel) model).getPeriod() - lastUpdatePeriod > 25) {
             monitor.subTask("Period " + ((IModel) model).getPeriod()
-                + (((IModel) model).getStopPeriod() > 0 ? " of " + ((IModel) model).getStopPeriod() : ""));
+                            + (((IModel) model).getStopPeriod() > 0 ? " of " + ((IModel) model).getStopPeriod() : ""));
             monitor.worked(10);
+            lastUpdatePeriod = ((IModel) model).getPeriod();
         }
     }
 
