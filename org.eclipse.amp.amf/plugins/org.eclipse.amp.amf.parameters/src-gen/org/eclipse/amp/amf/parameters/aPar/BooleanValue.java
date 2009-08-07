@@ -25,32 +25,32 @@ package org.eclipse.amp.amf.parameters.aPar;
 public interface BooleanValue extends Value
 {
   /**
-     * Returns the value of the '<em><b>Value</b></em>' attribute.
-     * The literals are from the enumeration {@link org.eclipse.amp.amf.parameters.aPar.BOOLEAN}.
-     * <!-- begin-user-doc -->
+   * Returns the value of the '<em><b>Value</b></em>' attribute.
+   * The literals are from the enumeration {@link org.eclipse.amp.amf.parameters.aPar.BOOLEAN}.
+   * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Value</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-     * @return the value of the '<em>Value</em>' attribute.
-     * @see org.eclipse.amp.amf.parameters.aPar.BOOLEAN
-     * @see #setValue(BOOLEAN)
-     * @see org.eclipse.amp.amf.parameters.aPar.AParPackage#getBooleanValue_Value()
-     * @model
-     * @generated
-     */
+   * @return the value of the '<em>Value</em>' attribute.
+   * @see org.eclipse.amp.amf.parameters.aPar.BOOLEAN
+   * @see #setValue(BOOLEAN)
+   * @see org.eclipse.amp.amf.parameters.aPar.AParPackage#getBooleanValue_Value()
+   * @model
+   * @generated
+   */
   BOOLEAN getValue();
 
   /**
-     * Sets the value of the '{@link org.eclipse.amp.amf.parameters.aPar.BooleanValue#getValue <em>Value</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * Sets the value of the '{@link org.eclipse.amp.amf.parameters.aPar.BooleanValue#getValue <em>Value</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Value</em>' attribute.
-     * @see org.eclipse.amp.amf.parameters.aPar.BOOLEAN
-     * @see #getValue()
-     * @generated
-     */
+   * @param value the new value of the '<em>Value</em>' attribute.
+   * @see org.eclipse.amp.amf.parameters.aPar.BOOLEAN
+   * @see #getValue()
+   * @generated
+   */
   void setValue(BOOLEAN value);
 
 } // BooleanValue

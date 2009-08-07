@@ -24,17 +24,18 @@ import java.util.ArrayList;
 
 public class InternalAParParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_INT", "RULE_REAL", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'model'", "'incorporates'", "'='", "'true'", "'false'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_INTEGER", "RULE_REAL", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'model'", "'incorporates'", "'='", "'true'", "'false'"
     };
     public static final int RULE_ID=7;
     public static final int RULE_STRING=4;
-    public static final int RULE_ANY_OTHER=11;
-    public static final int RULE_INT=5;
+    public static final int RULE_ANY_OTHER=12;
+    public static final int RULE_INT=8;
     public static final int RULE_REAL=6;
-    public static final int RULE_WS=10;
-    public static final int RULE_SL_COMMENT=9;
+    public static final int RULE_WS=11;
+    public static final int RULE_SL_COMMENT=10;
     public static final int EOF=-1;
-    public static final int RULE_ML_COMMENT=8;
+    public static final int RULE_INTEGER=5;
+    public static final int RULE_ML_COMMENT=9;
 
         public InternalAParParser(TokenStream input) {
             super(input);
@@ -191,7 +192,7 @@ public class InternalAParParser extends AbstractInternalAntlrParser {
                 int alt2=2;
                 int LA2_0 = input.LA(1);
 
-                if ( (LA2_0==13) ) {
+                if ( (LA2_0==14) ) {
                     alt2=1;
                 }
 
@@ -346,7 +347,7 @@ public class InternalAParParser extends AbstractInternalAntlrParser {
             // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:191:1: ( 'model' (lv_importURI_1= RULE_STRING ) )
             // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:191:2: 'model' (lv_importURI_1= RULE_STRING )
             {
-            match(input,12,FOLLOW_12_in_ruleImport332); 
+            match(input,13,FOLLOW_13_in_ruleImport332); 
 
                     createLeafNode(grammarAccess.getImportAccess().getModelKeyword_0(), null); 
                 
@@ -446,7 +447,7 @@ public class InternalAParParser extends AbstractInternalAntlrParser {
             // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:236:1: ( 'incorporates' (lv_importURI_1= RULE_STRING ) )
             // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:236:2: 'incorporates' (lv_importURI_1= RULE_STRING )
             {
-            match(input,13,FOLLOW_13_in_ruleIncorporates439); 
+            match(input,14,FOLLOW_14_in_ruleIncorporates439); 
 
                     createLeafNode(grammarAccess.getIncorporatesAccess().getIncorporatesKeyword_0(), null); 
                 
@@ -563,7 +564,7 @@ public class InternalAParParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,14,FOLLOW_14_in_ruleParameter571); 
+            match(input,15,FOLLOW_15_in_ruleParameter571); 
 
                     createLeafNode(grammarAccess.getParameterAccess().getEqualsSignKeyword_1(), null); 
                 
@@ -673,7 +674,7 @@ public class InternalAParParser extends AbstractInternalAntlrParser {
             // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:343:1: (this_IntValue_0= ruleIntValue | this_StringValue_1= ruleStringValue | this_RealValue_2= ruleRealValue | this_BooleanValue_3= ruleBooleanValue )
             int alt4=4;
             switch ( input.LA(1) ) {
-            case RULE_INT:
+            case RULE_INTEGER:
                 {
                 alt4=1;
                 }
@@ -688,8 +689,8 @@ public class InternalAParParser extends AbstractInternalAntlrParser {
                 alt4=3;
                 }
                 break;
-            case 15:
             case 16:
+            case 17:
                 {
                 alt4=4;
                 }
@@ -828,7 +829,7 @@ public class InternalAParParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleIntValue
-    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:397:1: ruleIntValue returns [EObject current=null] : (lv_value_0= RULE_INT ) ;
+    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:397:1: ruleIntValue returns [EObject current=null] : (lv_value_0= RULE_INTEGER ) ;
     public final EObject ruleIntValue() throws RecognitionException {
         EObject current = null;
 
@@ -837,16 +838,16 @@ public class InternalAParParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:402:6: ( (lv_value_0= RULE_INT ) )
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:403:1: (lv_value_0= RULE_INT )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:402:6: ( (lv_value_0= RULE_INTEGER ) )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:403:1: (lv_value_0= RULE_INTEGER )
             {
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:403:1: (lv_value_0= RULE_INT )
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:405:6: lv_value_0= RULE_INT
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:403:1: (lv_value_0= RULE_INTEGER )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:405:6: lv_value_0= RULE_INTEGER
             {
             lv_value_0=(Token)input.LT(1);
-            match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleIntValue868); 
+            match(input,RULE_INTEGER,FOLLOW_RULE_INTEGER_in_ruleIntValue868); 
 
-            		createLeafNode(grammarAccess.getIntValueAccess().getValueINTTerminalRuleCall_0(), "value"); 
+            		createLeafNode(grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0(), "value"); 
             	
 
             	        if (current==null) {
@@ -855,7 +856,7 @@ public class InternalAParParser extends AbstractInternalAntlrParser {
             	        }
             	        
             	        try {
-            	       		set(current, "value", lv_value_0, "INT", lastConsumedNode);
+            	       		set(current, "value", lv_value_0, "INTEGER", lastConsumedNode);
             	        } catch (ValueConverterException vce) {
             				handleValueConverterException(vce);
             	        }
@@ -1170,10 +1171,10 @@ public class InternalAParParser extends AbstractInternalAntlrParser {
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( (LA5_0==15) ) {
+            if ( (LA5_0==16) ) {
                 alt5=1;
             }
-            else if ( (LA5_0==16) ) {
+            else if ( (LA5_0==17) ) {
                 alt5=2;
             }
             else {
@@ -1189,7 +1190,7 @@ public class InternalAParParser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:559:2: ( 'true' )
                     // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:559:4: 'true'
                     {
-                    match(input,15,FOLLOW_15_in_ruleBOOLEAN1218); 
+                    match(input,16,FOLLOW_16_in_ruleBOOLEAN1218); 
 
                             current = grammarAccess.getBOOLEANAccess().getTRUEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getBOOLEANAccess().getTRUEEnumLiteralDeclaration_0(), null); 
@@ -1206,7 +1207,7 @@ public class InternalAParParser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:565:6: ( 'false' )
                     // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:565:8: 'false'
                     {
-                    match(input,16,FOLLOW_16_in_ruleBOOLEAN1233); 
+                    match(input,17,FOLLOW_17_in_ruleBOOLEAN1233); 
 
                             current = grammarAccess.getBOOLEANAccess().getFALSEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getBOOLEANAccess().getFALSEEnumLiteralDeclaration_1(), null); 
@@ -1243,22 +1244,22 @@ public class InternalAParParser extends AbstractInternalAntlrParser {
 
     public static final BitSet FOLLOW_ruleModel_in_entryRuleModel73 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleModel83 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleModel130 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_ruleImport_in_ruleModel173 = new BitSet(new long[]{0x0000000000002012L});
-    public static final BitSet FOLLOW_ruleIncorporates_in_ruleModel211 = new BitSet(new long[]{0x0000000000002012L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleModel130 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_ruleImport_in_ruleModel173 = new BitSet(new long[]{0x0000000000004012L});
+    public static final BitSet FOLLOW_ruleIncorporates_in_ruleModel211 = new BitSet(new long[]{0x0000000000004012L});
     public static final BitSet FOLLOW_ruleParameter_in_ruleModel250 = new BitSet(new long[]{0x0000000000000012L});
     public static final BitSet FOLLOW_ruleImport_in_entryRuleImport288 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleImport298 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_ruleImport332 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_13_in_ruleImport332 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_STRING_in_ruleImport354 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIncorporates_in_entryRuleIncorporates395 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIncorporates405 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_ruleIncorporates439 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_14_in_ruleIncorporates439 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_RULE_STRING_in_ruleIncorporates461 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleParameter_in_entryRuleParameter502 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleParameter512 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleParameter559 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_14_in_ruleParameter571 = new BitSet(new long[]{0x0000000000018070L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleParameter559 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleParameter571 = new BitSet(new long[]{0x0000000000030070L});
     public static final BitSet FOLLOW_ruleValue_in_ruleParameter605 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValue_in_entryRuleValue642 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleValue652 = new BitSet(new long[]{0x0000000000000002L});
@@ -1268,7 +1269,7 @@ public class InternalAParParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleBooleanValue_in_ruleValue780 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIntValue_in_entryRuleIntValue812 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIntValue822 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleIntValue868 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INTEGER_in_ruleIntValue868 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRealValue_in_entryRuleRealValue908 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleRealValue918 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_REAL_in_ruleRealValue964 = new BitSet(new long[]{0x0000000000000002L});
@@ -1278,7 +1279,7 @@ public class InternalAParParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleBooleanValue_in_entryRuleBooleanValue1100 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleBooleanValue1110 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBOOLEAN_in_ruleBooleanValue1168 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_ruleBOOLEAN1218 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_ruleBOOLEAN1233 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_ruleBOOLEAN1218 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_ruleBOOLEAN1233 = new BitSet(new long[]{0x0000000000000002L});
 
 }

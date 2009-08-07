@@ -708,11 +708,11 @@ protected class Value_BooleanValueParserRuleCall_3 extends RuleCallToken {
 /************ begin Rule IntValue ****************
  *
  * IntValue:
- *   value=INT;
+ *   value=INTEGER;
  *
  **/
 
-// value=INT
+// value=INTEGER
 protected class IntValue_ValueAssignment extends AssignmentToken  {
 	
 	public IntValue_ValueAssignment(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -738,7 +738,7 @@ protected class IntValue_ValueAssignment extends AssignmentToken  {
 		IInstanceDescription obj = current.cloneAndConsume("value");
 		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
 			type = AssignmentType.LRC;
-			element = grammarAccess.getIntValueAccess().getValueINTTerminalRuleCall_0();
+			element = grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0();
 			return obj;
 		}
 		return null;

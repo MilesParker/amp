@@ -18,101 +18,101 @@ import org.eclipse.emf.ecore.EFactory;
 public interface AParFactory extends EFactory
 {
   /**
-     * The singleton instance of the factory.
-     * <!-- begin-user-doc -->
+   * The singleton instance of the factory.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   AParFactory eINSTANCE = org.eclipse.amp.amf.parameters.aPar.impl.AParFactoryImpl.init();
 
   /**
-     * Returns a new object of class '<em>Model</em>'.
-     * <!-- begin-user-doc -->
+   * Returns a new object of class '<em>Model</em>'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return a new object of class '<em>Model</em>'.
-     * @generated
-     */
+   * @return a new object of class '<em>Model</em>'.
+   * @generated
+   */
   Model createModel();
 
   /**
-     * Returns a new object of class '<em>Import</em>'.
-     * <!-- begin-user-doc -->
+   * Returns a new object of class '<em>Import</em>'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return a new object of class '<em>Import</em>'.
-     * @generated
-     */
+   * @return a new object of class '<em>Import</em>'.
+   * @generated
+   */
   Import createImport();
 
   /**
-     * Returns a new object of class '<em>Incorporates</em>'.
-     * <!-- begin-user-doc -->
+   * Returns a new object of class '<em>Incorporates</em>'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return a new object of class '<em>Incorporates</em>'.
-     * @generated
-     */
+   * @return a new object of class '<em>Incorporates</em>'.
+   * @generated
+   */
   Incorporates createIncorporates();
 
   /**
-     * Returns a new object of class '<em>Parameter</em>'.
-     * <!-- begin-user-doc -->
+   * Returns a new object of class '<em>Parameter</em>'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return a new object of class '<em>Parameter</em>'.
-     * @generated
-     */
+   * @return a new object of class '<em>Parameter</em>'.
+   * @generated
+   */
   Parameter createParameter();
 
   /**
-     * Returns a new object of class '<em>Value</em>'.
-     * <!-- begin-user-doc -->
+   * Returns a new object of class '<em>Value</em>'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return a new object of class '<em>Value</em>'.
-     * @generated
-     */
+   * @return a new object of class '<em>Value</em>'.
+   * @generated
+   */
   Value createValue();
 
   /**
-     * Returns a new object of class '<em>Int Value</em>'.
-     * <!-- begin-user-doc -->
+   * Returns a new object of class '<em>Int Value</em>'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return a new object of class '<em>Int Value</em>'.
-     * @generated
-     */
+   * @return a new object of class '<em>Int Value</em>'.
+   * @generated
+   */
   IntValue createIntValue();
 
   /**
-     * Returns a new object of class '<em>Real Value</em>'.
-     * <!-- begin-user-doc -->
+   * Returns a new object of class '<em>Real Value</em>'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return a new object of class '<em>Real Value</em>'.
-     * @generated
-     */
+   * @return a new object of class '<em>Real Value</em>'.
+   * @generated
+   */
   RealValue createRealValue();
 
   /**
-     * Returns a new object of class '<em>String Value</em>'.
-     * <!-- begin-user-doc -->
+   * Returns a new object of class '<em>String Value</em>'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return a new object of class '<em>String Value</em>'.
-     * @generated
-     */
+   * @return a new object of class '<em>String Value</em>'.
+   * @generated
+   */
   StringValue createStringValue();
 
   /**
-     * Returns a new object of class '<em>Boolean Value</em>'.
-     * <!-- begin-user-doc -->
+   * Returns a new object of class '<em>Boolean Value</em>'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return a new object of class '<em>Boolean Value</em>'.
-     * @generated
-     */
+   * @return a new object of class '<em>Boolean Value</em>'.
+   * @generated
+   */
   BooleanValue createBooleanValue();
 
   /**
-     * Returns the package supported by this factory.
-     * <!-- begin-user-doc -->
+   * Returns the package supported by this factory.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return the package supported by this factory.
-     * @generated
-     */
+   * @return the package supported by this factory.
+   * @generated
+   */
   AParPackage getAParPackage();
 
 } //AParFactory

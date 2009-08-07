@@ -24,24 +24,24 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class ValueImpl extends MinimalEObjectImpl.Container implements Value
 {
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   protected ValueImpl()
   {
-        super();
-    }
+    super();
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   @Override
   protected EClass eStaticClass()
   {
-        return AParPackage.Literals.VALUE;
-    }
+    return AParPackage.Literals.VALUE;
+  }
 
 } //ValueImpl

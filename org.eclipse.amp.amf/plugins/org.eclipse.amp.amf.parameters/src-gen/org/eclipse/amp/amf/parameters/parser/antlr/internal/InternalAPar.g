@@ -402,9 +402,9 @@ ruleIntValue returns [EObject current=null]
     }:
 (	
 	
-	    lv_value_0=	RULE_INT
+	    lv_value_0=	RULE_INTEGER
 	{
-		createLeafNode(grammarAccess.getIntValueAccess().getValueINTTerminalRuleCall_0(), "value"); 
+		createLeafNode(grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0(), "value"); 
 	}
  
 	    {
@@ -414,7 +414,7 @@ ruleIntValue returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "value", lv_value_0, "INT", lastConsumedNode);
+	       		set($current, "value", lv_value_0, "INTEGER", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
@@ -571,7 +571,9 @@ ruleBOOLEAN returns [Enumerator current=null]
 
 
 
-RULE_REAL : '-'? RULE_INT '.' RULE_INT;
+RULE_INTEGER : '-'? ('0'..'9')+;
+
+RULE_REAL : '-'? ('0'..'9')* '.' ('0'..'9')*;
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

@@ -23,7 +23,7 @@ Value :
 	IntValue|StringValue|RealValue|BooleanValue;
 
 IntValue :
-	value=INT;
+	value=INTEGER;
 
 RealValue :
 	value=REAL;
@@ -37,5 +37,8 @@ BooleanValue :
 enum BOOLEAN :
 	TRUE = "true" | FALSE = "false";
 
+terminal INTEGER :
+	"-"? ('0'..'9')+;
+
 terminal REAL :
-	"-"? INT "." INT;
+	"-"? ('0'..'9')* "." ('0'..'9')*;

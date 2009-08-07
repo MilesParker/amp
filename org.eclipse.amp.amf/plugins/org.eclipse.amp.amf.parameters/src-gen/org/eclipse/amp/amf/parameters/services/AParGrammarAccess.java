@@ -176,17 +176,17 @@ public class AParGrammarAccess implements IGrammarAccess {
 	public class IntValueElements implements IParserRuleAccess {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IntValue");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueINTTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		private final RuleCall cValueINTEGERTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//IntValue:
-		//  value=INT;
+		//  value=INTEGER;
 		public ParserRule getRule() { return rule; }
 
-		//value=INT
+		//value=INTEGER
 		public Assignment getValueAssignment() { return cValueAssignment; }
 
-		//INT
-		public RuleCall getValueINTTerminalRuleCall_0() { return cValueINTTerminalRuleCall_0; }
+		//INTEGER
+		public RuleCall getValueINTEGERTerminalRuleCall_0() { return cValueINTEGERTerminalRuleCall_0; }
 	}
 
 	public class RealValueElements implements IParserRuleAccess {
@@ -275,6 +275,7 @@ public class AParGrammarAccess implements IGrammarAccess {
 	private StringValueElements pStringValue;
 	private BooleanValueElements pBooleanValue;
 	private BOOLEANElements unknownRuleBOOLEAN;
+	private TerminalRule tINTEGER;
 	private TerminalRule tREAL;
 	
 	private final GrammarProvider grammarProvider;
@@ -349,7 +350,7 @@ public class AParGrammarAccess implements IGrammarAccess {
 	}
 
 	//IntValue:
-	//  value=INT;
+	//  value=INTEGER;
 	public IntValueElements getIntValueAccess() {
 		return (pIntValue != null) ? pIntValue : (pIntValue = new IntValueElements());
 	}
@@ -397,8 +398,14 @@ public class AParGrammarAccess implements IGrammarAccess {
 		return getBOOLEANAccess().getRule();
 	}
 
+	//terminal INTEGER:
+	//  "-" ? "0" .. "9" +;
+	public TerminalRule getINTEGERRule() {
+		return (tINTEGER != null) ? tINTEGER : (tINTEGER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INTEGER"));
+	} 
+
 	//terminal REAL:
-	//  "-" ? INT "." INT;
+	//  "-" ? "0" .. "9" * "." "0" .. "9" *;
 	public TerminalRule getREALRule() {
 		return (tREAL != null) ? tREAL : (tREAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "REAL"));
 	} 
