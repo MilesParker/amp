@@ -190,6 +190,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
         escapeRun = new Job("Run " + getModel().getName()) {
             protected IStatus run(IProgressMonitor runMonitor) {
                 try {
+                    setMonitor(runMonitor);
                     RunMonitorView runMonitorView = new RunMonitorView(runMonitor);
                     getModel().addModelListener(runMonitorView);
                     DelayView delayView = new DelayView();
@@ -219,7 +220,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
                 close();
             }
         };
-        escapeRun.setPriority(Job.INTERACTIVE);
+        escapeRun.setPriority(Job.LONG);
         escapeRun.schedule();
     }
 
