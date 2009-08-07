@@ -10,7 +10,7 @@
               contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
               default="true"
               extensions="atest"
-              icon="icons/etool16/test_file.gif"
+              icon="icons/etool16/test.gif"
               id="org.eclipse.amp.amf.testing.ATest"
               name="ATest Editor">
         </editor>

@@ -173,8 +173,8 @@ ruleIntValue
 { before(grammarAccess.getIntValueAccess().getValueAssignment()); }
 (	
 (
-{ before(grammarAccess.getIntValueAccess().getValueINTTerminalRuleCall_0()); }
-	RULE_INT{ after(grammarAccess.getIntValueAccess().getValueINTTerminalRuleCall_0()); }
+{ before(grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0()); }
+	RULE_INTEGER{ after(grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0()); }
 )
  
 ){ after(grammarAccess.getIntValueAccess().getValueAssignment()); }
@@ -413,10 +413,10 @@ rule__Constraint__Group
 ){ after(grammarAccess.getConstraintAccess().getAgentAssignment_2()); }
 )
 (
-{ before(grammarAccess.getConstraintAccess().getColonKeyword_3()); }
+{ before(grammarAccess.getConstraintAccess().getFullStopKeyword_3()); }
 
-	':' 
-{ after(grammarAccess.getConstraintAccess().getColonKeyword_3()); }
+	'.' 
+{ after(grammarAccess.getConstraintAccess().getFullStopKeyword_3()); }
 )
 (
 { before(grammarAccess.getConstraintAccess().getAttributeAssignment_4()); }
@@ -458,10 +458,10 @@ rule__Constraint__Group_5
     }
 :
 (
-{ before(grammarAccess.getConstraintAccess().getColonKeyword_5_0()); }
+{ before(grammarAccess.getConstraintAccess().getEqualsSignKeyword_5_0()); }
 
-	':' 
-{ after(grammarAccess.getConstraintAccess().getColonKeyword_5_0()); }
+	'=' 
+{ after(grammarAccess.getConstraintAccess().getEqualsSignKeyword_5_0()); }
 )
 (
 { before(grammarAccess.getConstraintAccess().getQualifierAssignment_5_1()); }
@@ -539,7 +539,9 @@ finally {
 }
 
 
-RULE_REAL : '-'? RULE_INT '.' RULE_INT;
+RULE_INTEGER : '-'? ('0'..'9')+;
+
+RULE_REAL : '-'? ('0'..'9')* '.' ('0'..'9')*;
 
 RULE_PLAIN_STRING : '\u00AB' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\u00AB'|'\u00BB')))* '\u00BB';
 

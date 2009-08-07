@@ -21,18 +21,19 @@ import java.util.ArrayList;
 
 public class InternalATestParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_REAL", "RULE_STRING", "RULE_PLAIN_STRING", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Count'", "'Average'", "'Sum'", "'Minimum'", "'Maximum'", "'TESTS'", "'('", "':'", "')'", "'='", "'['", "','", "']'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INTEGER", "RULE_REAL", "RULE_STRING", "RULE_PLAIN_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Count'", "'Average'", "'Sum'", "'Minimum'", "'Maximum'", "'TESTS'", "'('", "'.'", "')'", "'='", "'['", "','", "']'"
     };
     public static final int RULE_PLAIN_STRING=7;
     public static final int RULE_ID=8;
     public static final int RULE_STRING=6;
-    public static final int RULE_ANY_OTHER=12;
-    public static final int RULE_INT=4;
+    public static final int RULE_ANY_OTHER=13;
+    public static final int RULE_INT=9;
     public static final int RULE_REAL=5;
-    public static final int RULE_WS=11;
-    public static final int RULE_SL_COMMENT=10;
+    public static final int RULE_WS=12;
+    public static final int RULE_SL_COMMENT=11;
     public static final int EOF=-1;
-    public static final int RULE_ML_COMMENT=9;
+    public static final int RULE_INTEGER=4;
+    public static final int RULE_ML_COMMENT=10;
 
         public InternalATestParser(TokenStream input) {
             super(input);
@@ -388,28 +389,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start ruleIntValue
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:167:1: ruleIntValue : ( ( ( RULE_INT ) ) ) ;
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:167:1: ruleIntValue : ( ( ( RULE_INTEGER ) ) ) ;
     public final void ruleIntValue() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:171:2: ( ( ( ( RULE_INT ) ) ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:172:1: ( ( ( RULE_INT ) ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:171:2: ( ( ( ( RULE_INTEGER ) ) ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:172:1: ( ( ( RULE_INTEGER ) ) )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:172:1: ( ( ( RULE_INT ) ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:173:1: ( ( RULE_INT ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:172:1: ( ( ( RULE_INTEGER ) ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:173:1: ( ( RULE_INTEGER ) )
             {
              before(grammarAccess.getIntValueAccess().getValueAssignment()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:174:1: ( ( RULE_INT ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:175:1: ( RULE_INT )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:174:1: ( ( RULE_INTEGER ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:175:1: ( RULE_INTEGER )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:175:1: ( RULE_INT )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:176:1: RULE_INT
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:175:1: ( RULE_INTEGER )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:176:1: RULE_INTEGER
             {
-             before(grammarAccess.getIntValueAccess().getValueINTTerminalRuleCall_0()); 
-            match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleIntValue337); 
-             after(grammarAccess.getIntValueAccess().getValueINTTerminalRuleCall_0()); 
+             before(grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0()); 
+            match(input,RULE_INTEGER,FOLLOW_RULE_INTEGER_in_ruleIntValue337); 
+             after(grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0()); 
 
             }
 
@@ -575,7 +576,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             int alt1=2;
             int LA1_0 = input.LA(1);
 
-            if ( (LA1_0==RULE_INT) ) {
+            if ( (LA1_0==RULE_INTEGER) ) {
                 alt1=1;
             }
             else if ( (LA1_0==RULE_REAL) ) {
@@ -651,27 +652,27 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:265:1: ( ( ( 'Count' ) ) | ( ( 'Average' ) ) | ( ( 'Sum' ) ) | ( ( 'Minimum' ) ) | ( ( 'Maximum' ) ) )
             int alt2=5;
             switch ( input.LA(1) ) {
-            case 13:
+            case 14:
                 {
                 alt2=1;
                 }
                 break;
-            case 14:
+            case 15:
                 {
                 alt2=2;
                 }
                 break;
-            case 15:
+            case 16:
                 {
                 alt2=3;
                 }
                 break;
-            case 16:
+            case 17:
                 {
                 alt2=4;
                 }
                 break;
-            case 17:
+            case 18:
                 {
                 alt2=5;
                 }
@@ -694,7 +695,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
                     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:268:1: ( 'Count' )
                     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:268:3: 'Count'
                     {
-                    match(input,13,FOLLOW_13_in_rule__Measure__Alternatives533); 
+                    match(input,14,FOLLOW_14_in_rule__Measure__Alternatives533); 
 
                     }
 
@@ -715,7 +716,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
                     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:274:1: ( 'Average' )
                     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:274:3: 'Average'
                     {
-                    match(input,14,FOLLOW_14_in_rule__Measure__Alternatives553); 
+                    match(input,15,FOLLOW_15_in_rule__Measure__Alternatives553); 
 
                     }
 
@@ -736,7 +737,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
                     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:280:1: ( 'Sum' )
                     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:280:3: 'Sum'
                     {
-                    match(input,15,FOLLOW_15_in_rule__Measure__Alternatives573); 
+                    match(input,16,FOLLOW_16_in_rule__Measure__Alternatives573); 
 
                     }
 
@@ -757,7 +758,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
                     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:286:1: ( 'Minimum' )
                     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:286:3: 'Minimum'
                     {
-                    match(input,16,FOLLOW_16_in_rule__Measure__Alternatives593); 
+                    match(input,17,FOLLOW_17_in_rule__Measure__Alternatives593); 
 
                     }
 
@@ -778,7 +779,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
                     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:292:1: ( 'Maximum' )
                     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:292:3: 'Maximum'
                     {
-                    match(input,17,FOLLOW_17_in_rule__Measure__Alternatives613); 
+                    match(input,18,FOLLOW_18_in_rule__Measure__Alternatives613); 
 
                     }
 
@@ -892,7 +893,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( (LA5_0==18) ) {
+            if ( (LA5_0==19) ) {
                 alt5=1;
             }
             switch (alt5) {
@@ -931,7 +932,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
                 int alt6=2;
                 int LA6_0 = input.LA(1);
 
-                if ( ((LA6_0>=13 && LA6_0<=17)) ) {
+                if ( ((LA6_0>=14 && LA6_0<=18)) ) {
                     alt6=1;
                 }
 
@@ -997,7 +998,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:359:1: 'TESTS'
             {
              before(grammarAccess.getTestsAccess().getTESTSKeyword_0()); 
-            match(input,18,FOLLOW_18_in_rule__Tests__Group770); 
+            match(input,19,FOLLOW_19_in_rule__Tests__Group770); 
              after(grammarAccess.getTestsAccess().getTESTSKeyword_0()); 
 
             }
@@ -1044,14 +1045,14 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Constraint__Group
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:380:1: rule__Constraint__Group : ( ( ( ruleMeasure ) ) ) ( '(' ) ( ( ( ( RULE_STRING ) ) ) ) ( ':' ) ( ( ( ( RULE_STRING ) ) ) ) ( ( rule__Constraint__Group_5 )? ) ( ')' ) ( ( rule__Constraint__Group_7 ) ) ;
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:380:1: rule__Constraint__Group : ( ( ( ruleMeasure ) ) ) ( '(' ) ( ( ( ( RULE_STRING ) ) ) ) ( '.' ) ( ( ( ( RULE_STRING ) ) ) ) ( ( rule__Constraint__Group_5 )? ) ( ')' ) ( ( rule__Constraint__Group_7 ) ) ;
     public final void rule__Constraint__Group() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:384:1: ( ( ( ( ruleMeasure ) ) ) ( '(' ) ( ( ( ( RULE_STRING ) ) ) ) ( ':' ) ( ( ( ( RULE_STRING ) ) ) ) ( ( rule__Constraint__Group_5 )? ) ( ')' ) ( ( rule__Constraint__Group_7 ) ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:385:1: ( ( ( ruleMeasure ) ) ) ( '(' ) ( ( ( ( RULE_STRING ) ) ) ) ( ':' ) ( ( ( ( RULE_STRING ) ) ) ) ( ( rule__Constraint__Group_5 )? ) ( ')' ) ( ( rule__Constraint__Group_7 ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:384:1: ( ( ( ( ruleMeasure ) ) ) ( '(' ) ( ( ( ( RULE_STRING ) ) ) ) ( '.' ) ( ( ( ( RULE_STRING ) ) ) ) ( ( rule__Constraint__Group_5 )? ) ( ')' ) ( ( rule__Constraint__Group_7 ) ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:385:1: ( ( ( ruleMeasure ) ) ) ( '(' ) ( ( ( ( RULE_STRING ) ) ) ) ( '.' ) ( ( ( ( RULE_STRING ) ) ) ) ( ( rule__Constraint__Group_5 )? ) ( ')' ) ( ( rule__Constraint__Group_7 ) )
             {
             // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:385:1: ( ( ( ruleMeasure ) ) )
             // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:386:1: ( ( ruleMeasure ) )
@@ -1083,7 +1084,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:396:1: '('
             {
              before(grammarAccess.getConstraintAccess().getLeftParenthesisKeyword_1()); 
-            match(input,19,FOLLOW_19_in_rule__Constraint__Group852); 
+            match(input,20,FOLLOW_20_in_rule__Constraint__Group852); 
              after(grammarAccess.getConstraintAccess().getLeftParenthesisKeyword_1()); 
 
             }
@@ -1119,12 +1120,12 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
 
             }
 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:415:1: ( ':' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:416:1: ':'
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:415:1: ( '.' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:416:1: '.'
             {
-             before(grammarAccess.getConstraintAccess().getColonKeyword_3()); 
-            match(input,20,FOLLOW_20_in_rule__Constraint__Group897); 
-             after(grammarAccess.getConstraintAccess().getColonKeyword_3()); 
+             before(grammarAccess.getConstraintAccess().getFullStopKeyword_3()); 
+            match(input,21,FOLLOW_21_in_rule__Constraint__Group897); 
+             after(grammarAccess.getConstraintAccess().getFullStopKeyword_3()); 
 
             }
 
@@ -1167,7 +1168,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             int alt7=2;
             int LA7_0 = input.LA(1);
 
-            if ( (LA7_0==20) ) {
+            if ( (LA7_0==23) ) {
                 alt7=1;
             }
             switch (alt7) {
@@ -1192,7 +1193,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:440:1: ')'
             {
              before(grammarAccess.getConstraintAccess().getRightParenthesisKeyword_6()); 
-            match(input,21,FOLLOW_21_in_rule__Constraint__Group954); 
+            match(input,22,FOLLOW_22_in_rule__Constraint__Group954); 
              after(grammarAccess.getConstraintAccess().getRightParenthesisKeyword_6()); 
 
             }
@@ -1234,21 +1235,21 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Constraint__Group_5
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:455:1: rule__Constraint__Group_5 : ( ':' ) ( ( ( ( RULE_STRING ) ) ) ) ;
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:455:1: rule__Constraint__Group_5 : ( '=' ) ( ( ( ( RULE_STRING ) ) ) ) ;
     public final void rule__Constraint__Group_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:459:1: ( ( ':' ) ( ( ( ( RULE_STRING ) ) ) ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:460:1: ( ':' ) ( ( ( ( RULE_STRING ) ) ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:459:1: ( ( '=' ) ( ( ( ( RULE_STRING ) ) ) ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:460:1: ( '=' ) ( ( ( ( RULE_STRING ) ) ) )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:460:1: ( ':' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:461:1: ':'
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:460:1: ( '=' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:461:1: '='
             {
-             before(grammarAccess.getConstraintAccess().getColonKeyword_5_0()); 
-            match(input,20,FOLLOW_20_in_rule__Constraint__Group_5999); 
-             after(grammarAccess.getConstraintAccess().getColonKeyword_5_0()); 
+             before(grammarAccess.getConstraintAccess().getEqualsSignKeyword_5_0()); 
+            match(input,23,FOLLOW_23_in_rule__Constraint__Group_5999); 
+             after(grammarAccess.getConstraintAccess().getEqualsSignKeyword_5_0()); 
 
             }
 
@@ -1315,7 +1316,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:492:1: '='
             {
              before(grammarAccess.getConstraintAccess().getEqualsSignKeyword_7_0()); 
-            match(input,22,FOLLOW_22_in_rule__Constraint__Group_71065); 
+            match(input,23,FOLLOW_23_in_rule__Constraint__Group_71065); 
              after(grammarAccess.getConstraintAccess().getEqualsSignKeyword_7_0()); 
 
             }
@@ -1324,7 +1325,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:498:1: '['
             {
              before(grammarAccess.getConstraintAccess().getLeftSquareBracketKeyword_7_1()); 
-            match(input,23,FOLLOW_23_in_rule__Constraint__Group_71078); 
+            match(input,24,FOLLOW_24_in_rule__Constraint__Group_71078); 
              after(grammarAccess.getConstraintAccess().getLeftSquareBracketKeyword_7_1()); 
 
             }
@@ -1359,7 +1360,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:514:1: ','
             {
              before(grammarAccess.getConstraintAccess().getCommaKeyword_7_3()); 
-            match(input,24,FOLLOW_24_in_rule__Constraint__Group_71115); 
+            match(input,25,FOLLOW_25_in_rule__Constraint__Group_71115); 
              after(grammarAccess.getConstraintAccess().getCommaKeyword_7_3()); 
 
             }
@@ -1394,7 +1395,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:530:1: ']'
             {
              before(grammarAccess.getConstraintAccess().getRightSquareBracketKeyword_7_5()); 
-            match(input,25,FOLLOW_25_in_rule__Constraint__Group_71152); 
+            match(input,26,FOLLOW_26_in_rule__Constraint__Group_71152); 
              after(grammarAccess.getConstraintAccess().getRightSquareBracketKeyword_7_5()); 
 
             }
@@ -1433,39 +1434,39 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__Value__Alternatives_in_ruleValue271 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIntValue_in_entryRuleIntValue296 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIntValue303 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleIntValue337 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INTEGER_in_ruleIntValue337 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRealValue_in_entryRuleRealValue368 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleRealValue375 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_REAL_in_ruleRealValue409 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Measure__Alternatives_in_ruleMeasure451 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIntValue_in_rule__Value__Alternatives485 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRealValue_in_rule__Value__Alternatives501 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_rule__Measure__Alternatives533 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_rule__Measure__Alternatives553 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_rule__Measure__Alternatives573 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_rule__Measure__Alternatives593 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_17_in_rule__Measure__Alternatives613 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Model__Group655 = new BitSet(new long[]{0x000000000007E082L});
-    public static final BitSet FOLLOW_RULE_PLAIN_STRING_in_rule__Model__Group680 = new BitSet(new long[]{0x000000000007E002L});
-    public static final BitSet FOLLOW_ruleTests_in_rule__Model__Group705 = new BitSet(new long[]{0x000000000003E002L});
-    public static final BitSet FOLLOW_ruleConstraint_in_rule__Model__Group730 = new BitSet(new long[]{0x000000000003E002L});
-    public static final BitSet FOLLOW_18_in_rule__Tests__Group770 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_14_in_rule__Measure__Alternatives533 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_rule__Measure__Alternatives553 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_rule__Measure__Alternatives573 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_rule__Measure__Alternatives593 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_18_in_rule__Measure__Alternatives613 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Model__Group655 = new BitSet(new long[]{0x00000000000FC082L});
+    public static final BitSet FOLLOW_RULE_PLAIN_STRING_in_rule__Model__Group680 = new BitSet(new long[]{0x00000000000FC002L});
+    public static final BitSet FOLLOW_ruleTests_in_rule__Model__Group705 = new BitSet(new long[]{0x000000000007C002L});
+    public static final BitSet FOLLOW_ruleConstraint_in_rule__Model__Group730 = new BitSet(new long[]{0x000000000007C002L});
+    public static final BitSet FOLLOW_19_in_rule__Tests__Group770 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__Tests__Group789 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMeasure_in_rule__Constraint__Group834 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_19_in_rule__Constraint__Group852 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Constraint__Group875 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_rule__Constraint__Group897 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Constraint__Group920 = new BitSet(new long[]{0x0000000000300000L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_5_in_rule__Constraint__Group941 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_rule__Constraint__Group954 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_ruleMeasure_in_rule__Constraint__Group834 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_20_in_rule__Constraint__Group852 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Constraint__Group875 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_rule__Constraint__Group897 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Constraint__Group920 = new BitSet(new long[]{0x0000000000C00000L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_5_in_rule__Constraint__Group941 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_22_in_rule__Constraint__Group954 = new BitSet(new long[]{0x0000000000800000L});
     public static final BitSet FOLLOW_rule__Constraint__Group_7_in_rule__Constraint__Group966 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_rule__Constraint__Group_5999 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_23_in_rule__Constraint__Group_5999 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__Constraint__Group_51022 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_rule__Constraint__Group_71065 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_rule__Constraint__Group_71078 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_ruleValue_in_rule__Constraint__Group_71097 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_24_in_rule__Constraint__Group_71115 = new BitSet(new long[]{0x0000000000000030L});
-    public static final BitSet FOLLOW_ruleValue_in_rule__Constraint__Group_71134 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_rule__Constraint__Group_71152 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_rule__Constraint__Group_71065 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_24_in_rule__Constraint__Group_71078 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_ruleValue_in_rule__Constraint__Group_71097 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_25_in_rule__Constraint__Group_71115 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_ruleValue_in_rule__Constraint__Group_71134 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_rule__Constraint__Group_71152 = new BitSet(new long[]{0x0000000000000002L});
 
 }

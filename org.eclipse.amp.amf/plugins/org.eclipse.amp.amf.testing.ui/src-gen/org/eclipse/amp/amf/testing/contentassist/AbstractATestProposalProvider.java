@@ -173,6 +173,13 @@ public class AbstractATestProposalProvider extends TerminalsProposalProvider {
 		}
 		// subclasses may override
 	}
+	public void complete_INTEGER(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		if (logger.isDebugEnabled()) {
+			logger.debug("complete_INTEGER '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
+					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
+		}
+		// subclasses may override
+	}
 	public void complete_REAL(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		if (logger.isDebugEnabled()) {
 			logger.debug("complete_REAL '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
