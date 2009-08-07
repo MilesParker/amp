@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresFactory.java,v 1.2 2009/08/03 17:15:29 mparker Exp $
+ * $Id: AresFactory.java,v 1.3 2009/08/07 00:05:32 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares;
 
@@ -35,13 +35,13 @@ public interface AresFactory extends EFactory {
     Run createRun();
 
     /**
-     * Returns a new object of class '<em>Failure</em>'.
+     * Returns a new object of class '<em>Constraint Test</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Failure</em>'.
+     * @return a new object of class '<em>Constraint Test</em>'.
      * @generated
      */
-    Failure createFailure();
+    ConstraintTest createConstraintTest();
 
     /**
      * Returns a new object of class '<em>Run Set</em>'.

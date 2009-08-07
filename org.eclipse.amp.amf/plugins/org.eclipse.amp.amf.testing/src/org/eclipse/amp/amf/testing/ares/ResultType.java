@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Result.java,v 1.2 2009/08/03 17:15:29 mparker Exp $
+ * $Id: ResultType.java,v 1.1 2009/08/07 00:05:32 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares;
 
@@ -14,14 +14,14 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Result</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Result Type</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.eclipse.amp.amf.testing.ares.AresPackage#getResult()
+ * @see org.eclipse.amp.amf.testing.ares.AresPackage#getResultType()
  * @model
  * @generated
  */
-public enum Result implements Enumerator {
+public enum ResultType implements Enumerator {
     /**
      * The '<em><b>Incomplete</b></em>' literal object.
      * <!-- begin-user-doc -->
@@ -98,35 +98,35 @@ public enum Result implements Enumerator {
     public static final int FAILURE_VALUE = 3;
 
     /**
-     * An array of all the '<em><b>Result</b></em>' enumerators.
+     * An array of all the '<em><b>Result Type</b></em>' enumerators.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    private static final Result[] VALUES_ARRAY =
-        new Result[] {
-        INCOMPLETE,
-        SUCCESS,
-        FAILURE,
-    };
+    private static final ResultType[] VALUES_ARRAY =
+        new ResultType[] {
+            INCOMPLETE,
+            SUCCESS,
+            FAILURE,
+        };
 
     /**
-     * A public read-only list of all the '<em><b>Result</b></em>' enumerators.
+     * A public read-only list of all the '<em><b>Result Type</b></em>' enumerators.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static final List<Result> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+    public static final List<ResultType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
     /**
-     * Returns the '<em><b>Result</b></em>' literal with the specified literal value.
+     * Returns the '<em><b>Result Type</b></em>' literal with the specified literal value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static Result get(String literal) {
+    public static ResultType get(String literal) {
         for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-            Result result = VALUES_ARRAY[i];
+            ResultType result = VALUES_ARRAY[i];
             if (result.toString().equals(literal)) {
                 return result;
             }
@@ -135,14 +135,14 @@ public enum Result implements Enumerator {
     }
 
     /**
-     * Returns the '<em><b>Result</b></em>' literal with the specified name.
+     * Returns the '<em><b>Result Type</b></em>' literal with the specified name.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static Result getByName(String name) {
+    public static ResultType getByName(String name) {
         for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-            Result result = VALUES_ARRAY[i];
+            ResultType result = VALUES_ARRAY[i];
             if (result.getName().equals(name)) {
                 return result;
             }
@@ -151,12 +151,12 @@ public enum Result implements Enumerator {
     }
 
     /**
-     * Returns the '<em><b>Result</b></em>' literal with the specified integer value.
+     * Returns the '<em><b>Result Type</b></em>' literal with the specified integer value.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public static Result get(int value) {
+    public static ResultType get(int value) {
         switch (value) {
             case INCOMPLETE_VALUE: return INCOMPLETE;
             case SUCCESS_VALUE: return SUCCESS;
@@ -192,7 +192,7 @@ public enum Result implements Enumerator {
      * <!-- end-user-doc -->
      * @generated
      */
-    private Result(int value, String name, String literal) {
+    private ResultType(int value, String name, String literal) {
         this.value = value;
         this.name = name;
         this.literal = literal;
@@ -204,7 +204,7 @@ public enum Result implements Enumerator {
      * @generated
      */
     public int getValue() {
-        return value;
+      return value;
     }
 
     /**
@@ -213,7 +213,7 @@ public enum Result implements Enumerator {
      * @generated
      */
     public String getName() {
-        return name;
+      return name;
     }
 
     /**
@@ -222,18 +222,18 @@ public enum Result implements Enumerator {
      * @generated
      */
     public String getLiteral() {
-        return literal;
+      return literal;
     }
 
     /**
-     * Returns the literal value of the enumerator, which is its string representation. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * 
+     * Returns the literal value of the enumerator, which is its string representation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public String toString() {
         return literal;
     }
-
-} //Result
+    
+} //ResultType

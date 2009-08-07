@@ -2,19 +2,23 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresFactoryImpl.java,v 1.2 2009/08/03 17:15:29 mparker Exp $
+ * $Id: AresFactoryImpl.java,v 1.3 2009/08/07 00:05:31 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.impl;
 
 import org.eclipse.amp.amf.testing.ares.*;
-
+import org.eclipse.amp.amf.testing.ares.AresFactory;
+import org.eclipse.amp.amf.testing.ares.AresPackage;
+import org.eclipse.amp.amf.testing.ares.ConstraintTest;
+import org.eclipse.amp.amf.testing.ares.Issue;
+import org.eclipse.amp.amf.testing.ares.ResultType;
+import org.eclipse.amp.amf.testing.ares.Run;
+import org.eclipse.amp.amf.testing.ares.RunSet;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
@@ -62,7 +66,7 @@ public class AresFactoryImpl extends EFactoryImpl implements AresFactory {
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
             case AresPackage.RUN: return createRun();
-            case AresPackage.FAILURE: return createFailure();
+            case AresPackage.CONSTRAINT_TEST: return createConstraintTest();
             case AresPackage.RUN_SET: return createRunSet();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -77,8 +81,8 @@ public class AresFactoryImpl extends EFactoryImpl implements AresFactory {
     @Override
     public Object createFromString(EDataType eDataType, String initialValue) {
         switch (eDataType.getClassifierID()) {
-            case AresPackage.RESULT:
-                return createResultFromString(eDataType, initialValue);
+            case AresPackage.RESULT_TYPE:
+                return createResultTypeFromString(eDataType, initialValue);
             case AresPackage.ISSUE:
                 return createIssueFromString(eDataType, initialValue);
             default:
@@ -94,8 +98,8 @@ public class AresFactoryImpl extends EFactoryImpl implements AresFactory {
     @Override
     public String convertToString(EDataType eDataType, Object instanceValue) {
         switch (eDataType.getClassifierID()) {
-            case AresPackage.RESULT:
-                return convertResultToString(eDataType, instanceValue);
+            case AresPackage.RESULT_TYPE:
+                return convertResultTypeToString(eDataType, instanceValue);
             case AresPackage.ISSUE:
                 return convertIssueToString(eDataType, instanceValue);
             default:
@@ -118,9 +122,9 @@ public class AresFactoryImpl extends EFactoryImpl implements AresFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Failure createFailure() {
-        FailureImpl failure = new FailureImpl();
-        return failure;
+    public ConstraintTest createConstraintTest() {
+        ConstraintTestImpl constraintTest = new ConstraintTestImpl();
+        return constraintTest;
     }
 
     /**
@@ -138,8 +142,8 @@ public class AresFactoryImpl extends EFactoryImpl implements AresFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Result createResultFromString(EDataType eDataType, String initialValue) {
-        Result result = Result.get(initialValue);
+    public ResultType createResultTypeFromString(EDataType eDataType, String initialValue) {
+        ResultType result = ResultType.get(initialValue);
         if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
         return result;
     }
@@ -149,7 +153,7 @@ public class AresFactoryImpl extends EFactoryImpl implements AresFactory {
      * <!-- end-user-doc -->
      * @generated
      */
-    public String convertResultToString(EDataType eDataType, Object instanceValue) {
+    public String convertResultTypeToString(EDataType eDataType, Object instanceValue) {
         return instanceValue == null ? null : instanceValue.toString();
     }
 

@@ -2,17 +2,18 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresAdapterFactory.java,v 1.2 2009/08/03 17:15:30 mparker Exp $
+ * $Id: AresAdapterFactory.java,v 1.3 2009/08/07 00:05:32 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.util;
 
 import org.eclipse.amp.amf.testing.ares.*;
-
+import org.eclipse.amp.amf.testing.ares.AresPackage;
+import org.eclipse.amp.amf.testing.ares.ConstraintTest;
+import org.eclipse.amp.amf.testing.ares.Run;
+import org.eclipse.amp.amf.testing.ares.RunSet;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -76,8 +77,8 @@ public class AresAdapterFactory extends AdapterFactoryImpl {
                 return createRunAdapter();
             }
             @Override
-            public Adapter caseFailure(Failure object) {
-                return createFailureAdapter();
+            public Adapter caseConstraintTest(ConstraintTest object) {
+                return createConstraintTestAdapter();
             }
             @Override
             public Adapter caseRunSet(RunSet object) {
@@ -118,16 +119,16 @@ public class AresAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.testing.ares.Failure <em>Failure</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.testing.ares.ConstraintTest <em>Constraint Test</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.eclipse.amp.amf.testing.ares.Failure
+     * @see org.eclipse.amp.amf.testing.ares.ConstraintTest
      * @generated
      */
-    public Adapter createFailureAdapter() {
+    public Adapter createConstraintTestAdapter() {
         return null;
     }
 

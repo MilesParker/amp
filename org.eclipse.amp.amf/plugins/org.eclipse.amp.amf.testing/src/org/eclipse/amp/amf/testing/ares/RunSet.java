@@ -2,14 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RunSet.java,v 1.1 2009/08/03 17:15:29 mparker Exp $
+ * $Id: RunSet.java,v 1.2 2009/08/07 00:05:32 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares;
 
 import java.util.Date;
 
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -34,7 +33,7 @@ import org.eclipse.emf.ecore.EObject;
 public interface RunSet extends EObject {
     /**
      * Returns the value of the '<em><b>Result</b></em>' attribute.
-     * The literals are from the enumeration {@link org.eclipse.amp.amf.testing.ares.Result}.
+     * The literals are from the enumeration {@link org.eclipse.amp.amf.testing.ares.ResultType}.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Result</em>' attribute isn't clear,
@@ -42,24 +41,24 @@ public interface RunSet extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Result</em>' attribute.
-     * @see org.eclipse.amp.amf.testing.ares.Result
-     * @see #setResult(Result)
+     * @see org.eclipse.amp.amf.testing.ares.ResultType
+     * @see #setResult(ResultType)
      * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRunSet_Result()
      * @model required="true"
      * @generated
      */
-    Result getResult();
+    ResultType getResult();
 
     /**
      * Sets the value of the '{@link org.eclipse.amp.amf.testing.ares.RunSet#getResult <em>Result</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @param value the new value of the '<em>Result</em>' attribute.
-     * @see org.eclipse.amp.amf.testing.ares.Result
+     * @see org.eclipse.amp.amf.testing.ares.ResultType
      * @see #getResult()
      * @generated
      */
-    void setResult(Result value);
+    void setResult(ResultType value);
 
     /**
      * Returns the value of the '<em><b>Started</b></em>' attribute.

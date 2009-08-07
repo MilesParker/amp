@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresPackage.java,v 1.2 2009/08/03 17:15:29 mparker Exp $
+ * $Id: AresPackage.java,v 1.3 2009/08/07 00:05:32 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares;
 
@@ -143,13 +143,13 @@ public interface AresPackage extends EPackage {
     int RUN__FINISHED = 7;
 
     /**
-     * The feature id for the '<em><b>Failures</b></em>' containment reference list.
+     * The feature id for the '<em><b>Results</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int RUN__FAILURES = 8;
+    int RUN__RESULTS = 8;
 
     /**
      * The number of structural features of the '<em>Run</em>' class.
@@ -161,14 +161,14 @@ public interface AresPackage extends EPackage {
     int RUN_FEATURE_COUNT = 9;
 
     /**
-     * The meta object id for the '{@link org.eclipse.amp.amf.testing.ares.impl.FailureImpl <em>Failure</em>}' class.
+     * The meta object id for the '{@link org.eclipse.amp.amf.testing.ares.impl.ConstraintTestImpl <em>Constraint Test</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.amp.amf.testing.ares.impl.FailureImpl
-     * @see org.eclipse.amp.amf.testing.ares.impl.AresPackageImpl#getFailure()
+     * @see org.eclipse.amp.amf.testing.ares.impl.ConstraintTestImpl
+     * @see org.eclipse.amp.amf.testing.ares.impl.AresPackageImpl#getConstraintTest()
      * @generated
      */
-    int FAILURE = 1;
+    int CONSTRAINT_TEST = 1;
 
     /**
      * The feature id for the '<em><b>Constraint</b></em>' reference.
@@ -177,7 +177,7 @@ public interface AresPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FAILURE__CONSTRAINT = 0;
+    int CONSTRAINT_TEST__CONSTRAINT = 0;
 
     /**
      * The feature id for the '<em><b>Issue</b></em>' attribute.
@@ -186,7 +186,7 @@ public interface AresPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FAILURE__ISSUE = 1;
+    int CONSTRAINT_TEST__ISSUE = 1;
 
     /**
      * The feature id for the '<em><b>Actual Value</b></em>' attribute.
@@ -195,16 +195,25 @@ public interface AresPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int FAILURE__ACTUAL_VALUE = 2;
+    int CONSTRAINT_TEST__ACTUAL_VALUE = 2;
 
     /**
-     * The number of structural features of the '<em>Failure</em>' class.
+     * The feature id for the '<em><b>Failure</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FAILURE_FEATURE_COUNT = 3;
+    int CONSTRAINT_TEST__FAILURE = 3;
+
+    /**
+     * The number of structural features of the '<em>Constraint Test</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CONSTRAINT_TEST_FEATURE_COUNT = 4;
 
     /**
      * The meta object id for the '{@link org.eclipse.amp.amf.testing.ares.impl.RunSetImpl <em>Run Set</em>}' class.
@@ -262,14 +271,14 @@ public interface AresPackage extends EPackage {
     int RUN_SET_FEATURE_COUNT = 4;
 
     /**
-     * The meta object id for the '{@link org.eclipse.amp.amf.testing.ares.Result <em>Result</em>}' enum.
+     * The meta object id for the '{@link org.eclipse.amp.amf.testing.ares.ResultType <em>Result Type</em>}' enum.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.amp.amf.testing.ares.Result
-     * @see org.eclipse.amp.amf.testing.ares.impl.AresPackageImpl#getResult()
+     * @see org.eclipse.amp.amf.testing.ares.ResultType
+     * @see org.eclipse.amp.amf.testing.ares.impl.AresPackageImpl#getResultType()
      * @generated
      */
-    int RESULT = 3;
+    int RESULT_TYPE = 3;
 
     /**
      * The meta object id for the '{@link org.eclipse.amp.amf.testing.ares.Issue <em>Issue</em>}' enum.
@@ -381,58 +390,69 @@ public interface AresPackage extends EPackage {
     EAttribute getRun_Finished();
 
     /**
-     * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.testing.ares.Run#getFailures <em>Failures</em>}'.
+     * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.testing.ares.Run#getResults <em>Results</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Failures</em>'.
-     * @see org.eclipse.amp.amf.testing.ares.Run#getFailures()
+     * @return the meta object for the containment reference list '<em>Results</em>'.
+     * @see org.eclipse.amp.amf.testing.ares.Run#getResults()
      * @see #getRun()
      * @generated
      */
-    EReference getRun_Failures();
+    EReference getRun_Results();
 
     /**
-     * Returns the meta object for class '{@link org.eclipse.amp.amf.testing.ares.Failure <em>Failure</em>}'.
+     * Returns the meta object for class '{@link org.eclipse.amp.amf.testing.ares.ConstraintTest <em>Constraint Test</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Failure</em>'.
-     * @see org.eclipse.amp.amf.testing.ares.Failure
+     * @return the meta object for class '<em>Constraint Test</em>'.
+     * @see org.eclipse.amp.amf.testing.ares.ConstraintTest
      * @generated
      */
-    EClass getFailure();
+    EClass getConstraintTest();
 
     /**
-     * Returns the meta object for the reference '{@link org.eclipse.amp.amf.testing.ares.Failure#getConstraint <em>Constraint</em>}'.
+     * Returns the meta object for the reference '{@link org.eclipse.amp.amf.testing.ares.ConstraintTest#getConstraint <em>Constraint</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the reference '<em>Constraint</em>'.
-     * @see org.eclipse.amp.amf.testing.ares.Failure#getConstraint()
-     * @see #getFailure()
+     * @see org.eclipse.amp.amf.testing.ares.ConstraintTest#getConstraint()
+     * @see #getConstraintTest()
      * @generated
      */
-    EReference getFailure_Constraint();
+    EReference getConstraintTest_Constraint();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.testing.ares.Failure#getIssue <em>Issue</em>}'.
+     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.testing.ares.ConstraintTest#getIssue <em>Issue</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Issue</em>'.
-     * @see org.eclipse.amp.amf.testing.ares.Failure#getIssue()
-     * @see #getFailure()
+     * @see org.eclipse.amp.amf.testing.ares.ConstraintTest#getIssue()
+     * @see #getConstraintTest()
      * @generated
      */
-    EAttribute getFailure_Issue();
+    EAttribute getConstraintTest_Issue();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.testing.ares.Failure#getActualValue <em>Actual Value</em>}'.
+     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.testing.ares.ConstraintTest#getActualValue <em>Actual Value</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the attribute '<em>Actual Value</em>'.
-     * @see org.eclipse.amp.amf.testing.ares.Failure#getActualValue()
-     * @see #getFailure()
+     * @see org.eclipse.amp.amf.testing.ares.ConstraintTest#getActualValue()
+     * @see #getConstraintTest()
      * @generated
      */
-    EAttribute getFailure_ActualValue();
+    EAttribute getConstraintTest_ActualValue();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.testing.ares.ConstraintTest#isFailure <em>Failure</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Failure</em>'.
+     * @see org.eclipse.amp.amf.testing.ares.ConstraintTest#isFailure()
+     * @see #getConstraintTest()
+     * @generated
+     */
+    EAttribute getConstraintTest_Failure();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.amp.amf.testing.ares.RunSet <em>Run Set</em>}'.
@@ -489,14 +509,14 @@ public interface AresPackage extends EPackage {
     EReference getRunSet_Runs();
 
     /**
-     * Returns the meta object for enum '{@link org.eclipse.amp.amf.testing.ares.Result <em>Result</em>}'.
+     * Returns the meta object for enum '{@link org.eclipse.amp.amf.testing.ares.ResultType <em>Result Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for enum '<em>Result</em>'.
-     * @see org.eclipse.amp.amf.testing.ares.Result
+     * @return the meta object for enum '<em>Result Type</em>'.
+     * @see org.eclipse.amp.amf.testing.ares.ResultType
      * @generated
      */
-    EEnum getResult();
+    EEnum getResultType();
 
     /**
      * Returns the meta object for enum '{@link org.eclipse.amp.amf.testing.ares.Issue <em>Issue</em>}'.
@@ -605,22 +625,22 @@ public interface AresPackage extends EPackage {
         EAttribute RUN__FINISHED = eINSTANCE.getRun_Finished();
 
         /**
-         * The meta object literal for the '<em><b>Failures</b></em>' containment reference list feature.
+         * The meta object literal for the '<em><b>Results</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference RUN__FAILURES = eINSTANCE.getRun_Failures();
+        EReference RUN__RESULTS = eINSTANCE.getRun_Results();
 
         /**
-         * The meta object literal for the '{@link org.eclipse.amp.amf.testing.ares.impl.FailureImpl <em>Failure</em>}' class.
+         * The meta object literal for the '{@link org.eclipse.amp.amf.testing.ares.impl.ConstraintTestImpl <em>Constraint Test</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.eclipse.amp.amf.testing.ares.impl.FailureImpl
-         * @see org.eclipse.amp.amf.testing.ares.impl.AresPackageImpl#getFailure()
+         * @see org.eclipse.amp.amf.testing.ares.impl.ConstraintTestImpl
+         * @see org.eclipse.amp.amf.testing.ares.impl.AresPackageImpl#getConstraintTest()
          * @generated
          */
-        EClass FAILURE = eINSTANCE.getFailure();
+        EClass CONSTRAINT_TEST = eINSTANCE.getConstraintTest();
 
         /**
          * The meta object literal for the '<em><b>Constraint</b></em>' reference feature.
@@ -628,7 +648,7 @@ public interface AresPackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference FAILURE__CONSTRAINT = eINSTANCE.getFailure_Constraint();
+        EReference CONSTRAINT_TEST__CONSTRAINT = eINSTANCE.getConstraintTest_Constraint();
 
         /**
          * The meta object literal for the '<em><b>Issue</b></em>' attribute feature.
@@ -636,7 +656,7 @@ public interface AresPackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute FAILURE__ISSUE = eINSTANCE.getFailure_Issue();
+        EAttribute CONSTRAINT_TEST__ISSUE = eINSTANCE.getConstraintTest_Issue();
 
         /**
          * The meta object literal for the '<em><b>Actual Value</b></em>' attribute feature.
@@ -644,7 +664,15 @@ public interface AresPackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute FAILURE__ACTUAL_VALUE = eINSTANCE.getFailure_ActualValue();
+        EAttribute CONSTRAINT_TEST__ACTUAL_VALUE = eINSTANCE.getConstraintTest_ActualValue();
+
+        /**
+         * The meta object literal for the '<em><b>Failure</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute CONSTRAINT_TEST__FAILURE = eINSTANCE.getConstraintTest_Failure();
 
         /**
          * The meta object literal for the '{@link org.eclipse.amp.amf.testing.ares.impl.RunSetImpl <em>Run Set</em>}' class.
@@ -689,14 +717,14 @@ public interface AresPackage extends EPackage {
         EReference RUN_SET__RUNS = eINSTANCE.getRunSet_Runs();
 
         /**
-         * The meta object literal for the '{@link org.eclipse.amp.amf.testing.ares.Result <em>Result</em>}' enum.
+         * The meta object literal for the '{@link org.eclipse.amp.amf.testing.ares.ResultType <em>Result Type</em>}' enum.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.eclipse.amp.amf.testing.ares.Result
-         * @see org.eclipse.amp.amf.testing.ares.impl.AresPackageImpl#getResult()
+         * @see org.eclipse.amp.amf.testing.ares.ResultType
+         * @see org.eclipse.amp.amf.testing.ares.impl.AresPackageImpl#getResultType()
          * @generated
          */
-        EEnum RESULT = eINSTANCE.getResult();
+        EEnum RESULT_TYPE = eINSTANCE.getResultType();
 
         /**
          * The meta object literal for the '{@link org.eclipse.amp.amf.testing.ares.Issue <em>Issue</em>}' enum.

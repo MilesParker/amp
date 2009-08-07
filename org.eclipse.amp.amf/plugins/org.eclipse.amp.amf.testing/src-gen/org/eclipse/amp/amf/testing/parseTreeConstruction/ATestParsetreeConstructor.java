@@ -319,12 +319,12 @@ protected class Tests_ImportURIAssignment_1 extends AssignmentToken  {
 /************ begin Rule Constraint ****************
  *
  * Constraint:
- *   measure=Measure "(" agent=[SAgent|STRING] ":" attribute=[SAttribute|STRING] (":"
+ *   measure=Measure "(" agent=[SAgent|STRING] "." attribute=[SAttribute|STRING] ("="
  *   qualifier=[SStateValue|STRING])? ")" ("=" "[" minValue=Value "," maxValue=Value "]");
  *
  **/
 
-// measure=Measure "(" agent=[SAgent|STRING] ":" attribute=[SAttribute|STRING] (":"
+// measure=Measure "(" agent=[SAgent|STRING] "." attribute=[SAttribute|STRING] ("="
 // qualifier=[SStateValue|STRING])? ")" ("=" "[" minValue=Value "," maxValue=Value "]")
 protected class Constraint_Group extends GroupToken {
 	
@@ -433,15 +433,15 @@ protected class Constraint_AgentAssignment_2 extends AssignmentToken  {
 
 }
 
-// ":"
-protected class Constraint_ColonKeyword_3 extends KeywordToken  {
+// "."
+protected class Constraint_FullStopKeyword_3 extends KeywordToken  {
 	
-	public Constraint_ColonKeyword_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Constraint_FullStopKeyword_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Keyword getGrammarElement() {
-		return grammarAccess.getConstraintAccess().getColonKeyword_3();
+		return grammarAccess.getConstraintAccess().getFullStopKeyword_3();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -466,7 +466,7 @@ protected class Constraint_AttributeAssignment_4 extends AssignmentToken  {
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new Constraint_ColonKeyword_3(parent, this, 0, inst);
+			case 0: return new Constraint_FullStopKeyword_3(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -487,7 +487,7 @@ protected class Constraint_AttributeAssignment_4 extends AssignmentToken  {
 
 }
 
-// (":" qualifier=[SStateValue|STRING])?
+// ("=" qualifier=[SStateValue|STRING])?
 protected class Constraint_Group_5 extends GroupToken {
 	
 	public Constraint_Group_5(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -507,15 +507,15 @@ protected class Constraint_Group_5 extends GroupToken {
 		
 }
 
-// ":"
-protected class Constraint_ColonKeyword_5_0 extends KeywordToken  {
+// "="
+protected class Constraint_EqualsSignKeyword_5_0 extends KeywordToken  {
 	
-	public Constraint_ColonKeyword_5_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Constraint_EqualsSignKeyword_5_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Keyword getGrammarElement() {
-		return grammarAccess.getConstraintAccess().getColonKeyword_5_0();
+		return grammarAccess.getConstraintAccess().getEqualsSignKeyword_5_0();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -540,7 +540,7 @@ protected class Constraint_QualifierAssignment_5_1 extends AssignmentToken  {
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new Constraint_ColonKeyword_5_0(parent, this, 0, inst);
+			case 0: return new Constraint_EqualsSignKeyword_5_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -873,11 +873,11 @@ protected class Value_RealValueParserRuleCall_1 extends RuleCallToken {
 /************ begin Rule IntValue ****************
  *
  * IntValue:
- *   value=INT;
+ *   value=INTEGER;
  *
  **/
 
-// value=INT
+// value=INTEGER
 protected class IntValue_ValueAssignment extends AssignmentToken  {
 	
 	public IntValue_ValueAssignment(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -903,7 +903,7 @@ protected class IntValue_ValueAssignment extends AssignmentToken  {
 		IInstanceDescription obj = current.cloneAndConsume("value");
 		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
 			type = AssignmentType.LRC;
-			element = grammarAccess.getIntValueAccess().getValueINTTerminalRuleCall_0();
+			element = grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0();
 			return obj;
 		}
 		return null;

@@ -8,7 +8,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="test" lowerBound="1" eType="ecore:EClass ../../src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Model"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterization" lowerBound="1"
         eType="ecore:EClass ../../../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//Model"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="result" eType="#//Result"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="result" eType="#//ResultType"
         defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="ecore:EClass ../../../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//Parameter"
@@ -18,27 +18,32 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="started" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="finished" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="failures" upperBound="-1"
-        eType="#//Failure" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="results" upperBound="-1"
+        eType="#//ConstraintTest" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Result">
+  <eClassifiers xsi:type="ecore:EEnum" name="ResultType">
     <eLiterals name="Incomplete" value="1" literal="INCOMPLETE"/>
     <eLiterals name="Success" value="2" literal="SUCCESS"/>
     <eLiterals name="Failure" value="3" literal="FAILURE"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Failure">
+  <eClassifiers xsi:type="ecore:EClass" name="ConstraintTest">
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraint" eType="ecore:EClass ../../src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Constraint"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="issue" lowerBound="1" eType="#//Issue"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="actualValue" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="failure" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" changeable="false"
+        volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Issue">
     <eLiterals name="BelowRange" value="10" literal="BELOW_RANGE"/>
     <eLiterals name="AboveRange" value="15" literal="ABOVE_RANGE"/>
+    <eLiterals name="None" value="1" literal="NONE"/>
+    <eLiterals name="NotFound" value="-1" literal="NOT_FOUND"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RunSet">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="result" lowerBound="1"
-        eType="#//Result"/>
+        eType="#//ResultType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="started" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="finished" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="runs" upperBound="-1" eType="#//Run"

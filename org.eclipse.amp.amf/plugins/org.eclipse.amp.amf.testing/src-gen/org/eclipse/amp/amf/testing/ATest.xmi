@@ -19,7 +19,7 @@
           <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
         </tokens>
         <tokens xsi:type="xtext:Assignment" cardinality="?" feature="description" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.8"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.9"/>
         </tokens>
         <tokens xsi:type="xtext:Assignment" cardinality="?" feature="tests" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.1"/>
@@ -57,7 +57,7 @@
             <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
           </terminal>
         </tokens>
-        <tokens xsi:type="xtext:Keyword" value=":"/>
+        <tokens xsi:type="xtext:Keyword" value="."/>
         <tokens xsi:type="xtext:Assignment" feature="attribute" operator="=">
           <terminal xsi:type="xtext:CrossReference">
             <type metamodel="/0/@metamodelDeclarations.2">
@@ -67,7 +67,7 @@
           </terminal>
         </tokens>
         <tokens xsi:type="xtext:Group" cardinality="?">
-          <tokens xsi:type="xtext:Keyword" value=":"/>
+          <tokens xsi:type="xtext:Keyword" value="="/>
           <tokens xsi:type="xtext:Assignment" feature="qualifier" operator="=">
             <terminal xsi:type="xtext:CrossReference">
               <type metamodel="/0/@metamodelDeclarations.2">
@@ -133,7 +133,7 @@
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/amp/amf/testing/ATest#//IntValue"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
+        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.7"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="RealValue">
@@ -141,7 +141,19 @@
         <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/amp/amf/testing/ATest#//RealValue"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.7"/>
+        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.8"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:TerminalRule" name="INTEGER">
+      <type metamodel="/0/@metamodelDeclarations.1">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <tokens xsi:type="xtext:Keyword" cardinality="?" value="-"/>
+        <tokens xsi:type="xtext:CharacterRange" cardinality="+">
+          <left value="0"/>
+          <right value="9"/>
+        </tokens>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="REAL">
@@ -150,9 +162,15 @@
       </type>
       <alternatives xsi:type="xtext:Group">
         <tokens xsi:type="xtext:Keyword" cardinality="?" value="-"/>
-        <tokens xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
+        <tokens xsi:type="xtext:CharacterRange" cardinality="*">
+          <left value="0"/>
+          <right value="9"/>
+        </tokens>
         <tokens xsi:type="xtext:Keyword" value="."/>
-        <tokens xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
+        <tokens xsi:type="xtext:CharacterRange" cardinality="*">
+          <left value="0"/>
+          <right value="9"/>
+        </tokens>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="PLAIN_STRING">

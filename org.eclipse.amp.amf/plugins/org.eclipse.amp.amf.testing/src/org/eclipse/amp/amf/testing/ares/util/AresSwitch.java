@@ -2,14 +2,17 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresSwitch.java,v 1.2 2009/08/03 17:15:30 mparker Exp $
+ * $Id: AresSwitch.java,v 1.3 2009/08/07 00:05:32 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.util;
 
 import java.util.List;
 
 import org.eclipse.amp.amf.testing.ares.*;
-
+import org.eclipse.amp.amf.testing.ares.AresPackage;
+import org.eclipse.amp.amf.testing.ares.ConstraintTest;
+import org.eclipse.amp.amf.testing.ares.Run;
+import org.eclipse.amp.amf.testing.ares.RunSet;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
@@ -93,9 +96,9 @@ public class AresSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
-            case AresPackage.FAILURE: {
-                Failure failure = (Failure)theEObject;
-                T result = caseFailure(failure);
+            case AresPackage.CONSTRAINT_TEST: {
+                ConstraintTest constraintTest = (ConstraintTest)theEObject;
+                T result = caseConstraintTest(constraintTest);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -125,17 +128,17 @@ public class AresSwitch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Failure</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Constraint Test</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Failure</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Constraint Test</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T caseFailure(Failure object) {
+    public T caseConstraintTest(ConstraintTest object) {
         return null;
     }
 

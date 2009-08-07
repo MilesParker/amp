@@ -94,12 +94,12 @@ public class ATestGrammarAccess implements IGrammarAccess {
 		private final Assignment cAgentAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cAgentSAgentCrossReference_2_0 = (CrossReference)cAgentAssignment_2.eContents().get(0);
 		private final RuleCall cAgentSAgentSTRINGTerminalRuleCall_2_0_1 = (RuleCall)cAgentSAgentCrossReference_2_0.eContents().get(1);
-		private final Keyword cColonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cFullStopKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cAttributeAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final CrossReference cAttributeSAttributeCrossReference_4_0 = (CrossReference)cAttributeAssignment_4.eContents().get(0);
 		private final RuleCall cAttributeSAttributeSTRINGTerminalRuleCall_4_0_1 = (RuleCall)cAttributeSAttributeCrossReference_4_0.eContents().get(1);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cColonKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Assignment cQualifierAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
 		private final CrossReference cQualifierSStateValueCrossReference_5_1_0 = (CrossReference)cQualifierAssignment_5_1.eContents().get(0);
 		private final RuleCall cQualifierSStateValueSTRINGTerminalRuleCall_5_1_0_1 = (RuleCall)cQualifierSStateValueCrossReference_5_1_0.eContents().get(1);
@@ -115,11 +115,11 @@ public class ATestGrammarAccess implements IGrammarAccess {
 		private final Keyword cRightSquareBracketKeyword_7_5 = (Keyword)cGroup_7.eContents().get(5);
 		
 		//Constraint:
-		//  measure=Measure "(" agent=[SAgent|STRING] ":" attribute=[SAttribute|STRING] (":"
+		//  measure=Measure "(" agent=[SAgent|STRING] "." attribute=[SAttribute|STRING] ("="
 		//  qualifier=[SStateValue|STRING])? ")" ("=" "[" minValue=Value "," maxValue=Value "]");
 		public ParserRule getRule() { return rule; }
 
-		//measure=Measure "(" agent=[SAgent|STRING] ":" attribute=[SAttribute|STRING] (":"
+		//measure=Measure "(" agent=[SAgent|STRING] "." attribute=[SAttribute|STRING] ("="
 		//qualifier=[SStateValue|STRING])? ")" ("=" "[" minValue=Value "," maxValue=Value "]")
 		public Group getGroup() { return cGroup; }
 
@@ -141,8 +141,8 @@ public class ATestGrammarAccess implements IGrammarAccess {
 		//STRING
 		public RuleCall getAgentSAgentSTRINGTerminalRuleCall_2_0_1() { return cAgentSAgentSTRINGTerminalRuleCall_2_0_1; }
 
-		//":"
-		public Keyword getColonKeyword_3() { return cColonKeyword_3; }
+		//"."
+		public Keyword getFullStopKeyword_3() { return cFullStopKeyword_3; }
 
 		//attribute=[SAttribute|STRING]
 		public Assignment getAttributeAssignment_4() { return cAttributeAssignment_4; }
@@ -153,11 +153,11 @@ public class ATestGrammarAccess implements IGrammarAccess {
 		//STRING
 		public RuleCall getAttributeSAttributeSTRINGTerminalRuleCall_4_0_1() { return cAttributeSAttributeSTRINGTerminalRuleCall_4_0_1; }
 
-		//(":" qualifier=[SStateValue|STRING])?
+		//("=" qualifier=[SStateValue|STRING])?
 		public Group getGroup_5() { return cGroup_5; }
 
-		//":"
-		public Keyword getColonKeyword_5_0() { return cColonKeyword_5_0; }
+		//"="
+		public Keyword getEqualsSignKeyword_5_0() { return cEqualsSignKeyword_5_0; }
 
 		//qualifier=[SStateValue|STRING]
 		public Assignment getQualifierAssignment_5_1() { return cQualifierAssignment_5_1; }
@@ -222,17 +222,17 @@ public class ATestGrammarAccess implements IGrammarAccess {
 	public class IntValueElements implements IParserRuleAccess {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IntValue");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueINTTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		private final RuleCall cValueINTEGERTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//IntValue:
-		//  value=INT;
+		//  value=INTEGER;
 		public ParserRule getRule() { return rule; }
 
-		//value=INT
+		//value=INTEGER
 		public Assignment getValueAssignment() { return cValueAssignment; }
 
-		//INT
-		public RuleCall getValueINTTerminalRuleCall_0() { return cValueINTTerminalRuleCall_0; }
+		//INTEGER
+		public RuleCall getValueINTEGERTerminalRuleCall_0() { return cValueINTEGERTerminalRuleCall_0; }
 	}
 
 	public class RealValueElements implements IParserRuleAccess {
@@ -310,6 +310,7 @@ public class ATestGrammarAccess implements IGrammarAccess {
 	private ValueElements pValue;
 	private IntValueElements pIntValue;
 	private RealValueElements pRealValue;
+	private TerminalRule tINTEGER;
 	private TerminalRule tREAL;
 	private TerminalRule tPLAIN_STRING;
 	
@@ -355,7 +356,7 @@ public class ATestGrammarAccess implements IGrammarAccess {
 	}
 
 	//Constraint:
-	//  measure=Measure "(" agent=[SAgent|STRING] ":" attribute=[SAttribute|STRING] (":"
+	//  measure=Measure "(" agent=[SAgent|STRING] "." attribute=[SAttribute|STRING] ("="
 	//  qualifier=[SStateValue|STRING])? ")" ("=" "[" minValue=Value "," maxValue=Value "]");
 	public ConstraintElements getConstraintAccess() {
 		return (pConstraint != null) ? pConstraint : (pConstraint = new ConstraintElements());
@@ -385,7 +386,7 @@ public class ATestGrammarAccess implements IGrammarAccess {
 	}
 
 	//IntValue:
-	//  value=INT;
+	//  value=INTEGER;
 	public IntValueElements getIntValueAccess() {
 		return (pIntValue != null) ? pIntValue : (pIntValue = new IntValueElements());
 	}
@@ -404,8 +405,14 @@ public class ATestGrammarAccess implements IGrammarAccess {
 		return getRealValueAccess().getRule();
 	}
 
+	//terminal INTEGER:
+	//  "-" ? "0" .. "9" +;
+	public TerminalRule getINTEGERRule() {
+		return (tINTEGER != null) ? tINTEGER : (tINTEGER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INTEGER"));
+	} 
+
 	//terminal REAL:
-	//  "-" ? INT "." INT;
+	//  "-" ? "0" .. "9" * "." "0" .. "9" *;
 	public TerminalRule getREALRule() {
 		return (tREAL != null) ? tREAL : (tREAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "REAL"));
 	} 

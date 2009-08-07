@@ -16,8 +16,6 @@
 
 package org.eclipse.amp.amf.testing.scoping;
 
-import static org.eclipse.amp.amf.parameters.scoping.AParImportResolver.convertURI;
-
 import org.eclipse.amp.amf.parameters.scoping.AParImportResolver;
 import org.eclipse.amp.amf.testing.aTest.Tests;
 import org.eclipse.emf.ecore.EObject;

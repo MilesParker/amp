@@ -85,15 +85,15 @@ public class ATestInterpreter {
         String constraintString = "";
         for (Constraint constraint : atestModel.getContraints()) {
             constraintString += constraint.getAttribute().getID() + "\t"
-            + valueOf(constraint.getMinValue()) + "\t"
-            + valueOf(constraint.getMinValue()) + "\r";
+            + doubleValue(constraint.getMinValue()) + "\t"
+            + doubleValue(constraint.getMinValue()) + "\r";
         }
         return constraintString;
     }
 
-    public double valueOf(EObject constraintValue) {
+    public static double doubleValue(EObject constraintValue) {
         if (constraintValue instanceof IntValue) {
-            return ((IntValue) constraintValue).getValue();
+            return Integer.valueOf(((IntValue) constraintValue).getValue());
         } else if (constraintValue instanceof RealValue) {
             return Double.valueOf(((RealValue) constraintValue).getValue());
         } else if (constraintValue == null) {
@@ -101,4 +101,11 @@ public class ATestInterpreter {
         }
         throw new RuntimeException("Unexpected value for constraint.");
     }
+
+    /*
+     * public static String stringValue(EObject constraintValue) { if (constraintValue instanceof IntValue) { return
+     * Integer.toString(((IntValue) constraintValue).getValue()); } else if (constraintValue instanceof RealValue) {
+     * return ((RealValue) constraintValue).getValue(); } else if (constraintValue == null) { return "UNDEFINED"; }
+     * throw new RuntimeException("Unexpected value for constraint."); }
+     */
 }

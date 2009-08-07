@@ -303,6 +303,16 @@ public class ATestPackageImpl extends EPackageImpl implements ATestPackage
    * <!-- end-user-doc -->
      * @generated
      */
+  public EAttribute getValue_Value()
+  {
+        return (EAttribute)valueEClass.getEStructuralFeatures().get(0);
+    }
+
+  /**
+     * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+     * @generated
+     */
   public EClass getIntValue()
   {
         return intValueEClass;
@@ -313,29 +323,9 @@ public class ATestPackageImpl extends EPackageImpl implements ATestPackage
    * <!-- end-user-doc -->
      * @generated
      */
-  public EAttribute getIntValue_Value()
-  {
-        return (EAttribute)intValueEClass.getEStructuralFeatures().get(0);
-    }
-
-  /**
-     * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-     * @generated
-     */
   public EClass getRealValue()
   {
         return realValueEClass;
-    }
-
-  /**
-     * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-     * @generated
-     */
-  public EAttribute getRealValue_Value()
-  {
-        return (EAttribute)realValueEClass.getEStructuralFeatures().get(0);
     }
 
   /**
@@ -396,12 +386,11 @@ public class ATestPackageImpl extends EPackageImpl implements ATestPackage
         createEReference(constraintEClass, CONSTRAINT__MAX_VALUE);
 
         valueEClass = createEClass(VALUE);
+        createEAttribute(valueEClass, VALUE__VALUE);
 
         intValueEClass = createEClass(INT_VALUE);
-        createEAttribute(intValueEClass, INT_VALUE__VALUE);
 
         realValueEClass = createEClass(REAL_VALUE);
-        createEAttribute(realValueEClass, REAL_VALUE__VALUE);
 
         // Create enums
         measureEEnum = createEEnum(MEASURE);
@@ -461,12 +450,11 @@ public class ATestPackageImpl extends EPackageImpl implements ATestPackage
         initEReference(getConstraint_MaxValue(), this.getValue(), null, "maxValue", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(intValueEClass, IntValue.class, "IntValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getIntValue_Value(), ecorePackage.getEInt(), "value", null, 0, 1, IntValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(realValueEClass, RealValue.class, "RealValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getRealValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, RealValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(measureEEnum, Measure.class, "Measure");

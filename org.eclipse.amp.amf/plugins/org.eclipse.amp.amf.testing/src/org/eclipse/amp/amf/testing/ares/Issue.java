@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Issue.java,v 1.1 2009/07/31 21:48:19 mparker Exp $
+ * $Id: Issue.java,v 1.2 2009/08/07 00:05:32 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares;
 
@@ -40,7 +40,23 @@ public enum Issue implements Enumerator {
      * @generated
      * @ordered
      */
-    ABOVE_RANGE(15, "AboveRange", "ABOVE_RANGE");
+    ABOVE_RANGE(15, "AboveRange", "ABOVE_RANGE"), /**
+     * The '<em><b>None</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #NONE_VALUE
+     * @generated
+     * @ordered
+     */
+    NONE(1, "None", "NONE"), /**
+     * The '<em><b>Not Found</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #NOT_FOUND_VALUE
+     * @generated
+     * @ordered
+     */
+    NOT_FOUND(-1, "NotFound", "NOT_FOUND");
 
     /**
      * The '<em><b>Below Range</b></em>' literal value.
@@ -73,6 +89,36 @@ public enum Issue implements Enumerator {
     public static final int ABOVE_RANGE_VALUE = 15;
 
     /**
+     * The '<em><b>None</b></em>' literal value.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>None</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @see #NONE
+     * @model name="None" literal="NONE"
+     * @generated
+     * @ordered
+     */
+    public static final int NONE_VALUE = 1;
+
+    /**
+     * The '<em><b>Not Found</b></em>' literal value.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>Not Found</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @see #NOT_FOUND
+     * @model name="NotFound" literal="NOT_FOUND"
+     * @generated
+     * @ordered
+     */
+    public static final int NOT_FOUND_VALUE = -1;
+
+    /**
      * An array of all the '<em><b>Issue</b></em>' enumerators.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -82,6 +128,8 @@ public enum Issue implements Enumerator {
         new Issue[] {
             BELOW_RANGE,
             ABOVE_RANGE,
+            NONE,
+            NOT_FOUND,
         };
 
     /**
@@ -134,6 +182,8 @@ public enum Issue implements Enumerator {
         switch (value) {
             case BELOW_RANGE_VALUE: return BELOW_RANGE;
             case ABOVE_RANGE_VALUE: return ABOVE_RANGE;
+            case NONE_VALUE: return NONE;
+            case NOT_FOUND_VALUE: return NOT_FOUND;
         }
         return null;
     }

@@ -7,36 +7,35 @@
   <foreignModel>ares.ecore</foreignModel>
   <genPackages prefix="Ares" basePackage="org.eclipse.amp.amf.testing" disposableProviderFactory="true"
       generateExampleClass="false" ecorePackage="ares.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ares.ecore#//Result">
-      <genEnumLiterals ecoreEnumLiteral="ares.ecore#//Result/Incomplete"/>
-      <genEnumLiterals ecoreEnumLiteral="ares.ecore#//Result/Success"/>
-      <genEnumLiterals ecoreEnumLiteral="ares.ecore#//Result/Failure"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ares.ecore#//ResultType">
+      <genEnumLiterals ecoreEnumLiteral="ares.ecore#//ResultType/Incomplete"/>
+      <genEnumLiterals ecoreEnumLiteral="ares.ecore#//ResultType/Success"/>
+      <genEnumLiterals ecoreEnumLiteral="ares.ecore#//ResultType/Failure"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="ares.ecore#//Issue">
       <genEnumLiterals ecoreEnumLiteral="ares.ecore#//Issue/BelowRange"/>
       <genEnumLiterals ecoreEnumLiteral="ares.ecore#//Issue/AboveRange"/>
+      <genEnumLiterals ecoreEnumLiteral="ares.ecore#//Issue/None"/>
     </genEnums>
     <genClasses ecoreClass="ares.ecore#//Run">
-      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
-          ecoreFeature="ecore:EReference ares.ecore#//Run/model"/>
-      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
-          ecoreFeature="ecore:EReference ares.ecore#//Run/test"/>
-      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
-          ecoreFeature="ecore:EReference ares.ecore#//Run/parameterization"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference ares.ecore#//Run/model"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference ares.ecore#//Run/test"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference ares.ecore#//Run/parameterization"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ares.ecore#//Run/result"/>
       <genFeatures property="Readonly" notify="false" createChild="false" propertySortChoices="true"
           ecoreFeature="ecore:EReference ares.ecore#//Run/parameters"/>
-      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference ares.ecore#//Run/constraints"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference ares.ecore#//Run/constraints"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ares.ecore#//Run/started"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ares.ecore#//Run/finished"/>
-      <genFeatures property="None" children="true" createChild="false" ecoreFeature="ecore:EReference ares.ecore#//Run/failures"/>
+      <genFeatures property="Readonly" children="true" createChild="false" propertySortChoices="true"
+          ecoreFeature="ecore:EReference ares.ecore#//Run/results"/>
     </genClasses>
-    <genClasses ecoreClass="ares.ecore#//Failure">
-      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
-          propertySortChoices="true" ecoreFeature="ecore:EReference ares.ecore#//Failure/constraint"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ares.ecore#//Failure/issue"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ares.ecore#//Failure/actualValue"/>
+    <genClasses ecoreClass="ares.ecore#//ConstraintTest">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ares.ecore#//ConstraintTest/constraint"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ares.ecore#//ConstraintTest/issue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ares.ecore#//ConstraintTest/actualValue"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute ares.ecore#//ConstraintTest/failure"/>
     </genClasses>
     <genClasses ecoreClass="ares.ecore#//RunSet">
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EAttribute ares.ecore#//RunSet/result"/>

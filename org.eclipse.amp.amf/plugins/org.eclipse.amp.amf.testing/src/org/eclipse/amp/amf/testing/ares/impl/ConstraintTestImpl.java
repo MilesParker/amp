@@ -2,40 +2,37 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FailureImpl.java,v 1.1 2009/07/31 21:48:18 mparker Exp $
+ * $Id: ConstraintTestImpl.java,v 1.1 2009/08/07 00:05:31 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.impl;
 
 import org.eclipse.amp.amf.testing.aTest.Constraint;
-
 import org.eclipse.amp.amf.testing.ares.AresPackage;
-import org.eclipse.amp.amf.testing.ares.Failure;
+import org.eclipse.amp.amf.testing.ares.ConstraintTest;
 import org.eclipse.amp.amf.testing.ares.Issue;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Failure</b></em>'.
+ * An implementation of the model object '<em><b>Constraint Test</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.amp.amf.testing.ares.impl.FailureImpl#getConstraint <em>Constraint</em>}</li>
- *   <li>{@link org.eclipse.amp.amf.testing.ares.impl.FailureImpl#getIssue <em>Issue</em>}</li>
- *   <li>{@link org.eclipse.amp.amf.testing.ares.impl.FailureImpl#getActualValue <em>Actual Value</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.testing.ares.impl.ConstraintTestImpl#getConstraint <em>Constraint</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.testing.ares.impl.ConstraintTestImpl#getIssue <em>Issue</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.testing.ares.impl.ConstraintTestImpl#getActualValue <em>Actual Value</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.testing.ares.impl.ConstraintTestImpl#isFailure <em>Failure</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class FailureImpl extends EObjectImpl implements Failure {
+public class ConstraintTestImpl extends EObjectImpl implements ConstraintTest {
     /**
      * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' reference.
      * <!-- begin-user-doc -->
@@ -87,11 +84,21 @@ public class FailureImpl extends EObjectImpl implements Failure {
     protected double actualValue = ACTUAL_VALUE_EDEFAULT;
 
     /**
+     * The default value of the '{@link #isFailure() <em>Failure</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #isFailure()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean FAILURE_EDEFAULT = false;
+
+    /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected FailureImpl() {
+    protected ConstraintTestImpl() {
         super();
     }
 
@@ -102,7 +109,7 @@ public class FailureImpl extends EObjectImpl implements Failure {
      */
     @Override
     protected EClass eStaticClass() {
-        return AresPackage.Literals.FAILURE;
+        return AresPackage.Literals.CONSTRAINT_TEST;
     }
 
     /**
@@ -116,7 +123,7 @@ public class FailureImpl extends EObjectImpl implements Failure {
             constraint = (Constraint)eResolveProxy(oldConstraint);
             if (constraint != oldConstraint) {
                 if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, AresPackage.FAILURE__CONSTRAINT, oldConstraint, constraint));
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, AresPackage.CONSTRAINT_TEST__CONSTRAINT, oldConstraint, constraint));
             }
         }
         return constraint;
@@ -140,7 +147,7 @@ public class FailureImpl extends EObjectImpl implements Failure {
         Constraint oldConstraint = constraint;
         constraint = newConstraint;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.FAILURE__CONSTRAINT, oldConstraint, constraint));
+            eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.CONSTRAINT_TEST__CONSTRAINT, oldConstraint, constraint));
     }
 
     /**
@@ -161,7 +168,7 @@ public class FailureImpl extends EObjectImpl implements Failure {
         Issue oldIssue = issue;
         issue = newIssue == null ? ISSUE_EDEFAULT : newIssue;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.FAILURE__ISSUE, oldIssue, issue));
+            eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.CONSTRAINT_TEST__ISSUE, oldIssue, issue));
     }
 
     /**
@@ -182,7 +189,16 @@ public class FailureImpl extends EObjectImpl implements Failure {
         double oldActualValue = actualValue;
         actualValue = newActualValue;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.FAILURE__ACTUAL_VALUE, oldActualValue, actualValue));
+            eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.CONSTRAINT_TEST__ACTUAL_VALUE, oldActualValue, actualValue));
+    }
+
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    public boolean isFailure() {
+        return getIssue() != Issue.NONE;
     }
 
     /**
@@ -193,13 +209,15 @@ public class FailureImpl extends EObjectImpl implements Failure {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case AresPackage.FAILURE__CONSTRAINT:
+            case AresPackage.CONSTRAINT_TEST__CONSTRAINT:
                 if (resolve) return getConstraint();
                 return basicGetConstraint();
-            case AresPackage.FAILURE__ISSUE:
+            case AresPackage.CONSTRAINT_TEST__ISSUE:
                 return getIssue();
-            case AresPackage.FAILURE__ACTUAL_VALUE:
+            case AresPackage.CONSTRAINT_TEST__ACTUAL_VALUE:
                 return getActualValue();
+            case AresPackage.CONSTRAINT_TEST__FAILURE:
+                return isFailure();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -212,13 +230,13 @@ public class FailureImpl extends EObjectImpl implements Failure {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case AresPackage.FAILURE__CONSTRAINT:
+            case AresPackage.CONSTRAINT_TEST__CONSTRAINT:
                 setConstraint((Constraint)newValue);
                 return;
-            case AresPackage.FAILURE__ISSUE:
+            case AresPackage.CONSTRAINT_TEST__ISSUE:
                 setIssue((Issue)newValue);
                 return;
-            case AresPackage.FAILURE__ACTUAL_VALUE:
+            case AresPackage.CONSTRAINT_TEST__ACTUAL_VALUE:
                 setActualValue((Double)newValue);
                 return;
         }
@@ -233,13 +251,13 @@ public class FailureImpl extends EObjectImpl implements Failure {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case AresPackage.FAILURE__CONSTRAINT:
+            case AresPackage.CONSTRAINT_TEST__CONSTRAINT:
                 setConstraint((Constraint)null);
                 return;
-            case AresPackage.FAILURE__ISSUE:
+            case AresPackage.CONSTRAINT_TEST__ISSUE:
                 setIssue(ISSUE_EDEFAULT);
                 return;
-            case AresPackage.FAILURE__ACTUAL_VALUE:
+            case AresPackage.CONSTRAINT_TEST__ACTUAL_VALUE:
                 setActualValue(ACTUAL_VALUE_EDEFAULT);
                 return;
         }
@@ -254,12 +272,14 @@ public class FailureImpl extends EObjectImpl implements Failure {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case AresPackage.FAILURE__CONSTRAINT:
+            case AresPackage.CONSTRAINT_TEST__CONSTRAINT:
                 return constraint != null;
-            case AresPackage.FAILURE__ISSUE:
+            case AresPackage.CONSTRAINT_TEST__ISSUE:
                 return issue != ISSUE_EDEFAULT;
-            case AresPackage.FAILURE__ACTUAL_VALUE:
+            case AresPackage.CONSTRAINT_TEST__ACTUAL_VALUE:
                 return actualValue != ACTUAL_VALUE_EDEFAULT;
+            case AresPackage.CONSTRAINT_TEST__FAILURE:
+                return isFailure() != FAILURE_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }
@@ -282,4 +302,4 @@ public class FailureImpl extends EObjectImpl implements Failure {
         return result.toString();
     }
 
-} //FailureImpl
+} //ConstraintTestImpl

@@ -227,13 +227,22 @@ public interface ATestPackage extends EPackage
   int VALUE = 3;
 
   /**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+  int VALUE__VALUE = 0;
+
+  /**
      * The number of structural features of the '<em>Value</em>' class.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-  int VALUE_FEATURE_COUNT = 0;
+  int VALUE_FEATURE_COUNT = 1;
 
   /**
      * The meta object id for the '{@link org.eclipse.amp.amf.testing.aTest.impl.IntValueImpl <em>Int Value</em>}' class.
@@ -252,7 +261,7 @@ public interface ATestPackage extends EPackage
      * @generated
      * @ordered
      */
-  int INT_VALUE__VALUE = VALUE_FEATURE_COUNT + 0;
+  int INT_VALUE__VALUE = VALUE__VALUE;
 
   /**
      * The number of structural features of the '<em>Int Value</em>' class.
@@ -261,7 +270,7 @@ public interface ATestPackage extends EPackage
      * @generated
      * @ordered
      */
-  int INT_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
+  int INT_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
 
   /**
      * The meta object id for the '{@link org.eclipse.amp.amf.testing.aTest.impl.RealValueImpl <em>Real Value</em>}' class.
@@ -280,7 +289,7 @@ public interface ATestPackage extends EPackage
      * @generated
      * @ordered
      */
-  int REAL_VALUE__VALUE = VALUE_FEATURE_COUNT + 0;
+  int REAL_VALUE__VALUE = VALUE__VALUE;
 
   /**
      * The number of structural features of the '<em>Real Value</em>' class.
@@ -289,7 +298,7 @@ public interface ATestPackage extends EPackage
      * @generated
      * @ordered
      */
-  int REAL_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
+  int REAL_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
 
   /**
      * The meta object id for the '{@link org.eclipse.amp.amf.testing.aTest.Measure <em>Measure</em>}' enum.
@@ -464,6 +473,17 @@ public interface ATestPackage extends EPackage
   EClass getValue();
 
   /**
+     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.testing.aTest.Value#getValue <em>Value</em>}'.
+     * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Value</em>'.
+     * @see org.eclipse.amp.amf.testing.aTest.Value#getValue()
+     * @see #getValue()
+     * @generated
+     */
+  EAttribute getValue_Value();
+
+  /**
      * Returns the meta object for class '{@link org.eclipse.amp.amf.testing.aTest.IntValue <em>Int Value</em>}'.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -474,17 +494,6 @@ public interface ATestPackage extends EPackage
   EClass getIntValue();
 
   /**
-     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.testing.aTest.IntValue#getValue <em>Value</em>}'.
-     * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Value</em>'.
-     * @see org.eclipse.amp.amf.testing.aTest.IntValue#getValue()
-     * @see #getIntValue()
-     * @generated
-     */
-  EAttribute getIntValue_Value();
-
-  /**
      * Returns the meta object for class '{@link org.eclipse.amp.amf.testing.aTest.RealValue <em>Real Value</em>}'.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -493,17 +502,6 @@ public interface ATestPackage extends EPackage
      * @generated
      */
   EClass getRealValue();
-
-  /**
-     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.testing.aTest.RealValue#getValue <em>Value</em>}'.
-     * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Value</em>'.
-     * @see org.eclipse.amp.amf.testing.aTest.RealValue#getValue()
-     * @see #getRealValue()
-     * @generated
-     */
-  EAttribute getRealValue_Value();
 
   /**
      * Returns the meta object for enum '{@link org.eclipse.amp.amf.testing.aTest.Measure <em>Measure</em>}'.
@@ -667,6 +665,14 @@ public interface ATestPackage extends EPackage
     EClass VALUE = eINSTANCE.getValue();
 
     /**
+         * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+         * @generated
+         */
+    EAttribute VALUE__VALUE = eINSTANCE.getValue_Value();
+
+    /**
          * The meta object literal for the '{@link org.eclipse.amp.amf.testing.aTest.impl.IntValueImpl <em>Int Value</em>}' class.
          * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -677,14 +683,6 @@ public interface ATestPackage extends EPackage
     EClass INT_VALUE = eINSTANCE.getIntValue();
 
     /**
-         * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-         * @generated
-         */
-    EAttribute INT_VALUE__VALUE = eINSTANCE.getIntValue_Value();
-
-    /**
          * The meta object literal for the '{@link org.eclipse.amp.amf.testing.aTest.impl.RealValueImpl <em>Real Value</em>}' class.
          * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -693,14 +691,6 @@ public interface ATestPackage extends EPackage
          * @generated
          */
     EClass REAL_VALUE = eINSTANCE.getRealValue();
-
-    /**
-         * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-         * @generated
-         */
-    EAttribute REAL_VALUE__VALUE = eINSTANCE.getRealValue_Value();
 
     /**
          * The meta object literal for the '{@link org.eclipse.amp.amf.testing.aTest.Measure <em>Measure</em>}' enum.

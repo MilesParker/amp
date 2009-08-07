@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RunSetImpl.java,v 1.1 2009/08/03 17:15:29 mparker Exp $
+ * $Id: RunSetImpl.java,v 1.2 2009/08/07 00:05:31 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.impl;
 
@@ -10,21 +10,16 @@ import java.util.Collection;
 import java.util.Date;
 
 import org.eclipse.amp.amf.testing.ares.AresPackage;
-import org.eclipse.amp.amf.testing.ares.Result;
+import org.eclipse.amp.amf.testing.ares.ResultType;
 import org.eclipse.amp.amf.testing.ares.Run;
 import org.eclipse.amp.amf.testing.ares.RunSet;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -53,7 +48,7 @@ public class RunSetImpl extends EObjectImpl implements RunSet {
      * @generated
      * @ordered
      */
-    protected static final Result RESULT_EDEFAULT = Result.INCOMPLETE;
+    protected static final ResultType RESULT_EDEFAULT = ResultType.INCOMPLETE;
 
     /**
      * The cached value of the '{@link #getResult() <em>Result</em>}' attribute.
@@ -63,7 +58,7 @@ public class RunSetImpl extends EObjectImpl implements RunSet {
      * @generated
      * @ordered
      */
-    protected Result result = RESULT_EDEFAULT;
+    protected ResultType result = RESULT_EDEFAULT;
 
     /**
      * The default value of the '{@link #getStarted() <em>Started</em>}' attribute.
@@ -139,7 +134,7 @@ public class RunSetImpl extends EObjectImpl implements RunSet {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Result getResult() {
+    public ResultType getResult() {
         return result;
     }
 
@@ -148,8 +143,8 @@ public class RunSetImpl extends EObjectImpl implements RunSet {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setResult(Result newResult) {
-        Result oldResult = result;
+    public void setResult(ResultType newResult) {
+        ResultType oldResult = result;
         result = newResult == null ? RESULT_EDEFAULT : newResult;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.RUN_SET__RESULT, oldResult, result));
@@ -253,7 +248,7 @@ public class RunSetImpl extends EObjectImpl implements RunSet {
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
             case AresPackage.RUN_SET__RESULT:
-                setResult((Result)newValue);
+                setResult((ResultType)newValue);
                 return;
             case AresPackage.RUN_SET__STARTED:
                 setStarted((Date)newValue);

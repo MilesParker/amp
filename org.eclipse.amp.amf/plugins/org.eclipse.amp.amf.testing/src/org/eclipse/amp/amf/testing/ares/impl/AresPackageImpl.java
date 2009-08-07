@@ -2,30 +2,25 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresPackageImpl.java,v 1.2 2009/08/03 17:15:29 mparker Exp $
+ * $Id: AresPackageImpl.java,v 1.3 2009/08/07 00:05:31 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.impl;
 
 import org.eclipse.amp.amf.parameters.aPar.AParPackage;
-
 import org.eclipse.amp.amf.testing.aTest.ATestPackage;
-
 import org.eclipse.amp.amf.testing.ares.AresFactory;
 import org.eclipse.amp.amf.testing.ares.AresPackage;
-import org.eclipse.amp.amf.testing.ares.Failure;
+import org.eclipse.amp.amf.testing.ares.ConstraintTest;
 import org.eclipse.amp.amf.testing.ares.Issue;
-import org.eclipse.amp.amf.testing.ares.Result;
+import org.eclipse.amp.amf.testing.ares.ResultType;
 import org.eclipse.amp.amf.testing.ares.Run;
-
 import org.eclipse.amp.amf.testing.ares.RunSet;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.metaabm.MetaABMPackage;
 
 /**
@@ -47,7 +42,7 @@ public class AresPackageImpl extends EPackageImpl implements AresPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    private EClass failureEClass = null;
+    private EClass constraintTestEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -61,7 +56,7 @@ public class AresPackageImpl extends EPackageImpl implements AresPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    private EEnum resultEEnum = null;
+    private EEnum resultTypeEEnum = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -221,7 +216,7 @@ public class AresPackageImpl extends EPackageImpl implements AresPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getRun_Failures() {
+    public EReference getRun_Results() {
         return (EReference)runEClass.getEStructuralFeatures().get(8);
     }
 
@@ -230,8 +225,8 @@ public class AresPackageImpl extends EPackageImpl implements AresPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EClass getFailure() {
-        return failureEClass;
+    public EClass getConstraintTest() {
+        return constraintTestEClass;
     }
 
     /**
@@ -239,8 +234,8 @@ public class AresPackageImpl extends EPackageImpl implements AresPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getFailure_Constraint() {
-        return (EReference)failureEClass.getEStructuralFeatures().get(0);
+    public EReference getConstraintTest_Constraint() {
+        return (EReference)constraintTestEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -248,8 +243,8 @@ public class AresPackageImpl extends EPackageImpl implements AresPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getFailure_Issue() {
-        return (EAttribute)failureEClass.getEStructuralFeatures().get(1);
+    public EAttribute getConstraintTest_Issue() {
+        return (EAttribute)constraintTestEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -257,8 +252,17 @@ public class AresPackageImpl extends EPackageImpl implements AresPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getFailure_ActualValue() {
-        return (EAttribute)failureEClass.getEStructuralFeatures().get(2);
+    public EAttribute getConstraintTest_ActualValue() {
+        return (EAttribute)constraintTestEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getConstraintTest_Failure() {
+        return (EAttribute)constraintTestEClass.getEStructuralFeatures().get(3);
     }
 
     /**
@@ -311,8 +315,8 @@ public class AresPackageImpl extends EPackageImpl implements AresPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EEnum getResult() {
-        return resultEEnum;
+    public EEnum getResultType() {
+        return resultTypeEEnum;
     }
 
     /**
@@ -361,12 +365,13 @@ public class AresPackageImpl extends EPackageImpl implements AresPackage {
         createEReference(runEClass, RUN__CONSTRAINTS);
         createEAttribute(runEClass, RUN__STARTED);
         createEAttribute(runEClass, RUN__FINISHED);
-        createEReference(runEClass, RUN__FAILURES);
+        createEReference(runEClass, RUN__RESULTS);
 
-        failureEClass = createEClass(FAILURE);
-        createEReference(failureEClass, FAILURE__CONSTRAINT);
-        createEAttribute(failureEClass, FAILURE__ISSUE);
-        createEAttribute(failureEClass, FAILURE__ACTUAL_VALUE);
+        constraintTestEClass = createEClass(CONSTRAINT_TEST);
+        createEReference(constraintTestEClass, CONSTRAINT_TEST__CONSTRAINT);
+        createEAttribute(constraintTestEClass, CONSTRAINT_TEST__ISSUE);
+        createEAttribute(constraintTestEClass, CONSTRAINT_TEST__ACTUAL_VALUE);
+        createEAttribute(constraintTestEClass, CONSTRAINT_TEST__FAILURE);
 
         runSetEClass = createEClass(RUN_SET);
         createEAttribute(runSetEClass, RUN_SET__RESULT);
@@ -375,7 +380,7 @@ public class AresPackageImpl extends EPackageImpl implements AresPackage {
         createEReference(runSetEClass, RUN_SET__RUNS);
 
         // Create enums
-        resultEEnum = createEEnum(RESULT);
+        resultTypeEEnum = createEEnum(RESULT_TYPE);
         issueEEnum = createEEnum(ISSUE);
     }
 
@@ -418,33 +423,36 @@ public class AresPackageImpl extends EPackageImpl implements AresPackage {
         initEReference(getRun_Model(), theMetaABMPackage.getSContext(), null, "model", null, 1, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRun_Test(), theATestPackage.getModel(), null, "test", null, 1, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRun_Parameterization(), theAParPackage.getModel(), null, "parameterization", null, 1, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getRun_Result(), this.getResult(), "result", "", 0, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRun_Result(), this.getResultType(), "result", "", 0, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRun_Parameters(), theAParPackage.getParameter(), null, "parameters", null, 0, -1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRun_Constraints(), theATestPackage.getConstraint(), null, "constraints", null, 0, -1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getRun_Started(), ecorePackage.getEDate(), "started", null, 0, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getRun_Finished(), ecorePackage.getEDate(), "finished", null, 0, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getRun_Failures(), this.getFailure(), null, "failures", null, 0, -1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getRun_Results(), this.getConstraintTest(), null, "results", null, 0, -1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-        initEClass(failureEClass, Failure.class, "Failure", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getFailure_Constraint(), theATestPackage.getConstraint(), null, "constraint", null, 0, 1, Failure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getFailure_Issue(), this.getIssue(), "issue", null, 1, 1, Failure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getFailure_ActualValue(), ecorePackage.getEDouble(), "actualValue", null, 1, 1, Failure.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEClass(constraintTestEClass, ConstraintTest.class, "ConstraintTest", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEReference(getConstraintTest_Constraint(), theATestPackage.getConstraint(), null, "constraint", null, 0, 1, ConstraintTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getConstraintTest_Issue(), this.getIssue(), "issue", null, 1, 1, ConstraintTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getConstraintTest_ActualValue(), ecorePackage.getEDouble(), "actualValue", null, 1, 1, ConstraintTest.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getConstraintTest_Failure(), ecorePackage.getEBoolean(), "failure", null, 1, 1, ConstraintTest.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 
         initEClass(runSetEClass, RunSet.class, "RunSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getRunSet_Result(), this.getResult(), "result", null, 1, 1, RunSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRunSet_Result(), this.getResultType(), "result", null, 1, 1, RunSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getRunSet_Started(), ecorePackage.getEDate(), "started", null, 0, 1, RunSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getRunSet_Finished(), ecorePackage.getEDate(), "finished", null, 0, 1, RunSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRunSet_Runs(), this.getRun(), null, "runs", null, 0, -1, RunSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
-        initEEnum(resultEEnum, Result.class, "Result");
-        addEEnumLiteral(resultEEnum, Result.INCOMPLETE);
-        addEEnumLiteral(resultEEnum, Result.SUCCESS);
-        addEEnumLiteral(resultEEnum, Result.FAILURE);
+        initEEnum(resultTypeEEnum, ResultType.class, "ResultType");
+        addEEnumLiteral(resultTypeEEnum, ResultType.INCOMPLETE);
+        addEEnumLiteral(resultTypeEEnum, ResultType.SUCCESS);
+        addEEnumLiteral(resultTypeEEnum, ResultType.FAILURE);
 
         initEEnum(issueEEnum, Issue.class, "Issue");
         addEEnumLiteral(issueEEnum, Issue.BELOW_RANGE);
         addEEnumLiteral(issueEEnum, Issue.ABOVE_RANGE);
+        addEEnumLiteral(issueEEnum, Issue.NONE);
+        addEEnumLiteral(issueEEnum, Issue.NOT_FOUND);
 
         // Create resource
         createResource(eNS_URI);
