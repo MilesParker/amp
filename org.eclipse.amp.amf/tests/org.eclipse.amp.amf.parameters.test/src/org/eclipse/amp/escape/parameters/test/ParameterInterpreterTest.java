@@ -86,6 +86,7 @@ public class ParameterInterpreterTest extends TestCase {
         IResource testFile = testProject.getFile("" + fileName);
         assertTrue(testFile.exists());
         AParInterpreter interpreter = new AParInterpreter(testFile);
+        interpreter.load();
         String[] args = interpreter.getArgs();
         for (int i = 0; i < expectedArgs.length; i++) {
             assertEquals(args[i], expectedArgs[i]);
