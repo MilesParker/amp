@@ -35,7 +35,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
+import org.junit.Test;
 import org.osgi.framework.Bundle;
 
 /**
@@ -46,29 +46,25 @@ import org.osgi.framework.Bundle;
  */
 public class ParameterInterpreterTest extends TestCase {
 
+    public static boolean SETUP_PROJECT = true;
+
     private static final String TEST_PLUGIN_NAME = "org.eclipse.amp.amf.parameters.test";
     private static final String TEST_PROJECT_NAME = "org.eclipse.amp.amf.parameters.test.project";
     /**
      * In future you will not need to create this instance. You need to extend SWTBotEclipseTestCase which holds an
      * instance of SWTEclipseBot.
      */
-    protected SWTWorkbenchBot bot = new SWTWorkbenchBot();
-    private IProject testProject;
+    // protected SWTWorkbenchBot bot = new SWTWorkbenchBot();
 
+    // private IProject testProject;
 
+    @Test
     public void testFileAccess() {
-        openProject();
-        IResource aparTest = testProject.getFile("Test.apar");
-        assertTrue(aparTest.exists());
-        AParInterpreter interpreter = new AParInterpreter(aparTest);
-        assertEquals(interpreter.getModelClass(), "org.eclipse.amp.amf.parameters.test.TestContext");
-        assertEquals(interpreter.getRunName(), "Test Context [Test.apar]");
-        assertEquals(interpreter.getTargetModel().getLabel(), "Test Context");
+        // /openProject();
 
         // Note that for below actual ordering isn't significant so that can be relaxed as implementations change.
         subtestVars("Test.apar", new String[] { "StopPeriod=100", "TestSymbol=Hello", "TestFloat=1.234",
-            "Testint=1234",
-        "TestBoolean=false" });
+            "Testint=1234", "TestBoolean=false" });
 
         subtestVars("TestSub.apar", new String[] { "TestSymbol=Goodbye", "Testint=111", "StopPeriod=100",
             "TestFloat=1.234", "TestBoolean=false" });
@@ -79,20 +75,22 @@ public class ParameterInterpreterTest extends TestCase {
         subtestVars("TestIncorporateOrder.apar", new String[] { "TestSymbol=Goodbye", "Testint=111", "StopPeriod=100",
             "TestFloat=1.234", "TestBoolean=false" });
 
-        subtestVars("relative/RelTest.apar", new String[] { "TestSymbol=Ola", "StopPeriod=100",
-            "TestFloat=1.234", "Testint=1234", "TestBoolean=false" });
+        subtestVars("relative/RelTest.apar", new String[] { "TestSymbol=Ola", "StopPeriod=100", "TestFloat=1.234",
+            "Testint=1234", "TestBoolean=false" });
     }
 
     private void subtestVars(String fileName, String[] expectedArgs) {
-        copyFiles(fileName);
-        IResource testFile = testProject.getFile(fileName);
+        // copyFiles(fileName);
+        IProject testProject = ResourcesPlugin.getPlugin().getWorkspace().getRoot()
+        .getProject("org.eclipse.amp.amf.parameters.test");
+        IResource testFile = testProject.getFile("" + fileName);
         assertTrue(testFile.exists());
         AParInterpreter interpreter = new AParInterpreter(testFile);
         String[] args = interpreter.getArgs();
-        assertEquals(args.length, expectedArgs.length);
         for (int i = 0; i < expectedArgs.length; i++) {
             assertEquals(args[i], expectedArgs[i]);
         }
+        assertEquals(args.length, expectedArgs.length);
     }
 
     // public void testRun() {
@@ -110,27 +108,30 @@ public class ParameterInterpreterTest extends TestCase {
     // assertEquals(eclipseRunner.getModel().getStopPeriod(), 100);
     // }
 
-    private void openProject() {
-        testProject = ResourcesPlugin.getWorkspace().getRoot().getProject(TEST_PROJECT_NAME);
-        try {
-            testProject.open(IResource.NONE, null);
-        } catch (CoreException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    // private void openProject() {
+    // if (SETUP_PROJECT) {
+    // setupProject();
+    // }
+    // // testProject = ResourcesPlugin.getWorkspace().getRoot().getProject(TEST_PROJECT_NAME);
+    // // try {
+    // // testProject.open(IResource.NONE, null);
+    // // } catch (CoreException e) {
+    // // throw new RuntimeException(e);
+    // // }
+    // }
 
-    public void setupProject() {
-        // bot.viewByTitle("Welcome").close();
-        bot.perspectiveByLabel("Agent Modeling").activate();
-        bot.viewByTitle("Package Explorer").setFocus();
-        bot.menu("File").menu("New").menu("Escape Project").click();
-        // 'com.swtbot.test.project' is the java project name to create
-
-        bot.text(0).setText(TEST_PROJECT_NAME);
-        bot.sleep(100);
-        // Click the Finish button
-        bot.button("Finish").click();
-    }
+    // public void setupProject() {
+    // // bot.viewByTitle("Welcome").close();
+    // bot.perspectiveByLabel("Agent Modeling").activate();
+    // bot.viewByTitle("Package Explorer").setFocus();
+    // bot.menu("File").menu("New").menu("Escape Project").click();
+    // // 'com.swtbot.test.project' is the java project name to create
+    //
+    // bot.text(0).setText(TEST_PROJECT_NAME);
+    // bot.sleep(100);
+    // // Click the Finish button
+    // bot.button("Finish").click();
+    // }
 
     private void copyFiles(String srcFileLoc) {
         try {
