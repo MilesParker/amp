@@ -76,7 +76,7 @@ public class ParameterExecutionTest extends TestCase {
         tree().select(testProjectName);
         SWTBotTreeItem projectNode = tree().expandNode(testProjectName);
         bot.sleep(2000);
-        projectNode.expandNode("TestModel.apar").doubleClick();
+        projectNode.expandNode("Test1.apar").doubleClick();
         packageExplorer().setFocus();
         bot.sleep(2000);
 
