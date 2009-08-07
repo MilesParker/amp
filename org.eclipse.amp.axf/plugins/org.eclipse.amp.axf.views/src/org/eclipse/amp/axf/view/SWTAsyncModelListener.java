@@ -95,15 +95,15 @@ public abstract class SWTAsyncModelListener extends SWTThreadModelListener {
     public void stateChange(Object key, Object observed) {
         IModel model = (IModel) observed;
         if (!model.getEngine().isPaused()
-            && (System.currentTimeMillis() > lastUpdate + minTimeBetweenUpdates || model.getPeriod()
-                % ((TimeGranularity) model.getEngine().getUpdateGranularity()).getUpdateFrequency() == 0)) {
+                && (System.currentTimeMillis() > lastUpdate + minTimeBetweenUpdates || model.getPeriod()
+                        % ((TimeGranularity) model.getEngine().getUpdateGranularity()).getUpdateFrequency() == 0)) {
             updating = true;
             ReportingRunner runnable = new ReportingRunner((LifeCycleState) key, model);
             if (AXFViewPlugin.getDefault() != null) {
                 Display display = AXFViewPlugin.getDefault().getWorkbench().getDisplay();
                 if (!display.isDisposed()) {
                     display.asyncExec(runnable);
-                    while ((updating || painting && isWaitForPaint()) && (widget == null || !widget.isDisposed())) {
+                    while ((updating || painting) && isWaitForUpdate() && (widget == null || !widget.isDisposed())) {
                         try {
                             // Assume best case of 60fps + allow compute
                             Thread.sleep(5);
@@ -163,7 +163,7 @@ public abstract class SWTAsyncModelListener extends SWTThreadModelListener {
      * 
      * @param waitForPaint the new wait for paint
      */
-    public void setWaitForPaint(boolean waitForPaint) {
+    public void setWaitForUpdate(boolean waitForPaint) {
         this.waitForPaint = waitForPaint;
     }
 
@@ -172,7 +172,7 @@ public abstract class SWTAsyncModelListener extends SWTThreadModelListener {
      * 
      * @return true, if is wait for paint
      */
-    public boolean isWaitForPaint() {
+    public boolean isWaitForUpdate() {
         return waitForPaint;
     }
 }
