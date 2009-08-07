@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IntValueItemProvider.java,v 1.1 2009/08/03 17:15:47 mparker Exp $
+ * $Id: IntValueItemProvider.java,v 1.2 2009/08/07 00:05:20 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.aTest.provider;
 
@@ -10,19 +10,15 @@ package org.eclipse.amp.amf.testing.aTest.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.amp.amf.testing.aTest.ATestPackage;
 import org.eclipse.amp.amf.testing.aTest.IntValue;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.amp.amf.testing.aTest.IntValue} object.
@@ -59,31 +55,8 @@ IItemPropertySource {
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addValuePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Value feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addValuePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_IntValue_value_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_IntValue_value_feature", "_UI_IntValue_type"),
-                 ATestPackage.Literals.INT_VALUE__VALUE,
-                 false,
-                 false,
-                 true,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-                 null,
-                 null));
     }
 
     /**
@@ -104,7 +77,7 @@ IItemPropertySource {
      */
     @Override
     public String getText(Object object) {
-        return Integer.toString(((IntValue) object).getValue());
+        return ((IntValue) object).getValue();
     }
 
     /**
@@ -117,12 +90,6 @@ IItemPropertySource {
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
-
-        switch (notification.getFeatureID(IntValue.class)) {
-            case ATestPackage.INT_VALUE__VALUE:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
-        }
         super.notifyChanged(notification);
     }
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresItemProviderAdapterFactory.java,v 1.2 2009/08/03 17:15:48 mparker Exp $
+ * $Id: AresItemProviderAdapterFactory.java,v 1.3 2009/08/07 00:05:19 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.provider;
 
@@ -99,26 +99,26 @@ public class AresItemProviderAdapterFactory extends AresAdapterFactory implement
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.testing.ares.Failure} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.testing.ares.ConstraintTest} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected FailureItemProvider failureItemProvider;
+    protected ConstraintTestItemProvider constraintTestItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.amp.amf.testing.ares.Failure}.
+     * This creates an adapter for a {@link org.eclipse.amp.amf.testing.ares.ConstraintTest}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createFailureAdapter() {
-        if (failureItemProvider == null) {
-            failureItemProvider = new FailureItemProvider(this);
+    public Adapter createConstraintTestAdapter() {
+        if (constraintTestItemProvider == null) {
+            constraintTestItemProvider = new ConstraintTestItemProvider(this);
         }
 
-        return failureItemProvider;
+        return constraintTestItemProvider;
     }
 
     /**
@@ -244,7 +244,7 @@ public class AresItemProviderAdapterFactory extends AresAdapterFactory implement
      */
     public void dispose() {
         if (runItemProvider != null) runItemProvider.dispose();
-        if (failureItemProvider != null) failureItemProvider.dispose();
+        if (constraintTestItemProvider != null) constraintTestItemProvider.dispose();
         if (runSetItemProvider != null) runSetItemProvider.dispose();
     }
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RunSetItemProvider.java,v 1.1 2009/08/03 17:15:48 mparker Exp $
+ * $Id: RunSetItemProvider.java,v 1.2 2009/08/07 00:05:19 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.provider;
 
@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.amp.amf.testing.ares.AresPackage;
-import org.eclipse.amp.amf.testing.ares.Result;
+import org.eclipse.amp.amf.testing.ares.ResultType;
 import org.eclipse.amp.amf.testing.ares.Run;
 import org.eclipse.amp.amf.testing.ares.RunSet;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -70,18 +70,18 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     protected void addResultPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_RunSet_result_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_RunSet_result_feature", "_UI_RunSet_type"),
-                 AresPackage.Literals.RUN_SET__RESULT,
-                 false,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_RunSet_result_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_RunSet_result_feature", "_UI_RunSet_type"),
+          AresPackage.Literals.RUN_SET__RESULT,
+          false,
+          false,
+          false,
+          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+          null,
+          null));
     }
 
     /**
@@ -91,18 +91,18 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     protected void addStartedPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_RunSet_started_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_RunSet_started_feature", "_UI_RunSet_type"),
-                 AresPackage.Literals.RUN_SET__STARTED,
-                 false,
-                 false,
-                 true,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_RunSet_started_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_RunSet_started_feature", "_UI_RunSet_type"),
+          AresPackage.Literals.RUN_SET__STARTED,
+          false,
+          false,
+          true,
+          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+          null,
+          null));
     }
 
     /**
@@ -112,18 +112,18 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     protected void addFinishedPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_RunSet_finished_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_RunSet_finished_feature", "_UI_RunSet_type"),
-                 AresPackage.Literals.RUN_SET__FINISHED,
-                 false,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_RunSet_finished_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_RunSet_finished_feature", "_UI_RunSet_type"),
+          AresPackage.Literals.RUN_SET__FINISHED,
+          false,
+          false,
+          false,
+          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+          null,
+          null));
     }
 
     /**
@@ -133,18 +133,18 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     protected void addRunsPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_RunSet_runs_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_RunSet_runs_feature", "_UI_RunSet_type"),
-                 AresPackage.Literals.RUN_SET__RUNS,
-                 true,
-                 false,
-                 false,
-                 null,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_RunSet_runs_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_RunSet_runs_feature", "_UI_RunSet_type"),
+          AresPackage.Literals.RUN_SET__RUNS,
+          true,
+          false,
+          false,
+          null,
+          null,
+          null));
     }
 
     /**
@@ -185,7 +185,7 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
     public Object getImage(Object object) {
         RunSet runSet = (RunSet) object;
         for (Run run : runSet.getRuns()) {
-            if (run.getResult() == Result.FAILURE) {
+            if (run.getResult() == ResultType.FAILURE) {
                 return overlayImage(object, getResourceLocator().getImage("full/obj16/Failure"));
             }
         }
@@ -200,15 +200,13 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
     @Override
     public String getText(Object object) {
         RunSet runSet = (RunSet) object;
-        Result labelValue = runSet.getResult();
-        String label = labelValue == null ? null : labelValue.toString();
         int successCount = 0;
         for (Run run : runSet.getRuns()) {
-            if (run.getResult() == Result.SUCCESS) {
+            if (run.getResult() == ResultType.SUCCESS) {
                 successCount++;
             }
         }
-        label += " / " + successCount + " of " + runSet.getRuns().size() + " pass";
+        String label = successCount + " of " + runSet.getRuns().size();
         return label == null || label.length() == 0 ? getString("_UI_RunSet_type") : label;
     }
 
