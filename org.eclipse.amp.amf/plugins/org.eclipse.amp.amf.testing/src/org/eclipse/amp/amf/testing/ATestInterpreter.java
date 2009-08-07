@@ -16,6 +16,9 @@
 
 package org.eclipse.amp.amf.testing;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.amp.amf.parameters.AParInterpreter;
 import org.eclipse.amp.amf.testing.aTest.Constraint;
 import org.eclipse.amp.amf.testing.aTest.IntValue;
@@ -33,6 +36,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMLParserPool;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.xmi.impl.XMLParserPoolImpl;
 import org.eclipse.ui.statushandlers.StatusManager;
 
 /**
@@ -48,9 +54,23 @@ public class ATestInterpreter {
 
     private IResource modelResource;
 
+    private XMLParserPool parserPool = new XMLParserPoolImpl();
+
+    private Map nameToFeatureMap = new HashMap();
+
     public ATestInterpreter(IResource modelResource) {
         this.modelResource = modelResource;
+    }
+
+    public void load() {
         ResourceSet resources = new ResourceSetImpl();
+
+        resources.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
+        resources.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
+        resources.getLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
+        resources.getLoadOptions().put(XMLResource.OPTION_USE_PARSER_POOL, parserPool);
+        resources.getLoadOptions().put(XMLResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);
+
         IPath filePath = ((IFile) modelResource).getFullPath();
         URI atestLoc = URI.createPlatformResourceURI(filePath.toString(), true);
         Resource atest = resources.getResource(atestLoc, true);
@@ -66,6 +86,7 @@ public class ATestInterpreter {
             IWorkspace workspace = ResourcesPlugin.getWorkspace();
             aparInterpreter = new AParInterpreter(workspace.getRoot()
                                                   .getFile(new Path(aparLoc.toPlatformString(true))));
+            aparInterpreter.load();
         }
     }
 
@@ -100,6 +121,20 @@ public class ATestInterpreter {
             return Double.NaN;
         }
         throw new RuntimeException("Unexpected value for constraint.");
+    }
+
+    /**
+     * @param nameToFeatureMap the nameToFeatureMap to set
+     */
+    public void setNameToFeatureMap(Map nameToFeatureMap) {
+        this.nameToFeatureMap = nameToFeatureMap;
+    }
+
+    /**
+     * @param parserPool the parserPool to set
+     */
+    public void setParserPool(XMLParserPool parserPool) {
+        this.parserPool = parserPool;
     }
 
     /*
