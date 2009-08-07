@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.2 2009/08/03 17:15:52 mparker Exp $
+ $Id: plugin.xml,v 1.3 2009/08/07 00:05:40 mparker Exp $
 -->
 
 <plugin>
@@ -29,7 +29,7 @@
       <editor
             id="org.eclipse.amp.amf.testing.ares.presentation.AresEditorID"
             name="%_UI_AresEditor_label"
-            icon="icons/full/obj16/AresModelFile.gif"
+            icon="icons/full/obj16/test_result.gif"
             extensions="ares"
             class="org.eclipse.amp.amf.testing.ares.presentation.AresEditor"
             contributorClass="org.eclipse.amp.amf.testing.ares.presentation.AresActionBarContributor">
