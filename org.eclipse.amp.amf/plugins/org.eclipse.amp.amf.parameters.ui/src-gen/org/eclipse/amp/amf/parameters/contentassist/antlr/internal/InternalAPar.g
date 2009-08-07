@@ -199,8 +199,8 @@ ruleIntValue
 { before(grammarAccess.getIntValueAccess().getValueAssignment()); }
 (	
 (
-{ before(grammarAccess.getIntValueAccess().getValueINTTerminalRuleCall_0()); }
-	RULE_INT{ after(grammarAccess.getIntValueAccess().getValueINTTerminalRuleCall_0()); }
+{ before(grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0()); }
+	RULE_INTEGER{ after(grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0()); }
 )
  
 ){ after(grammarAccess.getIntValueAccess().getValueAssignment()); }
@@ -528,7 +528,9 @@ finally {
 }
 
 
-RULE_REAL : '-'? RULE_INT '.' RULE_INT;
+RULE_INTEGER : '-'? ('0'..'9')+;
+
+RULE_REAL : '-'? ('0'..'9')* '.' ('0'..'9')*;
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

@@ -21,17 +21,18 @@ import java.util.ArrayList;
 
 public class InternalAParParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_REAL", "RULE_STRING", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'true'", "'false'", "'model'", "'incorporates'", "'='"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INTEGER", "RULE_REAL", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'true'", "'false'", "'model'", "'incorporates'", "'='"
     };
     public static final int RULE_ID=7;
     public static final int RULE_STRING=6;
-    public static final int RULE_ANY_OTHER=11;
-    public static final int RULE_INT=4;
+    public static final int RULE_ANY_OTHER=12;
+    public static final int RULE_INT=8;
     public static final int RULE_REAL=5;
-    public static final int RULE_WS=10;
-    public static final int RULE_SL_COMMENT=9;
+    public static final int RULE_WS=11;
+    public static final int RULE_SL_COMMENT=10;
     public static final int EOF=-1;
-    public static final int RULE_ML_COMMENT=8;
+    public static final int RULE_INTEGER=4;
+    public static final int RULE_ML_COMMENT=9;
 
         public InternalAParParser(TokenStream input) {
             super(input);
@@ -462,28 +463,28 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start ruleIntValue
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:193:1: ruleIntValue : ( ( ( RULE_INT ) ) ) ;
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:193:1: ruleIntValue : ( ( ( RULE_INTEGER ) ) ) ;
     public final void ruleIntValue() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:197:2: ( ( ( ( RULE_INT ) ) ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:198:1: ( ( ( RULE_INT ) ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:197:2: ( ( ( ( RULE_INTEGER ) ) ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:198:1: ( ( ( RULE_INTEGER ) ) )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:198:1: ( ( ( RULE_INT ) ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:199:1: ( ( RULE_INT ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:198:1: ( ( ( RULE_INTEGER ) ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:199:1: ( ( RULE_INTEGER ) )
             {
              before(grammarAccess.getIntValueAccess().getValueAssignment()); 
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:200:1: ( ( RULE_INT ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:201:1: ( RULE_INT )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:200:1: ( ( RULE_INTEGER ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:201:1: ( RULE_INTEGER )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:201:1: ( RULE_INT )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:202:1: RULE_INT
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:201:1: ( RULE_INTEGER )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:202:1: RULE_INTEGER
             {
-             before(grammarAccess.getIntValueAccess().getValueINTTerminalRuleCall_0()); 
-            match(input,RULE_INT,FOLLOW_RULE_INT_in_ruleIntValue396); 
-             after(grammarAccess.getIntValueAccess().getValueINTTerminalRuleCall_0()); 
+             before(grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0()); 
+            match(input,RULE_INTEGER,FOLLOW_RULE_INTEGER_in_ruleIntValue396); 
+             after(grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0()); 
 
             }
 
@@ -811,7 +812,7 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:335:1: ( ( ruleIntValue ) | ( ruleStringValue ) | ( ruleRealValue ) | ( ruleBooleanValue ) )
             int alt1=4;
             switch ( input.LA(1) ) {
-            case RULE_INT:
+            case RULE_INTEGER:
                 {
                 alt1=1;
                 }
@@ -826,8 +827,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
                 alt1=3;
                 }
                 break;
-            case 12:
             case 13:
+            case 14:
                 {
                 alt1=4;
                 }
@@ -940,10 +941,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             int alt2=2;
             int LA2_0 = input.LA(1);
 
-            if ( (LA2_0==12) ) {
+            if ( (LA2_0==13) ) {
                 alt2=1;
             }
-            else if ( (LA2_0==13) ) {
+            else if ( (LA2_0==14) ) {
                 alt2=2;
             }
             else {
@@ -963,7 +964,7 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
                     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:368:1: ( 'true' )
                     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:368:3: 'true'
                     {
-                    match(input,12,FOLLOW_12_in_rule__BOOLEAN__Alternatives768); 
+                    match(input,13,FOLLOW_13_in_rule__BOOLEAN__Alternatives768); 
 
                     }
 
@@ -984,7 +985,7 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
                     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:374:1: ( 'false' )
                     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:374:3: 'false'
                     {
-                    match(input,13,FOLLOW_13_in_rule__BOOLEAN__Alternatives788); 
+                    match(input,14,FOLLOW_14_in_rule__BOOLEAN__Alternatives788); 
 
                     }
 
@@ -1092,7 +1093,7 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
                 int alt4=2;
                 int LA4_0 = input.LA(1);
 
-                if ( (LA4_0==15) ) {
+                if ( (LA4_0==16) ) {
                     alt4=1;
                 }
 
@@ -1202,7 +1203,7 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:441:1: 'model'
             {
              before(grammarAccess.getImportAccess().getModelKeyword_0()); 
-            match(input,14,FOLLOW_14_in_rule__Import__Group944); 
+            match(input,15,FOLLOW_15_in_rule__Import__Group944); 
              after(grammarAccess.getImportAccess().getModelKeyword_0()); 
 
             }
@@ -1262,7 +1263,7 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:468:1: 'incorporates'
             {
              before(grammarAccess.getIncorporatesAccess().getIncorporatesKeyword_0()); 
-            match(input,15,FOLLOW_15_in_rule__Incorporates__Group1002); 
+            match(input,16,FOLLOW_16_in_rule__Incorporates__Group1002); 
              after(grammarAccess.getIncorporatesAccess().getIncorporatesKeyword_0()); 
 
             }
@@ -1353,7 +1354,7 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/contentassist/antlr/internal/InternalAPar.g:509:1: '='
             {
              before(grammarAccess.getParameterAccess().getEqualsSignKeyword_1()); 
-            match(input,16,FOLLOW_16_in_rule__Parameter__Group1092); 
+            match(input,17,FOLLOW_17_in_rule__Parameter__Group1092); 
              after(grammarAccess.getParameterAccess().getEqualsSignKeyword_1()); 
 
             }
@@ -1421,7 +1422,7 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__Value__Alternatives_in_ruleValue330 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIntValue_in_entryRuleIntValue355 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleIntValue362 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_ruleIntValue396 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INTEGER_in_ruleIntValue396 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRealValue_in_entryRuleRealValue427 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleRealValue434 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_REAL_in_ruleRealValue468 = new BitSet(new long[]{0x0000000000000002L});
@@ -1436,18 +1437,18 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleStringValue_in_rule__Value__Alternatives704 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRealValue_in_rule__Value__Alternatives720 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBooleanValue_in_rule__Value__Alternatives736 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_rule__BOOLEAN__Alternatives768 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_rule__BOOLEAN__Alternatives788 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Model__Group830 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_ruleImport_in_rule__Model__Group855 = new BitSet(new long[]{0x0000000000008042L});
-    public static final BitSet FOLLOW_ruleIncorporates_in_rule__Model__Group879 = new BitSet(new long[]{0x0000000000008042L});
+    public static final BitSet FOLLOW_13_in_rule__BOOLEAN__Alternatives768 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_rule__BOOLEAN__Alternatives788 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Model__Group830 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_ruleImport_in_rule__Model__Group855 = new BitSet(new long[]{0x0000000000010042L});
+    public static final BitSet FOLLOW_ruleIncorporates_in_rule__Model__Group879 = new BitSet(new long[]{0x0000000000010042L});
     public static final BitSet FOLLOW_ruleParameter_in_rule__Model__Group904 = new BitSet(new long[]{0x0000000000000042L});
-    public static final BitSet FOLLOW_14_in_rule__Import__Group944 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_15_in_rule__Import__Group944 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__Import__Group963 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_rule__Incorporates__Group1002 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_16_in_rule__Incorporates__Group1002 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_RULE_STRING_in_rule__Incorporates__Group1021 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Parameter__Group1070 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_rule__Parameter__Group1092 = new BitSet(new long[]{0x0000000000003070L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Parameter__Group1070 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_rule__Parameter__Group1092 = new BitSet(new long[]{0x0000000000006070L});
     public static final BitSet FOLLOW_ruleValue_in_rule__Parameter__Group1111 = new BitSet(new long[]{0x0000000000000002L});
 
 }
