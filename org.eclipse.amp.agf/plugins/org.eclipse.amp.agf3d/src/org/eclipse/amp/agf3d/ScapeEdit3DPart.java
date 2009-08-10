@@ -82,7 +82,7 @@ public class ScapeEdit3DPart extends ScapeEditPart {
         figure.setSize(calculateDimension());
         if (getMemberProvider().getParent(getModel()) == null) {
             renderListener = new RenderUpdateListener("Update Root Figure", figure);
-            renderListener.setWaitForPaint(false);
+            renderListener.setWaitForUpdate(false);
             ((IModel) getModel()).addModelListener(renderListener);
         }
         return figure;
