@@ -8,7 +8,8 @@ Bundle-Activator: org.eclipse.amp.amf.testing.ares.presentation.AresEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.eclipse.amp.amf.testing.ares.presentation
+Export-Package: org.eclipse.amp.amf.testing.aTest.presentation,
+ org.eclipse.amp.amf.testing.ares.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
  org.eclipse.amp.amf.testing.edit;visibility:=reexport,
