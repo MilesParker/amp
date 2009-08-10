@@ -62,6 +62,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMLParserPool;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.xmi.impl.XMLParserPoolImpl;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -511,7 +514,7 @@ IMenuListener, IViewerProvider, IGotoMarker {
 
     protected AgentAction importFromClassAction = new AgentAction(this, MetaModelerPlugin.INSTANCE
                                                                   .getString("_UI_ImportAgent_menu_item"), EclipseUIPlugin
-            .imageDescriptorFromPlugin("org.eclipse.amp.amf.ide", "icons/full/obj16/JavaCompilationUnit.gif")) {
+                                                                  .imageDescriptorFromPlugin("org.eclipse.amp.amf.ide", "icons/full/obj16/JavaCompilationUnit.gif")) {
         final String[] javaFilter = { "java" };
 
         public void run(SAgent agent) {
@@ -979,15 +982,19 @@ IMenuListener, IViewerProvider, IGotoMarker {
     // true));
     // }
     // }
+    private XMLParserPool parserPool = new XMLParserPoolImpl();
+    private Map nameToFeatureMap = new HashMap();
+
+    @SuppressWarnings("unchecked")
     private void getResource(URI resourceURI) {
         Exception exception = null;
         Resource resource = null;
-        // editingDomain.getResourceSet().getLoadOptions().put(XMLResource.
-        // OPTION_DEFER_ATTACHMENT,
-        // Boolean.TRUE);
-        // editingDomain.getResourceSet().getLoadOptions().put(XMLResource.
-        // OPTION_DEFER_IDREF_RESOLUTION,
-        // Boolean.TRUE);
+        Map loadOptions = editingDomain.getResourceSet().getLoadOptions();
+        loadOptions.put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
+        loadOptions.put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
+        loadOptions.put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
+        loadOptions.put(XMLResource.OPTION_USE_PARSER_POOL, parserPool);
+        loadOptions.put(XMLResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);
         try {
             // Load the resource through the editing domain.
             //
@@ -1467,6 +1474,8 @@ IMenuListener, IViewerProvider, IGotoMarker {
         return ((BasicCommandStack) editingDomain.getCommandStack()).isSaveNeeded() || importFromClassAction.isRun();
     }
 
+    private List lookupTable = new ArrayList();
+
     /**
      * This is for implementing {@link IEditorPart} and simply saves the model
      * file. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1479,6 +1488,8 @@ IMenuListener, IViewerProvider, IGotoMarker {
         //
         final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
         saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
+        saveOptions.put(XMLResource.OPTION_CONFIGURATION_CACHE, Boolean.TRUE);
+        saveOptions.put(XMLResource.OPTION_USE_CACHED_LOOKUP_TABLE, lookupTable);
 
         // Do the work within an operation because this is a long running
         // activity that modifies the workbench.
