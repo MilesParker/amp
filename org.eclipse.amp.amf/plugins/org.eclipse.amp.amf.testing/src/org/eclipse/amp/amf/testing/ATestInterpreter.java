@@ -83,10 +83,11 @@ public class ATestInterpreter {
                                               new Status(Status.WARNING, "org.eclipse.amp.amf.parameters",
                                               "Couldn't locate apar resource."));
         } else {
+            aparInterpreter = new AParInterpreter();
+            aparInterpreter.setParserPool(parserPool);
+            aparInterpreter.setNameToFeatureMap(nameToFeatureMap);
             IWorkspace workspace = ResourcesPlugin.getWorkspace();
-            aparInterpreter = new AParInterpreter(workspace.getRoot()
-                                                  .getFile(new Path(aparLoc.toPlatformString(true))));
-            aparInterpreter.load();
+            aparInterpreter.load(workspace.getRoot().getFile(new Path(aparLoc.toPlatformString(true))));
         }
     }
 
@@ -105,8 +106,7 @@ public class ATestInterpreter {
     public String getConstraintString() {
         String constraintString = "";
         for (Constraint constraint : atestModel.getContraints()) {
-            constraintString += constraint.getAttribute().getID() + "\t"
-            + doubleValue(constraint.getMinValue()) + "\t"
+            constraintString += constraint.getAttribute().getID() + "\t" + doubleValue(constraint.getMinValue()) + "\t"
             + doubleValue(constraint.getMinValue()) + "\r";
         }
         return constraintString;
@@ -123,6 +123,16 @@ public class ATestInterpreter {
         throw new RuntimeException("Unexpected value for constraint.");
     }
 
+    public static String stringValue(EObject constraintValue) {
+        if (constraintValue instanceof IntValue) {
+            return ((IntValue) constraintValue).getValue();
+        } else if (constraintValue instanceof RealValue) {
+            return ((RealValue) constraintValue).getValue();
+        } else if (constraintValue == null) {
+            return "N/A";
+        }
+        throw new RuntimeException("Unexpected value for constraint.");
+    }
     /**
      * @param nameToFeatureMap the nameToFeatureMap to set
      */
