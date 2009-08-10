@@ -32,6 +32,7 @@ import org.eclipse.amp.amf.parameters.aPar.Model;
 import org.eclipse.amp.amf.parameters.aPar.Parameter;
 import org.eclipse.amp.amf.parameters.aPar.RealValue;
 import org.eclipse.amp.amf.parameters.aPar.StringValue;
+import org.eclipse.amp.amf.parameters.aPar.impl.AParFactoryImpl;
 import org.eclipse.amp.amf.parameters.scoping.AParImportResolver;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -42,6 +43,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLParserPool;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -55,13 +57,11 @@ import org.metaabm.SContext;
  */
 public class AParInterpreter {
 
-    IResource modelResource;
     Resource aparResource;
     private String modelClass;
     private String runName;
     private String[] args;
     private SContext rootContext;
-    private IPath filePath;
     private Model aparModel;
     private List<Parameter> parameters;
 
@@ -69,42 +69,55 @@ public class AParInterpreter {
 
     private Map nameToFeatureMap = new HashMap();
 
-    public AParInterpreter(IResource modelResource) {
-        this.modelResource = modelResource;
-    }
-
     public AParInterpreter(Resource apar) {
         this.aparResource = apar;
     }
 
-    public void load() {
+    public AParInterpreter() {
+        super();
+    }
+
+    public void load(IResource aparFileResource) {
         if (aparResource == null) {
-            ResourceSet resources = new ResourceSetImpl();
-            resources.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
-            resources.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
-            resources.getLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
-            resources.getLoadOptions().put(XMLResource.OPTION_USE_PARSER_POOL, parserPool);
-            resources.getLoadOptions().put(XMLResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);
-            filePath = ((IFile) modelResource).getFullPath();
-            URI aparLoc = URI.createPlatformResourceURI(filePath.toString(), true);
-            aparResource = resources.getResource(aparLoc, true);
+            IPath modelPath = ((IFile) aparFileResource).getFullPath();
+            URI aparLoc = URI.createPlatformResourceURI(modelPath.toString(), true);
+            load(aparLoc);
+        } else {
+            initialize();
         }
-        initialize(aparResource);
+    }
+
+    public void load(URI uri) {
+        ResourceSet resources = new ResourceSetImpl();
+
+        new AParFactoryImpl();
+        resources.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
+        resources.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
+        resources.getLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
+        resources.getLoadOptions().put(XMLResource.OPTION_USE_PARSER_POOL, parserPool);
+        resources.getLoadOptions().put(XMLResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);
+
+        // Registry resourceFactoryRegistry = resources.getResourceFactoryRegistry();
+
+        aparResource = resources.getResource(uri, true);
+        ((ResourceImpl) aparResource).setIntrinsicIDToEObjectMap(new HashMap<String, EObject>());
+        initialize();
     }
 
     /**
      * @param apar
      */
-    private void initialize(Resource apar) {
-        aparModel = (Model) apar.getContents().get(0);
+    private void initialize() {
+        aparModel = (Model) aparResource.getContents().get(0);
         assert aparModel != null;
         String convertURI = AParImportResolver.convertURI(aparModel.getModel().get(0));
         URI modelURI = URI.createURI(convertURI);
-        Resource amfResource = apar.getResourceSet().getResource(modelURI, true);
+        Resource amfResource = aparResource.getResourceSet().getResource(modelURI, true);
+        ((ResourceImpl) amfResource).setIntrinsicIDToEObjectMap(new HashMap<String, EObject>());
         rootContext = (SContext) amfResource.getContents().get(0);
 
         modelClass = rootContext.getImplementation().getQualifiedName();
-        runName = rootContext.getLabel() + "_" + apar.getURI().trimFileExtension().lastSegment();
+        runName = rootContext.getLabel() + "_" + aparResource.getURI().trimFileExtension().lastSegment();
         parameters = collect(new HashSet<String>());
 
         String rootPath = amfResource.getURI().toPlatformString(true);
@@ -139,12 +152,12 @@ public class AParInterpreter {
         Incorporates[] reverseIncorporates = (Incorporates[]) aparModel.getIncorporates().toArray();
         CollectionUtils.reverseArray(reverseIncorporates);
         for (Incorporates incorporates : reverseIncorporates) {
-            ResourceSet resources = new ResourceSetImpl();
-            Resource incFile = resources.getResource(URI.createURI(AParImportResolver.convertURI(incorporates)), true);
-            AParInterpreter incInterpreter = new AParInterpreter(incFile);
+            AParInterpreter incInterpreter = new AParInterpreter();
             incInterpreter.setParserPool(parserPool);
             incInterpreter.setNameToFeatureMap(nameToFeatureMap);
-            incInterpreter.load();
+            String convertURI = AParImportResolver.convertURI(incorporates);
+            URI incURI = URI.createURI(convertURI);
+            incInterpreter.load(incURI);
             includeIncorporated.addAll(incInterpreter.collect(overridden));
         }
         return includeIncorporated;
@@ -155,10 +168,6 @@ public class AParInterpreter {
      */
     public SContext getTargetModel() {
         return rootContext;
-    }
-
-    public IPath getFilePath() {
-        return filePath;
     }
 
     /**
