@@ -85,8 +85,8 @@ public class ParameterInterpreterTest extends TestCase {
         .getProject("org.eclipse.amp.amf.parameters.test");
         IResource testFile = testProject.getFile("" + fileName);
         assertTrue(testFile.exists());
-        AParInterpreter interpreter = new AParInterpreter(testFile);
-        interpreter.load();
+        AParInterpreter interpreter = new AParInterpreter();
+        interpreter.load(testFile);
         String[] args = interpreter.getArgs();
         for (int i = 0; i < expectedArgs.length; i++) {
             assertEquals(args[i], expectedArgs[i]);
