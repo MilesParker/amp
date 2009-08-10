@@ -84,16 +84,9 @@ public class MetaABMPersist {
             @SuppressWarnings("unused")
             MetaABMPackage pkg = org.metaabm.MetaABMPackage.eINSTANCE;
 
-            // ExtendedMetaData extendedMetaData =
-            // new BasicExtendedMetaData(resourceSet.getPackageRegistry());
-            // resourceSet.getLoadOptions().put(XMLResource.
-            // OPTION_EXTENDED_META_DATA,
-            // extendedMetaData);
-            // extendedMetaData.setName(pkg.getSAgent_Fields(), "field");
-            // resourceSet.getLoadOptions().put(XMLResource.
-            // OPTION_DEFER_ATTACHMENT,
-            // Boolean.TRUE);
+            resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
             resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
+            resourceSet.getLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
 
             @SuppressWarnings("unused")
             MetaABMFactory factory = org.metaabm.MetaABMFactory.eINSTANCE;

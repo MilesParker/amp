@@ -40,6 +40,13 @@ import org.metaabm.SAttributeType;
 import org.metaabm.SAttributed;
 import org.metaabm.SContext;
 import org.metaabm.SProjection;
+import org.metaabm.act.AAccessor;
+import org.metaabm.act.AAct;
+import org.metaabm.act.ACreateAgents;
+import org.metaabm.act.AGroup;
+import org.metaabm.act.AInput;
+import org.metaabm.act.ASet;
+import org.metaabm.act.ASink;
 
 /*
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -181,26 +188,36 @@ public class SAttributeImpl extends SNamedImpl implements SAttribute {
         } else if (getOwner() instanceof SProjection) {
             parent = ((SProjection) getOwner()).getOwner();
         }
-        agentAccessors(parent, searchObjects);
-        return SAttributeImpl.collectAccessors(this, searchObjects);
+        agentAccessors(parent, this, searchObjects);
+        return new EcoreEList.UnmodifiableEList.FastCompare<EObject>(this,
+                MetaABMPackage.Literals.IVALUE__ACCESSORS, searchObjects.size(), searchObjects.toArray());
     }
 
-    public static void agentAccessors(SAgent parent, Collection<EObject> searchObjects) {
+    public static void agentAccessors(SAgent parent, SAttribute attribute, Collection<EObject> searchObjects) {
         if (parent != null && parent.getRootActivity() != null) {
-            searchObjects.add(parent.getRootActivity());
-            // for (Object object : parent.getRootActivity().eContents()) {
-            // if (object instanceof ASink) {
-            // // searchObjects.add((EObject) object);
-            // searchObjects.addAll(((ASink) object).getInputs());
-            // }
-            // // if (object instanceof AAccessor) {
-            // // searchObjects.add((EObject) object);
-            // // }
-            // }
+            for (AAct act : ((AGroup) parent.getRootActivity()).getMembers()) {
+                if (act instanceof ASink) {
+                    // searchObjects.add((EObject) object);
+                    for (AInput input : ((ASink) act).getInputs()) {
+                        if (input.getValue() == attribute) {
+                            searchObjects.add(input);
+                        }
+                    }
+                }
+                if (act instanceof AAccessor && ((AAccessor) act).getAttribute() == attribute) {
+                    searchObjects.add(act);
+                }
+                if (act instanceof ASet && ((ASet) act).getParameter() == attribute) {
+                    searchObjects.add(act);
+                }
+                if (act instanceof ACreateAgents && ((ACreateAgents) act).getAgentCount() == attribute) {
+                    searchObjects.add(act);
+                }
+            }
         }
         if (parent instanceof SContext) {
             for (SAgent agent : ((SContext) parent).getAgents()) {
-                agentAccessors(agent, searchObjects);
+                agentAccessors(agent, attribute, searchObjects);
             }
         }
     }
@@ -213,7 +230,7 @@ public class SAttributeImpl extends SNamedImpl implements SAttribute {
             referencers.add(setting.getEObject());
         }
         return new EcoreEList.UnmodifiableEList.FastCompare<EObject>((InternalEObject) value,
-            MetaABMPackage.Literals.IVALUE__ACCESSORS, referencers.size(), referencers.toArray());
+                MetaABMPackage.Literals.IVALUE__ACCESSORS, referencers.size(), referencers.toArray());
     }
 
     /**
@@ -231,8 +248,9 @@ public class SAttributeImpl extends SNamedImpl implements SAttribute {
     public void setSType(SAttributeType newSType) {
         SAttributeType oldSType = sType;
         sType = newSType == null ? STYPE_EDEFAULT : newSType;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SATTRIBUTE__STYPE, oldSType, sType));
+        }
     }
 
     /**
@@ -240,7 +258,9 @@ public class SAttributeImpl extends SNamedImpl implements SAttribute {
      * @generated
      */
     public SAttributed getOwner() {
-        if (eContainerFeatureID() != MetaABMPackage.SATTRIBUTE__OWNER) return null;
+        if (eContainerFeatureID() != MetaABMPackage.SATTRIBUTE__OWNER) {
+            return null;
+        }
         return (SAttributed) eContainer();
     }
 
@@ -259,18 +279,25 @@ public class SAttributeImpl extends SNamedImpl implements SAttribute {
      */
     public void setOwner(SAttributed newOwner) {
         if (newOwner != eInternalContainer()
-            || (eContainerFeatureID() != MetaABMPackage.SATTRIBUTE__OWNER && newOwner != null)) {
-            if (EcoreUtil.isAncestor(this, newOwner))
+                || eContainerFeatureID() != MetaABMPackage.SATTRIBUTE__OWNER && newOwner != null) {
+            if (EcoreUtil.isAncestor(this, newOwner)) {
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            }
             NotificationChain msgs = null;
-            if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
-            if (newOwner != null)
+            if (eInternalContainer() != null) {
+                msgs = eBasicRemoveFromContainer(msgs);
+            }
+            if (newOwner != null) {
                 msgs = ((InternalEObject) newOwner).eInverseAdd(this, MetaABMPackage.SATTRIBUTED__ATTRIBUTES,
                                                                 SAttributed.class, msgs);
+            }
             msgs = basicSetOwner(newOwner, msgs);
-            if (msgs != null) msgs.dispatch();
-        } else if (eNotificationRequired())
+            if (msgs != null) {
+                msgs.dispatch();
+            }
+        } else if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SATTRIBUTE__OWNER, newOwner, newOwner));
+        }
     }
 
     /**
@@ -288,9 +315,10 @@ public class SAttributeImpl extends SNamedImpl implements SAttribute {
     public void setGatherData(boolean newGatherData) {
         boolean oldGatherData = gatherData;
         gatherData = newGatherData;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SATTRIBUTE__GATHER_DATA,
-                oldGatherData, gatherData));
+                                          oldGatherData, gatherData));
+        }
     }
 
     /**
@@ -308,9 +336,10 @@ public class SAttributeImpl extends SNamedImpl implements SAttribute {
     public void setDefaultValue(String newDefaultValue) {
         String oldDefaultValue = defaultValue;
         defaultValue = newDefaultValue;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SATTRIBUTE__DEFAULT_VALUE,
-                oldDefaultValue, defaultValue));
+                                          oldDefaultValue, defaultValue));
+        }
     }
 
     /**
@@ -328,8 +357,9 @@ public class SAttributeImpl extends SNamedImpl implements SAttribute {
     public void setUnits(String newUnits) {
         String oldUnits = units;
         units = newUnits;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SATTRIBUTE__UNITS, oldUnits, units));
+        }
     }
 
     /**
@@ -347,9 +377,10 @@ public class SAttributeImpl extends SNamedImpl implements SAttribute {
     public void setImmutable(boolean newImmutable) {
         boolean oldImmutable = immutable;
         immutable = newImmutable;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SATTRIBUTE__IMMUTABLE, oldImmutable,
-                immutable));
+                                          immutable));
+        }
     }
 
     /**
@@ -360,7 +391,9 @@ public class SAttributeImpl extends SNamedImpl implements SAttribute {
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case MetaABMPackage.SATTRIBUTE__OWNER:
-                if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+                if (eInternalContainer() != null) {
+                    msgs = eBasicRemoveFromContainer(msgs);
+                }
                 return basicSetOwner((SAttributed) otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -505,7 +538,7 @@ public class SAttributeImpl extends SNamedImpl implements SAttribute {
                 return gatherData != GATHER_DATA_EDEFAULT;
             case MetaABMPackage.SATTRIBUTE__DEFAULT_VALUE:
                 return DEFAULT_VALUE_EDEFAULT == null ? defaultValue != null : !DEFAULT_VALUE_EDEFAULT
-                        .equals(defaultValue);
+                    .equals(defaultValue);
             case MetaABMPackage.SATTRIBUTE__UNITS:
                 return UNITS_EDEFAULT == null ? units != null : !UNITS_EDEFAULT.equals(units);
             case MetaABMPackage.SATTRIBUTE__IMMUTABLE:
@@ -574,7 +607,7 @@ public class SAttributeImpl extends SNamedImpl implements SAttribute {
 
     public boolean accepts(IValue value) {
         return !(value instanceof ITypedArray)
-            && CollectionUtils.containsAny(SAttributeType.getAvailableTypes(getSType()), value.getAvailableTypes());
+        && CollectionUtils.containsAny(SAttributeType.getAvailableTypes(getSType()), value.getAvailableTypes());
     }
 
     /**
@@ -583,7 +616,9 @@ public class SAttributeImpl extends SNamedImpl implements SAttribute {
      */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+        if (eIsProxy()) {
+            return super.toString();
+        }
 
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (sType: ");
