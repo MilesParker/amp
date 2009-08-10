@@ -16,7 +16,7 @@
       <members xsi:type="act:AQuery" label="Root Context Agent Rule: Agent A Equal Root C Query" ID="rootContextAgentRuleAgentAEqualRootCQuery" sources="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']">
         <inputs selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" value="//@agents[ID='rootContextAgent']/@attributes[ID='agentA']"/>
         <inputs selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" value="//@attributes[ID='rootC']"/>
-        <function xsi:type="function:FLogicalOperator" href="../../../org.eclipse.amp.amf.acore/src/model/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='operators']/@subs[ID='logicalOperators']/@functions[ID='equal']"/>
+        <function xsi:type="function:FLogicalOperator" href="../../../../plugins/org.eclipse.amp.amf.acore/src/model/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='operators']/@subs[ID='logicalOperators']/@functions[ID='equal']"/>
       </members>
     </rootActivity>
     <implementation className="RootContextAgent"/>

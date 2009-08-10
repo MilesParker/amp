@@ -4,7 +4,7 @@
     <members xsi:type="act:ARule" label="Root Context Rule" ID="rootContextRule" targets="//@rootActivity/@members[ID='rootContextRuleNotQuery']" selected="//@rootActivity/@members[ID='rootContextRule']" agent="/" pluralLabel="Root Context Rules"/>
     <members xsi:type="act:AQuery" label="Root Context Rule: Not [?] Query" ID="rootContextRuleNotQuery" sources="//@rootActivity/@members[ID='rootContextRule']" selected="//@rootActivity/@members[ID='rootContextRule']">
       <inputs selected="//@rootActivity/@members[ID='rootContextRule']"/>
-      <function xsi:type="function:FLogicalOperator" href="../../../org.eclipse.amp.amf.acore/src/model/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='operators']/@subs[ID='logicalOperators']/@functions[ID='not']"/>
+      <function xsi:type="function:FLogicalOperator" href="../../../../plugins/org.eclipse.amp.amf.acore/src/model/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='operators']/@subs[ID='logicalOperators']/@functions[ID='not']"/>
     </members>
   </rootActivity>
   <implementation className="RootContext"/>

@@ -103,7 +103,7 @@ public abstract class CommandTest extends BasePersistTest {
         domain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
 
         MetaABMPersist libPersist = MetaABMPersist
-        .create("../org.eclipse.amp.amf.acore/src/model/core_library.metaabm");
+                .create("../../plugins/org.eclipse.amp.amf.acore/src/model/core_library.metaabm");
         lib = libPersist.load();
         library = (FLibrary) lib.getLibrary().get(0);
         funcLog = library.findSub("operators").findSub("logicalOperators");

@@ -13,12 +13,12 @@
     <members xsi:type="act:ASchedule" label="At 0 Every 0" ID="at0Every0" targets="//@rootActivity/@members[ID='setTo'] //@rootActivity/@members[ID='at0Every0NotAQuery']" selected="//@rootActivity/@members[ID='at0Every0']" agent="/" pluralLabel="At 0 Every 0s"/>
     <members xsi:type="act:AQuery" label="At 0 Every 0: Not A Query" ID="at0Every0NotAQuery" sources="//@rootActivity/@members[ID='at0Every0']" targets="//@rootActivity/@members[ID='at0Every0_NotAQueryAndAAddB_'] //@rootActivity/@members[ID='at0Every0_NotAQueryOrAAddB_'] //@rootActivity/@members[ID='not_At0Every0_Or_NotAQuery_']" selected="//@rootActivity/@members[ID='at0Every0']">
       <inputs selected="//@rootActivity/@members[ID='at0Every0']" value="//@attributes[ID='a']"/>
-      <function xsi:type="function:FLogicalOperator" href="../../../org.eclipse.amp.amf.acore/src/model/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='operators']/@subs[ID='logicalOperators']/@functions[ID='not']"/>
+      <function xsi:type="function:FLogicalOperator" href="../../../../plugins/org.eclipse.amp.amf.acore/src/model/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='operators']/@subs[ID='logicalOperators']/@functions[ID='not']"/>
     </members>
     <members xsi:type="act:AEvaluate" label="At 0 Every 0: A Add B" ID="at0Every0AAddB" sources="//@rootActivity/@members[ID='setTo']" targets="//@rootActivity/@members[ID='at0Every0_NotAQueryAndAAddB_'] //@rootActivity/@members[ID='at0Every0_NotAQueryOrAAddB_']" selected="//@rootActivity/@members[ID='at0Every0']">
       <inputs selected="//@rootActivity/@members[ID='at0Every0']" value="//@attributes[ID='a']"/>
       <inputs selected="//@rootActivity/@members[ID='at0Every0']" value="//@attributes[ID='b']"/>
-      <function xsi:type="function:FOperator" href="../../../org.eclipse.amp.amf.acore/src/model/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='operators']/@subs[ID='numericOperators']/@functions[ID='add']"/>
+      <function xsi:type="function:FOperator" href="../../../../plugins/org.eclipse.amp.amf.acore/src/model/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='operators']/@subs[ID='numericOperators']/@functions[ID='add']"/>
     </members>
     <members xsi:type="act:AAll" label="At 0 Every 0 (Not A Query &amp; A Add B)" ID="at0Every0_NotAQueryAndAAddB_" sources="//@rootActivity/@members[ID='at0Every0NotAQuery'] //@rootActivity/@members[ID='at0Every0AAddB']" selected="//@rootActivity/@members[ID='at0Every0']"/>
     <members xsi:type="act:AAny" label="At 0 Every 0 (Not A Query | A Add B)" ID="at0Every0_NotAQueryOrAAddB_" sources="//@rootActivity/@members[ID='at0Every0NotAQuery'] //@rootActivity/@members[ID='at0Every0AAddB']" selected="//@rootActivity/@members[ID='at0Every0']"/>

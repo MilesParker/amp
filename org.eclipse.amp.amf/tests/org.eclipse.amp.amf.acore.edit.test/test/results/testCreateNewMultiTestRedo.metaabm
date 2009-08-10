@@ -3,8 +3,6 @@
   <attributes label="Root Context Agent Count" ID="rootContextAgentCount" pluralLabel="Root Context Agent Counts" description="The number of root context agents to create." sType="INTEGER"/>
   <attributes label="Root Context Context Count" ID="rootContextContextCount" pluralLabel="Root Context Context Counts" description="The number of root context contexts to create." sType="INTEGER"/>
   <attributes label="Root C" ID="rootC" pluralLabel="Root Cs"/>
-  <attributes label="Wealth Minimum" ID="wealthMinimum" pluralLabel="Wealth Minimums" sType="REAL"/>
-  <attributes label="Wealth Maximum" ID="wealthMaximum" pluralLabel="Wealth Maximums" sType="REAL"/>
   <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
     <members xsi:type="act:ABuild" label="Build Root Context" ID="buildRootContext" targets="//@rootActivity/@members[ID='createRootContextAgents'] //@rootActivity/@members[ID='createRootContextContexts']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="/" pluralLabel="Build Root Contexts"/>
     <members xsi:type="act:ACreateAgents" label="Create Root Context Agents" ID="createRootContextAgents" sources="//@rootActivity/@members[ID='buildRootContext']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="//@agents[ID='rootContextAgent']" agentCount="//@attributes[ID='rootContextAgentCount']"/>
@@ -14,18 +12,11 @@
   <agents label="Root Context Agent" ID="rootContextAgent" pluralLabel="Root Context Agents">
     <attributes label="Agent A" ID="agentA" pluralLabel="Agent As"/>
     <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
-      <members xsi:type="act:ARule" label="Root Context Agent Rule" ID="rootContextAgentRule" targets="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='wealth']" selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" agent="//@agents[ID='rootContextAgent']" pluralLabel="Root Context Agent Rules"/>
-      <members xsi:type="act:AQuery" label="Wealth" ID="wealth" sources="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']">
-        <inputs selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" value="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='wealth']/@inputs.0/@literal">
-          <literal xsi:type="act:AMultiValue" label="Wealth States" ID="wealthStates"/>
-        </inputs>
-        <inputs selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" value="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='wealth']/@inputs.1/@literal">
-          <literal xsi:type="act:AMultiValue" label="Wealth Minimum" ID="wealthMinimum" values="//@attributes[ID='wealthMinimum']"/>
-        </inputs>
-        <inputs selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" value="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='wealth']/@inputs.2/@literal">
-          <literal xsi:type="act:AMultiValue" label="Wealth Maximum" ID="wealthMaximum" values="//@attributes[ID='wealthMaximum']"/>
-        </inputs>
-        <function xsi:type="function:FGenericFunction" href="../../../org.eclipse.amp.amf.acore/src/model/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='distribution']/@functions[ID='uniformCrossDistribution']"/>
+      <members xsi:type="act:ARule" label="Root Context Agent Rule" ID="rootContextAgentRule" targets="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRuleAgentAEqualQuery']" selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" agent="//@agents[ID='rootContextAgent']" pluralLabel="Root Context Agent Rules"/>
+      <members xsi:type="act:AQuery" label="Root Context Agent Rule: Agent A Equal [?] Query" ID="rootContextAgentRuleAgentAEqualQuery" sources="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']">
+        <inputs selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" value="//@agents[ID='rootContextAgent']/@attributes[ID='agentA']"/>
+        <inputs selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']"/>
+        <function xsi:type="function:FLogicalOperator" href="../../../../plugins/org.eclipse.amp.amf.acore/src/model/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='operators']/@subs[ID='logicalOperators']/@functions[ID='equal']"/>
       </members>
     </rootActivity>
     <implementation className="RootContextAgent"/>
