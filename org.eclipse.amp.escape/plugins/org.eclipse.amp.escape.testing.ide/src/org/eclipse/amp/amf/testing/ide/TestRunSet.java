@@ -169,9 +169,9 @@ public class TestRunSet {
                         monitor.subTask("Completed " + testsCompleted + " of " + testCount + " ("
                                         + (testsCompleted - testSuccessCount) + " failures)");
                         monitor.worked(1);
-                        if (testsCompleted % MAX_THREADS == 0) {
-                            saveResults();
-                        }
+                        // if (testsCompleted % MAX_THREADS == 0) {
+                        // saveResults();
+                        // }
                     }
                 }
             };
