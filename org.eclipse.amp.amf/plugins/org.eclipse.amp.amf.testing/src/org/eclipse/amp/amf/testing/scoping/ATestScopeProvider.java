@@ -25,12 +25,15 @@ import org.metaabm.SAgent;
 import org.metaabm.SState;
 import org.metaabm.SStateValue;
 
+import com.google.inject.Singleton;
+
 /**
  * This class contains custom scoping description.
  * 
  * see : http://www.eclipse.org/Xtext/documentation/latest/xtext.html#scoping on how and when to use it
  * 
  */
+@Singleton
 public class ATestScopeProvider extends AParScopeProvider {
 
     /**
@@ -50,8 +53,8 @@ public class ATestScopeProvider extends AParScopeProvider {
             testFileURI = testFileURI.trimFileExtension().appendFileExtension("apar");
             Resource aparAnalog = resourceSet.getResource(testFileURI, true);
             Model aparModel = (Model) aparAnalog.getContents().get(0);
-            Resource agentModel = resourceSet.getResource(URI.createURI(AParImportResolver
-                                                                        .convertURI(aparModel.getModel().get(0)), true), true);
+            Resource agentModel = resourceSet.getResource(URI.createURI(AParImportResolver.convertURI(aparModel
+                    .getModel().get(0)), true), true);
 
             if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAgent()) {
                 for (Resource resource : resourceSet.getResources()) {

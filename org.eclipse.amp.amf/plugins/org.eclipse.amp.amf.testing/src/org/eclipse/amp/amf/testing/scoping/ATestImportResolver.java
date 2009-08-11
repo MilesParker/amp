@@ -20,11 +20,14 @@ import org.eclipse.amp.amf.parameters.scoping.AParImportResolver;
 import org.eclipse.amp.amf.testing.aTest.Tests;
 import org.eclipse.emf.ecore.EObject;
 
+import com.google.inject.Singleton;
+
 /**
  * 
  * @author mparker
  * 
  */
+@Singleton
 public class ATestImportResolver extends AParImportResolver {
     /**
      * @param object

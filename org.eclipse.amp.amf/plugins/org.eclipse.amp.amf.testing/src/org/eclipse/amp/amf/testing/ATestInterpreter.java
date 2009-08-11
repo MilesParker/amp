@@ -84,8 +84,7 @@ public class ATestInterpreter {
                                               "Couldn't locate apar resource."));
         } else {
             aparInterpreter = new AParInterpreter();
-            aparInterpreter.setParserPool(parserPool);
-            aparInterpreter.setNameToFeatureMap(nameToFeatureMap);
+            aparInterpreter.setResourceSet(resources);
             IWorkspace workspace = ResourcesPlugin.getWorkspace();
             aparInterpreter.load(workspace.getRoot().getFile(new Path(aparLoc.toPlatformString(true))));
         }

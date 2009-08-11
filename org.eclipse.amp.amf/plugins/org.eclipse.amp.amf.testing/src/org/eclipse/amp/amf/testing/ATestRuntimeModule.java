@@ -3,7 +3,9 @@
  */
 package org.eclipse.amp.amf.testing;
 
-import org.eclipse.amp.amf.parameters.scoping.AParImportResolver;
+import org.eclipse.amp.amf.testing.scoping.ATestImportResolver;
+import org.eclipse.xtext.linking.ILinker;
+import org.eclipse.xtext.linking.impl.Linker;
 import org.eclipse.xtext.scoping.impl.ImportUriResolver;
 
 /**
@@ -12,6 +14,15 @@ import org.eclipse.xtext.scoping.impl.ImportUriResolver;
 public class ATestRuntimeModule extends org.eclipse.amp.amf.testing.AbstractATestRuntimeModule {
 
     public Class<? extends ImportUriResolver> bindImportUriResolver() {
-        return AParImportResolver.class;
+        return ATestImportResolver.class;
+    }
+
+    @Override
+    /**
+     * @return
+     * @see org.eclipse.xtext.service.DefaultRuntimeModule#bindILinker()
+     */
+    public Class<? extends ILinker> bindILinker() {
+        return Linker.class;
     }
 }
