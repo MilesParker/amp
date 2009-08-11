@@ -45,21 +45,7 @@ public class TestRunSet {
 
     private XMLParserPool parserPool = new XMLParserPoolImpl();
 
-    private class ThreadLocalFeatureMap extends ThreadLocal {
-        private Map nameToFeatureMap = new HashMap();
-        /**
-         * @return the nameToFeatureMap
-         */
-        public Map nameToFeatureMap() {
-            return nameToFeatureMap;
-        }
-    }
-
-    ThreadLocalFeatureMap featureMap = new ThreadLocalFeatureMap();
-
-    private Map getFeatureMap() {
-        return featureMap.nameToFeatureMap();
-    }
+    private Map nameToFeatureMap = new HashMap();
 
     public TestRunSet(IProject project, List<IResource> testResources, String name, int runsPerTest) {
         super();
@@ -80,7 +66,7 @@ public class TestRunSet {
             monitor.subTask("Creating Test " + currentTest + " of " + testCount);
             ATestInterpreter aTestInterpreter = new ATestInterpreter(resource);
             aTestInterpreter.setParserPool(parserPool);
-            aTestInterpreter.setNameToFeatureMap(getFeatureMap());
+            aTestInterpreter.setNameToFeatureMap(nameToFeatureMap);
             aTestInterpreter.load();
             interpreters.add(aTestInterpreter);
             if (monitor.isCanceled()) {
