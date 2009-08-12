@@ -22,24 +22,24 @@ import org.eclipse.emf.ecore.EClass;
 public class IntValueImpl extends ValueImpl implements IntValue
 {
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   protected IntValueImpl()
   {
-        super();
-    }
+    super();
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   @Override
   protected EClass eStaticClass()
   {
-        return ATestPackage.Literals.INT_VALUE;
-    }
+    return ATestPackage.Literals.INT_VALUE;
+  }
 
 } //IntValueImpl

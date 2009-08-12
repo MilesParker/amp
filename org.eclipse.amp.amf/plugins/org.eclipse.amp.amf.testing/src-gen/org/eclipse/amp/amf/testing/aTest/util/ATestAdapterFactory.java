@@ -25,200 +25,211 @@ import org.eclipse.emf.ecore.EObject;
 public class ATestAdapterFactory extends AdapterFactoryImpl
 {
   /**
-     * The cached model package.
-     * <!-- begin-user-doc -->
+   * The cached model package.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   protected static ATestPackage modelPackage;
 
   /**
-     * Creates an instance of the adapter factory.
-     * <!-- begin-user-doc -->
+   * Creates an instance of the adapter factory.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   public ATestAdapterFactory()
   {
-        if (modelPackage == null) {
-            modelPackage = ATestPackage.eINSTANCE;
-        }
+    if (modelPackage == null)
+    {
+      modelPackage = ATestPackage.eINSTANCE;
     }
+  }
 
   /**
-     * Returns whether this factory is applicable for the type of the object.
-     * <!-- begin-user-doc -->
+   * Returns whether this factory is applicable for the type of the object.
+   * <!-- begin-user-doc -->
    * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
    * <!-- end-user-doc -->
-     * @return whether this factory is applicable for the type of the object.
-     * @generated
-     */
+   * @return whether this factory is applicable for the type of the object.
+   * @generated
+   */
   @Override
   public boolean isFactoryForType(Object object)
   {
-        if (object == modelPackage) {
-            return true;
-        }
-        if (object instanceof EObject) {
-            return ((EObject)object).eClass().getEPackage() == modelPackage;
-        }
-        return false;
+    if (object == modelPackage)
+    {
+      return true;
     }
+    if (object instanceof EObject)
+    {
+      return ((EObject)object).eClass().getEPackage() == modelPackage;
+    }
+    return false;
+  }
 
   /**
-     * The switch that delegates to the <code>createXXX</code> methods.
-     * <!-- begin-user-doc -->
+   * The switch that delegates to the <code>createXXX</code> methods.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   protected ATestSwitch<Adapter> modelSwitch =
-    new ATestSwitch<Adapter>() {
-            @Override
-            public Adapter caseModel(Model object) {
-                return createModelAdapter();
-            }
-            @Override
-            public Adapter caseTests(Tests object) {
-                return createTestsAdapter();
-            }
-            @Override
-            public Adapter caseConstraint(Constraint object) {
-                return createConstraintAdapter();
-            }
-            @Override
-            public Adapter caseValue(Value object) {
-                return createValueAdapter();
-            }
-            @Override
-            public Adapter caseIntValue(IntValue object) {
-                return createIntValueAdapter();
-            }
-            @Override
-            public Adapter caseRealValue(RealValue object) {
-                return createRealValueAdapter();
-            }
-            @Override
-            public Adapter defaultCase(EObject object) {
-                return createEObjectAdapter();
-            }
-        };
+    new ATestSwitch<Adapter>()
+    {
+      @Override
+      public Adapter caseModel(Model object)
+      {
+        return createModelAdapter();
+      }
+      @Override
+      public Adapter caseTests(Tests object)
+      {
+        return createTestsAdapter();
+      }
+      @Override
+      public Adapter caseConstraint(Constraint object)
+      {
+        return createConstraintAdapter();
+      }
+      @Override
+      public Adapter caseValue(Value object)
+      {
+        return createValueAdapter();
+      }
+      @Override
+      public Adapter caseIntValue(IntValue object)
+      {
+        return createIntValueAdapter();
+      }
+      @Override
+      public Adapter caseRealValue(RealValue object)
+      {
+        return createRealValueAdapter();
+      }
+      @Override
+      public Adapter defaultCase(EObject object)
+      {
+        return createEObjectAdapter();
+      }
+    };
 
   /**
-     * Creates an adapter for the <code>target</code>.
-     * <!-- begin-user-doc -->
+   * Creates an adapter for the <code>target</code>.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @param target the object to adapt.
-     * @return the adapter for the <code>target</code>.
-     * @generated
-     */
+   * @param target the object to adapt.
+   * @return the adapter for the <code>target</code>.
+   * @generated
+   */
   @Override
   public Adapter createAdapter(Notifier target)
   {
-        return modelSwitch.doSwitch((EObject)target);
-    }
+    return modelSwitch.doSwitch((EObject)target);
+  }
 
 
   /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.testing.aTest.Model <em>Model</em>}'.
-     * <!-- begin-user-doc -->
+   * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.testing.aTest.Model <em>Model</em>}'.
+   * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.amp.amf.testing.aTest.Model
-     * @generated
-     */
+   * @return the new adapter.
+   * @see org.eclipse.amp.amf.testing.aTest.Model
+   * @generated
+   */
   public Adapter createModelAdapter()
   {
-        return null;
-    }
+    return null;
+  }
 
   /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.testing.aTest.Tests <em>Tests</em>}'.
-     * <!-- begin-user-doc -->
+   * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.testing.aTest.Tests <em>Tests</em>}'.
+   * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.amp.amf.testing.aTest.Tests
-     * @generated
-     */
+   * @return the new adapter.
+   * @see org.eclipse.amp.amf.testing.aTest.Tests
+   * @generated
+   */
   public Adapter createTestsAdapter()
   {
-        return null;
-    }
+    return null;
+  }
 
   /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.testing.aTest.Constraint <em>Constraint</em>}'.
-     * <!-- begin-user-doc -->
+   * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.testing.aTest.Constraint <em>Constraint</em>}'.
+   * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.amp.amf.testing.aTest.Constraint
-     * @generated
-     */
+   * @return the new adapter.
+   * @see org.eclipse.amp.amf.testing.aTest.Constraint
+   * @generated
+   */
   public Adapter createConstraintAdapter()
   {
-        return null;
-    }
+    return null;
+  }
 
   /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.testing.aTest.Value <em>Value</em>}'.
-     * <!-- begin-user-doc -->
+   * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.testing.aTest.Value <em>Value</em>}'.
+   * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.amp.amf.testing.aTest.Value
-     * @generated
-     */
+   * @return the new adapter.
+   * @see org.eclipse.amp.amf.testing.aTest.Value
+   * @generated
+   */
   public Adapter createValueAdapter()
   {
-        return null;
-    }
+    return null;
+  }
 
   /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.testing.aTest.IntValue <em>Int Value</em>}'.
-     * <!-- begin-user-doc -->
+   * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.testing.aTest.IntValue <em>Int Value</em>}'.
+   * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.amp.amf.testing.aTest.IntValue
-     * @generated
-     */
+   * @return the new adapter.
+   * @see org.eclipse.amp.amf.testing.aTest.IntValue
+   * @generated
+   */
   public Adapter createIntValueAdapter()
   {
-        return null;
-    }
+    return null;
+  }
 
   /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.testing.aTest.RealValue <em>Real Value</em>}'.
-     * <!-- begin-user-doc -->
+   * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.testing.aTest.RealValue <em>Real Value</em>}'.
+   * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @see org.eclipse.amp.amf.testing.aTest.RealValue
-     * @generated
-     */
+   * @return the new adapter.
+   * @see org.eclipse.amp.amf.testing.aTest.RealValue
+   * @generated
+   */
   public Adapter createRealValueAdapter()
   {
-        return null;
-    }
+    return null;
+  }
 
   /**
-     * Creates a new adapter for the default case.
-     * <!-- begin-user-doc -->
+   * Creates a new adapter for the default case.
+   * <!-- begin-user-doc -->
    * This default implementation returns null.
    * <!-- end-user-doc -->
-     * @return the new adapter.
-     * @generated
-     */
+   * @return the new adapter.
+   * @generated
+   */
   public Adapter createEObjectAdapter()
   {
-        return null;
-    }
+    return null;
+  }
 
 } //ATestAdapterFactory

@@ -22,24 +22,24 @@ import org.eclipse.emf.ecore.EClass;
 public class RealValueImpl extends ValueImpl implements RealValue
 {
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   protected RealValueImpl()
   {
-        super();
-    }
+    super();
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   @Override
   protected EClass eStaticClass()
   {
-        return ATestPackage.Literals.REAL_VALUE;
-    }
+    return ATestPackage.Literals.REAL_VALUE;
+  }
 
 } //RealValueImpl
