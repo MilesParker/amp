@@ -38,11 +38,14 @@ import org.metaabm.SAttributed;
 import org.metaabm.SContext;
 import org.metaabm.SProjection;
 
+import com.google.inject.Singleton;
+
 /**
  * 
  * @author mparker
  * 
  */
+@Singleton
 public class AParScopeProvider extends DefaultScopeProvider {
 
     /**

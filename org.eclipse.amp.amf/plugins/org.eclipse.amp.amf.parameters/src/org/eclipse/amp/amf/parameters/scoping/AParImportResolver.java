@@ -22,11 +22,14 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.scoping.impl.ImportUriResolver;
 
+import com.google.inject.Singleton;
+
 /**
  * 
  * @author mparker
  * 
  */
+@Singleton
 public class AParImportResolver extends ImportUriResolver {
     /**
      * @param object

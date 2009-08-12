@@ -5,6 +5,8 @@
 package org.eclipse.amp.amf.parameters;
 
 import org.eclipse.xtext.Constants;
+import org.eclipse.xtext.linking.ILinker;
+import org.eclipse.xtext.linking.impl.Linker;
 import org.eclipse.xtext.service.DefaultRuntimeModule;
 
 import com.google.inject.Binder;
@@ -14,63 +16,72 @@ import com.google.inject.name.Names;
  * Manual modifications go to {org.eclipse.amp.amf.parameters.AParRuntimeModule}
  */
 public abstract class AbstractAParRuntimeModule extends DefaultRuntimeModule {
-	
-	@Override
-	public void configure(Binder binder) {
-		super.configure(binder);
-		binder.bind(String.class).annotatedWith(Names.named(Constants.LANGUAGE_NAME)).toInstance(
-			"org.eclipse.amp.amf.parameters.APar");
-	}
-	
-	
-	// contributed by org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment
-	public Class<? extends org.eclipse.xtext.IGrammarAccess> bindIGrammarAccess() {
-		return org.eclipse.amp.amf.parameters.services.AParGrammarAccess.class;
-	}
 
-	// contributed by org.eclipse.xtext.generator.parseTreeConstructor.ParseTreeConstructorFragment
-	public Class<? extends org.eclipse.xtext.parsetree.reconstr.IParseTreeConstructor> bindIParseTreeConstructor() {
-		return org.eclipse.amp.amf.parameters.parseTreeConstruction.AParParsetreeConstructor.class;
-	}
+    @Override
+    public void configure(Binder binder) {
+        super.configure(binder);
+        binder.bind(String.class).annotatedWith(Names.named(Constants.LANGUAGE_NAME)).toInstance(
+        "org.eclipse.amp.amf.parameters.APar");
+    }
 
-	// contributed by de.itemis.xtext.antlr.XtextAntlrGeneratorFragment
-	public Class<? extends org.eclipse.xtext.parser.antlr.IAntlrParser> bindIAntlrParser() {
-		return org.eclipse.amp.amf.parameters.parser.antlr.AParParser.class;
-	}
 
-	// contributed by de.itemis.xtext.antlr.XtextAntlrGeneratorFragment
-	public Class<? extends org.eclipse.xtext.parser.ITokenToStringConverter> bindITokenToStringConverter() {
-		return org.eclipse.xtext.parser.antlr.AntlrTokenToStringConverter.class;
-	}
+    // contributed by org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment
+    public Class<? extends org.eclipse.xtext.IGrammarAccess> bindIGrammarAccess() {
+        return org.eclipse.amp.amf.parameters.services.AParGrammarAccess.class;
+    }
 
-	// contributed by de.itemis.xtext.antlr.XtextAntlrGeneratorFragment
-	public Class<? extends org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider> bindIAntlrTokenFileProvider() {
-		return org.eclipse.amp.amf.parameters.parser.antlr.AParAntlrTokenFileProvider.class;
-	}
+    // contributed by org.eclipse.xtext.generator.parseTreeConstructor.ParseTreeConstructorFragment
+    public Class<? extends org.eclipse.xtext.parsetree.reconstr.IParseTreeConstructor> bindIParseTreeConstructor() {
+        return org.eclipse.amp.amf.parameters.parseTreeConstruction.AParParsetreeConstructor.class;
+    }
 
-	// contributed by de.itemis.xtext.antlr.XtextAntlrGeneratorFragment
-	public Class<? extends org.eclipse.xtext.parser.antlr.Lexer> bindLexer() {
-		return org.eclipse.amp.amf.parameters.parser.antlr.internal.InternalAParLexer.class;
-	}
+    // contributed by de.itemis.xtext.antlr.XtextAntlrGeneratorFragment
+    public Class<? extends org.eclipse.xtext.parser.antlr.IAntlrParser> bindIAntlrParser() {
+        return org.eclipse.amp.amf.parameters.parser.antlr.AParParser.class;
+    }
 
-	// contributed by de.itemis.xtext.antlr.XtextAntlrGeneratorFragment
-	public Class<? extends org.eclipse.xtext.parser.antlr.ITokenDefProvider> bindITokenDefProvider() {
-		return org.eclipse.xtext.parser.antlr.AntlrTokenDefProvider.class;
-	}
+    // contributed by de.itemis.xtext.antlr.XtextAntlrGeneratorFragment
+    public Class<? extends org.eclipse.xtext.parser.ITokenToStringConverter> bindITokenToStringConverter() {
+        return org.eclipse.xtext.parser.antlr.AntlrTokenToStringConverter.class;
+    }
 
-	// contributed by org.eclipse.xtext.generator.validation.JavaValidatorFragment
-	@org.eclipse.xtext.service.SingletonBinding(eager=true)	public Class<? extends org.eclipse.amp.amf.parameters.validation.AParJavaValidator> bindAParJavaValidator() {
-		return org.eclipse.amp.amf.parameters.validation.AParJavaValidator.class;
-	}
+    // contributed by de.itemis.xtext.antlr.XtextAntlrGeneratorFragment
+    public Class<? extends org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider> bindIAntlrTokenFileProvider() {
+        return org.eclipse.amp.amf.parameters.parser.antlr.AParAntlrTokenFileProvider.class;
+    }
 
-	// contributed by org.eclipse.xtext.generator.scoping.JavaScopingFragment
-	public Class<? extends org.eclipse.xtext.scoping.IScopeProvider> bindIScopeProvider() {
-		return org.eclipse.amp.amf.parameters.scoping.AParScopeProvider.class;
-	}
+    // contributed by de.itemis.xtext.antlr.XtextAntlrGeneratorFragment
+    public Class<? extends org.eclipse.xtext.parser.antlr.Lexer> bindLexer() {
+        return org.eclipse.amp.amf.parameters.parser.antlr.internal.InternalAParLexer.class;
+    }
 
-	// contributed by org.eclipse.xtext.generator.formatting.FormatterFragment
-	public Class<? extends org.eclipse.xtext.formatting.IFormatter> bindIFormatter() {
-		return org.eclipse.amp.amf.parameters.formatting.AParFormatter.class;
-	}
+    // contributed by de.itemis.xtext.antlr.XtextAntlrGeneratorFragment
+    public Class<? extends org.eclipse.xtext.parser.antlr.ITokenDefProvider> bindITokenDefProvider() {
+        return org.eclipse.xtext.parser.antlr.AntlrTokenDefProvider.class;
+    }
+
+    // contributed by org.eclipse.xtext.generator.validation.JavaValidatorFragment
+    @org.eclipse.xtext.service.SingletonBinding(eager=true)	public Class<? extends org.eclipse.amp.amf.parameters.validation.AParJavaValidator> bindAParJavaValidator() {
+        return org.eclipse.amp.amf.parameters.validation.AParJavaValidator.class;
+    }
+
+    // contributed by org.eclipse.xtext.generator.scoping.JavaScopingFragment
+    public Class<? extends org.eclipse.xtext.scoping.IScopeProvider> bindIScopeProvider() {
+        return org.eclipse.amp.amf.parameters.scoping.AParScopeProvider.class;
+    }
+
+    // contributed by org.eclipse.xtext.generator.formatting.FormatterFragment
+    public Class<? extends org.eclipse.xtext.formatting.IFormatter> bindIFormatter() {
+        return org.eclipse.amp.amf.parameters.formatting.AParFormatter.class;
+    }
+
+    @Override
+    /**
+     * @return
+     * @see org.eclipse.xtext.service.DefaultRuntimeModule#bindILinker()
+     */
+    public Class<? extends ILinker> bindILinker() {
+        return Linker.class;
+    }
 
 }

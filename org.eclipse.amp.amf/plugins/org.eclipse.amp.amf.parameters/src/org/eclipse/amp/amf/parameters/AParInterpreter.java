@@ -32,7 +32,6 @@ import org.eclipse.amp.amf.parameters.aPar.Model;
 import org.eclipse.amp.amf.parameters.aPar.Parameter;
 import org.eclipse.amp.amf.parameters.aPar.RealValue;
 import org.eclipse.amp.amf.parameters.aPar.StringValue;
-import org.eclipse.amp.amf.parameters.aPar.impl.AParFactoryImpl;
 import org.eclipse.amp.amf.parameters.scoping.AParImportResolver;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -68,6 +67,7 @@ public class AParInterpreter {
     private XMLParserPool parserPool = new XMLParserPoolImpl();
 
     private Map nameToFeatureMap = new HashMap();
+    private ResourceSet resourceSet;
 
     public AParInterpreter(Resource apar) {
         this.aparResource = apar;
@@ -88,18 +88,19 @@ public class AParInterpreter {
     }
 
     public void load(URI uri) {
-        ResourceSet resources = new ResourceSetImpl();
+        if (resourceSet == null) {
+            resourceSet = new ResourceSetImpl();
 
-        new AParFactoryImpl();
-        resources.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
-        resources.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
-        resources.getLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
-        resources.getLoadOptions().put(XMLResource.OPTION_USE_PARSER_POOL, parserPool);
-        resources.getLoadOptions().put(XMLResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);
+            resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
+            resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
+            resourceSet.getLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
+            resourceSet.getLoadOptions().put(XMLResource.OPTION_USE_PARSER_POOL, parserPool);
+            resourceSet.getLoadOptions().put(XMLResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);
+        }
 
         // Registry resourceFactoryRegistry = resources.getResourceFactoryRegistry();
 
-        aparResource = resources.getResource(uri, true);
+        aparResource = resourceSet.getResource(uri, true);
         ((ResourceImpl) aparResource).setIntrinsicIDToEObjectMap(new HashMap<String, EObject>());
         initialize();
     }
@@ -153,8 +154,7 @@ public class AParInterpreter {
         CollectionUtils.reverseArray(reverseIncorporates);
         for (Incorporates incorporates : reverseIncorporates) {
             AParInterpreter incInterpreter = new AParInterpreter();
-            incInterpreter.setParserPool(parserPool);
-            incInterpreter.setNameToFeatureMap(nameToFeatureMap);
+            incInterpreter.setResourceSet(resourceSet);
             String convertURI = AParImportResolver.convertURI(incorporates);
             URI incURI = URI.createURI(convertURI);
             incInterpreter.load(incURI);
@@ -226,5 +226,13 @@ public class AParInterpreter {
      */
     public void setNameToFeatureMap(Map nameToFeatureMap) {
         this.nameToFeatureMap = nameToFeatureMap;
+    }
+
+    public ResourceSet getResourceSet() {
+        return resourceSet;
+    }
+
+    public void setResourceSet(ResourceSet resourceSet) {
+        this.resourceSet = resourceSet;
     }
 }
