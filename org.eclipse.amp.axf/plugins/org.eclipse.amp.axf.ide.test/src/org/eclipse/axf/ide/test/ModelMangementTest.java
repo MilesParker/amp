@@ -107,8 +107,12 @@ public class ModelMangementTest extends TestCase {
         return bot.viewByTitle("Package Explorer");
     }
 
-    public void utestOne() {
+    protected void setUp() throws Exception {
+        super.setUp();
         // setupProject();
+    }
+
+    public void utestOne() {
         assertEquals(gefViews().size(), 0);
         assertTrue(activeModel() == null);
         launchModel();
@@ -123,7 +127,7 @@ public class ModelMangementTest extends TestCase {
         assertEquals(gefViews().size(), 0);
     }
 
-    public void utestTwo() {
+    public void testTwo() {
         bot.sleep(2000);
         // start new
         launchModel();
@@ -202,7 +206,7 @@ public class ModelMangementTest extends TestCase {
         assertNull(manager().getActiveModel());
     }
 
-    public void testStopPause() {
+    public void utestStopPause() {
         bot.sleep(2000);
         // start new
         launchModel();
@@ -265,7 +269,7 @@ public class ModelMangementTest extends TestCase {
         tree().select(testProjectName);
         SWTBotTreeItem projectNode = tree().expandNode(testProjectName);
         bot.sleep(2000);
-        projectNode.expandNode("TestModelSimple.metaabm").doubleClick();
+        projectNode.expandNode("TestModel.metaabm").doubleClick();
         packageExplorer().setFocus();
         bot.sleep(2000);
 
@@ -342,7 +346,7 @@ public class ModelMangementTest extends TestCase {
     }
 
     private List<SWTBotView> gefViews() {
-        return bot.views(WidgetMatcherFactory.withPartId("org.eclipse.amp.view.GEFView"));
+        return bot.views(WidgetMatcherFactory.withPartName("Demographic Prisoner_s Dilemma Graphic View"));
     }
 
     private SWTBotMenu control() {
@@ -358,14 +362,15 @@ public class ModelMangementTest extends TestCase {
     }
 
     private void setupProject() {
-        bot.viewByTitle("Welcome").close();
-        bot.perspectiveByLabel("MetaABM").activate();
+        // bot.viewByTitle("Welcome").close();
+        // bot.perspectiveByLabel("Agent Modeling").activate();
         bot.viewByTitle("Package Explorer").setFocus();
         bot.menu("File").menu("New").menu("Escape Project").click();
         // 'com.swtbot.test.project' is the java project name to create
 
         bot.text(0).setText(testProjectName);
         // Click the Finish button
+
         bot.button("Finish").click();
         try {
             copyFiles("org.eclipse.amp.axf.ide.test", "res/TestModel.metaabm", testProjectName, "TestModel.metaabm");
