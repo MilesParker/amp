@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.amp.amf.target.ascape"
-      label="AMF Tools for Ascape"
+      label="AMP AMF for Ascape (Incubation) (Optional)"
       version="0.2.0.qualifier"
       provider-name="Eclipse.org">
 
