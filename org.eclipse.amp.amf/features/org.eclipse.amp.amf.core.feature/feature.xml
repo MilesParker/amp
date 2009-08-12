@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.amp.amf.core.feature"
-      label="AMF Model and Editor"
+      label="AMP AMF Runtime (Incubation)"
       version="0.2.0.qualifier"
       provider-name="Eclipse.org">
 
@@ -251,13 +251,6 @@ litigation.
 
    <plugin
          id="org.eclipse.amp.amf.acore.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.amp.amf.acore.editor"
          download-size="0"
          install-size="0"
          version="0.0.0"
