@@ -145,9 +145,13 @@ public class AParInterpreter {
     List<Parameter> collect(Set<String> overridden) {
         List<Parameter> includeIncorporated = new ArrayList<Parameter>();
         for (Parameter parameter : aparModel.getParameters()) {
-            if (!overridden.contains(parameter.getAttribute().getLabel())) {
+            String label = parameter.getAttribute().getLabel();
+            if (parameter.getAttribute().getOwner() != rootContext) {
+                label = parameter.getAttribute().getOwner().getLabel() + " " + label;
+            }
+            if (!overridden.contains(label)) {
                 includeIncorporated.add(parameter);
-                overridden.add(parameter.getAttribute().getLabel());
+                overridden.add(label);
             }
         }
         Incorporates[] reverseIncorporates = (Incorporates[]) aparModel.getIncorporates().toArray();
