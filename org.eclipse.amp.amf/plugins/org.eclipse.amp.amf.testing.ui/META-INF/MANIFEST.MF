@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.eclipse.amp.amf.testing.ui
-Bundle-Vendor: My Company
-Bundle-Version: 1.0.0
+Bundle-Name: %pluginName
+Bundle-Vendor: %providerName
+Bundle-Version: 0.2.0
 Bundle-SymbolicName: org.eclipse.amp.amf.testing.ui; singleton:=true
 Eclipse-RegisterBuddy: org.eclipse.xtext.log4j
 Bundle-ActivationPolicy: lazy
