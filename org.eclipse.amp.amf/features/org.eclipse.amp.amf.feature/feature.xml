@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.amp.amf.feature"
-      label="AMF Modeling Tools, IDE and GIS"
+      label="AMP AMF - Agent Modeling Framework SDK (Incubation)"
       version="0.2.0.qualifier"
       provider-name="Eclipse.org">
 
    <description url="http://eclipse.org/amp">
-      AMF SDK
+      AMF Model Development Environment
    </description>
 
    <copyright>
@@ -224,14 +224,39 @@ litigation.
          id="org.eclipse.amp.amf.gen.feature"
          version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.amp.amf.gis.feature"
-         version="0.0.0"/>
-
    <plugin
-         id="org.eclipse.amp.amf.docs"
+         id="org.eclipse.amp.amf.ide"
          download-size="0"
          install-size="0"
-         version="0.0.0"/>
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.amp.amf.acore.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.amp.amf.gen"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.amp.amf.gen.extras"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.amp.amf.gen.ide"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>
