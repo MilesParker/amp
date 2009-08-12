@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.amp.escape.feature"
-      label="Escape IDE"
+      label="AMP Escape IDE (Incubation)"
       version="0.2.0.qualifier"
       provider-name="Eclipse.org">
 
@@ -61,10 +61,6 @@ Everyone is permitted to copy and distribute copies of this Agreement, but in or
 This Agreement is governed by the laws of the State of New York and the intellectual property laws of the United States of America. No party to this Agreement will bring a legal action under this Agreement more than one year after the cause of action arose. Each party waives its rights to a jury trial in any resulting litigation.
    </license>
 
-   <url>
-      <discovery label="Test NG" url="http://beust.com/eclipse"/>
-   </url>
-
    <plugin
          id="org.ascape.ui.amp"
          download-size="0"
@@ -87,14 +83,21 @@ This Agreement is governed by the laws of the State of New York and the intellec
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.amp.escape.testng"
+         id="org.eclipse.amp.escape.ascape.chart"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.amp.escape.ascape.chart"
+         id="org.ascape.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.amp.escape.testing.ide"
          download-size="0"
          install-size="0"
          version="0.0.0"
