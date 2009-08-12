@@ -14,8 +14,6 @@ public class EditPartListener extends SWTAsyncModelListener implements IAdaptabl
 
     private final EditPart editPart;
 
-    boolean waitForUpdate = true;
-
     public EditPartListener(Control control, EditPart editPart) {
         super(control, "Edit Root Update");
         this.editPart = editPart;
