@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.amp.amf.target.repast"
-      label="AMF Repast Target"
+      label="AMP AMF for Repast (Incubation) (Optional)"
       version="0.2.0.qualifier"
       provider-name="Eclipse.org">
 
    <description>
-      AMF tools for Repast
+      AMF tools for Repast. Please note that this requires the repast SImphony plugins available at: http://mirror.anl.gov/pub/repastsimphony.
    </description>
 
    <copyright>
@@ -226,15 +226,11 @@ litigation.
       <import plugin="org.eclipse.jdt.launching"/>
       <import plugin="org.eclipse.jdt.debug.ui"/>
       <import plugin="org.eclipse.jdt.debug"/>
-      <import plugin="org.apache.commons.lang"/>
-      <import plugin="repast.simphony.score" version="1.0.0" match="greaterOrEqual"/>
+      <import plugin="repast.simphony.score" match="greaterOrEqual"/>
       <import plugin="org.eclipse.jdt.core" version="3.5.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.amp.amf.ide"/>
-      <import plugin="org.eclipse.emf.common"/>
-      <import plugin="org.eclipse.emf.ecore"/>
-      <import plugin="org.eclipse.emf.ecore.xmi"/>
-      <import plugin="org.junit"/>
-      <import plugin="org.eclipse.amp.amf.acore.edit"/>
+      <import plugin="org.apache.commons.lang"/>
+      <import plugin="org.eclipse.amp.amf.ide" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.gen.ide" version="0.2.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -246,13 +242,6 @@ litigation.
 
    <plugin
          id="org.eclipse.amp.amf.ide.repast"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="repast.simphony.score"
          download-size="0"
          install-size="0"
          version="0.0.0"
