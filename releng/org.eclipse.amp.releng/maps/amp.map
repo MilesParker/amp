@@ -29,22 +29,22 @@ plugin@org.eclipse.amp.amf.parameters.test=HEAD,:pserver:anonymous@dev.eclipse.o
 plugin@org.eclipse.amp.axf.ide.test=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.axf/tests/org.eclipse.amp.axf.ide.test
 
 !***FEATURES
-features@org.ascape.core.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.ascape/features/org.ascape.core.feature
-features@org.eclipse.amp.platform.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp/features/org.eclipse.amp.platform.feature
-features@org.eclipse.amp.agf.chart.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.agf/features/org.eclipse.amp.agf.chart.feature
-features@org.eclipse.amp.agf.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.agf/features/org.eclipse.amp.agf.feature
-features@org.eclipse.amp.agf.zest.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.agf/features/org.eclipse.amp.agf.zest.feature
-features@org.eclipse.amp.agf3d.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.agf/features/org.eclipse.amp.agf3d.feature
-features@org.eclipse.amp.amf.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.feature
-features@org.eclipse.amp.amf.gen.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.gen.feature
-features@org.eclipse.amp.amf.ide.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.ide.feature
-features@org.eclipse.amp.amf.target.ascape.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.target.ascape.feature
+feature@org.ascape.core.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.ascape/features/org.ascape.core.feature
+feature@org.eclipse.amp.all.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp/features/org.eclipse.amp.all.feature
+feature@org.eclipse.amp.agf.chart.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.agf/features/org.eclipse.amp.agf.chart.feature
+feature@org.eclipse.amp.agf.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.agf/features/org.eclipse.amp.agf.feature
+feature@org.eclipse.amp.agf.zest.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.agf/features/org.eclipse.amp.agf.zest.feature
+feature@org.eclipse.amp.agf3d.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.agf/features/org.eclipse.amp.agf3d.feature
+feature@org.eclipse.amp.amf.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.feature
+feature@org.eclipse.amp.amf.gen.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.gen.feature
+feature@org.eclipse.amp.amf.ide.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.ide.feature
+feature@org.eclipse.amp.amf.target.ascape.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.target.ascape.feature
 !***TODO Fix this directory name on CVS
-features@org.eclipse.amp.amf.target.escape.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.target.escape
-features@org.eclipse.amp.amf.target.repast.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.target.repast.feature
-features@org.eclipse.amp.amfx.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amfx.feature
-features@org.eclipse.amp.axf.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.axf/features/org.eclipse.amp.axf.feature
-features@org.eclipse.amp.escape.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.escape/features/org.eclipse.amp.escape.feature
+feature@org.eclipse.amp.amf.target.escape.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.target.escape
+feature@org.eclipse.amp.amf.target.repast.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.target.repast.feature
+feature@org.eclipse.amp.amfx.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amfx.feature
+feature@org.eclipse.amp.axf.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.axf/features/org.eclipse.amp.axf.feature
+feature@org.eclipse.amp.escape.feature=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.escape/features/org.eclipse.amp.escape.feature
 
 !***PLUGINS
 plugins@org.eclipse.amp.agf.chart=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.chart
