@@ -17,7 +17,9 @@
 package org.eclipse.amp.amf.parameters.scoping;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
@@ -48,6 +50,8 @@ import com.google.inject.Singleton;
 @Singleton
 public class AParScopeProvider extends DefaultScopeProvider {
 
+    Map<EObject, ResourceSet> contextSet = new HashMap<EObject, ResourceSet>();
+
     /**
      * @param context
      * @param reference
@@ -62,13 +66,7 @@ public class AParScopeProvider extends DefaultScopeProvider {
         if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAttribute()) {
             // if (attrScope == null) {
             List<IScopedElement> allElems = new ArrayList<IScopedElement>();
-            ResourceSet resourceSet = context.eResource().getResourceSet();
-            Resource found = resourceSet.getResource(URI.createURI("http://metaabm.org/Engine.metaabm"), true);
-            if (found == null) {
-                StatusManager.getManager().handle(
-                                                  new Status(Status.WARNING, "org.eclipse.amp.amf.parameters",
-                                                  "Couldn't locate engine context."));
-            }
+            ResourceSet resourceSet = getResourceSet(context);
             EList<Resource> resources = resourceSet.getResources();
             for (Resource resource : resources) {
                 EObject content = resource.getContents().get(0);
@@ -83,6 +81,26 @@ public class AParScopeProvider extends DefaultScopeProvider {
             return attrScope;
         }
         return defaultScope;
+    }
+
+    private ResourceSet getResourceSet(EObject context) {
+        ResourceSet resourceSet = contextSet.get(context.eResource());
+        if (resourceSet == null) {
+            resourceSet = context.eResource().getResourceSet();
+            Resource found = resourceSet.getResource(URI.createURI("http://metaabm.org/Engine.metaabm"), true);
+            if (found == null) {
+                StatusManager.getManager().handle(
+                                                  new Status(Status.WARNING, "org.eclipse.amp.amf.parameters",
+                                                  "Couldn't locate engine context."));
+            }
+            if (found == null) {
+                StatusManager.getManager().handle(
+                                                  new Status(Status.WARNING, "org.eclipse.amp.amf.parameters",
+                                                  "Couldn't locate engine context."));
+            }
+            contextSet.put(context, resourceSet);
+        }
+        return resourceSet;
     }
 
     // private void addDumyAttr(String label) {

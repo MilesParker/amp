@@ -16,6 +16,10 @@
 
 package org.eclipse.amp.amf.parameters;
 
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -25,6 +29,7 @@ import java.util.Set;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
+import org.eclipse.amp.amf.parameters.aPar.BOOLEAN;
 import org.eclipse.amp.amf.parameters.aPar.BooleanValue;
 import org.eclipse.amp.amf.parameters.aPar.Incorporates;
 import org.eclipse.amp.amf.parameters.aPar.IntValue;
@@ -37,7 +42,9 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -47,6 +54,8 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLParserPool;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMLParserPoolImpl;
+import org.metaabm.SAttribute;
+import org.metaabm.SAttributeType;
 import org.metaabm.SContext;
 
 /**
@@ -68,6 +77,7 @@ public class AParInterpreter {
 
     private Map nameToFeatureMap = new HashMap();
     private ResourceSet resourceSet;
+    private String localPath;
 
     public AParInterpreter(Resource apar) {
         this.aparResource = apar;
@@ -122,15 +132,15 @@ public class AParInterpreter {
         parameters = collect(new HashSet<String>());
 
         String rootPath = amfResource.getURI().toPlatformString(true);
-        String projectPath = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(rootPath)).getProject()
-        .getLocation().toOSString();
+        localPath = ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(rootPath)).getProject().getLocation()
+        .toOSString();
 
         args = new String[parameters.size()];
         int i = 0;
         for (Parameter parameter : parameters) {
             String value = value(parameter.getValue());
             if (parameter.getValue() instanceof StringValue) {
-                value = StringUtils.replace(value, "|", projectPath + "/");
+                value = StringUtils.replace(value, "|", localPath + "/");
             }
             if (parameter.getAttribute().getLabel() != null) {
                 args[i] = parameter.getAttribute().getLabel().replaceAll(" ", "") + "=" + value;
@@ -210,6 +220,82 @@ public class AParInterpreter {
         throw new RuntimeException("Unexpected object type: " + value.getClass());
     }
 
+    private void assign(PropertyDescriptor desc, Object assignee, Object assignment) throws IllegalAccessException,
+    InvocationTargetException {
+        Object[] assignArg = new Object[1];
+        assignArg[0] = assignment;
+        desc.getWriteMethod().invoke(assignee, assignArg);
+    }
+
+    public void assignValues(Object assignee, MultiStatus status) {
+        assignValues(new Object[] { assignee }, status);
+    }
+
+    public void assignValues(Object[] assignees, MultiStatus status) {
+        Map<PropertyDescriptor, Object> assigneeForProperty = new HashMap<PropertyDescriptor, Object>();
+        Map<String, PropertyDescriptor> propertyForID = new HashMap<String, PropertyDescriptor>();
+        for (Object assignee : assignees) {
+            PropertyDescriptor[] infoProperties;
+            try {
+                infoProperties = Introspector.getBeanInfo(assignee.getClass()).getPropertyDescriptors();
+                for (PropertyDescriptor propertyDescriptor : infoProperties) {
+                    propertyForID.put(StringUtils.capitalize(propertyDescriptor.getName()), propertyDescriptor);
+                    assigneeForProperty.put(propertyDescriptor, assignee);
+                }
+            } catch (IntrospectionException e) {
+                warn(status, "Could not introspect on \"" + assignee + ". Continuing.", e);
+            }
+        }
+        for (Parameter param : getParameters()) {
+            SAttribute attribute = param.getAttribute();
+            try {
+                try {
+                    String attrName = StringUtils.capitalize(attribute.getID());
+                    PropertyDescriptor desc = propertyForID.get(attrName);
+                    if (desc == null && attribute.getOwner() != getTargetModel()) {
+                        // We need to qualify name
+                        attrName = StringUtils.capitalize(attribute.getOwner().getID()) + attrName;
+                        desc = propertyForID.get(attrName);
+                    }
+                    if (desc == null) {
+                        warn(status, "Could not find attribute \"" + attrName + "\" in " + assignees, null);
+                    } else {
+                        Object assignee = assigneeForProperty.get(desc);
+                        if (attribute.getSType() == SAttributeType.REAL_LITERAL) {
+                            assign(desc, assignee, Double.valueOf(AParInterpreter.value(param.getValue())));
+                        } else if (attribute.getSType() == SAttributeType.INTEGER_LITERAL) {
+                            assign(desc, assignee, Integer.valueOf(AParInterpreter.value(param.getValue())));
+                        } else if (attribute.getSType() == SAttributeType.BOOLEAN_LITERAL) {
+                            assign(desc, assignee, (((BooleanValue) param.getValue()).getValue() == BOOLEAN.TRUE));
+                        } else if (attribute.getSType() == SAttributeType.SYMBOL_LITERAL) {
+                            String string = AParInterpreter.value(param.getValue());
+                            string = StringUtils.replace(string, "|", getLocalPath() + "/");
+                            assign(desc, assignee, string);
+                        } else {
+                            status.add(new Status(Status.WARNING, "org.eclipse.amp.amf.testing.ide",
+                                                  "Unrecognized type: " + attribute.getSType()));
+                        }
+                    }
+                } catch (Exception e) {
+                    status.add(new Status(Status.WARNING, "org.eclipse.amp.amf.testing.ide",
+                                          "Problem assigning parameter: " + attribute, e));
+                    continue;
+                }
+            } catch (Exception e) {
+                status.add(new Status(Status.WARNING, "org.eclipse.amp.amf.testing.ide",
+                                      "Couldn't obtain property descriptors for \"" + getModelClass() + "\"", e));
+            }
+        }
+    }
+
+    private void warn(MultiStatus status, String msg, Exception e) {
+        if (status != null) {
+            status.add(new Status(Status.WARNING, "org.eclipse.amp.amf.testing.ide", msg, e));
+        } else {
+            System.err.println(msg);
+        }
+    }
+
     public Model getModel() {
         return aparModel;
     }
@@ -238,5 +324,13 @@ public class AParInterpreter {
 
     public void setResourceSet(ResourceSet resourceSet) {
         this.resourceSet = resourceSet;
+    }
+
+    public List<Parameter> getParameters() {
+        return parameters;
+    }
+
+    public String getLocalPath() {
+        return localPath;
     }
 }
