@@ -19,3 +19,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.ecore.xmi;bundle-version="2.5.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.apache.commons.lang;version="2.4.0"

@@ -80,6 +80,12 @@ public class TestRunSet {
         }
         ResourceSet resourceSet = new ResourceSetImpl();
 
+        resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
+        resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
+        resourceSet.getLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
+        resourceSet.getLoadOptions().put(XMLResource.OPTION_USE_PARSER_POOL, parserPool);
+        resourceSet.getLoadOptions().put(XMLResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);
+
         monitor.subTask("Creating Results");
         IFolder resultsFolder = project.getFolder("results");
         IFile resultsFile = resultsFolder.getFile(name + ".ares");

@@ -20,8 +20,12 @@ import java.util.Date;
 
 import org.ascape.util.data.DataSeries;
 import org.eclipse.amp.amf.parameters.AParInterpreter;
+import org.eclipse.amp.amf.parameters.aPar.AParFactory;
+import org.eclipse.amp.amf.parameters.aPar.Parameter;
 import org.eclipse.amp.amf.testing.ATestInterpreter;
+import org.eclipse.amp.amf.testing.aTest.ATestFactory;
 import org.eclipse.amp.amf.testing.aTest.Constraint;
+import org.eclipse.amp.amf.testing.aTest.Value;
 import org.eclipse.amp.amf.testing.ares.ConstraintTest;
 import org.eclipse.amp.amf.testing.ares.Issue;
 import org.eclipse.amp.amf.testing.ares.ResultType;
@@ -72,8 +76,22 @@ public class TestRun {
         run.setParameterization(atest.getAparInterpreter().getModel());
         // Note that we need to clone for case where constraints or parameters change.
         run.setModel(atest.getAparInterpreter().getTargetModel());
-        run.getConstraints().addAll(EcoreUtil.copyAll(atest.getModel().getContraints()));
-        run.getParameters().addAll(EcoreUtil.copyAll(atest.getAparInterpreter().getModel().getParameters()));
+        for (Constraint constraint : atest.getModel().getContraints()) {
+            Constraint shallowCopy = ATestFactory.eINSTANCE.createConstraint();
+            shallowCopy.setAgent(constraint.getAgent());
+            shallowCopy.setAttribute(constraint.getAttribute());
+            shallowCopy.setMaxValue((Value) EcoreUtil.copy(constraint.getMaxValue()));
+            shallowCopy.setMinValue((Value) EcoreUtil.copy(constraint.getMinValue()));
+            shallowCopy.setMeasure(constraint.getMeasure());
+            shallowCopy.setQualifier(constraint.getQualifier());
+            run.getConstraints().add(shallowCopy);
+        }
+        for (Parameter param : atest.getAparInterpreter().getModel().getParameters()) {
+            Parameter shallowCopy = AParFactory.eINSTANCE.createParameter();
+            shallowCopy.setAttribute(param.getAttribute());
+            shallowCopy.setValue((org.eclipse.amp.amf.parameters.aPar.Value) EcoreUtil.copy(param.getValue()));
+            run.getParameters().add(shallowCopy);
+        }
         run.setTest(atest.getModel());
         run.setStarted(new Date());
         run.setResult(ResultType.INCOMPLETE);
@@ -81,15 +99,27 @@ public class TestRun {
 
     protected void runTest(final IProgressMonitor parentMonitor, final MultiStatus status) {
         initialize();
-        AParInterpreter apar = atest.getAparInterpreter();
+        final AParInterpreter apar = atest.getAparInterpreter();
         final EclipseEscapeRunner runner = new EclipseEscapeRunner() {
             protected synchronized void runMainLoop() {
                 super.runMainLoop();
-                if (!parentMonitor.isCanceled()) {
+                if (!parentMonitor.isCanceled() && getMonitor() != null) {
                     evaluateTest(this, status);
                 }
                 close();
             }
+
+            /**
+             * @param args
+             * @param block
+             * @see org.ascape.runtime.Runner#openImplementation(java.lang.String[], boolean)
+             */
+            public void openImplementation(String[] args, boolean block) {
+                apar.assignValues(new Object[] { getRootScape(), this }, status);
+                super.openImplementation(args, block);
+            }
+
+
         };
         new Thread("Watch Run Set Monitor") {
             public void run() {
@@ -112,7 +142,7 @@ public class TestRun {
         }.start();
         runner.setAutoRestart(false);
         runner.open(project, apar.getTargetModel().getImplementation().getQualifiedName(), atest.getResource()
-                    .getName(), apar.getArgs());
+                    .getName(), new String[] {});
     }
 
     private void evaluateTest(EclipseEscapeRunner runner, MultiStatus status) {

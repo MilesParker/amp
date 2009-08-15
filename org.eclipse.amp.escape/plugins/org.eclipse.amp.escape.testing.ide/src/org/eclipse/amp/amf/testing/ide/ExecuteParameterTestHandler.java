@@ -79,7 +79,7 @@ public class ExecuteParameterTestHandler extends AbstractHandler {
                     return status;
                 }
             };
-            escapeRun.setPriority(Job.LONG);
+            escapeRun.setPriority(Job.SHORT);
             escapeRun.schedule();
         }
         return null;
