@@ -6,14 +6,12 @@ plugin@org.eclipse.test=v20070226,:pserver:anonymous@dev.eclipse.org:/cvsroot/ec
 fragment@org.eclipse.ant.optional.junit=v20050226,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,
 
 !***DEPENDENCIES
-plugin@org.apache.ant=COPY,/Volumes/Resources/Developer/repos/eclipse,dependencies/plugins/org.apache.ant
-plugin@org.apache.commons.collectionsCOPY,/Volumes/Resources/Developer/repos/eclipse,dependencies/plugins/org.apache.commons.collections
-plugin@org.apache.commons.lang=COPY,/Volumes/Resources/Developer/repos/eclipse,dependencies/plugins/org.apache.commons.lang
 plugin@org.eclipse.emf.java=COPY,/Volumes/Resources/Developer/repos/eclipse,dependencies/plugins/org.eclipse.emf.java
-plugin@org.jdom_1.0.0=COPY,/Volumes/Resources/Developer/repos/eclipse,dependencies/plugins/org.jdom_1.0.0
-plugin@org.junit=COPY,/Volumes/Resources/Developer/repos/eclipse,dependencies/plugins/org.junit
 plugin@org.ascape.ui.amp=COPY,/Volumes/Resources/Developer/repos/eclipse,org.ascape/plugins/org.ascape.ui.amp
 plugin@org.ascape.core=COPY,/Volumes/Resources/Developer/repos/eclipse,org.ascape/plugins/org.ascape.core
+plugin@org.jdom,1.0.0,:pserver:anonymous@dev.eclipse.org:/cvsroot/tools,,org.eclipse.orbit/org.jdom
+plugin@org.apache.xerces,2.8.0=v200803070308,:pserver:anonymous@dev.eclipse.org:/cvsroot/tools,,org.eclipse.orbit/org.apache.xerces
+plugin@org.apache.derby,:pserver:anonymous@dev.eclipse.org:/cvsroot/tools,,org.eclipse.orbit/org.apache.derby
 
 !***GEF 3D
 plugin@org.eclipse.draw3d=COPY,/Volumes/Resources/Developer/workspaces/amp/,org.eclipse.draw3d
