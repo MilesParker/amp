@@ -169,7 +169,15 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 
     private void dispose() {
         if (AXFWorkbenchPlugin.getDefault().getManager() != null) {
-            AXFWorkbenchPlugin.getDefault().getManager().remove(model);
+            new Thread() {
+                /**
+                 * 
+                 * @see java.lang.Thread#run()
+                 */
+                public void run() {
+                    AXFWorkbenchPlugin.getDefault().getManager().remove(model);
+                }
+            }.start();
         }
         if (delegateLoader != null) {
             delegateLoader.restore();
@@ -220,7 +228,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
                 close();
             }
         };
-        escapeRun.setPriority(Job.LONG);
+        escapeRun.setPriority(Job.SHORT);
         escapeRun.schedule();
     }
 
@@ -250,13 +258,17 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
             };
             closeThread.start();
         }
-        modelMonitor.setTaskName("Waiting for Close...");
+        if (modelMonitor != null) {
+            modelMonitor.setTaskName("Waiting for Close...");
+        }
         try {
             long elapsed = 0;
             while (isCloseRequested() && getModelThread() != null && getModelThread().isAlive()
                     && elapsed <= KILL_AFTER_NO_RESPONSE_TIME) {
                 if (elapsed >= KILL_AFTER_NO_RESPONSE_TIME) {
-                    modelMonitor.setTaskName("Forcing Close");
+                    if (modelMonitor != null) {
+                        modelMonitor.setTaskName("Forcing Close");
+                    }
                     EscapeIDEPlugin.warn("Couldn't close model normally, forcing stop.", null);
                     if (escapeRun != null) {
                         escapeRun.getThread().stop();
@@ -268,7 +280,9 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
             }
         } catch (InterruptedException e) {
         }
-        modelMonitor.setTaskName("Closed");
+        if (modelMonitor != null) {
+            modelMonitor.setTaskName("Closed");
+        }
         modelShutdown = true;
     }
 
