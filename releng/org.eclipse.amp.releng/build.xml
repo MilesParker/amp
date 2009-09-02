@@ -37,6 +37,7 @@
 		-->
 
 		<!-- load properties and set timestamp for the build -->
+		<property file="build-office.properties" />
 		<property file="build-local-macosx.properties" />
 		<tstamp>
 			<format property="buildTimestamp" pattern="yyyyMMddHHmm" />

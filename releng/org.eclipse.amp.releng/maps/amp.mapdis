@@ -6,18 +6,14 @@ plugin@org.eclipse.test=v20070226,:pserver:anonymous@dev.eclipse.org:/cvsroot/ec
 fragment@org.eclipse.ant.optional.junit=v20050226,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,
 
 !***DEPENDENCIES
-plugins@org.apache.ant=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/dependencies/plugins/org.apache.ant
-plugins@org.apache.commons.collections=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/dependencies/plugins/org.apache.commons.collections
-plugins@org.apache.commons.lang=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/dependencies/plugins/org.apache.commons.lang
-plugins@org.eclipse.emf.java=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/dependencies/plugins/org.eclipse.emf.java
-plugins@org.jdom_1.0.0=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/dependencies/plugins/org.jdom_1.0.0
-plugins@org.junit=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/dependencies/plugins/org.junit
+plugin@org.apache.ant=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/dependencies/plugins/org.apache.ant
+plugin@org.apache.commons.collections=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/dependencies/plugins/org.apache.commons.collections
+plugin@org.apache.commons.lang=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/dependencies/plugins/org.apache.commons.lang
+plugin@org.eclipse.emf.java=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/dependencies/plugins/org.eclipse.emf.java
+plugin@org.jdom_1.0.0=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/dependencies/plugins/org.jdom_1.0.0
+plugin@org.junit=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/dependencies/plugins/org.junit
 
 !***DOCUMENTATION
-
-!***EXAMPLES
-plugin@org.eclipse.emf.mwe.examples=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape
-plugin@org.eclipse.emf.mwe.examples=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
 
 !***TESTS
 plugin@org.eclipse.amp.amf.acore.test=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/tests/org.eclipse.amp.amf.acore.test
