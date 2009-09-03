@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.amp.amfx.feature"
-      label="AMP AMF Model Execution and Testing (Incubation)"
+      label="AMP AMFX - Execution and Testing (Incubation)"
       version="0.2.0.qualifier"
       provider-name="Eclipse.org">
 
@@ -218,6 +218,28 @@ litigation.
       <discovery label="M2T Interim" url="http://download.eclipse.org/modeling/m2t/updates/interim"/>
       <discovery label="EMFT Interim" url="http://download.eclipse.org/modeling/emft/updates/interim/"/>
    </url>
+
+   <requires>
+      <import plugin="org.eclipse.xtext"/>
+      <import plugin="org.eclipse.xtext.util"/>
+      <import plugin="org.eclipse.emf.ecore"/>
+      <import plugin="org.eclipse.emf.common"/>
+      <import plugin="org.eclipse.amp.amf.acore" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.runtime" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.resources" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.edit"/>
+      <import plugin="org.eclipse.amp.amf.acore.edit"/>
+      <import plugin="org.eclipse.emf.ecore.xmi"/>
+      <import plugin="org.eclipse.emf.edit.ui"/>
+      <import plugin="org.eclipse.ui.ide"/>
+      <import plugin="org.eclipse.xtext.ui.core"/>
+      <import plugin="org.eclipse.xtext.ui.common"/>
+      <import plugin="org.eclipse.xtext.log4j" version="1.2.15" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.editors" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.ide" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.parameters" version="0.2.0" match="greaterOrEqual"/>
+   </requires>
 
    <plugin
          id="org.eclipse.amp.amf.parameters"
