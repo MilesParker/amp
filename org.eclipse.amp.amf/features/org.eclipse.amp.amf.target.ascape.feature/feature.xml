@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.amp.amf.target.ascape"
+      id="org.eclipse.amp.amf.target.ascape.feature"
       label="AMP AMF for Ascape (Incubation) (Optional)"
       version="0.2.0.qualifier"
       provider-name="Eclipse.org">
@@ -220,14 +220,15 @@ litigation.
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.amp.amf.acore"/>
       <import plugin="org.eclipse.amp.amf.gen"/>
-      <import plugin="org.eclipse.amp.amf.ide"/>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.debug.ui"/>
       <import plugin="org.eclipse.jdt.launching"/>
       <import plugin="org.eclipse.jdt.debug.ui"/>
       <import plugin="org.ascape.core" version="5.1.0" match="greaterOrEqual"/>
-      <import plugin="org.apache.commons.lang"/>
       <import plugin="org.eclipse.jdt.core" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.ide" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.gen.ide" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.ecore" version="2.5.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
