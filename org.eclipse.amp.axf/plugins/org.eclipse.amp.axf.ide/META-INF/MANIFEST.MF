@@ -36,4 +36,4 @@ Export-Package: org.eclipse.amp.axf.ide;
    org.eclipse.amp.axf.view,
    org.eclipse.amp.axf.core,
    org.eclipse.swt.widgets"
-Bundle-ActivationPolicy: lazy
+
