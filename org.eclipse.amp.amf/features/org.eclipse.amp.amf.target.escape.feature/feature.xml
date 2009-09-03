@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.amp.amf.target.escape"
-      label="AMP Escape AMF (Incubation)"
+      id="org.eclipse.amp.amf.target.escape.feature"
+      label="AMP AMF for Escape (Incubation)"
       version="0.2.0.qualifier"
       provider-name="Eclipse.org">
 
@@ -64,6 +64,27 @@ This Agreement is governed by the laws of the State of New York and the intellec
    <url>
       <update label="AMP Update Site" url="http://eclipse.org/amp/updates/release"/>
    </url>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.amp.amf.acore"/>
+      <import plugin="org.eclipse.amp.amf.gen"/>
+      <import plugin="org.eclipse.amp.amf.gen.ascape"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.core.resources" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.core" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.ecore" version="2.5.0" match="greaterOrEqual"/>
+      <import plugin="org.ascape.core" version="5.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.acore.edit" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.acore.editor" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.gen" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.gen.ascape" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.gen.escape" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.gen.ide" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.escape.ide"/>
+      <import plugin="org.eclipse.xtext" version="0.7.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.parameters" version="0.2.0" match="greaterOrEqual"/>
+   </requires>
 
    <plugin
          id="org.eclipse.amp.amf.gen.escape"
