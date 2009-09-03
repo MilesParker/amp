@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Agf3d
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.amp.agf3d;singleton:=true
 Bundle-Version: 0.2.0.qualifier
 Bundle-Activator: org.eclipse.amp.agf3d.AGF3DPlugin
@@ -10,14 +10,15 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.amp.axf.views;bundle-version="0.2.0",
  org.eclipse.amp.agf.core;bundle-version="0.2.0",
  org.eclipse.amp.agf.ide;bundle-version="0.2.0",
- org.eclipse.draw3d;bundle-version="0.8.1";visibility:=reexport,
- org.eclipse.draw3d.lwjgl;bundle-version="0.8.1";visibility:=reexport,
- org.eclipse.gef3d;bundle-version="0.8.1";visibility:=reexport,
- org.eclipse.draw3d.graphics3d;bundle-version="0.8.1";visibility:=reexport,
- org.lwjgl;bundle-version="2.1.0";visibility:=reexport,
- org.eclipse.gef3d.ext;bundle-version="0.8.1"
+ org.eclipse.draw3d;visibility:=reexport,
+ org.eclipse.draw3d.lwjgl;visibility:=reexport,
+ org.eclipse.gef3d;visibility:=reexport,
+ org.eclipse.draw3d.graphics3d;visibility:=reexport,
+ org.lwjgl;visibility:=reexport,
+ org.eclipse.gef3d.ext;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.amp.agf3d,
  org.eclipse.amp.agf3d.ui
 Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
