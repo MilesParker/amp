@@ -214,6 +214,7 @@ litigation.
 
    <url>
       <update label="AMP Update Site" url="http://eclipse.org/amp/updates/release"/>
+      <discovery label="Metascape Tools for AMP" url="http://metascapeabm.com/updates/releases"/>
    </url>
 
    <requires>
