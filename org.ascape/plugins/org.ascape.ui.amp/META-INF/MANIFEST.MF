@@ -14,7 +14,6 @@ Require-Bundle: org.eclipse.core.resources;bundle-version="3.4.0";visibility:=re
  org.eclipse.gef;bundle-version="3.4.0";visibility:=reexport,
  org.eclipse.zest.core;resolution:=optional;visibility:=reexport,
  org.eclipse.zest.layouts;resolution:=optional;visibility:=reexport,
- org.apache.commons.lang;bundle-version="2.3.0";visibility:=reexport,
  org.ascape.core;bundle-version="5.2.0";visibility:=reexport,
  org.eclipse.amp.axf.core;visibility:=reexport,
  org.eclipse.amp.axf.views;visibility:=reexport,
