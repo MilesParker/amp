@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.amp.amf.testing.edit;singleton:=true
-Bundle-Version: 0.2.0
+Bundle-Version: 0.2.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.amp.amf.testing.ares.provider.AresEditPlugin$Implementation
 Bundle-Vendor: %providerName
@@ -11,11 +11,10 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.eclipse.amp.amf.testing.aTest.provider,
  org.eclipse.amp.amf.testing.ares.provider
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.amp.amf.testing;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport,
  org.eclipse.amp.amf.parameters;visibility:=reexport,
  org.eclipse.amp.amf.parameters.edit;visibility:=reexport,
- org.eclipse.amp.amf.testing.edit;visibility:=reexport,
  org.eclipse.amp.amf.acore;visibility:=reexport,
- org.eclipse.amp.amf.acore.edit;visibility:=reexport
+ org.eclipse.amp.amf.acore.edit;visibility:=reexport,
+ org.eclipse.amp.amf.testing;visibility:=reexport
 Bundle-ActivationPolicy: lazy
