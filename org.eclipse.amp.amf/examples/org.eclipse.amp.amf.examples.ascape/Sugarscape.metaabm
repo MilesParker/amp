@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<metaabm:SContext xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/structure" label="G A S_ Base" ID="GAS_Base" pluralLabel="G A S_ Bases">
+<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/metaabm.org/structure" label="G A S_ Base" ID="GAS_Base" pluralLabel="G A S_ Bases" description="Incomplete model!">
   <attributes label="Sugar Moundness" ID="sugarMoundness" pluralLabel="Sugar Moundnesss" description="The topology parameter for sugar peaks" sType="REAL"/>
   <attributes label="Min Vision" ID="minVision" pluralLabel="Min Visions" description="The minimum vision that an agent may be given on initialization.Model parameter." sType="INTEGER" defaultValue="1"/>
   <attributes label="Max Vision" ID="maxVision" pluralLabel="Max Visions" description="The maximum vision that an agent may be given on initialization.Model parameter." sType="INTEGER" defaultValue="6"/>
