@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.amp.amf.gen.ascape;singleton:=true
-Bundle-Name: metaABM Ascape Generator
+Bundle-Name: %pluginName
 Bundle-Version: 0.2.0.qualifier
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.core.runtime,
 Export-Package: metaabm.ascape.tmpl,
  model, 
   org.metaabm.gen.ascape
-Bundle-Vendor: metascape.org
+Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Eclipse-BuddyPolicy: dependent
 Bundle-ClassPath: .
