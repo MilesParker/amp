@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.amp.agf.feature"
+      id="org.eclipse.amp.agf.chart.feature"
       label="AMP AGF Chart (Incubation)"
       version="0.2.0.qualifier"
       provider-name="Eclipse.org">
