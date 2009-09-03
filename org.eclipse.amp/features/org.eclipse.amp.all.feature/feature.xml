@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.amp.all.feature"
-      label="AMP - Agent Modeling Platform all-in-one SDK (Incubation)"
+      label="AMP All-In-One SDK (Incubation)"
       version="0.2.0"
       provider-name="Eclipse.org">
 
    <description url="http://eclipse.org/amp">
-      All Agent Modeling Platform Components hosted at Eclipse.
+      All Agent Modeling Platform Components. Includes AMF, AXF, AGF and Escape.
    </description>
 
    <copyright url="http://www.example.com/copyright">
@@ -61,8 +61,12 @@ Everyone is permitted to copy and distribute copies of this Agreement, but in or
 This Agreement is governed by the laws of the State of New York and the intellectual property laws of the United States of America. No party to this Agreement will bring a legal action under this Agreement more than one year after the cause of action arose. Each party waives its rights to a jury trial in any resulting litigation.
    </license>
 
+   <url>
+      <update label="AMP Update Site" url="http://eclipse.org/amp/updates/release"/>
+   </url>
+
    <includes
-         id="org.eclipse.amp.escape.feature"
+         id="org.eclipse.amp.axf.feature"
          version="0.0.0"/>
 
    <includes
@@ -74,11 +78,24 @@ This Agreement is governed by the laws of the State of New York and the intellec
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.amp.axf.feature"
+         id="org.eclipse.amp.escape.feature"
+         version="0.0.0"
+         optional="true"/>
+
+   <includes
+         id="org.eclipse.amp.amfx.feature"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.amp.escape.feature"
+         id="org.eclipse.amp.amf.target.ascape.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.amp.amf.target.escape.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.amp.agf3d.feature"
          version="0.0.0"/>
 
 </feature>
