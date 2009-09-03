@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Ide
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.amp.escape.amf.ide;singleton:=true
 Bundle-Version: 0.2.0.qualifier
 Bundle-Activator: org.eclipse.amp.escape.amf.ide.EscapeAMFPlugin
@@ -24,3 +24,4 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: .
 Export-Package: org.eclipse.amp.escape.amf.ide
+Bundle-Vendor: %providerName
