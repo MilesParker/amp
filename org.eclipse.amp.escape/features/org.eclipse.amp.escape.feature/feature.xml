@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.amp.escape.feature"
-      label="AMP Escape IDE (Incubation)"
+      label="AMP Escape (Incubation)"
       version="0.2.0.qualifier"
       provider-name="Eclipse.org">
 
    <description url="http://eclipse.org/amp/">
-      Escape Agent-Based Modeling Enviornment
+      Escape Agent-Based Modeling Enviornment, including runtime, API and IDE Integration.
    </description>
 
    <copyright>
@@ -61,6 +61,54 @@ Everyone is permitted to copy and distribute copies of this Agreement, but in or
 This Agreement is governed by the laws of the State of New York and the intellectual property laws of the United States of America. No party to this Agreement will bring a legal action under this Agreement more than one year after the cause of action arose. Each party waives its rights to a jury trial in any resulting litigation.
    </license>
 
+   <includes
+         id="org.ascape.core.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.amp.agf.chart.feature"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.amp.agf.zest.feature"
+         version="0.0.0"/>
+
+   <requires>
+      <import plugin="org.eclipse.draw2d" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jface" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.views" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="org.ascape.core" version="5.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.axf.views"/>
+      <import plugin="org.eclipse.amp.axf.ide"/>
+      <import plugin="org.eclipse.amp.agf.chart" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.escape.ascape" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.escape.ascape.chart" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.axf.core" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.axf.views" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.agf.core" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.axf.ide" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.resources" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.runtime" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.core" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.ecore" version="2.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.common.ui" version="2.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.ide" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.debug.ui" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.debug.ui" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.expressions" version="3.4.100" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.launching" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.console" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.ui.editors" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.acore" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.parameters" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.testing" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.escape.ide" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.ecore.xmi" version="2.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.birt.chart.engine" version="2.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gef" version="3.5.0" match="greaterOrEqual"/>
+   </requires>
+
    <plugin
          id="org.ascape.ui.amp"
          download-size="0"
@@ -83,21 +131,14 @@ This Agreement is governed by the laws of the State of New York and the intellec
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.amp.escape.ascape.chart"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.ascape.core"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.amp.escape.testing.ide"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.amp.escape.ascape.chart"
          download-size="0"
          install-size="0"
          version="0.0.0"
