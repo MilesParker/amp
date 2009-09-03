@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ManifestVersion: 2
-Bundle-Name: metaABM repast Generator Test
+Bundle-Name: Acore MetaABM repast Generator Test
 Bundle-SymbolicName: org.eclipse.amp.amf.gen.repast.test
 Bundle-Version: 0.2.0.qualifier
 Bundle-Vendor: Eclipse.org
