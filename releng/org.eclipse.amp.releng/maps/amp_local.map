@@ -6,7 +6,7 @@ plugin@org.eclipse.test=v20070226,:pserver:anonymous@dev.eclipse.org:/cvsroot/ec
 fragment@org.eclipse.ant.optional.junit=v20050226,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,
 
 plugin@org.apache.commons.collections=COPY,/Volumes/Resources/Developer/repos/eclipse,dependencies/plugins/org.apache.commons.collections
-plugin@org.lwjgl=COPY,/Volumes/Resources/Developer/repos/eclipse,dependencies/plugins/org.lwjgl_2.1.0
+plugin@org.lwjgl=COPY,/Volumes/Resources/Developer/repos/eclipse,dependencies/plugins/org.lwjgl_2.1.0.jar
 
 !***DEPENDENCIES
 !***plugin@org.eclipse.emf.java=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/dependencies/plugins/org.eclipse.emf.java
@@ -48,7 +48,7 @@ feature@org.eclipse.amp.agf.feature=COPY,/Volumes/Resources/Developer/repos/ecli
 feature@org.eclipse.amp.agf.zest.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.agf/features/org.eclipse.amp.agf.zest.feature
 feature@org.eclipse.amp.agf3d.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.agf/features/org.eclipse.amp.agf3d.feature
 feature@org.eclipse.amp.amf.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/features/org.eclipse.amp.amf.feature
-feature@org.eclipse.amp.amf.gen.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/features/org.eclipse.amp.amf.gen.feature
+!***feature@org.eclipse.amp.amf.gen.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/features/org.eclipse.amp.amf.gen.feature
 feature@org.eclipse.amp.amf.core.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/features/org.eclipse.amp.amf.core.feature
 feature@org.eclipse.amp.amf.target.ascape.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/features/org.eclipse.amp.amf.target.ascape.feature
 !***TODO Fix this directory name on CVS
