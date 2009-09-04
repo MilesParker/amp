@@ -3,11 +3,10 @@
       id="org.eclipse.amp.agf3d.feature"
       label="AMP AGF 3D (Incubation)"
       version="0.2.0.qualifier"
-      provider-name="Eclipse.org">
+      provider-name="Eclipse Agent Modeling Platform">
 
    <description url="http://eclipse.org/amp">
-      Agent Graphics Framework and Escape support for 3D Graphics suing GEF3D. Currently
-supports 2D spaces only using 2 1/2 D.
+      Agent Graphics Framework and Escape support for 3D Graphics using GEF3D. Currently supports 2D spaces only using 2 1/2 D. Requires LWJGL plugin at http://lwjgl.org/update.
    </description>
 
    <copyright>
