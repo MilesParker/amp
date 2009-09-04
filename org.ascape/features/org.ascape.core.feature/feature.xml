@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.ascape.core.feature"
-      label="Ascape Core Framework (No UI)"
+      label="Ascape Core"
       version="5.2.0.qualifier"
       provider-name="Ascape.org">
 
    <description url="http://ascape.sourceforge.net">
-      Ascape is an innovative tool for developing and exploring general-purpose
-agent-based models. Ascape offers a broad array of modeling and
-visualization tools. A high-level framework supports complex
-model design, while end-user tools make it possible for non-programmers
-to explore many aspects of model dynamics.
+      Ascape Core API, without UI target. Ascape is an innovative tool for developing and exploring general-purpose agent-based models. Ascape offers a broad array of modeling and visualization tools. A high-level framework supports complex model design, while end-user tools make it possible for non-programmers to explore many aspects of model dynamics.
    </description>
 
    <copyright>
@@ -71,13 +67,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
    <plugin
          id="org.ascape.core"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.jdom"
          download-size="0"
          install-size="0"
          version="0.0.0"
