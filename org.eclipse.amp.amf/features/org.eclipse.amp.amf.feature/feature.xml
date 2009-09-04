@@ -3,7 +3,7 @@
       id="org.eclipse.amp.amf.feature"
       label="AMP AMF - Agent Modeling Framework SDK (Incubation)"
       version="0.2.0.qualifier"
-      provider-name="Eclipse.org">
+      provider-name="Eclipse Agent Modeling Platform">
 
    <description url="http://eclipse.org/amp">
       AMF Model Development Environment
