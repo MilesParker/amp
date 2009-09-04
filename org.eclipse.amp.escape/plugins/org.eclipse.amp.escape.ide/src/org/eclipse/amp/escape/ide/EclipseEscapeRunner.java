@@ -18,6 +18,7 @@ package org.eclipse.amp.escape.ide;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.ascape.AscapeRuntimePlugin;
 import org.ascape.model.Agent;
 import org.ascape.model.Scape;
 import org.ascape.model.event.ControlEvent;
@@ -99,7 +100,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
         IConsole[] consules = { eclipseConsole };
         ConsolePlugin.getDefault().getConsoleManager().addConsoles(consules);
         eclipseConsole.activate();
-
+        AscapeRuntimePlugin.getDefault();
         try {
             delegateLoader = new ProjectLoader(projectResource.getProject());
         } catch (LoaderCreationException e) {
