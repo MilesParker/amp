@@ -3,7 +3,7 @@
       id="org.eclipse.amp.amf.target.repast.feature"
       label="AMP AMF for Repast (Incubation) (Optional)"
       version="0.2.0.qualifier"
-      provider-name="Eclipse.org">
+      provider-name="Eclipse Agent Modeling Platform">
 
    <description>
       AMF tools for Repast. Please note that this requires the repast SImphony plugins available at: http://mirror.anl.gov/pub/repastsimphony.
