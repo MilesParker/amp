@@ -3,7 +3,7 @@
       id="org.eclipse.amp.amf.gen.feature"
       label="AMP AMF Model Generation [Not Used]"
       version="0.2.0.qualifier"
-      provider-name="Eclipse.org">
+      provider-name="Eclipse Agent Modeling Platform">
 
    <copyright>
       Copyright 2007-2009 Metascape LLC, Portions Copyright 2006-2007 Argonne
