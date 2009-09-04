@@ -109,7 +109,7 @@ public class ModelMangementTest extends TestCase {
 
     protected void setUp() throws Exception {
         super.setUp();
-        // setupProject();
+        setupProject();
     }
 
     public void utestOne() {
@@ -127,7 +127,47 @@ public class ModelMangementTest extends TestCase {
         assertEquals(gefViews().size(), 0);
     }
 
-    public void testTwo() {
+    public void testCloseOne() {
+        bot.sleep(2000);
+        // start new
+        launchModel();
+        IModel modelA_1 = activeModel();
+        assertNotNull(modelA_1);
+
+        subtestCloseViews(modelA_1);
+        SWTBotView swtGraphicsView = gefViews().get(0);
+        swtGraphicsView.close();
+        bot.sleep(3000);
+        IModel iModel = manager().getModels().get(0);
+        assertTrue(iModel.getPeriod() + "too big!", iModel.getPeriod() < 500);
+        control().menu("Close").click();
+        bot.sleep(3000);
+
+        // start new
+        launchModel();
+        IModel modelA_1_2 = activeModel();
+        assertNotNull(modelA_1_2);
+        subtestCloseViews(modelA_1_2);
+        SWTBotView swtChartView = chartViews().get(0);
+        swtChartView.close();
+        bot.sleep(3000);
+        IModel iModel2 = manager().getModels().get(0);
+        assertTrue(iModel2.getPeriod() + "too big!", iModel2.getPeriod() < 500);
+        control().menu("Close").click();
+
+        bot.sleep(3000);
+    }
+
+    private void subtestCloseViews(IModel modelA_1) {
+        List<IViewPart> viewsA_1 = manager().getViews(modelA_1);
+        assertEquals(viewsA_1.size(), 2);
+        IViewPart chartView = viewsA_1.get(0);
+        assertEquals(chartView.getTitle(), "Demographic Prisoner_s Dilemma Chart View");
+        IViewPart gefView = viewsA_1.get(1);
+        assertEquals(gefView.getTitle(), "Demographic Prisoner_s Dilemma Graphic View");
+    }
+
+    public void utestTwo() {
         bot.sleep(2000);
         // start new
         launchModel();
@@ -143,7 +183,7 @@ public class ModelMangementTest extends TestCase {
         assertEquals(gefViews().size(), 2);
 
         List<IViewPart> viewsA_1 = manager().getViews(modelA_1);
-        assertEquals(viewsA_1.size(), 1);
+        assertEquals(viewsA_1.size(), 2);
         activateView(viewsA_1);
         bot.sleep(2000);
         assertEquals(activeModel(), modelA_1);
@@ -153,7 +193,7 @@ public class ModelMangementTest extends TestCase {
         assertTrue(activeModel().getEngine().isPaused());
 
         List<IViewPart> viewsA_2 = manager().getViews(modelA_2);
-        assertEquals(viewsA_2.size(), 1);
+        assertEquals(viewsA_2.size(), 2);
         activateView(viewsA_2);
         bot.sleep(2000);
         assertEquals(activeModel(), modelA_2);
@@ -166,7 +206,7 @@ public class ModelMangementTest extends TestCase {
         // rapid cycle
         for (int i = 0; i < 4; i++) {
             activateView(viewsA_1);
-            bot.sleep(500);
+            bot.sleep(1000);
             assertEquals(activeModel(), modelA_1);
             assertTrue(control().menu("Restart").isEnabled());
             assertTrue(!control().menu("Pause").isEnabled());
@@ -349,6 +389,10 @@ public class ModelMangementTest extends TestCase {
         return bot.views(WidgetMatcherFactory.withPartName("Demographic Prisoner_s Dilemma Graphic View"));
     }
 
+    private List<SWTBotView> chartViews() {
+        return bot.views(WidgetMatcherFactory.withPartName("Demographic Prisoner_s Dilemma Chart View"));
+    }
+
     private SWTBotMenu control() {
         return bot.menu("Control");
     }
@@ -363,8 +407,9 @@ public class ModelMangementTest extends TestCase {
 
     private void setupProject() {
         // bot.viewByTitle("Welcome").close();
-        // bot.perspectiveByLabel("Agent Modeling").activate();
+        bot.perspectiveByLabel("Agent Modeling").activate();
         bot.viewByTitle("Package Explorer").setFocus();
+        bot.sleep(3000);
         bot.menu("File").menu("New").menu("Escape Project").click();
         // 'com.swtbot.test.project' is the java project name to create
 
