@@ -3,7 +3,7 @@
       id="org.eclipse.amp.agf.chart.feature"
       label="AMP AGF Chart (Incubation)"
       version="0.2.0.qualifier"
-      provider-name="Eclipse.org">
+      provider-name="Eclipse Agent Modeling Platform">
 
    <description url="http://eclipse.org/amp">
       Agent Graphics Framework chart support using BIRT Chart engine.
