@@ -3,7 +3,7 @@
       id="org.eclipse.amp.amfx.feature"
       label="AMP AMFX - Execution and Testing (Incubation)"
       version="0.2.0.qualifier"
-      provider-name="Eclipse.org">
+      provider-name="Eclipse Agent Modeling Platform">
 
    <description url="http://eclipse.org">
       Agent Modeling Framework models and text editor support for model execution features including paramterization and constraint testing.
