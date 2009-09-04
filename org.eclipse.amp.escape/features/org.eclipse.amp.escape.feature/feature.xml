@@ -3,7 +3,7 @@
       id="org.eclipse.amp.escape.feature"
       label="AMP Escape (Incubation)"
       version="0.2.0.qualifier"
-      provider-name="Eclipse.org">
+      provider-name="Eclipse Agent Modeling Platform">
 
    <description url="http://eclipse.org/amp/">
       Escape Agent-Based Modeling Enviornment, including runtime, API and IDE Integration.
