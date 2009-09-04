@@ -3,7 +3,7 @@
       id="org.eclipse.amp.all.feature"
       label="AMP All-In-One SDK (Incubation)"
       version="0.2.0"
-      provider-name="Eclipse.org">
+      provider-name="Eclipse Agent Modeling Platform">
 
    <description url="http://eclipse.org/amp">
       All Agent Modeling Platform Components. Includes AMF, AXF, AGF and Escape.
