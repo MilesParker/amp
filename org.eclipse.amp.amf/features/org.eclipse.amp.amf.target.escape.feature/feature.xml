@@ -3,7 +3,7 @@
       id="org.eclipse.amp.amf.target.escape.feature"
       label="AMP AMF for Escape (Incubation)"
       version="0.2.0.qualifier"
-      provider-name="Eclipse.org">
+      provider-name="Eclipse Agent Modeling Platform">
 
    <description url="http://eclipse.org/amp">
       AMF Support for Escape. Supports execution of Eclipse hosted models from AMF models. All Escape users will likely want this.
