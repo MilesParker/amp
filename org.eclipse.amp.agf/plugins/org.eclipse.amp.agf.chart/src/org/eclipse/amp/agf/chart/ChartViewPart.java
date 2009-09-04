@@ -35,6 +35,15 @@ public class ChartViewPart extends EditPartViewPart {
         };
     }
 
+    /**
+     * 
+     * @see org.eclipse.amp.agf.gef.EditPartViewPart#createModelListeners()
+     */
+    public void createModelListeners() {
+        super.createModelListeners();
+        getRootListener().setWaitForUpdate(false);
+    }
+
     @Override
     public EditPartFactory createFactory() {
         return new EditPartFactory() {
