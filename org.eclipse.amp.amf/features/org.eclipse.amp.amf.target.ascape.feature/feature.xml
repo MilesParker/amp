@@ -3,10 +3,10 @@
       id="org.eclipse.amp.amf.target.ascape.feature"
       label="AMP AMF for Ascape (Incubation) (Optional)"
       version="0.2.0.qualifier"
-      provider-name="Eclipse.org">
+      provider-name="Eclipse Agent Modeling Platform">
 
    <description>
-      AMF Development environment for Ascape.
+      AMF Development environment for Ascape. Requires http://ascape.sourceforge.net/eclipse.
    </description>
 
    <copyright>
@@ -214,7 +214,7 @@ litigation.
 
    <url>
       <update label="AMP Update Site" url="http://eclipse.org/amp/updates/release"/>
-      <discovery label="Metascape Tools for AMP" url="http://metascapeabm.com/updates/releases"/>
+      <discovery label="Ascape Support" url="http://metascapeabm.com/updates/ascape"/>
    </url>
 
    <requires>
