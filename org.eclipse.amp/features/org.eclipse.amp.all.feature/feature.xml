@@ -65,37 +65,18 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <update label="AMP Update Site" url="http://eclipse.org/amp/updates/release"/>
    </url>
 
-   <includes
-         id="org.eclipse.amp.axf.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.amp.agf.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.amp.amf.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.amp.escape.feature"
+   <plugin
+         id="org.eclipse.amp.amf.examples.ascape"
+         download-size="0"
+         install-size="0"
          version="0.0.0"
-         optional="true"/>
+         unpack="false"/>
 
-   <includes
-         id="org.eclipse.amp.amfx.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.amp.amf.target.ascape.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.amp.amf.target.escape.feature"
-         version="0.0.0"/>
-
-   <includes
-         id="org.eclipse.amp.agf3d.feature"
-         version="0.0.0"/>
+   <plugin
+         id="org.eclipse.amp.amf.examples.repast"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>
