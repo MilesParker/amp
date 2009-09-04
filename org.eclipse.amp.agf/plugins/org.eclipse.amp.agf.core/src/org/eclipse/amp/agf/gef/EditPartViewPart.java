@@ -135,7 +135,7 @@ public abstract class EditPartViewPart extends ModelViewPart {
     public void createModelListeners() {
         super.createModelListeners();
         rootListener = new EditPartListener(viewer.getControl(), getEditPart());
-        rootListener.setWaitForUpdate(false);
+        rootListener.setWaitForUpdate(true);
         addModelListener(rootListener);
         if (viewer.getContents() instanceof IModelPart) {
             ((IModelPart) viewer.getContents()).createModelListeners();
