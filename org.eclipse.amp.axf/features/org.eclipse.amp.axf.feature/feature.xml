@@ -3,7 +3,7 @@
       id="org.eclipse.amp.axf.feature"
       label="AMP AXF - Agent eXecution Framework SDK (Incubation)"
       version="0.2.0.qualifier"
-      provider-name="Eclipse.org">
+      provider-name="Eclipse Agent Modeling Platform">
 
    <description>
       AMP Support for model integration, execution, and views.
