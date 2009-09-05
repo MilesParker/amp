@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<project name="eclipseUtils" default="removeDSStore">
+
+
+	<target name="removeDSStore" description="Removes all of those pesky ds store files form a project">
+		<delete failonerror="false">
+			<fileset dir="../../../" defaultexcludes="no">
+				<include name="**/.DS_Store" />
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="removeSVN" description="Deletes all svn metasata">
+		<delete failonerror="true" includeemptydirs="true">
+			<fileset dir="/Users/milesparker/Documents/Developer/repos/eclipse/org.ascape/" includes="**/.svn/**" defaultexcludes="no"/>
+		</delete>
+	</target>
+</project>
