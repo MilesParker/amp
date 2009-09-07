@@ -45,13 +45,14 @@ public class RenderEdit3DPart extends AbstractGraphicalEditPart {
     AbstractModelShape shape;
 
     boolean update = true;
+    private IFigure3D figure;
 
     /**
      * @return
      * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
      */
     protected IFigure createFigure() {
-        final IFigure3D figure = new Figure3D() {
+        figure = new Figure3D() {
             public void render(RenderContext renderContext) {
                 Position3D fp = getPosition3D();
                 shape.setPosition(fp);
