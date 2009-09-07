@@ -75,29 +75,18 @@ public class Individual3DEditPart extends RenderEdit3DPart {
         org.eclipse.draw3d.shapes.SolidCube shape = null;
 
         if (individual.getStatus() == StatusEnum.susceptible) {
-            color = org.eclipse.draw2d.ColorConstants.blue;
+            glSetColor(g3d, org.eclipse.draw2d.ColorConstants.blue);
+        } else if (individual.getStatus() == StatusEnum.exposed) {
+            glSetColor(g3d, org.eclipse.draw2d.ColorConstants.yellow);
+        } else if (individual.getStatus() == StatusEnum.asymptomInfectious) {
+            glSetColor(g3d, org.eclipse.draw2d.ColorConstants.orange);
+        } else if (individual.getStatus() == StatusEnum.recovered) {
+            glSetColor(g3d, org.eclipse.draw2d.ColorConstants.green);
+        } else if (individual.getStatus() == StatusEnum.dead) {
+            glSetColor(g3d, org.eclipse.draw2d.ColorConstants.black);
+        } else if (individual.getStatus() == StatusEnum.symptomInfectious) {
+            glSetColor(g3d, org.eclipse.draw2d.ColorConstants.red);
         }
-
-        else if (individual.getStatus() == StatusEnum.exposed) {
-            color = org.eclipse.draw2d.ColorConstants.yellow;
-        }
-
-        else if (individual.getStatus() == StatusEnum.asymptomInfectious) {
-            shape.setColor(color, 255);
-        }
-
-        else if (individual.getStatus() == StatusEnum.recovered) {
-            color = org.eclipse.draw2d.ColorConstants.green;
-        }
-
-        else if (individual.getStatus() == StatusEnum.dead) {
-            color = org.eclipse.draw2d.ColorConstants.black;
-        }
-
-        else if (individual.getStatus() == StatusEnum.symptomInfectious) {
-            color = org.eclipse.draw2d.ColorConstants.red;
-        }
-        glSetColor(g3d, color, 255);
     }
 
     private void drawCylinder(Graphics3D g3d, float width, float height, boolean cap) {

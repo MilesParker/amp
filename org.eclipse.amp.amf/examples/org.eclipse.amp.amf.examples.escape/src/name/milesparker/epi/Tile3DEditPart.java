@@ -1,7 +1,7 @@
 package name.milesparker.epi;
 
 import org.ascape.util.vis.ColorFeatureConcrete;
-import org.eclipse.swt.graphics.Color;
+
 
 /**
  * Neighborhood Cell Style 2D Java Implementation.
@@ -12,10 +12,7 @@ public class Tile3DEditPart
 extends
 org.eclipse.amp.agf3d.TileEdit3DPart {
 
-    public static final Color TILE = ColorFeatureConcrete.create(240, 210, 140);
-
     protected void updateGraphics() {
-        getCube().setColor(TILE, 255);
-
+        getCube().setColor(ColorFeatureConcrete.BLACK, 255);
     }
 }
