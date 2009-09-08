@@ -12,7 +12,7 @@
               extensions="atest"
               icon="icons/etool16/test.gif"
               id="org.eclipse.amp.amf.testing.ATest"
-              name="ATest Editor">
+              name="Test Editor">
         </editor>
     </extension>
     <extension
