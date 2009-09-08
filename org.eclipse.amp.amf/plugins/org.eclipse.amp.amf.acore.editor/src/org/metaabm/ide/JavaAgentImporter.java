@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: JavaAgentImporter.java,v 1.1 2009/07/16 20:49:35 mparker Exp $
+ * </copyright> $Id: JavaAgentImporter.java,v 1.2 2009/09/08 21:27:32 mparker Exp $
  */
 package org.metaabm.ide;
 
@@ -131,29 +131,32 @@ public class JavaAgentImporter extends AgentImporter {
     }
 
     private String clean(String comment) {
-        comment = comment.replace("/**", "");
-        comment = comment.replace("     */", "");
-        comment = comment.replace("     *", "");
-        comment = comment.replace("*/", "");
-        comment = comment.replace("*", "");
-        comment = comment.replace("<ul>", "");
-        comment = comment.replace("</ul>", "");
-        comment = comment.replace("<p>", "");
-        comment = comment.replace("<code>", "");
-        comment = comment.replace("&lt;", "<");
-        comment = comment.replace("&gt;", ">");
-        comment = comment.replace("</code>", "");
-        comment = comment.replace("\n ", "");
-        comment = comment.replace("\n", "");
-        comment = comment.replace("<li> ", "\n  ");
-        comment = comment.replace("<li>", "\n  ");
-        comment = comment.replace("</li>", "\n");
-        comment = comment.replace("<i>", "");
-        comment = comment.replace("</i>", "");
-        comment = comment.replace("<sup>", "^");
-        comment = comment.replace("</sup>", "^");
-        comment = comment.replace(".  ", ". ");
-        comment = comment.replaceAll("&nbsp;", " ");
-        return comment;
+        if (comment != null) {
+            comment = comment.replace("/**", "");
+            comment = comment.replace("     */", "");
+            comment = comment.replace("     *", "");
+            comment = comment.replace("*/", "");
+            comment = comment.replace("*", "");
+            comment = comment.replace("<ul>", "");
+            comment = comment.replace("</ul>", "");
+            comment = comment.replace("<p>", "");
+            comment = comment.replace("<code>", "");
+            comment = comment.replace("&lt;", "<");
+            comment = comment.replace("&gt;", ">");
+            comment = comment.replace("</code>", "");
+            comment = comment.replace("\n ", "");
+            comment = comment.replace("\n", "");
+            comment = comment.replace("<li> ", "\n  ");
+            comment = comment.replace("<li>", "\n  ");
+            comment = comment.replace("</li>", "\n");
+            comment = comment.replace("<i>", "");
+            comment = comment.replace("</i>", "");
+            comment = comment.replace("<sup>", "^");
+            comment = comment.replace("</sup>", "^");
+            comment = comment.replace(".  ", ". ");
+            comment = comment.replaceAll("&nbsp;", " ");
+            return comment;
+        }
+        return "";
     }
 }
