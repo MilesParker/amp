@@ -5,30 +5,16 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.2 2009/08/07 00:05:33 mparker Exp $
+ $Id: plugin.xml,v 1.3 2009/09/08 01:47:16 mparker Exp $
 -->
 
 <plugin>
 
-   <extension point="org.eclipse.ui.newWizards">
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
-      <wizard
-            id="org.eclipse.amp.amf.parameters.aPar.presentation.AParModelWizardID"
-            name="%_UI_AParModelWizard_label"
-            class="org.eclipse.amp.amf.parameters.aPar.presentation.AParModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/parameter_file.gif">
-         <description>%_UI_AParModelWizard_description</description>
-         <selection class="org.eclipse.core.resources.IResource"/>
-      </wizard>
-   </extension>
 
    <extension point="org.eclipse.ui.editors">
       <editor
             id="org.eclipse.amp.amf.parameters.aPar.presentation.AParEditorID"
-            name="%_UI_AParEditor_label"
+            name="Parameter Model Editor"
             icon="icons/full/obj16/parameter_file.gif"
             extensions="apar"
             class="org.eclipse.amp.amf.parameters.aPar.presentation.AParEditor"
