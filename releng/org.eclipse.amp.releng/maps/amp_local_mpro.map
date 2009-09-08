@@ -6,10 +6,8 @@ plugin@org.eclipse.test=v20070226,:pserver:anonymous@dev.eclipse.org:/cvsroot/ec
 fragment@org.eclipse.ant.optional.junit=v20050226,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,
 
 plugin@org.apache.commons.collections=COPY,/Volumes/Resources/Developer/repos/eclipse,dependencies/plugins/org.apache.commons.collections
-plugin@org.lwjgl=COPY,/Volumes/Resources/Developer/repos/eclipse,dependencies/plugins/org.lwjgl_2.1.0.jar
 
 !***DEPENDENCIES
-!***plugin@org.eclipse.emf.java=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/dependencies/plugins/org.eclipse.emf.java
 plugin@org.eclipse.emf.java=COPY,/Volumes/Resources/Developer/repos/eclipse,dependencies/plugins/org.eclipse.emf.java
 plugin@org.ascape.ui.amp=COPY,/Volumes/Resources/Developer/repos/eclipse,org.ascape/plugins/org.ascape.ui.amp
 plugin@org.ascape.core=COPY,/Volumes/Resources/Developer/repos/eclipse,org.ascape/plugins/org.ascape.core
@@ -28,35 +26,28 @@ plugin@org.eclipse.gef3d.ext=COPY,/Volumes/Resources/Developer/workspaces/amp,or
 !***DOCUMENTATION
 
 !***EXAMPLES
-plugin@org.eclipse.emf.mwe.examples=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape
-plugin@org.eclipse.emf.mwe.examples=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
 
 !***TESTS
 plugin@org.eclipse.amp.amf.acore.test=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/tests/org.eclipse.amp.amf.acore.test
 plugin@org.eclipse.amp.amf.acore.edit.test=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/tests/org.eclipse.amp.amf.acore.edit.test
-plugin@org.eclipse.amp.amf.gen.test=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/tests/org.eclipse.amp.amf.gen.test
-plugin@org.eclipse.amp.amf.gen.ascape.test=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/tests/org.eclipse.amp.amf.gen.ascape.test
-plugin@org.eclipse.amp.amf.gen.repast.test=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/tests/org.eclipse.amp.amf.gen.repast.test
-plugin@org.eclipse.amp.amf.parameters.test=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/tests/org.eclipse.amp.amf.parameters.test
-plugin@org.eclipse.amp.axf.ide.test=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.axf/tests/org.eclipse.amp.axf.ide.test
+feature@org.eclipse.amp.test=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp/features/org.eclipse.amp.test-feature
 
 !***FEATURES
-feature@org.ascape.core.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.ascape/features/org.ascape.core.feature
-feature@org.eclipse.amp.all.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp/features/org.eclipse.amp.all.feature
-feature@org.eclipse.amp.agf.chart.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.agf/features/org.eclipse.amp.agf.chart.feature
-feature@org.eclipse.amp.agf.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.agf/features/org.eclipse.amp.agf.feature
-feature@org.eclipse.amp.agf.zest.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.agf/features/org.eclipse.amp.agf.zest.feature
-feature@org.eclipse.amp.agf3d.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.agf/features/org.eclipse.amp.agf3d.feature
-feature@org.eclipse.amp.amf.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/features/org.eclipse.amp.amf.feature
-!***feature@org.eclipse.amp.amf.gen.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/features/org.eclipse.amp.amf.gen.feature
-feature@org.eclipse.amp.amf.core.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/features/org.eclipse.amp.amf.core.feature
-feature@org.eclipse.amp.amf.target.ascape.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/features/org.eclipse.amp.amf.target.ascape.feature
-!***TODO Fix this directory name on CVS
-feature@org.eclipse.amp.amf.target.escape.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/features/org.eclipse.amp.amf.target.escape
-feature@org.eclipse.amp.amf.target.repast.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/features/org.eclipse.amp.amf.target.repast.feature
-feature@org.eclipse.amp.amfx.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/features/org.eclipse.amp.amfx.feature
-feature@org.eclipse.amp.axf.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.axf/features/org.eclipse.amp.axf.feature
-feature@org.eclipse.amp.escape.feature=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.escape/features/org.eclipse.amp.escape.feature
+feature@org.ascape.core=COPY,/Volumes/Resources/Developer/repos/eclipse,org.ascape/features/org.ascape.core-feature
+feature@org.eclipse.amp.all=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp/features/org.eclipse.amp.all-feature
+feature@org.eclipse.amp.agf.chart=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.agf/features/org.eclipse.amp.agf.chart-feature
+feature@org.eclipse.amp.agf=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.agf/features/org.eclipse.amp.agf-feature
+feature@org.eclipse.amp.agf.zest=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.agf/features/org.eclipse.amp.agf.zest-feature
+feature@org.eclipse.amp.agf3d=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.agf/features/org.eclipse.amp.agf3d-feature
+feature@org.eclipse.amp.amf=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/features/org.eclipse.amp.amf-feature
+!***feature@org.eclipse.amp.amf.gen=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/features/org.eclipse.amp.amf.gen-feature
+feature@org.eclipse.amp.amf.core=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/features/org.eclipse.amp.amf.core-feature
+feature@org.eclipse.amp.amf.target.ascape=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/features/org.eclipse.amp.amf.target.ascape-feature
+feature@org.eclipse.amp.amf.target.escape=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/features/org.eclipse.amp.amf.target.escape-feature
+feature@org.eclipse.amp.amf.target.repast=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/features/org.eclipse.amp.amf.target.repast-feature
+feature@org.eclipse.amp.amfx=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.amf/features/org.eclipse.amp.amfx-feature
+feature@org.eclipse.amp.axf=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.axf/features/org.eclipse.amp.axf-feature
+feature@org.eclipse.amp.escape=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.escape/features/org.eclipse.amp.escape-feature
 
 !***PLUGINS
 plugin@org.eclipse.amp.agf.chart=COPY,/Volumes/Resources/Developer/repos/eclipse,org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.chart
