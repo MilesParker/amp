@@ -79,14 +79,19 @@ public class ExecuteParameterTestHandler extends AbstractHandler {
                     return status;
                 }
             };
-            escapeRun.setPriority(Job.SHORT);
+            escapeRun.setPriority(Job.DECORATE);
             escapeRun.schedule();
         }
         return null;
     }
 
     private void addResource(IResource res) {
-        if (res instanceof IFolder) {
+        if (res instanceof IFile) {
+            IFile file = (IFile) res;
+            if (file.getFileExtension() != null && file.getFileExtension().equals("atest")) {
+                testResources.add(res);
+            }
+        } else if (res instanceof IFolder) {
             IFolder folder = (IFolder) res;
             try {
                 for (IResource resMember : folder.members()) {
@@ -94,11 +99,6 @@ public class ExecuteParameterTestHandler extends AbstractHandler {
                 }
             } catch (CoreException e) {
                 throw new RuntimeException(e);
-            }
-        } else if (res instanceof IFile) {
-            IFile file = (IFile) res;
-            if (file.getFileExtension().equals("atest")) {
-                testResources.add(res);
             }
         }
     }
@@ -114,6 +114,11 @@ public class ExecuteParameterTestHandler extends AbstractHandler {
                     }
                 }
             }
+        } else if (res instanceof IFile) {
+            IFile file = (IFile) res;
+            if (file.getFileExtension() != null && file.getFileExtension().equals("atest")) {
+                return true;
+            }
         } else if (res instanceof IFolder) {
             IFolder folder = (IFolder) res;
             try {
@@ -125,11 +130,6 @@ public class ExecuteParameterTestHandler extends AbstractHandler {
                 }
             } catch (CoreException e) {
                 throw new RuntimeException(e);
-            }
-        } else if (res instanceof IFile) {
-            IFile file = (IFile) res;
-            if (file.getFileExtension().equals("atest")) {
-                return true;
             }
         }
         return false;
