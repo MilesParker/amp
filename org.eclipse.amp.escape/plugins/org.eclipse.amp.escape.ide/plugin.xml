@@ -110,11 +110,11 @@
 		</key>
 	</extension>
 <extension point="org.eclipse.ui.newWizards">
-		<wizard category="org.eclipse.amp.wizards"
+		<wizard category="org.eclipse.amp.amf.ide.wizards"
 			class="org.eclipse.amp.escape.ide.ParameterFileWizard" icon="icons/etool16/parameter_file.gif"
-			id="org.eclipse.amp.escape.wizards.newParameters" name="Parameter File">
+			id="org.eclipse.amp.escape.wizards.newParameters" name="Parameters File">
 		</wizard>
-		<wizard category="org.eclipse.amp.wizards" class="org.eclipse.amp.escape.ide.TestRunFileWizard"
+		<wizard category="org.eclipse.amp.amf.ide.wizards" class="org.eclipse.amp.escape.ide.TestRunFileWizard"
 			icon="icons/etool16/test.gif" id="org.eclipse.amp.escape.wizards.newTest"
 			name="Test File">
 		</wizard>
