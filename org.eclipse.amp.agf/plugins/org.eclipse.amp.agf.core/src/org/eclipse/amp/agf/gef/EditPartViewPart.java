@@ -60,6 +60,7 @@ public abstract class EditPartViewPart extends ModelViewPart {
     public static double[] ZOOM_LEVELS = { .125, .25, .5, .75, 1.0, 1.25, 1.5, 2.0, 2.5, 3, 4, 6, 8 };
     private ZoomManager zoomer;
     private PropertySelectionListener selectionListener;
+    private RootEditPart rootEditPart;
 
     public EditPartViewPart() {
         super();
@@ -91,7 +92,7 @@ public abstract class EditPartViewPart extends ModelViewPart {
         final ModelEditPartInput mInput = (ModelEditPartInput) input;
         // setPartName(getName());
         if (input != null) {
-            RootEditPart rootEditPart = createRoot();
+            rootEditPart = createRoot();
             if (rootEditPart != null) {
                 viewer.setRootEditPart(rootEditPart);
                 createZoomer(rootEditPart);
@@ -214,6 +215,13 @@ public abstract class EditPartViewPart extends ModelViewPart {
 
     public ZoomManager getZoomer() {
         return zoomer;
+    }
+
+    /**
+     * @return the rootEditPart
+     */
+    public RootEditPart getRootEditPart() {
+        return rootEditPart;
     }
 
 }
