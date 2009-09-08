@@ -12,7 +12,7 @@
               extensions="apar"
               icon="icons/etool16/parameter_file.gif"
               id="org.eclipse.amp.amf.parameters.APar"
-              name="APar Editor">
+              name="Parameter Editor">
         </editor>
     </extension>
     <extension
