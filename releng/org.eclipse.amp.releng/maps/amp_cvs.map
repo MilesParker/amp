@@ -13,24 +13,14 @@ plugin@org.ascape.ui.amp=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/m
 plugin@org.ascape.core=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.ascape/plugins/org.ascape.core
 
 !***GEF 3D
-plugin@org.eclipse.draw3d=SVN,url=svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,tag=trunk,path=org.eclipse.draw3d
-plugin@org.eclipse.draw3d.geometry=SVN,url=svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,tag=trunk,path=org.eclipse.draw3d.geometry
-plugin@org.eclipse.draw3d.graphics3d=SVN,url=svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,tag=trunk,path=org.eclipse.draw3d.graphics3d
-plugin@org.eclipse.draw3d.lwjgl=SVN,url=svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,tag=trunk,path=org.eclipse.draw3d.lwjgl
-plugin@org.eclipse.draw3d.ui=SVN,url=svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,tag=trunk,path=org.eclipse.draw3d.ui
-plugin@org.eclipse.draw3d.x3d=SVN,url=svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,tag=trunk,path=org.eclipse.draw3d.x3d
-plugin@org.eclipse.gef3d=SVN,url=svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,tag=trunk,path=org.eclipse.gef3d
-plugin@org.eclipse.gef3d.ext=SVN,url=svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,tag=trunk,path=org.eclipse.gef3d.ext
-
-!***GEF 3D
-!***plugin@org.eclipse.draw3d=COPY,/Volumes/Resources/Developer/workspaces/amp,org.eclipse.draw3d
-!***plugin@org.eclipse.draw3d.geometry=COPY,/Volumes/Resources/Developer/workspaces/amp,org.eclipse.draw3d.geometry
-!***plugin@org.eclipse.draw3d.graphics3d=COPY,/Volumes/Resources/Developer/workspaces/amp,org.eclipse.draw3d.graphics3d
-!***plugin@org.eclipse.draw3d.lwjgl=COPY,/Volumes/Resources/Developer/workspaces/amp,org.eclipse.draw3d.lwjgl
-!***plugin@org.eclipse.draw3d.ui=COPY,/Volumes/Resources/Developer/workspaces/amp,org.eclipse.draw3d.ui
-!***plugin@org.eclipse.draw3d.x3d=COPY,/Volumes/Resources/Developer/workspaces/amp,org.eclipse.draw3d.x3d
-!***plugin@org.eclipse.gef3d=COPY,/Volumes/Resources/Developer/workspaces/amp,org.eclipse.gef3d
-!***plugin@org.eclipse.gef3d.ext=COPY,/Volumes/Resources/Developer/workspaces/amp,org.eclipse.gef3d.ext
+plugin@org.eclipse.draw3d=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d@HEAD
+plugin@org.eclipse.draw3d.geometry=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.geometry@HEAD
+plugin@org.eclipse.draw3d.graphics3d=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.graphics3d@HEAD
+plugin@org.eclipse.draw3d.lwjgl=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.lwjgl@HEAD
+plugin@org.eclipse.draw3d.ui=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.ui@HEAD
+plugin@org.eclipse.draw3d.x3d=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.x3d@HEAD
+plugin@org.eclipse.gef3d=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.gef3d@HEAD
+plugin@org.eclipse.gef3d.ext=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.gef3d.ext@HEAD
 
 !***DOCUMENTATION
 
@@ -59,10 +49,8 @@ feature@org.eclipse.amp.agf=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroo
 feature@org.eclipse.amp.agf.zest=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.agf/features/org.eclipse.amp.agf.zest-feature
 feature@org.eclipse.amp.agf3d=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.agf/features/org.eclipse.amp.agf3d-feature
 feature@org.eclipse.amp.amf=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf-feature
-!***feature@org.eclipse.amp.amf.gen=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.gen-feature
 feature@org.eclipse.amp.amf.core=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.core-feature
 feature@org.eclipse.amp.amf.target.ascape=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.target.ascape-feature
-!***TODO Fix this directory name on CVS
 feature@org.eclipse.amp.amf.target.escape=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.target.escape-feature
 feature@org.eclipse.amp.amf.target.repast=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.target.repast-feature
 feature@org.eclipse.amp.amfx=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amfx-feature
