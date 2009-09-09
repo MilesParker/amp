@@ -61,10 +61,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       <update label="AMP Update Site" url="http://download.eclipse.org/modeling/amp/updates/releases/"/>
    </url>
 
-   <requires>
-      <import plugin="org.apache.ant"/>
-   </requires>
-
    <plugin
          id="org.ascape.core"
          download-size="0"
