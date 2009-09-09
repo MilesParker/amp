@@ -40,6 +40,7 @@ import org.metaabm.SAttributeType;
 import org.metaabm.SAttributed;
 import org.metaabm.SContext;
 import org.metaabm.SProjection;
+import org.metaabm.SState;
 import org.metaabm.act.AAccessor;
 import org.metaabm.act.AAct;
 import org.metaabm.act.ACreateAgents;
@@ -189,11 +190,16 @@ public class SAttributeImpl extends SNamedImpl implements SAttribute {
             parent = ((SProjection) getOwner()).getOwner();
         }
         agentAccessors(parent, this, searchObjects);
+        if (this instanceof SState) {
+            for (IValue value : ((SState) this).getOptions()) {
+                agentAccessors(parent, value, searchObjects);
+            }
+        }
         return new EcoreEList.UnmodifiableEList.FastCompare<EObject>(this,
                 MetaABMPackage.Literals.IVALUE__ACCESSORS, searchObjects.size(), searchObjects.toArray());
     }
 
-    public static void agentAccessors(SAgent parent, SAttribute attribute, Collection<EObject> searchObjects) {
+    public static void agentAccessors(SAgent parent, IValue attribute, Collection<EObject> searchObjects) {
         if (parent != null && parent.getRootActivity() != null) {
             for (AAct act : ((AGroup) parent.getRootActivity()).getMembers()) {
                 if (act instanceof ASink) {

@@ -85,7 +85,7 @@ public class SStateImpl extends SAttributeImpl implements SState {
     public EList<SStateValue> getOptions() {
         if (options == null) {
             options = new EObjectContainmentWithInverseEList<SStateValue>(SStateValue.class, this,
-                MetaABMPackage.SSTATE__OPTIONS, MetaABMPackage.SSTATE_VALUE__SET);
+                    MetaABMPackage.SSTATE__OPTIONS, MetaABMPackage.SSTATE_VALUE__SET);
         }
         return options;
     }
@@ -99,9 +99,10 @@ public class SStateImpl extends SAttributeImpl implements SState {
             InternalEObject oldDefaultOption = (InternalEObject) defaultOption;
             defaultOption = (SStateValue) eResolveProxy(oldDefaultOption);
             if (defaultOption != oldDefaultOption) {
-                if (eNotificationRequired())
+                if (eNotificationRequired()) {
                     eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetaABMPackage.SSTATE__DEFAULT_OPTION,
-                        oldDefaultOption, defaultOption));
+                                                  oldDefaultOption, defaultOption));
+                }
             }
         }
         return defaultOption;
@@ -122,9 +123,10 @@ public class SStateImpl extends SAttributeImpl implements SState {
     public void setDefaultOption(SStateValue newDefaultOption) {
         SStateValue oldDefaultOption = defaultOption;
         defaultOption = newDefaultOption;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SSTATE__DEFAULT_OPTION,
-                oldDefaultOption, defaultOption));
+                                          oldDefaultOption, defaultOption));
+        }
     }
 
     /**
@@ -164,7 +166,9 @@ public class SStateImpl extends SAttributeImpl implements SState {
             case MetaABMPackage.SSTATE__OPTIONS:
                 return getOptions();
             case MetaABMPackage.SSTATE__DEFAULT_OPTION:
-                if (resolve) return getDefaultOption();
+                if (resolve) {
+                    return getDefaultOption();
+                }
                 return basicGetDefaultOption();
         }
         return super.eGet(featureID, resolve, coreType);
@@ -224,7 +228,7 @@ public class SStateImpl extends SAttributeImpl implements SState {
     @Override
     public boolean accepts(IValue value) {
         return getOptions().contains(value) || value instanceof AEvaluate
-            && ((AEvaluate) value).getFunction().getID().equals("randomState")
-            && ((AEvaluate) value).getInputs().size() > 0 && ((AEvaluate) value).getInputs().get(0).getValue() == this;
+        && ((AEvaluate) value).getFunction().getID().equals("randomState")
+        && ((AEvaluate) value).getInputs().size() > 0 && ((AEvaluate) value).getInputs().get(0).getValue() == this;
     }
 } // SStateImpl
