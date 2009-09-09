@@ -239,7 +239,6 @@ litigation.
       <import plugin="org.eclipse.amp.amf.acore.edit"/>
       <import plugin="org.eclipse.emf.ecore.xmi" version="2.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.java" version="2.5.0" match="greaterOrEqual"/>
-      <import plugin="org.apache.commons.lang"/>
       <import plugin="org.eclipse.xpand" version="0.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xtend" version="0.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xtend.typesystem.emf" version="0.7.0" match="greaterOrEqual"/>
