@@ -1,0 +1,7 @@
+<project default="run" name="org.eclipse.amp.releng/build.xml - Run an AMP build using the Athena CBI">
+	<target name="run">
+		<ant antfile="build.xml" target="run" >
+			<property file="build-local.properties" />
+		</ant>
+      	</target>
+</project>
