@@ -125,6 +125,7 @@ public class SContextTest extends SAgentTest {
      * @param ctxB2
      * @param agtB1
      */
+    @SuppressWarnings("unchecked")
     private void helpContains(Collection parent, SAgent... agents) {
         List expAgents = new ArrayList(Arrays.asList(agents));
         for (Object a : parent) {
