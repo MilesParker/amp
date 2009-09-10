@@ -13,8 +13,6 @@ import org.eclipse.amp.agf3d.CubeEdit3DPart;
 import org.eclipse.amp.agf3d.ScapeEdit3DPart;
 import org.eclipse.amp.agf3d.TileEdit3DPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
-import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
-import org.eclipse.amp.escape.ascape.adapt.AscapeProvider;
 import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
 import org.eclipse.gef.EditPart;
 
@@ -45,6 +43,7 @@ public class Ascape3DPartFactory extends AscapePartFactory {
         ICompositionProvider memberProvider = null;
         if (scape.isRoot()) {
             memberProvider = new AscapeProvider() {
+                @SuppressWarnings("unchecked")
                 public java.util.List getList(Object hasIterable) {
                     List list = new ArrayList(super.getList(hasIterable));
                     List newList = new ArrayList(super.getList(hasIterable));
