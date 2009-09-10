@@ -15,9 +15,6 @@
  */
 package org.eclipse.amp.axf.ide;
 
-import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IStartup;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -41,13 +38,6 @@ public class AXFWorkbenchPlugin extends AbstractUIPlugin implements IStartup {
      * The constructor.
      */
     public AXFWorkbenchPlugin() {
-    }
-
-
-    private Image loadImage(String name) {
-        ImageDescriptor desc = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID,
-                                                                          "icons/etool16/" + name);
-        return JFaceResources.getResources().createImageWithDefault(desc);
     }
 
     /*
