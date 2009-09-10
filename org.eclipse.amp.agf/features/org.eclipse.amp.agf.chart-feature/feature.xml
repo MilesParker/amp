@@ -216,6 +216,20 @@ litigation.
       <update label="AMP Update Site" url="http://eclipse.org/amp/updates/release"/>
    </url>
 
+   <requires>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.ui.views"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.birt.chart.ui" version="2.3.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.birt.chart.device.swt" version="2.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.axf.core"/>
+      <import plugin="org.eclipse.amp.axf.views"/>
+      <import plugin="org.eclipse.amp.agf.core"/>
+      <import plugin="org.eclipse.birt.chart.device.extension"/>
+      <import plugin="org.eclipse.birt.chart.engine.extension"/>
+      <import plugin="org.eclipse.birt.chart.ui.extension"/>
+   </requires>
+
    <plugin
          id="org.eclipse.amp.agf.chart"
          download-size="0"
