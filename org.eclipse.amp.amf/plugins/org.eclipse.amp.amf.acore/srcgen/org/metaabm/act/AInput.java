@@ -147,7 +147,7 @@ public interface AInput extends EObject {
 
     boolean isPotentialValue(IValue value);
 
-    Collection<?> potentialValues(Collection<?> suggestValues);
+    Collection<?> potentialValues(Collection<IValue> suggestValues);
 
     boolean references(IValue value);
 } // AInput

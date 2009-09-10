@@ -26,7 +26,6 @@ import org.metaabm.ITyped;
 import org.metaabm.ITypedArray;
 import org.metaabm.SImplemented;
 import org.metaabm.SNamed;
-import org.metaabm.function.*;
 import org.metaabm.function.FArgumentArrayPrototype;
 import org.metaabm.function.FArgumentPrototype;
 import org.metaabm.function.FFunction;

@@ -16,15 +16,12 @@
  */
 package org.metaabm.impl;
 
-import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SImplementation;
@@ -275,9 +272,10 @@ public class SImplementationImpl extends EObjectImpl implements SImplementation 
     public void setPackage(String newPackage) {
         String oldPackage = package_;
         package_ = newPackage;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SIMPLEMENTATION__PACKAGE, oldPackage,
                 package_));
+        }
     }
 
     /**
@@ -295,9 +293,10 @@ public class SImplementationImpl extends EObjectImpl implements SImplementation 
     public void setClassName(String newClassName) {
         String oldClassName = className;
         className = newClassName;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SIMPLEMENTATION__CLASS_NAME,
                 oldClassName, className));
+        }
     }
 
     /**
@@ -315,14 +314,15 @@ public class SImplementationImpl extends EObjectImpl implements SImplementation 
     public void setBasePath(String newBasePath) {
         String oldBasePath = basePath;
         basePath = newBasePath;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SIMPLEMENTATION__BASE_PATH,
                 oldBasePath, basePath));
+        }
     }
 
     private SImplementation getParentImplementation() {
-        if ((getTarget() instanceof SImplemented) && (((SImplemented) getTarget()).getParent() != null)) {
-            return ((SImplemented) getTarget()).getParent().getImplementation();
+        if (getTarget() instanceof SImplemented && (getTarget()).getParent() != null) {
+            return (getTarget()).getParent().getImplementation();
         } else {
             return null;
         }
@@ -330,7 +330,7 @@ public class SImplementationImpl extends EObjectImpl implements SImplementation 
 
     public String derive(Derivable derivable) {
         String value = derivable.baseValue(this);
-        if (((value != null) && (value.length() > 0)) || (getParentImplementation() == null)) {
+        if (value != null && value.length() > 0 || getParentImplementation() == null) {
             // if (value != null) {
             return value;
             // } else {
@@ -358,7 +358,7 @@ public class SImplementationImpl extends EObjectImpl implements SImplementation 
      * @return
      */
     public static String addDir(String currentPath, String candidatePath) {
-        if ((currentPath.length() > 0) && (candidatePath.length() > 0)) {
+        if (currentPath.length() > 0 && candidatePath.length() > 0) {
             return currentPath + sc + candidatePath;
         } else {
             if (currentPath.length() > 0) {
@@ -426,9 +426,10 @@ public class SImplementationImpl extends EObjectImpl implements SImplementation 
     public void setSrcDir(String newSrcDir) {
         String oldSrcDir = srcDir;
         srcDir = newSrcDir;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SIMPLEMENTATION__SRC_DIR, oldSrcDir,
                 srcDir));
+        }
     }
 
     /**
@@ -446,9 +447,10 @@ public class SImplementationImpl extends EObjectImpl implements SImplementation 
     public void setBinDir(String newBinDir) {
         String oldBinDir = binDir;
         binDir = newBinDir;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SIMPLEMENTATION__BIN_DIR, oldBinDir,
                 binDir));
+        }
     }
 
     /**
@@ -466,8 +468,9 @@ public class SImplementationImpl extends EObjectImpl implements SImplementation 
     public void setMode(SImplementationMode newMode) {
         SImplementationMode oldMode = mode;
         mode = newMode == null ? MODE_EDEFAULT : newMode;
-        if (eNotificationRequired())
+        if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SIMPLEMENTATION__MODE, oldMode, mode));
+        }
     }
 
     /**
@@ -475,7 +478,9 @@ public class SImplementationImpl extends EObjectImpl implements SImplementation 
      * @generated
      */
     public SImplemented getTarget() {
-        if (eContainerFeatureID() != MetaABMPackage.SIMPLEMENTATION__TARGET) return null;
+        if (eContainerFeatureID() != MetaABMPackage.SIMPLEMENTATION__TARGET) {
+            return null;
+        }
         return (SImplemented) eContainer();
     }
 
@@ -494,19 +499,26 @@ public class SImplementationImpl extends EObjectImpl implements SImplementation 
      */
     public void setTarget(SImplemented newTarget) {
         if (newTarget != eInternalContainer()
-            || (eContainerFeatureID() != MetaABMPackage.SIMPLEMENTATION__TARGET && newTarget != null)) {
-            if (EcoreUtil.isAncestor(this, newTarget))
+            || eContainerFeatureID() != MetaABMPackage.SIMPLEMENTATION__TARGET && newTarget != null) {
+            if (EcoreUtil.isAncestor(this, newTarget)) {
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            }
             NotificationChain msgs = null;
-            if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
-            if (newTarget != null)
+            if (eInternalContainer() != null) {
+                msgs = eBasicRemoveFromContainer(msgs);
+            }
+            if (newTarget != null) {
                 msgs = ((InternalEObject) newTarget).eInverseAdd(this, MetaABMPackage.SIMPLEMENTED__IMPLEMENTATION,
                                                                  SImplemented.class, msgs);
+            }
             msgs = basicSetTarget(newTarget, msgs);
-            if (msgs != null) msgs.dispatch();
-        } else if (eNotificationRequired())
+            if (msgs != null) {
+                msgs.dispatch();
+            }
+        } else if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SIMPLEMENTATION__TARGET, newTarget,
                 newTarget));
+        }
     }
 
     /**
@@ -517,7 +529,9 @@ public class SImplementationImpl extends EObjectImpl implements SImplementation 
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case MetaABMPackage.SIMPLEMENTATION__TARGET:
-                if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+                if (eInternalContainer() != null) {
+                    msgs = eBasicRemoveFromContainer(msgs);
+                }
                 return basicSetTarget((SImplemented) otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -593,7 +607,6 @@ public class SImplementationImpl extends EObjectImpl implements SImplementation 
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
@@ -706,7 +719,9 @@ public class SImplementationImpl extends EObjectImpl implements SImplementation 
      */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+        if (eIsProxy()) {
+            return super.toString();
+        }
 
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (package: ");
