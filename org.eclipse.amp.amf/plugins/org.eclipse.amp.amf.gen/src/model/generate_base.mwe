@@ -11,13 +11,6 @@
 	<property name="genStats" value="single"/> <!-- one of "none" "single" "cross" -->
     <property name="buildProject" value="undefined.project"/>
     <property name="packageModifier" value=""/>
-	
-    <bean class="org.eclipse.xtend.typesystem.emf.Setup">
-      <uriMap to="model/core_library.metaabm" from="http://metaabm.org/core_library.metaabm" />
-      <uriMap to="model/metaabm.xsd" from="http://metaabm.org/structure" />
-      <uriMap to="model/metaabm.act.xsd" from="http://metaabm.org/act" />
-      <uriMap to="model/metaabm.function.xsd" from="http://metaabm.org/function" />
-    </bean>
    
     <bean id="metaabm" class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel"/>
 	
