@@ -1,4 +1,4 @@
-package org.metaabm.examples.stupid2;
+package org.metaabm.examples.stupid1;
 
 /**
  * Bug Java Implementation.
@@ -7,11 +7,6 @@ package org.metaabm.examples.stupid2;
 
 public class Bug extends org.ascape.model.CellOccupant {
 
-	/**
-	 * 
-	 */
-
-	private int size = 0;
 	/**
 	 * Constructs a new Bug.
 	 */
@@ -45,8 +40,8 @@ public class Bug extends org.ascape.model.CellOccupant {
 		}
 	}
 
-	public StupidModel2 getStupidModel2() {
-		return (StupidModel2) getScape().getRoot();
+	public StupidModel1 getStupidModel1() {
+		return (StupidModel1) getScape().getRoot();
 	}
 
 	public java.awt.Color getColor() {
@@ -60,7 +55,7 @@ public class Bug extends org.ascape.model.CellOccupant {
 
 		{
 
-			Habitat randomHabitat = (Habitat) ((org.ascape.model.space.Discrete) getStupidModel2()
+			Habitat randomHabitat = (Habitat) ((org.ascape.model.space.Discrete) getStupidModel1()
 					.getGrid2D().getSpace()).findRandomAvailable();
 			if (randomHabitat != null) {
 
@@ -72,17 +67,17 @@ public class Bug extends org.ascape.model.CellOccupant {
 
 	}
 	/**
-	 * .
+	 * Move to a neighboring space. (In this version we also have to manually notify the bug's broker. :( ).
 	 */
 
-	public void randomMovement() {
+	public void bugRule() {
 
 		{
 
-			Habitat nearbySpace = (Habitat) ((org.ascape.model.space.Discrete) getStupidModel2()
+			Habitat nearbySpace = (Habitat) ((org.ascape.model.space.Discrete) getStupidModel1()
 					.getGrid2D().getSpace()).findRandomAvailable(
 					((org.ascape.model.CellOccupant) this).getHostCell(), null,
-					false, getStupidModel2().getBugVision());
+					false, getStupidModel1().getBugVision());
 			if (nearbySpace != null) {
 
 				moveTo(nearbySpace);
@@ -91,36 +86,6 @@ public class Bug extends org.ascape.model.CellOccupant {
 
 		}
 
-	}
-	/**
-	 * .
-	 */
-
-	public void grow() {
-
-		int growIncrementSize = getSize() + 1;
-
-		setSize(growIncrementSize);
-
-	}
-
-	/**
-	 * Gets the Size property for Bug.
-	 * @return 
-	 */
-
-	public int getSize() {
-		return size;
-	}
-
-	/**
-	 * Sets the Size property for Bug.
-	 * 
-	 * @param _size the new Size value
-	 */
-
-	public void setSize(int _size) {
-		size = _size;
 	}
 
 	public String getName() {

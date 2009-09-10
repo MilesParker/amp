@@ -1,4 +1,4 @@
-package org.metaabm.examples.stupid2;
+package org.metaabm.examples.stupid1;
 
 /**
  * Habitat Style 2D Java Implementation.
@@ -10,6 +10,15 @@ public class HabitatStyle2D extends org.ascape.util.vis.DrawFeature {
 	public void draw(java.awt.Graphics g, Object object, int width, int height) {
 		java.awt.Shape shape = null;
 		Habitat rootActGroup = (Habitat) object;
+		Habitat habitatRule = rootActGroup;
+
+		java.awt.Color habitatRuleColorGreen = java.awt.Color.GREEN
+
+		;
+
+		g.setColor(habitatRuleColorGreen);
+		shape = new java.awt.geom.Rectangle2D.Double(0, 0, width, height);
+		((java.awt.Graphics2D) g).fill(shape);
 
 	}
 }
