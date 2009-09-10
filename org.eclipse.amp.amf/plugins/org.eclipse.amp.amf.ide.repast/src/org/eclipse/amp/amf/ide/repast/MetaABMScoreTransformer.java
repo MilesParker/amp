@@ -157,7 +157,7 @@ public class MetaABMScoreTransformer {
         try {
             String modelPath = getGenProperties().get("modelPath");
             String outputPath = getGenProperties().get("outputPath");
-            String project = getGenProperties().get("buildProject");
+            // String project = getGenProperties().get("buildProject");
 
             MetaABMPersist mLoader = MetaABMPersist.createURI(URI.createPlatformResourceURI(modelPath,
                                                                                             false));
