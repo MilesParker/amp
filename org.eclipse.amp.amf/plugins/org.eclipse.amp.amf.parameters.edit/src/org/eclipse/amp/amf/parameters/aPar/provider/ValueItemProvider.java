@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueItemProvider.java,v 1.3 2009/08/03 17:15:49 mparker Exp $
+ * $Id: ValueItemProvider.java,v 1.4 2009/09/10 20:26:19 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 
@@ -12,9 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;

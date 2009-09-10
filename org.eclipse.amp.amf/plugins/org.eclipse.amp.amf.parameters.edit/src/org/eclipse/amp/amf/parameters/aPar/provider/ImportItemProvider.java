@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ImportItemProvider.java,v 1.1 2009/07/18 01:08:02 mparker Exp $
+ * $Id: ImportItemProvider.java,v 1.2 2009/09/10 20:26:20 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 
@@ -12,12 +12,9 @@ import java.util.List;
 
 import org.eclipse.amp.amf.parameters.aPar.AParPackage;
 import org.eclipse.amp.amf.parameters.aPar.Import;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;

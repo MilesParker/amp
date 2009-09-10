@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AParItemProviderAdapterFactory.java,v 1.4 2009/08/03 17:15:49 mparker Exp $
+ * $Id: AParItemProviderAdapterFactory.java,v 1.5 2009/09/10 20:26:20 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 
@@ -10,11 +10,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.amp.amf.parameters.aPar.util.AParAdapterFactory;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;

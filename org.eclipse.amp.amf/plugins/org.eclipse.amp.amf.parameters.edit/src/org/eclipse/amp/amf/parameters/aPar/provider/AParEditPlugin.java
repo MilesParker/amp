@@ -2,14 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AParEditPlugin.java,v 1.1 2009/07/18 01:07:49 mparker Exp $
+ * $Id: AParEditPlugin.java,v 1.2 2009/09/10 20:26:19 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.metaabm.provider.MetaABMEditPlugin;
 
 /**
