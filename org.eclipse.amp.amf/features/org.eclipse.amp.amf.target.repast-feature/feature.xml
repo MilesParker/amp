@@ -226,10 +226,10 @@ litigation.
       <import plugin="org.eclipse.jdt.launching"/>
       <import plugin="org.eclipse.jdt.debug.ui"/>
       <import plugin="org.eclipse.jdt.debug"/>
-      <import plugin="repast.simphony.score" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.jdt.core" version="3.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.amp.amf.ide" version="0.2.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.amp.amf.gen.ide" version="0.2.0" match="greaterOrEqual"/>
+      <import plugin="repast.simphony.score" version="1.0.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
