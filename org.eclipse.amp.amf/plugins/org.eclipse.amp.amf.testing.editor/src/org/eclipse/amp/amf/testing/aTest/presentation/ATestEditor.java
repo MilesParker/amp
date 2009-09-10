@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ATestEditor.java,v 1.2 2009/08/10 23:54:43 mparker Exp $
+ * $Id: ATestEditor.java,v 1.3 2009/09/10 20:25:53 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.aTest.presentation;
 
@@ -1186,7 +1186,6 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("unchecked")
     @Override
     public Object getAdapter(Class key) {
         if (key.equals(IContentOutlinePage.class)) {
