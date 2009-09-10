@@ -40,7 +40,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SActable;
-import org.metaabm.act.MetaABMActFactory;
 import org.metaabm.act.AGroup;
 
 /*

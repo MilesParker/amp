@@ -50,8 +50,8 @@ import org.metaabm.SStateValue;
  * @generated
  */
 public class SStateItemProvider extends SAttributeItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -84,10 +84,10 @@ public class SStateItemProvider extends SAttributeItemProvider implements IEditi
      */
     protected void addSTypePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_ITyped_sType_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_ITyped_sType_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_ITyped_sType_feature",
-                                                                           "_UI_ITyped_type"),
+                                                                 "_UI_ITyped_type"),
                                                                  MetaABMPackage.Literals.ITYPED__STYPE, false, false,
                                                                  false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                                                                  null, null));
@@ -101,10 +101,10 @@ public class SStateItemProvider extends SAttributeItemProvider implements IEditi
      */
     protected void addDefaultValuePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SAttribute_defaultValue_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SAttribute_defaultValue_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SAttribute_defaultValue_feature",
-                                                                           "_UI_SAttribute_type"),
+                                                                 "_UI_SAttribute_type"),
                                                                  MetaABMPackage.Literals.SATTRIBUTE__DEFAULT_VALUE,
                                                                  false, false, false,
                                                                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
@@ -118,10 +118,10 @@ public class SStateItemProvider extends SAttributeItemProvider implements IEditi
      */
     protected void addOptionsPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SState_options_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SState_options_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SState_options_feature",
-                                                                           "_UI_SState_type"),
+                                                                 "_UI_SState_type"),
                                                                  MetaABMPackage.Literals.SSTATE__OPTIONS, true, false,
                                                                  false, null, null, null));
     }
@@ -133,14 +133,15 @@ public class SStateItemProvider extends SAttributeItemProvider implements IEditi
      */
     protected void addDefaultOptionPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SState_defaultOption_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SState_defaultOption_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SState_defaultOption_feature",
-                                                                           "_UI_SState_type"),
+                                                                 "_UI_SState_type"),
                                                                  MetaABMPackage.Literals.SSTATE__DEFAULT_OPTION, true,
                                                                  false, true, null, null, null));
     }
 
+    @SuppressWarnings("unchecked")
     public Collection<?> getChildren(Object object) {
         Collection children = super.getChildren(object);
         children.addAll(((SState) object).getOptions());
@@ -258,7 +259,7 @@ public class SStateItemProvider extends SAttributeItemProvider implements IEditi
         super.collectNewChildDescriptors(newChildDescriptors, object);
 
         newChildDescriptors.add(createChildParameter(MetaABMPackage.Literals.SSTATE__OPTIONS, MetaABMFactory.eINSTANCE
-                .createSStateValue()));
+                                                     .createSStateValue()));
     }
 
 }

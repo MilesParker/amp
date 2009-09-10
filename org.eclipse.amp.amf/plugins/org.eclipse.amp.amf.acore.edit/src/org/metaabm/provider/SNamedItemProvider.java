@@ -52,8 +52,8 @@ import org.metaabm.commands.SuggestLabelCommand;
  * @generated
  */
 public class SNamedItemProvider extends IIDItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -86,10 +86,10 @@ public class SNamedItemProvider extends IIDItemProvider implements IEditingDomai
      */
     protected void addPluralLabelPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SNamed_pluralLabel_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SNamed_pluralLabel_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SNamed_pluralLabel_feature",
-                                                                           "_UI_SNamed_type"),
+                                                                 "_UI_SNamed_type"),
                                                                  MetaABMPackage.Literals.SNAMED__PLURAL_LABEL, true,
                                                                  false, false,
                                                                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
@@ -103,16 +103,17 @@ public class SNamedItemProvider extends IIDItemProvider implements IEditingDomai
      */
     protected void addDescriptionPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SNamed_description_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SNamed_description_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SNamed_description_feature",
-                                                                           "_UI_SNamed_type"),
+                                                                 "_UI_SNamed_type"),
                                                                  MetaABMPackage.Literals.SNAMED__DESCRIPTION, true,
                                                                  true, false,
                                                                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                                                                  getString("_UI_IDsPropertyCategory"), null));
     }
 
+    @SuppressWarnings("unchecked")
     protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
             Collection<?> collection, int index) {
         Object cannonical = collection.iterator().next();
@@ -138,7 +139,7 @@ public class SNamedItemProvider extends IIDItemProvider implements IEditingDomai
             cmd.append(new SuggestLabelCommand(domain, (IID) value));
             return cmd;
         } else if (feature == MetaABMPackage.Literals.IID__LABEL
-            || feature == MetaABMPackage.Literals.SNAMED__PLURAL_LABEL) {
+                || feature == MetaABMPackage.Literals.SNAMED__PLURAL_LABEL) {
             return SetLabelCommand.create(domain, owner, feature, value, index);
         } else {
             // force a store of old value..

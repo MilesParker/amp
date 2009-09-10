@@ -1,4 +1,4 @@
-/* 
+/*
  * <copyright>
  *
  * Copyright (c) 2007-2009 Metascape, LLC
@@ -57,7 +57,7 @@ public class SetSinkFunctionCommand extends MultiValueCommand {
         // Create Inputs
         int oldCount = sink.getInputs().size();
         List<AInput> commonInputs = null;
-        List<AInput> orphanedInputs = Collections.EMPTY_LIST;
+        List<AInput> orphanedInputs = Collections.<AInput> emptyList();
         if (newCount < oldCount) {
             orphanedInputs = sink.getInputs().subList(newCount, oldCount);
             append(RemoveCommand.create(domain, sink, MetaABMActPackage.Literals.ASINK__INPUTS,

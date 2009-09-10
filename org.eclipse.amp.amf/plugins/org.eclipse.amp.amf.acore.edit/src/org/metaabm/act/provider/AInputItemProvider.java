@@ -64,8 +64,8 @@ import org.metaabm.provider.MetaABMItemProvider;
  * @generated
  */
 public class AInputItemProvider extends MetaABMItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
 
     static URI LIGHT_GRAY_BLUE_COLOR = URI.createURI("color://rgb/100/120/200");
 
@@ -114,13 +114,13 @@ public class AInputItemProvider extends MetaABMItemProvider implements IEditingD
      */
     protected void addValuePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_AInput_value_feature"),
-            getString("_UI_PropertyDescriptor_description", "_UI_AInput_value_feature", "_UI_AInput_type"),
-            MetaABMActPackage.Literals.AINPUT__VALUE, true, false, true, null, null, null) {
+                                                               .getRootAdapterFactory(), getResourceLocator(), getString("_UI_AInput_value_feature"),
+                                                               getString("_UI_PropertyDescriptor_description", "_UI_AInput_value_feature", "_UI_AInput_type"),
+                                                               MetaABMActPackage.Literals.AINPUT__VALUE, true, false, true, null, null, null) {
             @SuppressWarnings("unchecked")
             public Collection<?> getChoiceOfValues(Object object) {
                 AInput input = (AInput) object;
-                return input.potentialValues(super.getChoiceOfValues(object));
+                return input.potentialValues((Collection<IValue>) super.getChoiceOfValues(object));
             }
         });
     }
@@ -182,9 +182,9 @@ public class AInputItemProvider extends MetaABMItemProvider implements IEditingD
      */
     protected void addSelectedPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_AInput_selected_feature"),
-            getString("_UI_PropertyDescriptor_description", "_UI_AInput_selected_feature", "_UI_AInput_type"),
-            MetaABMActPackage.Literals.AINPUT__SELECTED, true, false, true, null, null, null) {
+                                                               .getRootAdapterFactory(), getResourceLocator(), getString("_UI_AInput_selected_feature"),
+                                                               getString("_UI_PropertyDescriptor_description", "_UI_AInput_selected_feature", "_UI_AInput_type"),
+                                                               MetaABMActPackage.Literals.AINPUT__SELECTED, true, false, true, null, null, null) {
             @SuppressWarnings("unchecked")
             public Collection<?> getChoiceOfValues(Object object) {
                 Collection<AAct> original = (Collection<AAct>) super.getChoiceOfValues(object);
@@ -208,19 +208,19 @@ public class AInputItemProvider extends MetaABMItemProvider implements IEditingD
      */
     protected void addLiteralPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(), getString("_UI_AInput_literal_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_AInput_literal_feature", "_UI_AInput_type"),
-                                                  MetaABMActPackage.Literals.AINPUT__LITERAL, false, false, false,
-                                                  null, getString("_UI_RelationsPropertyCategory"),
-                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(), getString("_UI_AInput_literal_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_AInput_literal_feature", "_UI_AInput_type"),
+                                                    MetaABMActPackage.Literals.AINPUT__LITERAL, false, false, false,
+                                                    null, getString("_UI_RelationsPropertyCategory"),
+                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value,
             int index) {
         if (feature == MetaABMActPackage.Literals.AINPUT__VALUE
-            || feature == MetaABMActPackage.Literals.AINPUT__LITERAL) {
+                || feature == MetaABMActPackage.Literals.AINPUT__LITERAL) {
             AInput input = (AInput) owner;
             ASink sink = input.getSink();
             SuggestLabelCommand suggestSinkLabelCommand = null;
@@ -233,8 +233,8 @@ public class AInputItemProvider extends MetaABMItemProvider implements IEditingD
             if (feature == MetaABMActPackage.Literals.AINPUT__VALUE) {
                 if (value instanceof ALiteral) {
                     cmd
-                            .append(super.createSetCommand(domain, owner, MetaABMActPackage.Literals.AINPUT__LITERAL,
-                                                           value));
+                    .append(super.createSetCommand(domain, owner, MetaABMActPackage.Literals.AINPUT__LITERAL,
+                                                   value));
                 } else if (input.getLiteral() != null) {
                     cmd.append(super.createSetCommand(domain, owner, MetaABMActPackage.Literals.AINPUT__LITERAL, null));
                 }
@@ -251,7 +251,7 @@ public class AInputItemProvider extends MetaABMItemProvider implements IEditingD
 
     public boolean isAccessed(IValue value) {
         return value != null && !(value instanceof SAttribute && ((SAttribute) value).isImmutable())
-            && !(value instanceof ALiteral);
+        && !(value instanceof ALiteral);
     }
 
     public String suggestLabel(IID object) {

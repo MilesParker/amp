@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: RemoveMultiValueStateCommand.java,v 1.1 2009/07/16 19:58:57 mparker Exp $
+ * </copyright> $Id: RemoveMultiValueStateCommand.java,v 1.2 2009/09/10 20:26:17 mparker Exp $
  */
 package org.metaabm.commands;
 
@@ -33,6 +33,7 @@ import org.metaabm.act.ASink;
  */
 public class RemoveMultiValueStateCommand extends MultiValueCommand implements Command {
 
+    @SuppressWarnings("unchecked")
     public RemoveMultiValueStateCommand(EditingDomain domain, ASink sink, List<AInput> inputs,
             Collection<?> collection, int index) {
         super(domain, sink, sink.getFunction());

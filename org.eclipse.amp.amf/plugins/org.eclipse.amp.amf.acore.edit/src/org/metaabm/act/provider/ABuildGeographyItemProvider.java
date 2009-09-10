@@ -12,7 +12,7 @@
  *   Argonne National Laboratory - Initial development (pre-contribution)
  *   Metascape - Subsequent development and maintenance
  *
- * </copyright> $Id: ABuildGeographyItemProvider.java,v 1.1 2009/07/16 19:58:57 mparker Exp $
+ * </copyright> $Id: ABuildGeographyItemProvider.java,v 1.2 2009/09/10 20:26:17 mparker Exp $
  */
 package org.metaabm.act.provider;
 
@@ -30,7 +30,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.metaabm.act.ABuildGeography;
 
 /*
  * This is the item provider adapter for a {@link

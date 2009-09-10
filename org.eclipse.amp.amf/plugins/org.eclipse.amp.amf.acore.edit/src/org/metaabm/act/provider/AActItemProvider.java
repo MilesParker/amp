@@ -575,7 +575,6 @@ public class AActItemProvider extends IIDItemProvider implements IEditingDomainI
                 // notification.getNotifier(), true, false));
                 AAct owner = (AAct) notification.getNotifier();
                 for (AAct act : owner.getAllTargets()) {
-                    boolean notifyChildren = false;
                     if (act instanceof ASink) {
                         for (AInput input : ((ASink) act).getInputs()) {
                             if (input.getValue() == owner) {

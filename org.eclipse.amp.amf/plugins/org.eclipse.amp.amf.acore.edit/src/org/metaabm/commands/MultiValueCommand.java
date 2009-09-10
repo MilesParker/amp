@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: MultiValueCommand.java,v 1.1 2009/07/16 19:58:57 mparker Exp $
+ * </copyright> $Id: MultiValueCommand.java,v 1.2 2009/09/10 20:26:17 mparker Exp $
  */
 package org.metaabm.commands;
 
@@ -63,7 +63,7 @@ public class MultiValueCommand extends CompoundCommand {
         Iterator<SState> iterator = states.iterator();
         if (iterator.hasNext()) {
             SState currentState = iterator.next();
-            Collection<SState> remainingStates = new LinkedList();
+            Collection<SState> remainingStates = new LinkedList<SState>();
             while (iterator.hasNext()) {
                 remainingStates.add(iterator.next());
             }
@@ -142,7 +142,7 @@ public class MultiValueCommand extends CompoundCommand {
                                  multiValue));
         setValueName(multiValue, index);
         if (index > 0) {
-            addAttribute(multiValue, Collections.EMPTY_LIST, index);
+            addAttribute(multiValue, Collections.<SStateValue> emptyList(), index);
         }
     }
 

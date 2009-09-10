@@ -33,6 +33,7 @@ public class SAttributeItemProviderShallow extends SAttributeItemProvider {
         this.attr = attr;
     }
 
+    @SuppressWarnings("unchecked")
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         return Collections.EMPTY_LIST;
     }

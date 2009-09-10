@@ -40,6 +40,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.metaabm.IID;
+import org.metaabm.IValue;
 import org.metaabm.SState;
 import org.metaabm.act.AInput;
 import org.metaabm.act.AMultiValue;
@@ -54,8 +55,8 @@ import org.metaabm.commands.RemoveMultiValueStateCommand;
  * @generated
  */
 public class AMultiValueItemProvider extends ALiteralItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier. <!--
      * begin-user-doc --> <!-- end-user-doc -->
@@ -124,9 +125,9 @@ public class AMultiValueItemProvider extends ALiteralItemProvider implements IEd
      */
     protected void addValuesPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_AMultiValue_values_feature"),
-            getString("_UI_PropertyDescriptor_description", "_UI_AMultiValue_values_feature", "_UI_AMultiValue_type"),
-            MetaABMActPackage.Literals.AMULTI_VALUE__VALUES, true, true, false, null, null, null) {
+                                                               .getRootAdapterFactory(), getResourceLocator(), getString("_UI_AMultiValue_values_feature"),
+                                                               getString("_UI_PropertyDescriptor_description", "_UI_AMultiValue_values_feature", "_UI_AMultiValue_type"),
+                                                               MetaABMActPackage.Literals.AMULTI_VALUE__VALUES, true, true, false, null, null, null) {
             public Collection<?> getChoiceOfValues(Object object) {
                 Collection<?> choiceOfValues = super.getChoiceOfValues(object);
                 ASink sink = ((AInput) ((AMultiValue) object).eContainer()).getSink();
@@ -138,11 +139,11 @@ public class AMultiValueItemProvider extends ALiteralItemProvider implements IEd
         });
     }
 
-    protected Collection validValues(Collection potential) {
-        Collection choices = new ArrayList();
+    protected Collection<IValue> validValues(Collection potential) {
+        Collection<IValue> choices = new ArrayList<IValue>();
         for (Object value : potential) {
             if (value instanceof SState) {
-                choices.add(value);
+                choices.add((IValue) value);
             }
         }
         return choices;

@@ -50,7 +50,6 @@ import org.metaabm.IID;
 import org.metaabm.IValue;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.act.AInput;
-import org.metaabm.act.ARoot;
 import org.metaabm.act.ASelect;
 import org.metaabm.act.ASink;
 import org.metaabm.act.MetaABMActFactory;
