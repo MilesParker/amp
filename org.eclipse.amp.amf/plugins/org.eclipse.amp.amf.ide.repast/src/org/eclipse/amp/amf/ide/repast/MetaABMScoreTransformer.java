@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.metaabm.SAttribute;
 import org.metaabm.SProjection;
@@ -122,7 +121,7 @@ public class MetaABMScoreTransformer {
         repast.score.SImplementation s = sf.createSImplementation();
         // We need to use explicit path because score runtime has no other way
         // of finding location of class files.
-        s.setBasePath(new Path(getGenProperties().get("modelPath")).removeTrailingSeparator().toPortableString());
+        s.setBasePath("../" + getGenProperties().get("buildProject"));
         String binDir = m.getBinDir();
         if (binDir != null) {
             s.setBinDir(binDir);
