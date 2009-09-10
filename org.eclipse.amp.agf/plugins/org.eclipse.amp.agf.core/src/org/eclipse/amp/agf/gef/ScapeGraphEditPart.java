@@ -35,6 +35,7 @@ public class ScapeGraphEditPart extends ScapeEditPart {
         super(memberProvider, locationProvider, extentProvider, graphProvider, filter);
     }
 
+    @SuppressWarnings("unchecked")
     protected synchronized void refreshChildren() {
         Map adj = graphProvider.getAdjacencyMap(getModel());
         connections = new ArrayList<NetworkConnection>(adj.size());

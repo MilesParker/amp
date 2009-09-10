@@ -7,12 +7,12 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
+ * Contributors:
  *   Metascape - Initial API and Implementation
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.agf.gef;
 
 import java.util.ArrayList;
@@ -28,6 +28,7 @@ import org.eclipse.gef.Request;
 
 public class AgentEditPart extends GenericEditPart implements NodeEditPart {
 
+    @SuppressWarnings("unchecked")
     @Override
     public List getModelSourceConnections() {
         List<ScapeGraphEditPart> graphParts = ((ScapeEditPart) getParent()).getRootScapeEditPart().getGraphParts();
@@ -38,6 +39,7 @@ public class AgentEditPart extends GenericEditPart implements NodeEditPart {
         return allGraphConnections;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List getModelTargetConnections() {
         List<ScapeGraphEditPart> graphParts = ((ScapeEditPart) getParent()).getRootScapeEditPart().getGraphParts();
