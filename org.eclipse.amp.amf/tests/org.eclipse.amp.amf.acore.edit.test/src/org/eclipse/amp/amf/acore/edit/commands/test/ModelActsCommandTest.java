@@ -557,7 +557,7 @@ public class ModelActsCommandTest extends CommandTest {
                 super.postCondition();
                 AAll allFinal = (AAll) rootAct().getMembers().get(11);
                 assertEquals(allFinal.getID(),
- "at0Every0_At0Every0_NotCQueryAndCAddB_AndAt0Every0_NotCQueryOrCAddB__");
+                "at0Every0_At0Every0_NotCQueryAndCAddB_AndAt0Every0_NotCQueryOrCAddB__");
             }
         });
         executeTests(cmds);
@@ -1545,8 +1545,8 @@ public class ModelActsCommandTest extends CommandTest {
                 AAct rule = createMember(cmd, rootAct(), MetaABMActFactory.eINSTANCE.createARule(), "Rule");
                 AAct eval1 = createTarget(cmd, rule, MetaABMActFactory.eINSTANCE.createAEvaluate(), "Eval1");
                 AAct select1 = createTarget(cmd, eval1, MetaABMActFactory.eINSTANCE.createASelect(), "Select1");
-                AAct move = createTarget(cmd, select1, MetaABMActFactory.eINSTANCE.createAMove(), "Move");
-                AAct eval2 = createTarget(cmd, select1, MetaABMActFactory.eINSTANCE.createAEvaluate(), "Eval2");
+                createTarget(cmd, select1, MetaABMActFactory.eINSTANCE.createAMove(), "Move");
+                createTarget(cmd, select1, MetaABMActFactory.eINSTANCE.createAEvaluate(), "Eval2");
                 return cmd;
             }
 
@@ -1577,7 +1577,7 @@ public class ModelActsCommandTest extends CommandTest {
             public Command getCommand() {
                 CompoundCommand cmd = new CompoundCommand();
                 AAct rule = createMember(cmd, rootAct(), MetaABMActFactory.eINSTANCE.createARule(), "TargetRule");
-                AAct eval1 = createTarget(cmd, rule, MetaABMActFactory.eINSTANCE.createAEvaluate(), "TargetEval1");
+                createTarget(cmd, rule, MetaABMActFactory.eINSTANCE.createAEvaluate(), "TargetEval1");
                 return cmd;
             }
 
@@ -1640,7 +1640,7 @@ public class ModelActsCommandTest extends CommandTest {
                 assertEquals(rootSelected.getLabel(), "Rule");
                 assertEquals(rootSelected.getSelected(), rootSelected);
                 AAct eval1 = rootSelected.getTargets().get(0);
-                AAct selected1 = eval1.getTargets().get(0);
+                eval1.getTargets().get(0);
                 assertTrue(eval1 instanceof AEvaluate);
                 AAct eval2 = rootAct().findMember("eval2");
                 assertNotNull(eval2);

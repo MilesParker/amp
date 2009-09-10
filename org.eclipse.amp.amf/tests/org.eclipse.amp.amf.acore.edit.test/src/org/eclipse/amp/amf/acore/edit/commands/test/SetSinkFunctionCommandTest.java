@@ -328,8 +328,9 @@ public class SetSinkFunctionCommandTest extends CommandTest {
                 assertEquals(multi2.getValues().size(), 3);
                 assertEquals(multi2.getValues().get(1).getID(), "happinessState2Option0Maximum");
                 assertEquals(multi2.getValues().get(2).getID(), "happinessState2Option1Maximum");
-                SAttribute stateAttribute = model.findAttribute("happinessState2Option0Maximum");
-                // TODO this should work
+
+                // SAttribute stateAttribute = model.findAttribute("happinessState2Option0Maximum");
+                // // TODO should this work?
                 // assertEquals(stateAttribute.getAccessors().size(), 1);
             }
         });
