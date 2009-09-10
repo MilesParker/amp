@@ -153,7 +153,7 @@ public class ScapeWrapperModel implements IModel, ModelFactoryProvider, IAdaptab
                 if (listener instanceof ScapeWrapperModelListener) {
                     scape.removeScapeListener(((ScapeWrapperModelListener) listener).getWrapped());
                 }
-                ModelWrapperScapeListener wrapper = wrapperForListener.get(listener);
+                // ModelWrapperScapeListener wrapper = wrapperForListener.get(listener);
                 // if (wrapper != null) {
                 // scape.removeScapeListener(wrapper);
                 // }
