@@ -15,7 +15,6 @@
  */
 package org.eclipse.amp.axf.core;
 
-import java.lang.Enum;
 
 /**
  * The Enum EngineControl.
