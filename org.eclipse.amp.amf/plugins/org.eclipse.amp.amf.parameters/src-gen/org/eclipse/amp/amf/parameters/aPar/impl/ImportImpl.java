@@ -7,11 +7,8 @@ package org.eclipse.amp.amf.parameters.aPar.impl;
 
 import org.eclipse.amp.amf.parameters.aPar.AParPackage;
 import org.eclipse.amp.amf.parameters.aPar.Import;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 

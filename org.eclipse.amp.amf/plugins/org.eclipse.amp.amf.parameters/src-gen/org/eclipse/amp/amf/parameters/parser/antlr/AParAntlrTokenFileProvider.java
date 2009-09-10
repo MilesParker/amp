@@ -4,6 +4,7 @@
 package org.eclipse.amp.amf.parameters.parser.antlr;
 
 import java.io.InputStream;
+
 import org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider;
 
 public class AParAntlrTokenFileProvider implements IAntlrTokenFileProvider {

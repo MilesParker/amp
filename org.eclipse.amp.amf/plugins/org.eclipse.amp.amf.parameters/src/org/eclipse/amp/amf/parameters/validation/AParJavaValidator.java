@@ -1,6 +1,5 @@
 package org.eclipse.amp.amf.parameters.validation;
 
-import org.eclipse.amp.amf.parameters.validation.AbstractAParJavaValidator;
  
 
 public class AParJavaValidator extends AbstractAParJavaValidator {

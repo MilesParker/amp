@@ -5,13 +5,19 @@
  */
 package org.eclipse.amp.amf.parameters.aPar.util;
 
-import org.eclipse.amp.amf.parameters.aPar.*;
-
+import org.eclipse.amp.amf.parameters.aPar.AParPackage;
+import org.eclipse.amp.amf.parameters.aPar.BooleanValue;
+import org.eclipse.amp.amf.parameters.aPar.Import;
+import org.eclipse.amp.amf.parameters.aPar.Incorporates;
+import org.eclipse.amp.amf.parameters.aPar.IntValue;
+import org.eclipse.amp.amf.parameters.aPar.Model;
+import org.eclipse.amp.amf.parameters.aPar.Parameter;
+import org.eclipse.amp.amf.parameters.aPar.RealValue;
+import org.eclipse.amp.amf.parameters.aPar.StringValue;
+import org.eclipse.amp.amf.parameters.aPar.Value;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
