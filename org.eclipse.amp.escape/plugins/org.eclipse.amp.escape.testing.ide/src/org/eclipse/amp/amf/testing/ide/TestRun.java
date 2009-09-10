@@ -101,6 +101,7 @@ public class TestRun {
         initialize();
         final AParInterpreter apar = atest.getAparInterpreter();
         final EclipseEscapeRunner runner = new EclipseEscapeRunner() {
+            private static final long serialVersionUID = 1L;
             protected synchronized void runMainLoop() {
                 super.runMainLoop();
                 if (!parentMonitor.isCanceled() && getMonitor() != null) {

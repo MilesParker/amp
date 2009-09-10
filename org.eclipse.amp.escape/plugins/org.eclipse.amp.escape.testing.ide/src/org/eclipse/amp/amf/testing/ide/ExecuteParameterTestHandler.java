@@ -103,37 +103,37 @@ public class ExecuteParameterTestHandler extends AbstractHandler {
         }
     }
 
-    private boolean checkResource(Object res) {
-        if (res instanceof IStructuredSelection) {
-            IStructuredSelection ss = (IStructuredSelection) res;
-            if (ss != null) {
-                for (Object object : ss.toList()) {
-                    boolean check = checkResource(object);
-                    if (check) {
-                        return true;
-                    }
-                }
-            }
-        } else if (res instanceof IFile) {
-            IFile file = (IFile) res;
-            if (file.getFileExtension() != null && file.getFileExtension().equals("atest")) {
-                return true;
-            }
-        } else if (res instanceof IFolder) {
-            IFolder folder = (IFolder) res;
-            try {
-                for (IResource resMember : folder.members()) {
-                    boolean check = checkResource(resMember);
-                    if (check) {
-                        return true;
-                    }
-                }
-            } catch (CoreException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return false;
-    }
+    // private boolean checkResource(Object res) {
+    // if (res instanceof IStructuredSelection) {
+    // IStructuredSelection ss = (IStructuredSelection) res;
+    // if (ss != null) {
+    // for (Object object : ss.toList()) {
+    // boolean check = checkResource(object);
+    // if (check) {
+    // return true;
+    // }
+    // }
+    // }
+    // } else if (res instanceof IFile) {
+    // IFile file = (IFile) res;
+    // if (file.getFileExtension() != null && file.getFileExtension().equals("atest")) {
+    // return true;
+    // }
+    // } else if (res instanceof IFolder) {
+    // IFolder folder = (IFolder) res;
+    // try {
+    // for (IResource resMember : folder.members()) {
+    // boolean check = checkResource(resMember);
+    // if (check) {
+    // return true;
+    // }
+    // }
+    // } catch (CoreException e) {
+    // throw new RuntimeException(e);
+    // }
+    // }
+    // return false;
+    // }
 
     public int getRunsPerTest() {
         return 1;
