@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.5 2009/09/08 01:47:14 mparker Exp $
+ $Id: plugin.xml,v 1.6 2009/09/10 00:49:53 mparker Exp $
 -->
 
 <plugin>
@@ -111,7 +111,7 @@
 			locationURI="toolbar:org.eclipse.amp.escape.ide.launch?after=additions">
 			<command commandId="org.eclipse.amp.escape.runtime.executeAMF"
 				icon="icons/etool16/execute.gif" label="Execute" style="push"
-				tooltip="Load and start an Escape model.">
+				tooltip="Execute Escape AMF model.">
 				<visibleWhen checkEnabled="false">
 					<reference definitionId="org.eclipse.amp.escape.amf.allowexecute">
 					</reference>
@@ -119,7 +119,7 @@
 			</command>
 			<command commandId="org.eclipse.amp.escape.runtime.executeAMFHeadless"
 				icon="icons/etool16/execute_headless.gif" label="Execute Headless" style="push"
-				tooltip="Load and start an Escape model in non-graphical mode.">
+				tooltip="Execute Escape AMF model without views.">
 				<visibleWhen checkEnabled="false">
 					<reference definitionId="org.eclipse.amp.escape.amf.allowexecute">
 					</reference>
@@ -127,7 +127,7 @@
 			</command>
 			<command commandId="org.eclipse.amp.escape.runtime.executeParam"
 				icon="icons/etool16/execute.gif" label="Execute" style="push"
-				tooltip="Load and start an Escape model.">
+				tooltip="Execute Escape model from parameters.">
 				<visibleWhen checkEnabled="false">
 					<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
 					</reference>
@@ -135,47 +135,73 @@
 			</command>
 			<command commandId="org.eclipse.amp.escape.runtime.executeParamHeadless"
 				icon="icons/etool16/execute_headless.gif" label="Execute Headless" style="push"
-				tooltip="Load and start an Escape model in non-graphical mode.">
+				tooltip="Execute Escape model from parameters without views.">
 				<visibleWhen checkEnabled="false">
 					<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
-					</reference>
-				</visibleWhen>
-			</command>
-		</menuContribution>
-		<menuContribution locationURI="menu:org.eclipse.amp.axf.ui.menu?after=additions">
-			<command commandId="org.eclipse.amp.escape.runtime.executeAMF"
-				icon="icons/etool16/execute.gif" label="Execute" style="push"
-				tooltip="Load and start an Escape model.">
-				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.eclipse.amp.escape.amf.allowexecute">
-					</reference>
-				</visibleWhen>
-			</command>
-			<command commandId="org.eclipse.amp.escape.runtime.executeAMFHeadless"
-				icon="icons/etool16/execute_headless.gif" label="Execute Headless" style="push"
-				tooltip="Load and start an Escape model in non-graphical mode.">
-				<visibleWhen checkEnabled="false">
-					<reference definitionId="org.eclipse.amp.escape.amf.allowexecute">
 					</reference>
 				</visibleWhen>
 			</command>
 		</menuContribution>
 		<menuContribution locationURI="popup:org.eclipse.ui.popup.any">
-			<command commandId="org.eclipse.amp.escape.runtime.executeParam"
-				icon="icons/etool16/execute.gif" style="push" tooltip="Execute the model.">
+			<command
+         commandId="org.eclipse.amp.escape.runtime.executeAMF"
+         icon="icons/etool16/execute.gif"
+         label="Execute"
+         style="push"
+         tooltip="Execute Escape AMF model.">
 				<visibleWhen checkEnabled="true">
 				</visibleWhen>
 			</command>
-			<command commandId="org.eclipse.amp.escape.runtime.executeParamHeadless"
-				icon="icons/etool16/execute_headless.gif" style="push" tooltip="Execute the model.">
+			<command
+         commandId="org.eclipse.amp.escape.runtime.executeAMFHeadless"
+         icon="icons/etool16/execute_headless.gif"
+         label="Execute Headless"
+         style="push"
+         tooltip="Execute Escape AMF model without views.">
 				<visibleWhen checkEnabled="true">
 				</visibleWhen>
 			</command>
+   <command
+         commandId="org.eclipse.amp.escape.runtime.executeParam"
+         icon="icons/etool16/execute.gif"
+         label="Execute"
+         style="push"
+         tooltip="Execute Escape model from parameters.">
+      <visibleWhen
+            checkEnabled="true">
+      </visibleWhen>
+   </command>
+   <command
+         commandId="org.eclipse.amp.escape.runtime.executeParamHeadless"
+         icon="icons/etool16/execute_headless.gif"
+         label="Execute Headless"
+         style="push"
+         tooltip="Execute Escape model from parameters without views.">
+      <visibleWhen
+            checkEnabled="true">
+      </visibleWhen>
+   </command>
 		</menuContribution>
 		<menuContribution locationURI="menu:org.eclipse.amp.axf.ui.menu?after=additions">
+			<command commandId="org.eclipse.amp.escape.runtime.executeAMF"
+				icon="icons/etool16/execute.gif" label="Execute" style="push"
+				tooltip="Execute Escape AMF model.">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="org.eclipse.amp.escape.amf.allowexecute">
+					</reference>
+				</visibleWhen>
+			</command>
+			<command commandId="org.eclipse.amp.escape.runtime.executeAMFHeadless"
+				icon="icons/etool16/execute_headless.gif" label="Execute Headless" style="push"
+				tooltip="Execute Escape AMF model without views.">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="org.eclipse.amp.escape.amf.allowexecute">
+					</reference>
+				</visibleWhen>
+			</command>
 			<command commandId="org.eclipse.amp.escape.runtime.executeParam"
 				icon="icons/etool16/execute.gif" label="Execute" style="push"
-				tooltip="Load and start an Escape model.">
+				tooltip="Execute Escape model from parameters.">
 				<visibleWhen checkEnabled="false">
 					<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
 					</reference>
@@ -183,7 +209,7 @@
 			</command>
 			<command commandId="org.eclipse.amp.escape.runtime.executeParamHeadless"
 				icon="icons/etool16/execute_headless.gif" label="Execute Headless" style="push"
-				tooltip="Load and start an Escape model in non-graphical mode.">
+				tooltip="Execute Escape model from parameters without views.">
 				<visibleWhen checkEnabled="false">
 					<reference definitionId="org.eclipse.amp.escape.allowexecuteParam">
 					</reference>
