@@ -9,7 +9,7 @@ Require-Bundle:
  org.eclipse.core.runtime,
  org.eclipse.amp.amf.acore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi,
- org.junit4;bundle-version="4.3.1"
+ org.junit
 Bundle-ActivationPolicy: lazy
 Export-Package: org.metaabm.act.tests,
  org.metaabm.core.test,

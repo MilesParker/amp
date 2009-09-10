@@ -17,25 +17,14 @@ package org.metaabm.tests;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-public class AllTests {
+public class AllTests extends TestSuite {
 
     public static Test suite() {
         TestSuite suite = new TestSuite("Test for org.metaabm.tests");
         // $JUnit-BEGIN$
-        suite.addTestSuite(SContextTest.class);
-        suite.addTestSuite(SGridTest.class);
-        suite.addTestSuite(SStyle2DTest.class);
-        suite.addTestSuite(SContinuousSpaceTest.class);
-        suite.addTestSuite(SImplementationTest.class);
-        suite.addTestSuite(ModelPersistTest.class);
-        suite.addTestSuite(SStyle3DTest.class);
-        suite.addTestSuite(SAgentTest.class);
-        suite.addTestSuite(SAttributeTest.class);
-        suite.addTestSuite(SAttributeArrayTest.class);
-        suite.addTestSuite(PathFixTest.class);
-        suite.addTestSuite(SGeographyTest.class);
-        suite.addTestSuite(SNetworkTest.class);
-        suite.addTestSuite(SValueLayerTest.class);
+        suite.addTest(AllStructureTests.suite());
+        suite.addTest(org.metaabm.act.tests.AllTests.suite());
+        suite.addTest(org.metaabm.function.tests.AllTests.suite());
         // $JUnit-END$
         return suite;
     }
