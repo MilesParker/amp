@@ -12,7 +12,7 @@
  *
  * </copyright>
  */
-package org.eclipse.amp.amf.acore.edit.test;
+package org.eclipse.amp.amf.acore.edit.tests;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;

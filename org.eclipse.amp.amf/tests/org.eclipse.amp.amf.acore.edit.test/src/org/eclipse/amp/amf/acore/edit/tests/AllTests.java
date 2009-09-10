@@ -12,7 +12,7 @@
  *
  * </copyright>
  */
-package org.eclipse.amp.amf.acore.edit.test;
+package org.eclipse.amp.amf.acore.edit.tests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -22,7 +22,7 @@ public class AllTests {
     public static Test suite() {
         TestSuite suite = new TestSuite("Test for org.eclipse.amp.amf.acore.edit.tests");
         // $JUnit-BEGIN$
-        suite.addTestSuite(AllCommandTests.class);
+        suite.addTest(AllCommandTests.suite());
         // $JUnit-END$
         return suite;
     }

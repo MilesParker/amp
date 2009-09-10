@@ -12,10 +12,9 @@
  *
  * </copyright>
  */
-package org.eclipse.amp.amf.acore.edit.test;
+package org.eclipse.amp.amf.acore.edit.tests;
 
 import junit.framework.Test;
-import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 import org.eclipse.amp.amf.acore.edit.commands.test.ModelActsCommandTest;
@@ -27,7 +26,10 @@ import org.eclipse.amp.amf.acore.edit.commands.test.SetLabelCommandTest;
 import org.eclipse.amp.amf.acore.edit.commands.test.SetSinkFunctionCommandTest;
 import org.eclipse.amp.amf.acore.edit.commands.test.StateTest;
 
-public class AllCommandTests extends TestCase {
+
+
+
+public class AllCommandTests {
 
     public static Test suite() {
         TestSuite suite = new TestSuite("Test for org.eclipse.amp.amf.acore.edit.commands.test");
