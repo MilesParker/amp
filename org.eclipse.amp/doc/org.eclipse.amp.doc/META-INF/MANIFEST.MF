@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Agent Modeling Platform Documentation
+Bundle-SymbolicName: org.eclipse.amp.doc;singleton:=true
+Bundle-Version: 0.2.0.qualifier
+Bundle-Vendor: Eclipse Agent Modeling
+Require-Bundle: org.eclipse.ui.intro,
+ org.eclipse.ui.intro.universal,
+ org.eclipse.ui

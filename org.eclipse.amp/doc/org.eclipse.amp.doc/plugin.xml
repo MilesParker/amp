@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<plugin>
+   <extension point="org.eclipse.help.toc">
+      <toc file="toc.xml" primary="true"/>
+   </extension>
+      <extension
+         id="org.eclipse.amp.agents.cheatsheets"
+         name="Introduction"
+         point="org.eclipse.ui.cheatsheets.cheatSheetContent">
+      <category
+            id="org.eclipse.amp"
+            name="Agent Modeling">
+      </category>
+      <cheatsheet
+            category="org.eclipse.amp"
+            composite="false"
+            contentFile="cheatsheets/Introduction.xml"
+            id="org.eclipse.amp.escape.intro"
+            name="org.eclipse.amp.amf.docs"/>
+   </extension>
+</plugin>
