@@ -52,6 +52,7 @@ import org.osgi.framework.Bundle;
  * @author mparker
  * 
  */
+@SuppressWarnings("deprecation")
 public class ModelMangementTest extends TestCase {
 
     String testProjectName = "test.escape";

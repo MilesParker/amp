@@ -44,6 +44,7 @@ import org.osgi.framework.Bundle;
  * @author mparker
  * 
  */
+@SuppressWarnings("deprecation")
 public class CreateProjectsTest extends TestCase {
 
 
@@ -60,6 +61,7 @@ public class CreateProjectsTest extends TestCase {
         }
     }
 
+    @SuppressWarnings("deprecation")
     public static void copyFiles(String srcPluginID, String srcFileLoc, String destProjectName, String destFileLoc)
     throws CoreException, IOException {
         InputStream srcStream = streamFromPlugin(srcPluginID, srcFileLoc.toString());
