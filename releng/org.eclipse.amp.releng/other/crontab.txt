@@ -1,5 +1,2 @@
 # daily N builds
-45 17 * * * /opt/public/common/apache-ant-1.7.1/bin/ant -f
-  /opt/users/hudsonbuild/.hudson/jobs/cbi-amp-nightly/workspace/build/org.eclipse.amp.releng/promote-N.xml
-    -Dpromote.properties=/opt/users/hudsonbuild/.hudson/jobs/cbi-amp-nightly/workspace/build/org.eclipse.amp.releng/promote-N.properties
-      2>/dev/null 1> ~/promo_logs/cbi-amp-nightly-promo.txt
+45 17 * * * /opt/public/common/apache-ant-1.7.1/bin/ant -f /opt/users/hudsonbuild/.hudson/jobs/cbi-amp-nightly/workspace/build/org.eclipse.amp.releng/promote-N.xml -Dpromote.properties=/opt/users/hudsonbuild/.hudson/jobs/cbi-amp-nightly/workspace/build/org.eclipse.amp.releng/promote-N.properties 2>/dev/null 1>~/promo_logs/cbi-amp-nightly-promo.txt
