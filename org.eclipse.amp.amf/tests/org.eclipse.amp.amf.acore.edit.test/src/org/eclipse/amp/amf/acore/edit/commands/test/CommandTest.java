@@ -25,6 +25,7 @@ import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStackListener;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -102,7 +103,7 @@ public abstract class CommandTest extends BasePersistTest {
         }
         domain = new AdapterFactoryEditingDomain(adapterFactory, commandStack, new HashMap<Resource, Boolean>());
 
-        MetaABMPersist libPersist = MetaABMPersist.create("http://metaabm.org/core_library.metaabm");
+        MetaABMPersist libPersist = MetaABMPersist.createURI(URI.createURI("http://metaabm.org/core_library.metaabm"));
         lib = libPersist.load();
         library = (FLibrary) lib.getLibrary().get(0);
         funcLog = library.findSub("operators").findSub("logicalOperators");
