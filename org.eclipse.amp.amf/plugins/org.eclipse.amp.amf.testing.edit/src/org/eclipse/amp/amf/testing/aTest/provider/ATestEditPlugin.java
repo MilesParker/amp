@@ -2,14 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ATestEditPlugin.java,v 1.1 2009/08/03 17:15:47 mparker Exp $
+ * $Id: ATestEditPlugin.java,v 1.2 2009/09/17 02:50:25 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.aTest.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.metaabm.provider.MetaABMEditPlugin;
 
 /**

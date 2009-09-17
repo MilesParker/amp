@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RunItemProvider.java,v 1.3 2009/08/07 00:05:19 mparker Exp $
+ * $Id: RunItemProvider.java,v 1.4 2009/09/17 02:50:25 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.provider;
 
@@ -262,7 +262,7 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
                 pass++;
             }
         }
-        String label = run.getTest().eResource().getURI().trimFileExtension().lastSegment() + " / " + pass + " of "
+        String label = run.getTest().getName() + " / " + pass + " of "
         + run.getResults().size();
         return label;
     }

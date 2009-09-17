@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ConstraintItemProvider.java,v 1.3 2009/08/11 01:10:11 mparker Exp $
+ * $Id: ConstraintItemProvider.java,v 1.4 2009/09/17 02:50:25 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.aTest.provider;
 
@@ -10,7 +10,6 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.amp.amf.testing.ATestInterpreter;
-import org.eclipse.amp.amf.testing.aTest.ATestFactory;
 import org.eclipse.amp.amf.testing.aTest.ATestPackage;
 import org.eclipse.amp.amf.testing.aTest.Constraint;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -217,23 +216,6 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
 
-        newChildDescriptors.add(createChildParameter(ATestPackage.Literals.CONSTRAINT__MIN_VALUE,
-                                                     ATestFactory.eINSTANCE.createValue()));
-
-        newChildDescriptors.add(createChildParameter(ATestPackage.Literals.CONSTRAINT__MIN_VALUE,
-                                                     ATestFactory.eINSTANCE.createIntValue()));
-
-        newChildDescriptors.add(createChildParameter(ATestPackage.Literals.CONSTRAINT__MIN_VALUE,
-                                                     ATestFactory.eINSTANCE.createRealValue()));
-
-        newChildDescriptors.add(createChildParameter(ATestPackage.Literals.CONSTRAINT__MAX_VALUE,
-                                                     ATestFactory.eINSTANCE.createValue()));
-
-        newChildDescriptors.add(createChildParameter(ATestPackage.Literals.CONSTRAINT__MAX_VALUE,
-                                                     ATestFactory.eINSTANCE.createIntValue()));
-
-        newChildDescriptors.add(createChildParameter(ATestPackage.Literals.CONSTRAINT__MAX_VALUE,
-                                                     ATestFactory.eINSTANCE.createRealValue()));
     }
 
     /**

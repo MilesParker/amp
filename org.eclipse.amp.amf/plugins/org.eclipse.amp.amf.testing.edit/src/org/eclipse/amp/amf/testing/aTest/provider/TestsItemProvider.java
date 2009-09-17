@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TestsItemProvider.java,v 1.1 2009/08/03 17:15:47 mparker Exp $
+ * $Id: TestsItemProvider.java,v 1.2 2009/09/17 02:50:25 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.aTest.provider;
 
@@ -12,12 +12,9 @@ import java.util.List;
 
 import org.eclipse.amp.amf.testing.aTest.ATestPackage;
 import org.eclipse.amp.amf.testing.aTest.Tests;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;

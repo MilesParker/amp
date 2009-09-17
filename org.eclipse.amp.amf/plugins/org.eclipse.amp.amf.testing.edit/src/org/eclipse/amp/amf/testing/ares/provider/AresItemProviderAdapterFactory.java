@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresItemProviderAdapterFactory.java,v 1.3 2009/08/07 00:05:19 mparker Exp $
+ * $Id: AresItemProviderAdapterFactory.java,v 1.4 2009/09/17 02:50:25 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.provider;
 
@@ -10,11 +10,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.amp.amf.testing.ares.util.AresAdapterFactory;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
