@@ -18,6 +18,7 @@ package org.eclipse.amp.amf.testing.ide;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.ascape.runtime.Runner;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -27,11 +28,6 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.MultiStatus;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -66,21 +62,10 @@ public class ExecuteParameterTestHandler extends AbstractHandler {
             }
             Runner.setDisplayGraphics(false);
 
-            final String name = "T" + System.currentTimeMillis();
-            // for (IResource resource : testResources) {
-            // name += resource.getName().replaceAll("\\.atest", "");
-            // }
+            final String name = res.getName() + "-"
+                + DateFormatUtils.format(System.currentTimeMillis(), "yyMMddHHmm-SSSS");
 
-            Job escapeRun = new Job("Run " + name) {
-                protected IStatus run(IProgressMonitor monitor) {
-                    final MultiStatus status = new MultiStatus("org.eclipse.amp.amf.testing.ide", Status.OK,
-                                                               "Executing Tests", null);
-                    new TestRunSet(project, testResources, name, getRunsPerTest()).runTests(monitor, status);
-                    return status;
-                }
-            };
-            escapeRun.setPriority(Job.DECORATE);
-            escapeRun.schedule();
+            new TestRunSet(project, testResources, name, getRunsPerTest()).run();
         }
         return null;
     }
