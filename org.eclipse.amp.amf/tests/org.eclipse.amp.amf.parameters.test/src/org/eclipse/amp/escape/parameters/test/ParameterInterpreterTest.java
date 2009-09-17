@@ -25,6 +25,7 @@ import java.net.URL;
 
 import junit.framework.TestCase;
 
+import org.eclipse.amp.amf.parameters.AParFactory;
 import org.eclipse.amp.amf.parameters.AParInterpreter;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -35,6 +36,11 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
+import org.eclipse.swtbot.eclipse.finder.widgets.SWTBotView;
+import org.eclipse.swtbot.swt.finder.exceptions.WidgetNotFoundException;
+import org.eclipse.swtbot.swt.finder.widgets.SWTBotTree;
+import org.eclipse.swtbot.swt.finder.widgets.SWTBotTreeItem;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 
@@ -54,14 +60,21 @@ public class ParameterInterpreterTest extends TestCase {
      * In future you will not need to create this instance. You need to extend SWTBotEclipseTestCase which holds an
      * instance of SWTEclipseBot.
      */
-    // protected SWTWorkbenchBot bot = new SWTWorkbenchBot();
+    protected SWTWorkbenchBot bot = new SWTWorkbenchBot();
 
-    // private IProject testProject;
+    private IProject testProject;
+
+    /**
+     * @throws Exception
+     * @see junit.framework.TestCase#setUp()
+     */
+    protected void setUp() throws Exception {
+        openProject();
+        copyFiles("TestModel.metaabm");
+    }
 
     @Test
     public void testFileAccess() {
-        // /openProject();
-
         // Note that for below actual ordering isn't significant so that can be relaxed as implementations change.
         subtestVars("Test.apar", new String[] { "StopPeriod=100", "TestSymbol=Hello", "TestFloat=1.234",
             "Testint=1234", "TestBoolean=false" });
@@ -80,13 +93,13 @@ public class ParameterInterpreterTest extends TestCase {
     }
 
     private void subtestVars(String fileName, String[] expectedArgs) {
-        // copyFiles(fileName);
+        copyFiles(fileName);
         IProject testProject = ResourcesPlugin.getPlugin().getWorkspace().getRoot()
-        .getProject("org.eclipse.amp.amf.parameters.test");
+        .getProject(TEST_PROJECT_NAME);
         IResource testFile = testProject.getFile("" + fileName);
-        assertTrue(testFile.exists());
-        AParInterpreter interpreter = new AParInterpreter();
-        interpreter.load(testFile);
+        assertTrue("Couldn't find file: " + testFile, testFile.exists());
+        bot.sleep(1000);
+        AParInterpreter interpreter = (AParInterpreter) AParFactory.create(null).getInterpreter(testFile);
         String[] args = interpreter.getArgs();
         for (int i = 0; i < expectedArgs.length; i++) {
             assertEquals(args[i], expectedArgs[i]);
@@ -94,45 +107,59 @@ public class ParameterInterpreterTest extends TestCase {
         assertEquals(args.length, expectedArgs.length);
     }
 
-    // public void testRun() {
-    // openProject();
-    // copyFiles();
-    // IResource aparTest = testProject.getFile("Test.apar");
-    // AParInterpreter interpreter = new AParInterpreter(aparTest);
-    // Runner.setDisplayGraphics(false);
-    // final EclipseEscapeRunner eclipseRunner = new EclipseEscapeRunner() {
-    // public void start() {
-    // }
-    // };
-    // eclipseRunner.open(testProject, interpreter.getTargetModel().getImplementation().getQualifiedName(),
-    // interpreter.getRunName(), interpreter.getArgs());
-    // assertEquals(eclipseRunner.getModel().getStopPeriod(), 100);
-    // }
+    /**
+     * @return
+     * @throws WidgetNotFoundException
+     */
+    private SWTBotTree tree() throws WidgetNotFoundException {
+        return packageExplorer().bot().tree();
+    }
 
-    // private void openProject() {
-    // if (SETUP_PROJECT) {
-    // setupProject();
-    // }
-    // // testProject = ResourcesPlugin.getWorkspace().getRoot().getProject(TEST_PROJECT_NAME);
-    // // try {
-    // // testProject.open(IResource.NONE, null);
-    // // } catch (CoreException e) {
-    // // throw new RuntimeException(e);
-    // // }
-    // }
+    /**
+     * @return
+     * @throws WidgetNotFoundException
+     */
+    private SWTBotView packageExplorer() throws WidgetNotFoundException {
+        return bot.viewByTitle("Package Explorer");
+    }
 
-    // public void setupProject() {
-    // // bot.viewByTitle("Welcome").close();
-    // bot.perspectiveByLabel("Agent Modeling").activate();
-    // bot.viewByTitle("Package Explorer").setFocus();
-    // bot.menu("File").menu("New").menu("Escape Project").click();
-    // // 'com.swtbot.test.project' is the java project name to create
-    //
-    // bot.text(0).setText(TEST_PROJECT_NAME);
-    // bot.sleep(100);
-    // // Click the Finish button
-    // bot.button("Finish").click();
-    // }
+    public void testRun() {
+        tree().setFocus();
+        tree().select(TEST_PROJECT_NAME);
+        SWTBotTreeItem projectNode = tree().expandNode(TEST_PROJECT_NAME);
+        bot.sleep(2000);
+        projectNode.expandNode("Test.apar").doubleClick();
+        packageExplorer().setFocus();
+        bot.sleep(2000);
+
+        bot.menu("Control").menu("Execute").click();
+        bot.sleep(4000);
+    }
+
+    private void openProject() {
+        if (SETUP_PROJECT && !ResourcesPlugin.getWorkspace().getRoot().getProject(TEST_PROJECT_NAME).isOpen()) {
+            setupProject();
+        }
+        // testProject = ResourcesPlugin.getWorkspace().getRoot().getProject(TEST_PROJECT_NAME);
+        // try {
+        // testProject.open(IResource.NONE, null);
+        // } catch (CoreException e) {
+        // throw new RuntimeException(e);
+        // }
+    }
+
+    public void setupProject() {
+        // bot.viewByTitle("Welcome").close();
+        bot.perspectiveByLabel("Agent Modeling").activate();
+        bot.viewByTitle("Package Explorer").setFocus();
+        bot.menu("File").menu("New").menu("Escape Project").click();
+        // 'com.swtbot.test.project' is the java project name to create
+
+        bot.text(0).setText(TEST_PROJECT_NAME);
+        bot.sleep(100);
+        // Click the Finish button
+        bot.button("Finish").click();
+    }
 
     private void copyFiles(String srcFileLoc) {
         try {
