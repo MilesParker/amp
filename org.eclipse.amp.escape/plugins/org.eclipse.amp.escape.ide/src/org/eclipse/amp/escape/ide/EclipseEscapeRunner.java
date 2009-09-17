@@ -83,7 +83,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
     }
 
     /**
-     * Open.
+     * Open. Wait until execution has stopped to return.
      * 
      * @param projectResource the project resource
      * @param modelClassName the model class name
@@ -91,6 +91,20 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
      * @param args the args
      */
     public void open(final IResource projectResource, final String modelClassName, String modelName, String[] args) {
+        open(projectResource, modelClassName, modelName, args, true);
+    }
+
+    /**
+     * Open.
+     * 
+     * @param projectResource the project resource
+     * @param modelClassName the model class name
+     * @param modelName the model name
+     * @param args the args
+     * @param block true if this method should only return on execution completion.
+     */
+    public void open(final IResource projectResource, final String modelClassName, String modelName, String[] args,
+            boolean block) {
         this.project = projectResource.getProject();
         setStartOnOpen(false);
         setAutoRestart(false);
@@ -149,23 +163,16 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
                 ScapeWrapperModelListener listenerWrapper = new ScapeWrapperModelListener(getRootScape(), scapeListener);
                 model.addModelListener(listenerWrapper);
             }
-            // if (scapeListener instanceof IModelPart) {
-            // ((IModelPart) scapeListener).createModelListeners();
-            // }
         }
-        // for (IModelListener modelListener : model.getModelListeners()) {
-        // if (modelListener instanceof IModelPart) {
-        // ((IModelPart) modelListener).createModelListeners();
-        // }
-        // }
         start();
-        while (!modelShutdown) {
-            try {
-                Thread.sleep(30L);
-            } catch (InterruptedException e) {
+        if (block) {
+            while (!modelShutdown) {
+                try {
+                    Thread.sleep(30L);
+                } catch (InterruptedException e) {
+                }
             }
         }
-        dispose();
     }
 
     private void dispose() {
@@ -285,6 +292,15 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
             modelMonitor.setTaskName("Closed");
         }
         modelShutdown = true;
+    }
+
+    /**
+     * 
+     * @see org.ascape.runtime.Runner#closeFinally()
+     */
+    public void closeFinally() {
+        super.closeFinally();
+        dispose();
     }
 
     /**
