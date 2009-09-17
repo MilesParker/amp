@@ -29,31 +29,25 @@ import java.util.Set;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
-import org.eclipse.amp.amf.parameters.aPar.BOOLEAN;
-import org.eclipse.amp.amf.parameters.aPar.BooleanValue;
+import org.eclipse.amp.amf.abase.ICached;
+import org.eclipse.amp.amf.abase.IInterpreterProvider;
+import org.eclipse.amp.amf.abase.aBase.BOOLEAN;
+import org.eclipse.amp.amf.abase.aBase.BooleanValue;
+import org.eclipse.amp.amf.abase.aBase.IntValue;
+import org.eclipse.amp.amf.abase.aBase.RealValue;
+import org.eclipse.amp.amf.abase.aBase.StringValue;
 import org.eclipse.amp.amf.parameters.aPar.Incorporates;
-import org.eclipse.amp.amf.parameters.aPar.IntValue;
 import org.eclipse.amp.amf.parameters.aPar.Model;
 import org.eclipse.amp.amf.parameters.aPar.Parameter;
-import org.eclipse.amp.amf.parameters.aPar.RealValue;
-import org.eclipse.amp.amf.parameters.aPar.StringValue;
 import org.eclipse.amp.amf.parameters.scoping.AParImportResolver;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMLParserPool;
-import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.emf.ecore.xmi.impl.XMLParserPoolImpl;
 import org.metaabm.SAttribute;
 import org.metaabm.SAttributeType;
 import org.metaabm.SContext;
@@ -63,72 +57,33 @@ import org.metaabm.SContext;
  * @author mparker
  * 
  */
-public class AParInterpreter {
+public class AParInterpreter implements ICached {
 
-    Resource aparResource;
+    Resource emfResource;
     private String modelClass;
     private String runName;
     private String[] args;
     private SContext rootContext;
     private Model aparModel;
     private List<Parameter> parameters;
-
-    private XMLParserPool parserPool = new XMLParserPoolImpl();
-
-    private Map nameToFeatureMap = new HashMap();
-    private ResourceSet resourceSet;
     private String localPath;
 
-    public AParInterpreter(Resource apar) {
-        this.aparResource = apar;
-    }
+    private IInterpreterProvider cache;
 
-    public AParInterpreter() {
-        super();
-    }
+    public void load(Resource emfResource) {
+        this.emfResource = emfResource;
+        ((ResourceImpl) emfResource).setIntrinsicIDToEObjectMap(new HashMap<String, EObject>());
 
-    public void load(IResource aparFileResource) {
-        if (aparResource == null) {
-            IPath modelPath = ((IFile) aparFileResource).getFullPath();
-            URI aparLoc = URI.createPlatformResourceURI(modelPath.toString(), true);
-            load(aparLoc);
-        } else {
-            initialize();
-        }
-    }
-
-    public void load(URI uri) {
-        if (resourceSet == null) {
-            resourceSet = new ResourceSetImpl();
-
-            resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
-            resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
-            resourceSet.getLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
-            resourceSet.getLoadOptions().put(XMLResource.OPTION_USE_PARSER_POOL, parserPool);
-            resourceSet.getLoadOptions().put(XMLResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);
-        }
-
-        // Registry resourceFactoryRegistry = resources.getResourceFactoryRegistry();
-
-        aparResource = resourceSet.getResource(uri, true);
-        ((ResourceImpl) aparResource).setIntrinsicIDToEObjectMap(new HashMap<String, EObject>());
-        initialize();
-    }
-
-    /**
-     * @param apar
-     */
-    private void initialize() {
-        aparModel = (Model) aparResource.getContents().get(0);
+        aparModel = (Model) emfResource.getContents().get(0);
         assert aparModel != null;
         String convertURI = AParImportResolver.convertURI(aparModel.getModel().get(0));
         URI modelURI = URI.createURI(convertURI);
-        Resource amfResource = aparResource.getResourceSet().getResource(modelURI, true);
+        Resource amfResource = emfResource.getResourceSet().getResource(modelURI, true);
         ((ResourceImpl) amfResource).setIntrinsicIDToEObjectMap(new HashMap<String, EObject>());
         rootContext = (SContext) amfResource.getContents().get(0);
 
         modelClass = rootContext.getImplementation().getQualifiedName();
-        runName = rootContext.getLabel() + "_" + aparResource.getURI().trimFileExtension().lastSegment();
+        runName = rootContext.getLabel() + "_" + emfResource.getURI().trimFileExtension().lastSegment();
         parameters = collect(new HashSet<String>());
 
         String rootPath = amfResource.getURI().toPlatformString(true);
@@ -167,11 +122,9 @@ public class AParInterpreter {
         Incorporates[] reverseIncorporates = (Incorporates[]) aparModel.getIncorporates().toArray();
         CollectionUtils.reverseArray(reverseIncorporates);
         for (Incorporates incorporates : reverseIncorporates) {
-            AParInterpreter incInterpreter = new AParInterpreter();
-            incInterpreter.setResourceSet(resourceSet);
             String convertURI = AParImportResolver.convertURI(incorporates);
             URI incURI = URI.createURI(convertURI);
-            incInterpreter.load(incURI);
+            AParInterpreter incInterpreter = (AParInterpreter) cache.getInterpreter(incURI);
             includeIncorporated.addAll(incInterpreter.collect(overridden));
         }
         return includeIncorporated;
@@ -180,7 +133,7 @@ public class AParInterpreter {
     /**
      * @return
      */
-    public SContext getTargetModel() {
+    public SContext getRootContext() {
         return rootContext;
     }
 
@@ -252,7 +205,7 @@ public class AParInterpreter {
                 try {
                     String attrName = StringUtils.capitalize(attribute.getID());
                     PropertyDescriptor desc = propertyForID.get(attrName);
-                    if (desc == null && attribute.getOwner() != getTargetModel()) {
+                    if (desc == null && attribute.getOwner() != getRootContext()) {
                         // We need to qualify name
                         attrName = StringUtils.capitalize(attribute.getOwner().getID()) + attrName;
                         desc = propertyForID.get(attrName);
@@ -301,29 +254,11 @@ public class AParInterpreter {
     }
 
     public Resource getResource() {
-        return aparResource;
+        return emfResource;
     }
 
-    /**
-     * @param parserPool the parserPool to set
-     */
-    public void setParserPool(XMLParserPool parserPool) {
-        this.parserPool = parserPool;
-    }
-
-    /**
-     * @param nameToFeatureMap the nameToFeatureMap to set
-     */
-    public void setNameToFeatureMap(Map nameToFeatureMap) {
-        this.nameToFeatureMap = nameToFeatureMap;
-    }
-
-    public ResourceSet getResourceSet() {
-        return resourceSet;
-    }
-
-    public void setResourceSet(ResourceSet resourceSet) {
-        this.resourceSet = resourceSet;
+    public void setCache(IInterpreterProvider cache) {
+        this.cache = cache;
     }
 
     public List<Parameter> getParameters() {

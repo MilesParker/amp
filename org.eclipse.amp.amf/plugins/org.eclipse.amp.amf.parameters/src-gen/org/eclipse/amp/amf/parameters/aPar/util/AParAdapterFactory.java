@@ -5,19 +5,13 @@
  */
 package org.eclipse.amp.amf.parameters.aPar.util;
 
-import org.eclipse.amp.amf.parameters.aPar.AParPackage;
-import org.eclipse.amp.amf.parameters.aPar.BooleanValue;
-import org.eclipse.amp.amf.parameters.aPar.Import;
-import org.eclipse.amp.amf.parameters.aPar.Incorporates;
-import org.eclipse.amp.amf.parameters.aPar.IntValue;
-import org.eclipse.amp.amf.parameters.aPar.Model;
-import org.eclipse.amp.amf.parameters.aPar.Parameter;
-import org.eclipse.amp.amf.parameters.aPar.RealValue;
-import org.eclipse.amp.amf.parameters.aPar.StringValue;
-import org.eclipse.amp.amf.parameters.aPar.Value;
+import org.eclipse.amp.amf.parameters.aPar.*;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -104,31 +98,6 @@ public class AParAdapterFactory extends AdapterFactoryImpl
         return createParameterAdapter();
       }
       @Override
-      public Adapter caseValue(Value object)
-      {
-        return createValueAdapter();
-      }
-      @Override
-      public Adapter caseIntValue(IntValue object)
-      {
-        return createIntValueAdapter();
-      }
-      @Override
-      public Adapter caseRealValue(RealValue object)
-      {
-        return createRealValueAdapter();
-      }
-      @Override
-      public Adapter caseStringValue(StringValue object)
-      {
-        return createStringValueAdapter();
-      }
-      @Override
-      public Adapter caseBooleanValue(BooleanValue object)
-      {
-        return createBooleanValueAdapter();
-      }
-      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -206,81 +175,6 @@ public class AParAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createParameterAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.parameters.aPar.Value <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.amp.amf.parameters.aPar.Value
-   * @generated
-   */
-  public Adapter createValueAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.parameters.aPar.IntValue <em>Int Value</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.amp.amf.parameters.aPar.IntValue
-   * @generated
-   */
-  public Adapter createIntValueAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.parameters.aPar.RealValue <em>Real Value</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.amp.amf.parameters.aPar.RealValue
-   * @generated
-   */
-  public Adapter createRealValueAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.parameters.aPar.StringValue <em>String Value</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.amp.amf.parameters.aPar.StringValue
-   * @generated
-   */
-  public Adapter createStringValueAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.parameters.aPar.BooleanValue <em>Boolean Value</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.amp.amf.parameters.aPar.BooleanValue
-   * @generated
-   */
-  public Adapter createBooleanValueAdapter()
   {
     return null;
   }

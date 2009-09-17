@@ -5,23 +5,14 @@
  */
 package org.eclipse.amp.amf.parameters.aPar.impl;
 
-import org.eclipse.amp.amf.parameters.aPar.AParFactory;
-import org.eclipse.amp.amf.parameters.aPar.AParPackage;
-import org.eclipse.amp.amf.parameters.aPar.BOOLEAN;
-import org.eclipse.amp.amf.parameters.aPar.BooleanValue;
-import org.eclipse.amp.amf.parameters.aPar.Import;
-import org.eclipse.amp.amf.parameters.aPar.Incorporates;
-import org.eclipse.amp.amf.parameters.aPar.IntValue;
-import org.eclipse.amp.amf.parameters.aPar.Model;
-import org.eclipse.amp.amf.parameters.aPar.Parameter;
-import org.eclipse.amp.amf.parameters.aPar.RealValue;
-import org.eclipse.amp.amf.parameters.aPar.StringValue;
-import org.eclipse.amp.amf.parameters.aPar.Value;
+import org.eclipse.amp.amf.parameters.aPar.*;
+
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
+
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
@@ -80,47 +71,8 @@ public class AParFactoryImpl extends EFactoryImpl implements AParFactory
       case AParPackage.IMPORT: return createImport();
       case AParPackage.INCORPORATES: return createIncorporates();
       case AParPackage.PARAMETER: return createParameter();
-      case AParPackage.VALUE: return createValue();
-      case AParPackage.INT_VALUE: return createIntValue();
-      case AParPackage.REAL_VALUE: return createRealValue();
-      case AParPackage.STRING_VALUE: return createStringValue();
-      case AParPackage.BOOLEAN_VALUE: return createBooleanValue();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-    }
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object createFromString(EDataType eDataType, String initialValue)
-  {
-    switch (eDataType.getClassifierID())
-    {
-      case AParPackage.BOOLEAN:
-        return createBOOLEANFromString(eDataType, initialValue);
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-    }
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String convertToString(EDataType eDataType, Object instanceValue)
-  {
-    switch (eDataType.getClassifierID())
-    {
-      case AParPackage.BOOLEAN:
-        return convertBOOLEANToString(eDataType, instanceValue);
-      default:
-        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
@@ -166,83 +118,6 @@ public class AParFactoryImpl extends EFactoryImpl implements AParFactory
   {
     ParameterImpl parameter = new ParameterImpl();
     return parameter;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Value createValue()
-  {
-    ValueImpl value = new ValueImpl();
-    return value;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public IntValue createIntValue()
-  {
-    IntValueImpl intValue = new IntValueImpl();
-    return intValue;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public RealValue createRealValue()
-  {
-    RealValueImpl realValue = new RealValueImpl();
-    return realValue;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public StringValue createStringValue()
-  {
-    StringValueImpl stringValue = new StringValueImpl();
-    return stringValue;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public BooleanValue createBooleanValue()
-  {
-    BooleanValueImpl booleanValue = new BooleanValueImpl();
-    return booleanValue;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public BOOLEAN createBOOLEANFromString(EDataType eDataType, String initialValue)
-  {
-    BOOLEAN result = BOOLEAN.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertBOOLEANToString(EDataType eDataType, Object instanceValue)
-  {
-    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

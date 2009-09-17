@@ -6,6 +6,7 @@
 package org.eclipse.amp.amf.parameters.aPar;
 
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**

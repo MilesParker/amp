@@ -3,15 +3,12 @@
 */
 package org.eclipse.amp.amf.parameters.parseTreeConstruction;
 
-import org.eclipse.amp.amf.parameters.services.AParGrammarAccess;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.Alternatives;
-import org.eclipse.xtext.Assignment;
-import org.eclipse.xtext.Group;
-import org.eclipse.xtext.Keyword;
-import org.eclipse.xtext.RuleCall;
+import org.eclipse.emf.ecore.*;
+import org.eclipse.xtext.*;
 import org.eclipse.xtext.parsetree.reconstr.IInstanceDescription;
 import org.eclipse.xtext.parsetree.reconstr.impl.AbstractParseTreeConstructor;
+
+import org.eclipse.amp.amf.parameters.services.AParGrammarAccess;
 
 import com.google.inject.Inject;
 
@@ -39,11 +36,6 @@ protected class ThisRootNode extends RootToken {
 			case 1: return new Import_Group(this, this, 1, inst);
 			case 2: return new Incorporates_Group(this, this, 2, inst);
 			case 3: return new Parameter_Group(this, this, 3, inst);
-			case 4: return new Value_Alternatives(this, this, 4, inst);
-			case 5: return new IntValue_ValueAssignment(this, this, 5, inst);
-			case 6: return new RealValue_ValueAssignment(this, this, 6, inst);
-			case 7: return new StringValue_ValueAssignment(this, this, 7, inst);
-			case 8: return new BooleanValue_ValueAssignment(this, this, 8, inst);
 			default: return null;
 		}	
 	}	

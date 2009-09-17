@@ -5,7 +5,10 @@
  */
 package org.eclipse.amp.amf.parameters.aPar;
 
+import org.eclipse.amp.amf.abase.aBase.Value;
+
 import org.eclipse.emf.ecore.EObject;
+
 import org.metaabm.SAttribute;
 
 /**

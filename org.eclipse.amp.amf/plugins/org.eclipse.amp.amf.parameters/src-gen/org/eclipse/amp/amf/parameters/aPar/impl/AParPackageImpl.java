@@ -5,23 +5,22 @@
  */
 package org.eclipse.amp.amf.parameters.aPar.impl;
 
+import org.eclipse.amp.amf.abase.aBase.ABasePackage;
+
 import org.eclipse.amp.amf.parameters.aPar.AParFactory;
 import org.eclipse.amp.amf.parameters.aPar.AParPackage;
-import org.eclipse.amp.amf.parameters.aPar.BooleanValue;
 import org.eclipse.amp.amf.parameters.aPar.Import;
 import org.eclipse.amp.amf.parameters.aPar.Incorporates;
-import org.eclipse.amp.amf.parameters.aPar.IntValue;
 import org.eclipse.amp.amf.parameters.aPar.Model;
 import org.eclipse.amp.amf.parameters.aPar.Parameter;
-import org.eclipse.amp.amf.parameters.aPar.RealValue;
-import org.eclipse.amp.amf.parameters.aPar.StringValue;
-import org.eclipse.amp.amf.parameters.aPar.Value;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.metaabm.MetaABMPackage;
 
 /**
@@ -59,48 +58,6 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
    * @generated
    */
   private EClass parameterEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass valueEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass intValueEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass realValueEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass stringValueEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass booleanValueEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EEnum booleanEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -152,6 +109,7 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
 
     // Initialize simple dependencies
     MetaABMPackage.eINSTANCE.eClass();
+    ABasePackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theAParPackage.createPackageContents();
@@ -293,106 +251,6 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getValue()
-  {
-    return valueEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getIntValue()
-  {
-    return intValueEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getIntValue_Value()
-  {
-    return (EAttribute)intValueEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getRealValue()
-  {
-    return realValueEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getRealValue_Value()
-  {
-    return (EAttribute)realValueEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getStringValue()
-  {
-    return stringValueEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getStringValue_Value()
-  {
-    return (EAttribute)stringValueEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getBooleanValue()
-  {
-    return booleanValueEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getBooleanValue_Value()
-  {
-    return (EAttribute)booleanValueEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EEnum getBOOLEAN()
-  {
-    return booleanEEnum;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public AParFactory getAParFactory()
   {
     return (AParFactory)getEFactoryInstance();
@@ -433,23 +291,6 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
     parameterEClass = createEClass(PARAMETER);
     createEReference(parameterEClass, PARAMETER__ATTRIBUTE);
     createEReference(parameterEClass, PARAMETER__VALUE);
-
-    valueEClass = createEClass(VALUE);
-
-    intValueEClass = createEClass(INT_VALUE);
-    createEAttribute(intValueEClass, INT_VALUE__VALUE);
-
-    realValueEClass = createEClass(REAL_VALUE);
-    createEAttribute(realValueEClass, REAL_VALUE__VALUE);
-
-    stringValueEClass = createEClass(STRING_VALUE);
-    createEAttribute(stringValueEClass, STRING_VALUE__VALUE);
-
-    booleanValueEClass = createEClass(BOOLEAN_VALUE);
-    createEAttribute(booleanValueEClass, BOOLEAN_VALUE__VALUE);
-
-    // Create enums
-    booleanEEnum = createEEnum(BOOLEAN);
   }
 
   /**
@@ -478,16 +319,13 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
 
     // Obtain other dependent packages
     MetaABMPackage theMetaABMPackage = (MetaABMPackage)EPackage.Registry.INSTANCE.getEPackage(MetaABMPackage.eNS_URI);
+    ABasePackage theABasePackage = (ABasePackage)EPackage.Registry.INSTANCE.getEPackage(ABasePackage.eNS_URI);
 
     // Create type parameters
 
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    intValueEClass.getESuperTypes().add(this.getValue());
-    realValueEClass.getESuperTypes().add(this.getValue());
-    stringValueEClass.getESuperTypes().add(this.getValue());
-    booleanValueEClass.getESuperTypes().add(this.getValue());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -504,26 +342,7 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
 
     initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getParameter_Attribute(), theMetaABMPackage.getSAttribute(), null, "attribute", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getParameter_Value(), this.getValue(), null, "value", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(intValueEClass, IntValue.class, "IntValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getIntValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, IntValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(realValueEClass, RealValue.class, "RealValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getRealValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, RealValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(stringValueEClass, StringValue.class, "StringValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getStringValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, StringValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(booleanValueEClass, BooleanValue.class, "BooleanValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getBooleanValue_Value(), this.getBOOLEAN(), "value", null, 0, 1, BooleanValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    // Initialize enums and add enum literals
-    initEEnum(booleanEEnum, org.eclipse.amp.amf.parameters.aPar.BOOLEAN.class, "BOOLEAN");
-    addEEnumLiteral(booleanEEnum, org.eclipse.amp.amf.parameters.aPar.BOOLEAN.TRUE);
-    addEEnumLiteral(booleanEEnum, org.eclipse.amp.amf.parameters.aPar.BOOLEAN.FALSE);
+    initEReference(getParameter_Value(), theABasePackage.getValue(), null, "value", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

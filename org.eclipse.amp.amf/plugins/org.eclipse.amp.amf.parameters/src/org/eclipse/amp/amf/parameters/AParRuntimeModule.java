@@ -15,4 +15,5 @@ public class AParRuntimeModule extends org.eclipse.amp.amf.parameters.AbstractAP
     public Class<? extends ImportUriResolver> bindImportUriResolver() {
         return AParImportResolver.class;
     }
+
 }

@@ -4,24 +4,14 @@
 
 package org.eclipse.amp.amf.parameters.services;
 
-import org.eclipse.xtext.Alternatives;
-import org.eclipse.xtext.Assignment;
-import org.eclipse.xtext.CrossReference;
-import org.eclipse.xtext.EnumLiteralDeclaration;
-import org.eclipse.xtext.EnumRule;
-import org.eclipse.xtext.Grammar;
-import org.eclipse.xtext.GrammarUtil;
-import org.eclipse.xtext.Group;
-import org.eclipse.xtext.IGrammarAccess;
-import org.eclipse.xtext.Keyword;
-import org.eclipse.xtext.ParserRule;
-import org.eclipse.xtext.RuleCall;
-import org.eclipse.xtext.TerminalRule;
-import org.eclipse.xtext.common.services.TerminalsGrammarAccess;
+import com.google.inject.Singleton;
+import com.google.inject.Inject;
+
+import org.eclipse.xtext.*;
+
 import org.eclipse.xtext.service.GrammarProvider;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
+import org.eclipse.amp.amf.abase.services.ABaseGrammarAccess;
 
 @Singleton
 public class AParGrammarAccess implements IGrammarAccess {
@@ -154,149 +144,22 @@ public class AParGrammarAccess implements IGrammarAccess {
 		//Value
 		public RuleCall getValueValueParserRuleCall_2_0() { return cValueValueParserRuleCall_2_0; }
 	}
-
-	public class ValueElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Value");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cIntValueParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cStringValueParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cRealValueParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cBooleanValueParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		
-		//Value:
-		//  IntValue|StringValue|RealValue|BooleanValue;
-		public ParserRule getRule() { return rule; }
-
-		//IntValue|StringValue|RealValue|BooleanValue
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//IntValue
-		public RuleCall getIntValueParserRuleCall_0() { return cIntValueParserRuleCall_0; }
-
-		//StringValue
-		public RuleCall getStringValueParserRuleCall_1() { return cStringValueParserRuleCall_1; }
-
-		//RealValue
-		public RuleCall getRealValueParserRuleCall_2() { return cRealValueParserRuleCall_2; }
-
-		//BooleanValue
-		public RuleCall getBooleanValueParserRuleCall_3() { return cBooleanValueParserRuleCall_3; }
-	}
-
-	public class IntValueElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IntValue");
-		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueINTEGERTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
-		
-		//IntValue:
-		//  value=INTEGER;
-		public ParserRule getRule() { return rule; }
-
-		//value=INTEGER
-		public Assignment getValueAssignment() { return cValueAssignment; }
-
-		//INTEGER
-		public RuleCall getValueINTEGERTerminalRuleCall_0() { return cValueINTEGERTerminalRuleCall_0; }
-	}
-
-	public class RealValueElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RealValue");
-		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueREALTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
-		
-		//RealValue:
-		//  value=REAL;
-		public ParserRule getRule() { return rule; }
-
-		//value=REAL
-		public Assignment getValueAssignment() { return cValueAssignment; }
-
-		//REAL
-		public RuleCall getValueREALTerminalRuleCall_0() { return cValueREALTerminalRuleCall_0; }
-	}
-
-	public class StringValueElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StringValue");
-		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueSTRINGTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
-		
-		//StringValue:
-		//  value=STRING;
-		public ParserRule getRule() { return rule; }
-
-		//value=STRING
-		public Assignment getValueAssignment() { return cValueAssignment; }
-
-		//STRING
-		public RuleCall getValueSTRINGTerminalRuleCall_0() { return cValueSTRINGTerminalRuleCall_0; }
-	}
-
-	public class BooleanValueElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BooleanValue");
-		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueBOOLEANEnumRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
-		
-		//BooleanValue:
-		//  value=BOOLEAN;
-		public ParserRule getRule() { return rule; }
-
-		//value=BOOLEAN
-		public Assignment getValueAssignment() { return cValueAssignment; }
-
-		//BOOLEAN
-		public RuleCall getValueBOOLEANEnumRuleCall_0() { return cValueBOOLEANEnumRuleCall_0; }
-	}
 	
-	
-	public class BOOLEANElements implements IEnumRuleAccess {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "BOOLEAN");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final EnumLiteralDeclaration cTRUEEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cTRUETrueKeyword_0_0 = (Keyword)cTRUEEnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cFALSEEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cFALSEFalseKeyword_1_0 = (Keyword)cFALSEEnumLiteralDeclaration_1.eContents().get(0);
-		
-		//enum BOOLEAN returns BOOLEAN : TRUE | FALSE ;
-		public EnumRule getRule() { return rule; }
-
-		//TRUE | FALSE
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//TRUE
-		public EnumLiteralDeclaration getTRUEEnumLiteralDeclaration_0() { return cTRUEEnumLiteralDeclaration_0; }
-
-		//"true"
-		public Keyword getTRUETrueKeyword_0_0() { return cTRUETrueKeyword_0_0; }
-
-		//FALSE
-		public EnumLiteralDeclaration getFALSEEnumLiteralDeclaration_1() { return cFALSEEnumLiteralDeclaration_1; }
-
-		//"false"
-		public Keyword getFALSEFalseKeyword_1_0() { return cFALSEFalseKeyword_1_0; }
-	}
 	
 	private ModelElements pModel;
 	private ImportElements pImport;
 	private IncorporatesElements pIncorporates;
 	private ParameterElements pParameter;
-	private ValueElements pValue;
-	private IntValueElements pIntValue;
-	private RealValueElements pRealValue;
-	private StringValueElements pStringValue;
-	private BooleanValueElements pBooleanValue;
-	private BOOLEANElements unknownRuleBOOLEAN;
-	private TerminalRule tINTEGER;
-	private TerminalRule tREAL;
 	
 	private final GrammarProvider grammarProvider;
 
-	private TerminalsGrammarAccess gaTerminals;
+	private ABaseGrammarAccess gaABase;
 
 	@Inject
 	public AParGrammarAccess(GrammarProvider grammarProvider,
-		TerminalsGrammarAccess gaTerminals) {
+		ABaseGrammarAccess gaABase) {
 		this.grammarProvider = grammarProvider;
-		this.gaTerminals = gaTerminals;
+		this.gaABase = gaABase;
 	}
 	
 	public Grammar getGrammar() {	
@@ -304,8 +167,8 @@ public class AParGrammarAccess implements IGrammarAccess {
 	}
 	
 
-	public TerminalsGrammarAccess getTerminalsGrammarAccess() {
-		return gaTerminals;
+	public ABaseGrammarAccess getABaseGrammarAccess() {
+		return gaABase;
 	}
 
 	
@@ -351,8 +214,8 @@ public class AParGrammarAccess implements IGrammarAccess {
 
 	//Value:
 	//  IntValue|StringValue|RealValue|BooleanValue;
-	public ValueElements getValueAccess() {
-		return (pValue != null) ? pValue : (pValue = new ValueElements());
+	public ABaseGrammarAccess.ValueElements getValueAccess() {
+		return gaABase.getValueAccess();
 	}
 	
 	public ParserRule getValueRule() {
@@ -361,8 +224,8 @@ public class AParGrammarAccess implements IGrammarAccess {
 
 	//IntValue:
 	//  value=INTEGER;
-	public IntValueElements getIntValueAccess() {
-		return (pIntValue != null) ? pIntValue : (pIntValue = new IntValueElements());
+	public ABaseGrammarAccess.IntValueElements getIntValueAccess() {
+		return gaABase.getIntValueAccess();
 	}
 	
 	public ParserRule getIntValueRule() {
@@ -371,8 +234,8 @@ public class AParGrammarAccess implements IGrammarAccess {
 
 	//RealValue:
 	//  value=REAL;
-	public RealValueElements getRealValueAccess() {
-		return (pRealValue != null) ? pRealValue : (pRealValue = new RealValueElements());
+	public ABaseGrammarAccess.RealValueElements getRealValueAccess() {
+		return gaABase.getRealValueAccess();
 	}
 	
 	public ParserRule getRealValueRule() {
@@ -381,8 +244,8 @@ public class AParGrammarAccess implements IGrammarAccess {
 
 	//StringValue:
 	//  value=STRING;
-	public StringValueElements getStringValueAccess() {
-		return (pStringValue != null) ? pStringValue : (pStringValue = new StringValueElements());
+	public ABaseGrammarAccess.StringValueElements getStringValueAccess() {
+		return gaABase.getStringValueAccess();
 	}
 	
 	public ParserRule getStringValueRule() {
@@ -391,17 +254,18 @@ public class AParGrammarAccess implements IGrammarAccess {
 
 	//BooleanValue:
 	//  value=BOOLEAN;
-	public BooleanValueElements getBooleanValueAccess() {
-		return (pBooleanValue != null) ? pBooleanValue : (pBooleanValue = new BooleanValueElements());
+	public ABaseGrammarAccess.BooleanValueElements getBooleanValueAccess() {
+		return gaABase.getBooleanValueAccess();
 	}
 	
 	public ParserRule getBooleanValueRule() {
 		return getBooleanValueAccess().getRule();
 	}
 
-	//enum BOOLEAN returns BOOLEAN : TRUE | FALSE ;
-	public BOOLEANElements getBOOLEANAccess() {
-		return (unknownRuleBOOLEAN != null) ? unknownRuleBOOLEAN : (unknownRuleBOOLEAN = new BOOLEANElements());
+	//enum BOOLEAN:
+	//  TRUE="true" | FALSE="false";
+	public ABaseGrammarAccess.BOOLEANElements getBOOLEANAccess() {
+		return gaABase.getBOOLEANAccess();
 	}
 	
 	public EnumRule getBOOLEANRule() {
@@ -409,57 +273,57 @@ public class AParGrammarAccess implements IGrammarAccess {
 	}
 
 	//terminal INTEGER:
-	//  "-" ? "0" .. "9" +;
+	//  "-"? "0".."9"+;
 	public TerminalRule getINTEGERRule() {
-		return (tINTEGER != null) ? tINTEGER : (tINTEGER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INTEGER"));
+		return gaABase.getINTEGERRule();
 	} 
 
 	//terminal REAL:
-	//  "-" ? "0" .. "9" * "." "0" .. "9" *;
+	//  "-"? "0".."9"* "." "0".."9"*;
 	public TerminalRule getREALRule() {
-		return (tREAL != null) ? tREAL : (tREAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "REAL"));
+		return gaABase.getREALRule();
 	} 
 
 	//terminal ID:
-	//  "^" ? ( "a" .. "z" | "A" .. "Z" | "_" ) ( "a" .. "z" | "A" .. "Z" | "_" | "0" .. "9" ) *;
+	//  "^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
 	public TerminalRule getIDRule() {
-		return gaTerminals.getIDRule();
+		return gaABase.getIDRule();
 	} 
 
 	//terminal INT returns ecore::EInt:
-	//  "0" .. "9" +;
+	//  "0".."9"+;
 	public TerminalRule getINTRule() {
-		return gaTerminals.getINTRule();
+		return gaABase.getINTRule();
 	} 
 
 	//terminal STRING:
-	//  "\"" ( "\\" ( "b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\" ) | ! ( "\\" | "\"" ) ) * "\"" | "\'" ( "\\" ( "b" |
-	//  "t" | "n" | "f" | "r" | "\"" | "\'" | "\\" ) | ! ( "\\" | "\'" ) ) * "\'";
+	//  "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"" | "\'" ("\\" ("b" |
+	//  "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
 	public TerminalRule getSTRINGRule() {
-		return gaTerminals.getSTRINGRule();
+		return gaABase.getSTRINGRule();
 	} 
 
 	//terminal ML_COMMENT:
-	//  "/ *" -> "* /";
+	//  "/ *"->"* /";
 	public TerminalRule getML_COMMENTRule() {
-		return gaTerminals.getML_COMMENTRule();
+		return gaABase.getML_COMMENTRule();
 	} 
 
 	//terminal SL_COMMENT:
-	//  "//" ! ( "\n" | "\r" ) * ( "\r" ? "\n" ) ?;
+	//  "//" !("\n" | "\r")* ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {
-		return gaTerminals.getSL_COMMENTRule();
+		return gaABase.getSL_COMMENTRule();
 	} 
 
 	//terminal WS:
-	//  ( " " | "\t" | "\r" | "\n" ) +;
+	//  (" " | "\t" | "\r" | "\n")+;
 	public TerminalRule getWSRule() {
-		return gaTerminals.getWSRule();
+		return gaABase.getWSRule();
 	} 
 
 	//terminal ANY_OTHER:
 	//  .;
 	public TerminalRule getANY_OTHERRule() {
-		return gaTerminals.getANY_OTHERRule();
+		return gaABase.getANY_OTHERRule();
 	} 
 }

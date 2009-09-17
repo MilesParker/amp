@@ -10,6 +10,7 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
  de.itemis.xtext.antlr;resolution:=optional,
  org.eclipse.emf.codegen.ecore;resolution:=optional,
+ org.eclipse.xtext.log4j;resolution:=optional,
  org.eclipse.emf.mwe.utils;resolution:=optional,
  org.eclipse.emf.mwe.core;resolution:=optional,
  org.eclipse.xtext.xtend;resolution:=optional,
@@ -17,47 +18,22 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.ecore,
  org.eclipse.emf.common,
  org.antlr.runtime,
- org.eclipse.amp.amf.acore;bundle-version="0.2.0",
  org.eclipse.ui;bundle-version="3.5.0",
  org.eclipse.core.runtime;bundle-version="3.5.0",
- org.eclipse.core.resources;bundle-version="3.5.0"
+ org.eclipse.core.resources;bundle-version="3.5.0",
+ org.eclipse.amp.amf.acore,
+ org.eclipse.amp.amf.abase
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.amp.amf.parameters;uses:="org.eclipse.xtext,org.eclipse.xtext.service,com.google.inject",
- org.eclipse.amp.amf.parameters.aPar;uses:="org.eclipse.emf.ecore,org.eclipse.emf.common.util,org.metaabm",
- org.eclipse.amp.amf.parameters.aPar.impl;
-  uses:="org.eclipse.emf.ecore,
-   org.eclipse.emf.common.util,
-   org.metaabm,
-   org.eclipse.amp.amf.parameters.aPar,
-   org.eclipse.emf.ecore.impl,
-   org.eclipse.emf.common.notify",
- org.eclipse.amp.amf.parameters.aPar.util;
-  uses:="org.eclipse.emf.ecore,
-   org.eclipse.emf.common.notify.impl,
-   org.eclipse.amp.amf.parameters.aPar,
-   org.eclipse.emf.common.notify",
- org.eclipse.amp.amf.parameters.formatting;uses:="org.eclipse.xtext.formatting.impl",
- org.eclipse.amp.amf.parameters.parseTreeConstruction;
-  uses:="org.eclipse.xtext,
-   org.eclipse.xtext.parsetree.reconstr,
-   org.eclipse.xtext.parsetree.reconstr.impl,
-   org.eclipse.amp.amf.parameters.services",
- org.eclipse.amp.amf.parameters.parser.antlr;
-  uses:="org.eclipse.xtext.parser,
-   org.antlr.runtime,
-   org.eclipse.xtext.parser.antlr,
-   org.eclipse.amp.amf.parameters.services",
- org.eclipse.amp.amf.parameters.parser.antlr.internal;
-  uses:="org.eclipse.emf.ecore,
-   org.eclipse.xtext.parser,
-   org.eclipse.emf.common.util,
-   org.antlr.runtime,
-   org.eclipse.xtext.parser.antlr,
-   org.eclipse.amp.amf.parameters.services",
- org.eclipse.amp.amf.parameters.scoping;uses:="org.eclipse.emf.ecore,org.eclipse.xtext.scoping,org.eclipse.xtext.scoping.impl",
- org.eclipse.amp.amf.parameters.services;uses:="org.eclipse.xtext,org.eclipse.xtext.common.services,org.eclipse.xtext.service",
- org.eclipse.amp.amf.parameters.validation;uses:="org.eclipse.xtext.validation"
 Bundle-ClassPath: .
-Import-Package: org.apache.commons.collections,
- org.apache.commons.lang
-
+Import-Package: org.apache.commons.collections,org.apache.commons.lang
+Export-Package: org.eclipse.amp.amf.parameters,
+ org.eclipse.amp.amf.parameters.aPar,
+ org.eclipse.amp.amf.parameters.aPar.impl,
+ org.eclipse.amp.amf.parameters.aPar.util,
+ org.eclipse.amp.amf.parameters.formatting,
+ org.eclipse.amp.amf.parameters.parseTreeConstruction,
+ org.eclipse.amp.amf.parameters.parser.antlr,
+ org.eclipse.amp.amf.parameters.parser.antlr.internal,
+ org.eclipse.amp.amf.parameters.scoping,
+ org.eclipse.amp.amf.parameters.services,
+ org.eclipse.amp.amf.parameters.validation
