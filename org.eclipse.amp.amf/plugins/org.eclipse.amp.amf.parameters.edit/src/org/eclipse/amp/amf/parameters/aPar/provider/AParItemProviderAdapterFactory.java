@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AParItemProviderAdapterFactory.java,v 1.5 2009/09/10 20:26:20 mparker Exp $
+ * $Id: AParItemProviderAdapterFactory.java,v 1.6 2009/09/17 02:50:21 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 
@@ -36,358 +36,238 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  */
 public class AParItemProviderAdapterFactory extends AParAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
     /**
-     * This keeps track of the root adapter factory that delegates to this adapter factory.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the root adapter factory that delegates to this adapter factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ComposedAdapterFactory parentAdapterFactory;
 
     /**
-     * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-     * <!-- begin-user-doc -->
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
     /**
-     * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
-     * <!-- begin-user-doc -->
+	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
     /**
-     * This constructs an instance.
-     * <!-- begin-user-doc -->
+	 * This constructs an instance.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public AParItemProviderAdapterFactory() {
-        supportedTypes.add(IEditingDomainItemProvider.class);
-        supportedTypes.add(IStructuredItemContentProvider.class);
-        supportedTypes.add(ITreeItemContentProvider.class);
-        supportedTypes.add(IItemLabelProvider.class);
-        supportedTypes.add(IItemPropertySource.class);
-    }
+		supportedTypes.add(IEditingDomainItemProvider.class);
+		supportedTypes.add(IStructuredItemContentProvider.class);
+		supportedTypes.add(ITreeItemContentProvider.class);
+		supportedTypes.add(IItemLabelProvider.class);
+		supportedTypes.add(IItemPropertySource.class);
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.Model} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.Model} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ModelItemProvider modelItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.Model}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.Model}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter createModelAdapter() {
-        if (modelItemProvider == null) {
-            modelItemProvider = new ModelItemProvider(this);
-        }
+		if (modelItemProvider == null) {
+			modelItemProvider = new ModelItemProvider(this);
+		}
 
-        return modelItemProvider;
-    }
+		return modelItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.Import} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.Import} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ImportItemProvider importItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.Import}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.Import}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter createImportAdapter() {
-        if (importItemProvider == null) {
-            importItemProvider = new ImportItemProvider(this);
-        }
+		if (importItemProvider == null) {
+			importItemProvider = new ImportItemProvider(this);
+		}
 
-        return importItemProvider;
-    }
+		return importItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.Incorporates} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.Incorporates} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected IncorporatesItemProvider incorporatesItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.Incorporates}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.Incorporates}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter createIncorporatesAdapter() {
-        if (incorporatesItemProvider == null) {
-            incorporatesItemProvider = new IncorporatesItemProvider(this);
-        }
+		if (incorporatesItemProvider == null) {
+			incorporatesItemProvider = new IncorporatesItemProvider(this);
+		}
 
-        return incorporatesItemProvider;
-    }
+		return incorporatesItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.Parameter} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.Parameter} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ParameterItemProvider parameterItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.Parameter}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.Parameter}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter createParameterAdapter() {
-        if (parameterItemProvider == null) {
-            parameterItemProvider = new ParameterItemProvider(this);
-        }
+		if (parameterItemProvider == null) {
+			parameterItemProvider = new ParameterItemProvider(this);
+		}
 
-        return parameterItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.Value} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ValueItemProvider valueItemProvider;
+		return parameterItemProvider;
+	}
 
     /**
-     * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.Value}.
-     * <!-- begin-user-doc -->
+	 * This returns the root adapter factory that contains this factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createValueAdapter() {
-        if (valueItemProvider == null) {
-            valueItemProvider = new ValueItemProvider(this);
-        }
-
-        return valueItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.IntValue} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected IntValueItemProvider intValueItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.IntValue}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createIntValueAdapter() {
-        if (intValueItemProvider == null) {
-            intValueItemProvider = new IntValueItemProvider(this);
-        }
-
-        return intValueItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.RealValue} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected RealValueItemProvider realValueItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.RealValue}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createRealValueAdapter() {
-        if (realValueItemProvider == null) {
-            realValueItemProvider = new RealValueItemProvider(this);
-        }
-
-        return realValueItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.StringValue} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected StringValueItemProvider stringValueItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.StringValue}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createStringValueAdapter() {
-        if (stringValueItemProvider == null) {
-            stringValueItemProvider = new StringValueItemProvider(this);
-        }
-
-        return stringValueItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.BooleanValue} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected BooleanValueItemProvider booleanValueItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.BooleanValue}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createBooleanValueAdapter() {
-        if (booleanValueItemProvider == null) {
-            booleanValueItemProvider = new BooleanValueItemProvider(this);
-        }
-
-        return booleanValueItemProvider;
-    }
-
-    /**
-     * This returns the root adapter factory that contains this factory.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public ComposeableAdapterFactory getRootAdapterFactory() {
-        return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
-    }
+		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+	}
 
     /**
-     * This sets the composed adapter factory that contains this factory.
-     * <!-- begin-user-doc -->
+	 * This sets the composed adapter factory that contains this factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
-        this.parentAdapterFactory = parentAdapterFactory;
-    }
+		this.parentAdapterFactory = parentAdapterFactory;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean isFactoryForType(Object type) {
-        return supportedTypes.contains(type) || super.isFactoryForType(type);
-    }
+		return supportedTypes.contains(type) || super.isFactoryForType(type);
+	}
 
     /**
-     * This implementation substitutes the factory itself as the key for the adapter.
-     * <!-- begin-user-doc -->
+	 * This implementation substitutes the factory itself as the key for the adapter.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter adapt(Notifier notifier, Object type) {
-        return super.adapt(notifier, this);
-    }
+		return super.adapt(notifier, this);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object adapt(Object object, Object type) {
-        if (isFactoryForType(type)) {
-            Object adapter = super.adapt(object, type);
-            if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
-                return adapter;
-            }
-        }
+		if (isFactoryForType(type)) {
+			Object adapter = super.adapt(object, type);
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+				return adapter;
+			}
+		}
 
-        return null;
-    }
+		return null;
+	}
 
     /**
-     * This adds a listener.
-     * <!-- begin-user-doc -->
+	 * This adds a listener.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void addListener(INotifyChangedListener notifyChangedListener) {
-        changeNotifier.addListener(notifyChangedListener);
-    }
+		changeNotifier.addListener(notifyChangedListener);
+	}
 
     /**
-     * This removes a listener.
-     * <!-- begin-user-doc -->
+	 * This removes a listener.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void removeListener(INotifyChangedListener notifyChangedListener) {
-        changeNotifier.removeListener(notifyChangedListener);
-    }
+		changeNotifier.removeListener(notifyChangedListener);
+	}
 
     /**
-     * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-     * <!-- begin-user-doc -->
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void fireNotifyChanged(Notification notification) {
-        changeNotifier.fireNotifyChanged(notification);
+		changeNotifier.fireNotifyChanged(notification);
 
-        if (parentAdapterFactory != null) {
-            parentAdapterFactory.fireNotifyChanged(notification);
-        }
-    }
+		if (parentAdapterFactory != null) {
+			parentAdapterFactory.fireNotifyChanged(notification);
+		}
+	}
 
     /**
-     * This disposes all of the item providers created by this factory. 
-     * <!-- begin-user-doc -->
+	 * This disposes all of the item providers created by this factory. 
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void dispose() {
-        if (modelItemProvider != null) modelItemProvider.dispose();
-        if (importItemProvider != null) importItemProvider.dispose();
-        if (incorporatesItemProvider != null) incorporatesItemProvider.dispose();
-        if (parameterItemProvider != null) parameterItemProvider.dispose();
-        if (valueItemProvider != null) valueItemProvider.dispose();
-        if (intValueItemProvider != null) intValueItemProvider.dispose();
-        if (realValueItemProvider != null) realValueItemProvider.dispose();
-        if (stringValueItemProvider != null) stringValueItemProvider.dispose();
-        if (booleanValueItemProvider != null) booleanValueItemProvider.dispose();
-    }
+		if (modelItemProvider != null) modelItemProvider.dispose();
+		if (importItemProvider != null) importItemProvider.dispose();
+		if (incorporatesItemProvider != null) incorporatesItemProvider.dispose();
+		if (parameterItemProvider != null) parameterItemProvider.dispose();
+	}
 
 }
