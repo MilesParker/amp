@@ -16,6 +16,7 @@
 package org.eclipse.amp.escape.amf.ide;
 
 import org.eclipse.amp.amf.parameters.AParInterpreter;
+import org.eclipse.amp.amf.parameters.AParFactory;
 import org.eclipse.amp.escape.command.ExecuteHandler;
 import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
 import org.eclipse.core.resources.IProject;
@@ -55,9 +56,8 @@ public class ExecuteParameterHandler extends ExecuteHandler {
             IResource modelResource = (IResource) executed;
             IProject project = modelResource.getProject();
             if (modelResource.getFileExtension().equals("apar")) {
-                AParInterpreter interpreter = new AParInterpreter();
-                interpreter.load(modelResource);
-                eclipseRunner.open(project, interpreter.getTargetModel().getImplementation().getQualifiedName(),
+                AParInterpreter interpreter = (AParInterpreter) AParFactory.create(null).getInterpreter(modelResource);
+                eclipseRunner.open(project, interpreter.getRootContext().getImplementation().getQualifiedName(),
                                    interpreter.getRunName(), interpreter.getArgs());
             }
         }
