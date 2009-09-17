@@ -4,16 +4,15 @@
  */
 package org.eclipse.amp.amf.parameters.internal;
 
-import org.eclipse.xtext.ui.common.service.UIPluginModule;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.common.service.UIPluginModule;
 import org.osgi.framework.BundleContext;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-
-import java.util.Map;
-import java.util.HashMap;
 
 /**
  * Generated

@@ -3,7 +3,6 @@
 */
 package org.eclipse.amp.amf.parameters.contentassist;
 
-import org.eclipse.amp.amf.parameters.contentassist.AbstractAParProposalProvider;
 /**
  * see http://wiki.eclipse.org/Xtext/Documentation#Content_Assist on how to customize content assistant
  */

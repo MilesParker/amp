@@ -4,7 +4,6 @@
  */
 package org.eclipse.amp.amf.parameters;
 
-import org.eclipse.amp.amf.parameters.AParRuntimeModule;
 
 /**
  * Manual modifications go to {org.eclipse.amp.amf.parameters.AParUiModule}
