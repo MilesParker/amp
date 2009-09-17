@@ -11,7 +11,7 @@ import org.eclipse.xtext.*;
 
 import org.eclipse.xtext.service.GrammarProvider;
 
-import org.eclipse.xtext.common.services.TerminalsGrammarAccess;
+import org.eclipse.amp.amf.abase.services.ABaseGrammarAccess;
 
 @Singleton
 public class ATestGrammarAccess implements IGrammarAccess {
@@ -23,17 +23,17 @@ public class ATestGrammarAccess implements IGrammarAccess {
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameSTRINGTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
 		private final Assignment cDescriptionAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cDescriptionPLAIN_STRINGTerminalRuleCall_1_0 = (RuleCall)cDescriptionAssignment_1.eContents().get(0);
+		private final RuleCall cDescriptionDESC_STRINGTerminalRuleCall_1_0 = (RuleCall)cDescriptionAssignment_1.eContents().get(0);
 		private final Assignment cTestsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cTestsTestsParserRuleCall_2_0 = (RuleCall)cTestsAssignment_2.eContents().get(0);
 		private final Assignment cContraintsAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cContraintsConstraintParserRuleCall_3_0 = (RuleCall)cContraintsAssignment_3.eContents().get(0);
 		
 		//Model:
-		//  name=STRING? description=PLAIN_STRING? tests=Tests? contraints+=Constraint*;
+		//  name=STRING? description=DESC_STRING? tests=Tests? contraints+=Constraint*;
 		public ParserRule getRule() { return rule; }
 
-		//name=STRING? description=PLAIN_STRING? tests=Tests? contraints+=Constraint*
+		//name=STRING? description=DESC_STRING? tests=Tests? contraints+=Constraint*
 		public Group getGroup() { return cGroup; }
 
 		//name=STRING?
@@ -42,11 +42,11 @@ public class ATestGrammarAccess implements IGrammarAccess {
 		//STRING
 		public RuleCall getNameSTRINGTerminalRuleCall_0_0() { return cNameSTRINGTerminalRuleCall_0_0; }
 
-		//description=PLAIN_STRING?
+		//description=DESC_STRING?
 		public Assignment getDescriptionAssignment_1() { return cDescriptionAssignment_1; }
 
-		//PLAIN_STRING
-		public RuleCall getDescriptionPLAIN_STRINGTerminalRuleCall_1_0() { return cDescriptionPLAIN_STRINGTerminalRuleCall_1_0; }
+		//DESC_STRING
+		public RuleCall getDescriptionDESC_STRINGTerminalRuleCall_1_0() { return cDescriptionDESC_STRINGTerminalRuleCall_1_0; }
 
 		//tests=Tests?
 		public Assignment getTestsAssignment_2() { return cTestsAssignment_2; }
@@ -198,58 +198,6 @@ public class ATestGrammarAccess implements IGrammarAccess {
 		//"]"
 		public Keyword getRightSquareBracketKeyword_7_5() { return cRightSquareBracketKeyword_7_5; }
 	}
-
-	public class ValueElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Value");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cIntValueParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cRealValueParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		//Value:
-		//  IntValue|RealValue;
-		public ParserRule getRule() { return rule; }
-
-		//IntValue|RealValue
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//IntValue
-		public RuleCall getIntValueParserRuleCall_0() { return cIntValueParserRuleCall_0; }
-
-		//RealValue
-		public RuleCall getRealValueParserRuleCall_1() { return cRealValueParserRuleCall_1; }
-	}
-
-	public class IntValueElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IntValue");
-		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueINTEGERTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
-		
-		//IntValue:
-		//  value=INTEGER;
-		public ParserRule getRule() { return rule; }
-
-		//value=INTEGER
-		public Assignment getValueAssignment() { return cValueAssignment; }
-
-		//INTEGER
-		public RuleCall getValueINTEGERTerminalRuleCall_0() { return cValueINTEGERTerminalRuleCall_0; }
-	}
-
-	public class RealValueElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RealValue");
-		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueREALTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
-		
-		//RealValue:
-		//  value=REAL;
-		public ParserRule getRule() { return rule; }
-
-		//value=REAL
-		public Assignment getValueAssignment() { return cValueAssignment; }
-
-		//REAL
-		public RuleCall getValueREALTerminalRuleCall_0() { return cValueREALTerminalRuleCall_0; }
-	}
 	
 	
 	public class MeasureElements implements IEnumRuleAccess {
@@ -266,37 +214,38 @@ public class ATestGrammarAccess implements IGrammarAccess {
 		private final EnumLiteralDeclaration cMAXIMUMEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
 		private final Keyword cMAXIMUMMaximumKeyword_4_0 = (Keyword)cMAXIMUMEnumLiteralDeclaration_4.eContents().get(0);
 		
-		//enum Measure returns Measure : COUNT | AVERAGE | SUM | MINIMUM | MAXIMUM ;
+		//enum Measure:
+		//  COUNT="Count" | AVERAGE="Average" | SUM="Sum" | MINIMUM="Minimum" | MAXIMUM="Maximum";
 		public EnumRule getRule() { return rule; }
 
-		//COUNT | AVERAGE | SUM | MINIMUM | MAXIMUM
+		//COUNT="Count" | AVERAGE="Average" | SUM="Sum" | MINIMUM="Minimum" | MAXIMUM="Maximum"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//COUNT
+		//COUNT="Count"
 		public EnumLiteralDeclaration getCOUNTEnumLiteralDeclaration_0() { return cCOUNTEnumLiteralDeclaration_0; }
 
 		//"Count"
 		public Keyword getCOUNTCountKeyword_0_0() { return cCOUNTCountKeyword_0_0; }
 
-		//AVERAGE
+		//AVERAGE="Average"
 		public EnumLiteralDeclaration getAVERAGEEnumLiteralDeclaration_1() { return cAVERAGEEnumLiteralDeclaration_1; }
 
 		//"Average"
 		public Keyword getAVERAGEAverageKeyword_1_0() { return cAVERAGEAverageKeyword_1_0; }
 
-		//SUM
+		//SUM="Sum"
 		public EnumLiteralDeclaration getSUMEnumLiteralDeclaration_2() { return cSUMEnumLiteralDeclaration_2; }
 
 		//"Sum"
 		public Keyword getSUMSumKeyword_2_0() { return cSUMSumKeyword_2_0; }
 
-		//MINIMUM
+		//MINIMUM="Minimum"
 		public EnumLiteralDeclaration getMINIMUMEnumLiteralDeclaration_3() { return cMINIMUMEnumLiteralDeclaration_3; }
 
 		//"Minimum"
 		public Keyword getMINIMUMMinimumKeyword_3_0() { return cMINIMUMMinimumKeyword_3_0; }
 
-		//MAXIMUM
+		//MAXIMUM="Maximum"
 		public EnumLiteralDeclaration getMAXIMUMEnumLiteralDeclaration_4() { return cMAXIMUMEnumLiteralDeclaration_4; }
 
 		//"Maximum"
@@ -307,22 +256,16 @@ public class ATestGrammarAccess implements IGrammarAccess {
 	private TestsElements pTests;
 	private ConstraintElements pConstraint;
 	private MeasureElements unknownRuleMeasure;
-	private ValueElements pValue;
-	private IntValueElements pIntValue;
-	private RealValueElements pRealValue;
-	private TerminalRule tINTEGER;
-	private TerminalRule tREAL;
-	private TerminalRule tPLAIN_STRING;
 	
 	private final GrammarProvider grammarProvider;
 
-	private TerminalsGrammarAccess gaTerminals;
+	private ABaseGrammarAccess gaABase;
 
 	@Inject
 	public ATestGrammarAccess(GrammarProvider grammarProvider,
-		TerminalsGrammarAccess gaTerminals) {
+		ABaseGrammarAccess gaABase) {
 		this.grammarProvider = grammarProvider;
-		this.gaTerminals = gaTerminals;
+		this.gaABase = gaABase;
 	}
 	
 	public Grammar getGrammar() {	
@@ -330,13 +273,13 @@ public class ATestGrammarAccess implements IGrammarAccess {
 	}
 	
 
-	public TerminalsGrammarAccess getTerminalsGrammarAccess() {
-		return gaTerminals;
+	public ABaseGrammarAccess getABaseGrammarAccess() {
+		return gaABase;
 	}
 
 	
 	//Model:
-	//  name=STRING? description=PLAIN_STRING? tests=Tests? contraints+=Constraint*;
+	//  name=STRING? description=DESC_STRING? tests=Tests? contraints+=Constraint*;
 	public ModelElements getModelAccess() {
 		return (pModel != null) ? pModel : (pModel = new ModelElements());
 	}
@@ -366,7 +309,8 @@ public class ATestGrammarAccess implements IGrammarAccess {
 		return getConstraintAccess().getRule();
 	}
 
-	//enum Measure returns Measure : COUNT | AVERAGE | SUM | MINIMUM | MAXIMUM ;
+	//enum Measure:
+	//  COUNT="Count" | AVERAGE="Average" | SUM="Sum" | MINIMUM="Minimum" | MAXIMUM="Maximum";
 	public MeasureElements getMeasureAccess() {
 		return (unknownRuleMeasure != null) ? unknownRuleMeasure : (unknownRuleMeasure = new MeasureElements());
 	}
@@ -376,9 +320,9 @@ public class ATestGrammarAccess implements IGrammarAccess {
 	}
 
 	//Value:
-	//  IntValue|RealValue;
-	public ValueElements getValueAccess() {
-		return (pValue != null) ? pValue : (pValue = new ValueElements());
+	//  IntValue|StringValue|RealValue|BooleanValue;
+	public ABaseGrammarAccess.ValueElements getValueAccess() {
+		return gaABase.getValueAccess();
 	}
 	
 	public ParserRule getValueRule() {
@@ -387,8 +331,8 @@ public class ATestGrammarAccess implements IGrammarAccess {
 
 	//IntValue:
 	//  value=INTEGER;
-	public IntValueElements getIntValueAccess() {
-		return (pIntValue != null) ? pIntValue : (pIntValue = new IntValueElements());
+	public ABaseGrammarAccess.IntValueElements getIntValueAccess() {
+		return gaABase.getIntValueAccess();
 	}
 	
 	public ParserRule getIntValueRule() {
@@ -397,73 +341,103 @@ public class ATestGrammarAccess implements IGrammarAccess {
 
 	//RealValue:
 	//  value=REAL;
-	public RealValueElements getRealValueAccess() {
-		return (pRealValue != null) ? pRealValue : (pRealValue = new RealValueElements());
+	public ABaseGrammarAccess.RealValueElements getRealValueAccess() {
+		return gaABase.getRealValueAccess();
 	}
 	
 	public ParserRule getRealValueRule() {
 		return getRealValueAccess().getRule();
 	}
 
+	//StringValue:
+	//  value=STRING;
+	public ABaseGrammarAccess.StringValueElements getStringValueAccess() {
+		return gaABase.getStringValueAccess();
+	}
+	
+	public ParserRule getStringValueRule() {
+		return getStringValueAccess().getRule();
+	}
+
+	//BooleanValue:
+	//  value=BOOLEAN;
+	public ABaseGrammarAccess.BooleanValueElements getBooleanValueAccess() {
+		return gaABase.getBooleanValueAccess();
+	}
+	
+	public ParserRule getBooleanValueRule() {
+		return getBooleanValueAccess().getRule();
+	}
+
+	//enum BOOLEAN:
+	//  TRUE="true" | FALSE="false";
+	public ABaseGrammarAccess.BOOLEANElements getBOOLEANAccess() {
+		return gaABase.getBOOLEANAccess();
+	}
+	
+	public EnumRule getBOOLEANRule() {
+		return getBOOLEANAccess().getRule();
+	}
+
 	//terminal INTEGER:
-	//  "-" ? "0" .. "9" +;
+	//  "-"? "0".."9"+;
 	public TerminalRule getINTEGERRule() {
-		return (tINTEGER != null) ? tINTEGER : (tINTEGER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INTEGER"));
+		return gaABase.getINTEGERRule();
 	} 
 
 	//terminal REAL:
-	//  "-" ? "0" .. "9" * "." "0" .. "9" *;
+	//  "-"? "0".."9"* "." "0".."9"*;
 	public TerminalRule getREALRule() {
-		return (tREAL != null) ? tREAL : (tREAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "REAL"));
+		return gaABase.getREALRule();
 	} 
 
-	//terminal PLAIN_STRING:
-	//  "\u00AB" ( "\\" ( "b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\" ) | ! ( "\\" | "\u00AB" | "\u00BB" ) ) *
+	//terminal DESC_STRING:
+	//  "\u00AB" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\u00AB" | "\u00BB"))*
 	//  "\u00BB";
-	public TerminalRule getPLAIN_STRINGRule() {
-		return (tPLAIN_STRING != null) ? tPLAIN_STRING : (tPLAIN_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "PLAIN_STRING"));
+	public TerminalRule getDESC_STRINGRule() {
+		return gaABase.getDESC_STRINGRule();
 	} 
 
 	//terminal ID:
-	//  "^" ? ( "a" .. "z" | "A" .. "Z" | "_" ) ( "a" .. "z" | "A" .. "Z" | "_" | "0" .. "9" ) *;
+	//  "^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
 	public TerminalRule getIDRule() {
-		return gaTerminals.getIDRule();
+		return gaABase.getIDRule();
 	} 
 
 	//terminal INT returns ecore::EInt:
-	//  "0" .. "9" +;
+	//  "0".."9"+;
 	public TerminalRule getINTRule() {
-		return gaTerminals.getINTRule();
+		return gaABase.getINTRule();
 	} 
 
 	//terminal STRING:
-	//  "\"" ( "\\" ( "b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\" ) | ! ( "\\" | "\"" ) ) * "\"" | "\'" ( "\\" ( "b" |
-	//  "t" | "n" | "f" | "r" | "\"" | "\'" | "\\" ) | ! ( "\\" | "\'" ) ) * "\'";
+	//  "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"" | "\'" ("\\" ("b" |
+	//  "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
 	public TerminalRule getSTRINGRule() {
-		return gaTerminals.getSTRINGRule();
+		return gaABase.getSTRINGRule();
 	} 
 
 	//terminal ML_COMMENT:
-	//  "/ *" -> "* /";
+	//  "/ *"->"* /";
 	public TerminalRule getML_COMMENTRule() {
-		return gaTerminals.getML_COMMENTRule();
+		return gaABase.getML_COMMENTRule();
 	} 
 
 	//terminal SL_COMMENT:
-	//  "//" ! ( "\n" | "\r" ) * ( "\r" ? "\n" ) ?;
+	//  "//" !("\n" | "\r")* ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {
-		return gaTerminals.getSL_COMMENTRule();
+		return gaABase.getSL_COMMENTRule();
 	} 
 
 	//terminal WS:
-	//  ( " " | "\t" | "\r" | "\n" ) +;
+	//  (" " | "\t" | "\r" | "\n")+;
 	public TerminalRule getWSRule() {
-		return gaTerminals.getWSRule();
+		return gaABase.getWSRule();
 	} 
 
 	//terminal ANY_OTHER:
 	//  .;
 	public TerminalRule getANY_OTHERRule() {
-		return gaTerminals.getANY_OTHERRule();
+		return gaABase.getANY_OTHERRule();
 	} 
 }

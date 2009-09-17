@@ -8,6 +8,9 @@
       <ePackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
     </metamodelDeclarations>
     <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel">
+      <ePackage href="http://www.eclipse.org/amp/amf/abase/ABase#/"/>
+    </metamodelDeclarations>
+    <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel">
       <ePackage href="http://metaabm.org/structure#/"/>
     </metamodelDeclarations>
     <rules xsi:type="xtext:ParserRule" name="Model">
@@ -16,10 +19,10 @@
       </type>
       <alternatives xsi:type="xtext:Group">
         <tokens xsi:type="xtext:Assignment" cardinality="?" feature="name" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/2/@rules.2"/>
         </tokens>
         <tokens xsi:type="xtext:Assignment" cardinality="?" feature="description" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.9"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.8"/>
         </tokens>
         <tokens xsi:type="xtext:Assignment" cardinality="?" feature="tests" operator="=">
           <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.1"/>
@@ -36,7 +39,7 @@
       <alternatives xsi:type="xtext:Group">
         <tokens xsi:type="xtext:Keyword" value="TESTS"/>
         <tokens xsi:type="xtext:Assignment" feature="importURI" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
+          <terminal xsi:type="xtext:RuleCall" rule="/2/@rules.2"/>
         </tokens>
       </alternatives>
     </rules>
@@ -51,29 +54,29 @@
         <tokens xsi:type="xtext:Keyword" value="("/>
         <tokens xsi:type="xtext:Assignment" feature="agent" operator="=">
           <terminal xsi:type="xtext:CrossReference">
-            <type metamodel="/0/@metamodelDeclarations.2">
+            <type metamodel="/0/@metamodelDeclarations.3">
               <classifier xsi:type="ecore:EClass" href="http://metaabm.org/structure#//SAgent"/>
             </type>
-            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
+            <terminal xsi:type="xtext:RuleCall" rule="/2/@rules.2"/>
           </terminal>
         </tokens>
         <tokens xsi:type="xtext:Keyword" value="."/>
         <tokens xsi:type="xtext:Assignment" feature="attribute" operator="=">
           <terminal xsi:type="xtext:CrossReference">
-            <type metamodel="/0/@metamodelDeclarations.2">
+            <type metamodel="/0/@metamodelDeclarations.3">
               <classifier xsi:type="ecore:EClass" href="http://metaabm.org/structure#//SAttribute"/>
             </type>
-            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
+            <terminal xsi:type="xtext:RuleCall" rule="/2/@rules.2"/>
           </terminal>
         </tokens>
         <tokens xsi:type="xtext:Group" cardinality="?">
           <tokens xsi:type="xtext:Keyword" value="="/>
           <tokens xsi:type="xtext:Assignment" feature="qualifier" operator="=">
             <terminal xsi:type="xtext:CrossReference">
-              <type metamodel="/0/@metamodelDeclarations.2">
+              <type metamodel="/0/@metamodelDeclarations.3">
                 <classifier xsi:type="ecore:EClass" href="http://metaabm.org/structure#//SStateValue"/>
               </type>
-              <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
+              <terminal xsi:type="xtext:RuleCall" rule="/2/@rules.2"/>
             </terminal>
           </tokens>
         </tokens>
@@ -82,11 +85,11 @@
           <tokens xsi:type="xtext:Keyword" value="="/>
           <tokens xsi:type="xtext:Keyword" value="["/>
           <tokens xsi:type="xtext:Assignment" feature="minValue" operator="=">
-            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.4"/>
+            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
           </tokens>
           <tokens xsi:type="xtext:Keyword" value=","/>
           <tokens xsi:type="xtext:Assignment" feature="maxValue" operator="=">
-            <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.4"/>
+            <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.0"/>
           </tokens>
           <tokens xsi:type="xtext:Keyword" value="]"/>
         </tokens>
@@ -119,33 +122,74 @@
         </groups>
       </alternatives>
     </rules>
+  </xtext:Grammar>
+  <xtext:Grammar name="org.eclipse.amp.amf.abase.ABase" usedGrammars="/2">
+    <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="aBase">
+      <ePackage href="http://www.eclipse.org/amp/amf/abase/ABase#/"/>
+    </metamodelDeclarations>
+    <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel" alias="ecore">
+      <ePackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
+    </metamodelDeclarations>
     <rules xsi:type="xtext:ParserRule" name="Value">
-      <type metamodel="/0/@metamodelDeclarations.0">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/amp/amf/testing/ATest#//Value"/>
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/amp/amf/abase/ABase#//Value"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
-        <groups xsi:type="xtext:RuleCall" rule="/0/@rules.5"/>
-        <groups xsi:type="xtext:RuleCall" rule="/0/@rules.6"/>
+        <groups xsi:type="xtext:RuleCall" rule="/1/@rules.1"/>
+        <groups xsi:type="xtext:RuleCall" rule="/1/@rules.3"/>
+        <groups xsi:type="xtext:RuleCall" rule="/1/@rules.2"/>
+        <groups xsi:type="xtext:RuleCall" rule="/1/@rules.4"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="IntValue">
-      <type metamodel="/0/@metamodelDeclarations.0">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/amp/amf/testing/ATest#//IntValue"/>
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/amp/amf/abase/ABase#//IntValue"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.7"/>
+        <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.6"/>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:ParserRule" name="RealValue">
-      <type metamodel="/0/@metamodelDeclarations.0">
-        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/amp/amf/testing/ATest#//RealValue"/>
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/amp/amf/abase/ABase#//RealValue"/>
       </type>
       <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
-        <terminal xsi:type="xtext:RuleCall" rule="/0/@rules.8"/>
+        <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.7"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="StringValue">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/amp/amf/abase/ABase#//StringValue"/>
+      </type>
+      <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="/2/@rules.2"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:ParserRule" name="BooleanValue">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/amp/amf/abase/ABase#//BooleanValue"/>
+      </type>
+      <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="/1/@rules.5"/>
+      </alternatives>
+    </rules>
+    <rules xsi:type="xtext:EnumRule" name="BOOLEAN">
+      <type metamodel="/1/@metamodelDeclarations.0">
+        <classifier xsi:type="ecore:EEnum" href="http://www.eclipse.org/amp/amf/abase/ABase#//BOOLEAN"/>
+      </type>
+      <alternatives xsi:type="xtext:Alternatives">
+        <groups xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipse.org/amp/amf/abase/ABase#//BOOLEAN/TRUE"/>
+          <literal value="true"/>
+        </groups>
+        <groups xsi:type="xtext:EnumLiteralDeclaration">
+          <enumLiteral href="http://www.eclipse.org/amp/amf/abase/ABase#//BOOLEAN/FALSE"/>
+          <literal value="false"/>
+        </groups>
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="INTEGER">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/1/@metamodelDeclarations.1">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -157,7 +201,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="REAL">
-      <type metamodel="/0/@metamodelDeclarations.1">
+      <type metamodel="/1/@metamodelDeclarations.1">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -173,8 +217,8 @@
         </tokens>
       </alternatives>
     </rules>
-    <rules xsi:type="xtext:TerminalRule" name="PLAIN_STRING">
-      <type metamodel="/0/@metamodelDeclarations.1">
+    <rules xsi:type="xtext:TerminalRule" name="DESC_STRING">
+      <type metamodel="/1/@metamodelDeclarations.1">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -205,12 +249,12 @@
       </alternatives>
     </rules>
   </xtext:Grammar>
-  <xtext:Grammar name="org.eclipse.xtext.common.Terminals" definesHiddenTokens="true" hiddenTokens="/1/@rules.5 /1/@rules.3 /1/@rules.4">
+  <xtext:Grammar name="org.eclipse.xtext.common.Terminals" definesHiddenTokens="true" hiddenTokens="/2/@rules.5 /2/@rules.3 /2/@rules.4">
     <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel" alias="ecore">
       <ePackage href="http://www.eclipse.org/emf/2002/Ecore#/"/>
     </metamodelDeclarations>
     <rules xsi:type="xtext:TerminalRule" name="ID">
-      <type metamodel="/1/@metamodelDeclarations.0">
+      <type metamodel="/2/@metamodelDeclarations.0">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -244,7 +288,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="INT">
-      <type metamodel="/1/@metamodelDeclarations.0">
+      <type metamodel="/2/@metamodelDeclarations.0">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </type>
       <alternatives xsi:type="xtext:CharacterRange" cardinality="+">
@@ -253,7 +297,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="STRING">
-      <type metamodel="/1/@metamodelDeclarations.0">
+      <type metamodel="/2/@metamodelDeclarations.0">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives">
@@ -310,7 +354,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="ML_COMMENT">
-      <type metamodel="/1/@metamodelDeclarations.0">
+      <type metamodel="/2/@metamodelDeclarations.0">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -321,7 +365,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="SL_COMMENT">
-      <type metamodel="/1/@metamodelDeclarations.0">
+      <type metamodel="/2/@metamodelDeclarations.0">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
       <alternatives xsi:type="xtext:Group">
@@ -339,7 +383,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="WS">
-      <type metamodel="/1/@metamodelDeclarations.0">
+      <type metamodel="/2/@metamodelDeclarations.0">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
       <alternatives xsi:type="xtext:Alternatives" cardinality="+">
@@ -350,7 +394,7 @@
       </alternatives>
     </rules>
     <rules xsi:type="xtext:TerminalRule" name="ANY_OTHER">
-      <type metamodel="/1/@metamodelDeclarations.0">
+      <type metamodel="/2/@metamodelDeclarations.0">
         <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </type>
       <alternatives xsi:type="xtext:Wildcard"/>

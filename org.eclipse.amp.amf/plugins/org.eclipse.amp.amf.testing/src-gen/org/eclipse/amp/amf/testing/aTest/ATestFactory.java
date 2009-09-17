@@ -53,33 +53,6 @@ public interface ATestFactory extends EFactory
   Constraint createConstraint();
 
   /**
-   * Returns a new object of class '<em>Value</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Value</em>'.
-   * @generated
-   */
-  Value createValue();
-
-  /**
-   * Returns a new object of class '<em>Int Value</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Int Value</em>'.
-   * @generated
-   */
-  IntValue createIntValue();
-
-  /**
-   * Returns a new object of class '<em>Real Value</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Real Value</em>'.
-   * @generated
-   */
-  RealValue createRealValue();
-
-  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -35,9 +35,6 @@ protected class ThisRootNode extends RootToken {
 			case 0: return new Model_Group(this, this, 0, inst);
 			case 1: return new Tests_Group(this, this, 1, inst);
 			case 2: return new Constraint_Group(this, this, 2, inst);
-			case 3: return new Value_Alternatives(this, this, 3, inst);
-			case 4: return new IntValue_ValueAssignment(this, this, 4, inst);
-			case 5: return new RealValue_ValueAssignment(this, this, 5, inst);
 			default: return null;
 		}	
 	}	
@@ -47,11 +44,11 @@ protected class ThisRootNode extends RootToken {
 /************ begin Rule Model ****************
  *
  * Model:
- *   name=STRING? description=PLAIN_STRING? tests=Tests? contraints+=Constraint*;
+ *   name=STRING? description=DESC_STRING? tests=Tests? contraints+=Constraint*;
  *
  **/
 
-// name=STRING? description=PLAIN_STRING? tests=Tests? contraints+=Constraint*
+// name=STRING? description=DESC_STRING? tests=Tests? contraints+=Constraint*
 protected class Model_Group extends GroupToken {
 	
 	public Model_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -108,7 +105,7 @@ protected class Model_NameAssignment_0 extends AssignmentToken  {
 
 }
 
-// description=PLAIN_STRING?
+// description=DESC_STRING?
 protected class Model_DescriptionAssignment_1 extends AssignmentToken  {
 	
 	public Model_DescriptionAssignment_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -131,7 +128,7 @@ protected class Model_DescriptionAssignment_1 extends AssignmentToken  {
 		IInstanceDescription obj = current.cloneAndConsume("description");
 		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
 			type = AssignmentType.LRC;
-			element = grammarAccess.getModelAccess().getDescriptionPLAIN_STRINGTerminalRuleCall_1_0();
+			element = grammarAccess.getModelAccess().getDescriptionDESC_STRINGTerminalRuleCall_1_0();
 			return obj;
 		}
 		return null;
@@ -775,11 +772,11 @@ protected class Constraint_RightSquareBracketKeyword_7_5 extends KeywordToken  {
 /************ begin Rule Value ****************
  *
  * Value:
- *   IntValue|RealValue;
+ *   IntValue|StringValue|RealValue|BooleanValue;
  *
  **/
 
-// IntValue|RealValue
+// IntValue|StringValue|RealValue|BooleanValue
 protected class Value_Alternatives extends AlternativesToken {
 
 	public Value_Alternatives(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -793,7 +790,9 @@ protected class Value_Alternatives extends AlternativesToken {
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
 			case 0: return new Value_IntValueParserRuleCall_0(parent, this, 0, inst);
-			case 1: return new Value_RealValueParserRuleCall_1(parent, this, 1, inst);
+			case 1: return new Value_StringValueParserRuleCall_1(parent, this, 1, inst);
+			case 2: return new Value_RealValueParserRuleCall_2(parent, this, 2, inst);
+			case 3: return new Value_BooleanValueParserRuleCall_3(parent, this, 3, inst);
 			default: return null;
 		}	
 	}	
@@ -835,15 +834,46 @@ protected class Value_IntValueParserRuleCall_0 extends RuleCallToken {
 	}	
 }
 
-// RealValue
-protected class Value_RealValueParserRuleCall_1 extends RuleCallToken {
+// StringValue
+protected class Value_StringValueParserRuleCall_1 extends RuleCallToken {
 	
-	public Value_RealValueParserRuleCall_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Value_StringValueParserRuleCall_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getValueAccess().getRealValueParserRuleCall_1();
+		return grammarAccess.getValueAccess().getStringValueParserRuleCall_1();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new StringValue_ValueAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}	
+		
+	protected IInstanceDescription tryConsumeVal() {
+		if(checkForRecursion(StringValue_ValueAssignment.class, current)) return null;
+		if(!current.isInstanceOf(grammarAccess.getStringValueRule().getType().getClassifier())) return null;
+		return current;
+	}
+	
+	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
+		switch(index) {
+			default: return parent.createParentFollower(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+// RealValue
+protected class Value_RealValueParserRuleCall_2 extends RuleCallToken {
+	
+	public Value_RealValueParserRuleCall_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getValueAccess().getRealValueParserRuleCall_2();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -856,6 +886,37 @@ protected class Value_RealValueParserRuleCall_1 extends RuleCallToken {
 	protected IInstanceDescription tryConsumeVal() {
 		if(checkForRecursion(RealValue_ValueAssignment.class, current)) return null;
 		if(!current.isInstanceOf(grammarAccess.getRealValueRule().getType().getClassifier())) return null;
+		return current;
+	}
+	
+	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
+		switch(index) {
+			default: return parent.createParentFollower(next, actIndex , index, inst);
+		}	
+	}	
+}
+
+// BooleanValue
+protected class Value_BooleanValueParserRuleCall_3 extends RuleCallToken {
+	
+	public Value_BooleanValueParserRuleCall_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getValueAccess().getBooleanValueParserRuleCall_3();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new BooleanValue_ValueAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}	
+		
+	protected IInstanceDescription tryConsumeVal() {
+		if(checkForRecursion(BooleanValue_ValueAssignment.class, current)) return null;
+		if(!current.isInstanceOf(grammarAccess.getBooleanValueRule().getType().getClassifier())) return null;
 		return current;
 	}
 	
@@ -956,5 +1017,93 @@ protected class RealValue_ValueAssignment extends AssignmentToken  {
 }
 
 /************ end Rule RealValue ****************/
+
+
+/************ begin Rule StringValue ****************
+ *
+ * StringValue:
+ *   value=STRING;
+ *
+ **/
+
+// value=STRING
+protected class StringValue_ValueAssignment extends AssignmentToken  {
+	
+	public StringValue_ValueAssignment(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public Assignment getGrammarElement() {
+		return grammarAccess.getStringValueAccess().getValueAssignment();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			default: return parent.createParentFollower(this, index, index, inst);
+		}	
+	}	
+		
+	public IInstanceDescription tryConsume() {
+		if(!current.isInstanceOf(grammarAccess.getStringValueRule().getType().getClassifier())) return null;
+		return tryConsumeVal();
+	}
+	protected IInstanceDescription tryConsumeVal() {
+		if((value = current.getConsumable("value",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("value");
+		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
+			type = AssignmentType.LRC;
+			element = grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+/************ end Rule StringValue ****************/
+
+
+/************ begin Rule BooleanValue ****************
+ *
+ * BooleanValue:
+ *   value=BOOLEAN;
+ *
+ **/
+
+// value=BOOLEAN
+protected class BooleanValue_ValueAssignment extends AssignmentToken  {
+	
+	public BooleanValue_ValueAssignment(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public Assignment getGrammarElement() {
+		return grammarAccess.getBooleanValueAccess().getValueAssignment();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			default: return parent.createParentFollower(this, index, index, inst);
+		}	
+	}	
+		
+	public IInstanceDescription tryConsume() {
+		if(!current.isInstanceOf(grammarAccess.getBooleanValueRule().getType().getClassifier())) return null;
+		return tryConsumeVal();
+	}
+	protected IInstanceDescription tryConsumeVal() {
+		if((value = current.getConsumable("value",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("value");
+		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for datatype rule
+			type = AssignmentType.ERC;
+			element = grammarAccess.getBooleanValueAccess().getValueBOOLEANEnumRuleCall_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+/************ end Rule BooleanValue ****************/
 
 }

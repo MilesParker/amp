@@ -1,12 +1,13 @@
-grammar org.eclipse.amp.amf.testing.ATest with org.eclipse.xtext.common.Terminals
+grammar org.eclipse.amp.amf.testing.ATest with org.eclipse.amp.amf.abase.ABase
 
 generate aTest "http://www.eclipse.org/amp/amf/testing/ATest"
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
-import 'platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.ecore'
+import "http://www.eclipse.org/amp/amf/abase/ABase"
+import "platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.ecore"
 
 Model :
 	(name=STRING)?
-	(description=PLAIN_STRING)?
+	(description=DESC_STRING)?
 	(tests=Tests)?
 	(contraints+=Constraint)*;
 
@@ -19,20 +20,3 @@ Constraint :
 enum Measure :
 	COUNT = "Count" | AVERAGE = "Average" | SUM = "Sum" | MINIMUM = "Minimum" | MAXIMUM = "Maximum";
 
-Value :
-	IntValue | RealValue;
-
-IntValue :
-	value=INTEGER;
-
-RealValue :
-	value=REAL;
-
-terminal INTEGER :
-	"-"? ('0'..'9')+;
-
-terminal REAL :
-	"-"? ('0'..'9')* "." ('0'..'9')*;
-	
-terminal PLAIN_STRING	: 
-  '«'( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'«'|'»') )*'»';

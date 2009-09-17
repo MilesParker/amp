@@ -71,9 +71,6 @@ public class ATestFactoryImpl extends EFactoryImpl implements ATestFactory
       case ATestPackage.MODEL: return createModel();
       case ATestPackage.TESTS: return createTests();
       case ATestPackage.CONSTRAINT: return createConstraint();
-      case ATestPackage.VALUE: return createValue();
-      case ATestPackage.INT_VALUE: return createIntValue();
-      case ATestPackage.REAL_VALUE: return createRealValue();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -144,39 +141,6 @@ public class ATestFactoryImpl extends EFactoryImpl implements ATestFactory
   {
     ConstraintImpl constraint = new ConstraintImpl();
     return constraint;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Value createValue()
-  {
-    ValueImpl value = new ValueImpl();
-    return value;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public IntValue createIntValue()
-  {
-    IntValueImpl intValue = new IntValueImpl();
-    return intValue;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public RealValue createRealValue()
-  {
-    RealValueImpl realValue = new RealValueImpl();
-    return realValue;
   }
 
   /**

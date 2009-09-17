@@ -5,6 +5,8 @@
  */
 package org.eclipse.amp.amf.testing.aTest;
 
+import org.eclipse.amp.amf.abase.aBase.Value;
+
 import org.eclipse.emf.ecore.EObject;
 
 import org.metaabm.SAgent;

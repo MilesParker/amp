@@ -17,7 +17,7 @@ public class ATestStandaloneSetup implements ISetup {
 	}
 
 	public Injector createInjectorAndDoEMFRegistration() {
-		org.eclipse.xtext.common.TerminalsStandaloneSetup.doSetup();
+		org.eclipse.amp.amf.abase.ABaseStandaloneSetup.doSetup();
 
 		Injector injector = createInjector();
 		register(injector);

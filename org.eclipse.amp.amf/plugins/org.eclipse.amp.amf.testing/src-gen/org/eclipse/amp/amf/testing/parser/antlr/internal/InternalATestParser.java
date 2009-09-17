@@ -24,9 +24,8 @@ import java.util.ArrayList;
 
 public class InternalATestParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_PLAIN_STRING", "RULE_INTEGER", "RULE_REAL", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'TESTS'", "'('", "'.'", "'='", "')'", "'['", "','", "']'", "'Count'", "'Average'", "'Sum'", "'Minimum'", "'Maximum'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_DESC_STRING", "RULE_INTEGER", "RULE_REAL", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'TESTS'", "'('", "'.'", "'='", "')'", "'['", "','", "']'", "'Count'", "'Average'", "'Sum'", "'Minimum'", "'Maximum'", "'true'", "'false'"
     };
-    public static final int RULE_PLAIN_STRING=5;
     public static final int RULE_ID=8;
     public static final int RULE_STRING=4;
     public static final int RULE_ANY_OTHER=13;
@@ -35,6 +34,7 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
     public static final int RULE_WS=12;
     public static final int RULE_SL_COMMENT=11;
     public static final int EOF=-1;
+    public static final int RULE_DESC_STRING=5;
     public static final int RULE_INTEGER=6;
     public static final int RULE_ML_COMMENT=10;
 
@@ -106,7 +106,7 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleModel
-    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:81:1: ruleModel returns [EObject current=null] : ( (lv_name_0= RULE_STRING )? (lv_description_1= RULE_PLAIN_STRING )? (lv_tests_2= ruleTests )? (lv_contraints_3= ruleConstraint )* ) ;
+    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:81:1: ruleModel returns [EObject current=null] : ( (lv_name_0= RULE_STRING )? (lv_description_1= RULE_DESC_STRING )? (lv_tests_2= ruleTests )? (lv_contraints_3= ruleConstraint )* ) ;
     public final EObject ruleModel() throws RecognitionException {
         EObject current = null;
 
@@ -120,11 +120,11 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:86:6: ( ( (lv_name_0= RULE_STRING )? (lv_description_1= RULE_PLAIN_STRING )? (lv_tests_2= ruleTests )? (lv_contraints_3= ruleConstraint )* ) )
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:87:1: ( (lv_name_0= RULE_STRING )? (lv_description_1= RULE_PLAIN_STRING )? (lv_tests_2= ruleTests )? (lv_contraints_3= ruleConstraint )* )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:86:6: ( ( (lv_name_0= RULE_STRING )? (lv_description_1= RULE_DESC_STRING )? (lv_tests_2= ruleTests )? (lv_contraints_3= ruleConstraint )* ) )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:87:1: ( (lv_name_0= RULE_STRING )? (lv_description_1= RULE_DESC_STRING )? (lv_tests_2= ruleTests )? (lv_contraints_3= ruleConstraint )* )
             {
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:87:1: ( (lv_name_0= RULE_STRING )? (lv_description_1= RULE_PLAIN_STRING )? (lv_tests_2= ruleTests )? (lv_contraints_3= ruleConstraint )* )
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:87:2: (lv_name_0= RULE_STRING )? (lv_description_1= RULE_PLAIN_STRING )? (lv_tests_2= ruleTests )? (lv_contraints_3= ruleConstraint )*
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:87:1: ( (lv_name_0= RULE_STRING )? (lv_description_1= RULE_DESC_STRING )? (lv_tests_2= ruleTests )? (lv_contraints_3= ruleConstraint )* )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:87:2: (lv_name_0= RULE_STRING )? (lv_description_1= RULE_DESC_STRING )? (lv_tests_2= ruleTests )? (lv_contraints_3= ruleConstraint )*
             {
             // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:87:2: (lv_name_0= RULE_STRING )?
             int alt1=2;
@@ -160,21 +160,21 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:107:3: (lv_description_1= RULE_PLAIN_STRING )?
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:107:3: (lv_description_1= RULE_DESC_STRING )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
-            if ( (LA2_0==RULE_PLAIN_STRING) ) {
+            if ( (LA2_0==RULE_DESC_STRING) ) {
                 alt2=1;
             }
             switch (alt2) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:109:6: lv_description_1= RULE_PLAIN_STRING
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:109:6: lv_description_1= RULE_DESC_STRING
                     {
                     lv_description_1=(Token)input.LT(1);
-                    match(input,RULE_PLAIN_STRING,FOLLOW_RULE_PLAIN_STRING_in_ruleModel161); 
+                    match(input,RULE_DESC_STRING,FOLLOW_RULE_DESC_STRING_in_ruleModel161); 
 
-                    		createLeafNode(grammarAccess.getModelAccess().getDescriptionPLAIN_STRINGTerminalRuleCall_1_0(), "description"); 
+                    		createLeafNode(grammarAccess.getModelAccess().getDescriptionDESC_STRINGTerminalRuleCall_1_0(), "description"); 
                     	
 
                     	        if (current==null) {
@@ -183,7 +183,7 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
                     	        }
                     	        
                     	        try {
-                    	       		set(current, "description", lv_description_1, "PLAIN_STRING", lastConsumedNode);
+                    	       		set(current, "description", lv_description_1, "DESC_STRING", lastConsumedNode);
                     	        } catch (ValueConverterException vce) {
                     				handleValueConverterException(vce);
                     	        }
@@ -692,37 +692,56 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleValue
-    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:393:1: ruleValue returns [EObject current=null] : (this_IntValue_0= ruleIntValue | this_RealValue_1= ruleRealValue ) ;
+    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:393:1: ruleValue returns [EObject current=null] : (this_IntValue_0= ruleIntValue | this_StringValue_1= ruleStringValue | this_RealValue_2= ruleRealValue | this_BooleanValue_3= ruleBooleanValue ) ;
     public final EObject ruleValue() throws RecognitionException {
         EObject current = null;
 
         EObject this_IntValue_0 = null;
 
-        EObject this_RealValue_1 = null;
+        EObject this_StringValue_1 = null;
+
+        EObject this_RealValue_2 = null;
+
+        EObject this_BooleanValue_3 = null;
 
 
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:398:6: ( (this_IntValue_0= ruleIntValue | this_RealValue_1= ruleRealValue ) )
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:399:1: (this_IntValue_0= ruleIntValue | this_RealValue_1= ruleRealValue )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:398:6: ( (this_IntValue_0= ruleIntValue | this_StringValue_1= ruleStringValue | this_RealValue_2= ruleRealValue | this_BooleanValue_3= ruleBooleanValue ) )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:399:1: (this_IntValue_0= ruleIntValue | this_StringValue_1= ruleStringValue | this_RealValue_2= ruleRealValue | this_BooleanValue_3= ruleBooleanValue )
             {
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:399:1: (this_IntValue_0= ruleIntValue | this_RealValue_1= ruleRealValue )
-            int alt6=2;
-            int LA6_0 = input.LA(1);
-
-            if ( (LA6_0==RULE_INTEGER) ) {
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:399:1: (this_IntValue_0= ruleIntValue | this_StringValue_1= ruleStringValue | this_RealValue_2= ruleRealValue | this_BooleanValue_3= ruleBooleanValue )
+            int alt6=4;
+            switch ( input.LA(1) ) {
+            case RULE_INTEGER:
+                {
                 alt6=1;
-            }
-            else if ( (LA6_0==RULE_REAL) ) {
+                }
+                break;
+            case RULE_STRING:
+                {
                 alt6=2;
-            }
-            else {
+                }
+                break;
+            case RULE_REAL:
+                {
+                alt6=3;
+                }
+                break;
+            case 27:
+            case 28:
+                {
+                alt6=4;
+                }
+                break;
+            default:
                 NoViableAltException nvae =
-                    new NoViableAltException("399:1: (this_IntValue_0= ruleIntValue | this_RealValue_1= ruleRealValue )", 6, 0, input);
+                    new NoViableAltException("399:1: (this_IntValue_0= ruleIntValue | this_StringValue_1= ruleStringValue | this_RealValue_2= ruleRealValue | this_BooleanValue_3= ruleBooleanValue )", 6, 0, input);
 
                 throw nvae;
             }
+
             switch (alt6) {
                 case 1 :
                     // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:400:5: this_IntValue_0= ruleIntValue
@@ -742,17 +761,51 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:410:5: this_RealValue_1= ruleRealValue
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:410:5: this_StringValue_1= ruleStringValue
                     {
                      
-                            currentNode=createCompositeNode(grammarAccess.getValueAccess().getRealValueParserRuleCall_1(), currentNode); 
+                            currentNode=createCompositeNode(grammarAccess.getValueAccess().getStringValueParserRuleCall_1(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleRealValue_in_ruleValue806);
-                    this_RealValue_1=ruleRealValue();
+                    pushFollow(FOLLOW_ruleStringValue_in_ruleValue806);
+                    this_StringValue_1=ruleStringValue();
                     _fsp--;
 
                      
-                            current = this_RealValue_1; 
+                            current = this_StringValue_1; 
+                            currentNode = currentNode.getParent();
+                        
+
+                    }
+                    break;
+                case 3 :
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:420:5: this_RealValue_2= ruleRealValue
+                    {
+                     
+                            currentNode=createCompositeNode(grammarAccess.getValueAccess().getRealValueParserRuleCall_2(), currentNode); 
+                        
+                    pushFollow(FOLLOW_ruleRealValue_in_ruleValue833);
+                    this_RealValue_2=ruleRealValue();
+                    _fsp--;
+
+                     
+                            current = this_RealValue_2; 
+                            currentNode = currentNode.getParent();
+                        
+
+                    }
+                    break;
+                case 4 :
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:430:5: this_BooleanValue_3= ruleBooleanValue
+                    {
+                     
+                            currentNode=createCompositeNode(grammarAccess.getValueAccess().getBooleanValueParserRuleCall_3(), currentNode); 
+                        
+                    pushFollow(FOLLOW_ruleBooleanValue_in_ruleValue860);
+                    this_BooleanValue_3=ruleBooleanValue();
+                    _fsp--;
+
+                     
+                            current = this_BooleanValue_3; 
                             currentNode = currentNode.getParent();
                         
 
@@ -781,7 +834,7 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleIntValue
-    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:425:1: entryRuleIntValue returns [EObject current=null] : iv_ruleIntValue= ruleIntValue EOF ;
+    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:445:1: entryRuleIntValue returns [EObject current=null] : iv_ruleIntValue= ruleIntValue EOF ;
     public final EObject entryRuleIntValue() throws RecognitionException {
         EObject current = null;
 
@@ -789,16 +842,16 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:425:50: (iv_ruleIntValue= ruleIntValue EOF )
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:426:2: iv_ruleIntValue= ruleIntValue EOF
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:445:50: (iv_ruleIntValue= ruleIntValue EOF )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:446:2: iv_ruleIntValue= ruleIntValue EOF
             {
              currentNode = createCompositeNode(grammarAccess.getIntValueRule(), currentNode); 
-            pushFollow(FOLLOW_ruleIntValue_in_entryRuleIntValue838);
+            pushFollow(FOLLOW_ruleIntValue_in_entryRuleIntValue892);
             iv_ruleIntValue=ruleIntValue();
             _fsp--;
 
              current =iv_ruleIntValue; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleIntValue848); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleIntValue902); 
 
             }
 
@@ -816,7 +869,7 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleIntValue
-    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:433:1: ruleIntValue returns [EObject current=null] : (lv_value_0= RULE_INTEGER ) ;
+    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:453:1: ruleIntValue returns [EObject current=null] : (lv_value_0= RULE_INTEGER ) ;
     public final EObject ruleIntValue() throws RecognitionException {
         EObject current = null;
 
@@ -825,14 +878,14 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:438:6: ( (lv_value_0= RULE_INTEGER ) )
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:439:1: (lv_value_0= RULE_INTEGER )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:458:6: ( (lv_value_0= RULE_INTEGER ) )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:459:1: (lv_value_0= RULE_INTEGER )
             {
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:439:1: (lv_value_0= RULE_INTEGER )
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:441:6: lv_value_0= RULE_INTEGER
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:459:1: (lv_value_0= RULE_INTEGER )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:461:6: lv_value_0= RULE_INTEGER
             {
             lv_value_0=(Token)input.LT(1);
-            match(input,RULE_INTEGER,FOLLOW_RULE_INTEGER_in_ruleIntValue894); 
+            match(input,RULE_INTEGER,FOLLOW_RULE_INTEGER_in_ruleIntValue948); 
 
             		createLeafNode(grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0(), "value"); 
             	
@@ -871,7 +924,7 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleRealValue
-    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:466:1: entryRuleRealValue returns [EObject current=null] : iv_ruleRealValue= ruleRealValue EOF ;
+    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:486:1: entryRuleRealValue returns [EObject current=null] : iv_ruleRealValue= ruleRealValue EOF ;
     public final EObject entryRuleRealValue() throws RecognitionException {
         EObject current = null;
 
@@ -879,16 +932,16 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:466:51: (iv_ruleRealValue= ruleRealValue EOF )
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:467:2: iv_ruleRealValue= ruleRealValue EOF
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:486:51: (iv_ruleRealValue= ruleRealValue EOF )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:487:2: iv_ruleRealValue= ruleRealValue EOF
             {
              currentNode = createCompositeNode(grammarAccess.getRealValueRule(), currentNode); 
-            pushFollow(FOLLOW_ruleRealValue_in_entryRuleRealValue934);
+            pushFollow(FOLLOW_ruleRealValue_in_entryRuleRealValue988);
             iv_ruleRealValue=ruleRealValue();
             _fsp--;
 
              current =iv_ruleRealValue; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleRealValue944); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleRealValue998); 
 
             }
 
@@ -906,7 +959,7 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleRealValue
-    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:474:1: ruleRealValue returns [EObject current=null] : (lv_value_0= RULE_REAL ) ;
+    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:494:1: ruleRealValue returns [EObject current=null] : (lv_value_0= RULE_REAL ) ;
     public final EObject ruleRealValue() throws RecognitionException {
         EObject current = null;
 
@@ -915,14 +968,14 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:479:6: ( (lv_value_0= RULE_REAL ) )
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:480:1: (lv_value_0= RULE_REAL )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:499:6: ( (lv_value_0= RULE_REAL ) )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:500:1: (lv_value_0= RULE_REAL )
             {
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:480:1: (lv_value_0= RULE_REAL )
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:482:6: lv_value_0= RULE_REAL
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:500:1: (lv_value_0= RULE_REAL )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:502:6: lv_value_0= RULE_REAL
             {
             lv_value_0=(Token)input.LT(1);
-            match(input,RULE_REAL,FOLLOW_RULE_REAL_in_ruleRealValue990); 
+            match(input,RULE_REAL,FOLLOW_RULE_REAL_in_ruleRealValue1044); 
 
             		createLeafNode(grammarAccess.getRealValueAccess().getValueREALTerminalRuleCall_0(), "value"); 
             	
@@ -960,17 +1013,201 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
     // $ANTLR end ruleRealValue
 
 
+    // $ANTLR start entryRuleStringValue
+    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:527:1: entryRuleStringValue returns [EObject current=null] : iv_ruleStringValue= ruleStringValue EOF ;
+    public final EObject entryRuleStringValue() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleStringValue = null;
+
+
+        try {
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:527:53: (iv_ruleStringValue= ruleStringValue EOF )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:528:2: iv_ruleStringValue= ruleStringValue EOF
+            {
+             currentNode = createCompositeNode(grammarAccess.getStringValueRule(), currentNode); 
+            pushFollow(FOLLOW_ruleStringValue_in_entryRuleStringValue1084);
+            iv_ruleStringValue=ruleStringValue();
+            _fsp--;
+
+             current =iv_ruleStringValue; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStringValue1094); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end entryRuleStringValue
+
+
+    // $ANTLR start ruleStringValue
+    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:535:1: ruleStringValue returns [EObject current=null] : (lv_value_0= RULE_STRING ) ;
+    public final EObject ruleStringValue() throws RecognitionException {
+        EObject current = null;
+
+        Token lv_value_0=null;
+
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+            
+        try {
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:540:6: ( (lv_value_0= RULE_STRING ) )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:541:1: (lv_value_0= RULE_STRING )
+            {
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:541:1: (lv_value_0= RULE_STRING )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:543:6: lv_value_0= RULE_STRING
+            {
+            lv_value_0=(Token)input.LT(1);
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleStringValue1140); 
+
+            		createLeafNode(grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_0(), "value"); 
+            	
+
+            	        if (current==null) {
+            	            current = factory.create(grammarAccess.getStringValueRule().getType().getClassifier());
+            	            associateNodeWithAstElement(currentNode, current);
+            	        }
+            	        
+            	        try {
+            	       		set(current, "value", lv_value_0, "STRING", lastConsumedNode);
+            	        } catch (ValueConverterException vce) {
+            				handleValueConverterException(vce);
+            	        }
+            	    
+
+            }
+
+
+            }
+
+             resetLookahead(); 
+                	lastConsumedNode = currentNode;
+                
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end ruleStringValue
+
+
+    // $ANTLR start entryRuleBooleanValue
+    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:568:1: entryRuleBooleanValue returns [EObject current=null] : iv_ruleBooleanValue= ruleBooleanValue EOF ;
+    public final EObject entryRuleBooleanValue() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleBooleanValue = null;
+
+
+        try {
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:568:54: (iv_ruleBooleanValue= ruleBooleanValue EOF )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:569:2: iv_ruleBooleanValue= ruleBooleanValue EOF
+            {
+             currentNode = createCompositeNode(grammarAccess.getBooleanValueRule(), currentNode); 
+            pushFollow(FOLLOW_ruleBooleanValue_in_entryRuleBooleanValue1180);
+            iv_ruleBooleanValue=ruleBooleanValue();
+            _fsp--;
+
+             current =iv_ruleBooleanValue; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleBooleanValue1190); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end entryRuleBooleanValue
+
+
+    // $ANTLR start ruleBooleanValue
+    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:576:1: ruleBooleanValue returns [EObject current=null] : (lv_value_0= ruleBOOLEAN ) ;
+    public final EObject ruleBooleanValue() throws RecognitionException {
+        EObject current = null;
+
+        Enumerator lv_value_0 = null;
+
+
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+            
+        try {
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:581:6: ( (lv_value_0= ruleBOOLEAN ) )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:582:1: (lv_value_0= ruleBOOLEAN )
+            {
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:582:1: (lv_value_0= ruleBOOLEAN )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:585:6: lv_value_0= ruleBOOLEAN
+            {
+             
+            	        currentNode=createCompositeNode(grammarAccess.getBooleanValueAccess().getValueBOOLEANEnumRuleCall_0(), currentNode); 
+            	    
+            pushFollow(FOLLOW_ruleBOOLEAN_in_ruleBooleanValue1248);
+            lv_value_0=ruleBOOLEAN();
+            _fsp--;
+
+
+            	        if (current==null) {
+            	            current = factory.create(grammarAccess.getBooleanValueRule().getType().getClassifier());
+            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	        }
+            	        
+            	        try {
+            	       		set(current, "value", lv_value_0, "BOOLEAN", lastConsumedNode);
+            	        } catch (ValueConverterException vce) {
+            				handleValueConverterException(vce);
+            	        }
+            	        currentNode = currentNode.getParent();
+            	    
+
+            }
+
+
+            }
+
+             resetLookahead(); 
+                	lastConsumedNode = currentNode;
+                
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end ruleBooleanValue
+
+
     // $ANTLR start ruleMeasure
-    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:507:1: ruleMeasure returns [Enumerator current=null] : ( ( 'Count' ) | ( 'Average' ) | ( 'Sum' ) | ( 'Minimum' ) | ( 'Maximum' ) ) ;
+    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:610:1: ruleMeasure returns [Enumerator current=null] : ( ( 'Count' ) | ( 'Average' ) | ( 'Sum' ) | ( 'Minimum' ) | ( 'Maximum' ) ) ;
     public final Enumerator ruleMeasure() throws RecognitionException {
         Enumerator current = null;
 
          setCurrentLookahead(); resetLookahead(); 
         try {
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:511:6: ( ( ( 'Count' ) | ( 'Average' ) | ( 'Sum' ) | ( 'Minimum' ) | ( 'Maximum' ) ) )
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:512:1: ( ( 'Count' ) | ( 'Average' ) | ( 'Sum' ) | ( 'Minimum' ) | ( 'Maximum' ) )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:614:6: ( ( ( 'Count' ) | ( 'Average' ) | ( 'Sum' ) | ( 'Minimum' ) | ( 'Maximum' ) ) )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:615:1: ( ( 'Count' ) | ( 'Average' ) | ( 'Sum' ) | ( 'Minimum' ) | ( 'Maximum' ) )
             {
-            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:512:1: ( ( 'Count' ) | ( 'Average' ) | ( 'Sum' ) | ( 'Minimum' ) | ( 'Maximum' ) )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:615:1: ( ( 'Count' ) | ( 'Average' ) | ( 'Sum' ) | ( 'Minimum' ) | ( 'Maximum' ) )
             int alt7=5;
             switch ( input.LA(1) ) {
             case 22:
@@ -1000,19 +1237,19 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("512:1: ( ( 'Count' ) | ( 'Average' ) | ( 'Sum' ) | ( 'Minimum' ) | ( 'Maximum' ) )", 7, 0, input);
+                    new NoViableAltException("615:1: ( ( 'Count' ) | ( 'Average' ) | ( 'Sum' ) | ( 'Minimum' ) | ( 'Maximum' ) )", 7, 0, input);
 
                 throw nvae;
             }
 
             switch (alt7) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:512:2: ( 'Count' )
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:615:2: ( 'Count' )
                     {
-                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:512:2: ( 'Count' )
-                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:512:4: 'Count'
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:615:2: ( 'Count' )
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:615:4: 'Count'
                     {
-                    match(input,22,FOLLOW_22_in_ruleMeasure1044); 
+                    match(input,22,FOLLOW_22_in_ruleMeasure1298); 
 
                             current = grammarAccess.getMeasureAccess().getCOUNTEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getMeasureAccess().getCOUNTEnumLiteralDeclaration_0(), null); 
@@ -1024,12 +1261,12 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:518:6: ( 'Average' )
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:621:6: ( 'Average' )
                     {
-                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:518:6: ( 'Average' )
-                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:518:8: 'Average'
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:621:6: ( 'Average' )
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:621:8: 'Average'
                     {
-                    match(input,23,FOLLOW_23_in_ruleMeasure1059); 
+                    match(input,23,FOLLOW_23_in_ruleMeasure1313); 
 
                             current = grammarAccess.getMeasureAccess().getAVERAGEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getMeasureAccess().getAVERAGEEnumLiteralDeclaration_1(), null); 
@@ -1041,12 +1278,12 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:524:6: ( 'Sum' )
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:627:6: ( 'Sum' )
                     {
-                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:524:6: ( 'Sum' )
-                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:524:8: 'Sum'
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:627:6: ( 'Sum' )
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:627:8: 'Sum'
                     {
-                    match(input,24,FOLLOW_24_in_ruleMeasure1074); 
+                    match(input,24,FOLLOW_24_in_ruleMeasure1328); 
 
                             current = grammarAccess.getMeasureAccess().getSUMEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getMeasureAccess().getSUMEnumLiteralDeclaration_2(), null); 
@@ -1058,12 +1295,12 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:530:6: ( 'Minimum' )
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:633:6: ( 'Minimum' )
                     {
-                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:530:6: ( 'Minimum' )
-                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:530:8: 'Minimum'
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:633:6: ( 'Minimum' )
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:633:8: 'Minimum'
                     {
-                    match(input,25,FOLLOW_25_in_ruleMeasure1089); 
+                    match(input,25,FOLLOW_25_in_ruleMeasure1343); 
 
                             current = grammarAccess.getMeasureAccess().getMINIMUMEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getMeasureAccess().getMINIMUMEnumLiteralDeclaration_3(), null); 
@@ -1075,12 +1312,12 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:536:6: ( 'Maximum' )
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:639:6: ( 'Maximum' )
                     {
-                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:536:6: ( 'Maximum' )
-                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:536:8: 'Maximum'
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:639:6: ( 'Maximum' )
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:639:8: 'Maximum'
                     {
-                    match(input,26,FOLLOW_26_in_ruleMeasure1104); 
+                    match(input,26,FOLLOW_26_in_ruleMeasure1358); 
 
                             current = grammarAccess.getMeasureAccess().getMAXIMUMEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
                             createLeafNode(grammarAccess.getMeasureAccess().getMAXIMUMEnumLiteralDeclaration_4(), null); 
@@ -1113,12 +1350,95 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
     // $ANTLR end ruleMeasure
 
 
+    // $ANTLR start ruleBOOLEAN
+    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:649:1: ruleBOOLEAN returns [Enumerator current=null] : ( ( 'true' ) | ( 'false' ) ) ;
+    public final Enumerator ruleBOOLEAN() throws RecognitionException {
+        Enumerator current = null;
+
+         setCurrentLookahead(); resetLookahead(); 
+        try {
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:653:6: ( ( ( 'true' ) | ( 'false' ) ) )
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:654:1: ( ( 'true' ) | ( 'false' ) )
+            {
+            // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:654:1: ( ( 'true' ) | ( 'false' ) )
+            int alt8=2;
+            int LA8_0 = input.LA(1);
+
+            if ( (LA8_0==27) ) {
+                alt8=1;
+            }
+            else if ( (LA8_0==28) ) {
+                alt8=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("654:1: ( ( 'true' ) | ( 'false' ) )", 8, 0, input);
+
+                throw nvae;
+            }
+            switch (alt8) {
+                case 1 :
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:654:2: ( 'true' )
+                    {
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:654:2: ( 'true' )
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:654:4: 'true'
+                    {
+                    match(input,27,FOLLOW_27_in_ruleBOOLEAN1401); 
+
+                            current = grammarAccess.getBOOLEANAccess().getTRUEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+                            createLeafNode(grammarAccess.getBOOLEANAccess().getTRUEEnumLiteralDeclaration_0(), null); 
+                        
+
+                    }
+
+
+                    }
+                    break;
+                case 2 :
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:660:6: ( 'false' )
+                    {
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:660:6: ( 'false' )
+                    // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:660:8: 'false'
+                    {
+                    match(input,28,FOLLOW_28_in_ruleBOOLEAN1416); 
+
+                            current = grammarAccess.getBOOLEANAccess().getFALSEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+                            createLeafNode(grammarAccess.getBOOLEANAccess().getFALSEEnumLiteralDeclaration_1(), null); 
+                        
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+             resetLookahead(); 
+                	lastConsumedNode = currentNode;
+                
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end ruleBOOLEAN
+
+
  
 
     public static final BitSet FOLLOW_ruleModel_in_entryRuleModel73 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleModel83 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_STRING_in_ruleModel130 = new BitSet(new long[]{0x0000000007C04022L});
-    public static final BitSet FOLLOW_RULE_PLAIN_STRING_in_ruleModel161 = new BitSet(new long[]{0x0000000007C04002L});
+    public static final BitSet FOLLOW_RULE_DESC_STRING_in_ruleModel161 = new BitSet(new long[]{0x0000000007C04002L});
     public static final BitSet FOLLOW_ruleTests_in_ruleModel204 = new BitSet(new long[]{0x0000000007C00002L});
     public static final BitSet FOLLOW_ruleConstraint_in_ruleModel243 = new BitSet(new long[]{0x0000000007C00002L});
     public static final BitSet FOLLOW_ruleTests_in_entryRuleTests281 = new BitSet(new long[]{0x0000000000000000L});
@@ -1136,25 +1456,35 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_RULE_STRING_in_ruleConstraint561 = new BitSet(new long[]{0x0000000000040000L});
     public static final BitSet FOLLOW_18_in_ruleConstraint575 = new BitSet(new long[]{0x0000000000020000L});
     public static final BitSet FOLLOW_17_in_ruleConstraint585 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_19_in_ruleConstraint594 = new BitSet(new long[]{0x00000000000000C0L});
+    public static final BitSet FOLLOW_19_in_ruleConstraint594 = new BitSet(new long[]{0x00000000180000D0L});
     public static final BitSet FOLLOW_ruleValue_in_ruleConstraint628 = new BitSet(new long[]{0x0000000000100000L});
-    public static final BitSet FOLLOW_20_in_ruleConstraint641 = new BitSet(new long[]{0x00000000000000C0L});
+    public static final BitSet FOLLOW_20_in_ruleConstraint641 = new BitSet(new long[]{0x00000000180000D0L});
     public static final BitSet FOLLOW_ruleValue_in_ruleConstraint675 = new BitSet(new long[]{0x0000000000200000L});
     public static final BitSet FOLLOW_21_in_ruleConstraint688 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValue_in_entryRuleValue722 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleValue732 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIntValue_in_ruleValue779 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRealValue_in_ruleValue806 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIntValue_in_entryRuleIntValue838 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleIntValue848 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INTEGER_in_ruleIntValue894 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRealValue_in_entryRuleRealValue934 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleRealValue944 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_REAL_in_ruleRealValue990 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_ruleMeasure1044 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_ruleMeasure1059 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_ruleMeasure1074 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_ruleMeasure1089 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_ruleMeasure1104 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStringValue_in_ruleValue806 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRealValue_in_ruleValue833 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBooleanValue_in_ruleValue860 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIntValue_in_entryRuleIntValue892 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleIntValue902 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INTEGER_in_ruleIntValue948 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRealValue_in_entryRuleRealValue988 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleRealValue998 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_REAL_in_ruleRealValue1044 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStringValue_in_entryRuleStringValue1084 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStringValue1094 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleStringValue1140 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBooleanValue_in_entryRuleBooleanValue1180 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleBooleanValue1190 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBOOLEAN_in_ruleBooleanValue1248 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_ruleMeasure1298 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_ruleMeasure1313 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_ruleMeasure1328 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_ruleMeasure1343 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_ruleMeasure1358 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_ruleBOOLEAN1401 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_ruleBOOLEAN1416 = new BitSet(new long[]{0x0000000000000002L});
 
 }

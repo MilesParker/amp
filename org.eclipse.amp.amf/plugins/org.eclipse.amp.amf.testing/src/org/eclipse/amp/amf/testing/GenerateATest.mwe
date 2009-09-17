@@ -25,7 +25,7 @@
 			<fragment class="org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment"/>
 			
 			<!-- generates Java API for the generated EPackages -->
-			<fragment class="org.eclipse.xtext.generator.ecore.EcoreGeneratorFragment" genModels="platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.genmodel"/>
+			<fragment class="org.eclipse.xtext.generator.ecore.EcoreGeneratorFragment" genModels="platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.genmodel,platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.genmodel"/>
 			
 			<!-- the serialization component -->
 			<fragment class="org.eclipse.xtext.generator.parseTreeConstructor.ParseTreeConstructorFragment"/>

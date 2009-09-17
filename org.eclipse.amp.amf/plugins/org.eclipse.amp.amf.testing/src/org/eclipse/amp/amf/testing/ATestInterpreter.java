@@ -16,29 +16,18 @@
 
 package org.eclipse.amp.amf.testing;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import org.eclipse.amp.amf.abase.ICached;
+import org.eclipse.amp.amf.abase.IInterpreterProvider;
+import org.eclipse.amp.amf.abase.aBase.IntValue;
+import org.eclipse.amp.amf.abase.aBase.RealValue;
+import org.eclipse.amp.amf.parameters.AParFactory;
 import org.eclipse.amp.amf.parameters.AParInterpreter;
 import org.eclipse.amp.amf.testing.aTest.Constraint;
-import org.eclipse.amp.amf.testing.aTest.IntValue;
 import org.eclipse.amp.amf.testing.aTest.Model;
-import org.eclipse.amp.amf.testing.aTest.RealValue;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMLParserPool;
-import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.emf.ecore.xmi.impl.XMLParserPoolImpl;
 import org.eclipse.ui.statushandlers.StatusManager;
 
 /**
@@ -46,47 +35,35 @@ import org.eclipse.ui.statushandlers.StatusManager;
  * @author mparker
  * 
  */
-public class ATestInterpreter {
+public class ATestInterpreter implements ICached {
 
     Model atestModel;
 
     AParInterpreter aparInterpreter;
 
-    private IResource modelResource;
+    // private XMLParserPool parserPool = new XMLParserPoolImpl();
+    //
+    // private Map nameToFeatureMap = new HashMap();
 
-    private XMLParserPool parserPool = new XMLParserPoolImpl();
+    private IInterpreterProvider aParCache;
 
-    private Map nameToFeatureMap = new HashMap();
+    private Resource resource;
 
-    public ATestInterpreter(IResource modelResource) {
-        this.modelResource = modelResource;
-    }
+    public void load(Resource resource) {
+        aParCache = AParFactory.createPooled(resource.getResourceSet());
 
-    public void load() {
-        ResourceSet resources = new ResourceSetImpl();
+        this.resource = resource;
 
-        resources.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
-        resources.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
-        resources.getLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
-        resources.getLoadOptions().put(XMLResource.OPTION_USE_PARSER_POOL, parserPool);
-        resources.getLoadOptions().put(XMLResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);
+        atestModel = (Model) resource.getContents().get(0);
 
-        IPath filePath = ((IFile) modelResource).getFullPath();
-        URI atestLoc = URI.createPlatformResourceURI(filePath.toString(), true);
-        Resource atest = resources.getResource(atestLoc, true);
-        atestModel = (Model) atest.getContents().get(0);
-
-        URI aparLoc = atestLoc.trimFileExtension().appendFileExtension("apar");
-        Resource aparAnalog = resources.getResource(aparLoc, true);
+        URI aparLoc = resource.getURI().trimFileExtension().appendFileExtension("apar");
+        Resource aparAnalog = resource.getResourceSet().getResource(aparLoc, true);
         if (aparAnalog == null) {
             StatusManager.getManager().handle(
                                               new Status(Status.WARNING, "org.eclipse.amp.amf.parameters",
                                               "Couldn't locate apar resource."));
         } else {
-            aparInterpreter = new AParInterpreter();
-            aparInterpreter.setResourceSet(resources);
-            IWorkspace workspace = ResourcesPlugin.getWorkspace();
-            aparInterpreter.load(workspace.getRoot().getFile(new Path(aparLoc.toPlatformString(true))));
+            aparInterpreter = (AParInterpreter) aParCache.getInterpreter(aparLoc);
         }
     }
 
@@ -96,10 +73,6 @@ public class ATestInterpreter {
 
     public AParInterpreter getAparInterpreter() {
         return aparInterpreter;
-    }
-
-    public IResource getResource() {
-        return modelResource;
     }
 
     public String getConstraintString() {
@@ -132,19 +105,35 @@ public class ATestInterpreter {
         }
         throw new RuntimeException("Unexpected value for constraint.");
     }
+
     /**
-     * @param nameToFeatureMap the nameToFeatureMap to set
+     * @return the resource
      */
-    public void setNameToFeatureMap(Map nameToFeatureMap) {
-        this.nameToFeatureMap = nameToFeatureMap;
+    public Resource getResource() {
+        return resource;
     }
 
     /**
-     * @param parserPool the parserPool to set
+     * @param cache
+     * @see org.eclipse.amp.amf.abase.xtext.ICached#setCache(org.eclipse.amp.amf.abase.xtext.IInterpreterProvider)
      */
-    public void setParserPool(XMLParserPool parserPool) {
-        this.parserPool = parserPool;
+    public void setCache(IInterpreterProvider cache) {
+        this.aParCache = cache;
     }
+
+    // /**
+    // * @param nameToFeatureMap the nameToFeatureMap to set
+    // */
+    // public void setNameToFeatureMap(Map nameToFeatureMap) {
+    // this.nameToFeatureMap = nameToFeatureMap;
+    // }
+    //
+    // /**
+    // * @param parserPool the parserPool to set
+    // */
+    // public void setParserPool(XMLParserPool parserPool) {
+    // this.parserPool = parserPool;
+    // }
 
     /*
      * public static String stringValue(EObject constraintValue) { if (constraintValue instanceof IntValue) { return

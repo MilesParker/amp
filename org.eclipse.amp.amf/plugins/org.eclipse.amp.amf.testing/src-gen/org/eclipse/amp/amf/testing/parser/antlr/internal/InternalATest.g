@@ -106,9 +106,9 @@ ruleModel returns [EObject current=null]
 	
 )?(	
 	
-	    lv_description_1=	RULE_PLAIN_STRING
+	    lv_description_1=	RULE_DESC_STRING
 	{
-		createLeafNode(grammarAccess.getModelAccess().getDescriptionPLAIN_STRINGTerminalRuleCall_1_0(), "description"); 
+		createLeafNode(grammarAccess.getModelAccess().getDescriptionDESC_STRINGTerminalRuleCall_1_0(), "description"); 
 	}
  
 	    {
@@ -118,7 +118,7 @@ ruleModel returns [EObject current=null]
 	        }
 	        
 	        try {
-	       		set($current, "description", lv_description_1, "PLAIN_STRING", lastConsumedNode);
+	       		set($current, "description", lv_description_1, "DESC_STRING", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
@@ -408,11 +408,31 @@ ruleValue returns [EObject current=null]
 
     |
     { 
-        currentNode=createCompositeNode(grammarAccess.getValueAccess().getRealValueParserRuleCall_1(), currentNode); 
+        currentNode=createCompositeNode(grammarAccess.getValueAccess().getStringValueParserRuleCall_1(), currentNode); 
     }
-    this_RealValue_1=ruleRealValue
+    this_StringValue_1=ruleStringValue
     { 
-        $current = $this_RealValue_1.current; 
+        $current = $this_StringValue_1.current; 
+        currentNode = currentNode.getParent();
+    }
+
+    |
+    { 
+        currentNode=createCompositeNode(grammarAccess.getValueAccess().getRealValueParserRuleCall_2(), currentNode); 
+    }
+    this_RealValue_2=ruleRealValue
+    { 
+        $current = $this_RealValue_2.current; 
+        currentNode = currentNode.getParent();
+    }
+
+    |
+    { 
+        currentNode=createCompositeNode(grammarAccess.getValueAccess().getBooleanValueParserRuleCall_3(), currentNode); 
+    }
+    this_BooleanValue_3=ruleBooleanValue
+    { 
+        $current = $this_BooleanValue_3.current; 
         currentNode = currentNode.getParent();
     }
 );
@@ -503,6 +523,89 @@ ruleRealValue returns [EObject current=null]
 
 
 
+// Entry rule entryRuleStringValue
+entryRuleStringValue returns [EObject current=null] :
+	{ currentNode = createCompositeNode(grammarAccess.getStringValueRule(), currentNode); }
+	 iv_ruleStringValue=ruleStringValue 
+	 { $current=$iv_ruleStringValue.current; } 
+	 EOF 
+;
+
+// Rule StringValue
+ruleStringValue returns [EObject current=null] 
+    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
+(	
+	
+	    lv_value_0=	RULE_STRING
+	{
+		createLeafNode(grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_0(), "value"); 
+	}
+ 
+	    {
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getStringValueRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode, $current);
+	        }
+	        
+	        try {
+	       		set($current, "value", lv_value_0, "STRING", lastConsumedNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
+	
+);
+
+
+
+
+
+// Entry rule entryRuleBooleanValue
+entryRuleBooleanValue returns [EObject current=null] :
+	{ currentNode = createCompositeNode(grammarAccess.getBooleanValueRule(), currentNode); }
+	 iv_ruleBooleanValue=ruleBooleanValue 
+	 { $current=$iv_ruleBooleanValue.current; } 
+	 EOF 
+;
+
+// Rule BooleanValue
+ruleBooleanValue returns [EObject current=null] 
+    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
+(	
+	
+	    
+	    { 
+	        currentNode=createCompositeNode(grammarAccess.getBooleanValueAccess().getValueBOOLEANEnumRuleCall_0(), currentNode); 
+	    }
+	    lv_value_0=ruleBOOLEAN 
+	    {
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getBooleanValueRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        
+	        try {
+	       		set($current, "value", lv_value_0, "BOOLEAN", lastConsumedNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+	
+);
+
+
+
+
+
 // Rule Measure
 ruleMeasure returns [Enumerator current=null] 
     @init { setCurrentLookahead(); resetLookahead(); }
@@ -542,11 +645,32 @@ ruleMeasure returns [Enumerator current=null]
 
 
 
+// Rule BOOLEAN
+ruleBOOLEAN returns [Enumerator current=null] 
+    @init { setCurrentLookahead(); resetLookahead(); }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
+((	'true' 
+	{
+        $current = grammarAccess.getBOOLEANAccess().getTRUEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+        createLeafNode(grammarAccess.getBOOLEANAccess().getTRUEEnumLiteralDeclaration_0(), null); 
+    }
+)
+    |(	'false' 
+	{
+        $current = grammarAccess.getBOOLEANAccess().getFALSEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+        createLeafNode(grammarAccess.getBOOLEANAccess().getFALSEEnumLiteralDeclaration_1(), null); 
+    }
+));
+
+
+
 RULE_INTEGER : '-'? ('0'..'9')+;
 
 RULE_REAL : '-'? ('0'..'9')* '.' ('0'..'9')*;
 
-RULE_PLAIN_STRING : '\u00AB' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\u00AB'|'\u00BB')))* '\u00BB';
+RULE_DESC_STRING : '\u00AB' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\u00AB'|'\u00BB')))* '\u00BB';
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

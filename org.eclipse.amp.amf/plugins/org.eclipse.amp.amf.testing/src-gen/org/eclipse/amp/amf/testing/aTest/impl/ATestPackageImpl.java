@@ -5,15 +5,14 @@
  */
 package org.eclipse.amp.amf.testing.aTest.impl;
 
+import org.eclipse.amp.amf.abase.aBase.ABasePackage;
+
 import org.eclipse.amp.amf.testing.aTest.ATestFactory;
 import org.eclipse.amp.amf.testing.aTest.ATestPackage;
 import org.eclipse.amp.amf.testing.aTest.Constraint;
-import org.eclipse.amp.amf.testing.aTest.IntValue;
 import org.eclipse.amp.amf.testing.aTest.Measure;
 import org.eclipse.amp.amf.testing.aTest.Model;
-import org.eclipse.amp.amf.testing.aTest.RealValue;
 import org.eclipse.amp.amf.testing.aTest.Tests;
-import org.eclipse.amp.amf.testing.aTest.Value;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -53,27 +52,6 @@ public class ATestPackageImpl extends EPackageImpl implements ATestPackage
    * @generated
    */
   private EClass constraintEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass valueEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass intValueEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass realValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -132,6 +110,7 @@ public class ATestPackageImpl extends EPackageImpl implements ATestPackage
 
     // Initialize simple dependencies
     MetaABMPackage.eINSTANCE.eClass();
+    ABasePackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theATestPackage.createPackageContents();
@@ -293,46 +272,6 @@ public class ATestPackageImpl extends EPackageImpl implements ATestPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getValue()
-  {
-    return valueEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getValue_Value()
-  {
-    return (EAttribute)valueEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getIntValue()
-  {
-    return intValueEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getRealValue()
-  {
-    return realValueEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EEnum getMeasure()
   {
     return measureEEnum;
@@ -385,13 +324,6 @@ public class ATestPackageImpl extends EPackageImpl implements ATestPackage
     createEReference(constraintEClass, CONSTRAINT__MIN_VALUE);
     createEReference(constraintEClass, CONSTRAINT__MAX_VALUE);
 
-    valueEClass = createEClass(VALUE);
-    createEAttribute(valueEClass, VALUE__VALUE);
-
-    intValueEClass = createEClass(INT_VALUE);
-
-    realValueEClass = createEClass(REAL_VALUE);
-
     // Create enums
     measureEEnum = createEEnum(MEASURE);
   }
@@ -422,14 +354,13 @@ public class ATestPackageImpl extends EPackageImpl implements ATestPackage
 
     // Obtain other dependent packages
     MetaABMPackage theMetaABMPackage = (MetaABMPackage)EPackage.Registry.INSTANCE.getEPackage(MetaABMPackage.eNS_URI);
+    ABasePackage theABasePackage = (ABasePackage)EPackage.Registry.INSTANCE.getEPackage(ABasePackage.eNS_URI);
 
     // Create type parameters
 
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    intValueEClass.getESuperTypes().add(this.getValue());
-    realValueEClass.getESuperTypes().add(this.getValue());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -446,15 +377,8 @@ public class ATestPackageImpl extends EPackageImpl implements ATestPackage
     initEReference(getConstraint_Agent(), theMetaABMPackage.getSAgent(), null, "agent", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getConstraint_Attribute(), theMetaABMPackage.getSAttribute(), null, "attribute", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getConstraint_Qualifier(), theMetaABMPackage.getSStateValue(), null, "qualifier", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getConstraint_MinValue(), this.getValue(), null, "minValue", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getConstraint_MaxValue(), this.getValue(), null, "maxValue", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(intValueEClass, IntValue.class, "IntValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(realValueEClass, RealValue.class, "RealValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getConstraint_MinValue(), theABasePackage.getValue(), null, "minValue", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConstraint_MaxValue(), theABasePackage.getValue(), null, "maxValue", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(measureEEnum, Measure.class, "Measure");

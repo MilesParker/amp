@@ -48,38 +48,41 @@ public class ATestScopeProvider extends AParScopeProvider {
         if (object instanceof Constraint) {
             Constraint constraint = (Constraint) object;
             List<IScopedElement> allElems = new ArrayList<IScopedElement>();
-            ResourceSet resourceSet = object.eResource().getResourceSet();
-            URI testFileURI = object.eResource().getURI();
-            testFileURI = testFileURI.trimFileExtension().appendFileExtension("apar");
-            Resource aparAnalog = resourceSet.getResource(testFileURI, true);
-            Model aparModel = (Model) aparAnalog.getContents().get(0);
-            Resource agentModel = resourceSet.getResource(URI.createURI(AParImportResolver.convertURI(aparModel
-                    .getModel().get(0)), true), true);
-
-            if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAgent()) {
-                for (Resource resource : resourceSet.getResources()) {
-                    for (Iterator<EObject> iter = resource.getAllContents(); iter.hasNext();) {
-                        EObject next = iter.next();
-                        if (next instanceof SAgent) {
-                            SAgent sAgent = (SAgent) next;
-                            allElems.add(ScopedElement.create(sAgent.getLabel(), sAgent));
+            if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAgent()
+                || reference.getEType() == MetaABMPackage.eINSTANCE.getSAttribute()
+                || reference.getEType() == MetaABMPackage.eINSTANCE.getSStateValue()) {
+                ResourceSet resourceSet = object.eResource().getResourceSet();
+                URI testFileURI = object.eResource().getURI();
+                testFileURI = testFileURI.trimFileExtension().appendFileExtension("apar");
+                Resource aparAnalog = resourceSet.getResource(testFileURI, true);
+                Model aparModel = (Model) aparAnalog.getContents().get(0);
+                Resource agentModel = resourceSet.getResource(URI.createURI(AParImportResolver.convertURI(aparModel
+                                                                                                          .getModel().get(0)), true), true);
+                if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAgent()) {
+                    for (Resource resource : resourceSet.getResources()) {
+                        for (Iterator<EObject> iter = resource.getAllContents(); iter.hasNext();) {
+                            EObject next = iter.next();
+                            if (next instanceof SAgent) {
+                                SAgent sAgent = (SAgent) next;
+                                allElems.add(ScopedElement.create(sAgent.getLabel(), sAgent));
+                            }
                         }
                     }
-                }
-            } else if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAttribute()) {
-                if (constraint.getAgent() != null) {
-                    findAttributes(constraint.getAgent(), allElems, "");
-                } else {
-                    return Scope.NULLSCOPE;
-                }
-            } else if (reference.getEType() == MetaABMPackage.eINSTANCE.getSStateValue()) {
-                if (constraint.getAttribute() instanceof SState) {
-                    SState state = (SState) constraint.getAttribute();
-                    for (SStateValue value : state.getOptions()) {
-                        allElems.add(ScopedElement.create(value.getLabel(), value));
+                } else if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAttribute()) {
+                    if (constraint.getAgent() != null) {
+                        findAttributes(constraint.getAgent(), allElems, "");
+                    } else {
+                        return Scope.NULLSCOPE;
                     }
-                } else {
-                    return Scope.NULLSCOPE;
+                } else if (reference.getEType() == MetaABMPackage.eINSTANCE.getSStateValue()) {
+                    if (constraint.getAttribute() instanceof SState) {
+                        SState state = (SState) constraint.getAttribute();
+                        for (SStateValue value : state.getOptions()) {
+                            allElems.add(ScopedElement.create(value.getLabel(), value));
+                        }
+                    } else {
+                        return Scope.NULLSCOPE;
+                    }
                 }
             }
             Scope attrScope = new Scope();

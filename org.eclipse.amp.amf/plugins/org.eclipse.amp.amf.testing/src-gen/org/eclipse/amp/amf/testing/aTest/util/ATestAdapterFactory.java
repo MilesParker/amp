@@ -93,21 +93,6 @@ public class ATestAdapterFactory extends AdapterFactoryImpl
         return createConstraintAdapter();
       }
       @Override
-      public Adapter caseValue(Value object)
-      {
-        return createValueAdapter();
-      }
-      @Override
-      public Adapter caseIntValue(IntValue object)
-      {
-        return createIntValueAdapter();
-      }
-      @Override
-      public Adapter caseRealValue(RealValue object)
-      {
-        return createRealValueAdapter();
-      }
-      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -170,51 +155,6 @@ public class ATestAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createConstraintAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.testing.aTest.Value <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.amp.amf.testing.aTest.Value
-   * @generated
-   */
-  public Adapter createValueAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.testing.aTest.IntValue <em>Int Value</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.amp.amf.testing.aTest.IntValue
-   * @generated
-   */
-  public Adapter createIntValueAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.testing.aTest.RealValue <em>Real Value</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.amp.amf.testing.aTest.RealValue
-   * @generated
-   */
-  public Adapter createRealValueAdapter()
   {
     return null;
   }

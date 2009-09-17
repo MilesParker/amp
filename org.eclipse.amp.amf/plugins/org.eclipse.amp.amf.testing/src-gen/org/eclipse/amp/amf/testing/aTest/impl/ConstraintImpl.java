@@ -5,10 +5,11 @@
  */
 package org.eclipse.amp.amf.testing.aTest.impl;
 
+import org.eclipse.amp.amf.abase.aBase.Value;
+
 import org.eclipse.amp.amf.testing.aTest.ATestPackage;
 import org.eclipse.amp.amf.testing.aTest.Constraint;
 import org.eclipse.amp.amf.testing.aTest.Measure;
-import org.eclipse.amp.amf.testing.aTest.Value;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
