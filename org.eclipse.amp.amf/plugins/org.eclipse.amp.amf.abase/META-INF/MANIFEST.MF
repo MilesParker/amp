@@ -1,0 +1,36 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.eclipse.amp.amf.abase
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0
+Bundle-SymbolicName: org.eclipse.amp.amf.abase; singleton:=true
+Eclipse-RegisterBuddy: org.eclipse.xtext.log4j
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.generator;resolution:=optional,
+ de.itemis.xtext.antlr;resolution:=optional,
+ org.apache.commons.logging;resolution:=optional,
+ org.eclipse.emf.codegen.ecore;resolution:=optional,
+ org.eclipse.xtext.log4j;resolution:=optional,
+ org.eclipse.emf.mwe.utils;resolution:=optional,
+ org.eclipse.emf.mwe.core;resolution:=optional,
+ com.ibm.icu;resolution:=optional,
+ org.eclipse.xtext.xtend;resolution:=optional,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.eclipse.xtext.util,
+ org.antlr.runtime,
+ org.eclipse.core.resources;bundle-version="3.5.1",
+ org.eclipse.core.runtime;bundle-version="3.5.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.amp.amf.abase,
+ org.eclipse.amp.amf.abase.aBase,
+ org.eclipse.amp.amf.abase.aBase.impl,
+ org.eclipse.amp.amf.abase.aBase.util,
+ org.eclipse.amp.amf.abase.formatting,
+ org.eclipse.amp.amf.abase.parseTreeConstruction,
+ org.eclipse.amp.amf.abase.parser.antlr,
+ org.eclipse.amp.amf.abase.parser.antlr.internal,
+ org.eclipse.amp.amf.abase.scoping,
+ org.eclipse.amp.amf.abase.services,
+ org.eclipse.amp.amf.abase.validation
