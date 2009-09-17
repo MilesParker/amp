@@ -44,11 +44,27 @@ public class ATestParser extends AbstractContentAssistParser {
 				{
 					put(grammarAccess.getValueAccess().getAlternatives(), "rule__Value__Alternatives");
 					put(grammarAccess.getMeasureAccess().getAlternatives(), "rule__Measure__Alternatives");
-					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group");
-					put(grammarAccess.getTestsAccess().getGroup(), "rule__Tests__Group");
-					put(grammarAccess.getConstraintAccess().getGroup(), "rule__Constraint__Group");
-					put(grammarAccess.getConstraintAccess().getGroup_5(), "rule__Constraint__Group_5");
-					put(grammarAccess.getConstraintAccess().getGroup_7(), "rule__Constraint__Group_7");
+					put(grammarAccess.getBOOLEANAccess().getAlternatives(), "rule__BOOLEAN__Alternatives");
+					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
+					put(grammarAccess.getTestsAccess().getGroup(), "rule__Tests__Group__0");
+					put(grammarAccess.getConstraintAccess().getGroup(), "rule__Constraint__Group__0");
+					put(grammarAccess.getConstraintAccess().getGroup_5(), "rule__Constraint__Group_5__0");
+					put(grammarAccess.getConstraintAccess().getGroup_7(), "rule__Constraint__Group_7__0");
+					put(grammarAccess.getModelAccess().getNameAssignment_0(), "rule__Model__NameAssignment_0");
+					put(grammarAccess.getModelAccess().getDescriptionAssignment_1(), "rule__Model__DescriptionAssignment_1");
+					put(grammarAccess.getModelAccess().getTestsAssignment_2(), "rule__Model__TestsAssignment_2");
+					put(grammarAccess.getModelAccess().getContraintsAssignment_3(), "rule__Model__ContraintsAssignment_3");
+					put(grammarAccess.getTestsAccess().getImportURIAssignment_1(), "rule__Tests__ImportURIAssignment_1");
+					put(grammarAccess.getConstraintAccess().getMeasureAssignment_0(), "rule__Constraint__MeasureAssignment_0");
+					put(grammarAccess.getConstraintAccess().getAgentAssignment_2(), "rule__Constraint__AgentAssignment_2");
+					put(grammarAccess.getConstraintAccess().getAttributeAssignment_4(), "rule__Constraint__AttributeAssignment_4");
+					put(grammarAccess.getConstraintAccess().getQualifierAssignment_5_1(), "rule__Constraint__QualifierAssignment_5_1");
+					put(grammarAccess.getConstraintAccess().getMinValueAssignment_7_2(), "rule__Constraint__MinValueAssignment_7_2");
+					put(grammarAccess.getConstraintAccess().getMaxValueAssignment_7_4(), "rule__Constraint__MaxValueAssignment_7_4");
+					put(grammarAccess.getIntValueAccess().getValueAssignment(), "rule__IntValue__ValueAssignment");
+					put(grammarAccess.getRealValueAccess().getValueAssignment(), "rule__RealValue__ValueAssignment");
+					put(grammarAccess.getStringValueAccess().getValueAssignment(), "rule__StringValue__ValueAssignment");
+					put(grammarAccess.getBooleanValueAccess().getValueAssignment(), "rule__BooleanValue__ValueAssignment");
 				}
 			};
 		}

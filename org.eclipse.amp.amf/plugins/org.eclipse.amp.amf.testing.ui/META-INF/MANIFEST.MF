@@ -13,7 +13,9 @@ Require-Bundle: org.eclipse.amp.amf.testing;visibility:=reexport,
  org.eclipse.ui.editors;bundle-version="3.4.0",
  org.eclipse.ui.ide;bundle-version="3.4.0",
  org.eclipse.ui,
- org.antlr.runtime
+ org.antlr.runtime,
+ org.eclipse.amp.amf.abase;bundle-version="1.0.0",
+ org.eclipse.amp.amf.abase.ui;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.amp.amf.testing,
  org.eclipse.amp.amf.testing.contentassist,
