@@ -124,6 +124,9 @@ public class AParInterpreter implements ICached {
         for (Incorporates incorporates : reverseIncorporates) {
             String convertURI = AParImportResolver.convertURI(incorporates);
             URI incURI = URI.createURI(convertURI);
+            if (cache == null) {
+                cache = AParFactory.createPooled(emfResource.getResourceSet());
+            }
             AParInterpreter incInterpreter = (AParInterpreter) cache.getInterpreter(incURI);
             includeIncorporated.addAll(incInterpreter.collect(overridden));
         }
