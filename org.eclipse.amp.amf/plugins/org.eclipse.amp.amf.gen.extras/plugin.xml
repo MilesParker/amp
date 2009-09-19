@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.1 2009/07/16 20:59:51 mparker Exp $
+ $Id: plugin.xml,v 1.2 2009/09/19 01:25:49 mparker Exp $
 -->
 
 <plugin>
@@ -47,7 +47,7 @@
     <extension
           point="org.eclipse.ui.menus">
        <menuContribution
-             locationURI="popup:org.metaabm.ide.generateMenuID">
+             locationURI="popup:org.eclipse.amp.amf.ide.generateMenuID">
           <command
                 commandId="org.eclipse.amp.amf.gen.graphickey"
                 icon="icons/full/obj16/Graphics.gif"
