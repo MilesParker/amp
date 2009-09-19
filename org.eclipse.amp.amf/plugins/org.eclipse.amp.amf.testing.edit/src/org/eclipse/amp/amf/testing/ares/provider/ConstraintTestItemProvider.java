@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ConstraintTestItemProvider.java,v 1.1 2009/08/07 00:05:19 mparker Exp $
+ * $Id: ConstraintTestItemProvider.java,v 1.2 2009/09/19 01:22:52 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.provider;
 
@@ -36,8 +36,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 public class ConstraintTestItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
     /**
-     * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * This constructs an instance from a factory and a notifier.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     public ConstraintTestItemProvider(AdapterFactory adapterFactory) {
@@ -45,8 +45,8 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
     }
 
     /**
-     * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * This returns the property descriptors for the adapted class.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     @Override
@@ -63,67 +63,87 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
     }
 
     /**
-     * This adds a property descriptor for the Constraint feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * This adds a property descriptor for the Constraint feature.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     protected void addConstraintPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_ConstraintTest_constraint_feature"),
-                                                                 getString("_UI_PropertyDescriptor_description",
-                                                                           "_UI_ConstraintTest_constraint_feature",
-                                                                 "_UI_ConstraintTest_type"),
-                                                                 AresPackage.Literals.CONSTRAINT_TEST__CONSTRAINT,
-                                                                 true, false, true, null, null, null));
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_ConstraintTest_constraint_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ConstraintTest_constraint_feature", "_UI_ConstraintTest_type"),
+                 AresPackage.Literals.CONSTRAINT_TEST__CONSTRAINT,
+                 true,
+                 false,
+                 true,
+                 null,
+                 null,
+                 null));
     }
 
     /**
-     * This adds a property descriptor for the Issue feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * This adds a property descriptor for the Issue feature.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     protected void addIssuePropertyDescriptor(Object object) {
-        itemPropertyDescriptors
-        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                          getResourceLocator(), getString("_UI_ConstraintTest_issue_feature"),
-                                          getString("_UI_PropertyDescriptor_description",
-                                                    "_UI_ConstraintTest_issue_feature",
-                                          "_UI_ConstraintTest_type"),
-                                          AresPackage.Literals.CONSTRAINT_TEST__ISSUE, true, false, false,
-                                          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_ConstraintTest_issue_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ConstraintTest_issue_feature", "_UI_ConstraintTest_type"),
+                 AresPackage.Literals.CONSTRAINT_TEST__ISSUE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
-     * This adds a property descriptor for the Actual Value feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * This adds a property descriptor for the Actual Value feature.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     protected void addActualValuePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_ConstraintTest_actualValue_feature"),
-                                                                 getString("_UI_PropertyDescriptor_description",
-                                                                           "_UI_ConstraintTest_actualValue_feature",
-                                                                 "_UI_ConstraintTest_type"),
-                                                                 AresPackage.Literals.CONSTRAINT_TEST__ACTUAL_VALUE,
-                                                                 true, false, false,
-                                                                 ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_ConstraintTest_actualValue_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ConstraintTest_actualValue_feature", "_UI_ConstraintTest_type"),
+                 AresPackage.Literals.CONSTRAINT_TEST__ACTUAL_VALUE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
-     * This adds a property descriptor for the Failure feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * This adds a property descriptor for the Failure feature.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     protected void addFailurePropertyDescriptor(Object object) {
-        itemPropertyDescriptors
-        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                          getResourceLocator(),
-                                          getString("_UI_ConstraintTest_failure_feature"),
-                                          getString("_UI_PropertyDescriptor_description",
-                                                    "_UI_ConstraintTest_failure_feature",
-                                          "_UI_ConstraintTest_type"),
-                                          AresPackage.Literals.CONSTRAINT_TEST__FAILURE, false, false, false,
-                                          ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_ConstraintTest_failure_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_ConstraintTest_failure_feature", "_UI_ConstraintTest_type"),
+                 AresPackage.Literals.CONSTRAINT_TEST__FAILURE,
+                 false,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -192,9 +212,9 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
     }
 
     /**
-     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-     * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+     * that can be created under this object.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     @Override
@@ -203,8 +223,8 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
     }
 
     /**
-     * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * Return the resource locator for this item provider's resources.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     @Override
