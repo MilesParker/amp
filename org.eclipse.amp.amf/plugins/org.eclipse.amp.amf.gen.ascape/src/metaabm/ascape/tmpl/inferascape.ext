@@ -113,6 +113,9 @@ cached String graphCall(ADisconnect act) :
 
 cached String graphCall(AReplace act) :
     "replaceNeighbor(" + act.actMover().expl() + ", " + act.findDest() + ", " + act.directed + ")";
+
+cached List[AAct] conditionForState(AAct act) :
+	act.selector().targets.queries().nonSpatial().intersect(act.allSources.union({act}));
 		
 cached Boolean conditionForAscape(AControl act) :
 	(act.conditionFor() || act.convertToAgent() || !act.selector().agent.isHost()) && !act.hasControl("here") && !act.selector().isRoot();

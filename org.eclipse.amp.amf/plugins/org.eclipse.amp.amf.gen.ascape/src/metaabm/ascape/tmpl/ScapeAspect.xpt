@@ -96,10 +96,10 @@
                     «selector().id()»Cell = «converted(selector().id() + "Cell")»;
                 «ENDIF-»
                 if («selector().id()»Cell instanceof «selector().typeName()») {
+	                «IF conditionForState().size > 0-»
                     «selector().typeName()» «selector().id()» = («selector().typeName()») «selector().id()»Cell;
-	                «IF selector().targets.queries().nonSpatial().intersect(allSources).size > 0-»
 	                «EXPAND metaabm::tmpl::Java::InnerEvaluation(path, false)-»
-	                return «selector().targets.queries().nonSpatial().intersect(allSources).toList().expressionSink(path, false)»;
+	                return «conditionForState().toList().expressionSink(path, false)»;
 	                «ELSE-»
 	                return true;
 	                «ENDIF-»
