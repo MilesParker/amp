@@ -225,7 +225,7 @@ cached int queryOrder(ASink act, List[AAct] candidates) :
             case "withinBoundaries" : 7
             case "includeSelf" : 8
             case "away" : 9
-            case "available" : 1
+            case "available" : 10
             case "colorRGB" : 1
             case "drawOval" : 2
             default : -candidates.size + candidates.last().targets.indexOf(act)
@@ -255,7 +255,7 @@ cached Boolean expand(ALogic act, List[AAct] path) :
 	path.contains(act.selected) && (act.sources.select(a | a.selected == act.selected || a == act.selected).last() == path.last());
            
 cached Boolean conditionFor(AAct act) :
-    !act.controlCompound().nonSpatial().typeSelect(AQuery).isEmpty && !act.selector().isRoot();
+    !act.controlCompound().nonSpatial().typeSelect(AQuery).isEmpty;
            
 cached Boolean conditionFor(ASelect act) :
     !act.targets.nonSpatial().typeSelect(AQuery).isEmpty;
