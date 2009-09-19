@@ -52,7 +52,7 @@ public class ExecuteJavaHandler extends ExecuteHandler {
      */
     protected void executeOpen(final EclipseEscapeRunner eclipseRunner, final Object executed, IProgressMonitor monitor) {
         // brain dead Java strikes again..
-        if (executed instanceof ICompilationUnit) {
+        if (executed instanceof ICompilationUnit && isSupertype(executed, "org.ascape.model.Scape")) {
             ICompilationUnit javaUnit = (ICompilationUnit) executed;
             IType javaClass = javaUnit.findPrimaryType();
             eclipseRunner.open(javaUnit.getResource().getProject(), javaClass.getFullyQualifiedName(), javaClass
@@ -66,7 +66,7 @@ public class ExecuteJavaHandler extends ExecuteHandler {
      * @see org.eclipse.amp.escape.command.ExecuteHandler#handleSelect(java.lang.Object)
      */
     protected boolean handleSelect(Object sel) {
-        return sel instanceof ICompilationUnit && isSupertype(sel, "org.ascape.model.Scape");
+        return sel instanceof ICompilationUnit;// && isSupertype(sel, "org.ascape.model.Scape");
     }
 
     /**
