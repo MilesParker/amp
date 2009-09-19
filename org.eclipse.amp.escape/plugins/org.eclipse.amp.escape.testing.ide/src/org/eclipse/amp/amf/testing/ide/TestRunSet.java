@@ -198,6 +198,7 @@ public class TestRunSet {
             }
             testCompleteCount++;
             testInFlightCount--;
+            runSet.getRuns().add(run.getRun());
             fillThreads();
         }
         saveResults();

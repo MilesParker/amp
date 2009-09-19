@@ -138,7 +138,6 @@ public class TestRun {
                     aTest = (ATestInterpreter) atestProvider.getInterpreter(aTestResource);
                     apar = aTest.getAparInterpreter();
                     run = AresFactoryImpl.eINSTANCE.createRun();
-                    runSet.getRuns().add(run);
                     run.setParameterization(apar.getModel());
                     // Note that we need to clone for case where constraints or parameters change.
                     run.setModel(apar.getRootContext());
@@ -156,7 +155,7 @@ public class TestRun {
                         Parameter shallowCopy = AParFactory.eINSTANCE.createParameter();
                         shallowCopy.setAttribute(param.getAttribute());
                         shallowCopy.setValue((Value) EcoreUtil.copy(param
-.getValue()));
+                                                                    .getValue()));
                         run.getParameters().add(shallowCopy);
                     }
                     run.setTest(aTest.getModel());
