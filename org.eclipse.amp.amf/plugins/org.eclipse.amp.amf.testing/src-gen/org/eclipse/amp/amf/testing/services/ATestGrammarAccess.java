@@ -392,8 +392,8 @@ public class ATestGrammarAccess implements IGrammarAccess {
 	} 
 
 	//terminal DESC_STRING:
-	//  "\u00AB" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\u00AB" | "\u00BB"))*
-	//  "\u00BB";
+	//  "\u00AB" ("\\" ("b" | "t" | "n" | "f" | "r" | "\u00AB" | "\u00BB" | "\\") | !("\\" | "\u00AB" |
+	//  "\u00BB"))* "\u00BB";
 	public TerminalRule getDESC_STRINGRule() {
 		return gaABase.getDESC_STRINGRule();
 	} 

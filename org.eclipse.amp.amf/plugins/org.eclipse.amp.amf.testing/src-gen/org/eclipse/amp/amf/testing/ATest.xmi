@@ -232,8 +232,8 @@
               <groups xsi:type="xtext:Keyword" value="n"/>
               <groups xsi:type="xtext:Keyword" value="f"/>
               <groups xsi:type="xtext:Keyword" value="r"/>
-              <groups xsi:type="xtext:Keyword" value="&quot;"/>
-              <groups xsi:type="xtext:Keyword" value="'"/>
+              <groups xsi:type="xtext:Keyword" value="&#xab;"/>
+              <groups xsi:type="xtext:Keyword" value="&#xbb;"/>
               <groups xsi:type="xtext:Keyword" value="\"/>
             </tokens>
           </groups>

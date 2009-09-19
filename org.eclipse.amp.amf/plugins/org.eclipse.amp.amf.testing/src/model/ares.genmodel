@@ -16,11 +16,14 @@
       <genEnumLiterals ecoreEnumLiteral="ares.ecore#//Issue/BelowRange"/>
       <genEnumLiterals ecoreEnumLiteral="ares.ecore#//Issue/AboveRange"/>
       <genEnumLiterals ecoreEnumLiteral="ares.ecore#//Issue/None"/>
+      <genEnumLiterals ecoreEnumLiteral="ares.ecore#//Issue/NotFound"/>
     </genEnums>
     <genClasses ecoreClass="ares.ecore#//Run">
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference ares.ecore#//Run/model"/>
-      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference ares.ecore#//Run/test"/>
-      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference ares.ecore#//Run/parameterization"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference ares.ecore#//Run/test"/>
+      <genFeatures property="Readonly" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference ares.ecore#//Run/parameterization"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ares.ecore#//Run/result"/>
       <genFeatures property="Readonly" notify="false" createChild="false" propertySortChoices="true"
           ecoreFeature="ecore:EReference ares.ecore#//Run/parameters"/>
