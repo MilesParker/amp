@@ -31,11 +31,11 @@ import org.eclipse.xtext.util.Strings;
 public class AMPTerminalConverters extends DefaultTerminalConverters {
 
     @ValueConverter(rule = "DESC_STRING")
-    public IValueConverter<String> STRING() {
+    public IValueConverter<String> DESC_STRING() {
         return new AbstractNullSafeConverter<String>() {
             @Override
             protected String internalToValue(String string, AbstractNode node) {
-                return Strings.convertFromJavaString(string.substring(1, string.length() - 1));
+                return string.substring(1, string.length() - 1);
             }
 
             @Override
