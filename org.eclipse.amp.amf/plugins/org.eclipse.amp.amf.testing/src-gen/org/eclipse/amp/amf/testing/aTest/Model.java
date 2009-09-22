@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.amp.amf.testing.aTest.Model#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.testing.aTest.Model#getTests <em>Tests</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.testing.aTest.Model#getContraints <em>Contraints</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.testing.aTest.Model#getContains <em>Contains</em>}</li>
  * </ul>
  * </p>
  *
@@ -123,5 +124,21 @@ public interface Model extends EObject
    * @generated
    */
   EList<Constraint> getContraints();
+
+  /**
+   * Returns the value of the '<em><b>Contains</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.amp.amf.testing.aTest.TestMember}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Contains</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Contains</em>' containment reference list.
+   * @see org.eclipse.amp.amf.testing.aTest.ATestPackage#getModel_Contains()
+   * @model containment="true"
+   * @generated
+   */
+  EList<TestMember> getContains();
 
 } // Model

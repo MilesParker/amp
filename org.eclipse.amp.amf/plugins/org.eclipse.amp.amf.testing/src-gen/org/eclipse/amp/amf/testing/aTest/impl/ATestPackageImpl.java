@@ -12,6 +12,7 @@ import org.eclipse.amp.amf.testing.aTest.ATestPackage;
 import org.eclipse.amp.amf.testing.aTest.Constraint;
 import org.eclipse.amp.amf.testing.aTest.Measure;
 import org.eclipse.amp.amf.testing.aTest.Model;
+import org.eclipse.amp.amf.testing.aTest.TestMember;
 import org.eclipse.amp.amf.testing.aTest.Tests;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -45,6 +46,13 @@ public class ATestPackageImpl extends EPackageImpl implements ATestPackage
    * @generated
    */
   private EClass testsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass testMemberEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -182,6 +190,16 @@ public class ATestPackageImpl extends EPackageImpl implements ATestPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getModel_Contains()
+  {
+    return (EReference)modelEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getTests()
   {
     return testsEClass;
@@ -195,6 +213,26 @@ public class ATestPackageImpl extends EPackageImpl implements ATestPackage
   public EAttribute getTests_ImportURI()
   {
     return (EAttribute)testsEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTestMember()
+  {
+    return testMemberEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTestMember_ImportURI()
+  {
+    return (EAttribute)testMemberEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -312,9 +350,13 @@ public class ATestPackageImpl extends EPackageImpl implements ATestPackage
     createEAttribute(modelEClass, MODEL__DESCRIPTION);
     createEReference(modelEClass, MODEL__TESTS);
     createEReference(modelEClass, MODEL__CONTRAINTS);
+    createEReference(modelEClass, MODEL__CONTAINS);
 
     testsEClass = createEClass(TESTS);
     createEAttribute(testsEClass, TESTS__IMPORT_URI);
+
+    testMemberEClass = createEClass(TEST_MEMBER);
+    createEAttribute(testMemberEClass, TEST_MEMBER__IMPORT_URI);
 
     constraintEClass = createEClass(CONSTRAINT);
     createEAttribute(constraintEClass, CONSTRAINT__MEASURE);
@@ -368,9 +410,13 @@ public class ATestPackageImpl extends EPackageImpl implements ATestPackage
     initEAttribute(getModel_Description(), ecorePackage.getEString(), "description", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Tests(), this.getTests(), null, "tests", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getModel_Contraints(), this.getConstraint(), null, "contraints", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getModel_Contains(), this.getTestMember(), null, "contains", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(testsEClass, Tests.class, "Tests", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTests_ImportURI(), ecorePackage.getEString(), "importURI", null, 0, 1, Tests.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(testMemberEClass, TestMember.class, "TestMember", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTestMember_ImportURI(), ecorePackage.getEString(), "importURI", null, 0, 1, TestMember.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getConstraint_Measure(), this.getMeasure(), "measure", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

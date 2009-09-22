@@ -24,16 +24,26 @@ public class ATestGrammarAccess implements IGrammarAccess {
 		private final RuleCall cNameSTRINGTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
 		private final Assignment cDescriptionAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cDescriptionDESC_STRINGTerminalRuleCall_1_0 = (RuleCall)cDescriptionAssignment_1.eContents().get(0);
-		private final Assignment cTestsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cTestsTestsParserRuleCall_2_0 = (RuleCall)cTestsAssignment_2.eContents().get(0);
-		private final Assignment cContraintsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cContraintsConstraintParserRuleCall_3_0 = (RuleCall)cContraintsAssignment_3.eContents().get(0);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
+		private final Group cGroup_2_0_0 = (Group)cGroup_2_0.eContents().get(0);
+		private final Keyword cTestsKeyword_2_0_0_0 = (Keyword)cGroup_2_0_0.eContents().get(0);
+		private final Assignment cTestsAssignment_2_0_0_1 = (Assignment)cGroup_2_0_0.eContents().get(1);
+		private final RuleCall cTestsTestsParserRuleCall_2_0_0_1_0 = (RuleCall)cTestsAssignment_2_0_0_1.eContents().get(0);
+		private final Assignment cContraintsAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
+		private final RuleCall cContraintsConstraintParserRuleCall_2_0_1_0 = (RuleCall)cContraintsAssignment_2_0_1.eContents().get(0);
+		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
+		private final Keyword cContainsKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
+		private final Assignment cContainsAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
+		private final RuleCall cContainsTestMemberParserRuleCall_2_1_1_0 = (RuleCall)cContainsAssignment_2_1_1.eContents().get(0);
 		
 		//Model:
-		//  name=STRING? description=DESC_STRING? tests=Tests? contraints+=Constraint*;
+		//  name=STRING? description=DESC_STRING? (("tests" tests=Tests)? contraints+=Constraint
+		//  +|"contains" contains+=TestMember*)?;
 		public ParserRule getRule() { return rule; }
 
-		//name=STRING? description=DESC_STRING? tests=Tests? contraints+=Constraint*
+		//name=STRING? description=DESC_STRING? (("tests" tests=Tests)? contraints+=Constraint
+		//+|"contains" contains+=TestMember*)?
 		public Group getGroup() { return cGroup; }
 
 		//name=STRING?
@@ -48,41 +58,73 @@ public class ATestGrammarAccess implements IGrammarAccess {
 		//DESC_STRING
 		public RuleCall getDescriptionDESC_STRINGTerminalRuleCall_1_0() { return cDescriptionDESC_STRINGTerminalRuleCall_1_0; }
 
-		//tests=Tests?
-		public Assignment getTestsAssignment_2() { return cTestsAssignment_2; }
+		//(("tests" tests=Tests)? contraints+=Constraint+|"contains" contains+=TestMember*)?
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+
+		//("tests" tests=Tests)? contraints+=Constraint+
+		public Group getGroup_2_0() { return cGroup_2_0; }
+
+		//("tests" tests=Tests)?
+		public Group getGroup_2_0_0() { return cGroup_2_0_0; }
+
+		//"tests"
+		public Keyword getTestsKeyword_2_0_0_0() { return cTestsKeyword_2_0_0_0; }
+
+		//tests=Tests
+		public Assignment getTestsAssignment_2_0_0_1() { return cTestsAssignment_2_0_0_1; }
 
 		//Tests
-		public RuleCall getTestsTestsParserRuleCall_2_0() { return cTestsTestsParserRuleCall_2_0; }
+		public RuleCall getTestsTestsParserRuleCall_2_0_0_1_0() { return cTestsTestsParserRuleCall_2_0_0_1_0; }
 
-		//contraints+=Constraint*
-		public Assignment getContraintsAssignment_3() { return cContraintsAssignment_3; }
+		//contraints+=Constraint+
+		public Assignment getContraintsAssignment_2_0_1() { return cContraintsAssignment_2_0_1; }
 
 		//Constraint
-		public RuleCall getContraintsConstraintParserRuleCall_3_0() { return cContraintsConstraintParserRuleCall_3_0; }
+		public RuleCall getContraintsConstraintParserRuleCall_2_0_1_0() { return cContraintsConstraintParserRuleCall_2_0_1_0; }
+
+		//"contains" contains+=TestMember*
+		public Group getGroup_2_1() { return cGroup_2_1; }
+
+		//"contains"
+		public Keyword getContainsKeyword_2_1_0() { return cContainsKeyword_2_1_0; }
+
+		//contains+=TestMember*
+		public Assignment getContainsAssignment_2_1_1() { return cContainsAssignment_2_1_1; }
+
+		//TestMember
+		public RuleCall getContainsTestMemberParserRuleCall_2_1_1_0() { return cContainsTestMemberParserRuleCall_2_1_1_0; }
 	}
 
 	public class TestsElements implements IParserRuleAccess {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Tests");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cTESTSKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cImportURIAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cImportURISTRINGTerminalRuleCall_1_0 = (RuleCall)cImportURIAssignment_1.eContents().get(0);
+		private final Assignment cImportURIAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cImportURISTRINGTerminalRuleCall_0 = (RuleCall)cImportURIAssignment.eContents().get(0);
 		
 		//Tests:
-		//  "TESTS" importURI=STRING;
+		//  importURI=STRING;
 		public ParserRule getRule() { return rule; }
 
-		//"TESTS" importURI=STRING
-		public Group getGroup() { return cGroup; }
-
-		//"TESTS"
-		public Keyword getTESTSKeyword_0() { return cTESTSKeyword_0; }
-
 		//importURI=STRING
-		public Assignment getImportURIAssignment_1() { return cImportURIAssignment_1; }
+		public Assignment getImportURIAssignment() { return cImportURIAssignment; }
 
 		//STRING
-		public RuleCall getImportURISTRINGTerminalRuleCall_1_0() { return cImportURISTRINGTerminalRuleCall_1_0; }
+		public RuleCall getImportURISTRINGTerminalRuleCall_0() { return cImportURISTRINGTerminalRuleCall_0; }
+	}
+
+	public class TestMemberElements implements IParserRuleAccess {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TestMember");
+		private final Assignment cImportURIAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cImportURISTRINGTerminalRuleCall_0 = (RuleCall)cImportURIAssignment.eContents().get(0);
+		
+		//TestMember:
+		//  importURI=STRING;
+		public ParserRule getRule() { return rule; }
+
+		//importURI=STRING
+		public Assignment getImportURIAssignment() { return cImportURIAssignment; }
+
+		//STRING
+		public RuleCall getImportURISTRINGTerminalRuleCall_0() { return cImportURISTRINGTerminalRuleCall_0; }
 	}
 
 	public class ConstraintElements implements IParserRuleAccess {
@@ -254,6 +296,7 @@ public class ATestGrammarAccess implements IGrammarAccess {
 	
 	private ModelElements pModel;
 	private TestsElements pTests;
+	private TestMemberElements pTestMember;
 	private ConstraintElements pConstraint;
 	private MeasureElements unknownRuleMeasure;
 	
@@ -279,7 +322,8 @@ public class ATestGrammarAccess implements IGrammarAccess {
 
 	
 	//Model:
-	//  name=STRING? description=DESC_STRING? tests=Tests? contraints+=Constraint*;
+	//  name=STRING? description=DESC_STRING? (("tests" tests=Tests)? contraints+=Constraint
+	//  +|"contains" contains+=TestMember*)?;
 	public ModelElements getModelAccess() {
 		return (pModel != null) ? pModel : (pModel = new ModelElements());
 	}
@@ -289,13 +333,23 @@ public class ATestGrammarAccess implements IGrammarAccess {
 	}
 
 	//Tests:
-	//  "TESTS" importURI=STRING;
+	//  importURI=STRING;
 	public TestsElements getTestsAccess() {
 		return (pTests != null) ? pTests : (pTests = new TestsElements());
 	}
 	
 	public ParserRule getTestsRule() {
 		return getTestsAccess().getRule();
+	}
+
+	//TestMember:
+	//  importURI=STRING;
+	public TestMemberElements getTestMemberAccess() {
+		return (pTestMember != null) ? pTestMember : (pTestMember = new TestMemberElements());
+	}
+	
+	public ParserRule getTestMemberRule() {
+		return getTestMemberAccess().getRule();
 	}
 
 	//Constraint:

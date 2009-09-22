@@ -33,8 +33,9 @@ protected class ThisRootNode extends RootToken {
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
 			case 0: return new Model_Group(this, this, 0, inst);
-			case 1: return new Tests_Group(this, this, 1, inst);
-			case 2: return new Constraint_Group(this, this, 2, inst);
+			case 1: return new Tests_ImportURIAssignment(this, this, 1, inst);
+			case 2: return new TestMember_ImportURIAssignment(this, this, 2, inst);
+			case 3: return new Constraint_Group(this, this, 3, inst);
 			default: return null;
 		}	
 	}	
@@ -44,11 +45,13 @@ protected class ThisRootNode extends RootToken {
 /************ begin Rule Model ****************
  *
  * Model:
- *   name=STRING? description=DESC_STRING? tests=Tests? contraints+=Constraint*;
+ *   name=STRING? description=DESC_STRING? (("tests" tests=Tests)? contraints+=Constraint
+ *   +|"contains" contains+=TestMember*)?;
  *
  **/
 
-// name=STRING? description=DESC_STRING? tests=Tests? contraints+=Constraint*
+// name=STRING? description=DESC_STRING? (("tests" tests=Tests)? contraints+=Constraint
+// +|"contains" contains+=TestMember*)?
 protected class Model_Group extends GroupToken {
 	
 	public Model_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -61,10 +64,9 @@ protected class Model_Group extends GroupToken {
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new Model_ContraintsAssignment_3(parent, this, 0, inst);
-			case 1: return new Model_TestsAssignment_2(parent, this, 1, inst);
-			case 2: return new Model_DescriptionAssignment_1(parent, this, 2, inst);
-			case 3: return new Model_NameAssignment_0(parent, this, 3, inst);
+			case 0: return new Model_Alternatives_2(parent, this, 0, inst);
+			case 1: return new Model_DescriptionAssignment_1(parent, this, 1, inst);
+			case 2: return new Model_NameAssignment_0(parent, this, 2, inst);
 			default: return null;
 		}	
 	}	
@@ -136,20 +138,102 @@ protected class Model_DescriptionAssignment_1 extends AssignmentToken  {
 
 }
 
-// tests=Tests?
-protected class Model_TestsAssignment_2 extends AssignmentToken  {
-	
-	public Model_TestsAssignment_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+// (("tests" tests=Tests)? contraints+=Constraint+|"contains" contains+=TestMember*)?
+protected class Model_Alternatives_2 extends AlternativesToken {
+
+	public Model_Alternatives_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
-	public Assignment getGrammarElement() {
-		return grammarAccess.getModelAccess().getTestsAssignment_2();
+	public Alternatives getGrammarElement() {
+		return grammarAccess.getModelAccess().getAlternatives_2();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new Tests_Group(this, this, 0, inst);
+			case 0: return new Model_Group_2_0(parent, this, 0, inst);
+			case 1: return new Model_Group_2_1(parent, this, 1, inst);
+			default: return null;
+		}	
+	}	
+		
+}
+
+// ("tests" tests=Tests)? contraints+=Constraint+
+protected class Model_Group_2_0 extends GroupToken {
+	
+	public Model_Group_2_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public Group getGrammarElement() {
+		return grammarAccess.getModelAccess().getGroup_2_0();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new Model_ContraintsAssignment_2_0_1(parent, this, 0, inst);
+			default: return null;
+		}	
+	}	
+		
+}
+
+// ("tests" tests=Tests)?
+protected class Model_Group_2_0_0 extends GroupToken {
+	
+	public Model_Group_2_0_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public Group getGrammarElement() {
+		return grammarAccess.getModelAccess().getGroup_2_0_0();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new Model_TestsAssignment_2_0_0_1(parent, this, 0, inst);
+			default: return null;
+		}	
+	}	
+		
+}
+
+// "tests"
+protected class Model_TestsKeyword_2_0_0_0 extends KeywordToken  {
+	
+	public Model_TestsKeyword_2_0_0_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public Keyword getGrammarElement() {
+		return grammarAccess.getModelAccess().getTestsKeyword_2_0_0_0();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new Model_DescriptionAssignment_1(parent, this, 0, inst);
+			case 1: return new Model_NameAssignment_0(parent, this, 1, inst);
+			default: return parent.createParentFollower(this, index, index - 2, inst);
+		}	
+	}	
+		
+}
+
+// tests=Tests
+protected class Model_TestsAssignment_2_0_0_1 extends AssignmentToken  {
+	
+	public Model_TestsAssignment_2_0_0_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public Assignment getGrammarElement() {
+		return grammarAccess.getModelAccess().getTestsAssignment_2_0_0_1();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new Tests_ImportURIAssignment(this, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -161,7 +245,7 @@ protected class Model_TestsAssignment_2 extends AssignmentToken  {
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getTestsRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getModelAccess().getTestsTestsParserRuleCall_2_0(); 
+				element = grammarAccess.getModelAccess().getTestsTestsParserRuleCall_2_0_0_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -172,22 +256,22 @@ protected class Model_TestsAssignment_2 extends AssignmentToken  {
 	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
 		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Model_DescriptionAssignment_1(parent, next, actIndex, consumed);
-			case 1: return new Model_NameAssignment_0(parent, next, actIndex, consumed);
-			default: return parent.createParentFollower(next, actIndex , index - 2, consumed);
+			case 0: return new Model_TestsKeyword_2_0_0_0(parent, next, actIndex, consumed);
+			default: return null;
 		}	
 	}	
 }
 
-// contraints+=Constraint*
-protected class Model_ContraintsAssignment_3 extends AssignmentToken  {
+
+// contraints+=Constraint+
+protected class Model_ContraintsAssignment_2_0_1 extends AssignmentToken  {
 	
-	public Model_ContraintsAssignment_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Model_ContraintsAssignment_2_0_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	public Assignment getGrammarElement() {
-		return grammarAccess.getModelAccess().getContraintsAssignment_3();
+		return grammarAccess.getModelAccess().getContraintsAssignment_2_0_1();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -198,13 +282,13 @@ protected class Model_ContraintsAssignment_3 extends AssignmentToken  {
 	}	
 		
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("contraints",false)) == null) return null;
+		if((value = current.getConsumable("contraints",true)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("contraints");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getConstraintRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getModelAccess().getContraintsConstraintParserRuleCall_3_0(); 
+				element = grammarAccess.getModelAccess().getContraintsConstraintParserRuleCall_2_0_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -215,8 +299,8 @@ protected class Model_ContraintsAssignment_3 extends AssignmentToken  {
 	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
 		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Model_ContraintsAssignment_3(parent, next, actIndex, consumed);
-			case 1: return new Model_TestsAssignment_2(parent, next, actIndex, consumed);
+			case 0: return new Model_ContraintsAssignment_2_0_1(parent, next, actIndex, consumed);
+			case 1: return new Model_Group_2_0_0(parent, next, actIndex, consumed);
 			case 2: return new Model_DescriptionAssignment_1(parent, next, actIndex, consumed);
 			case 3: return new Model_NameAssignment_0(parent, next, actIndex, consumed);
 			default: return parent.createParentFollower(next, actIndex , index - 4, consumed);
@@ -225,49 +309,113 @@ protected class Model_ContraintsAssignment_3 extends AssignmentToken  {
 }
 
 
+// "contains" contains+=TestMember*
+protected class Model_Group_2_1 extends GroupToken {
+	
+	public Model_Group_2_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public Group getGrammarElement() {
+		return grammarAccess.getModelAccess().getGroup_2_1();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new Model_ContainsAssignment_2_1_1(parent, this, 0, inst);
+			case 1: return new Model_ContainsKeyword_2_1_0(parent, this, 1, inst);
+			default: return null;
+		}	
+	}	
+		
+}
+
+// "contains"
+protected class Model_ContainsKeyword_2_1_0 extends KeywordToken  {
+	
+	public Model_ContainsKeyword_2_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public Keyword getGrammarElement() {
+		return grammarAccess.getModelAccess().getContainsKeyword_2_1_0();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new Model_DescriptionAssignment_1(parent, this, 0, inst);
+			case 1: return new Model_NameAssignment_0(parent, this, 1, inst);
+			default: return parent.createParentFollower(this, index, index - 2, inst);
+		}	
+	}	
+		
+}
+
+// contains+=TestMember*
+protected class Model_ContainsAssignment_2_1_1 extends AssignmentToken  {
+	
+	public Model_ContainsAssignment_2_1_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public Assignment getGrammarElement() {
+		return grammarAccess.getModelAccess().getContainsAssignment_2_1_1();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new TestMember_ImportURIAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}	
+		
+	protected IInstanceDescription tryConsumeVal() {
+		if((value = current.getConsumable("contains",false)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("contains");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IInstanceDescription param = getDescr((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getTestMemberRule().getType().getClassifier())) {
+				type = AssignmentType.PRC;
+				element = grammarAccess.getModelAccess().getContainsTestMemberParserRuleCall_2_1_1_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
+		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new Model_ContainsAssignment_2_1_1(parent, next, actIndex, consumed);
+			case 1: return new Model_ContainsKeyword_2_1_0(parent, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+
+
+
 /************ end Rule Model ****************/
 
 
 /************ begin Rule Tests ****************
  *
  * Tests:
- *   "TESTS" importURI=STRING;
+ *   importURI=STRING;
  *
  **/
 
-// "TESTS" importURI=STRING
-protected class Tests_Group extends GroupToken {
+// importURI=STRING
+protected class Tests_ImportURIAssignment extends AssignmentToken  {
 	
-	public Tests_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Tests_ImportURIAssignment(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
-	public Group getGrammarElement() {
-		return grammarAccess.getTestsAccess().getGroup();
-	}
-
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new Tests_ImportURIAssignment_1(parent, this, 0, inst);
-			default: return null;
-		}	
-	}	
-		
-	public IInstanceDescription tryConsume() {
-		if(!current.isInstanceOf(grammarAccess.getTestsRule().getType().getClassifier())) return null;
-		return tryConsumeVal();
-	}
-}
-
-// "TESTS"
-protected class Tests_TESTSKeyword_0 extends KeywordToken  {
-	
-	public Tests_TESTSKeyword_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	public Keyword getGrammarElement() {
-		return grammarAccess.getTestsAccess().getTESTSKeyword_0();
+	public Assignment getGrammarElement() {
+		return grammarAccess.getTestsAccess().getImportURIAssignment();
 	}
 
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
@@ -276,32 +424,16 @@ protected class Tests_TESTSKeyword_0 extends KeywordToken  {
 		}	
 	}	
 		
-}
-
-// importURI=STRING
-protected class Tests_ImportURIAssignment_1 extends AssignmentToken  {
-	
-	public Tests_ImportURIAssignment_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
+	public IInstanceDescription tryConsume() {
+		if(!current.isInstanceOf(grammarAccess.getTestsRule().getType().getClassifier())) return null;
+		return tryConsumeVal();
 	}
-	
-	public Assignment getGrammarElement() {
-		return grammarAccess.getTestsAccess().getImportURIAssignment_1();
-	}
-
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new Tests_TESTSKeyword_0(parent, this, 0, inst);
-			default: return null;
-		}	
-	}	
-		
 	protected IInstanceDescription tryConsumeVal() {
 		if((value = current.getConsumable("importURI",true)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("importURI");
 		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
 			type = AssignmentType.LRC;
-			element = grammarAccess.getTestsAccess().getImportURISTRINGTerminalRuleCall_1_0();
+			element = grammarAccess.getTestsAccess().getImportURISTRINGTerminalRuleCall_0();
 			return obj;
 		}
 		return null;
@@ -309,8 +441,51 @@ protected class Tests_ImportURIAssignment_1 extends AssignmentToken  {
 
 }
 
-
 /************ end Rule Tests ****************/
+
+
+/************ begin Rule TestMember ****************
+ *
+ * TestMember:
+ *   importURI=STRING;
+ *
+ **/
+
+// importURI=STRING
+protected class TestMember_ImportURIAssignment extends AssignmentToken  {
+	
+	public TestMember_ImportURIAssignment(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	public Assignment getGrammarElement() {
+		return grammarAccess.getTestMemberAccess().getImportURIAssignment();
+	}
+
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			default: return parent.createParentFollower(this, index, index, inst);
+		}	
+	}	
+		
+	public IInstanceDescription tryConsume() {
+		if(!current.isInstanceOf(grammarAccess.getTestMemberRule().getType().getClassifier())) return null;
+		return tryConsumeVal();
+	}
+	protected IInstanceDescription tryConsumeVal() {
+		if((value = current.getConsumable("importURI",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("importURI");
+		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
+			type = AssignmentType.LRC;
+			element = grammarAccess.getTestMemberAccess().getImportURISTRINGTerminalRuleCall_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+/************ end Rule TestMember ****************/
 
 
 /************ begin Rule Constraint ****************

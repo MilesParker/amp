@@ -7,9 +7,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.amp.amf.parameters.AParInterpreter;
 import org.eclipse.amp.amf.parameters.aPar.Model;
-import org.eclipse.amp.amf.parameters.scoping.AParImportResolver;
 import org.eclipse.amp.amf.parameters.scoping.AParScopeProvider;
+import org.eclipse.amp.amf.testing.ATestInterpreter;
 import org.eclipse.amp.amf.testing.aTest.Constraint;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -49,14 +50,13 @@ public class ATestScopeProvider extends AParScopeProvider {
             Constraint constraint = (Constraint) object;
             List<IScopedElement> allElems = new ArrayList<IScopedElement>();
             if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAgent()
-                || reference.getEType() == MetaABMPackage.eINSTANCE.getSAttribute()
-                || reference.getEType() == MetaABMPackage.eINSTANCE.getSStateValue()) {
+                    || reference.getEType() == MetaABMPackage.eINSTANCE.getSAttribute()
+                    || reference.getEType() == MetaABMPackage.eINSTANCE.getSStateValue()) {
                 ResourceSet resourceSet = object.eResource().getResourceSet();
-                URI testFileURI = object.eResource().getURI();
-                testFileURI = testFileURI.trimFileExtension().appendFileExtension("apar");
-                Resource aparAnalog = resourceSet.getResource(testFileURI, true);
+                URI aparURI = ATestInterpreter.getParameterURI(object.eResource());
+                Resource aparAnalog = resourceSet.getResource(aparURI, true);
                 Model aparModel = (Model) aparAnalog.getContents().get(0);
-                Resource agentModel = resourceSet.getResource(URI.createURI(AParImportResolver.convertURI(aparModel
+                Resource agentModel = resourceSet.getResource(URI.createURI(AParInterpreter.convertURI(aparModel
                                                                                                           .getModel().get(0)), true), true);
                 if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAgent()) {
                     for (Resource resource : resourceSet.getResources()) {

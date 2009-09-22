@@ -21,9 +21,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ATest.ecore#//Model/description"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ATest.ecore#//Model/tests"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ATest.ecore#//Model/contraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ATest.ecore#//Model/contains"/>
     </genClasses>
     <genClasses ecoreClass="ATest.ecore#//Tests">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ATest.ecore#//Tests/importURI"/>
+    </genClasses>
+    <genClasses ecoreClass="ATest.ecore#//TestMember">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ATest.ecore#//TestMember/importURI"/>
     </genClasses>
     <genClasses ecoreClass="ATest.ecore#//Constraint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ATest.ecore#//Constraint/measure"/>

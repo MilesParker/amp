@@ -17,6 +17,8 @@
 package org.eclipse.amp.amf.testing.scoping;
 
 import org.eclipse.amp.amf.parameters.scoping.AParImportResolver;
+import org.eclipse.amp.amf.testing.ATestInterpreter;
+import org.eclipse.amp.amf.testing.aTest.TestMember;
 import org.eclipse.amp.amf.testing.aTest.Tests;
 import org.eclipse.emf.ecore.EObject;
 
@@ -29,21 +31,21 @@ import com.google.inject.Singleton;
  */
 @Singleton
 public class ATestImportResolver extends AParImportResolver {
+
     /**
      * @param object
      * @return
      * @see org.eclipse.xtext.scoping.impl.ImportUriResolver#resolve(org.eclipse.emf.ecore.EObject)
      */
     public String resolve(EObject object) {
+        // TODO check for right import file extension, i.e. apar vs. atest
         if (object instanceof Tests) {
             Tests model = (Tests) object;
-            model.setImportURI(convertURI(model));
+            model.setImportURI(ATestInterpreter.convertURI(model));
+        } else if (object instanceof TestMember) {
+            TestMember member = (TestMember) object;
+            member.setImportURI(ATestInterpreter.convertURI(member));
         }
         return super.resolve(object);
     }
-
-    public static String convertURI(Tests tests) {
-        return convertURI(tests, tests.getImportURI());
-    }
-
 }

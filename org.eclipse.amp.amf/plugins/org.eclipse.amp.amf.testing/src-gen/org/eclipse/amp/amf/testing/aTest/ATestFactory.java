@@ -44,6 +44,15 @@ public interface ATestFactory extends EFactory
   Tests createTests();
 
   /**
+   * Returns a new object of class '<em>Test Member</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Test Member</em>'.
+   * @generated
+   */
+  TestMember createTestMember();
+
+  /**
    * Returns a new object of class '<em>Constraint</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

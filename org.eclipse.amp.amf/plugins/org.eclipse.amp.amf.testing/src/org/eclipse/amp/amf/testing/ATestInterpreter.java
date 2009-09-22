@@ -20,15 +20,13 @@ import org.eclipse.amp.amf.abase.ICached;
 import org.eclipse.amp.amf.abase.IInterpreterProvider;
 import org.eclipse.amp.amf.abase.aBase.IntValue;
 import org.eclipse.amp.amf.abase.aBase.RealValue;
-import org.eclipse.amp.amf.parameters.AParFactory;
 import org.eclipse.amp.amf.parameters.AParInterpreter;
-import org.eclipse.amp.amf.testing.aTest.Constraint;
 import org.eclipse.amp.amf.testing.aTest.Model;
-import org.eclipse.core.runtime.Status;
+import org.eclipse.amp.amf.testing.aTest.TestMember;
+import org.eclipse.amp.amf.testing.aTest.Tests;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.ui.statushandlers.StatusManager;
 
 /**
  * 
@@ -50,21 +48,12 @@ public class ATestInterpreter implements ICached {
     private Resource resource;
 
     public void load(Resource resource) {
-        aParCache = AParFactory.createPooled(resource.getResourceSet());
+        //    aParCache = AParFactory.createPooled(resource.getResourceSet());
 
         this.resource = resource;
 
         atestModel = (Model) resource.getContents().get(0);
 
-        URI aparLoc = resource.getURI().trimFileExtension().appendFileExtension("apar");
-        Resource aparAnalog = resource.getResourceSet().getResource(aparLoc, true);
-        if (aparAnalog == null) {
-            StatusManager.getManager().handle(
-                                              new Status(Status.WARNING, "org.eclipse.amp.amf.parameters",
-                                              "Couldn't locate apar resource."));
-        } else {
-            aparInterpreter = (AParInterpreter) aParCache.getInterpreter(aparLoc);
-        }
     }
 
     public Model getModel() {
@@ -73,37 +62,6 @@ public class ATestInterpreter implements ICached {
 
     public AParInterpreter getAparInterpreter() {
         return aparInterpreter;
-    }
-
-    public String getConstraintString() {
-        String constraintString = "";
-        for (Constraint constraint : atestModel.getContraints()) {
-            constraintString += constraint.getAttribute().getID() + "\t" + doubleValue(constraint.getMinValue()) + "\t"
-            + doubleValue(constraint.getMinValue()) + "\r";
-        }
-        return constraintString;
-    }
-
-    public static double doubleValue(EObject constraintValue) {
-        if (constraintValue instanceof IntValue) {
-            return Integer.valueOf(((IntValue) constraintValue).getValue());
-        } else if (constraintValue instanceof RealValue) {
-            return Double.valueOf(((RealValue) constraintValue).getValue());
-        } else if (constraintValue == null) {
-            return Double.NaN;
-        }
-        throw new RuntimeException("Unexpected value for constraint.");
-    }
-
-    public static String stringValue(EObject constraintValue) {
-        if (constraintValue instanceof IntValue) {
-            return ((IntValue) constraintValue).getValue();
-        } else if (constraintValue instanceof RealValue) {
-            return ((RealValue) constraintValue).getValue();
-        } else if (constraintValue == null) {
-            return "N/A";
-        }
-        throw new RuntimeException("Unexpected value for constraint.");
     }
 
     /**
@@ -119,6 +77,38 @@ public class ATestInterpreter implements ICached {
      */
     public void setCache(IInterpreterProvider cache) {
         this.aParCache = cache;
+    }
+
+    public static String convertURI(TestMember importModel) {
+        return AParInterpreter.convertURI(importModel, importModel.getImportURI());
+    }
+
+    public static String convertURI(Tests tests) {
+        return AParInterpreter.convertURI(tests, tests.getImportURI());
+    }
+
+    public static URI getParameterURI(Resource resource) {
+        URI aparURI = null;
+        Model model = (Model) resource.getContents().get(0);
+        if (model.getTests() != null) {
+            String convertURI = ATestInterpreter.convertURI(model.getTests());
+            aparURI = URI.createURI(convertURI);
+        } else {
+            aparURI = resource.getURI().trimFileExtension().appendFileExtension("apar");
+        }
+        return aparURI;
+    }
+
+
+    public static double doubleValue(EObject constraintValue) {
+        if (constraintValue instanceof IntValue) {
+            return Integer.valueOf(((IntValue) constraintValue).getValue());
+        } else if (constraintValue instanceof RealValue) {
+            return Double.valueOf(((RealValue) constraintValue).getValue());
+        } else if (constraintValue == null) {
+            return Double.NaN;
+        }
+        throw new RuntimeException("Unexpected value for constraint.");
     }
 
     // /**

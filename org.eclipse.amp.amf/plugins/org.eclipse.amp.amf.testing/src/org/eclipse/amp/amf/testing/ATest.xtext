@@ -8,11 +8,14 @@ import "platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.ecore"
 Model :
 	(name=STRING)?
 	(description=DESC_STRING)?
-	(tests=Tests)?
-	(contraints+=Constraint)*;
+	((('tests' tests=Tests)? (contraints+=Constraint)+) |
+	('contains' (contains+=TestMember)*))?;
 
 Tests :
-	'TESTS' importURI=STRING;
+	importURI=STRING;
+
+TestMember :
+	importURI=STRING;
 
 Constraint :
 	measure=Measure "(" agent=[SAgent|STRING] "." attribute=[SAttribute|STRING] ("=" qualifier=[SStateValue|STRING])? ")" ("=" "[" minValue=Value "," maxValue=Value "]");

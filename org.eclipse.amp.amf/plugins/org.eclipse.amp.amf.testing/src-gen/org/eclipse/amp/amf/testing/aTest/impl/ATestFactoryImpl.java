@@ -70,6 +70,7 @@ public class ATestFactoryImpl extends EFactoryImpl implements ATestFactory
     {
       case ATestPackage.MODEL: return createModel();
       case ATestPackage.TESTS: return createTests();
+      case ATestPackage.TEST_MEMBER: return createTestMember();
       case ATestPackage.CONSTRAINT: return createConstraint();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -130,6 +131,17 @@ public class ATestFactoryImpl extends EFactoryImpl implements ATestFactory
   {
     TestsImpl tests = new TestsImpl();
     return tests;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TestMember createTestMember()
+  {
+    TestMemberImpl testMember = new TestMemberImpl();
+    return testMember;
   }
 
   /**

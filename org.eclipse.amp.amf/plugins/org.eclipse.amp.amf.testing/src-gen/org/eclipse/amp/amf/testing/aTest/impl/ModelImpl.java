@@ -10,6 +10,7 @@ import java.util.Collection;
 import org.eclipse.amp.amf.testing.aTest.ATestPackage;
 import org.eclipse.amp.amf.testing.aTest.Constraint;
 import org.eclipse.amp.amf.testing.aTest.Model;
+import org.eclipse.amp.amf.testing.aTest.TestMember;
 import org.eclipse.amp.amf.testing.aTest.Tests;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -37,6 +38,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.amp.amf.testing.aTest.impl.ModelImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.testing.aTest.impl.ModelImpl#getTests <em>Tests</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.testing.aTest.impl.ModelImpl#getContraints <em>Contraints</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.testing.aTest.impl.ModelImpl#getContains <em>Contains</em>}</li>
  * </ul>
  * </p>
  *
@@ -103,6 +105,16 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @ordered
    */
   protected EList<Constraint> contraints;
+
+  /**
+   * The cached value of the '{@link #getContains() <em>Contains</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getContains()
+   * @generated
+   * @ordered
+   */
+  protected EList<TestMember> contains;
 
   /**
    * <!-- begin-user-doc -->
@@ -238,6 +250,20 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<TestMember> getContains()
+  {
+    if (contains == null)
+    {
+      contains = new EObjectContainmentEList<TestMember>(TestMember.class, this, ATestPackage.MODEL__CONTAINS);
+    }
+    return contains;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -247,6 +273,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         return basicSetTests(null, msgs);
       case ATestPackage.MODEL__CONTRAINTS:
         return ((InternalEList<?>)getContraints()).basicRemove(otherEnd, msgs);
+      case ATestPackage.MODEL__CONTAINS:
+        return ((InternalEList<?>)getContains()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -269,6 +297,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         return getTests();
       case ATestPackage.MODEL__CONTRAINTS:
         return getContraints();
+      case ATestPackage.MODEL__CONTAINS:
+        return getContains();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -297,6 +327,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         getContraints().clear();
         getContraints().addAll((Collection<? extends Constraint>)newValue);
         return;
+      case ATestPackage.MODEL__CONTAINS:
+        getContains().clear();
+        getContains().addAll((Collection<? extends TestMember>)newValue);
+        return;
     }
     super.eSet(featureID, newValue);
   }
@@ -323,6 +357,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
       case ATestPackage.MODEL__CONTRAINTS:
         getContraints().clear();
         return;
+      case ATestPackage.MODEL__CONTAINS:
+        getContains().clear();
+        return;
     }
     super.eUnset(featureID);
   }
@@ -345,6 +382,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         return tests != null;
       case ATestPackage.MODEL__CONTRAINTS:
         return contraints != null && !contraints.isEmpty();
+      case ATestPackage.MODEL__CONTAINS:
+        return contains != null && !contains.isEmpty();
     }
     return super.eIsSet(featureID);
   }

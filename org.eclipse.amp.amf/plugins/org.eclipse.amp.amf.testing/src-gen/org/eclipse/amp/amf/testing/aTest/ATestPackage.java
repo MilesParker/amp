@@ -107,13 +107,22 @@ public interface ATestPackage extends EPackage
   int MODEL__CONTRAINTS = 3;
 
   /**
+   * The feature id for the '<em><b>Contains</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODEL__CONTAINS = 4;
+
+  /**
    * The number of structural features of the '<em>Model</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL_FEATURE_COUNT = 4;
+  int MODEL_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link org.eclipse.amp.amf.testing.aTest.impl.TestsImpl <em>Tests</em>}' class.
@@ -144,6 +153,34 @@ public interface ATestPackage extends EPackage
   int TESTS_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link org.eclipse.amp.amf.testing.aTest.impl.TestMemberImpl <em>Test Member</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.amp.amf.testing.aTest.impl.TestMemberImpl
+   * @see org.eclipse.amp.amf.testing.aTest.impl.ATestPackageImpl#getTestMember()
+   * @generated
+   */
+  int TEST_MEMBER = 2;
+
+  /**
+   * The feature id for the '<em><b>Import URI</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEST_MEMBER__IMPORT_URI = 0;
+
+  /**
+   * The number of structural features of the '<em>Test Member</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEST_MEMBER_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link org.eclipse.amp.amf.testing.aTest.impl.ConstraintImpl <em>Constraint</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -151,7 +188,7 @@ public interface ATestPackage extends EPackage
    * @see org.eclipse.amp.amf.testing.aTest.impl.ATestPackageImpl#getConstraint()
    * @generated
    */
-  int CONSTRAINT = 2;
+  int CONSTRAINT = 3;
 
   /**
    * The feature id for the '<em><b>Measure</b></em>' attribute.
@@ -224,7 +261,7 @@ public interface ATestPackage extends EPackage
    * @see org.eclipse.amp.amf.testing.aTest.impl.ATestPackageImpl#getMeasure()
    * @generated
    */
-  int MEASURE = 3;
+  int MEASURE = 4;
 
 
   /**
@@ -282,6 +319,17 @@ public interface ATestPackage extends EPackage
   EReference getModel_Contraints();
 
   /**
+   * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.testing.aTest.Model#getContains <em>Contains</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Contains</em>'.
+   * @see org.eclipse.amp.amf.testing.aTest.Model#getContains()
+   * @see #getModel()
+   * @generated
+   */
+  EReference getModel_Contains();
+
+  /**
    * Returns the meta object for class '{@link org.eclipse.amp.amf.testing.aTest.Tests <em>Tests</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -301,6 +349,27 @@ public interface ATestPackage extends EPackage
    * @generated
    */
   EAttribute getTests_ImportURI();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.amp.amf.testing.aTest.TestMember <em>Test Member</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Test Member</em>'.
+   * @see org.eclipse.amp.amf.testing.aTest.TestMember
+   * @generated
+   */
+  EClass getTestMember();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.testing.aTest.TestMember#getImportURI <em>Import URI</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Import URI</em>'.
+   * @see org.eclipse.amp.amf.testing.aTest.TestMember#getImportURI()
+   * @see #getTestMember()
+   * @generated
+   */
+  EAttribute getTestMember_ImportURI();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.amp.amf.testing.aTest.Constraint <em>Constraint</em>}'.
@@ -454,6 +523,14 @@ public interface ATestPackage extends EPackage
     EReference MODEL__CONTRAINTS = eINSTANCE.getModel_Contraints();
 
     /**
+     * The meta object literal for the '<em><b>Contains</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MODEL__CONTAINS = eINSTANCE.getModel_Contains();
+
+    /**
      * The meta object literal for the '{@link org.eclipse.amp.amf.testing.aTest.impl.TestsImpl <em>Tests</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -470,6 +547,24 @@ public interface ATestPackage extends EPackage
      * @generated
      */
     EAttribute TESTS__IMPORT_URI = eINSTANCE.getTests_ImportURI();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.amp.amf.testing.aTest.impl.TestMemberImpl <em>Test Member</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.amp.amf.testing.aTest.impl.TestMemberImpl
+     * @see org.eclipse.amp.amf.testing.aTest.impl.ATestPackageImpl#getTestMember()
+     * @generated
+     */
+    EClass TEST_MEMBER = eINSTANCE.getTestMember();
+
+    /**
+     * The meta object literal for the '<em><b>Import URI</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TEST_MEMBER__IMPORT_URI = eINSTANCE.getTestMember_ImportURI();
 
     /**
      * The meta object literal for the '{@link org.eclipse.amp.amf.testing.aTest.impl.ConstraintImpl <em>Constraint</em>}' class.
