@@ -569,10 +569,9 @@ ISelectionChangedListener {
     }
 
     /**
-     * This inserts global actions before the "additions-end" separator. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
+     * This inserts global actions before the "additions-end" separator. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
-     * @generated
+     * @generated NOT
      */
     @Override
     protected void addGlobalActions(IMenuManager menuManager) {
