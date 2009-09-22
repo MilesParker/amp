@@ -13,11 +13,12 @@ import java.util.ArrayList;
 public class InternalATestLexer extends Lexer {
     public static final int RULE_ID=8;
     public static final int RULE_ANY_OTHER=13;
+    public static final int T29=29;
     public static final int T28=28;
     public static final int T27=27;
     public static final int T26=26;
     public static final int T25=25;
-    public static final int Tokens=29;
+    public static final int Tokens=30;
     public static final int T24=24;
     public static final int EOF=-1;
     public static final int RULE_SL_COMMENT=11;
@@ -181,10 +182,10 @@ public class InternalATestLexer extends Lexer {
     public final void mT21() throws RecognitionException {
         try {
             int _type = T21;
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:17:5: ( 'TESTS' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:17:7: 'TESTS'
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:17:5: ( 'tests' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:17:7: 'tests'
             {
-            match("TESTS"); 
+            match("tests"); 
 
 
             }
@@ -200,10 +201,11 @@ public class InternalATestLexer extends Lexer {
     public final void mT22() throws RecognitionException {
         try {
             int _type = T22;
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:18:5: ( '(' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:18:7: '('
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:18:5: ( 'contains' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:18:7: 'contains'
             {
-            match('('); 
+            match("contains"); 
+
 
             }
 
@@ -218,10 +220,10 @@ public class InternalATestLexer extends Lexer {
     public final void mT23() throws RecognitionException {
         try {
             int _type = T23;
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:19:5: ( '.' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:19:7: '.'
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:19:5: ( '(' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:19:7: '('
             {
-            match('.'); 
+            match('('); 
 
             }
 
@@ -236,10 +238,10 @@ public class InternalATestLexer extends Lexer {
     public final void mT24() throws RecognitionException {
         try {
             int _type = T24;
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:20:5: ( ')' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:20:7: ')'
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:20:5: ( '.' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:20:7: '.'
             {
-            match(')'); 
+            match('.'); 
 
             }
 
@@ -254,10 +256,10 @@ public class InternalATestLexer extends Lexer {
     public final void mT25() throws RecognitionException {
         try {
             int _type = T25;
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:21:5: ( '=' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:21:7: '='
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:21:5: ( ')' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:21:7: ')'
             {
-            match('='); 
+            match(')'); 
 
             }
 
@@ -272,10 +274,10 @@ public class InternalATestLexer extends Lexer {
     public final void mT26() throws RecognitionException {
         try {
             int _type = T26;
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:22:5: ( '[' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:22:7: '['
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:22:5: ( '=' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:22:7: '='
             {
-            match('['); 
+            match('='); 
 
             }
 
@@ -290,10 +292,10 @@ public class InternalATestLexer extends Lexer {
     public final void mT27() throws RecognitionException {
         try {
             int _type = T27;
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:23:5: ( ',' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:23:7: ','
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:23:5: ( '[' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:23:7: '['
             {
-            match(','); 
+            match('['); 
 
             }
 
@@ -308,10 +310,10 @@ public class InternalATestLexer extends Lexer {
     public final void mT28() throws RecognitionException {
         try {
             int _type = T28;
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:24:5: ( ']' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:24:7: ']'
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:24:5: ( ',' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:24:7: ','
             {
-            match(']'); 
+            match(','); 
 
             }
 
@@ -322,14 +324,32 @@ public class InternalATestLexer extends Lexer {
     }
     // $ANTLR end T28
 
+    // $ANTLR start T29
+    public final void mT29() throws RecognitionException {
+        try {
+            int _type = T29;
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:25:5: ( ']' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:25:7: ']'
+            {
+            match(']'); 
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T29
+
     // $ANTLR start RULE_INTEGER
     public final void mRULE_INTEGER() throws RecognitionException {
         try {
             int _type = RULE_INTEGER;
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1110:14: ( ( '-' )? ( '0' .. '9' )+ )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1110:16: ( '-' )? ( '0' .. '9' )+
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1256:14: ( ( '-' )? ( '0' .. '9' )+ )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1256:16: ( '-' )? ( '0' .. '9' )+
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1110:16: ( '-' )?
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1256:16: ( '-' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -338,7 +358,7 @@ public class InternalATestLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1110:16: '-'
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1256:16: '-'
                     {
                     match('-'); 
 
@@ -347,7 +367,7 @@ public class InternalATestLexer extends Lexer {
 
             }
 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1110:21: ( '0' .. '9' )+
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1256:21: ( '0' .. '9' )+
             int cnt2=0;
             loop2:
             do {
@@ -361,7 +381,7 @@ public class InternalATestLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1110:22: '0' .. '9'
+            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1256:22: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -391,10 +411,10 @@ public class InternalATestLexer extends Lexer {
     public final void mRULE_REAL() throws RecognitionException {
         try {
             int _type = RULE_REAL;
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1112:11: ( ( '-' )? ( '0' .. '9' )* '.' ( '0' .. '9' )* )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1112:13: ( '-' )? ( '0' .. '9' )* '.' ( '0' .. '9' )*
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1258:11: ( ( '-' )? ( '0' .. '9' )* '.' ( '0' .. '9' )* )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1258:13: ( '-' )? ( '0' .. '9' )* '.' ( '0' .. '9' )*
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1112:13: ( '-' )?
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1258:13: ( '-' )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -403,7 +423,7 @@ public class InternalATestLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1112:13: '-'
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1258:13: '-'
                     {
                     match('-'); 
 
@@ -412,7 +432,7 @@ public class InternalATestLexer extends Lexer {
 
             }
 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1112:18: ( '0' .. '9' )*
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1258:18: ( '0' .. '9' )*
             loop4:
             do {
                 int alt4=2;
@@ -425,7 +445,7 @@ public class InternalATestLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1112:19: '0' .. '9'
+            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1258:19: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -438,7 +458,7 @@ public class InternalATestLexer extends Lexer {
             } while (true);
 
             match('.'); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1112:34: ( '0' .. '9' )*
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1258:34: ( '0' .. '9' )*
             loop5:
             do {
                 int alt5=2;
@@ -451,7 +471,7 @@ public class InternalATestLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1112:35: '0' .. '9'
+            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1258:35: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -477,11 +497,11 @@ public class InternalATestLexer extends Lexer {
     public final void mRULE_DESC_STRING() throws RecognitionException {
         try {
             int _type = RULE_DESC_STRING;
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1114:18: ( '\\u00AB' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' ) | ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) ) )* '\\u00BB' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1114:20: '\\u00AB' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' ) | ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) ) )* '\\u00BB'
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1260:18: ( '\\u00AB' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' ) | ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) ) )* '\\u00BB' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1260:20: '\\u00AB' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' ) | ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) ) )* '\\u00BB'
             {
             match('\u00AB'); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1114:29: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' ) | ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) ) )*
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1260:29: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' ) | ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) ) )*
             loop6:
             do {
                 int alt6=3;
@@ -497,7 +517,7 @@ public class InternalATestLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1114:30: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' )
+            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1260:30: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t'||input.LA(1)=='\u00AB'||input.LA(1)=='\u00BB' ) {
@@ -514,7 +534,7 @@ public class InternalATestLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1114:80: ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) )
+            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1260:80: ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\u00AA')||(input.LA(1)>='\u00AC' && input.LA(1)<='\u00BA')||(input.LA(1)>='\u00BC' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -550,10 +570,10 @@ public class InternalATestLexer extends Lexer {
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1116:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1116:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1262:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1262:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1116:11: ( '^' )?
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1262:11: ( '^' )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -562,7 +582,7 @@ public class InternalATestLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1116:11: '^'
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1262:11: '^'
                     {
                     match('^'); 
 
@@ -581,7 +601,7 @@ public class InternalATestLexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1116:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1262:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop8:
             do {
                 int alt8=2;
@@ -629,10 +649,10 @@ public class InternalATestLexer extends Lexer {
     public final void mRULE_INT() throws RecognitionException {
         try {
             int _type = RULE_INT;
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1118:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1118:12: ( '0' .. '9' )+
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1264:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1264:12: ( '0' .. '9' )+
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1118:12: ( '0' .. '9' )+
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1264:12: ( '0' .. '9' )+
             int cnt9=0;
             loop9:
             do {
@@ -646,7 +666,7 @@ public class InternalATestLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1118:13: '0' .. '9'
+            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1264:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -676,10 +696,10 @@ public class InternalATestLexer extends Lexer {
     public final void mRULE_STRING() throws RecognitionException {
         try {
             int _type = RULE_STRING;
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1120:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1120:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1266:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1266:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1120:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1266:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -691,16 +711,16 @@ public class InternalATestLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1120:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )", 12, 0, input);
+                    new NoViableAltException("1266:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )", 12, 0, input);
 
                 throw nvae;
             }
             switch (alt12) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1120:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1266:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1120:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1266:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop10:
                     do {
                         int alt10=3;
@@ -716,7 +736,7 @@ public class InternalATestLexer extends Lexer {
 
                         switch (alt10) {
                     	case 1 :
-                    	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1120:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1266:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -733,7 +753,7 @@ public class InternalATestLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1120:62: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1266:62: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -759,10 +779,10 @@ public class InternalATestLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1120:82: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1266:82: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1120:87: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1266:87: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop11:
                     do {
                         int alt11=3;
@@ -778,7 +798,7 @@ public class InternalATestLexer extends Lexer {
 
                         switch (alt11) {
                     	case 1 :
-                    	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1120:88: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1266:88: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -795,7 +815,7 @@ public class InternalATestLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1120:129: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1266:129: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -837,12 +857,12 @@ public class InternalATestLexer extends Lexer {
     public final void mRULE_ML_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_ML_COMMENT;
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1122:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1122:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1268:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1268:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1122:24: ( options {greedy=false; } : . )*
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1268:24: ( options {greedy=false; } : . )*
             loop13:
             do {
                 int alt13=2;
@@ -867,7 +887,7 @@ public class InternalATestLexer extends Lexer {
 
                 switch (alt13) {
             	case 1 :
-            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1122:52: .
+            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1268:52: .
             	    {
             	    matchAny(); 
 
@@ -895,12 +915,12 @@ public class InternalATestLexer extends Lexer {
     public final void mRULE_SL_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_SL_COMMENT;
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1124:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1124:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1270:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1270:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1124:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1270:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop14:
             do {
                 int alt14=2;
@@ -913,7 +933,7 @@ public class InternalATestLexer extends Lexer {
 
                 switch (alt14) {
             	case 1 :
-            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1124:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1270:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -934,7 +954,7 @@ public class InternalATestLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1124:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1270:40: ( ( '\\r' )? '\\n' )?
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -943,9 +963,9 @@ public class InternalATestLexer extends Lexer {
             }
             switch (alt16) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1124:41: ( '\\r' )? '\\n'
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1270:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1124:41: ( '\\r' )?
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1270:41: ( '\\r' )?
                     int alt15=2;
                     int LA15_0 = input.LA(1);
 
@@ -954,7 +974,7 @@ public class InternalATestLexer extends Lexer {
                     }
                     switch (alt15) {
                         case 1 :
-                            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1124:41: '\\r'
+                            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1270:41: '\\r'
                             {
                             match('\r'); 
 
@@ -984,10 +1004,10 @@ public class InternalATestLexer extends Lexer {
     public final void mRULE_WS() throws RecognitionException {
         try {
             int _type = RULE_WS;
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1126:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1126:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1272:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1272:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1126:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1272:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt17=0;
             loop17:
             do {
@@ -1040,8 +1060,8 @@ public class InternalATestLexer extends Lexer {
     public final void mRULE_ANY_OTHER() throws RecognitionException {
         try {
             int _type = RULE_ANY_OTHER;
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1128:16: ( . )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1128:18: .
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1274:16: ( . )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1274:18: .
             {
             matchAny(); 
 
@@ -1055,8 +1075,8 @@ public class InternalATestLexer extends Lexer {
     // $ANTLR end RULE_ANY_OTHER
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:8: ( T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_INTEGER | RULE_REAL | RULE_DESC_STRING | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt18=25;
+        // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:8: ( T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | RULE_INTEGER | RULE_REAL | RULE_DESC_STRING | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt18=26;
         alt18 = dfa18.predict(input);
         switch (alt18) {
             case 1 :
@@ -1165,70 +1185,77 @@ public class InternalATestLexer extends Lexer {
                 }
                 break;
             case 16 :
-                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:70: RULE_INTEGER
+                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:70: T29
+                {
+                mT29(); 
+
+                }
+                break;
+            case 17 :
+                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:74: RULE_INTEGER
                 {
                 mRULE_INTEGER(); 
 
                 }
                 break;
-            case 17 :
-                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:83: RULE_REAL
+            case 18 :
+                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:87: RULE_REAL
                 {
                 mRULE_REAL(); 
 
                 }
                 break;
-            case 18 :
-                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:93: RULE_DESC_STRING
+            case 19 :
+                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:97: RULE_DESC_STRING
                 {
                 mRULE_DESC_STRING(); 
 
                 }
                 break;
-            case 19 :
-                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:110: RULE_ID
+            case 20 :
+                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:114: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 20 :
-                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:118: RULE_INT
+            case 21 :
+                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:122: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 21 :
-                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:127: RULE_STRING
+            case 22 :
+                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:131: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 22 :
-                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:139: RULE_ML_COMMENT
+            case 23 :
+                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:143: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 23 :
-                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:155: RULE_SL_COMMENT
+            case 24 :
+                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:159: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 24 :
-                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:171: RULE_WS
+            case 25 :
+                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:175: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 25 :
-                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:179: RULE_ANY_OTHER
+            case 26 :
+                // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/contentassist/antlr/internal/InternalATest.g:1:183: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1242,122 +1269,133 @@ public class InternalATestLexer extends Lexer {
 
     protected DFA18 dfa18 = new DFA18(this);
     static final String DFA18_eotS =
-        "\1\uffff\7\32\1\uffff\1\43\5\uffff\1\30\1\53\2\30\1\uffff\3\30\2"+
-        "\uffff\1\32\1\uffff\7\32\10\uffff\1\53\1\uffff\1\53\5\uffff\2\32"+
-        "\1\74\7\32\1\uffff\2\32\1\106\2\32\1\111\3\32\1\uffff\1\115\1\116"+
-        "\1\uffff\3\32\2\uffff\1\122\1\123\1\124\3\uffff";
+        "\1\uffff\7\32\1\uffff\1\44\5\uffff\1\30\1\54\2\30\1\uffff\3\30\2"+
+        "\uffff\1\32\1\uffff\10\32\10\uffff\1\54\1\uffff\1\54\5\uffff\2\32"+
+        "\1\76\10\32\1\uffff\2\32\1\111\3\32\1\115\3\32\1\uffff\1\121\1\122"+
+        "\1\32\1\uffff\3\32\2\uffff\1\32\1\130\1\131\1\132\1\32\3\uffff\1"+
+        "\134\1\uffff";
     static final String DFA18_eofS =
-        "\125\uffff";
+        "\135\uffff";
     static final String DFA18_minS =
-        "\1\0\1\157\1\166\1\165\1\141\1\162\1\141\1\105\1\uffff\1\60\5\uffff"+
+        "\1\0\1\157\1\166\1\165\1\141\1\145\1\141\1\157\1\uffff\1\60\5\uffff"+
         "\2\56\1\0\1\101\1\uffff\2\0\1\52\2\uffff\1\165\1\uffff\1\145\1\155"+
-        "\1\156\1\170\1\165\1\154\1\123\10\uffff\1\56\1\uffff\1\56\5\uffff"+
-        "\1\156\1\162\1\60\2\151\1\145\1\163\1\124\1\164\1\141\1\uffff\2"+
-        "\155\1\60\1\145\1\123\1\60\1\147\2\165\1\uffff\2\60\1\uffff\1\145"+
-        "\2\155\2\uffff\3\60\3\uffff";
+        "\1\170\1\156\1\165\1\163\1\154\1\156\10\uffff\1\56\1\uffff\1\56"+
+        "\5\uffff\1\156\1\162\1\60\2\151\1\145\1\164\1\163\2\164\1\141\1"+
+        "\uffff\2\155\1\60\1\163\1\145\1\141\1\60\1\147\2\165\1\uffff\2\60"+
+        "\1\151\1\uffff\1\145\2\155\2\uffff\1\156\3\60\1\163\3\uffff\1\60"+
+        "\1\uffff";
     static final String DFA18_maxS =
-        "\1\ufffe\1\157\1\166\1\165\1\151\1\162\1\141\1\105\1\uffff\1\71"+
+        "\1\ufffe\1\157\1\166\1\165\1\151\1\162\1\141\1\157\1\uffff\1\71"+
         "\5\uffff\2\71\1\ufffe\1\172\1\uffff\2\ufffe\1\57\2\uffff\1\165\1"+
-        "\uffff\1\145\1\155\1\156\1\170\1\165\1\154\1\123\10\uffff\1\71\1"+
-        "\uffff\1\71\5\uffff\1\156\1\162\1\172\2\151\1\145\1\163\1\124\1"+
-        "\164\1\141\1\uffff\2\155\1\172\1\145\1\123\1\172\1\147\2\165\1\uffff"+
-        "\2\172\1\uffff\1\145\2\155\2\uffff\3\172\3\uffff";
+        "\uffff\1\145\1\155\1\170\1\156\1\165\1\163\1\154\1\156\10\uffff"+
+        "\1\71\1\uffff\1\71\5\uffff\1\156\1\162\1\172\2\151\1\145\1\164\1"+
+        "\163\2\164\1\141\1\uffff\2\155\1\172\1\163\1\145\1\141\1\172\1\147"+
+        "\2\165\1\uffff\2\172\1\151\1\uffff\1\145\2\155\2\uffff\1\156\3\172"+
+        "\1\163\3\uffff\1\172\1\uffff";
     static final String DFA18_acceptS =
-        "\10\uffff\1\11\1\uffff\1\13\1\14\1\15\1\16\1\17\4\uffff\1\23\3\uffff"+
-        "\1\30\1\31\1\uffff\1\23\7\uffff\1\11\1\12\1\21\1\13\1\14\1\15\1"+
-        "\16\1\17\1\uffff\1\20\1\uffff\1\22\1\25\1\27\1\26\1\30\12\uffff"+
-        "\1\3\11\uffff\1\6\2\uffff\1\1\3\uffff\1\7\1\10\3\uffff\1\2\1\4\1"+
-        "\5";
+        "\10\uffff\1\12\1\uffff\1\14\1\15\1\16\1\17\1\20\4\uffff\1\24\3\uffff"+
+        "\1\31\1\32\1\uffff\1\24\10\uffff\1\12\1\13\1\22\1\14\1\15\1\16\1"+
+        "\17\1\20\1\uffff\1\21\1\uffff\1\23\1\26\1\27\1\30\1\31\13\uffff"+
+        "\1\3\12\uffff\1\6\3\uffff\1\1\3\uffff\1\10\1\7\5\uffff\1\2\1\5\1"+
+        "\4\1\uffff\1\11";
     static final String DFA18_specialS =
-        "\125\uffff}>";
+        "\135\uffff}>";
     static final String[] DFA18_transitionS = {
             "\11\30\2\27\2\30\1\27\22\30\1\27\1\30\1\24\4\30\1\25\1\10\1"+
             "\12\2\30\1\15\1\17\1\11\1\26\12\20\3\30\1\13\3\30\1\2\1\23\1"+
-            "\1\11\23\1\4\5\23\1\3\1\7\6\23\1\14\1\30\1\16\1\22\1\23\1\30"+
-            "\5\23\1\6\15\23\1\5\6\23\60\30\1\21\uff53\30",
+            "\1\11\23\1\4\5\23\1\3\7\23\1\14\1\30\1\16\1\22\1\23\1\30\2\23"+
+            "\1\7\2\23\1\6\15\23\1\5\6\23\60\30\1\21\uff53\30",
             "\1\31",
             "\1\33",
             "\1\34",
-            "\1\36\7\uffff\1\35",
-            "\1\37",
-            "\1\40",
+            "\1\35\7\uffff\1\36",
+            "\1\40\14\uffff\1\37",
             "\1\41",
+            "\1\42",
             "",
-            "\12\44",
-            "",
-            "",
-            "",
+            "\12\45",
             "",
             "",
-            "\1\44\1\uffff\12\52",
-            "\1\44\1\uffff\12\54",
-            "\u00ab\55\1\uffff\uff53\55",
+            "",
+            "",
+            "",
+            "\1\45\1\uffff\12\53",
+            "\1\45\1\uffff\12\55",
+            "\u00ab\56\1\uffff\uff53\56",
             "\32\32\4\uffff\1\32\1\uffff\32\32",
             "",
-            "\uffff\56",
-            "\uffff\56",
-            "\1\60\4\uffff\1\57",
+            "\uffff\57",
+            "\uffff\57",
+            "\1\60\4\uffff\1\61",
             "",
-            "",
-            "\1\62",
             "",
             "\1\63",
+            "",
             "\1\64",
             "\1\65",
             "\1\66",
             "\1\67",
             "\1\70",
             "\1\71",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\44\1\uffff\12\52",
-            "",
-            "\1\44\1\uffff\12\54",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\72",
             "\1\73",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\45\1\uffff\12\53",
+            "",
+            "\1\45\1\uffff\12\55",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\74",
             "\1\75",
-            "\1\76",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "\1\77",
             "\1\100",
             "\1\101",
             "\1\102",
             "\1\103",
-            "",
             "\1\104",
             "\1\105",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\1\106",
+            "",
             "\1\107",
             "\1\110",
             "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "\1\112",
             "\1\113",
             "\1\114",
-            "",
             "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
-            "",
+            "\1\116",
             "\1\117",
             "\1\120",
-            "\1\121",
-            "",
             "",
             "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\1\123",
+            "",
+            "\1\124",
+            "\1\125",
+            "\1\126",
+            "",
+            "",
+            "\1\127",
             "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
+            "\1\133",
             "",
             "",
+            "",
+            "\12\32\7\uffff\32\32\4\uffff\1\32\1\uffff\32\32",
             ""
     };
 
@@ -1391,7 +1429,7 @@ public class InternalATestLexer extends Lexer {
             this.transition = DFA18_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_INTEGER | RULE_REAL | RULE_DESC_STRING | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | RULE_INTEGER | RULE_REAL | RULE_DESC_STRING | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
     }
  
