@@ -25,6 +25,12 @@ import org.eclipse.core.runtime.IProgressMonitor;
  */
 public class RunMonitorView extends MonitorView {
 
+    int TIME_BETWEEN_UPDATES = 500;
+
+    long lastUpdateTime = 0;
+
+    long lastUpdatePeriod = 0;
+
     /**
      * Instantiates a new run monitor view.
      * 
@@ -58,19 +64,24 @@ public class RunMonitorView extends MonitorView {
         }
     }
 
-    long lastUpdatePeriod = 0;
 
     /**
      * @param model
      * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeUpdate(org.eclipse.amp.axf.core.IObservationProvider)
      */
     @Override
-    public void observeUpdate(IObservationProvider model) {
-        if (((IModel) model).getPeriod() - lastUpdatePeriod > 25) {
-            monitor.subTask("Period " + ((IModel) model).getPeriod()
-                            + (((IModel) model).getStopPeriod() > 0 ? " of " + ((IModel) model).getStopPeriod() : ""));
-            monitor.worked(10);
-            lastUpdatePeriod = ((IModel) model).getPeriod();
+    public void observeUpdate(IObservationProvider observed) {
+        if (System.currentTimeMillis() - lastUpdateTime > TIME_BETWEEN_UPDATES) {
+            IModel model = (IModel) observed;
+            monitor.subTask("Period " + model.getPeriod()
+                            + (model.getStopPeriod() > 0 ? " of " + model.getStopPeriod() : ""));
+            if (model.getStopPeriod() != Integer.MAX_VALUE) {
+                monitor.worked((int) (model.getPeriod() - lastUpdatePeriod));
+                lastUpdatePeriod = model.getPeriod();
+            } else {
+                monitor.worked(1);
+            }
+            lastUpdateTime = System.currentTimeMillis();
         }
     }
 
@@ -81,10 +92,11 @@ public class RunMonitorView extends MonitorView {
     @Override
     public void observeStart(IObservationProvider observed) {
         IModel model = (IModel) observed;
-        monitor.beginTask("Run " + model.getName(), model.getStopPeriod() > 0 ? model.getStopPeriod()
-            : IProgressMonitor.UNKNOWN);
+        monitor.beginTask("Run " + model.getName(), model.getStopPeriod() > 0
+                          && model.getStopPeriod() != Integer.MAX_VALUE ? model.getStopPeriod()
+                              : IProgressMonitor.UNKNOWN);
         monitor.subTask("Started");
-        monitor.worked(1);
+        // monitor.worked();
     }
 
     /**
