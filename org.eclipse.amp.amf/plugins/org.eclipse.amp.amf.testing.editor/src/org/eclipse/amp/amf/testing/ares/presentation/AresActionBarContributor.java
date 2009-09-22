@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresActionBarContributor.java,v 1.1 2009/07/31 21:50:19 mparker Exp $
+ * $Id: AresActionBarContributor.java,v 1.2 2009/09/22 02:05:08 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.presentation;
 
@@ -10,17 +10,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-
 import org.eclipse.emf.edit.ui.action.ControlAction;
 import org.eclipse.emf.edit.ui.action.CreateChildAction;
 import org.eclipse.emf.edit.ui.action.CreateSiblingAction;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
 import org.eclipse.emf.edit.ui.action.LoadResourceAction;
 import org.eclipse.emf.edit.ui.action.ValidateAction;
-
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
@@ -32,14 +29,12 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.SubContributionItem;
-
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.Viewer;
-
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
@@ -50,8 +45,8 @@ import org.eclipse.ui.PartInitException;
  * @generated
  */
 public class AresActionBarContributor
-    extends EditingDomainActionBarContributor
-    implements ISelectionChangedListener {
+extends EditingDomainActionBarContributor
+implements ISelectionChangedListener {
     /**
      * This keeps track of the active editor.
      * <!-- begin-user-doc -->
@@ -74,18 +69,35 @@ public class AresActionBarContributor
      * <!-- end-user-doc -->
      * @generated
      */
+    protected IAction openTestFileAction = new Action(AresEditorPlugin.INSTANCE
+.getString("_UI_OpenTestFile_menu_item")) {
+        @Override
+        public void run() {
+            try {
+                getPage().showView("org.eclipse.ui.views.PropertySheet");
+            } catch (PartInitException exception) {
+                AresEditorPlugin.INSTANCE.log(exception);
+            }
+        }
+    };
+
+    /**
+     * This action opens the Properties view. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @generated
+     */
     protected IAction showPropertiesViewAction =
         new Action(AresEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
-            @Override
-            public void run() {
-                try {
-                    getPage().showView("org.eclipse.ui.views.PropertySheet");
-                }
-                catch (PartInitException exception) {
-                    AresEditorPlugin.INSTANCE.log(exception);
-                }
+        @Override
+        public void run() {
+            try {
+                getPage().showView("org.eclipse.ui.views.PropertySheet");
             }
-        };
+            catch (PartInitException exception) {
+                AresEditorPlugin.INSTANCE.log(exception);
+            }
+        }
+    };
 
     /**
      * This action refreshes the viewer of the current editor if the editor
@@ -96,21 +108,21 @@ public class AresActionBarContributor
      */
     protected IAction refreshViewerAction =
         new Action(AresEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
-            @Override
-            public boolean isEnabled() {
-                return activeEditorPart instanceof IViewerProvider;
-            }
+        @Override
+        public boolean isEnabled() {
+            return activeEditorPart instanceof IViewerProvider;
+        }
 
-            @Override
-            public void run() {
-                if (activeEditorPart instanceof IViewerProvider) {
-                    Viewer viewer = ((IViewerProvider)activeEditorPart).getViewer();
-                    if (viewer != null) {
-                        viewer.refresh();
-                    }
+        @Override
+        public void run() {
+            if (activeEditorPart instanceof IViewerProvider) {
+                Viewer viewer = ((IViewerProvider)activeEditorPart).getViewer();
+                if (viewer != null) {
+                    viewer.refresh();
                 }
             }
-        };
+        }
+    };
 
     /**
      * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateChildAction} corresponding to each descriptor
@@ -202,11 +214,11 @@ public class AresActionBarContributor
         // Force an update because Eclipse hides empty menus now.
         //
         submenuManager.addMenuListener
-            (new IMenuListener() {
-                 public void menuAboutToShow(IMenuManager menuManager) {
-                     menuManager.updateAll(true);
-                 }
-             });
+        (new IMenuListener() {
+            public void menuAboutToShow(IMenuManager menuManager) {
+                menuManager.updateAll(true);
+            }
+        });
 
         addGlobalActions(submenuManager);
     }
@@ -345,7 +357,7 @@ public class AresActionBarContributor
             }
         }
     }
-        
+
     /**
      * This removes from the specified <code>manager</code> all {@link org.eclipse.jface.action.ActionContributionItem}s
      * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection.
@@ -397,17 +409,16 @@ public class AresActionBarContributor
     }
 
     /**
-     * This inserts global actions before the "additions-end" separator.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+     * This inserts global actions before the "additions-end" separator. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @generated NOT
      */
     @Override
     protected void addGlobalActions(IMenuManager menuManager) {
         menuManager.insertAfter("additions-end", new Separator("ui-actions"));
         menuManager.insertAfter("ui-actions", showPropertiesViewAction);
 
-        refreshViewerAction.setEnabled(refreshViewerAction.isEnabled());		
+        refreshViewerAction.setEnabled(refreshViewerAction.isEnabled());
         menuManager.insertAfter("ui-actions", refreshViewerAction);
 
         super.addGlobalActions(menuManager);

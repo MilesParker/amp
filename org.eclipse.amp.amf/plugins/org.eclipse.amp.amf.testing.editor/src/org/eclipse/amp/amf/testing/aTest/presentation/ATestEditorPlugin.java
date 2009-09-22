@@ -2,16 +2,14 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ATestEditorPlugin.java,v 1.1 2009/08/03 17:15:52 mparker Exp $
+ * $Id: ATestEditorPlugin.java,v 1.2 2009/09/22 02:05:08 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.aTest.presentation;
 
+import org.eclipse.amp.amf.abase.aBase.provider.ABaseEditPlugin;
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.metaabm.provider.MetaABMEditPlugin;
 
 /**
@@ -47,6 +45,7 @@ public final class ATestEditorPlugin extends EMFPlugin {
         super
             (new ResourceLocator [] {
                 MetaABMEditPlugin.INSTANCE,
+                ABaseEditPlugin.INSTANCE,
             });
     }
 
