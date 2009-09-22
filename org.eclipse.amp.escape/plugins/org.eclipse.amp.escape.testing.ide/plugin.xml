@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.ui.handlers">
       <handler
-            class="org.eclipse.amp.amf.testing.ide.ExecuteParameterTestHandler"
+            class="org.eclipse.amp.amf.testing.ide.ExecuteTestHandler"
             commandId="org.eclipse.amp.escape.runtime.test">
          <activeWhen>
             <reference
@@ -18,7 +18,7 @@
          </enabledWhen>
       </handler>
       <handler
-            class="org.eclipse.amp.amf.testing.ide.ExecuteParameterTestHandler5"
+            class="org.eclipse.amp.amf.testing.ide.ExecuteTestHandler5"
             commandId="org.eclipse.amp.escape.runtime.test5">
          <activeWhen>
             <reference

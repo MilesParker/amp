@@ -25,9 +25,9 @@ import org.eclipse.amp.amf.parameters.AParInterpreter;
 import org.eclipse.amp.amf.parameters.aPar.AParFactory;
 import org.eclipse.amp.amf.parameters.aPar.Parameter;
 import org.eclipse.amp.amf.testing.ATestInterpreter;
-import org.eclipse.amp.amf.testing.ATestProvider;
 import org.eclipse.amp.amf.testing.aTest.ATestFactory;
 import org.eclipse.amp.amf.testing.aTest.Constraint;
+import org.eclipse.amp.amf.testing.aTest.Model;
 import org.eclipse.amp.amf.testing.ares.ConstraintTest;
 import org.eclipse.amp.amf.testing.ares.Issue;
 import org.eclipse.amp.amf.testing.ares.ResultType;
@@ -36,7 +36,6 @@ import org.eclipse.amp.amf.testing.ares.RunSet;
 import org.eclipse.amp.amf.testing.ares.impl.AresFactoryImpl;
 import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -44,8 +43,12 @@ import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ui.statushandlers.StatusManager;
 import org.metaabm.SAttributeType;
+import org.metaabm.SContext;
 
 /**
  * 
@@ -95,32 +98,19 @@ public class TestRun {
 
     private IProject project;
 
-    private final TestRunSet testRunSet;
+    private TestRunSet testRunSet;
 
-    private IInterpreterProvider atestProvider;
+    private Resource aTestEMFResource;
 
-    private ATestInterpreter aTest;
+    private Model aTest;
 
-    private AParInterpreter apar;
+    private AParInterpreter aParInterpreter;
 
-    private final IResource aTestResource;
+    private org.eclipse.amp.amf.parameters.aPar.Model aPar;
 
-    public TestRun(TestRunSet testRunSet, RunSet runSet, IProject project, IResource atestResource) {
-        this.testRunSet = testRunSet;
-        this.runSet = runSet;
-        this.project = project;
-        this.aTestResource = atestResource;
-        atestProvider = ATestProvider.createPooled(null);
-    }
+    private SContext rootContext;
 
-    public TestRun(TestRunSet testRunSet, RunSet runSet, IProject project, IResource atestResource,
-            IInterpreterProvider atestProvider) {
-        this.testRunSet = testRunSet;
-        this.runSet = runSet;
-        this.project = project;
-        this.aTestResource = atestResource;
-        this.atestProvider = atestProvider;
-    }
+    private IInterpreterProvider aParPool;
 
     boolean loading;
 
@@ -130,18 +120,35 @@ public class TestRun {
 
     private boolean cancelled;
 
+    public TestRun(TestRunSet testRunSet, RunSet runSet, IProject project, Resource atestResource,
+            IInterpreterProvider aParPool) {
+        this.testRunSet = testRunSet;
+        this.runSet = runSet;
+        this.project = project;
+        this.aTestEMFResource = atestResource;
+        this.aParPool = aParPool;
+    }
+
+    // public TestRun(TestRunSet testRunSet, RunSet runSet, IProject project, IResource atestResource,
+    // IInterpreterProvider atestProvider) {
+    // this.testRunSet = testRunSet;
+    // this.runSet = runSet;
+    // this.project = project;
+    // this.aTestResource = atestResource;
+    // }
+
+
     private void loadInterpreter() {
         loading = true;
-        Job loadTest = new Job("Load " + aTestResource.getName()) {
+        Job loadTest = new Job("Load " + aTestEMFResource.getURI().trimFileExtension().lastSegment()) {
             protected IStatus run(IProgressMonitor monitor) {
                 try {
-                    aTest = (ATestInterpreter) atestProvider.getInterpreter(aTestResource);
-                    apar = aTest.getAparInterpreter();
+                    loadTest();
                     run = AresFactoryImpl.eINSTANCE.createRun();
-                    run.setParameterization(apar.getModel());
+                    run.setParameterization(aPar);
                     // Note that we need to clone for case where constraints or parameters change.
-                    run.setModel(apar.getRootContext());
-                    for (Constraint constraint : aTest.getModel().getContraints()) {
+                    run.setModel(rootContext);
+                    for (Constraint constraint : aTest.getContraints()) {
                         Constraint shallowCopy = ATestFactory.eINSTANCE.createConstraint();
                         shallowCopy.setAgent(constraint.getAgent());
                         shallowCopy.setAttribute(constraint.getAttribute());
@@ -151,14 +158,14 @@ public class TestRun {
                         shallowCopy.setQualifier(constraint.getQualifier());
                         run.getConstraints().add(shallowCopy);
                     }
-                    for (Parameter param : aTest.getAparInterpreter().getModel().getParameters()) {
+                    for (Parameter param : aPar.getParameters()) {
                         Parameter shallowCopy = AParFactory.eINSTANCE.createParameter();
                         shallowCopy.setAttribute(param.getAttribute());
                         shallowCopy.setValue((Value) EcoreUtil.copy(param
                                                                     .getValue()));
                         run.getParameters().add(shallowCopy);
                     }
-                    run.setTest(aTest.getModel());
+                    run.setTest(aTest);
                     run.setStarted(new Date());
                     run.setResult(ResultType.INCOMPLETE);
                     loading = false;
@@ -168,10 +175,10 @@ public class TestRun {
                     }
                     return Status.OK_STATUS;
                 } catch (RuntimeException e) {
-                    testRunSet.testComplete(TestRun.this);
+                    testRunSet.testComplete(TestRun.this, true);
                     cancelled = true;
                     return new Status(IStatus.ERROR, "org.eclipse.amp.escape.testing.ide",
-                                      "Couldn't load interpreter file for " + aTestResource.getLocationURI(), e);
+                        "Couldn't load interpreter file for " + aTestEMFResource.getURI(), e);
                 }
             }
         };
@@ -185,6 +192,24 @@ public class TestRun {
         }
     }
 
+    public void loadTest() {
+        aTest = (Model) aTestEMFResource.getContents().get(0);
+
+        URI aparURI = ATestInterpreter.getParameterURI(aTestEMFResource);
+        Resource aparAnalog = testRunSet.getResourceSet().getResource(aparURI, true);
+        if (aparAnalog == null) {
+            StatusManager.getManager().handle(
+                                              new Status(Status.WARNING, "org.eclipse.amp.amf.parameters",
+                                              "Couldn't locate apar resource."));
+        } else {
+            aParInterpreter = (AParInterpreter) aParPool.getInterpreter(aparURI);
+            aPar = aParInterpreter.getModel();
+            Resource agentModelResource = testRunSet.getResourceSet()
+            .getResource(URI.createURI(AParInterpreter.convertURI(aPar.getModel().get(0)), true), true);
+            rootContext = (SContext) agentModelResource.getContents().get(0);
+        }
+    }
+
     private void run() {
         runner = new EclipseEscapeRunner() {
             private static final long serialVersionUID = 1L;
@@ -195,7 +220,7 @@ public class TestRun {
                     evaluateTest();
                 }
                 close();
-                testRunSet.testComplete(TestRun.this);
+                testRunSet.testComplete(TestRun.this, false);
             }
 
             /**
@@ -204,14 +229,15 @@ public class TestRun {
              * @see org.ascape.runtime.Runner#openImplementation(java.lang.String[], boolean)
              */
             public void openImplementation(String[] args, boolean block) {
-                apar.assignValues(new Object[] { getRootScape(), this }, status);
+                aParInterpreter.assignValues(new Object[] { getRootScape(), this }, status);
                 super.openImplementation(args, block);
             }
 
         };
         new MonitorParentStatus("Watch Run Set Monitor").start();
         runner.setAutoRestart(false);
-        runner.open(project, apar.getRootContext().getImplementation().getQualifiedName(), aTest.getResource().getURI()
+        runner.open(project, rootContext.getImplementation().getQualifiedName(), aTest.eResource()
+                    .getURI()
                     .trimFileExtension().lastSegment(), new String[] {}, false);
     }
 

@@ -8,7 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.amp.amf.abase.IInterpreterProvider;
-import org.eclipse.amp.amf.testing.ATestProvider;
+import org.eclipse.amp.amf.parameters.AParFactory;
+import org.eclipse.amp.amf.testing.ATestInterpreter;
+import org.eclipse.amp.amf.testing.aTest.Model;
+import org.eclipse.amp.amf.testing.aTest.TestMember;
 import org.eclipse.amp.amf.testing.ares.ResultType;
 import org.eclipse.amp.amf.testing.ares.RunSet;
 import org.eclipse.amp.amf.testing.ares.impl.AresFactoryImpl;
@@ -16,6 +19,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
@@ -53,12 +57,12 @@ public class TestRunSet {
 
     private MultiStatus status;
 
-    private IInterpreterProvider aTestPool;
+    private IInterpreterProvider aParPool;
 
     /**
      * The total number of tests waiting including multiple runs per resource
      */
-    private List<IResource> testsWaiting;
+    private List<Resource> testsWaiting;
 
     IProject project;
 
@@ -67,6 +71,8 @@ public class TestRunSet {
     private XMLParserPool parserPool = new XMLParserPoolImpl();
 
     private Map nameToFeatureMap = new HashMap();
+
+    private ResourceSet resourceSet;
 
     public TestRunSet(IProject project, List<IResource> testResources, String name, int runsPerTest) {
         super();
@@ -79,7 +85,7 @@ public class TestRunSet {
 
     protected void initialize() {
         monitor.subTask("Creating Test Resource");
-        ResourceSet resourceSet = new ResourceSetImpl();
+        resourceSet = new ResourceSetImpl();
 
         resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
         resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
@@ -87,7 +93,7 @@ public class TestRunSet {
         resourceSet.getLoadOptions().put(XMLResource.OPTION_USE_PARSER_POOL, parserPool);
         resourceSet.getLoadOptions().put(XMLResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);
 
-        aTestPool = ATestProvider.createPooled(resourceSet);
+        aParPool = AParFactory.createPooled(resourceSet);
 
         monitor.subTask("Creating Results");
         IFolder resultsFolder = project.getFolder("results");
@@ -129,10 +135,25 @@ public class TestRunSet {
 
         initialize();
         monitor.subTask("Preparing Tests");
-        testsWaiting = Collections.synchronizedList(new ArrayList<IResource>());
+        testsWaiting = Collections.synchronizedList(new ArrayList<Resource>());
         for (IResource resource : uniqueTests) {
-            for (int i = 0; i < runsPerTest; i++) {
-                testsWaiting.add(resource);
+
+            IPath modelPath = ((IFile) resource).getFullPath();
+            URI aTestURI = URI.createPlatformResourceURI(modelPath.toString(), true);
+            Resource atestResource = resourceSet.getResource(aTestURI, true);
+            Model testmodel = (Model) atestResource.getContents().get(0);
+            if (testmodel.getContains().size() == 0) {
+                for (int i = 0; i < runsPerTest; i++) {
+                    testsWaiting.add(atestResource);
+                }
+            } else {
+                for (TestMember member : testmodel.getContains()) {
+                    Resource emfResource = resourceSet.getResource(URI.createURI(ATestInterpreter.convertURI(member)),
+                                                                   true);
+                    for (int i = 0; i < runsPerTest; i++) {
+                        testsWaiting.add(emfResource);
+                    }
+                }
             }
         }
         // Release the unique tests so that the underlying resources can be gc'd when individual tests are removed.
@@ -162,12 +183,12 @@ public class TestRunSet {
     private synchronized void fillThreads() {
         monitor.subTask("(Filling Threads)");
         while (testsWaiting.size() > 0 && testInFlightCount < MAX_THREADS && !monitor.isCanceled()) {
-            final IResource nextATest = testsWaiting.remove(0);
+            final Resource nextATest = testsWaiting.remove(0);
             testInFlightCount++;
             // We don't want to block on load interpreter
             new Thread() {
                 public void run() {
-                    TestRun nextRun = new TestRun(TestRunSet.this, runSet, project, nextATest, aTestPool);
+                    TestRun nextRun = new TestRun(TestRunSet.this, runSet, project, nextATest, aParPool);
                     nextRun.runTest(monitor, status, false);
                 };
             }.start();
@@ -191,14 +212,16 @@ public class TestRunSet {
     /**
      * @param thread
      */
-    public void testComplete(TestRun run) {
+    public void testComplete(TestRun run, boolean loadFailure) {
         synchronized (this) {
             if (run.getRun() != null && run.getRun().getResult() == ResultType.SUCCESS) {
                 testSuccessCount++;
             }
             testCompleteCount++;
             testInFlightCount--;
-            runSet.getRuns().add(run.getRun());
+            if (!loadFailure) {
+                runSet.getRuns().add(run.getRun());
+            }
             fillThreads();
         }
         saveResults();
@@ -222,5 +245,9 @@ public class TestRunSet {
 
     public Map getNameToFeatureMap() {
         return nameToFeatureMap;
+    }
+
+    public ResourceSet getResourceSet() {
+        return resourceSet;
     }
 }

@@ -18,16 +18,15 @@ package org.eclipse.amp.amf.testing.ide;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ExecuteParameterTestHandler5.
+ * The Class ExecuteParameterTestHandlerOther.
  */
-public class ExecuteParameterTestHandler5 extends ExecuteParameterTestHandler {
-
+public class ExecuteTestHandlerOther extends ExecuteTestHandler {
 
     /**
-     * @return
-     * @see org.eclipse.amp.amf.testing.ide.ExecuteParameterTestHandler#getRunsPerTest()
+     * @param test
+     * @see org.eclipse.amp.escape.testng.ExecuteParameterTestHandler#assignSettings(org.testng.xml.XmlTest)
      */
-    public int getRunsPerTest() {
-        return 5;
-    }
+    // protected void assignSettings(XmlTest test) {
+    // test.addParameter("testCount", "5");
+    // }
 }

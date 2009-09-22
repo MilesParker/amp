@@ -37,7 +37,7 @@ import org.eclipse.ui.handlers.HandlerUtil;
 /**
  * The Class ExecuteParameterTestHandler.
  */
-public class ExecuteParameterTestHandler extends AbstractHandler {
+public class ExecuteTestHandler extends AbstractHandler {
 
     List<IResource> testResources;
     private IProject project;
