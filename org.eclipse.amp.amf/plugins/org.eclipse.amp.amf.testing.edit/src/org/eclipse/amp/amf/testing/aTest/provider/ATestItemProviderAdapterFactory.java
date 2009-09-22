@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ATestItemProviderAdapterFactory.java,v 1.2 2009/09/17 02:50:25 mparker Exp $
+ * $Id: ATestItemProviderAdapterFactory.java,v 1.3 2009/09/22 02:05:18 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.aTest.provider;
 
@@ -120,6 +120,29 @@ public class ATestItemProviderAdapterFactory extends ATestAdapterFactory impleme
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.testing.aTest.TestMember} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected TestMemberItemProvider testMemberItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.amp.amf.testing.aTest.TestMember}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createTestMemberAdapter() {
+        if (testMemberItemProvider == null) {
+            testMemberItemProvider = new TestMemberItemProvider(this);
+        }
+
+        return testMemberItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.testing.aTest.Constraint} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -192,7 +215,7 @@ public class ATestItemProviderAdapterFactory extends ATestAdapterFactory impleme
     public Object adapt(Object object, Object type) {
         if (isFactoryForType(type)) {
             Object adapter = super.adapt(object, type);
-            if (!(type instanceof Class<?>) || ((Class<?>)type).isInstance(adapter)) {
+            if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
                 return adapter;
             }
         }
@@ -241,15 +264,10 @@ public class ATestItemProviderAdapterFactory extends ATestAdapterFactory impleme
      * @generated
      */
     public void dispose() {
-        if (modelItemProvider != null) {
-            modelItemProvider.dispose();
-        }
-        if (testsItemProvider != null) {
-            testsItemProvider.dispose();
-        }
-        if (constraintItemProvider != null) {
-            constraintItemProvider.dispose();
-        }
+        if (modelItemProvider != null) modelItemProvider.dispose();
+        if (testsItemProvider != null) testsItemProvider.dispose();
+        if (testMemberItemProvider != null) testMemberItemProvider.dispose();
+        if (constraintItemProvider != null) constraintItemProvider.dispose();
     }
 
 }

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ModelItemProvider.java,v 1.2 2009/08/07 00:05:20 mparker Exp $
+ * $Id: ModelItemProvider.java,v 1.3 2009/09/22 02:05:18 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.aTest.provider;
 
@@ -67,18 +67,18 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     protected void addNamePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Model_name_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Model_name_feature", "_UI_Model_type"),
-                 ATestPackage.Literals.MODEL__NAME,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Model_name_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Model_name_feature", "_UI_Model_type"),
+          ATestPackage.Literals.MODEL__NAME,
+          true,
+          false,
+          false,
+          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+          null,
+          null));
     }
 
     /**
@@ -88,18 +88,18 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     protected void addDescriptionPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Model_description_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Model_description_feature", "_UI_Model_type"),
-                 ATestPackage.Literals.MODEL__DESCRIPTION,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Model_description_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Model_description_feature", "_UI_Model_type"),
+          ATestPackage.Literals.MODEL__DESCRIPTION,
+          true,
+          false,
+          false,
+          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+          null,
+          null));
     }
 
     /**
@@ -116,6 +116,7 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
             super.getChildrenFeatures(object);
             childrenFeatures.add(ATestPackage.Literals.MODEL__TESTS);
             childrenFeatures.add(ATestPackage.Literals.MODEL__CONTRAINTS);
+            childrenFeatures.add(ATestPackage.Literals.MODEL__CONTAINS);
         }
         return childrenFeatures;
     }
@@ -133,13 +134,13 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
     }
 
     /**
-     * This returns Model.gif.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
+     * This returns Model.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @generated NOT
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/Model"));
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/Test"));
     }
 
     /**
@@ -171,6 +172,7 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
                 return;
             case ATestPackage.MODEL__TESTS:
             case ATestPackage.MODEL__CONTRAINTS:
+            case ATestPackage.MODEL__CONTAINS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -188,14 +190,19 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
         super.collectNewChildDescriptors(newChildDescriptors, object);
 
         newChildDescriptors.add
-            (createChildParameter
-                (ATestPackage.Literals.MODEL__TESTS,
-                 ATestFactory.eINSTANCE.createTests()));
+        (createChildParameter
+         (ATestPackage.Literals.MODEL__TESTS,
+          ATestFactory.eINSTANCE.createTests()));
 
         newChildDescriptors.add
-            (createChildParameter
-                (ATestPackage.Literals.MODEL__CONTRAINTS,
-                 ATestFactory.eINSTANCE.createConstraint()));
+        (createChildParameter
+         (ATestPackage.Literals.MODEL__CONTRAINTS,
+          ATestFactory.eINSTANCE.createConstraint()));
+
+        newChildDescriptors.add
+        (createChildParameter
+         (ATestPackage.Literals.MODEL__CONTAINS,
+          ATestFactory.eINSTANCE.createTestMember()));
     }
 
     /**
