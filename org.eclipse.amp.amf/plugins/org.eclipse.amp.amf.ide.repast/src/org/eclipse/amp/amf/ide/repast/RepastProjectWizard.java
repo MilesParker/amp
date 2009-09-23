@@ -16,6 +16,8 @@ package org.eclipse.amp.amf.ide.repast;
 
 import java.util.List;
 
+import org.eclipse.amp.amf.gen.ide.DocumentModelBuilder;
+import org.eclipse.amp.amf.gen.ide.GenIDEPlugin;
 import org.eclipse.amp.amf.gen.ide.PluginProjectWizard;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
@@ -41,6 +43,7 @@ public class RepastProjectWizard extends PluginProjectWizard implements INewWiza
 
     public void addBuilders(List<String> builderIDs) {
         builderIDs.add(RepastIDEActivator.PLUGIN_ID + "." + RepastModelBuilder.REPAST_BUILDER_ID);
+        builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + DocumentModelBuilder.DOCUMENT_BUILDER_ID);
         super.addBuilders(builderIDs);
     }
 
