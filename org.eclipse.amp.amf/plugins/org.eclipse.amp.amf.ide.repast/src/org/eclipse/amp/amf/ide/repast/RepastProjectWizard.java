@@ -16,7 +16,7 @@ package org.eclipse.amp.amf.ide.repast;
 
 import java.util.List;
 
-import org.eclipse.amp.amf.gen.ide.MetaABMProjectWizard;
+import org.eclipse.amp.amf.gen.ide.PluginProjectWizard;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -25,17 +25,12 @@ import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.ui.INewWizard;
 
-public class RepastProjectWizard extends MetaABMProjectWizard implements INewWizard {
+public class RepastProjectWizard extends PluginProjectWizard implements INewWizard {
 
     public static String REPAST_HOME = "REPAST_HOME";
 
     public RepastProjectWizard() {
         super();
-        PROJECT_SOURCE_DIR = "srcgen";
-    }
-
-    public String getProjectTypeName() {
-        return "metaABM for Repast";
     }
 
     public void addClasspaths(List<IClasspathEntry> classpathEntries, IProject project) throws CoreException {
@@ -48,4 +43,13 @@ public class RepastProjectWizard extends MetaABMProjectWizard implements INewWiz
         builderIDs.add(RepastIDEActivator.PLUGIN_ID + "." + RepastModelBuilder.REPAST_BUILDER_ID);
         super.addBuilders(builderIDs);
     }
+
+    public String getSourceDirName() {
+        return "srcgen";
+    }
+
+    public String getProjectTypeName() {
+        return "MetaABM for Repast";
+    }
+
 }

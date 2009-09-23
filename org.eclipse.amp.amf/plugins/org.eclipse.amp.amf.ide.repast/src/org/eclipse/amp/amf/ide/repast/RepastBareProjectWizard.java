@@ -18,13 +18,12 @@ import java.util.List;
 
 public class RepastBareProjectWizard extends RepastProjectWizard {
 
-    public RepastBareProjectWizard() {
-        super();
-        PROJECT_SOURCE_DIR = "src";
-    }
-
     @Override
     public void addBuilders(List<String> builderIDs) {
         // Do nothing as we don't want any metaabm builders included.
+    }
+
+    public String getSourceDirName() {
+        return "src";
     }
 }
