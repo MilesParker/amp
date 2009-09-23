@@ -62,12 +62,24 @@ public class ExecuteTestHandler extends AbstractHandler {
             }
             Runner.setDisplayGraphics(false);
 
-            final String name = res.getName() + "-"
-                + DateFormatUtils.format(System.currentTimeMillis(), "yyMMddHHmm-SSSS");
+            final String name = getName(res);
 
             new TestRunSet(project, testResources, name, getRunsPerTest()).run();
         }
         return null;
+    }
+
+    private String getName(IResource res) {
+        String name = null;
+        if (res instanceof IFolder) {
+            IFolder folder = (IFolder) res;
+            name = folder.getProjectRelativePath().toPortableString().replace("/", "_");
+        } else {
+            res.getName();
+        }
+        name += "-"
+            + DateFormatUtils.format(System.currentTimeMillis(), "yyMMddHHmm-SSSS");
+        return name;
     }
 
     private void addResource(IResource res) {
