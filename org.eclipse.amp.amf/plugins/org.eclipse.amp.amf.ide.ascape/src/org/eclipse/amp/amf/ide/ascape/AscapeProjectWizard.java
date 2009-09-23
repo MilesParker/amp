@@ -16,6 +16,8 @@ package org.eclipse.amp.amf.ide.ascape;
 
 import java.util.List;
 
+import org.eclipse.amp.amf.gen.ide.DocumentModelBuilder;
+import org.eclipse.amp.amf.gen.ide.GenIDEPlugin;
 import org.eclipse.amp.amf.gen.ide.PluginTemplateProjectWizard;
 import org.eclipse.jdt.core.JavaCore;
 
@@ -36,6 +38,7 @@ public class AscapeProjectWizard extends PluginTemplateProjectWizard {
 
     public void addBuilders(List<String> builderIDs) {
         builderIDs.add(AscapeIDEActivator.PLUGIN_ID + "." + AscapeModelBuilder.ASCAPE_BUILDER_ID);
+        builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + DocumentModelBuilder.DOCUMENT_BUILDER_ID);
         super.addBuilders(builderIDs);
     }
 
