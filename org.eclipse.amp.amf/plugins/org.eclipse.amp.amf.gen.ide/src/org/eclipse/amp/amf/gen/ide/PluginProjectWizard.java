@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: PluginProjectWizard.java,v 1.1 2009/09/23 05:54:36 mparker Exp $
+ * </copyright> $Id: PluginProjectWizard.java,v 1.2 2009/09/23 06:03:53 mparker Exp $
  */
 package org.eclipse.amp.amf.gen.ide;
 
@@ -152,9 +152,6 @@ public abstract class PluginProjectWizard extends Wizard implements INewWizard {
     }
 
     public void addBuilders(List<String> builderIDs) {
-        builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + DocumentModelBuilder.DOCUMENT_BUILDER_ID);
         builderIDs.add(JavaCore.BUILDER_ID);
     }
-
-
 }
