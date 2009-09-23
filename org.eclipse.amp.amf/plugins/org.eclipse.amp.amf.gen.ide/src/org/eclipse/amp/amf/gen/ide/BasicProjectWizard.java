@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: BasicProjectWizard.java,v 1.1 2009/07/16 21:01:08 mparker Exp $
+ * </copyright> $Id: BasicProjectWizard.java,v 1.2 2009/09/23 05:54:36 mparker Exp $
  */
 package org.eclipse.amp.amf.gen.ide;
 
@@ -24,7 +24,7 @@ import org.eclipse.jdt.core.JavaCore;
  * @author milesparker
  * 
  */
-public class BasicProjectWizard extends MetaABMProjectWizard {
+public class BasicProjectWizard extends PluginProjectWizard {
 
     @Override
     public void addBuilders(List<String> builderIDs) {
@@ -32,4 +32,7 @@ public class BasicProjectWizard extends MetaABMProjectWizard {
         builderIDs.add(JavaCore.BUILDER_ID);
     }
 
+    public String getProjectTypeName() {
+        return "Basic";
+    }
 }

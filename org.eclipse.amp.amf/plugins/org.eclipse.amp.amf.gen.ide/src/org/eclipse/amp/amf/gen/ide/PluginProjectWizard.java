@@ -10,32 +10,23 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: MetaABMProjectWizard.java,v 1.1 2009/07/16 21:01:08 mparker Exp $
+ * </copyright> $Id: PluginProjectWizard.java,v 1.1 2009/09/23 05:54:36 mparker Exp $
  */
 package org.eclipse.amp.amf.gen.ide;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.StringBufferInputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.eclipse.core.resources.ICommand;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
@@ -46,17 +37,15 @@ import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.ui.statushandlers.StatusManager;
-import org.osgi.framework.Bundle;
 
 @SuppressWarnings("deprecation")
 /**
  * Creates a generic AMF project; intended for specialization.
+ * @author milesparker
  */
-public abstract class MetaABMProjectWizard extends Wizard implements INewWizard {
+public abstract class PluginProjectWizard extends Wizard implements INewWizard {
 
     private WizardNewProjectCreationPage metaABMProjectPage;
-
-    protected static String PROJECT_SOURCE_DIR = "srcgen";
 
     protected class StringPair {
         public String a;
@@ -69,7 +58,7 @@ public abstract class MetaABMProjectWizard extends Wizard implements INewWizard 
         }
     }
 
-    public MetaABMProjectWizard() {
+    public PluginProjectWizard() {
         super();
     }
 
@@ -93,8 +82,8 @@ public abstract class MetaABMProjectWizard extends Wizard implements INewWizard 
     public boolean performFinish() {
         try {
             IJavaProject javaProject = JavaCore.create(getProject());
-            final IProjectDescription projectDescription =
-                ResourcesPlugin.getWorkspace().newProjectDescription(metaABMProjectPage.getProjectName());
+            final IProjectDescription projectDescription = ResourcesPlugin.getWorkspace()
+            .newProjectDescription(metaABMProjectPage.getProjectName());
             projectDescription.setLocation(null);
 
             getProject().create(projectDescription, null);
@@ -124,8 +113,8 @@ public abstract class MetaABMProjectWizard extends Wizard implements INewWizard 
             return true;
         } catch (Exception exception) {
             StatusManager.getManager().handle(
-                                              new Status(IStatus.ERROR, "org.eclipse.amp.amf.ide",
-                                                         "Problem creating new metaABM project; ignoring.", exception));
+                                              new Status(IStatus.ERROR, getPluginID(), "Problem creating "
+                                                         + getProjectTypeName() + " project. Ignoring.", exception));
             try {
                 getProject().delete(true, null);
             } catch (Exception e) {
@@ -143,7 +132,7 @@ public abstract class MetaABMProjectWizard extends Wizard implements INewWizard 
     }
 
     public String getProjectTypeName() {
-        return "metaABM";
+        return "Plugin";
     }
 
     public String getPluginID() {
@@ -153,9 +142,13 @@ public abstract class MetaABMProjectWizard extends Wizard implements INewWizard 
     public void addClasspaths(List<IClasspathEntry> classpathEntries, IProject project) throws CoreException {
         classpathEntries.add(JavaCore.newContainerEntry(new Path("org.eclipse.jdt.launching.JRE_CONTAINER")));
         classpathEntries.add(JavaCore.newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins")));
-        IFolder srcFolder = project.getFolder(PROJECT_SOURCE_DIR);
+        IFolder srcFolder = project.getFolder(getSourceDirName());
         classpathEntries.add(JavaCore.newSourceEntry(srcFolder.getFullPath()));
         srcFolder.create(true, true, null);
+    }
+
+    public String getSourceDirName() {
+        return "src";
     }
 
     public void addBuilders(List<String> builderIDs) {
@@ -163,35 +156,5 @@ public abstract class MetaABMProjectWizard extends Wizard implements INewWizard 
         builderIDs.add(JavaCore.BUILDER_ID);
     }
 
-    public InputStream streamFromPlugin(String pluginID, String path) {
-        try {
-            Bundle bundle = Platform.getBundle(pluginID);
-            URL entry = bundle.getEntry(path);
-            if (entry == null) {
-                throw new RuntimeException("No resource:" + path + " found in plugin: " + pluginID);
-            }
-            return entry.openStream();
-        } catch (IOException e) {
-            throw new RuntimeException("Couldn't load project resource from plugin.", e);
-        }
-    }
 
-    public void copyFiles(IPath srcFileLoc, IPath destFileLoc, StringPair[] pairs)
-    throws CoreException, IOException {
-        InputStream srcStream = streamFromPlugin(getPluginID(), srcFileLoc.toString());
-        BufferedReader srcReader = new BufferedReader(new InputStreamReader(srcStream));
-        StringBuffer buffer = new StringBuffer();
-        String next = srcReader.readLine();
-        while (next != null) {
-            buffer.append(next + "\r\n");
-            next = srcReader.readLine();
-        }
-        String parsedText = buffer.toString();
-        for (StringPair p : pairs) {
-            parsedText = StringUtils.replace(parsedText, p.a, p.b);
-        }
-        InputStream is = new StringBufferInputStream(parsedText);
-        IFile destFile = getProject().getFile(destFileLoc);
-        destFile.create(is, true, null);
-    }
 }
