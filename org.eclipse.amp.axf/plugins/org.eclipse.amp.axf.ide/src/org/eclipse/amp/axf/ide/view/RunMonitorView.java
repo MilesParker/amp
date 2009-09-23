@@ -25,7 +25,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
  */
 public class RunMonitorView extends MonitorView {
 
-    int TIME_BETWEEN_UPDATES = 500;
+    public final static int TIME_BETWEEN_UPDATES = 500;
 
     long lastUpdateTime = 0;
 
@@ -72,6 +72,7 @@ public class RunMonitorView extends MonitorView {
     @Override
     public void observeUpdate(IObservationProvider observed) {
         if (System.currentTimeMillis() - lastUpdateTime > TIME_BETWEEN_UPDATES) {
+            lastUpdateTime = System.currentTimeMillis();
             IModel model = (IModel) observed;
             monitor.subTask("Period " + model.getPeriod()
                             + (model.getStopPeriod() > 0 ? " of " + model.getStopPeriod() : ""));
@@ -81,7 +82,6 @@ public class RunMonitorView extends MonitorView {
             } else {
                 monitor.worked(1);
             }
-            lastUpdateTime = System.currentTimeMillis();
         }
     }
 
