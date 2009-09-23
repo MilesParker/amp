@@ -22,6 +22,7 @@ import org.osgi.framework.Bundle;
  * @author milesparker
  * 
  */
+@SuppressWarnings("deprecation")
 public class PluginTemplateProjectWizard extends PluginProjectWizard {
 
     protected class StringPair {

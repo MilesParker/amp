@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: PluginProjectWizard.java,v 1.3 2009/09/23 06:05:24 mparker Exp $
+ * </copyright> $Id: PluginProjectWizard.java,v 1.4 2009/09/23 18:14:57 mparker Exp $
  */
 package org.eclipse.amp.amf.gen.ide;
 
@@ -38,7 +38,6 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.ui.statushandlers.StatusManager;
 
-@SuppressWarnings("deprecation")
 /**
  * Creates a generic AMF project; intended for specialization.
  * @author milesparker
