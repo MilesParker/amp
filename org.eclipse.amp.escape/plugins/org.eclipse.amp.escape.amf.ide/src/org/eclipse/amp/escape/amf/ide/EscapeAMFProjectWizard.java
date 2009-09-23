@@ -1,16 +1,11 @@
 package org.eclipse.amp.escape.amf.ide;
 
-import java.io.IOException;
 import java.util.List;
 
-import org.eclipse.amp.amf.gen.ide.MetaABMProjectWizard;
-import org.eclipse.amp.escape.ide.EscapeIDEPlugin;
-import org.eclipse.core.resources.IFolder;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.Path;
+import org.eclipse.amp.amf.gen.ide.PluginTemplateProjectWizard;
 import org.eclipse.jdt.core.JavaCore;
 
-public class EscapeAMFProjectWizard extends MetaABMProjectWizard {
+public class EscapeAMFProjectWizard extends PluginTemplateProjectWizard {
 
     public String getProjectTypeName() {
         return "Escape AMF";
@@ -22,17 +17,7 @@ public class EscapeAMFProjectWizard extends MetaABMProjectWizard {
     }
 
     public String getPluginID() {
-        return EscapeIDEPlugin.PLUGIN_ID;
-    }
-
-    @Override
-    public void createFiles() throws CoreException, IOException {
-        IFolder mFolder = getProject().getFolder("META-INF");
-        mFolder.create(true, true, null);
-        copyFiles(new Path("res/ESCAPE_MANIFEST_TEMPLATE.MF"), new Path("META-INF/MANIFEST.MF"), new StringPair[] {
-            new StringPair("%project_name%", getProject().getName()),
-            new StringPair("%project_symbol%", getProject().getName()) });
-        copyFiles(new Path("res/build_template.properties"), new Path("build.properties"), new StringPair[0]);
+        return EscapeAMFPlugin.PLUGIN_ID;
     }
 
     public void addBuilders(List<String> builderIDs) {
@@ -40,5 +25,9 @@ public class EscapeAMFProjectWizard extends MetaABMProjectWizard {
         builderIDs.add(EscapeAMFPlugin.PLUGIN_ID + "." + EscapeModelStyles2Builder.ESCAPE_BUILDER_2_ID);
         // builderIDs.add(EscapeAMFPlugin.PLUGIN_ID + "." + EscapeGraphicsBuilder.ESCAPE_BUILDER_3_ID);
         super.addBuilders(builderIDs);
+    }
+
+    public String getSourceDirName() {
+        return "srcgen";
     }
 }
