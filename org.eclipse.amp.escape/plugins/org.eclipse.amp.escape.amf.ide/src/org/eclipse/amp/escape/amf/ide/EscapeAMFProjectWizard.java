@@ -2,6 +2,8 @@ package org.eclipse.amp.escape.amf.ide;
 
 import java.util.List;
 
+import org.eclipse.amp.amf.gen.ide.DocumentModelBuilder;
+import org.eclipse.amp.amf.gen.ide.GenIDEPlugin;
 import org.eclipse.amp.amf.gen.ide.PluginTemplateProjectWizard;
 import org.eclipse.jdt.core.JavaCore;
 
@@ -23,6 +25,7 @@ public class EscapeAMFProjectWizard extends PluginTemplateProjectWizard {
     public void addBuilders(List<String> builderIDs) {
         builderIDs.add(EscapeAMFPlugin.PLUGIN_ID + "." + EscapeModelBuilder.ESCAPE_BUILDER_ID);
         builderIDs.add(EscapeAMFPlugin.PLUGIN_ID + "." + EscapeModelStyles2Builder.ESCAPE_BUILDER_2_ID);
+        builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + DocumentModelBuilder.DOCUMENT_BUILDER_ID);
         // builderIDs.add(EscapeAMFPlugin.PLUGIN_ID + "." + EscapeGraphicsBuilder.ESCAPE_BUILDER_3_ID);
         super.addBuilders(builderIDs);
     }
