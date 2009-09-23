@@ -108,12 +108,13 @@ public class ModelMangementTest extends TestCase {
         return bot.viewByTitle("Package Explorer");
     }
 
-    protected void setUp() throws Exception {
-        super.setUp();
-        setupProject();
-    }
+    // protected void setUp() throws Exception {
+    // super.setUp();
+    // setupProject();
+    // }
 
-    public void utestOne() {
+    public void testOne() {
+        setupProject();
         assertEquals(gefViews().size(), 0);
         assertTrue(activeModel() == null);
         launchModel();
@@ -129,9 +130,11 @@ public class ModelMangementTest extends TestCase {
     }
 
     public void testCloseOne() {
+        setupProject();
         bot.sleep(2000);
         // start new
         launchModel();
+        bot.sleep(4000);
         IModel modelA_1 = activeModel();
         assertNotNull(modelA_1);
 
@@ -157,6 +160,11 @@ public class ModelMangementTest extends TestCase {
         control().menu("Close").click();
 
         bot.sleep(3000);
+
+        modelA_1 = activeModel();
+        assertNull(modelA_1);
+
+        assertEquals(AXFWorkbenchPlugin.getDefault().getManager().getModels().size(), 0);
     }
 
     private void subtestCloseViews(IModel modelA_1) {
@@ -168,7 +176,8 @@ public class ModelMangementTest extends TestCase {
         assertEquals(gefView.getTitle(), "Demographic Prisoner_s Dilemma Graphic View");
     }
 
-    public void utestTwo() {
+    public void testTwo() {
+        setupProject();
         bot.sleep(2000);
         // start new
         launchModel();
@@ -247,7 +256,8 @@ public class ModelMangementTest extends TestCase {
         assertNull(manager().getActiveModel());
     }
 
-    public void utestStopPause() {
+    public void testStopPause() {
+        setupProject();
         bot.sleep(2000);
         // start new
         launchModel();
@@ -276,7 +286,8 @@ public class ModelMangementTest extends TestCase {
         assertNull(control().menu("Restart"));
     }
 
-    public void utestStopTwo() {
+    public void testStopTwo() {
+        setupProject();
         bot.sleep(2000);
         // start new
         launchModel();
@@ -410,18 +421,25 @@ public class ModelMangementTest extends TestCase {
         // bot.viewByTitle("Welcome").close();
         bot.perspectiveByLabel("Agent Modeling").activate();
         bot.viewByTitle("Package Explorer").setFocus();
-        bot.sleep(3000);
-        bot.menu("File").menu("New").menu("Escape Project").click();
-        // 'com.swtbot.test.project' is the java project name to create
-
-        bot.text(0).setText(testProjectName);
-        // Click the Finish button
-
-        bot.button("Finish").click();
         try {
-            copyFiles("org.eclipse.amp.axf.ide.test", "res/TestModel.metaabm", testProjectName, "TestModel.metaabm");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+            tree().expandNode(testProjectName);
+        } catch (WidgetNotFoundException e) {
+            bot.sleep(3000);
+            bot.menu("File").menu("New").menu("Escape Project").click();
+            // 'com.swtbot.test.project' is the java project name to create
+
+            bot.text(0).setText(testProjectName);
+            // Click the Finish button
+
+            bot.button("Finish").click();
+            try {
+                copyFiles("org.eclipse.amp.axf.ide.test", "res/TestModel.metaabm", testProjectName, "TestModel.metaabm");
+            } catch (CoreException e1) {
+                throw new RuntimeException(e1);
+            } catch (IOException e1) {
+                throw new RuntimeException(e1);
+            }
+            bot.sleep(5000);
         }
     }
 
