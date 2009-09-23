@@ -24,6 +24,17 @@ import org.osgi.framework.Bundle;
  */
 public class PluginTemplateProjectWizard extends PluginProjectWizard {
 
+    protected class StringPair {
+        public String a;
+        public String b;
+
+        public StringPair(String a, String b) {
+            super();
+            this.a = a;
+            this.b = b;
+        }
+    }
+
     @Override
     /**
      * Copies templated PDE porject files into target project and replaces template values with those of project.

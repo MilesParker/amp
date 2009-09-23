@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: PluginProjectWizard.java,v 1.2 2009/09/23 06:03:53 mparker Exp $
+ * </copyright> $Id: PluginProjectWizard.java,v 1.3 2009/09/23 06:05:24 mparker Exp $
  */
 package org.eclipse.amp.amf.gen.ide;
 
@@ -45,18 +45,7 @@ import org.eclipse.ui.statushandlers.StatusManager;
  */
 public abstract class PluginProjectWizard extends Wizard implements INewWizard {
 
-    private WizardNewProjectCreationPage metaABMProjectPage;
-
-    protected class StringPair {
-        public String a;
-        public String b;
-
-        public StringPair(String a, String b) {
-            super();
-            this.a = a;
-            this.b = b;
-        }
-    }
+    private WizardNewProjectCreationPage projectPage;
 
     public PluginProjectWizard() {
         super();
@@ -66,16 +55,16 @@ public abstract class PluginProjectWizard extends Wizard implements INewWizard {
     }
 
     public void addPages() {
-        metaABMProjectPage = new WizardNewProjectCreationPage("Specify model name and location.");
-        addPage(metaABMProjectPage);
+        projectPage = new WizardNewProjectCreationPage("Specify model name and location.");
+        addPage(projectPage);
         setWindowTitle("Create a new " + getProjectTypeName() + " project.");
-        metaABMProjectPage.setDescription(getWindowTitle());
+        projectPage.setDescription(getWindowTitle());
     }
 
     public IProject getProject() {
         IProject project;
         IWorkspace workspace = ResourcesPlugin.getWorkspace();
-        project = workspace.getRoot().getProject(metaABMProjectPage.getProjectName());
+        project = workspace.getRoot().getProject(projectPage.getProjectName());
         return project;
     }
 
@@ -83,7 +72,7 @@ public abstract class PluginProjectWizard extends Wizard implements INewWizard {
         try {
             IJavaProject javaProject = JavaCore.create(getProject());
             final IProjectDescription projectDescription = ResourcesPlugin.getWorkspace()
-            .newProjectDescription(metaABMProjectPage.getProjectName());
+            .newProjectDescription(projectPage.getProjectName());
             projectDescription.setLocation(null);
 
             getProject().create(projectDescription, null);
@@ -107,7 +96,7 @@ public abstract class PluginProjectWizard extends Wizard implements INewWizard {
             addClasspaths(classpathEntries, getProject());
 
             javaProject.setRawClasspath(classpathEntries.toArray(new IClasspathEntry[classpathEntries.size()]), null);
-            javaProject.setOutputLocation(new Path("/" + metaABMProjectPage.getProjectName() + "/bin"), null);
+            javaProject.setOutputLocation(new Path("/" + projectPage.getProjectName() + "/bin"), null);
 
             createFiles();
             return true;
