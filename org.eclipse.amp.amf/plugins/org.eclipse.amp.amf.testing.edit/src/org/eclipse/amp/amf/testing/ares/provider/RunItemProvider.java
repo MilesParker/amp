@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RunItemProvider.java,v 1.5 2009/09/19 01:22:52 mparker Exp $
+ * $Id: RunItemProvider.java,v 1.6 2009/09/24 03:26:01 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.provider;
 
@@ -76,18 +76,18 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     protected void addModelPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Run_model_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Run_model_feature", "_UI_Run_type"),
-                 AresPackage.Literals.RUN__MODEL,
-                 false,
-                 false,
-                 false,
-                 null,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Run_model_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Run_model_feature", "_UI_Run_type"),
+          AresPackage.Literals.RUN__MODEL,
+          false,
+          false,
+          false,
+          null,
+          null,
+          null));
     }
 
     /**
@@ -97,18 +97,18 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     protected void addTestPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Run_test_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Run_test_feature", "_UI_Run_type"),
-                 AresPackage.Literals.RUN__TEST,
-                 false,
-                 false,
-                 false,
-                 null,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Run_test_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Run_test_feature", "_UI_Run_type"),
+          AresPackage.Literals.RUN__TEST,
+          false,
+          false,
+          false,
+          null,
+          null,
+          null));
     }
 
     /**
@@ -118,18 +118,18 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     protected void addParameterizationPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Run_parameterization_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Run_parameterization_feature", "_UI_Run_type"),
-                 AresPackage.Literals.RUN__PARAMETERIZATION,
-                 false,
-                 false,
-                 false,
-                 null,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Run_parameterization_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Run_parameterization_feature", "_UI_Run_type"),
+          AresPackage.Literals.RUN__PARAMETERIZATION,
+          false,
+          false,
+          false,
+          null,
+          null,
+          null));
     }
 
     /**
@@ -139,18 +139,18 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     protected void addResultPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Run_result_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Run_result_feature", "_UI_Run_type"),
-                 AresPackage.Literals.RUN__RESULT,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Run_result_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Run_result_feature", "_UI_Run_type"),
+          AresPackage.Literals.RUN__RESULT,
+          true,
+          false,
+          false,
+          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+          null,
+          null));
     }
 
     /**
@@ -160,18 +160,18 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     protected void addParametersPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Run_parameters_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Run_parameters_feature", "_UI_Run_type"),
-                 AresPackage.Literals.RUN__PARAMETERS,
-                 false,
-                 false,
-                 true,
-                 null,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Run_parameters_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Run_parameters_feature", "_UI_Run_type"),
+          AresPackage.Literals.RUN__PARAMETERS,
+          false,
+          false,
+          true,
+          null,
+          null,
+          null));
     }
 
     /**
@@ -181,18 +181,18 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     protected void addConstraintsPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Run_constraints_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Run_constraints_feature", "_UI_Run_type"),
-                 AresPackage.Literals.RUN__CONSTRAINTS,
-                 false,
-                 false,
-                 true,
-                 null,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Run_constraints_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Run_constraints_feature", "_UI_Run_type"),
+          AresPackage.Literals.RUN__CONSTRAINTS,
+          false,
+          false,
+          true,
+          null,
+          null,
+          null));
     }
 
     /**
@@ -202,18 +202,18 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     protected void addStartedPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Run_started_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Run_started_feature", "_UI_Run_type"),
-                 AresPackage.Literals.RUN__STARTED,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Run_started_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Run_started_feature", "_UI_Run_type"),
+          AresPackage.Literals.RUN__STARTED,
+          true,
+          false,
+          false,
+          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+          null,
+          null));
     }
 
     /**
@@ -223,18 +223,18 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     protected void addFinishedPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Run_finished_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Run_finished_feature", "_UI_Run_type"),
-                 AresPackage.Literals.RUN__FINISHED,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Run_finished_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Run_finished_feature", "_UI_Run_type"),
+          AresPackage.Literals.RUN__FINISHED,
+          true,
+          false,
+          false,
+          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+          null,
+          null));
     }
 
     /**
@@ -244,18 +244,18 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     protected void addResultsPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Run_results_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Run_results_feature", "_UI_Run_type"),
-                 AresPackage.Literals.RUN__RESULTS,
-                 false,
-                 false,
-                 true,
-                 null,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Run_results_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Run_results_feature", "_UI_Run_type"),
+          AresPackage.Literals.RUN__RESULTS,
+          false,
+          false,
+          true,
+          null,
+          null,
+          null));
     }
 
     /**
@@ -301,6 +301,8 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
             return overlayImage(object, getResourceLocator().getImage("full/obj16/Success"));
         } else if (run.getResult() == ResultType.FAILURE) {
             return overlayImage(object, getResourceLocator().getImage("full/obj16/Failure"));
+        } else if (run.getResult() == ResultType.ERROR) {
+            return overlayImage(object, getResourceLocator().getImage("full/obj16/Error"));
         } else {
             return overlayImage(object, getResourceLocator().getImage("full/obj16/Incomplete"));
         }
