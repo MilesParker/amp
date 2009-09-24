@@ -126,14 +126,14 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
         Scape newAgent;
         try {
             newAgent = (Scape) instanceFromName(modelClassName);
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             StatusManager.getManager().handle(
                                               new Status(Status.ERROR, project.getName(), "Could not read class: "
                                                          + modelClassName
                                                          + ". Please ensure that the class exists in class path.", e),
                                                          StatusManager.SHOW | StatusManager.LOG);
             dispose();
-            return;
+            throw e;
         }
         newAgent.setName(modelName);
         setRootScape(newAgent);
@@ -144,6 +144,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
         try {
             open(args, true);
         } catch (RuntimeException e) {
+            removeModel();
             dispose();
             throw e;
         }
@@ -175,7 +176,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
         }
     }
 
-    private void dispose() {
+    private void removeModel() {
         if (AXFWorkbenchPlugin.getDefault().getManager() != null) {
             new Thread() {
                 /**
@@ -187,6 +188,20 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
                 }
             }.start();
         }
+    }
+
+    private void dispose() {
+        // if (AXFWorkbenchPlugin.getDefault().getManager() != null) {
+        // new Thread() {
+        // /**
+        // *
+        // * @see java.lang.Thread#run()
+        // */
+        // public void run() {
+        // AXFWorkbenchPlugin.getDefault().getManager().remove(model);
+        // }
+        // }.start();
+        // }
         if (delegateLoader != null) {
             delegateLoader.restore();
         }
@@ -215,6 +230,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
                     try {
                         EclipseEscapeRunner.super.run();
                     } catch (RuntimeException e) {
+                        removeModel();
                         dispose();
                         throw e;
                     }
@@ -300,6 +316,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
      */
     public void closeFinally() {
         super.closeFinally();
+        removeModel();
         dispose();
     }
 
