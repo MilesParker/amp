@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresActionBarContributor.java,v 1.2 2009/09/22 02:05:08 mparker Exp $
+ * $Id: AresActionBarContributor.java,v 1.3 2009/09/24 03:26:07 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.presentation;
 
@@ -63,23 +63,6 @@ implements ISelectionChangedListener {
      */
     protected ISelectionProvider selectionProvider;
 
-    /**
-     * This action opens the Properties view.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected IAction openTestFileAction = new Action(AresEditorPlugin.INSTANCE
-.getString("_UI_OpenTestFile_menu_item")) {
-        @Override
-        public void run() {
-            try {
-                getPage().showView("org.eclipse.ui.views.PropertySheet");
-            } catch (PartInitException exception) {
-                AresEditorPlugin.INSTANCE.log(exception);
-            }
-        }
-    };
 
     /**
      * This action opens the Properties view. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -98,6 +81,7 @@ implements ISelectionChangedListener {
             }
         }
     };
+
 
     /**
      * This action refreshes the viewer of the current editor if the editor

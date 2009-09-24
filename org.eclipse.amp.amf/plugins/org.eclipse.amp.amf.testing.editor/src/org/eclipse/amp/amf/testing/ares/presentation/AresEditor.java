@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresEditor.java,v 1.4 2009/09/10 20:25:53 mparker Exp $
+ * $Id: AresEditor.java,v 1.5 2009/09/24 03:26:07 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.presentation;
 
@@ -79,6 +79,7 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
@@ -87,6 +88,7 @@ import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
+import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
@@ -100,6 +102,8 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.ui.IActionBars;
@@ -290,37 +294,37 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
      */
     protected IPartListener partListener =
         new IPartListener() {
-        public void partActivated(IWorkbenchPart p) {
-            if (p instanceof ContentOutline) {
-                if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
-                    getActionBarContributor().setActiveEditor(AresEditor.this);
+            public void partActivated(IWorkbenchPart p) {
+                if (p instanceof ContentOutline) {
+                    if (((ContentOutline)p).getCurrentPage() == contentOutlinePage) {
+                        getActionBarContributor().setActiveEditor(AresEditor.this);
 
-                    setCurrentViewer(contentOutlineViewer);
+                        setCurrentViewer(contentOutlineViewer);
+                    }
                 }
-            }
-            else if (p instanceof PropertySheet) {
-                if (((PropertySheet)p).getCurrentPage() == propertySheetPage) {
-                    getActionBarContributor().setActiveEditor(AresEditor.this);
+                else if (p instanceof PropertySheet) {
+                    if (((PropertySheet)p).getCurrentPage() == propertySheetPage) {
+                        getActionBarContributor().setActiveEditor(AresEditor.this);
+                        handleActivate();
+                    }
+                }
+                else if (p == AresEditor.this) {
                     handleActivate();
                 }
             }
-            else if (p == AresEditor.this) {
-                handleActivate();
+            public void partBroughtToTop(IWorkbenchPart p) {
+                // Ignore.
             }
-        }
-        public void partBroughtToTop(IWorkbenchPart p) {
-            // Ignore.
-        }
-        public void partClosed(IWorkbenchPart p) {
-            // Ignore.
-        }
-        public void partDeactivated(IWorkbenchPart p) {
-            // Ignore.
-        }
-        public void partOpened(IWorkbenchPart p) {
-            // Ignore.
-        }
-    };
+            public void partClosed(IWorkbenchPart p) {
+                // Ignore.
+            }
+            public void partDeactivated(IWorkbenchPart p) {
+                // Ignore.
+            }
+            public void partOpened(IWorkbenchPart p) {
+                // Ignore.
+            }
+        };
 
     /**
      * Resources that have been removed since last activation.
@@ -370,49 +374,49 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
      */
     protected EContentAdapter problemIndicationAdapter =
         new EContentAdapter() {
-        @Override
-        public void notifyChanged(Notification notification) {
-            if (notification.getNotifier() instanceof Resource) {
-                switch (notification.getFeatureID(Resource.class)) {
-                    case Resource.RESOURCE__IS_LOADED:
-                    case Resource.RESOURCE__ERRORS:
-                    case Resource.RESOURCE__WARNINGS: {
-                        Resource resource = (Resource)notification.getNotifier();
-                        Diagnostic diagnostic = analyzeResourceProblems(resource, null);
-                        if (diagnostic.getSeverity() != Diagnostic.OK) {
-                            resourceToDiagnosticMap.put(resource, diagnostic);
-                        }
-                        else {
-                            resourceToDiagnosticMap.remove(resource);
-                        }
+            @Override
+            public void notifyChanged(Notification notification) {
+                if (notification.getNotifier() instanceof Resource) {
+                    switch (notification.getFeatureID(Resource.class)) {
+                        case Resource.RESOURCE__IS_LOADED:
+                        case Resource.RESOURCE__ERRORS:
+                        case Resource.RESOURCE__WARNINGS: {
+                            Resource resource = (Resource)notification.getNotifier();
+                            Diagnostic diagnostic = analyzeResourceProblems(resource, null);
+                            if (diagnostic.getSeverity() != Diagnostic.OK) {
+                                resourceToDiagnosticMap.put(resource, diagnostic);
+                            }
+                            else {
+                                resourceToDiagnosticMap.remove(resource);
+                            }
 
-                        if (updateProblemIndication) {
-                            getSite().getShell().getDisplay().asyncExec
-                            (new Runnable() {
-                                public void run() {
-                                    updateProblemIndication();
-                                }
-                            });
+                            if (updateProblemIndication) {
+                                getSite().getShell().getDisplay().asyncExec
+                                    (new Runnable() {
+                                         public void run() {
+                                             updateProblemIndication();
+                                         }
+                                     });
+                            }
+                            break;
                         }
-                        break;
                     }
                 }
+                else {
+                    super.notifyChanged(notification);
+                }
             }
-            else {
-                super.notifyChanged(notification);
+
+            @Override
+            protected void setTarget(Resource target) {
+                basicSetTarget(target);
             }
-        }
 
-        @Override
-        protected void setTarget(Resource target) {
-            basicSetTarget(target);
-        }
-
-        @Override
-        protected void unsetTarget(Resource target) {
-            basicUnsetTarget(target);
-        }
-    };
+            @Override
+            protected void unsetTarget(Resource target) {
+                basicUnsetTarget(target);
+            }
+        };
 
     /**
      * This listens for workspace changes.
@@ -422,74 +426,74 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
      */
     protected IResourceChangeListener resourceChangeListener =
         new IResourceChangeListener() {
-        public void resourceChanged(IResourceChangeEvent event) {
-            IResourceDelta delta = event.getDelta();
-            try {
-                class ResourceDeltaVisitor implements IResourceDeltaVisitor {
-                    protected ResourceSet resourceSet = editingDomain.getResourceSet();
-                    protected Collection<Resource> changedResources = new ArrayList<Resource>();
-                    protected Collection<Resource> removedResources = new ArrayList<Resource>();
+            public void resourceChanged(IResourceChangeEvent event) {
+                IResourceDelta delta = event.getDelta();
+                try {
+                    class ResourceDeltaVisitor implements IResourceDeltaVisitor {
+                        protected ResourceSet resourceSet = editingDomain.getResourceSet();
+                        protected Collection<Resource> changedResources = new ArrayList<Resource>();
+                        protected Collection<Resource> removedResources = new ArrayList<Resource>();
 
-                    public boolean visit(IResourceDelta delta) {
-                        if (delta.getResource().getType() == IResource.FILE) {
-                            if (delta.getKind() == IResourceDelta.REMOVED ||
+                        public boolean visit(IResourceDelta delta) {
+                            if (delta.getResource().getType() == IResource.FILE) {
+                                if (delta.getKind() == IResourceDelta.REMOVED ||
                                     delta.getKind() == IResourceDelta.CHANGED && delta.getFlags() != IResourceDelta.MARKERS) {
-                                Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
-                                if (resource != null) {
-                                    if (delta.getKind() == IResourceDelta.REMOVED) {
-                                        removedResources.add(resource);
-                                    }
-                                    else if (!savedResources.remove(resource)) {
-                                        changedResources.add(resource);
+                                    Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
+                                    if (resource != null) {
+                                        if (delta.getKind() == IResourceDelta.REMOVED) {
+                                            removedResources.add(resource);
+                                        }
+                                        else if (!savedResources.remove(resource)) {
+                                            changedResources.add(resource);
+                                        }
                                     }
                                 }
                             }
+
+                            return true;
                         }
 
-                        return true;
+                        public Collection<Resource> getChangedResources() {
+                            return changedResources;
+                        }
+
+                        public Collection<Resource> getRemovedResources() {
+                            return removedResources;
+                        }
                     }
 
-                    public Collection<Resource> getChangedResources() {
-                        return changedResources;
+                    final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
+                    delta.accept(visitor);
+
+                    if (!visitor.getRemovedResources().isEmpty()) {
+                        getSite().getShell().getDisplay().asyncExec
+                            (new Runnable() {
+                                 public void run() {
+                                     removedResources.addAll(visitor.getRemovedResources());
+                                     if (!isDirty()) {
+                                         getSite().getPage().closeEditor(AresEditor.this, false);
+                                     }
+                                 }
+                             });
                     }
 
-                    public Collection<Resource> getRemovedResources() {
-                        return removedResources;
+                    if (!visitor.getChangedResources().isEmpty()) {
+                        getSite().getShell().getDisplay().asyncExec
+                            (new Runnable() {
+                                 public void run() {
+                                     changedResources.addAll(visitor.getChangedResources());
+                                     if (getSite().getPage().getActiveEditor() == AresEditor.this) {
+                                         handleActivate();
+                                     }
+                                 }
+                             });
                     }
                 }
-
-                final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
-                delta.accept(visitor);
-
-                if (!visitor.getRemovedResources().isEmpty()) {
-                    getSite().getShell().getDisplay().asyncExec
-                    (new Runnable() {
-                        public void run() {
-                            removedResources.addAll(visitor.getRemovedResources());
-                            if (!isDirty()) {
-                                getSite().getPage().closeEditor(AresEditor.this, false);
-                            }
-                        }
-                    });
-                }
-
-                if (!visitor.getChangedResources().isEmpty()) {
-                    getSite().getShell().getDisplay().asyncExec
-                    (new Runnable() {
-                        public void run() {
-                            changedResources.addAll(visitor.getChangedResources());
-                            if (getSite().getPage().getActiveEditor() == AresEditor.this) {
-                                handleActivate();
-                            }
-                        }
-                    });
+                catch (CoreException exception) {
+                    AresEditorPlugin.INSTANCE.log(exception);
                 }
             }
-            catch (CoreException exception) {
-                AresEditorPlugin.INSTANCE.log(exception);
-            }
-        }
-    };
+        };
 
     /**
      * Handles activation of the editor or it's associated views.
@@ -501,11 +505,11 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
         // Recompute the read only state.
         //
         if (editingDomain.getResourceToReadOnlyMap() != null) {
-            editingDomain.getResourceToReadOnlyMap().clear();
+          editingDomain.getResourceToReadOnlyMap().clear();
 
-            // Refresh any actions that may become enabled or disabled.
-            //
-            setSelection(getSelection());
+          // Refresh any actions that may become enabled or disabled.
+          //
+          setSelection(getSelection());
         }
 
         if (!removedResources.isEmpty()) {
@@ -573,11 +577,11 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
         if (updateProblemIndication) {
             BasicDiagnostic diagnostic =
                 new BasicDiagnostic
-                (Diagnostic.OK,
-                 "org.eclipse.amp.amf.testing.editor",
-                 0,
-                 null,
-                 new Object [] { editingDomain.getResourceSet() });
+                    (Diagnostic.OK,
+                     "org.eclipse.amp.amf.testing.editor",
+                     0,
+                     null,
+                     new Object [] { editingDomain.getResourceSet() });
             for (Diagnostic childDiagnostic : resourceToDiagnosticMap.values()) {
                 if (childDiagnostic.getSeverity() != Diagnostic.OK) {
                     diagnostic.add(childDiagnostic);
@@ -628,10 +632,10 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
      */
     protected boolean handleDirtyConflict() {
         return
-        MessageDialog.openQuestion
-        (getSite().getShell(),
-         getString("_UI_FileConflict_label"),
-         getString("_WARN_FileConflict"));
+            MessageDialog.openQuestion
+                (getSite().getShell(),
+                 getString("_UI_FileConflict_label"),
+                 getString("_WARN_FileConflict"));
     }
 
     /**
@@ -672,26 +676,26 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
         // Add a listener to set the most recent command's affected objects to be the selection of the viewer with focus.
         //
         commandStack.addCommandStackListener
-        (new CommandStackListener() {
-            public void commandStackChanged(final EventObject event) {
-                getContainer().getDisplay().asyncExec
-                (new Runnable() {
-                    public void run() {
-                        firePropertyChange(IEditorPart.PROP_DIRTY);
+            (new CommandStackListener() {
+                 public void commandStackChanged(final EventObject event) {
+                     getContainer().getDisplay().asyncExec
+                         (new Runnable() {
+                              public void run() {
+                                  firePropertyChange(IEditorPart.PROP_DIRTY);
 
-                        // Try to select the affected objects.
-                        //
-                        Command mostRecentCommand = ((CommandStack)event.getSource()).getMostRecentCommand();
-                        if (mostRecentCommand != null) {
-                            setSelectionToViewer(mostRecentCommand.getAffectedObjects());
-                        }
-                        if (propertySheetPage != null && !propertySheetPage.getControl().isDisposed()) {
-                            propertySheetPage.refresh();
-                        }
-                    }
-                });
-            }
-        });
+                                  // Try to select the affected objects.
+                                  //
+                                  Command mostRecentCommand = ((CommandStack)event.getSource()).getMostRecentCommand();
+                                  if (mostRecentCommand != null) {
+                                      setSelectionToViewer(mostRecentCommand.getAffectedObjects());
+                                  }
+                                  if (propertySheetPage != null && !propertySheetPage.getControl().isDisposed()) {
+                                      propertySheetPage.refresh();
+                                  }
+                              }
+                          });
+                 }
+             });
 
         // Create the editing domain with a special command stack.
         //
@@ -722,14 +726,14 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
         if (theSelection != null && !theSelection.isEmpty()) {
             Runnable runnable =
                 new Runnable() {
-                public void run() {
-                    // Try to select the items in the current content viewer of the editor.
-                    //
-                    if (currentViewer != null) {
-                        currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
+                    public void run() {
+                        // Try to select the items in the current content viewer of the editor.
+                        //
+                        if (currentViewer != null) {
+                            currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
+                        }
                     }
-                }
-            };
+                };
             getSite().getShell().getDisplay().asyncExec(runnable);
         }
     }
@@ -836,12 +840,12 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
                 //
                 selectionChangedListener =
                     new ISelectionChangedListener() {
-                    // This just notifies those things that are affected by the section.
-                    //
-                    public void selectionChanged(SelectionChangedEvent selectionChangedEvent) {
-                        setSelection(selectionChangedEvent.getSelection());
-                    }
-                };
+                        // This just notifies those things that are affected by the section.
+                        //
+                        public void selectionChanged(SelectionChangedEvent selectionChangedEvent) {
+                            setSelection(selectionChangedEvent.getSelection());
+                        }
+                    };
             }
 
             // Stop listening to the old one.
@@ -935,22 +939,22 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
         if (!resource.getErrors().isEmpty() || !resource.getWarnings().isEmpty()) {
             BasicDiagnostic basicDiagnostic =
                 new BasicDiagnostic
-                (Diagnostic.ERROR,
-                 "org.eclipse.amp.amf.testing.editor",
-                 0,
-                 getString("_UI_CreateModelError_message", resource.getURI()),
-                 new Object [] { exception == null ? (Object)resource : exception });
+                    (Diagnostic.ERROR,
+                     "org.eclipse.amp.amf.testing.editor",
+                     0,
+                     getString("_UI_CreateModelError_message", resource.getURI()),
+                     new Object [] { exception == null ? (Object)resource : exception });
             basicDiagnostic.merge(EcoreUtil.computeDiagnostic(resource, true));
             return basicDiagnostic;
         }
         else if (exception != null) {
             return
-            new BasicDiagnostic
-            (Diagnostic.ERROR,
-             "org.eclipse.amp.amf.testing.editor",
-             0,
-             getString("_UI_CreateModelError_message", resource.getURI()),
-             new Object[] { exception });
+                new BasicDiagnostic
+                    (Diagnostic.ERROR,
+                     "org.eclipse.amp.amf.testing.editor",
+                     0,
+                     getString("_UI_CreateModelError_message", resource.getURI()),
+                     new Object[] { exception });
         }
         else {
             return Diagnostic.OK_INSTANCE;
@@ -961,7 +965,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
      * This is the method used by the framework to install your own controls.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     @Override
     public void createPages() {
@@ -977,18 +981,18 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
             {
                 ViewerPane viewerPane =
                     new ViewerPane(getSite().getPage(), AresEditor.this) {
-                    @Override
-                    public Viewer createViewer(Composite composite) {
-                        Tree tree = new Tree(composite, SWT.MULTI);
-                        TreeViewer newTreeViewer = new TreeViewer(tree);
-                        return newTreeViewer;
-                    }
-                    @Override
-                    public void requestActivation() {
-                        super.requestActivation();
-                        setCurrentViewerPane(this);
-                    }
-                };
+                        @Override
+                        public Viewer createViewer(Composite composite) {
+                            Tree tree = new Tree(composite, SWT.MULTI);
+                            TreeViewer newTreeViewer = new TreeViewer(tree);
+                            return newTreeViewer;
+                        }
+                        @Override
+                        public void requestActivation() {
+                            super.requestActivation();
+                            setCurrentViewerPane(this);
+                        }
+                    };
                 viewerPane.createControl(getContainer());
 
                 selectionViewer = (TreeViewer)viewerPane.getViewer();
@@ -1135,16 +1139,16 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
             {
                 ViewerPane viewerPane =
                     new ViewerPane(getSite().getPage(), AresEditor.this) {
-                    @Override
-                    public Viewer createViewer(Composite composite) {
-                        return new TreeViewer(composite);
-                    }
-                    @Override
-                    public void requestActivation() {
-                        super.requestActivation();
-                        setCurrentViewerPane(this);
-                    }
-                };
+                        @Override
+                        public Viewer createViewer(Composite composite) {
+                            return new TreeViewer(composite);
+                        }
+                        @Override
+                        public void requestActivation() {
+                            super.requestActivation();
+                            setCurrentViewerPane(this);
+                        }
+                    };
                 viewerPane.createControl(getContainer());
 
                 treeViewerWithColumns = (TreeViewer)viewerPane.getViewer();
@@ -1174,35 +1178,35 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
             }
 
             getSite().getShell().getDisplay().asyncExec
-            (new Runnable() {
-                public void run() {
-                    setActivePage(0);
-                }
-            });
+                (new Runnable() {
+                     public void run() {
+                         setActivePage(0);
+                     }
+                 });
         }
 
         // Ensures that this editor will only display the page's tab
         // area if there are more than one page
         //
         getContainer().addControlListener
-        (new ControlAdapter() {
-            boolean guard = false;
-            @Override
-            public void controlResized(ControlEvent event) {
-                if (!guard) {
-                    guard = true;
-                    hideTabs();
-                    guard = false;
+            (new ControlAdapter() {
+                boolean guard = false;
+                @Override
+                public void controlResized(ControlEvent event) {
+                    if (!guard) {
+                        guard = true;
+                        hideTabs();
+                        guard = false;
+                    }
                 }
-            }
-        });
+             });
 
         getSite().getShell().getDisplay().asyncExec
-        (new Runnable() {
-            public void run() {
-                updateProblemIndication();
-            }
-        });
+            (new Runnable() {
+                 public void run() {
+                     updateProblemIndication();
+                 }
+             });
     }
 
     /**
@@ -1262,6 +1266,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public Object getAdapter(Class key) {
         if (key.equals(IContentOutlinePage.class)) {
@@ -1306,9 +1311,9 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
                     createContextMenuFor(contentOutlineViewer);
 
                     if (!editingDomain.getResourceSet().getResources().isEmpty()) {
-                        // Select the root object in the view.
-                        //
-                        contentOutlineViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
+                      // Select the root object in the view.
+                      //
+                      contentOutlineViewer.setSelection(new StructuredSelection(editingDomain.getResourceSet().getResources().get(0)), true);
                     }
                 }
 
@@ -1330,13 +1335,13 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
             // Listen to selection so that we can handle it is a special way.
             //
             contentOutlinePage.addSelectionChangedListener
-            (new ISelectionChangedListener() {
-                // This ensures that we handle selections correctly.
-                //
-                public void selectionChanged(SelectionChangedEvent event) {
-                    handleContentOutlineSelection(event.getSelection());
-                }
-            });
+                (new ISelectionChangedListener() {
+                     // This ensures that we handle selections correctly.
+                     //
+                     public void selectionChanged(SelectionChangedEvent event) {
+                         handleContentOutlineSelection(event.getSelection());
+                     }
+                 });
         }
 
         return contentOutlinePage;
@@ -1352,18 +1357,18 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
         if (propertySheetPage == null) {
             propertySheetPage =
                 new ExtendedPropertySheetPage(editingDomain) {
-                @Override
-                public void setSelectionToViewer(List<?> selection) {
-                    AresEditor.this.setSelectionToViewer(selection);
-                    AresEditor.this.setFocus();
-                }
+                    @Override
+                    public void setSelectionToViewer(List<?> selection) {
+                        AresEditor.this.setSelectionToViewer(selection);
+                        AresEditor.this.setFocus();
+                    }
 
-                @Override
-                public void setActionBars(IActionBars actionBars) {
-                    super.setActionBars(actionBars);
-                    getActionBarContributor().shareGlobalActions(this, actionBars);
-                }
-            };
+                    @Override
+                    public void setActionBars(IActionBars actionBars) {
+                        super.setActionBars(actionBars);
+                        getActionBarContributor().shareGlobalActions(this, actionBars);
+                    }
+                };
             propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
         }
 
@@ -1437,30 +1442,30 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
         //
         WorkspaceModifyOperation operation =
             new WorkspaceModifyOperation() {
-            // This is the method that gets invoked when the operation runs.
-            //
-            @Override
-            public void execute(IProgressMonitor monitor) {
-                // Save the resources to the file system.
+                // This is the method that gets invoked when the operation runs.
                 //
-                boolean first = true;
-                for (Resource resource : editingDomain.getResourceSet().getResources()) {
-                    if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
-                        try {
-                            long timeStamp = resource.getTimeStamp();
-                            resource.save(saveOptions);
-                            if (resource.getTimeStamp() != timeStamp) {
-                                savedResources.add(resource);
+                @Override
+                public void execute(IProgressMonitor monitor) {
+                    // Save the resources to the file system.
+                    //
+                    boolean first = true;
+                    for (Resource resource : editingDomain.getResourceSet().getResources()) {
+                        if ((first || !resource.getContents().isEmpty() || isPersisted(resource)) && !editingDomain.isReadOnly(resource)) {
+                            try {
+                                long timeStamp = resource.getTimeStamp();
+                                resource.save(saveOptions);
+                                if (resource.getTimeStamp() != timeStamp) {
+                                    savedResources.add(resource);
+                                }
                             }
+                            catch (Exception exception) {
+                                resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
+                            }
+                            first = false;
                         }
-                        catch (Exception exception) {
-                            resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
-                        }
-                        first = false;
                     }
                 }
-            }
-        };
+            };
 
         updateProblemIndication = false;
         try {
@@ -1484,7 +1489,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
 
     /**
      * This returns whether something has been persisted to the URI of the specified resource.
-     * The implementation uses the URI converter from the editor's resource set to try to open an input stream.
+     * The implementation uses the URI converter from the editor's resource set to try to open an input stream. 
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1540,14 +1545,14 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
      * @generated
      */
     protected void doSaveAs(URI uri, IEditorInput editorInput) {
-        editingDomain.getResourceSet().getResources().get(0).setURI(uri);
+        (editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
         setInputWithNotify(editorInput);
         setPartName(editorInput.getName());
         IProgressMonitor progressMonitor =
             getActionBars().getStatusLineManager() != null ?
                 getActionBars().getStatusLineManager().getProgressMonitor() :
-                    new NullProgressMonitor();
-                doSave(progressMonitor);
+                new NullProgressMonitor();
+        doSave(progressMonitor);
     }
 
     /**
@@ -1563,7 +1568,7 @@ implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerPro
                     URI uri = URI.createURI(uriAttribute);
                     EObject eObject = editingDomain.getResourceSet().getEObject(uri, true);
                     if (eObject != null) {
-                        setSelectionToViewer(Collections.singleton(editingDomain.getWrapper(eObject)));
+                      setSelectionToViewer(Collections.singleton(editingDomain.getWrapper(eObject)));
                     }
                 }
             }
