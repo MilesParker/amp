@@ -212,14 +212,14 @@ public class TestRunSet {
     /**
      * @param thread
      */
-    public void testComplete(TestRun run, boolean loadFailure) {
+    public void testComplete(TestRun run, Throwable failureCondition) {
         synchronized (this) {
             if (run.getRun() != null && run.getRun().getResult() == ResultType.SUCCESS) {
                 testSuccessCount++;
             }
             testCompleteCount++;
             testInFlightCount--;
-            if (!loadFailure) {
+            if (failureCondition == null) {
                 runSet.getRuns().add(run.getRun());
             }
             fillThreads();

@@ -55,30 +55,33 @@ public class ExecuteTestHandler extends AbstractHandler {
                 && ((StructuredSelection) selection).size() > 0) {
             IResource res = (IResource) ((StructuredSelection) selection).getFirstElement();
             project = res.getProject();
-            for (Object obj : ((StructuredSelection) selection).toList()) {
+            List selList = ((StructuredSelection) selection).toList();
+            for (Object obj : selList) {
                 if (obj instanceof IResource) {
                     addResource((IResource) obj);
                 }
             }
             Runner.setDisplayGraphics(false);
 
-            final String name = getName(res);
+            String name = getName(selList);
+            name += "-" + DateFormatUtils.format(System.currentTimeMillis(), "yyMMddHHmm-SSSS");
 
             new TestRunSet(project, testResources, name, getRunsPerTest()).run();
         }
         return null;
     }
 
-    private String getName(IResource res) {
-        String name = null;
-        if (res instanceof IFolder) {
-            IFolder folder = (IFolder) res;
+    private String getName(List selList) {
+        String name = "";
+        if (selList.size() == 1 && selList.get(0) instanceof IFolder) {
+            IFolder folder = (IFolder) selList.get(0);
             name = folder.getProjectRelativePath().toPortableString().replace("/", "_");
-        } else {
-            res.getName();
+            return name;
         }
-        name += "-"
-            + DateFormatUtils.format(System.currentTimeMillis(), "yyMMddHHmm-SSSS");
+        for (IResource res : testResources) {
+            name += res.getName().substring(0, Math.min(5, res.getName().length() - 1)) + "_";
+        }
+        name = name.substring(0, name.length() - 2);
         return name;
     }
 

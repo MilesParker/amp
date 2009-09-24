@@ -74,12 +74,12 @@ public class TestRun {
                 } catch (InterruptedException e) {
                 }
             }
-            while (runner.isRunning() && !runner.isCloseRequested()) {
-                if (parentMonitor.isCanceled()) {
+            while (runner.isRunning()) {
+                if (parentMonitor.isCanceled() && !runner.isCloseRequested()) {
                     runner.close();
                 }
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(200);
                 } catch (InterruptedException e) {
                 }
             }
@@ -145,6 +145,7 @@ public class TestRun {
                 try {
                     loadTest();
                     run = AresFactoryImpl.eINSTANCE.createRun();
+                    run.setResult(ResultType.INCOMPLETE);
                     run.setParameterization(aPar);
                     // Note that we need to clone for case where constraints or parameters change.
                     run.setModel(rootContext);
@@ -175,10 +176,10 @@ public class TestRun {
                     }
                     return Status.OK_STATUS;
                 } catch (RuntimeException e) {
-                    testRunSet.testComplete(TestRun.this, true);
+                    testRunSet.testComplete(TestRun.this, e);
                     cancelled = true;
                     return new Status(IStatus.ERROR, "org.eclipse.amp.escape.testing.ide",
-                        "Couldn't load interpreter file for " + aTestEMFResource.getURI(), e);
+                                      "Couldn't load interpreter file for " + aTestEMFResource.getURI(), e);
                 }
             }
         };
@@ -215,12 +216,23 @@ public class TestRun {
             private static final long serialVersionUID = 1L;
 
             protected synchronized void runMainLoop() {
-                super.runMainLoop();
-                if (!parentMonitor.isCanceled() && getMonitor() != null && !getMonitor().isCanceled()) {
-                    evaluateTest();
+                try {
+                    super.runMainLoop();
+                    if (!parentMonitor.isCanceled() && getMonitor() != null && !getMonitor().isCanceled()) {
+                        evaluateTest();
+                    }
+                    close();
+                    testRunSet.testComplete(TestRun.this, null);
+                } catch (Error e) {
+                    // We need to handle OOM and ThreadDeath gracefully...
+                    run.setResult(ResultType.ERROR);
+                    close();
+                    testRunSet.testComplete(TestRun.this, e);
+                } catch (RuntimeException e) {
+                    run.setResult(ResultType.ERROR);
+                    close();
+                    testRunSet.testComplete(TestRun.this, e);
                 }
-                close();
-                testRunSet.testComplete(TestRun.this, false);
             }
 
             /**
