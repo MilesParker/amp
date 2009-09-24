@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresPackageImpl.java,v 1.3 2009/08/07 00:05:31 mparker Exp $
+ * $Id: AresPackageImpl.java,v 1.4 2009/09/24 03:26:03 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.impl;
 
@@ -447,6 +447,7 @@ public class AresPackageImpl extends EPackageImpl implements AresPackage {
         addEEnumLiteral(resultTypeEEnum, ResultType.INCOMPLETE);
         addEEnumLiteral(resultTypeEEnum, ResultType.SUCCESS);
         addEEnumLiteral(resultTypeEEnum, ResultType.FAILURE);
+        addEEnumLiteral(resultTypeEEnum, ResultType.ERROR);
 
         initEEnum(issueEEnum, Issue.class, "Issue");
         addEEnumLiteral(issueEEnum, Issue.BELOW_RANGE);

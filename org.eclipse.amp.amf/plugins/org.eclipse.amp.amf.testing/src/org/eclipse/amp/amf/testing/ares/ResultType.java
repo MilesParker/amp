@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ResultType.java,v 1.1 2009/08/07 00:05:32 mparker Exp $
+ * $Id: ResultType.java,v 1.2 2009/09/24 03:26:03 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares;
 
@@ -50,7 +50,15 @@ public enum ResultType implements Enumerator {
      * @generated
      * @ordered
      */
-    FAILURE(3, "Failure", "FAILURE");
+    FAILURE(3, "Failure", "FAILURE"), /**
+     * The '<em><b>Error</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #ERROR_VALUE
+     * @generated
+     * @ordered
+     */
+    ERROR(-1, "Error", "ERROR");
 
     /**
      * The '<em><b>Incomplete</b></em>' literal value.
@@ -98,6 +106,21 @@ public enum ResultType implements Enumerator {
     public static final int FAILURE_VALUE = 3;
 
     /**
+     * The '<em><b>Error</b></em>' literal value.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>Error</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @see #ERROR
+     * @model name="Error" literal="ERROR"
+     * @generated
+     * @ordered
+     */
+    public static final int ERROR_VALUE = -1;
+
+    /**
      * An array of all the '<em><b>Result Type</b></em>' enumerators.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -108,6 +131,7 @@ public enum ResultType implements Enumerator {
             INCOMPLETE,
             SUCCESS,
             FAILURE,
+            ERROR,
         };
 
     /**
@@ -161,6 +185,7 @@ public enum ResultType implements Enumerator {
             case INCOMPLETE_VALUE: return INCOMPLETE;
             case SUCCESS_VALUE: return SUCCESS;
             case FAILURE_VALUE: return FAILURE;
+            case ERROR_VALUE: return ERROR;
         }
         return null;
     }

@@ -25,6 +25,7 @@
     <eLiterals name="Incomplete" value="1" literal="INCOMPLETE"/>
     <eLiterals name="Success" value="2" literal="SUCCESS"/>
     <eLiterals name="Failure" value="3" literal="FAILURE"/>
+    <eLiterals name="Error" value="-1" literal="ERROR"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ConstraintTest">
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraint" eType="ecore:EClass ../../src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Constraint"/>
