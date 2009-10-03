@@ -70,8 +70,8 @@ import org.metaabm.function.FOperator;
  * @generated
  */
 public class ASinkItemProvider extends AActItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -136,13 +136,13 @@ public class ASinkItemProvider extends AActItemProvider implements IEditingDomai
      */
     protected void addAvailableTypesPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(), getString("_UI_IValue_availableTypes_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_IValue_availableTypes_feature", "_UI_IValue_type"),
-                                                  MetaABMPackage.Literals.IVALUE__AVAILABLE_TYPES, true, false, false,
-                                                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(), getString("_UI_IValue_availableTypes_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_IValue_availableTypes_feature", "_UI_IValue_type"),
+                                                    MetaABMPackage.Literals.IVALUE__AVAILABLE_TYPES, true, false, false,
+                                                    ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     /**
@@ -152,13 +152,13 @@ public class ASinkItemProvider extends AActItemProvider implements IEditingDomai
      */
     protected void addInputsPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(), getString("_UI_ASink_inputs_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_ASink_inputs_feature", "_UI_ASink_type"),
-                                                  MetaABMActPackage.Literals.ASINK__INPUTS, true, true, false, null,
-                                                  getString("_UI_RelationsPropertyCategory"),
-                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(), getString("_UI_ASink_inputs_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_ASink_inputs_feature", "_UI_ASink_type"),
+                                                    MetaABMActPackage.Literals.ASINK__INPUTS, true, true, false, null,
+                                                    getString("_UI_RelationsPropertyCategory"),
+                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     /**
@@ -168,10 +168,10 @@ public class ASinkItemProvider extends AActItemProvider implements IEditingDomai
      */
     protected void addFunctionPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_ASink_function_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_ASink_function_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_ASink_function_feature",
-                                                                           "_UI_ASink_type"),
+                                                                 "_UI_ASink_type"),
                                                                  MetaABMActPackage.Literals.ASINK__FUNCTION, true,
                                                                  false, true, null,
                                                                  getString("_UI_ActPropertyCategory"), null));
@@ -221,7 +221,7 @@ public class ASinkItemProvider extends AActItemProvider implements IEditingDomai
     protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value,
             int index) {
         ASink sink = (ASink) owner;
-        if (feature == MetaABMActPackage.Literals.ASINK__FUNCTION) {
+        if (feature == MetaABMActPackage.Literals.ASINK__FUNCTION && value == null || value instanceof FFunction) {
             FFunction function = (FFunction) value;
             CompoundCommand cmd = new CompoundCommand("Set Sink Function");
             cmd.append(super.createSetCommand(domain, owner, feature, value, index));
@@ -279,10 +279,10 @@ public class ASinkItemProvider extends AActItemProvider implements IEditingDomai
             if (function instanceof FOperator) {
                 return StringUtils.capitalize(function.getID());
             } else if (function.eContainer() instanceof FLibrary
-                && ((FLibrary) function.eContainer()).getID().equals("spatial")) {
+                    && ((FLibrary) function.eContainer()).getID().equals("spatial")) {
                 return "Spatial";
             } else if (function.eContainer() instanceof FLibrary
-                && ((FLibrary) function.eContainer()).getID().equals("random")) {
+                    && ((FLibrary) function.eContainer()).getID().equals("random")) {
                 return "Random";
             } else if (function instanceof FGenericLogical) {
                 return "GenericLogical";

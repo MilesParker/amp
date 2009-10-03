@@ -50,8 +50,6 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.widgets.Display;
 import org.metaabm.IID;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SNamed;
@@ -77,13 +75,9 @@ import org.metaabm.provider.MetaABMEditPlugin;
  * @generated
  */
 public class AActItemProvider extends IIDItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     // Map<EReference, ItemProviderAdapter> providerForFeature;
-
-    public final static Color[] BACKGROUND_SELECT_COLORS = { new Color(Display.getCurrent(), 210, 210, 255),
-        new Color(Display.getCurrent(), 230, 230, 200), new Color(Display.getCurrent(), 210, 255, 210),
-        new Color(Display.getCurrent(), 200, 230, 230) };
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -123,13 +117,13 @@ public class AActItemProvider extends IIDItemProvider implements IEditingDomainI
      */
     protected void addSourcesPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(), getString("_UI_AAct_sources_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_AAct_sources_feature", "_UI_AAct_type"),
-                                                  MetaABMActPackage.Literals.AACT__SOURCES, true, false, true, null,
-                                                  getString("_UI_RelationsPropertyCategory"),
-                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(), getString("_UI_AAct_sources_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_AAct_sources_feature", "_UI_AAct_type"),
+                                                    MetaABMActPackage.Literals.AACT__SOURCES, true, false, true, null,
+                                                    getString("_UI_RelationsPropertyCategory"),
+                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     /**
@@ -139,13 +133,13 @@ public class AActItemProvider extends IIDItemProvider implements IEditingDomainI
      */
     protected void addTargetsPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(), getString("_UI_AAct_targets_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_AAct_targets_feature", "_UI_AAct_type"),
-                                                  MetaABMActPackage.Literals.AACT__TARGETS, true, false, true, null,
-                                                  getString("_UI_RelationsPropertyCategory"),
-                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(), getString("_UI_AAct_targets_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_AAct_targets_feature", "_UI_AAct_type"),
+                                                    MetaABMActPackage.Literals.AACT__TARGETS, true, false, true, null,
+                                                    getString("_UI_RelationsPropertyCategory"),
+                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     /**
@@ -155,13 +149,13 @@ public class AActItemProvider extends IIDItemProvider implements IEditingDomainI
      */
     protected void addReferencePropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(), getString("_UI_AAct_reference_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_AAct_reference_feature", "_UI_AAct_type"),
-                                                  MetaABMActPackage.Literals.AACT__REFERENCE, false, false, true, null,
-                                                  getString("_UI_RelationsPropertyCategory"),
-                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(), getString("_UI_AAct_reference_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_AAct_reference_feature", "_UI_AAct_type"),
+                                                    MetaABMActPackage.Literals.AACT__REFERENCE, false, false, true, null,
+                                                    getString("_UI_RelationsPropertyCategory"),
+                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     /**
@@ -171,13 +165,13 @@ public class AActItemProvider extends IIDItemProvider implements IEditingDomainI
      */
     protected void addGroupPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(), getString("_UI_AAct_group_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_AAct_group_feature", "_UI_AAct_type"),
-                                                  MetaABMActPackage.Literals.AACT__GROUP, false, false, true, null,
-                                                  getString("_UI_RelationsPropertyCategory"),
-                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(), getString("_UI_AAct_group_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_AAct_group_feature", "_UI_AAct_type"),
+                                                    MetaABMActPackage.Literals.AACT__GROUP, false, false, true, null,
+                                                    getString("_UI_RelationsPropertyCategory"),
+                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     /**
@@ -187,11 +181,11 @@ public class AActItemProvider extends IIDItemProvider implements IEditingDomainI
      */
     protected void addSelectedPropertyDescriptor(Object object) {
         ItemPropertyDescriptor createItemPropertyDescriptor = new ItemPropertyDescriptor(
-            ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
-            getString("_UI_AAct_selected_feature"), getString("_UI_PropertyDescriptor_description",
-                                                              "_UI_AAct_selected_feature", "_UI_AAct_type"),
-            MetaABMActPackage.Literals.AACT__SELECTED, true, true, true, null, getString("_UI_ActPropertyCategory"),
-            null) {
+                                                                                         ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(),
+                                                                                         getString("_UI_AAct_selected_feature"), getString("_UI_PropertyDescriptor_description",
+                                                                                                                                           "_UI_AAct_selected_feature", "_UI_AAct_type"),
+                                                                                                                                           MetaABMActPackage.Literals.AACT__SELECTED, true, true, true, null, getString("_UI_ActPropertyCategory"),
+                                                                                                                                           null) {
 
             @SuppressWarnings("unchecked")
             public Collection<?> getChoiceOfValues(Object object) {
@@ -216,13 +210,13 @@ public class AActItemProvider extends IIDItemProvider implements IEditingDomainI
      */
     protected void addAllSourcesPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(), getString("_UI_AAct_allSources_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_AAct_allSources_feature", "_UI_AAct_type"),
-                                                  MetaABMActPackage.Literals.AACT__ALL_SOURCES, false, false, true,
-                                                  null, getString("_UI_RelationsPropertyCategory"),
-                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(), getString("_UI_AAct_allSources_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_AAct_allSources_feature", "_UI_AAct_type"),
+                                                    MetaABMActPackage.Literals.AACT__ALL_SOURCES, false, false, true,
+                                                    null, getString("_UI_RelationsPropertyCategory"),
+                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     /**
@@ -232,13 +226,13 @@ public class AActItemProvider extends IIDItemProvider implements IEditingDomainI
      */
     protected void addAllTargetsPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(), getString("_UI_AAct_allTargets_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_AAct_allTargets_feature", "_UI_AAct_type"),
-                                                  MetaABMActPackage.Literals.AACT__ALL_TARGETS, false, false, true,
-                                                  null, getString("_UI_RelationsPropertyCategory"),
-                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(), getString("_UI_AAct_allTargets_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_AAct_allTargets_feature", "_UI_AAct_type"),
+                                                    MetaABMActPackage.Literals.AACT__ALL_TARGETS, false, false, true,
+                                                    null, getString("_UI_RelationsPropertyCategory"),
+                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     /**
@@ -248,13 +242,13 @@ public class AActItemProvider extends IIDItemProvider implements IEditingDomainI
      */
     protected void addRootSelectedPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(), getString("_UI_AAct_rootSelected_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_AAct_rootSelected_feature", "_UI_AAct_type"),
-                                                  MetaABMActPackage.Literals.AACT__ROOT_SELECTED, false, false, false,
-                                                  null, getString("_UI_RelationsPropertyCategory"),
-                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(), getString("_UI_AAct_rootSelected_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_AAct_rootSelected_feature", "_UI_AAct_type"),
+                                                    MetaABMActPackage.Literals.AACT__ROOT_SELECTED, false, false, false,
+                                                    null, getString("_UI_RelationsPropertyCategory"),
+                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     /**
@@ -419,27 +413,27 @@ public class AActItemProvider extends IIDItemProvider implements IEditingDomainI
             }
             return cmd;
         } else if (feature == MetaABMActPackage.Literals.ASINK__FUNCTION
-            || feature == MetaABMActPackage.Literals.AINPUT__LITERAL
-            || feature == MetaABMActPackage.Literals.AACCESSOR__ATTRIBUTE
-            || feature == MetaABMActPackage.Literals.ASET__PARAMETER
-            || feature == MetaABMActPackage.Literals.ABUILD_PROJECTION__PROJECTION
-            || feature == MetaABMActPackage.Literals.ACREATE_AGENTS__AGENT_COUNT
-            || feature == MetaABMActPackage.Literals.ASCHEDULE__PICK
-            || feature == MetaABMActPackage.Literals.ASCHEDULE__PRIORITY
-            || feature == MetaABMActPackage.Literals.ASCHEDULE__INTERVAL
-            || feature == MetaABMActPackage.Literals.ASCHEDULE__START
-            || feature == MetaABMActPackage.Literals.ASET__PARAMETER
-            || feature == MetaABMActPackage.Literals.ASELECT__AGENT
-            || feature == MetaABMActPackage.Literals.ASELECT__FOR
-            || feature == MetaABMActPackage.Literals.ASELECT__SPACE
-            || feature == MetaABMActPackage.Literals.AACT__SELECTED
-            || feature == MetaABMActPackage.Literals.AINPUT__VALUE
-            || feature == MetaABMActPackage.Literals.AINPUT__LITERAL
-            || feature == MetaABMActPackage.Literals.ATRANSFORM__DESTINATION
-            || feature == MetaABMActPackage.Literals.ANETWORK__WITHIN) {
+                || feature == MetaABMActPackage.Literals.AINPUT__LITERAL
+                || feature == MetaABMActPackage.Literals.AACCESSOR__ATTRIBUTE
+                || feature == MetaABMActPackage.Literals.ASET__PARAMETER
+                || feature == MetaABMActPackage.Literals.ABUILD_PROJECTION__PROJECTION
+                || feature == MetaABMActPackage.Literals.ACREATE_AGENTS__AGENT_COUNT
+                || feature == MetaABMActPackage.Literals.ASCHEDULE__PICK
+                || feature == MetaABMActPackage.Literals.ASCHEDULE__PRIORITY
+                || feature == MetaABMActPackage.Literals.ASCHEDULE__INTERVAL
+                || feature == MetaABMActPackage.Literals.ASCHEDULE__START
+                || feature == MetaABMActPackage.Literals.ASET__PARAMETER
+                || feature == MetaABMActPackage.Literals.ASELECT__AGENT
+                || feature == MetaABMActPackage.Literals.ASELECT__FOR
+                || feature == MetaABMActPackage.Literals.ASELECT__SPACE
+                || feature == MetaABMActPackage.Literals.AACT__SELECTED
+                || feature == MetaABMActPackage.Literals.AINPUT__VALUE
+                || feature == MetaABMActPackage.Literals.AINPUT__LITERAL
+                || feature == MetaABMActPackage.Literals.ATRANSFORM__DESTINATION
+                || feature == MetaABMActPackage.Literals.ANETWORK__WITHIN) {
             SuggestLabelCommand suggestLabelCommand = null;
             if (!(owner instanceof ASink && (((ASink) owner).isMultiValue() || feature == MetaABMActPackage.Literals.ASINK__FUNCTION
-                && value != null && ((FFunction) value).isMultiValue()))) {
+                    && value != null && ((FFunction) value).isMultiValue()))) {
                 suggestLabelCommand = new SuggestLabelCommand(domain, (IID) owner);
             }
             Command createSetCommand = super.createSetCommand(domain, owner, feature, value, index);
@@ -542,7 +536,7 @@ public class AActItemProvider extends IIDItemProvider implements IEditingDomainI
             label = act.getSelected().getLabel() + ": " + label;
         }
         return label == null || label.length() == 0 ? getString("_UI_" + ((EObject) object).eClass().getName()
-            + "_type") : label;
+                                                                + "_type") : label;
     }
 
     // public Object getParent(Object object) {
@@ -619,7 +613,7 @@ public class AActItemProvider extends IIDItemProvider implements IEditingDomainI
             if (cl instanceof EClass) {
                 EClass actClass = (EClass) cl;
                 if (MetaABMActPackage.Literals.AACT.isSuperTypeOf(actClass)
-                    && !MetaABMActPackage.Literals.AROOT.isSuperTypeOf(actClass) && !actClass.isAbstract()) {
+                        && !MetaABMActPackage.Literals.AROOT.isSuperTypeOf(actClass) && !actClass.isAbstract()) {
                     newChildDescriptors.add(createChildParameter(MetaABMActPackage.Literals.AACT__TARGETS,
                                                                  MetaABMActFactory.eINSTANCE.create(actClass)));
                 }
@@ -713,12 +707,12 @@ public class AActItemProvider extends IIDItemProvider implements IEditingDomainI
         if (act instanceof ATransform) {
             if (act.getSelected() == null || !allSourceSelects.contains(act.getSelected())) {
                 cmd.append(SetCommand.create(domain, act, MetaABMActPackage.Literals.AACT__SELECTED, newSelect
-                        .getSelected()));
+                                             .getSelected()));
             }
             if (((ATransform) act).getDestination() == null
-                || !allSourceSelects.contains(((ATransform) act).getDestination())) {
+                    || !allSourceSelects.contains(((ATransform) act).getDestination())) {
                 cmd.append(SetCommand
-                        .create(domain, act, MetaABMActPackage.Literals.ATRANSFORM__DESTINATION, newSelect));
+                           .create(domain, act, MetaABMActPackage.Literals.ATRANSFORM__DESTINATION, newSelect));
             }
         } else {
             if (!allSourceSelects.contains(act.getSelected())) {
@@ -729,8 +723,8 @@ public class AActItemProvider extends IIDItemProvider implements IEditingDomainI
             for (AInput input : ((ASink) act).getInputs()) {
                 if (!allSourceSelects.contains(input.getSelected()) && !processed.contains(input)) {
                     cmd
-                            .append(SetCommand.create(domain, input, MetaABMActPackage.Literals.AINPUT__SELECTED,
-                                                      newSelect));
+                    .append(SetCommand.create(domain, input, MetaABMActPackage.Literals.AINPUT__SELECTED,
+                                              newSelect));
                     processed.add(input);
                 }
             }
@@ -827,24 +821,4 @@ public class AActItemProvider extends IIDItemProvider implements IEditingDomainI
         return ((AAct) object).getSources();
     }
 
-    public static int selectionDepth(AAct act) {
-        if (act == null || act.getSelected() == null | act.getSelected() == act) {
-            return 0;
-        } else {
-            return selectionDepth(act.getSelected()) + 1;
-        }
-    }
-
-    public static Color selectionColor(AAct act) {
-        int selectionDepthSelect = selectionDepthSelect(act);
-        return BACKGROUND_SELECT_COLORS[selectionDepthSelect % BACKGROUND_SELECT_COLORS.length];
-    }
-
-    public static int selectionDepthSelect(AAct act) {
-        if (act instanceof ASelect) {
-            return selectionDepth(act);
-        } else {
-            return selectionDepth(act.getSelected());
-        }
-    }
 }
