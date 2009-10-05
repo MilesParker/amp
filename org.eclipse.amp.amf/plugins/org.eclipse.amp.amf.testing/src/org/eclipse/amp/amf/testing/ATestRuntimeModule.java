@@ -3,9 +3,7 @@
  */
 package org.eclipse.amp.amf.testing;
 
-import org.eclipse.amp.amf.abase.AMPTerminalConverters;
 import org.eclipse.amp.amf.testing.scoping.ATestImportResolver;
-import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.linking.ILinker;
 import org.eclipse.xtext.linking.impl.Linker;
 import org.eclipse.xtext.scoping.impl.ImportUriResolver;
@@ -28,12 +26,12 @@ public class ATestRuntimeModule extends org.eclipse.amp.amf.testing.AbstractATes
         return Linker.class;
     }
 
-    /**
-     * @return
-     * @see org.eclipse.xtext.service.DefaultRuntimeModule#bindIValueConverterService()
-     */
-    public Class<? extends IValueConverterService> bindIValueConverterService() {
-        return AMPTerminalConverters.class;
-    }
+    // /**
+    // * @return
+    // * @see org.eclipse.xtext.service.DefaultRuntimeModule#bindIValueConverterService()
+    // */
+    // public Class<? extends IValueConverterService> bindIValueConverterService() {
+    // return AMPTerminalConverters.class;
+    // }
 }
 

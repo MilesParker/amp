@@ -57,7 +57,7 @@ public class ATestScopeProvider extends AParScopeProvider {
                 Resource aparAnalog = resourceSet.getResource(aparURI, true);
                 Model aparModel = (Model) aparAnalog.getContents().get(0);
                 Resource agentModel = resourceSet.getResource(URI.createURI(AParInterpreter.convertURI(aparModel
-                                                                                                          .getModel().get(0)), true), true);
+                                                                                                       .getModel().get(0)), true), true);
                 if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAgent()) {
                     for (Resource resource : resourceSet.getResources()) {
                         for (Iterator<EObject> iter = resource.getAllContents(); iter.hasNext();) {

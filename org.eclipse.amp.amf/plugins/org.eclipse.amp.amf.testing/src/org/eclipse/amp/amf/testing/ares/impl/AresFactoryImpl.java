@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresFactoryImpl.java,v 1.3 2009/08/07 00:05:31 mparker Exp $
+ * $Id: AresFactoryImpl.java,v 1.4 2009/10/05 20:41:21 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.impl;
 
@@ -36,7 +36,7 @@ public class AresFactoryImpl extends EFactoryImpl implements AresFactory {
      */
     public static AresFactory init() {
         try {
-            AresFactory theAresFactory = (AresFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/amp/ares"); 
+            AresFactory theAresFactory = (AresFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org.eclipse.amp/ares"); 
             if (theAresFactory != null) {
                 return theAresFactory;
             }

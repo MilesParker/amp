@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresPackage.java,v 1.3 2009/08/07 00:05:32 mparker Exp $
+ * $Id: AresPackage.java,v 1.4 2009/10/05 20:41:21 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares;
 
@@ -42,7 +42,7 @@ public interface AresPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    String eNS_URI = "http://eclipse.org/amp/ares";
+    String eNS_URI = "http://eclipse.org.eclipse.amp/ares";
 
     /**
      * The package namespace name.
