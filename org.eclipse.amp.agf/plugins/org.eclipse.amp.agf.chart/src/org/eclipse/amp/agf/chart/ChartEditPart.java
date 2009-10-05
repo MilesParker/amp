@@ -56,6 +56,7 @@ import org.eclipse.birt.chart.model.data.impl.SeriesDefinitionImpl;
 import org.eclipse.birt.chart.model.data.impl.TextDataSetImpl;
 import org.eclipse.birt.chart.model.impl.ChartWithAxesImpl;
 import org.eclipse.birt.chart.model.layout.Legend;
+import org.eclipse.birt.chart.model.type.LineSeries;
 import org.eclipse.birt.chart.model.type.impl.LineSeriesImpl;
 import org.eclipse.birt.core.framework.PlatformConfig;
 import org.eclipse.core.runtime.IAdapterManager;
@@ -203,6 +204,10 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
             getLabel().setVisible(false);
             DataSet data = NumberDataSetImpl.create(dataProvider.getValues(valueSet));
             setDataSet(data);
+        }
+
+        public LineSeries copyInstance() {
+            return this;
         }
     }
 
