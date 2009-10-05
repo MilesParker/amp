@@ -19,6 +19,7 @@ package org.eclipse.amp.amf.parameters.scoping;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.amp.amf.parameters.aPar.Parameter;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -59,7 +60,7 @@ public class AParScopeProvider extends DefaultScopeProvider {
         // todo optimization -- for obscure reasons we need to get the references loaded this way but it doesn't have to
         // happen every time.
         IScope defaultScope = super.getScope(context, reference);
-        if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAttribute()) {
+        if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAttribute() && context instanceof Parameter) {
             // if (attrScope == null) {
             List<IScopedElement> allElems = new ArrayList<IScopedElement>();
             ResourceSet resourceSet = getResourceSet(context);
