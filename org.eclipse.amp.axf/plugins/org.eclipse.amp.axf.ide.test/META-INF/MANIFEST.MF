@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Test AXF IDE
 Bundle-SymbolicName: org.eclipse.amp.axf.ide.test;singleton:=true
 Bundle-Version: 0.2.0
-Bundle-Activator: org.eclipse.axf.ide.test.Activator
+Bundle-Activator: org.eclipse.amp.axf.ide.test.Activator
 Bundle-Vendor: eclipse.org
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

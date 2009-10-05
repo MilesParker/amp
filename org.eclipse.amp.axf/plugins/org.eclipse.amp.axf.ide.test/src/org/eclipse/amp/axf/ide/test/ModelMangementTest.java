@@ -14,7 +14,7 @@
  *
  */
 
-package org.eclipse.axf.ide.test;
+package org.eclipse.amp.axf.ide.test;
 
 import java.io.BufferedReader;
 import java.io.IOException;

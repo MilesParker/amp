@@ -14,12 +14,11 @@
  *
  */
 
-package org.eclipse.axf.ide.test;
+package org.eclipse.amp.axf.ide.test;
 
 import junit.framework.TestCase;
 
-import org.ascape.model.Scape;
-import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
+import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
 import org.eclipse.swtbot.eclipse.finder.widgets.SWTBotView;
 import org.eclipse.swtbot.swt.finder.exceptions.WidgetNotFoundException;
@@ -32,7 +31,7 @@ import org.eclipse.swtbot.swt.finder.widgets.SWTBotTreeItem;
  * @author mparker
  * 
  */
-public class ParameterExecutionTest extends TestCase {
+public class TestExecutionTest extends TestCase {
 
     String testProjectName = "test.escape";
     /**
@@ -58,31 +57,25 @@ public class ParameterExecutionTest extends TestCase {
     }
 
     public void testLaunch() {
-        launchParameter();
+        launchTest();
         bot.sleep(1000);
-        Scape model = ((ScapeWrapperModel) ModelMangementTest.activeModel()).getScape();
-        try {
-            Class pd = Class.forName("edu.brook.DemographicPrisonersDilemma");
-            assertEquals(pd.getField("MaximumAge").getInt(model), 1000);
-            assertEquals(pd.getField("StopPeriod").getInt(model), 0);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
-
-    private void launchParameter() {
+    private void launchTest() {
         tree().setFocus();
         tree().select(testProjectName);
         SWTBotTreeItem projectNode = tree().expandNode(testProjectName);
         bot.sleep(2000);
-        projectNode.expandNode("Test1.apar").doubleClick();
+        projectNode.expandNode("TestModel.atest").doubleClick();
         packageExplorer().setFocus();
         bot.sleep(2000);
 
-        control().menu("Execute").click();
-        bot.sleep(2500);
+        control().menu("Test Once").click();
+        bot.sleep(4000);
+        assertEquals(AXFWorkbenchPlugin.getDefault().getManager().getModels().size(), 0);
+
     }
+
     private SWTBotMenu control() {
         return bot.menu("Control");
     }
