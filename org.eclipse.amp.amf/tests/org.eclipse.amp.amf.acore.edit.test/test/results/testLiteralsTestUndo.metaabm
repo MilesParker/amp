@@ -13,7 +13,7 @@
     <members xsi:type="act:AEvaluate" label="At 0 Every 0: Literal 13 Add [?]" ID="at0Every0Literal13Add" sources="//@rootActivity/@members[ID='setTo']" selected="//@rootActivity/@members[ID='at0Every0']">
       <inputs selected="//@rootActivity/@members[ID='at0Every0']"/>
       <inputs selected="//@rootActivity/@members[ID='at0Every0']"/>
-      <function xsi:type="function:FOperator" href="../../../../plugins/org.eclipse.amp.amf.acore/src/model/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='operators']/@subs[ID='numericOperators']/@functions[ID='add']"/>
+      <function xsi:type="function:FOperator" href="http://metaabm.org/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='operators']/@subs[ID='numericOperators']/@functions[ID='add']"/>
     </members>
   </rootActivity>
   <implementation className="RootContext"/>
