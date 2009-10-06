@@ -1,22 +1,22 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-Vendor: %providerName
+Bundle-SymbolicName: org.eclipse.amp.amf.testing.ui;singleton:=true
 Bundle-Version: 0.2.0.qualifier
-Bundle-SymbolicName: org.eclipse.amp.amf.testing.ui; singleton:=true
-Eclipse-RegisterBuddy: org.eclipse.xtext.log4j
-Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.amp.amf.testing;visibility:=reexport,
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.amp.amf.testing.internal.ATestActivator
+Bundle-Vendor: %providerName
+Require-Bundle: org.eclipse.amp.amf.testing,
  org.eclipse.xtext.ui.core,
  org.eclipse.xtext.ui.common,
- org.eclipse.xtext.log4j;bundle-version="1.2.15",
- org.eclipse.ui.editors;bundle-version="3.4.0",
- org.eclipse.ui.ide;bundle-version="3.4.0",
+ org.eclipse.xtext.log4j,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.ide,
  org.eclipse.ui,
  org.antlr.runtime,
- org.eclipse.amp.amf.abase;bundle-version="1.0.0",
- org.eclipse.amp.amf.abase.ui;bundle-version="1.0.0"
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+ org.eclipse.amp.amf.abase,
+ org.eclipse.amp.amf.abase.ui
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.eclipse.amp.amf.testing,
  org.eclipse.amp.amf.testing.contentassist,
  org.eclipse.amp.amf.testing.contentassist.antlr,
@@ -24,4 +24,4 @@ Export-Package: org.eclipse.amp.amf.testing,
  org.eclipse.amp.amf.testing.internal,
  org.eclipse.amp.amf.testing.labeling,
  org.eclipse.amp.amf.testing.outline
-Bundle-Activator: org.eclipse.amp.amf.testing.internal.ATestActivator
+Bundle-ActivationPolicy: lazy
