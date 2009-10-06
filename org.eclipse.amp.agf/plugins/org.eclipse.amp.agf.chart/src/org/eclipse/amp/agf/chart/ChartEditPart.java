@@ -285,7 +285,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
                     updateChartSeries();
                     getViewer().getControl().getDisplay().asyncExec(new Runnable() {
                         public void run() {
-                            regenerateChart(true);
+                            refresh();
                         }
                     });
                 }
@@ -325,11 +325,6 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 
             public void layout(IFigure container) {
                 imageFigure.setLocation(new Point(0, 0));
-            }
-        });
-        imageFigure.addFigureListener(new FigureListener() {
-            public void figureMoved(IFigure source) {
-                regenerateChart();
             }
         });
         imageFigure.addFigureListener(new FigureListener() {
