@@ -3,7 +3,7 @@
       id="org.eclipse.amp.test"
       label="AMP Tests"
       version="0.2.0"
-      provider-name="Eclipse Agent Modeling Platform">
+      provider-name="%providerName">
 
    <description url="http://eclipse.org/amp">
       Complete AMP Test Suite.
@@ -62,7 +62,7 @@ This Agreement is governed by the laws of the State of New York and the intellec
    </license>
 
    <url>
-      <update label="AMP Update Site" url="http://eclipse.org/amp/updates/release"/>
+      <update label="%AMPUpdateSiteName" url="http://eclipse.org/amp/updates/release"/>
    </url>
 
    <plugin
@@ -79,16 +79,4 @@ This Agreement is governed by the laws of the State of New York and the intellec
          version="0.0.0"
          unpack="false"/>
 
-   <plugin
-         id="org.eclipse.test"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"/>
-
-   <plugin
-         id="org.eclipse.ant.optional.junit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         fragment="true"/>
 </feature>
