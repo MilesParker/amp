@@ -46,4 +46,6 @@
       </topic>
    </topic>
    <topic label="New and Noteworthy" href="docs/whatsnew.html"/>
+   <topic href="docs/Legal.html" label="Topic">
+   </topic>
 </toc>
