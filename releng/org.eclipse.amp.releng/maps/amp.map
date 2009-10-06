@@ -58,6 +58,7 @@ feature@org.eclipse.amp.axf=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroo
 feature@org.eclipse.amp.escape=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.escape/features/org.eclipse.amp.escape-feature
 
 !***PLUGINS
+plugin@org.eclipse.amp.all=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp/plugins/org.eclipse.amp.all
 plugin@org.eclipse.amp.agf.chart=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.chart
 plugin@org.eclipse.amp.agf.core=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.core
 plugin@org.eclipse.amp.agf.ide=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.ide
