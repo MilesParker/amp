@@ -184,7 +184,9 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
                  * @see java.lang.Thread#run()
                  */
                 public void run() {
-                    AXFWorkbenchPlugin.getDefault().getManager().remove(model);
+                    if (AXFWorkbenchPlugin.getDefault().getManager().getModels().contains(model)) {
+                        AXFWorkbenchPlugin.getDefault().getManager().remove(model);
+                    }
                 }
             }.start();
         }
