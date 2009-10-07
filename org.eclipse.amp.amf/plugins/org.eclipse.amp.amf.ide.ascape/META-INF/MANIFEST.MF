@@ -24,3 +24,4 @@ Bundle-ClassPath: .
 Bundle-ActivationPolicy: lazy
 Eclipse-BuddyPolicy: dependent
 Export-Package: org.eclipse.amp.amf.ide.ascape
+Bundle-Localization: plugin
