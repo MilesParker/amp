@@ -3,7 +3,8 @@
       id="org.eclipse.amp.amf"
       label="%featureName"
       version="0.2.0.qualifier"
-      provider-name="%providerName">
+      provider-name="%providerName"
+      plugin="org.eclipse.amp.amf.acore.edit">
 
    <description url="http://eclipse.org/amp">
       %description
