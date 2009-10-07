@@ -25,3 +25,4 @@ Bundle-ClassPath: .
 Bundle-ActivationPolicy: lazy
 Eclipse-BuddyPolicy: dependent
 Export-Package: org.eclipse.amp.amf.ide.repast
+Bundle-Localization: plugin
