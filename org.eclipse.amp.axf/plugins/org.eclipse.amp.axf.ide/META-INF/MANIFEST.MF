@@ -18,4 +18,4 @@ Export-Package: org.eclipse.amp.axf.ide,
  org.eclipse.amp.axf.ide.view
 Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Bundle-Localization: plugin
