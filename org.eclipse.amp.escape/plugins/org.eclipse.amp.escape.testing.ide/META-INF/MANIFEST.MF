@@ -25,3 +25,4 @@ Import-Package: org.apache.commons.lang,
 Bundle-Vendor: %providerName
 Bundle-ClassPath: .
 Export-Package: org.eclipse.amp.amf.testing.ide
+Bundle-Localization: plugin
