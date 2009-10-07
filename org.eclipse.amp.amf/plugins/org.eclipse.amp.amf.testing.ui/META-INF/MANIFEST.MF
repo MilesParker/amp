@@ -25,3 +25,4 @@ Export-Package: org.eclipse.amp.amf.testing,
  org.eclipse.amp.amf.testing.labeling,
  org.eclipse.amp.amf.testing.outline
 Bundle-ActivationPolicy: lazy
+Bundle-Localization: plugin
