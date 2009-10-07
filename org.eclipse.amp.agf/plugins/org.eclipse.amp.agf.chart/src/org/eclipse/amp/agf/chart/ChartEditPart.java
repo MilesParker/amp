@@ -56,7 +56,6 @@ import org.eclipse.birt.chart.model.data.impl.SeriesDefinitionImpl;
 import org.eclipse.birt.chart.model.data.impl.TextDataSetImpl;
 import org.eclipse.birt.chart.model.impl.ChartWithAxesImpl;
 import org.eclipse.birt.chart.model.layout.Legend;
-import org.eclipse.birt.chart.model.type.LineSeries;
 import org.eclipse.birt.chart.model.type.impl.LineSeriesImpl;
 import org.eclipse.birt.core.framework.PlatformConfig;
 import org.eclipse.core.runtime.IAdapterManager;
@@ -206,9 +205,9 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
             setDataSet(data);
         }
 
-        public LineSeries copyInstance() {
-            return this;
-        }
+        // public LineSeries copyInstance() {
+        // return this;
+        // }
     }
 
     /**
@@ -231,14 +230,23 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
         }
 
         /**
-         *
+         * @param observed
+         * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeStart(org.eclipse.amp.axf.core.IObservationProvider)
+         */
+        public void observeStart(IObservationProvider observed) {
+            createChart();
+            initializeChartData();
+            endPainting();
+        }
+
+        /**
+         * 
          * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeInitialize(org.eclipse.amp.axf.core.IObservationProvider)
          */
         @Override
         public void observeInitialize(IObservationProvider model) {
-            super.observeInitialize(model);
             // createChart();
-            initializeChartData();
+            // initializeChartData();
             // updateChartSeries();
             image = null;
             // imgChart = null;
@@ -281,11 +289,11 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
         dataSource = dataProvider.getDataSource(getModel());
         dataListener = new IDataSelectionListener() {
             public void selectionChanged(Object dataSet) {
-                if (getParent() != null && getRoot() != null && getViewer() != null) {
+                if (getParent() != null && getRoot() != null && getViewer() != null && chart != null) {
                     updateChartSeries();
                     getViewer().getControl().getDisplay().asyncExec(new Runnable() {
                         public void run() {
-                            refresh();
+                            regenerateChart(true);
                         }
                     });
                 }
@@ -349,7 +357,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
     public void refresh() {
         new Thread() {
             public void run() {
-                regenerateChart();
+                regenerateChart(false);
             };
         }.run();
     }
@@ -364,7 +372,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
         ((IObservationProvider) model).addModelListener(chartListener);
 
         initializeDataSelection();
-        createChart();
+        // createChart();
     }
 
     /**
