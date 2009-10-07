@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-Vendor: %pluginName
+Bundle-Vendor: %providerName
 Bundle-SymbolicName: org.eclipse.amp.escape.ascape;singleton:=true
 Bundle-Version: 0.2.0.qualifier
 Bundle-Activator: org.eclipse.amp.escape.ascape.EscapeAscapeRuntimePlugin
@@ -20,3 +20,4 @@ Export-Package: org.eclipse.amp.escape.ascape,
  org.eclipse.amp.escape.ascape.gef,
  org.eclipse.amp.escape.ascape.wrap
 Bundle-ClassPath: .
+Bundle-Localization: plugin
