@@ -1,11 +1,11 @@
 Manifest-Version: 1.0
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ManifestVersion: 2
-Bundle-Name: Test Acore MetaABM Edit
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.amp.amf.acore.edit.test
 Bundle-Version: 0.2.0.qualifier
 Bundle-Activator: org.eclipse.amp.amf.acore.edit.tests.Activator
-Bundle-Vendor: Eclipse.org
+Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.amp.amf.acore,
  org.eclipse.amp.amf.acore.test,
@@ -16,3 +16,4 @@ Export-Package: org.eclipse.amp.amf.acore.edit.commands.test,
  org.eclipse.amp.amf.acore.edit.tests
 Import-Package: org.apache.commons.lang
 Bundle-ClassPath: .
+Bundle-Localization: plugin
