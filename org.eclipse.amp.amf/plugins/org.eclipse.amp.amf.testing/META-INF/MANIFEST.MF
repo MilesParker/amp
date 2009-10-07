@@ -40,3 +40,4 @@ Export-Package: org.eclipse.amp.amf.testing,
  org.eclipse.amp.amf.testing.scoping,
  org.eclipse.amp.amf.testing.services,
  org.eclipse.amp.amf.testing.validation
+Bundle-Localization: plugin
