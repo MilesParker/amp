@@ -35,3 +35,4 @@ Export-Package: org.eclipse.amp.amf.abase,
  org.eclipse.amp.amf.abase.services,
  org.eclipse.amp.amf.abase.validation
 Bundle-ClassPath: .
+Bundle-Localization: plugin
