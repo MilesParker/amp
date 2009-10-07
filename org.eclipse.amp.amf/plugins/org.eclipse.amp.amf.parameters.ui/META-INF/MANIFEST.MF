@@ -26,3 +26,4 @@ Export-Package: org.eclipse.amp.amf.parameters,
  org.eclipse.amp.amf.parameters.labeling,
  org.eclipse.amp.amf.parameters.outline
 Bundle-Activator: org.eclipse.amp.amf.parameters.internal.AParActivator
+Bundle-Localization: plugin
