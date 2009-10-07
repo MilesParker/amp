@@ -29,3 +29,4 @@ Export-Package: org.ascape,
  org.ascape.util.vis,
  org.ascape.view.vis
 Bundle-ClassPath: .
+Bundle-Localization: plugin
