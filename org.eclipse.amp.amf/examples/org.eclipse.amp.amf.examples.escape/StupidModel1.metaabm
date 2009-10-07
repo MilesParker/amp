@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<metaabm:SContext xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/structure" label="StupidModel1" ID="stupidModel1" pluralLabel="StupidModel1s">
+<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/metaabm.org/structure" label="StupidModel1" ID="stupidModel1" pluralLabel="StupidModel1s">
   <attributes label="Bug Count" ID="bugCount" pluralLabel="Bug Counts" description="The number of bugs to create." sType="INTEGER" defaultValue="100"/>
   <attributes label="Habitat Count" ID="habitatCount" pluralLabel="Habitat Counts" description="The number of habitats to create." sType="INTEGER"/>
   <attributes label="Bug Vision" ID="bugVision" pluralLabel="Bug Visions" sType="INTEGER" defaultValue="4"/>
