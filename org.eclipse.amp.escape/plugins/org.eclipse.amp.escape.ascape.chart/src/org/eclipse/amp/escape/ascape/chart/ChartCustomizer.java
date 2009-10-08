@@ -406,8 +406,10 @@ public class ChartCustomizer extends ViewPart {
                 selectTable.setInput(scape.getData().getStatCollectors());
             }
             chartEditPart.getViewer().getControl().addDisposeListener(chartDisposeListener);
-        } else {
-            chartEditPart.getViewer().getControl().removeDisposeListener(chartDisposeListener);
+        } else if (object == null && chartEditPart != null) {
+            if (chartEditPart.getViewer().getControl() != null) {
+                chartEditPart.getViewer().getControl().removeDisposeListener(chartDisposeListener);
+            }
             chartEditPart = null;
             dataSelection = null;
             if (control != null) {
