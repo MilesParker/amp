@@ -231,11 +231,19 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 
         /**
          * @param observed
+         * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observing(org.eclipse.amp.axf.core.IObservationProvider)
+         */
+        public void observing(IObservationProvider observed) {
+            createChart();
+        }
+
+        /**
+         * @param observed
          * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeStart(org.eclipse.amp.axf.core.IObservationProvider)
          */
         public void observeStart(IObservationProvider observed) {
-            createChart();
-            initializeChartData();
+            initializeDataSelection();
+            updateChartSeries();
             endPainting();
         }
 
@@ -267,39 +275,16 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
          * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observationEnd(org.eclipse.amp.axf.core.IObservationProvider)
          */
         public void observationEnd(IObservationProvider model) {
-            super.observationEnd(model);
             dataProvider.removeListener(dataSource, dataListener);
             model = null;
         }
     };
 
     private void initializeDataSelection() {
-        IAdapterManager adapterManager = Platform.getAdapterManager();
-        // We seem to need to force loading of the data provider, at least in the exemplar case
-        Object provider = adapterManager.loadAdapter(this.getModel(), "org.eclipse.amp.agf.chart.IDataProvider");
-
-        if (!(provider instanceof IDataProvider)) {
-            throw new RuntimeException(
-                                       "Couldn't find data provider for chart model. Please ensure that a data provider adapter has been defined for the class: "
-                                       + this.getModel().getClass());
+        for (Object object : ySeriesDefinition.getSeries()) {
+            DataLineSeries lineSeries = (DataLineSeries) object;
+            lineSeries.initialize();
         }
-
-        setDataProvider((IDataProvider) provider);
-        setSeriesLabelProvider((ILabelProvider) provider);
-        dataSource = dataProvider.getDataSource(getModel());
-        dataListener = new IDataSelectionListener() {
-            public void selectionChanged(Object dataSet) {
-                if (getParent() != null && getRoot() != null && getViewer() != null && chart != null) {
-                    updateChartSeries();
-                    getViewer().getControl().getDisplay().asyncExec(new Runnable() {
-                        public void run() {
-                            regenerateChart(true);
-                        }
-                    });
-                }
-            }
-        };
-        dataProvider.addListener(dataSource, dataListener);
     }
 
     /**
@@ -370,8 +355,18 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
         super.setModel(model);
         chartListener = new ChartModelListener();
         ((IObservationProvider) model).addModelListener(chartListener);
+        IAdapterManager adapterManager = Platform.getAdapterManager();
+        // We seem to need to force loading of the data provider, at least in the exemplar case
+        Object provider = adapterManager.loadAdapter(this.getModel(), "org.eclipse.amp.agf.chart.IDataProvider");
 
-        initializeDataSelection();
+        if (!(provider instanceof IDataProvider)) {
+            throw new RuntimeException(
+                                       "Couldn't find data provider for chart model. Please ensure that a data provider adapter has been defined for the class: "
+                                       + this.getModel().getClass());
+        }
+
+        setDataProvider((IDataProvider) provider);
+
         // createChart();
     }
 
@@ -393,7 +388,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
             image = null;
         }
         try {
-            if (chart != null && getFigure() != null && !getFigure().getSize().isEmpty()) {
+            if (chart != null && getFigure() != null && !getFigure().getSize().isEmpty() && ySeriesDefinition != null) {
                 createImage();
                 Dimension area = getFigure().getSize();
                 Bounds chartBounds = BoundsImpl.create(0, 0, area.width, area.height);
@@ -528,13 +523,6 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
         }
     }
 
-    private void initializeChartData() {
-        for (Object object : ySeriesDefinition.getSeries()) {
-            DataLineSeries lineSeries = (DataLineSeries) object;
-            lineSeries.initialize();
-        }
-        updateChartSeries();
-    }
 
     /*
      * (non-Javadoc)
@@ -633,6 +621,21 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
      */
     public void setDataProvider(IDataProvider dataProvider) {
         this.dataProvider = dataProvider;
+        setSeriesLabelProvider(dataProvider);
+        dataSource = dataProvider.getDataSource(getModel());
+        dataListener = new IDataSelectionListener() {
+            public void selectionChanged(Object dataSet) {
+                if (getParent() != null && getRoot() != null && getViewer() != null && chart != null) {
+                    updateChartSeries();
+                    getViewer().getControl().getDisplay().asyncExec(new Runnable() {
+                        public void run() {
+                            regenerateChart(true);
+                        }
+                    });
+                }
+            }
+        };
+        dataProvider.addListener(dataSource, dataListener);
     }
 
     /**
