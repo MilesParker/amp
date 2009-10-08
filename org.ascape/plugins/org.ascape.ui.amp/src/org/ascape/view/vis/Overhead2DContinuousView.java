@@ -24,7 +24,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * The Class Overhead2DContinuousView.
  */
-public class Overhead2DContinuousView extends AgentView {
+public abstract class Overhead2DContinuousView extends AgentView {
 
     private static final long serialVersionUID = -6649641939349361054L;
 
@@ -44,6 +44,11 @@ public class Overhead2DContinuousView extends AgentView {
     private Object[] drawFeatures;
 
     /**
+     * The color feature used to set the agent draw color.
+     */
+    private ColorFeature agentColorFeature;
+
+    /**
      * The image feature used to set the agent image color.
      */
     // private ImageFeature agentImageFeature;
@@ -51,8 +56,6 @@ public class Overhead2DContinuousView extends AgentView {
      * The draw selected neighbors.
      */
     private boolean drawSelectedNeighbors;
-
-    Color backgroundColor = ColorFeature.WHITE;
 
     /**
      * Draws the provided object, assumed to be a agent, by filling it using the agent color feature.
@@ -114,6 +117,7 @@ public class Overhead2DContinuousView extends AgentView {
      */
     public Overhead2DContinuousView(String name) {
         super(name);
+        preferredSize = new Dimension(400, 400);
     }
 
     @Override
@@ -142,8 +146,7 @@ public class Overhead2DContinuousView extends AgentView {
      * On notification of a scape update, draws the actual overhead view.
      */
     public void updateScapeGraphics(Graphics graphics) {
-        graphics.setBackgroundColor(getBackgroundColor());
-        graphics.fillRectangle(0, 0, image.getBounds().width, image.getBounds().height);
+        super.updateScapeGraphics(graphics);
         drawFeatures = getDrawSelection().getSelection();
         // scale for x and y should always be the same
         for (Iterator agents = getScape().iterator(); agents.hasNext();) {
@@ -462,13 +465,5 @@ public class Overhead2DContinuousView extends AgentView {
      */
     public void setDrawSelectedNeighbors(boolean drawSelectedNeighbors) {
         this.drawSelectedNeighbors = drawSelectedNeighbors;
-    }
-
-    public Color getBackgroundColor() {
-        return backgroundColor;
-    }
-
-    public void setBackgroundColor(Color backgroundColor) {
-        this.backgroundColor = backgroundColor;
     }
 }
