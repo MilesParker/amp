@@ -115,6 +115,8 @@ public abstract class SWTAsyncModelListener extends SWTThreadModelListener {
             if (runnable.t != null) {
                 runnable.t.printStackTrace();
             }
+        } else if (key == LifeCycleState.OBSERVED || key == LifeCycleState.END) {
+            SWTAsyncModelListener.super.stateChange(key, model);
         }
         if (model != null) {
             forceModelNotify(model);
