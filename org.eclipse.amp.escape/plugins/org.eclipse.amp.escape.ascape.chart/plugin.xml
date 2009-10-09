@@ -53,6 +53,7 @@
               label="Clear Selection"
               menubarPath="additions"
               state="false"
+              style="push"
               toolbarPath="customGroup"
               tooltip="Clear all selected chart series.">
         </action>

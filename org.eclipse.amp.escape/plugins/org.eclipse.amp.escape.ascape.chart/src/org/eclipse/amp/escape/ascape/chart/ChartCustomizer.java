@@ -142,7 +142,7 @@ public class ChartCustomizer extends ViewPart {
         protected CellEditor getCellEditor(final Object element) {
             CheckboxCellEditor checkboxCellEditor = checkBoxFor.get(element);
             if (checkboxCellEditor == null) {
-                checkboxCellEditor = new CheckboxCellEditor(selectTable.getTable(), SWT.FULL_SELECTION);
+                checkboxCellEditor = new CheckboxCellEditor(selectTable.getTable());
             }
             return checkboxCellEditor;
         }
