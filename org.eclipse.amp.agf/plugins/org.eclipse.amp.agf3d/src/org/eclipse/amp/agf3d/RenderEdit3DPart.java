@@ -20,11 +20,11 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw3d.Figure3D;
 import org.eclipse.draw3d.IFigure3D;
 import org.eclipse.draw3d.RenderContext;
-import org.eclipse.draw3d.geometry.Position3D;
 import org.eclipse.draw3d.geometry.Vector3fImpl;
 import org.eclipse.draw3d.graphics3d.Graphics3D;
 import org.eclipse.draw3d.graphics3d.Graphics3DDraw;
-import org.eclipse.draw3d.shapes.AbstractModelShape;
+import org.eclipse.draw3d.shapes.CuboidFigureShape;
+import org.eclipse.draw3d.shapes.Shape;
 import org.eclipse.draw3d.util.ColorConverter;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.swt.graphics.Color;
@@ -42,7 +42,7 @@ public class RenderEdit3DPart extends AbstractGraphicalEditPart {
     private final float[] m_color = new float[] { DEFAULT_COLOR[0], DEFAULT_COLOR[1], DEFAULT_COLOR[2],
         DEFAULT_COLOR[3] };
 
-    AbstractModelShape shape;
+    Shape shape;
 
     boolean update = true;
     private IFigure3D figure;
@@ -52,26 +52,22 @@ public class RenderEdit3DPart extends AbstractGraphicalEditPart {
      * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
      */
     protected IFigure createFigure() {
-        figure = new Figure3D() {
-            public void render(RenderContext renderContext) {
-                Position3D fp = getPosition3D();
-                shape.setPosition(fp);
-                shape.render(renderContext);
-            }
-        };
-        shape = new AbstractModelShape() {
+        figure = new Figure3D();
+        shape = new CuboidFigureShape(figure) {
             protected void performRender(RenderContext renderContext) {
                 Graphics3D g3d = renderContext.getGraphics3D();
                 renderShape(g3d);
             }
-
-            @Override
-            protected void setup(RenderContext renderContext) {
-                Graphics3D g3d = renderContext.getGraphics3D();
-                g3d.glPolygonMode(Graphics3DDraw.GL_FRONT_AND_BACK, Graphics3DDraw.GL_FILL);
-            }
+//
+//            
+//            
+//            @Override
+//            protected void setup(RenderContext renderContext) {
+//                Graphics3D g3d = renderContext.getGraphics3D();
+//                g3d.glPolygonMode(Graphics3DDraw.GL_FRONT_AND_BACK, Graphics3DDraw.GL_FILL);
+//            }
         };
-        figure.getPosition3D().setSize3D(new Vector3fImpl(SCALE, SCALE, SCALE));
+//        figure.getPosition3D().setSize3D(new Vector3fImpl(SCALE, SCALE, SCALE));
         return figure;
     }
 

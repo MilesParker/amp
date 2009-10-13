@@ -19,14 +19,12 @@ import org.eclipse.amp.agf.gef.AgentEditPart;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw3d.Figure3D;
 import org.eclipse.draw3d.IFigure3D;
-import org.eclipse.draw3d.RenderContext;
-import org.eclipse.draw3d.geometry.Position3D;
 import org.eclipse.draw3d.geometry.Vector3fImpl;
-import org.eclipse.draw3d.shapes.SolidCube;
+import org.eclipse.draw3d.shapes.CuboidFigureShape;
 
 public class AgentEdit3DPart extends AgentEditPart {
 
-    SolidCube cube;
+    CuboidFigureShape cube;
 
     boolean update = true;
 
@@ -41,16 +39,8 @@ public class AgentEdit3DPart extends AgentEditPart {
         // }
         // f.setLayoutManager(new XYLayout());
         // f.setOpaque(false);
-        final IFigure3D figure = new Figure3D() {
-            public void render(RenderContext renderContext) {
-                Position3D fp = getPosition3D();
-                cube.setPosition(fp);
-                cube.render(renderContext);
-            }
-        };
-        cube = new SolidCube();
-        updateGraphics();
-        assignSize(figure);
+        final IFigure3D figure = new Figure3D();
+        cube = new CuboidFigureShape(figure);
         return figure;
     }
 
@@ -78,8 +68,7 @@ public class AgentEdit3DPart extends AgentEditPart {
         this.update = update;
     }
 
-    public SolidCube getCube() {
+    public CuboidFigureShape getCube() {
         return cube;
     }
-
 }

@@ -32,15 +32,14 @@ import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw3d.Figure3D;
 import org.eclipse.draw3d.IFigure3D;
-import org.eclipse.draw3d.IScene;
 import org.eclipse.draw3d.camera.ICamera;
 import org.eclipse.draw3d.geometry.IVector3f;
 import org.eclipse.draw3d.geometry.Math3DVector3f;
 import org.eclipse.draw3d.geometry.Vector3f;
 import org.eclipse.draw3d.geometry.Vector3fImpl;
-import org.eclipse.draw3d.shapes.WiredCube;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef3d.ui.parts.GraphicalViewer3D;
 import org.eclipse.jface.viewers.IFilter;
 import org.eclipse.swt.widgets.Display;
 
@@ -78,7 +77,6 @@ public class ScapeEdit3DPart extends ScapeEditPart {
         super(memberProvider, locationProvider, extentProvider, graphProvider, filter);
     }
 
-    WiredCube sc;
 
     int animationStep;
 
@@ -154,6 +152,7 @@ public class ScapeEdit3DPart extends ScapeEditPart {
         }
     }
 
+    
     private void calculateDelta(IVector3f startPoint, IVector3f endPoint, Vector3f addPoint, int steps) {
         Math3DVector3f.sub(endPoint, startPoint, addPoint);
         Math3DVector3f.scale(1.0f / steps, addPoint, addPoint);
@@ -256,7 +255,7 @@ public class ScapeEdit3DPart extends ScapeEditPart {
     }
 
     private ICamera getCamera() {
-        final ICamera camera = ((IScene) getViewer()).getCamera();
+        final ICamera camera = ((GraphicalViewer3D) getViewer()).getLightweightSystem3D().getCamera();
         return camera;
     }
 

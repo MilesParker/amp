@@ -15,21 +15,23 @@
 */
 package org.eclipse.amp.agf3d;
 
+import java.util.Map;
 import java.util.logging.Logger;
 
 import org.eclipse.draw3d.DisplayListManager;
 import org.eclipse.draw3d.RenderContext;
+import org.eclipse.draw3d.geometry.IVector3f;
+import org.eclipse.draw3d.geometry.ParaxialBoundingBox;
 import org.eclipse.draw3d.graphics3d.Graphics3D;
 import org.eclipse.draw3d.graphics3d.Graphics3DDraw;
 import org.eclipse.draw3d.graphics3d.Graphics3DUtil;
-import org.eclipse.draw3d.shapes.AbstractModelShape;
-import org.eclipse.draw3d.shapes.SolidCube;
+import org.eclipse.draw3d.shapes.Shape;
 import org.eclipse.draw3d.util.ColorConverter;
 import org.eclipse.swt.graphics.Color;
 import org.lwjgl.util.glu.Cylinder;
 import org.lwjgl.util.glu.Disk;
 
-public class SolidShape extends AbstractModelShape {
+public class SolidShape implements Shape {
 
     private static final float[] DEFAULT_COLOR = new float[] { 0, 0, 0, 1 };
 
@@ -39,8 +41,6 @@ public class SolidShape extends AbstractModelShape {
 
     private static final String DL_TEXTURE = "solid_cube_texture";
 
-    @SuppressWarnings("unused")
-    private static final Logger log = Logger.getLogger(SolidCube.class.getName());
 
     private final float[] m_color = new float[] { DEFAULT_COLOR[0], DEFAULT_COLOR[1], DEFAULT_COLOR[2],
         DEFAULT_COLOR[3] };
@@ -130,7 +130,7 @@ public class SolidShape extends AbstractModelShape {
     }
 
     @Override
-    protected void performRender(RenderContext renderContext) {
+    public void render(RenderContext renderContext) {
 
         DisplayListManager displayListManager = renderContext.getDisplayListManager();
         Graphics3D g3d = renderContext.getGraphics3D();
@@ -214,9 +214,35 @@ public class SolidShape extends AbstractModelShape {
         m_textureId = i_textureId;
     }
 
-    @Override
-    protected void setup(RenderContext renderContext) {
-        Graphics3D g3d = renderContext.getGraphics3D();
-        g3d.glPolygonMode(Graphics3DDraw.GL_FRONT_AND_BACK, Graphics3DDraw.GL_FILL);
-    }
+//    @Override
+//    protected void setup(RenderContext renderContext) {
+//        Graphics3D g3d = renderContext.getGraphics3D();
+//        g3d.glPolygonMode(Graphics3DDraw.GL_FRONT_AND_BACK, Graphics3DDraw.GL_FILL);
+//    }
+
+	@Override
+	public float getDistance(IVector3f iRayOrigin, IVector3f iRayDirection,
+			Map<Object, Object> iContext) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ParaxialBoundingBox getParaxialBoundingBox(
+			ParaxialBoundingBox oResult) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public float getDistanceMeasure(RenderContext iRenderContext) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public RenderType getRenderType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -87,7 +87,7 @@ public class GEF3DViewPart extends EditPartViewPart {
 
     protected EditPartViewer createViewer() {
         GraphicalViewer3DImpl graphicalViewer3DImpl = new GraphicalViewer3DImpl();
-        graphicalViewer3DImpl.getUpdateManager().addUpdateListener(new UpdateListener() {
+        graphicalViewer3DImpl.getLightweightSystem3D().getUpdateManager().addUpdateListener(new UpdateListener() {
             public void notifyValidating() {
             }
 

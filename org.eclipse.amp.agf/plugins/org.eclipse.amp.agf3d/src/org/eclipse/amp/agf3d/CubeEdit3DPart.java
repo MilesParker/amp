@@ -23,11 +23,11 @@ import org.eclipse.draw3d.geometry.IVector3f;
 import org.eclipse.draw3d.geometry.Position3D;
 import org.eclipse.draw3d.geometry.Position3DImpl;
 import org.eclipse.draw3d.geometry.Vector3fImpl;
-import org.eclipse.draw3d.shapes.SolidCube;
+import org.eclipse.draw3d.shapes.CuboidFigureShape;
 
 public class CubeEdit3DPart extends AgentEdit3DPart {
 
-    SolidCube[] markers = new SolidCube[4];
+    CuboidFigureShape[] markers = new CuboidFigureShape[4];
 
     protected IFigure createFigure() {
         // if (getMemberProvider().getParent(getModel()) == null) {
@@ -40,39 +40,34 @@ public class CubeEdit3DPart extends AgentEdit3DPart {
         // }
         // f.setLayoutManager(new XYLayout());
         // f.setOpaque(false);
-        final IFigure3D figure = new Figure3D() {
-            public void render(RenderContext renderContext) {
-                Position3D fp = getPosition3D();
-                IVector3f fl = fp.getLocation3D();
-                int i = 0;
-                for (SolidCube marker : markers) {
-                    Position3DImpl pos = new Position3DImpl();
-                    pos.setSize3D(new Vector3fImpl(SCALE * .25f, SCALE * .25f, SCALE * .25f));
-                    pos.setLocation3D(new Vector3fImpl(fl.getX() + SCALE * (i / 2) * 0.5f, fl.getY() + SCALE * (i % 2)
-                                                       * 0.5f, fl.getZ() + SCALE * 0.75f));
-                    if (marker != null) {
-                        marker.setPosition(pos);
-                        marker.render(renderContext);
-                    }
-                    i++;
-                }
-                cube.setPosition(fp);
-                cube.render(renderContext);
-            }
-        };
-        cube = new SolidCube();
+        final IFigure3D figure = new Figure3D();
+        cube = new CuboidFigureShape(figure);
+//
+//        int i = 0;
+//        for (CuboidFigureShape marker : markers) {
+//            Position3DImpl pos = new Position3DImpl();
+//            pos.setSize3D(new Vector3fImpl(SCALE * .25f, SCALE * .25f, SCALE * .25f));
+//            pos.setLocation3D(new Vector3fImpl(fl.getX() + SCALE * (i / 2) * 0.5f, fl.getY() + SCALE * (i % 2)
+//                                               * 0.5f, fl.getZ() + SCALE * 0.75f));
+//            
+//            if (marker != null) {
+//                marker.setPosition(pos);
+//                marker.render(renderContext);
+//            }
+//            i++;
+//        }
         updateGraphics();
         assignSize(figure);
         return figure;
     }
 
-    public SolidCube getMarker(int index) {
+    public CuboidFigureShape getMarker(int index) {
         return markers[index - 1];
     }
 
     public void setShowMarker(int markerID, boolean show) {
         if (show) {
-            markers[markerID - 1] = new SolidCube();
+            markers[markerID - 1] = new CuboidFigureShape((IFigure3D) getFigure());
         } else {
             markers[markerID - 1] = null;
         }
