@@ -15,13 +15,8 @@
 */
 package org.eclipse.amp.agf3d;
 
-import java.util.Map;
-import java.util.logging.Logger;
-
 import org.eclipse.draw3d.DisplayListManager;
 import org.eclipse.draw3d.RenderContext;
-import org.eclipse.draw3d.geometry.IVector3f;
-import org.eclipse.draw3d.geometry.ParaxialBoundingBox;
 import org.eclipse.draw3d.graphics3d.Graphics3D;
 import org.eclipse.draw3d.graphics3d.Graphics3DDraw;
 import org.eclipse.draw3d.graphics3d.Graphics3DUtil;
@@ -219,30 +214,4 @@ public class SolidShape implements Shape {
 //        Graphics3D g3d = renderContext.getGraphics3D();
 //        g3d.glPolygonMode(Graphics3DDraw.GL_FRONT_AND_BACK, Graphics3DDraw.GL_FILL);
 //    }
-
-	@Override
-	public float getDistance(IVector3f iRayOrigin, IVector3f iRayDirection,
-			Map<Object, Object> iContext) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public ParaxialBoundingBox getParaxialBoundingBox(
-			ParaxialBoundingBox oResult) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public float getDistanceMeasure(RenderContext iRenderContext) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public RenderType getRenderType() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
