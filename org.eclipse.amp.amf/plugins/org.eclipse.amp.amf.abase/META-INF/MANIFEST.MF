@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Version: 0.2.0.qualifier
-Bundle-SymbolicName: org.eclipse.amp.amf.abase; singleton:=true
+Bundle-SymbolicName: org.eclipse.amp.amf.abase;singleton:=true
 Eclipse-RegisterBuddy: org.eclipse.xtext.log4j
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
