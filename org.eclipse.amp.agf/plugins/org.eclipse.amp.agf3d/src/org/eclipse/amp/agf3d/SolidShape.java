@@ -12,11 +12,15 @@
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.agf3d;
+
+import java.util.Map;
 
 import org.eclipse.draw3d.DisplayListManager;
 import org.eclipse.draw3d.RenderContext;
+import org.eclipse.draw3d.geometry.IVector3f;
+import org.eclipse.draw3d.geometry.ParaxialBoundingBox;
 import org.eclipse.draw3d.graphics3d.Graphics3D;
 import org.eclipse.draw3d.graphics3d.Graphics3DDraw;
 import org.eclipse.draw3d.graphics3d.Graphics3DUtil;
@@ -209,9 +213,47 @@ public class SolidShape implements Shape {
         m_textureId = i_textureId;
     }
 
-//    @Override
-//    protected void setup(RenderContext renderContext) {
-//        Graphics3D g3d = renderContext.getGraphics3D();
-//        g3d.glPolygonMode(Graphics3DDraw.GL_FRONT_AND_BACK, Graphics3DDraw.GL_FILL);
-//    }
+    /**
+     * @param iRayOrigin
+     * @param iRayDirection
+     * @param iContext
+     * @return
+     * @see org.eclipse.draw3d.picking.Pickable#getDistance(org.eclipse.draw3d.geometry.IVector3f,
+     *      org.eclipse.draw3d.geometry.IVector3f, java.util.Map)
+     */
+    public float getDistance(IVector3f iRayOrigin, IVector3f iRayDirection, Map<Object, Object> iContext) {
+        return 0;
+    }
+
+    /**
+     * @param oResult
+     * @return
+     * @see org.eclipse.draw3d.picking.Pickable#getParaxialBoundingBox(org.eclipse.draw3d.geometry.ParaxialBoundingBox)
+     */
+    public ParaxialBoundingBox getParaxialBoundingBox(ParaxialBoundingBox oResult) {
+        return null;
+    }
+
+    /**
+     * @param iRenderContext
+     * @return
+     * @see org.eclipse.draw3d.RenderFragment#getDistanceMeasure(org.eclipse.draw3d.RenderContext)
+     */
+    public float getDistanceMeasure(RenderContext iRenderContext) {
+        return 0;
+    }
+
+    /**
+     * @return
+     * @see org.eclipse.draw3d.RenderFragment#getRenderType()
+     */
+    public RenderType getRenderType() {
+        return null;
+    }
+
+    //    @Override
+    //    protected void setup(RenderContext renderContext) {
+    //        Graphics3D g3d = renderContext.getGraphics3D();
+    //        g3d.glPolygonMode(Graphics3DDraw.GL_FRONT_AND_BACK, Graphics3DDraw.GL_FILL);
+    //    }
 }
