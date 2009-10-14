@@ -13,8 +13,6 @@ plugin@org.ascape.ui.amp=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/m
 plugin@org.ascape.core=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.ascape/plugins/org.ascape.core
 
 !***GEF 3D
-url=http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,tag=trunk,path=
-
 plugin@org.eclipse.draw3d=SVN,url=http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,tag=trunk,path=org.eclipse.draw3d
 plugin@org.eclipse.draw3d.geometry=SVN,url=http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,tag=trunk,path=org.eclipse.draw3d.geometry
 plugin@org.eclipse.draw3d.graphics3d=SVN,url=http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,tag=trunk,path=org.eclipse.draw3d.graphics3d
