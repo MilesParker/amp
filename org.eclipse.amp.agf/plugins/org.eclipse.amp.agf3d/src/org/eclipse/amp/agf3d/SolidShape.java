@@ -128,7 +128,6 @@ public class SolidShape implements Shape {
         i_displayListManager.createDisplayList(DL_REST, rest);
     }
 
-    @Override
     public void render(RenderContext renderContext) {
 
         DisplayListManager displayListManager = renderContext.getDisplayListManager();
