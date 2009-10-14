@@ -14,7 +14,6 @@ plugin@org.ascape.core=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/mod
 
 !***GEF 3D
 plugin@org.eclipse.draw3d=SVN,,http://dev.eclipse.org/svnroot/technology,,org.eclipse.gef3d/trunk/org.eclipse.draw3d
-plugin@org.eclipse.draw3d=SVN,,http://dev.eclipse.org/svnroot/technology,,org.eclipse.gef3d/trunk/org.eclipse.draw3d
 plugin@org.eclipse.draw3d.geometry=SVN,,http://dev.eclipse.org/svnroot/technology,,org.eclipse.gef3d/trunk/org.eclipse.draw3d.geometry
 plugin@org.eclipse.draw3d.graphics3d=SVN,,http://dev.eclipse.org/svnroot/technology,,org.eclipse.gef3d/trunk/org.eclipse.draw3d.graphics3d
 plugin@org.eclipse.draw3d.lwjgl=SVN,,http://dev.eclipse.org/svnroot/technology,,org.eclipse.gef3d/trunk/org.eclipse.draw3d.lwjgl
