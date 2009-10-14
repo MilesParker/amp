@@ -12,42 +12,69 @@
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.agf3d;
 
 import org.eclipse.amp.agf.gef.AgentEditPart;
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw3d.Figure3D;
-import org.eclipse.draw3d.IFigure3D;
+import org.eclipse.draw3d.FigureSurface;
+import org.eclipse.draw3d.ISurface;
+import org.eclipse.draw3d.ShapeFigure3D;
 import org.eclipse.draw3d.geometry.Vector3fImpl;
 import org.eclipse.draw3d.shapes.CuboidFigureShape;
+import org.eclipse.draw3d.shapes.Shape;
+
 
 public class AgentEdit3DPart extends AgentEditPart {
+
+    /**
+     * 
+     * @author mparker
+     *
+     */
+    private final class CubeFigure extends ShapeFigure3D {
+
+        private ISurface m_surface = new FigureSurface(this);
+
+        public CubeFigure() {
+            super();
+            // SurfaceLayout.setDelegate(this, new FreeformLayout());
+            getPosition3D().setSize3D(new Vector3fImpl(SCALE * .75f, SCALE * .75f, SCALE * .75f));
+            setBackgroundColor(ColorConstants.white);
+            setAlpha((byte) 0x44);
+        }
+
+        @Override
+        public ISurface getSurface() {
+            return m_surface;
+        }
+
+        /**
+         * @see IFigure#revalidate()
+         */
+        public void revalidate() {
+            invalidate();
+        }
+
+        /**
+         * @return
+         * @see org.eclipse.draw3d.ShapeFigure3D#createShape()
+         */
+        protected Shape createShape() {
+            return new CuboidFigureShape(this);
+        }
+    }
 
     CuboidFigureShape cube;
 
     boolean update = true;
 
     protected IFigure createFigure() {
-        // if (getMemberProvider().getParent(getModel()) == null) {
-        // ScalableFreeformLayeredPane scalableFreeformLayeredPane = new ScalableFreeformLayeredPane();
-        // f = scalableFreeformLayeredPane;
-        // f.setBounds(new Rectangle(new Point(0, 0), calculateDimension()));
-        // } else {
-        // f = new FreeformLayer();
-        // f.setBounds(getRootScapeEditPart().getFigure().getBounds());
-        // }
-        // f.setLayoutManager(new XYLayout());
-        // f.setOpaque(false);
-        final IFigure3D figure = new Figure3D();
-        cube = new CuboidFigureShape(figure);
-        return figure;
-    }
+        final Figure3D figure = new CubeFigure();
 
-    protected void assignSize(final IFigure3D figure) {
-        figure.getPosition3D().setSize3D(new Vector3fImpl(SCALE * .75f, SCALE * .75f, SCALE * .75f));
-        // marker.getPosition3D().setLocation3D(new Vector3fImpl(SCALE * .25f, SCALE * .25f, SCALE * .25f));
-        // marker.getPosition3D().setSize3D(new Vector3fImpl(SCALE * .25f, SCALE * .25f, SCALE * .25f));
+        return figure;
     }
 
     protected void updateGraphics() {

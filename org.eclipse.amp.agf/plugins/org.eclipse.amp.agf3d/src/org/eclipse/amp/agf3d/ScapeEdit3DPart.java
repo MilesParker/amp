@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.agf3d;
 
 import java.util.HashMap;
@@ -28,24 +28,61 @@ import org.eclipse.amp.agf.gef.ScapeEditPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.view.SWTAsyncModelListener;
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
+import org.eclipse.draw2d.FreeformLayout;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw3d.Figure3D;
+import org.eclipse.draw3d.FigureSurface;
 import org.eclipse.draw3d.IFigure3D;
+import org.eclipse.draw3d.ISurface;
+import org.eclipse.draw3d.ShapeFigure3D;
+import org.eclipse.draw3d.SurfaceLayout;
 import org.eclipse.draw3d.camera.ICamera;
 import org.eclipse.draw3d.geometry.IVector3f;
 import org.eclipse.draw3d.geometry.Math3DVector3f;
 import org.eclipse.draw3d.geometry.Vector3f;
 import org.eclipse.draw3d.geometry.Vector3fImpl;
-import org.eclipse.gef.EditPart;
+import org.eclipse.draw3d.shapes.CuboidFigureShape;
+import org.eclipse.draw3d.shapes.Shape;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef3d.ui.parts.GraphicalViewer3D;
 import org.eclipse.jface.viewers.IFilter;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 
 public class ScapeEdit3DPart extends ScapeEditPart {
 
-    IModel model;
+    /**
+     * 
+     * @author mparker
+     *
+     */
+    private final class ScapeAreaFigure extends ShapeFigure3D {
+        private ISurface m_surface = new FigureSurface(this);
+
+        public ScapeAreaFigure() {
+            super();
+            SurfaceLayout.setDelegate(this, new FreeformLayout());
+            getPosition3D().setLocation3D(new Vector3fImpl(0, 0, 0));
+            setBackgroundColor(ColorConstants.white);
+            setAlpha((byte) 0x44);
+        }
+
+        @Override
+        public ISurface getSurface() {
+            return m_surface;
+        }
+
+        /**
+         * @return
+         * @see org.eclipse.draw3d.ShapeFigure3D#createShape()
+         */
+        protected Shape createShape() {
+            return new CuboidFigureShape(this);
+        }
+    }
 
     private final class RenderUpdateListener extends SWTAsyncModelListener {
         private final Figure figure;
@@ -87,33 +124,16 @@ public class ScapeEdit3DPart extends ScapeEditPart {
     boolean cancelCamera;
 
     protected IFigure createFigure() {
-        final Figure figure = new Figure3D();
-        figure.setSize(calculateDimension());
+        final Figure3D figure = new ScapeAreaFigure();
+        // figure.setSize(calculateDimension());
         if (getMemberProvider().getParent(getModel()) == null) {
             renderListener = new RenderUpdateListener("Update Root Figure", figure);
             renderListener.setWaitForUpdate(true);
             ((IModel) getModel()).addModelListener(renderListener);
         }
+        figure.setForegroundColor(Display.getCurrent().getSystemColor(SWT.COLOR_CYAN));
+        figure.setBackgroundColor(Display.getCurrent().getSystemColor(SWT.COLOR_RED));
         return figure;
-    }
-
-    // @Override
-    public synchronized void refresh() {
-        if (getFilter() == null || getFilter().select(getModel())) {
-            super.refresh();
-            // performance improvement..we only need to do this once for Array2D
-            if (!getMemberProvider().isMutable(getModel()) && !isFirstRefresh()) {
-                for (Object child : getChildren()) {
-                    ((EditPart) child).refresh();
-                }
-            } else {
-                for (Object child : getChildren()) {
-                    ((EditPart) child).refresh();
-                    calculateConstraints(((GraphicalEditPart) child));
-                }
-            }
-        }
-        setFirstRefresh(false);
     }
 
     Map<Object, IVector3f> startPoints = new HashMap<Object, IVector3f>();
@@ -121,14 +141,17 @@ public class ScapeEdit3DPart extends ScapeEditPart {
 
     private RenderUpdateListener renderListener;
 
+    @Override
     protected void calculateConstraints(GraphicalEditPart editPart) {
+        Dimension size = calculateDimension();
+        ((IFigure3D) getFigure()).getPosition3D().setSize3D(new Vector3fImpl(size.width, size.height, 1.0f));
         Object agent = editPart.getModel();
         ILocation location = getLocationProvider().getLocation(agent);
         if (location != null) {
             IFigure3D agentFigure = (IFigure3D) editPart.getFigure();
             IVector3f endPoint = new Vector3fImpl((float) GenericEditPart.SCALE * location.getX(),
                                                   (float) GenericEditPart.SCALE * location.getY(), -GenericEditPart.SCALE);
-            if (animationStepCount > 1 && model != null && model.getPeriod() > 0) {
+            if (animationStepCount > 1 && getModel() != null && ((IModel) getModel()).getPeriod() > 0) {
                 IVector3f startPoint;
                 Vector3f addPoint;
                 if (animationStep == 0) {
@@ -152,7 +175,7 @@ public class ScapeEdit3DPart extends ScapeEditPart {
         }
     }
 
-    
+
     private void calculateDelta(IVector3f startPoint, IVector3f endPoint, Vector3f addPoint, int steps) {
         Math3DVector3f.sub(endPoint, startPoint, addPoint);
         Math3DVector3f.scale(1.0f / steps, addPoint, addPoint);

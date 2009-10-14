@@ -12,9 +12,12 @@
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.agf3d;
 
+
+
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw3d.IFigure3D;
 import org.eclipse.draw3d.geometry.Vector3fImpl;
 
@@ -25,8 +28,13 @@ public class TileEdit3DPart extends AgentEdit3DPart {
         setUpdate(false);
     }
 
-    @Override
-    protected void assignSize(IFigure3D figure) {
-        figure.getPosition3D().setSize3D(new Vector3fImpl(SCALE, SCALE, 0.0f));
+    /**
+     * @return
+     * @see org.eclipse.amp.agf3d.AgentEdit3DPart#createFigure()
+     */
+    protected IFigure createFigure() {
+        IFigure figure = super.createFigure();
+        ((IFigure3D) figure).getPosition3D().setSize3D(new Vector3fImpl(SCALE, SCALE, 0.0f));
+        return figure;
     }
 }
