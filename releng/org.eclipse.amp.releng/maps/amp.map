@@ -13,14 +13,13 @@ plugin@org.ascape.ui.amp=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/m
 plugin@org.ascape.core=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.ascape/plugins/org.ascape.core
 
 !***GEF 3D
-!***plugin@org.eclipse.draw3d=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d
-!***plugin@org.eclipse.draw3d.geometry=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.geometry
-!***plugin@org.eclipse.draw3d.graphics3d=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.graphics3d
-!***plugin@org.eclipse.draw3d.lwjgl=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.lwjgl
-!***plugin@org.eclipse.draw3d.ui=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.ui
-!***plugin@org.eclipse.draw3d.x3d=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.x3d
-!***plugin@org.eclipse.gef3d=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.gef3d
-!***plugin@org.eclipse.gef3d.ext=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.gef3d.ext
+plugin@org.eclipse.draw3d=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d
+plugin@org.eclipse.draw3d.geometry=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.geometry
+plugin@org.eclipse.draw3d.graphics3d=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.graphics3d
+plugin@org.eclipse.draw3d.lwjgl=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.lwjgl
+plugin@org.eclipse.draw3d.ui=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.ui
+plugin@org.eclipse.draw3d.x3d=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.x3d
+plugin@org.eclipse.gef3d=SVN,trunk,http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.gef3d
 
 !***DOCUMENTATION
 
