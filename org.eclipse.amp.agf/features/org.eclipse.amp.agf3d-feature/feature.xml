@@ -6,7 +6,7 @@
       provider-name="%providerName">
 
    <description url="http://eclipse.org/amp">
-   %description
+      %description
    </description>
 
    <copyright>
@@ -104,13 +104,6 @@
 
    <plugin
          id="org.eclipse.gef3d"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.gef3d.ext"
          download-size="0"
          install-size="0"
          version="0.0.0"
