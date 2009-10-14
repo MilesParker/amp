@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.escape.ascape.adapt;
 
 import java.util.ArrayList;
@@ -24,10 +24,10 @@ import org.ascape.model.HostCell;
 import org.ascape.model.Scape;
 import org.ascape.model.space.Graph;
 import org.eclipse.amp.agf3d.AgentEdit3DPart;
-import org.eclipse.amp.agf3d.CubeEdit3DPart;
 import org.eclipse.amp.agf3d.ScapeEdit3DPart;
-import org.eclipse.amp.agf3d.TileEdit3DPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
+import org.eclipse.amp.escape.ascape.agf3d.CellOccupantEdit3DPart;
+import org.eclipse.amp.escape.ascape.agf3d.HostCellEdit3DPart;
 import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
 import org.eclipse.gef.EditPart;
 
@@ -42,9 +42,9 @@ public class Ascape3DPartFactory extends AscapePartFactory {
             AscapeProvider memberProvider = (AscapeProvider) getMemberProvider(scape);
             return new ScapeEdit3DPart(memberProvider, memberProvider, memberProvider, memberProvider, getFilter(scape));
         } else if (model instanceof HostCell) {
-            return new TileEdit3DPart();
+            return new HostCellEdit3DPart();
         } else if (model instanceof CellOccupant) {
-            return new CubeEdit3DPart();
+            return new CellOccupantEdit3DPart();
         } else if (model instanceof Agent) {
             return new AgentEdit3DPart();
         } else {
