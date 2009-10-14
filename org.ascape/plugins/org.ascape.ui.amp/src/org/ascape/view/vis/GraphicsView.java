@@ -16,11 +16,10 @@ import org.eclipse.draw2d.SWTGraphics;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.ui.IViewPart;
+import org.eclipse.swt.widgets.Display;
 
 
 
@@ -46,96 +45,8 @@ public class GraphicsView extends EditPartScapeView {
     protected void updateScapeGraphics(Graphics graphics) {
     }
 
-    class GraphicsEditPart extends AbstractGraphicalEditPart {
-
-        protected IFigure createFigure() {
-            imageFigure = new Figure() {
-                public void paintFigure(Graphics graphics) {
-                    synchronized (GraphicsView.this) {
-                        if (image != null && !image.isDisposed()) {
-                            graphics.drawImage(image, 0, 0);
-                        }
-                    }
-                }
-            };
-
-            imageFigure.setLayoutManager(new AbstractLayout() {
-                public Dimension getMinimumSize(IFigure container, int hintWidth, int hintHeight) {
-                    if (getScape() != null) {
-                        return getMinimumSizeWithin(new Dimension(hintWidth, hintHeight));
-                    }
-                    return new Dimension(500, 500);
-                }
-
-                protected Dimension calculatePreferredSize(IFigure container, int hintWidth, int hintHeight) {
-                    if (getScape() != null) {
-                        return getPreferredSizeWithin(new Dimension(hintWidth, hintHeight));
-                    } else {
-                        return new Dimension(500, 500);
-                    }
-                }
-
-                public void layout(IFigure container) {
-                    imageFigure.setLocation(new Point(0, 0));
-                }
-            });
-            imageFigure.addFigureListener(new FigureListener() {
-                public void figureMoved(IFigure source) {
-                    refresh();
-                }
-            });
-            return imageFigure;
-        }
-
-        protected void createEditPolicies() {
-        }
-
-        protected synchronized void createImage() {
-            Dimension size = getPreferredSizeWithin(imageFigure.getSize());
-            if (size.width <= 0 || size.height <= 0) {
-                size = new Dimension(1, 1);
-            }
-            if (image == null || !imageFigure.getSize().equals(image.getBounds())) {
-                if (image != null) {
-                    // Need to release prior resources..
-                    if (!image.isDisposed()) {
-                        image.dispose();
-                        imageGC.dispose();
-                        imageGraphics.dispose();
-                    }
-                }
-                // System.out.println("New: " + imageFigure.getSize());
-                // System.out.println("OPld:" + image.getBounds());
-                image = new Image(getViewer().getControl().getDisplay(), new org.eclipse.swt.graphics.Rectangle(0, 0,
-                                                                                                                size.width, size.height));
-                imageGC = new GC(image);
-                imageGraphics = new SWTGraphics(imageGC);
-            }
-            updateScapeGraphics(imageGraphics);
-            imageFigure.repaint();
-        }
-
-        public void refresh() {
-            createImage();
-            getFigure().repaint();
-        }
-
-        public void setModel(Object model) {
-            super.setModel(model);
-            createFeatures();
-        }
-
-        @Override
-        public Object getAdapter(Class key) {
-            if (key == IViewPart.class) {
-                return getViewPart();
-            }
-            return super.getAdapter(key);
-        }
-    };
-
     public EditPart createEditPart(EditPart context, Object model) {
-        return new GraphicsEditPart();
+        return new GraphicsEditPart(this, model);
     }
 
     protected Image image;
@@ -149,7 +60,74 @@ public class GraphicsView extends EditPartScapeView {
 
     protected GC imageGC;
 
-    private Graphics imageGraphics;
+    Graphics imageGraphics;
+
+    public void createImageFigure() {
+        imageFigure = new Figure() {
+            public void paintFigure(Graphics graphics) {
+                synchronized (this) {
+                    if (image != null && !image.isDisposed()) {
+                        graphics.drawImage(image, 0, 0);
+                    }
+                }
+            }
+        };
+
+        imageFigure.setLayoutManager(new AbstractLayout() {
+            public Dimension getMinimumSize(IFigure container, int hintWidth, int hintHeight) {
+                if (getScape() != null) {
+                    return getMinimumSizeWithin(new Dimension(hintWidth, hintHeight));
+                }
+                return new Dimension(500, 500);
+            }
+
+            protected Dimension calculatePreferredSize(IFigure container, int hintWidth, int hintHeight) {
+                if (getScape() != null) {
+                    return getPreferredSizeWithin(new Dimension(hintWidth, hintHeight));
+                } else {
+                    return new Dimension(500, 500);
+                }
+            }
+
+            public void layout(IFigure container) {
+                imageFigure.setLocation(new Point(0, 0));
+            }
+        });
+        imageFigure.addFigureListener(new FigureListener() {
+            public void figureMoved(IFigure source) {
+                refresh();
+            }
+        });
+    }
+
+    public void createImage() {
+        Dimension size = getPreferredSizeWithin(imageFigure.getSize());
+        if (size.width <= 0 || size.height <= 0) {
+            size = new Dimension(1, 1);
+        }
+        if (image == null || image.getBounds().width != size.width || image.getBounds().height != size.height) {
+            if (image != null) {
+                // Need to release prior resources..
+                if (!image.isDisposed()) {
+                    image.dispose();
+                    imageGC.dispose();
+                    imageGraphics.dispose();
+                }
+            }
+            // System.out.println("New: " + imageFigure.getSize());
+            // System.out.println("OPld:" + image.getBounds());
+            image = new Image(Display.getCurrent(), new org.eclipse.swt.graphics.Rectangle(0, 0, size.width,
+                size.height));
+            imageGC = new GC(image);
+            imageGraphics = new SWTGraphics(imageGC);
+        }
+    }
+
+    public void refresh() {
+        createImage();
+        updateScapeGraphics(imageGraphics);
+        imageFigure.repaint();
+    }
 
     public void createFeatures() {
         if (agentColorFeature == null) {
@@ -169,7 +147,7 @@ public class GraphicsView extends EditPartScapeView {
     }
 
     public Dimension getSize() {
-        return imageFigure.getSize();
+        return new Dimension(image.getBounds().width, image.getBounds().height);
     }
 
     public Dimension getPreferredSizeWithin(Dimension d) {
@@ -182,5 +160,12 @@ public class GraphicsView extends EditPartScapeView {
 
     public Image getImage() {
         return image;
+    }
+
+    /**
+     * @return the imageFigure
+     */
+    public IFigure getImageFigure() {
+        return imageFigure;
     }
 }
