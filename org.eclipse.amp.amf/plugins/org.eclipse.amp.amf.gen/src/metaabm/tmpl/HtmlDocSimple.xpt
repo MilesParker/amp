@@ -1,6 +1,7 @@
 «IMPORT emf»
 «IMPORT metaabm»
 «IMPORT metaabm::act»
+«IMPORT metaabm::function»
 
 «EXTENSION metaabm::tmpl::infer» 
 «EXTENSION metaabm::tmpl::types»
@@ -31,6 +32,22 @@
 		«ENDFOREACH»
 «ENDDEFINE»
 
+«DEFINE LibraryTable FOR FLibrary»
+	<H3>«label»</H3>
+	<i>«descrText()»</i><BR/>
+	«FOREACH functions AS function»
+		<H5>«function.label»</H5>
+		<i>«function.descrText()»</i><BR/>
+	«ENDFOREACH»
+	«IF !subs.isEmpty»
+		<H4>Members</H4>
+		«EXPAND LibraryTable FOREACH subs»
+	«ENDIF»
+«ENDDEFINE»
+
+«DEFINE LibraryTable FOR IArtifact-»
+«ENDDEFINE»
+
 «DEFINE Model FOR SContext-»
 	«FILE implementation.basePath + "/doc/" + implementation.className + "Simple.html"»
 		<HTML>
@@ -39,6 +56,7 @@
 			</HEAD>
 			<BODY>
 				<H1>«label»</H1>
+				«EXPAND LibraryTable FOREACH library»
 				<P>«description»</P>
 					<h2>Parameters</h2>
 						«EXPAND AttributesTable»

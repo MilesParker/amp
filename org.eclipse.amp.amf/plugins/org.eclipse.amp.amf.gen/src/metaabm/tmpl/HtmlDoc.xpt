@@ -1,5 +1,6 @@
 «IMPORT metaabm»
 «IMPORT metaabm::act»
+«IMPORT metaabm::function»
 
 «EXTENSION metaabm::tmpl::infer» 
 «EXTENSION metaabm::tmpl::util»
@@ -44,6 +45,40 @@
 					</tr>
 			«ENDFOREACH-»
 		</table>
+«ENDDEFINE»
+
+«DEFINE LibraryTable FOR FLibrary»
+		<h3>«label-»</h3>
+	«IF !subs.isEmpty»
+		<table CELLPADDING="10px" border="1">
+		«FOREACH subs AS sub»
+		<tr>
+			«EXPAND LibraryTable FOR sub»
+		</tr>
+		«ENDFOREACH»
+		</table>
+	«ENDIF»
+	«IF !functions.isEmpty»
+		<table CELLPADDING="10px" border="1">
+			<thead align="left"><tr><th>Name</th><th>Description</th><th>Type</th></tr></thead>
+	«FOREACH functions AS function»
+				<tr>
+					<td><i>«function.label-»</i></td>
+					<td>«function.descrText()-»</td>
+				</tr>
+	«ENDFOREACH»
+		</table>
+	«ENDIF»
+«ENDDEFINE»
+
+«DEFINE LibraryTable FOR IArtifact-»
+«ENDDEFINE»
+
+«DEFINE LibraryTable FOR SContext-»
+«IF !library.isEmpty»
+	<h2><a name="parlink">Function Library</a></h2>
+	«EXPAND LibraryTable FOREACH library»
+«ENDIF»
 «ENDDEFINE»
 
 «DEFINE Model FOR SContext-»
@@ -171,6 +206,7 @@
     			</div>
     			<div id="main">
     					<div id="agent">
+						«EXPAND LibraryTable»
     					<h3><a name="parlink">Parameters</a></h3>
 								«EXPAND AttributesTable-»
     					<h3><a name="behaviorlink">Behaviors</a></h3>
