@@ -234,6 +234,13 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
          * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observing(org.eclipse.amp.axf.core.IObservationProvider)
          */
         public void observing(IObservationProvider observed) {
+            // wait for data source to be available from model set..
+            while (dataProvider == null) {
+                try {
+                    Thread.sleep(25);
+                } catch (InterruptedException e) {
+                }
+            }
             createChart();
         }
 
@@ -383,7 +390,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
      * 
      * @param forceNewImage the force new image
      */
-    public void regenerateChart(boolean forceNewImage) {
+    public synchronized void regenerateChart(boolean forceNewImage) {
         if (forceNewImage) {
             image = null;
         }
@@ -427,7 +434,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
     /**
      * Creates the chart.
      */
-    public void createChart() {
+    public synchronized void createChart() {
         chart = ChartWithAxesImpl.create();
         // Color gray = getFigure().getBackgroundColor();
         // chart.getBlock().setBackground(ColorDefinitionImpl.create(gray.getRed(), gray.getGreen(), gray.getBlue()));
@@ -469,7 +476,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
         ySeriesDefinition = SeriesDefinitionImpl.create();
         yAxisPrimary.getSeriesDefinitions().add(ySeriesDefinition);
         ySeriesDefinition.getSeriesPalette().shift(-1);
-
+        System.err.println("--" + dataProvider);
         DataSet periods = TextDataSetImpl.create(dataProvider.getCategoryLabels(dataSource));
         xSeriesCategory.setDataSet(periods);
     }
@@ -619,7 +626,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
      * 
      * @param dataProvider the new data provider
      */
-    public void setDataProvider(IDataProvider dataProvider) {
+    public synchronized void setDataProvider(IDataProvider dataProvider) {
         this.dataProvider = dataProvider;
         setSeriesLabelProvider(dataProvider);
         dataSource = dataProvider.getDataSource(getModel());
