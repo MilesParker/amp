@@ -28,17 +28,14 @@ import org.eclipse.amp.agf.gef.ScapeEditPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.view.SWTAsyncModelListener;
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw3d.Figure3D;
 import org.eclipse.draw3d.FigureSurface;
 import org.eclipse.draw3d.IFigure3D;
 import org.eclipse.draw3d.ISurface;
 import org.eclipse.draw3d.PickingUpdateManager3D;
 import org.eclipse.draw3d.ShapeFigure3D;
-import org.eclipse.draw3d.SurfaceLayout;
 import org.eclipse.draw3d.camera.ICamera;
 import org.eclipse.draw3d.geometry.IVector3f;
 import org.eclipse.draw3d.geometry.Math3DVector3f;
@@ -49,7 +46,6 @@ import org.eclipse.draw3d.shapes.Shape;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef3d.ui.parts.GraphicalViewer3D;
 import org.eclipse.jface.viewers.IFilter;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 
 public class ScapeEdit3DPart extends ScapeEditPart {
@@ -63,12 +59,13 @@ public class ScapeEdit3DPart extends ScapeEditPart {
         private ISurface m_surface = new FigureSurface(this);
 
         public ScapeAreaFigure() {
-            setLayoutManager(new SurfaceLayout());
+            // setLayoutManager(new SurfaceLayout());
             // SurfaceLayout.setDelegate(this, new FreeformLayout());
             getPosition3D().setLocation3D(IVector3f.NULLVEC3f);
-            getPosition3D().setSize3D(new Vector3fImpl(400, 300, 20));
+            // getPosition3D().setSize3D(new Vector3fImpl(400, 300, 20));
             // getPosition3D().setLocation3D(new Vector3fImpl(0, 0, 0));
-            setBackgroundColor(ColorConstants.white);
+            Dimension size = calculateDimension();
+            getPosition3D().setSize3D(new Vector3fImpl(size.width, size.height, 1.0f));
             setAlpha((byte) 0x44);
         }
 
@@ -100,14 +97,13 @@ public class ScapeEdit3DPart extends ScapeEditPart {
             figure.invalidateTree();
             if (firstTime) {
                 animateCamera = false;
-                // moveCameraHelicopter();
+                moveCameraHelicopter();
                 animateCamera = true;
                 firstTime = false;
             }
             for (animationStep = 0; animationStep < animationStepCount; animationStep++) {
                 refresh();
                 ((PickingUpdateManager3D) figure.getUpdateManager()).performUpdate();
-                ((PickingUpdateManager3D) figure.getUpdateManager()).getCanvas().redraw();
             }
             animationStep = 0;
         }
@@ -116,16 +112,6 @@ public class ScapeEdit3DPart extends ScapeEditPart {
     public ScapeEdit3DPart(ICompositionProvider memberProvider, ILocationProvider locationProvider,
             IExtentProvider extentProvider, IGraphProvider graphProvider, IFilter filter) {
         super(memberProvider, locationProvider, extentProvider, graphProvider, filter);
-    }
-
-
-    /**
-     * 
-     * @see org.eclipse.amp.agf.gef.ScapeEditPart#refreshChildren()
-     */
-    protected synchronized void refreshChildren() {
-
-        // super.refreshChildren();
     }
 
     int animationStep;
@@ -137,16 +123,12 @@ public class ScapeEdit3DPart extends ScapeEditPart {
     boolean cancelCamera;
 
     protected IFigure createFigure() {
-        final Figure3D figure = new ScapeAreaFigure();
+        IFigure figure = super.createFigure();
         if (getMemberProvider().getParent(getModel()) == null) {
-            renderListener = new RenderUpdateListener("Update Root Figure", figure);
+            renderListener = new RenderUpdateListener("Update Root Figure", (Figure) figure);
             renderListener.setWaitForUpdate(true);
             ((IModel) getModel()).addModelListener(renderListener);
         }
-        figure.setForegroundColor(Display.getCurrent().getSystemColor(SWT.COLOR_CYAN));
-        figure.setBackgroundColor(Display.getCurrent().getSystemColor(SWT.COLOR_RED));
-        Dimension size = calculateDimension();
-        ((IFigure3D) getFigure()).getPosition3D().setSize3D(new Vector3fImpl(size.width, size.height, 1.0f));
         return figure;
     }
 
