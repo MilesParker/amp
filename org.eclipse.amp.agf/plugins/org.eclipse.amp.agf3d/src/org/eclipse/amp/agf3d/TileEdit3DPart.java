@@ -34,7 +34,7 @@ public class TileEdit3DPart extends AgentEdit3DPart {
      */
     protected IFigure createFigure() {
         IFigure figure = super.createFigure();
-        ((IFigure3D) figure).getPosition3D().setSize3D(new Vector3fImpl(SCALE, SCALE, 0.0f));
+        ((IFigure3D) figure).getPosition3D().setSize3D(new Vector3fImpl(SCALE, SCALE, 0.1f));
         return figure;
     }
 }

@@ -30,13 +30,13 @@ import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.view.SWTAsyncModelListener;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Figure;
-import org.eclipse.draw2d.FreeformLayout;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw3d.Figure3D;
 import org.eclipse.draw3d.FigureSurface;
 import org.eclipse.draw3d.IFigure3D;
 import org.eclipse.draw3d.ISurface;
+import org.eclipse.draw3d.PickingUpdateManager3D;
 import org.eclipse.draw3d.ShapeFigure3D;
 import org.eclipse.draw3d.SurfaceLayout;
 import org.eclipse.draw3d.camera.ICamera;
@@ -59,13 +59,15 @@ public class ScapeEdit3DPart extends ScapeEditPart {
      * @author mparker
      *
      */
-    private final class ScapeAreaFigure extends ShapeFigure3D {
+    private class ScapeAreaFigure extends ShapeFigure3D {
         private ISurface m_surface = new FigureSurface(this);
 
         public ScapeAreaFigure() {
-            super();
-            SurfaceLayout.setDelegate(this, new FreeformLayout());
-            getPosition3D().setLocation3D(new Vector3fImpl(0, 0, 0));
+            setLayoutManager(new SurfaceLayout());
+            // SurfaceLayout.setDelegate(this, new FreeformLayout());
+            getPosition3D().setLocation3D(IVector3f.NULLVEC3f);
+            getPosition3D().setSize3D(new Vector3fImpl(400, 300, 20));
+            // getPosition3D().setLocation3D(new Vector3fImpl(0, 0, 0));
             setBackgroundColor(ColorConstants.white);
             setAlpha((byte) 0x44);
         }
@@ -74,6 +76,7 @@ public class ScapeEdit3DPart extends ScapeEditPart {
         public ISurface getSurface() {
             return m_surface;
         }
+
 
         /**
          * @return
@@ -97,13 +100,14 @@ public class ScapeEdit3DPart extends ScapeEditPart {
             figure.invalidateTree();
             if (firstTime) {
                 animateCamera = false;
-                moveCameraHelicopter();
+                // moveCameraHelicopter();
                 animateCamera = true;
                 firstTime = false;
             }
             for (animationStep = 0; animationStep < animationStepCount; animationStep++) {
                 refresh();
-                figure.getUpdateManager().performUpdate();
+                ((PickingUpdateManager3D) figure.getUpdateManager()).performUpdate();
+                ((PickingUpdateManager3D) figure.getUpdateManager()).getCanvas().redraw();
             }
             animationStep = 0;
         }
@@ -115,6 +119,15 @@ public class ScapeEdit3DPart extends ScapeEditPart {
     }
 
 
+    /**
+     * 
+     * @see org.eclipse.amp.agf.gef.ScapeEditPart#refreshChildren()
+     */
+    protected synchronized void refreshChildren() {
+
+        // super.refreshChildren();
+    }
+
     int animationStep;
 
     int animationStepCount = 1;
@@ -125,7 +138,6 @@ public class ScapeEdit3DPart extends ScapeEditPart {
 
     protected IFigure createFigure() {
         final Figure3D figure = new ScapeAreaFigure();
-        // figure.setSize(calculateDimension());
         if (getMemberProvider().getParent(getModel()) == null) {
             renderListener = new RenderUpdateListener("Update Root Figure", figure);
             renderListener.setWaitForUpdate(true);
@@ -133,6 +145,8 @@ public class ScapeEdit3DPart extends ScapeEditPart {
         }
         figure.setForegroundColor(Display.getCurrent().getSystemColor(SWT.COLOR_CYAN));
         figure.setBackgroundColor(Display.getCurrent().getSystemColor(SWT.COLOR_RED));
+        Dimension size = calculateDimension();
+        ((IFigure3D) getFigure()).getPosition3D().setSize3D(new Vector3fImpl(size.width, size.height, 1.0f));
         return figure;
     }
 
@@ -143,8 +157,6 @@ public class ScapeEdit3DPart extends ScapeEditPart {
 
     @Override
     protected void calculateConstraints(GraphicalEditPart editPart) {
-        Dimension size = calculateDimension();
-        ((IFigure3D) getFigure()).getPosition3D().setSize3D(new Vector3fImpl(size.width, size.height, 1.0f));
         Object agent = editPart.getModel();
         ILocation location = getLocationProvider().getLocation(agent);
         if (location != null) {

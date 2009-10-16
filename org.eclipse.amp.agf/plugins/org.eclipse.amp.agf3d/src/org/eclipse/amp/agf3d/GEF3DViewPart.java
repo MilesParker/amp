@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.agf3d;
 
 import java.util.Map;
@@ -22,11 +22,13 @@ import org.eclipse.amp.axf.view.IModelPart;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.draw2d.UpdateListener;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.draw3d.ui.preferences.ScenePreferenceDistributor;
 import org.eclipse.gef.EditPartFactory;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef3d.editparts.ScalableFreeformRootEditPart3D;
 import org.eclipse.gef3d.tools.CameraTool;
+import org.eclipse.gef3d.ui.parts.GraphicalViewer3D;
 import org.eclipse.gef3d.ui.parts.GraphicalViewer3DImpl;
 import org.eclipse.swt.widgets.Composite;
 
@@ -42,12 +44,32 @@ public class GEF3DViewPart extends EditPartViewPart {
     public void createPartControl(Composite parent) {
         super.createPartControl(parent);
         parent.addDisposeListener(((GraphicalViewer3DImpl) viewer).getLightweightSystem3D());
+        ScenePreferenceDistributor scenePreferenceDistributor = new ScenePreferenceDistributor(get3DViewer()
+                                                                                               .getLightweightSystem3D());
+        scenePreferenceDistributor.start();
+        get3DViewer().getLightweightSystem3D().getUpdateManager().addUpdateListener(new UpdateListener() {
+            public void notifyValidating() {
+            }
+
+            public void notifyPainting(Rectangle damage, Map dirtyRegions) {
+                if (getRootListener() != null) {
+                    getRootListener().endPainting();
+                }
+            }
+        });
 
         // if (viewer instanceof IScene) {
         // sceneListener = new ScenePreferenceListener((IScene) viewer);
         // sceneListener.start();
         // }
     }
+
+    protected EditPartViewer createViewer() {
+        GraphicalViewer3D graphicalViewer3DImpl = new GraphicalViewer3DImpl();
+
+        return graphicalViewer3DImpl;
+    }
+
     public EditPartFactory createFactory() {
         return getFactory3DProvider().getEditPart3DFactory();
     }
@@ -75,6 +97,14 @@ public class GEF3DViewPart extends EditPartViewPart {
         }
     }
 
+    /**
+     * Convenience method.
+     * 
+     * @return
+     */
+    GraphicalViewer3D get3DViewer() {
+        return (GraphicalViewer3D) getViewer();
+    }
 
     public RootEditPart createRoot() {
         return new ScalableFreeformRootEditPart3D();
@@ -83,21 +113,6 @@ public class GEF3DViewPart extends EditPartViewPart {
     protected void createZoomer(RootEditPart rootEditPart) {
         camera = new CameraTool();
         getEditDomain().setActiveTool(camera);
-    }
-
-    protected EditPartViewer createViewer() {
-        GraphicalViewer3DImpl graphicalViewer3DImpl = new GraphicalViewer3DImpl();
-        graphicalViewer3DImpl.getLightweightSystem3D().getUpdateManager().addUpdateListener(new UpdateListener() {
-            public void notifyValidating() {
-            }
-
-            public void notifyPainting(Rectangle damage, Map dirtyRegions) {
-                if (getRootListener() != null) {
-                    getRootListener().endPainting();
-                }
-            }
-        });
-        return graphicalViewer3DImpl;
     }
 
     /**
