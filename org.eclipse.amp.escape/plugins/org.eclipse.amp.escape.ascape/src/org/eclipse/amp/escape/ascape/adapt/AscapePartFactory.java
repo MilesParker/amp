@@ -73,10 +73,10 @@ public class AscapePartFactory implements EditPartFactory {
             Scape scape = (Scape) model;
             AscapeProvider memberProvider = (AscapeProvider) getMemberProvider(scape);
             if (scape.getSpace() instanceof Graph) {
-                return new ScapeGraphEditPart(memberProvider, memberProvider, memberProvider, memberProvider,
+                return new ScapeGraphEditPart(memberProvider, memberProvider, memberProvider,
                                               getFilter(scape));
             }
-            return new ScapeEditPart(memberProvider, memberProvider, memberProvider, memberProvider, getFilter(scape));
+            return new ScapeEditPart(memberProvider, memberProvider, memberProvider, getFilter(scape));
         } else if (model instanceof HostCell) {
             return new HostCellEditPart();
         } else if (model instanceof CellOccupant) {

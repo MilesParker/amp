@@ -31,11 +31,10 @@ import org.ascape.model.space.Coordinate2DDiscrete;
 import org.ascape.model.space.Graph;
 import org.ascape.model.space.Node;
 import org.ascape.model.space.Singleton;
-import org.eclipse.amp.agf.gef.IExtentProvider;
-import org.eclipse.amp.agf.gef.IGraphProvider;
-import org.eclipse.amp.agf.gef.ILocation;
-import org.eclipse.amp.agf.gef.ILocationProvider;
 import org.eclipse.amp.axf.core.ICompositionProvider;
+import org.eclipse.amp.axf.space.IGraphProvider;
+import org.eclipse.amp.axf.space.ILocation;
+import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -45,7 +44,7 @@ import org.eclipse.swt.graphics.Image;
 /**
  * The Class AscapeProvider.
  */
-public class AscapeProvider implements ILocationProvider, IExtentProvider, IGraphProvider, ILabelProvider,
+public class AscapeProvider implements ILocationProvider, IGraphProvider, ILabelProvider,
 ICompositionProvider {
 
     /**
@@ -69,7 +68,7 @@ ICompositionProvider {
 
         /**
          * @return
-         * @see org.eclipse.amp.agf.gef.ILocation#getX()
+         * @see org.eclipse.amp.axf.space.ILocation#getX()
          */
         public int getX() {
             return x;
@@ -77,7 +76,7 @@ ICompositionProvider {
 
         /**
          * @return
-         * @see org.eclipse.amp.agf.gef.ILocation#getY()
+         * @see org.eclipse.amp.axf.space.ILocation#getY()
          */
         public int getY() {
             return y;
@@ -116,7 +115,7 @@ ICompositionProvider {
     /**
      * @param located
      * @return
-     * @see org.eclipse.amp.agf.gef.ILocationProvider#getLocation(java.lang.Object)
+     * @see org.eclipse.amp.axf.space.ILocationProvider#getLocation(java.lang.Object)
      */
     public ILocation getLocation(Object located) {
         LocatedAgent agent = (LocatedAgent) located;
@@ -136,7 +135,7 @@ ICompositionProvider {
     /**
      * @param located
      * @return
-     * @see org.eclipse.amp.agf.gef.IExtentProvider#getExtent(java.lang.Object)
+     * @see org.eclipse.amp.axf.space.ILocationProvider#getExtent(java.lang.Object)
      */
     public ILocation getExtent(Object located) {
         final Array2D array2D = getArray2D((Scape) getUnwrapped(located));
@@ -177,7 +176,7 @@ ICompositionProvider {
     /**
      * @param graph
      * @return
-     * @see org.eclipse.amp.agf.gef.IGraphProvider#getAdjacencyMap(java.lang.Object)
+     * @see org.eclipse.amp.axf.space.IGraphProvider#getAdjacencyMap(java.lang.Object)
      */
     public HashMap getAdjacencyMap(Object scape) {
         return ((Graph) ((Scape) scape).getSpace()).getAdjacencyMap();
@@ -187,7 +186,7 @@ ICompositionProvider {
      * @param graph
      * @param source
      * @return
-     * @see org.eclipse.amp.agf.gef.IGraphProvider#getNeighborsFor(java.lang.Object, java.lang.Object)
+     * @see org.eclipse.amp.axf.space.IGraphProvider#getNeighborsFor(java.lang.Object, java.lang.Object)
      */
     public List getNeighborsFor(Object scape, Object source) {
         return ((Graph) ((Scape) scape).getSpace()).getNeighborsFor((Node) source);
@@ -196,7 +195,7 @@ ICompositionProvider {
     /**
      * @param graph
      * @return
-     * @see org.eclipse.amp.agf.gef.IGraphProvider#isGraph(java.lang.Object)
+     * @see org.eclipse.amp.axf.space.IGraphProvider#isGraph(java.lang.Object)
      */
     public boolean isGraph(Object graph) {
         return graph instanceof Graph || graph instanceof Scape && ((Scape) graph).getSpace() instanceof Graph;

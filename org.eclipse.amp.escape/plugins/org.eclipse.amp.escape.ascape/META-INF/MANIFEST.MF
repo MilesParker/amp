@@ -19,5 +19,5 @@ Export-Package: org.eclipse.amp.escape.ascape,
  org.eclipse.amp.escape.ascape.adapt,
  org.eclipse.amp.escape.ascape.gef,
  org.eclipse.amp.escape.ascape.wrap
-Bundle-ClassPath: .
 Bundle-Localization: plugin
+Bundle-ClassPath: .

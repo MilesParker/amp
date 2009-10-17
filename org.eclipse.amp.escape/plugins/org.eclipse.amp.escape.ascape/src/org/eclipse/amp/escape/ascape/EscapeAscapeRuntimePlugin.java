@@ -7,12 +7,12 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
+ * Contributors:
  *   Metascape - Initial API and Implementation
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.escape.ascape;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -25,7 +25,7 @@ import org.osgi.framework.BundleContext;
 public class EscapeAscapeRuntimePlugin extends AbstractUIPlugin {
 
     // The plug-in ID
-    public static final String PLUGIN_ID = "org.escape.graphics";
+    public static final String PLUGIN_ID = "org.eclipse.amp.escape.ascape";
 
     // The shared instance
     private static EscapeAscapeRuntimePlugin plugin;
