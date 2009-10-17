@@ -29,11 +29,11 @@ import org.ascape.runtime.NonGraphicRunner;
 import org.eclipse.amp.axf.core.IEngine;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.core.ITimeGranularity;
-import org.eclipse.amp.axf.core.TimeGranularity;
 import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
 import org.eclipse.amp.axf.ide.view.DelayView;
 import org.eclipse.amp.axf.ide.view.RunMonitorView;
+import org.eclipse.amp.axf.time.ITimeGranularity;
+import org.eclipse.amp.axf.time.TimeGranularity;
 import org.eclipse.amp.escape.ascape.wrap.ModelWrapperScapeListener;
 import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
 import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModelListener;
@@ -512,7 +512,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 
     /**
      * @param granularity
-     * @see org.eclipse.amp.axf.core.IEngine#setUpdateGranularity(org.eclipse.amp.axf.core.ITimeGranularity)
+     * @see org.eclipse.amp.axf.core.IEngine#setUpdateGranularity(org.eclipse.amp.axf.time.ITimeGranularity)
      */
     public void setUpdateGranularity(ITimeGranularity granularity) {
         this.updateGranularity = (TimeGranularity) granularity;
