@@ -16,25 +16,27 @@
 
 package org.eclipse.amp.escape.ascape.agf3d;
 
-import org.ascape.model.Cell;
-import org.eclipse.amp.agf3d.TileEdit3DPart;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.swt.graphics.Color;
+import org.eclipse.amp.agf3d.ShapeType3D;
 
 /**
  * 
  * @author mparker
  *
  */
-public class HostCellEdit3DPart extends TileEdit3DPart {
+public class HostCellEdit3DPart extends AscapeAgentEdit3DPart {
 
     /**
-     * @return
-     * @see org.eclipse.amp.agf3d.AgentEdit3DPart#createFigure()
+     * 
      */
-    protected IFigure createFigure() {
-        IFigure figure = super.createFigure();
-        figure.setBackgroundColor((Color) ((Cell) getModel()).getPlatformColor());
-        return figure;
+    public HostCellEdit3DPart() {
+        super(ShapeType3D.TILE, false);
     }
+
+    /**
+     * 
+     */
+    public HostCellEdit3DPart(boolean update) {
+        super(ShapeType3D.TILE, update);
+    }
+
 }

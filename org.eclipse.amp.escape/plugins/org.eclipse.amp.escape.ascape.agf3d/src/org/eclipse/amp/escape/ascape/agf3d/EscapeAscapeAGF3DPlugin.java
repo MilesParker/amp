@@ -21,18 +21,18 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class AscapeAGF3DPlugin extends AbstractUIPlugin {
+public class EscapeAscapeAGF3DPlugin extends AbstractUIPlugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipse.amp.escape.ascape.agf3d";
 
 	// The shared instance
-	private static AscapeAGF3DPlugin plugin;
+	private static EscapeAscapeAGF3DPlugin plugin;
 	
 	/**
 	 * The constructor
 	 */
-	public AscapeAGF3DPlugin() {
+	public EscapeAscapeAGF3DPlugin() {
 	}
 
 	/*
@@ -58,7 +58,7 @@ public class AscapeAGF3DPlugin extends AbstractUIPlugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static AscapeAGF3DPlugin getDefault() {
+	public static EscapeAscapeAGF3DPlugin getDefault() {
 		return plugin;
 	}
 

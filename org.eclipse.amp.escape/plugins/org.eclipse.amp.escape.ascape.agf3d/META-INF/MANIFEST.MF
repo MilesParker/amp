@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-SymbolicName: org.eclipse.amp.escape.ascape.agf3d;singleton:=true
 Bundle-Version: 0.2.0.qualifier
-Bundle-Activator: org.eclipse.amp.escape.ascape.agf3d.AscapeAGF3DPlugin
+Bundle-Activator: org.eclipse.amp.escape.ascape.agf3d.EscapeAscapeAGF3DPlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime;visibility:=reexport,
  org.ascape.core;bundle-version="5.2.0",

@@ -40,7 +40,7 @@ public class Ascape3DPartFactory extends AscapePartFactory {
         if (model instanceof Scape) {
             Scape scape = (Scape) model;
             AscapeProvider memberProvider = (AscapeProvider) getMemberProvider(scape);
-            return new ScapeEdit3DPart(memberProvider, memberProvider, memberProvider, memberProvider, getFilter(scape));
+            return new ScapeEdit3DPart(memberProvider, memberProvider, memberProvider, getFilter(scape));
         } else if (model instanceof HostCell) {
             return new HostCellEdit3DPart();
         } else if (model instanceof CellOccupant) {

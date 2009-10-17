@@ -16,25 +16,19 @@
 
 package org.eclipse.amp.escape.ascape.agf3d;
 
-import org.ascape.model.CellOccupant;
-import org.eclipse.amp.agf3d.CubeEdit3DPart;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.swt.graphics.Color;
+import org.eclipse.amp.agf3d.ShapeType3D;
 
 /**
  * 
  * @author mparker
  *
  */
-public class CellOccupantEdit3DPart extends CubeEdit3DPart {
+public class CellOccupantEdit3DPart extends AscapeAgentEdit3DPart {
 
     /**
-     * @return
-     * @see org.eclipse.amp.agf3d.AgentEdit3DPart#createFigure()
+     * 
      */
-    protected IFigure createFigure() {
-        IFigure figure = super.createFigure();
-        figure.setBackgroundColor((Color) ((CellOccupant) getModel()).getPlatformColor());
-        return figure;
+    public CellOccupantEdit3DPart() {
+        super(ShapeType3D.CYLINDER, true);
     }
 }
