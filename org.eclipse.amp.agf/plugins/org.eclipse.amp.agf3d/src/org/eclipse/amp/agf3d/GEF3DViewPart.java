@@ -20,15 +20,19 @@ import java.util.Map;
 import org.eclipse.amp.agf.gef.EditPartViewPart;
 import org.eclipse.amp.axf.view.IModelPart;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.draw2d.LightweightSystem;
 import org.eclipse.draw2d.UpdateListener;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.draw3d.LightweightSystem3D;
 import org.eclipse.draw3d.ui.preferences.ScenePreferenceDistributor;
 import org.eclipse.gef.EditPartFactory;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.RootEditPart;
+import org.eclipse.gef3d.SurfaceSearch;
 import org.eclipse.gef3d.editparts.ScalableFreeformRootEditPart3D;
 import org.eclipse.gef3d.tools.CameraTool;
 import org.eclipse.gef3d.ui.parts.GraphicalViewer3D;
+import org.eclipse.gef3d.ui.parts.GraphicalViewer3DHelper;
 import org.eclipse.gef3d.ui.parts.GraphicalViewer3DImpl;
 import org.eclipse.swt.widgets.Composite;
 
@@ -62,6 +66,27 @@ public class GEF3DViewPart extends EditPartViewPart {
         // sceneListener = new ScenePreferenceListener((IScene) viewer);
         // sceneListener.start();
         // }
+    }
+
+    class WorkaroundGraphicalViewer3DImpl extends GraphicalViewer3DImpl {
+        public WorkaroundGraphicalViewer3DImpl() {
+            m_ViewerHelper = new GraphicalViewer3DHelper(this) {
+                /**
+                 * @return
+                 * @see org.eclipse.gef3d.ui.parts.GraphicalViewer3DHelper#createLightweightSystem()
+                 */
+                public LightweightSystem createLightweightSystem() {
+                    LightweightSystem3D lws3D = new LightweightSystem3D() {
+                        protected void controlResized() {
+                            Rectangle.SINGLETON.setBounds(new Rectangle(0, 0, 1, 1));
+                            super.controlResized();
+                        }
+                    };
+                    lws3D.getPicker().setSurfaceSearch(new SurfaceSearch(viewer));
+                    return lws3D;
+                }
+            };
+        }
     }
 
     protected EditPartViewer createViewer() {
@@ -107,7 +132,8 @@ public class GEF3DViewPart extends EditPartViewPart {
     }
 
     public RootEditPart createRoot() {
-        return new ScalableFreeformRootEditPart3D();
+        ScalableFreeformRootEditPart3D scalableFreeformRootEditPart3D = new ScalableFreeformRootEditPart3D();
+        return scalableFreeformRootEditPart3D;
     }
 
     protected void createZoomer(RootEditPart rootEditPart) {

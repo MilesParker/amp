@@ -20,11 +20,15 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw3d.Figure3D;
 import org.eclipse.draw3d.FigureSurface;
+import org.eclipse.draw3d.IFigure3D;
 import org.eclipse.draw3d.ISurface;
 import org.eclipse.draw3d.ShapeFigure3D;
+import org.eclipse.draw3d.geometry.Vector3f;
 import org.eclipse.draw3d.geometry.Vector3fImpl;
 import org.eclipse.draw3d.shapes.CuboidFigureShape;
+import org.eclipse.draw3d.shapes.CylindricFigureShape;
 import org.eclipse.draw3d.shapes.Shape;
+import org.eclipse.draw3d.shapes.SphereFigureShape;
 
 
 public class AgentEdit3DPart extends AgentEditPart {
@@ -34,36 +38,31 @@ public class AgentEdit3DPart extends AgentEditPart {
      * @author mparker
      *
      */
-    private final class CubeFigure extends ShapeFigure3D {
+    private final class FigureImplementation extends ShapeFigure3D {
 
         private ISurface m_surface = new FigureSurface(this);
 
-        public CubeFigure() {
-            super();
-            // SurfaceLayout.setDelegate(this, new FreeformLayout());
-            getPosition3D().setSize3D(new Vector3fImpl(SCALE * .75f, SCALE * .75f, SCALE * .75f));
+        public FigureImplementation() {
             setBackgroundColor(ColorConstants.white);
-            setAlpha((byte) 0x44);
+            setAlpha((byte) 0x255);
         }
-
         @Override
         public ISurface getSurface() {
             return m_surface;
         }
-
         /**
          * @see IFigure#revalidate()
          */
         public void revalidate() {
             invalidate();
         }
-
         /**
          * @return
          * @see org.eclipse.draw3d.ShapeFigure3D#createShape()
          */
         protected Shape createShape() {
-            return new CuboidFigureShape(this);
+            Shape createShape = AgentEdit3DPart.this.createShape();
+            return createShape;
         }
     }
 
@@ -71,20 +70,60 @@ public class AgentEdit3DPart extends AgentEditPart {
 
     boolean update = true;
 
-    protected IFigure createFigure() {
-        final Figure3D figure = new CubeFigure();
+    ShapeType3D shapeType = ShapeType3D.CUBE;
 
+    public AgentEdit3DPart(ShapeType3D shapeType, boolean update) {
+        super();
+        this.shapeType = shapeType;
+        this.update = update;
+    }
+
+    /**
+     * 
+     */
+    public AgentEdit3DPart() {
+    }
+
+    protected Shape createShape() {
+        switch (shapeType) {
+            case CUBE:
+                return new CuboidFigureShape((IFigure3D) getFigure());
+            case CYLINDER:
+                return new CylindricFigureShape((IFigure3D) getFigure(), 30, 1.0f, false);
+            case SPHERE:
+                return new SphereFigureShape((IFigure3D) getFigure(), 3);
+            case TILE:
+                return new CuboidFigureShape((IFigure3D) getFigure());
+        }
+        return null;
+    }
+
+    protected Vector3f getSize3D() {
+        switch (shapeType) {
+            case CUBE:
+                return new Vector3fImpl(SCALE * .75f, SCALE * .75f, SCALE * .75f);
+            case CYLINDER:
+                return new Vector3fImpl(SCALE * .75f, SCALE * .75f, SCALE);
+            case SPHERE:
+                return new Vector3fImpl(SCALE, SCALE, SCALE);
+            case TILE:
+                return new Vector3fImpl(SCALE, SCALE, 0.0f);
+        }
+        return new Vector3fImpl(SCALE, SCALE, SCALE);
+    }
+
+    @Override
+    protected IFigure buildFigure(IFigure figure) {
+        if (figure == null) {
+            figure = new FigureImplementation();
+            ((Figure3D) figure).getPosition3D().setSize3D(getSize3D());
+        }
         return figure;
     }
 
-    protected void updateGraphics() {
-    }
-
-    protected void refreshVisuals() {
-        super.refreshVisuals();
-        if (update) {
-            updateGraphics();
-        }
+    protected IFigure createFigure() {
+        IFigure3D buildFigure = (IFigure3D) buildFigure(null);
+        return buildFigure;
     }
 
     public boolean isUpdate() {
