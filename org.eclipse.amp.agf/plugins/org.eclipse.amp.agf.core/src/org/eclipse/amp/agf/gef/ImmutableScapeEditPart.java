@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.agf.gef;
 
 import org.eclipse.amp.axf.core.ICompositionProvider;
+import org.eclipse.amp.axf.space.IGraphProvider;
+import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.jface.viewers.IFilter;
 
 
@@ -28,7 +30,7 @@ public class ImmutableScapeEditPart extends ScapeEditPart {
     }
 
     public ImmutableScapeEditPart(ICompositionProvider memberProvider, ILocationProvider locationProvider,
-            IExtentProvider extentProvider, IGraphProvider graphProvider, IFilter filter) {
-        super(memberProvider, locationProvider, extentProvider, graphProvider, filter);
+            IGraphProvider graphProvider, IFilter filter) {
+        super(memberProvider, locationProvider, graphProvider, filter);
     }
 }

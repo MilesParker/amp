@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.amp.axf.core.ICompositionProvider;
+import org.eclipse.amp.axf.space.IGraphProvider;
+import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.jface.viewers.IFilter;
 
 public class ScapeGraphEditPart extends ScapeEditPart {
@@ -31,8 +33,8 @@ public class ScapeGraphEditPart extends ScapeEditPart {
     Map<Object, List<NetworkConnection>> sources;
 
     public ScapeGraphEditPart(ICompositionProvider memberProvider, ILocationProvider locationProvider,
-            IExtentProvider extentProvider, IGraphProvider graphProvider, IFilter filter) {
-        super(memberProvider, locationProvider, extentProvider, graphProvider, filter);
+            IGraphProvider graphProvider, IFilter filter) {
+        super(memberProvider, locationProvider, graphProvider, filter);
     }
 
     @SuppressWarnings("unchecked")

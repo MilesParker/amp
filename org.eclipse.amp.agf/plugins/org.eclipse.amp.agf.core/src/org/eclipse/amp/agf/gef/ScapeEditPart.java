@@ -24,6 +24,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.amp.axf.core.ICompositionProvider;
+import org.eclipse.amp.axf.space.IGraphProvider;
+import org.eclipse.amp.axf.space.ILocation;
+import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.draw2d.ConnectionAnchor;
@@ -54,8 +57,6 @@ public class ScapeEditPart extends AbstractGraphicalEditPart implements Property
 
     ILocationProvider locationProvider;
 
-    IExtentProvider extentProvider;
-
     IGraphProvider graphProvider;
 
     private IFilter filter;
@@ -65,11 +66,10 @@ public class ScapeEditPart extends AbstractGraphicalEditPart implements Property
     private boolean firstRefresh;
 
     public ScapeEditPart(ICompositionProvider memberProvider, ILocationProvider locationProvider,
-            IExtentProvider extentProvider, IGraphProvider graphProvider, IFilter filter) {
+            IGraphProvider graphProvider, IFilter filter) {
         super();
         this.memberProvider = memberProvider;
         this.locationProvider = locationProvider;
-        this.extentProvider = extentProvider;
         this.graphProvider = graphProvider;
         this.setFilter(filter);
     }
@@ -242,7 +242,7 @@ public class ScapeEditPart extends AbstractGraphicalEditPart implements Property
     }
 
     public Dimension calculateDimension() {
-        ILocation extent = extentProvider.getExtent(getModel());
+        ILocation extent = locationProvider.getExtent(getModel());
         if (extent != null) {
             return new Dimension(extent.getX() * GenericEditPart.SCALE, extent.getY() * GenericEditPart.SCALE);
         }
@@ -297,14 +297,6 @@ public class ScapeEditPart extends AbstractGraphicalEditPart implements Property
 
     public void setLocationProvider(ILocationProvider locationProvider) {
         this.locationProvider = locationProvider;
-    }
-
-    public IExtentProvider getExtentProvider() {
-        return extentProvider;
-    }
-
-    public void setExtentProvider(IExtentProvider extentProvider) {
-        this.extentProvider = extentProvider;
     }
 
     public IGraphProvider getGraphProvider() {
