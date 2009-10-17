@@ -28,9 +28,9 @@ import org.eclipse.amp.axf.space.ILocation;
 import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.amp.axf.view.SWTAsyncModelListener;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw3d.FreeformLayer3D;
 import org.eclipse.draw3d.IFigure3D;
+import org.eclipse.draw3d.SurfaceLayout;
 import org.eclipse.draw3d.camera.ICamera;
 import org.eclipse.draw3d.geometry.IVector3f;
 import org.eclipse.draw3d.geometry.Math3DVector3f;
@@ -42,6 +42,8 @@ import org.eclipse.jface.viewers.IFilter;
 import org.eclipse.swt.widgets.Display;
 
 public class ScapeEdit3DPart extends ScapeEditPart {
+
+    public static Vector3fImpl UP_VECTOR = new Vector3fImpl(0, -1, 0);
 
     private final class RenderUpdateListener extends SWTAsyncModelListener {
 
@@ -93,7 +95,7 @@ public class ScapeEdit3DPart extends ScapeEditPart {
         } else {
             figure = new FreeformLayer3D();
             figure.setBounds(getRootScapeEditPart().getFigure().getBounds());
-            figure.setLayoutManager(new XYLayout());
+            figure.setLayoutManager(new SurfaceLayout());
         }
         return figure;
     }
@@ -105,7 +107,7 @@ public class ScapeEdit3DPart extends ScapeEditPart {
         if (location != null) {
             IFigure3D agentFigure = (IFigure3D) editPart.getFigure();
             IVector3f endPoint = new Vector3fImpl((float) GenericEditPart.SCALE * location.getX(),
-                                                  (float) GenericEditPart.SCALE * location.getY(), -GenericEditPart.SCALE);
+                                                  (float) GenericEditPart.SCALE * location.getY(), GenericEditPart.SCALE);
             if (animationStepCount > 1 && getModel() != null && ((IModel) getModel()).getPeriod() > 0) {
                 IVector3f startPoint;
                 Vector3f addPoint;
@@ -145,15 +147,15 @@ public class ScapeEdit3DPart extends ScapeEditPart {
     }
 
     public void moveCameraHelicopter() {
-        moveCameraScaled(0.5f, -0.5f, .15f, 0.5f, 0.5f, 0.0f);
-    }
-
-    public void moveCameraOverhead() {
-        moveCameraScaled(0.5f, 0.5f, 2.0f, 0.5f, 0.5f, 0.0f);
+        moveCameraScaled(0.5f, 1.5f, -.2f, 0.5f, 0.5f, 0.0f);
     }
 
     public void moveCameraFirstPerson() {
-        moveCameraScaled(0.5f, 0f, .02f, 0.5f, 1.0f, 0.0f);
+        moveCameraScaled(0.5f, 1.0f, -.01f, 0.5f, 0.0f, 0.0f);
+    }
+
+    public void moveCameraOverhead() {
+        moveCameraScaled(0.5f, 0.5f, -2.0f, 0.5f, 0.5f, 0.0f);
     }
 
     private void moveCameraScaled(float locX, float locY, float locZ, float targetX, float targetY, float targetZ) {
@@ -175,7 +177,7 @@ public class ScapeEdit3DPart extends ScapeEditPart {
         } else {
             final ICamera camera = getCamera();
             camera.moveTo(endPoint.getX(), endPoint.getY(), endPoint.getZ());
-            camera.lookAt(endLookPoint, new Vector3fImpl(0, -0, 1));
+            camera.lookAt(endLookPoint, UP_VECTOR);
         }
     }
 
@@ -198,7 +200,6 @@ public class ScapeEdit3DPart extends ScapeEditPart {
             }
             // moveToNow((Vector3f) endPoint);
         }
-        final Vector3fImpl upVector = new Vector3fImpl(0, 0, 1);
         final Vector3f currentLookPoint = new Vector3fImpl();
         camera.getViewDirection(currentLookPoint);
         Math3DVector3f.add(currentLookPoint, endPoint, currentLookPoint);
@@ -209,7 +210,7 @@ public class ScapeEdit3DPart extends ScapeEditPart {
                 Math3DVector3f.add(currentLookPoint, addLookPoint, currentLookPoint);
                 Display.getDefault().syncExec(new Runnable() {
                     public void run() {
-                        camera.lookAt(currentLookPoint, upVector);
+                        camera.lookAt(currentLookPoint, UP_VECTOR);
                     }
                 });
                 if (cancelCamera) {

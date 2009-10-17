@@ -54,7 +54,11 @@ public class AgentEdit3DPart extends AgentEditPart {
          * @see IFigure#revalidate()
          */
         public void revalidate() {
-            invalidate();
+            // if our state or position can change, we will always want to redraw, otherwise, we never do.
+            if (update) {
+                invalidate();
+                helper.revalidate();
+            }
         }
         /**
          * @return
@@ -103,7 +107,8 @@ public class AgentEdit3DPart extends AgentEditPart {
             case CUBE:
                 return new Vector3fImpl(SCALE * .75f, SCALE * .75f, SCALE * .75f);
             case CYLINDER:
-                return new Vector3fImpl(SCALE * .75f, SCALE * .75f, SCALE);
+                // "checker"
+                return new Vector3fImpl(SCALE, SCALE, SCALE * .20f);
             case SPHERE:
                 return new Vector3fImpl(SCALE, SCALE, SCALE);
             case TILE:
