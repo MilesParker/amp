@@ -19,7 +19,7 @@ package org.eclipse.amp.axf.ide.view;
 import org.eclipse.amp.axf.core.AbstractLifecycleListener;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.core.IObservationProvider;
-import org.eclipse.amp.axf.core.TimeGranularity;
+import org.eclipse.amp.axf.time.TimeGranularity;
 
 /**
  * 
