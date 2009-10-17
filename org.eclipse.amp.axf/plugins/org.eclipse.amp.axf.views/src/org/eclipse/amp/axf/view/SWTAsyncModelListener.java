@@ -17,7 +17,7 @@ package org.eclipse.amp.axf.view;
 
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.core.LifeCycleState;
-import org.eclipse.amp.axf.core.TimeGranularity;
+import org.eclipse.amp.axf.time.TimeGranularity;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 
