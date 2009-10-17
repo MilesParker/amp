@@ -38,11 +38,11 @@
     protected void updateGraphics() {
     	org.eclipse.swt.graphics.Color color = null;
 		org.eclipse.draw3d.shapes.SolidCube shape = null;
-		«IF !agent.isHost()»
+«REM»		«IF !agent.isHost()»
 	    for (int i = 1; i <= 4; i++) {
 			setShowMarker(i, false);
 		}
-		«ENDIF»
+		«ENDIF»  «ENDREM»
 		«FOREACH ((AGroup) rootActivity).roots AS act»«agent.typeName()» «act.id()» = («agent.typeName()») getModel();«ENDFOREACH»
 		«EXPAND metaabm::tmpl::Java::ActionBody-»
 	}
