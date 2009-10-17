@@ -14,7 +14,7 @@
  *
  */
 
-package org.eclipse.amp.axf.core;
+package org.eclipse.amp.axf.time;
 
 /**
  * A marker interface for levels of update granularity. These are designed to be extensible for particular engine

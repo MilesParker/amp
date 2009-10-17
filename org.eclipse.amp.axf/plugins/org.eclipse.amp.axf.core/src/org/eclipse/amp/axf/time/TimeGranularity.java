@@ -14,7 +14,7 @@
  *
  */
 
-package org.eclipse.amp.axf.core;
+package org.eclipse.amp.axf.time;
 
 /**
  * Provides typical model update granularity. Models updates can be delayed or they can be designed to take place only

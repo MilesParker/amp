@@ -15,6 +15,8 @@
  */
 package org.eclipse.amp.axf.core;
 
+import org.eclipse.amp.axf.time.ITimeGranularity;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Interface IEngine.
