@@ -23,7 +23,7 @@ import org.eclipse.draw3d.FigureSurface;
 import org.eclipse.draw3d.IFigure3D;
 import org.eclipse.draw3d.ISurface;
 import org.eclipse.draw3d.ShapeFigure3D;
-import org.eclipse.draw3d.geometry.Vector3f;
+import org.eclipse.draw3d.geometry.IVector3f;
 import org.eclipse.draw3d.geometry.Vector3fImpl;
 import org.eclipse.draw3d.shapes.CuboidFigureShape;
 import org.eclipse.draw3d.shapes.CylindricFigureShape;
@@ -44,7 +44,7 @@ public class AgentEdit3DPart extends AgentEditPart {
 
         public FigureImplementation() {
             setBackgroundColor(ColorConstants.white);
-            setAlpha((byte) 0x255);
+            setAlpha(255);
         }
         @Override
         public ISurface getSurface() {
@@ -56,8 +56,8 @@ public class AgentEdit3DPart extends AgentEditPart {
         public void revalidate() {
             // if our state or position can change, we will always want to redraw, otherwise, we never do.
             if (update) {
-                invalidate();
-                helper.revalidate();
+                // invalidate();
+                // helper.revalidate();
             }
         }
         /**
@@ -102,19 +102,34 @@ public class AgentEdit3DPart extends AgentEditPart {
         return null;
     }
 
-    protected Vector3f getSize3D() {
+    protected IVector3f getSize3D() {
         switch (shapeType) {
             case CUBE:
                 return new Vector3fImpl(SCALE * .75f, SCALE * .75f, SCALE * .75f);
             case CYLINDER:
                 // "checker"
-                return new Vector3fImpl(SCALE, SCALE, SCALE * .20f);
+                return new Vector3fImpl(SCALE * .9f, SCALE * .9f, SCALE * .20f);
             case SPHERE:
-                return new Vector3fImpl(SCALE, SCALE, SCALE);
+                return new Vector3fImpl(SCALE * .9f, SCALE * .9f, SCALE * .9f);
             case TILE:
                 return new Vector3fImpl(SCALE, SCALE, 0.0f);
         }
         return new Vector3fImpl(SCALE, SCALE, SCALE);
+    }
+
+    protected IVector3f getRelativeLocation3D() {
+        switch (shapeType) {
+            case CUBE:
+                return new Vector3fImpl(SCALE * .125f, SCALE * .125f, 0);
+            case CYLINDER:
+                // "checker"
+                return new Vector3fImpl(SCALE * .05f, SCALE * .05f, 0);
+            case SPHERE:
+                return new Vector3fImpl(SCALE * .05f, SCALE * .05f, 0);
+            case TILE:
+                return new Vector3fImpl(0.0f, 0.0f, 0.0f);
+        }
+        return new Vector3fImpl(0.0f, 0.0f, 0.0f);
     }
 
     @Override

@@ -16,17 +16,10 @@
  */
 package org.eclipse.amp.agf3d;
 
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw3d.Figure3D;
 import org.eclipse.draw3d.IFigure3D;
-import org.eclipse.draw3d.RenderContext;
-import org.eclipse.draw3d.geometry.Vector3fImpl;
 import org.eclipse.draw3d.graphics3d.Graphics3D;
-import org.eclipse.draw3d.graphics3d.Graphics3DDraw;
-import org.eclipse.draw3d.shapes.CuboidFigureShape;
 import org.eclipse.draw3d.shapes.Shape;
 import org.eclipse.draw3d.util.ColorConverter;
-import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -35,7 +28,7 @@ import org.eclipse.swt.graphics.Color;
  * @author Miles Parker
  * @author Kristian Duske
  */
-public class RenderEdit3DPart extends AbstractGraphicalEditPart {
+public class RenderEdit3DPart extends AgentEdit3DPart {
 
     public static final int SCALE = 20;
     private static final float[] DEFAULT_COLOR = new float[] { 0, 0, 0, 1 };
@@ -47,28 +40,9 @@ public class RenderEdit3DPart extends AbstractGraphicalEditPart {
     boolean update = true;
     private IFigure3D figure;
 
-    /**
-     * @return
-     * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
-     */
-    protected IFigure createFigure() {
-        figure = new Figure3D();
-        shape = new CuboidFigureShape(figure) {
-            protected void performRender(RenderContext renderContext) {
-                Graphics3D g3d = renderContext.getGraphics3D();
-                renderShape(g3d);
-            }
-//
-//            
-//            
-//            @Override
-//            protected void setup(RenderContext renderContext) {
-//                Graphics3D g3d = renderContext.getGraphics3D();
-//                g3d.glPolygonMode(Graphics3DDraw.GL_FRONT_AND_BACK, Graphics3DDraw.GL_FILL);
-//            }
-        };
-//        figure.getPosition3D().setSize3D(new Vector3fImpl(SCALE, SCALE, SCALE));
-        return figure;
+
+    protected Shape createShape() {
+        return new RenderFigureShape(this);
     }
 
     /**
@@ -140,12 +114,5 @@ public class RenderEdit3DPart extends AbstractGraphicalEditPart {
     public void glSetColor(Graphics3D g3d, Color i_color, int alpha) {
         setColor(i_color, alpha);
         glSetColor(g3d);
-    }
-
-    /**
-     * 
-     * @see org.eclipse.gef.editparts.AbstractEditPart#createEditPolicies()
-     */
-    protected void createEditPolicies() {
     }
 }

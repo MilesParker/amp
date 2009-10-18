@@ -16,7 +16,7 @@
 package org.eclipse.amp.agf3d.ui;
 
 import org.eclipse.amp.agf3d.GEF3DViewPart;
-import org.eclipse.amp.agf3d.ScapeEdit3DPart;
+import org.eclipse.amp.agf3d.ScapeEditRoot3DPart;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IViewActionDelegate;
@@ -45,7 +45,7 @@ public class CameraFirstPersonAction implements IViewActionDelegate {
     public void run(IAction action) {
         //        getZoomer().setZoomLevelContributions(Collections.singletonList(getZoomContribution()));
         //        getZoomer().setZoomLevels(GEFModelViewPart.ZOOM_LEVELS);
-        ScapeEdit3DPart part = (ScapeEdit3DPart) view.getEditPart();
+        ScapeEditRoot3DPart part = (ScapeEditRoot3DPart) view.getEditPart();
         part.moveCameraFirstPerson();
     }
 

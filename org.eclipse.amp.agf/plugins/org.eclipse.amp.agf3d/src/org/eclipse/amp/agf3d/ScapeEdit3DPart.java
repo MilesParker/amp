@@ -18,7 +18,6 @@ package org.eclipse.amp.agf3d;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.amp.agf.gef.AgentEditPart;
 import org.eclipse.amp.agf.gef.GenericEditPart;
 import org.eclipse.amp.agf.gef.ScapeEditPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
@@ -26,77 +25,53 @@ import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.space.IGraphProvider;
 import org.eclipse.amp.axf.space.ILocation;
 import org.eclipse.amp.axf.space.ILocationProvider;
-import org.eclipse.amp.axf.view.SWTAsyncModelListener;
+import org.eclipse.draw2d.FreeformLayout;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw3d.FreeformLayer3D;
+import org.eclipse.draw3d.Figure3D;
+import org.eclipse.draw3d.FigureSurface;
 import org.eclipse.draw3d.IFigure3D;
+import org.eclipse.draw3d.ISurface;
 import org.eclipse.draw3d.SurfaceLayout;
-import org.eclipse.draw3d.camera.ICamera;
 import org.eclipse.draw3d.geometry.IVector3f;
 import org.eclipse.draw3d.geometry.Math3DVector3f;
 import org.eclipse.draw3d.geometry.Vector3f;
 import org.eclipse.draw3d.geometry.Vector3fImpl;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gef3d.ui.parts.GraphicalViewer3D;
 import org.eclipse.jface.viewers.IFilter;
-import org.eclipse.swt.widgets.Display;
 
 public class ScapeEdit3DPart extends ScapeEditPart {
 
     public static Vector3fImpl UP_VECTOR = new Vector3fImpl(0, -1, 0);
-
-    private final class RenderUpdateListener extends SWTAsyncModelListener {
-
-        private boolean firstTime = true;
-
-        private RenderUpdateListener(String name) {
-            super(null, name);
-        }
-
-        public void update(IModel model) {
-            if (firstTime) {
-                animateCamera = false;
-                moveCameraHelicopter();
-                animateCamera = true;
-                firstTime = false;
-            }
-            for (animationStep = 0; animationStep < animationStepCount; animationStep++) {
-                refresh();
-            }
-            animationStep = 0;
-        }
-    }
 
     public ScapeEdit3DPart(ICompositionProvider memberProvider, ILocationProvider locationProvider,
             IGraphProvider graphProvider, IFilter filter) {
         super(memberProvider, locationProvider, graphProvider, filter);
     }
 
-    int animationStep;
-
-    int animationStepCount = 1;
-
-    boolean animateCamera = true;
-
-    boolean cancelCamera;
-
     Map<Object, IVector3f> startPoints = new HashMap<Object, IVector3f>();
     Map<Object, Vector3f> addPoints = new HashMap<Object, Vector3f>();
 
-    private RenderUpdateListener renderListener;
-
     protected IFigure createFigure() {
         IFigure figure;
-        if (getMemberProvider().getParent(getModel()) == null) {
-            figure = super.createFigure();
-            renderListener = new RenderUpdateListener("Update Root Figure");
-            renderListener.setWaitForUpdate(true);
-            ((IModel) getModel()).addModelListener(renderListener);
-        } else {
-            figure = new FreeformLayer3D();
-            figure.setBounds(getRootScapeEditPart().getFigure().getBounds());
-            figure.setLayoutManager(new SurfaceLayout());
-        }
+        figure = new Figure3D() {
+
+            private ISurface m_surface = new FigureSurface(this);
+
+            @Override
+            public ISurface getSurface() {
+                return m_surface;
+            }
+
+            /**
+             * 
+             * @see org.eclipse.draw3d.Figure3D#invalidateParaxialBoundsTree()
+             */
+            public void invalidateParaxialBoundsTree() {
+                super.invalidateParaxialBounds();
+            }
+        };
+        SurfaceLayout.setDelegate((IFigure3D) figure, new FreeformLayout());
+        figure.setBounds(getRootScapeEditPart().getFigure().getBounds());
         return figure;
     }
 
@@ -106,16 +81,21 @@ public class ScapeEdit3DPart extends ScapeEditPart {
         ILocation location = getLocationProvider().getLocation(agent);
         if (location != null) {
             IFigure3D agentFigure = (IFigure3D) editPart.getFigure();
-            IVector3f endPoint = new Vector3fImpl((float) GenericEditPart.SCALE * location.getX(),
-                                                  (float) GenericEditPart.SCALE * location.getY(), GenericEditPart.SCALE);
-            if (animationStepCount > 1 && getModel() != null && ((IModel) getModel()).getPeriod() > 0) {
+            Vector3f endPoint = new Vector3fImpl((float) GenericEditPart.SCALE * location.getX(),
+                                                 (float) GenericEditPart.SCALE * location.getY(), GenericEditPart.SCALE);
+            if (editPart instanceof AgentEdit3DPart) {
+                endPoint = Math3DVector3f.add(endPoint, ((AgentEdit3DPart) editPart).getRelativeLocation3D(), endPoint);
+            }
+            ScapeEditRoot3DPart root = (ScapeEditRoot3DPart) getRootScapeEditPart();
+            if (root.getAnimationStepCount() > 1 && getModel() != null
+                    && ((IModel) getModel()).getPeriod() > 0) {
                 IVector3f startPoint;
                 Vector3f addPoint;
-                if (animationStep == 0) {
+                if (root.getAnimationStep() == 0) {
                     startPoint = agentFigure.getPosition3D().getLocation3D();
                     startPoints.put(agent, startPoint);
                     addPoint = new Vector3fImpl();
-                    calculateDelta(startPoint, endPoint, addPoint, animationStepCount);
+                    calculateDelta(startPoint, endPoint, addPoint, root.getAnimationStepCount());
                     addPoints.put(agent, addPoint);
                 } else {
                     startPoint = startPoints.get(agent);
@@ -132,117 +112,9 @@ public class ScapeEdit3DPart extends ScapeEditPart {
         }
     }
 
-
-    private void calculateDelta(IVector3f startPoint, IVector3f endPoint, Vector3f addPoint, int steps) {
+    void calculateDelta(IVector3f startPoint, IVector3f endPoint, Vector3f addPoint, int steps) {
         Math3DVector3f.sub(endPoint, startPoint, addPoint);
         Math3DVector3f.scale(1.0f / steps, addPoint, addPoint);
     }
 
-    public void deactivate() {
-        cancelCamera = true;
-        super.deactivate();
-        if (renderListener != null) {
-            ((IModel) getModel()).removeModelListener(renderListener);
-        }
-    }
-
-    public void moveCameraHelicopter() {
-        moveCameraScaled(0.5f, 1.5f, -.2f, 0.5f, 0.5f, 0.0f);
-    }
-
-    public void moveCameraFirstPerson() {
-        moveCameraScaled(0.5f, 1.0f, -.01f, 0.5f, 0.0f, 0.0f);
-    }
-
-    public void moveCameraOverhead() {
-        moveCameraScaled(0.5f, 0.5f, -2.0f, 0.5f, 0.5f, 0.0f);
-    }
-
-    private void moveCameraScaled(float locX, float locY, float locZ, float targetX, float targetY, float targetZ) {
-        ILocation extent = getLocationProvider().getExtent(getModel());
-        float ex = extent.getX() * AgentEditPart.SCALE;
-        float ey = extent.getY() * AgentEditPart.SCALE;
-        moveCamera(new Vector3fImpl(ex * locX, ey * locY, ey * locZ), new Vector3fImpl(ex * targetX, ey * targetY, ey
-                                                                                       * targetZ));
-    }
-
-    private void moveCamera(final IVector3f endPoint, final IVector3f endLookPoint) {
-        if (animateCamera) {
-            new Thread() {
-                public void run() {
-                    cancelCamera = true;
-                    moveCameraAnimate(endPoint, endLookPoint);
-                }
-            }.start();
-        } else {
-            final ICamera camera = getCamera();
-            camera.moveTo(endPoint.getX(), endPoint.getY(), endPoint.getZ());
-            camera.lookAt(endLookPoint, UP_VECTOR);
-        }
-    }
-
-    private void moveCameraAnimate(final IVector3f endPoint, final IVector3f endLookPoint) {
-        final ICamera camera = getCamera();
-        cancelCamera = false;
-        int moveCount = 50;
-        final Vector3f startPoint = new Vector3fImpl();
-        camera.getPosition(startPoint);
-        Vector3f addPoint = new Vector3fImpl();
-        calculateDelta(startPoint, endPoint, addPoint, moveCount);
-
-        if (!cancelCamera) {
-            for (int i = 0; i < moveCount - 1; i++) {
-                Math3DVector3f.add(startPoint, addPoint, startPoint);
-                moveToNow(startPoint);
-                if (cancelCamera) {
-                    return;
-                }
-            }
-            // moveToNow((Vector3f) endPoint);
-        }
-        final Vector3f currentLookPoint = new Vector3fImpl();
-        camera.getViewDirection(currentLookPoint);
-        Math3DVector3f.add(currentLookPoint, endPoint, currentLookPoint);
-        Vector3f addLookPoint = new Vector3fImpl();
-        calculateDelta(currentLookPoint, endLookPoint, addLookPoint, moveCount);
-        if (!cancelCamera) {
-            for (int i = 0; i < moveCount - 1; i++) {
-                Math3DVector3f.add(currentLookPoint, addLookPoint, currentLookPoint);
-                Display.getDefault().syncExec(new Runnable() {
-                    public void run() {
-                        camera.lookAt(currentLookPoint, UP_VECTOR);
-                    }
-                });
-                if (cancelCamera) {
-                    return;
-                }
-            }
-            // Display.getDefault().syncExec(new Runnable() {
-            // public void run() {
-            // // Take care of any small deltas
-            // // camera.lookAt(endLookPoint, upVector);
-            // }
-            // });
-        }
-    }
-    private void moveToNow(final Vector3f movePoint) {
-        Display.getDefault().syncExec(new Runnable() {
-            public void run() {
-                getCamera().moveTo(movePoint.getX(), movePoint.getY(), movePoint.getZ());
-            }
-        });
-    }
-
-    private ICamera getCamera() {
-        final ICamera camera = ((GraphicalViewer3D) getViewer()).getLightweightSystem3D().getCamera();
-        return camera;
-    }
-
-    public boolean isAnimateCamera() {
-        return animateCamera;
-    }
-
-    public void setAnimateCamera(boolean animateCamera) {
-        this.animateCamera = animateCamera;
-    }
 }
