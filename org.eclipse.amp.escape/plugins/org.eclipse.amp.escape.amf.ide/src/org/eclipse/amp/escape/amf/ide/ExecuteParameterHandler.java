@@ -15,8 +15,8 @@
  */
 package org.eclipse.amp.escape.amf.ide;
 
-import org.eclipse.amp.amf.parameters.AParInterpreter;
 import org.eclipse.amp.amf.parameters.AParFactory;
+import org.eclipse.amp.amf.parameters.AParInterpreter;
 import org.eclipse.amp.escape.command.ExecuteHandler;
 import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
 import org.eclipse.core.resources.IProject;
@@ -28,6 +28,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
  * The Class ExecuteParameterHandler.
  */
 public class ExecuteParameterHandler extends ExecuteHandler {
+
+    private AParInterpreter interpreter;
 
     /**
      * Instantiates a new execute parameter handler.
@@ -56,11 +58,34 @@ public class ExecuteParameterHandler extends ExecuteHandler {
             IResource modelResource = (IResource) executed;
             IProject project = modelResource.getProject();
             if (modelResource.getFileExtension().equals("apar")) {
-                AParInterpreter interpreter = (AParInterpreter) AParFactory.create(null).getInterpreter(modelResource);
+                // a bit awkward..
+                interpreter = (AParInterpreter) AParFactory.create(null).getInterpreter(modelResource);
                 eclipseRunner.open(project, interpreter.getRootContext().getImplementation().getQualifiedName(),
                                    interpreter.getRunName(), interpreter.getArgs());
             }
         }
+    }
+
+    /**
+     * @return
+     * @see org.eclipse.amp.escape.command.ExecuteHandler#createRunner()
+     */
+    protected EclipseEscapeRunner createRunner() {
+        EclipseEscapeRunner runner = new EclipseEscapeRunner() {
+            private static final long serialVersionUID = 1L;
+
+            /**
+             * @param args
+             * @param block
+             * @see org.ascape.runtime.Runner#openImplementation(java.lang.String[], boolean)
+             */
+            public void openImplementation(String[] args, boolean block) {
+                interpreter.assignValues(new Object[] { getRootScape(), this }, null);
+                super.openImplementation(args, block);
+            }
+
+        };
+        return runner;
     }
 
     /*
