@@ -17,6 +17,7 @@
 package org.eclipse.amp.escape.ascape.agf3d;
 
 import org.ascape.model.Cell;
+import org.ascape.util.vis.ColorFeatureConcrete;
 import org.eclipse.amp.agf3d.AgentEdit3DPart;
 import org.eclipse.amp.agf3d.ShapeType3D;
 import org.eclipse.draw2d.IFigure;
@@ -25,7 +26,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * 
  * @author mparker
- *
+ * 
  */
 public class AscapeAgentEdit3DPart extends AgentEdit3DPart {
 
@@ -43,7 +44,12 @@ public class AscapeAgentEdit3DPart extends AgentEdit3DPart {
      */
     protected IFigure buildFigure(IFigure figure) {
         figure = super.buildFigure(figure);
-        figure.setBackgroundColor((Color) ((Cell) getModel()).getPlatformColor());
+        Color platformColor = (Color) ((Cell) getModel()).getPlatformColor();
+        if (platformColor != null) {
+            Color adjustBrightness = ColorFeatureConcrete.adjustBrightness(platformColor, .7f);
+            figure.setForegroundColor(adjustBrightness);
+        }
+        figure.setBackgroundColor(platformColor);
         return figure;
     }
 }

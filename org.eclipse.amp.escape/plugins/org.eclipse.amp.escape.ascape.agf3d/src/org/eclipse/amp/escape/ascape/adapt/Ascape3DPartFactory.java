@@ -25,6 +25,7 @@ import org.ascape.model.Scape;
 import org.ascape.model.space.Graph;
 import org.eclipse.amp.agf3d.AgentEdit3DPart;
 import org.eclipse.amp.agf3d.ScapeEdit3DPart;
+import org.eclipse.amp.agf3d.ScapeEditRoot3DPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.escape.ascape.agf3d.CellOccupantEdit3DPart;
 import org.eclipse.amp.escape.ascape.agf3d.HostCellEdit3DPart;
@@ -40,7 +41,11 @@ public class Ascape3DPartFactory extends AscapePartFactory {
         if (model instanceof Scape) {
             Scape scape = (Scape) model;
             AscapeProvider memberProvider = (AscapeProvider) getMemberProvider(scape);
-            return new ScapeEdit3DPart(memberProvider, memberProvider, memberProvider, getFilter(scape));
+            if (scape.isRoot()) {
+                return new ScapeEditRoot3DPart(memberProvider, memberProvider, memberProvider, getFilter(scape));
+            } else {
+                return new ScapeEdit3DPart(memberProvider, memberProvider, memberProvider, getFilter(scape));
+            }
         } else if (model instanceof HostCell) {
             return new HostCellEdit3DPart();
         } else if (model instanceof CellOccupant) {
