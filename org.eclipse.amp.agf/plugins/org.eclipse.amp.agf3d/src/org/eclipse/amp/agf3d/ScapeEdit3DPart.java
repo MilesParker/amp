@@ -82,7 +82,7 @@ public class ScapeEdit3DPart extends ScapeEditPart {
         if (location != null) {
             IFigure3D agentFigure = (IFigure3D) editPart.getFigure();
             Vector3f endPoint = new Vector3fImpl((float) GenericEditPart.SCALE * location.getX(),
-                                                 (float) GenericEditPart.SCALE * location.getY(), GenericEditPart.SCALE);
+                (float) GenericEditPart.SCALE * location.getY(), 0);
             if (editPart instanceof AgentEdit3DPart) {
                 endPoint = Math3DVector3f.add(endPoint, ((AgentEdit3DPart) editPart).getRelativeLocation3D(), endPoint);
             }
