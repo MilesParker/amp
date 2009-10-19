@@ -16,6 +16,7 @@
 package org.eclipse.amp.agf3d;
 
 import org.eclipse.amp.agf.gef.EditPartViewPart;
+import org.eclipse.amp.axf.core.ILifeCycleListener;
 import org.eclipse.amp.axf.view.IModelPart;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.draw3d.ui.preferences.ScenePreferenceDistributor;
@@ -43,14 +44,14 @@ public class GEF3DViewPart extends EditPartViewPart {
         ScenePreferenceDistributor scenePreferenceDistributor = new ScenePreferenceDistributor(get3DViewer()
                                                                                                .getLightweightSystem3D());
         scenePreferenceDistributor.start();
-//        get3DViewer().getLightweightSystem3D().getUpdateManager().addUpdateListener(new UpdateListener() {
-//            public void notifyValidating() {
-//            }
-//
-//            public void notifyPainting(Rectangle damage, Map dirtyRegions) {
-//                getRootListener().endPainting();
-//            }
-//        });
+        // get3DViewer().getLightweightSystem3D().getUpdateManager().addUpdateListener(new UpdateListener() {
+        // public void notifyValidating() {
+        // }
+        //
+        // public void notifyPainting(Rectangle damage, Map dirtyRegions) {
+        // getRootListener().endPainting();
+        // }
+        // });
         // parent.addPaintListener(new PaintListener() {
         //
         // public void paintControl(PaintEvent e) {
@@ -123,7 +124,11 @@ public class GEF3DViewPart extends EditPartViewPart {
      */
     @Override
     public void dispose() {
-
+        if (viewer.getContents() instanceof IModelPart) {
+            for (ILifeCycleListener listener : ((IModelPart) viewer.getContents()).getModelListeners()) {
+                ((IModelPart) viewer.getContents()).removeModelListener(listener);
+            }
+        }
         // if (sceneListener != null) {
         // sceneListener.stop();
         // }

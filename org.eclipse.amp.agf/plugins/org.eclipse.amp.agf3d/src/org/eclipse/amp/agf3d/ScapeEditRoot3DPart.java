@@ -25,12 +25,12 @@ import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.amp.axf.view.SWTAsyncModelListener;
 import org.eclipse.draw2d.FreeformLayout;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.draw3d.Figure3D;
 import org.eclipse.draw3d.FigureSurface;
 import org.eclipse.draw3d.IFigure3D;
+import org.eclipse.draw3d.ISceneListener;
 import org.eclipse.draw3d.ISurface;
+import org.eclipse.draw3d.RenderContext;
 import org.eclipse.draw3d.SurfaceLayout;
 import org.eclipse.draw3d.camera.ICamera;
 import org.eclipse.draw3d.geometry.IVector3f;
@@ -53,7 +53,7 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
         private boolean firstTime = true;
 
         private RenderUpdateListener(String name) {
-            super(null, name);
+            super(getRoot().getViewer().getControl(), name);
         }
 
         public synchronized void update(IModel model) {
@@ -67,8 +67,6 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
             for (animationStep = 0; animationStep < animationStepCount; animationStep++) {
                 refresh();
             }
-            animationStep = 0;
-            endPainting();
         }
     }
 
@@ -102,7 +100,7 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
 
         };
         SurfaceLayout.setDelegate((IFigure3D) figure, new FreeformLayout());
-        figure.setBounds(new Rectangle(new Point(0, 0), calculateDimension()));
+        // figure.setBounds(new Rectangle(new Point(0, 0), calculateDimension()));
         return figure;
     }
 
@@ -115,6 +113,21 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
         renderListener = new RenderUpdateListener("Update Root Figure");
         renderListener.setWaitForUpdate(true);
         ((IModel) getModel()).addModelListener(renderListener);
+        ((GraphicalViewer3D) getRoot().getViewer()).getLightweightSystem3D().addSceneListener(new ISceneListener() {
+
+            public void renderPassStarted(RenderContext renderContext) {
+            }
+
+            public void renderPassFinished(RenderContext renderContext) {
+                if (animationStep == animationStepCount) {
+                    renderListener.endPainting();
+                }
+            }
+
+            public void cameraChanged(ICamera iOldCamera, ICamera iNewCamera) {
+            }
+        });
+
     }
 
     public void deactivate() {

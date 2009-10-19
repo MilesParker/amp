@@ -71,24 +71,24 @@ public class ScapeEdit3DPart extends ScapeEditPart {
             }
         };
         SurfaceLayout.setDelegate((IFigure3D) figure, new FreeformLayout());
-        figure.setBounds(getRootScapeEditPart().getFigure().getBounds());
+        // figure.setBounds(getRootScapeEditPart().getFigure().getBounds());
         return figure;
     }
 
     @Override
-    protected void calculateConstraints(GraphicalEditPart editPart) {
+    protected synchronized void calculateConstraints(GraphicalEditPart editPart) {
         Object agent = editPart.getModel();
         ILocation location = getLocationProvider().getLocation(agent);
         if (location != null) {
             IFigure3D agentFigure = (IFigure3D) editPart.getFigure();
             Vector3f endPoint = new Vector3fImpl((float) GenericEditPart.SCALE * location.getX(),
-                (float) GenericEditPart.SCALE * location.getY(), 0);
+                                                 (float) GenericEditPart.SCALE * location.getY(), 0);
             if (editPart instanceof AgentEdit3DPart) {
                 endPoint = Math3DVector3f.add(endPoint, ((AgentEdit3DPart) editPart).getRelativeLocation3D(), endPoint);
             }
             ScapeEditRoot3DPart root = (ScapeEditRoot3DPart) getRootScapeEditPart();
-            if (root.getAnimationStepCount() > 1 && getModel() != null
-                    && ((IModel) getModel()).getPeriod() > 0) {
+            if (root.getAnimationStepCount() > 1 && getRootScapeEditPart().getModel() != null
+                    && ((IModel) getRootScapeEditPart().getModel()).getPeriod() > 0) {
                 IVector3f startPoint;
                 Vector3f addPoint;
                 if (root.getAnimationStep() == 0) {
