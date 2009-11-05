@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopedElement;
 import org.eclipse.xtext.scoping.impl.ScopedElement;
-import org.eclipse.xtext.xtend.scoping.Scope;
+import org.eclipse.xtext.scoping.impl.SimpleScope;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAgent;
 import org.metaabm.SState;
@@ -72,7 +72,7 @@ public class ATestScopeProvider extends AParScopeProvider {
                     if (constraint.getAgent() != null) {
                         findAttributes(constraint.getAgent(), allElems, "");
                     } else {
-                        return Scope.NULLSCOPE;
+                        return IScope.NULLSCOPE;
                     }
                 } else if (reference.getEType() == MetaABMPackage.eINSTANCE.getSStateValue()) {
                     if (constraint.getAttribute() instanceof SState) {
@@ -81,13 +81,11 @@ public class ATestScopeProvider extends AParScopeProvider {
                             allElems.add(ScopedElement.create(value.getLabel(), value));
                         }
                     } else {
-                        return Scope.NULLSCOPE;
+                        return IScope.NULLSCOPE;
                     }
                 }
             }
-            Scope attrScope = new Scope();
-            attrScope.setOuterScope(defaultScope);
-            attrScope.setElements(allElems);
+            IScope attrScope = new SimpleScope(defaultScope, allElems);
             return attrScope;
         }
         return super.getScope(object, reference);

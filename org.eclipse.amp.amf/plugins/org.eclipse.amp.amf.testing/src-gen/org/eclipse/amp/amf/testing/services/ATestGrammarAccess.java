@@ -8,16 +8,16 @@ import com.google.inject.Singleton;
 import com.google.inject.Inject;
 
 import org.eclipse.xtext.*;
-
 import org.eclipse.xtext.service.GrammarProvider;
+import org.eclipse.xtext.service.AbstractElementFinder.*;
 
 import org.eclipse.amp.amf.abase.services.ABaseGrammarAccess;
 
 @Singleton
-public class ATestGrammarAccess implements IGrammarAccess {
+public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
-	public class ModelElements implements IParserRuleAccess {
+	public class ModelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Model");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
@@ -95,7 +95,7 @@ public class ATestGrammarAccess implements IGrammarAccess {
 		public RuleCall getContainsTestMemberParserRuleCall_2_1_1_0() { return cContainsTestMemberParserRuleCall_2_1_1_0; }
 	}
 
-	public class TestsElements implements IParserRuleAccess {
+	public class TestsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Tests");
 		private final Assignment cImportURIAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cImportURISTRINGTerminalRuleCall_0 = (RuleCall)cImportURIAssignment.eContents().get(0);
@@ -111,7 +111,7 @@ public class ATestGrammarAccess implements IGrammarAccess {
 		public RuleCall getImportURISTRINGTerminalRuleCall_0() { return cImportURISTRINGTerminalRuleCall_0; }
 	}
 
-	public class TestMemberElements implements IParserRuleAccess {
+	public class TestMemberElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TestMember");
 		private final Assignment cImportURIAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cImportURISTRINGTerminalRuleCall_0 = (RuleCall)cImportURIAssignment.eContents().get(0);
@@ -127,7 +127,7 @@ public class ATestGrammarAccess implements IGrammarAccess {
 		public RuleCall getImportURISTRINGTerminalRuleCall_0() { return cImportURISTRINGTerminalRuleCall_0; }
 	}
 
-	public class ConstraintElements implements IParserRuleAccess {
+	public class ConstraintElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Constraint");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cMeasureAssignment_0 = (Assignment)cGroup.eContents().get(0);
@@ -242,7 +242,7 @@ public class ATestGrammarAccess implements IGrammarAccess {
 	}
 	
 	
-	public class MeasureElements implements IEnumRuleAccess {
+	public class MeasureElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "Measure");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final EnumLiteralDeclaration cCOUNTEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
