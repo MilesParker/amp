@@ -224,11 +224,11 @@ public class InternalABaseLexer extends Lexer {
     public final void mRULE_DESC_STRING() throws RecognitionException {
         try {
             int _type = RULE_DESC_STRING;
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/contentassist/antlr/internal/InternalABase.g:339:18: ( '\\u00AB' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) ) )* '\\u00BB' )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/contentassist/antlr/internal/InternalABase.g:339:20: '\\u00AB' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) ) )* '\\u00BB'
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/contentassist/antlr/internal/InternalABase.g:339:18: ( '\\u00AB' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' ) | ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) ) )* '\\u00BB' )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/contentassist/antlr/internal/InternalABase.g:339:20: '\\u00AB' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' ) | ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) ) )* '\\u00BB'
             {
             match('\u00AB'); 
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/contentassist/antlr/internal/InternalABase.g:339:29: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) ) )*
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/contentassist/antlr/internal/InternalABase.g:339:29: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' ) | ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) ) )*
             loop6:
             do {
                 int alt6=3;
@@ -244,10 +244,10 @@ public class InternalABaseLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/contentassist/antlr/internal/InternalABase.g:339:30: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+            	    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/contentassist/antlr/internal/InternalABase.g:339:30: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' )
             	    {
             	    match('\\'); 
-            	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
+            	    if ( input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t'||input.LA(1)=='\u00AB'||input.LA(1)=='\u00BB' ) {
             	        input.consume();
 
             	    }
@@ -261,7 +261,7 @@ public class InternalABaseLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/contentassist/antlr/internal/InternalABase.g:339:71: ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) )
+            	    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/contentassist/antlr/internal/InternalABase.g:339:80: ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\u00AA')||(input.LA(1)>='\u00AC' && input.LA(1)<='\u00BA')||(input.LA(1)>='\u00BC' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
