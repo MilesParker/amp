@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.1 2009/06/26 07:25:01 mparker Exp $
+ $Id: plugin.xml,v 1.2 2009/11/05 00:38:23 mparker Exp $
 -->
 
 <plugin>
@@ -40,6 +40,18 @@
               type="org.eclipse.ui.views.properties.IPropertySource">
         </adapter>
      </factory>
+  </extension>
+
+  <extension
+        point="org.eclipse.ui.views">
+     <view
+           allowMultiple="true"
+           class="org.eclipse.amp.escape.ascape.gef.GraphicsViewPart"
+           icon="icons/etool16/group.gif"
+           id="org.eclipse.amp.escape.view.GraphicsView"
+           name="Graphic View"
+           restorable="true">
+     </view>
   </extension>
 </plugin>
 
