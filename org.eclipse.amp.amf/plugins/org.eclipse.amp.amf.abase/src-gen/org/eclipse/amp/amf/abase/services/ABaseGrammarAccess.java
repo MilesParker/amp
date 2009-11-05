@@ -8,16 +8,16 @@ import com.google.inject.Singleton;
 import com.google.inject.Inject;
 
 import org.eclipse.xtext.*;
-
 import org.eclipse.xtext.service.GrammarProvider;
+import org.eclipse.xtext.service.AbstractElementFinder.*;
 
 import org.eclipse.xtext.common.services.TerminalsGrammarAccess;
 
 @Singleton
-public class ABaseGrammarAccess implements IGrammarAccess {
+public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
-	public class ValueElements implements IParserRuleAccess {
+	public class ValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Value");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cIntValueParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
@@ -45,7 +45,7 @@ public class ABaseGrammarAccess implements IGrammarAccess {
 		public RuleCall getBooleanValueParserRuleCall_3() { return cBooleanValueParserRuleCall_3; }
 	}
 
-	public class IntValueElements implements IParserRuleAccess {
+	public class IntValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IntValue");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cValueINTEGERTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
@@ -61,7 +61,7 @@ public class ABaseGrammarAccess implements IGrammarAccess {
 		public RuleCall getValueINTEGERTerminalRuleCall_0() { return cValueINTEGERTerminalRuleCall_0; }
 	}
 
-	public class RealValueElements implements IParserRuleAccess {
+	public class RealValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RealValue");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cValueREALTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
@@ -77,7 +77,7 @@ public class ABaseGrammarAccess implements IGrammarAccess {
 		public RuleCall getValueREALTerminalRuleCall_0() { return cValueREALTerminalRuleCall_0; }
 	}
 
-	public class StringValueElements implements IParserRuleAccess {
+	public class StringValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StringValue");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cValueSTRINGTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
@@ -93,7 +93,7 @@ public class ABaseGrammarAccess implements IGrammarAccess {
 		public RuleCall getValueSTRINGTerminalRuleCall_0() { return cValueSTRINGTerminalRuleCall_0; }
 	}
 
-	public class BooleanValueElements implements IParserRuleAccess {
+	public class BooleanValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BooleanValue");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cValueBOOLEANEnumRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
@@ -110,7 +110,7 @@ public class ABaseGrammarAccess implements IGrammarAccess {
 	}
 	
 	
-	public class BOOLEANElements implements IEnumRuleAccess {
+	public class BOOLEANElements extends AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "BOOLEAN");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final EnumLiteralDeclaration cTRUEEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
@@ -242,8 +242,8 @@ public class ABaseGrammarAccess implements IGrammarAccess {
 	} 
 
 	//terminal DESC_STRING:
-	//  "\u00AB" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\u00AB" | "\u00BB"))*
-	//  "\u00BB";
+	//  "\u00AB" ("\\" ("b" | "t" | "n" | "f" | "r" | "\u00AB" | "\u00BB" | "\\") | !("\\" | "\u00AB" |
+	//  "\u00BB"))* "\u00BB";
 	public TerminalRule getDESC_STRINGRule() {
 		return (tDESC_STRING != null) ? tDESC_STRING : (tDESC_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DESC_STRING"));
 	} 
