@@ -20,6 +20,11 @@ public abstract class AbstractAParRuntimeModule extends DefaultRuntimeModule {
 		super.configure(binder);
 		binder.bind(String.class).annotatedWith(Names.named(Constants.LANGUAGE_NAME)).toInstance(
 			"org.eclipse.amp.amf.parameters.APar");
+		bindProperties(binder);
+	}
+	
+	protected void bindProperties(Binder binder) {
+		bindProperties(binder, "/org/eclipse/amp/amf/parameters/APar.properties");
 	}
 	
 	
@@ -49,8 +54,8 @@ public abstract class AbstractAParRuntimeModule extends DefaultRuntimeModule {
 	}
 
 	// contributed by de.itemis.xtext.antlr.XtextAntlrGeneratorFragment
-	public Class<? extends org.eclipse.xtext.parser.antlr.Lexer> bindLexer() {
-		return org.eclipse.amp.amf.parameters.parser.antlr.internal.InternalAParLexer.class;
+	public com.google.inject.Provider<org.eclipse.xtext.parser.antlr.Lexer> provideLexer() {
+		return new org.eclipse.xtext.parser.antlr.LexerProvider(org.eclipse.amp.amf.parameters.parser.antlr.internal.InternalAParLexer.class);
 	}
 
 	// contributed by de.itemis.xtext.antlr.XtextAntlrGeneratorFragment
@@ -66,6 +71,11 @@ public abstract class AbstractAParRuntimeModule extends DefaultRuntimeModule {
 	// contributed by org.eclipse.xtext.generator.scoping.JavaScopingFragment
 	public Class<? extends org.eclipse.xtext.scoping.IScopeProvider> bindIScopeProvider() {
 		return org.eclipse.amp.amf.parameters.scoping.AParScopeProvider.class;
+	}
+
+	// contributed by org.eclipse.xtext.generator.scoping.JavaScopingFragment
+	public void configureIScopeProviderDelegate(com.google.inject.Binder binder) {
+		binder.bind(org.eclipse.xtext.scoping.IScopeProvider.class).annotatedWith(com.google.inject.name.Names.named("org.eclipse.xtext.scoping.IScopeProvider.delegate")).to(org.eclipse.xtext.scoping.impl.SimpleNameScopeProvider.class);
 	}
 
 	// contributed by org.eclipse.xtext.generator.formatting.FormatterFragment

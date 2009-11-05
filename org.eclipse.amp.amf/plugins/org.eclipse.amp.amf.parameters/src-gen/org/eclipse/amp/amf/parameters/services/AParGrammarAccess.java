@@ -8,16 +8,16 @@ import com.google.inject.Singleton;
 import com.google.inject.Inject;
 
 import org.eclipse.xtext.*;
-
 import org.eclipse.xtext.service.GrammarProvider;
+import org.eclipse.xtext.service.AbstractElementFinder.*;
 
 import org.eclipse.amp.amf.abase.services.ABaseGrammarAccess;
 
 @Singleton
-public class AParGrammarAccess implements IGrammarAccess {
+public class AParGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
-	public class ModelElements implements IParserRuleAccess {
+	public class ModelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Model");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
@@ -61,7 +61,7 @@ public class AParGrammarAccess implements IGrammarAccess {
 		public RuleCall getParametersParameterParserRuleCall_3_0() { return cParametersParameterParserRuleCall_3_0; }
 	}
 
-	public class ImportElements implements IParserRuleAccess {
+	public class ImportElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Import");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cModelKeyword_0 = (Keyword)cGroup.eContents().get(0);
@@ -85,7 +85,7 @@ public class AParGrammarAccess implements IGrammarAccess {
 		public RuleCall getImportURISTRINGTerminalRuleCall_1_0() { return cImportURISTRINGTerminalRuleCall_1_0; }
 	}
 
-	public class IncorporatesElements implements IParserRuleAccess {
+	public class IncorporatesElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Incorporates");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cIncorporatesKeyword_0 = (Keyword)cGroup.eContents().get(0);
@@ -109,7 +109,7 @@ public class AParGrammarAccess implements IGrammarAccess {
 		public RuleCall getImportURISTRINGTerminalRuleCall_1_0() { return cImportURISTRINGTerminalRuleCall_1_0; }
 	}
 
-	public class ParameterElements implements IParserRuleAccess {
+	public class ParameterElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Parameter");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cAttributeAssignment_0 = (Assignment)cGroup.eContents().get(0);
@@ -282,6 +282,13 @@ public class AParGrammarAccess implements IGrammarAccess {
 	//  "-"? "0".."9"* "." "0".."9"*;
 	public TerminalRule getREALRule() {
 		return gaABase.getREALRule();
+	} 
+
+	//terminal DESC_STRING:
+	//  "\u00AB" ("\\" ("b" | "t" | "n" | "f" | "r" | "\u00AB" | "\u00BB" | "\\") | !("\\" | "\u00AB" |
+	//  "\u00BB"))* "\u00BB";
+	public TerminalRule getDESC_STRINGRule() {
+		return gaABase.getDESC_STRINGRule();
 	} 
 
 	//terminal ID:

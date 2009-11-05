@@ -30,9 +30,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.ui.statushandlers.StatusManager;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.IScopedElement;
-import org.eclipse.xtext.scoping.impl.DefaultScopeProvider;
 import org.eclipse.xtext.scoping.impl.ScopedElement;
-import org.eclipse.xtext.xtend.scoping.Scope;
+import org.eclipse.xtext.scoping.impl.SimpleNameScopeProvider;
+import org.eclipse.xtext.scoping.impl.SimpleScope;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAttribute;
 import org.metaabm.SAttributed;
@@ -47,7 +47,7 @@ import com.google.inject.Singleton;
  * 
  */
 @Singleton
-public class AParScopeProvider extends DefaultScopeProvider {
+public class AParScopeProvider extends SimpleNameScopeProvider {
 
     /**
      * @param context
@@ -73,10 +73,7 @@ public class AParScopeProvider extends DefaultScopeProvider {
                     }
                 }
             }
-            Scope attrScope = new Scope();
-            attrScope.setOuterScope(defaultScope);
-            attrScope.setElements(allElems);
-            // }
+            IScope attrScope = new SimpleScope(defaultScope, allElems);
             return attrScope;
         }
         return defaultScope;

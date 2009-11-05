@@ -41,6 +41,10 @@
 			<fragment class="org.eclipse.xtext.generator.parser.PackratParserFragment"/>
 			 -->
 	
+			<!-- check-based API for validation -->
+			<!--
+			<fragment class="org.eclipse.xtext.generator.validation.CheckFragment"/>
+			 -->
 			
 			<!-- java-based API for validation -->
 			<fragment class="org.eclipse.xtext.generator.validation.JavaValidatorFragment">
@@ -68,10 +72,15 @@
 			     and will be ignored if it's not available. -->
 			<fragment class="org.eclipse.xtext.generator.DelegatingGeneratorFragment" 
 				delegate="de.itemis.xtext.antlr.XtextAntlrUiGeneratorFragment"
-				message="You are generating without ANTLR. It is highly recommended to download and use the plugin 'de.itemis.xtext.antlr' \n\t using the update site http://download.itemis.com/updates/milestones.">
+				message="You are generating without ANTLR. It is highly recommended to download and use the plugin 'de.itemis.xtext.antlr' \n\t using the update site http://download.itemis.com/updates/.">
 			</fragment>
 			<!-- <fragment class="de.itemis.xtext.antlr.XtextAntlrUiGeneratorFragment"/> --> 
 			
+			<!-- project wizard (optional) -->
+			<!--
+			<fragment class="org.eclipse.xtext.ui.generator.projectWizard.SimpleProjectWizardFragment"
+				generatorProjectName="${projectName}.generator" modelFileExtension="${file.extensions}"/>
+			-->
 		</language>
 	</component>
 </workflow>

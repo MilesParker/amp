@@ -168,6 +168,37 @@
         </tokens>
       </alternatives>
     </rules>
+    <rules xsi:type="xtext:TerminalRule" name="DESC_STRING">
+      <type metamodel="/1/@metamodelDeclarations.1">
+        <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </type>
+      <alternatives xsi:type="xtext:Group">
+        <tokens xsi:type="xtext:Keyword" value="&#xab;"/>
+        <tokens xsi:type="xtext:Alternatives" cardinality="*">
+          <groups xsi:type="xtext:Group">
+            <tokens xsi:type="xtext:Keyword" value="\"/>
+            <tokens xsi:type="xtext:Alternatives">
+              <groups xsi:type="xtext:Keyword" value="b"/>
+              <groups xsi:type="xtext:Keyword" value="t"/>
+              <groups xsi:type="xtext:Keyword" value="n"/>
+              <groups xsi:type="xtext:Keyword" value="f"/>
+              <groups xsi:type="xtext:Keyword" value="r"/>
+              <groups xsi:type="xtext:Keyword" value="&#xab;"/>
+              <groups xsi:type="xtext:Keyword" value="&#xbb;"/>
+              <groups xsi:type="xtext:Keyword" value="\"/>
+            </tokens>
+          </groups>
+          <groups xsi:type="xtext:NegatedToken">
+            <terminal xsi:type="xtext:Alternatives">
+              <groups xsi:type="xtext:Keyword" value="\"/>
+              <groups xsi:type="xtext:Keyword" value="&#xab;"/>
+              <groups xsi:type="xtext:Keyword" value="&#xbb;"/>
+            </terminal>
+          </groups>
+        </tokens>
+        <tokens xsi:type="xtext:Keyword" value="&#xbb;"/>
+      </alternatives>
+    </rules>
   </xtext:Grammar>
   <xtext:Grammar name="org.eclipse.xtext.common.Terminals" definesHiddenTokens="true" hiddenTokens="/2/@rules.5 /2/@rules.3 /2/@rules.4">
     <metamodelDeclarations xsi:type="xtext:ReferencedMetamodel" alias="ecore">
