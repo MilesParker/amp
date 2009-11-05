@@ -4,15 +4,17 @@
  */
 package org.eclipse.amp.amf.parameters.internal;
 
-import java.util.HashMap;
-import java.util.Map;
+import org.apache.log4j.Logger;
+import org.eclipse.xtext.ui.common.service.UIPluginModule;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.eclipse.xtext.ui.common.service.UIPluginModule;
 import org.osgi.framework.BundleContext;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  * Generated
@@ -30,12 +32,17 @@ public class AParActivator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		INSTANCE = this;
-		
-		injectors.put("org.eclipse.amp.amf.parameters.APar", Guice.createInjector(
-			new org.eclipse.amp.amf.parameters.AParUiModule(),
-			createUIPluginModule()
-		));
-		
+		try {
+			
+			injectors.put("org.eclipse.amp.amf.parameters.APar", Guice.createInjector(
+				new org.eclipse.amp.amf.parameters.AParUiModule(),
+				createUIPluginModule()
+			));
+			
+		} catch (Exception e) {
+			Logger.getLogger(getClass()).error(e.getMessage(), e);
+			throw e;
+		}
 	}
 	
 	public static AParActivator getInstance() {

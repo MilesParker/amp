@@ -4,13 +4,11 @@
 package org.eclipse.amp.amf.parameters.contentassist;
 
 import org.apache.log4j.Logger;
-import org.eclipse.amp.amf.abase.contentassist.ABaseProposalProvider;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.Assignment;
-import org.eclipse.xtext.CrossReference;
-import org.eclipse.xtext.RuleCall;
-import org.eclipse.xtext.ui.core.editor.contentassist.ContentAssistContext;
+import org.eclipse.xtext.*;
+import org.eclipse.amp.amf.abase.contentassist.ABaseProposalProvider;
 import org.eclipse.xtext.ui.core.editor.contentassist.ICompletionProposalAcceptor;
+import org.eclipse.xtext.ui.core.editor.contentassist.ContentAssistContext;
 
 /**
  * Represents a generated, default implementation of interface {@link IProposalProvider}.

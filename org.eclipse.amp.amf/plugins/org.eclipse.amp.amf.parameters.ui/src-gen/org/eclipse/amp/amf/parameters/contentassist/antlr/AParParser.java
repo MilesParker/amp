@@ -4,18 +4,19 @@
 package org.eclipse.amp.amf.parameters.contentassist.antlr;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.HashMap;
 
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.RecognitionException;
-import org.eclipse.amp.amf.parameters.services.AParGrammarAccess;
 import org.eclipse.xtext.AbstractElement;
 import org.eclipse.xtext.ui.common.editor.contentassist.antlr.AbstractContentAssistParser;
 import org.eclipse.xtext.ui.common.editor.contentassist.antlr.FollowElement;
 import org.eclipse.xtext.ui.common.editor.contentassist.antlr.internal.AbstractInternalContentAssistParser;
 
 import com.google.inject.Inject;
+
+import org.eclipse.amp.amf.parameters.services.AParGrammarAccess;
 
 public class AParParser extends AbstractContentAssistParser {
 	
