@@ -3,7 +3,7 @@ Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.amp.agf.ide;singleton:=true
-Bundle-Version: 0.2.0.qualifier
+Bundle-Version: 0.5.0.qualifier
 Bundle-Activator: org.eclipse.amp.agf.ide.AGFIDEPlugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
