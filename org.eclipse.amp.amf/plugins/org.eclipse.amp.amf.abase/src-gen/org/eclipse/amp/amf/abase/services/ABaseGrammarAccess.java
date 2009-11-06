@@ -8,16 +8,16 @@ import com.google.inject.Singleton;
 import com.google.inject.Inject;
 
 import org.eclipse.xtext.*;
+
 import org.eclipse.xtext.service.GrammarProvider;
-import org.eclipse.xtext.service.AbstractElementFinder.*;
 
 import org.eclipse.xtext.common.services.TerminalsGrammarAccess;
 
 @Singleton
-public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
+public class ABaseGrammarAccess implements IGrammarAccess {
 	
 	
-	public class ValueElements extends AbstractParserRuleElementFinder {
+	public class ValueElements implements IParserRuleAccess {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Value");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cIntValueParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
@@ -45,7 +45,7 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getBooleanValueParserRuleCall_3() { return cBooleanValueParserRuleCall_3; }
 	}
 
-	public class IntValueElements extends AbstractParserRuleElementFinder {
+	public class IntValueElements implements IParserRuleAccess {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IntValue");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cValueINTEGERTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
@@ -61,7 +61,7 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getValueINTEGERTerminalRuleCall_0() { return cValueINTEGERTerminalRuleCall_0; }
 	}
 
-	public class RealValueElements extends AbstractParserRuleElementFinder {
+	public class RealValueElements implements IParserRuleAccess {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "RealValue");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cValueREALTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
@@ -77,7 +77,7 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getValueREALTerminalRuleCall_0() { return cValueREALTerminalRuleCall_0; }
 	}
 
-	public class StringValueElements extends AbstractParserRuleElementFinder {
+	public class StringValueElements implements IParserRuleAccess {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StringValue");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cValueSTRINGTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
@@ -93,7 +93,7 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getValueSTRINGTerminalRuleCall_0() { return cValueSTRINGTerminalRuleCall_0; }
 	}
 
-	public class BooleanValueElements extends AbstractParserRuleElementFinder {
+	public class BooleanValueElements implements IParserRuleAccess {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BooleanValue");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cValueBOOLEANEnumRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
@@ -110,7 +110,7 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 	
 	
-	public class BOOLEANElements extends AbstractEnumRuleElementFinder {
+	public class BOOLEANElements implements IEnumRuleAccess {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "BOOLEAN");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final EnumLiteralDeclaration cTRUEEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
