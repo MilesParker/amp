@@ -3,13 +3,13 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.amp.amf.acore.edit.test
-Bundle-Version: 0.2.0.qualifier
+Bundle-Version: 0.5.0.qualifier
 Bundle-Activator: org.eclipse.amp.amf.acore.edit.tests.Activator
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.amp.amf.acore,
  org.eclipse.amp.amf.acore.test,
- org.eclipse.amp.amf.acore.edit;bundle-version="0.2.0",
+ org.eclipse.amp.amf.acore.edit;bundle-version="0.5.0",
  org.junit
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.amp.amf.acore.edit.commands.test,
