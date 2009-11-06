@@ -18,7 +18,6 @@ package org.eclipse.amp.amf.testing.ide;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang.time.DateFormatUtils;
 import org.ascape.runtime.Runner;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -63,27 +62,12 @@ public class ExecuteTestHandler extends AbstractHandler {
             }
             Runner.setDisplayGraphics(false);
 
-            String name = getName(selList);
-            name += "-" + DateFormatUtils.format(System.currentTimeMillis(), "yyMMddHHmm-SSSS");
 
-            new TestRunSet(project, testResources, name, getRunsPerTest()).run();
+            new TestRunSet(project, testResources, getRunsPerTest()).run();
         }
         return null;
     }
 
-    private String getName(List selList) {
-        String name = "";
-        if (selList.size() == 1 && selList.get(0) instanceof IFolder) {
-            IFolder folder = (IFolder) selList.get(0);
-            name = folder.getProjectRelativePath().toPortableString().replace("/", "_");
-            return name;
-        }
-        for (IResource res : testResources) {
-            name += res.getName().substring(0, Math.min(5, res.getName().length() - 1)) + "_";
-        }
-        name = name.substring(0, name.length() - 2);
-        return name;
-    }
 
     private void addResource(IResource res) {
         if (res instanceof IFile) {

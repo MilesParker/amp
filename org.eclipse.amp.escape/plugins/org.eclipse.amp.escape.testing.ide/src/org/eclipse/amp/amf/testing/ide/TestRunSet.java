@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.amf.testing.ide;
 
 import java.io.IOException;
@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.eclipse.amp.amf.abase.IInterpreterProvider;
 import org.eclipse.amp.amf.parameters.AParFactory;
 import org.eclipse.amp.amf.testing.ATestInterpreter;
@@ -31,13 +32,13 @@ import org.eclipse.amp.amf.testing.ares.ResultType;
 import org.eclipse.amp.amf.testing.ares.RunSet;
 import org.eclipse.amp.amf.testing.ares.impl.AresFactoryImpl;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.URI;
@@ -89,13 +90,27 @@ public class TestRunSet {
 
     private ResourceSet resourceSet;
 
-    public TestRunSet(IProject project, List<IResource> testResources, String name, int runsPerTest) {
+    public TestRunSet(IProject project, List<IResource> testResources, int runsPerTest) {
         super();
         this.uniqueTests = testResources;
-        this.name = name;
         // use first test location for project
         this.project = project;
         this.runsPerTest = runsPerTest;
+    }
+
+    private String getName() {
+        String name = "";
+        if (uniqueTests.size() < 3) {
+            for (IResource res : uniqueTests) {
+                name += res.getProjectRelativePath().removeFileExtension().lastSegment() + "_";
+            }
+        } else {
+            for (IResource res : uniqueTests) {
+                name += res.getName().substring(0, Math.min(5, res.getName().length() - 1)) + "_";
+            }
+        }
+        name += DateFormatUtils.format(System.currentTimeMillis(), "MM-dd-yy_HH-mm-S");
+        return name;
     }
 
     protected void initialize() {
@@ -111,10 +126,16 @@ public class TestRunSet {
         aParPool = AParFactory.createPooled(resourceSet);
 
         monitor.subTask("Creating Results");
-        IFolder resultsFolder = project.getFolder("results");
-        IFile resultsFile = resultsFolder.getFile(name + ".ares");
-        URI fileURI = URI.createPlatformResourceURI(project.getName() + "/" + resultsFile.getProjectRelativePath(),
-                                                    true);
+
+        String name = getName();
+
+        IResource firstResource = uniqueTests.get(0);
+        // Get rid of test folder
+        IPath projectPath = new Path("results").append(
+                                                       firstResource.getProjectRelativePath().removeFirstSegments(1)
+                                                       .removeLastSegments(1)).append(name + ".ares");
+
+        URI fileURI = URI.createPlatformResourceURI(project.getName() + "/" + projectPath, true);
         aResResource = resourceSet.createResource(fileURI);
 
         runSet = AresFactoryImpl.eINSTANCE.createRunSet();
@@ -129,7 +150,6 @@ public class TestRunSet {
         }
         saveResults();
     }
-
 
     private synchronized void saveResults() {
         Map<Object, Object> saveOptions = new HashMap<Object, Object>();
