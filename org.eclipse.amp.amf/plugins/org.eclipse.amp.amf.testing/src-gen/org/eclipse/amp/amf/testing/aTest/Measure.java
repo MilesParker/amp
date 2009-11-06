@@ -304,22 +304,4 @@ public enum Measure implements Enumerator
     return literal;
   }
   
-    /**
-     * @generated NOT
-     */
-    public String getAbrv() {
-        switch (value) {
-            case COUNT_VALUE:
-                return "#";
-            case AVERAGE_VALUE:
-                return "\u03BC";
-            case SUM_VALUE:
-                return "\u03A3";
-            case MINIMUM_VALUE:
-                return MINIMUM.literal;
-            case MAXIMUM_VALUE:
-                return MAXIMUM.literal;
-        }
-        return null;
-    }
 } //Measure
