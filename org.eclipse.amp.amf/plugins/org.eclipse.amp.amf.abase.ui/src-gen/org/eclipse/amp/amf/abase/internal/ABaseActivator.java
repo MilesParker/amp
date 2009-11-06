@@ -4,7 +4,6 @@
  */
 package org.eclipse.amp.amf.abase.internal;
 
-import org.apache.log4j.Logger;
 import org.eclipse.xtext.ui.common.service.UIPluginModule;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -32,17 +31,12 @@ public class ABaseActivator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		INSTANCE = this;
-		try {
-			
-			injectors.put("org.eclipse.amp.amf.abase.ABase", Guice.createInjector(
-				new org.eclipse.amp.amf.abase.ABaseUiModule(),
-				createUIPluginModule()
-			));
-			
-		} catch (Exception e) {
-			Logger.getLogger(getClass()).error(e.getMessage(), e);
-			throw e;
-		}
+		
+		injectors.put("org.eclipse.amp.amf.abase.ABase", Guice.createInjector(
+			new org.eclipse.amp.amf.abase.ABaseUiModule(),
+			createUIPluginModule()
+		));
+		
 	}
 	
 	public static ABaseActivator getInstance() {
