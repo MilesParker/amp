@@ -21,8 +21,7 @@ Require-Bundle: org.eclipse.xtext,
  org.antlr.runtime,
  org.eclipse.core.resources,
  org.eclipse.core.runtime,
- org.eclipse.emf.emfindex,
- org.eclipse.emf.emfindex.reference
+ org.eclipse.emf.emfindex
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.amp.amf.abase,
  org.eclipse.amp.amf.abase.aBase,

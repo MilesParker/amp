@@ -11,7 +11,7 @@ import org.eclipse.xtext.validation.ComposedChecks;
 public class AbstractABaseJavaValidator extends AbstractDeclarativeValidator {
 
     @Override
-    protected List<EPackage> getEPackages() {
+    protected List<? extends EPackage> getEPackages() {
         List<EPackage> result = new ArrayList<EPackage>();
         result.add(org.eclipse.amp.amf.abase.aBase.ABasePackage.eINSTANCE);
         return result;
