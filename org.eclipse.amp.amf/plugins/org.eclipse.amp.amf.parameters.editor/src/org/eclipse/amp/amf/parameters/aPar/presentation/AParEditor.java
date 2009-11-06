@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AParEditor.java,v 1.2 2009/09/10 20:25:58 mparker Exp $
+ * $Id: AParEditor.java,v 1.3 2009/11/06 21:26:20 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.presentation;
 
@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.amp.amf.parameters.aPar.provider.AParItemProviderAdapterFactory;
+import org.eclipse.amp.amf.abase.aBase.provider.ABaseItemProviderAdapterFactory;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
@@ -663,6 +664,7 @@ public class AParEditor
         adapterFactory.addAdapterFactory(new MetaABMItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new MetaABMFunctionItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new MetaABMActItemProviderAdapterFactory());
+        adapterFactory.addAdapterFactory(new ABaseItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
         // Create the command stack that will notify this editor as commands are executed.
@@ -1262,6 +1264,7 @@ public class AParEditor
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public Object getAdapter(Class key) {
         if (key.equals(IContentOutlinePage.class)) {
@@ -1540,7 +1543,7 @@ public class AParEditor
      * @generated
      */
     protected void doSaveAs(URI uri, IEditorInput editorInput) {
-        editingDomain.getResourceSet().getResources().get(0).setURI(uri);
+        (editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
         setInputWithNotify(editorInput);
         setPartName(editorInput.getName());
         IProgressMonitor progressMonitor =

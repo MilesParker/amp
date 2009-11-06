@@ -2,10 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AParEditorPlugin.java,v 1.1 2009/07/18 01:08:48 mparker Exp $
+ * $Id: AParEditorPlugin.java,v 1.2 2009/11/06 21:26:20 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.presentation;
 
+import org.eclipse.amp.amf.abase.aBase.provider.ABaseEditPlugin;
 import org.eclipse.emf.common.EMFPlugin;
 
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
@@ -47,6 +48,7 @@ public final class AParEditorPlugin extends EMFPlugin {
         super
             (new ResourceLocator [] {
                 MetaABMEditPlugin.INSTANCE,
+                ABaseEditPlugin.INSTANCE,
             });
     }
 
