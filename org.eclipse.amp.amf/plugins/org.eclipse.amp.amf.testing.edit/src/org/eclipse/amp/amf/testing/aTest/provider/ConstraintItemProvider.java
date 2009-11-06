@@ -2,15 +2,17 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ConstraintItemProvider.java,v 1.5 2009/09/22 02:05:18 mparker Exp $
+ * $Id: ConstraintItemProvider.java,v 1.6 2009/11/06 21:26:52 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.aTest.provider;
 
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.amp.amf.abase.aBase.ABaseFactory;
 import org.eclipse.amp.amf.testing.aTest.ATestPackage;
 import org.eclipse.amp.amf.testing.aTest.Constraint;
+import org.eclipse.amp.amf.testing.aTest.Measure;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -37,8 +39,8 @@ import org.metaabm.SStateValue;
 public class ConstraintItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
     /**
-     * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * This constructs an instance from a factory and a notifier.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     public ConstraintItemProvider(AdapterFactory adapterFactory) {
@@ -46,8 +48,8 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
     }
 
     /**
-     * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * This returns the property descriptors for the adapted class.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     @Override
@@ -64,71 +66,95 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
     }
 
     /**
-     * This adds a property descriptor for the Measure feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * This adds a property descriptor for the Measure feature.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     protected void addMeasurePropertyDescriptor(Object object) {
-        itemPropertyDescriptors
-        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                          getResourceLocator(), getString("_UI_Constraint_measure_feature"),
-                                          getString("_UI_PropertyDescriptor_description",
-                                                    "_UI_Constraint_measure_feature", "_UI_Constraint_type"),
-                                                    ATestPackage.Literals.CONSTRAINT__MEASURE, true, false, false,
-                                                    ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+        itemPropertyDescriptors.add
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Constraint_measure_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Constraint_measure_feature", "_UI_Constraint_type"),
+          ATestPackage.Literals.CONSTRAINT__MEASURE,
+          true,
+          false,
+          false,
+          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+          null,
+          null));
     }
 
     /**
-     * This adds a property descriptor for the Agent feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * This adds a property descriptor for the Agent feature.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     protected void addAgentPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_Constraint_agent_feature"),
-                                                                 getString("_UI_PropertyDescriptor_description",
-                                                                           "_UI_Constraint_agent_feature",
-                                                                 "_UI_Constraint_type"),
-                                                                 ATestPackage.Literals.CONSTRAINT__AGENT, true, false,
-                                                                 true, null, null, null));
+        itemPropertyDescriptors.add
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Constraint_agent_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Constraint_agent_feature", "_UI_Constraint_type"),
+          ATestPackage.Literals.CONSTRAINT__AGENT,
+          true,
+          false,
+          true,
+          null,
+          null,
+          null));
     }
 
     /**
-     * This adds a property descriptor for the Attribute feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * This adds a property descriptor for the Attribute feature.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     protected void addAttributePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_Constraint_attribute_feature"),
-                                                                 getString("_UI_PropertyDescriptor_description",
-                                                                           "_UI_Constraint_attribute_feature",
-                                                                 "_UI_Constraint_type"),
-                                                                 ATestPackage.Literals.CONSTRAINT__ATTRIBUTE, true,
-                                                                 false, true, null, null, null));
+        itemPropertyDescriptors.add
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Constraint_attribute_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Constraint_attribute_feature", "_UI_Constraint_type"),
+          ATestPackage.Literals.CONSTRAINT__ATTRIBUTE,
+          true,
+          false,
+          true,
+          null,
+          null,
+          null));
     }
 
     /**
-     * This adds a property descriptor for the Qualifier feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * This adds a property descriptor for the Qualifier feature.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     protected void addQualifierPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_Constraint_qualifier_feature"),
-                                                                 getString("_UI_PropertyDescriptor_description",
-                                                                           "_UI_Constraint_qualifier_feature",
-                                                                 "_UI_Constraint_type"),
-                                                                 ATestPackage.Literals.CONSTRAINT__QUALIFIER, true,
-                                                                 false, true, null, null, null));
+        itemPropertyDescriptors.add
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Constraint_qualifier_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Constraint_qualifier_feature", "_UI_Constraint_type"),
+          ATestPackage.Literals.CONSTRAINT__QUALIFIER,
+          true,
+          false,
+          true,
+          null,
+          null,
+          null));
     }
 
     /**
      * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
      * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+     * <!-- begin-user-doc --> <!--
      * end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -143,7 +169,6 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -155,8 +180,8 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
     }
 
     /**
-     * This returns Constraint.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * This returns Constraint.gif.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     @Override
@@ -206,21 +231,70 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
     }
 
     /**
-     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-     * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+     * that can be created under this object.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
 
+        newChildDescriptors.add
+        (createChildParameter
+         (ATestPackage.Literals.CONSTRAINT__MIN_VALUE,
+          ABaseFactory.eINSTANCE.createValue()));
+
+        newChildDescriptors.add
+        (createChildParameter
+         (ATestPackage.Literals.CONSTRAINT__MIN_VALUE,
+          ABaseFactory.eINSTANCE.createIntValue()));
+
+        newChildDescriptors.add
+        (createChildParameter
+         (ATestPackage.Literals.CONSTRAINT__MIN_VALUE,
+          ABaseFactory.eINSTANCE.createRealValue()));
+
+        newChildDescriptors.add
+        (createChildParameter
+         (ATestPackage.Literals.CONSTRAINT__MIN_VALUE,
+          ABaseFactory.eINSTANCE.createStringValue()));
+
+        newChildDescriptors.add
+        (createChildParameter
+         (ATestPackage.Literals.CONSTRAINT__MIN_VALUE,
+          ABaseFactory.eINSTANCE.createBooleanValue()));
+
+        newChildDescriptors.add
+        (createChildParameter
+         (ATestPackage.Literals.CONSTRAINT__MAX_VALUE,
+          ABaseFactory.eINSTANCE.createValue()));
+
+        newChildDescriptors.add
+        (createChildParameter
+         (ATestPackage.Literals.CONSTRAINT__MAX_VALUE,
+          ABaseFactory.eINSTANCE.createIntValue()));
+
+        newChildDescriptors.add
+        (createChildParameter
+         (ATestPackage.Literals.CONSTRAINT__MAX_VALUE,
+          ABaseFactory.eINSTANCE.createRealValue()));
+
+        newChildDescriptors.add
+        (createChildParameter
+         (ATestPackage.Literals.CONSTRAINT__MAX_VALUE,
+          ABaseFactory.eINSTANCE.createStringValue()));
+
+        newChildDescriptors.add
+        (createChildParameter
+         (ATestPackage.Literals.CONSTRAINT__MAX_VALUE,
+          ABaseFactory.eINSTANCE.createBooleanValue()));
     }
 
     /**
-     * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}. <!-- begin-user-doc -->
+     * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -228,24 +302,43 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
         Object childFeature = feature;
         Object childObject = child;
 
-        boolean qualify = childFeature == ATestPackage.Literals.CONSTRAINT__MIN_VALUE
-        || childFeature == ATestPackage.Literals.CONSTRAINT__MAX_VALUE;
+        boolean qualify =
+            childFeature == ATestPackage.Literals.CONSTRAINT__MIN_VALUE ||
+            childFeature == ATestPackage.Literals.CONSTRAINT__MAX_VALUE;
 
         if (qualify) {
-            return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),
-                getFeatureText(childFeature), getTypeText(owner) });
+            return getString
+            ("_UI_CreateChild_text2",
+             new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
         }
         return super.getCreateChildText(owner, feature, child, selection);
     }
 
     /**
-     * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * Return the resource locator for this item provider's resources.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     @Override
     public ResourceLocator getResourceLocator() {
         return ATestEditPlugin.INSTANCE;
+    }
+
+    public static String getMeasureAbrv(Measure measure) {
+
+        switch (measure.getValue()) {
+            case Measure.COUNT_VALUE:
+                return "#";
+            case Measure.AVERAGE_VALUE:
+                return "\u03BC";
+            case Measure.SUM_VALUE:
+                return "\u03A3";
+            case Measure.MINIMUM_VALUE:
+                return Measure.MINIMUM.getLiteral();
+            case Measure.MAXIMUM_VALUE:
+                return Measure.MAXIMUM.getLiteral();
+        }
+        return null;
     }
 
 }
