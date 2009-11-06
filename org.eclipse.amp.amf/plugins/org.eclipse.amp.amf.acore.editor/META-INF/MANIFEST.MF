@@ -8,7 +8,7 @@ Require-Bundle:
  org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
  org.eclipse.emf.java;bundle-version="2.5.0"
 Bundle-SymbolicName: org.eclipse.amp.amf.acore.editor;singleton=true
-Bundle-Version: 0.2.0.qualifier
+Bundle-Version: 0.5.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Provide-Package: org.metaabm.act.ide,
