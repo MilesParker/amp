@@ -10,7 +10,6 @@ import org.eclipse.xtext.parser.ParseException;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 
 import com.google.inject.Inject;
-import com.google.inject.Provider;
 
 import org.eclipse.amp.amf.testing.services.ATestGrammarAccess;
 
@@ -22,16 +21,13 @@ public class ATestParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrPar
 	@Inject
 	private ATestGrammarAccess grammarAccess;
 	
-	@Inject
-	private Provider<org.eclipse.amp.amf.testing.parser.antlr.internal.InternalATestLexer> lexerProvider;
-	
 	@Override
 	protected IParseResult parse(String ruleName, ANTLRInputStream in) {
-		org.eclipse.amp.amf.testing.parser.antlr.internal.InternalATestLexer lexer = lexerProvider.get();
-		lexer.setCharStream(in);
+		org.eclipse.amp.amf.testing.parser.antlr.internal.InternalATestLexer lexer = new org.eclipse.amp.amf.testing.parser.antlr.internal.InternalATestLexer(in);
 		XtextTokenStream stream = new XtextTokenStream(lexer, antlrTokenDefProvider);
 		stream.setInitialHiddenTokens("RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT");
-		org.eclipse.amp.amf.testing.parser.antlr.internal.InternalATestParser parser = createParser(stream);
+		org.eclipse.amp.amf.testing.parser.antlr.internal.InternalATestParser parser = new org.eclipse.amp.amf.testing.parser.antlr.internal.InternalATestParser(
+				stream, getElementFactory(), grammarAccess);
 		parser.setTokenTypeMap(antlrTokenDefProvider.getTokenDefMap());
 		try {
 			if(ruleName != null)
@@ -40,10 +36,6 @@ public class ATestParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrPar
 		} catch (Exception re) {
 			throw new ParseException(re.getMessage(),re);
 		}
-	}
-	
-	protected org.eclipse.amp.amf.testing.parser.antlr.internal.InternalATestParser createParser(XtextTokenStream stream) {
-		return new org.eclipse.amp.amf.testing.parser.antlr.internal.InternalATestParser(stream, getElementFactory(), getGrammarAccess());
 	}
 	
 	@Override 
@@ -57,13 +49,5 @@ public class ATestParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrPar
 	
 	public void setGrammarAccess(ATestGrammarAccess grammarAccess) {
 		this.grammarAccess = grammarAccess;
-	}
-	
-	public Provider<org.eclipse.amp.amf.testing.parser.antlr.internal.InternalATestLexer> getLexerProvider() {
-		return this.lexerProvider;
-	}
-	
-	public void setGrammarAccess(Provider<org.eclipse.amp.amf.testing.parser.antlr.internal.InternalATestLexer> lexerProvider) {
-		this.lexerProvider = lexerProvider;
 	}
 }
