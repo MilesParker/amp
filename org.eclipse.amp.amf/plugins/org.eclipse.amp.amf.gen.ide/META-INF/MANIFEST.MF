@@ -20,5 +20,6 @@ Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Export-Package: org.eclipse.amp.amf.gen.ide,
  org.eclipse.amp.amf.gen.ide.prefs
-Import-Package: org.apache.commons.lang
+Import-Package: org.apache.commons.lang,
+ org.apache.commons.logging
 Bundle-Localization: plugin
