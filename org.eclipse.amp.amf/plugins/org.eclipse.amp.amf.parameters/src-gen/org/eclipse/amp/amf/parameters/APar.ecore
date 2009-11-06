@@ -19,8 +19,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="importURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parameter">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="ecore:EClass platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.ecore#//SAttribute"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass http://www.eclipse.org/amp/amf/abase/ABase#//Value"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="ecore:EClass ../../../../../../../org.eclipse.amp.amf.acore/src/model/metaabm.ecore#//SAttribute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass ../../../../../../../org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//Value"
         containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

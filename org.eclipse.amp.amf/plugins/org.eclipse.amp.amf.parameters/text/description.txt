@@ -21,20 +21,4 @@ Package aPar <http://www.eclipse.org/amp/amf/parameters/APar>
 
   Class Parameter
     Reference attribute : SAttribute
-    Reference value : EObject
-
-  Class IntValue
-    Attribute value : EInt
-
-  Class RealValue
-    Attribute value : EString
-
-  Class StringValue
-    Attribute value : EString
-
-  Class BooleanValue
-    Attribute value : BOOLEAN
-
-  Enum BOOLEAN
-    Literal TRUE = 0
-    Literal FALSE = 1
+    Reference value : Value

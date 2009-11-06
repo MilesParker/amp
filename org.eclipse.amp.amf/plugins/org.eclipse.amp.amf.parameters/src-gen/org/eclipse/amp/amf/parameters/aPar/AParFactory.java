@@ -18,56 +18,56 @@ import org.eclipse.emf.ecore.EFactory;
 public interface AParFactory extends EFactory
 {
   /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   AParFactory eINSTANCE = org.eclipse.amp.amf.parameters.aPar.impl.AParFactoryImpl.init();
 
   /**
-   * Returns a new object of class '<em>Model</em>'.
-   * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Model</em>'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Model</em>'.
-   * @generated
-   */
+     * @return a new object of class '<em>Model</em>'.
+     * @generated
+     */
   Model createModel();
 
   /**
-   * Returns a new object of class '<em>Import</em>'.
-   * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Import</em>'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Import</em>'.
-   * @generated
-   */
+     * @return a new object of class '<em>Import</em>'.
+     * @generated
+     */
   Import createImport();
 
   /**
-   * Returns a new object of class '<em>Incorporates</em>'.
-   * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Incorporates</em>'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Incorporates</em>'.
-   * @generated
-   */
+     * @return a new object of class '<em>Incorporates</em>'.
+     * @generated
+     */
   Incorporates createIncorporates();
 
   /**
-   * Returns a new object of class '<em>Parameter</em>'.
-   * <!-- begin-user-doc -->
+     * Returns a new object of class '<em>Parameter</em>'.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Parameter</em>'.
-   * @generated
-   */
+     * @return a new object of class '<em>Parameter</em>'.
+     * @generated
+     */
   Parameter createParameter();
 
   /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
+     * @return the package supported by this factory.
+     * @generated
+     */
   AParPackage getAParPackage();
 
 } //AParFactory
