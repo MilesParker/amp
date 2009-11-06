@@ -439,15 +439,15 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
         }
     }
 
-    public String suggestID(IID object) {
-        ASink sink = (ASink) object;
-        String id;
-        if (sink.getFunction() != null) {
-            id = sink.getFunction().getID();
-        } else {
-            id = "Ident";
-        }
-        id += StringUtils.join(idsCaps(sink.getInputs()).toArray());
-        return super.suggestID(object) + id;
-    }
+    // public String suggestID(IID object) {
+    // ASink sink = (ASink) object;
+    // String id;
+    // if (sink.getFunction() != null) {
+    // id = sink.getFunction().getID();
+    // } else {
+    // id = "Ident";
+    // }
+    // id += StringUtils.join(idsCaps(sink.getInputs()).toArray());
+    // return super.suggestID(object) + id;
+    // }
 }

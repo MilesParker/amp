@@ -155,10 +155,6 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
         + (acc.getParameter() != null ? acc.getParameter().getLabel() : "[?]");
     }
 
-    public String suggestID(IID object) {
-        return "";
-    }
-
     /**
      * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
      * describing the children that can be created under this object. <!--

@@ -821,4 +821,10 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
         return ((AAct) object).getSources();
     }
 
+    public String suggestID(IID object) {
+        String suggestID = StringUtils.deleteWhitespace(suggestLabel(object));
+        suggestID = StringUtils.replaceChars(suggestID, "[]()", null);
+        return StringUtils.uncapitalize(suggestID);
+    }
+
 }

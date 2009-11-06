@@ -216,8 +216,4 @@ public class ABuildProjectionItemProvider extends AActItemProvider implements IE
             + (projection != null && projection.getLabel() != null ? StringUtils.capitalize(projection.getLabel())
                 : "[?]");
     }
-
-    public String suggestID(IID object) {
-        return "";
-    }
 }
