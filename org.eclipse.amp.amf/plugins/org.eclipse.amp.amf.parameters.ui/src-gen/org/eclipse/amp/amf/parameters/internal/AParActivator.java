@@ -4,7 +4,6 @@
  */
 package org.eclipse.amp.amf.parameters.internal;
 
-import org.apache.log4j.Logger;
 import org.eclipse.xtext.ui.common.service.UIPluginModule;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -32,17 +31,12 @@ public class AParActivator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		INSTANCE = this;
-		try {
-			
-			injectors.put("org.eclipse.amp.amf.parameters.APar", Guice.createInjector(
-				new org.eclipse.amp.amf.parameters.AParUiModule(),
-				createUIPluginModule()
-			));
-			
-		} catch (Exception e) {
-			Logger.getLogger(getClass()).error(e.getMessage(), e);
-			throw e;
-		}
+		
+		injectors.put("org.eclipse.amp.amf.parameters.APar", Guice.createInjector(
+			new org.eclipse.amp.amf.parameters.AParUiModule(),
+			createUIPluginModule()
+		));
+		
 	}
 	
 	public static AParActivator getInstance() {
