@@ -207,7 +207,7 @@ ICompositionProvider {
      * @see org.eclipse.amp.axf.core.ICompositionProvider#getIteratable(java.lang.Object)
      */
     public Iterable getIteratable(Object object) {
-        return (Scape) getUnwrapped(object);
+        return getList(object);
     }
 
     /**
@@ -253,7 +253,7 @@ ICompositionProvider {
      */
     public boolean isMutable(Object parent) {
         Scape scape = (Scape) getUnwrapped(parent);
-        return scape.getSpace().isMutable() && !scape.isRoot();
+        return scape.isMutable() && !scape.isRoot();
     }
 
     public Object getParent(Object member) {
