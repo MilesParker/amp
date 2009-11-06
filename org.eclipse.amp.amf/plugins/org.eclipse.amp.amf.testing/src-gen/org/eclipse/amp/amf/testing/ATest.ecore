@@ -21,12 +21,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Constraint">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="measure" eType="#//Measure"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="agent" eType="ecore:EClass platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.ecore#//SAgent"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="ecore:EClass platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.ecore#//SAttribute"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="qualifier" eType="ecore:EClass platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.ecore#//SStateValue"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="minValue" eType="ecore:EClass http://www.eclipse.org/amp/amf/abase/ABase#//Value"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="agent" eType="ecore:EClass ../../../../../../../org.eclipse.amp.amf.acore/src/model/metaabm.ecore#//SAgent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="ecore:EClass ../../../../../../../org.eclipse.amp.amf.acore/src/model/metaabm.ecore#//SAttribute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="qualifier" eType="ecore:EClass ../../../../../../../org.eclipse.amp.amf.acore/src/model/metaabm.ecore#//SStateValue"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="minValue" eType="ecore:EClass ../../../../../../../org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//Value"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="maxValue" eType="ecore:EClass http://www.eclipse.org/amp/amf/abase/ABase#//Value"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="maxValue" eType="ecore:EClass ../../../../../../../org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//Value"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Measure">
