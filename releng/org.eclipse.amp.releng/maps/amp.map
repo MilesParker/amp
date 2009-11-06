@@ -67,6 +67,7 @@ plugin@org.eclipse.amp.agf.zest.ide=HEAD,:pserver:anonymous:none@dev.eclipse.org
 plugin@org.eclipse.amp.agf3d=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.agf/plugins/org.eclipse.amp.agf3d
 plugin@org.eclipse.amp.amf.abase=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase
 plugin@org.eclipse.amp.amf.abase.edit=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase.edit
+plugin@org.eclipse.amp.amf.abase.editor=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase.editor
 plugin@org.eclipse.amp.amf.abase.ui=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase.ui
 plugin@org.eclipse.amp.amf.acore=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore
 plugin@org.eclipse.amp.amf.acore.edit=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore.edit
