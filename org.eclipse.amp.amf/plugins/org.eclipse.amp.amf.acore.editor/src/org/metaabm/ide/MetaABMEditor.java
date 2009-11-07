@@ -512,7 +512,7 @@ IMenuListener, IViewerProvider, IGotoMarker {
         }
     };
 
-    protected AgentAction importFromClassAction = new AgentAction(this, MetaModelerPlugin.INSTANCE
+    private AgentAction importFromClassAction = new AgentAction(this, MetaModelerPlugin.INSTANCE
                                                                   .getString("_UI_ImportAgent_menu_item"), EclipseUIPlugin
                                                                   .imageDescriptorFromPlugin("org.eclipse.amp.amf.ide", "icons/full/obj16/JavaCompilationUnit.gif")) {
         final String[] javaFilter = { "java" };
@@ -1870,5 +1870,9 @@ IMenuListener, IViewerProvider, IGotoMarker {
         // MetaABMItemProvider provider = (MetaABMItemProvider)
         // metaABMAdapterFactory.adapt(root, SContext.class);
         // provider.setDisplayAttributeReferences(displayAttributeReferences);
+    }
+
+    public AgentAction getImportFromClassAction() {
+        return importFromClassAction;
     }
 }

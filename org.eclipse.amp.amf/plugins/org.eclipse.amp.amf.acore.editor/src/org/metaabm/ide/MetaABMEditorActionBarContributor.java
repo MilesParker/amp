@@ -49,10 +49,13 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
+import org.metaabm.IID;
 import org.metaabm.MetaABMPackage;
+import org.metaabm.SAgent;
 import org.metaabm.SAttribute;
 import org.metaabm.act.MetaABMActPackage;
 
@@ -236,9 +239,9 @@ ISelectionChangedListener {
      * 
      * @generated
      */
-    protected Collection<IAction> createSiblingActions;
-
-    protected Collection<IAction> createSiblingTargetActions;
+    // protected Collection<IAction> createSiblingActions;
+    //
+    // protected Collection<IAction> createSiblingTargetActions;
 
     protected Collection<IAction> otherActions;
 
@@ -249,9 +252,9 @@ ISelectionChangedListener {
      * 
      * @generated
      */
-    protected IMenuManager createSiblingMenuManager;
-
-    protected IMenuManager createSiblingTargetMenuManager;
+    // protected IMenuManager createSiblingMenuManager;
+    //
+    // protected IMenuManager createSiblingTargetMenuManager;
 
     private IMenuManager submenuManager;
 
@@ -291,10 +294,9 @@ ISelectionChangedListener {
     public void contributeToMenu(IMenuManager menuManager) {
         super.contributeToMenu(menuManager);
 
-        submenuManager =
-            new MenuManager(MetaABMModelerPlugin.INSTANCE.getString("_UI_MetaABMEditor_menu"),
-            "org.metaabmMenuID");
-        menuManager.insertAfter("additions", submenuManager);
+        submenuManager = new MenuManager(MetaABMModelerPlugin.INSTANCE.getString("_UI_MetaABMEditor_menu"),
+        "org.metaabmMenuID");
+        menuManager.insertAfter("additions", getSubmenuManager());
         submenuManager.add(new Separator("settings"));
         submenuManager.add(new Separator("actions"));
         submenuManager.add(new Separator("additions"));
@@ -310,12 +312,12 @@ ISelectionChangedListener {
 
         // Prepare for CreateSibling item addition or removal.
         //
-        createSiblingTargetMenuManager =
-            new MenuManager(MetaABMModelerPlugin.INSTANCE.getString("_UI_CreateSiblingTarget_menu_item"));
-        submenuManager.insertBefore("additions", createSiblingTargetMenuManager);
-        createSiblingMenuManager =
-            new MenuManager(MetaABMModelerPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
-        submenuManager.insertBefore("additions", createSiblingMenuManager);
+        // createSiblingTargetMenuManager =
+        // new MenuManager(MetaABMModelerPlugin.INSTANCE.getString("_UI_CreateSiblingTarget_menu_item"));
+        // submenuManager.insertBefore("additions", createSiblingTargetMenuManager);
+        // createSiblingMenuManager =
+        // new MenuManager(MetaABMModelerPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
+        // submenuManager.insertBefore("additions", createSiblingMenuManager);
 
         // otherManager = new
         // MenuManager(MetaABMModelerPlugin.INSTANCE.getString(
@@ -387,12 +389,12 @@ ISelectionChangedListener {
         if (createChildTargetMenuManager != null) {
             depopulateManager(createChildTargetMenuManager, createChildActions);
         }
-        if (createSiblingMenuManager != null) {
-            depopulateManager(createSiblingMenuManager, createSiblingActions);
-        }
-        if (createSiblingTargetMenuManager != null) {
-            depopulateManager(createSiblingTargetMenuManager, createSiblingActions);
-        }
+        // if (createSiblingMenuManager != null) {
+        // depopulateManager(createSiblingMenuManager, createSiblingActions);
+        // }
+        // if (createSiblingTargetMenuManager != null) {
+        // depopulateManager(createSiblingTargetMenuManager, createSiblingActions);
+        // }
 
         // Query the new selection for appropriate new child/sibling descriptors
         //
@@ -417,13 +419,13 @@ ISelectionChangedListener {
         //
         createChildActions = generateCreateChildActions(newChildDescriptors, selection);
         createChildTargetActions = generateCreateChildActions(newChildTargetDescriptors, selection);
-        createSiblingActions = generateCreateSiblingActions(newSiblingDescriptors, selection);
-        createSiblingTargetActions = generateCreateSiblingActions(newSiblingTargetDescriptors, selection);
+        // createSiblingActions = generateCreateSiblingActions(newSiblingDescriptors, selection);
+        // createSiblingTargetActions = generateCreateSiblingActions(newSiblingTargetDescriptors, selection);
 
         populateAndUpdate(createChildMenuManager, createChildActions);
         populateAndUpdate(createChildTargetMenuManager, createChildTargetActions);
-        populateAndUpdate(createSiblingMenuManager, createSiblingActions);
-        populateAndUpdate(createSiblingTargetMenuManager, createSiblingTargetActions);
+        // populateAndUpdate(createSiblingMenuManager, createSiblingActions);
+        // populateAndUpdate(createSiblingTargetMenuManager, createSiblingTargetActions);
 
         // otherActions = new ArrayList<IAction>();
         // otherActions.add(importFromClassAction);
@@ -552,16 +554,67 @@ ISelectionChangedListener {
      */
     @Override
     public void menuAboutToShow(IMenuManager menuManager) {
-        super.menuAboutToShow(menuManager);
+        Object sel = null;
+        MetaABMEditor editor = (MetaABMEditor) getActiveEditor();
+        if (editor != null) {
+            ISelection selection = editor.getSelection();
+            if (selection instanceof StructuredSelection) {
+                sel = ((StructuredSelection) selection).getFirstElement();
+            }
+        }
+        // Add our standard marker.
+        //
+        if ((style & ADDITIONS_LAST_STYLE) == 0) {
+            menuManager.add(new Separator("additions"));
+        }
+        menuManager.add(new Separator("edit"));
+
+        // Add the edit menu actions.
+        //
+        menuManager.add(new ActionContributionItem(undoAction));
+        menuManager.add(new ActionContributionItem(redoAction));
+        menuManager.add(new Separator());
+        menuManager.add(new ActionContributionItem(cutAction));
+        menuManager.add(new ActionContributionItem(copyAction));
+        menuManager.add(new ActionContributionItem(pasteAction));
+        menuManager.add(new Separator());
+        menuManager.add(new ActionContributionItem(deleteAction));
+        menuManager.add(new Separator());
+
+        if ((style & ADDITIONS_LAST_STYLE) != 0) {
+            menuManager.add(new Separator("additions"));
+            menuManager.add(new Separator());
+        }
+        // Add our other standard marker.
+        //
+        menuManager.add(new Separator("additions-end"));
+        menuManager.insertAfter("additions-end", new Separator("ui-actions"));
+        menuManager.insertAfter("ui-actions", showPropertiesViewAction);
+        // refreshViewerAction.setEnabled(refreshViewerAction.isEnabled());
+        // menuManager.insertAfter("ui-actions", refreshViewerAction);
+        if (getActiveEditor() != null && editor.getViewer() != null) {
+            addItemsFor(menuManager, sel);
+        }
+
+        if (!(sel instanceof IID)) {
+            addGlobalActions(menuManager);
+        }
 
         prepareMenu(menuManager, createChildActions, "_UI_CreateChild_menu_item");
         prepareMenu(menuManager, createChildTargetActions, "_UI_CreateChildTarget_menu_item");
-        prepareMenu(menuManager, createSiblingActions, "_UI_CreateSibling_menu_item");
-        prepareMenu(menuManager, createSiblingTargetActions, "_UI_CreateSiblingTarget_menu_item");
+        // prepareMenu(menuManager, createSiblingActions, "_UI_CreateSibling_menu_item");
+        // prepareMenu(menuManager, createSiblingTargetActions, "_UI_CreateSiblingTarget_menu_item");
         prepareMenu(menuManager, otherActions, "_UI_Other_menu_item");
     }
 
-    private void prepareMenu(IMenuManager menuManager, Collection<? extends IAction> actions, String menuID) {
+    protected void addItemsFor(IMenuManager menuManager, Object sel) {
+        if (sel instanceof SAgent) {
+            menuManager.insertAfter("ui-actions", ((MetaABMEditor) activeEditor).getImportFromClassAction());
+            selectionProvider.addSelectionChangedListener(((MetaABMEditor) activeEditor).getImportFromClassAction());
+        }
+    }
+
+    protected void prepareMenu(IMenuManager menuManager, Collection<? extends IAction> actions, String menuID) {
         MenuManager submenuManager;
         submenuManager = new MenuManager(MetaABMModelerPlugin.INSTANCE.getString(menuID));
         populateManager(submenuManager, actions, null);
@@ -587,13 +640,6 @@ ISelectionChangedListener {
         toggleStatsAction.setEnabled(toggleStatsAction.isEnabled());
         menuManager.insertAfter("ui-actions", toggleStatsAction);
 
-        if (activeEditor instanceof MetaABMEditor) {
-            menuManager.insertAfter("ui-actions", ((MetaABMEditor) activeEditor).importFromClassAction);
-            selectionProvider.addSelectionChangedListener(((MetaABMEditor) activeEditor).importFromClassAction);
-            // this doesn't seem neccessary anymore..
-            // menuManager.insertAfter("ui-actions", ((MetaABMEditor) activeEditor).cleanupAction);
-        }
-
         super.addGlobalActions(menuManager);
     }
 
@@ -606,6 +652,10 @@ ISelectionChangedListener {
     @Override
     protected boolean removeAllReferencesOnDelete() {
         return true;
+    }
+
+    public IMenuManager getSubmenuManager() {
+        return submenuManager;
     }
 
 }
