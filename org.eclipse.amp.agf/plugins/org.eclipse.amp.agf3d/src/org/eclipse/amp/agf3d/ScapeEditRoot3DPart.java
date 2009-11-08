@@ -72,7 +72,7 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
 
     int animationStep;
 
-    int animationStepCount = 1;
+    int animationStepCount = 7;
 
     boolean animateCamera = true;
 
@@ -154,8 +154,9 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
         ILocation extent = getLocationProvider().getExtent(getModel());
         float ex = extent.getX() * AgentEditPart.SCALE;
         float ey = extent.getY() * AgentEditPart.SCALE;
-        moveCamera(new Vector3fImpl(ex * locX, ey * locY, ey * locZ), new Vector3fImpl(ex * targetX, ey * targetY, ey
-                                                                                       * targetZ));
+        moveCamera(new Vector3fImpl(ex * locX, ey * locY, Math.min(ex, ey) * locZ), new Vector3fImpl(ex * targetX, ey
+                                                                                                     * targetY, Math.min(ex, ey)
+                                                                                                     * targetZ));
     }
 
     private void moveCamera(final IVector3f endPoint, final IVector3f endLookPoint) {
