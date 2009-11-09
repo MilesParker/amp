@@ -25,184 +25,190 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 public class ABaseFactoryImpl extends EFactoryImpl implements ABaseFactory
 {
   /**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
+   * Creates the default factory implementation.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   public static ABaseFactory init()
   {
-        try {
-            ABaseFactory theABaseFactory = (ABaseFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/amp/amf/abase/ABase"); 
-            if (theABaseFactory != null) {
-                return theABaseFactory;
-            }
-        }
-        catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new ABaseFactoryImpl();
+    try
+    {
+      ABaseFactory theABaseFactory = (ABaseFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/amp/amf/abase/ABase"); 
+      if (theABaseFactory != null)
+      {
+        return theABaseFactory;
+      }
     }
+    catch (Exception exception)
+    {
+      EcorePlugin.INSTANCE.log(exception);
+    }
+    return new ABaseFactoryImpl();
+  }
 
   /**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
+   * Creates an instance of the factory.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   public ABaseFactoryImpl()
   {
-        super();
-    }
+    super();
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   @Override
   public EObject create(EClass eClass)
   {
-        switch (eClass.getClassifierID()) {
-            case ABasePackage.VALUE: return createValue();
-            case ABasePackage.INT_VALUE: return createIntValue();
-            case ABasePackage.REAL_VALUE: return createRealValue();
-            case ABasePackage.STRING_VALUE: return createStringValue();
-            case ABasePackage.BOOLEAN_VALUE: return createBooleanValue();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-        }
+    switch (eClass.getClassifierID())
+    {
+      case ABasePackage.VALUE: return createValue();
+      case ABasePackage.INT_VALUE: return createIntValue();
+      case ABasePackage.REAL_VALUE: return createRealValue();
+      case ABasePackage.STRING_VALUE: return createStringValue();
+      case ABasePackage.BOOLEAN_VALUE: return createBooleanValue();
+      default:
+        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   @Override
   public Object createFromString(EDataType eDataType, String initialValue)
   {
-        switch (eDataType.getClassifierID()) {
-            case ABasePackage.BOOLEAN:
-                return createBOOLEANFromString(eDataType, initialValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-        }
+    switch (eDataType.getClassifierID())
+    {
+      case ABasePackage.BOOLEAN:
+        return createBOOLEANFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   @Override
   public String convertToString(EDataType eDataType, Object instanceValue)
   {
-        switch (eDataType.getClassifierID()) {
-            case ABasePackage.BOOLEAN:
-                return convertBOOLEANToString(eDataType, instanceValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-        }
+    switch (eDataType.getClassifierID())
+    {
+      case ABasePackage.BOOLEAN:
+        return convertBOOLEANToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   public Value createValue()
   {
-        ValueImpl value = new ValueImpl();
-        return value;
-    }
+    ValueImpl value = new ValueImpl();
+    return value;
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   public IntValue createIntValue()
   {
-        IntValueImpl intValue = new IntValueImpl();
-        return intValue;
-    }
+    IntValueImpl intValue = new IntValueImpl();
+    return intValue;
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   public RealValue createRealValue()
   {
-        RealValueImpl realValue = new RealValueImpl();
-        return realValue;
-    }
+    RealValueImpl realValue = new RealValueImpl();
+    return realValue;
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   public StringValue createStringValue()
   {
-        StringValueImpl stringValue = new StringValueImpl();
-        return stringValue;
-    }
+    StringValueImpl stringValue = new StringValueImpl();
+    return stringValue;
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   public BooleanValue createBooleanValue()
   {
-        BooleanValueImpl booleanValue = new BooleanValueImpl();
-        return booleanValue;
-    }
+    BooleanValueImpl booleanValue = new BooleanValueImpl();
+    return booleanValue;
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   public BOOLEAN createBOOLEANFromString(EDataType eDataType, String initialValue)
   {
-        BOOLEAN result = BOOLEAN.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-        return result;
-    }
+    BOOLEAN result = BOOLEAN.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   public String convertBOOLEANToString(EDataType eDataType, Object instanceValue)
   {
-        return instanceValue == null ? null : instanceValue.toString();
-    }
+    return instanceValue == null ? null : instanceValue.toString();
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   public ABasePackage getABasePackage()
   {
-        return (ABasePackage)getEPackage();
-    }
+    return (ABasePackage)getEPackage();
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
+   * @deprecated
+   * @generated
+   */
   @Deprecated
   public static ABasePackage getPackage()
   {
-        return ABasePackage.eINSTANCE;
-    }
+    return ABasePackage.eINSTANCE;
+  }
 
 } //ABaseFactoryImpl
