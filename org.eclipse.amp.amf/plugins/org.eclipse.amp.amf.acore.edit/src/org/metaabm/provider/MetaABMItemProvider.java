@@ -14,11 +14,18 @@
  */
 package org.metaabm.provider;
 
+
+
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.edit.EMFEditPlugin;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
@@ -31,8 +38,8 @@ import org.metaabm.SNamed;
 import org.metaabm.act.AInput;
 
 public abstract class MetaABMItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider {
 
     protected static boolean displayAttributeReferences;
 
@@ -49,7 +56,7 @@ public abstract class MetaABMItemProvider extends ItemProviderAdapter implements
 
     public String suggestID(IID object) {
         return StringUtils.uncapitalize(StringUtils.deleteWhitespace(StringUtils.capitalize(getString("_UI_"
-            + object.eClass().getName() + "_type"))));
+                                                                                                      + object.eClass().getName() + "_type"))));
     }
 
     public boolean isDisplayAttributeReferences() {
@@ -85,7 +92,7 @@ public abstract class MetaABMItemProvider extends ItemProviderAdapter implements
 
     public static MetaABMItemProvider providerFor(Object o) {
         MetaABMItemProvider provider = (MetaABMItemProvider) MetaABMItemProviderAdapterFactory
-                .getGenericAdapterFactory().adapt(o, IEditingDomainItemProvider.class);
+        .getGenericAdapterFactory().adapt(o, IEditingDomainItemProvider.class);
         return provider;
     }
 
@@ -104,6 +111,25 @@ public abstract class MetaABMItemProvider extends ItemProviderAdapter implements
                 return ((IID) o).getID();
             }
         });
+    }
+
+    /**
+     * This returns the icon image for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+     */
+    public Object getCreateChildImage(Object owner, Object feature, Object child, Collection<?> selection) {
+        List<Object> images = new ArrayList<Object>();
+        IItemLabelProvider itemLabelProvider = (IItemLabelProvider) ((ComposeableAdapterFactory) adapterFactory)
+                .getRootAdapterFactory().adapt(child, IItemLabelProvider.class);
+        images.add(itemLabelProvider.getImage(child));
+        images.add(EMFEditPlugin.INSTANCE.getImage("full/ovr16/CreateChild"));
+        return new ComposedImage(images) {
+            @Override
+            public List<Point> getDrawPoints(Size size) {
+                List<Point> result = super.getDrawPoints(size);
+                result.get(1).x = size.width - 7;
+                return result;
+            }
+        };
     }
 
     @Override
