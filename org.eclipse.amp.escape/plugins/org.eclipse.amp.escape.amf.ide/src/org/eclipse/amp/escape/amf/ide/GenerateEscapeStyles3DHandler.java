@@ -26,8 +26,8 @@ public class GenerateEscapeStyles3DHandler extends ResourceJobHandler {
         EscapeModelBuilder.getEscapeBuilderDefault().handleModifiedResource(resource);
         EscapeModelStyles2Builder.getEscapeBuilderDefault().setCurrentMonitor(getMonitor());
         EscapeModelStyles2Builder.getEscapeBuilderDefault().handleModifiedResource(resource);
-        EscapeModelStyle3DBuilder.getEscapeBuilderDefault().setCurrentMonitor(getMonitor());
-        EscapeModelStyle3DBuilder.getEscapeBuilderDefault().handleModifiedResource(resource);
+        EscapeModelStyles3DBuilder.getEscapeBuilderDefault().setCurrentMonitor(getMonitor());
+        EscapeModelStyles3DBuilder.getEscapeBuilderDefault().handleModifiedResource(resource);
         // EscapeGraphicsBuilder.getEscapeBuilderDefault().setCurrentMonitor(getMonitor());
         // EscapeGraphicsBuilder.getEscapeBuilderDefault().handleModifiedResource(resource);
     }

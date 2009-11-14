@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.escape.amf.ide;
 
 import java.util.List;
@@ -40,6 +40,7 @@ public class EscapeAMFProjectWizard extends PluginTemplateProjectWizard {
     public void addBuilders(List<String> builderIDs) {
         builderIDs.add(EscapeAMFPlugin.PLUGIN_ID + "." + EscapeModelBuilder.ESCAPE_BUILDER_ID);
         builderIDs.add(EscapeAMFPlugin.PLUGIN_ID + "." + EscapeModelStyles2Builder.ESCAPE_BUILDER_2_ID);
+        builderIDs.add(EscapeAMFPlugin.PLUGIN_ID + "." + EscapeModelStyles3DBuilder.ESCAPE_BUILDER_3D_ID);
         builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + DocumentModelBuilder.DOCUMENT_BUILDER_ID);
         // builderIDs.add(EscapeAMFPlugin.PLUGIN_ID + "." + EscapeGraphicsBuilder.ESCAPE_BUILDER_3_ID);
         super.addBuilders(builderIDs);

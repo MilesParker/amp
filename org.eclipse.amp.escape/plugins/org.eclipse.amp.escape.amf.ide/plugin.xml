@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.7 2009/09/19 01:25:51 mparker Exp $
+ $Id: plugin.xml,v 1.8 2009/11/14 02:46:41 mparker Exp $
 -->
 
 <plugin>
@@ -358,12 +358,12 @@
        </builder>
     </extension> 
 	<extension
-          id="escapeBuilder3"
-          name="Escape MetaABM Proxy Builder"
+          id="escapeBuilder3D"
+          name="Escape MetaABM 3D Styles Builder"
           point="org.eclipse.core.resources.builders">
        <builder
              hasNature="false">
-          <run class="org.eclipse.amp.escape.amf.ide.EscapeModelStyle3DBuilder"/>
+          <run class="org.eclipse.amp.escape.amf.ide.EscapeModelStyles3DBuilder"/>
        </builder>
     </extension> 
     <extension point="org.eclipse.ui.newWizards">
