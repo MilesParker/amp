@@ -36,8 +36,10 @@ import org.eclipse.amp.axf.space.IGraphProvider;
 import org.eclipse.amp.axf.space.ILocation;
 import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
+import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
 // TODO: Auto-generated Javadoc
@@ -45,7 +47,10 @@ import org.eclipse.swt.graphics.Image;
  * The Class AscapeProvider.
  */
 public class AscapeProvider implements ILocationProvider, IGraphProvider, ILabelProvider,
-ICompositionProvider {
+ICompositionProvider,
+IColorProvider {
+
+    static AscapeProvider singleton;
 
     /**
      * The Class Location.
@@ -300,5 +305,40 @@ ICompositionProvider {
             return ((ScapeWrapperModel) object).getScape();
         }
         return object;
+    }
+
+    public static AscapeProvider getDefault() {
+        if (singleton == null) {
+            singleton = new AscapeProvider();
+        }
+        return singleton;
+    }
+
+    /**
+     * @param element
+     * @return
+     * @see org.eclipse.jface.viewers.IColorProvider#getForeground(java.lang.Object)
+     */
+    public Color getForeground(Object element) {
+        if (element instanceof IColorProvider) {
+            return ((IColorProvider) element).getForeground(element);
+        } else if (element instanceof Agent) {
+            return (Color) ((Agent) element).getPlatformColor();
+        }
+        return null;
+    }
+
+    /**
+     * @param element
+     * @return
+     * @see org.eclipse.jface.viewers.IColorProvider#getBackground(java.lang.Object)
+     */
+    public Color getBackground(Object element) {
+        if (element instanceof IColorProvider) {
+            return ((IColorProvider) element).getBackground(element);
+        } else if (element instanceof Agent) {
+            return (Color) ((Agent) element).getPlatformColor();
+        }
+        return null;
     }
 }
