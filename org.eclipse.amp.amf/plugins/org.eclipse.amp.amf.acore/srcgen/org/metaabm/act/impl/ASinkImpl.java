@@ -151,7 +151,7 @@ public abstract class ASinkImpl extends AActImpl implements ASink {
     }
 
     public boolean accepts(IValue value, int place) {
-        return getFunction() != null && getFunction().accepts(value, place);
+        return getFunction() == null || getFunction().accepts(value, place);
     }
 
     /**

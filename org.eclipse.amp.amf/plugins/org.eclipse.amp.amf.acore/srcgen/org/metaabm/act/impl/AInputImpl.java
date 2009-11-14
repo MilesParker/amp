@@ -409,7 +409,7 @@ public class AInputImpl extends EObjectImpl implements AInput {
     }
 
     private boolean acceptsValue(IValue value) {
-        return getSink() != null && getSink().accepts(value, inputNumber());
+        return getSink() == null || getSink().accepts(value, inputNumber());
     }
 
     public Collection<?> potentialValues(Collection<IValue> suggestValues) {

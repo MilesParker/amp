@@ -46,6 +46,7 @@ import org.metaabm.act.AAct;
 import org.metaabm.act.ACreateAgents;
 import org.metaabm.act.AGroup;
 import org.metaabm.act.AInput;
+import org.metaabm.act.AMultiValue;
 import org.metaabm.act.ASet;
 import org.metaabm.act.ASink;
 
@@ -183,20 +184,29 @@ public class SAttributeImpl extends SNamedImpl implements SAttribute {
      */
     public EList<EObject> getAccessors() {
         Collection<EObject> searchObjects = new HashSet<EObject>();
-        SAgent parent = null;
+        SAgent agent = null;
         if (getOwner() instanceof SAgent) {
-            parent = (SAgent) getOwner();
+            agent = (SAgent) getOwner();
         } else if (getOwner() instanceof SProjection) {
-            parent = ((SProjection) getOwner()).getOwner();
+            agent = ((SProjection) getOwner()).getOwner();
         }
+        agentAccessors(searchObjects, agent);
+        if (agent instanceof SContext) {
+            for (SAgent childAgent : ((SContext) agent).getAgents()) {
+                agentAccessors(searchObjects, childAgent);
+            }
+        }
+        return new EcoreEList.UnmodifiableEList.FastCompare<EObject>(this,
+                MetaABMPackage.Literals.IVALUE__ACCESSORS, searchObjects.size(), searchObjects.toArray());
+    }
+
+    private void agentAccessors(Collection<EObject> searchObjects, SAgent parent) {
         agentAccessors(parent, this, searchObjects);
         if (this instanceof SState) {
             for (IValue value : ((SState) this).getOptions()) {
                 agentAccessors(parent, value, searchObjects);
             }
         }
-        return new EcoreEList.UnmodifiableEList.FastCompare<EObject>(this,
-                MetaABMPackage.Literals.IVALUE__ACCESSORS, searchObjects.size(), searchObjects.toArray());
     }
 
     public static void agentAccessors(SAgent parent, IValue attribute, Collection<EObject> searchObjects) {
@@ -205,8 +215,16 @@ public class SAttributeImpl extends SNamedImpl implements SAttribute {
                 if (act instanceof ASink) {
                     // searchObjects.add((EObject) object);
                     for (AInput input : ((ASink) act).getInputs()) {
-                        if (input.getValue() == attribute) {
-                            searchObjects.add(input);
+                        if (input.getValue() instanceof AMultiValue) {
+                            for (IValue value : ((AMultiValue) input.getValue()).getValues()) {
+                                if (value == attribute) {
+                                    searchObjects.add(input);
+                                }
+                            }
+                        } else {
+                            if (input.getValue() == attribute) {
+                                searchObjects.add(input);
+                            }
                         }
                     }
                 }
