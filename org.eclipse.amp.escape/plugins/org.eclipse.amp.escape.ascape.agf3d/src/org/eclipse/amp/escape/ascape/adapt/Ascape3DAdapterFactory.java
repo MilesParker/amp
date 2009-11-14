@@ -44,7 +44,7 @@ public class Ascape3DAdapterFactory implements IAdapterFactory {
     public Object getAdapter(Object adaptableObject, Class adapterType) {
         if (adapterType == I3DModelFactoryProvider.class) {
             if (adaptableObject instanceof ScapeWrapperModel
-                && ((ScapeWrapperModel) adaptableObject).getScape() instanceof I3DModelFactoryProvider) {
+                    && ((ScapeWrapperModel) adaptableObject).getScape() instanceof I3DModelFactoryProvider) {
                 return ((ScapeWrapperModel) adaptableObject).getScape();
             }
             return factoryProvider;

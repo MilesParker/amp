@@ -16,12 +16,10 @@
 
 package org.eclipse.amp.escape.ascape.agf3d;
 
-import org.ascape.model.Cell;
-import org.ascape.util.vis.ColorFeatureConcrete;
 import org.eclipse.amp.agf3d.AgentEdit3DPart;
-import org.eclipse.amp.agf3d.ShapeType3D;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.swt.graphics.Color;
+import org.eclipse.amp.agf3d.IShape3DProvider;
+import org.eclipse.amp.agf3d.Shapes3D;
+import org.eclipse.jface.viewers.IColorProvider;
 
 /**
  * 
@@ -30,26 +28,11 @@ import org.eclipse.swt.graphics.Color;
  */
 public class AscapeAgentEdit3DPart extends AgentEdit3DPart {
 
-    public AscapeAgentEdit3DPart(ShapeType3D shapeType, boolean update) {
-        super(shapeType, update);
+    public AscapeAgentEdit3DPart(IShape3DProvider shapeProvider, IColorProvider colorProvider, boolean update) {
+        super(shapeProvider, colorProvider, update);
     }
 
-    public AscapeAgentEdit3DPart() {
-    }
-
-    /**
-     * @param figure
-     * @return
-     * @see org.eclipse.amp.agf3d.AgentEdit3DPart#buildFigure(org.eclipse.draw2d.IFigure)
-     */
-    protected IFigure buildFigure(IFigure figure) {
-        figure = super.buildFigure(figure);
-        Color platformColor = (Color) ((Cell) getModel()).getPlatformColor();
-        if (platformColor != null) {
-            Color adjustBrightness = ColorFeatureConcrete.adjustBrightness(platformColor, .7f);
-            figure.setForegroundColor(adjustBrightness);
-        }
-        figure.setBackgroundColor(platformColor);
-        return figure;
+    public AscapeAgentEdit3DPart(IColorProvider colorProvider) {
+        this(Shapes3D.CUBE_SHAPE_PROVIDER, colorProvider, true);
     }
 }

@@ -16,7 +16,10 @@
 
 package org.eclipse.amp.escape.ascape.agf3d;
 
-import org.eclipse.amp.agf3d.ShapeType3D;
+import org.ascape.util.vis.ColorFeature;
+import org.eclipse.amp.agf3d.Shapes3D;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.jface.viewers.IColorProvider;
 
 /**
  * 
@@ -26,17 +29,32 @@ import org.eclipse.amp.agf3d.ShapeType3D;
 public class HostCellEdit3DPart extends AscapeAgentEdit3DPart {
 
     /**
+     * @param colorProvider
      * 
      */
-    public HostCellEdit3DPart() {
-        super(ShapeType3D.TILE, false);
+    public HostCellEdit3DPart(IColorProvider colorProvider) {
+        super(Shapes3D.TILE_SHAPE_PROVIDER, colorProvider, false);
     }
 
     /**
+     * @param colorProvider
      * 
      */
-    public HostCellEdit3DPart(boolean update) {
-        super(ShapeType3D.TILE, update);
+    public HostCellEdit3DPart(boolean update, IColorProvider colorProvider) {
+        super(Shapes3D.TILE_SHAPE_PROVIDER, colorProvider, update);
     }
 
+    /**
+     * @param figure
+     * @return
+     * @see org.eclipse.amp.agf3d.AgentEdit3DPart#buildFigure(org.eclipse.draw2d.IFigure)
+     */
+    protected IFigure buildFigure(IFigure figure) {
+        figure = super.buildFigure(figure);
+        if ((figure.getForegroundColor() == null || figure.getForegroundColor() == figure.getBackgroundColor())
+                && figure.getBackgroundColor() != null) {
+            figure.setForegroundColor(ColorFeature.WHITE);
+        }
+        return figure;
+    }
 }

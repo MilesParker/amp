@@ -24,13 +24,18 @@ import org.ascape.model.HostCell;
 import org.ascape.model.Scape;
 import org.ascape.model.space.Graph;
 import org.eclipse.amp.agf3d.AgentEdit3DPart;
+import org.eclipse.amp.agf3d.IShape3DProvider;
 import org.eclipse.amp.agf3d.ScapeEdit3DPart;
 import org.eclipse.amp.agf3d.ScapeEditRoot3DPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
+import org.eclipse.amp.escape.ascape.agf3d.AscapeAgentEdit3DPart;
 import org.eclipse.amp.escape.ascape.agf3d.CellOccupantEdit3DPart;
 import org.eclipse.amp.escape.ascape.agf3d.HostCellEdit3DPart;
 import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
 import org.eclipse.gef.EditPart;
+import org.eclipse.jface.viewers.IColorProvider;
+
+
 
 public class Ascape3DPartFactory extends AscapePartFactory {
 
@@ -46,17 +51,32 @@ public class Ascape3DPartFactory extends AscapePartFactory {
             } else {
                 return new ScapeEdit3DPart(memberProvider, memberProvider, memberProvider, getFilter(scape));
             }
-        } else if (model instanceof HostCell) {
-            return new HostCellEdit3DPart();
-        } else if (model instanceof CellOccupant) {
-            return new CellOccupantEdit3DPart();
-        } else if (model instanceof Agent) {
-            return new AgentEdit3DPart();
         } else {
-            return null;
-            // throw new RuntimeException("No part for the model: " + model
-            // + (model != null ? "[" + model.getClass() + "]" : ""));
+            IColorProvider colorProvider = getColorProvider(model);
+            IShape3DProvider shapeProvider = getShapeProvider(model);
+            if (shapeProvider != null) {
+                return new AgentEdit3DPart(shapeProvider, colorProvider, true);
+            }
+            if (model instanceof HostCell) {
+                return new HostCellEdit3DPart(colorProvider);
+            } else if (model instanceof CellOccupant) {
+                return new CellOccupantEdit3DPart(colorProvider);
+            } else if (model instanceof Agent) {
+                return new AscapeAgentEdit3DPart(colorProvider);
+            } else {
+                return null;
+                // throw new RuntimeException("No part for the model: " + model
+                // + (model != null ? "[" + model.getClass() + "]" : ""));
+            }
         }
+    }
+
+    public IColorProvider getColorProvider(Object object) {
+        return AscapeProvider.getDefault();
+    }
+
+    public IShape3DProvider getShapeProvider(Object object) {
+        return null;
     }
 
     protected ICompositionProvider getMemberProvider(Scape scape) {

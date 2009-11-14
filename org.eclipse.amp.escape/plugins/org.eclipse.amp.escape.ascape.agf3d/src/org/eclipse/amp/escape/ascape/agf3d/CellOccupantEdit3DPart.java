@@ -16,7 +16,11 @@
 
 package org.eclipse.amp.escape.ascape.agf3d;
 
-import org.eclipse.amp.agf3d.ShapeType3D;
+import org.ascape.util.vis.ColorFeatureConcrete;
+import org.eclipse.amp.agf3d.Shapes3D;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.jface.viewers.IColorProvider;
+import org.eclipse.swt.graphics.Color;
 
 /**
  * 
@@ -26,9 +30,25 @@ import org.eclipse.amp.agf3d.ShapeType3D;
 public class CellOccupantEdit3DPart extends AscapeAgentEdit3DPart {
 
     /**
+     * @param colorProvider
      * 
      */
-    public CellOccupantEdit3DPart() {
-        super(ShapeType3D.CYLINDER, true);
+    public CellOccupantEdit3DPart(IColorProvider colorProvider) {
+        super(Shapes3D.CYLINDER_SHAPE_PROVIDER, colorProvider, true);
+    }
+
+    /**
+     * @param figure
+     * @return
+     * @see org.eclipse.amp.agf3d.AgentEdit3DPart#buildFigure(org.eclipse.draw2d.IFigure)
+     */
+    protected IFigure buildFigure(IFigure figure) {
+        figure = super.buildFigure(figure);
+        if ((figure.getForegroundColor() == null || figure.getForegroundColor() == figure.getBackgroundColor())
+                && figure.getBackgroundColor() != null) {
+            Color adjustBrightness = ColorFeatureConcrete.adjustBrightness(figure.getBackgroundColor(), .7f);
+            figure.setForegroundColor(adjustBrightness);
+        }
+        return figure;
     }
 }
