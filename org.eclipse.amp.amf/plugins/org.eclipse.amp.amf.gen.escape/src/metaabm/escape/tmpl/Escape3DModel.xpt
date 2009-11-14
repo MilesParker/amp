@@ -1,0 +1,43 @@
+«IMPORT emf»
+«IMPORT metaabm»
+«IMPORT metaabm::act»
+«IMPORT metaabm::function»
+«IMPORT ScapeAspect»
+
+«EXTENSION metaabm::tmpl::types»
+«EXTENSION metaabm::tmpl::names» 
+«EXTENSION metaabm::tmpl::infer»
+«EXTENSION metaabm::tmpl::util»
+«EXTENSION metaabm::tmpl::projections»
+«EXTENSION metaabm::ascape::tmpl::namesascape»
+«EXTENSION metaabm::ascape::tmpl::inferascape»
+
+«AROUND metaabm::tmpl::Java::ClassFile FOR IID-»
+	«IF SContext.isInstance(this)»
+    «FILE javaFileLoc().replaceFirst(".java", "3D.java")-»
+    «EXPAND metaabm::tmpl::Java::ClassText»
+    «ENDFILE-»
+    «ENDIF»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::ClassName FOR IID-»«typeName()»3D«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-»extends «typeName()»«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::Body FOR SContext-»
+
+    public EditPartFactory getEditPart3DFactory() {
+        return new Ascape3DPartFactory() {
+            public IColorProvider getColorProvider(Object object) {
+            «FOREACH agents AS agent» 
+            «IF agent.styles.size > 0»
+	            if (model instanceof «agent.implementation.className») {
+	                return new «agent.styles.get(0).implementation.qualifiedName»ColorProvider();
+	            }
+            «ENDIF-»
+            «ENDFOREACH»
+            }
+        };
+    }
+«ENDAROUND»
+
