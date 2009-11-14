@@ -63,7 +63,7 @@ public class ExecuteTestHandler extends AbstractHandler {
             Runner.setDisplayGraphics(false);
 
 
-            new TestRunSet(project, testResources, getRunsPerTest()).run();
+            new TestRunSet(project, res, testResources, getRunsPerTest()).run();
         }
         return null;
     }

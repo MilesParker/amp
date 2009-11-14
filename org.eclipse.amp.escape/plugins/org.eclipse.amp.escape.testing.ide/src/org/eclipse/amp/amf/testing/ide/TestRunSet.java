@@ -32,6 +32,7 @@ import org.eclipse.amp.amf.testing.ares.ResultType;
 import org.eclipse.amp.amf.testing.ares.RunSet;
 import org.eclipse.amp.amf.testing.ares.impl.AresFactoryImpl;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
@@ -90,23 +91,30 @@ public class TestRunSet {
 
     private ResourceSet resourceSet;
 
-    public TestRunSet(IProject project, List<IResource> testResources, int runsPerTest) {
+    private final IResource firstResource;
+
+    public TestRunSet(IProject project, IResource res, List<IResource> testResources, int runsPerTest) {
         super();
+        this.firstResource = res;
         this.uniqueTests = testResources;
         // use first test location for project
         this.project = project;
         this.runsPerTest = runsPerTest;
+
+        name = getName();
     }
 
     private String getName() {
         String name = "";
-        if (uniqueTests.size() < 3) {
+        if (firstResource instanceof IFolder) {
+            name += ((IFolder) firstResource).getName();
+        } else if (uniqueTests.size() < 3) {
             for (IResource res : uniqueTests) {
                 name += res.getProjectRelativePath().removeFileExtension().lastSegment() + "_";
             }
         } else {
             for (IResource res : uniqueTests) {
-                name += res.getName().substring(0, Math.min(5, res.getName().length() - 1)) + "_";
+                name += res.getName().substring(0, Math.max(5, res.getName().length() - 1)) + "_";
             }
         }
         name += DateFormatUtils.format(System.currentTimeMillis(), "MM-dd-yy_HH-mm-S");
@@ -126,8 +134,6 @@ public class TestRunSet {
         aParPool = AParFactory.createPooled(resourceSet);
 
         monitor.subTask("Creating Results");
-
-        String name = getName();
 
         IResource firstResource = uniqueTests.get(0);
         // Get rid of test folder
