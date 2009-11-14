@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<score:SContext xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:score="http://scoreabm.org/score" label="WikiExample" ID="wikiExample" pluralLabel="WikiExamples">
+  <attributes label="Individual Count" ID="individualCount" sType="INTEGER"/>
+  <attributes label="Block Count" ID="blockCount" sType="INTEGER"/>
+  <implementation package="org.eclipse.amp.amf.examples.escape" className="WikiExample" basePath="../org.eclipse.amp.amf.examples.repast" mode="GENERATE" srcDir="srcgen"/>
+  <agents label="Individual" ID="individual" pluralLabel="Individuals">
+    <attributes label="Age" ID="age" sType="INTEGER"/>
+    <attributes label="Wealth" ID="wealth" sType="INTEGER"/>
+    <attributes label="Vision" ID="vision" sType="INTEGER" defaultValue="5"/>
+    <implementation className="Individual" basePath="../org.eclipse.amp.amf.examples.repast" mode="GENERATE" srcDir="srcgen"/>
+  </agents>
+  <agents label="Block" ID="block" pluralLabel="Blocks">
+    <implementation className="Block" basePath="../org.eclipse.amp.amf.examples.repast" mode="GENERATE" srcDir="srcgen"/>
+  </agents>
+  <projections xsi:type="score:SGrid" label="City" ID="city" pluralLabel="Citys" dimensionality="2"/>
+</score:SContext>

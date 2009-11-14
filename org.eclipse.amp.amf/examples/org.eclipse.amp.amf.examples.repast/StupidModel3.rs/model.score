@@ -3,15 +3,15 @@
   <attributes label="Bug Count" ID="bugCount" sType="INTEGER" defaultValue="100"/>
   <attributes label="Habitat Count" ID="habitatCount" sType="INTEGER"/>
   <attributes label="Bug Vision" ID="bugVision" sType="INTEGER" defaultValue="4"/>
-  <implementation package="org.metaabm.examples.stupid3" className="StupidModel3" basePath="/Volumes/Resources/Developer/repos/metaabm/org.metaabm.examples.repast" mode="GENERATE" srcDir="srcgen"/>
+  <implementation package="org.metaabm.examples.stupid3" className="StupidModel3" basePath="../org.eclipse.amp.amf.examples.repast" mode="GENERATE" srcDir="srcgen"/>
   <agents label="Bug" ID="bug" pluralLabel="Bugs">
     <attributes label="Size" ID="size" sType="INTEGER" defaultValue="0"/>
-    <implementation className="Bug" basePath="/Volumes/Resources/Developer/repos/metaabm/org.metaabm.examples.repast" mode="GENERATE" srcDir="srcgen"/>
+    <implementation className="Bug" basePath="../org.eclipse.amp.amf.examples.repast" mode="GENERATE" srcDir="srcgen"/>
   </agents>
   <agents label="Habitat" ID="habitat" pluralLabel="Habitats">
     <attributes label="FoodAvailability" ID="foodAvailability" defaultValue="0.0"/>
     <attributes label="MaximumFoodProductionRate" ID="maximumFoodProductionRate" defaultValue="0.01"/>
-    <implementation className="Habitat" basePath="/Volumes/Resources/Developer/repos/metaabm/org.metaabm.examples.repast" mode="GENERATE" srcDir="srcgen"/>
+    <implementation className="Habitat" basePath="../org.eclipse.amp.amf.examples.repast" mode="GENERATE" srcDir="srcgen"/>
   </agents>
   <projections xsi:type="score:SGrid" label="Grid 2D" ID="grid2D" pluralLabel="Grid 2Ds" dimensionality="2" borderRule="PERIODIC"/>
 </score:SContext>

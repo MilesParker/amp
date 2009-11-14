@@ -11,12 +11,12 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.metaabm.ide.repast.repastBuilder</name>
+			<name>org.eclipse.amp.amf.ide.repast.repastBuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>org.metaabm.ide.docBuilder</name>
+			<name>org.eclipse.amp.amf.ide.docBuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>

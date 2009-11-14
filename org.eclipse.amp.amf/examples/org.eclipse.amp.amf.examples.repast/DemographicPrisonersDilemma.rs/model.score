@@ -14,15 +14,15 @@
   <attributes label="Mutation Rate" ID="mutationRate" defaultValue=".1"/>
   <attributes label="Death Age" ID="deathAge" sType="INTEGER" defaultValue="100"/>
   <attributes label="Birth Age" ID="birthAge" sType="INTEGER" units="Years"/>
-  <implementation package="edu.brook" className="DemographicPrisonersDilemma" basePath="../org.metaabm.examples.repast" mode="GENERATE" srcDir="srcgen"/>
+  <implementation package="edu.brook" className="DemographicPrisonersDilemma" basePath="../org.eclipse.amp.amf.examples.repast" mode="GENERATE" srcDir="srcgen"/>
   <agents label="Player" ID="player" pluralLabel="Players">
     <attributes label="Cooperate" ID="cooperate"/>
     <attributes label="Age" ID="age" sType="INTEGER" gatherData="true"/>
     <attributes label="Wealth" ID="wealth" sType="INTEGER" gatherData="true"/>
-    <implementation className="Player" basePath="../org.metaabm.examples.repast" mode="GENERATE" srcDir="srcgen"/>
+    <implementation className="Player" basePath="../org.eclipse.amp.amf.examples.repast" mode="GENERATE" srcDir="srcgen"/>
   </agents>
   <agents label="Play Cell" ID="playCell" pluralLabel="Play Cells">
-    <implementation className="PlayCell" basePath="../org.metaabm.examples.repast" mode="GENERATE" srcDir="srcgen"/>
+    <implementation className="PlayCell" basePath="../org.eclipse.amp.amf.examples.repast" mode="GENERATE" srcDir="srcgen"/>
   </agents>
   <projections xsi:type="score:SGrid" label="Game Space" ID="gameSpace" pluralLabel="Game Spaces" dimensionality="2" borderRule="PERIODIC"/>
 </score:SContext>

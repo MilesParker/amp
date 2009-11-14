@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/metaabm.org/structure" label="WikiExample" ID="wikiExample" pluralLabel="WikiExamples">
+  <attributes label="Individual Count" ID="individualCount" pluralLabel="Individual Counts" description="The number of individuals to create." sType="INTEGER"/>
+  <attributes label="Block Count" ID="blockCount" pluralLabel="Block Counts" description="The number of blocks to create." sType="INTEGER"/>
+  <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
+    <members xsi:type="act:ABuild" label="Build WikiExample" ID="buildWikiExample" targets="//@rootActivity/@members[ID='createIndividuals'] //@rootActivity/@members[ID='buildGrid2D']" selected="//@rootActivity/@members[ID='buildWikiExample']" agent="/" pluralLabel="Build WikiExamples"/>
+    <members xsi:type="act:ACreateAgents" label="Create Individuals" ID="createIndividuals" sources="//@rootActivity/@members[ID='buildWikiExample']" selected="//@rootActivity/@members[ID='buildWikiExample']" agent="//@agents[ID='individual']" agentCount="//@attributes[ID='individualCount']"/>
+    <members xsi:type="act:ABuildGrid" label="Build Grid 2D" ID="buildGrid2D" sources="//@rootActivity/@members[ID='buildWikiExample']" selected="//@rootActivity/@members[ID='buildWikiExample']" pluralLabel="Build Grid 2Ds" agents="//@agents[ID='individual']" projection="//@projections[ID='city']" fillAgent="//@agents[ID='block']"/>
+  </rootActivity>
+  <implementation package="org.eclipse.amp.amf.examples.escape" className="WikiExample" basePath=""/>
+  <agents label="Individual" ID="individual" pluralLabel="Individuals">
+    <attributes label="Age" ID="age" pluralLabel="Ages" sType="INTEGER"/>
+    <attributes label="Wealth" ID="wealth" pluralLabel="Wealths" sType="INTEGER"/>
+    <attributes label="Vision" ID="vision" pluralLabel="Visions" sType="INTEGER" defaultValue="5"/>
+    <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
+      <members xsi:type="act:ARule" label="Find Partner" ID="findPartner" targets="//@agents[ID='individual']/@rootActivity/@members[ID='partner']" selected="//@agents[ID='individual']/@rootActivity/@members[ID='findPartner']" agent="//@agents[ID='individual']" pluralLabel="Find Partners"/>
+      <members xsi:type="act:ASelect" label="Partner" ID="partner" sources="//@agents[ID='individual']/@rootActivity/@members[ID='findPartner']" targets="//@agents[ID='individual']/@rootActivity/@members[ID='partnerAgeIdenticalAgeQuery'] //@agents[ID='individual']/@rootActivity/@members[ID='partnerWithin_Vision_Query']" selected="//@agents[ID='individual']/@rootActivity/@members[ID='findPartner']" agent="//@agents[ID='individual']" space="//@projections[ID='city']"/>
+      <members xsi:type="act:AQuery" label="Partner: Age Identical Age Query" ID="partnerAgeIdenticalAgeQuery" sources="//@agents[ID='individual']/@rootActivity/@members[ID='partner']" targets="//@agents[ID='individual']/@rootActivity/@members[ID='partner_AgeIdenticalAgeQueryOrWithin_Vision_Query_']" selected="//@agents[ID='individual']/@rootActivity/@members[ID='partner']">
+        <inputs selected="//@agents[ID='individual']/@rootActivity/@members[ID='partner']" value="//@agents[ID='individual']/@attributes[ID='age']"/>
+        <inputs selected="//@agents[ID='individual']/@rootActivity/@members[ID='partner']" value="//@agents[ID='individual']/@attributes[ID='age']"/>
+        <function xsi:type="function:FLogicalOperator" href="http://metaabm.org/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='operators']/@subs[ID='logicalOperators']/@functions[ID='identical']"/>
+      </members>
+      <members xsi:type="act:AQuery" label="Partner: Within(Vision) Query" ID="partnerWithin_Vision_Query" sources="//@agents[ID='individual']/@rootActivity/@members[ID='partner']" targets="//@agents[ID='individual']/@rootActivity/@members[ID='partner_AgeIdenticalAgeQueryOrWithin_Vision_Query_']" selected="//@agents[ID='individual']/@rootActivity/@members[ID='partner']">
+        <inputs selected="//@agents[ID='individual']/@rootActivity/@members[ID='partner']" value="//@agents[ID='individual']/@attributes[ID='vision']"/>
+        <function xsi:type="function:FGenericLogical" href="http://metaabm.org/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='spatial']/@functions[ID='within']"/>
+      </members>
+      <members xsi:type="act:AAny" label="Partner (Age Identical Age Query | Within(Vision) Query)" ID="partner_AgeIdenticalAgeQueryOrWithin_Vision_Query_" sources="//@agents[ID='individual']/@rootActivity/@members[ID='partnerAgeIdenticalAgeQuery'] //@agents[ID='individual']/@rootActivity/@members[ID='partnerWithin_Vision_Query']" targets="//@agents[ID='individual']/@rootActivity/@members[ID='partnerNeighbor']" selected="//@agents[ID='individual']/@rootActivity/@members[ID='partner']"/>
+      <members xsi:type="act:ASelect" label="Partner Neighbor" ID="partnerNeighbor" sources="//@agents[ID='individual']/@rootActivity/@members[ID='partner_AgeIdenticalAgeQueryOrWithin_Vision_Query_']" targets="//@agents[ID='individual']/@rootActivity/@members[ID='partnerNeighborAvailableQuery'] //@agents[ID='individual']/@rootActivity/@members[ID='partnerNeighborNeighborQuery']" selected="//@agents[ID='individual']/@rootActivity/@members[ID='partner']" agent="//@agents[ID='block']" space="//@projections[ID='city']"/>
+      <members xsi:type="act:AQuery" label="Partner Neighbor: Available() Query" ID="partnerNeighborAvailableQuery" sources="//@agents[ID='individual']/@rootActivity/@members[ID='partnerNeighbor']" targets="//@agents[ID='individual']/@rootActivity/@members[ID='partnerNeighbor_AvailableQueryOrNeighborQuery_']" selected="//@agents[ID='individual']/@rootActivity/@members[ID='partnerNeighbor']">
+        <function xsi:type="function:FGenericLogical" href="http://metaabm.org/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='spatial']/@functions[ID='available']"/>
+      </members>
+      <members xsi:type="act:AQuery" label="Partner Neighbor: Neighbor() Query" ID="partnerNeighborNeighborQuery" sources="//@agents[ID='individual']/@rootActivity/@members[ID='partnerNeighbor']" targets="//@agents[ID='individual']/@rootActivity/@members[ID='partnerNeighbor_AvailableQueryOrNeighborQuery_']" selected="//@agents[ID='individual']/@rootActivity/@members[ID='partnerNeighbor']">
+        <function xsi:type="function:FGenericLogical" href="http://metaabm.org/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='spatial']/@functions[ID='neighbor']"/>
+      </members>
+      <members xsi:type="act:AAny" label="Partner Neighbor (Available() Query | Neighbor() Query)" ID="partnerNeighbor_AvailableQueryOrNeighborQuery_" sources="//@agents[ID='individual']/@rootActivity/@members[ID='partnerNeighborAvailableQuery'] //@agents[ID='individual']/@rootActivity/@members[ID='partnerNeighborNeighborQuery']" targets="//@agents[ID='individual']/@rootActivity/@members[ID='moveIndividual']" selected="//@agents[ID='individual']/@rootActivity/@members[ID='partnerNeighbor']"/>
+      <members xsi:type="act:AMove" label="Move Individual" ID="moveIndividual" sources="//@agents[ID='individual']/@rootActivity/@members[ID='partnerNeighbor_AvailableQueryOrNeighborQuery_']" selected="//@agents[ID='individual']/@rootActivity/@members[ID='findPartner']" destination="//@agents[ID='individual']/@rootActivity/@members[ID='partnerNeighbor']"/>
+    </rootActivity>
+    <implementation className="Individual"/>
+  </agents>
+  <agents label="Block" ID="block" pluralLabel="Blocks">
+    <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups"/>
+    <implementation className="Block"/>
+  </agents>
+  <projections xsi:type="metaabm:SGrid" label="City" ID="city" pluralLabel="Citys" dimensionality="2">
+    <attributes xsi:type="metaabm:SAttributeArray" label="Dimensions" ID="dimensions" pluralLabel="Dimensionss" description="The size of each dimension." sType="INTEGER" size="2"/>
+    <attributes label="Width" ID="width" pluralLabel="Widths" description="The horizontal extent of the space." sType="INTEGER" defaultValue="20"/>
+    <attributes label="Height" ID="height" pluralLabel="Heights" description="The vertical extent of the space." sType="INTEGER" defaultValue="20"/>
+  </projections>
+</metaabm:SContext>
