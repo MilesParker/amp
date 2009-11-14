@@ -16,11 +16,14 @@
 
 package org.eclipse.amp.agf3d;
 
+import org.eclipse.draw3d.graphics3d.Graphics3D;
+
 /**
  * 
  * @author mparker
  *
  */
-public enum ShapeType3D {
-    CUBE, TILE, SPHERE, CYLINDER
+public interface IRenderer {
+
+    void renderShape(Graphics3D g3d, Object object);
 }

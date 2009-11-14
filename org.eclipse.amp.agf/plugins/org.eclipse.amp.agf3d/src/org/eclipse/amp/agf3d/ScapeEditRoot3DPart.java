@@ -66,6 +66,7 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
             }
             for (animationStep = 0; animationStep < animationStepCount; animationStep++) {
                 refresh();
+                ((GraphicalViewer3D) getRoot().getViewer()).getLightweightSystem3D().render(true);
             }
         }
     }
@@ -100,7 +101,6 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
 
         };
         SurfaceLayout.setDelegate((IFigure3D) figure, new FreeformLayout());
-        // figure.setBounds(new Rectangle(new Point(0, 0), calculateDimension()));
         return figure;
     }
 

@@ -18,6 +18,7 @@ package org.eclipse.amp.agf3d;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw3d.IFigure3D;
 import org.eclipse.draw3d.shapes.CuboidFigureShape;
+import org.eclipse.jface.viewers.IColorProvider;
 
 public class MarkerEdit3DPart extends AgentEdit3DPart {
 
@@ -26,8 +27,8 @@ public class MarkerEdit3DPart extends AgentEdit3DPart {
     /**
      * 
      */
-    public MarkerEdit3DPart() {
-        super(ShapeType3D.CUBE, true);
+    public MarkerEdit3DPart(IColorProvider colorProvider) {
+        super(Shapes3D.CUBE_SHAPE_PROVIDER, colorProvider, true);
     }
 
     protected IFigure createFigure() {

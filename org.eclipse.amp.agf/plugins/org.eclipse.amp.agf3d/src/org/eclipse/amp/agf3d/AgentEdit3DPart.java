@@ -24,11 +24,9 @@ import org.eclipse.draw3d.IFigure3D;
 import org.eclipse.draw3d.ISurface;
 import org.eclipse.draw3d.ShapeFigure3D;
 import org.eclipse.draw3d.geometry.IVector3f;
-import org.eclipse.draw3d.geometry.Vector3fImpl;
 import org.eclipse.draw3d.shapes.CuboidFigureShape;
-import org.eclipse.draw3d.shapes.CylindricFigureShape;
 import org.eclipse.draw3d.shapes.Shape;
-import org.eclipse.draw3d.shapes.SphereFigureShape;
+import org.eclipse.jface.viewers.IColorProvider;
 
 
 public class AgentEdit3DPart extends AgentEditPart {
@@ -65,7 +63,7 @@ public class AgentEdit3DPart extends AgentEditPart {
          * @see org.eclipse.draw3d.ShapeFigure3D#createShape()
          */
         protected Shape createShape() {
-            Shape createShape = AgentEdit3DPart.this.createShape();
+            Shape createShape = shapeProvider.getShape3D(getModel(), (IFigure3D) figure);
             return createShape;
         }
     }
@@ -74,69 +72,35 @@ public class AgentEdit3DPart extends AgentEditPart {
 
     boolean update = true;
 
-    ShapeType3D shapeType = ShapeType3D.CUBE;
+    IShape3DProvider shapeProvider;
 
-    public AgentEdit3DPart(ShapeType3D shapeType, boolean update) {
+    IColorProvider colorProvider;
+
+    public AgentEdit3DPart(IShape3DProvider shapeProvider, IColorProvider colorProvider, boolean update) {
         super();
-        this.shapeType = shapeType;
+        this.colorProvider = colorProvider;
+        this.shapeProvider = shapeProvider;
         this.update = update;
     }
 
+    public AgentEdit3DPart(IShape3DProvider shapeProvider, IColorProvider colorProvider) {
+        this(shapeProvider, colorProvider, true);
+    }
     /**
      * 
      */
     public AgentEdit3DPart() {
     }
 
-    protected Shape createShape() {
-        switch (shapeType) {
-            case CUBE:
-                return new CuboidFigureShape((IFigure3D) getFigure());
-            case CYLINDER:
-                return new CylindricFigureShape((IFigure3D) getFigure(), 30, 1.0f, false);
-            case SPHERE:
-                return new SphereFigureShape((IFigure3D) getFigure(), 3);
-            case TILE:
-                return new CuboidFigureShape((IFigure3D) getFigure());
-        }
-        return null;
-    }
-
-    protected IVector3f getSize3D() {
-        switch (shapeType) {
-            case CUBE:
-                return new Vector3fImpl(SCALE * .75f, SCALE * .75f, SCALE * .75f);
-            case CYLINDER:
-                // "checker"
-                return new Vector3fImpl(SCALE * .9f, SCALE * .9f, SCALE * .20f);
-            case SPHERE:
-                return new Vector3fImpl(SCALE * .9f, SCALE * .9f, SCALE * .9f);
-            case TILE:
-                return new Vector3fImpl(SCALE, SCALE, 0.0f);
-        }
-        return new Vector3fImpl(SCALE, SCALE, SCALE);
-    }
-
-    protected IVector3f getRelativeLocation3D() {
-        switch (shapeType) {
-            case CUBE:
-                return new Vector3fImpl(SCALE * .125f, SCALE * .125f, 0);
-            case CYLINDER:
-                // "checker"
-                return new Vector3fImpl(SCALE * .05f, SCALE * .05f, 0);
-            case SPHERE:
-                return new Vector3fImpl(SCALE * .05f, SCALE * .05f, 0);
-            case TILE:
-                return new Vector3fImpl(0.0f, 0.0f, 0.0f);
-        }
-        return new Vector3fImpl(0.0f, 0.0f, 0.0f);
-    }
-
     @Override
     protected IFigure buildFigure(IFigure figure) {
         if (figure == null) {
             figure = new FigureImplementation();
-            ((Figure3D) figure).getPosition3D().setSize3D(getSize3D());
+            ((Figure3D) figure).getPosition3D().setSize3D(shapeProvider.getSize3D(getModel()));
+            if (colorProvider != null) {
+                figure.setForegroundColor(colorProvider.getForeground(getModel()));
+                figure.setBackgroundColor(colorProvider.getBackground(getModel()));
+            }
         }
         return figure;
     }
@@ -156,5 +120,12 @@ public class AgentEdit3DPart extends AgentEditPart {
 
     public CuboidFigureShape getCube() {
         return cube;
+    }
+
+    /**
+     * @return
+     */
+    public IVector3f getRelativeLocation3D() {
+        return shapeProvider.getRelativeLocation3D(getModel());
     }
 }
