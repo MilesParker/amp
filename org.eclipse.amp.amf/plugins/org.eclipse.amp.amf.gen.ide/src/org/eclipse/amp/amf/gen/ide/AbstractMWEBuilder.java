@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: AbstractMWEBuilder.java,v 1.1 2009/07/16 21:01:08 mparker Exp $
+ * </copyright> $Id: AbstractMWEBuilder.java,v 1.2 2009/11/16 05:53:50 mparker Exp $
  */
 package org.eclipse.amp.amf.gen.ide;
 
@@ -154,7 +154,7 @@ public abstract class AbstractMWEBuilder extends IncrementalProjectBuilder {
 
         boolean success = workflowRunner.run(workflowPath, workflowMonitor, getGenProperties(), slotContents);
         LogWorkflow.setSuccess(success);
-        LogWorkflow.report(pluginName, fullTaskDescription, reportErrors);
+        LogWorkflow.report(pluginName, fullTaskDescription, false);
         LogWorkflow.restoreLogFactory();
         Thread.currentThread().setContextClassLoader(oldLoader);
     }
