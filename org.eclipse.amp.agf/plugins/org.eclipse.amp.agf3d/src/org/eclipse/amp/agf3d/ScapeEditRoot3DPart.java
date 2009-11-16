@@ -32,6 +32,7 @@ import org.eclipse.draw3d.FigureSurface;
 import org.eclipse.draw3d.IFigure3D;
 import org.eclipse.draw3d.ISceneListener;
 import org.eclipse.draw3d.ISurface;
+import org.eclipse.draw3d.LightweightSystem3D;
 import org.eclipse.draw3d.RenderContext;
 import org.eclipse.draw3d.SurfaceLayout;
 import org.eclipse.draw3d.camera.ICamera;
@@ -60,6 +61,13 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
 
         public synchronized void update(IModel model) {
             beginPainting();
+            LightweightSystem3D lws = ((GraphicalViewer3D) getViewer()).getLightweightSystem3D();
+            while (lws.getUpdateManager3D().getCanvas() == null) {
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                }
+            }
             if (firstTime) {
                 animateCamera = false;
                 moveCameraHelicopter();
