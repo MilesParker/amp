@@ -25,6 +25,8 @@ import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.amp.axf.view.SWTAsyncModelListener;
 import org.eclipse.draw2d.FreeformLayout;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.draw3d.Figure3D;
 import org.eclipse.draw3d.FigureSurface;
 import org.eclipse.draw3d.IFigure3D;
@@ -66,14 +68,14 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
             }
             for (animationStep = 0; animationStep < animationStepCount; animationStep++) {
                 refresh();
-                ((GraphicalViewer3D) getRoot().getViewer()).getLightweightSystem3D().render(true);
+                // ((GraphicalViewer3D) getRoot().getViewer()).getLightweightSystem3D().render(true);
             }
         }
     }
 
     int animationStep;
 
-    int animationStepCount = 7;
+    int animationStepCount = 1;
 
     boolean animateCamera = true;
 
@@ -101,6 +103,8 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
 
         };
         SurfaceLayout.setDelegate((IFigure3D) figure, new FreeformLayout());
+        Rectangle bounds = new Rectangle(new Point(0, 0), calculateDimension());
+        figure.setBounds(bounds);
         return figure;
     }
 
@@ -127,7 +131,6 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
             public void cameraChanged(ICamera iOldCamera, ICamera iNewCamera) {
             }
         });
-
     }
 
     public void deactivate() {

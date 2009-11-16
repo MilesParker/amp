@@ -71,7 +71,7 @@ public class ScapeEdit3DPart extends ScapeEditPart {
             }
         };
         SurfaceLayout.setDelegate((IFigure3D) figure, new FreeformLayout());
-        // figure.setBounds(getRootScapeEditPart().getFigure().getBounds());
+        figure.setBounds(getRootScapeEditPart().getFigure().getBounds());
         return figure;
     }
 
