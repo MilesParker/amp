@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.escape.amf.ide;
 
 import org.eclipse.amp.amf.gen.ide.ResourceJobHandler;
@@ -26,6 +26,8 @@ public class GenerateEscapeHandler extends ResourceJobHandler {
         EscapeModelBuilder.getEscapeBuilderDefault().handleModifiedResource(resource);
         EscapeModelStyles2Builder.getEscapeBuilderDefault().setCurrentMonitor(getMonitor());
         EscapeModelStyles2Builder.getEscapeBuilderDefault().handleModifiedResource(resource);
+        EscapeModelStyles3DBuilder.getEscapeBuilderDefault().setCurrentMonitor(getMonitor());
+        EscapeModelStyles3DBuilder.getEscapeBuilderDefault().handleModifiedResource(resource);
         // EscapeGraphicsBuilder.getEscapeBuilderDefault().setCurrentMonitor(getMonitor());
         // EscapeGraphicsBuilder.getEscapeBuilderDefault().handleModifiedResource(resource);
     }
