@@ -26,7 +26,6 @@ import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.event.ScapeListener;
 import org.ascape.model.rule.PropogateScapeOnly;
 import org.ascape.runtime.NonGraphicRunner;
-import org.eclipse.amp.agf3d.AGF3DPlugin;
 import org.eclipse.amp.axf.core.IEngine;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
 import org.eclipse.amp.axf.core.IModel;
@@ -116,11 +115,6 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
         ConsolePlugin.getDefault().getConsoleManager().addConsoles(consules);
         eclipseConsole.activate();
         AscapeRuntimePlugin.getDefault();
-        try {
-            AGF3DPlugin.getDefault();
-        } catch (Exception e) {
-            System.err.println("Couldn't load agf3d plugin: " + e);
-        }
         try {
             delegateLoader = new ProjectLoader(projectResource.getProject());
         } catch (LoaderCreationException e) {
