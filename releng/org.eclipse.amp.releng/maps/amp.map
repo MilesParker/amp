@@ -31,8 +31,8 @@ plugin@org.eclipse.amp.amf.examples.escape=HEAD,:pserver:anonymous:none@dev.ecli
 plugin@org.eclipse.amp.amf.examples.repast=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
 
 !***TESTS
-feature@org.eclipse.amp.test=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp/features/org.eclipse.amp.test-feature
-plugin@org.eclipse.amp.amf.acore.test=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/tests/org.eclipse.amp.amf.acore.test
+!***feature@org.eclipse.amp.test=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp/features/org.eclipse.amp.test-feature
+!***plugin@org.eclipse.amp.amf.acore.test=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/tests/org.eclipse.amp.amf.acore.test
 !***plugin@org.eclipse.amp.amf.acore.edit.test=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/tests/org.eclipse.amp.amf.acore.edit.test
 !***We need to figure out how to get these to run on server
 !***plugin@org.eclipse.amp.amf.parameters.test=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/tests/org.eclipse.amp.amf.parameters.test
