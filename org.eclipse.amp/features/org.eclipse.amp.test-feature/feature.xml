@@ -74,12 +74,13 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <import plugin="org.eclipse.emf.ecore.xmi"/>
    </requires>
 
-   <plugin
+<!--   <plugin
          id="org.eclipse.amp.amf.acore.edit.test"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+-->
 
    <plugin
          id="org.eclipse.amp.amf.acore.test"
