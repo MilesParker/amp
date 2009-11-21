@@ -19,10 +19,6 @@
    </license>
 
    <includes
-         id="org.ascape.core"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.amp.agf.chart"
          version="0.0.0"/>
 
@@ -96,6 +92,13 @@
 
    <plugin
          id="org.eclipse.amp.escape.ascape.chart"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.ascape.core"
          download-size="0"
          install-size="0"
          version="0.0.0"
