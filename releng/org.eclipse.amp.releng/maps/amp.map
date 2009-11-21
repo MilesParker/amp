@@ -42,7 +42,6 @@ plugin@org.eclipse.amp.amf.acore.edit.test=HEAD,:pserver:anonymous:none@dev.ecli
 !***plugin@org.eclipse.amp.axf.ide.test=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.axf/tests/org.eclipse.amp.axf.ide.test
 
 !***FEATURES
-feature@org.ascape.core=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.ascape/features/org.ascape.core-feature
 feature@org.eclipse.amp.all=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp/features/org.eclipse.amp.all-feature
 feature@org.eclipse.amp.agf.chart=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.agf/features/org.eclipse.amp.agf.chart-feature
 feature@org.eclipse.amp.agf=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.agf/features/org.eclipse.amp.agf-feature
