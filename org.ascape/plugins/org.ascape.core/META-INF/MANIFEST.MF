@@ -19,3 +19,4 @@ Export-Package: org.ascape.model,
  org.ascape.util.sweep,
  org.ascape.util.vis,
  org.ascape.view.nonvis
+Bundle-Localization: plugin
