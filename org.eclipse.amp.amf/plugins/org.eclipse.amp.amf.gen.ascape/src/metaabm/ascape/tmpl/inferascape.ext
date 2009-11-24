@@ -218,10 +218,10 @@ String setTo(SAttribute attr, String val) :
 	((SAgent) attr.owner).asAgent() + "." + attr.setterName() + "(" + val + ")";
 	
 List setterSpace(SState attr) :
-	attr.options.collect(a | {a.label + " " + attr.label, attr.setTo(a.typeName())});
+	attr.gatherData ? attr.options.collect(a | {a.label + " " + attr.label, attr.setTo(a.typeName())}) : {};
 
 List setterSpace(SAttribute attr) :
-	attr.sType == SAttributeType::Boolean ? {{"is " + attr.label, attr.setTo("true")}, {"is not " + attr.label, attr.setTo("false")}} : {};
+	attr.gatherData && attr.sType == SAttributeType::Boolean ? {{"is " + attr.label, attr.setTo("true")}, {"is not " + attr.label, attr.setTo("false")}} : {};
 	
 List setterSpace(SStyle style) :
 	style.agent.attributes.setterSpace();	
