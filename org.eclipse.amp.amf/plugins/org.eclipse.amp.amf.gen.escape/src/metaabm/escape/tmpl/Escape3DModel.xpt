@@ -13,7 +13,7 @@
 «EXTENSION metaabm::ascape::tmpl::inferascape»
 
 «AROUND metaabm::tmpl::Java::ClassFile FOR IID-»
-	«IF SContext.isInstance(this)»
+	«IF SContext.isInstance(this) && generate()»
     «FILE javaFileLoc().replaceFirst(".java", "3D.java")-»
     «EXPAND metaabm::tmpl::Java::ClassText»
     «ENDFILE-»

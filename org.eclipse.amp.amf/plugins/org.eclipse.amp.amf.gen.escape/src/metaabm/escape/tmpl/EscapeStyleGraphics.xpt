@@ -13,7 +13,7 @@
 «EXTENSION metaabm::ascape::tmpl::inferascape»
 
 «AROUND metaabm::tmpl::Java::ClassFile FOR IID-»
-	«IF impl().mode == SImplementationMode::Generate && SStyle.isInstance(this)»
+	«IF generate() && SStyle.isInstance(this)»
     «FILE javaFileLoc().replaceFirst(".java", "Graphics.java")-»
     «EXPAND metaabm::tmpl::Java::ClassText»
     «ENDFILE-»

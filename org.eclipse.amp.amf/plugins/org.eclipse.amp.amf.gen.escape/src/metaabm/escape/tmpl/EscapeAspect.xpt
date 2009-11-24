@@ -47,6 +47,17 @@
     	}
         return treeFactory;
     }
+
+    private org.eclipse.swt.graphics.Color getInferredChartColor(Object agent,
+        org.eclipse.jface.viewers.IColorProvider colorProvider) {
+        org.eclipse.swt.graphics.Color color = colorProvider.getForeground(agent);
+		if (color == org.ascape.util.vis.ColorFeature.BLACK) {
+			color = org.ascape.util.vis.ColorFeatureConcrete
+					.createHSB((float) java.lang.Math.random() * 360f, 1.0f,
+							0.8f);
+		}
+        return color;
+    }
     
     public static void main(String[] args) {
         (new org.ascape.runtime.NonGraphicRunner()).openInstance("«implementation.qualifiedName»");
@@ -73,9 +84,8 @@
 
 «AROUND metaabm::ascape::tmpl::ScapeAspect::ViewBuilder FOR AGroup-»
 	org.ascape.view.vis.ChartView chart = new org.ascape.view.vis.ChartView();
-        org.eclipse.draw2d.Graphics dummyGraphics = new org.eclipse.draw2d.SWTGraphics(new org.eclipse.swt.graphics.GC(
-            new org.eclipse.swt.graphics.Image(org.eclipse.ui.PlatformUI.getWorkbench().getDisplay(), 10, 10)));
     «FOREACH ((SContext) reference).agents AS agent»
+    «IF !agent.styles.isEmpty-»
     org.ascape.model.Scape «agent.id()»Scape = new «agent.owner.typeName()»();
     «agent.id()»Scape.setRunner(new org.ascape.runtime.NonGraphicRunner());
 	«agent.typeName()» «agent.id()» = new «agent.typeName()»() {
@@ -83,34 +93,22 @@
                 }
             };
     «agent.id()»Scape.add(«agent.id()»);
-	«IF !agent.isHost()»
+	«IF !agent.isHost()-»
 	org.ascape.model.HostCell «agent.id()»Host = new org.ascape.model.HostCell() {
                 public void requestUpdate() {
                 }
             };
 	«agent.id()»Host.setOccupant((org.ascape.model.CellOccupant) «agent.id()»);
-    org.eclipse.swt.graphics.Color «agent.id()»LastColor = dummyGraphics.getForegroundColor();
-    org.eclipse.swt.graphics.Color «agent.id()»NewColor = dummyGraphics.getForegroundColor();
-	«ENDIF»
+	«ENDIF-»
     «FOREACH agent.styles AS style»
-	«style.typeName()»Graphics «style.id()» = new «style.typeName()»Graphics();
+    org.eclipse.jface.viewers.IColorProvider «style.id()»ColorProvider = new «agent.styles.get(0).typeName()»ColorProvider();
 	«FOREACH style.setterSpace() AS setter»
     «((List) setter).last()»;
-	«IF agent.isHost()-»
-    «style.id()».draw(dummyGraphics, «agent.id()», 4, 4);
-    «ELSE-»
-    «style.id()».draw(dummyGraphics, «agent.id()»Host, 4, 4);
-    «ENDIF-»
-    «agent.id()»NewColor = dummyGraphics.getForegroundColor();
-    if («agent.id()»NewColor == «agent.id()»LastColor) {
-    	«agent.id()»NewColor = org.ascape.util.vis.ColorFeatureConcrete.createHSB((float) java.lang.Math.random() * 360f, 1.0f, 0.8f);
-   	} else {
-   		«agent.id()»LastColor = «agent.id()»NewColor;
-   	}
-	chart.addSeries("Count «agent.typeName()» «((List) setter).first()»", «agent.id()»NewColor);
+	chart.addSeries("Count «agent.typeName()» «((List) setter).first()»", getInferredChartColor(«agent.id()», «style.id()»ColorProvider));
     «ENDFOREACH-»
-    «ENDFOREACH»
-    «ENDFOREACH»
+    «ENDFOREACH-»
+    «ENDIF-»
+    «ENDFOREACH-»
     addView(chart);
     addView(new org.ascape.view.vis.GEFView());
     «targetDef.proceed()-»
@@ -167,7 +165,7 @@
 
 «AROUND metaabm::tmpl::Java::Model FOR SContext-»
     «targetDef.proceed()»
-    «IF impl().mode == SImplementationMode::Generate-»
+    «IF generate()-»
     «FILE javaFileLoc().replaceFirst(".java", "PartFactory.java")»
     package «package()»;
     public class «typeName()»PartFactory extends org.eclipse.amp.escape.ascape.adapt.AscapePartFactory {

@@ -12,7 +12,7 @@
 «EXTENSION metaabm::tmpl::infer»
 
 «AROUND metaabm::tmpl::Java::ClassFile FOR IID-»
-	«IF !SState.isInstance(this)»
+	«IF generate() && !SState.isInstance(this)»
     «FILE javaFileLoc().replaceFirst(".java", "GraphicsProxy.java")-»
     «EXPAND metaabm::tmpl::Java::ClassText»
     «ENDFILE-»
