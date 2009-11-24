@@ -476,7 +476,6 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
         ySeriesDefinition = SeriesDefinitionImpl.create();
         yAxisPrimary.getSeriesDefinitions().add(ySeriesDefinition);
         ySeriesDefinition.getSeriesPalette().shift(-1);
-        System.err.println("--" + dataProvider);
         DataSet periods = TextDataSetImpl.create(dataProvider.getCategoryLabels(dataSource));
         xSeriesCategory.setDataSet(periods);
     }
