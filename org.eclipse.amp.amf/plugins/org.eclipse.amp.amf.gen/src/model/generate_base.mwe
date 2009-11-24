@@ -43,6 +43,7 @@
 		<globalVarDef name="genComments" value="'${genComments}'"/> 
 		<globalVarDef name="orgImports" value="'${orgImports}'"/> 
 		<globalVarDef name="genStats" value="'${genStats}'"/> 
+		<globalVarDef name="modelName" value="'${modelFile}'"/> 
 		<fileEncoding value="ISO-8859-1"/> 
         <prSrcPaths value="${outputPath}/${srcDir}"/>
    	</component>  

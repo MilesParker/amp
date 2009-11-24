@@ -1,6 +1,8 @@
 //Author: Miles Parker
 import emf;
 
+cached Boolean modelName() : ((Boolean) GLOBALVAR modelName);
+
 cached Boolean testing() : ((Boolean) GLOBALVAR testing);
         
 cached String buildProject() : ((String) GLOBALVAR buildProject);

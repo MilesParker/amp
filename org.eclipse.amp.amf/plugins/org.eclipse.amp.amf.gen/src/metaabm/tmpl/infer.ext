@@ -8,6 +8,9 @@ extension metaabm::tmpl::types;
 
 //Author: Miles Parker
 
+cached Boolean generate(IID implemented) :
+	implemented.impl().mode == SImplementationMode::Generate || implemented.impl().mode == SImplementationMode::GenerateEmpty || implemented.impl().mode == SImplementationMode::GenerateProtected;
+
 cached Boolean isEven(List items, Object item) :
 	(items.indexOf(item) / 2 == items.indexOf(item) / 2.0);
 
