@@ -41,7 +41,7 @@ import org.eclipse.jface.viewers.IFilter;
 
 public class ScapeEdit3DPart extends ScapeEditPart {
 
-    public static Vector3fImpl UP_VECTOR = new Vector3fImpl(0, -1, 0);
+    public static Vector3fImpl UP_VECTOR = new Vector3fImpl(0, -1, 1);
 
     public ScapeEdit3DPart(ICompositionProvider memberProvider, ILocationProvider locationProvider,
             IGraphProvider graphProvider, IFilter filter) {

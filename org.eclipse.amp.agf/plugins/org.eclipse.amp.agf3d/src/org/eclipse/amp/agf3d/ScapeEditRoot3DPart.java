@@ -150,15 +150,15 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
     }
 
     public void moveCameraHelicopter() {
-        moveCameraScaled(0.5f, 1.5f, -.2f, 0.5f, 0.5f, 0.0f);
+        moveCameraScaled(0.5f, 1.5f, .2f, 0.5f, 0.5f, 0.0f);
     }
 
     public void moveCameraFirstPerson() {
-        moveCameraScaled(0.5f, 1.0f, -.01f, 0.5f, 0.0f, 0.0f);
+        moveCameraScaled(0.5f, 1.0f, .01f, 0.5f, 0.0f, 0.0f);
     }
 
     public void moveCameraOverhead() {
-        moveCameraScaled(0.5f, 0.5f, -2.0f, 0.5f, 0.5f, 0.0f);
+        moveCameraScaled(0.5f, 0.5f, 2.0f, 0.5f, 0.5f, 0.0f);
     }
 
     private void moveCameraScaled(float locX, float locY, float locZ, float targetX, float targetY, float targetZ) {
