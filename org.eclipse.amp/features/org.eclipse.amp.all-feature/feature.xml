@@ -64,5 +64,48 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+         
+	<includes
+	         id="org.ascape.core.source"
+	         version="0.0.0"/>
+	<includes
+	         id="org.eclipse.amp.all.source"
+	         version="0.0.0"/>
+	<includes
+	         id="org.eclipse.amp.agf.chart.source"
+	         version="0.0.0"/>
+	<includes
+	         id="org.eclipse.amp.agf.source"
+	         version="0.0.0"/>
+	<includes
+	         id="org.eclipse.amp.agf.zest.source"
+	         version="0.0.0"/>
+	<includes
+	         id="org.eclipse.amp.agf3d.source"
+	         version="0.0.0"/>
+	<includes
+	         id="org.eclipse.amp.amf.source"
+	         version="0.0.0"/>
+	<includes
+	         id="org.eclipse.amp.amf.core.source"
+	         version="0.0.0"/>
+	<includes
+	         id="org.eclipse.amp.amf.target.ascape.source"
+	         version="0.0.0"/>
+	<includes
+	         id="org.eclipse.amp.amf.target.escape.source"
+	         version="0.0.0"/>
+	<includes
+	         id="org.eclipse.amp.amf.target.repast.source"
+	         version="0.0.0"/>
+	<includes
+	         id="org.eclipse.amp.amfx.source"
+	         version="0.0.0"/>
+	<includes
+	         id="org.eclipse.amp.axf.source"
+	         version="0.0.0"/>
+	<includes
+	         id="org.eclipse.amp.escape.source"
+	         version="0.0.0"/>
 
 </feature>
