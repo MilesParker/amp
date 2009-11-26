@@ -20,7 +20,7 @@ plugin@org.eclipse.draw3d.lwjgl=SVN,trunk,svn://dev.eclipse.org/svnroot/technolo
 plugin@org.eclipse.draw3d.ui=SVN,trunk,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.ui
 plugin@org.eclipse.draw3d.x3d=SVN,trunk,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.x3d
 plugin@org.eclipse.gef3d=SVN,trunk,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.gef3d
-plugin@org.eclipse.gef3d.ext=SVN,trunk,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.gef3d.ext
+!***plugin@org.eclipse.gef3d.ext=SVN,trunk,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.gef3d.ext
 
 !***DOCUMENTATION
 
