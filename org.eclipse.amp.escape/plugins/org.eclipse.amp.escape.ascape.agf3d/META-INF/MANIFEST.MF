@@ -12,8 +12,13 @@ Require-Bundle: org.eclipse.ui,
  org.ascape.core;bundle-version="5.2.0",
  org.ascape.ui.amp;bundle-version="0.5.0",
  org.eclipse.amp.escape.ascape;bundle-version="0.5.0",
- org.eclipse.gef3d;bundle-version="0.8.1";visibility:=reexport,
- org.eclipse.amp.agf3d;bundle-version="0.5.0";visibility:=reexport
+ org.eclipse.amp.agf3d;bundle-version="0.5.0";visibility:=reexport,
+ org.eclipse.gef3d;bundle-version="0.8.0";visibility:=reexport,
+ org.eclipse.draw3d;bundle-version="0.8.0";visibility:=reexport,
+ org.eclipse.draw3d.geometry;bundle-version="0.8.0";visibility:=reexport,
+ org.eclipse.draw3d.graphics3d;bundle-version="0.8.0";visibility:=reexport,
+ org.lwjgl;visibility:=reexport,
+ org.eclipse.draw3d.lwjgl;bundle-version="0.8.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.amp.escape.ascape.adapt,
