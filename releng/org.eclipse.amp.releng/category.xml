@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-
    <description>
-      Tools for Agent Modeling, Execution and Graphics. 
+      Tools for Agent Modeling, Execution and Graphics.
    </description>
-   <feature url="features/org.ascape.core_${org.ascape.core.version}.jar" id="org.ascape.core" version="${org.ascape.core.version}">
+   <feature url="features/org.eclipse.amp.all_${org.eclipse.amp.all.version}.jar" id="org.eclipse.amp.all" version="${org.eclipse.amp.agf.chart.version}">
       <category name="Agent Modeling ${buildTypeQualifier}"/>
    </feature>
    <feature url="features/org.eclipse.amp.agf.chart_${org.eclipse.amp.agf.chart.version}.jar" id="org.eclipse.amp.agf.chart" version="${org.eclipse.amp.agf.chart.version}">
@@ -43,6 +42,7 @@
    <feature url="features/org.eclipse.amp.agf3d_${org.eclipse.amp.agf3d.version}.jar" id="org.eclipse.amp.agf3d" version="${org.eclipse.amp.agf3d.version}">
       <category name="Agent Modeling Extensions ${buildTypeQualifier}"/>
    </feature>
+   <feature url="features/org.ascape.core_${org.ascape.core.version}.jar" id="org.ascape.core" version="${org.ascape.core.version}"/>
    <category-def name="Agent Modeling ${buildTypeQualifier}" label="Agent Modeling ${buildTypeQualifier}">
       <description>
          Eclipse Agent Modeling Project tools, including Agent Modeling Framework, Agent eXectution Framework, Agent Graphics Framework, and Escape.
