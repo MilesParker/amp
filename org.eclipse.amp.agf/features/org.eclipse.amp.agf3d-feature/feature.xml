@@ -29,21 +29,23 @@
       <import plugin="org.eclipse.amp.axf.views" version="0.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.amp.agf.core" version="0.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.amp.agf.ide" version="0.5.0" match="greaterOrEqual"/>
-      <import plugin="org.lwjgl" version="2.1.0" match="greaterOrEqual"/>
+      <import plugin="org.lwjgl" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.draw3d.ui" version="0.8.1" match="greaterOrEqual"/>
       <import plugin="org.ascape.core" version="5.2.0" match="greaterOrEqual"/>
       <import plugin="org.ascape.ui.amp" version="0.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.amp.escape.ascape" version="0.5.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.gef3d" version="0.8.1" match="greaterOrEqual"/>
       <import plugin="org.eclipse.amp.agf3d" version="0.5.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.draw2d"/>
       <import plugin="org.eclipse.draw3d.geometry" version="0.8.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.core.runtime" version="3.4.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.draw3d.graphics3d" version="0.8.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.draw3d.graphics3d" version="0.8.1" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.gef"/>
-      <import plugin="org.eclipse.draw3d.ui" version="0.8.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.draw2d"/>
+      <import plugin="org.eclipse.core.runtime" version="3.4.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.draw2d" version="3.4.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.draw3d" version="0.8.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.draw3d.graphics3d" version="0.8.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.gef"/>
+      <import plugin="org.eclipse.gef3d" version="0.8.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.draw3d" version="0.8.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.draw3d.lwjgl" version="0.8.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -90,13 +92,6 @@
 
    <plugin
          id="org.eclipse.draw3d.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.draw3d.x3d"
          download-size="0"
          install-size="0"
          version="0.0.0"
