@@ -3,7 +3,7 @@
    <description>
       Tools for Agent Modeling, Execution and Graphics.
    </description>
-   <feature url="features/org.eclipse.amp.all_${org.eclipse.amp.all.version}.jar" id="org.eclipse.amp.all" version="${org.eclipse.amp.agf.chart.version}">
+   <feature url="features/org.eclipse.amp.all_${org.eclipse.amp.all.version}.jar" id="org.eclipse.amp.all" version="${org.eclipse.amp.all.version}">
       <category name="Agent Modeling ${buildTypeQualifier}"/>
    </feature>
    <feature url="features/org.eclipse.amp.agf.chart_${org.eclipse.amp.agf.chart.version}.jar" id="org.eclipse.amp.agf.chart" version="${org.eclipse.amp.agf.chart.version}">
