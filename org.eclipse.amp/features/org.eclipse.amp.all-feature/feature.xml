@@ -64,13 +64,7 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
-	<includes
-	         id="org.ascape.core.source"
-	         version="0.0.0"/>
-	<includes
-	         id="org.eclipse.amp.all.source"
-	         version="0.0.0"/>
+
 	<includes
 	         id="org.eclipse.amp.agf.chart.source"
 	         version="0.0.0"/>
