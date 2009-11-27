@@ -130,8 +130,16 @@ public class ScapeEditPart extends AbstractGraphicalEditPart implements Property
     protected synchronized void refreshChildren() {
         if (isFirstRefresh()) {
             for (Object agent : memberProvider.getIteratable(getModel())) {
-                EditPart editPart = createChild(agent);
-                addChild(editPart, -1);
+                boolean exists = false;
+                for (Object object : getChildren()) {
+                    if (((EditPart) object).getModel() == agent) {
+                        exists = true;
+                    }
+                }
+                if (!exists) {
+                    EditPart editPart = createChild(agent);
+                    addChild(editPart, -1);
+                }
             }
         } else if (memberProvider.isMutable(getModel())) {
             Map<Object, EditPart> modelToEditPart = new HashMap<Object, EditPart>();
