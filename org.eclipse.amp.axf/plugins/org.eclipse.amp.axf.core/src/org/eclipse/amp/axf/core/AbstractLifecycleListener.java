@@ -7,12 +7,12 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
+ * Contributors:
  *   Metascape - Initial API and Implementation
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.axf.core;
 
 // TODO: Auto-generated Javadoc
@@ -111,6 +111,13 @@ public class AbstractLifecycleListener implements ILifeCycleListener {
      */
     public void stateChange(Object key, Object updated) {
         listener.stateChange(key, updated);
+    }
+
+    /**
+     * @return the listener
+     */
+    public IStateListener getListener() {
+        return listener;
     }
 
     /**
