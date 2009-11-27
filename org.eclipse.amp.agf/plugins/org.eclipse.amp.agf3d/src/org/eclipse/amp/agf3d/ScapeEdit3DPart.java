@@ -41,8 +41,6 @@ import org.eclipse.jface.viewers.IFilter;
 
 public class ScapeEdit3DPart extends ScapeEditPart {
 
-    public static Vector3fImpl UP_VECTOR = new Vector3fImpl(0, -1, 1);
-
     public ScapeEdit3DPart(ICompositionProvider memberProvider, ILocationProvider locationProvider,
             IGraphProvider graphProvider, IFilter filter) {
         super(memberProvider, locationProvider, graphProvider, filter);
@@ -82,7 +80,7 @@ public class ScapeEdit3DPart extends ScapeEditPart {
         if (location != null) {
             IFigure3D agentFigure = (IFigure3D) editPart.getFigure();
             Vector3f endPoint = new Vector3fImpl((float) GenericEditPart.SCALE * location.getX(),
-                                                 (float) GenericEditPart.SCALE * location.getY(), 0);
+                                                 (float) GenericEditPart.SCALE * location.getY(), 0.0f);
             if (editPart instanceof AgentEdit3DPart) {
                 endPoint = Math3DVector3f.add(endPoint, ((AgentEdit3DPart) editPart).getRelativeLocation3D(), endPoint);
             }
@@ -110,6 +108,25 @@ public class ScapeEdit3DPart extends ScapeEditPart {
                 agentFigure.getPosition3D().setLocation3D(endPoint);
             }
         }
+    }
+
+    /**
+     * 
+     * @see org.eclipse.amp.agf.gef.ScapeEditPart#refresh()
+     */
+    public synchronized void refresh() {
+        super.refresh();
+        // performance improvement..we only need to do this once for Array2D
+        // if (!getMemberProvider().isMutable(getModel()) && !isFirstRefresh()) {
+        // for (Object child : getChildren()) {
+        // ((EditPart) child).refresh();
+        // }
+        // } else {
+        // for (Object child : getChildren()) {
+        // ((EditPart) child).refresh();
+        // calculateConstraints(((GraphicalEditPart) child));
+        // }
+        // }
     }
 
     void calculateDelta(IVector3f startPoint, IVector3f endPoint, Vector3f addPoint, int steps) {

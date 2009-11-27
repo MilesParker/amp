@@ -16,7 +16,8 @@
 
 package org.eclipse.amp.agf3d;
 
-import org.eclipse.draw3d.graphics3d.Graphics3D;
+import org.eclipse.draw3d.IFigure3D;
+import org.eclipse.draw3d.RenderContext;
 
 /**
  * 
@@ -25,5 +26,5 @@ import org.eclipse.draw3d.graphics3d.Graphics3D;
  */
 public interface IRenderer {
 
-    void renderShape(Graphics3D g3d, Object object);
+    void renderShape(IFigure3D figure, RenderContext context, Object object);
 }

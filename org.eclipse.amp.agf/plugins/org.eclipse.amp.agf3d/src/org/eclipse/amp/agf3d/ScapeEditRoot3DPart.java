@@ -16,6 +16,8 @@
 
 package org.eclipse.amp.agf3d;
 
+import java.util.List;
+
 import org.eclipse.amp.agf.gef.AgentEditPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.core.IModel;
@@ -40,6 +42,7 @@ import org.eclipse.draw3d.geometry.IVector3f;
 import org.eclipse.draw3d.geometry.Math3DVector3f;
 import org.eclipse.draw3d.geometry.Vector3f;
 import org.eclipse.draw3d.geometry.Vector3fImpl;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef3d.ui.parts.GraphicalViewer3D;
 import org.eclipse.jface.viewers.IFilter;
 import org.eclipse.swt.widgets.Display;
@@ -50,6 +53,8 @@ import org.eclipse.swt.widgets.Display;
  * 
  */
 public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
+
+    public static Vector3fImpl UP_VECTOR = new Vector3fImpl(1, 0, 0);
 
     private final class RenderUpdateListener extends SWTAsyncModelListener {
 
@@ -150,15 +155,32 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
     }
 
     public void moveCameraHelicopter() {
-        moveCameraScaled(0.5f, 1.5f, .2f, 0.5f, 0.5f, 0.0f);
+        moveCameraScaled(0.5f, 1.5f, -.2f, 0.5f, 0.5f, 0.0f);
     }
 
     public void moveCameraFirstPerson() {
-        moveCameraScaled(0.5f, 1.0f, .01f, 0.5f, 0.0f, 0.0f);
+        moveCameraScaled(0.5f, 1.0f, -.01f, 0.5f, 0.5f, 0.0f);
     }
 
     public void moveCameraOverhead() {
-        moveCameraScaled(0.5f, 0.5f, 2.0f, 0.5f, 0.5f, 0.0f);
+        moveCameraScaled(0.5f, 0.5f, -2.0f, 0.5f, 0.5f, 0.0f);
+    }
+
+    /**
+     * @return
+     * @see org.eclipse.gef.editparts.AbstractEditPart#getModelChildren()
+     */
+    protected List getModelChildren() {
+        return getMemberProvider().getList(getModel());
+    }
+
+    /**
+     * @param child
+     * @param index
+     * @see org.eclipse.gef.editparts.AbstractEditPart#addChild(org.eclipse.gef.EditPart, int)
+     */
+    protected void addChild(EditPart child, int index) {
+            super.addChild(child, index);
     }
 
     private void moveCameraScaled(float locX, float locY, float locZ, float targetX, float targetY, float targetZ) {

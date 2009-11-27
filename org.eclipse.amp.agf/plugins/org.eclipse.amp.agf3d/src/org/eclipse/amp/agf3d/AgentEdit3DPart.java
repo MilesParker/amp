@@ -68,8 +68,6 @@ public class AgentEdit3DPart extends AgentEditPart {
         }
     }
 
-    CuboidFigureShape cube;
-
     boolean update = true;
 
     IShape3DProvider shapeProvider;
@@ -116,10 +114,6 @@ public class AgentEdit3DPart extends AgentEditPart {
 
     public void setUpdate(boolean update) {
         this.update = update;
-    }
-
-    public CuboidFigureShape getCube() {
-        return cube;
     }
 
     /**
