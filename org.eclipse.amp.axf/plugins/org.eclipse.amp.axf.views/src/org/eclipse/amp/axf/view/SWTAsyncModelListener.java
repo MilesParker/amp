@@ -127,7 +127,7 @@ public abstract class SWTAsyncModelListener extends SWTThreadModelListener {
         // Have to check visibility within UI thread
         if (widget == null || !widget.isDisposed() && widget.isVisible()) {
             update(model);
-            SWTAsyncModelListener.super.stateChange(key, model);
+            getListener().stateChange(key, model);
         }
         // If the update method hasn't explicitly indicated beginPainting, we are not waiting for the
         // actual update or it has already occurred.
