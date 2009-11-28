@@ -63,8 +63,6 @@ public class ScapeEditPart extends AbstractGraphicalEditPart implements Property
 
     boolean updating;
 
-    private boolean firstRefresh;
-
     public ScapeEditPart(ICompositionProvider memberProvider, ILocationProvider locationProvider,
             IGraphProvider graphProvider, IFilter filter) {
         super();
@@ -97,20 +95,20 @@ public class ScapeEditPart extends AbstractGraphicalEditPart implements Property
     // @Override
     public synchronized void refresh() {
         if (getFilter() == null || getFilter().select(getModel())) {
-            super.refresh();
+            refreshVisuals();
+            refreshChildren();
             // performance improvement..we only need to do this once for Array2D
-            if (!memberProvider.isMutable(getModel()) && !isFirstRefresh()) {
-                for (Object child : getChildren()) {
-                    ((EditPart) child).refresh();
-                }
-            } else {
+            if (memberProvider.isMutable(getModel())) {
                 for (Object child : getChildren()) {
                     ((EditPart) child).refresh();
                     calculateConstraints(((GraphicalEditPart) child));
                 }
+            } else {
+                for (Object child : getChildren()) {
+                    ((GenericEditPart) child).refreshVisuals();
+                }
             }
         }
-        setFirstRefresh(false);
     }
 
     protected void calculateConstraints(GraphicalEditPart editPart) {
@@ -128,35 +126,39 @@ public class ScapeEditPart extends AbstractGraphicalEditPart implements Property
      * Must not be called while scape is updating.
      */
     protected synchronized void refreshChildren() {
-        if (isFirstRefresh()) {
-            for (Object agent : memberProvider.getIteratable(getModel())) {
-                boolean exists = false;
+        if (getRootScapeEditPart() != this) {
+            if (memberProvider.isMutable(getModel())) {
+                Map<Object, EditPart> modelToEditPart = new HashMap<Object, EditPart>();
+
                 for (Object object : getChildren()) {
-                    if (((EditPart) object).getModel() == agent) {
-                        exists = true;
+                    EditPart editPart = (EditPart) object;
+                    modelToEditPart.put(editPart.getModel(), editPart);
+                }
+                for (Object agent : memberProvider.getIteratable(getModel())) {
+                    EditPart editPart = modelToEditPart.remove(agent);
+                    if (editPart == null) {
+                        editPart = createChild(agent);
+                        addChild(editPart, -1);
                     }
                 }
-                if (!exists) {
-                    EditPart editPart = createChild(agent);
-                    addChild(editPart, -1);
+                for (EditPart part : modelToEditPart.values()) {
+                    removeChild(part);
                 }
             }
-        } else if (memberProvider.isMutable(getModel())) {
-            Map<Object, EditPart> modelToEditPart = new HashMap<Object, EditPart>();
-
-            for (Object object : getChildren()) {
-                EditPart editPart = (EditPart) object;
-                modelToEditPart.put(editPart.getModel(), editPart);
-            }
+        } else {
             for (Object agent : memberProvider.getIteratable(getModel())) {
-                EditPart editPart = modelToEditPart.remove(agent);
-                if (editPart == null) {
-                    editPart = createChild(agent);
+                boolean hasChild = false;
+                for (Object child : getChildren()) {
+                    ScapeEditPart part = (ScapeEditPart) child;
+                    if (agent == part.getModel()) {
+                        hasChild = true;
+                        break;
+                    }
+                }
+                if (!hasChild) {
+                    ScapeEditPart editPart = (ScapeEditPart) createChild(agent);
                     addChild(editPart, -1);
                 }
-            }
-            for (EditPart part : modelToEditPart.values()) {
-                removeChild(part);
             }
         }
     }
@@ -277,12 +279,6 @@ public class ScapeEditPart extends AbstractGraphicalEditPart implements Property
         // }
     }
 
-    @Override
-    public void addNotify() {
-        setFirstRefresh(true);
-        super.addNotify();
-    }
-
     public IFilter getFilter() {
         return filter;
     }
@@ -309,13 +305,5 @@ public class ScapeEditPart extends AbstractGraphicalEditPart implements Property
 
     public IGraphProvider getGraphProvider() {
         return graphProvider;
-    }
-
-    public void setFirstRefresh(boolean firstRefresh) {
-        this.firstRefresh = firstRefresh;
-    }
-
-    public boolean isFirstRefresh() {
-        return firstRefresh;
     }
 }

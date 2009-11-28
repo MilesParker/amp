@@ -54,7 +54,7 @@ public abstract class GenericEditPart extends AbstractGraphicalEditPart implemen
             graphics.setLineWidth(2);
             graphics.setForegroundColor(ColorConstants.yellow);
             graphics.setLineStyle(Graphics.LINE_SOLID);
-            //            graphics.setXORMode(false);
+            // graphics.setXORMode(false);
             graphics.drawRectangle(r);
             graphics.setLineStyle(Graphics.LINE_DASH);
             graphics.setForegroundColor(ColorConstants.black);
@@ -96,8 +96,7 @@ public abstract class GenericEditPart extends AbstractGraphicalEditPart implemen
      * a figure is passed in, this method should modify that figure as desired. If no figure is passed in, this method
      * should create that figure and then update it.
      * 
-     * @param figure
-     *        a figure to be built or null if the method is to create a figure
+     * @param figure a figure to be built or null if the method is to create a figure
      * @return must return figure passed in if not null
      */
     protected IFigure buildFigure(IFigure figure) {
@@ -109,14 +108,14 @@ public abstract class GenericEditPart extends AbstractGraphicalEditPart implemen
         if (buildFigure == null) {
             if (!noFigureWarning.contains(getClass())) {
                 StatusManager
-                .getManager()
-                .handle(
-                        new Status(
-                                   IStatus.WARNING,
-                                   "org.eclipse.amp.escape.core",
-                                   "No figure created by: "
-                                   + getClass()
-                                   + ". This is normal if the style does not always produce a figure, but you may want to check the #buildFigure implementation."));
+                        .getManager()
+                        .handle(
+                                new Status(
+                                    IStatus.WARNING,
+                                    "org.eclipse.amp.escape.core",
+                                    "No figure created by: "
+                                        + getClass()
+                                        + ". This is normal if the style does not always produce a figure, but you may want to check the #buildFigure implementation."));
                 noFigureWarning.add(getClass());
             }
             buildFigure = shapeRectangle();
@@ -126,7 +125,10 @@ public abstract class GenericEditPart extends AbstractGraphicalEditPart implemen
 
     protected void updateSelection() {
         if (getSelected() == SELECTED_NONE) {
-            getFigure().setBorder(null);
+            if (getFigure().getBorder() != null) {
+                getFigure().setBorder(null);
+                getFigure().repaint();
+            }
         } else {
             if (getFigure() instanceof Ellipse) {
                 getFigure().setBorder(HIGHLIGHT_ELLIPSE);
@@ -135,8 +137,16 @@ public abstract class GenericEditPart extends AbstractGraphicalEditPart implemen
             } else {
                 getFigure().setBorder(HIGHLIGHT_RECTANGLE);
             }
+            getFigure().repaint();
         }
-        getFigure().repaint();
+    }
+
+    /**
+     * 
+     * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#refresh()
+     */
+    public void refresh() {
+        refreshVisuals();
     }
 
     protected void refreshVisuals() {

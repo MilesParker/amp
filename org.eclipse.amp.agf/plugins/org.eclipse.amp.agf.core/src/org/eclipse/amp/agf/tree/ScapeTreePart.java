@@ -7,12 +7,12 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
+ * Contributors:
  *   Metascape - Initial API and Implementation
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.agf.tree;
 
 import java.util.List;
@@ -91,7 +91,7 @@ public class ScapeTreePart extends AbstractTreeEditPart {
     public void refresh() {
         super.refresh();
         // performance improvement..we only need to do this once for Array2D
-        if (memberProvider.isMutable(getModel()) || firstRefresh) {
+        if (memberProvider.isMutable(getModel())) {
             for (Object child : getChildren()) {
                 ((EditPart) child).refresh();
             }
