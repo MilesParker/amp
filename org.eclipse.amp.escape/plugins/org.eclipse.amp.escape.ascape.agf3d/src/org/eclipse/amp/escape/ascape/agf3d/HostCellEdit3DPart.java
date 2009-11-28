@@ -16,7 +16,6 @@
 
 package org.eclipse.amp.escape.ascape.agf3d;
 
-import org.ascape.util.vis.ColorFeature;
 import org.eclipse.amp.agf3d.Shapes3D;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.jface.viewers.IColorProvider;
@@ -53,7 +52,8 @@ public class HostCellEdit3DPart extends AscapeAgentEdit3DPart {
         figure = super.buildFigure(figure);
         if ((figure.getForegroundColor() == null || figure.getForegroundColor() == figure.getBackgroundColor())
                 && figure.getBackgroundColor() != null) {
-            figure.setForegroundColor(ColorFeature.WHITE);
+            // add tile edges..
+            // figure.setForegroundColor(ColorFeature.WHITE);
         }
         return figure;
     }

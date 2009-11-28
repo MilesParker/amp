@@ -34,7 +34,7 @@ public class CellOccupantEdit3DPart extends AscapeAgentEdit3DPart {
      * 
      */
     public CellOccupantEdit3DPart(IColorProvider colorProvider) {
-        super(Shapes3D.CYLINDER_SHAPE_PROVIDER, colorProvider, true);
+        super(Shapes3D.DISC_SHAPE_PROVIDER, colorProvider, true);
     }
 
     /**
