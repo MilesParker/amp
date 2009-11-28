@@ -258,7 +258,7 @@ IColorProvider {
      */
     public boolean isMutable(Object parent) {
         Scape scape = (Scape) getUnwrapped(parent);
-        return scape.isMutable() && !scape.isRoot();
+        return scape.isMutable() || scape.getPeriod() < 1 && !scape.isRoot();
     }
 
     public Object getParent(Object member) {
