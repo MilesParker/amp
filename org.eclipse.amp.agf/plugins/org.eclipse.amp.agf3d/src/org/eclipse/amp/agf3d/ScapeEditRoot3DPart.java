@@ -25,18 +25,16 @@ import org.eclipse.amp.axf.space.IGraphProvider;
 import org.eclipse.amp.axf.space.ILocation;
 import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.amp.axf.view.SWTAsyncModelListener;
-import org.eclipse.draw2d.FreeformLayout;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.draw3d.Figure3D;
 import org.eclipse.draw3d.FigureSurface;
-import org.eclipse.draw3d.IFigure3D;
 import org.eclipse.draw3d.ISceneListener;
 import org.eclipse.draw3d.ISurface;
 import org.eclipse.draw3d.LightweightSystem3D;
 import org.eclipse.draw3d.RenderContext;
-import org.eclipse.draw3d.SurfaceLayout;
 import org.eclipse.draw3d.camera.ICamera;
 import org.eclipse.draw3d.geometry.IVector3f;
 import org.eclipse.draw3d.geometry.Math3DVector3f;
@@ -115,7 +113,8 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
             }
 
         };
-        SurfaceLayout.setDelegate((IFigure3D) figure, new FreeformLayout());
+        // SurfaceLayout.setDelegate((IFigure3D) figure, new FreeformLayout());
+        figure.setLayoutManager(new XYLayout());
         Rectangle bounds = new Rectangle(new Point(0, 0), calculateDimension());
         figure.setBounds(bounds);
         return figure;
@@ -180,7 +179,7 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
      * @see org.eclipse.gef.editparts.AbstractEditPart#addChild(org.eclipse.gef.EditPart, int)
      */
     protected void addChild(EditPart child, int index) {
-            super.addChild(child, index);
+        super.addChild(child, index);
     }
 
     private void moveCameraScaled(float locX, float locY, float locZ, float targetX, float targetY, float targetZ) {

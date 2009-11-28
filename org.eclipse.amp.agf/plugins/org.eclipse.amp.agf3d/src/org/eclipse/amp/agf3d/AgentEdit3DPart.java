@@ -24,9 +24,10 @@ import org.eclipse.draw3d.IFigure3D;
 import org.eclipse.draw3d.ISurface;
 import org.eclipse.draw3d.ShapeFigure3D;
 import org.eclipse.draw3d.geometry.IVector3f;
-import org.eclipse.draw3d.shapes.CuboidFigureShape;
+import org.eclipse.draw3d.geometry.Vector3fImpl;
 import org.eclipse.draw3d.shapes.Shape;
 import org.eclipse.jface.viewers.IColorProvider;
+import org.eclipse.swt.graphics.Color;
 
 
 public class AgentEdit3DPart extends AgentEditPart {
@@ -92,12 +93,21 @@ public class AgentEdit3DPart extends AgentEditPart {
 
     @Override
     protected IFigure buildFigure(IFigure figure) {
+        // todo we are ignoring case where shape could change..
         if (figure == null) {
             figure = new FigureImplementation();
-            ((Figure3D) figure).getPosition3D().setSize3D(shapeProvider.getSize3D(getModel()));
-            if (colorProvider != null) {
-                figure.setForegroundColor(colorProvider.getForeground(getModel()));
-                figure.setBackgroundColor(colorProvider.getBackground(getModel()));
+            IVector3f size3d = shapeProvider.getSize3D(getModel());
+            size3d = new Vector3fImpl(size3d.getX(), size3d.getY(), -size3d.getZ());
+            ((Figure3D) figure).getPosition3D().setSize3D(size3d);
+        }
+        if (colorProvider != null) {
+            Color foreground = colorProvider.getForeground(getModel());
+            if (figure.getForegroundColor() != foreground) {
+                figure.setForegroundColor(foreground);
+            }
+            Color background = colorProvider.getBackground(getModel());
+            if (figure.getBackgroundColor() != background) {
+                figure.setBackgroundColor(background);
             }
         }
         return figure;

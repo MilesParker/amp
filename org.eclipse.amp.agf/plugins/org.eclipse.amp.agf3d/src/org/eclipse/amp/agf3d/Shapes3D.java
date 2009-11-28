@@ -37,25 +37,30 @@ import org.eclipse.draw3d.shapes.SphereFigureShape;
  */
 public class Shapes3D {
 
-    private static final Vector3fImpl FULL_SIZE = new Vector3fImpl(GenericEditPart.SCALE, GenericEditPart.SCALE, GenericEditPart.SCALE);
+    private static final Vector3fImpl FULL_SIZE = new Vector3fImpl(GenericEditPart.SCALE, GenericEditPart.SCALE,
+                                                                   GenericEditPart.SCALE);
 
     private static final Vector3fImpl ORIGIN = new Vector3fImpl(0.0f, 0.0f, 0.0f);
 
     private static final Vector3fImpl FLAT_SIZE = new Vector3fImpl(GenericEditPart.SCALE, GenericEditPart.SCALE, 0.0f);
 
-    private static final Vector3fImpl NINETYPCT_SIZE = new Vector3fImpl(GenericEditPart.SCALE * .9f, GenericEditPart.SCALE * .9f,
-                                                                        GenericEditPart.SCALE * .9f);
+    private static final Vector3fImpl NINETYPCT_SIZE = new Vector3fImpl(GenericEditPart.SCALE * .9f,
+                                                                        GenericEditPart.SCALE * .9f, GenericEditPart.SCALE * .9f);
 
-    private static final Vector3fImpl IN_TWENTIETH = new Vector3fImpl(GenericEditPart.SCALE * .05f, GenericEditPart.SCALE * .05f, 0);
+    private static final Vector3fImpl IN_TWENTIETH = new Vector3fImpl(GenericEditPart.SCALE * .05f,
+                                                                      GenericEditPart.SCALE * .05f, 0);
 
-    private static final Vector3fImpl DISC_SIZE = new Vector3fImpl(GenericEditPart.SCALE * .9f, GenericEditPart.SCALE * .9f,
-                                                                   GenericEditPart.SCALE * .20f);
+    private static final Vector3fImpl DISC_SIZE = new Vector3fImpl(GenericEditPart.SCALE * .9f,
+                                                                   GenericEditPart.SCALE * .9f, GenericEditPart.SCALE * .20f);
+
+    private static final Vector3fImpl CYLINDER_SIZE = new Vector3fImpl(GenericEditPart.SCALE * .9f,
+                                                                       GenericEditPart.SCALE * .9f, GenericEditPart.SCALE * .80f);
 
     private static final Vector3fImpl QUARTER_IN = new Vector3fImpl(GenericEditPart.SCALE * .125f,
                                                                     GenericEditPart.SCALE * .125f, 0);
 
-    private static final Vector3fImpl THREE_QUARTER_SIZE = new Vector3fImpl(GenericEditPart.SCALE * .75f, GenericEditPart.SCALE * .75f,
-                                                                            GenericEditPart.SCALE * .75f);
+    private static final Vector3fImpl THREE_QUARTER_SIZE = new Vector3fImpl(GenericEditPart.SCALE * .75f,
+                                                                            GenericEditPart.SCALE * .75f, GenericEditPart.SCALE * .75f);
 
     public enum ShapeType {
         CUBE, TILE, SPHERE, CYLINDER
@@ -78,6 +83,22 @@ public class Shapes3D {
     public static IShape3DProvider CYLINDER_SHAPE_PROVIDER = new IShape3DProvider() {
         public Shape getShape3D(Object object, IFigure3D figure) {
             return new CylindricFigureShape(figure, 30, 1.0f, false);
+        }
+
+        public IVector3f getSize3D(Object object) {
+            return CYLINDER_SIZE;
+        }
+
+        public IVector3f getRelativeLocation3D(Object object) {
+            // "checker"
+            return IN_TWENTIETH;
+        }
+    };
+    public static IShape3DProvider DISC_SHAPE_PROVIDER = new IShape3DProvider() {
+        public Shape getShape3D(Object object, IFigure3D figure) {
+            CylindricFigureShape cylindricFigureShape = new CylindricFigureShape(figure, 30, 1.0f, false);
+            cylindricFigureShape.setFill(true);
+            return cylindricFigureShape;
         }
 
         public IVector3f getSize3D(Object object) {
@@ -131,20 +152,20 @@ public class Shapes3D {
 
             // legs
             shape.addShape(createCylinder(legHeight, new Vector3fImpl(legWidth, legWidth, legHeight), new Vector3fImpl(
-                                                                                                                       0.5f - 1.5f * legWidth, 0.5f - .5f * legWidth, -legHeight)));
+                                                                                                                       0.5f - 1.5f * legWidth, 0.5f - .5f * legWidth, 0)));
 
             // legs
             shape.addShape(createCylinder(legHeight, new Vector3fImpl(legWidth, legWidth, legHeight), new Vector3fImpl(
-                                                                                                                       0.5f + .5f * legWidth, 0.5f - .5f * legWidth, -legHeight)));
+                                                                                                                       0.5f + .5f * legWidth, 0.5f - .5f * legWidth, 0)));
             // body
             shape.addShape(createCube(bodyHeight + legHeight, new Vector3fImpl(bodyWidth, bodyDepth, bodyHeight),
                                       new Vector3fImpl((1.0f - bodyWidth) / 2.0f, (1.0f - bodyDepth) / 2.0f,
-                                                       -(bodyHeight + legHeight))));
+                                                       legHeight)));
 
             // head
             shape.addShape(createCylinder(headHeight, new Vector3fImpl(headWidth, headWidth, headHeight),
-                                          new Vector3fImpl(0.5f - .5f * headWidth, 0.5f - .5f * headWidth, -(bodyHeight
-                                                  + legHeight + headHeight))));
+                                          new Vector3fImpl(0.5f - .5f * headWidth, 0.5f - .5f * headWidth,
+                                                           (legHeight + bodyHeight))));
             return shape;
         }
 
@@ -159,7 +180,7 @@ public class Shapes3D {
 
     protected static PositionableShape createCylinder(float headHeight, IVector3f size, IVector3f location) {
         Position3D p3 = Position3DUtil.createAbsolutePosition();
-        p3.setCenter3D(new Vector3fImpl(location.getX() - 1.0f, location.getY() - 1.0f, location.getZ()));
+        p3.setCenter3D(new Vector3fImpl(location.getX(), location.getY(), location.getZ()));
         p3.setSize3D(size);
         CylinderShape shape = new CylinderShape(p3, 30, 1.0f);
         shape.setFill(true);
@@ -169,7 +190,7 @@ public class Shapes3D {
 
     protected static PositionableShape createCube(float headHeight, IVector3f size, IVector3f location) {
         Position3D p3 = Position3DUtil.createAbsolutePosition();
-        p3.setCenter3D(new Vector3fImpl(location.getX() - 1.0f, location.getY() - 1.0f, location.getZ()));
+        p3.setCenter3D(new Vector3fImpl(location.getX(), location.getY(), location.getZ()));
         p3.setSize3D(size);
         CuboidShape shape = new CuboidShape(p3, true);
         shape.setFill(true);
