@@ -50,6 +50,10 @@ public abstract class SWTAsyncModelListener extends SWTThreadModelListener {
                 t = e;
             } finally {
                 updating = false;
+                if (t != null) {
+                    painting = false;
+                    throw new RuntimeException("Problem in view updating for " + getName(), t);
+                }
             }
         }
     }
