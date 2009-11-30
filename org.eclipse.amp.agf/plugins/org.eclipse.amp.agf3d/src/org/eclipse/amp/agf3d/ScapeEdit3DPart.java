@@ -181,8 +181,8 @@ public class ScapeEdit3DPart extends ScapeEditPart {
                         float f = (float) root.getAnimationStep() / (float) root.getAnimationStepCount();
                         int scaledColor = (int) (f * 256f) - 1;
                         ((IFigure3D) figure).setForegroundColor(new Color(getViewer().getControl().getDisplay(),
-                                                                          scaledColor, scaledColor, 255));
-                        figure.invalidate();
+                            scaledColor, scaledColor, 255));
+                        figure.repaint();
                     }
 
                     // figure.repaint();
