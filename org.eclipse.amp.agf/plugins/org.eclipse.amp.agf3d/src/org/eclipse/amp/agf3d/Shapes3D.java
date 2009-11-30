@@ -68,7 +68,7 @@ public class Shapes3D {
 
     public static IShape3DProvider CUBE_SHAPE_PROVIDER = new IShape3DProvider() {
         public Shape getShape3D(Object object, IFigure3D figure) {
-            return new CuboidFigureShape(figure, false);
+            return new CuboidFigureShape(figure, true);
         }
 
         public IVector3f getSize3D(Object object) {
@@ -82,7 +82,7 @@ public class Shapes3D {
 
     public static IShape3DProvider CYLINDER_SHAPE_PROVIDER = new IShape3DProvider() {
         public Shape getShape3D(Object object, IFigure3D figure) {
-            return new CylindricFigureShape(figure, 30, 1.0f, false);
+            return new CylindricFigureShape(figure, 30, 1.0f, true);
         }
 
         public IVector3f getSize3D(Object object) {
@@ -96,7 +96,7 @@ public class Shapes3D {
     };
     public static IShape3DProvider DISC_SHAPE_PROVIDER = new IShape3DProvider() {
         public Shape getShape3D(Object object, IFigure3D figure) {
-            CylindricFigureShape cylindricFigureShape = new CylindricFigureShape(figure, 30, 1.0f, false);
+            CylindricFigureShape cylindricFigureShape = new CylindricFigureShape(figure, 30, 1.0f, true);
             cylindricFigureShape.setFill(true);
             return cylindricFigureShape;
         }
@@ -182,7 +182,7 @@ public class Shapes3D {
         Position3D p3 = Position3DUtil.createAbsolutePosition();
         p3.setCenter3D(new Vector3fImpl(location.getX(), location.getY(), location.getZ()));
         p3.setSize3D(size);
-        CylinderShape shape = new CylinderShape(p3, 30, 1.0f);
+        CylinderShape shape = new CylinderShape(p3, 30, 1.0f, true);
         shape.setFill(true);
         shape.setOutline(true);
         return shape;

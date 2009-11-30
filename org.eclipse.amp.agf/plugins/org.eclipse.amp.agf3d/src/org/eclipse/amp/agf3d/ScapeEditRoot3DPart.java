@@ -52,7 +52,7 @@ import org.eclipse.swt.widgets.Display;
  */
 public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
 
-    public static Vector3fImpl UP_VECTOR = new Vector3fImpl(1, 0, 0);
+    public static Vector3fImpl UP_VECTOR = new Vector3fImpl(0, 0, -1);
 
     private final class RenderUpdateListener extends SWTAsyncModelListener {
 
@@ -78,15 +78,16 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
                 firstTime = false;
             }
             for (animationStep = 0; animationStep < animationStepCount; animationStep++) {
+                // getFigure().validate();
                 refresh();
-                // ((GraphicalViewer3D) getRoot().getViewer()).getLightweightSystem3D().render(true);
+                ((GraphicalViewer3D) getRoot().getViewer()).getLightweightSystem3D().render(true);
             }
         }
     }
 
     int animationStep;
 
-    int animationStepCount = 1;
+    int animationStepCount = 5;
 
     boolean animateCamera = true;
 

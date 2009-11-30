@@ -15,8 +15,10 @@
  */
 package org.eclipse.amp.agf3d;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.amp.agf.gef.GenericEditPart;
@@ -37,8 +39,10 @@ import org.eclipse.draw3d.geometry.IVector3f;
 import org.eclipse.draw3d.geometry.Math3DVector3f;
 import org.eclipse.draw3d.geometry.Vector3f;
 import org.eclipse.draw3d.geometry.Vector3fImpl;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.jface.viewers.IFilter;
+import org.eclipse.swt.graphics.Color;
 
 public class ScapeEdit3DPart extends ScapeEditPart {
 
@@ -50,6 +54,7 @@ public class ScapeEdit3DPart extends ScapeEditPart {
     Map<Object, IVector3f> startPoints = new HashMap<Object, IVector3f>();
     Map<Object, Vector3f> addPoints = new HashMap<Object, Vector3f>();
     Map<Object, Vector3f> lastPoints = new HashMap<Object, Vector3f>();
+    private List<EditPart> newParts = new ArrayList<EditPart>();
 
     class Scape3DLayoutManager extends XYLayout {
 
@@ -112,6 +117,11 @@ public class ScapeEdit3DPart extends ScapeEditPart {
         return figure;
     }
 
+    protected void addChild(EditPart child, int index) {
+        super.addChild(child, index);
+        newParts.add(child);
+    }
+
     /**
      * @param editPart
      * @see org.eclipse.amp.agf.gef.ScapeEditPart#calculateConstraints(org.eclipse.gef.GraphicalEditPart)
@@ -127,41 +137,60 @@ public class ScapeEdit3DPart extends ScapeEditPart {
                                         * location.getY(), 0);
             endPoint = Math3DVector3f.add(endPoint, ((AgentEdit3DPart) editPart).getRelativeLocation3D(), endPoint);
             ScapeEditRoot3DPart root = (ScapeEditRoot3DPart) getRootScapeEditPart();
-            if (root.getAnimationStepCount() > 1 && getRootScapeEditPart().getModel() != null
-                    && ((IModel) getRootScapeEditPart().getModel()).getPeriod() > 0) {
-                IVector3f startPoint;
-                Vector3f addPoint;
-                Vector3f lastPoint;
-                if (root.getAnimationStep() == 0) {
-                    startPoint = agentFigure.getPosition3D().getLocation3D();
-                    startPoints.put(agent, startPoint);
-                    addPoint = new Vector3fImpl();
-                    calculateDelta(startPoint, endPoint, addPoint, root.getAnimationStepCount());
-                    addPoints.put(agent, addPoint);
-                    lastPoint = new Vector3fImpl(startPoint.getX(), startPoint.getY(), startPoint.getZ());
-                    lastPoints.put(agent, lastPoint);
+            Vector3f priorPeriodLocation = lastPoints.get(agent);
+            Vector3f distance = new Vector3fImpl();
+            if (root.getAnimationStepCount() > 1) {
+                if (priorPeriodLocation != null) {
+                    distance = Math3DVector3f.sub(endPoint, priorPeriodLocation, distance);
+                    distance = Math3DVector3f.abs(distance, distance);
+                    if (root.getAnimationStepCount() > 1 && getRootScapeEditPart().getModel() != null
+                            && ((IModel) getRootScapeEditPart().getModel()).getPeriod() > 0 && priorPeriodLocation != null
+                            && distance.getX() + distance.getY() < GenericEditPart.SCALE * 5) {
+                        IVector3f startPoint;
+                        Vector3f addPoint;
+                        if (root.getAnimationStep() == 0) {
+                            startPoint = agentFigure.getPosition3D().getLocation3D();
+                            startPoints.put(agent, startPoint);
+                            addPoint = new Vector3fImpl();
+                            calculateDelta(startPoint, endPoint, addPoint, root.getAnimationStepCount());
+                            addPoints.put(agent, addPoint);
+                            lastPoints.put(agent, new Vector3fImpl(startPoint.getX(), startPoint.getY(), startPoint
+                                                                   .getZ()));
+                        } else {
+                            startPoint = startPoints.get(agent);
+                            addPoint = addPoints.get(agent);
+                        }
+                        Vector3f intermediatePoint = new Vector3fImpl();
+                        IVector3f currentPoint = lastPoints.get(agent);
+                        Math3DVector3f.add(currentPoint, addPoint, intermediatePoint);
+                        setLayoutConstraint(editPart, editPart.getFigure(), intermediatePoint);
+                        lastPoints.put(agent, intermediatePoint);
+                    } else {
+                        setLayoutConstraint(editPart, editPart.getFigure(), endPoint);
+                    }
                 } else {
-                    startPoint = startPoints.get(agent);
-                    addPoint = addPoints.get(agent);
+                    if (root.getAnimationStep() == 0) {
+                        setLayoutConstraint(editPart, editPart.getFigure(), endPoint);
+                        // ((IFigure3D) figure).setAlpha(0);
+                        // } else if (root.getAnimationStep() < root.getAnimationStepCount() - 1) {
+                        // } else {
+                        // ((IFigure3D) figure).setAlpha(255);
+                    } else if (root.getAnimationStep() >= root.getAnimationStepCount() - 1) {
+                        lastPoints.put(agent, endPoint);
+                    } else {
+                        float f = (float) root.getAnimationStep() / (float) root.getAnimationStepCount();
+                        int scaledColor = (int) (f * 256f) - 1;
+                        ((IFigure3D) figure).setForegroundColor(new Color(getViewer().getControl().getDisplay(),
+                                                                          scaledColor, scaledColor, 255));
+                        figure.invalidate();
+                    }
+
+                    // figure.repaint();
                 }
-                Vector3f intermediatePoint = new Vector3fImpl();
-                IVector3f currentPoint = lastPoints.get(agent);
-                Math3DVector3f.add(currentPoint, addPoint, intermediatePoint);
-                lastPoints.put(agent, new Vector3fImpl(intermediatePoint.getX(), intermediatePoint.getY(),
-                    intermediatePoint.getZ()));
-                setLayoutConstraint(editPart, editPart.getFigure(), intermediatePoint);
             } else {
                 setLayoutConstraint(editPart, editPart.getFigure(), endPoint);
             }
         }
-    }
-
-    /**
-     * 
-     * @see org.eclipse.amp.agf.gef.ScapeEditPart#refresh()
-     */
-    public synchronized void refresh() {
-        super.refresh();
     }
 
     void calculateDelta(IVector3f startPoint, IVector3f endPoint, Vector3f addPoint, int steps) {
