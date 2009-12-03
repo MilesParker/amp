@@ -46,7 +46,7 @@ public class ZestInput extends ModelInput {
      */
     public ZestInput(IModel model, Object domainObject, IContentProvider content, IBaseLabelProvider label,
             ViewerFilter[] filters) {
-        super(model);
+        super(model, null);
         this.domainObject = domainObject;
         this.content = content;
         this.label = label;
