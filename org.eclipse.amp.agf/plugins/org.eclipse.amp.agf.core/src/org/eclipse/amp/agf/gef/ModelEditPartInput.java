@@ -7,25 +7,26 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
+ * Contributors:
  *   Metascape - Initial API and Implementation
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.agf.gef;
 
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.view.ModelInput;
 import org.eclipse.gef.EditPartFactory;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 public class ModelEditPartInput extends ModelInput {
 
     private EditPartFactory factory;
 
-    public ModelEditPartInput(IModel model, EditPartFactory factory) {
-        super(model);
+    public ModelEditPartInput(IModel model, EditPartFactory factory, ISelection initialSelection) {
+        super(model, initialSelection);
         this.factory = factory;
         if (model == null) {
             throw new RuntimeException("Attempted to instantiate model input with no model specified.");

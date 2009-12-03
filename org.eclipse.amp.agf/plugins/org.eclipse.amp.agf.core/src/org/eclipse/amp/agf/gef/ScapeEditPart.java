@@ -27,8 +27,6 @@ import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.space.IGraphProvider;
 import org.eclipse.amp.axf.space.ILocation;
 import org.eclipse.amp.axf.space.ILocationProvider;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.FreeformLayer;
@@ -43,11 +41,9 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.Request;
-import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jface.viewers.IFilter;
-import org.eclipse.ui.statushandlers.StatusManager;
 
-public class ScapeEditPart extends AbstractGraphicalEditPart implements PropertyChangeListener, NodeEditPart {
+public class ScapeEditPart extends GenericEditPart implements PropertyChangeListener, NodeEditPart {
 
     ICompositionProvider memberProvider;
 
@@ -75,10 +71,11 @@ public class ScapeEditPart extends AbstractGraphicalEditPart implements Property
     @Override
     protected IFigure createFigure() {
         Figure f = null;
-        if (memberProvider.getParent(getModel()) == null) {
+        Dimension calculateDimension = calculateDimension();
+        if (calculateDimension != null) {
             ScalableFreeformLayeredPane scalableFreeformLayeredPane = new ScalableFreeformLayeredPane();
             f = scalableFreeformLayeredPane;
-            f.setBounds(new Rectangle(new Point(0, 0), calculateDimension()));
+            f.setBounds(new Rectangle(new Point(0, 0), calculateDimension));
         } else {
             f = new FreeformLayer();
             f.setBounds(getRootScapeEditPart().getFigure().getBounds());
@@ -179,7 +176,7 @@ public class ScapeEditPart extends AbstractGraphicalEditPart implements Property
     }
 
     public ScapeEditPart getRootScapeEditPart() {
-        if (memberProvider.getParent(getModel()) == null) {
+        if (memberProvider.getParent(getModel()) == null || !(getParent() instanceof ScapeEditPart)) {
             return this;
         }
         return ((ScapeEditPart) getParent()).getRootScapeEditPart();
@@ -256,10 +253,7 @@ public class ScapeEditPart extends AbstractGraphicalEditPart implements Property
         if (extent != null) {
             return new Dimension(extent.getX() * GenericEditPart.SCALE, extent.getY() * GenericEditPart.SCALE);
         }
-        StatusManager.getManager().handle(
-                                          new Status(IStatus.INFO, "org.eclipse.amp.escape",
-                                          "Opened a 2D View for a model with no 2D scapes."));
-        return new Dimension(0, 0);
+        return null;
     }
 
     /*

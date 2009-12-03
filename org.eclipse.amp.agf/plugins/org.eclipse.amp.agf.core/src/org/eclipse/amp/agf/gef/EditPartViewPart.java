@@ -34,6 +34,7 @@ import org.eclipse.gef.ui.parts.ScrollingGraphicalViewer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.events.PaintEvent;
@@ -89,7 +90,7 @@ public abstract class EditPartViewPart extends ModelViewPart {
 
     public void setInput(IEditorInput input) {
         super.setInput(input);
-        final ModelEditPartInput mInput = (ModelEditPartInput) input;
+        final ModelEditPartInput modelInput = (ModelEditPartInput) input;
         // setPartName(getName());
         if (input != null) {
             rootEditPart = createRoot();
@@ -97,12 +98,18 @@ public abstract class EditPartViewPart extends ModelViewPart {
                 viewer.setRootEditPart(rootEditPart);
                 createZoomer(rootEditPart);
             }
-            if (mInput.getFactory() == null) {
+            if (modelInput.getFactory() == null) {
                 viewer.setEditPartFactory(createFactory());
             } else {
-                viewer.setEditPartFactory(mInput.getFactory());
+                viewer.setEditPartFactory(modelInput.getFactory());
             }
-            viewer.setContents(getModel());
+            Object contents = null;
+            if (modelInput.getSelection() instanceof IStructuredSelection) {
+                contents = ((StructuredSelection) modelInput.getSelection()).getFirstElement();
+            } else {
+                contents = getModel();
+            }
+            viewer.setContents(contents);
         } else {
             // viewer.setContents(null);
         }
