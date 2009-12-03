@@ -83,36 +83,45 @@
 «ENDAROUND»
 
 «AROUND metaabm::ascape::tmpl::ScapeAspect::ViewBuilder FOR AGroup-»
+	«IF reference.parent == null»
 	org.ascape.view.vis.ChartView chart = new org.ascape.view.vis.ChartView();
-    «FOREACH ((SContext) reference).agents AS agent»
-    «IF !agent.styles.isEmpty-»
-    org.ascape.model.Scape «agent.id()»Scape = new «agent.owner.typeName()»();
-    «agent.id()»Scape.setRunner(new org.ascape.runtime.NonGraphicRunner());
-	«agent.typeName()» «agent.id()» = new «agent.typeName()»() {
+	«EXPAND BuildChartSelection FOREACH ((SContext) reference).agents-»
+    addView(chart);
+    «ENDIF»
+    «IF !((SContext) reference).projections.isEmpty && reference.parent != null»
+    addView(new org.ascape.view.vis.GEFView());
+    «ENDIF»
+    «targetDef.proceed()-»
+«ENDAROUND»
+
+«DEFINE BuildChartSelection FOR SAgent»
+    «IF !styles.isEmpty-»
+    final «owner.typeName()» «id()»Scape = new «owner.typeName()»();
+    «id()»Scape.setRunner(new org.ascape.runtime.NonGraphicRunner());
+	«typeName()» «id()» = new «typeName()»() {
+                public void requestUpdate() {
+                }
+                public «owner.typeName()» get«owner.typeName()»() {
+                	return «id()»Scape;
+                }
+            };
+    «id()»Scape.add(«id()»);
+	«IF !isHost()-»
+	org.ascape.model.HostCell «id()»Host = new org.ascape.model.HostCell() {
                 public void requestUpdate() {
                 }
             };
-    «agent.id()»Scape.add(«agent.id()»);
-	«IF !agent.isHost()-»
-	org.ascape.model.HostCell «agent.id()»Host = new org.ascape.model.HostCell() {
-                public void requestUpdate() {
-                }
-            };
-	«agent.id()»Host.setOccupant((org.ascape.model.CellOccupant) «agent.id()»);
+	«id()»Host.setOccupant((org.ascape.model.CellOccupant) «id()»);
 	«ENDIF-»
-    «FOREACH agent.styles AS style»
-    org.eclipse.jface.viewers.IColorProvider «style.id()»ColorProvider = new «agent.styles.get(0).typeName()»ColorProvider();
+    «FOREACH styles AS style»
+    org.eclipse.jface.viewers.IColorProvider «style.id()»ColorProvider = new «styles.get(0).typeName()»ColorProvider();
 	«FOREACH style.setterSpace() AS setter»
     «((List) setter).last()»;
-	chart.addSeries("Count «agent.typeName()» «((List) setter).first()»", getInferredChartColor(«agent.id()», «style.id()»ColorProvider));
+	chart.addSeries("Count «typeName()» «((List) setter).first()»", getInferredChartColor(«id()», «style.id()»ColorProvider));
     «ENDFOREACH-»
     «ENDFOREACH-»
     «ENDIF-»
-    «ENDFOREACH-»
-    addView(chart);
-    addView(new org.ascape.view.vis.GEFView());
-    «targetDef.proceed()-»
-«ENDAROUND»
+«ENDDEFINE»
 
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AEvaluate-»
     «IF function.id().startsWith("shapeMarker")»
@@ -163,6 +172,21 @@
 	«ENDIF-»
 «ENDAROUND»
 
+«DEFINE StyleProvider FOR SAgent»
+    «IF styles.size > 0»
+	        if (model instanceof «implementation.className») {
+	            return new «styles.get(0).implementation.qualifiedName»();
+	        }
+    «ENDIF-»
+«ENDDEFINE»
+«DEFINE RecurseAgentProviders FOR SAgent»
+	«EXPAND StyleProvider»
+«ENDDEFINE»
+«DEFINE RecurseAgentProviders FOR SContext»
+	«EXPAND StyleProvider»
+	«EXPAND RecurseAgentProviders FOREACH agents»
+«ENDDEFINE»
+
 «AROUND metaabm::tmpl::Java::Model FOR SContext-»
     «targetDef.proceed()»
     «IF generate()-»
@@ -171,13 +195,7 @@
     public class «typeName()»PartFactory extends org.eclipse.amp.escape.ascape.adapt.AscapePartFactory {
     
         protected org.eclipse.gef.EditPart getPartForElement(Object model) {
-            «FOREACH agents AS agent» 
-            «IF agent.styles.size > 0»
-	            if (model instanceof «agent.implementation.className») {
-	                return new «agent.styles.get(0).implementation.qualifiedName»();
-	            }
-            «ENDIF-»
-            «ENDFOREACH»
+        	«EXPAND RecurseAgentProviders»
             return super.getPartForElement(model);
         }
     }
@@ -208,47 +226,40 @@
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ConditionBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
-	«EXPAND metaabm::ascape::tmpl::ScapeAspect::Conditional(path, inner)»
+	«EXPAND metaabm::ascape::tmpl::ScapeAspect::Conditional(path, inner)-»
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::BeginQueryBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AAct»
-	«EXPAND metaabm::ascape::tmpl::ScapeAspect::BeginQuery(path, inner)»
+	«EXPAND metaabm::ascape::tmpl::ScapeAspect::BeginQuery(path, inner)-»
 «ENDAROUND»
 «AROUND metaabm::tmpl::Java::EndQueryBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AAct»
-	«EXPAND metaabm::ascape::tmpl::ScapeAspect::EndQuery(path, inner)»
+	«EXPAND metaabm::ascape::tmpl::ScapeAspect::EndQuery(path, inner)-»
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::BeginSerialBlock(List[AAct] path, Boolean inner) FOR AControl-»
-	«EXPAND metaabm::ascape::tmpl::ScapeAspect::BeginSerial(path, inner)»
+	«EXPAND metaabm::ascape::tmpl::ScapeAspect::BeginSerial(path, inner)-»
     «targetDef.proceed()»
 «ENDAROUND»
 «AROUND metaabm::tmpl::Java::EndSerialBlock(List[AAct] path, Boolean inner) FOR AControl-»
-	«EXPAND metaabm::ascape::tmpl::ScapeAspect::EndSerial(path, inner)»
+	«EXPAND metaabm::ascape::tmpl::ScapeAspect::EndSerial(path, inner)-»
     «targetDef.proceed()»
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AMove-»
-	«call(path, inner)»
-«ENDAROUND»
+	«call(path, inner)»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ACreateAgents-»
-	«call(path, inner)»
-«ENDAROUND»
+	«call(path, inner)»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ADie-»
-	«call(path, inner)»
-«ENDAROUND»
+	«call(path, inner)»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ALeave-»
-	«call(path, inner)»
-«ENDAROUND»
+	«call(path, inner)»«ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AReplace-»
-	«call(path, inner)»
-«ENDAROUND»
+	«call(path, inner)»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AConnect-»
-	«call(path, inner)»
-«ENDAROUND»
+	«call(path, inner)»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ADisconnect»
-	«call(path, inner)»
-«ENDAROUND»
+	«call(path, inner)»«ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::MethodPotential (metaabm::act::AAct within) FOR FFunction-»
 	«IF (id() == "withinBoundaries") || (id() == "distance")-»

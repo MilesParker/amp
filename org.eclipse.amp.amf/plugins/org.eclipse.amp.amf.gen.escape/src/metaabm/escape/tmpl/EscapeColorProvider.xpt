@@ -51,6 +51,21 @@ public «EXPAND metaabm::tmpl::Java::ClassKeyword» «EXPAND metaabm::tmpl::Java::C
 «AROUND metaabm::tmpl::Java::OtherFields FOR SContext-»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::Constructor FOR SContext-»«ENDAROUND»
 
+«DEFINE ColorProvider FOR SAgent»
+    «IF styles.size > 0»
+        if (model instanceof «implementation.className») {
+            return new «styles.get(0).implementation.qualifiedName»ColorProvider();
+        }
+    «ENDIF-»
+«ENDDEFINE»
+«DEFINE RecurseAgentProviders FOR SAgent»
+	«EXPAND ColorProvider»
+«ENDDEFINE»
+«DEFINE RecurseAgentProviders FOR SContext»
+	«EXPAND ColorProvider»
+	«EXPAND RecurseAgentProviders FOREACH agents»
+«ENDDEFINE»
+
 «AROUND metaabm::tmpl::Java::Body FOR SContext-»
     public void createGraphicViews() {
         addView(new org.eclipse.amp.escape.ascape.agf3d.GEF3DView());
@@ -58,14 +73,8 @@ public «EXPAND metaabm::tmpl::Java::ClassKeyword» «EXPAND metaabm::tmpl::Java::C
     
     public org.eclipse.gef.EditPartFactory getEditPart3DFactory() {
         return new org.eclipse.amp.escape.ascape.adapt.Ascape3DPartFactory() {
-            public org.eclipse.jface.viewers.IColorProvider getColorProvider(Object object) {
-            «FOREACH agents AS agent» 
-            «IF agent.styles.size > 0»
-	            if (object instanceof «agent.implementation.className») {
-	                return new «agent.styles.get(0).implementation.qualifiedName»ColorProvider();
-	            }
-            «ENDIF-»
-            «ENDFOREACH»
+            public org.eclipse.jface.viewers.IColorProvider getColorProvider(Object model) {
+            	«EXPAND RecurseAgentProviders»
 	            return null;
             }
         };
