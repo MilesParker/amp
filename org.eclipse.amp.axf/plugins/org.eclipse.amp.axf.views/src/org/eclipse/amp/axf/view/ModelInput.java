@@ -7,16 +7,17 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
+ * Contributors:
  *   Metascape - Initial API and Implementation
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.axf.view;
 
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 
@@ -31,14 +32,18 @@ public class ModelInput implements IEditorInput {
 
     public static ImageDescriptor MODEL_IMAGE;
 
+    private final ISelection initialSelection;
+
     /**
      * Instantiates a new model input.
      * 
      * @param model the model
+     * @param initialSelection an optional selection for the first object
      */
-    public ModelInput(IModel model) {
+    public ModelInput(IModel model, ISelection initialSelection) {
         super();
         this.model = model;
+        this.initialSelection = initialSelection;
     }
 
     /**
@@ -115,4 +120,10 @@ public class ModelInput implements IEditorInput {
         this.model = model;
     }
 
+    /**
+     * @return the initialSelection
+     */
+    public ISelection getSelection() {
+        return initialSelection;
+    }
 }
