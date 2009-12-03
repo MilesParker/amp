@@ -47,6 +47,16 @@ public class ModelInput implements IEditorInput {
     }
 
     /**
+     * Instantiates a new model input.
+     * 
+     * @param model the model
+     * @param initialSelection an optional selection for the first object
+     */
+    public ModelInput(IModel model) {
+        this(model, null);
+    }
+
+    /**
      * @return
      * @see org.eclipse.ui.IEditorInput#exists()
      */
