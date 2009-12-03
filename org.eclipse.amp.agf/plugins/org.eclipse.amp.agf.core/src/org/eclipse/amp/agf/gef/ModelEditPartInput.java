@@ -36,6 +36,11 @@ public class ModelEditPartInput extends ModelInput {
             .imageDescriptorFromPlugin("org.eclipse.amp.axf.ui", "icons/etool16/RunStart.gif");
         }
     }
+
+    public ModelEditPartInput(IModel model, EditPartFactory factory) {
+        this(model, factory, null);
+    }
+
     public EditPartFactory getFactory() {
         return factory;
     }
