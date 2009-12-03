@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
 import org.eclipse.emf.ecore.util.FeatureMapUtil;
 import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.command.CreateChildCommand;
+import org.eclipse.emf.edit.command.DragAndDropCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -36,7 +37,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 public class TransientGroupedItemProvider extends MetaABMItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 
     public TransientGroupedItemProvider(AdapterFactory adapterFactory, EObject parent) {
         super(adapterFactory);
@@ -62,11 +63,14 @@ public class TransientGroupedItemProvider extends MetaABMItemProvider implements
     public Command createCommand(final Object object, final EditingDomain domain,
             Class<? extends Command> commandClass, CommandParameter commandParameter) {
 
-        commandParameter.setOwner(target);
+        if (commandClass != DragAndDropCommand.class) {
+            commandParameter.setOwner(target);
+        }
 
         return super.createCommand(target, domain, commandClass, commandParameter);
 
     }
+
 
     /**
      * This returns the description for {@link CreateChildCommand}.
@@ -83,15 +87,15 @@ public class TransientGroupedItemProvider extends MetaABMItemProvider implements
 
         if (selectionObject == owner) {
             return getResourceLocator()
-                    .getString("_UI_CreateChild_description",
-                               new Object[] { childType, getFeatureText(feature), getTypeText(owner) });
+            .getString("_UI_CreateChild_description",
+                       new Object[] { childType, getFeatureText(feature), getTypeText(owner) });
         }
 
         Object sibling = selectionObject;
         Object siblingFeature = getChildFeature(owner, sibling);
 
         if (siblingFeature instanceof EStructuralFeature
-            && FeatureMapUtil.isFeatureMap((EStructuralFeature) siblingFeature)) {
+                && FeatureMapUtil.isFeatureMap((EStructuralFeature) siblingFeature)) {
             FeatureMap.Entry entry = (FeatureMap.Entry) sibling;
             siblingFeature = entry.getEStructuralFeature();
             sibling = entry.getValue();

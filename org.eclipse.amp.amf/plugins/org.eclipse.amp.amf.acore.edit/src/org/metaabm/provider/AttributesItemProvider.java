@@ -16,18 +16,15 @@ package org.metaabm.provider;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.metaabm.MetaABMFactory;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAttribute;
 import org.metaabm.SAttributed;
-import org.metaabm.commands.RemoveAttributedAttributesCommand;
 
 public class AttributesItemProvider extends TransientGroupedItemProvider {
 
@@ -68,13 +65,19 @@ public class AttributesItemProvider extends TransientGroupedItemProvider {
         }
     }
 
-    protected Command createRemoveCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
-            Collection<?> collection) {
-        if (feature == MetaABMPackage.Literals.SATTRIBUTED__ATTRIBUTES) {
-            return new RemoveAttributedAttributesCommand(domain, owner, feature, collection);
-        }
-        return super.createRemoveCommand(domain, owner, feature, collection);
-    }
+
+
+
+    // protected Command createRemoveCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
+    // Collection<?> collection) {
+    // CompoundCommand cmd = new CompoundCommand();
+    // if (feature == MetaABMPackage.Literals.SATTRIBUTED__ATTRIBUTES) {
+    // Command removeCommand = super.createRemoveCommand(domain, owner, feature, collection);
+    // cmd.appendAndExecute(removeCommand);
+    // cmd.appendAndExecute(new RemoveAttributedAttributesCommand(domain, owner, feature, collection));
+    // }
+    // return cmd;
+    // }
 
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
