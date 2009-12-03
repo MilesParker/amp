@@ -171,9 +171,6 @@ cached String fieldName(SAttribute named) :
 //cached String fieldName(SContext named) :
 //	"model";
 
-cached String fieldName(SAgent named) :
-	named.ID + "List";
-
 cached String fieldName(IID id) :
 	id.id();
 

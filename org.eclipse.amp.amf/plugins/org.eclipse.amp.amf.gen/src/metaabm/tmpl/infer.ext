@@ -73,9 +73,12 @@ cached IID innerValue(AAct act) :
 	
 cached String accessPathInner(IID value, SImplemented owner, Boolean inner) :
 	inner ? "((" + owner.implementation.className + ")" + owner.innerValue().id() + ")." : "";
-		
+
+cached String accessPath(SAgent start, SAgent end) :
+	(start != end && end.parent != null ? end.parent.getterName() + "()." + accessPath(start, end.parent) : "");
+
 cached String accessPathContext(AAct act, IID value, Boolean inner) :
-	(value.destAgent() == act.reference.owner) ? act.reference.owner.getterName() + "()." : "";
+	accessPath(value.destAgent(), act.reference);
 		
 cached String accessPathSelected(AAct act, EObject value, Boolean inner) :
 	((SAttribute.isInstance(value.valueSource())) && ((!inner && (value.dest() != null && value.dest() != act.rootSelected)) || (inner && value.dest() != act))

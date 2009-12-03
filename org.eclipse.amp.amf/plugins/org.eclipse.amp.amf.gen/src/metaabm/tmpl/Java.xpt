@@ -439,12 +439,10 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 	«EXPAND BeginBlock(path, inner) FOREACH exp-»
    	«EXPAND InnerBlock(path, inner) FOREACH exp-»
 	«EXPAND Block(path, inner, genNegate) FOREACH exp-»
-	«EXPAND EndBlock(path, inner) FOREACH exp-»
-«ENDDEFINE»
+	«EXPAND EndBlock(path, inner) FOREACH exp-»«ENDDEFINE»
 
 «DEFINE SerialBlock (List[AAct] path, Boolean inner, Boolean genNegate) FOR AAct-»
-		«EXPAND SerialBlock (expansionSerial(path), path, inner, true)-»
-«ENDDEFINE»
+	«EXPAND SerialBlock (expansionSerial(path), path, inner, true)-»«ENDDEFINE»
 
 «DEFINE Block(List[AAct] path, Boolean inner, Boolean genNegate) FOR AAct-»
 	«LET (List[AAct]) path.toList().add(this) AS newPath-»
@@ -454,41 +452,35 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 	«IF genNegate-»
 	«EXPAND SerialBlock(expansionNegate(newPath), newPath, inner, false)-»
 	«ENDIF-»
-	«ENDLET»
-«ENDDEFINE»
+	«ENDLET-»«ENDDEFINE»
 
 «DEFINE BeginBlock(List[AAct] path, Boolean inner) FOR AAct-»
     «IF expandSpatialBlock()-» {
         «EXPAND ConditionBlock(path, inner)-»
         «IF queryFor()-»
         «EXPAND BeginQueryBlock(path, inner)-»
-        «ENDIF»
-    «ENDIF-»
-«ENDDEFINE»
+        «ENDIF-»
+    «ENDIF-»«ENDDEFINE»
 «DEFINE BeginSerialBlock(List[AAct] path, Boolean inner) FOR AAct-»«ENDDEFINE»
 «DEFINE BeginSerialBlock(List[AAct] path, Boolean inner) FOR AControl-»
     «IF expressIf(path, inner)-»
     if («expression(path, inner)») {
-    «ENDIF-»
-«ENDDEFINE»
+    «ENDIF-»«ENDDEFINE»
 
 «DEFINE EndBlock(List[AAct] path, Boolean inner) FOR AAct-»
     «IF expandSpatialBlock()-»
         «IF queryFor()-»
         «EXPAND EndQueryBlock(path, inner)-»
         «ENDIF-»}
-    «ENDIF-»
-«ENDDEFINE»
+    «ENDIF-»«ENDDEFINE»
 «DEFINE EndSerialBlock(List[AAct] path, Boolean inner) FOR AAct-»«ENDDEFINE»
 «DEFINE EndSerialBlock(List[AAct] path, Boolean inner) FOR AControl-»
 	«IF expressIf(path, inner)-»
     }
-    «ENDIF»
-«ENDDEFINE»
+    «ENDIF-»«ENDDEFINE»
 
 «DEFINE InnerEvaluation (List[AAct] path, Boolean inner) FOR AAct-»
-    «EXPAND Evaluation({selected}, false) FOREACH allSources.select(a | a.selected == selected)-»
-«ENDDEFINE»
+    «EXPAND Evaluation({selected}, false) FOREACH allSources.select(a | a.selected == selected)-»«ENDDEFINE»
 
 «DEFINE ConditionBlock (List[AAct] path, Boolean inner) FOR AAct-»
 	«IF conditionFor()-»
@@ -498,8 +490,7 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 	Expression:
 	«expression(path, false)»
      */
-	 «ENDIF»
-«ENDDEFINE»
+	 «ENDIF»«ENDDEFINE»
 «DEFINE BeginQueryBlock (List[AAct] path, Boolean inner) FOR AAct-»
     /*
     Spatial Functions:
@@ -507,22 +498,19 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
      */
     «selector().typeName()» «selector().id()» = new «selector().typeName()»();
 «ENDDEFINE»
-«DEFINE EndQueryBlock (List[AAct] path, Boolean inner) FOR AAct-»
-«ENDDEFINE»
+«DEFINE EndQueryBlock (List[AAct] path, Boolean inner) FOR AAct-»«ENDDEFINE»
 
 «DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR AAct-»
 	//*** No Act Defined: «id()»
 «ENDDEFINE»
 «DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR ASet-»
-«selected.selid().pre() + setterPath(attribute)»(«parameter.bind(path, inner)»);
-«ENDDEFINE»
+«selected.selid().pre() + setterPath(attribute)»(«parameter.bind(path, inner)»);«ENDDEFINE»
 «DEFINE Evaluation (List[AAct] path, Boolean inner) FOR AAct-»«ENDDEFINE»
 «DEFINE Evaluation (List[AAct] path, Boolean inner) FOR AEvaluate-»
-«EXPAND ExtendType-» «varName()» = «EXPAND FunctionInnerBlock(path, inner)-»;
-«ENDDEFINE»
+«EXPAND ExtendType-» «varName()» = «EXPAND FunctionInnerBlock(path, inner)-»;«ENDDEFINE»
 
 «DEFINE MultiBlock (List[SState] states, List[SStateValue] currentOptions) FOR AInput-»
-	«IF sink.function.id().toLowerCase().contains("cross")»	
+	«IF sink.function.id().toLowerCase().contains("cross")-»	
 	«IF !states.isEmpty-»
 	if («FOREACH states.first().options AS option SEPARATOR "} else if ("-»«states.first().getterName()»() == «option.typeName()») {
 			«EXPAND MultiBlock ((List[SState]) states.withoutFirst(), (List[SStateValue]) currentOptions.toList().add(option))-»
@@ -550,15 +538,13 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
         «ELSEIF !function.id().startsWith("graphic")-»
             «EXPAND Evaluation(path, inner)-»
         «ENDIF-»
-    «ENDIF»
-«ENDDEFINE»
+    «ENDIF-»«ENDDEFINE»
 «DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR AMethod-»
 	«IF SAgent.isInstance(eContainer) && !(testing() && (id().startsWith("test") || id().startsWith("assert")))-»
 		«methodName()»();
 	«ELSE-»
 		«body»
-	«ENDIF-»
-«ENDDEFINE»
+	«ENDIF-»«ENDDEFINE»
 «DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR ADie-»«ENDDEFINE»
 «DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR AMove-»«ENDDEFINE»
 «DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR ALeave-»«ENDDEFINE»
@@ -588,8 +574,7 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 		java.awt.Color.«function.id().replaceFirst("color","").toUpperCase()»
 	«ELSEIF function.libid() == "math"-»
 	   java.lang.Math.«function.id()»(«inputs.expression(path, inner).toString(", ")»)
-	«ELSE»«bind(path, inner)»«ENDIF-»
-«ENDDEFINE»
+	«ELSE-»«bind(path, inner)»«ENDIF-»«ENDDEFINE»
 
 «DEFINE Debug(List[AAct] path, Boolean inner) FOR AAct-»
 		//id, selfrom, dest, inner?:  «id()», «selfrom().id()», «dest().id()», «inner»
