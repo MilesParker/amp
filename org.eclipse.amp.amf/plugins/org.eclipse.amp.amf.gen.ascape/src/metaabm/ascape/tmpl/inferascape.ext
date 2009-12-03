@@ -79,7 +79,7 @@ cached String call(AMove act, List[AAct] path, Boolean inner) :
 		act.selected.asAgent().pre() + act.method(path, inner) + "(" + act.destination.asHost().expl() + ");";
 
 cached String call(ACreateAgents act, List[AAct] path, Boolean inner) :
-	act.agent.typeName() + " " + act.id() + " = (" + act.agent.typeName() + ")" + act.getterPath(act.reference.parent(), inner) + "." + act.agent.getterName() + "().getSpace().newLocation(false);";
+	act.agent.typeName() + " " + act.id() + " = (" + act.agent.typeName() + ")" + act.getterPath(act.reference.parent(), inner) + ".get" + act.agent.scape().toFirstUpper() + "().getSpace().newLocation(false);";
 	
 cached String call(ADie act, List[AAct] path, Boolean inner) :
 		act.selected.local(act.selected.id()).expl().pre() + "die();";
@@ -202,7 +202,7 @@ cached String statCondTerm(SAttribute typed) :
 	statCond(typed) ? "Cond" : "";
 
 cached String statLabel(SAttribute inner, SAttribute outer, String desc) :
-	inner.parent().label + " " + desc.spaceTrail() + (outer != inner ? outer.label.spaceTrail() : "") + inner.label;
+	(inner.parent().parent().parent() != null ? "getName() + \" " : "\"") + inner.parent().label + " " + desc.spaceTrail() + (outer != inner ? outer.label.spaceTrail() : "") + inner.label + "\"";
 
 cached int gridDimSize(SGrid grid) : 
 	grid.attributes.size > 1 ? grid.attributes.get(1).defaultValue.asInteger() : 20;
@@ -224,4 +224,8 @@ List setterSpace(SAttribute attr) :
 	attr.gatherData && attr.sType == SAttributeType::Boolean ? {{"is " + attr.label, attr.setTo("true")}, {"is not " + attr.label, attr.setTo("false")}} : {};
 	
 List setterSpace(SStyle style) :
-	style.agent.attributes.setterSpace();	
+	style.agent.attributes.setterSpace();
+	
+//cached String typeName(SAgent agent) :			
+//	"org.ascape.model.Scape";
+	

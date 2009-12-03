@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <workflow>
 	<property name="outputPath" value="./" />
-	<property name="modelPath" value="test/" />
+	<property name="modelPath" value="" />
 	<property name="modelFile" value="TestGeneration.metaabm" />
     <property name="testing" value="true" />
     <property name="fullStats" value="true" />

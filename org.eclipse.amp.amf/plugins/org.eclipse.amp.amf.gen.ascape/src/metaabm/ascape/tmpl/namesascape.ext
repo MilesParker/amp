@@ -74,4 +74,10 @@ cached String coordinateType(SProjection proj) :
     
 cached String coordinateType(SNDimensional proj) :          
     "org.ascape.model.space.Coordinate" + proj.dimension() + "D" + spaceType(proj);
-    
+
+cached String scape(SAgent agent) :
+	agent.id() + "Scape";
+
+cached String fieldName(SAgent agent) :
+	agent.scape();
+	
