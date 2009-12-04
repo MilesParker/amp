@@ -45,7 +45,7 @@ public class ChartViewPart extends EditPartViewPart {
     }
 
     @Override
-    public EditPartFactory createFactory() {
+    public EditPartFactory createFactory(Object contents) {
         return new EditPartFactory() {
             public EditPart createEditPart(EditPart context, Object object) {
                 ChartEditPart chartPart = new ChartEditPart();
