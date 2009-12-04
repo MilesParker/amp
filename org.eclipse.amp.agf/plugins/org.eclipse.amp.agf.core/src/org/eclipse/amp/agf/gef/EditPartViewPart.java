@@ -98,16 +98,16 @@ public abstract class EditPartViewPart extends ModelViewPart {
                 viewer.setRootEditPart(rootEditPart);
                 createZoomer(rootEditPart);
             }
-            if (modelInput.getFactory() == null) {
-                viewer.setEditPartFactory(createFactory());
-            } else {
-                viewer.setEditPartFactory(modelInput.getFactory());
-            }
             Object contents = null;
             if (modelInput.getSelection() instanceof IStructuredSelection) {
                 contents = ((StructuredSelection) modelInput.getSelection()).getFirstElement();
             } else {
                 contents = getModel();
+            }
+            if (modelInput.getFactory() == null) {
+                viewer.setEditPartFactory(createFactory(contents));
+            } else {
+                viewer.setEditPartFactory(modelInput.getFactory());
             }
             viewer.setContents(contents);
         } else {
@@ -115,9 +115,9 @@ public abstract class EditPartViewPart extends ModelViewPart {
         }
     }
 
-    protected ModelFactoryProvider getModelFactoryProvider() {
-        if (getModel() instanceof ModelFactoryProvider) {
-            return (ModelFactoryProvider) getModel();
+    protected ModelFactoryProvider getModelFactoryProvider(Object contents) {
+        if (contents instanceof ModelFactoryProvider) {
+            return (ModelFactoryProvider) contents;
         } else {
             ModelFactoryProvider provider = (ModelFactoryProvider) Platform.getAdapterManager()
             .getAdapter(getModel(), ModelFactoryProvider.class);
@@ -128,8 +128,8 @@ public abstract class EditPartViewPart extends ModelViewPart {
         }
     }
 
-    protected EditPartFactory createFactory() {
-        return getModelFactoryProvider().getEditPartFactory();
+    protected EditPartFactory createFactory(Object contents) {
+        return getModelFactoryProvider(contents).getEditPartFactory();
     }
 
     protected void createZoomer(RootEditPart rootEditPart) {
