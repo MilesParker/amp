@@ -88,7 +88,7 @@
 	«EXPAND BuildChartSelection FOREACH ((SContext) reference).agents-»
     addView(chart);
     «ENDIF»
-    «IF !((SContext) reference).projections.isEmpty && reference.parent != null»
+    «IF !((SContext) reference).projections.isEmpty»
     addView(new org.ascape.view.vis.GEFView());
     «ENDIF»
     «targetDef.proceed()-»
@@ -195,7 +195,7 @@
     public class «typeName()»PartFactory extends org.eclipse.amp.escape.ascape.adapt.AscapePartFactory {
     
         protected org.eclipse.gef.EditPart getPartForElement(Object model) {
-        	«EXPAND RecurseAgentProviders»
+        	«EXPAND RecurseAgentProviders FOREACH agents»
             return super.getPartForElement(model);
         }
     }

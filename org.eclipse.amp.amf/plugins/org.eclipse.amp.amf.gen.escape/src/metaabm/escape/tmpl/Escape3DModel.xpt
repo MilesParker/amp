@@ -44,7 +44,7 @@
     public EditPartFactory getEditPart3DFactory() {
         return new Ascape3DPartFactory() {
             public IColorProvider getColorProvider(Object model) {
-            «EXPAND RecurseAgentProviders»
+            «EXPAND RecurseAgentProviders FOREACH agents»
             }
         };
     }

@@ -74,7 +74,7 @@ public «EXPAND metaabm::tmpl::Java::ClassKeyword» «EXPAND metaabm::tmpl::Java::C
     public org.eclipse.gef.EditPartFactory getEditPart3DFactory() {
         return new org.eclipse.amp.escape.ascape.adapt.Ascape3DPartFactory() {
             public org.eclipse.jface.viewers.IColorProvider getColorProvider(Object model) {
-            	«EXPAND RecurseAgentProviders»
+            	«EXPAND RecurseAgentProviders FOREACH agents»
 	            return null;
             }
         };
