@@ -136,7 +136,7 @@
                 }
             }
         };
-    «ENDIF-»«ENDDEFINE»    
+    «ENDIF-»«ENDDEFINE»    	
 
 «DEFINE BeginQuery (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
     «IF !convert()-»
@@ -151,10 +151,12 @@
     if («selector().id()» «metaType != ANone ? "!=" : "=="» null) {
     «IF expression(path, inner) != "" && hasControl("here") && !selector().isRoot()-»
         if («expression(path, inner)») {
-    «ENDIF-»«ENDDEFINE»
+    «ENDIF-»
+«ENDDEFINE»
 «DEFINE EndQuery (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
     «IF expression(path, inner) != "" && hasControl("here") && !selector().isRoot()-»}
-    «ENDIF-»}«ENDDEFINE»
+    «ENDIF-»}
+«ENDDEFINE»
 
 «DEFINE BeginSerial(List[AAct] path, Boolean inner) FOR AControl-»
     «IF selector().isRoot() && selector().agent.isHost() && !controlFunctions({"available", "withinBoundaries"}).isEmpty-»
@@ -162,7 +164,8 @@
     «ENDIF-»«ENDDEFINE»
 «DEFINE EndSerial(List[AAct] path, Boolean inner) FOR AControl-»
     «IF selector().isRoot() && selector().agent.isHost() && !controlFunctions({"available", "withinBoundaries"}).isEmpty-»}
-    «ENDIF-»«ENDDEFINE»
+    «ENDIF-»
+«ENDDEFINE»
 
 «DEFINE Setup FOR ACreateAgents-»
 	«IF !agent.isHost()-»
