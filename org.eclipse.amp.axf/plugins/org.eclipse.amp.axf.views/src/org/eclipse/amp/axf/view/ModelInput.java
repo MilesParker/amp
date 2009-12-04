@@ -18,6 +18,7 @@ package org.eclipse.amp.axf.view;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 
@@ -80,7 +81,8 @@ public class ModelInput implements IEditorInput {
      */
     public String getName() {
         // TODO Auto-generated method stub
-        return model.getName();
+        return initialSelection instanceof StructuredSelection ? ((StructuredSelection) initialSelection)
+                .getFirstElement().toString() : getModel().getName();
     }
 
     /**
