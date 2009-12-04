@@ -71,7 +71,7 @@ public class GEF3DViewPart extends EditPartViewPart {
         return new GraphicalViewer3DImpl();
     }
 
-    public EditPartFactory createFactory() {
+    public EditPartFactory createFactory(Object contents) {
         return getFactory3DProvider().getEditPart3DFactory();
     }
 
