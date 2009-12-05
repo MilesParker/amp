@@ -71,6 +71,9 @@ cached IID innerValue(IID value) :
 cached IID innerValue(AAct act) :
 	act.dest();
 
+cached Boolean firstSelection(ACreateAgents sel, SAgent agent) :
+	true;
+
 cached Boolean firstSelection(ASelect sel, SAgent agent) :
 	sel.agent == agent && sel.selected == null || sel.selected == sel || !firstSelection(sel.selected, agent);
 	
@@ -80,12 +83,16 @@ cached Boolean firstSelection(ASelect sel) :
 cached String accessPathInner(IID value, SImplemented owner, Boolean inner) :
 	inner ? "((" + owner.implementation.className + ")" + owner.innerValue().id() + ")." : "";
 
-cached String accessPath(SAgent start, SAgent end) :
-	(start != end && end.parent != null ? end.parent.getterName() + "()." + accessPath(start, end.parent): "");
+cached String accessPath(SAgent from, SAgent to) :
+	from != to && to.parent != null ? to.parent.getterName() + "()." + accessPath(from, to.parent): "";
 
 cached String accessPathContext(AAct act, IID value, Boolean inner) :
-	act.selector().selected.firstSelection() ? accessPath(value.destAgent(), act.reference) : act.selector().selected.selid().pre();
-		
+	act.selector().selected.firstSelection() || act.selector().firstSelection() ? accessPath(value.destAgent(), act.reference) : act.selector().selected.selid().pre();
+
+//needs lot's of refactoring..too many special cases
+cached String accessPathContext(AAct act, SProjection value, Boolean inner) :
+	act.selector().selected.firstSelection() ? accessPath(value.owner, act.selector().reference) : act.selector().selected.selid().pre() + (act.selector().selected.agent != value.owner ? accessPath(value.owner, act.selector().agent) : "");		
+	
 cached String accessPathSelected(AAct act, EObject value, Boolean inner) :
 	((SAttribute.isInstance(value.valueSource())) && ((!inner && (value.dest() != null && !value.dest().firstSelection())) || (inner && value.dest() != act))
 	   ? value.dest().id()
