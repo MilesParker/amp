@@ -76,7 +76,7 @@ cached String network(ANetwork net) :
 	"((" + pkgs() + "Graph) " + net.selected.getterPath(net.within, false) + ".getSpace()).";
 
 cached String spacePath(ASelect act, List[AAct] path, Boolean inner) :
-	act.getterPath(act.reference.parent(), inner) + ".get" + act.agent.scape().toFirstUpper() + "().getSpace()";
+	act.selector().agent.getterPath(act.reference.parent, false) + ".get" + act.agent.scape().toFirstUpper() + "().getSpace()";
 
 cached String call(AMove act, List[AAct] path, Boolean inner) :
 		act.selected.asAgent().pre() + act.method(path, inner) + "(" + act.destination.asHost().expl() + ");";
