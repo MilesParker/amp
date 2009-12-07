@@ -155,7 +155,7 @@ public class ModelViewManager implements IAdapterFactory {
      * 
      * @return the active model
      */
-    public IObservationProvider getActiveModel() {
+    public synchronized IObservationProvider getActiveModel() {
         return activeModel;
     }
 
@@ -511,12 +511,14 @@ public class ModelViewManager implements IAdapterFactory {
                 if (perspective != null) {
                     IWorkbenchPage activePage = wb.getActiveWorkbenchWindow() != null ? wb.getActiveWorkbenchWindow()
                         .getActivePage() : null;
-                        if (activePage != null && priorPerspectiveID == null
-                                || !activePage.getPerspective().getId().equals(EXECUTION_PERSPECTIVE_ID)) {
-                            priorPerspectiveID = activePage.getPerspective().getId();
+                        if (activePage != null) {
+                            if (priorPerspectiveID == null
+                                    || !activePage.getPerspective().getId().equals(EXECUTION_PERSPECTIVE_ID)) {
+                                priorPerspectiveID = activePage.getPerspective().getId();
+                            }
+                            activePage.setPerspective(perspective);
+                            activePage.setEditorAreaVisible(editors);
                         }
-                        activePage.setPerspective(perspective);
-                        activePage.setEditorAreaVisible(editors);
                 }
                 updateCount++;
             }
@@ -554,7 +556,7 @@ public class ModelViewManager implements IAdapterFactory {
      * @see org.eclipse.core.runtime.IAdapterFactory#getAdapter(java.lang.Object, java.lang.Class)
      */
     public Object getAdapter(Object adaptableObject, Class adapterType) {
-        if (adapterType == IEngine.class) {
+        if (adapterType == IEngine.class && adaptableObject instanceof IModel) {
             return runnerForModel.get(adaptableObject);
         } else if (adapterType == IModel.class) {
             if (adaptableObject instanceof IEngine) {

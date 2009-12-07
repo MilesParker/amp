@@ -37,7 +37,7 @@ import org.eclipse.ui.part.ViewPart;
  */
 public class ModelManagerViewPart extends ViewPart {
 
-    private final class ModelContents implements ITreeContentProvider {
+    private static final class ModelContents implements ITreeContentProvider {
         public Object[] getChildren(Object parentElement) {
             if (parentElement instanceof IModel) {
                 return ((IObservationProvider) parentElement).getModelListeners().toArray();
