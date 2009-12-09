@@ -21,7 +21,7 @@ import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.event.ScapeListener;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
-import org.eclipse.amp.axf.core.IObservationProvider;
+import org.eclipse.amp.axf.core.ILifecyle;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -51,9 +51,9 @@ public class ScapeWrapperModelListener implements ILifeCycleListener {
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observing(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observing(org.eclipse.amp.axf.core.ILifecyle)
      */
-    public void observing(IObservationProvider model) {
+    public void observing(ILifecyle model) {
         try {
             wrapped.scapeAdded(new ScapeEvent(scape, ScapeEvent.REPORT_ADDED));
         } catch (TooManyListenersException e) {
@@ -71,57 +71,57 @@ public class ScapeWrapperModelListener implements ILifeCycleListener {
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observationEnding(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observationEnding(org.eclipse.amp.axf.core.ILifecyle)
      */
-    public void observationEnding(IObservationProvider model) {
+    public void observationEnding(ILifecyle model) {
         wrapped.scapeClosing(new ScapeEvent(scape, ScapeEvent.REPORT_ADDED));
     }
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeInitialize(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeInitialize(org.eclipse.amp.axf.core.ILifecyle)
      */
-    public void observeInitialize(IObservationProvider model) {
+    public void observeInitialize(ILifecyle model) {
         wrapped.scapeClosing(new ScapeEvent(scape, ScapeEvent.REPORT_INITIALIZED));
     }
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeUpdate(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeUpdate(org.eclipse.amp.axf.core.ILifecyle)
      */
-    public void observeUpdate(IObservationProvider model) {
+    public void observeUpdate(ILifecyle model) {
         wrapped.scapeClosing(new ScapeEvent(scape, ScapeEvent.REPORT_ITERATE));
     }
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observationEnd(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observationEnd(org.eclipse.amp.axf.core.ILifecyle)
      */
-    public void observationEnd(IObservationProvider model) {
+    public void observationEnd(ILifecyle model) {
         wrapped.scapeClosing(new ScapeEvent(scape, ScapeEvent.REPORT_REMOVED));
     }
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeCreate(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeCreate(org.eclipse.amp.axf.core.ILifecyle)
      */
-    public void observeCreate(IObservationProvider model) {
+    public void observeCreate(ILifecyle model) {
         wrapped.scapeClosing(new ScapeEvent(scape, ScapeEvent.REQUEST_SETUP));
     }
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeStart(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeStart(org.eclipse.amp.axf.core.ILifecyle)
      */
-    public void observeStart(IObservationProvider model) {
+    public void observeStart(ILifecyle model) {
         wrapped.scapeClosing(new ScapeEvent(scape, ScapeEvent.REPORT_START));
     }
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeStop(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeStop(org.eclipse.amp.axf.core.ILifecyle)
      */
-    public void observeStop(IObservationProvider model) {
+    public void observeStop(ILifecyle model) {
         wrapped.scapeClosing(new ScapeEvent(scape, ScapeEvent.REPORT_STOP));
     }
 

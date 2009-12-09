@@ -24,8 +24,8 @@ import org.ascape.model.Scape;
 import org.eclipse.amp.agf.gef.ModelFactoryProvider;
 import org.eclipse.amp.axf.core.IEngine;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
+import org.eclipse.amp.axf.core.ILifecyle;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
 import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
 import org.eclipse.core.runtime.IAdaptable;
@@ -51,6 +51,8 @@ public class ScapeWrapperModel implements IModel, ModelFactoryProvider, IAdaptab
     Collection<ILifeCycleListener> listeners = new ArrayList<ILifeCycleListener>();
 
     Map<ILifeCycleListener, ModelWrapperScapeListener> wrapperForListener = new HashMap<ILifeCycleListener, ModelWrapperScapeListener>();
+
+    boolean closed;
 
     /**
      * Instantiates a new scape wrapper model.
@@ -88,7 +90,7 @@ public class ScapeWrapperModel implements IModel, ModelFactoryProvider, IAdaptab
      * 
      * @return the root model
      */
-    public IObservationProvider getRootModel() {
+    public ILifecyle getRootModel() {
         return model;
     }
 
@@ -118,7 +120,7 @@ public class ScapeWrapperModel implements IModel, ModelFactoryProvider, IAdaptab
 
     /**
      * @param listener
-     * @see org.eclipse.amp.axf.core.IObservationProvider#addModelListener(org.eclipse.amp.axf.core.ILifeCycleListener)
+     * @see org.eclipse.amp.axf.core.ILifecyle#addModelListener(org.eclipse.amp.axf.core.ILifeCycleListener)
      */
     public void addModelListener(final ILifeCycleListener listener) {
         new Thread() {
@@ -136,7 +138,7 @@ public class ScapeWrapperModel implements IModel, ModelFactoryProvider, IAdaptab
 
     /**
      * @return
-     * @see org.eclipse.amp.axf.core.IObservationProvider#getModelListeners()
+     * @see org.eclipse.amp.axf.core.ILifecyle#getModelListeners()
      */
     public Collection<ILifeCycleListener> getModelListeners() {
         return listeners;
@@ -144,7 +146,7 @@ public class ScapeWrapperModel implements IModel, ModelFactoryProvider, IAdaptab
 
     /**
      * @param listener
-     * @see org.eclipse.amp.axf.core.IObservationProvider#removeModelListener(org.eclipse.amp.axf.core.ILifeCycleListener)
+     * @see org.eclipse.amp.axf.core.ILifecyle#removeModelListener(org.eclipse.amp.axf.core.ILifeCycleListener)
      */
     public void removeModelListener(final ILifeCycleListener listener) {
         new Thread() {
@@ -164,7 +166,7 @@ public class ScapeWrapperModel implements IModel, ModelFactoryProvider, IAdaptab
 
     /**
      * @return
-     * @see org.eclipse.amp.axf.core.IObservationProvider#isInitialized()
+     * @see org.eclipse.amp.axf.core.ILifecyle#isInitialized()
      */
     public boolean isInitialized() {
         return scape.isInitialized();
@@ -275,5 +277,60 @@ public class ScapeWrapperModel implements IModel, ModelFactoryProvider, IAdaptab
     public void removeListener(ILabelProviderListener listener) {
         // TODO Auto-generated method stub
 
+    }
+
+    /**
+     * @return
+     * @see org.eclipse.amp.axf.core.ILifecyle#isActive()
+     */
+    public boolean isActive() {
+        return getScape().isRunning();
+    }
+
+    /**
+     * @return
+     * @see org.eclipse.amp.axf.core.ILifecyle#isCreated()
+     */
+    public boolean isCreated() {
+        return getScape().isRunning();
+    }
+
+    /**
+     * @return
+     * @see org.eclipse.amp.axf.core.ILifecyle#isEnded()
+     */
+    public boolean isEnded() {
+        return closed;
+    }
+
+    /**
+     * @return
+     * @see org.eclipse.amp.axf.core.ILifecyle#isEnding()
+     */
+    public boolean isEnding() {
+        return getScape().getRunner().isCloseRequested();
+    }
+
+    /**
+     * @return
+     * @see org.eclipse.amp.axf.core.ILifecyle#isStarted()
+     */
+    public boolean isStarted() {
+        return getScape().isInitialized() && getScape().isRunning();
+    }
+
+    /**
+     * @return
+     * @see org.eclipse.amp.axf.core.ILifecyle#isStopped()
+     */
+    public boolean isStopped() {
+        return !getScape().getRunner().isRunning() && !isEnded();
+    }
+
+    /**
+     * @param closed the closed to set
+     */
+    public void setClosed(boolean closed) {
+        this.closed = closed;
     }
 }
