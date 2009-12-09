@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.amp.axf.core.IEngine;
-import org.eclipse.amp.axf.core.ILifecyle;
+import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.ide.handlers.CloseHandler;
 import org.eclipse.amp.axf.ide.handlers.ModelRunHandler;
@@ -136,7 +136,7 @@ public class ModelViewManager implements IAdapterFactory {
 
     private int updateCount;
 
-    private ILifecyle[] modelSlots = new ILifecyle[16];
+    private IObservationProvider[] modelSlots = new IObservationProvider[16];
 
     private SelectionSynchronizer editSelection;
 
@@ -155,7 +155,7 @@ public class ModelViewManager implements IAdapterFactory {
      * 
      * @return the active model
      */
-    public synchronized ILifecyle getActiveModel() {
+    public synchronized IObservationProvider getActiveModel() {
         return activeModel;
     }
 
@@ -196,9 +196,9 @@ public class ModelViewManager implements IAdapterFactory {
      * 
      * @return the slot
      */
-    public int getSlot(ILifecyle model) {
+    public int getSlot(IObservationProvider model) {
         int i = 0;
-        for (ILifecyle slot : modelSlots) {
+        for (IObservationProvider slot : modelSlots) {
             if (slot == model) {
                 return i;
             }
@@ -214,9 +214,9 @@ public class ModelViewManager implements IAdapterFactory {
      * 
      * @return the int
      */
-    public int assignSlot(ILifecyle model) {
+    public int assignSlot(IObservationProvider model) {
         int i = 0;
-        for (ILifecyle slot : modelSlots) {
+        for (IObservationProvider slot : modelSlots) {
             if (slot == null) {
                 modelSlots[i] = model;
                 return i;
@@ -237,9 +237,9 @@ public class ModelViewManager implements IAdapterFactory {
      * 
      * @return the int
      */
-    public int releaseSlot(ILifecyle model) {
+    public int releaseSlot(IObservationProvider model) {
         int i = 0;
-        for (ILifecyle slot : modelSlots) {
+        for (IObservationProvider slot : modelSlots) {
             if (slot == model) {
                 modelSlots[i] = null;
                 return i;

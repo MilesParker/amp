@@ -18,7 +18,7 @@ package org.eclipse.amp.axf.ide.view;
 
 import org.eclipse.amp.axf.core.AbstractLifecycleListener;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.core.ILifecyle;
+import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.time.TimeGranularity;
 
 /**
@@ -30,9 +30,9 @@ public class DelayView extends AbstractLifecycleListener {
 
     /**
      * @param observed
-     * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeUpdate(org.eclipse.amp.axf.core.ILifecyle)
+     * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeUpdate(org.eclipse.amp.axf.core.IObservationProvider)
      */
-    public void observeUpdate(ILifecyle observed) {
+    public void observeUpdate(IObservationProvider observed) {
         long delayPeriod = ((TimeGranularity) ((IModel) observed).getEngine().getUpdateGranularity()).getUpdateDelay();
         if (delayPeriod > 0) {
             try {

@@ -15,7 +15,7 @@
  */
 package org.eclipse.amp.axf.ide.view;
 
-import org.eclipse.amp.axf.core.ILifecyle;
+import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
 import org.eclipse.amp.axf.time.ITimeGranularity;
@@ -47,17 +47,17 @@ public class StatusLineView extends SWTAsyncModelListener implements IPartListen
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeStart(org.eclipse.amp.axf.core.ILifecyle)
+     * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeStart(org.eclipse.amp.axf.core.IObservationProvider)
      */
-    public void observeStart(ILifecyle model) {
+    public void observeStart(IObservationProvider model) {
         updateMessage("Started");
     }
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeStop(org.eclipse.amp.axf.core.ILifecyle)
+     * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeStop(org.eclipse.amp.axf.core.IObservationProvider)
      */
-    public void observeStop(ILifecyle model) {
+    public void observeStop(IObservationProvider model) {
         updateMessage("Stopped");
     }
 

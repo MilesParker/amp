@@ -17,7 +17,7 @@ package org.eclipse.amp.axf.ide;
 
 import org.eclipse.amp.axf.core.AbstractLifecycleListener;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
-import org.eclipse.amp.axf.core.ILifecyle;
+import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -69,12 +69,12 @@ public class ModelManagerViewPart extends ViewPart {
 
     ILifeCycleListener genericModelListener = new AbstractLifecycleListener() {
         @Override
-        public void observeStart(ILifecyle model) {
+        public void observeStart(IObservationProvider model) {
             refreshViewer();
         }
 
         @Override
-        public void observeStop(ILifecyle model) {
+        public void observeStop(IObservationProvider model) {
             refreshViewer();
         }
 
@@ -90,7 +90,7 @@ public class ModelManagerViewPart extends ViewPart {
             }
         }
 
-        public void observeUpdate(ILifecyle model) {
+        public void observeUpdate(IObservationProvider model) {
             if (((IModel) model).getPeriod() % 10 == 0) {
                 refreshViewer();
             }

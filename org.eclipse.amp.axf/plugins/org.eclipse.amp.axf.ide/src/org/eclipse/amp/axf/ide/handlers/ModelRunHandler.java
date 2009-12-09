@@ -19,7 +19,7 @@ import org.eclipse.amp.axf.core.EngineControl;
 import org.eclipse.amp.axf.core.IEngine;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.core.ILifecyle;
+import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.core.IStateListener;
 import org.eclipse.amp.axf.core.LifecycleObservationAdapter;
 import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
@@ -100,11 +100,11 @@ public abstract class ModelRunHandler extends AbstractHandler implements ILifeCy
         }
     }
 
-    public synchronized void observing(ILifecyle model) {
+    public synchronized void observing(IObservationProvider model) {
         this.model = (IModel) model;
     }
 
-    public synchronized void observationEnd(ILifecyle model) {
+    public synchronized void observationEnd(IObservationProvider model) {
         // we may have a lagging model notification from another model
         if (model == this.model) {
             this.model = null;
@@ -136,21 +136,21 @@ public abstract class ModelRunHandler extends AbstractHandler implements ILifeCy
     public void viewRemoved(IWorkbenchPart part) {
     }
 
-    public void observationEnding(ILifecyle observed) {
+    public void observationEnding(IObservationProvider observed) {
     }
 
-    public void observeCreate(ILifecyle observed) {
+    public void observeCreate(IObservationProvider observed) {
     }
 
-    public void observeInitialize(ILifecyle observed) {
+    public void observeInitialize(IObservationProvider observed) {
     }
 
-    public void observeStart(ILifecyle observed) {
+    public void observeStart(IObservationProvider observed) {
     }
 
-    public void observeStop(ILifecyle observed) {
+    public void observeStop(IObservationProvider observed) {
     }
 
-    public void observeUpdate(ILifecyle observed) {
+    public void observeUpdate(IObservationProvider observed) {
     }
 }

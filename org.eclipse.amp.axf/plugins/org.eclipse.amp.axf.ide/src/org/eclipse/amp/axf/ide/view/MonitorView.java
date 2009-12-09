@@ -17,7 +17,7 @@ package org.eclipse.amp.axf.ide.view;
 
 import org.eclipse.amp.axf.core.AbstractLifecycleListener;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.core.ILifecyle;
+import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.core.runtime.IProgressMonitor;
 
 // TODO: Auto-generated Javadoc
@@ -43,10 +43,10 @@ public abstract class MonitorView extends AbstractLifecycleListener {
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observing(org.eclipse.amp.axf.core.ILifecyle)
+     * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observing(org.eclipse.amp.axf.core.IObservationProvider)
      */
     @Override
-    public void observing(ILifecyle model) {
+    public void observing(IObservationProvider model) {
         super.observing(model);
         // TODO change to label provider
         modelDesc = ((IModel) model).getName();
