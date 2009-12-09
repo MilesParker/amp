@@ -246,6 +246,10 @@
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AMove-»
+	if («selected.asAgent().pre()»getHostScape() != ((org.ascape.model.HostCell) «destination.asHost().expl()»).getScape()) {
+	    die();
+	    «destination.asHost().pre()»«destination.agent.owner.getterName()»().get«selected.agent.scape().toFirstUpper()»().add(«selected.asAgent().expl()»);
+	}
 	«call(path, inner)»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ACreateAgents-»
 	«call(path, inner)»«ENDAROUND»
