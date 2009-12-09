@@ -36,7 +36,9 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
+import org.eclipse.gef.editpolicies.SelectionEditPolicy;
 import org.eclipse.ui.statushandlers.StatusManager;
 
 public abstract class GenericEditPart extends AbstractGraphicalEditPart implements PropertyChangeListener {
@@ -48,14 +50,16 @@ public abstract class GenericEditPart extends AbstractGraphicalEditPart implemen
     public static final Border HIGHLIGHT_RECTANGLE = new MarginBorder(2) {
         @Override
         public void paint(IFigure figure, Graphics graphics, Insets insets) {
-            Rectangle r = new Rectangle(new Point(0, 0), SIZE_INSET_1);
-            graphics.setLineWidth(2);
-            graphics.setForegroundColor(ColorConstants.yellow);
+            Rectangle r = Rectangle.SINGLETON;
+            r.setBounds(figure.getBounds());
+            r.shrink(1, 1);
+            graphics.setLineWidth(figure.getBounds().width / 10);
+            graphics.setForegroundColor(ColorConstants.black);
             graphics.setLineStyle(Graphics.LINE_SOLID);
             // graphics.setXORMode(false);
             graphics.drawRectangle(r);
             graphics.setLineStyle(Graphics.LINE_DASH);
-            graphics.setForegroundColor(ColorConstants.black);
+            graphics.setForegroundColor(ColorConstants.yellow);
             graphics.drawRectangle(r);
         }
     };
@@ -70,6 +74,7 @@ public abstract class GenericEditPart extends AbstractGraphicalEditPart implemen
             graphics.setForegroundColor(ColorConstants.black);
             graphics.drawOval(r);
             r.shrink(1, 1);
+            graphics.setLineStyle(Graphics.LINE_DASH);
             graphics.setForegroundColor(ColorConstants.yellow);
             graphics.drawOval(r);
         }
@@ -278,22 +283,22 @@ public abstract class GenericEditPart extends AbstractGraphicalEditPart implemen
     }
 
     protected void createEditPolicies() {
-        // installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new SelectionEditPolicy() {
-        //
-        // @Override
-        // protected void setSelectedState(int type) {
-        // super.setSelectedState(type);
-        // updateSelection();
-        // }
-        //
-        // @Override
-        // protected void hideSelection() {
-        // }
-        //
-        // @Override
-        // protected void showSelection() {
-        // }
-        // });
+        installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new SelectionEditPolicy() {
+
+            @Override
+            protected void setSelectedState(int type) {
+                super.setSelectedState(type);
+                updateSelection();
+            }
+
+            @Override
+            protected void hideSelection() {
+            }
+
+            @Override
+            protected void showSelection() {
+            }
+        });
     }
 
     public void propertyChange(PropertyChangeEvent evt) {
