@@ -60,7 +60,7 @@ public abstract class SWTAsyncModelListener extends SWTThreadModelListener {
 
     private boolean waitForPaint = true;
 
-    private long minTimeBetweenUpdates = 0;
+    private long minTimeBetweenUpdates = 5000;
 
     protected boolean updating = false;
 

@@ -21,7 +21,7 @@ import java.util.List;
 
 import org.eclipse.amp.axf.core.ILifeCycleListener;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.core.IObservationProvider;
+import org.eclipse.amp.axf.core.ILifecyle;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
@@ -166,7 +166,7 @@ public abstract class ModelViewPart extends ViewPart implements IModelPart, IPro
      * 
      * @return the model
      */
-    public IObservationProvider getModel() {
+    public ILifecyle getModel() {
         return model;
     }
 
