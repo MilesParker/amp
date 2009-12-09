@@ -39,8 +39,8 @@ public class LifecycleObservationAdapter implements IStateListener {
      * @see org.eclipse.amp.axf.core.IStateListener#stateChange(java.lang.Object, java.lang.Object)
      */
     public void stateChange(Object notifyType, Object observed) {
-        if (notifyType instanceof LifeCycleState && observed instanceof IObservationProvider) {
-            IObservationProvider provider = (IObservationProvider) observed;
+        if (notifyType instanceof LifeCycleState && observed instanceof ILifecyle) {
+            ILifecyle provider = (ILifecyle) observed;
             switch ((LifeCycleState) notifyType) {
                 case OBSERVED:
                     lifeCycleListener.observing(provider);

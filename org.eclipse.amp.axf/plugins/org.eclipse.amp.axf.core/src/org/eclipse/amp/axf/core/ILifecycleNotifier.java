@@ -7,21 +7,23 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
+ * Contributors:
  *   Metascape - Initial API and Implementation
  *
  * </copyright>
  *
-*/
+ */
+
 package org.eclipse.amp.axf.core;
 
 import java.util.Collection;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface IObservationProvider.
+ * 
+ * @author mparker
+ *
  */
-public interface IObservationProvider {
+public interface ILifecycleNotifier {
 
     /**
      * Adds the model listener.
@@ -44,10 +46,4 @@ public interface IObservationProvider {
      */
     public abstract void removeModelListener(ILifeCycleListener view);
 
-    /**
-     * Checks if is initialized.
-     * 
-     * @return true, if is initialized
-     */
-    public abstract boolean isInitialized();
 }

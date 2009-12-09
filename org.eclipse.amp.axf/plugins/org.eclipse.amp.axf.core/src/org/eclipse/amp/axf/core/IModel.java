@@ -7,12 +7,12 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
+ * Contributors:
  *   Metascape - Initial API and Implementation
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.axf.core;
 
 
@@ -20,36 +20,36 @@ package org.eclipse.amp.axf.core;
 /**
  * The Interface IModel.
  */
-public interface IModel extends IObservationProvider {
+public interface IModel extends ILifecyle, ILifecycleNotifier {
 
-	/**
+    /**
      * Gets the time description.
      * 
      * @return the time description
      */
-	String getTimeDescription();
-    
+    String getTimeDescription();
+
     /**
      * Gets the engine.
      * 
      * @return the engine
      */
     IEngine getEngine();
-    
+
     /**
      * Gets the name.
      * 
      * @return the name
      */
     String getName();
-    
+
     /**
-     * Gets the period.
+     * Gets the period, encoded as a long value as defined by the IEngine time granularity.
      * 
      * @return the period
      */
     int getPeriod();
-    
+
     /**
      * Gets the stop period.
      * 

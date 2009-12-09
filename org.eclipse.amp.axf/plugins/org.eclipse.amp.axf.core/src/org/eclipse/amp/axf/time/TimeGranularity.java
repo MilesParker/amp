@@ -63,13 +63,23 @@ public class TimeGranularity implements ITimeGranularity {
         this.updateFrequency = updateFrequency;
     }
 
+    public String getDescription() {
+        if (updateDelay > 0) {
+            return "-" + updateDelay + "ms";
+        } else if (updateFrequency == 1) {
+            return "1";
+        } else if (updateFrequency == Integer.MAX_VALUE) {
+            return "MAX";
+        } else {
+            return updateFrequency + "x";
+        }
+    }
+
     /**
      * @return
      * @see java.lang.Object#toString()
      */
     public String toString() {
-        return updateDelay == 0 ? (updateFrequency > 1 ? "[update " + updateFrequency + "]" : "") : "[delay "
-            + updateDelay
-            + "ms]";
+        return getDescription();
     }
 }

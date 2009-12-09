@@ -50,58 +50,58 @@ public class AbstractLifecycleListener implements ILifeCycleListener {
 
     /**
      * @param observed
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observationEnd(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observationEnd(org.eclipse.amp.axf.core.ILifecyle)
      */
-    public void observationEnd(IObservationProvider observed) {
+    public void observationEnd(ILifecyle observed) {
     }
 
     /**
      * @param observed
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observationEnding(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observationEnding(org.eclipse.amp.axf.core.ILifecyle)
      */
-    public void observationEnding(IObservationProvider observed) {
+    public void observationEnding(ILifecyle observed) {
     }
 
     /**
      * @param observed
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeCreate(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeCreate(org.eclipse.amp.axf.core.ILifecyle)
      */
-    public void observeCreate(IObservationProvider observed) {
+    public void observeCreate(ILifecyle observed) {
     }
 
     /**
      * @param observed
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeInitialize(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeInitialize(org.eclipse.amp.axf.core.ILifecyle)
      */
-    public void observeInitialize(IObservationProvider observed) {
+    public void observeInitialize(ILifecyle observed) {
     }
 
     /**
      * @param observed
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeStart(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeStart(org.eclipse.amp.axf.core.ILifecyle)
      */
-    public void observeStart(IObservationProvider observed) {
+    public void observeStart(ILifecyle observed) {
     }
 
     /**
      * @param observed
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeStop(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeStop(org.eclipse.amp.axf.core.ILifecyle)
      */
-    public void observeStop(IObservationProvider observed) {
+    public void observeStop(ILifecyle observed) {
     }
 
     /**
      * @param observed
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeUpdate(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeUpdate(org.eclipse.amp.axf.core.ILifecyle)
      */
-    public void observeUpdate(IObservationProvider observed) {
+    public void observeUpdate(ILifecyle observed) {
     }
 
     /**
      * @param observed
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observing(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observing(org.eclipse.amp.axf.core.ILifecyle)
      */
-    public void observing(IObservationProvider observed) {
+    public void observing(ILifecyle observed) {
     }
 
     /**
