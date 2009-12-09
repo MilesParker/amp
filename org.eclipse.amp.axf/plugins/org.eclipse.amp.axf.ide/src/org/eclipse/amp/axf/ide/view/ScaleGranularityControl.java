@@ -18,7 +18,6 @@ package org.eclipse.amp.axf.ide.view;
 
 import org.eclipse.amp.axf.core.IEngine;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
 import org.eclipse.amp.axf.ide.IModelWorkbenchListener;
 import org.eclipse.amp.axf.time.TimeGranularity;
@@ -35,7 +34,7 @@ import org.eclipse.ui.menus.WorkbenchWindowControlContribution;
 /**
  * 
  * @author mparker
- *
+ * 
  */
 public class ScaleGranularityControl extends WorkbenchWindowControlContribution implements IModelWorkbenchListener {
 
@@ -70,7 +69,7 @@ public class ScaleGranularityControl extends WorkbenchWindowControlContribution 
         new Thread() {
             public void run() {
                 AXFWorkbenchPlugin.getDefault().getManager().getManagerListeners()
-                        .addModelManagerListener(ScaleGranularityControl.this);
+                .addModelManagerListener(ScaleGranularityControl.this);
             };
         }.start();
         return scale;
@@ -78,9 +77,10 @@ public class ScaleGranularityControl extends WorkbenchWindowControlContribution 
 
     private void scaleToEngineGranularity() {
         if (Math.abs(scale.getSelection() - SCALE_MID) > CENTER_RANGE) {
-            if (scale.getSelection() > SCALE_MID) {
-                engine.setUpdateGranularity(TimeGranularity.createFrequencyGranularity((scale
-                        .getSelection()
+            if (scale.getSelection() == scale.getMaximum()) {
+                engine.setUpdateGranularity(TimeGranularity.createFrequencyGranularity(Integer.MAX_VALUE));
+            } else if (scale.getSelection() > SCALE_MID) {
+                engine.setUpdateGranularity(TimeGranularity.createFrequencyGranularity((scale.getSelection()
                         - SCALE_MID - CENTER_RANGE) * 2));
             } else {
                 if (scale.getSelection() > 0) {
@@ -124,16 +124,16 @@ public class ScaleGranularityControl extends WorkbenchWindowControlContribution 
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.ide.IModelWorkbenchListener#modelActivated(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.ide.IModelWorkbenchListener#modelActivated(IModel)
      */
-    public void modelActivated(IObservationProvider model) {
+    public void modelActivated(IModel model) {
         if (model != null) {
             Display.getDefault().asyncExec(new Runnable() {
                 public void run() {
                     scale.setEnabled(true);
                 }
             });
-            engine = ((IModel) model).getEngine();
+            engine = model.getEngine();
             engineGranularityToScale();
         } else {
             engine = null;
@@ -148,16 +148,16 @@ public class ScaleGranularityControl extends WorkbenchWindowControlContribution 
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.ide.IModelWorkbenchListener#modelAdded(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.ide.IModelWorkbenchListener#modelAdded(IModel)
      */
-    public void modelAdded(IObservationProvider model) {
+    public void modelAdded(IModel model) {
     }
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.ide.IModelWorkbenchListener#modelRemoved(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.ide.IModelWorkbenchListener#modelRemoved(IModel)
      */
-    public void modelRemoved(IObservationProvider model) {
+    public void modelRemoved(IModel model) {
     }
 
     /**

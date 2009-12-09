@@ -16,7 +16,7 @@
 package org.eclipse.amp.axf.ide.view;
 
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.core.IObservationProvider;
+import org.eclipse.amp.axf.core.ILifecyle;
 import org.eclipse.core.runtime.IProgressMonitor;
 
 // TODO: Auto-generated Javadoc
@@ -42,10 +42,10 @@ public class RunMonitorView extends MonitorView {
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.ide.view.MonitorView#observing(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.ide.view.MonitorView#observing(org.eclipse.amp.axf.core.ILifecyle)
      */
     @Override
-    public void observing(IObservationProvider model) {
+    public void observing(ILifecyle model) {
         super.observing(model);
         String mainDesc = "Running " + modelDesc;
         monitor.setTaskName(mainDesc);
@@ -67,10 +67,10 @@ public class RunMonitorView extends MonitorView {
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeUpdate(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeUpdate(org.eclipse.amp.axf.core.ILifecyle)
      */
     @Override
-    public void observeUpdate(IObservationProvider observed) {
+    public void observeUpdate(ILifecyle observed) {
         if (System.currentTimeMillis() - lastUpdateTime > TIME_BETWEEN_UPDATES) {
             lastUpdateTime = System.currentTimeMillis();
             IModel model = (IModel) observed;
@@ -87,10 +87,10 @@ public class RunMonitorView extends MonitorView {
 
     /**
      * @param observed
-     * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeStart(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeStart(org.eclipse.amp.axf.core.ILifecyle)
      */
     @Override
-    public void observeStart(IObservationProvider observed) {
+    public void observeStart(ILifecyle observed) {
         IModel model = (IModel) observed;
         monitor.beginTask("Run " + model.getName(), model.getStopPeriod() > 0
                           && model.getStopPeriod() != Integer.MAX_VALUE ? model.getStopPeriod()
@@ -101,10 +101,10 @@ public class RunMonitorView extends MonitorView {
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeStop(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeStop(org.eclipse.amp.axf.core.ILifecyle)
      */
     @Override
-    public void observeStop(IObservationProvider model) {
+    public void observeStop(ILifecyle model) {
         monitor.subTask("Stopped");
         monitor.done();
     }

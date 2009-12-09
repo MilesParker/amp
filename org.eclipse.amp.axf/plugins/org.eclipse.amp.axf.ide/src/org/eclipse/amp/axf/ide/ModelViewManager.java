@@ -22,8 +22,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.amp.axf.core.IEngine;
+import org.eclipse.amp.axf.core.ILifecyle;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.ide.handlers.CloseHandler;
 import org.eclipse.amp.axf.ide.handlers.ModelRunHandler;
 import org.eclipse.amp.axf.ide.handlers.PauseHandler;
@@ -116,9 +116,9 @@ public class ModelViewManager implements IAdapterFactory {
 
     List<IViewPart> views = new ArrayList<IViewPart>();
 
-    Map<IEngine, IModel> runnerForModel;
+    Map<IModel, IEngine> runnerForModel;
 
-    Map<IModel, IEngine> modelForRunner = new HashMap<IModel, IEngine>();
+    Map<IEngine, IModel> modelForRunner = new HashMap<IEngine, IModel>();
 
     Map<Object, IModel> modelForArbitrary = new HashMap<Object, IModel>();
 
@@ -136,7 +136,7 @@ public class ModelViewManager implements IAdapterFactory {
 
     private int updateCount;
 
-    private IObservationProvider[] modelSlots = new IObservationProvider[16];
+    private ILifecyle[] modelSlots = new ILifecyle[16];
 
     private SelectionSynchronizer editSelection;
 
@@ -155,7 +155,7 @@ public class ModelViewManager implements IAdapterFactory {
      * 
      * @return the active model
      */
-    public synchronized IObservationProvider getActiveModel() {
+    public synchronized ILifecyle getActiveModel() {
         return activeModel;
     }
 
@@ -196,9 +196,9 @@ public class ModelViewManager implements IAdapterFactory {
      * 
      * @return the slot
      */
-    public int getSlot(IObservationProvider model) {
+    public int getSlot(ILifecyle model) {
         int i = 0;
-        for (IObservationProvider slot : modelSlots) {
+        for (ILifecyle slot : modelSlots) {
             if (slot == model) {
                 return i;
             }
@@ -214,9 +214,9 @@ public class ModelViewManager implements IAdapterFactory {
      * 
      * @return the int
      */
-    public int assignSlot(IObservationProvider model) {
+    public int assignSlot(ILifecyle model) {
         int i = 0;
-        for (IObservationProvider slot : modelSlots) {
+        for (ILifecyle slot : modelSlots) {
             if (slot == null) {
                 modelSlots[i] = model;
                 return i;
@@ -237,9 +237,9 @@ public class ModelViewManager implements IAdapterFactory {
      * 
      * @return the int
      */
-    public int releaseSlot(IObservationProvider model) {
+    public int releaseSlot(ILifecyle model) {
         int i = 0;
-        for (IObservationProvider slot : modelSlots) {
+        for (ILifecyle slot : modelSlots) {
             if (slot == model) {
                 modelSlots[i] = null;
                 return i;
@@ -267,8 +267,8 @@ public class ModelViewManager implements IAdapterFactory {
             activate();
         }
         models.add(model);
-        modelForRunner.put(model, executor);
-        runnerForModel.put(executor, model);
+        modelForRunner.put(executor, model);
+        runnerForModel.put(model, executor);
         assignSlot(model);
         if (modelObject != null) {
             modelForArbitrary.put(modelObject, model);
@@ -382,7 +382,7 @@ public class ModelViewManager implements IAdapterFactory {
         if (PlatformUI.getWorkbench() != null) {
             Display display = PlatformUI.getWorkbench().getDisplay();
             if (!display.isDisposed()) {
-                display.syncExec(new Runnable() {
+                display.asyncExec(new Runnable() {
                     public void run() {
                         IWorkbench workbench = PlatformUI.getWorkbench();
                         IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
@@ -408,8 +408,8 @@ public class ModelViewManager implements IAdapterFactory {
      */
     public synchronized void remove(final IModel model) {
         if (models.remove(model)) {
-            modelForRunner.remove(model);
-            runnerForModel.remove(model.getEngine());
+            modelForRunner.remove(model.getEngine());
+            runnerForModel.remove(model);
             managerListeners.notifyModelRemoved(model);
             for (IViewPart part : viewsForModel.get(model)) {
                 closeView(part);
@@ -467,7 +467,7 @@ public class ModelViewManager implements IAdapterFactory {
         });
 
         viewsForModel = new HashMap<IModel, List<IViewPart>>();
-        runnerForModel = new HashMap<IEngine, IModel>();
+        runnerForModel = new HashMap<IModel, IEngine>();
         modelActivationListener = new ActivationListener();
         activeModelListeners = new LifeCycleListeners();
 

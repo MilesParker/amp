@@ -17,8 +17,8 @@ package org.eclipse.amp.axf.ide;
 
 import org.eclipse.amp.axf.core.AbstractLifecycleListener;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
+import org.eclipse.amp.axf.core.ILifecyle;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -40,7 +40,7 @@ public class ModelManagerViewPart extends ViewPart {
     private static final class ModelContents implements ITreeContentProvider {
         public Object[] getChildren(Object parentElement) {
             if (parentElement instanceof IModel) {
-                return ((IObservationProvider) parentElement).getModelListeners().toArray();
+                return ((IModel) parentElement).getModelListeners().toArray();
             }
             return new Object[0];
         }
@@ -69,12 +69,12 @@ public class ModelManagerViewPart extends ViewPart {
 
     ILifeCycleListener genericModelListener = new AbstractLifecycleListener() {
         @Override
-        public void observeStart(IObservationProvider model) {
+        public void observeStart(ILifecyle model) {
             refreshViewer();
         }
 
         @Override
-        public void observeStop(IObservationProvider model) {
+        public void observeStop(ILifecyle model) {
             refreshViewer();
         }
 
@@ -90,7 +90,7 @@ public class ModelManagerViewPart extends ViewPart {
             }
         }
 
-        public void observeUpdate(IObservationProvider model) {
+        public void observeUpdate(ILifecyle model) {
             if (((IModel) model).getPeriod() % 10 == 0) {
                 refreshViewer();
             }
@@ -99,16 +99,16 @@ public class ModelManagerViewPart extends ViewPart {
 
     private class ManagerListener implements IModelWorkbenchListener {
 
-        public void modelActivated(IObservationProvider model) {
+        public void modelActivated(IModel model) {
             refreshViewer();
         }
 
-        public void modelAdded(IObservationProvider model) {
+        public void modelAdded(IModel model) {
             refreshViewer();
             model.addModelListener(genericModelListener);
         }
 
-        public void modelRemoved(IObservationProvider model) {
+        public void modelRemoved(IModel model) {
             refreshViewer();
             model.removeModelListener(genericModelListener);
         }

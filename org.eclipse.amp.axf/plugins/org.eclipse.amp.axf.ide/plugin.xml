@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.4 2009/10/30 03:25:06 mparker Exp $
+ $Id: plugin.xml,v 1.5 2009/12/09 02:18:33 mparker Exp $
 -->
 
 <plugin>
@@ -253,7 +253,7 @@
                          </reference>
                       </visibleWhen>
                    </command>
-<!--                <control
+                <control
                       class="org.eclipse.amp.axf.ide.view.ScaleGranularityControl"
                       id="org.eclipse.amp.axf.view.ui.slider">
                    <visibleWhen
@@ -262,7 +262,7 @@
                             definitionId="org.eclipse.amp.axf.ui.active">
                       </reference>
                    </visibleWhen>
-                </control>-->
+                </control>
                        </menuContribution>
     </extension>
  <extension point="org.eclipse.core.expressions.definitions">

@@ -15,7 +15,7 @@
  */
 package org.eclipse.amp.axf.ide;
 
-import org.eclipse.amp.axf.core.IObservationProvider;
+import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.ui.IWorkbenchPart;
 
 // TODO: Auto-generated Javadoc
@@ -35,14 +35,14 @@ public interface IModelWorkbenchListener {
      * 
      * @param model the model
      */
-    void modelAdded(IObservationProvider model);
+    void modelAdded(IModel model);
 
     /**
      * Model removed.
      * 
      * @param model the model
      */
-    void modelRemoved(IObservationProvider model);
+    void modelRemoved(IModel model);
 
     /**
      * Notifies the listener that the given model has been activated, that is in foreground and controllable. The model
@@ -55,7 +55,7 @@ public interface IModelWorkbenchListener {
      * @param model The model that is currently activated, or null if no models are now active. This usually indicates
      *        that no models exist.
      */
-    void modelActivated(IObservationProvider model);
+    void modelActivated(IModel model);
 
     /**
      * View added.

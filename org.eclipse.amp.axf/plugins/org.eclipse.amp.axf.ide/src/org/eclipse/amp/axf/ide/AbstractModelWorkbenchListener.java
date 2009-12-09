@@ -16,7 +16,7 @@
 
 package org.eclipse.amp.axf.ide;
 
-import org.eclipse.amp.axf.core.IObservationProvider;
+import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**
@@ -28,23 +28,23 @@ public class AbstractModelWorkbenchListener implements IModelWorkbenchListener {
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.ide.IModelWorkbenchListener#modelActivated(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.ide.IModelWorkbenchListener#modelActivated(IModel)
      */
-    public void modelActivated(IObservationProvider model) {
+    public void modelActivated(IModel model) {
     }
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.ide.IModelWorkbenchListener#modelAdded(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.ide.IModelWorkbenchListener#modelAdded(IModel)
      */
-    public void modelAdded(IObservationProvider model) {
+    public void modelAdded(IModel model) {
     }
 
     /**
      * @param model
-     * @see org.eclipse.amp.axf.ide.IModelWorkbenchListener#modelRemoved(org.eclipse.amp.axf.core.IObservationProvider)
+     * @see org.eclipse.amp.axf.ide.IModelWorkbenchListener#modelRemoved(IModel)
      */
-    public void modelRemoved(IObservationProvider model) {
+    public void modelRemoved(IModel model) {
     }
 
     /**
