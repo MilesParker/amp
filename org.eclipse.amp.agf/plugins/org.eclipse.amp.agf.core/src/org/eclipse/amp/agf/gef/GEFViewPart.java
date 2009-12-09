@@ -71,19 +71,23 @@ public class GEFViewPart extends EditPartViewPart {
         super.setInput(input);
         getViewer().setProperty(MouseWheelHandler.KeyGenerator.getKey(SWT.MOD1), MouseWheelZoomHandler.SINGLETON);
         getViewer().setKeyHandler(new GraphicalViewerKeyHandler((GraphicalViewer) getViewer()));
-        getViewer().getControl().addControlListener(new ControlListener() {
-            public void controlMoved(ControlEvent e) {
-            }
+        if (input != null) {
+            getViewer().getControl().addControlListener(new ControlListener() {
+                public void controlMoved(ControlEvent e) {
+                }
 
-            public void controlResized(ControlEvent e) {
-                setZoomFit(zoomFit);
-            }
-        });
-        getViewer().getControl().getDisplay().asyncExec(new Runnable() {
-            public void run() {
-                setZoomFit(zoomFit);
-            }
-        });
+                public void controlResized(ControlEvent e) {
+                    if (!(getModel().isEnding() || getModel().isEnded())) {
+                        setZoomFit(zoomFit);
+                    }
+                }
+            });
+            getViewer().getControl().getDisplay().asyncExec(new Runnable() {
+                public void run() {
+                    setZoomFit(zoomFit);
+                }
+            });
+        }
     }
 
     public String getZoomFit() {

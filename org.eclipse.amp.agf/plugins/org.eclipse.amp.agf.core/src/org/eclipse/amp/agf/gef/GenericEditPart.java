@@ -36,9 +36,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
-import org.eclipse.gef.editpolicies.SelectionEditPolicy;
 import org.eclipse.ui.statushandlers.StatusManager;
 
 public abstract class GenericEditPart extends AbstractGraphicalEditPart implements PropertyChangeListener {
@@ -108,14 +106,14 @@ public abstract class GenericEditPart extends AbstractGraphicalEditPart implemen
         if (buildFigure == null) {
             if (!noFigureWarning.contains(getClass())) {
                 StatusManager
-                        .getManager()
-                        .handle(
-                                new Status(
-                                    IStatus.WARNING,
-                                    "org.eclipse.amp.escape.core",
-                                    "No figure created by: "
-                                        + getClass()
-                                        + ". This is normal if the style does not always produce a figure, but you may want to check the #buildFigure implementation."));
+                .getManager()
+                .handle(
+                        new Status(
+                                   IStatus.WARNING,
+                                   "org.eclipse.amp.escape.core",
+                                   "No figure created by: "
+                                   + getClass()
+                                   + ". This is normal if the style does not always produce a figure, but you may want to check the #buildFigure implementation."));
                 noFigureWarning.add(getClass());
             }
             buildFigure = shapeRectangle();
@@ -280,22 +278,22 @@ public abstract class GenericEditPart extends AbstractGraphicalEditPart implemen
     }
 
     protected void createEditPolicies() {
-        installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new SelectionEditPolicy() {
-
-            @Override
-            protected void setSelectedState(int type) {
-                super.setSelectedState(type);
-                updateSelection();
-            }
-
-            @Override
-            protected void hideSelection() {
-            }
-
-            @Override
-            protected void showSelection() {
-            }
-        });
+        // installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new SelectionEditPolicy() {
+        //
+        // @Override
+        // protected void setSelectedState(int type) {
+        // super.setSelectedState(type);
+        // updateSelection();
+        // }
+        //
+        // @Override
+        // protected void hideSelection() {
+        // }
+        //
+        // @Override
+        // protected void showSelection() {
+        // }
+        // });
     }
 
     public void propertyChange(PropertyChangeEvent evt) {
