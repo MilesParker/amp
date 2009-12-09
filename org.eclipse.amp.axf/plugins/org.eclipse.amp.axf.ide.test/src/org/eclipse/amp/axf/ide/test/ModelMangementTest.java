@@ -28,7 +28,7 @@ import junit.framework.TestCase;
 
 import org.eclipse.amp.axf.core.AbstractLifecycleListener;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.core.IObservationProvider;
+import org.eclipse.amp.axf.core.ILifecyle;
 import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
 import org.eclipse.amp.axf.ide.ModelViewManager;
 import org.eclipse.core.resources.IFile;
@@ -336,7 +336,7 @@ public class ModelMangementTest extends TestCase {
         manager().getActiveModelListeners().addListener(new AbstractLifecycleListener() {
             Object model;
 
-            public void observing(IObservationProvider observed) {
+            public void observing(ILifecyle observed) {
                 if (model != null) {
                     fail("More than one model listened to.");
                 }
@@ -344,7 +344,7 @@ public class ModelMangementTest extends TestCase {
                 count++;
             }
 
-            public void observationEnd(IObservationProvider observed) {
+            public void observationEnd(ILifecyle observed) {
                 model = null;
             }
 
