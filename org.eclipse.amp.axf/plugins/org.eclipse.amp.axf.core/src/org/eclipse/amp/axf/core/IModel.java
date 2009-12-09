@@ -20,7 +20,7 @@ package org.eclipse.amp.axf.core;
 /**
  * The Interface IModel.
  */
-public interface IModel extends ILifecyle, ILifecycleNotifier {
+public interface IModel extends IObservationProvider, ILifecycleNotifier {
 
     /**
      * Gets the time description.

@@ -85,7 +85,7 @@ public interface IEngine {
      * 
      * @return the model
      */
-    ILifecyle getModel();
+    IObservationProvider getModel();
 
     /**
      * Sets the update granularity. This defines how often observers expect to receive state change notifications.

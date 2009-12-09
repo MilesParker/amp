@@ -57,7 +57,7 @@ package org.eclipse.amp.axf.core;
  * 
  * See individual states for more details.
  */
-public interface ILifecyle {
+public interface IObservationProvider {
 
     /**
      * Has the model been created? Should return true if observable start time components have been created. It is up to

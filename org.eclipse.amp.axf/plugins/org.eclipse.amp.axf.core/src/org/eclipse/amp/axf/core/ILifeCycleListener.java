@@ -31,7 +31,7 @@ public interface ILifeCycleListener extends IStateListener {
      * 
      * @param observed the observed
      */
-    public void observing(ILifecyle observed);
+    public void observing(IObservationProvider observed);
 
 
     /**
@@ -40,21 +40,21 @@ public interface ILifeCycleListener extends IStateListener {
      * 
      * @param observed the model event
      */
-    public void observeCreate(ILifecyle observed);
+    public void observeCreate(IObservationProvider observed);
 
     /**
      * Notifies that the model's initial state has been reached.
      * 
      * @param observed the observed
      */
-    public void observeInitialize(ILifecyle observed);
+    public void observeInitialize(IObservationProvider observed);
 
     /**
      * Notifies that the model is just starting execution.
      * 
      * @param observed the model event
      */
-    public void observeStart(ILifecyle observed);
+    public void observeStart(IObservationProvider observed);
 
     /**
      * Notifies that the model has completed one period of execution at the appropriate level of granularity. Currently
@@ -62,7 +62,7 @@ public interface ILifeCycleListener extends IStateListener {
      * 
      * @param observed the model event
      */
-    public void observeUpdate(ILifecyle observed);
+    public void observeUpdate(IObservationProvider observed);
 
     /**
      * Notifies that the model has stopped execution. This does not imply that the model is dead, simply that it will no
@@ -71,14 +71,14 @@ public interface ILifeCycleListener extends IStateListener {
      * 
      * @param observed the model event
      */
-    public void observeStop(ILifecyle observed);
+    public void observeStop(IObservationProvider observed);
 
     /**
      * Notifies that the model is about to be closed. The model should still be available for observation at this point.
      * 
      * @param observed the model event
      */
-    public void observationEnding(ILifecyle observed);
+    public void observationEnding(IObservationProvider observed);
 
     /**
      * Notifies that the model is no longer providing observations. Typically it has been disposed at this point.
@@ -87,6 +87,6 @@ public interface ILifeCycleListener extends IStateListener {
      * 
      * @see modelAdded
      */
-    public void observationEnd(ILifecyle observed);
+    public void observationEnd(IObservationProvider observed);
 
 }
