@@ -318,6 +318,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
      */
     public void closeFinally() {
         super.closeFinally();
+        ((ScapeWrapperModel) getModel()).setClosed(true);
         removeModel();
         dispose();
     }
