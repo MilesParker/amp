@@ -23,8 +23,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.amp.axf.core.ILifecyle;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.view.SWTAsyncModelListener;
 import org.eclipse.birt.chart.api.ChartEngine;
 import org.eclipse.birt.chart.device.ICallBackNotifier;
@@ -231,9 +231,9 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 
         /**
          * @param observed
-         * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observing(org.eclipse.amp.axf.core.IObservationProvider)
+         * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observing(org.eclipse.amp.axf.core.ILifecyle)
          */
-        public void observing(IObservationProvider observed) {
+        public void observing(ILifecyle observed) {
             // wait for data source to be available from model set..
             while (dataProvider == null) {
                 try {
@@ -246,9 +246,9 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 
         /**
          * @param observed
-         * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeStart(org.eclipse.amp.axf.core.IObservationProvider)
+         * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeStart(org.eclipse.amp.axf.core.ILifecyle)
          */
-        public void observeStart(IObservationProvider observed) {
+        public void observeStart(ILifecyle observed) {
             initializeDataSelection();
             updateChartSeries();
             endPainting();
@@ -256,10 +256,10 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 
         /**
          * 
-         * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeInitialize(org.eclipse.amp.axf.core.IObservationProvider)
+         * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeInitialize(org.eclipse.amp.axf.core.ILifecyle)
          */
         @Override
-        public void observeInitialize(IObservationProvider model) {
+        public void observeInitialize(ILifecyle model) {
             // createChart();
             // initializeChartData();
             // updateChartSeries();
@@ -279,9 +279,9 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 
         /**
          *
-         * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observationEnd(org.eclipse.amp.axf.core.IObservationProvider)
+         * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observationEnd(org.eclipse.amp.axf.core.ILifecyle)
          */
-        public void observationEnd(IObservationProvider model) {
+        public void observationEnd(ILifecyle model) {
             dataProvider.removeListener(dataSource, dataListener);
             model = null;
         }
@@ -361,7 +361,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
     public void setModel(Object model) {
         super.setModel(model);
         chartListener = new ChartModelListener();
-        ((IObservationProvider) model).addModelListener(chartListener);
+        ((IModel) model).addModelListener(chartListener);
         IAdapterManager adapterManager = Platform.getAdapterManager();
         // We seem to need to force loading of the data provider, at least in the exemplar case
         Object provider = adapterManager.loadAdapter(this.getModel(), "org.eclipse.amp.agf.chart.IDataProvider");
