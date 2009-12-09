@@ -7,12 +7,12 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
+ * Contributors:
  *   Metascape - Initial API and Implementation
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.escape.ascape.chart;
 
 import java.util.HashMap;
@@ -98,6 +98,7 @@ public class AscapeDataProvider implements IDataProvider, ILabelProvider {
                 listener.selectionChanged(dataSource);
             }
         };
+        observerForListener.put(listener, observer);
         selection.addObserver(observer);
     }
 
