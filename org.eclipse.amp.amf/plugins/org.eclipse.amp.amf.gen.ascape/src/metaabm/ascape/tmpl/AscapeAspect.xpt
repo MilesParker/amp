@@ -217,7 +217,7 @@
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AMove-»
-	«call(path, inner)»
+	«EXPAND metaabm::ascape::tmpl::ScapeAspect::InnerBlockCall(path, inner)»
 «ENDAROUND»
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ACreateAgents-»
 	«call(path, inner)»

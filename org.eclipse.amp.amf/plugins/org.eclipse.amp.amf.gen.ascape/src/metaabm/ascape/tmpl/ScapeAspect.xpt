@@ -259,14 +259,18 @@
 		«ENDFOREACH»
 «ENDDEFINE»
 
-«DEFINE StatBuilderAdd(SAttribute outer, String mod, String desc) FOR SAttribute-»
-    «((SAgent) parent()).fieldName()».addStatCollector(new org.ascape.util.data.StatCollector«outer(outer).statCondTerm()»CSAMM(«statLabel(outer, desc)») {
+«DEFINE StatBuilderBody(SAttribute outer, String mod, String name) FOR SAttribute-»
+    «((SAgent) parent()).fieldName()».addStatCollector(new org.ascape.util.data.StatCollector«outer(outer).statCondTerm()»CSAMM(«name») {
 		private static final long serialVersionUID = 6846144446402098985L;
 		«IF outer != this-»
 		«EXPAND StatBuilderBody (outer, mod) FOR outer-»
 		«ENDIF-»
 		«EXPAND StatBuilderBody (outer, !sType.numeric() ? mod : "")-»
     });
+«ENDDEFINE»
+
+«DEFINE StatBuilderAdd(SAttribute outer, String mod, String desc) FOR SAttribute-»
+	«EXPAND StatBuilderBody(outer, mod, statLabel(outer, desc))»
     «IF genStats() == "cross"-»
     	«EXPAND StatBuilderInner(this) FOREACH parent().attributes.select(a | a.numeric() && a.gatherData)-»
 	«ENDIF-»
@@ -330,5 +334,12 @@
 «DEFINE ViewBuilder FOR ABuildGrid-»
 «ENDDEFINE»
 
+«DEFINE InnerBlockCall(List[metaabm::act::AAct] path, Boolean inner) FOR AMove-»
+	if («selected.asAgent().pre()»getHostScape() != «destination.selid().expl()».getScape()) {
+	    die();
+	    «destination.selid().pre()»«destination.agent.owner.getterName()»().get«selected.agent.scape().toFirstUpper()»().add(«selected.asAgent().expl()»);
+	}
+	«call(path, inner)»
+«ENDDEFINE»
 
 «REM»«AROUND metaabm::tmpl::Java::Evaluation(*) FOR Object»«LET timesec() AS start»«targetDef.proceed()»//«timelapse(start)»«ENDLET»«ENDAROUND»«ENDREM»
