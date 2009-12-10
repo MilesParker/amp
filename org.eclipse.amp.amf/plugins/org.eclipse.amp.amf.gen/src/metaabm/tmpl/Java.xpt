@@ -504,7 +504,7 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 	//*** No Act Defined: «id()»
 «ENDDEFINE»
 «DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR ASet-»
-«setterPath(attribute)»(«parameter.bind(path, inner)»);«ENDDEFINE»
+«selected.selid().pre() + setterPath(attribute)»(«parameter.bind(path, inner)»);«ENDDEFINE»
 «DEFINE Evaluation (List[AAct] path, Boolean inner) FOR AAct-»«ENDDEFINE»
 «DEFINE Evaluation (List[AAct] path, Boolean inner) FOR AEvaluate-»
 «EXPAND ExtendType-» «varName()» = «EXPAND FunctionInnerBlock(path, inner)-»;«ENDDEFINE»
