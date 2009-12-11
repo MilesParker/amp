@@ -20,10 +20,9 @@ import org.ascape.model.HostCell;
 import org.ascape.model.space.Node;
 import org.ascape.util.Conditional;
 import org.ascape.util.vis.ColorFeatureConcrete;
-import org.eclipse.amp.agf3d.HumanFigureRenderShape;
 import org.eclipse.amp.agf3d.I3DModelFactoryProvider;
 import org.eclipse.amp.agf3d.IShape3DProvider;
-import org.eclipse.amp.agf3d.RenderingShapeProvider;
+import org.eclipse.amp.agf3d.Shapes3D;
 import org.eclipse.amp.escape.ascape.adapt.Ascape3DPartFactory;
 import org.eclipse.gef.EditPartFactory;
 import org.eclipse.jface.viewers.IColorProvider;
@@ -82,7 +81,7 @@ public class Epidemic3D_Tiles extends Epidemic3D implements I3DModelFactoryProvi
 
             public IShape3DProvider getShapeProvider(Object object) {
                 if (object instanceof Individual) {
-                    return RenderingShapeProvider.createProvider(HumanFigureRenderShape.getDefault());
+                    return Shapes3D.HUMAN_SHAPE_PROVIDER;
                 }
                 return null;
             }

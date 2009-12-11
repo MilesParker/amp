@@ -1,0 +1,5 @@
+model "|EpidemicRegional.metaabm" 
+"Regional Map Width"=4
+"Regional Map Height"=4
+"City Count"=16
+"Migration Probability"=.001
