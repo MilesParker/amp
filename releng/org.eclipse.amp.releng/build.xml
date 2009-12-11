@@ -1,4 +1,6 @@
 <project default="run" name="org.eclipse.amp.releng/build.xml - Run an AMP build using the Athena CBI">
+	<property file="build.properties" />
+	<import file="findbugs.xml"/>
 	<target name="run">
 		<!-- 			1. You must check out the following projects to your workspace:
 		
@@ -38,7 +40,6 @@
 
 		<!-- calculate workspaceDir as parent of this folder, the project's .releng folder (relengBuilderDir) -->
 		<property name="relengBuilderDir" value="${basedir}" />
-              <import file="findbugs.xml"/>
 		<dirname file="${relengBuilderDir}" property="workspaceDir" />
 
 
@@ -51,10 +52,12 @@
 		<!-- invoke a new Eclipse process and launch the build from the common.releng folder -->
 		<property name="relengCommonBuilderDir" value="${workspaceDir}/org.eclipse.dash.common.releng" />
 		<ant antfile="${relengCommonBuilderDir}/buildAll.xml" target="runEclipse" dir="${relengCommonBuilderDir}" />
+		<echo>***Find bugs antfile</echo>
               <ant antfile="findbugs" inheritall="true"/>
 	</target>
 
 	<target name="findbugs" description="Run a find bugs analysis based on a ZIP file contents.">
+		<echo>***Find bugs start</echo>
 		<patternset id="xmljars">
 		 <include name="**/plugins/*.jar"/>
 		</patternset>
