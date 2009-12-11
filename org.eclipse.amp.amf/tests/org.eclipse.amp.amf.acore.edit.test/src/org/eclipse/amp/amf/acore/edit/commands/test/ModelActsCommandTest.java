@@ -1393,9 +1393,6 @@ public class ModelActsCommandTest extends CommandTest {
                 assertEquals(set.getTargets().size(), 0);
                 assertEquals(rootAct().getMembers().size(), 7);
                 assertEquals(rootAct().getRoots().size(), 3);
-                for (AAct act : rootAct().getMembers()) {
-                    System.err.println(act.getID());
-                }
                 assertNotNull(rootAct().findMember("at0Every0_Unspecified_Query"));
             }
 
