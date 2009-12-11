@@ -61,5 +61,6 @@
 		<getFindBugs downloadDir="${writableBuildRoot}/downloads" destDir="${writableBuildRoot}/3rdPartyJars/findbugs" />
 		<extractJarsForAnalysis src="${sdkzipUrl}${zipPrefix}-SDK-${buildType}${buildTimestamp}.zip" refid="xmljars" />
 		<findBugs outputfile="${writableBuildRoot}/athena/fb-xml.xml" />
+		<echo>***Find bugs output should be here: ${writableBuildRoot}/athena/fb-xml.xml</echo>
 	</target>
 </project>
