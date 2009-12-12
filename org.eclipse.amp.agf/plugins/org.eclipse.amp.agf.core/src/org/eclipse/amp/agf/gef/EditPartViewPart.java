@@ -29,6 +29,7 @@ import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
+import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gef.ui.parts.ScrollingGraphicalViewer;
 import org.eclipse.jface.viewers.ISelection;
@@ -142,7 +143,7 @@ public abstract class EditPartViewPart extends ModelViewPart {
 
     public void createModelListeners() {
         super.createModelListeners();
-        rootListener = new EditPartListener(viewer.getControl(), getEditPart());
+        rootListener = new EditPartListener(this);
         rootListener.setWaitForUpdate(true);
         addModelListener(rootListener);
         if (viewer.getContents() instanceof IModelPart) {
@@ -221,7 +222,12 @@ public abstract class EditPartViewPart extends ModelViewPart {
     }
 
     public ZoomManager getZoomer() {
-        return zoomer;
+        if (rootEditPart instanceof ScalableFreeformRootEditPart) {
+            return ((ScalableFreeformRootEditPart) rootEditPart).getZoomManager();
+        } else if (rootEditPart instanceof ScalableRootEditPart) {
+            return ((ScalableRootEditPart) rootEditPart).getZoomManager();
+        }
+        return null;
     }
 
     /**

@@ -37,7 +37,16 @@ public class GEFViewPart extends EditPartViewPart {
     public void createPartControl(Composite parent) {
         super.createPartControl(parent);
         IToolBarManager toolBar = getViewSite().getActionBars().getToolBarManager();
-        toolBar.add(new ZoomComboContributionItem(getViewSite().getPage()));
+        ZoomComboContributionItem item = new ZoomComboContributionItem(getViewSite().getPage()) {
+            /**
+             * @param zm
+             * @see org.eclipse.gef.ui.actions.ZoomComboContributionItem#setZoomManager(org.eclipse.gef.editparts.ZoomManager)
+             */
+            public void setZoomManager(ZoomManager zm) {
+                super.setZoomManager(getZoomer());
+            }
+        };
+        toolBar.add(item);
         // getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(new ISelectionListener() {
         // public void selectionChanged(IWorkbenchPart part, ISelection selection) {
         // if (part != GEFViewPart.this && selection instanceof IStructuredSelection) {
