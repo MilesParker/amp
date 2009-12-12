@@ -22,8 +22,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.amp.axf.core.IEngine;
-import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.core.IModel;
+import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.ide.handlers.CloseHandler;
 import org.eclipse.amp.axf.ide.handlers.ModelRunHandler;
 import org.eclipse.amp.axf.ide.handlers.PauseHandler;
@@ -155,7 +155,7 @@ public class ModelViewManager implements IAdapterFactory {
      * 
      * @return the active model
      */
-    public synchronized IObservationProvider getActiveModel() {
+    public IObservationProvider getActiveModel() {
         return activeModel;
     }
 

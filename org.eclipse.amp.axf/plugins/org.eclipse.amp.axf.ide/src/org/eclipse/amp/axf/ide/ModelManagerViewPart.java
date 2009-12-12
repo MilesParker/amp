@@ -17,19 +17,23 @@ package org.eclipse.amp.axf.ide;
 
 import org.eclipse.amp.axf.core.AbstractLifecycleListener;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
-import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.core.IModel;
+import org.eclipse.amp.axf.core.IObservationProvider;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.part.ViewPart;
+import org.eclipse.ui.statushandlers.StatusManager;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -146,11 +150,32 @@ public class ModelManagerViewPart extends ViewPart {
 
     private void assignManager() {
         final ModelViewManager manager = AXFWorkbenchPlugin.getDefault().getManager();
-        ILabelProvider labelProvider = (ILabelProvider) Platform.getAdapterManager().getAdapter(manager,
-                                                                                                ILabelProvider.class);
-        if (labelProvider == null) {
-            throw new RuntimeException("Label Provider not found for Model Manager.");
+        final ILabelProvider modelLabelProvider = (ILabelProvider) Platform.getAdapterManager()
+        .getAdapter(manager, ILabelProvider.class);
+        if (modelLabelProvider == null) {
+            StatusManager.getManager().handle(
+                                              new Status(IStatus.WARNING, "org.eclipse.amp.axf.ide",
+                                                         "No label provider defined for: " + manager));
         }
+        ILabelProvider labelProvider = new LabelProvider() {
+            /**
+             * @param element
+             * @return
+             * @see org.eclipse.jface.viewers.LabelProvider#getText(java.lang.Object)
+             */
+            public String getText(Object element) {
+                if (element instanceof AbstractLifecycleListener) {
+                    return ((AbstractLifecycleListener) element).getName();
+                }
+                if (modelLabelProvider != null) {
+                    String name = modelLabelProvider.getText(element);
+                    if (name != null) {
+                        return name;
+                    }
+                }
+                return super.getText(element);
+            }
+        };
         viewer.setLabelProvider(labelProvider);
         viewer.setInput(manager);
         manager.getManagerListeners().addModelManagerListener(new ManagerListener());
