@@ -25,6 +25,7 @@ import org.ascape.model.CellOccupant;
 import org.ascape.model.HostCell;
 import org.ascape.model.LocatedAgent;
 import org.ascape.model.Scape;
+import org.ascape.model.event.ScapeListener;
 import org.ascape.model.space.Array2D;
 import org.ascape.model.space.Coordinate;
 import org.ascape.model.space.Coordinate2DDiscrete;
@@ -36,6 +37,7 @@ import org.eclipse.amp.axf.space.IGraphProvider;
 import org.eclipse.amp.axf.space.ILocation;
 import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
+import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModelListener;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -99,7 +101,12 @@ IColorProvider {
         }
         if (element instanceof AscapeObject) {
             return ((AscapeObject) element).getName();
-
+        }
+        if (element instanceof ScapeListener) {
+            return ((ScapeListener) element).getName();
+        }
+        if (element instanceof ScapeWrapperModelListener) {
+            return getText(((ScapeWrapperModelListener) element).getWrapped());
         }
         return null;
     }
