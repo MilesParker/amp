@@ -44,8 +44,7 @@ cached String periodic(SProjection proj) :
     "";
 
 cached String periodic(SNDimensional proj) :
-    ((proj.borderRule.toString() == "STRICT") || (proj.borderRule.toString() == "BOUNCY")) ? "false" : "true"
-    ;
+    proj.borderRule == SBorderRule::Periodic;
     
 cached Integer dimension(SProjection proj) :
     0;

@@ -207,7 +207,7 @@ cached Boolean statCond(SState outer) :
 	true;
 
 cached String statCondTerm(SAttribute typed) :
-	statCond(typed) ? "Cond" : "";
+	statCond(typed) ? "Cond" : "CSAMM";
 
 cached String statLabel(SAttribute inner, SAttribute outer, String desc) :
 	(inner.parent().parent().parent() != null ? "getName() + \" " : "\"") + inner.parent().label + " " + desc.spaceTrail() + (outer != inner ? outer.label.spaceTrail() : "") + inner.label + "\"";

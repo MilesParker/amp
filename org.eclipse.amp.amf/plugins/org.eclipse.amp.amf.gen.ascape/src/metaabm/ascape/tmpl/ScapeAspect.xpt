@@ -34,6 +34,18 @@
 	org.ascape.model.Scape «agent.scape()»;
 	«ENDIF-»
     «ENDFOREACH-»
+
+    «FOREACH agents AS agent-»
+    «IF !agent.isHost()-»
+    /**
+     * Create an instance of «agent.label» that will be used to populate the «agent.scape()».
+     * Overide to customize the prototype, for example to change the views created for a member scape.
+     */
+    protected «agent.typeName()» create«agent.typeName()»Prototype() {
+    	return new «agent.typeName()»();
+    }
+	«ENDIF-»
+    «ENDFOREACH-»
         
     static int next_vm_id;
     
@@ -219,7 +231,7 @@
 «DEFINE CreateScape(int stage) FOR SAgent-»
 	«IF !isHost()»
 		«IF stage == 0-»
-		«typeName()» «proto()» = new «typeName()»();
+		«typeName()» «proto()» = create«typeName()»Prototype();
 		«scape()» = new «pkgm()»Scape();
 		«scape()».setName("«label»");
 		«scape()».setPrototypeAgent(«proto()»);
@@ -260,7 +272,7 @@
 «ENDDEFINE»
 
 «DEFINE StatBuilderBody(SAttribute outer, String mod, String name) FOR SAttribute-»
-    «((SAgent) parent()).fieldName()».addStatCollector(new org.ascape.util.data.StatCollector«outer(outer).statCondTerm()»CSAMM(«name») {
+    «((SAgent) parent()).fieldName()».addStatCollector(new org.ascape.util.data.StatCollector«outer(outer).statCondTerm()»(«name») {
 		private static final long serialVersionUID = 6846144446402098985L;
 		«IF outer != this-»
 		«EXPAND StatBuilderBody (outer, mod) FOR outer-»
@@ -295,7 +307,7 @@
 «ENDDEFINE»
 «DEFINE StatBuilder FOR SAgent-»
 	«IF genStats() != "none"»
-        «scape()».addStatCollector(new org.ascape.util.data.StatCollectorCSA(getName() + " Population") {
+        «scape()».addStatCollector(new org.ascape.util.data.StatCollectorCond(getName() + " Population") {
 				private static final long serialVersionUID = 684614444640209893L;
 				
                 @SuppressWarnings("unused")
