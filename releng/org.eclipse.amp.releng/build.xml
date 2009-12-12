@@ -47,7 +47,7 @@
 			${writableBuildRoot}/${topprojectName}/${projectName}/downloads/drops/${version}/${buildType}${buildTimestamp} or
 			${writableBuildRoot}/${topprojectName}/${projectName}/${subprojectName}/downloads/drops/${version}/${buildType}${buildTimestamp}
 		-->
-		<property name="buildDir" value="${writableBuildRoot}/${buildType}${buildTimestamp}" />
+		<property name="buildDir" value="${writableBuildRoot}/current" />
 
 		<!-- invoke a new Eclipse process and launch the build from the common.releng folder -->
 		<property name="relengCommonBuilderDir" value="${workspaceDir}/org.eclipse.dash.common.releng" />
@@ -63,7 +63,7 @@
 		</patternset>
 		<getFindBugs downloadDir="${writableBuildRoot}/downloads" destDir="${writableBuildRoot}/3rdPartyJars/findbugs" />
 		<extractJarsForAnalysis src="${sdkzipUrl}${zipPrefix}-SDK-${buildType}${buildTimestamp}.zip" refid="xmljars" />
-		<findBugs outputfile="${writableBuildRoot}/athena/fb-xml.xml" />
+		<findBugs outputfile="${writableBuildRoot}/current/fb-xml.xml" />
 		<echo>***Find bugs output should be here: ${writableBuildRoot}/athena/fb-xml.xml</echo>
 	</target>
 </project>
