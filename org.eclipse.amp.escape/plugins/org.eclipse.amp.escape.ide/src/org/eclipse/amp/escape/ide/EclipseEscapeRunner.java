@@ -144,8 +144,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
         try {
             open(args, true);
         } catch (RuntimeException e) {
-            removeModel();
-            dispose();
+            closeFinally();
             throw e;
         }
         final List<ScapeListener> newListeners = new ArrayList<ScapeListener>();
@@ -190,6 +189,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
                 }
             }.start();
         }
+        modelShutdown = true;
     }
 
     private void dispose() {
@@ -232,8 +232,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
                     try {
                         EclipseEscapeRunner.super.run();
                     } catch (RuntimeException e) {
-                        removeModel();
-                        dispose();
+                        closeFinally();
                         throw e;
                     }
                     // } while (isRestartRequested());
@@ -299,7 +298,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
                     if (escapeRun != null) {
                         escapeRun.getThread().stop();
                     }
-                    modelShutdown = true;
+                    closeFinally();
                 }
                 Thread.sleep(30);
                 elapsed += 30;
@@ -318,6 +317,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
      */
     public void closeFinally() {
         super.closeFinally();
+        modelShutdown = true;
         ((ScapeWrapperModel) getModel()).setClosed(true);
         removeModel();
         dispose();
