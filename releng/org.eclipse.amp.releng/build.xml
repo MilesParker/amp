@@ -5,7 +5,8 @@
 	<tstamp>
 		<format property="buildTimestamp" pattern="yyyyMMddHHmm" />
 	</tstamp>
-	<property name="forceContextQualifier" value="v${buildTimestamp}" />
+	<property name="sdkzipUrl" value="https://build.eclipse.org/hudson/job/cbi-amp-nightly/ws/build/${buildType}${buildTimestamp}"/>
+	<property name="forceContextQualifier" value="${buildTimestamp}" />
 	<property name="fetchTag" value="HEAD" />
 	<import file="findbugs.xml" />
 	<target name="run">
@@ -63,7 +64,6 @@
 	</target>
 
 	<target name="findbugs" description="Run a find bugs analysis based on a ZIP file contents.">
-		<echo>***Find bugs start</echo>
 		<patternset id="xmljars">
 			<include name="**/plugins/*.jar" />
 		</patternset>
