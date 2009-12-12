@@ -12,10 +12,12 @@
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.escape.ascape.agf3d;
 
 import org.ascape.view.vis.GEFView;
+import org.eclipse.amp.agf.gef.ModelEditPartInput;
+import org.eclipse.amp.axf.view.ModelInput;
 
 public class GEF3DView extends GEFView {
 
@@ -23,5 +25,10 @@ public class GEF3DView extends GEFView {
 
     public GEF3DView() {
         super("org.eclipse.amp.view.GEF3DView", null, "Graphic 3D View");
+    }
+
+    public ModelInput createInput() {
+        ModelInput editorInput = new ModelEditPartInput(getModel(), null, null);
+        return editorInput;
     }
 }
