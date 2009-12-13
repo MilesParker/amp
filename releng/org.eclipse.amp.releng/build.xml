@@ -41,7 +41,6 @@
 		<ant antfile="${relengCommonBuilderDir}/buildAll.xml" target="runEclipse" dir="${relengCommonBuilderDir}" />
 		<antcall target="findbugs" inheritall="true"/>
 		<cleanUpBuild/>
-		<antcall target="duplicateCode" inheritall="true"/>
 	</target>
 
 	<target name="findbugs" description="Run a find bugs analysis based on a ZIP file contents.">
