@@ -15,7 +15,6 @@
 		can build in /tmp, eg., in /tmp/build, or in workspace, eg.,
 		${WORKSPACE}/build
 	-->
-	<property name="writableBuildRoot" value="/tmp/build" />
 	<property name="sdkzipUrl" value="https://build.eclipse.org/hudson/job/cbi-amp-nightly/ws/build/current/"/>
 
 	<!-- 
