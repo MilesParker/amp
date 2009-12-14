@@ -14,6 +14,8 @@ package org.ascape.view.vis;
 import java.util.TooManyListenersException;
 
 import org.ascape.model.event.ScapeEvent;
+import org.eclipse.amp.escape.ascape.gef.GraphicsEditPart;
+import org.eclipse.amp.escape.ascape.view.EditPartScapeView;
 import org.eclipse.draw2d.AbstractLayout;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.FigureListener;
@@ -131,7 +133,7 @@ public class GraphicsView extends EditPartScapeView {
     /**
      * 
      */
-    protected void createFeatures() {
+    public void createFeatures() {
 
     }
 

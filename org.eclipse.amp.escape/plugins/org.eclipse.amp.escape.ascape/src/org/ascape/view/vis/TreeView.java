@@ -13,6 +13,7 @@ package org.ascape.view.vis;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
+import org.eclipse.amp.escape.ascape.view.EditPartFactoryScapeView;
 import org.eclipse.ui.IViewPart;
 
 public class TreeView extends EditPartFactoryScapeView {

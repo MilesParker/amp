@@ -8,8 +8,9 @@
  * Contributors:
  *    Miles Parker - initial API and implementation
  ******************************************************************************/
-package org.ascape.view.vis;
+package org.eclipse.amp.escape.ascape.gef;
 
+import org.ascape.view.vis.GraphicsView;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.ui.IViewPart;
@@ -22,7 +23,7 @@ public class GraphicsEditPart extends AbstractGraphicalEditPart {
      * @param graphicsView
      * @param model
      */
-    GraphicsEditPart(GraphicsView graphicsView, Object model) {
+    public GraphicsEditPart(GraphicsView graphicsView, Object model) {
         this.graphicsView = graphicsView;
         setModel(model);
     }

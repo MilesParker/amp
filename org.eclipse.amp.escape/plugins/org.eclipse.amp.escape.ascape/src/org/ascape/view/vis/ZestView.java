@@ -10,6 +10,8 @@
  ******************************************************************************/
 package org.ascape.view.vis;
 
+import org.eclipse.amp.escape.ascape.view.ModelScapeView;
+
 public class ZestView extends ModelScapeView {
 
     private static final long serialVersionUID = 1L;

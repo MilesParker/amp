@@ -10,6 +10,8 @@
  ******************************************************************************/
 package org.ascape.view.vis;
 
+import org.eclipse.amp.escape.ascape.view.EditPartFactoryScapeView;
+
 public class GEFView extends EditPartFactoryScapeView {
 
     private static final long serialVersionUID = 1L;

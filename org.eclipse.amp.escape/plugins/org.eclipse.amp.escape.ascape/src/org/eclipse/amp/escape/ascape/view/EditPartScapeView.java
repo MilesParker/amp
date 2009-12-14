@@ -8,32 +8,22 @@
  * Contributors:
  *    Miles Parker - initial API and implementation
  ******************************************************************************/
-package org.ascape.view.vis;
+package org.eclipse.amp.escape.ascape.view;
 
 import org.eclipse.amp.agf.gef.ModelEditPartInput;
 import org.eclipse.amp.axf.view.ModelInput;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.RootEditPart;
-import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.gef.EditPartFactory;
 
+public abstract class EditPartScapeView extends EditPartFactoryScapeView implements EditPartFactory {
 
-public abstract class EditPartFactoryScapeView extends ModelScapeView {
     private static final long serialVersionUID = 1L;
-    private RootEditPart rootPart;
 
-    public EditPartFactoryScapeView(String primaryID, String secondaryID, String name) {
+    public EditPartScapeView(String primaryID, String secondaryID, String name) {
         super(primaryID, secondaryID, name);
     }
 
     public ModelInput createInput() {
-        ModelInput editorInput = new ModelEditPartInput(getModel(), null, new StructuredSelection(getScape()));
+        ModelInput editorInput = new ModelEditPartInput(getModel(), this, null);
         return editorInput;
-    }
-
-    public Object getAdapter(Class key) {
-        if (key == EditPart.class) {
-            return rootPart.getChildren().get(0);
-        }
-        return super.getAdapter(key);
     }
 }

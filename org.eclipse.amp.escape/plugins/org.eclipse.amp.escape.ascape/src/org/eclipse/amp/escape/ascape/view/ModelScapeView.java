@@ -8,7 +8,7 @@
  * Contributors:
  *    Miles Parker - initial API and implementation
  ******************************************************************************/
-package org.ascape.view.vis;
+package org.eclipse.amp.escape.ascape.view;
 
 import java.util.TooManyListenersException;
 
