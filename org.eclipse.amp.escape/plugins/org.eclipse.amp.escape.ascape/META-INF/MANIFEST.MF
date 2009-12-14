@@ -15,7 +15,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.amp.axf.ide;bundle-version="0.5.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.amp.escape.ascape,
+Export-Package: org.ascape.view.vis,
+ org.eclipse.amp.escape.ascape,
  org.eclipse.amp.escape.ascape.adapt,
  org.eclipse.amp.escape.ascape.gef,
  org.eclipse.amp.escape.ascape.wrap
