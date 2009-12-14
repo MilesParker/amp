@@ -18,7 +18,7 @@ package org.eclipse.amp.axf.ide;
 import org.eclipse.amp.axf.core.AbstractLifecycleListener;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.core.IObservationProvider;
+import org.eclipse.amp.axf.view.SWTAsyncModelListener;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
@@ -71,35 +71,7 @@ public class ModelManagerViewPart extends ViewPart {
         }
     }
 
-    ILifeCycleListener genericModelListener = new AbstractLifecycleListener() {
-        @Override
-        public void observeStart(IObservationProvider model) {
-            refreshViewer();
-        }
-
-        @Override
-        public void observeStop(IObservationProvider model) {
-            refreshViewer();
-        }
-
-        boolean wasPaused;
-
-        @Override
-        public void stateChange(Object key, Object updated) {
-            super.stateChange(key, updated);
-            boolean pauseState = ((IModel) updated).getEngine().isPaused();
-            if (wasPaused != pauseState) {
-                refreshViewer();
-                wasPaused = pauseState;
-            }
-        }
-
-        public void observeUpdate(IObservationProvider model) {
-            if (((IModel) model).getPeriod() % 10 == 0) {
-                refreshViewer();
-            }
-        };
-    };
+    ILifeCycleListener genericModelListener;
 
     private class ManagerListener implements IModelWorkbenchListener {
 
@@ -130,11 +102,13 @@ public class ModelManagerViewPart extends ViewPart {
     private TreeViewer viewer;
 
     private void refreshViewer() {
-        viewer.getControl().getDisplay().asyncExec(new Runnable() {
-            public void run() {
-                viewer.refresh(true);
-            }
-        });
+        if (!viewer.getControl().isDisposed()) {
+            viewer.getControl().getDisplay().asyncExec(new Runnable() {
+                public void run() {
+                    viewer.refresh(true);
+                }
+            });
+        }
     }
 
     /**
@@ -146,6 +120,11 @@ public class ModelManagerViewPart extends ViewPart {
         viewer = new TreeViewer(parent);
         viewer.setContentProvider(new ModelContents());
         assignManager();
+        genericModelListener = new SWTAsyncModelListener(parent, "Model VIew Manager Updater") {
+            public void update(IModel model) {
+                refreshViewer();
+            }
+        };
     }
 
     private void assignManager() {
