@@ -84,9 +84,8 @@ public class GEFViewPart extends EditPartViewPart {
             getViewer().getControl().addControlListener(new ControlListener() {
                 public void controlMoved(ControlEvent e) {
                 }
-
                 public void controlResized(ControlEvent e) {
-                    if (!(getModel().isEnding() || getModel().isEnded())) {
+                    if (!(getModel().isEnding() || getModel().isEnded()) && e.widget == getViewer().getControl()) {
                         setZoomFit(zoomFit);
                     }
                 }
