@@ -1,5 +1,6 @@
 <project default="run" name="org.eclipse.amp.releng/build.xml - Run an AMP build using the Athena CBI">
 	<property name="WORKSPACE" location="../../../../"/>
+	<property environment="env"/>
 	<property file="build.properties" />
 	<tstamp>
 		<format property="buildTimestamp" pattern="yyyyMMddHHmm" />
