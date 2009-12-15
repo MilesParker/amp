@@ -16,5 +16,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.amp.escape.ascape;bundle-version="0.5.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.amp.escape.ascape.chart
+Export-Package: org.ascape.view.vis,
+ org.eclipse.amp.escape.ascape.chart
 Bundle-Localization: plugin
