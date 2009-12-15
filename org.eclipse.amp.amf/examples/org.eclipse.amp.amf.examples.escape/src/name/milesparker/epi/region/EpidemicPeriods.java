@@ -4,9 +4,6 @@ import java.io.File;
 import java.io.IOException;
 
 import org.ascape.model.space.SpatialTemporalException;
-import org.ascape.util.sweep.SweepDimension;
-import org.ascape.util.sweep.SweepLink;
-import org.ascape.view.nonvis.SweepControlView;
 
 public class EpidemicPeriods extends Region {
 
@@ -23,9 +20,9 @@ public class EpidemicPeriods extends Region {
     }
 
     public void createScape() {
-        setRegionalMapWidth(4);
-        setRegionalMapHeight(80);
-        setCityCount(160);
+        setRegionalMapWidth(40);
+        setRegionalMapHeight(4);
+        setCityCount(100);
         setMigrationProbability(0.0005);
         super.createScape();
         try {
@@ -35,12 +32,6 @@ public class EpidemicPeriods extends Region {
         }
     }
 
-    /**
-     * 
-     * @see name.milesparker.epi.region.Region#createGraphicViews()
-     */
-    public void createGraphicViews() {
-    }
 
     public void createViews() {
         super.createViews();
@@ -70,14 +61,14 @@ public class EpidemicPeriods extends Region {
         for (int i = 0; i < getCityCount(); i++) {
             dataView.getDataSelection().setSelected("Count City " + i + " Individual Symptom Infectious Status", true);
         }
-        SweepControlView view = new SweepControlView();
-        addView(view);
-        SweepDimension sweep = new SweepDimension(this, "MinContactTransmissionProbability", 0.04, 0.08, 0.01);
-        SweepDimension sweep2 = new SweepDimension(this, "MaxContactTransmissionProbability", 0.12, 0.16, 0.01);
-        SweepLink link = new SweepLink();
-        link.addMember(sweep);
-        link.addMember(sweep2);
-        view.getSweepGroup().addMember(link);
-        view.getSweepGroup().setRunsPer(5);
+        // SweepControlView view = new SweepControlView();
+        // addView(view);
+        // SweepDimension sweep = new SweepDimension(this, "MinContactTransmissionProbability", 0.04, 0.08, 0.01);
+        // SweepDimension sweep2 = new SweepDimension(this, "MaxContactTransmissionProbability", 0.12, 0.16, 0.01);
+        // SweepLink link = new SweepLink();
+        // link.addMember(sweep);
+        // link.addMember(sweep2);
+        // view.getSweepGroup().addMember(link);
+        // view.getSweepGroup().setRunsPer(5);
     }
 }

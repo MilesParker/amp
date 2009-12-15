@@ -285,7 +285,7 @@
       <implementation className="LocationStyle2D"/>
     </styles>
   </agents>
-  <projections xsi:type="metaabm:SGrid" label="City" ID="city" pluralLabel="Citys" dimensionality="2">
+  <projections xsi:type="metaabm:SGrid" label="City" ID="city" pluralLabel="Citys" dimensionality="2" borderRule="STRICT">
     <attributes xsi:type="metaabm:SAttributeArray" label="Dimensions" ID="dimensions" pluralLabel="Dimensionss" description="The size of each dimension." sType="INTEGER" size="2"/>
     <attributes label="Width" ID="width" pluralLabel="Widths" description="The horizontal extent of the space." sType="INTEGER" defaultValue="40"/>
     <attributes label="Height" ID="height" pluralLabel="Heights" description="The vertical extent of the space." sType="INTEGER" defaultValue="100"/>

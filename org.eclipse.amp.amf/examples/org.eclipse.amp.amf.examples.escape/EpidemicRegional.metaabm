@@ -356,7 +356,7 @@
       <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups"/>
       <implementation className="Location"/>
     </agents>
-    <projections xsi:type="metaabm:SGrid" label="Map" ID="map" pluralLabel="Maps" dimensionality="2">
+    <projections xsi:type="metaabm:SGrid" label="Map" ID="map" pluralLabel="Maps" dimensionality="2" borderRule="STRICT" neighborhood="MOORE">
       <attributes xsi:type="metaabm:SAttributeArray" label="Dimensions" ID="dimensions" pluralLabel="Dimensionss" description="The size of each dimension." sType="INTEGER" size="2"/>
       <attributes label="Width" ID="width" pluralLabel="Widths" description="The horizontal extent of the space." sType="INTEGER" defaultValue="20"/>
       <attributes label="Height" ID="height" pluralLabel="Heights" description="The vertical extent of the space." sType="INTEGER" defaultValue="50"/>
@@ -366,7 +366,7 @@
     <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups"/>
     <implementation className="RegionalLocation"/>
   </agents>
-  <projections xsi:type="metaabm:SGrid" label="Regional Map" ID="regionalMap" pluralLabel="Regional Maps" dimensionality="2">
+  <projections xsi:type="metaabm:SGrid" label="Regional Map" ID="regionalMap" pluralLabel="Regional Maps" dimensionality="2" borderRule="PERIODIC" neighborhood="MOORE">
     <attributes xsi:type="metaabm:SAttributeArray" label="Dimensions" ID="dimensions" pluralLabel="Dimensionss" description="The size of each dimension." sType="INTEGER" size="2"/>
     <attributes label="Width" ID="width" pluralLabel="Widths" description="The horizontal extent of the space." sType="INTEGER" defaultValue="2"/>
     <attributes label="Height" ID="height" pluralLabel="Heights" description="The vertical extent of the space." sType="INTEGER" defaultValue="2"/>
