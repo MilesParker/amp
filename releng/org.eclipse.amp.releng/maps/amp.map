@@ -23,6 +23,7 @@ plugin@org.eclipse.gef3d=SVN,trunk,svn://dev.eclipse.org/svnroot/technology/org.
 !***plugin@org.eclipse.gef3d.ext=SVN,trunk,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.gef3d.ext
 
 !***DOCUMENTATION
+plugin@org.eclipse.amp.doc=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp/doc/org.eclipse.amp.doc
 
 !***EXAMPLES
 feature@org.eclipse.amp.amf.examples=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp/examples/org.eclipse.amp.examples-feature
@@ -96,6 +97,7 @@ plugin@org.eclipse.amp.escape.amf.ide=HEAD,:pserver:anonymous:none@dev.eclipse.o
 plugin@org.eclipse.amp.escape.ascape=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.ascape
 plugin@org.eclipse.amp.escape.ascape.agf3d=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.ascape.agf3d
 plugin@org.eclipse.amp.escape.ascape.chart=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.ascape.chart
+plugin@org.eclipse.amp.escape.runtime=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.runtime
 plugin@org.eclipse.amp.escape.ide=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.ide
 plugin@org.eclipse.amp.escape.testing.ide=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.testing.ide
 plugin@org.eclipse.amp.source=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp/plugins/org.eclipse.amp.source
