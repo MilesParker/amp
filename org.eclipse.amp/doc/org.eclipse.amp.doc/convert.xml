@@ -1,0 +1,163 @@
+<project default="generate-help" name="Generate Docs from Wiki">
+	<property name="dir.eclipse" value="/Developer/eclipse/plugins" />
+	<property name="dir.repos" value="/Volumes/Resources/Developer/repos" />
+	<property name="dir.repos.eclipse" value="${dir.repos}/eclipse" />
+	<property name="dir.repos.ascape" value="${dir.repos}/ascape" />
+	<!--
+		path to wikitext standalone package
+	-->
+
+	<path id="wikitext.classpath">
+		<fileset dir="${dir.eclipse}">
+			<include name="org.eclipse.mylyn.wikitext.*core*.jar" />
+		</fileset>
+	</path>
+
+	<taskdef classpathref="wikitext.classpath"
+		resource="org/eclipse/mylyn/wikitext/core/util/anttask/tasks.properties" />
+
+	<target name="generate-help" description="Generate Eclipse help from textile source">
+		<wikitext-to-eclipse-help markupLanguage="MediaWiki"
+			formatOutput="true" prependImagePrefix="image" navigationImages="true"
+			helpPrefix="wiki" overwrite="true">
+			<fileset dir="${basedir}/wiki">
+				<include name="*.mediawiki" />
+			</fileset>
+		</wikitext-to-eclipse-help>
+	</target>
+
+	<property name="vendor" value="Eclipse.org" />
+	<property name="specification.version" value="0.5.0" />
+	<property name="implementation.version" value="0.5.0" />
+
+	<property name="implementation.vendor" value="${vendor}" />
+	<property name="specification.vendor" value="${vendor}" />
+
+	<property name="build.javadoc" value="build" />
+	<property name="dest.javadoc" value="docs/javadoc" />
+
+	<property name="jdk.style" value="1.5" />
+
+
+
+
+	<target name="javadoc">
+
+		<path id="classpath">
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore/bin" />
+		</path>
+
+
+		<path id="srcpath">
+			<pathelement
+				path="../../../org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.chart/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.core/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.ide/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.zest/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.zest.ide/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.agf/plugins/org.eclipse.amp.agf3d/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase.edit/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase.editor/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase/srcgen" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase.edit/srcgen" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase.editor/srcgen" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase.ui/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore.edit/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore.editor/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore/srcgen" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen.ascape/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen.escape/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen.extras/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen.ide/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen.repast/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.ide/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.ide.ascape/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.ide.repast/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.parameters/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.parameters.edit/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.parameters.editor/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.parameters.ui/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.testing/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.testing.edit/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.testing.editor/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.testing.ui/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.axf/plugins/org.eclipse.amp.axf.core/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.axf/plugins/org.eclipse.amp.axf.ide/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.axf/plugins/org.eclipse.amp.axf.views/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.amf.ide/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.ascape/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.ascape.agf3d/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.ascape.chart/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.ide/src" />
+			<pathelement
+				path="../../../org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.testing.ide/src" />
+			<pathelement path="../../../plugins/org.eclipse.amp.source/src" />
+
+		</path>
+		<mkdir dir="${build.javadoc}/src" />
+
+		<javadoc packagenames="org.metaabm.*,org.eclipse.amp.*"
+			destdir="${dest.javadoc}" sourcepathref="srcpath" doctitle="Agent Modeling Platform API"
+			access="private" author="true" nodeprecated="false" nodeprecatedlist="false"
+			noindex="false" nonavbar="false" notree="false" source="1.5"
+			splitindex="true" use="true" version="true"
+
+			bottom="Copyright (C) 2007-2009 Metascape, LLC, 2009 Miles Parker, 2006-2007 Argonne National Labs, and Contributors"
+			windowtitle="${ant.project.name} ${specification.version} API"
+
+			classpath="${dir.eclipse}">
+			<!--
+				<link
+				href="jar:file:/Devel/Applications/Eclipse3.3.1.1/plugins/org.eclipse.platform.doc.isv_3.3.1.r331_v20070913.jar!/reference/api""/>
+				<link
+				href="jar:file:/Devel/Applications/Eclipse3.3.1.1/plugins/org.lwjgl.doc_1.1.4/doc.zip!/javadoc/""/>
+			-->
+
+		</javadoc>
+	</target>
+</project>

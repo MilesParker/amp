@@ -1,0 +1,39 @@
+=Overview=
+
+The AMP project provides extensible frameworks and exemplary tools for representing, editing, generating,
+executing and visualizing agent-based models (ABMs) and any other domain requiring spatial, behavioral and functional features. 
+AMP has two main themes that complement but don't depend on one another: 
+
+The overall AMP architecture and Eclipse project dependencies are summarized below:
+
+[[image:AMPArchitectureDiagram.jpg]]
+
+=Getting Started=
+
+AMP has many potential facets and use cases. Here are a few ways to get started with it.
+
+First, you'll need to [http://eclipse.org/amp/installing/ install it]. Then...
+
+==ABM Explorers==
+
+Experiment with example Java and AMF based models without writing code.
+
+[[AMP/Running_Examples|Run Example Models]]
+
+==ABM Researchers==
+
+Create Agent-Based models using simple visual tools and deploy them to a number of popular ABM platforms, including Escape.
+
+[[AMP/UserGuide/AMF#Getting Started|Modeling with AMF]]
+
+==ABM Java Developers==
+
+Write POJO Java models within a full-featured agent-based modeling framework.
+
+[[AMP/UserGuide/Escape#Getting_Started|Programming with Escape]]
+
+==Eclipse Plugin Developers==
+
+AXF and AGF provide a number of features based around Eclipse technologies such as GEF, GEF3D, BIRT Charts and Zest. For example, AGF supports dynamic visualization of objects in space, and AXF supports managed UI and headless execution for models of any kind.
+
+[[AMP/AGF_AXF_API|Programming with AXF and AGF]] (todo)
