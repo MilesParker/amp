@@ -19,3 +19,4 @@ Bundle-ActivationPolicy: lazy
 Export-Package: org.ascape.view.vis,
  org.eclipse.amp.escape.ascape.chart
 Bundle-Localization: plugin
+Bundle-ClassPath: .
