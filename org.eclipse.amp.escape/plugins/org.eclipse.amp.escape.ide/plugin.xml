@@ -134,16 +134,16 @@
 	<extension point="org.eclipse.ui.perspectiveExtensions">
 		<perspectiveExtension targetID="org.eclipse.amp.axf.ExecutionPerspective">
 			<view id="org.eclipse.amp.view.GEFView:*" ratio=".8"
-				relationship="right" relative="org.eclipse.ui.editorss" visible="false">
+				relationship="left" relative="org.eclipse.ui.editorss" visible="false">
 			</view>
 			<view id="org.eclipse.amp.view.GEF3DView:*" ratio=".8"
-				relationship="right" relative="org.eclipse.ui.editorss" visible="false">
+				relationship="left" relative="org.eclipse.ui.editorss" visible="false">
 			</view>
 			<view id="org.eclipse.amp.escape.view.GraphicsView:*" ratio=".8"
-				relationship="right" relative="org.eclipse.ui.editorss" visible="false">
+				relationship="left" relative="org.eclipse.ui.editorss" visible="false">
 			</view>
 			<view id="org.eclipse.amp.view.TreeView:*" ratio=".8"
-				relationship="right" relative="org.eclipse.ui.editorss" visible="false">
+				relationship="left" relative="org.eclipse.ui.editorss" visible="false">
 			</view>
 			<viewShortcut id="org.eclipse.amp.escape.view.GraphicsView">
 			</viewShortcut>
