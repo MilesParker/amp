@@ -1,5 +1,17 @@
 <project default="run" name="org.eclipse.amp.releng/build.xml - Run an AMP build using the Athena CBI">
 	<target name="run">
+		<condition property="buildTypeQualifier" value=" (Nightly)">
+		<equals arg1="${buildType}" arg2="N"/>
+		</condition>
+		<condition property="buildTypeQualifier" value=" (Interim)">
+		<equals arg1="${buildType}" arg2="I"/>
+		</condition>
+		<condition property="buildTypeQualifier" value=" (Milestone)">
+		<equals arg1="${buildType}" arg2="M"/>
+		</condition>
+		<condition property="buildTypeQualifier" value="">
+		<equals arg1="${buildType}" arg2="R"/>
+		</condition>
 		<!-- 
 			1. You must check out the following projects to your workspace:
 		
