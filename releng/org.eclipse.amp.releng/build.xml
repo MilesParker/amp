@@ -1,20 +1,5 @@
 <project default="run" name="org.eclipse.amp.releng/build.xml - Run an AMP build using the Athena CBI">
 	<target name="run">
-		<switch value="${buildType}">
-		  <case value="N">
-			<property name="buildTypeQualifier" value=" (Nightly)"/>
-		  </case>
-		  <case value="I">
-			<property name="buildTypeQualifier" value=" (Interim)"/>
-		  </case>
-		  <case value="M">
-			<property name="buildTypeQualifier" value=" (Milestone)"/>
-		  </case>
-		  <default>
-			<property name="buildTypeQualifier" value=""/>
-		  </default>
-		</switch>
-		<echo>${buildType} -- ${buildTypeQualifier}</echo>
 		<!-- 
 			1. You must check out the following projects to your workspace:
 		
@@ -78,6 +63,6 @@
 
 		<!-- invoke a new Eclipse process and launch the build from the common.releng folder -->
 		<property name="relengCommonBuilderDir" value="${workspaceDir}/org.eclipse.dash.common.releng" />
-<!--		<ant antfile="${relengCommonBuilderDir}/buildAll.xml" target="runEclipse" dir="${relengCommonBuilderDir}" /> -->
+		<ant antfile="${relengCommonBuilderDir}/buildAll.xml" target="runEclipse" dir="${relengCommonBuilderDir}" />
 	</target>
 </project>
