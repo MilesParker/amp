@@ -31,18 +31,33 @@
   <extension
         point="org.eclipse.ui.viewActions">
      <viewContribution
-           id="org.eclipse.amp.view.customizer.Chart.DisplayLegend"
+           id="org.eclipse.amp.view.customizer.ChartContribution"
            targetID="org.eclipse.amp.view.ChartView">
         <action
-              class="org.eclipse.amp.agf.chart.DisplayLegendAction"
+              class="org.eclipse.amp.agf.chart.ide.DisplayLegendAction"
               icon="icons/obj16/display_show_text.gif"
               id="org.eclipse.amp.escape.charts.action1"
-              label="Display Legend"
+              label="Show Legend"
               menubarPath="additions"
               state="true"
               style="toggle"
               toolbarPath="customGroup">
         </action>
+        <action
+              class="org.eclipse.amp.agf.chart.ide.SelectTimeSeriesAction"
+              icon="icons/obj16/linecharticon.gif"
+              id="org.eclipse.amp.agf.chart.action1"
+              label="Time Series"
+              menubarPath="org.eclipse.amp.agf.chart.menu/typegroup"
+              style="push"
+              toolbarPath="typegroup"
+              tooltip="Displays the data as a time series.">
+        </action>
+        <menu
+              id="org.eclipse.amp.agf.chart.menu"
+              label="Chart Type"
+              path="typegroup">
+        </menu>
      </viewContribution>
   </extension>
 <!--  <extension

@@ -13,7 +13,7 @@
  * </copyright>
  *
 */
-package org.eclipse.amp.agf.chart;
+package org.eclipse.amp.agf.chart.ide;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;

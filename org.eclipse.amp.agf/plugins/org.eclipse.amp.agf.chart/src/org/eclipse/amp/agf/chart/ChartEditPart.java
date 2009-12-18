@@ -23,8 +23,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.core.IModel;
+import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.view.SWTAsyncModelListener;
 import org.eclipse.birt.chart.api.ChartEngine;
 import org.eclipse.birt.chart.device.ICallBackNotifier;
@@ -56,6 +56,7 @@ import org.eclipse.birt.chart.model.data.impl.SeriesDefinitionImpl;
 import org.eclipse.birt.chart.model.data.impl.TextDataSetImpl;
 import org.eclipse.birt.chart.model.impl.ChartWithAxesImpl;
 import org.eclipse.birt.chart.model.layout.Legend;
+import org.eclipse.birt.chart.model.type.LineSeries;
 import org.eclipse.birt.chart.model.type.impl.LineSeriesImpl;
 import org.eclipse.birt.core.framework.PlatformConfig;
 import org.eclipse.core.runtime.IAdapterManager;
@@ -143,6 +144,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 
     Set<Object> currentSeries = new HashSet<Object>();
     Map<String, Color> colorForSeries = new HashMap<String, Color>();
+    Map<Series, Object> dataForSeries = new HashMap<Series, Object>();
 
     private GC imageGC;
 
@@ -157,6 +159,8 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
     Collection<NameColorPair> seriesCache = new HashSet<NameColorPair>();
 
     private IDataSelectionListener dataListener;
+
+    private int nextPaletteIndex;
 
     /**
      * Instantiates a new chart edit part.
@@ -179,35 +183,14 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
      * The Class DataLineSeries.
      */
     class DataLineSeries extends LineSeriesImpl {
-        Object valueSet;
 
         /**
-         * Instantiates a new data line series.
          * 
-         * @param valueSet the value set
-         */
-        public DataLineSeries(Object valueSet) {
-            super();
-            this.valueSet = valueSet;
-        }
-
-        /**
-         *
          * @see org.eclipse.birt.chart.model.type.impl.LineSeriesImpl#initialize()
          */
         protected void initialize() {
             super.initialize();
-            setSeriesIdentifier(seriesLabelProvider.getText(valueSet));
-            getMarkers().clear();
-            setPaletteLineColor(true);
-            getLabel().setVisible(false);
-            DataSet data = NumberDataSetImpl.create(dataProvider.getValues(valueSet));
-            setDataSet(data);
         }
-
-        // public LineSeries copyInstance() {
-        // return this;
-        // }
     }
 
     /**
@@ -249,7 +232,6 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
          * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeStart(org.eclipse.amp.axf.core.IObservationProvider)
          */
         public void observeStart(IObservationProvider observed) {
-            initializeDataSelection();
             updateChartSeries();
             endPainting();
         }
@@ -260,15 +242,11 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
          */
         @Override
         public void observeInitialize(IObservationProvider model) {
-            // createChart();
-            // initializeChartData();
-            // updateChartSeries();
             image = null;
-            // imgChart = null;
         }
 
         /**
-         *
+         * 
          * @see org.eclipse.amp.axf.view.SWTThreadModelListener#update(org.eclipse.amp.axf.core.IModel)
          */
         @Override
@@ -278,7 +256,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
         }
 
         /**
-         *
+         * 
          * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observationEnd(org.eclipse.amp.axf.core.IObservationProvider)
          */
         public void observationEnd(IObservationProvider model) {
@@ -287,15 +265,49 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
         }
     };
 
-    private void initializeDataSelection() {
-        for (Object object : ySeriesDefinition.getSeries()) {
-            DataLineSeries lineSeries = (DataLineSeries) object;
-            lineSeries.initialize();
+    private void updateSeries(Series lineSeries) {
+        if (lineSeries instanceof DataLineSeries) {
+            ((DataLineSeries) lineSeries).initialize();
+            ((LineSeries) lineSeries).getMarkers().clear();
+            ((LineSeries) lineSeries).setPaletteLineColor(true);
         }
+        lineSeries.getLabel().setVisible(false);
+        Object valueSet = dataForSeries.get(lineSeries);
+        lineSeries.setSeriesIdentifier(seriesLabelProvider.getText(valueSet));
+        DataSet data = NumberDataSetImpl.create(dataProvider.getValues(valueSet));
+        lineSeries.setDataSet(data);
+        updateSeriesColor(lineSeries);
     }
 
+    private void updateSeriesColor(Series object) {
+        DataLineSeries lineSeries = (DataLineSeries) object;
+        Object valueSet = dataForSeries.get(lineSeries);
+        String seriesLabel = seriesLabelProvider.getText(valueSet);
+        Color swtColor = seriesColorProvider.getForeground(seriesLabel);
+        ColorDefinition cd = null;
+        if (swtColor == null) {
+            List<Fill> palette = ySeriesDefinition.getSeriesPalette().getEntries();
+            if (nextPaletteIndex >= palette.size()) {
+                nextPaletteIndex = 0;
+            }
+            cd = (ColorDefinition) palette.get(nextPaletteIndex);
+            Color lineColor = new Color(org.eclipse.swt.widgets.Display.getCurrent(), cd.getRed(), cd.getGreen(), cd
+                                        .getBlue());
+            if (seriesColorProvider instanceof CachedColorProvider) {
+                ((CachedColorProvider) seriesColorProvider).putForegroundColor(seriesLabel, lineColor);
+            }
+            nextPaletteIndex++;
+        } else {
+            cd = lineSeries.getLineAttributes().getColor();
+            cd.setRed(swtColor.getRed());
+            cd.setGreen(swtColor.getGreen());
+            cd.setBlue(swtColor.getBlue());
+        }
+        lineSeries.getLineAttributes().setColor(cd);
+        lineSeries.setPaletteLineColor(false);
+    }
     /**
-     *
+     * 
      * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#createFigure()
      */
     protected IFigure createFigure() {
@@ -336,14 +348,14 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
     }
 
     /**
-     *
+     * 
      * @see org.eclipse.gef.editparts.AbstractEditPart#createEditPolicies()
      */
     protected void createEditPolicies() {
     }
 
     /**
-     *
+     * 
      * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#refresh()
      */
     public void refresh() {
@@ -355,7 +367,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
     }
 
     /**
-     *
+     * 
      * @see org.eclipse.gef.editparts.AbstractEditPart#setModel(java.lang.Object)
      */
     public void setModel(Object model) {
@@ -378,7 +390,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
     }
 
     /**
-     *
+     * 
      * @see org.eclipse.birt.chart.device.IUpdateNotifier#regenerateChart()
      */
     public void regenerateChart() {
@@ -488,47 +500,25 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
         List valueSets = dataProvider.getValueSets(dataSource);
         for (Object valueSet : valueSets) {
             if (!currentSeries.contains(valueSet)) {
-                DataLineSeries lineSeries = new DataLineSeries(valueSet);
-                lineSeries.initialize();
-                ySeriesDefinition.getSeries().add(lineSeries);
+                addSeriesFor(valueSet);
             }
         }
         currentSeries = new HashSet<Object>(valueSets);
         for (DataLineSeries lineSeries : new ArrayList<DataLineSeries>(
                 (Collection<? extends DataLineSeries>) ySeriesDefinition.getSeries())) {
-            if (!currentSeries.contains(lineSeries.valueSet)) {
+            Object valueSet = dataForSeries.get(lineSeries);
+            if (!currentSeries.contains(valueSet)) {
                 ySeriesDefinition.getSeries().remove(lineSeries);
             }
         }
-        int nextPaletteIndex = 0;
-        for (Object object : ySeriesDefinition.getSeries()) {
-            DataLineSeries lineSeries = (DataLineSeries) object;
-            Color swtColor = seriesColorProvider.getForeground(seriesLabelProvider.getText(lineSeries.valueSet));
-            ColorDefinition cd = null;
-            if (swtColor == null) {
-                List<Fill> palette = ySeriesDefinition.getSeriesPalette().getEntries();
-                if (nextPaletteIndex >= palette.size()) {
-                    nextPaletteIndex = 0;
-                }
-                cd = (ColorDefinition) palette.get(nextPaletteIndex);
-                Color lineColor = new Color(org.eclipse.swt.widgets.Display.getCurrent(), cd.getRed(), cd.getGreen(),
-                                            cd.getBlue());
-                if (seriesColorProvider instanceof CachedColorProvider) {
-                    ((CachedColorProvider) seriesColorProvider).putForegroundColor(seriesLabelProvider
-                                                                                   .getText(lineSeries.valueSet), lineColor);
-                }
-                nextPaletteIndex++;
-            } else {
-                cd = lineSeries.getLineAttributes().getColor();
-                cd.setRed(swtColor.getRed());
-                cd.setGreen(swtColor.getGreen());
-                cd.setBlue(swtColor.getBlue());
-            }
-            lineSeries.getLineAttributes().setColor(cd);
-            lineSeries.setPaletteLineColor(false);
-        }
     }
 
+    private void addSeriesFor(Object valueSet) {
+        Series lineSeries = new DataLineSeries();
+        dataForSeries.put(lineSeries, valueSet);
+        updateSeries(lineSeries);
+        ySeriesDefinition.getSeries().add(lineSeries);
+    }
 
     /*
      * (non-Javadoc)
@@ -550,7 +540,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
      * @see org.eclipse.birt.chart.device.swing.IUpdateNotifier#getDesignTimeModel()
      */
     /**
-     *
+     * 
      * @see org.eclipse.birt.chart.device.IUpdateNotifier#getDesignTimeModel()
      */
     public Chart getDesignTimeModel() {
@@ -563,7 +553,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
      * @see org.eclipse.birt.chart.device.swing.IUpdateNotifier#getRunTimeModel()
      */
     /**
-     *
+     * 
      * @see org.eclipse.birt.chart.device.IUpdateNotifier#getRunTimeModel()
      */
     public Chart getRunTimeModel() {
@@ -571,7 +561,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
     }
 
     /**
-     *
+     * 
      * @see org.eclipse.birt.chart.device.IUpdateNotifier#peerInstance()
      */
     public Object peerInstance() {
@@ -579,8 +569,9 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
     }
 
     /**
-     *
-     * @see org.eclipse.birt.chart.device.ICallBackNotifier#callback(java.lang.Object, java.lang.Object, org.eclipse.birt.chart.model.attribute.CallBackValue)
+     * 
+     * @see org.eclipse.birt.chart.device.ICallBackNotifier#callback(java.lang.Object, java.lang.Object,
+     *      org.eclipse.birt.chart.model.attribute.CallBackValue)
      */
     public void callback(Object arg0, Object arg1, CallBackValue arg2) {
     }
@@ -595,7 +586,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
     }
 
     /**
-     *
+     * 
      * @see org.eclipse.birt.chart.device.IUpdateNotifier#repaintChart()
      */
     public void repaintChart() {
@@ -603,7 +594,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
     }
 
     /**
-     *
+     * 
      * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#deactivate()
      */
     public void deactivate() {

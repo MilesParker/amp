@@ -13,8 +13,10 @@
  * </copyright>
  *
 */
-package org.eclipse.amp.agf.chart;
+package org.eclipse.amp.agf.chart.ide;
 
+import org.eclipse.amp.agf.chart.ChartEditPart;
+import org.eclipse.amp.agf.chart.ChartViewPart;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IViewActionDelegate;
@@ -25,7 +27,7 @@ import org.eclipse.ui.IViewPart;
 /**
  * The Class DisplayLegendAction.
  */
-public class DisplayLegendAction implements IViewActionDelegate {
+public class SelectTimeSeriesAction implements IViewActionDelegate {
 
     ChartEditPart editor;
 
