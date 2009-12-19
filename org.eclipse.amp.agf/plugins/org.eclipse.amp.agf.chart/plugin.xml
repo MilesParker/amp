@@ -43,21 +43,32 @@
               style="toggle"
               toolbarPath="customGroup">
         </action>
+        <menu
+              id="org.eclipse.amp.agf.chart.menu"
+              label="Chart Type"
+              path="typegroup">
+        </menu>
         <action
               class="org.eclipse.amp.agf.chart.ide.SelectTimeSeriesAction"
               icon="icons/obj16/linecharticon.gif"
               id="org.eclipse.amp.agf.chart.action1"
               label="Time Series"
               menubarPath="org.eclipse.amp.agf.chart.menu/typegroup"
-              style="push"
+              state="true"
+              style="radio"
               toolbarPath="typegroup"
               tooltip="Displays the data as a time series.">
         </action>
-        <menu
-              id="org.eclipse.amp.agf.chart.menu"
-              label="Chart Type"
-              path="typegroup">
-        </menu>
+        <action
+              class="org.eclipse.amp.agf.chart.ide.SelectAreaAction"
+              icon="icons/obj16/areacharticon.gif"
+              id="org.eclipse.amp.agf.chart.action1"
+              label="Stacked Area"
+              menubarPath="org.eclipse.amp.agf.chart.menu/typegroup"
+              style="radio"
+              toolbarPath="typegroup"
+              tooltip="Displays the data as stacked areas">
+        </action>
      </viewContribution>
   </extension>
 <!--  <extension
