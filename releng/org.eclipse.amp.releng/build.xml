@@ -41,6 +41,20 @@
 		<tstamp>
 			<format property="buildTimestamp" pattern="yyyyMMddHHmm" />
 		</tstamp>
+		<switch value="${buildType}">
+		  <case value="N">
+			<property name="buildTypeQualifier" value=" (Nightly)"/>
+		  </case>
+		  <case value="I">
+			<property name="buildTypeQualifier" value=" (Interim)"/>
+		  </case>
+		  <case value="M">
+			<property name="buildTypeQualifier" value=" (Milestone)"/>
+		  </case>
+		  <default>
+			<property name="buildTypeQualifier" value=""/>
+		  </default>
+		</switch>
 		
 		<!-- 
 		to build from HEAD, uncomment these lines 
