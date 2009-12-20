@@ -38,6 +38,7 @@ public class SelectAreaAction implements IViewActionDelegate {
      */
     public void run(IAction action) {
         editor.setChartType(ChartType.STACKED_AREA);
+        editor.updateYSeries();
     }
 
     /**

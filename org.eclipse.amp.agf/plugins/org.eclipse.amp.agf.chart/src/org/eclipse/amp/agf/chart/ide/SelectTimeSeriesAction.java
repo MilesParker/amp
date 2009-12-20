@@ -38,6 +38,7 @@ public class SelectTimeSeriesAction implements IViewActionDelegate {
      */
     public void run(IAction action) {
         editor.setChartType(ChartType.TIME_SERIES);
+        editor.updateYSeries();
     }
 
     /**
