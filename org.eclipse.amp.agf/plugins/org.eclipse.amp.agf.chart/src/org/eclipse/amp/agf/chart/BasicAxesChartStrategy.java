@@ -96,6 +96,16 @@ public abstract class BasicAxesChartStrategy extends BasicChartStrategy {
         series.setSeriesIdentifier(dataProvider.getText(valueSet));
     }
 
+    /**
+     * @return
+     * @see org.eclipse.amp.agf.chart.IChartDesignStrategy#isInitialized()
+     */
+    public boolean isInitialized() {
+        return getXSeriesDefinition().getSeries().size() > 0
+        && getXSeriesDefinition().getSeries().get(0).getDataSet() != null
+            && !((List) getXSeriesDefinition().getSeries().get(0).getDataSet().getValues()).isEmpty();
+    }
+
     private Axis getXAxisPrimary() {
         return ((ChartWithAxes) getChart()).getPrimaryBaseAxes()[0];
     }

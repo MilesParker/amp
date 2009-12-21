@@ -16,4 +16,9 @@ public interface IChartDesignStrategy {
 
     void updateSelection();
 
+    /**
+     * @return
+     */
+    boolean isInitialized();
+
 }

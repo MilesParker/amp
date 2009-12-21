@@ -158,6 +158,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
                 }
             }
             setChartStrategy(ChartType.TIME_SERIES.createStrategy());
+            chartUpated = true;
         }
 
         /**
@@ -368,7 +369,8 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
             image = null;
         }
         try {
-            if (chart != null && getFigure() != null && !getFigure().getSize().isEmpty()) {
+            if (chart != null && chartStrategy.isInitialized() && getFigure() != null
+                    && !getFigure().getSize().isEmpty()) {
                 createImage();
                 Dimension area = getFigure().getSize();
                 Bounds chartBounds = BoundsImpl.create(0, 0, area.width, area.height);
@@ -382,6 +384,8 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
                 chartState = gr.build(renderer.getDisplayServer(), chart, chartBounds, rtc);
                 gr.render(renderer, chartState);
                 imageFigure.repaint();
+            } else {
+                chartListener.endPainting();
             }
         } catch (ChartException ce) {
             StatusManager.getManager().handle(
@@ -418,7 +422,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
         chart.getTitle().getLabel().setVisible(false);
     }
 
-    boolean chartUpated;
+    boolean chartUpated = false;
 
     /**
      * Update chart series.
@@ -432,7 +436,6 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
             updateValueSetColor(valueSet, index);
             index++;
         }
-        chartUpated = true;
     }
 
     /*

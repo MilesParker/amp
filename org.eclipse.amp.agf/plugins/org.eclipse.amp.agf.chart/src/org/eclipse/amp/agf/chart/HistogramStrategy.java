@@ -21,13 +21,13 @@ import org.eclipse.birt.chart.model.data.impl.NumberDataSetImpl;
 import org.eclipse.birt.chart.model.data.impl.SeriesDefinitionImpl;
 import org.eclipse.birt.chart.model.data.impl.TextDataSetImpl;
 import org.eclipse.birt.chart.model.impl.ChartWithAxesImpl;
+import org.eclipse.birt.chart.model.layout.Block;
 import org.eclipse.birt.chart.model.layout.Plot;
 import org.eclipse.birt.chart.model.type.BarSeries;
 import org.eclipse.birt.chart.model.type.impl.BarSeriesImpl;
 
 public class HistogramStrategy extends BasicChartStrategy {
 
-    private BarSeries valueSeries;
     private SeriesDefinition xSeriesDefinition;
     private SeriesDefinition valueDefinition;
 
@@ -46,8 +46,11 @@ public class HistogramStrategy extends BasicChartStrategy {
         chart.getBlock().setBackground(ColorDefinitionImpl.WHITE());
         chart.getBlock().getOutline().setVisible(true);
         Plot p = chart.getPlot();
-        p.getClientArea().setBackground(ColorDefinitionImpl.create(255, 255, 225));
+        p.getClientArea().setBackground(ColorDefinitionImpl.WHITE());
         p.setBackground(ColorDefinitionImpl.WHITE());
+        for (Block block : p.getChildren()) {
+            block.setBackground(ColorDefinitionImpl.WHITE());
+        }
 
         // X-Axis
         Axis xAxisPrimary = chart.getPrimaryBaseAxes()[0];
@@ -55,6 +58,7 @@ public class HistogramStrategy extends BasicChartStrategy {
         xAxisPrimary.setType(AxisType.TEXT_LITERAL);
         xAxisPrimary.getMajorGrid().setTickStyle(TickStyle.BELOW_LITERAL);
         xAxisPrimary.getOrigin().setType(IntersectionType.MIN_LITERAL);
+        xAxisPrimary.setCategoryAxis(true);
 
         // Y-Axis
         Axis yAxisPrimary = chart.getPrimaryOrthogonalAxis(xAxisPrimary);
@@ -78,7 +82,6 @@ public class HistogramStrategy extends BasicChartStrategy {
         for (Object valueSet : dataProvider.getValueSets(dataSource)) {
             List<Double> values = (List<Double>) dataProvider.getValues(valueSet);
             numbersLists.get(index).set(0, values.get(values.size() - 1));
-            // X-Series
             String text = dataProvider.getText(valueSet);
             labelsLists.get(index++).set(0, text);
         }
@@ -95,25 +98,36 @@ public class HistogramStrategy extends BasicChartStrategy {
             valueList.add(number);
             NumberDataSet numberSet = NumberDataSetImpl.create(valueList);
             numbersLists.add(valueList);
-            valueSeries = (BarSeries) BarSeriesImpl.create();
+            BarSeries valueSeries = (BarSeries) BarSeriesImpl.create();
             valueSeries.setDataSet(numberSet);
             // valueSeries.setStacked(true);
             valueSeries.getLabel().setVisible(true);
             valueSeries.setLabelPosition(Position.INSIDE_LITERAL);
             valueDefinition.getSeries().add(valueSeries);
+            String text = dataProvider.getText(valueSet);
+            valueSeries.setSeriesIdentifier(text);
             List<String> labelList = new ArrayList<String>();
+            // X-Series
             labelList.add("");
             TextDataSet labelSet = TextDataSetImpl.create(labelList);//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
             labelsLists.add(labelList);
-            Series seCategory = SeriesImpl.create();
-            seCategory.setDataSet(labelSet);
-            xSeriesDefinition.getSeries().add(seCategory);
+            Series labelSeries = SeriesImpl.create();
+            labelSeries.setDataSet(labelSet);
+            xSeriesDefinition.getSeries().add(labelSeries);
         }
     }
 
     public void createLegend() {
         super.createLegend();
-        getLegend().setItemType(LegendItemType.SERIES_LITERAL);
+        getLegend().setItemType(LegendItemType.CATEGORIES_LITERAL);
+    }
+
+    /**
+     * @return
+     * @see org.eclipse.amp.agf.chart.IChartDesignStrategy#isInitialized()
+     */
+    public boolean isInitialized() {
+        return xSeriesDefinition.getSeries().size() > 0;
     }
 
     public SeriesDefinition getValueSetsDefinition() {
