@@ -16,7 +16,7 @@ public enum ChartType {
             case PIE:
                 return new PieStrategy();
             case HISTOGRAM:
-                return new HistrogramStrategy();
+                return new HistogramStrategy();
         }
         return null;
     }

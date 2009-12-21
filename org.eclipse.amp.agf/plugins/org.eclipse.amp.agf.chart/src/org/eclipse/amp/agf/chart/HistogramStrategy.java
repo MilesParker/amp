@@ -21,14 +21,12 @@ import org.eclipse.birt.chart.model.data.impl.NumberDataSetImpl;
 import org.eclipse.birt.chart.model.data.impl.SeriesDefinitionImpl;
 import org.eclipse.birt.chart.model.data.impl.TextDataSetImpl;
 import org.eclipse.birt.chart.model.impl.ChartWithAxesImpl;
-import org.eclipse.birt.chart.model.layout.Block;
 import org.eclipse.birt.chart.model.layout.Plot;
 import org.eclipse.birt.chart.model.type.BarSeries;
 import org.eclipse.birt.chart.model.type.impl.BarSeriesImpl;
 
-public class HistrogramStrategy extends LastValueStrategy {
+public class HistogramStrategy extends BasicChartStrategy {
 
-    private SeriesDefinition labelDefinition;
     private BarSeries valueSeries;
     private SeriesDefinition xSeriesDefinition;
     private SeriesDefinition valueDefinition;
@@ -43,12 +41,10 @@ public class HistrogramStrategy extends LastValueStrategy {
         ChartWithAxes chart = ChartWithAxesImpl.create();
         chart.setType("Bar Chart"); //$NON-NLS-1$
         chart.setSubType("Stacked"); //$NON-NLS-1$
+
         // Plot
         chart.getBlock().setBackground(ColorDefinitionImpl.WHITE());
         chart.getBlock().getOutline().setVisible(true);
-        for (Block block : chart.getBlock().getChildren()) {
-            block.setBackground(ColorDefinitionImpl.WHITE());
-        }
         Plot p = chart.getPlot();
         p.getClientArea().setBackground(ColorDefinitionImpl.create(255, 255, 225));
         p.setBackground(ColorDefinitionImpl.WHITE());
@@ -74,8 +70,6 @@ public class HistrogramStrategy extends LastValueStrategy {
         valueDefinition = SeriesDefinitionImpl.create();
         // valueDefinition.getSeriesPalette().shift(0);
         yAxisPrimary.getSeriesDefinitions().add(valueDefinition);
-
-
         return chart;
     }
 
