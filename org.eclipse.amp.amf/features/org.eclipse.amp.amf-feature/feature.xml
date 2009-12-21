@@ -31,7 +31,7 @@
       <import plugin="org.eclipse.amp.amf.acore"/>
       <import plugin="org.eclipse.jdt.core"/>
       <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.xpand" version="0.7.0" match="compatible"/>
+      <import plugin="org.eclipse.xpand"/>
       <import plugin="org.eclipse.xtend" version="0.7.0" match="compatible"/>
       <import plugin="org.eclipse.xtend.typesystem.emf" version="0.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.ecore.editor"/>
