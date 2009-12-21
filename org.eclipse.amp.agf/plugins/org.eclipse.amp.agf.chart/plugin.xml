@@ -51,7 +51,7 @@
         <action
               class="org.eclipse.amp.agf.chart.ide.SelectTimeSeriesAction"
               icon="icons/obj16/linecharticon.gif"
-              id="org.eclipse.amp.agf.chart.action1"
+              id="org.eclipse.amp.agf.chart.timeseries"
               label="Time Series"
               menubarPath="org.eclipse.amp.agf.chart.menu/typegroup"
               state="true"
@@ -62,12 +62,32 @@
         <action
               class="org.eclipse.amp.agf.chart.ide.SelectAreaAction"
               icon="icons/obj16/areacharticon.gif"
-              id="org.eclipse.amp.agf.chart.action1"
+              id="org.eclipse.amp.agf.chart.area"
               label="Stacked Area"
               menubarPath="org.eclipse.amp.agf.chart.menu/typegroup"
               style="radio"
               toolbarPath="typegroup"
               tooltip="Displays the data as stacked areas">
+        </action>
+        <action
+              class="org.eclipse.amp.agf.chart.ide.SelectPieAction"
+              icon="icons/obj16/piecharticon.gif"
+              id="org.eclipse.amp.agf.chart.pie"
+              label="Pie"
+              menubarPath="org.eclipse.amp.agf.chart.menu/typegroup"
+              style="radio"
+              toolbarPath="typegroup"
+              tooltip="Displays the data as a pie chart">
+        </action>
+        <action
+              class="org.eclipse.amp.agf.chart.ide.SelectHistogramAction"
+              icon="icons/obj16/barcharticon.gif"
+              id="org.eclipse.amp.agf.chart.histogram"
+              label="Pie"
+              menubarPath="org.eclipse.amp.agf.chart.menu/typegroup"
+              style="radio"
+              toolbarPath="typegroup"
+              tooltip="Displays the data as a pie chart">
         </action>
      </viewContribution>
   </extension>

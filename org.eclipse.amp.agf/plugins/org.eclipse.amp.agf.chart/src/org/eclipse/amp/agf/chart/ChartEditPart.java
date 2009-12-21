@@ -15,14 +15,10 @@
  */
 package org.eclipse.amp.agf.chart;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.core.IObservationProvider;
@@ -36,36 +32,14 @@ import org.eclipse.birt.chart.factory.Generator;
 import org.eclipse.birt.chart.factory.RunTimeContext;
 import org.eclipse.birt.chart.log.ILogger;
 import org.eclipse.birt.chart.model.Chart;
-import org.eclipse.birt.chart.model.ChartWithAxes;
-import org.eclipse.birt.chart.model.attribute.Anchor;
-import org.eclipse.birt.chart.model.attribute.AxisType;
 import org.eclipse.birt.chart.model.attribute.Bounds;
 import org.eclipse.birt.chart.model.attribute.CallBackValue;
 import org.eclipse.birt.chart.model.attribute.ColorDefinition;
 import org.eclipse.birt.chart.model.attribute.Fill;
-import org.eclipse.birt.chart.model.attribute.IntersectionType;
-import org.eclipse.birt.chart.model.attribute.LegendItemType;
-import org.eclipse.birt.chart.model.attribute.LineAttributes;
-import org.eclipse.birt.chart.model.attribute.LineStyle;
 import org.eclipse.birt.chart.model.attribute.Palette;
-import org.eclipse.birt.chart.model.attribute.TickStyle;
 import org.eclipse.birt.chart.model.attribute.impl.BoundsImpl;
 import org.eclipse.birt.chart.model.attribute.impl.ColorDefinitionImpl;
 import org.eclipse.birt.chart.model.attribute.impl.PaletteImpl;
-import org.eclipse.birt.chart.model.component.Axis;
-import org.eclipse.birt.chart.model.component.Series;
-import org.eclipse.birt.chart.model.component.impl.SeriesImpl;
-import org.eclipse.birt.chart.model.data.DataSet;
-import org.eclipse.birt.chart.model.data.SeriesDefinition;
-import org.eclipse.birt.chart.model.data.impl.NumberDataSetImpl;
-import org.eclipse.birt.chart.model.data.impl.SeriesDefinitionImpl;
-import org.eclipse.birt.chart.model.data.impl.TextDataSetImpl;
-import org.eclipse.birt.chart.model.impl.ChartWithAxesImpl;
-import org.eclipse.birt.chart.model.layout.Legend;
-import org.eclipse.birt.chart.model.type.AreaSeries;
-import org.eclipse.birt.chart.model.type.LineSeries;
-import org.eclipse.birt.chart.model.type.impl.AreaSeriesImpl;
-import org.eclipse.birt.chart.model.type.impl.LineSeriesImpl;
 import org.eclipse.birt.chart.script.IChartScriptContext;
 import org.eclipse.birt.chart.script.IExternalContext;
 import org.eclipse.birt.core.framework.PlatformConfig;
@@ -82,7 +56,6 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jface.viewers.IColorProvider;
-import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
@@ -99,7 +72,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 
     private static final long serialVersionUID = 1L;
 
-    private ChartWithAxes chart;
+    private Chart chart;
 
     private IDeviceRenderer renderer;
 
@@ -109,42 +82,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 
     private IColorProvider seriesColorProvider;
 
-    private ILabelProvider seriesLabelProvider;
-
     private Palette genericPalette;
-
-    public enum ChartType {
-        TIME_SERIES, STACKED_AREA, HISTOGRAM, PIE
-    }
-
-    private ChartType chartType;
-
-    /**
-     * Gets the series label provider.
-     * 
-     * @return the series label provider
-     */
-    public ILabelProvider getSeriesLabelProvider() {
-        return seriesLabelProvider;
-    }
-
-    /**
-     * Sets the series label provider.
-     * 
-     * @param seriesLabelProvider the new series label provider
-     */
-    public void setSeriesLabelProvider(ILabelProvider seriesLabelProvider) {
-        this.seriesLabelProvider = seriesLabelProvider;
-    }
-
-    /**
-     * Gets the series color provider.
-     * 
-     * @return the series color provider
-     */
-    public IColorProvider getSeriesColorProvider() {
-        return seriesColorProvider;
-    }
 
     /**
      * Sets the series color provider.
@@ -156,16 +94,6 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
     }
 
     private Object dataSource;
-
-    private Series xSeriesCategory;
-
-    private SeriesDefinition ySeriesDefinition;
-
-    private SeriesDefinition xSeriesDefinition;
-
-    private Set<Object> currentSeries = new HashSet<Object>();
-    private Map<String, Color> colorForSeries = new HashMap<String, Color>();
-    private Map<Series, Object> dataForSeries;
 
     private GC imageGC;
 
@@ -194,10 +122,8 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
         } catch (ChartException e) {
             throw new RuntimeException(e);
         }
-        // rtc = new RunTimeContext();
-        // rtc.setULocale(ULocale.getDefault());
-        colorForSeries = new HashMap<String, Color>();
-
+        genericPalette = PaletteImpl.create(0, true);
+        genericPalette.shift(0);
     }
 
     /**
@@ -231,7 +157,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
                 } catch (InterruptedException e) {
                 }
             }
-            setChartType(ChartType.TIME_SERIES);
+            setChartStrategy(ChartType.TIME_SERIES.createStrategy());
         }
 
         /**
@@ -239,7 +165,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
          * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeStart(org.eclipse.amp.axf.core.IObservationProvider)
          */
         public void observeStart(IObservationProvider observed) {
-            updateYSeries();
+            updateChartSelection();
             endPainting();
         }
 
@@ -259,6 +185,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
         @Override
         public void update(final IModel model) {
             beginPainting();
+            chartStrategy.update();
             refresh();
         }
 
@@ -302,12 +229,12 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
         }
     };
 
-    private void updateYSeriesColor(Series object, int index) {
-        Series lineSeries = object;
-        Object valueSet = dataForSeries.get(lineSeries);
-        String seriesLabel = seriesLabelProvider.getText(valueSet);
+    private IChartDesignStrategy chartStrategy;
+
+    private void updateValueSetColor(Object valueSet, int index) {
+        String seriesLabel = dataProvider.getText(valueSet);
         Color swtColor = seriesColorProvider.getForeground(seriesLabel);
-        EList<Fill> entries = ySeriesDefinition.getSeriesPalette().getEntries();
+        EList<Fill> entries = chartStrategy.getValueSetsDefinition().getSeriesPalette().getEntries();
         ColorDefinition cd = null;
         if (swtColor == null) {
             // List<Fill> palette = ySeriesDefinition.getSeriesPalette().getEntries();
@@ -338,14 +265,6 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
             // cd.setBlue(swtColor.getBlue());
         }
         entries.add(cd);
-        if (chartType == ChartType.TIME_SERIES) {
-            // ((LineSeries) lineSeries).getLineAttributes().setColor(cd);
-            ((LineSeries) lineSeries).setPaletteLineColor(true);
-        } else if (chartType == ChartType.STACKED_AREA) {
-            // ((AreaSeries) lineSeries).getLineAttributes().setColor(cd);
-            ((AreaSeries) lineSeries).setStacked(true);
-            // ((AreaSeries) lineSeries).setShadowColor(cd);
-        }
     }
 
     /**
@@ -449,7 +368,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
             image = null;
         }
         try {
-            if (chart != null && getFigure() != null && !getFigure().getSize().isEmpty() && ySeriesDefinition != null) {
+            if (chart != null && getFigure() != null && !getFigure().getSize().isEmpty()) {
                 createImage();
                 Dimension area = getFigure().getSize();
                 Bounds chartBounds = BoundsImpl.create(0, 0, area.width, area.height);
@@ -494,110 +413,26 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
      * Creates the chart.
      */
     public synchronized void createChart() {
-        if (chart == null) {
-            chart = ChartWithAxesImpl.create();
-            chart.getTitle().getLabel().setVisible(false); //$NON-NLS-1$
-            chart.setUnitSpacing(20);
-            // Color gray = getFigure().getBackgroundColor();
-            // chart.getBlock().setBackground(ColorDefinitionImpl.create(gray.getRed(), gray.getGreen(),
-            // gray.getBlue()));
-            Legend lg = chart.getLegend();
-            LineAttributes lia = lg.getOutline();
-            lg.getText().getFont().setSize(16);
-            lia.setStyle(LineStyle.SOLID_LITERAL);
-            lg.getInsets().set(10, 5, 0, 0);
-            lg.getOutline().setVisible(false);
-            lg.setAnchor(Anchor.EAST_LITERAL);
-            lg.setItemType(LegendItemType.SERIES_LITERAL);
-        }
+        chart = chartStrategy.createChart(dataProvider, dataSource);
 
-        // X-Axis
-        Axis xAxisPrimary = chart.getPrimaryBaseAxes()[0];
-        xAxisPrimary.setType(AxisType.TEXT_LITERAL);
-        xAxisPrimary.getTitle().getCaption().setValue("Period");
-        xAxisPrimary.getTitle().setVisible(true);
-        xAxisPrimary.getMajorGrid().setTickStyle(TickStyle.BELOW_LITERAL);
-        xAxisPrimary.getOrigin().setType(IntersectionType.VALUE_LITERAL);
-
-        Axis yAxisPrimary = chart.getPrimaryOrthogonalAxis(xAxisPrimary);
-        yAxisPrimary.getMajorGrid().setTickStyle(TickStyle.LEFT_LITERAL);
-        yAxisPrimary.setType(AxisType.LINEAR_LITERAL);
-        yAxisPrimary.getLabel().getCaption().getFont().setRotation(90);
-
-        createXSeriesDefinition(xAxisPrimary);
-
-        createYSeriesDefinition(yAxisPrimary);
-
+        chart.getTitle().getLabel().setVisible(false);
     }
 
-    private void createYSeriesDefinition(Axis yAxisPrimary) {
-        ySeriesDefinition = SeriesDefinitionImpl.create();
-        yAxisPrimary.getSeriesDefinitions().clear();
-        yAxisPrimary.getSeriesDefinitions().add(ySeriesDefinition);
-        if (genericPalette == null) {
-            genericPalette = ySeriesDefinition.getSeriesPalette();
-            genericPalette.shift(0);
-        }
-        ySeriesDefinition.setSeriesPalette(PaletteImpl.create(0, true));
-    }
-
-    private void createXSeriesDefinition(Axis xAxisPrimary) {
-        xSeriesDefinition = SeriesDefinitionImpl.create();
-        xAxisPrimary.getSeriesDefinitions().clear();
-        xAxisPrimary.getSeriesDefinitions().add(xSeriesDefinition);
-        xSeriesDefinition.getSeriesPalette().shift(0);
-
-        xSeriesCategory = SeriesImpl.create();
-        xSeriesDefinition.getSeries().clear();
-        xSeriesDefinition.getSeries().add(xSeriesCategory);
-        DataSet periods = TextDataSetImpl.create(dataProvider.getCategoryLabels(dataSource));
-        xSeriesCategory.setDataSet(periods);
-    }
+    boolean chartUpated;
 
     /**
      * Update chart series.
      */
-    @SuppressWarnings("unchecked")
-    public synchronized void updateYSeries() {
+    public synchronized void updateChartSelection() {
+        chartStrategy.updateSelection();
         List valueSets = dataProvider.getValueSets(dataSource);
+        chartStrategy.getValueSetsDefinition().getSeriesPalette().getEntries().clear();
         int index = 0;
-        ySeriesDefinition.getSeries().clear();
-        ySeriesDefinition.getSeriesPalette().getEntries().clear();
         for (Object valueSet : valueSets) {
-            // if (!currentSeries.contains(valueSet)) {
-            Series series = addYSeries(valueSet, index);
-            // }
-            updateYSeriesColor(series, index);
+            updateValueSetColor(valueSet, index);
             index++;
         }
-        // currentSeries = new HashSet<Object>(valueSets);
-        for (Series lineSeries : new ArrayList<Series>(ySeriesDefinition.getSeries())) {
-            // Object valueSet = dataForSeries.get(lineSeries);
-            // if (!currentSeries.contains(valueSet)) {
-            // ySeriesDefinition.getSeries().remove(lineSeries);
-            // }
-        }
-    }
-
-    private Series addYSeries(Object valueSet, int index) {
-        Series series = null;
-        if (chartType == ChartType.TIME_SERIES) {
-            series = LineSeriesImpl.create();
-            ((LineSeries) series).getMarkers().clear();
-            ((LineSeries) series).setPaletteLineColor(true);
-        } else if (chartType == ChartType.STACKED_AREA) {
-            series = AreaSeriesImpl.create();
-            ((AreaSeries) series).getMarkers().clear();
-            // ((AreaSeries) lineSeries).setPaletteLineColor(false);
-        }
-
-        series.getLabel().setVisible(false);
-        series.setSeriesIdentifier(seriesLabelProvider.getText(valueSet));
-        DataSet data = NumberDataSetImpl.create(dataProvider.getValues(valueSet));
-        series.setDataSet(data);
-        dataForSeries.put(series, valueSet);
-        ySeriesDefinition.getSeries().add(series);
-        return series;
+        chartUpated = true;
     }
 
     /*
@@ -661,7 +496,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
      * 
      * @return the chart
      */
-    public ChartWithAxes getChart() {
+    public Chart getChart() {
         return chart;
     }
 
@@ -698,12 +533,11 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
      */
     public synchronized void setDataProvider(IDataProvider dataProvider) {
         this.dataProvider = dataProvider;
-        setSeriesLabelProvider(dataProvider);
         dataSource = dataProvider.getDataSource(getModel());
         dataListener = new IDataSelectionListener() {
             public void selectionChanged(Object dataSet) {
                 if (getParent() != null && getRoot() != null && getViewer() != null && chart != null) {
-                    updateYSeries();
+                    updateChartSelection();
                     getViewer().getControl().getDisplay().asyncExec(new Runnable() {
                         public void run() {
                             regenerateChart(true);
@@ -716,38 +550,12 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
     }
 
     /**
-     * Gets the data set.
-     * 
-     * @return the data set
-     */
-    public Object getDataSet() {
-        return dataSource;
-    }
-
-    /**
-     * Sets the data set.
-     * 
-     * @param dataSet the new data set
-     */
-    public void setDataSet(Object dataSet) {
-        this.dataSource = dataSet;
-    }
-
-    /**
-     * @return the chartType
-     */
-    public ChartType getChartType() {
-        return chartType;
-    }
-
-    /**
      * @param chartType the chartType to set
      */
-    public void setChartType(ChartType chartType) {
-        this.chartType = chartType;
-        dataForSeries = new HashMap<Series, Object>();
-        currentSeries = new HashSet<Object>();
+    public void setChartStrategy(IChartDesignStrategy chartStrategy) {
+        this.chartStrategy = chartStrategy;
         createChart();
+        updateChartSelection();
         if (getViewer().getControl().getDisplay() != null) {
             getViewer().getControl().getDisplay().asyncExec(new Runnable() {
                 public void run() {
@@ -755,5 +563,14 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
                 }
             });
         }
+    }
+
+    /**
+     * Gets the series color provider.
+     * 
+     * @return the series color provider
+     */
+    public IColorProvider getSeriesColorProvider() {
+        return seriesColorProvider;
     }
 }

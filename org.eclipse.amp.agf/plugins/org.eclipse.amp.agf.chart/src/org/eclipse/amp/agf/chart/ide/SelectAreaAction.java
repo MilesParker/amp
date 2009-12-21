@@ -16,8 +16,9 @@
 package org.eclipse.amp.agf.chart.ide;
 
 import org.eclipse.amp.agf.chart.ChartEditPart;
+import org.eclipse.amp.agf.chart.ChartType;
 import org.eclipse.amp.agf.chart.ChartViewPart;
-import org.eclipse.amp.agf.chart.ChartEditPart.ChartType;
+import org.eclipse.amp.agf.chart.IChartDesignStrategy;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IViewActionDelegate;
@@ -37,8 +38,9 @@ public class SelectAreaAction implements IViewActionDelegate {
      * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
      */
     public void run(IAction action) {
-        editor.setChartType(ChartType.STACKED_AREA);
-        editor.updateYSeries();
+        IChartDesignStrategy createChart = ChartType.STACKED_AREA.createStrategy();
+        editor.setChartStrategy(createChart);
+        createChart.update();
     }
 
     /**
