@@ -21,4 +21,5 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.eclipse.amp.escape.runtime
+Export-Package: org.escape.view.vis
+Bundle-ClassPath: .

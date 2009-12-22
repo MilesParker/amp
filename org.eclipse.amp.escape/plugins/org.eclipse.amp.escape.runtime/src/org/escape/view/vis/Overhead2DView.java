@@ -27,6 +27,8 @@ import org.eclipse.draw2d.Graphics;
  *
  */
 public class Overhead2DView extends org.ascape.view.vis.Overhead2DView {
+    private static final long serialVersionUID = 1L;
+
     protected synchronized void drawSelectedAgentAt(Graphics graphics, LocatedAgent a) {
         if (a instanceof CellOccupant) {
             graphics.setLineWidth(Math.max(2, agentSize / 10));
