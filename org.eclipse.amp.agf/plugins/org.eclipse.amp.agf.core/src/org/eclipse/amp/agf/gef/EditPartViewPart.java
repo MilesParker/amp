@@ -18,6 +18,7 @@ package org.eclipse.amp.agf.gef;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
 import org.eclipse.amp.axf.view.IModelPart;
 import org.eclipse.amp.axf.view.ModelViewPart;
 import org.eclipse.core.runtime.Platform;
@@ -109,6 +110,12 @@ public abstract class EditPartViewPart extends ModelViewPart {
                 viewer.setEditPartFactory(createFactory(contents));
             } else {
                 viewer.setEditPartFactory(modelInput.getFactory());
+            }
+            if (modelInput.getFactory() instanceof ISelectionProvider) {
+                ISelectionProvider provider = (ISelectionProvider) modelInput.getFactory();
+                if (provider != null) {
+                    getViewSite().setSelectionProvider(provider);
+                }
             }
             viewer.setContents(contents);
         } else {
