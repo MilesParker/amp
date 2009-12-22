@@ -13,7 +13,7 @@ package org.eclipse.amp.escape.ascape.gef;
 import org.ascape.view.vis.GraphicsView;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
-import org.eclipse.ui.IViewPart;
+import org.eclipse.jface.viewers.ISelectionProvider;
 
 public class GraphicsEditPart extends AbstractGraphicalEditPart {
 
@@ -47,8 +47,8 @@ public class GraphicsEditPart extends AbstractGraphicalEditPart {
 
     @Override
     public Object getAdapter(Class key) {
-        if (key == IViewPart.class) {
-            return graphicsView.getViewPart();
+        if (key == ISelectionProvider.class) {
+            return graphicsView;
         }
         return super.getAdapter(key);
     }

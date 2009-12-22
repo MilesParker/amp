@@ -18,10 +18,8 @@ import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
 import org.eclipse.amp.axf.view.ModelInput;
-import org.eclipse.amp.axf.view.ModelViewPart;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.ui.IViewPart;
 
 public abstract class ModelScapeView extends DefaultScapeListener implements IAdaptable {
 
@@ -31,7 +29,6 @@ public abstract class ModelScapeView extends DefaultScapeListener implements IAd
 
     private String primaryID;
     private String secondaryID;
-    private ModelViewPart modelViewPart;
 
     private IModel model;
 
@@ -54,9 +51,6 @@ public abstract class ModelScapeView extends DefaultScapeListener implements IAd
             IObservationProvider model = (IObservationProvider) AXFWorkbenchPlugin.getDefault().getManager()
             .getAdapter(getScape().getRoot(), IModel.class);
             return model;
-        }
-        if (key == IViewPart.class) {
-            return modelViewPart;
         }
         return null;
     }
@@ -81,9 +75,5 @@ public abstract class ModelScapeView extends DefaultScapeListener implements IAd
 
     public String toString() {
         return getName() + " View";
-    }
-
-    public IViewPart getViewPart() {
-        return modelViewPart;
     }
 }

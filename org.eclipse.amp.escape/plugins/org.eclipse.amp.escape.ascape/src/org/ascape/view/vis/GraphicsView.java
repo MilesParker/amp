@@ -11,8 +11,17 @@
 
 package org.ascape.view.vis;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.TooManyListenersException;
 
+import org.ascape.model.Agent;
+import org.ascape.model.CellOccupant;
+import org.ascape.model.HostCell;
+import org.ascape.model.LocatedAgent;
 import org.ascape.model.event.ScapeEvent;
 import org.eclipse.amp.escape.ascape.gef.GraphicsEditPart;
 import org.eclipse.amp.escape.ascape.view.EditPartScapeView;
@@ -21,21 +30,33 @@ import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.FigureListener;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.MouseEvent;
+import org.eclipse.draw2d.MouseListener;
 import org.eclipse.draw2d.SWTGraphics;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.ISelectionProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 
-public class GraphicsView extends EditPartScapeView {
+public class GraphicsView extends EditPartScapeView implements ISelectionProvider {
 
     private static final long serialVersionUID = 1L;
 
     public GraphicsView(String name) {
         super("org.eclipse.amp.escape.view.GraphicsView", null, name);
     }
+
+    List<ISelectionChangedListener> selectionListeners = new ArrayList<ISelectionChangedListener>();
+
+    ISelection currentSelection = StructuredSelection.EMPTY;
+    Collection<LocatedAgent> selectedAgents;
 
     protected void updateScapeGraphics(Graphics graphics) {
     }
@@ -93,6 +114,50 @@ public class GraphicsView extends EditPartScapeView {
                 refresh();
             }
         });
+        imageFigure.addMouseListener(new MouseListener() {
+
+            public void mouseDoubleClicked(MouseEvent me) {
+            }
+
+            public void mousePressed(MouseEvent me) {
+                LocatedAgent agentAtPixel = (LocatedAgent) getAgentAtPixel(me.getLocation().x, me.getLocation().y);
+                if (agentAtPixel instanceof LocatedAgent) {
+                    if (agentAtPixel instanceof HostCell && (me.getState() & MouseEvent.CONTROL) == 0) {
+                        CellOccupant occupant = (CellOccupant) ((HostCell) agentAtPixel).getOccupant();
+                        if (occupant != null) {
+                            agentAtPixel = occupant;
+                        }
+                    }
+                    if ((me.getState() & MouseEvent.SHIFT) > 0) {
+                        if (!selectedAgents.contains(agentAtPixel)) {
+                            selectedAgents.add(agentAtPixel);
+                        } else {
+                            selectedAgents.remove(agentAtPixel);
+                        }
+                    } else {
+                        selectedAgents = new HashSet<LocatedAgent>();
+                        selectedAgents.add(agentAtPixel);
+                    }
+                } else {
+                    currentSelection = StructuredSelection.EMPTY;
+                }
+                currentSelection = new StructuredSelection(selectedAgents.toArray());
+                setSelection(currentSelection);
+                fireSelectionChanged();
+                ((Display) getImage().getDevice()).syncExec(new Runnable() {
+                    public void run() {
+                        refresh();
+                    };
+                });
+            }
+
+            public void mouseReleased(MouseEvent me) {
+            }
+        });
+    }
+
+    public Agent getAgentAtPixel(int x, int y) {
+        return null;
     }
 
     public void createImage() {
@@ -121,13 +186,34 @@ public class GraphicsView extends EditPartScapeView {
     public void refresh() {
         createImage();
         updateScapeGraphics(imageGraphics);
+        if (getSelection() != null) {
+            StructuredSelection sel = (StructuredSelection) getSelection();
+            Iterator iter = sel.iterator();
+            while (iter.hasNext()) {
+                LocatedAgent agent = (LocatedAgent) iter.next();
+                if (!agent.isDelete()) {
+                    drawSelectedAgent(imageGraphics, agent);
+                }
+            }
+        }
         imageFigure.repaint();
     }
 
+    protected void drawSelectedAgent(Graphics graphics, LocatedAgent a) {
+    }
 
     public void scapeAdded(ScapeEvent scapeEvent) throws TooManyListenersException {
         super.scapeAdded(scapeEvent);
         createFeatures();
+    }
+
+    /**
+     * @param scapeEvent
+     * @see org.ascape.model.event.DefaultScapeListener#scapeIterated(org.ascape.model.event.ScapeEvent)
+     */
+    public void scapeIterated(ScapeEvent scapeEvent) {
+        super.scapeIterated(scapeEvent);
+
     }
 
     /**
@@ -158,5 +244,43 @@ public class GraphicsView extends EditPartScapeView {
      */
     public IFigure getImageFigure() {
         return imageFigure;
+    }
+
+    /**
+     * @param listener
+     * @see org.eclipse.jface.viewers.ISelectionProvider#addSelectionChangedListener(org.eclipse.jface.viewers.ISelectionChangedListener)
+     */
+    public void addSelectionChangedListener(ISelectionChangedListener listener) {
+        selectionListeners.add(listener);
+    }
+
+    /**
+     * @return
+     * @see org.eclipse.jface.viewers.ISelectionProvider#getSelection()
+     */
+    public ISelection getSelection() {
+        return currentSelection;
+    }
+
+    /**
+     * @param listener
+     * @see org.eclipse.jface.viewers.ISelectionProvider#removeSelectionChangedListener(org.eclipse.jface.viewers.ISelectionChangedListener)
+     */
+    public void removeSelectionChangedListener(ISelectionChangedListener listener) {
+        selectionListeners.remove(listener);
+    }
+
+    void fireSelectionChanged() {
+        for (ISelectionChangedListener listener : selectionListeners) {
+            listener.selectionChanged(new SelectionChangedEvent(this, currentSelection));
+        }
+    }
+
+    /**
+     * @param selection
+     * @see org.eclipse.jface.viewers.ISelectionProvider#setSelection(org.eclipse.jface.viewers.ISelection)
+     */
+    public void setSelection(ISelection selection) {
+        currentSelection = selection;
     }
 }
