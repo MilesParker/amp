@@ -379,7 +379,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
                 RunTimeContext rtc = new RunTimeContext();
                 rtc.setScriptingEnabled(false);
 
-                rtc.setScriptContext(csc);
+                // rtc.setScriptContext(csc);
                 // csc.setChartInstance(chart);
                 chartState = gr.build(renderer.getDisplayServer(), chart, chartBounds, rtc);
                 gr.render(renderer, chartState);
