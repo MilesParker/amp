@@ -582,6 +582,9 @@ public class ModelViewManager implements IAdapterFactory {
      * @return the selection synchronizer
      */
     public SelectionSynchronizer getSelectionSynchronizer() {
+        if (editSelection == null) {
+            editSelection = new SelectionSynchronizer();
+        }
         return editSelection;
     }
 
