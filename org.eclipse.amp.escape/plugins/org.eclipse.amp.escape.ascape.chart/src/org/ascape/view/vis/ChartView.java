@@ -18,7 +18,6 @@ import org.eclipse.amp.agf.chart.ChartEditPart;
 import org.eclipse.amp.escape.ascape.view.EditPartScapeView;
 import org.eclipse.gef.EditPart;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.ui.IViewPart;
 
 
 
@@ -34,15 +33,7 @@ public class ChartView extends EditPartScapeView {
     }
 
     public EditPart createEditPart(EditPart context, Object model) {
-        chartPart = new ChartEditPart() {
-            @Override
-            public Object getAdapter(Class key) {
-                if (key == IViewPart.class) {
-                    return getViewPart();
-                }
-                return ChartView.super.getAdapter(key);
-            }
-        };
+        chartPart = new ChartEditPart();
         chartPart.setSeriesColorProvider(seriesColorProvider);
 
         chartPart.setModel(model);
