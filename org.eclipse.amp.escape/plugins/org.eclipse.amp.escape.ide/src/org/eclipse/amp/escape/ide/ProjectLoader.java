@@ -89,6 +89,8 @@ public class ProjectLoader extends URLClassLoader {
             return super.loadClass(name);
         } catch (NoClassDefFoundError classNotFoundException) {
             return mainLoader.loadClass(name);
+        } catch (NoSuchMethodError classNotFoundException) {
+            return mainLoader.loadClass(name);
         } catch (ClassNotFoundException classNotFoundException) {
             return mainLoader.loadClass(name);
         } catch (UnsupportedClassVersionError classNotFoundException) {
