@@ -57,31 +57,10 @@ public class ProjectLoader extends URLClassLoader {
             project.open(null);
             IJavaProject javaProject = JavaCore.create(project);
             List<URL> outputURL = new ArrayList<URL>();
-            // URL[] outputURL = new URL[allPackageFragmentRoots.length + 1];
-
-            // IPackageFragmentRoot[] allPackageFragmentRoots = javaProject.getAllPackageFragmentRoots();
-            // int index = 0;
-            // for (IPackageFragmentRoot fragmentRoot : allPackageFragmentRoots) {
-            // String osString = fragmentRoot.getPath().toOSString();
-            // if (osString.contains("org.ascape.ui.amp")) {
-            // outputURL.add(new File(osString).toURI().toURL());
-            // }
-            // }
-            // for (IPackageFragmentRoot fragmentRoot : allPackageFragmentRoots) {
-            // String osString = fragmentRoot.getPath().toOSString();
-            // URL url = new File(osString).toURI().toURL();
-            // try {
-            // fragmentRoot.open(null);
-            // } catch (JavaModelException e) {
-            // throw new RuntimeException(e);
-            // }
-            // outputURL[index++] = url;
-            // }
             outputURL.add(new File(project.getLocation() + "/" + javaProject.getOutputLocation().removeFirstSegments(1)
                                    + "/").toURI().toURL());
             for (URL url : outputURL) {
                 addURL(url);
-                System.err.println("url " + url);
             }
             activate();
         } catch (Exception e1) {
@@ -118,22 +97,17 @@ public class ProjectLoader extends URLClassLoader {
      */
     @Override
     public Class<?> loadClass(String name) throws ClassNotFoundException {
-        System.err.println("FIND " + name);
         try {
             Class<?> loadClass = super.loadClass(name);
-            System.err.println("su: " + loadClass + " " + loadClass.getClassLoader());
             return loadClass;
         } catch (NoClassDefFoundError classNotFoundException) {
             Class<?> loadClassI = bundle.loadClass(name);
-            System.err.println("ncd: " + loadClassI + " " + loadClassI.getClassLoader());
             return loadClassI;
         } catch (NoSuchMethodError classNotFoundException) {
             Class<?> loadClassI = bundle.loadClass(name);
-            System.err.println("nsm: " + loadClassI);
             return loadClassI;
         } catch (ClassNotFoundException classNotFoundException) {
             Class<?> loadClassI = bundle.loadClass(name);
-            System.err.println("cnf: " + loadClassI);
             return loadClassI;
         } catch (UnsupportedClassVersionError classNotFoundException) {
             throw new RuntimeException("Bad class: " + name, classNotFoundException);
