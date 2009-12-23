@@ -18,10 +18,14 @@ package org.eclipse.amp.escape.ide;
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
+import org.osgi.framework.Bundle;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -35,6 +39,8 @@ public class ProjectLoader extends URLClassLoader {
     IProject project;
 
     public ClassLoader mainLoader;
+
+    private Bundle bundle;
 
     /**
      * Instantiates a new project loader.
@@ -50,9 +56,33 @@ public class ProjectLoader extends URLClassLoader {
         try {
             project.open(null);
             IJavaProject javaProject = JavaCore.create(project);
-            URL[] outputURL = { new File(project.getLocation() + "/"
-                                         + javaProject.getOutputLocation().removeFirstSegments(1) + "/").toURL() };
-            addURL(outputURL[0]);
+            List<URL> outputURL = new ArrayList<URL>();
+            // URL[] outputURL = new URL[allPackageFragmentRoots.length + 1];
+
+            // IPackageFragmentRoot[] allPackageFragmentRoots = javaProject.getAllPackageFragmentRoots();
+            // int index = 0;
+            // for (IPackageFragmentRoot fragmentRoot : allPackageFragmentRoots) {
+            // String osString = fragmentRoot.getPath().toOSString();
+            // if (osString.contains("org.ascape.ui.amp")) {
+            // outputURL.add(new File(osString).toURI().toURL());
+            // }
+            // }
+            // for (IPackageFragmentRoot fragmentRoot : allPackageFragmentRoots) {
+            // String osString = fragmentRoot.getPath().toOSString();
+            // URL url = new File(osString).toURI().toURL();
+            // try {
+            // fragmentRoot.open(null);
+            // } catch (JavaModelException e) {
+            // throw new RuntimeException(e);
+            // }
+            // outputURL[index++] = url;
+            // }
+            outputURL.add(new File(project.getLocation() + "/" + javaProject.getOutputLocation().removeFirstSegments(1)
+                                   + "/").toURI().toURL());
+            for (URL url : outputURL) {
+                addURL(url);
+                System.err.println("url " + url);
+            }
             activate();
         } catch (Exception e1) {
             throw new LoaderCreationException("Couldn't load class", e1);
@@ -65,6 +95,7 @@ public class ProjectLoader extends URLClassLoader {
      * @throws LoaderCreationException the loader creation exception
      */
     public void activate() throws LoaderCreationException {
+        bundle = Platform.getBundle("org.eclipse.amp.escape.runtime");
         mainLoader = Thread.currentThread().getContextClassLoader();
         Thread.currentThread().setContextClassLoader(this);
     }
@@ -76,25 +107,38 @@ public class ProjectLoader extends URLClassLoader {
         Thread.currentThread().setContextClassLoader(mainLoader);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.lang.ClassLoader#loadClass(java.lang.String)
      */
     /**
-     *
+     * 
      * @see java.lang.ClassLoader#loadClass(java.lang.String)
      */
     @Override
     public Class<?> loadClass(String name) throws ClassNotFoundException {
+        System.err.println("FIND " + name);
         try {
-            return super.loadClass(name);
+            Class<?> loadClass = super.loadClass(name);
+            System.err.println("su: " + loadClass + " " + loadClass.getClassLoader());
+            return loadClass;
         } catch (NoClassDefFoundError classNotFoundException) {
-            return mainLoader.loadClass(name);
+            Class<?> loadClassI = bundle.loadClass(name);
+            System.err.println("ncd: " + loadClassI + " " + loadClassI.getClassLoader());
+            return loadClassI;
         } catch (NoSuchMethodError classNotFoundException) {
-            return mainLoader.loadClass(name);
+            Class<?> loadClassI = bundle.loadClass(name);
+            System.err.println("nsm: " + loadClassI);
+            return loadClassI;
         } catch (ClassNotFoundException classNotFoundException) {
-            return mainLoader.loadClass(name);
+            Class<?> loadClassI = bundle.loadClass(name);
+            System.err.println("cnf: " + loadClassI);
+            return loadClassI;
         } catch (UnsupportedClassVersionError classNotFoundException) {
             throw new RuntimeException("Bad class: " + name, classNotFoundException);
+        } catch (Exception e) {
+            throw new RuntimeException("Unexpected Exception for " + name, e);
         }
     }
 }
