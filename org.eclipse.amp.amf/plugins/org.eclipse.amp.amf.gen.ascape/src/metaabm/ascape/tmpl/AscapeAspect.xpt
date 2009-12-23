@@ -71,20 +71,25 @@
 	java.awt.Graphics dummyGraphics = new java.awt.image.BufferedImage(10, 10, java.awt.image.BufferedImage.TYPE_INT_RGB).getGraphics();
 
     «FOREACH ((SContext) reference).agents AS agent»
-    org.ascape.model.Scape «agent.id()»Scape = new «agent.owner.typeName()»();
+    «IF !agent.styles.isEmpty-»
+    final «agent.owner.typeName()» «agent.id()»Scape = new «agent.owner.typeName()»();
     «agent.id()»Scape.setRunner(new org.ascape.runtime.NonGraphicRunner());
 	«agent.typeName()» «agent.id()» = new «agent.typeName()»() {
                 public void requestUpdate() {
                 }
+                public «agent.owner.typeName()» get«agent.owner.typeName()»() {
+                	return «agent.id()»Scape;
+                }
             };
     «agent.id()»Scape.add(«agent.id()»);
-	«IF !agent.isHost()»
+	«IF !agent.isHost()-»
 	org.ascape.model.HostCell «agent.id()»Host = new org.ascape.model.HostCell() {
                 public void requestUpdate() {
                 }
             };
 	«agent.id()»Host.setOccupant((org.ascape.model.CellOccupant) «agent.id()»);
-	«ENDIF»
+	«ENDIF-»
+	«ENDIF-»
     «FOREACH agent.styles AS style»
 	«style.typeName()» «style.id()» = new «style.typeName()»();
 	«FOREACH style.setterSpace() AS setter»
