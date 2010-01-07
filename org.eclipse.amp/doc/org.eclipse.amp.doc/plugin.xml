@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
 <plugin>
    <extension point="org.eclipse.help.toc">
       <toc file="wiki/AMP-toc.xml" primary="true"/>
@@ -14,8 +15,22 @@
       <cheatsheet
             category="org.eclipse.amp"
             composite="false"
-            contentFile="cheatsheets/Introduction.xml"
-            id="org.eclipse.amp.escape.intro"
-            name="org.eclipse.amp.amf.docs"/>
+            contentFile="cheatsheets/CreateProject.xml"
+            id="org.eclipse.amp.escape.createProject"
+            name="Create Project"/>
+      <cheatsheet
+            category="org.eclipse.amp"
+            composite="false"
+            contentFile="cheatsheets/LoadSampleProjects.xml"
+            id="org.eclipse.amp.escape.loadProject"
+            name="Load Example Projects">
+      </cheatsheet>
+      <cheatsheet
+            category="org.eclipse.amp"
+            composite="false"
+            contentFile="cheatsheets/RunModel.xml"
+            id="org.eclipse.amp.escape.loadProject"
+            name="Run a Model">
+      </cheatsheet>
    </extension>
 </plugin>

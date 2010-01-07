@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Title">
+   <intro>
+      <description>
+         <b>Body</b>
+      </description>
+   </intro>
+   <item
+         title="Create a new model">
+      <description>
+         Open the MetaABM model wizard by right-clicking on the project, selecting &quot;new&quot;, and choosing &quot;MetaABMModel&quot;.
+      </description>
+      <command
+            required="false"
+            serialization="org.eclipse.ui.newWizard(newWizardId=org.metaabm.ide.CustomMetaABMModelWizard)"/>
+   </item>
+   <item
+         title="Give the model a name">
+      <description>
+         Type in something like &quot;SimpleModel&quot;.
+      </description>
+   </item>
+   <item
+         title="Click Finish">
+      <description>
+         (You can leave the default settings on the next page as they are.)
+      </description>
+   </item>
+</cheatsheet>

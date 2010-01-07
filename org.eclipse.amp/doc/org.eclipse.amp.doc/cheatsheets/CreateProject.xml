@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cheatsheet
-      title="Introduction to Escape">
+      title="Creating an Escape Project">
    <intro
          href="/org.eclipse.ui. cheatsheets.doc/tasks/tcheatst.htm">
       <description>
@@ -8,13 +8,14 @@
       </description>
    </intro>
    <item
+         href="/org.eclipse.platform.doc.user/tasks/tasks-9f.htm"
          title="Open the Agent Modeling Perspective">
       <description>
          If you&apos;re not already there, open the Agent Modeling Perspective. Select Window &gt; Open Perspective &gt; Other.. and then Agent Modeling. (Or you can choose Window &gt; Reset Perspective and the Agent Modeling perspective should appear in the Open Perspective list itself.)
       </description>
       <command
             required="false"
-            serialization="org.eclipse.ui.perspectives.showPerspective(perspectiveId=org.eclipse.amp.amf.AgentModelingPerspective)"/>
+            serialization="org.eclipse.ui.perspectives.showPerspective(org.eclipse.ui.perspectives.showPerspective.perspectiveId=org.eclipse.amp.amf.AgentModelingPerspective)"/>
    </item>
    <item
          title="Create an Escape Modeling project.">
@@ -29,7 +30,7 @@ Select File &gt; New &gt; Escape AMF Project. Give it a name like &quot;escape.t
    <item
          title="Copy a model into the project.">
       <description>
-         <b>We need a model to run.</b> We&apos;ll use Miles Parker&apos;s epidemic model, which you can get at
+         <b>We need a model to run.</b> We&apos;ll use the epidemic model, which you can get at http://download.eclipse.org/amp/models/Epidemic.metaabm. Download the file to your computer and just drag it into the project folder you&apos;ve just created. (You&apos;ll have to do this step yourself!)
       </description>
    </item>
 </cheatsheet>
