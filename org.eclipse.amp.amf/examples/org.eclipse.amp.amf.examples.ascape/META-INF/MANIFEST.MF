@@ -3,7 +3,5 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Ascape MetaABM Project Examples
 Bundle-SymbolicName: org.eclipse.amp.amf.examples.ascape
 Bundle-Version: 5.1.0.qualifier
-Require-Bundle: org.ascape.core,
- org.ascape.ui.swing;bundle-version="5.2.0",
- org.ascape.common.lib;bundle-version="5.2.0"
+Require-Bundle: org.ascape.ui.swing;bundle-version="5.2.0"
 Import-Package: org.apache.commons.lang
