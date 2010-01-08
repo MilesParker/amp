@@ -35,13 +35,15 @@
       <import plugin="org.eclipse.amp.escape.ascape" version="0.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.amp.agf3d" version="0.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.gef3d" version="0.8.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.draw3d" version="0.8.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.draw3d.geometry" version="0.8.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.draw3d.graphics3d" version="0.8.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.draw3d.lwjgl" version="0.8.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.draw2d"/>
       <import plugin="org.eclipse.core.runtime" version="3.4.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.draw3d" version="0.8.1" match="greaterOrEqual"/>
       <import plugin="org.eclipse.gef"/>
+      <import plugin="org.eclipse.draw3d.graphics3d" version="0.8.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.draw3d.graphics3d" version="0.8.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin
