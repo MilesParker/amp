@@ -5,7 +5,7 @@ Bundle-Vendor: %providerName
 Bundle-SymbolicName: org.ascape.ui.amp;singleton:=true
 Bundle-Version: 0.8.0.qualifier
 Bundle-Activator: org.ascape.AscapeRuntimePlugin
-Require-Bundle: org.eclipse.core.resources;bundle-version="3.4.0";visibility:=reexport,
+Require-Bundle: org.eclipse.core.resources;visibility:=reexport,
  org.eclipse.core.runtime;visibility:=reexport,
  org.eclipse.ui;bundle-version="3.5.1",
  org.ascape.core;bundle-version="5.2.0";visibility:=reexport,
