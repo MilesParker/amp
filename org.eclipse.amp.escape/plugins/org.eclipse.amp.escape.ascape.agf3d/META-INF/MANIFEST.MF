@@ -18,7 +18,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gef3d;bundle-version="0.8.0";visibility:=reexport,
  org.eclipse.draw3d;bundle-version="0.8.0";visibility:=reexport,
  org.eclipse.draw3d.geometry;bundle-version="0.8.0";visibility:=reexport,
- org.eclipse.draw3d.graphics3d;bundle-version="0.8.0";visibility:=reexport,
+ org.eclipse.draw3d.graphics3d;bundle-version="0.8.1";visibility:=reexport,
  org.lwjgl;visibility:=reexport,
  org.eclipse.draw3d.lwjgl;bundle-version="0.8.0";visibility:=reexport
 Bundle-ActivationPolicy: lazy
