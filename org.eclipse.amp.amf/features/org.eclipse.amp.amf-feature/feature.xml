@@ -34,11 +34,12 @@
       <import plugin="org.eclipse.xpand"/>
       <import plugin="org.eclipse.xtend" version="0.7.0" match="compatible"/>
       <import plugin="org.eclipse.xtend.typesystem.emf" version="0.7.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.mwe.utils"/>
+      <import plugin="org.eclipse.emf.mwe.ui"/>
       <import plugin="org.eclipse.emf.ecore.editor"/>
       <import plugin="org.eclipse.jdt.core" version="3.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.jdt.launching" version="3.4.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.debug.ui"/>
-      <import plugin="org.eclipse.amp.amf.acore" version="0.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.runtime" version="3.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.amp.amf.gen" version="0.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.amp.amf.gen.ide" version="0.5.0" match="greaterOrEqual"/>
@@ -53,13 +54,11 @@
       <import plugin="org.eclipse.emf.mwe.core"/>
       <import plugin="org.eclipse.emf.common.ui" version="2.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.ide" version="3.5.0" match="greaterOrEqual"/>
-      <import plugin="org.apache.commons.logging"/>
       <import plugin="org.apache.commons.lang"/>
+      <import plugin="org.apache.commons.logging"/>
       <import plugin="org.eclipse.amp.amf.acore.edit"/>
       <import plugin="org.eclipse.emf.ecore.xmi" version="2.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.java" version="2.5.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.mwe.utils"/>
-      <import plugin="org.eclipse.emf.mwe.ui"/>
    </requires>
 
    <plugin
