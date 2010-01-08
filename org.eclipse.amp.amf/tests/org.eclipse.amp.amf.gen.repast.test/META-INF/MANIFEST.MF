@@ -8,7 +8,7 @@ Bundle-Vendor: Eclipse.org
 Require-Bundle: 
  org.eclipse.amp.amf.gen;bundle-version="0.5.0",
  org.eclipse.amp.amf.gen.test;bundle-version="0.5.0",
- org.eclipse.jdt.junit;bundle-version="3.5.0",
+ org.eclipse.jdt.junit,
  org.junit;bundle-version="3.8.2"
 Import-Package: org.apache.commons.collections
 Export-Package: 
