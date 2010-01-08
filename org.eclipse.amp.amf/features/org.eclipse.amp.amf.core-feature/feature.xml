@@ -28,6 +28,10 @@
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
+      <import plugin="org.apache.commons.collections"/>
+      <import plugin="org.apache.commons.lang"/>
+      <import plugin="org.eclipse.jdt.core"/>
+      <import plugin="org.eclipse.emf.codegen"/>
    </requires>
 
    <plugin
