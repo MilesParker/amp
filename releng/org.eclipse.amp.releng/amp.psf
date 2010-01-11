@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<psf version="2.0">
+<provider id="org.eclipse.team.cvs.core.cvsnature">
+
+  <!-- !***DEPENDENCIES -->
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/dependencies/plugins/org.eclipse.emf.java,org.eclipse.emf.java,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.ascape/plugins/org.ascape.ui.amp,org.ascape.ui.amp,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.ascape/plugins/org.ascape.core,org.ascape.core,HEAD"/>
+
+  <!-- !***DOCUMENTATION -->
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp/doc/org.eclipse.amp.doc,org.eclipse.amp.doc,HEAD"/>
+
+  <!-- !***EXAMPLES -->
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape,org.eclipse.amp.amf.examples.ascape,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.escape,org.eclipse.amp.amf.examples.escape,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast,org.eclipse.amp.amf.examples.repast,HEAD"/>
+
+  <!-- !***TESTS -->
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp/features/org.eclipse.amp.test-feature,org.eclipse.amp.test,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/tests/org.eclipse.amp.amf.acore.test,org.eclipse.amp.amf.acore.test,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/tests/org.eclipse.amp.amf.acore.edit.test,org.eclipse.amp.amf.acore.edit.test,HEAD"/>
+  <!-- !***We need to figure out how to get these to run on server -->
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/tests/org.eclipse.amp.amf.parameters.test,org.eclipse.amp.amf.parameters.test,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/tests/org.eclipse.amp.amf.gen.test,org.eclipse.amp.amf.gen.test,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/tests/org.eclipse.amp.amf.gen.ascape.test,org.eclipse.amp.amf.gen.ascape.test,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/tests/org.eclipse.amp.amf.gen.repast.test,org.eclipse.amp.amf.gen.repast.test,HEAD"/>
+
+  <!-- !***FEATURES -->
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp/features/org.eclipse.amp.all-feature,org.eclipse.amp.all,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.agf/features/org.eclipse.amp.agf.chart-feature,org.eclipse.amp.agf.chart,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.agf/features/org.eclipse.amp.agf-feature,org.eclipse.amp.agf,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.agf/features/org.eclipse.amp.agf.zest-feature,org.eclipse.amp.agf.zest,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.agf/features/org.eclipse.amp.agf3d-feature,org.eclipse.amp.agf3d,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf-feature,org.eclipse.amp.amf,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.core-feature,org.eclipse.amp.amf.core,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.target.ascape-feature,org.eclipse.amp.amf.target.ascape,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.target.escape-feature,org.eclipse.amp.amf.target.escape,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amf.target.repast-feature,org.eclipse.amp.amf.target.repast,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amfx-feature,org.eclipse.amp.amfx,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.axf/features/org.eclipse.amp.axf-feature,org.eclipse.amp.axf,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.escape/features/org.eclipse.amp.escape-feature,org.eclipse.amp.escape,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp/features/org.eclipse.amp.source-feature,org.eclipse.amp.source,HEAD"/>
+
+  <!-- !***PLUGINS -->
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp/plugins/org.eclipse.amp.all,org.eclipse.amp.all,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.chart,org.eclipse.amp.agf.chart,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.core,org.eclipse.amp.agf.core,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.ide,org.eclipse.amp.agf.ide,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.zest,org.eclipse.amp.agf.zest,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.zest.ide,org.eclipse.amp.agf.zest.ide,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.agf/plugins/org.eclipse.amp.agf3d,org.eclipse.amp.agf3d,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase,org.eclipse.amp.amf.abase,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase.edit,org.eclipse.amp.amf.abase.edit,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase.editor,org.eclipse.amp.amf.abase.editor,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase.ui,org.eclipse.amp.amf.abase.ui,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore,org.eclipse.amp.amf.acore,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore.edit,org.eclipse.amp.amf.acore.edit,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore.editor,org.eclipse.amp.amf.acore.editor,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen,org.eclipse.amp.amf.gen,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen.ascape,org.eclipse.amp.amf.gen.ascape,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen.escape,org.eclipse.amp.amf.gen.escape,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen.extras,org.eclipse.amp.amf.gen.extras,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen.ide,org.eclipse.amp.amf.gen.ide,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen.repast,org.eclipse.amp.amf.gen.repast,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.ide,org.eclipse.amp.amf.ide,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.ide.ascape,org.eclipse.amp.amf.ide.ascape,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.ide.repast,org.eclipse.amp.amf.ide.repast,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.parameters,org.eclipse.amp.amf.parameters,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.parameters.edit,org.eclipse.amp.amf.parameters.edit,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.parameters.editor,org.eclipse.amp.amf.parameters.editor,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.parameters.ui,org.eclipse.amp.amf.parameters.ui,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.testing,org.eclipse.amp.amf.testing,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.testing.edit,org.eclipse.amp.amf.testing.edit,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.testing.editor,org.eclipse.amp.amf.testing.editor,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.testing.ui,org.eclipse.amp.amf.testing.ui,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.axf/plugins/org.eclipse.amp.axf.core,org.eclipse.amp.axf.core,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.axf/plugins/org.eclipse.amp.axf.ide,org.eclipse.amp.axf.ide,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.axf/plugins/org.eclipse.amp.axf.views,org.eclipse.amp.axf.views,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.amf.ide,org.eclipse.amp.escape.amf.ide,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.ascape,org.eclipse.amp.escape.ascape,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.ascape.agf3d,org.eclipse.amp.escape.ascape.agf3d,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.ascape.chart,org.eclipse.amp.escape.ascape.chart,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.runtime,org.eclipse.amp.escape.runtime,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.ide,org.eclipse.amp.escape.ide,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.testing.ide,org.eclipse.amp.escape.testing.ide,HEAD"/>
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp/plugins/org.eclipse.amp.source,org.eclipse.amp.source,HEAD"/>
+
+</provider>
+<provider id="org.eclipse.team.svn.core.svnnature">
+
+  <!-- !***GEF 3D -->
+  <project reference="0.9.3,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d//trunk/org.eclipse.draw3d,org.eclipse.draw3d"/>
+  <project reference="0.9.3,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d//trunk/org.eclipse.draw3d.geometry,org.eclipse.draw3d.geometry"/>
+  <project reference="0.9.3,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d//trunk/org.eclipse.draw3d.graphics3d,org.eclipse.draw3d.graphics3d"/>
+  <project reference="0.9.3,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d//trunk/org.eclipse.draw3d.lwjgl,org.eclipse.draw3d.lwjgl"/>
+  <project reference="0.9.3,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d//trunk/org.eclipse.draw3d.ui,org.eclipse.draw3d.ui"/>
+  <project reference="0.9.3,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d//trunk/org.eclipse.draw3d.x3d,org.eclipse.draw3d.x3d"/>
+  <project reference="0.9.3,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d//trunk/org.eclipse.gef3d,org.eclipse.gef3d"/>
+  <project reference="0.9.3,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d//trunk/org.eclipse.gef3d.ext,org.eclipse.gef3d.ext"/>
+
+</provider>
+</psf>
