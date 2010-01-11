@@ -26,7 +26,6 @@ plugin@org.eclipse.gef3d=SVN,trunk,svn://dev.eclipse.org/svnroot/technology/org.
 plugin@org.eclipse.amp.doc=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp/doc/org.eclipse.amp.doc
 
 !***EXAMPLES
-feature@org.eclipse.amp.amf.examples=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp/examples/org.eclipse.amp.examples-feature
 plugin@org.eclipse.amp.amf.examples.ascape=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape
 plugin@org.eclipse.amp.amf.examples.escape=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.escape
 plugin@org.eclipse.amp.amf.examples.repast=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
