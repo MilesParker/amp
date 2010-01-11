@@ -20,7 +20,6 @@ plugin@org.eclipse.draw3d.lwjgl=SVN,trunk,svn://dev.eclipse.org/svnroot/technolo
 plugin@org.eclipse.draw3d.ui=SVN,trunk,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.ui
 plugin@org.eclipse.draw3d.x3d=SVN,trunk,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.x3d
 plugin@org.eclipse.gef3d=SVN,trunk,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.gef3d
-!***plugin@org.eclipse.gef3d.ext=SVN,trunk,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.gef3d.ext
 
 !***DOCUMENTATION
 plugin@org.eclipse.amp.doc=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp/doc/org.eclipse.amp.doc
@@ -34,12 +33,6 @@ plugin@org.eclipse.amp.amf.examples.repast=HEAD,:pserver:anonymous:none@dev.ecli
 feature@org.eclipse.amp.test=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp/features/org.eclipse.amp.test-feature
 plugin@org.eclipse.amp.amf.acore.test=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/tests/org.eclipse.amp.amf.acore.test
 plugin@org.eclipse.amp.amf.acore.edit.test=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/tests/org.eclipse.amp.amf.acore.edit.test
-!***We need to figure out how to get these to run on server
-!***plugin@org.eclipse.amp.amf.parameters.test=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/tests/org.eclipse.amp.amf.parameters.test
-!***plugin@org.eclipse.amp.amf.gen.test=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/tests/org.eclipse.amp.amf.gen.test
-!***plugin@org.eclipse.amp.amf.gen.ascape.test=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/tests/org.eclipse.amp.amf.gen.ascape.test
-!***plugin@org.eclipse.amp.amf.gen.repast.test=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/tests/org.eclipse.amp.amf.gen.repast.test
-!***plugin@org.eclipse.amp.axf.ide.test=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.axf/tests/org.eclipse.amp.axf.ide.test
 
 !***FEATURES
 feature@org.eclipse.amp.all=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp/features/org.eclipse.amp.all-feature
