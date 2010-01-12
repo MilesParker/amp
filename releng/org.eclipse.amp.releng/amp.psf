@@ -6,7 +6,7 @@
   <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/dependencies/plugins/org.eclipse.emf.java,org.eclipse.emf.java,HEAD"/>
   <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.ascape/plugins/org.ascape.ui.amp,org.ascape.ui.amp,HEAD"/>
   <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.ascape/plugins/org.ascape.core,org.ascape.core,HEAD"/>
-
+  <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/dependencies/plugins/org.apache.commons.collections,org.apache.commons.collections,HEAD"/>
   <!-- !***DOCUMENTATION -->
   <project reference="1.0,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp/doc/org.eclipse.amp.doc,org.eclipse.amp.doc,HEAD"/>
 
@@ -96,7 +96,6 @@
   <project reference="0.9.3,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d//trunk/org.eclipse.draw3d.ui,org.eclipse.draw3d.ui"/>
   <project reference="0.9.3,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d//trunk/org.eclipse.draw3d.x3d,org.eclipse.draw3d.x3d"/>
   <project reference="0.9.3,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d//trunk/org.eclipse.gef3d,org.eclipse.gef3d"/>
-  <project reference="0.9.3,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d//trunk/org.eclipse.gef3d.ext,org.eclipse.gef3d.ext"/>
 
 </provider>
 </psf>
