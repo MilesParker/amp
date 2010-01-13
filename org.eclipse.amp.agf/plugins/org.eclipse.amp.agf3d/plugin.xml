@@ -9,7 +9,7 @@
            class="org.eclipse.amp.agf3d.GEF3DViewPart"
            icon="icons/etool16/2_5D.gif"
            id="org.eclipse.amp.view.GEF3DView"
-           name="GEF 3D View"
+           name="3D Agents"
            restorable="true">
      </view>
    </extension>
