@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.1 2009/06/26 07:21:14 mparker Exp $
+ $Id: plugin.xml,v 1.2 2010/01/13 17:38:49 mparker Exp $
 -->
 
 <plugin>
@@ -17,23 +17,20 @@
            class="org.eclipse.amp.agf.gef.GEFViewPart"
            icon="icons/etool16/members.gif"
            id="org.eclipse.amp.view.GEFView"
-           name="GEF View"
+           name="2D Agents"
            restorable="true">
      </view>
-   </extension>
-
-  <extension
-        point="org.eclipse.ui.views">
      <view
            allowMultiple="true"
            category="org.eclipse.amp.axf.views"
            class="org.eclipse.amp.agf.tree.TreeViewPart"
            icon="icons/etool16/tree_view.gif"
            id="org.eclipse.amp.view.TreeView"
-           name="Agent Tree View"
+           name="Agent Navigator"
            restorable="true">
      </view>
-  </extension>
+   </extension>
+
 
 </plugin>
 

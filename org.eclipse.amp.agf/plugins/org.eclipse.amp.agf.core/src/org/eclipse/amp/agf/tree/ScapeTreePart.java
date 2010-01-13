@@ -19,22 +19,19 @@ import java.util.List;
 
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef.editparts.AbstractTreeEditPart;
 import org.eclipse.jface.viewers.ILabelProvider;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class ScapeTreePart.
  */
-public class ScapeTreePart extends AbstractTreeEditPart {
+public class ScapeTreePart extends AgentTreePart {
 
     boolean updating;
 
     boolean firstRefresh = true;
 
     ICompositionProvider memberProvider;
-
-    ILabelProvider labelProvider;
 
     /**
      * Instantiates a new scape tree part.
@@ -43,18 +40,8 @@ public class ScapeTreePart extends AbstractTreeEditPart {
      * @param labelProvider the label provider
      */
     public ScapeTreePart(ICompositionProvider memberProvider, ILabelProvider labelProvider) {
-        super();
+        super(labelProvider);
         this.memberProvider = memberProvider;
-        this.labelProvider = labelProvider;
-    }
-
-    /**
-     * @return
-     * @see org.eclipse.gef.editparts.AbstractTreeEditPart#getText()
-     */
-    @Override
-    protected String getText() {
-        return labelProvider.getText(getModel());
     }
 
     /**

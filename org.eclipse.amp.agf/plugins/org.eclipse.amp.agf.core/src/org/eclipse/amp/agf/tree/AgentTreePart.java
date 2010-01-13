@@ -16,6 +16,7 @@
 package org.eclipse.amp.agf.tree;
 
 import org.eclipse.gef.editparts.AbstractTreeEditPart;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
@@ -28,6 +29,12 @@ public class AgentTreePart extends AbstractTreeEditPart {
     static final Image DEFAULT_AGENT = AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.amp.axf.ide",
     "icons/etool16/generic_agent.gif")
     .createImage();
+    protected ILabelProvider labelProvider;
+
+    public AgentTreePart(ILabelProvider labelProvider) {
+        super();
+        this.labelProvider = labelProvider;
+    }
 
     /**
      * @return
@@ -35,7 +42,7 @@ public class AgentTreePart extends AbstractTreeEditPart {
      */
     @Override
     protected String getText() {
-        return getModel().toString();
+        return labelProvider.getText(getModel());
     }
 
     /**

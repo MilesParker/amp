@@ -16,6 +16,8 @@
 package org.eclipse.amp.agf.tree;
 
 import org.eclipse.amp.agf.gef.EditPartViewPart;
+import org.eclipse.amp.agf.gef.ModelFactoryProvider;
+import org.eclipse.gef.EditPartFactory;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.ui.parts.TreeViewer;
@@ -27,15 +29,15 @@ import org.eclipse.gef.ui.parts.TreeViewer;
  */
 public class TreeViewPart extends EditPartViewPart {
 
-    // public EditPartFactory createFactory() {
-    // if (getModel() instanceof ModelFactoryProvider) {
-    // EditPartFactory factory = ((ModelFactoryProvider) getModel()).getEditPartTreeFactory();
-    // if (factory != null) {
-    // return factory;
-    // }
-    // }
-    // return new ScapePartTreeFactory();
-    // }
+    public EditPartFactory createFactory(Object object) {
+        if (getModel() instanceof ModelFactoryProvider) {
+            EditPartFactory factory = ((ModelFactoryProvider) getModel()).getEditPartTreeFactory();
+            if (factory != null) {
+                return factory;
+            }
+        }
+        return null;
+    }
 
     /**
      * @return
@@ -43,7 +45,8 @@ public class TreeViewPart extends EditPartViewPart {
      */
     @Override
     protected EditPartViewer createViewer() {
-        return new TreeViewer();
+        TreeViewer treeViewer = new TreeViewer();
+        return treeViewer;
     }
     // public boolean isSingle() {
     // return true;
