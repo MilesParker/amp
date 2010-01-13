@@ -7,11 +7,11 @@
         point="org.eclipse.ui.views">
      <view
            allowMultiple="true"
-           category="org.eclipse.amp.axf.views"
+           category="org.eclipse.amp.execution"
            class="org.eclipse.amp.agf.chart.ChartViewPart"
            icon="icons/obj16/barcharticon.gif"
            id="org.eclipse.amp.view.ChartView"
-           name="Chart View"
+           name="Chart"
            restorable="false">
      </view>
   </extension>
