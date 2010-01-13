@@ -60,7 +60,7 @@ public class AscapePartTreeFactory implements EditPartFactory {
         if (model instanceof Scape) {
             return new ScapeTreePart(provider, provider);
         } else if (model instanceof Agent) {
-            return new AgentTreePart();
+            return new AgentTreePart(provider);
         } else {
             throw new RuntimeException("No part for the model: " + model
                                        + (model != null ? "[" + model.getClass() + "]" : ""));
