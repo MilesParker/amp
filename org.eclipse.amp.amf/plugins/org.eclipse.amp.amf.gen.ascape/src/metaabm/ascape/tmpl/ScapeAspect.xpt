@@ -119,7 +119,7 @@
 «DEFINE NameAccessor FOR SAgent-»
     public String getName() {
     	if (name == null) {
-	        return "«label» " + uniqueID;
+	        return "«label» " + getUID();
 	    } else {
 	    	return name;
 	    }
