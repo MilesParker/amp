@@ -61,6 +61,59 @@ import org.eclipse.ui.statushandlers.StatusManager;
 @SuppressWarnings("restriction")
 public class ModelViewManager implements IAdapterFactory {
 
+    private final class PartCreator implements Runnable {
+        private final String name;
+        private final ModelInput editorInput;
+        private final String id;
+        private IViewPart part;
+
+        private PartCreator(String name, ModelInput editorInput, String id) {
+            this.name = name;
+            this.editorInput = editorInput;
+            this.id = id;
+        }
+
+        public void run() {
+            try {
+                IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+                IWorkbenchPage page = workbenchWindow.getActivePage();
+                int slot = getSlot(editorInput.getModel());
+                String secondaryID = slot + "";
+                int viewCount = 0;
+                for (IViewPart part : viewsForModel.get(editorInput.getModel())) {
+                    if (part.getViewSite().getId().equals(id)) {
+                        viewCount++;
+                    }
+                }
+                secondaryID += "-" + viewCount;
+                part = page.showView(id, secondaryID, IWorkbenchPage.VIEW_VISIBLE);
+                if (part instanceof ModelViewPart) {
+                    register(part);
+                    ((ModelViewPart) part).setInput(editorInput);
+                    ((ModelViewPart) part).setPartName(editorInput.getName() + " " + name);
+                    ((ModelViewPart) part).createModelListeners();
+                    getViews(editorInput.getModel()).add(part);
+                    new Thread() {
+                        public void run() {
+                            managerListeners.notifyViewAdded(part);
+                        }
+                    }.start();
+                } else if (part instanceof ErrorViewPart) {
+                } else {
+                    throw new RuntimeException("Couldn't create model view part.");
+                }
+            } catch (org.eclipse.ui.PartInitException e) {
+                throw new RuntimeException("Couldn't instantiate model view " + this, e);
+            } finally {
+                updated = true;
+            }
+        }
+
+        public IViewPart getPart() {
+            return part;
+        }
+    }
+
     /**
      * 
      * @author mparker
@@ -143,6 +196,8 @@ public class ModelViewManager implements IAdapterFactory {
     private String priorPerspectiveID;
 
     private StatusLineView statusLineView;
+
+    private StatusLineView treeView;
 
     /**
      * Instantiates a new model view manager.
@@ -324,46 +379,10 @@ public class ModelViewManager implements IAdapterFactory {
      * @param editorInput the editor input
      * @param name the name
      */
-    public void createViewPart(final String id, final ModelInput editorInput, final String name) {
+    public IViewPart createViewPart(final String id, final ModelInput editorInput, final String name) {
         updated = false;
-        PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
-
-            public void run() {
-                try {
-                    IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-                    IWorkbenchPage page = workbenchWindow.getActivePage();
-                    int slot = getSlot(editorInput.getModel());
-                    String secondaryID = slot + "";
-                    int viewCount = 0;
-                    for (IViewPart part : viewsForModel.get(editorInput.getModel())) {
-                        if (part.getViewSite().getId().equals(id)) {
-                            viewCount++;
-                        }
-                    }
-                    secondaryID += "-" + viewCount;
-                    final IViewPart showViewPart = page.showView(id, secondaryID, IWorkbenchPage.VIEW_VISIBLE);
-                    if (showViewPart instanceof ModelViewPart) {
-                        register(showViewPart);
-                        ((ModelViewPart) showViewPart).setInput(editorInput);
-                        ((ModelViewPart) showViewPart).setPartName(editorInput.getName() + " " + name);
-                        ((ModelViewPart) showViewPart).createModelListeners();
-                        getViews(editorInput.getModel()).add(showViewPart);
-                        new Thread() {
-                            public void run() {
-                                managerListeners.notifyViewAdded(showViewPart);
-                            }
-                        }.start();
-                    } else if (showViewPart instanceof ErrorViewPart) {
-                    } else {
-                        throw new RuntimeException("Couldn't create model view part.");
-                    }
-                } catch (org.eclipse.ui.PartInitException e) {
-                    throw new RuntimeException("Couldn't instantiate model view " + this, e);
-                } finally {
-                    updated = true;
-                }
-            }
-        });
+        PartCreator creator = new PartCreator(name, editorInput, id);
+        PlatformUI.getWorkbench().getDisplay().asyncExec(creator);
         while (!updated) {
             try {
                 Thread.sleep(50);
@@ -371,6 +390,7 @@ public class ModelViewManager implements IAdapterFactory {
             } catch (InterruptedException e) {
             }
         }
+        return creator.getPart();
     }
 
     /**
@@ -476,6 +496,7 @@ public class ModelViewManager implements IAdapterFactory {
         getPage().addPartListener(statusLineView);
         getActiveModelListeners().addListener(statusLineView);
         activatePerspective(wb, EXECUTION_PERSPECTIVE_ID, false);
+
         wb.getDisplay().syncExec(new Runnable() {
             public void run() {
                 try {
