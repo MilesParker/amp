@@ -62,6 +62,10 @@
          id="org.eclipse.amp.source"
          version="0.0.0"/>
 
+   <requires>
+      <import plugin="org.eclipse.core.runtime"/>
+   </requires>
+
    <plugin
          id="org.eclipse.amp.all"
          download-size="0"
