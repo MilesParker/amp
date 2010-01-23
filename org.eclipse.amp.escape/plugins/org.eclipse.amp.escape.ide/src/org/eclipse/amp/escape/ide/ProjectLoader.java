@@ -49,7 +49,6 @@ public class ProjectLoader extends URLClassLoader {
      * 
      * @throws LoaderCreationException the loader creation exception
      */
-    @SuppressWarnings("deprecation")
     public ProjectLoader(IProject project) throws LoaderCreationException {
         super(new URL[0]);
         this.project = project;
