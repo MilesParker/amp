@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.9 2010/01/23 04:23:24 mparker Exp $
+ $Id: plugin.xml,v 1.10 2010/01/26 05:52:15 mparker Exp $
 -->
 
 <plugin>
@@ -371,11 +371,25 @@
           category="org.eclipse.amp.amf.ide.wizards"
           class="org.eclipse.amp.escape.amf.ide.EscapeAMFProjectWizard"
           descriptionImage="icons/etool16/generic_agent.gif"
-          icon="icons/etool16/generic_agent.gif"
-          id="org.eclipse.amp.escape.wizards.newProject"
+          icon="icons/escape16.png"
+          id="org.eclipse.amp.escape.amf.wizards.newProject"
           name="Escape Modeling Project"
           project="true">
       <description>Creates a new project for generating Escape implementations from MetaABM models.</description>
+    </wizard>
+    <wizard
+          category="org.eclipse.amp.amf.ide.wizards"
+          class="org.eclipse.amp.escape.amf.ide.ParameterFileWizard"
+          icon="icons/etool16/parameter_file.gif"
+          id="org.eclipse.amp.escape.wizards.newParameters"
+          name="Parameters File">
+    </wizard>
+    <wizard
+          category="org.eclipse.amp.amf.ide.wizards"
+          class="org.eclipse.amp.escape.amf.ide.TestRunFileWizard"
+          icon="icons/etool16/test.gif"
+          id="org.eclipse.amp.escape.wizards.newTest"
+          name="Test File">
     </wizard>
     </extension>
     <extension
@@ -383,7 +397,13 @@
        <perspectiveExtension
              targetID="org.eclipse.amp.amf.AgentModelingPerspective">
           <newWizardShortcut
-                id="org.eclipse.amp.escape.wizards.newProject">
+                id="org.eclipse.amp.escape.amf.wizards.newProject">
+          </newWizardShortcut>
+          <newWizardShortcut
+                id="org.eclipse.amp.escape.amf.ide.newWizardShortcut2">
+          </newWizardShortcut>
+          <newWizardShortcut
+                id="org.eclipse.amp.escape.wizards.newTest">
           </newWizardShortcut>
        </perspectiveExtension>
     </extension>
