@@ -121,14 +121,18 @@
 		</key>
 	</extension>
 <extension point="org.eclipse.ui.newWizards">
-		<wizard category="org.eclipse.amp.amf.ide.wizards"
-			class="org.eclipse.amp.escape.ide.ParameterFileWizard" icon="icons/etool16/parameter_file.gif"
-			id="org.eclipse.amp.escape.wizards.newParameters" name="Parameters File">
-		</wizard>
-		<wizard category="org.eclipse.amp.amf.ide.wizards" class="org.eclipse.amp.escape.ide.TestRunFileWizard"
-			icon="icons/etool16/test.gif" id="org.eclipse.amp.escape.wizards.newTest"
-			name="Test File">
-		</wizard>
+   <wizard
+         category="org.eclipse.escape.wizards"
+         class="org.eclipse.amp.escape.ide.EscapeJavaPluginProjectWizard"
+         descriptionImage="icons/escape32.png"
+         icon="icons/escape16.png"
+         id="org.eclipse.amp.escape.wizards.newProject"
+         name="Escape Java Project"
+         project="true">
+      <description>
+         Creates a new &quot;plain old java&quot; project for Escape models.
+      </description>
+   </wizard>
 	</extension>
 
 	<extension point="org.eclipse.ui.perspectiveExtensions">
@@ -162,6 +166,135 @@
 			id="org.eclipse.amp.axf.ExecutionPerspective"> </perspectiveShortcut>
 			</perspectiveExtension>
 	</extension>
+	
+	
+   <extension point="org.eclipse.ui.perspectives">
+   <perspective
+         class="org.eclipse.amp.escape.ide.EscapePerspective"
+         fixed="false"
+         icon="icons/escape16.png"
+         id="org.eclipse.escape.EscapePerspective"
+         name="Escape">
+   </perspective>
+   </extension>
+    <extension point="org.eclipse.ui.perspectiveExtensions"> 
+        <perspectiveExtension 
+            targetID="org.eclipse.escape.EscapePerspective"> 
+            <perspectiveShortcut id="org.eclipse.amp.axf.ExecutionPerspective"/>
+            <view
+                  id="org.eclipse.jdt.ui.PackageExplorer"
+                  ratio=".25"
+                  relationship="left"
+                  relative="org.eclipse.ui.editorss"
+                  standalone="false">
+            </view>
+            <view
+                  id="org.eclipse.ui.views.ContentOutline"
+                  minimized="false"
+                  ratio="0.2"
+                  relationship="left"
+                  relative="org.eclipse.ui.editorss"
+                  standalone="false">
+            </view>
+            <view
+                  id="org.eclipse.ui.views.PropertySheet"
+                  ratio=".70"
+                  relationship="bottom"
+                  relative="org.eclipse.jdt.ui.PackageExplorer"
+                  standalone="false">
+            </view>
+            <view
+                  id="org.eclipse.ui.views.ProblemView"
+                  ratio=".78"
+                  relationship="bottom"
+                  relative="org.eclipse.ui.editorss"
+                  standalone="false">
+            </view>
+            <view
+                  id="org.eclipse.ui.console.ConsoleView"
+                  minimized="false"
+                  relationship="stack"
+                  relative="org.eclipse.ui.views.ProblemView"
+                  standalone="false">
+            </view>
+            <view
+                  id="org.eclipse.pde.runtime.LogView"
+                  minimized="false"
+                  relationship="stack"
+                  relative="org.eclipse.ui.views.ProblemView"
+                  standalone="false">
+            </view>
+            <viewShortcut
+                  id="org.eclipse.ui.views.PropertySheet">
+            </viewShortcut>
+            <viewShortcut
+                  id="org.eclipse.ui.views.ProblemView">
+            </viewShortcut>
+            <viewShortcut
+                  id="org.eclipse.ui.console.ConsoleView">
+            </viewShortcut>
+            <viewShortcut
+                  id="org.eclipse.pde.runtime.LogView">
+            </viewShortcut>
+            <viewShortcut
+                  id="org.eclipse.jdt.ui.SourceView">
+            </viewShortcut>
+            <viewShortcut
+                  id="org.eclipse.jdt.ui.JavadocView">
+            </viewShortcut>
+            <viewShortcut
+                  id="org.eclipse.ui.views.ResourceNavigator">
+            </viewShortcut>
+            <viewShortcut
+                  id="org.eclipse.ui.views.ProgressView">
+            </viewShortcut>
+            <newWizardShortcut
+                  id="org.ascape.wizards.newProject">
+            </newWizardShortcut>
+            <newWizardShortcut
+                  id="org.eclipse.amp.escape.wizards.newProject">
+            </newWizardShortcut>
+            
+            <newWizardShortcut
+                  id="org.eclipse.ui.wizards.new.folder"/>
+            <newWizardShortcut
+                  id="org.eclipse.jdt.ui.wizards.NewPackageCreationWizard"/>
+            <newWizardShortcut
+                  id="org.eclipse.jdt.ui.wizards.NewClassCreationWizard"/>
+            <newWizardShortcut
+                  id="org.eclipse.jdt.ui.wizards.NewInterfaceCreationWizard"/>
+            <actionSet
+                  id="org.eclipse.debug.ui.launchActionSet">
+            </actionSet>
+            <actionSet
+                  id="org.eclipse.jdt.ui.JavaActionSet">
+            </actionSet>
+            <actionSet
+                  id="org.eclipse.jdt.ui.JavaElementCreationActionSet">
+            </actionSet>
+            <actionSet
+                  id="org.eclipse.ui.NavigateActionSet">
+            </actionSet>
+        </perspectiveExtension>
+        <perspectiveExtension
+              targetID="org.eclipse.jdt.ui.JavaPerspective">
+           <perspectiveShortcut
+                 id="org.eclipse.escape.EscapePerspective">
+           </perspectiveShortcut>
+        </perspectiveExtension>
+        <perspectiveExtension
+              targetID="org.eclipse.ui.resourcePerspective">
+           <perspectiveShortcut
+                 id="org.eclipse.escape.EscapePerspective">
+           </perspectiveShortcut>
+        </perspectiveExtension>
+        <perspectiveExtension
+              targetID="org.eclipse.amp.axf.ExecutionPerspective">
+           <perspectiveShortcut
+                 id="org.eclipse.escape.EscapePerspective">
+           </perspectiveShortcut>
+        </perspectiveExtension> 
+    </extension> 
 <!--	<extension point="org.eclipse.ui.editors">
 		<editor class="org.eclipse.ui.editors.text.TextEditor" default="false"
 			extensions="apar" icon="icons/etool16/run_parameter.gif" id="org.eclipse.amp.escape.ide.ParameterEditor"
