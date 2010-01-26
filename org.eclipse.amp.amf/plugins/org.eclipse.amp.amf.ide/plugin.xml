@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.2 2009/10/30 03:25:05 mparker Exp $
+ $Id: plugin.xml,v 1.3 2010/01/26 05:52:08 mparker Exp $
 -->
 
 <plugin>
@@ -13,7 +13,7 @@
    <perspective
          class="org.eclipse.amp.amf.ide.AgentModelingPerspectiveFactory"
          fixed="false"
-         icon="icons/full/obj16/ModelingPerspective.gif"
+         icon="icons/AMF16.png"
          id="org.eclipse.amp.amf.AgentModelingPerspective"
          name="Agent Modeling">
    </perspective>
