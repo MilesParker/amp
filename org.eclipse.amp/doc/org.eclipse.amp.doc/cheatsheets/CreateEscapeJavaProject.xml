@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Creating an Escape Project">
+   <intro
+         href="/org.eclipse.ui. cheatsheets.doc/tasks/tcheatst.htm">
+      <description>
+         <b>In this tutorial, we&apos;ll setup our environment, create our first Escape project, copy in a model, and run it!</b>
+      </description>
+   </intro>
+   <item
+         href="/org.eclipse.platform.doc.user/tasks/tasks-9f.htm"
+         title="Open the Escape Perspective">
+      <description>
+         If you&apos;re not already there, open the Escape Perspective. Select Window &gt; Open Perspective &gt; Other.. and then Escape. (Or you can choose Window &gt; Reset Perspective and the Agent Modeling perspective should appear in the Open Perspective list itself.)
+      </description>
+      <command
+            required="false"
+            serialization="org.eclipse.ui.perspectives.showPerspective(org.eclipse.ui.perspectives.showPerspective.perspectiveId=org.eclipse.escape.EscapePerspective)"/>
+   </item>
+   <item
+         title="Create an Escape Java project.">
+      <description>
+         <b>Next, let&apos;s create the project where we&apos;ll place our model.</b>
+Select File &gt; New &gt; Escape Java Project. Give it a name like &quot;escape.tutorial&quot;, then click Finish.
+      </description>
+      <command
+            required="true"
+            serialization="org.eclipse.ui.newWizard(newWizardId=org.eclipse.amp.escape.wizards.newProject)"/>
+   </item>
+</cheatsheet>

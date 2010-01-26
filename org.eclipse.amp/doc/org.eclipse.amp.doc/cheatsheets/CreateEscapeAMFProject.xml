@@ -25,7 +25,7 @@ Select File &gt; New &gt; Escape AMF Project. Give it a name like &quot;escape.t
       </description>
       <command
             required="true"
-            serialization="org.eclipse.ui.newWizard(newWizardId=org.eclipse.amp.escape.wizards.newProject)"/>
+            serialization="org.eclipse.ui.newWizard(newWizardId=org.eclipse.amp.escape.amf.wizards.newProject)"/>
    </item>
    <item
          title="Copy a model into the project.">

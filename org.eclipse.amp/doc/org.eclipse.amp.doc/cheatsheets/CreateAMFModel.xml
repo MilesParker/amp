@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cheatsheet
-      title="Title">
+      title="Create a new AMF MetaABM model.">
    <intro>
       <description>
          <b>Body</b>
@@ -9,7 +9,7 @@
    <item
          title="Create a new model">
       <description>
-         Open the MetaABM model wizard by right-clicking on the project, selecting &quot;new&quot;, and choosing &quot;MetaABMModel&quot;.
+         Open the MetaABM model wizard by right-clicking on the project, selecting &quot;new&quot;, and choosing &quot;MetaABM Model&quot;.
       </description>
       <command
             required="false"
