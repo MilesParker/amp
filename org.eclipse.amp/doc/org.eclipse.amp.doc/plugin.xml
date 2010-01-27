@@ -19,7 +19,7 @@
             id="org.eclipse.amp.escape.amf.createProject"
             name="Create an AMF Escape Project"/>
       <cheatsheet
-            category="org.eclipse.amp"
+            category="org.eclipse.amp.escape"
             composite="false"
             contentFile="cheatsheets/LoadSampleProjects.xml"
             id="org.eclipse.amp.escape.loadProject"

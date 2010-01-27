@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cheatsheet
-      title="Run an Escape Model">
+      title="Run an Example Model">
    <intro>
       <description>
          In this tutorial, we&apos;ll run the model! <b>Note -- you need to have installed the example models before proceeding, see step 1 below.</b>
@@ -25,9 +25,14 @@
             serialization="org.eclipse.jdt.ui.commands.showElementInPackageView(elementRef=org.ascape.escape.models.brook/edu.brook.pd.PD2D)"/>
    </item>
    <item
-         title="Item">
+         title="Execute the model">
       <description>
-         <b>Body</b>
+         Now we can start the model in one of three ways.
+&lt;ul&gt;
+&lt;li&gt;Right-click and select &quot;Execute&quot; from the menu.&lt;/li&gt;
+&lt;li&gt;Select the &quot;Execute&quot; from the toolbar. (Our favorite)&lt;/li&gt;
+&lt;li&gt;Select &quot;Execute&quot; from the &quot;Control&quot; menu.&lt;/li&gt;
+&lt;/ul&gt;
       </description>
       <command
             required="true"
