@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<compositeCheatsheet name="Building and Running an Escape model in Java">
+   <taskGroup kind="set" name="Group" skip="false">
+      <intro>
+         <b>Introduction</b>
+      </intro>
+      <onCompletion>
+         <b>Conclusion</b>
+      </onCompletion>
+      <task kind="cheatsheet" name="Create Project" skip="false">
+         <intro>
+            <b>Introduction</b>
+         </intro>
+         <onCompletion>
+            <b>Conclusion</b>
+         </onCompletion>
+         <param name="path" value="CreateEscapeJavaProject.xml">
+         </param>
+      </task>
+      <task kind="cheatsheet" name="Create Models" skip="false">
+         <intro>
+            <b>Introduction</b>
+         </intro>
+         <onCompletion>
+            <b>Conclusion</b>
+         </onCompletion>
+         <param name="path" value="CreateEscapeJavaModel.xml">
+         </param>
+      </task>
+      <task kind="cheatsheet" name="Run the model" skip="false">
+         <intro>
+            <b>Introduction</b>
+         </intro>
+         <onCompletion>
+            <b>Conclusion</b>
+         </onCompletion>
+         <param name="path" value="RunEscape.xml">
+         </param>
+      </task>
+   </taskGroup>
+</compositeCheatsheet>

@@ -43,5 +43,19 @@
             id="org.eclipse.amp.escape.createJava"
             name="Create an Escape Java Model">
       </cheatsheet>
+      <cheatsheet
+            category="org.eclipse.amp.escape"
+            composite="false"
+            contentFile="cheatsheets/EscapeJava.xml"
+            id="org.eclipse.amp.escape.escapeJava"
+            name="Build and Run an Escape Java Model">
+      </cheatsheet>
+      <cheatsheet
+            category="org.eclipse.amp.escape"
+            composite="false"
+            contentFile="cheatsheets/RunEscape.xml"
+            id="org.eclipse.amp.escape.runExample"
+            name="Run an Example Model">
+      </cheatsheet>
    </extension>
 </plugin>

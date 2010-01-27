@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script language="JavaScript" src="PLUGINS_ROOT/org.eclipse.help/livehelp.js"> </script>
+<title>Escape</title>
+</head>
+<body>
+<h2 id="Converting_Existing_Ascape_models">Converting Existing Ascape models</h2>
+<p>There are only a few changes should have to make to existing Ascape models or to use existing Ascape
+documentation to develop Escape models.</p>
+<h4 id="Model">Model</h4>
+<p>The core model is completely API compatible. No changes!</p>
+<h4 id="View">View</h4>
+<p>Because Escape uses SWT and Ascape uses Swing, there are a few unavoidable incompatibilities. Most of these we
+avoid by using higher level APIs but here are the key changes that you're likely to have to make:</p>
+<h5 id="Convert_the_low-level_imports_from_AWT_and_Swing_to_SWT">Convert the low-level imports from AWT and Swing
+to SWT</h5>
+<p>The simplest way to accomplish this is to remove all of the imports and then organize imports. For example:</p>
+<pre>java.awt.Color <b>to</b> org.eclipse.swt.graphics.Color
+java.awt.Graphics <b>to</b> org.eclipse.draw2d.Graphics
+</pre>
+<p>Then just do a global find for all of the imports and replace them with nothing. This is a great place for a
+regexp. Try:</p>
+<pre>find: import java\.awt\.(.*);
+replace: [nothing]
+</pre>
+<p>You don't have to replace these with the SWT equivalents, just click on the project, right-click and choose
+"Source:Organize Imports.." By the way, a great way to avoid having to select the right entries in optimize imports and
+to alert you when you have missed anything is to prevent the awt and swing classes from being used at all. Right-click
+on project, choose "Build Path:Configure Build Path", go to Libraries tab, open JRE System Library, choose "Access
+Rules", edit, and then add entries for java/awt/** and javax/swing/**. The code will regenerate and you'll have error
+markers for all of the stuff that won't work with Escape and Eclipse.</p>
+<h5 id="Convert_color_features">Convert color features</h5>
+<p>You can't use AWT colors either so you'll need to replace any colors. AMP provides a convenience classes for
+Colors called ColorFeature and ColorFeatureConcrete. You can use these or any of the other ways to define SWT colors.
+For example:</p>
+<pre>Color.lightGray <b>to</b> ColorFeature.LIGHT_GRAY
+new Color(Math.min(1.0f, (float) (redEnergy + orangeEnergy)), (float) orangeEnergy * .8f, (float) blueEnergy) <b>to</b> 
+    ColorFeatureConcrete.create(Math.min(1.0f, (float) (redEnergy + orangeEnergy)), (float) orangeEnergy * .8f, (float) blueEnergy)
+</pre>
+<h5 id="Change_agent_color_getters">Change agent color getters</h5>
+<p>If you've defined colors through overriding Agents as in most models, you'll need to change the method signature.
+You could just do a global replace for this one.</p>
+<pre>public Color getColor( <b>to</b> public Object getPlatformColor(
+</pre>
+<h5 id="Get_rid_of_image_features">Get rid of image features</h5>
+<p>Escape doesn't support them. In practice they haven't been used a lot. At some point perhaps we'll have nice
+sprite support instead. :)</p>
+<pre>public Image getImage() {**} <b>to</b> ""
+</pre>
+<h5 id="Modify_usages_of_DrawFeatures">Modify usages of DrawFeatures</h5>
+<p>If you've created any of your own draw features, you'll need to change them slightly to accommodate the
+differences between the AWT and SWT / Draw2D APIs. This should be pretty straightforwrd. For example:</p>
+<pre>g.setColor(...
+g.fillOval(..
+becomes:
+g.setBackgroundColor(
+g.fillOval(..
+</pre>
+<p>That's about it, though it's probable that we've missed something. Please post a message on the amp newsgroup if
+you run into any other conversion issues.</p>
+</body>
+</html>

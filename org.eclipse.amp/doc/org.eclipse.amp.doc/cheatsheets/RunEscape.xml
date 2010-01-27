@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cheatsheet
+      title="Run an Escape Model">
+   <intro>
+      <description>
+         In this tutorial, we&apos;ll run the model! <b>Note -- you need to have installed the example models before proceeding, see step 1 below.</b>
+      </description>
+   </intro>
+   <item
+         title="Select Package Explorer">
+      <description>
+         Go to the package explorer.
+      </description>
+      <command
+            required="true"
+            serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.jdt.ui.PackageExplorer)"/>
+   </item>
+   <item
+         title="Select Model Class">
+      <description>
+         Select the Prisoner&apos;s Dilemma Model.
+      </description>
+      <command
+            required="true"
+            serialization="org.eclipse.jdt.ui.commands.showElementInPackageView(elementRef=org.ascape.escape.models.brook/edu.brook.pd.PD2D)"/>
+   </item>
+   <item
+         title="Item">
+      <description>
+         <b>Body</b>
+      </description>
+      <command
+            required="true"
+            serialization="org.eclipse.amp.escape.runtime.execute(elementRef=org.ascape.escape.models.brook/edu.brook.pd.PD2D)"/>
+   </item>
+
+</cheatsheet>

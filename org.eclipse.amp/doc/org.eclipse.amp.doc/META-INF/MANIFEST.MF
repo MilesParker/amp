@@ -7,5 +7,6 @@ Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui.intro,
  org.eclipse.ui.intro.universal,
  org.eclipse.ui,
- org.eclipse.team.cvs.ui;bundle-version="3.3.201"
+ org.eclipse.team.cvs.ui;bundle-version="3.3.201",
+ org.eclipse.amp.escape.ide;bundle-version="0.5.0"
 Bundle-Localization: plugin
