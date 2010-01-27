@@ -7,12 +7,12 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
+ * Contributors:
  *   Metascape - Initial API and Implementation
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.escape.command;
 
 import java.util.Iterator;
@@ -23,6 +23,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jdt.core.ICompilationUnit;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.handlers.HandlerUtil;
@@ -42,20 +43,37 @@ public abstract class ResourceHandler extends AbstractHandler {
      */
     public Object execute(ExecutionEvent event) throws ExecutionException {
         ISelection selection = HandlerUtil.getCurrentSelection(event);
-        if (!selection.isEmpty() && selection instanceof IStructuredSelection) {
-            IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-            for (Iterator<?> it = structuredSelection.iterator(); it.hasNext();) {
-                Object element = it.next();
-                if (element instanceof IResource) {
-                    IResource resource = (IResource) element;
-                    executeHandler(event, resource, resource.getName());
-                } else if (element instanceof ICompilationUnit) {
-                    ICompilationUnit unit = (ICompilationUnit) element;
-                    executeHandler(event, unit, unit.getPrimaryElement().getElementName());
+        if (selection == null) {
+            // Object objectParameterForExecution;
+            // try {
+            // event.getCommand()
+            // .getParameter("org.eclipse.amp.escape.ide.javaExecution");
+            // } catch (NotDefinedException e) {
+            // throw new RuntimeException(e);
+            // }
+            // executeForObject(event, objectParameterForExecution);
+        } else
+            if (!selection.isEmpty() && selection instanceof IStructuredSelection) {
+                IStructuredSelection structuredSelection = (IStructuredSelection) selection;
+                for (Iterator<?> it = structuredSelection.iterator(); it.hasNext();) {
+                    Object element = it.next();
+                    executeForObject(event, element);
                 }
             }
-        }
         return null;
+    }
+
+    private void executeForObject(ExecutionEvent event, Object element) throws ExecutionException {
+        if (element instanceof IResource) {
+            IResource resource = (IResource) element;
+            executeHandler(event, resource, resource.getName());
+        } else if (element instanceof ICompilationUnit) {
+            ICompilationUnit unit = (ICompilationUnit) element;
+            executeHandler(event, unit, unit.getPrimaryElement().getElementName());
+        } else if (element instanceof IType) {
+            IType unit = (IType) element;
+            executeHandler(event, unit, unit.getElementName());
+        }
     }
 
     /**

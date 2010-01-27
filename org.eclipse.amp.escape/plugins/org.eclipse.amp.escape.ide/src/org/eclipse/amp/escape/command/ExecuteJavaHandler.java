@@ -18,6 +18,7 @@ package org.eclipse.amp.escape.command;
 import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jdt.core.ICompilationUnit;
+import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.ITypeHierarchy;
 import org.eclipse.jdt.core.JavaModelException;
@@ -52,10 +53,10 @@ public class ExecuteJavaHandler extends ExecuteHandler {
      */
     protected void executeOpen(final EclipseEscapeRunner eclipseRunner, final Object executed, IProgressMonitor monitor) {
         // brain dead Java strikes again..
-        if (executed instanceof ICompilationUnit && isSupertype(executed, "org.ascape.model.Scape")) {
-            ICompilationUnit javaUnit = (ICompilationUnit) executed;
-            IType javaClass = javaUnit.findPrimaryType();
-            eclipseRunner.open(javaUnit.getResource().getProject(), javaClass.getFullyQualifiedName(), javaClass
+        if (isSupertype(executed, "org.ascape.model.Scape")) {
+            IType javaClass = getType(executed);
+            IJavaProject javaProject = javaClass.getJavaProject();
+            eclipseRunner.open(javaProject.getProject(), javaClass.getFullyQualifiedName(), javaClass
                                .getElementName());
         }
     }
@@ -66,7 +67,7 @@ public class ExecuteJavaHandler extends ExecuteHandler {
      * @see org.eclipse.amp.escape.command.ExecuteHandler#handleSelect(java.lang.Object)
      */
     protected boolean handleSelect(Object sel) {
-        return sel instanceof ICompilationUnit;// && isSupertype(sel, "org.ascape.model.Scape");
+        return sel instanceof ICompilationUnit || sel instanceof IType;
     }
 
     /**
@@ -77,7 +78,7 @@ public class ExecuteJavaHandler extends ExecuteHandler {
      * 
      * @return true, if is supertype
      */
-    public boolean isSupertype(IType type, String className) {
+    public boolean isTypeSupertype(IType type, String className) {
         try {
             if (type != null) {
                 ITypeHierarchy h = type.newTypeHierarchy(null);
@@ -101,6 +102,15 @@ public class ExecuteJavaHandler extends ExecuteHandler {
      * @return true, if is supertype
      */
     public boolean isSupertype(Object sel, String className) {
-        return isSupertype(((ICompilationUnit) sel).findPrimaryType(), className);
+        return isTypeSupertype(getType(sel), className);
+    }
+
+    public IType getType(Object object) {
+        if (object instanceof ICompilationUnit) {
+            return ((ICompilationUnit) object).findPrimaryType();
+        } else if (object instanceof IType) {
+            return (IType) object;
+        }
+        return null;
     }
 }

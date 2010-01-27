@@ -3,11 +3,24 @@
 
 <plugin>
 	<extension point="org.eclipse.ui.commands">
-		<command categoryId="org.eclipse.amp.axf.ui" id="org.eclipse.amp.escape.runtime.execute"
-			name="Execute">
+		<command
+        categoryId="org.eclipse.amp.axf.ui"
+        defaultHandler="org.eclipse.amp.escape.command.ExecuteJavaHandler"
+        description="Execute a Java Model"
+        id="org.eclipse.amp.escape.runtime.execute"
+        name="Execute">
+     <commandParameter
+           id="org.eclipse.amp.escape.ide.javaExecution"
+           name="Java Element Reference"
+           optional="true"
+           typeId="org.eclipse.jdt.ui.commands.javaElementReference">
+     </commandParameter>
 		</command>
-		<command categoryId="org.eclipse.amp.axf.ui"
-			id="org.eclipse.amp.escape.runtime.executeHeadless" name="Execute Headless">
+		<command
+        categoryId="org.eclipse.amp.axf.ui"
+        description="Execute a Java Model in Headless Mode"
+        id="org.eclipse.amp.escape.runtime.executeHeadless"
+        name="Execute Headless">
 		</command>
 	</extension>
 	<extension point="org.eclipse.ui.menus">
@@ -84,8 +97,13 @@
 			<or>
 				<with variable="selection">
 					<iterate ifEmpty="false">
-							<adapt type="org.eclipse.jdt.core.ICompilationUnit">
-							</adapt>
+       <or>
+          <adapt
+                type="org.eclipse.jdt.core.ICompilationUnit">
+          </adapt>
+          <adapt
+                type="org.eclipse.jdt.core.IType">
+          </adapt></or>
 					</iterate>
 				</with>
 			</or>
@@ -134,39 +152,6 @@
       </description>
    </wizard>
 	</extension>
-
-	<extension point="org.eclipse.ui.perspectiveExtensions">
-		<perspectiveExtension targetID="org.eclipse.amp.axf.ExecutionPerspective">
-			<view id="org.eclipse.amp.view.GEFView:*" ratio=".8"
-				relationship="left" relative="org.eclipse.ui.editorss" visible="false">
-			</view>
-			<view id="org.eclipse.amp.view.GEF3DView:*" ratio=".8"
-				relationship="left" relative="org.eclipse.ui.editorss" visible="false">
-			</view>
-			<view id="org.eclipse.amp.view.TreeView" ratio="0.5"
-				relationship="right" relative="org.eclipse.jdt.ui.PackageExplorer" visible="false">
-			</view>
-			<view id="org.eclipse.amp.escape.view.GraphicsView:*" ratio=".8"
-				relationship="left" relative="org.eclipse.ui.editorss" visible="false">
-			</view>
-			<viewShortcut id="org.eclipse.amp.view.TreeView">
-			</viewShortcut>
-			<viewShortcut id="org.eclipse.amp.escape.view.GraphicsView">
-			</viewShortcut>
-		</perspectiveExtension>
-			<perspectiveExtension targetID="org.eclipse.amp.amf.AgentModelingPerspective"> <perspectiveShortcut
-			id="org.eclipse.amp.axf.ExecutionPerspective"> </perspectiveShortcut>
-			<newWizardShortcut id="org.eclipse.amp.escape.wizards.newProject">
-			</newWizardShortcut> <newWizardShortcut
-			id="org.eclipse.amp.escape.wizards.newParameters">
-			</newWizardShortcut> <newWizardShortcut
-			id="org.eclipse.amp.escape.wizards.newTest"> </newWizardShortcut>
-			</perspectiveExtension> <perspectiveExtension
-			targetID="org.eclipse.jdt.ui.JavaPerspective"> <perspectiveShortcut
-			id="org.eclipse.amp.axf.ExecutionPerspective"> </perspectiveShortcut>
-			</perspectiveExtension>
-	</extension>
-	
 	
    <extension point="org.eclipse.ui.perspectives">
    <perspective
@@ -186,6 +171,12 @@
                   ratio=".25"
                   relationship="left"
                   relative="org.eclipse.ui.editorss"
+                  standalone="false">
+            </view>
+            <view
+                  id="org.eclipse.ui.views.ResourceNavigator"
+                  relationship="stack"
+                  relative="org.eclipse.jdt.ui.PackageExplorer"
                   standalone="false">
             </view>
             <view
@@ -288,12 +279,38 @@
                  id="org.eclipse.escape.EscapePerspective">
            </perspectiveShortcut>
         </perspectiveExtension>
-        <perspectiveExtension
-              targetID="org.eclipse.amp.axf.ExecutionPerspective">
-           <perspectiveShortcut
-                 id="org.eclipse.escape.EscapePerspective">
-           </perspectiveShortcut>
-        </perspectiveExtension> 
+		<perspectiveExtension targetID="org.eclipse.amp.axf.ExecutionPerspective">
+			<view id="org.eclipse.amp.view.GEFView:*" ratio=".8"
+				relationship="left" relative="org.eclipse.ui.editorss" visible="false">
+			</view>
+			<view id="org.eclipse.amp.view.GEF3DView:*" ratio=".8"
+				relationship="left" relative="org.eclipse.ui.editorss" visible="false">
+			</view>
+			<view id="org.eclipse.amp.view.TreeView" ratio="0.5"
+				relationship="right" relative="org.eclipse.jdt.ui.PackageExplorer" visible="false">
+			</view>
+			<view id="org.eclipse.amp.escape.view.GraphicsView:*" ratio=".8"
+				relationship="left" relative="org.eclipse.ui.editorss" visible="false">
+			</view>
+			<viewShortcut id="org.eclipse.amp.view.TreeView">
+			</viewShortcut>
+			<viewShortcut id="org.eclipse.amp.escape.view.GraphicsView">
+			</viewShortcut>
+   <perspectiveShortcut
+         id="org.eclipse.escape.EscapePerspective">
+   </perspectiveShortcut>
+		</perspectiveExtension>
+			<perspectiveExtension targetID="org.eclipse.amp.amf.AgentModelingPerspective"> <perspectiveShortcut
+			id="org.eclipse.amp.axf.ExecutionPerspective"> </perspectiveShortcut>
+			<newWizardShortcut id="org.eclipse.amp.escape.wizards.newProject">
+			</newWizardShortcut> <newWizardShortcut
+			id="org.eclipse.amp.escape.wizards.newParameters">
+			</newWizardShortcut> <newWizardShortcut
+			id="org.eclipse.amp.escape.wizards.newTest"> </newWizardShortcut>
+			</perspectiveExtension> <perspectiveExtension
+			targetID="org.eclipse.jdt.ui.JavaPerspective"> <perspectiveShortcut
+			id="org.eclipse.amp.axf.ExecutionPerspective"> </perspectiveShortcut>
+			</perspectiveExtension>
     </extension> 
 <!--	<extension point="org.eclipse.ui.editors">
 		<editor class="org.eclipse.ui.editors.text.TextEditor" default="false"
