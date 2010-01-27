@@ -44,22 +44,27 @@ public abstract class ResourceHandler extends AbstractHandler {
     public Object execute(ExecutionEvent event) throws ExecutionException {
         ISelection selection = HandlerUtil.getCurrentSelection(event);
         if (selection == null) {
-            // Object objectParameterForExecution;
             // try {
-            // event.getCommand()
-            // .getParameter("org.eclipse.amp.escape.ide.javaExecution");
+            // IParameter parameter = event.getCommand().getParameter("org.eclipse.amp.escape.ide.javaExecution");
+            // JavaEl.convertToObject(text);
+            //
+            // Object object = parameter.getValues().getParameterValues().values().toArray()[0];
+            // executeForObject(event, object);
             // } catch (NotDefinedException e) {
+            // StatusManager.getManager().handle(
+            // new Status(IStatus.WARNING, "org.amp.escape.ude",
+            // "Undefined parameter: " + e));
+            // } catch (ParameterValuesException e) {
             // throw new RuntimeException(e);
             // }
-            // executeForObject(event, objectParameterForExecution);
-        } else
-            if (!selection.isEmpty() && selection instanceof IStructuredSelection) {
-                IStructuredSelection structuredSelection = (IStructuredSelection) selection;
-                for (Iterator<?> it = structuredSelection.iterator(); it.hasNext();) {
-                    Object element = it.next();
-                    executeForObject(event, element);
-                }
+        }
+        if (selection != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
+            IStructuredSelection structuredSelection = (IStructuredSelection) selection;
+            for (Iterator<?> it = structuredSelection.iterator(); it.hasNext();) {
+                Object element = it.next();
+                executeForObject(event, element);
             }
+        }
         return null;
     }
 
