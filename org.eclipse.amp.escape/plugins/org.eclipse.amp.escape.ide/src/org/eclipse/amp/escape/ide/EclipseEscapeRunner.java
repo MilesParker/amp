@@ -519,6 +519,10 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
         this.updateGranularity = (TimeGranularity) granularity;
     }
 
+    public IProject getExecutingProject() {
+        return project;
+    }
+
     // public Object getAdapter(Object adaptableObject, Class adapterType) {
     // if (adapterType == IExecutor.class) {
     // return runnerForModel.get(adaptableObject);

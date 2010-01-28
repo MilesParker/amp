@@ -23,6 +23,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jdt.core.ICompilationUnit;
+import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -42,22 +43,14 @@ public abstract class ResourceHandler extends AbstractHandler {
      * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
      */
     public Object execute(ExecutionEvent event) throws ExecutionException {
-        ISelection selection = HandlerUtil.getCurrentSelection(event);
-        if (selection == null) {
-            // try {
-            // IParameter parameter = event.getCommand().getParameter("org.eclipse.amp.escape.ide.javaExecution");
-            // JavaEl.convertToObject(text);
-            //
-            // Object object = parameter.getValues().getParameterValues().values().toArray()[0];
-            // executeForObject(event, object);
-            // } catch (NotDefinedException e) {
-            // StatusManager.getManager().handle(
-            // new Status(IStatus.WARNING, "org.amp.escape.ude",
-            // "Undefined parameter: " + e));
-            // } catch (ParameterValuesException e) {
-            // throw new RuntimeException(e);
-            // }
+        try {
+            IJavaElement javaElement = (IJavaElement) event.getObjectParameterForExecution("elementRef");
+            executeForObject(event, javaElement);
+            return null;
+        } catch (ExecutionException e) {
+            // we can safely ignore..the sub-class may not have defined this parameter..
         }
+        ISelection selection = HandlerUtil.getCurrentSelection(event);
         if (selection != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
             IStructuredSelection structuredSelection = (IStructuredSelection) selection;
             for (Iterator<?> it = structuredSelection.iterator(); it.hasNext();) {

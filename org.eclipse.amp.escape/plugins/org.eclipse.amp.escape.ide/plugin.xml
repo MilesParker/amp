@@ -10,7 +10,7 @@
         id="org.eclipse.amp.escape.runtime.execute"
         name="Execute">
      <commandParameter
-           id="org.eclipse.amp.escape.ide.javaExecution"
+           id="elementRef"
            name="Java Element Reference"
            optional="true"
            typeId="org.eclipse.jdt.ui.commands.javaElementReference">
@@ -286,8 +286,12 @@
 			<view id="org.eclipse.amp.view.GEF3DView:*" ratio=".8"
 				relationship="left" relative="org.eclipse.ui.editorss" visible="false">
 			</view>
-			<view id="org.eclipse.amp.view.TreeView" ratio="0.5"
-				relationship="right" relative="org.eclipse.jdt.ui.PackageExplorer" visible="false">
+			<view
+         id="org.eclipse.amp.view.TreeView"
+         ratio="0.5"
+         relationship="right"
+         relative="org.eclipse.jdt.ui.PackageExplorer"
+         visible="true">
 			</view>
 			<view id="org.eclipse.amp.escape.view.GraphicsView:*" ratio=".8"
 				relationship="left" relative="org.eclipse.ui.editorss" visible="false">
@@ -299,6 +303,16 @@
    <perspectiveShortcut
          id="org.eclipse.escape.EscapePerspective">
    </perspectiveShortcut>
+   <view
+         id="org.eclipse.amp.escape.ide.InfoView"
+         minimized="false"
+         relationship="stack"
+         relative="org.eclipse.amp.view.TreeView"
+         visible="true">
+   </view>
+   <viewShortcut
+         id="org.eclipse.amp.escape.ide.InfoView">
+   </viewShortcut>
 		</perspectiveExtension>
 			<perspectiveExtension targetID="org.eclipse.amp.amf.AgentModelingPerspective"> <perspectiveShortcut
 			id="org.eclipse.amp.axf.ExecutionPerspective"> </perspectiveShortcut>
@@ -311,7 +325,18 @@
 			targetID="org.eclipse.jdt.ui.JavaPerspective"> <perspectiveShortcut
 			id="org.eclipse.amp.axf.ExecutionPerspective"> </perspectiveShortcut>
 			</perspectiveExtension>
-    </extension> 
+    </extension>
+<extension
+          point="org.eclipse.ui.views">
+       <view
+             allowMultiple="false"
+             category="org.eclipse.amp.axf.views"
+             class="org.eclipse.amp.escape.ide.InfoView"
+             id="org.eclipse.amp.escape.ide.InfoView"
+             name="About this Model"
+             restorable="true">
+       </view>
+    </extension>
 <!--	<extension point="org.eclipse.ui.editors">
 		<editor class="org.eclipse.ui.editors.text.TextEditor" default="false"
 			extensions="apar" icon="icons/etool16/run_parameter.gif" id="org.eclipse.amp.escape.ide.ParameterEditor"
