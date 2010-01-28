@@ -3,7 +3,7 @@
       title="Run an Example Model">
    <intro>
       <description>
-         In this tutorial, we&apos;ll run the model! <b>Note -- you need to have installed the example models before proceeding, see step 1 below.</b>
+         In this tutorial, we&apos;ll run the model! <b>Note -- you need to have installed the example models before proceeding, or have developed your own model first!</b>
       </description>
    </intro>
    <item
@@ -18,10 +18,10 @@
    <item
          title="Select Model Class">
       <description>
-         Select the Prisoner&apos;s Dilemma Model.
+         Select a model to execute. If you&apos;ve imported the example projects (just run the &quot;Load Sample Projects&quot; cheatsheet) you can use the Prisoner&apos;s Dilemma Model.
       </description>
       <command
-            required="true"
+            required="false"
             serialization="org.eclipse.jdt.ui.commands.showElementInPackageView(elementRef=org.ascape.escape.models.brook/edu.brook.pd.PD2D)"/>
    </item>
    <item
@@ -33,6 +33,8 @@
 &lt;li&gt;Select the &quot;Execute&quot; from the toolbar. (Our favorite)&lt;/li&gt;
 &lt;li&gt;Select &quot;Execute&quot; from the &quot;Control&quot; menu.&lt;/li&gt;
 &lt;/ul&gt;
+
+Or, if you hav the example models loaded, just select perform now.
       </description>
       <command
             required="true"
