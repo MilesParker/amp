@@ -46,7 +46,7 @@
       <cheatsheet
             category="org.eclipse.amp.escape"
             composite="false"
-            contentFile="cheatsheets/EscapeJava.xml"
+            contentFile="cheatsheets/CreateAndRunJava.xml"
             id="org.eclipse.amp.escape.escapeJava"
             name="Build and Run an Escape Java Model">
       </cheatsheet>

@@ -8,7 +8,7 @@
    </intro>
    <item title="Create your Scape class" dialog="true" skip="false" href="/org.eclipse.jdt.doc.user/gettingStarted/qs-9.htm">
       <description>
-         The next step is to create the actual model class. In the main toolbar again, click on the <b>New Java Class</b> button (or the link below). If not already specified, select your project's <b>src</b> directory as the source folder. Enter <b>CoordinationGame</b> for the class name, and select the checkbox to create the <b>main()</b> method, then click <b>Finish</b>.<br/>
+         The next step is to create the actual model class. In the main toolbar again, click on the <b>New Java Class</b> button (or the link below). If not already specified, select your project&apos;s <b>src</b> directory as the source folder. Enter <b>CoordinationGame</b> for the class name, &quot;ede.brook.model&quot; as the package name, and select the checkbox to create the <b>main()</b> method, then click <b>Finish</b>.<br/>
 <br/>
 The Java editor will automatically open showing your new class.
       </description>
@@ -16,13 +16,13 @@ The Java editor will automatically open showing your new class.
       </command>
    </item>
    <item
-         title="Copy the coordination game code.">
+         title="Copy the Coordination Game code.">
       <description>
          To implement the model, we'll just copy the code from the Ascape manual.
       </description>
       <command
             required="false"
-            serialization="org.eclipse.ui.help.displayHelp(href=/org.ascape.doc/Content/manual/Appendix.html?path%=3_1_6_0_0#1.1)"/>
+            serialization="org.eclipse.ui.help.displayHelp(href=/org.ascape.doc/Content/manual/AppendixII.html?path%=#1.1)"/>
    </item>
    <item title="Create your Agent class" dialog="true" skip="false" href="/org.eclipse.jdt.doc.user/gettingStarted/qs-9.htm">
       <description>
@@ -30,5 +30,11 @@ The Java editor will automatically open showing your new class.
       </description>
       <command serialization="org.eclipse.ui.newWizard(newWizardId=org.eclipse.jdt.ui.wizards.NewClassCreationWizard)" required="false" translate="">
       </command>
+   </item>
+   <item
+         title="Copy the Coordination Player code.">
+      <description>
+         <b>Body</b>
+      </description>
    </item>
 </cheatsheet>

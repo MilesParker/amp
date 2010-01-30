@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<compositeCheatsheet name="Building and Running an Escape model in Java">
+<compositeCheatsheet name="Creating and Running an Escape model in Java">
    <taskGroup kind="set" name="Group" skip="false">
       <intro>
          <b>Introduction</b>
@@ -34,7 +34,7 @@
          <onCompletion>
             <b>Conclusion</b>
          </onCompletion>
-         <param name="path" value="RunEscape.xml">
+         <param name="path" value="RunEscapeJava.xml">
          </param>
       </task>
    </taskGroup>

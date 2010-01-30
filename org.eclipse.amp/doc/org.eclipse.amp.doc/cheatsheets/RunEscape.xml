@@ -12,11 +12,11 @@
          Go to the package explorer.
       </description>
       <command
-            required="true"
+            required="false"
             serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.jdt.ui.PackageExplorer)"/>
    </item>
    <item
-         title="Select Model Class">
+         title="Select Prisoner&apos;s Dilemma Model">
       <description>
          Select a model to execute. If you&apos;ve imported the example projects (just run the &quot;Load Sample Projects&quot; cheatsheet) you can use the Prisoner&apos;s Dilemma Model.
       </description>

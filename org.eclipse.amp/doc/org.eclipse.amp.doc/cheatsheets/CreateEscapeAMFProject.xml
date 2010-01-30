@@ -18,7 +18,7 @@
             serialization="org.eclipse.ui.perspectives.showPerspective(org.eclipse.ui.perspectives.showPerspective.perspectiveId=org.eclipse.amp.amf.AgentModelingPerspective)"/>
    </item>
    <item
-         title="Create an Escape Modeling project.">
+         title="Create an Escape Modeling project">
       <description>
          <b>Next, let&apos;s create the project where we&apos;ll place our model.</b>
 Select File &gt; New &gt; Escape AMF Project. Give it a name like &quot;escape.tutorial&quot;, then click Finish.
@@ -28,7 +28,7 @@ Select File &gt; New &gt; Escape AMF Project. Give it a name like &quot;escape.t
             serialization="org.eclipse.ui.newWizard(newWizardId=org.eclipse.amp.escape.amf.wizards.newProject)"/>
    </item>
    <item
-         title="Copy a model into the project.">
+         title="Copy a model into the project">
       <description>
          <b>We need a model to run.</b> We&apos;ll use the epidemic model, which you can get at http://download.eclipse.org/amp/models/Epidemic.metaabm. Download the file to your computer and just drag it into the project folder you&apos;ve just created. (You&apos;ll have to do this step yourself!)
       </description>
