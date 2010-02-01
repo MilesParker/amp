@@ -18,17 +18,17 @@
             contentFile="cheatsheets/CreateEscapeAMFProject.xml"
             id="org.eclipse.amp.escape.amf.createProject"
             name="Create an AMF Escape Project"/>
-      <cheatsheet
-            category="org.eclipse.amp.escape"
-            composite="false"
-            contentFile="cheatsheets/LoadSampleProjects.xml"
-            id="org.eclipse.amp.escape.loadProject"
-            name="Load Example Projects">
-      </cheatsheet>
       <category
             id="org.eclipse.amp.escape"
             name="Escape">
       </category>
+      <cheatsheet
+            category="org.eclipse.amp.escape"
+            composite="true"
+            contentFile="cheatsheets/CreateAndRunJava.xml"
+            id="org.eclipse.amp.escape.escapeJava"
+            name="Build and Run an Escape Java Model">
+      </cheatsheet>
       <cheatsheet
             category="org.eclipse.amp.escape"
             composite="false"
@@ -39,16 +39,23 @@
       <cheatsheet
             category="org.eclipse.amp.escape"
             composite="false"
-            contentFile="cheatsheets/CreateEscapeJavaModel.xml"
-            id="org.eclipse.amp.escape.createJava"
-            name="Create an Escape Java Model">
+            contentFile="cheatsheets/LoadAndRunExampleModels.xml"
+            id="org.eclipse.amp.escape.loadAndRunExample"
+            name="Load and Run Example Models">
+      </cheatsheet>
+      <cheatsheet
+            category="org.eclipse.amp.escape"
+            composite="true"
+            contentFile="cheatsheets/LoadSampleProjects.xml"
+            id="org.eclipse.amp.escape.loadProject"
+            name="Load and Run Example Projects">
       </cheatsheet>
       <cheatsheet
             category="org.eclipse.amp.escape"
             composite="false"
-            contentFile="cheatsheets/CreateAndRunJava.xml"
-            id="org.eclipse.amp.escape.escapeJava"
-            name="Build and Run an Escape Java Model">
+            contentFile="cheatsheets/CreateEscapeJavaModel.xml"
+            id="org.eclipse.amp.escape.createJava"
+            name="Create an Escape Java Model">
       </cheatsheet>
       <cheatsheet
             category="org.eclipse.amp.escape"
