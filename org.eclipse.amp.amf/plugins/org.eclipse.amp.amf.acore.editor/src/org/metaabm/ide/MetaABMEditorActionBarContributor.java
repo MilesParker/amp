@@ -57,11 +57,20 @@ import org.metaabm.IID;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAgent;
 import org.metaabm.SAttribute;
+import org.metaabm.act.AAll;
+import org.metaabm.act.ABuild;
+import org.metaabm.act.ABuildProjection;
+import org.metaabm.act.ACommand;
+import org.metaabm.act.ACreateAgents;
+import org.metaabm.act.AEvaluate;
+import org.metaabm.act.AGroup;
+import org.metaabm.act.ALogic;
+import org.metaabm.act.AQuery;
+import org.metaabm.act.ASelect;
 import org.metaabm.act.MetaABMActPackage;
 
 /**
- * This is the action bar contributor for the MetaABM model editor. <!--
- * begin-user-doc -->
+ * This is the action bar contributor for the MetaABM model editor. <!-- begin-user-doc -->
  * 
  * @author Miles Parker * <!-- end-user-doc -->
  * @generated
@@ -69,29 +78,26 @@ import org.metaabm.act.MetaABMActPackage;
 public class MetaABMEditorActionBarContributor extends EditingDomainActionBarContributor implements
 ISelectionChangedListener {
     /**
-     * This keeps track of the active editor. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
+     * This keeps track of the active editor. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated
      */
     protected IEditorPart activeEditorPart;
 
     /**
-     * This keeps track of the current selection provider. <!-- begin-user-doc
-     * --> <!-- end-user-doc -->
+     * This keeps track of the current selection provider. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated
      */
     protected ISelectionProvider selectionProvider;
 
     /**
-     * This action opens the Properties view. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
+     * This action opens the Properties view. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated
      */
-    protected IAction showPropertiesViewAction =
-        new Action(MetaModelerPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
+    protected IAction showPropertiesViewAction = new Action(MetaModelerPlugin.INSTANCE
+                                                            .getString("_UI_ShowPropertiesView_menu_item")) {
         @Override
         public void run() {
             try {
@@ -103,14 +109,13 @@ ISelectionChangedListener {
     };
 
     /**
-     * This action refreshes the viewer of the current editor if the editor
-     * implements {@link org.eclipse.emf.common.ui.viewer.IViewerProvider}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
+     * This action refreshes the viewer of the current editor if the editor implements
+     * {@link org.eclipse.emf.common.ui.viewer.IViewerProvider}. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated
      */
-    protected IAction refreshViewerAction =
-        new Action(MetaModelerPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
+    protected IAction refreshViewerAction = new Action(MetaModelerPlugin.INSTANCE
+                                                       .getString("_UI_RefreshViewer_menu_item")) {
         @Override
         public boolean isEnabled() {
             return activeEditorPart instanceof IViewerProvider;
@@ -149,9 +154,8 @@ ISelectionChangedListener {
 
         @Override
         public void run() {
-            InputDialog d =
-                new InputDialog(null, "Assign Default", "Value to apply to selected attributes:", "0.0",
-                                null);
+            InputDialog d = new InputDialog(null, "Assign Default", "Value to apply to selected attributes:", "0.0",
+                                            null);
             d.open();
             String value = d.getValue();
             ISelection selection = selectionProvider.getSelection();
@@ -209,58 +213,42 @@ ISelectionChangedListener {
     };
 
     /**
-     * This will contain one
-     * {@link org.eclipse.emf.edit.ui.action.CreateChildAction} corresponding to
-     * each descriptor generated for the current selection by the item provider.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateChildAction} corresponding to each descriptor
+     * generated for the current selection by the item provider. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated
      */
     protected Collection<IAction> createChildActions;
 
-    protected Collection<IAction> createChildTargetActions;
+    protected Collection<IAction> createSelectTargetActions;
+    protected Collection<IAction> createCommandTargetActions;
+    protected Collection<IAction> createBuildTargetActions;
+    protected Collection<IAction> createOtherTargetActions;
 
     /**
-     * This is the menu manager into which menu contribution items should be
-     * added for CreateChild actions. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
+     * This is the menu manager into which menu contribution items should be added for CreateChild actions. <!--
+     * begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated
      */
     protected IMenuManager createChildMenuManager;
 
-    protected IMenuManager createChildTargetMenuManager;
+    private MenuManager createSelectTargetMenuManager;
 
-    /**
-     * This will contain one
-     * {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} corresponding
-     * to each descriptor generated for the current selection by the item
-     * provider. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    // protected Collection<IAction> createSiblingActions;
-    //
-    // protected Collection<IAction> createSiblingTargetActions;
+    private MenuManager createCommandTargetMenuManager;
+
+    private MenuManager createBuildTargetMenuManager;
+
+    protected IMenuManager createOtherTargetMenuManager;
 
     protected Collection<IAction> otherActions;
 
-    /**
-     * This is the menu manager into which menu contribution items should be
-     * added for CreateSibling actions. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * 
-     * @generated
-     */
-    // protected IMenuManager createSiblingMenuManager;
-    //
-    // protected IMenuManager createSiblingTargetMenuManager;
-
     private IMenuManager submenuManager;
 
+    private IMenuManager createTargetMenuManager;
+
     /**
-     * This creates an instance of the contributor. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
+     * This creates an instance of the contributor. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated
      */
@@ -272,8 +260,7 @@ ISelectionChangedListener {
     }
 
     /**
-     * This adds Separators for editor additions to the tool bar. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
+     * This adds Separators for editor additions to the tool bar. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated
      */
@@ -284,9 +271,8 @@ ISelectionChangedListener {
     }
 
     /**
-     * This adds to the menu bar a menu and some separators for editor
-     * additions, as well as the sub-menus for object creation items. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
+     * This adds to the menu bar a menu and some separators for editor additions, as well as the sub-menus for object
+     * creation items. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated NOT
      */
@@ -296,17 +282,32 @@ ISelectionChangedListener {
 
         submenuManager = new MenuManager(MetaABMModelerPlugin.INSTANCE.getString("_UI_MetaABMEditor_menu"),
         "org.metaabmMenuID");
-        menuManager.insertAfter("additions", getSubmenuManager());
+        menuManager.insertAfter("additions", submenuManager);
         submenuManager.add(new Separator("settings"));
         submenuManager.add(new Separator("actions"));
         submenuManager.add(new Separator("additions"));
         submenuManager.add(new Separator("additions-end"));
 
+        createTargetMenuManager = new MenuManager(MetaABMModelerPlugin.INSTANCE.getString("_UI_CreateTarget_menu"),
+                                                  null);
+        submenuManager.insertBefore("additions", createTargetMenuManager);
+        createTargetMenuManager.add(new Separator("additions"));
+
         // Prepare for CreateChild item addition or removal.
         //
-        createChildTargetMenuManager =
-            new MenuManager(MetaABMModelerPlugin.INSTANCE.getString("_UI_CreateChildTarget_menu_item"));
-        submenuManager.insertBefore("additions", createChildTargetMenuManager);
+        createSelectTargetMenuManager = new MenuManager(MetaABMModelerPlugin.INSTANCE
+                                                        .getString("_UI_CreateSelect_menu_item"));
+        createTargetMenuManager.insertBefore("additions", createSelectTargetMenuManager);
+        createBuildTargetMenuManager = new MenuManager(MetaABMModelerPlugin.INSTANCE
+                                                       .getString("_UI_CreateBuild_menu_item"));
+        createTargetMenuManager.insertBefore("additions", createBuildTargetMenuManager);
+        createCommandTargetMenuManager = new MenuManager(MetaABMModelerPlugin.INSTANCE
+                                                         .getString("_UI_CreateCommand_menu_item"));
+        createTargetMenuManager.insertBefore("additions", createCommandTargetMenuManager);
+        createOtherTargetMenuManager = new MenuManager(MetaABMModelerPlugin.INSTANCE
+                                                       .getString("_UI_CreateOther_menu_item"));
+        createTargetMenuManager.insertBefore("additions", createOtherTargetMenuManager);
+
         createChildMenuManager = new MenuManager(MetaABMModelerPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
         submenuManager.insertBefore("additions", createChildMenuManager);
 
@@ -340,9 +341,8 @@ ISelectionChangedListener {
     }
 
     /**
-     * When the active editor changes, this remembers the change and registers
-     * with it as a selection provider. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
+     * When the active editor changes, this remembers the change and registers with it as a selection provider. <!--
+     * begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated
      */
@@ -371,12 +371,9 @@ ISelectionChangedListener {
     }
 
     /**
-     * This implements
-     * {@link org.eclipse.jface.viewers.ISelectionChangedListener}, handling
-     * {@link org.eclipse.jface.viewers.SelectionChangedEvent}s by querying for
-     * the children and siblings that can be added to the selected object and
-     * updating the menus accordingly. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
+     * This implements {@link org.eclipse.jface.viewers.ISelectionChangedListener}, handling
+     * {@link org.eclipse.jface.viewers.SelectionChangedEvent}s by querying for the children and siblings that can be
+     * added to the selected object and updating the menus accordingly. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated NOT
      */
@@ -386,8 +383,11 @@ ISelectionChangedListener {
         if (createChildMenuManager != null) {
             depopulateManager(createChildMenuManager, createChildActions);
         }
-        if (createChildTargetMenuManager != null) {
-            depopulateManager(createChildTargetMenuManager, createChildActions);
+        if (createOtherTargetMenuManager != null) {
+            depopulateManager(createSelectTargetMenuManager, createChildActions);
+            depopulateManager(createCommandTargetMenuManager, createChildActions);
+            depopulateManager(createBuildTargetMenuManager, createChildActions);
+            depopulateManager(createOtherTargetMenuManager, createChildActions);
         }
         // if (createSiblingMenuManager != null) {
         // depopulateManager(createSiblingMenuManager, createSiblingActions);
@@ -398,10 +398,13 @@ ISelectionChangedListener {
 
         // Query the new selection for appropriate new child/sibling descriptors
         //
-        Collection<?> newChildDescriptors = null;
-        Collection<CommandParameter> newChildTargetDescriptors = new ArrayList<CommandParameter>();
-        Collection<?> newSiblingDescriptors = null;
-        Collection<CommandParameter> newSiblingTargetDescriptors = new ArrayList<CommandParameter>();
+        Collection<?> newChildDescriptors = new ArrayList<CommandParameter>();
+        List<CommandParameter> selectTargetDescriptors = new ArrayList<CommandParameter>();
+        Collection<CommandParameter> commandTargetDescriptors = new ArrayList<CommandParameter>();
+        Collection<CommandParameter> buildTargetDescriptors = new ArrayList<CommandParameter>();
+        Collection<CommandParameter> otherTargetDescriptors = new ArrayList<CommandParameter>();
+        // Collection<?> newSiblingDescriptors = null;
+        // Collection<CommandParameter> newSiblingTargetDescriptors = new ArrayList<CommandParameter>();
 
         ISelection selection = event.getSelection();
         if (selection instanceof IStructuredSelection && ((IStructuredSelection) selection).size() == 1) {
@@ -410,20 +413,70 @@ ISelectionChangedListener {
             EditingDomain domain = ((IEditingDomainProvider) activeEditorPart).getEditingDomain();
 
             newChildDescriptors = domain.getNewChildDescriptors(object, null);
-            newSiblingDescriptors = domain.getNewChildDescriptors(null, object);
-            moveTargetDescriptors(newChildDescriptors, newChildTargetDescriptors);
-            moveTargetDescriptors(newSiblingDescriptors, newSiblingTargetDescriptors);
+            List<CommandParameter> movedChildDescriptors = new ArrayList<CommandParameter>();
+            // newSiblingDescriptors = domain.getNewChildDescriptors(null, object);
+
+            CommandParameter select = null;
+            CommandParameter query = null;
+            CommandParameter intersect = null;
+            for (Object descriptor : newChildDescriptors) {
+                CommandParameter cmd = (CommandParameter) descriptor;
+                if (cmd.feature == MetaABMActPackage.Literals.AACT__TARGETS) {
+                    movedChildDescriptors.add(cmd);
+                    if (cmd.getValue() instanceof AGroup) {
+                        // ignore..
+                    } else if (cmd.getValue() instanceof ABuild || cmd.getValue() instanceof ACreateAgents
+                            || cmd.getValue() instanceof ABuildProjection) {
+                        buildTargetDescriptors.add(cmd);
+                    } else if (cmd.getValue() instanceof ACommand || cmd.getValue() instanceof AEvaluate) {
+                        commandTargetDescriptors.add(cmd);
+                    } else if (cmd.getValue() instanceof ASelect || cmd.getValue() instanceof AQuery
+                            || cmd.getValue() instanceof ALogic) {
+                        selectTargetDescriptors.add(cmd);
+                        if (cmd.getValue() instanceof ASelect) {
+                            select = cmd;
+                        } else if (cmd.getValue() instanceof AQuery) {
+                            query = cmd;
+                        } else if (cmd.getValue() instanceof AAll) {
+                            intersect = cmd;
+                        }
+                    } else {
+                        otherTargetDescriptors.add(cmd);
+                    }
+                }
+            }
+            newChildDescriptors.removeAll(movedChildDescriptors);
+
+            // this is silly but whatever works..we need to re-order select menu
+            if (select != null) {
+                selectTargetDescriptors.remove(select);
+                selectTargetDescriptors.add(0, select);
+            }
+            if (query != null) {
+                selectTargetDescriptors.remove(query);
+                selectTargetDescriptors.add(1, query);
+            }
+            if (intersect != null) {
+                selectTargetDescriptors.remove(intersect);
+                selectTargetDescriptors.add(2, intersect);
+            }
         }
 
         // Generate actions for selection; populate and redraw the menus.
         //
         createChildActions = generateCreateChildActions(newChildDescriptors, selection);
-        createChildTargetActions = generateCreateChildActions(newChildTargetDescriptors, selection);
+        createSelectTargetActions = generateCreateChildActions(selectTargetDescriptors, selection);
+        createCommandTargetActions = generateCreateChildActions(commandTargetDescriptors, selection);
+        createBuildTargetActions = generateCreateChildActions(buildTargetDescriptors, selection);
+        createOtherTargetActions = generateCreateChildActions(otherTargetDescriptors, selection);
         // createSiblingActions = generateCreateSiblingActions(newSiblingDescriptors, selection);
         // createSiblingTargetActions = generateCreateSiblingActions(newSiblingTargetDescriptors, selection);
 
         populateAndUpdate(createChildMenuManager, createChildActions);
-        populateAndUpdate(createChildTargetMenuManager, createChildTargetActions);
+        populateAndUpdate(createSelectTargetMenuManager, createSelectTargetActions);
+        populateAndUpdate(createCommandTargetMenuManager, createCommandTargetActions);
+        populateAndUpdate(createBuildTargetMenuManager, createBuildTargetActions);
+        populateAndUpdate(createOtherTargetMenuManager, createOtherTargetActions);
         // populateAndUpdate(createSiblingMenuManager, createSiblingActions);
         // populateAndUpdate(createSiblingTargetMenuManager, createSiblingTargetActions);
 
@@ -437,15 +490,16 @@ ISelectionChangedListener {
         // }
     }
 
-    private void moveTargetDescriptors(Collection<?> memberDescriptors, Collection<CommandParameter> targetDescriptors) {
-        for (Object object : memberDescriptors) {
-            CommandParameter cmd = (CommandParameter) object;
-            if (cmd.feature == MetaABMActPackage.Literals.AACT__TARGETS) {
-                targetDescriptors.add(cmd);
-            }
-        }
-        memberDescriptors.removeAll(targetDescriptors);
-    }
+    // private void moveTargetDescriptors(Collection<?> memberDescriptors, Collection<CommandParameter>
+    // targetDescriptors) {
+    // for (Object object : memberDescriptors) {
+    // CommandParameter cmd = (CommandParameter) object;
+    // if (cmd.feature == MetaABMActPackage.Literals.AACT__TARGETS) {
+    // targetDescriptors.add(cmd);
+    // }
+    // }
+    // memberDescriptors.removeAll(targetDescriptors);
+    // }
 
     private void populateAndUpdate(IMenuManager manager, Collection<IAction> memberActions) {
         manager.removeAll();
@@ -456,9 +510,9 @@ ISelectionChangedListener {
     }
 
     /**
-     * This generates a {@link org.eclipse.emf.edit.ui.action.CreateChildAction}
-     * for each object in <code>descriptors</code>, and returns the collection
-     * of these actions. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This generates a {@link org.eclipse.emf.edit.ui.action.CreateChildAction} for each object in
+     * <code>descriptors</code>, and returns the collection of these actions. <!-- begin-user-doc --> <!-- end-user-doc
+     * -->
      * 
      * @generated
      */
@@ -473,10 +527,9 @@ ISelectionChangedListener {
     }
 
     /**
-     * This generates a
-     * {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} for each
-     * object in <code>descriptors</code>, and returns the collection of these
-     * actions. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This generates a {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} for each object in
+     * <code>descriptors</code>, and returns the collection of these actions. <!-- begin-user-doc --> <!-- end-user-doc
+     * -->
      * 
      * @generated
      */
@@ -491,13 +544,10 @@ ISelectionChangedListener {
     }
 
     /**
-     * This populates the specified <code>manager</code> with
-     * {@link org.eclipse.jface.action.ActionContributionItem}s based on the
-     * {@link org.eclipse.jface.action.IAction}s contained in the
-     * <code>actions</code> collection, by inserting them before the specified
-     * contribution item <code>contributionID</code>. If
-     * <code>contributionID</code> is <code>null</code>, they are simply added.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This populates the specified <code>manager</code> with {@link org.eclipse.jface.action.ActionContributionItem}s
+     * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection, by
+     * inserting them before the specified contribution item <code>contributionID</code>. If <code>contributionID</code>
+     * is <code>null</code>, they are simply added. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated
      */
@@ -515,11 +565,9 @@ ISelectionChangedListener {
     }
 
     /**
-     * This removes from the specified <code>manager</code> all
-     * {@link org.eclipse.jface.action.ActionContributionItem}s based on the
-     * {@link org.eclipse.jface.action.IAction}s contained in the
-     * <code>actions</code> collection. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
+     * This removes from the specified <code>manager</code> all {@link org.eclipse.jface.action.ActionContributionItem}s
+     * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection. <!--
+     * begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated
      */
@@ -547,8 +595,7 @@ ISelectionChangedListener {
     }
 
     /**
-     * This populates the pop-up menu before it appears. <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * This populates the pop-up menu before it appears. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated NOT
      */
@@ -600,11 +647,18 @@ ISelectionChangedListener {
             addGlobalActions(menuManager);
         }
 
-        prepareMenu(menuManager, createChildActions, "_UI_CreateChild_menu_item");
-        prepareMenu(menuManager, createChildTargetActions, "_UI_CreateChildTarget_menu_item");
+        prepareMenu(menuManager, createChildActions, "_UI_CreateChild_menu_item", "edit");
+        MenuManager submenuManager;
+        submenuManager = new MenuManager(MetaABMModelerPlugin.INSTANCE.getString("_UI_CreateTarget_menu"));
+        menuManager.insertBefore("edit", submenuManager);
+        submenuManager.add(new Separator("additions"));
+        prepareMenu(submenuManager, createSelectTargetActions, "_UI_CreateSelect_menu_item", "additions");
+        prepareMenu(submenuManager, createCommandTargetActions, "_UI_CreateCommand_menu_item", "additions");
+        prepareMenu(submenuManager, createBuildTargetActions, "_UI_CreateBuild_menu_item", "additions");
+        prepareMenu(submenuManager, createOtherTargetActions, "_UI_CreateOther_menu_item", "additions");
         // prepareMenu(menuManager, createSiblingActions, "_UI_CreateSibling_menu_item");
         // prepareMenu(menuManager, createSiblingTargetActions, "_UI_CreateSiblingTarget_menu_item");
-        prepareMenu(menuManager, otherActions, "_UI_Other_menu_item");
+        prepareMenu(menuManager, otherActions, "_UI_Other_menu_item", "additions");
     }
 
     protected void addItemsFor(IMenuManager menuManager, Object sel) {
@@ -614,11 +668,12 @@ ISelectionChangedListener {
         }
     }
 
-    protected void prepareMenu(IMenuManager menuManager, Collection<? extends IAction> actions, String menuID) {
+    protected void prepareMenu(IMenuManager menuManager, Collection<? extends IAction> actions, String menuID,
+            String seperator) {
         MenuManager submenuManager;
         submenuManager = new MenuManager(MetaABMModelerPlugin.INSTANCE.getString(menuID));
         populateManager(submenuManager, actions, null);
-        menuManager.insertBefore("edit", submenuManager);
+        menuManager.insertBefore(seperator, submenuManager);
     }
 
     /**
@@ -644,8 +699,8 @@ ISelectionChangedListener {
     }
 
     /**
-     * This ensures that a delete action will clean up all references to deleted
-     * objects. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This ensures that a delete action will clean up all references to deleted objects. <!-- begin-user-doc --> <!--
+     * end-user-doc -->
      * 
      * @generated
      */
