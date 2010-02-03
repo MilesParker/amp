@@ -96,19 +96,24 @@ IColorProvider {
      * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
      */
     public String getText(Object element) {
+        String text = null;
         if (element instanceof ScapeWrapperModel) {
-            return getText(((ScapeWrapperModel) element).getScape());
+            text = getText(((ScapeWrapperModel) element).getScape());
         }
         if (element instanceof AscapeObject) {
-            return ((AscapeObject) element).getName();
+            text = ((AscapeObject) element).getName();
         }
         if (element instanceof ScapeListener) {
-            return ((ScapeListener) element).getName();
+            text = ((ScapeListener) element).getName();
         }
         if (element instanceof ScapeWrapperModelListener) {
-            return getText(((ScapeWrapperModelListener) element).getWrapped());
+            text = getText(((ScapeWrapperModelListener) element).getWrapped());
         }
-        return null;
+        // Text can't be null for some cases..
+        if (text == null) {
+            text = element.getClass().getSimpleName();
+        }
+        return text;
     }
 
     /**

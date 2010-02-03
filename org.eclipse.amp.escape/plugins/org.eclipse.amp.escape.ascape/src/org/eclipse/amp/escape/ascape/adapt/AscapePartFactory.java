@@ -86,8 +86,9 @@ public class AscapePartFactory implements EditPartFactory {
         } else if (model instanceof NetworkConnection) {
             return new AgentConnectionPart();
         } else {
-            throw new RuntimeException("No part for the model: " + model
-                                       + (model != null ? "[" + model.getClass() + "]" : ""));
+            return null;
+            // throw new RuntimeException("No part for the model: " + model
+            // + (model != null ? "[" + model.getClass() + "]" : ""));
         }
     }
 
