@@ -11,6 +11,7 @@ Bundle-ActivationPolicy: lazy
 Eclipse-BuddyPolicy: dependent
 Import-Package: org.apache.commons.lang
 Export-Package: org.eclipse.amp.escape.command,
+ org.eclipse.amp.escape.help,
  org.eclipse.amp.escape.ide
 Require-Bundle: org.ascape.ui.amp;bundle-version="0.8.0",
  org.eclipse.core.resources,
