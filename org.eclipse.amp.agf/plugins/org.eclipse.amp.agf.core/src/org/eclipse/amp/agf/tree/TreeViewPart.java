@@ -31,6 +31,7 @@ import org.eclipse.gef.editparts.RootTreeEditPart;
 import org.eclipse.gef.ui.parts.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -53,7 +54,7 @@ public class TreeViewPart extends EditPartViewPart {
                 AXFWorkbenchPlugin axf = AXFWorkbenchPlugin.getDefault();
                 while (axf == null) {
                     try {
-                        sleep(100);
+                        sleep(20);
                     } catch (InterruptedException e) {
                     }
                     axf = AXFWorkbenchPlugin.getDefault();
@@ -122,14 +123,17 @@ public class TreeViewPart extends EditPartViewPart {
                      * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeUpdate(org.eclipse.amp.axf.core.IObservationProvider)
                      */
                     public void observeUpdate(IObservationProvider observed) {
-                        getViewer().getControl().getDisplay().asyncExec(new Runnable() {
-                            public void run() {
-                                for (Object object : getViewer().getRootEditPart().getContents().getChildren()) {
-                                    EditPart part = (EditPart) object;
-                                    part.refresh();
+                        if (getViewer().getControl() != null) {
+                            Display display = getViewer().getControl().getDisplay();
+                            display.asyncExec(new Runnable() {
+                                public void run() {
+                                    for (Object object : getViewer().getRootEditPart().getContents().getChildren()) {
+                                        EditPart part = (EditPart) object;
+                                        part.refresh();
+                                    }
                                 }
-                            }
-                        });
+                            });
+                        }
                         super.observeUpdate(observed);
                     }
                 });

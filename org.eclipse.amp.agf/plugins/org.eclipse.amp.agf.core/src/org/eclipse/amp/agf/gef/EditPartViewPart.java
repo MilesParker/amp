@@ -77,12 +77,24 @@ public abstract class EditPartViewPart extends ModelViewPart {
         viewer = createViewer();
         viewer.createControl(parent);
         getEditDomain().addViewer(viewer);
-        ModelViewManager manager = AXFWorkbenchPlugin.getDefault().getManager();
-        if (!(manager.getSelectionSynchronizer() instanceof EditPartSelectionSynchronizer)) {
-            manager.setSelectionSynchronizer(new EditPartSelectionSynchronizer());
-        }
-        manager.getSelectionSynchronizer().addViewer(viewer);
-        getSite().setSelectionProvider(viewer);
+        new Thread() {
+            public void run() {
+                AXFWorkbenchPlugin default1 = AXFWorkbenchPlugin.getDefault();
+                while (default1 == null) {
+                    try {
+                        Thread.sleep(30);
+                    } catch (InterruptedException e) {
+                    }
+                    default1 = AXFWorkbenchPlugin.getDefault();
+                }
+                ModelViewManager manager = default1.getManager();
+                if (!(manager.getSelectionSynchronizer() instanceof EditPartSelectionSynchronizer)) {
+                    manager.setSelectionSynchronizer(new EditPartSelectionSynchronizer());
+                }
+                manager.getSelectionSynchronizer().addViewer(viewer);
+                getSite().setSelectionProvider(viewer);
+            };
+        }.start();
     }
 
     protected void createSelectionListener(ISelectionProvider provider) {
