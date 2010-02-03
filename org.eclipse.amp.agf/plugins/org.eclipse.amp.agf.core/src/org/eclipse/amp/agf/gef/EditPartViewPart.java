@@ -18,7 +18,9 @@ package org.eclipse.amp.agf.gef;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.amp.agf.EditPartSelectionSynchronizer;
 import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
+import org.eclipse.amp.axf.ide.ModelViewManager;
 import org.eclipse.amp.axf.view.IModelPart;
 import org.eclipse.amp.axf.view.ModelViewPart;
 import org.eclipse.core.runtime.Platform;
@@ -75,7 +77,12 @@ public abstract class EditPartViewPart extends ModelViewPart {
         viewer = createViewer();
         viewer.createControl(parent);
         getEditDomain().addViewer(viewer);
-        createSelectionListener(viewer);
+        ModelViewManager manager = AXFWorkbenchPlugin.getDefault().getManager();
+        if (!(manager.getSelectionSynchronizer() instanceof EditPartSelectionSynchronizer)) {
+            manager.setSelectionSynchronizer(new EditPartSelectionSynchronizer());
+        }
+        manager.getSelectionSynchronizer().addViewer(viewer);
+        getSite().setSelectionProvider(viewer);
     }
 
     protected void createSelectionListener(ISelectionProvider provider) {
