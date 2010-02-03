@@ -35,17 +35,30 @@ public abstract class ActiveModelViewPart extends ViewPart {
      * @see org.eclipse.ui.part.WorkbenchPart#createPartControl(org.eclipse.swt.widgets.Composite)
      */
     public void createPartControl(Composite parent) {
-        ModelViewManager manager = AXFWorkbenchPlugin.getDefault().getManager();
-        if (manager.getActiveModel() != null) {
-            modelChanged((IModel) manager.getActiveModel());
-        }
-        manager.getManagerListeners().addModelManagerListener(new AbstractModelWorkbenchListener() {
+        new Thread() {
+            public void run() {
+                AXFWorkbenchPlugin default1 = AXFWorkbenchPlugin.getDefault();
+                while (default1 == null) {
+                    try {
+                        Thread.sleep(20);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    default1 = AXFWorkbenchPlugin.getDefault();
+                }
+                ModelViewManager manager = default1.getManager();
+                if (manager.getActiveModel() != null) {
+                    modelChanged((IModel) manager.getActiveModel());
+                }
+                manager.getManagerListeners().addModelManagerListener(new AbstractModelWorkbenchListener() {
 
-            public void modelActivated(IModel model) {
-                modelChanged(model);
-            }
+                    public void modelActivated(IModel model) {
+                        modelChanged(model);
+                    }
 
-        });
+                });
+            };
+        }.start();
     }
 
     /**

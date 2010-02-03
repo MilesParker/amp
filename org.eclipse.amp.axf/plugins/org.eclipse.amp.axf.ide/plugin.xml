@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.8 2010/01/28 19:18:58 mparker Exp $
+ $Id: plugin.xml,v 1.9 2010/02/03 03:51:36 mparker Exp $
 -->
 
 <plugin>
@@ -335,7 +335,7 @@
            icon="icons/etool16/model_mananger.gif"
            id="org.eclipse.amp.view.ModelManager"
            name="Model Manager"
-           restorable="false">
+           restorable="true">
      </view>
   </extension>
   <extension
@@ -400,8 +400,9 @@
            </view>
            <view
                  id="org.eclipse.amp.view.ModelManager"
-                 relationship="stack"
-                 relative="org.eclipse.jdt.ui.PackageExplorer"
+                 ratio=".8"
+                 relationship="top"
+                 relative="org.eclipse.ui.console.ConsoleView"
                  visible="true">
            </view>
            <viewShortcut

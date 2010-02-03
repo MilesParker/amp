@@ -24,6 +24,7 @@ import org.eclipse.amp.axf.core.IStateListener;
 import org.eclipse.amp.axf.core.LifecycleObservationAdapter;
 import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
 import org.eclipse.amp.axf.ide.IModelWorkbenchListener;
+import org.eclipse.amp.axf.ide.ModelViewManager;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -62,7 +63,15 @@ public abstract class ModelRunHandler extends AbstractHandler implements ILifeCy
      */
     public Object execute(ExecutionEvent event) throws ExecutionException {
         getRunner().control(control);
-        AXFWorkbenchPlugin.getDefault().getManager().getHandlers().notifyHandlers();
+        final ModelViewManager manager = AXFWorkbenchPlugin.getDefault().getManager();
+        manager.getHandlers().notifyHandlers();
+        // new Thread() {
+        // public void run() {
+        // if (manager.getManagerViewPart() != null) {
+        // manager.getManagerViewPart().refreshViewer();
+        // }
+        // };
+        // }.start();
         return null;
     }
 
@@ -117,7 +126,7 @@ public abstract class ModelRunHandler extends AbstractHandler implements ILifeCy
     }
 
     public synchronized void modelActivated(IModel model) {
-        this.model = (IModel) model;
+        this.model = model;
         notifyChange();
     }
 

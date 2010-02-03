@@ -197,6 +197,8 @@ public class ModelViewManager implements IAdapterFactory {
 
     private StatusLineView statusLineView;
 
+    private ModelManagerViewPart managerViewPart;
+
     /**
      * Instantiates a new model view manager.
      */
@@ -626,6 +628,20 @@ public class ModelViewManager implements IAdapterFactory {
 
     public HandlerManager getHandlers() {
         return handlers;
+    }
+
+    /**
+     * @return the managerViewPart
+     */
+    public ModelManagerViewPart getManagerViewPart() {
+        return managerViewPart;
+    }
+
+    /**
+     * @param managerViewPart the managerViewPart to set
+     */
+    public void setManagerViewPart(ModelManagerViewPart managerViewPart) {
+        this.managerViewPart = managerViewPart;
     }
 
 }
