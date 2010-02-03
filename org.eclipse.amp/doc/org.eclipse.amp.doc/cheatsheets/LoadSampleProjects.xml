@@ -20,7 +20,7 @@
          href="/org.eclipse.platform.doc.user/tasks/tasks-9f.htm"
          title="Import Ascape Project Set">
       <description>
-         We&apos;ll use the team project set wizaard to import the example from the AMP website. Open the wizard, browse to the location you just downloaded the file to, and click Finish. The examples will be loaded from the Ascape SourceForge server into your workspace.
+         We&apos;ll use the team project set wizard to import the example from the AMP website. Open the wizard, browse to the location you just downloaded the file to, and click Finish. The examples will be loaded from the Ascape SourceForge server into your workspace.
       </description>
       <command
             required="true"
@@ -39,7 +39,7 @@
          href="/org.eclipse.platform.doc.user/tasks/tasks-9f.htm"
          title="Import AMF Project Set">
       <description>
-         We&apos;ll use the team project set wizaard to import the example from the AMP website. Open the wizard, browse to the location you just downloaded the file to, and click Finish. The examples will be loaded from the Eclipse CVS server into your workspace.
+         We&apos;ll use the team project set wizaard to import the example from the AMP website. Open the wizard, browse to the location you just downloaded the file to, and click Finish. The examples will be loaded from the Eclipse CVS server into your workspace. (If you get a message about repository locations, just click OK.)
       </description>
       <command
             required="false"

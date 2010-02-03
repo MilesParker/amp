@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <compositeCheatsheet name="Creating and Running an Escape model in Java">
-   <taskGroup kind="set" name="Group" skip="false">
+   <taskGroup kind="set" name="Steps" skip="false">
       <intro>
          <b>Introduction</b>
       </intro>

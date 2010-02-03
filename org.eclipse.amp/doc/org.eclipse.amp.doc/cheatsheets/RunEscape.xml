@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cheatsheet
-      title="Run an Example Model">
+      title="Tour an Example Model">
    <intro>
       <description>
-         In this tutorial, we&apos;ll run the model! <b>Note -- you need to have installed the example models before proceeding, or have developed your own model first!</b>
+         In this tutorial, we&apos;ll run a model!
       </description>
    </intro>
+   <item
+         skip="true"
+         title="Import Example Projects">
+      <description>
+         If you haven&apos;t already loaded the exaple projects, you&apos;ll need to do that first.
+      </description>
+      <command
+            required="false"
+            serialization="org.eclipse.ui.cheatsheets.openCheatSheet(cheatSheetId=org.eclipse.amp.escape.loadProjects)"/>
+   </item>
    <item
          title="Select Package Explorer">
       <description>
@@ -16,29 +26,86 @@
             serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.jdt.ui.PackageExplorer)"/>
    </item>
    <item
-         title="Select Prisoner&apos;s Dilemma Model">
+         title="Select Model">
       <description>
-         Select a model to execute. If you&apos;ve imported the example projects (just run the &quot;Load Sample Projects&quot; cheatsheet) you can use the Prisoner&apos;s Dilemma Model.
+         Select a model to execute. If you&apos;ve imported the example projects you can use the Epidemic Model. Or if you&apos;ve created your own model, just select that model class instead.
       </description>
       <command
             required="false"
-            serialization="org.eclipse.jdt.ui.commands.showElementInPackageView(elementRef=org.ascape.escape.models.brook/edu.brook.pd.PD2D)"/>
+            serialization="org.eclipse.jdt.ui.commands.showElementInPackageView(elementRef=org.eclipse.amp.amf.examples.escape/name.milesparker.epi.Epidemic)"/>
    </item>
    <item
-         title="Execute the model">
+         title="Start the model">
       <description>
-         Now we can start the model in one of three ways.
-&lt;ul&gt;
-&lt;li&gt;Right-click and select &quot;Execute&quot; from the menu.&lt;/li&gt;
-&lt;li&gt;Select the &quot;Execute&quot; from the toolbar. (Our favorite)&lt;/li&gt;
-&lt;li&gt;Select &quot;Execute&quot; from the &quot;Control&quot; menu.&lt;/li&gt;
-&lt;/ul&gt;
-
-Or, if you hav the example models loaded, just select perform now.
+         Now we can start the model in one of three ways.&lt;BR/&gt;
+&lt;BR/&gt;
+ •Right-click and select &quot;Execute&quot; from the menu.&lt;BR/&gt;
+ •Select the &quot;Execute&quot; from the toolbar.&lt;BR/&gt;
+ •Select &quot;Execute&quot; from the &quot;Control&quot; menu.&lt;BR/&gt;
+&lt;BR/&gt;
+If you&apos;ve imported the example projects and want to run the Epidmic model, you can just Click to Perform and we&apos;ll do it for you!
       </description>
       <command
             required="true"
-            serialization="org.eclipse.amp.escape.runtime.execute(elementRef=org.ascape.escape.models.brook/edu.brook.pd.PD2D)"/>
+            serialization="org.eclipse.amp.escape.runtime.execute(elementRef=org.eclipse.amp.amf.examples.escape/name.milesparker.epi.Epidemic)"/>
+   </item>
+   <item
+         skip="true"
+         title="Explore Model Controls">
+      <description>
+         You can pause, unpause, step, restart, and stop the model. Try that now.
+      </description>
+   </item>
+   <item
+         title="Explore Chart View">
+      <description>
+         Take a look at the Chart View. From here, you can easily change the type of the chart and whether the text is displayed or not. Experiment with different selections.
+      </description>
+   </item>
+   <item
+         title="Select Chart Items">
+      <description>
+         If you look at the Chart Customizer (Click to Perform) you&apos;ll see that it provides a very quick way to select different chart series to view. Each row represents a statistic that has been defined for the model, and each column represents a measure (i.e. Average or Sum) that is automatically being tracked for that statistic. No need to setup a complex chart series! Click some chart items to see how this works. Note that you can clear all of the current selection by clicking the gray &quot;X&quot; box.
+      </description>
+      <command
+            required="false"
+            serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.amp.view.customizer.Chart)"/>
+   </item>
+   <item
+         skip="true"
+         title="Find out more about the model">
+      <description>
+         If the model developer has provided an &quot;About[model].html&quot; file in a &quot;res&quot; directory, you;ll be able to find out more about the model by looking at the &quot;About Model&quot; view.
+      </description>
+      <command
+            required="false"
+            serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.amp.escape.ide.InfoView)"/>
+   </item>
+   <item
+         title="Working with Agent Properties">
+      <description>
+         Select an agent in the Graphic View. The Agent will be selected in the properties view. You can even change the value of an agent. Try changin an agent&apos;s status form say &quot;susceptible&quot; to 
+&quot;exposed&quot;. You&apos;ll see the agent&apos;s color update immediatly in the Graphic View.
+      </description>
+      <command
+            required="false"
+            serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.ui.views.PropertySheet)"/>
+   </item>
+   <item
+         title="Working with Model Parameters">
+      <description>
+         You can change model parameters in the same way. To select a model as a whole, click on the chart view or in the open area of the model manager.
+      </description>
+   </item>
+   <item
+         skip="true"
+         title="View Agent Navigator">
+      <description>
+         The Agent Navigator allows you to view a tree view of agent contents. You can open up scapes (collections of agents) and view properties for those agents. If you select Agents in the tree view, they&apos;ll be selected in the graphics views; it works the other way around as well.
+      </description>
+      <command
+            required="false"
+            serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.amp.view.TreeView)"/>
    </item>
 
 </cheatsheet>

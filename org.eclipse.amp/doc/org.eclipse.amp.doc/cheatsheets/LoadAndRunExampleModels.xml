@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <compositeCheatsheet name="Load and run Escape Models">
-   <taskGroup kind="set" name="Load and Run" skip="false">
+   <taskGroup kind="set" name="Steps" skip="false">
       <intro>
          <b>Introduction</b>
       </intro>
