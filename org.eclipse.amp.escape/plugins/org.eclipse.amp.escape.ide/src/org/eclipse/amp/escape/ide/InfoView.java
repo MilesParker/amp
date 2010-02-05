@@ -74,4 +74,9 @@ public class InfoView extends ActiveModelViewPart {
             });
         }
     }
+
+    public void dispose() {
+        browser.dispose();
+        super.dispose();
+    }
 }
