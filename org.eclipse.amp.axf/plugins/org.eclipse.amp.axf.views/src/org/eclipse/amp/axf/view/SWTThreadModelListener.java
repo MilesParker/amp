@@ -7,12 +7,12 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
+ * Contributors:
  *   Metascape - Initial API and Implementation
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.axf.view;
 
 import org.eclipse.amp.axf.core.AbstractLifecycleListener;
@@ -31,7 +31,7 @@ import org.eclipse.swt.widgets.Control;
  */
 public abstract class SWTThreadModelListener extends AbstractLifecycleListener {
 
-    protected Control widget;
+    private Control widget;
 
     /**
      * Instantiates a new sWT thread model listener.
@@ -58,5 +58,12 @@ public abstract class SWTThreadModelListener extends AbstractLifecycleListener {
      */
     public void setWidget(Control widget) {
         this.widget = widget;
+    }
+
+    /**
+     * @return the widget
+     */
+    public Control getWidget() {
+        return widget;
     }
 }

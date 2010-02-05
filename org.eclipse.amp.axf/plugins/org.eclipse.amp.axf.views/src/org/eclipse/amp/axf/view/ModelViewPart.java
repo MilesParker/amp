@@ -59,8 +59,8 @@ public abstract class ModelViewPart extends ViewPart implements IModelPart, IPro
          * 
          * @param control the control
          */
-        public PropertyRefreshListener(Control control) {
-            super(control, "Property Refresh", 500);
+        public PropertyRefreshListener() {
+            super(null, "Property Refresh", 500);
         }
 
         /**
@@ -68,10 +68,19 @@ public abstract class ModelViewPart extends ViewPart implements IModelPart, IPro
          * @see org.eclipse.amp.axf.view.SWTThreadModelListener#update(org.eclipse.amp.axf.core.IModel)
          */
         public void update(IModel model) {
-            if (propertySheetPage != null && propertySheetPage.getControl().isVisible()) {
+            if (propertySheetPage != null && propertySheetPage.getControl() != null
+                    && propertySheetPage.getControl().isVisible()) {
                 propertySheetPage.refresh();
             }
             endPainting();
+        }
+
+        /**
+         * @return
+         * @see org.eclipse.amp.axf.view.SWTThreadModelListener#getWidget()
+         */
+        public Control getWidget() {
+            return propertySheetPage.getControl();
         }
     }
 
@@ -155,10 +164,7 @@ public abstract class ModelViewPart extends ViewPart implements IModelPart, IPro
      * @see org.eclipse.amp.axf.view.IModelPart#createModelListeners()
      */
     public void createModelListeners() {
-        Control control = getPropertySheetPage().getControl();
-        if (control != null) {
-            addModelListener(new PropertyRefreshListener(control));
-        }
+        addModelListener(new PropertyRefreshListener());
     }
 
     /**

@@ -107,7 +107,8 @@ public abstract class SWTAsyncModelListener extends SWTThreadModelListener {
                 Display display = AXFViewPlugin.getDefault().getWorkbench().getDisplay();
                 if (!display.isDisposed()) {
                     display.asyncExec(runnable);
-                    while ((updating || painting) && isWaitForUpdate() && (widget == null || !widget.isDisposed())) {
+                    while ((updating || painting) && isWaitForUpdate()
+                            && (getWidget() == null || !getWidget().isDisposed())) {
                         try {
                             // Assume best case of 60fps + allow compute
                             Thread.sleep(5);
@@ -131,7 +132,7 @@ public abstract class SWTAsyncModelListener extends SWTThreadModelListener {
 
     private void doUpdate(Object key, final IModel model) {
         // Have to check visibility within UI thread
-        if (widget == null || !widget.isDisposed() && widget.isVisible()) {
+        if (getWidget() == null || !getWidget().isDisposed() && getWidget().isVisible()) {
             update(model);
             getListener().stateChange(key, model);
         }
