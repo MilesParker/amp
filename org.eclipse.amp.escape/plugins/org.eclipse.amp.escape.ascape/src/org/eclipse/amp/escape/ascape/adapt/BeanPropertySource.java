@@ -12,10 +12,14 @@ import java.io.ObjectInputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import org.ascape.model.CellOccupant;
+import org.ascape.model.HostCell;
+import org.ascape.model.Scape;
 import org.ascape.util.PropertyAccessor;
 import org.eclipse.amp.agf.IPropertyChangeProvider;
 import org.eclipse.jface.viewers.CellEditor;
@@ -35,8 +39,6 @@ public class BeanPropertySource implements IPropertySource, IPropertySource2, IP
 
     Object source;
 
-    Class stopClass;
-
     IPropertyDescriptor[] eclipseDescriptors;
 
     Map<Method, java.beans.PropertyDescriptor> descriptorsSet;
@@ -51,19 +53,7 @@ public class BeanPropertySource implements IPropertySource, IPropertySource2, IP
     public BeanPropertySource(Object source) {
         super();
         this.source = source;
-        createDescriptors();
-    }
-
-    /**
-     * Instantiates a new bean property source.
-     * 
-     * @param source the source
-     * @param stopClass the stop class
-     */
-    public BeanPropertySource(Object source, Class stopClass) {
-        super();
-        this.source = source;
-        this.stopClass = stopClass;
+        descriptorsSet = new HashMap<Method, java.beans.PropertyDescriptor>();
         createDescriptors();
     }
 
@@ -113,7 +103,7 @@ public class BeanPropertySource implements IPropertySource, IPropertySource2, IP
      * 
      * @return the i property descriptor
      */
-    IPropertyDescriptor createDescriptor(Method id, java.beans.PropertyDescriptor beanDescr) {
+    IPropertyDescriptor createDescriptor(Method id, java.beans.PropertyDescriptor beanDescr, String category) {
         PropertyDescriptor desc = getDescriptor(id);
         if (desc == null) {
             Class<?> propertyType = beanDescr.getPropertyType();
@@ -127,22 +117,26 @@ public class BeanPropertySource implements IPropertySource, IPropertySource2, IP
                     valueNames[i] = en.toString();
                 }
                 desc = new ComboBoxPropertyDescriptor(id, PropertyAccessor.getLongName(beanDescr), valueNames);
-                desc.setCategory("Attributes");
-            } else if (propertyType.isPrimitive()) {
+                if (category == null) {
+                    category = "Attributes";
+                }
+            } else if (propertyType.isPrimitive() || propertyType == String.class) {
                 if (beanDescr.getWriteMethod() != null) {
                     if (propertyType == Boolean.TYPE) {
                         desc = new ComboBoxPropertyDescriptor(id, PropertyAccessor.getLongName(beanDescr),
-                            new String[] {
+                                                              new String[] {
                             "true", "false" });
                     } else {
                         desc = new TextPropertyDescriptor(id, PropertyAccessor.getLongName(beanDescr));
                     }
-                    desc.setCategory("Attributes");
+                    if (category == null) {
+                        category = "Attributes";
+                    }
                     desc.setDescription("The value for " + id.getName());
                 } else {
                     if (propertyType == Boolean.TYPE) {
                         desc = new ComboBoxPropertyDescriptor(id, PropertyAccessor.getLongName(beanDescr),
-                            new String[] {
+                                                              new String[] {
                             "true", "false" }) {
 
                             @Override
@@ -153,12 +147,17 @@ public class BeanPropertySource implements IPropertySource, IPropertySource2, IP
                     } else {
                         desc = new PropertyDescriptor(id, PropertyAccessor.getLongName(beanDescr));
                     }
-                    desc.setCategory("Values");
+                    if (category == null) {
+                        category = "Attributes (Fixed)";
+                    }
                 }
             } else {
                 desc = new PropertyDescriptor(id, PropertyAccessor.getLongName(beanDescr));
-                desc.setCategory("Model");
+                if (category == null) {
+                    category = "Objects";
+                }
             }
+            desc.setCategory(category);
             descriptorLibrary.put(id, desc);
         }
         return desc != dummy ? desc : null;
@@ -168,24 +167,42 @@ public class BeanPropertySource implements IPropertySource, IPropertySource2, IP
         return descriptorLibrary.get(id);
     }
 
-    private void createDescriptors() {
-        descriptorsSet = new HashMap<Method, java.beans.PropertyDescriptor>();
+    protected void createDescriptors() {
+        if (source instanceof Scape) {
+            createDescriptors(source.getClass(), Scape.class, null);
+            createDescriptors(Scape.class, null, "Model");
+        } else if (source instanceof HostCell) {
+            createDescriptors(source.getClass(), HostCell.class, null);
+            createDescriptors(HostCell.class, null, "Model");
+        } else if (source instanceof CellOccupant) {
+            createDescriptors(source.getClass(), CellOccupant.class, null);
+            createDescriptors(CellOccupant.class, null, "Model");
+        } else {
+            createDescriptors(source.getClass(), null, null);
+        }
+    }
+
+    protected void createDescriptors(Class sourceClass, Class stopClass, String category) {
         if (source != null) {
             try {
                 java.beans.PropertyDescriptor[] beansDescriptors;
-                beansDescriptors = Introspector.getBeanInfo(source.getClass(), stopClass).getPropertyDescriptors();
-                List<IPropertyDescriptor> descrs = new ArrayList<IPropertyDescriptor>();
+                beansDescriptors = Introspector.getBeanInfo(sourceClass, stopClass).getPropertyDescriptors();
+                Collection<IPropertyDescriptor> descrs = new ArrayList<IPropertyDescriptor>();
+                if (eclipseDescriptors != null) {
+                    descrs.addAll(Arrays.asList(eclipseDescriptors));
+                }
                 for (int i = 0; i < beansDescriptors.length; i++) {
                     java.beans.PropertyDescriptor beanDescr = beansDescriptors[i];
                     Method id = beanDescr.getReadMethod();
                     if (id != null) {
-                        IPropertyDescriptor descr = createDescriptor(id, beanDescr);
+                        IPropertyDescriptor descr = createDescriptor(id, beanDescr, category);
                         if (descr != null) {
                             descrs.add(descr);
                             descriptorsSet.put(id, beanDescr);
                         }
                     }
                 }
+
                 eclipseDescriptors = descrs.toArray(new IPropertyDescriptor[descrs.size()]);
             } catch (IntrospectionException e) {
                 throw new RuntimeException(e);
