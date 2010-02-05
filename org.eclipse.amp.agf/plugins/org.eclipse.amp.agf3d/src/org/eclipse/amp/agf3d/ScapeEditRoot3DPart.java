@@ -87,7 +87,9 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
 
     int animationStep;
 
-    int animationStepCount = 5;
+    public static final int DEFAULT_ANIMATION_STEP_COUNT = 5;
+
+    int animationStepCount = DEFAULT_ANIMATION_STEP_COUNT;
 
     boolean animateCamera = true;
 
@@ -285,5 +287,13 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
      */
     public int getAnimationStepCount() {
         return animationStepCount;
+    }
+
+    /**
+     * @param animationStepCount the animationStepCount to set
+     */
+    public void setAnimationStepCount(int animationStepCount) {
+        this.animationStepCount = animationStepCount;
+        animationStep = 0;
     }
 }

@@ -57,5 +57,20 @@
                tooltip="Move camera (viewer&apos;s perspective) to a first-person perspective.">
          </action>
       </viewContribution>
+      <viewContribution
+            id="org.eclipse.amp.agf3d.animate"
+            targetID="org.eclipse.amp.view.GEF3DView">
+         <action
+               class="org.eclipse.amp.agf3d.ui.AnimateAction"
+               icon="icons/etool16/animate.gif"
+               id="org.eclipse.amp.agf.3d.actionAnimate"
+               label="Animate"
+               menubarPath="additions"
+               state="true"
+               style="toggle"
+               toolbarPath="customGroup"
+               tooltip="Animate agent motion.">
+         </action>
+      </viewContribution>
    </extension>
 </plugin>
