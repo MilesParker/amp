@@ -549,7 +549,7 @@ public class ModelViewManager implements IAdapterFactory {
     private synchronized void deactivate() {
         final IWorkbench wb = AXFWorkbenchPlugin.getDefault().getWorkbench();
         if (wb != null) {
-            wb.getDisplay().syncExec(new Runnable() {
+            wb.getDisplay().asyncExec(new Runnable() {
                 public void run() {
                     if (contextService != null) {
                         contextService.deactivateContext(ideContext);
