@@ -326,6 +326,7 @@
              allowMultiple="false"
              category="org.eclipse.amp.axf.views"
              class="org.eclipse.amp.escape.ide.InfoView"
+             icon="icons/etool16/info.gif"
              id="org.eclipse.amp.escape.ide.InfoView"
              name="About this Model"
              restorable="true">
