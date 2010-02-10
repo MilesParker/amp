@@ -8,6 +8,7 @@
       </description>
    </intro>
    <item
+         skip="true"
          title="Get Ascape Examples Team Project Set File">
       <description>
          Using your web browser, download the following file to any location on your hard drive: http://eclipse.org/amp/project-sets/ascape.psf. &lt;i&gt;Note that the Ascape projects we will be importing are not part of the Eclipse project itself. They are hosted seperatly on the ascape sourceforge site.&lt;/i&gt;
@@ -18,6 +19,7 @@
    </item>
    <item
          href="/org.eclipse.platform.doc.user/tasks/tasks-9f.htm"
+         skip="true"
          title="Import Ascape Project Set">
       <description>
          We&apos;ll use the team project set wizard to import the example from the AMP website. Open the wizard, browse to the location you just downloaded the file to, and click Finish. The examples will be loaded from the Ascape SourceForge server into your workspace.
@@ -27,6 +29,7 @@
             serialization="org.eclipse.ui.file.import(importWizardId=org.eclipse.team.ui.ProjectSetImportWizard)"/>
    </item>
    <item
+         skip="true"
          title="Get AMF Examples Team Project Set File">
       <description>
          We can also get the AMF examples. Using your web browser, download the following file to any location on your hard drive: http://eclipse.org/amp/project-sets/escapeAMFExamples.psf.
@@ -37,6 +40,7 @@
    </item>
    <item
          href="/org.eclipse.platform.doc.user/tasks/tasks-9f.htm"
+         skip="true"
          title="Import AMF Project Set">
       <description>
          We&apos;ll use the team project set wizaard to import the example from the AMP website. Open the wizard, browse to the location you just downloaded the file to, and click Finish. The examples will be loaded from the Eclipse CVS server into your workspace. (If you get a message about repository locations, just click OK.)
