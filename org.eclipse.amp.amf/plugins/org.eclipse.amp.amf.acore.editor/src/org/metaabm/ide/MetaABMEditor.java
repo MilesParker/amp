@@ -71,7 +71,6 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IWrapperItemProvider;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
@@ -143,6 +142,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
+import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.metaabm.SAgent;
 import org.metaabm.act.AInput;
 import org.metaabm.act.provider.MetaABMActItemProviderAdapterFactory;
@@ -200,7 +200,7 @@ IMenuListener, IViewerProvider, IGotoMarker {
      * end-user-doc -->
      * @generated
      */
-    protected PropertySheetPage propertySheetPage;
+    protected IPropertySheetPage propertySheetPage;
 
     /**
      * This is the viewer that shadows the selection in the content outline. The
@@ -513,8 +513,8 @@ IMenuListener, IViewerProvider, IGotoMarker {
     };
 
     private AgentAction importFromClassAction = new AgentAction(this, MetaModelerPlugin.INSTANCE
-                                                                  .getString("_UI_ImportAgent_menu_item"), EclipseUIPlugin
-                                                                  .imageDescriptorFromPlugin("org.eclipse.amp.amf.ide", "icons/full/obj16/JavaCompilationUnit.gif")) {
+                                                                .getString("_UI_ImportAgent_menu_item"), EclipseUIPlugin
+                                                                .imageDescriptorFromPlugin("org.eclipse.amp.amf.ide", "icons/full/obj16/JavaCompilationUnit.gif")) {
         final String[] javaFilter = { "java" };
 
         public void run(SAgent agent) {
@@ -690,7 +690,7 @@ IMenuListener, IViewerProvider, IGotoMarker {
         adapterFactory.addAdapterFactory(new MetaABMItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new MetaABMFunctionItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new MetaABMActItemProviderAdapterFactory());
-        adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+        // adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
         // Create the command stack that will notify this editor as commands are
         // executed.
@@ -713,7 +713,11 @@ IMenuListener, IViewerProvider, IGotoMarker {
                             setSelectionToViewer(mostRecentCommand.getAffectedObjects());
                         }
                         if (propertySheetPage != null && !propertySheetPage.getControl().isDisposed()) {
-                            propertySheetPage.refresh();
+                            if (propertySheetPage instanceof PropertySheetPage) {
+                                ((PropertySheetPage) propertySheetPage).refresh();
+                            } else if (propertySheetPage instanceof TabbedPropertySheetPage) {
+                                ((TabbedPropertySheetPage) propertySheetPage).refresh();
+                            }
                         }
                     }
                 });
@@ -1300,6 +1304,7 @@ IMenuListener, IViewerProvider, IGotoMarker {
      * 
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public Object getAdapter(Class key) {
         if (key.equals(IContentOutlinePage.class)) {
@@ -1397,7 +1402,13 @@ IMenuListener, IViewerProvider, IGotoMarker {
                     getActionBarContributor().shareGlobalActions(this, actionBars);
                 }
             };
-            propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
+            if (propertySheetPage instanceof PropertySheetPage) {
+                ((PropertySheetPage) propertySheetPage).setPropertySourceProvider(new AdapterFactoryContentProvider(
+                                                                                                                    adapterFactory));
+            } else if (propertySheetPage instanceof TabbedPropertySheetPage) {
+                // ((TabbedPropertySheetPage) propertySheetPage)
+                // .setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
+            }
         }
 
         return propertySheetPage;

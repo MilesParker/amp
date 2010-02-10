@@ -1213,6 +1213,7 @@ public class MetaABMFunctionEditor extends MultiPageEditorPart implements IEditi
      * 
      * @generated
      */
+    @SuppressWarnings("unchecked")
     @Override
     public Object getAdapter(Class key) {
         if (key.equals(IContentOutlinePage.class)) {
@@ -1481,7 +1482,7 @@ public class MetaABMFunctionEditor extends MultiPageEditorPart implements IEditi
      * @generated
      */
     protected void doSaveAs(URI uri, IEditorInput editorInput) {
-        editingDomain.getResourceSet().getResources().get(0).setURI(uri);
+        (editingDomain.getResourceSet().getResources().get(0)).setURI(uri);
         setInputWithNotify(editorInput);
         setPartName(editorInput.getName());
         IProgressMonitor progressMonitor = getActionBars().getStatusLineManager() != null ? getActionBars()
