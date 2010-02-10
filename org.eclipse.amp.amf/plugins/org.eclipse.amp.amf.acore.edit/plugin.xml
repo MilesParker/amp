@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.1 2009/07/16 19:58:59 mparker Exp $
+ $Id: plugin.xml,v 1.2 2010/02/10 21:37:22 mparker Exp $
 -->
 
 <plugin>
@@ -44,6 +44,18 @@
           org.eclipse.emf.edit.provider.ITreeItemContentProvider
           org.eclipse.emf.edit.provider.IItemLabelProvider
           org.eclipse.emf.edit.provider.IItemPropertySource" />
+  </extension>
+  <extension
+        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+     <factory
+           class="org.metaabm.provider.MetaABMItemProviderAdapterFactory"
+           uri="http://metaabm.org/metaabm.org/structure"
+                  supportedTypes = "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+          org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+          org.eclipse.emf.edit.provider.ITreeItemContentProvider
+          org.eclipse.emf.edit.provider.IItemLabelProvider
+          org.eclipse.emf.edit.provider.IItemPropertySource">
+     </factory>
   </extension>
 </plugin>
 
