@@ -127,7 +127,7 @@ public abstract class ASinkImpl extends AActImpl implements ASink {
     public EList<AInput> getInputs() {
         if (inputs == null) {
             inputs = new EObjectContainmentWithInverseEList<AInput>(AInput.class, this,
-                    MetaABMActPackage.ASINK__INPUTS, MetaABMActPackage.AINPUT__SINK);
+                MetaABMActPackage.ASINK__INPUTS, MetaABMActPackage.AINPUT__SINK);
         }
         return inputs;
     }
@@ -141,10 +141,9 @@ public abstract class ASinkImpl extends AActImpl implements ASink {
             InternalEObject oldFunction = (InternalEObject) function;
             function = (FFunction) eResolveProxy(oldFunction);
             if (function != oldFunction) {
-                if (eNotificationRequired()) {
+                if (eNotificationRequired())
                     eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetaABMActPackage.ASINK__FUNCTION,
-                                                  oldFunction, function));
-                }
+                        oldFunction, function));
             }
         }
         return function;
@@ -169,10 +168,9 @@ public abstract class ASinkImpl extends AActImpl implements ASink {
     public void setFunction(FFunction newFunction) {
         FFunction oldFunction = function;
         function = newFunction;
-        if (eNotificationRequired()) {
+        if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMActPackage.ASINK__FUNCTION, oldFunction,
-                                          function));
-        }
+                function));
     }
 
     /**
@@ -216,9 +214,7 @@ public abstract class ASinkImpl extends AActImpl implements ASink {
             case MetaABMActPackage.ASINK__INPUTS:
                 return getInputs();
             case MetaABMActPackage.ASINK__FUNCTION:
-                if (resolve) {
-                    return getFunction();
-                }
+                if (resolve) return getFunction();
                 return basicGetFunction();
         }
         return super.eGet(featureID, resolve, coreType);

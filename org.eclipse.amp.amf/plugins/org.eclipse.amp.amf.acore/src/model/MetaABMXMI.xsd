@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:metaabm="http://metaabm.org/structure" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://metaabm.org/structure">
+  <xsd:import namespace="http://www.omg.org/XMI" schemaLocation="platform:/plugin/org.eclipse.emf.ecore/model/XMI.xsd"/>
+  <xsd:simpleType name="SAttributeType">
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="Boolean"/>
+      <xsd:enumeration value="Integer"/>
+      <xsd:enumeration value="Real"/>
+      <xsd:enumeration value="Symbol"/>
+      <xsd:enumeration value="Undefined"/>
+      <xsd:enumeration value="Numeric"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SBorderRule">
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="Sticky"/>
+      <xsd:enumeration value="Strict"/>
+      <xsd:enumeration value="Bouncy"/>
+      <xsd:enumeration value="Periodic"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SNeighborhoodType">
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="Euclidian"/>
+      <xsd:enumeration value="Moore"/>
+      <xsd:enumeration value="VonNeumann"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SImplementationMode">
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="Generate"/>
+      <xsd:enumeration value="GenerateProtected"/>
+      <xsd:enumeration value="GenerateEmpty"/>
+      <xsd:enumeration value="Load"/>
+      <xsd:enumeration value="External"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="SShapeType">
+    <xsd:restriction base="xsd:NCName">
+      <xsd:enumeration value="Point"/>
+      <xsd:enumeration value="Line"/>
+      <xsd:enumeration value="Polygon"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType abstract="true" name="IID">
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+      <xsd:element ref="xmi:Extension"/>
+    </xsd:choice>
+    <xsd:attribute ref="xmi:id"/>
+    <xsd:attributeGroup ref="xmi:ObjectAttribs"/>
+    <xsd:attribute name="label" type="xsd:string" use="required"/>
+    <xsd:attribute name="ID" type="xsd:string" use="required"/>
+  </xsd:complexType>
+  <xsd:element name="IID" type="metaabm:IID"/>
+  <xsd:complexType abstract="true" name="ITyped">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:IID">
+        <xsd:attribute name="sType" type="metaabm:SAttributeType" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ITyped" type="metaabm:ITyped"/>
+  <xsd:complexType abstract="true" name="ITypedArray">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:ITyped">
+        <xsd:attribute name="size" type="xsd:int"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ITypedArray" type="metaabm:ITypedArray"/>
+  <xsd:complexType abstract="true" name="IValue">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:IID"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="IValue" type="metaabm:IValue"/>
+  <xsd:complexType abstract="true" name="IArtifact">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:IID"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="IArtifact" type="metaabm:IArtifact"/>
+  <xsd:complexType abstract="true" name="IAct">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:IID"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="IAct" type="metaabm:IAct"/>
+  <xsd:complexType abstract="true" name="SNamed">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:IID">
+        <xsd:attribute name="pluralLabel" type="xsd:string"/>
+        <xsd:attribute name="description" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SNamed" type="metaabm:SNamed"/>
+  <xsd:complexType abstract="true" name="SAttributed">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SNamed">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="attributes" type="metaabm:SAttribute"/>
+        </xsd:choice>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SAttributed" type="metaabm:SAttributed"/>
+  <xsd:complexType abstract="true" name="SActable">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SAttributed">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="rootActivity" type="metaabm:IAct"/>
+        </xsd:choice>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SActable" type="metaabm:SActable"/>
+  <xsd:complexType name="SAttribute">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SNamed">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="owner" type="metaabm:SAttributed"/>
+        </xsd:choice>
+        <xsd:attribute name="sType" type="metaabm:SAttributeType" use="required"/>
+        <xsd:attribute name="gatherData" type="xsd:boolean"/>
+        <xsd:attribute name="defaultValue" type="xsd:string"/>
+        <xsd:attribute name="units" type="xsd:string"/>
+        <xsd:attribute name="immutable" type="xsd:boolean" use="required"/>
+        <xsd:attribute name="owner" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SAttribute" type="metaabm:SAttribute"/>
+  <xsd:complexType name="SAttributeArray">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SAttribute">
+        <xsd:attribute name="size" type="xsd:int"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SAttributeArray" type="metaabm:SAttributeArray"/>
+  <xsd:complexType name="SState">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SAttribute">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="options" type="metaabm:SStateValue"/>
+          <xsd:element name="defaultOption" type="metaabm:SStateValue"/>
+        </xsd:choice>
+        <xsd:attribute name="defaultOption" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SState" type="metaabm:SState"/>
+  <xsd:complexType name="SStateValue">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SNamed">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="set" type="metaabm:SState"/>
+        </xsd:choice>
+        <xsd:attribute name="set" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SStateValue" type="metaabm:SStateValue"/>
+  <xsd:complexType name="SAgent">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SActable">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="implementation" type="metaabm:SImplementation"/>
+          <xsd:element name="styles" type="metaabm:SStyle"/>
+          <xsd:element name="owner" type="metaabm:SContext"/>
+        </xsd:choice>
+        <xsd:attribute name="owner" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SAgent" type="metaabm:SAgent"/>
+  <xsd:complexType name="SContext">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SAgent">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="agents" type="metaabm:SAgent"/>
+          <xsd:element name="projections" type="metaabm:SProjection"/>
+          <xsd:element name="valueLayers" type="metaabm:SValueLayer"/>
+          <xsd:element name="library" type="metaabm:IArtifact"/>
+        </xsd:choice>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SContext" type="metaabm:SContext"/>
+  <xsd:complexType abstract="true" name="SProjection">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SAttributed">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="owner" type="metaabm:SContext"/>
+        </xsd:choice>
+        <xsd:attribute name="owner" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SProjection" type="metaabm:SProjection"/>
+  <xsd:complexType abstract="true" name="SNDimensional">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SProjection">
+        <xsd:attribute name="dimensionality" type="xsd:int"/>
+        <xsd:attribute name="borderRule" type="metaabm:SBorderRule"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SNDimensional" type="metaabm:SNDimensional"/>
+  <xsd:complexType name="SContinuousSpace">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SNDimensional"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SContinuousSpace" type="metaabm:SContinuousSpace"/>
+  <xsd:complexType name="SGrid">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SNDimensional">
+        <xsd:attribute name="multiOccupant" type="xsd:boolean"/>
+        <xsd:attribute name="neighborhood" type="metaabm:SNeighborhoodType" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SGrid" type="metaabm:SGrid"/>
+  <xsd:complexType name="SNetwork">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SProjection">
+        <xsd:attribute name="directed" type="xsd:boolean"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SNetwork" type="metaabm:SNetwork"/>
+  <xsd:complexType name="SGeography">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SProjection"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SGeography" type="metaabm:SGeography"/>
+  <xsd:complexType name="SValueLayer">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SNamed"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SValueLayer" type="metaabm:SValueLayer"/>
+  <xsd:complexType abstract="true" name="SStyle">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SActable">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="implementation" type="metaabm:SImplementation"/>
+          <xsd:element name="agent" type="metaabm:SAgent"/>
+        </xsd:choice>
+        <xsd:attribute name="agent" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SStyle" type="metaabm:SStyle"/>
+  <xsd:complexType name="SStyle2D">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SStyle"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SStyle2D" type="metaabm:SStyle2D"/>
+  <xsd:complexType name="SStyleShape">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SStyle2D">
+        <xsd:attribute name="shape" type="metaabm:SShapeType" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SStyleShape" type="metaabm:SStyleShape"/>
+  <xsd:complexType name="SStyle3D">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SStyle"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SStyle3D" type="metaabm:SStyle3D"/>
+  <xsd:complexType abstract="true" name="SImplemented">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:IID">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="implementation" type="metaabm:SImplementation"/>
+        </xsd:choice>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="SImplemented" type="metaabm:SImplemented"/>
+  <xsd:complexType name="SImplementation">
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+      <xsd:element name="target" type="metaabm:SImplemented"/>
+      <xsd:element ref="xmi:Extension"/>
+    </xsd:choice>
+    <xsd:attribute ref="xmi:id"/>
+    <xsd:attributeGroup ref="xmi:ObjectAttribs"/>
+    <xsd:attribute name="package" type="xsd:string"/>
+    <xsd:attribute name="className" type="xsd:string" use="required"/>
+    <xsd:attribute name="basePath" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation>The relative or absolute path to the base directory containing implementing code, e.g. \"../myproject\", \"/MyDrive/local/myproject\".</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="mode" type="metaabm:SImplementationMode" use="required"/>
+    <xsd:attribute name="srcDir" type="xsd:string"/>
+    <xsd:attribute name="binDir" type="xsd:string"/>
+    <xsd:attribute name="target" type="xsd:string"/>
+  </xsd:complexType>
+  <xsd:element name="SImplementation" type="metaabm:SImplementation"/>
+</xsd:schema>

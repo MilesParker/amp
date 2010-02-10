@@ -99,10 +99,9 @@ public class AInputImpl extends EObjectImpl implements AInput {
             InternalEObject oldValue = (InternalEObject) value;
             value = (IValue) eResolveProxy(oldValue);
             if (value != oldValue) {
-                if (eNotificationRequired()) {
+                if (eNotificationRequired())
                     eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetaABMActPackage.AINPUT__VALUE,
-                                                  oldValue, value));
-                }
+                        oldValue, value));
             }
         }
         return value;
@@ -123,9 +122,8 @@ public class AInputImpl extends EObjectImpl implements AInput {
     public void setValue(IValue newValue) {
         IValue oldValue = value;
         value = newValue;
-        if (eNotificationRequired()) {
+        if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMActPackage.AINPUT__VALUE, oldValue, value));
-        }
     }
 
     /**
@@ -133,9 +131,7 @@ public class AInputImpl extends EObjectImpl implements AInput {
      * @generated
      */
     public ASink getSink() {
-        if (eContainerFeatureID() != MetaABMActPackage.AINPUT__SINK) {
-            return null;
-        }
+        if (eContainerFeatureID() != MetaABMActPackage.AINPUT__SINK) return null;
         return (ASink) eContainer();
     }
 
@@ -154,25 +150,18 @@ public class AInputImpl extends EObjectImpl implements AInput {
      */
     public void setSink(ASink newSink) {
         if (newSink != eInternalContainer()
-                || eContainerFeatureID() != MetaABMActPackage.AINPUT__SINK && newSink != null) {
-            if (EcoreUtil.isAncestor(this, newSink)) {
+            || (eContainerFeatureID() != MetaABMActPackage.AINPUT__SINK && newSink != null)) {
+            if (EcoreUtil.isAncestor(this, newSink))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-            }
             NotificationChain msgs = null;
-            if (eInternalContainer() != null) {
-                msgs = eBasicRemoveFromContainer(msgs);
-            }
-            if (newSink != null) {
+            if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+            if (newSink != null)
                 msgs = ((InternalEObject) newSink)
-                .eInverseAdd(this, MetaABMActPackage.ASINK__INPUTS, ASink.class, msgs);
-            }
+                        .eInverseAdd(this, MetaABMActPackage.ASINK__INPUTS, ASink.class, msgs);
             msgs = basicSetSink(newSink, msgs);
-            if (msgs != null) {
-                msgs.dispatch();
-            }
-        } else if (eNotificationRequired()) {
+            if (msgs != null) msgs.dispatch();
+        } else if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMActPackage.AINPUT__SINK, newSink, newSink));
-        }
     }
 
     /**
@@ -184,10 +173,9 @@ public class AInputImpl extends EObjectImpl implements AInput {
             InternalEObject oldSelected = (InternalEObject) selected;
             selected = (ASelect) eResolveProxy(oldSelected);
             if (selected != oldSelected) {
-                if (eNotificationRequired()) {
+                if (eNotificationRequired())
                     eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetaABMActPackage.AINPUT__SELECTED,
-                                                  oldSelected, selected));
-                }
+                        oldSelected, selected));
             }
         }
         return selected;
@@ -208,10 +196,9 @@ public class AInputImpl extends EObjectImpl implements AInput {
     public void setSelected(ASelect newSelected) {
         ASelect oldSelected = selected;
         selected = newSelected;
-        if (eNotificationRequired()) {
+        if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMActPackage.AINPUT__SELECTED, oldSelected,
-                                          selected));
-        }
+                selected));
     }
 
     /**
@@ -231,12 +218,11 @@ public class AInputImpl extends EObjectImpl implements AInput {
         literal = newLiteral;
         if (eNotificationRequired()) {
             ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-                                                                   MetaABMActPackage.AINPUT__LITERAL, oldLiteral, newLiteral);
-            if (msgs == null) {
+                MetaABMActPackage.AINPUT__LITERAL, oldLiteral, newLiteral);
+            if (msgs == null)
                 msgs = notification;
-            } else {
+            else
                 msgs.add(notification);
-            }
         }
         return msgs;
     }
@@ -248,22 +234,17 @@ public class AInputImpl extends EObjectImpl implements AInput {
     public void setLiteral(ALiteral newLiteral) {
         if (newLiteral != literal) {
             NotificationChain msgs = null;
-            if (literal != null) {
+            if (literal != null)
                 msgs = ((InternalEObject) literal).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-                                                                  - MetaABMActPackage.AINPUT__LITERAL, null, msgs);
-            }
-            if (newLiteral != null) {
+                    - MetaABMActPackage.AINPUT__LITERAL, null, msgs);
+            if (newLiteral != null)
                 msgs = ((InternalEObject) newLiteral).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-                                                                  - MetaABMActPackage.AINPUT__LITERAL, null, msgs);
-            }
+                    - MetaABMActPackage.AINPUT__LITERAL, null, msgs);
             msgs = basicSetLiteral(newLiteral, msgs);
-            if (msgs != null) {
-                msgs.dispatch();
-            }
-        } else if (eNotificationRequired()) {
+            if (msgs != null) msgs.dispatch();
+        } else if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMActPackage.AINPUT__LITERAL, newLiteral,
-                                          newLiteral));
-        }
+                newLiteral));
     }
 
     /**
@@ -274,9 +255,7 @@ public class AInputImpl extends EObjectImpl implements AInput {
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case MetaABMActPackage.AINPUT__SINK:
-                if (eInternalContainer() != null) {
-                    msgs = eBasicRemoveFromContainer(msgs);
-                }
+                if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
                 return basicSetSink((ASink) otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -320,16 +299,12 @@ public class AInputImpl extends EObjectImpl implements AInput {
             case MetaABMActPackage.AINPUT__SINK:
                 return getSink();
             case MetaABMActPackage.AINPUT__SELECTED:
-                if (resolve) {
-                    return getSelected();
-                }
+                if (resolve) return getSelected();
                 return basicGetSelected();
             case MetaABMActPackage.AINPUT__LITERAL:
                 return getLiteral();
             case MetaABMActPackage.AINPUT__VALUE:
-                if (resolve) {
-                    return getValue();
-                }
+                if (resolve) return getValue();
                 return basicGetValue();
         }
         return super.eGet(featureID, resolve, coreType);

@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.metaabm.*;
 import org.metaabm.MetaABMFactory;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAgent;
@@ -60,7 +61,7 @@ public class MetaABMFactoryImpl extends EFactoryImpl implements MetaABMFactory {
     public static MetaABMFactory init() {
         try {
             MetaABMFactory theMetaABMFactory = (MetaABMFactory) EPackage.Registry.INSTANCE
-                    .getEFactory("http://metaabm.org/metaabm.org/structure");
+                    .getEFactory("http://metaabm.org/structure");
             if (theMetaABMFactory != null) {
                 return theMetaABMFactory;
             }

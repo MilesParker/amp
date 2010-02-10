@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/structure" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://metaabm.org/function">
+  <xsd:import namespace="http://metaabm.org/structure" schemaLocation="metaabm.xsd"/>
+  <xsd:complexType name="FArgumentPrototype">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:ITyped">
+        <xsd:attribute name="pluralLabel" type="xsd:string"/>
+        <xsd:attribute name="description" type="xsd:string"/>
+        <xsd:attribute name="optional" type="xsd:boolean"/>
+        <xsd:attribute name="inputFunction" type="xsd:string"/>
+        <xsd:attribute name="outputFunction" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="FArgumentPrototype" type="function:FArgumentPrototype"/>
+  <xsd:complexType name="FArgumentArrayPrototype">
+    <xsd:complexContent>
+      <xsd:extension base="function:FArgumentPrototype">
+        <xsd:attribute name="size" type="xsd:int"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="FArgumentArrayPrototype" type="function:FArgumentArrayPrototype"/>
+  <xsd:complexType abstract="true" name="FFunction">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:IID">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="inputPrototypes" type="function:FArgumentPrototype"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="FLogical">
+    <xsd:complexContent>
+      <xsd:extension base="function:FFunction"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="FOperator">
+    <xsd:complexContent>
+      <xsd:extension base="function:FFunction">
+        <xsd:attribute name="pluralLabel" type="xsd:string"/>
+        <xsd:attribute name="description" type="xsd:string"/>
+        <xsd:attribute name="symbol" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="FOperator" type="function:FOperator"/>
+  <xsd:complexType name="FLogicalOperator">
+    <xsd:complexContent>
+      <xsd:extension base="function:FOperator"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="FLogicalOperator" type="function:FLogicalOperator"/>
+  <xsd:complexType abstract="true" name="FGeneric">
+    <xsd:complexContent>
+      <xsd:extension base="function:FFunction">
+        <xsd:attribute name="pluralLabel" type="xsd:string"/>
+        <xsd:attribute name="description" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="FGenericFunction">
+    <xsd:complexContent>
+      <xsd:extension base="function:FGeneric">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="outputPrototypes" type="function:FArgumentPrototype"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="FGenericFunction" type="function:FGenericFunction"/>
+  <xsd:complexType name="FGenericLogical">
+    <xsd:complexContent>
+      <xsd:extension base="function:FGeneric"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="FGenericLogical" type="function:FGenericLogical"/>
+  <xsd:complexType name="FLibrary">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SNamed">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="functions" type="function:FFunction"/>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="subs" type="function:FLibrary"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="FLibrary" type="function:FLibrary"/>
+  <xsd:complexType name="FImplementedLibrary">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SImplemented">
+        <xsd:sequence>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="functions" type="function:FFunction"/>
+          <xsd:element maxOccurs="unbounded" minOccurs="0" name="subs" type="function:FLibrary"/>
+        </xsd:sequence>
+        <xsd:attribute name="pluralLabel" type="xsd:string"/>
+        <xsd:attribute name="description" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="FImplementedLibrary" type="function:FImplementedLibrary"/>
+  <xsd:complexType name="FMultiArgumentPrototype">
+    <xsd:complexContent>
+      <xsd:extension base="function:FArgumentPrototype"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="FMultiArgumentPrototype" type="function:FMultiArgumentPrototype"/>
+</xsd:schema>

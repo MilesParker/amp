@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.metaabm.function.*;
 import org.metaabm.function.FArgumentArrayPrototype;
 import org.metaabm.function.FArgumentPrototype;
 import org.metaabm.function.FGenericFunction;

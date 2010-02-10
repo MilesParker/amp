@@ -117,7 +117,7 @@ public class SContextImpl extends SAgentImpl implements SContext {
     public EList<SProjection> getProjections() {
         if (projections == null) {
             projections = new EObjectContainmentWithInverseEList<SProjection>(SProjection.class, this,
-                    MetaABMPackage.SCONTEXT__PROJECTIONS, MetaABMPackage.SPROJECTION__OWNER);
+                MetaABMPackage.SCONTEXT__PROJECTIONS, MetaABMPackage.SPROJECTION__OWNER);
         }
         return projections;
     }
@@ -129,7 +129,7 @@ public class SContextImpl extends SAgentImpl implements SContext {
     public EList<SAgent> getAgents() {
         if (agents == null) {
             agents = new EObjectContainmentWithInverseEList<SAgent>(SAgent.class, this,
-                    MetaABMPackage.SCONTEXT__AGENTS, MetaABMPackage.SAGENT__OWNER);
+                MetaABMPackage.SCONTEXT__AGENTS, MetaABMPackage.SAGENT__OWNER);
         }
         return agents;
     }
@@ -141,7 +141,7 @@ public class SContextImpl extends SAgentImpl implements SContext {
     public EList<SValueLayer> getValueLayers() {
         if (valueLayers == null) {
             valueLayers = new EObjectContainmentEList<SValueLayer>(SValueLayer.class, this,
-                    MetaABMPackage.SCONTEXT__VALUE_LAYERS);
+                MetaABMPackage.SCONTEXT__VALUE_LAYERS);
         }
         return valueLayers;
     }
@@ -171,7 +171,7 @@ public class SContextImpl extends SAgentImpl implements SContext {
     public EList<EObject> getAllAgents() {
         Object[] all = IteratorUtils.toArray(allAgentsTree());
         return new EcoreEList.UnmodifiableEList.FastCompare<EObject>(this, MetaABMPackage.Literals.IVALUE__ACCESSORS,
-                all.length, all);
+            all.length, all);
     }
 
     @SuppressWarnings("unchecked")
@@ -184,7 +184,7 @@ public class SContextImpl extends SAgentImpl implements SContext {
     public EList<EObject> getAllContexts() {
         Object[] all = IteratorUtils.toArray(allContextsTree());
         return new EcoreEList.UnmodifiableEList.FastCompare<EObject>(this, MetaABMPackage.Literals.IVALUE__ACCESSORS,
-                all.length, all);
+            all.length, all);
     }
 
     protected TreeIterator<Object> allAgentsTree() {

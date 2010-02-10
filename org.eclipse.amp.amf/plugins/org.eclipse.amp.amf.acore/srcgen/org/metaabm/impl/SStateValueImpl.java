@@ -90,7 +90,7 @@ public class SStateValueImpl extends SNamedImpl implements SStateValue {
             }
         }
         return new EcoreEList.UnmodifiableEList.FastCompare<EObject>(this, MetaABMPackage.Literals.IVALUE__ACCESSORS,
-                accessors.size(), accessors.toArray());
+            accessors.size(), accessors.toArray());
     }
 
     public boolean accesses(AAct act) {
@@ -149,9 +149,7 @@ public class SStateValueImpl extends SNamedImpl implements SStateValue {
      * @generated
      */
     public SState getSet() {
-        if (eContainerFeatureID() != MetaABMPackage.SSTATE_VALUE__SET) {
-            return null;
-        }
+        if (eContainerFeatureID() != MetaABMPackage.SSTATE_VALUE__SET) return null;
         return (SState) eContainer();
     }
 
@@ -170,24 +168,17 @@ public class SStateValueImpl extends SNamedImpl implements SStateValue {
      */
     public void setSet(SState newSet) {
         if (newSet != eInternalContainer()
-                || eContainerFeatureID() != MetaABMPackage.SSTATE_VALUE__SET && newSet != null) {
-            if (EcoreUtil.isAncestor(this, newSet)) {
+            || (eContainerFeatureID() != MetaABMPackage.SSTATE_VALUE__SET && newSet != null)) {
+            if (EcoreUtil.isAncestor(this, newSet))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-            }
             NotificationChain msgs = null;
-            if (eInternalContainer() != null) {
-                msgs = eBasicRemoveFromContainer(msgs);
-            }
-            if (newSet != null) {
+            if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+            if (newSet != null)
                 msgs = ((InternalEObject) newSet).eInverseAdd(this, MetaABMPackage.SSTATE__OPTIONS, SState.class, msgs);
-            }
             msgs = basicSetSet(newSet, msgs);
-            if (msgs != null) {
-                msgs.dispatch();
-            }
-        } else if (eNotificationRequired()) {
+            if (msgs != null) msgs.dispatch();
+        } else if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SSTATE_VALUE__SET, newSet, newSet));
-        }
     }
 
     /**
@@ -198,9 +189,7 @@ public class SStateValueImpl extends SNamedImpl implements SStateValue {
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case MetaABMPackage.SSTATE_VALUE__SET:
-                if (eInternalContainer() != null) {
-                    msgs = eBasicRemoveFromContainer(msgs);
-                }
+                if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
                 return basicSetSet((SState) otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);

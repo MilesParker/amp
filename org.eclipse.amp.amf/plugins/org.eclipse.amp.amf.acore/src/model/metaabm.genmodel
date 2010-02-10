@@ -166,10 +166,10 @@
       </genFeatures>
     </genClasses>
     <genClasses ecoreClass="metaabm.ecore#//SImplementation">
-      <genFeatures createChild="false" propertyCategory="" propertyDescription="Specify package name, e.g. &quot;org.myorg.myproject&quot;. (If blank, parent's value will be used.) "
+      <genFeatures createChild="false" propertyCategory="" propertyDescription="Specify package name, e.g. org.myorg.myproject. (If blank, parent's value will be used.) "
           ecoreFeature="ecore:EAttribute metaabm.ecore#//SImplementation/package"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//SImplementation/className"/>
-      <genFeatures createChild="false" propertyDescription="The relative or absolute path to the base directory containing implementing code, e.g. &quot;../myproject&quot;, &quot;/MyDrive/local/myproject&quot;."
+      <genFeatures createChild="false" propertyDescription="The relative or absolute path to the base directory containing implementing code, e.g. ../myproject, /MyDrive/local/myproject."
           ecoreFeature="ecore:EAttribute metaabm.ecore#//SImplementation/basePath"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//SImplementation/mode"/>
       <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory=""

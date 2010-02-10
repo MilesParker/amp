@@ -81,12 +81,11 @@ public abstract class SActableImpl extends SAttributedImpl implements SActable {
         rootActivity = newRootActivity;
         if (eNotificationRequired()) {
             ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-                                                                   MetaABMPackage.SACTABLE__ROOT_ACTIVITY, oldRootActivity, newRootActivity);
-            if (msgs == null) {
+                MetaABMPackage.SACTABLE__ROOT_ACTIVITY, oldRootActivity, newRootActivity);
+            if (msgs == null)
                 msgs = notification;
-            } else {
+            else
                 msgs.add(notification);
-            }
         }
         return msgs;
     }
@@ -98,22 +97,17 @@ public abstract class SActableImpl extends SAttributedImpl implements SActable {
     public void setRootActivity(IAct newRootActivity) {
         if (newRootActivity != rootActivity) {
             NotificationChain msgs = null;
-            if (rootActivity != null) {
+            if (rootActivity != null)
                 msgs = ((InternalEObject) rootActivity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-                                                                       - MetaABMPackage.SACTABLE__ROOT_ACTIVITY, null, msgs);
-            }
-            if (newRootActivity != null) {
+                    - MetaABMPackage.SACTABLE__ROOT_ACTIVITY, null, msgs);
+            if (newRootActivity != null)
                 msgs = ((InternalEObject) newRootActivity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-                                                                       - MetaABMPackage.SACTABLE__ROOT_ACTIVITY, null, msgs);
-            }
+                    - MetaABMPackage.SACTABLE__ROOT_ACTIVITY, null, msgs);
             msgs = basicSetRootActivity(newRootActivity, msgs);
-            if (msgs != null) {
-                msgs.dispatch();
-            }
-        } else if (eNotificationRequired()) {
+            if (msgs != null) msgs.dispatch();
+        } else if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SACTABLE__ROOT_ACTIVITY,
-                                          newRootActivity, newRootActivity));
-        }
+                newRootActivity, newRootActivity));
     }
 
     /**

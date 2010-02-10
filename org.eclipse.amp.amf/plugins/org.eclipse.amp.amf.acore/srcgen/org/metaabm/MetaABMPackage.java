@@ -45,7 +45,7 @@ public interface MetaABMPackage extends EPackage {
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
-    String eNS_URI = "http://metaabm.org/metaabm.org/structure";
+    String eNS_URI = "http://metaabm.org/structure";
 
     /**
      * The package namespace name.
