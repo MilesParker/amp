@@ -71,6 +71,7 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IWrapperItemProvider;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
@@ -690,7 +691,7 @@ IMenuListener, IViewerProvider, IGotoMarker {
         adapterFactory.addAdapterFactory(new MetaABMItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new MetaABMFunctionItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new MetaABMActItemProviderAdapterFactory());
-        // adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+        adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
         // Create the command stack that will notify this editor as commands are
         // executed.
