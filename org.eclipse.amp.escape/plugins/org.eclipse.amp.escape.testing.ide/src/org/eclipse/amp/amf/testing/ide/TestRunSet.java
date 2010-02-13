@@ -59,7 +59,9 @@ public class TestRunSet {
 
     private Resource aResResource;
 
-    RunSet runSet;
+    private RunSet runSet;
+
+    public final static IPath RESULTS_FOLDER = new Path("test-results");
 
     int testRunCount;
     int testInFlightCount;
@@ -137,9 +139,9 @@ public class TestRunSet {
 
         IResource firstResource = uniqueTests.get(0);
         // Get rid of test folder
-        IPath projectPath = new Path("results").append(
-                                                       firstResource.getProjectRelativePath().removeFirstSegments(1)
-                                                       .removeLastSegments(1)).append(name + ".ares");
+        IPath projectPath = RESULTS_FOLDER.append(
+                                                  firstResource.getProjectRelativePath().removeFirstSegments(1)
+                                                  .removeLastSegments(1)).append(name + ".ares");
 
         URI fileURI = URI.createPlatformResourceURI(project.getName() + "/" + projectPath, true);
         aResResource = resourceSet.createResource(fileURI);
