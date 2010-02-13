@@ -15,6 +15,7 @@
  */
 package org.eclipse.amp.escape.amf.ide;
 
+import org.ascape.runtime.Runner;
 import org.eclipse.amp.amf.parameters.AParFactory;
 import org.eclipse.amp.amf.parameters.AParInterpreter;
 import org.eclipse.amp.escape.command.ExecuteHandler;
@@ -30,6 +31,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 public class ExecuteParameterHandler extends ExecuteHandler {
 
     private AParInterpreter interpreter;
+    protected IResource modelResource;
 
     /**
      * Instantiates a new execute parameter handler.
@@ -55,13 +57,13 @@ public class ExecuteParameterHandler extends ExecuteHandler {
      */
     protected void executeOpen(EclipseEscapeRunner eclipseRunner, Object executed, IProgressMonitor monitor) {
         if (executed instanceof IResource) {
-            IResource modelResource = (IResource) executed;
+            modelResource = (IResource) executed;
             IProject project = modelResource.getProject();
             if (modelResource.getFileExtension().equals("apar")) {
                 // a bit awkward..
-                interpreter = (AParInterpreter) AParFactory.create(null).getInterpreter(modelResource);
-                eclipseRunner.open(project, interpreter.getRootContext().getImplementation().getQualifiedName(),
-                                   interpreter.getRunName(), interpreter.getArgs());
+                setInterpreter((AParInterpreter) AParFactory.create(null).getInterpreter(modelResource));
+                eclipseRunner.open(project, getInterpreter().getRootContext().getImplementation().getQualifiedName(),
+                                   getInterpreter().getRunName(), getInterpreter().getArgs());
             }
         }
     }
@@ -71,6 +73,7 @@ public class ExecuteParameterHandler extends ExecuteHandler {
      * @see org.eclipse.amp.escape.command.ExecuteHandler#createRunner()
      */
     protected EclipseEscapeRunner createRunner() {
+        Runner.setDisplayGraphics(!isHeadless());
         EclipseEscapeRunner runner = new EclipseEscapeRunner() {
             private static final long serialVersionUID = 1L;
 
@@ -80,7 +83,7 @@ public class ExecuteParameterHandler extends ExecuteHandler {
              * @see org.ascape.runtime.Runner#openImplementation(java.lang.String[], boolean)
              */
             public void openImplementation(String[] args, boolean block) {
-                interpreter.assignValues(new Object[] { getRootScape(), this }, null);
+                getInterpreter().assignValues(new Object[] { getRootScape(), this }, null);
                 super.openImplementation(args, block);
             }
 
@@ -96,5 +99,13 @@ public class ExecuteParameterHandler extends ExecuteHandler {
     protected boolean handleSelect(Object sel) {
         return sel instanceof IResource && ((IResource) sel).getFileExtension() != null
         && ((IResource) sel).getFileExtension().equals("apar");
+    }
+
+    public void setInterpreter(AParInterpreter interpreter) {
+        this.interpreter = interpreter;
+    }
+
+    public AParInterpreter getInterpreter() {
+        return interpreter;
     }
 }
