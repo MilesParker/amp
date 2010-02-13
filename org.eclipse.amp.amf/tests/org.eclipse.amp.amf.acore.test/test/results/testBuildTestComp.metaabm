@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:metaabm="http://metaabm.org/metaabm.org/structure" ID="root">
+<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:metaabm="http://metaabm.org/structure" ID="root">
   <attributes ID="contextVar"/>
   <rootActivity xsi:type="act:AGroup" ID="rootActGroup">
     <members xsi:type="act:ABuild" ID="buildTest" targets="//@rootActivity/@members[ID='createTest']"/>
