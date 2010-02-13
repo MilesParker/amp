@@ -60,6 +60,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.statushandlers.StatusManager;
 
 import com.ibm.icu.util.ULocale;
@@ -142,7 +143,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
          * Instantiates a new chart model listener.
          */
         public ChartModelListener() {
-            super(null, "Chart Updated View", 5);
+            super(null, "Chart Updated View", 10000);
         }
 
         /**
@@ -197,6 +198,17 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
         public void observationEnd(IObservationProvider model) {
             dataProvider.removeListener(dataSource, dataListener);
             model = null;
+        }
+
+        /**
+         * @return
+         * @see org.eclipse.amp.axf.view.SWTThreadModelListener#getWidget()
+         */
+        public Control getWidget() {
+            if (getViewer() != null) {
+                return getViewer().getControl();
+            }
+            return null;
         }
     };
 
