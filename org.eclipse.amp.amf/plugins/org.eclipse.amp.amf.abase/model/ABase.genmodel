@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.amp.amf.abase/src-gen"
+    editDirectory="/org.eclipse.amp.amf.abase.edit/src" editorDirectory="/org.eclipse.amp.amf.abase.editor/src"
+    modelPluginID="org.eclipse.amp.amf.abase" forceOverwrite="true" modelName="ABase"
+    updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.amp.amf.abase.edit"
+    editorPluginID="org.eclipse.amp.amf.abase.editor">
+  <genPackages prefix="ABase" basePackage="org.eclipse.amp.amf.abase" disposableProviderFactory="true"
+      ecorePackage="ABase.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ABase.ecore#//BOOLEAN">
+      <genEnumLiterals ecoreEnumLiteral="ABase.ecore#//BOOLEAN/TRUE"/>
+      <genEnumLiterals ecoreEnumLiteral="ABase.ecore#//BOOLEAN/FALSE"/>
+    </genEnums>
+    <genClasses ecoreClass="ABase.ecore#//Value"/>
+    <genClasses ecoreClass="ABase.ecore#//IntValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ABase.ecore#//IntValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="ABase.ecore#//RealValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ABase.ecore#//RealValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="ABase.ecore#//StringValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ABase.ecore#//StringValue/value"/>
+    </genClasses>
+    <genClasses ecoreClass="ABase.ecore#//BooleanValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ABase.ecore#//BooleanValue/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

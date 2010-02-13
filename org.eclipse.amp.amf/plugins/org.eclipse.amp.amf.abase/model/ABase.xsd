@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:aBase="http://www.eclipse.org/amp/amf/abase/ABase" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="aBase" ecore:package="org.eclipse.amp.amf.abase.aBase" targetNamespace="http://www.eclipse.org/amp/amf/abase/ABase">
+  <xsd:import namespace="http://www.eclipse.org/emf/2002/Ecore" schemaLocation="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.xsd"/>
+  <xsd:element ecore:ignore="true" name="Value" type="aBase:Value"/>
+  <xsd:element ecore:ignore="true" name="IntValue" type="aBase:IntValue"/>
+  <xsd:element ecore:ignore="true" name="RealValue" type="aBase:RealValue"/>
+  <xsd:element ecore:ignore="true" name="StringValue" type="aBase:StringValue"/>
+  <xsd:element ecore:ignore="true" name="BooleanValue" type="aBase:BooleanValue"/>
+  <xsd:complexType name="Value"/>
+  <xsd:complexType name="IntValue">
+    <xsd:complexContent>
+      <xsd:extension base="aBase:Value">
+        <xsd:attribute name="value" type="ecore:EString"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="RealValue">
+    <xsd:complexContent>
+      <xsd:extension base="aBase:Value">
+        <xsd:attribute name="value" type="ecore:EString"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="StringValue">
+    <xsd:complexContent>
+      <xsd:extension base="aBase:Value">
+        <xsd:attribute name="value" type="ecore:EString"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="BooleanValue">
+    <xsd:complexContent>
+      <xsd:extension base="aBase:Value">
+        <xsd:attribute ecore:unsettable="false" name="value" type="aBase:BOOLEAN"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType name="BOOLEAN">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration ecore:name="TRUE" value="true"/>
+      <xsd:enumeration ecore:name="FALSE" value="false"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>
