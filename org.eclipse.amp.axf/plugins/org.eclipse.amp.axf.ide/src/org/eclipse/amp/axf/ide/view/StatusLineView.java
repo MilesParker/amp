@@ -15,8 +15,8 @@
  */
 package org.eclipse.amp.axf.ide.view;
 
-import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.core.IModel;
+import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
 import org.eclipse.amp.axf.time.ITimeGranularity;
 import org.eclipse.amp.axf.view.SWTAsyncModelListener;
@@ -41,7 +41,7 @@ public class StatusLineView extends SWTAsyncModelListener implements IPartListen
      * Instantiates a new status line view.
      */
     private StatusLineView() {
-        super(null, "Status Line View", 100);
+        super(null, "Status Line View", 2500);
         setWaitForUpdate(false);
     }
 
