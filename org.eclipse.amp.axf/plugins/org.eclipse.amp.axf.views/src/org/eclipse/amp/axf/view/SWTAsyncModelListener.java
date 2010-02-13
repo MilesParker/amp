@@ -60,7 +60,7 @@ public abstract class SWTAsyncModelListener extends SWTThreadModelListener {
 
     private boolean waitForPaint = true;
 
-    private long minTimeBetweenUpdates = 5000;
+    private long minTimeBetweenUpdates = 10000;
 
     protected boolean updating = false;
 
@@ -101,6 +101,7 @@ public abstract class SWTAsyncModelListener extends SWTThreadModelListener {
         if (model.getEngine().isRunning()
                 && (System.currentTimeMillis() > lastUpdate + minTimeBetweenUpdates || model.getPeriod()
                         % ((TimeGranularity) model.getEngine().getUpdateGranularity()).getUpdateFrequency() == 0)) {
+            lastUpdate = System.currentTimeMillis();
             updating = true;
             ReportingRunner runnable = new ReportingRunner((LifeCycleState) key, model);
             if (AXFViewPlugin.getDefault() != null) {
@@ -139,7 +140,6 @@ public abstract class SWTAsyncModelListener extends SWTThreadModelListener {
         // If the update method hasn't explicitly indicated beginPainting, we are not waiting for the
         // actual update or it has already occurred.
         if (!painting) {
-            lastUpdate = System.currentTimeMillis();
         }
     }
 
@@ -164,7 +164,6 @@ public abstract class SWTAsyncModelListener extends SWTThreadModelListener {
      */
     public void endPainting() {
         this.painting = false;
-        lastUpdate = System.currentTimeMillis();
     }
 
     /**

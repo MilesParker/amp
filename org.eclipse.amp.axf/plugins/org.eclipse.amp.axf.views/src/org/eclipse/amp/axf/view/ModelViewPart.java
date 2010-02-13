@@ -60,7 +60,7 @@ public abstract class ModelViewPart extends ViewPart implements IModelPart, IPro
          * @param control the control
          */
         public PropertyRefreshListener() {
-            super(null, "Property Refresh", 500);
+            super(null, "Property Refresh", 2500);
         }
 
         /**
@@ -80,7 +80,11 @@ public abstract class ModelViewPart extends ViewPart implements IModelPart, IPro
          * @see org.eclipse.amp.axf.view.SWTThreadModelListener#getWidget()
          */
         public Control getWidget() {
-            return propertySheetPage.getControl();
+            if (propertySheetPage != null) {
+                return propertySheetPage.getControl();
+            } else {
+                return null;
+            }
         }
     }
 
