@@ -230,7 +230,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
                     getModel().addModelListener(delayView);
                     // do {
                     try {
-                        EclipseEscapeRunner.super.run();
+                        EclipseEscapeRunner.this.run();
                     } catch (RuntimeException e) {
                         closeFinally();
                         throw e;

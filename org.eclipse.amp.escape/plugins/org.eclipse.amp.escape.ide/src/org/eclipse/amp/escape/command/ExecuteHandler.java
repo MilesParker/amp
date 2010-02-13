@@ -40,7 +40,7 @@ public abstract class ExecuteHandler extends ResourceHandler {
      */
     public ExecuteHandler(boolean headless) {
         super();
-        this.headless = headless;
+        this.setHeadless(headless);
     }
 
     /*
@@ -91,7 +91,7 @@ public abstract class ExecuteHandler extends ResourceHandler {
      */
     protected EclipseEscapeRunner createRunner() {
         // TODO this is still static on Ascape side..trouble if we attempt to run headless and non-headless jobs
-        Runner.setDisplayGraphics(!headless);
+        Runner.setDisplayGraphics(!isHeadless());
         return new EclipseEscapeRunner();
     }
 
@@ -126,4 +126,12 @@ public abstract class ExecuteHandler extends ResourceHandler {
      * @return true, if successful
      */
     protected abstract boolean handleSelect(Object sel);
+
+    public void setHeadless(boolean headless) {
+        this.headless = headless;
+    }
+
+    public boolean isHeadless() {
+        return headless;
+    }
 }
