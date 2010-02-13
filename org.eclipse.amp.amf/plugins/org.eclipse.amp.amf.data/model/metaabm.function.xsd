@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/structure" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="function" ecore:package="org.metaabm.function" targetNamespace="http://metaabm.org/function">
+  <xsd:import namespace="http://www.eclipse.org/emf/2002/Ecore" schemaLocation="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.xsd"/>
+  <xsd:import namespace="http://metaabm.org/structure" schemaLocation="metaabm.xsd"/>
+  <xsd:element ecore:ignore="true" name="FArgumentPrototype" type="function:FArgumentPrototype"/>
+  <xsd:element ecore:ignore="true" name="FArgumentArrayPrototype" type="function:FArgumentArrayPrototype"/>
+  <xsd:element ecore:ignore="true" name="FFunction" type="function:FFunction"/>
+  <xsd:element ecore:ignore="true" name="FLogical" type="function:FLogical"/>
+  <xsd:element ecore:ignore="true" name="FOperator" type="function:FOperator"/>
+  <xsd:element ecore:ignore="true" name="FLogicalOperator" type="function:FLogicalOperator"/>
+  <xsd:element ecore:ignore="true" name="FGeneric" type="function:FGeneric"/>
+  <xsd:element ecore:ignore="true" name="FGenericFunction" type="function:FGenericFunction"/>
+  <xsd:element ecore:ignore="true" name="FGenericLogical" type="function:FGenericLogical"/>
+  <xsd:element ecore:ignore="true" name="FLibrary" type="function:FLibrary"/>
+  <xsd:element ecore:ignore="true" name="FImplementedLibrary" type="function:FImplementedLibrary"/>
+  <xsd:element ecore:ignore="true" name="FMultiArgumentPrototype" type="function:FMultiArgumentPrototype"/>
+  <xsd:complexType ecore:implements="metaabm:SNamed" name="FArgumentPrototype">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:ITyped">
+        <xsd:attribute ecore:opposite="inputPrototypes" ecore:reference="function:FFunction" name="inputFunction" type="xsd:anyURI"/>
+        <xsd:attribute ecore:opposite="outputPrototypes" ecore:reference="function:FGenericFunction" name="outputFunction" type="xsd:IDREF"/>
+        <xsd:attribute ecore:unsettable="false" name="optional" type="ecore:EBoolean"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="metaabm:ITypedArray" name="FArgumentArrayPrototype">
+    <xsd:complexContent>
+      <xsd:extension base="function:FArgumentPrototype"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="FFunction">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:IID">
+        <xsd:sequence>
+          <xsd:element ecore:derived="true" ecore:transient="true" ecore:unique="true" ecore:volatile="true" maxOccurs="unbounded" minOccurs="0" name="availableTypes" type="metaabm:SAttributeType"/>
+          <xsd:element ecore:opposite="inputFunction" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="inputPrototypes" type="function:FArgumentPrototype"/>
+        </xsd:sequence>
+        <xsd:attribute ecore:derived="true" ecore:lowerBound="1" ecore:transient="true" ecore:unsettable="false" ecore:volatile="true" name="multiValue" type="ecore:EBoolean"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" ecore:interface="true" name="FLogical">
+    <xsd:complexContent>
+      <xsd:extension base="function:FFunction"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="metaabm:SNamed" name="FOperator">
+    <xsd:complexContent>
+      <xsd:extension base="function:FFunction">
+        <xsd:attribute name="symbol" type="ecore:EString"/>
+        <xsd:attribute ecore:changeable="false" ecore:derived="true" ecore:lowerBound="1" ecore:transient="true" ecore:unsettable="false" ecore:volatile="true" name="arity" type="ecore:EInt"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="function:FLogical" name="FLogicalOperator">
+    <xsd:complexContent>
+      <xsd:extension base="function:FOperator"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" ecore:implements="metaabm:SNamed" name="FGeneric">
+    <xsd:complexContent>
+      <xsd:extension base="function:FFunction"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="function:FFunction" name="FGenericFunction">
+    <xsd:complexContent>
+      <xsd:extension base="function:FGeneric">
+        <xsd:sequence>
+          <xsd:element ecore:opposite="outputFunction" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="outputPrototypes" type="function:FArgumentPrototype"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="function:FLogical" name="FGenericLogical">
+    <xsd:complexContent>
+      <xsd:extension base="function:FGeneric"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="metaabm:IArtifact" name="FLibrary">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SNamed">
+        <xsd:sequence>
+          <xsd:element ecore:keys="ID" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="functions" type="function:FFunction"/>
+          <xsd:element ecore:keys="ID" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="subs" type="function:FLibrary"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="function:FLibrary" name="FImplementedLibrary">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:SImplemented"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="FMultiArgumentPrototype">
+    <xsd:complexContent>
+      <xsd:extension base="function:FArgumentPrototype"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:schema>

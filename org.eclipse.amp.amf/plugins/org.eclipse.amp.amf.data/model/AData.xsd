@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:adata="http://eclipse.org/amp/amf/AData" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:metaabm="http://metaabm.org/structure" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="adata" ecore:package="org.eclipse.amp.amf.adata" targetNamespace="http://eclipse.org/amp/amf/AData">
+  <xsd:import namespace="http://www.eclipse.org/emf/2002/Ecore" schemaLocation="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.xsd"/>
+  <xsd:import namespace="http://metaabm.org/structure" schemaLocation="metaabm.xsd"/>
+  <xsd:element ecore:ignore="true" name="Run" type="adata:Run"/>
+  <xsd:element ecore:ignore="true" name="Parameter" type="adata:Parameter"/>
+  <xsd:element ecore:ignore="true" name="DataPoint" type="adata:DataPoint"/>
+  <xsd:element ecore:ignore="true" name="Catalog" type="adata:Catalog"/>
+  <xsd:element ecore:ignore="true" name="Measurement" type="adata:Measurement"/>
+  <xsd:element ecore:ignore="true" name="ParameterSet" type="adata:ParameterSet"/>
+  <xsd:complexType name="Run">
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="parameterSets" type="adata:ParameterSet"/>
+      <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="measurements" type="adata:Measurement"/>
+    </xsd:sequence>
+    <xsd:attribute ecore:reference="metaabm:SContext" name="model" type="xsd:anyURI" use="required"/>
+    <xsd:attribute name="started" type="ecore:EDate"/>
+    <xsd:attribute name="finished" type="ecore:EDate"/>
+    <xsd:attribute ecore:opposite="run" ecore:ordered="false" ecore:reference="adata:DataPoint" name="entries" type="xsd:IDREFS"/>
+    <xsd:attribute name="name" type="ecore:EString" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="Parameter">
+    <xsd:attribute name="attribute" type="ecore:EString" use="required"/>
+    <xsd:attribute name="value" type="ecore:EString" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType name="DataPoint">
+    <xsd:attribute ecore:unsettable="false" name="period" type="ecore:ELong"/>
+    <xsd:attribute ecore:unsettable="false" name="value" type="ecore:EDouble"/>
+    <xsd:attribute ecore:opposite="entries" ecore:reference="adata:Run" name="run" type="xsd:anyURI"/>
+    <xsd:attribute ecore:reference="adata:Measurement" name="measure" type="xsd:anyURI"/>
+  </xsd:complexType>
+  <xsd:complexType name="Catalog">
+    <xsd:sequence>
+      <xsd:element ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="entries" type="adata:DataPoint"/>
+      <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="runs" type="adata:Run"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="Measurement">
+    <xsd:attribute ecore:unsettable="false" name="measure" type="adata:ScaleType"/>
+    <xsd:attribute name="attribute" type="ecore:EString" use="required"/>
+  </xsd:complexType>
+  <xsd:simpleType name="ScaleType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration ecore:name="Count" ecore:value="1" value="COUNT"/>
+      <xsd:enumeration ecore:name="Sum" ecore:value="2" value="SUM"/>
+      <xsd:enumeration ecore:name="Average" ecore:value="3" value="AVERAGE"/>
+      <xsd:enumeration ecore:name="Minimum" ecore:value="4" value="MINIMUM"/>
+      <xsd:enumeration ecore:name="Maximum" ecore:value="5" value="MAXIMUM"/>
+      <xsd:enumeration ecore:name="StandardDeviation" ecore:value="6" value="STAMDARD_DEVIATION"/>
+      <xsd:enumeration ecore:name="Variance" ecore:value="7" value="VARIANCE"/>
+      <xsd:enumeration ecore:name="Custom" ecore:value="1000" value="CUSTOM"/>
+      <xsd:enumeration ecore:name="single" ecore:value="0" value="Single"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="ParameterSet">
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="members" type="adata:Parameter"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

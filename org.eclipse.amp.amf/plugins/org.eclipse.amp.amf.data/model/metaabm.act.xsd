@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:act="http://metaabm.org/act" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/structure" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="act" ecore:package="org.metaabm.act" targetNamespace="http://metaabm.org/act">
+  <xsd:import namespace="http://metaabm.org/function" schemaLocation="metaabm.function.xsd"/>
+  <xsd:import namespace="http://www.eclipse.org/emf/2002/Ecore" schemaLocation="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.xsd"/>
+  <xsd:import namespace="http://metaabm.org/structure" schemaLocation="metaabm.xsd"/>
+  <xsd:element ecore:ignore="true" name="AInput" type="act:AInput"/>
+  <xsd:element ecore:ignore="true" name="ALiteral" type="act:ALiteral"/>
+  <xsd:element ecore:ignore="true" name="AMultiValue" type="act:AMultiValue"/>
+  <xsd:element ecore:ignore="true" name="AShaped" type="act:AShaped"/>
+  <xsd:element ecore:ignore="true" name="AAct" type="act:AAct"/>
+  <xsd:element ecore:ignore="true" name="AControl" type="act:AControl"/>
+  <xsd:element ecore:ignore="true" name="ARoot" type="act:ARoot"/>
+  <xsd:element ecore:ignore="true" name="AGroup" type="act:AGroup"/>
+  <xsd:element ecore:ignore="true" name="ASchedule" type="act:ASchedule"/>
+  <xsd:element ecore:ignore="true" name="ARule" type="act:ARule"/>
+  <xsd:element ecore:ignore="true" name="ABuild" type="act:ABuild"/>
+  <xsd:element ecore:ignore="true" name="AInitialize" type="act:AInitialize"/>
+  <xsd:element ecore:ignore="true" name="AMethod" type="act:AMethod"/>
+  <xsd:element ecore:ignore="true" name="ASink" type="act:ASink"/>
+  <xsd:element ecore:ignore="true" name="ALogic" type="act:ALogic"/>
+  <xsd:element ecore:ignore="true" name="AAny" type="act:AAny"/>
+  <xsd:element ecore:ignore="true" name="AAll" type="act:AAll"/>
+  <xsd:element ecore:ignore="true" name="ANone" type="act:ANone"/>
+  <xsd:element ecore:ignore="true" name="AQuery" type="act:AQuery"/>
+  <xsd:element ecore:ignore="true" name="AEvaluate" type="act:AEvaluate"/>
+  <xsd:element ecore:ignore="true" name="AAccessor" type="act:AAccessor"/>
+  <xsd:element ecore:ignore="true" name="AWatch" type="act:AWatch"/>
+  <xsd:element ecore:ignore="true" name="ASet" type="act:ASet"/>
+  <xsd:element ecore:ignore="true" name="ACreateAgents" type="act:ACreateAgents"/>
+  <xsd:element ecore:ignore="true" name="ACreateShapedAgents" type="act:ACreateShapedAgents"/>
+  <xsd:element ecore:ignore="true" name="ALoadAgents" type="act:ALoadAgents"/>
+  <xsd:element ecore:ignore="true" name="ALoadShapedAgents" type="act:ALoadShapedAgents"/>
+  <xsd:element ecore:ignore="true" name="ABuildProjection" type="act:ABuildProjection"/>
+  <xsd:element ecore:ignore="true" name="ABuildNetwork" type="act:ABuildNetwork"/>
+  <xsd:element ecore:ignore="true" name="ABuildSpace" type="act:ABuildSpace"/>
+  <xsd:element ecore:ignore="true" name="ABuildGeography" type="act:ABuildGeography"/>
+  <xsd:element ecore:ignore="true" name="ABuildGrid" type="act:ABuildGrid"/>
+  <xsd:element ecore:ignore="true" name="ASelect" type="act:ASelect"/>
+  <xsd:element ecore:ignore="true" name="AMove" type="act:AMove"/>
+  <xsd:element ecore:ignore="true" name="ATransform" type="act:ATransform"/>
+  <xsd:element ecore:ignore="true" name="ALeave" type="act:ALeave"/>
+  <xsd:element ecore:ignore="true" name="ADie" type="act:ADie"/>
+  <xsd:element ecore:ignore="true" name="AConnect" type="act:AConnect"/>
+  <xsd:element ecore:ignore="true" name="ANetwork" type="act:ANetwork"/>
+  <xsd:element ecore:ignore="true" name="ADisconnect" type="act:ADisconnect"/>
+  <xsd:element ecore:ignore="true" name="AReplace" type="act:AReplace"/>
+  <xsd:element ecore:ignore="true" name="ACommand" type="act:ACommand"/>
+  <xsd:complexType name="AInput">
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" minOccurs="0" name="literal" type="act:ALiteral"/>
+    </xsd:sequence>
+    <xsd:attribute ecore:opposite="inputs" ecore:reference="act:ASink" name="sink" type="xsd:anyURI" use="required"/>
+    <xsd:attribute ecore:reference="act:ASelect" name="selected" type="xsd:anyURI"/>
+    <xsd:attribute ecore:reference="metaabm:IValue" name="value" type="xsd:anyURI"/>
+  </xsd:complexType>
+  <xsd:complexType name="ALiteral">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:IValue">
+        <xsd:attribute name="valueLiteral" type="ecore:EString" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="AMultiValue">
+    <xsd:complexContent>
+      <xsd:extension base="act:ALiteral">
+        <xsd:attribute ecore:reference="metaabm:IValue" name="values">
+          <xsd:simpleType>
+            <xsd:list itemType="xsd:anyURI"/>
+          </xsd:simpleType>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="AShaped">
+    <xsd:attribute ecore:default="POINT" ecore:unsettable="false" name="shape" type="metaabm:SShapeType" use="required"/>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" ecore:implements="metaabm:IAct" name="AAct">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:IID">
+        <xsd:attribute ecore:opposite="targets" ecore:reference="act:AAct" name="sources">
+          <xsd:simpleType>
+            <xsd:list itemType="xsd:anyURI"/>
+          </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute ecore:opposite="sources" ecore:reference="act:AAct" name="targets">
+          <xsd:simpleType>
+            <xsd:list itemType="xsd:anyURI"/>
+          </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute ecore:changeable="false" ecore:derived="true" ecore:lowerBound="1" ecore:reference="metaabm:SAgent" ecore:transient="true" ecore:volatile="true" name="reference" type="xsd:anyURI"/>
+        <xsd:attribute ecore:opposite="members" ecore:reference="act:AGroup" name="group" type="xsd:anyURI"/>
+        <xsd:attribute ecore:reference="act:ASelect" name="selected" type="xsd:anyURI"/>
+        <xsd:attribute ecore:changeable="false" ecore:derived="true" ecore:reference="act:AAct" ecore:transient="true" ecore:volatile="true" name="allSources">
+          <xsd:simpleType>
+            <xsd:list itemType="xsd:anyURI"/>
+          </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute ecore:changeable="false" ecore:derived="true" ecore:reference="act:AAct" ecore:transient="true" ecore:volatile="true" name="allTargets">
+          <xsd:simpleType>
+            <xsd:list itemType="xsd:anyURI"/>
+          </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute ecore:changeable="false" ecore:derived="true" ecore:reference="act:ASelect" ecore:transient="true" ecore:volatile="true" name="rootSelected" type="xsd:anyURI"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" ecore:interface="true" name="AControl">
+    <xsd:complexContent>
+      <xsd:extension base="act:AAct"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" ecore:interface="true" name="ARoot">
+    <xsd:complexContent>
+      <xsd:extension base="act:ASelect"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="metaabm:SNamed" name="AGroup">
+    <xsd:complexContent>
+      <xsd:extension base="act:AAct">
+        <xsd:sequence>
+          <xsd:element ecore:keys="ID" ecore:opposite="group" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="members" type="act:AAct"/>
+        </xsd:sequence>
+        <xsd:attribute ecore:changeable="false" ecore:derived="true" ecore:reference="act:AAct" ecore:transient="true" ecore:volatile="true" name="roots">
+          <xsd:simpleType>
+            <xsd:list itemType="xsd:anyURI"/>
+          </xsd:simpleType>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="metaabm:SNamed" name="ASchedule">
+    <xsd:complexContent>
+      <xsd:extension base="act:ARoot">
+        <xsd:attribute ecore:unsettable="false" name="start" type="ecore:EInt">
+          <xsd:annotation>
+            <xsd:documentation>The first iteration in which to execute the activity.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute ecore:unsettable="false" name="interval" type="ecore:EInt">
+          <xsd:annotation>
+            <xsd:documentation>Specifies the interval. If &gt; 0, then the method is scheduled to repeat at the specified interval. Otherwise, method is scheduled for one time execution. Default is 0 meaning by default the method will only execute once.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute ecore:unsettable="false" name="priority" type="ecore:EInt">
+          <xsd:annotation>
+            <xsd:documentation>Priority w/r to other actions scheduled for the same tick. Default is [currently unspecified].</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute ecore:unsettable="false" name="pick" type="ecore:EInt">
+          <xsd:annotation>
+            <xsd:documentation>How many ticks the action can execute in the background while the tick count
+ progresses. Default is no duration [-1] meaning the method must finish execution before the next scheduled action can execute.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="metaabm:SNamed" name="ARule">
+    <xsd:complexContent>
+      <xsd:extension base="act:ARoot"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="metaabm:SNamed" name="ABuild">
+    <xsd:complexContent>
+      <xsd:extension base="act:ARoot"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="metaabm:SNamed" name="AInitialize">
+    <xsd:complexContent>
+      <xsd:extension base="act:ARoot"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="metaabm:SNamed" name="AMethod">
+    <xsd:complexContent>
+      <xsd:extension base="act:AAct">
+        <xsd:attribute name="body" type="ecore:EString"/>
+        <xsd:attribute default="true" ecore:unsettable="false" name="generate" type="ecore:EBoolean"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" ecore:implements="metaabm:IValue" name="ASink">
+    <xsd:complexContent>
+      <xsd:extension base="act:AAct">
+        <xsd:sequence>
+          <xsd:element ecore:opposite="sink" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="inputs" type="act:AInput"/>
+        </xsd:sequence>
+        <xsd:attribute ecore:reference="function:FFunction" name="function" type="xsd:anyURI" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" ecore:interface="true" name="ALogic">
+    <xsd:complexContent>
+      <xsd:extension base="act:AControl"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="AAny">
+    <xsd:complexContent>
+      <xsd:extension base="act:ALogic"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="AAll">
+    <xsd:complexContent>
+      <xsd:extension base="act:ALogic"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ANone">
+    <xsd:complexContent>
+      <xsd:extension base="act:ALogic"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="act:AControl" name="AQuery">
+    <xsd:complexContent>
+      <xsd:extension base="act:ASink"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="AEvaluate">
+    <xsd:complexContent>
+      <xsd:extension base="act:ASink"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="AAccessor">
+    <xsd:complexContent>
+      <xsd:extension base="act:AAct">
+        <xsd:attribute ecore:reference="metaabm:SAttribute" name="attribute" type="xsd:anyURI" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="act:ARoot" name="AWatch">
+    <xsd:complexContent>
+      <xsd:extension base="act:AAccessor"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="act:ACommand" name="ASet">
+    <xsd:complexContent>
+      <xsd:extension base="act:AAccessor">
+        <xsd:attribute ecore:reference="metaabm:IValue" name="parameter" type="xsd:anyURI" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ACreateAgents">
+    <xsd:complexContent>
+      <xsd:extension base="act:ASelect">
+        <xsd:attribute ecore:reference="metaabm:IValue" name="agentCount" type="xsd:anyURI"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="act:AShaped" name="ACreateShapedAgents">
+    <xsd:complexContent>
+      <xsd:extension base="act:ACreateAgents"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ALoadAgents">
+    <xsd:complexContent>
+      <xsd:extension base="act:ACreateAgents">
+        <xsd:attribute name="sourceURL" type="ecore:EString" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType ecore:implements="act:AShaped" name="ALoadShapedAgents">
+    <xsd:complexContent>
+      <xsd:extension base="act:ALoadAgents"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" ecore:implements="metaabm:SNamed" name="ABuildProjection">
+    <xsd:complexContent>
+      <xsd:extension base="act:AAct">
+        <xsd:attribute ecore:reference="metaabm:SAgent" name="agents">
+          <xsd:simpleType>
+            <xsd:list itemType="xsd:anyURI"/>
+          </xsd:simpleType>
+        </xsd:attribute>
+        <xsd:attribute ecore:reference="metaabm:SProjection" name="projection" type="xsd:anyURI" use="required"/>
+        <xsd:attribute ecore:reference="metaabm:SAttribute" name="attributes">
+          <xsd:simpleType>
+            <xsd:list itemType="xsd:anyURI"/>
+          </xsd:simpleType>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ABuildNetwork">
+    <xsd:complexContent>
+      <xsd:extension base="act:ABuildProjection">
+        <xsd:attribute ecore:unsettable="false" name="networkType" type="act:ABuildNetworkTypes" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ABuildSpace">
+    <xsd:complexContent>
+      <xsd:extension base="act:ABuildProjection">
+        <xsd:attribute ecore:unsettable="false" name="spaceType" type="act:ABuildSpaceTypes" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ABuildGeography">
+    <xsd:complexContent>
+      <xsd:extension base="act:ABuildProjection"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ABuildGrid">
+    <xsd:complexContent>
+      <xsd:extension base="act:ABuildSpace">
+        <xsd:attribute ecore:reference="metaabm:SAgent" name="fillAgent" type="xsd:anyURI"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType name="ABuildSpaceTypes">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration ecore:name="Random" ecore:value="10" value="RANDOM"/>
+      <xsd:enumeration ecore:name="RandomAroundPoint" ecore:value="20" value="RANDOM_POINT"/>
+      <xsd:enumeration ecore:name="File" ecore:value="30" value="FILE"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="ABuildNetworkTypes">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Barabasi"/>
+      <xsd:enumeration value="ErdosRenyi"/>
+      <xsd:enumeration value="EppsteinPowerLaw"/>
+      <xsd:enumeration value="GraphML"/>
+      <xsd:enumeration value="KleinbergSmallWorld"/>
+      <xsd:enumeration value="Lattice1D"/>
+      <xsd:enumeration value="Lattice2D"/>
+      <xsd:enumeration value="Pajek"/>
+      <xsd:enumeration value="RandomDensity"/>
+      <xsd:enumeration value="WattsSmallWorld"/>
+      <xsd:enumeration value="ASCIIMatrix"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType ecore:implements="metaabm:IID" name="ASelect">
+    <xsd:complexContent>
+      <xsd:extension base="act:AAct">
+        <xsd:attribute ecore:reference="metaabm:SAgent" name="agent" type="xsd:anyURI"/>
+        <xsd:attribute ecore:reference="metaabm:SProjection" name="space" type="xsd:anyURI"/>
+        <xsd:attribute ecore:unsettable="false" name="for" type="act:ASelectTypes" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="AMove">
+    <xsd:complexContent>
+      <xsd:extension base="act:ATransform"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType name="ASelectTypes">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration ecore:name="One" ecore:value="10" value="ONE"/>
+      <xsd:enumeration ecore:name="All" ecore:value="20" value="ALL"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType abstract="true" name="ATransform">
+    <xsd:complexContent>
+      <xsd:extension base="act:ACommand">
+        <xsd:attribute ecore:reference="act:ASelect" name="destination" type="xsd:anyURI" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ALeave">
+    <xsd:complexContent>
+      <xsd:extension base="act:ATransform"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ADie">
+    <xsd:complexContent>
+      <xsd:extension base="act:ATransform"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="AConnect">
+    <xsd:complexContent>
+      <xsd:extension base="act:ANetwork">
+        <xsd:attribute default="true" ecore:unsettable="false" name="directed" type="ecore:EBoolean"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="ANetwork">
+    <xsd:complexContent>
+      <xsd:extension base="act:ATransform">
+        <xsd:attribute ecore:reference="metaabm:SNetwork" name="within" type="xsd:anyURI" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ADisconnect">
+    <xsd:complexContent>
+      <xsd:extension base="act:ANetwork"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="AReplace">
+    <xsd:complexContent>
+      <xsd:extension base="act:AConnect"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType abstract="true" name="ACommand">
+    <xsd:complexContent>
+      <xsd:extension base="act:AAct"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+</xsd:schema>
