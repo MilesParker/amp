@@ -12,6 +12,10 @@ plugin@org.eclipse.emf.java=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroo
 plugin@org.ascape.ui.amp=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.ascape/plugins/org.ascape.ui.amp
 plugin@org.ascape.core=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.ascape/plugins/org.ascape.core
 
+!***EEF
+plugin@org.eclipse.draw3d=SVN,trunk,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d
+plugin@org.eclipse.draw3d.geometry=SVN,trunk,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.geometry
+
 !***GEF 3D
 plugin@org.eclipse.draw3d=SVN,trunk,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d
 plugin@org.eclipse.draw3d.geometry=SVN,trunk,svn://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d,,org.eclipse.draw3d.geometry
@@ -65,6 +69,9 @@ plugin@org.eclipse.amp.amf.abase.ui=HEAD,:pserver:anonymous:none@dev.eclipse.org
 plugin@org.eclipse.amp.amf.acore=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore
 plugin@org.eclipse.amp.amf.acore.edit=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore.edit
 plugin@org.eclipse.amp.amf.acore.editor=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore.editor
+plugin@org.eclipse.amp.amf.data=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore
+plugin@org.eclipse.amp.amf.data.edit=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore.edit
+plugin@org.eclipse.amp.amf.data.editor=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore.editor
 plugin@org.eclipse.amp.amf.gen=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen
 plugin@org.eclipse.amp.amf.gen.ascape=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen.ascape
 plugin@org.eclipse.amp.amf.gen.escape=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen.escape
