@@ -298,7 +298,8 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
                 // } else {
                 text = value.getLabel();
                 // }
-                if (input.getSelected() != null && input.getSelected() != input.getSink().getRootSelected()) {
+                if (input.getSelected() != null && input.getSink() != null
+                    && input.getSelected() != input.getSink().getRootSelected()) {
                     text = input.getSelected().getLabel() + ": " + text;
                 }
                 return text;
