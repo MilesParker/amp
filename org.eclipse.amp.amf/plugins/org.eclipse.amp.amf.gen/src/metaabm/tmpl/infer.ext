@@ -83,8 +83,8 @@ cached Boolean firstSelection(ASelect sel) :
 cached String accessPathInner(IID value, SImplemented owner, Boolean inner) :
 	inner ? "((" + owner.implementation.className + ")" + owner.innerValue().id() + ")." : "";
 
-cached String accessPath(SAgent from, SAgent to) :
-	from != to && to.parent != null ? to.parent.getterName() + "()." + accessPath(from, to.parent): "";
+cached String accessPath(SAgent from, SAgent to) : 
+	from != to && to.parent != null ? to.parent.getterName() + "()." + accessPath(from, to.parent()): "";
 
 cached String accessPathContext(AAct act, IID value, Boolean inner) :
 	act.selector().selected.firstSelection() || act.selector().firstSelection() ? accessPath(value.destAgent(), act.reference) : act.selector().selected.selid().pre();
