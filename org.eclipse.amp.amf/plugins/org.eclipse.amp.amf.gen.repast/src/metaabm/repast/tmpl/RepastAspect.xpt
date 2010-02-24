@@ -1,7 +1,6 @@
 «IMPORT metaabm»
 «IMPORT metaabm::act»
 «IMPORT metaabm::function»
-«IMPORT metaabm::tmpl::Java»
 «IMPORT emf»
 
 «EXTENSION metaabm::tmpl::types»
