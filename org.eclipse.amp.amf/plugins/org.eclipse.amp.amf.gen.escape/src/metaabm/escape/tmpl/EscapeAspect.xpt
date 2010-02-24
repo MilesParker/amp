@@ -11,7 +11,6 @@
 «EXTENSION metaabm::ascape::tmpl::namesascape»
 «EXTENSION metaabm::ascape::tmpl::inferascape»
 «EXTENSION metaabm::escape::tmpl::inferescape»
-«IMPORT ScapeAspect»
 
 «AROUND metaabm::tmpl::Java::ExtendType FOR SProjection-»«pkgm()-»Scape«ENDAROUND»
 «AROUND metaabm::tmpl::Java::ExtendType FOR SContext-»«typeName()-»«ENDAROUND»

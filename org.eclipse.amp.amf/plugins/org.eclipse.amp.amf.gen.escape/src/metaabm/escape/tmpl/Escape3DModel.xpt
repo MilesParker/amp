@@ -2,7 +2,6 @@
 «IMPORT metaabm»
 «IMPORT metaabm::act»
 «IMPORT metaabm::function»
-«IMPORT ScapeAspect»
 
 «EXTENSION metaabm::tmpl::types»
 «EXTENSION metaabm::tmpl::names» 
