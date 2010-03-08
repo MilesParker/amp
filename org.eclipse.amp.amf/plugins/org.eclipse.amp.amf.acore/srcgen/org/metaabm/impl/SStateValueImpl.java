@@ -75,22 +75,27 @@ public class SStateValueImpl extends SNamedImpl implements SStateValue {
      * @generated NOT
      */
     public EList<EObject> getAccessors() {
-        SAgent parent = (SAgent) getSet().getOwner();
-        Collection<SAgent> searchAgents = new HashSet<SAgent>();
-        searchAgents.add(parent);
-        if (parent instanceof SContext) {
-            searchAgents.addAll(((SContext) parent).getAllSubAgents());
-        }
-        Collection<EObject> accessors = new HashSet<EObject>();
-        for (SAgent agent : searchAgents) {
-            for (AAct act : ((AGroup) agent.getRootActivity()).getMembers()) {
-                if (accesses(act)) {
-                    accessors.add(act);
+        if (getSet() != null) {
+            SAgent parent = (SAgent) getSet().getOwner();
+            Collection<SAgent> searchAgents = new HashSet<SAgent>();
+            searchAgents.add(parent);
+            if (parent instanceof SContext) {
+                searchAgents.addAll(((SContext) parent).getAllSubAgents());
+            }
+            Collection<EObject> accessors = new HashSet<EObject>();
+            for (SAgent agent : searchAgents) {
+                for (AAct act : ((AGroup) agent.getRootActivity()).getMembers()) {
+                    if (accesses(act)) {
+                        accessors.add(act);
+                    }
                 }
             }
+            return new EcoreEList.UnmodifiableEList.FastCompare<EObject>(this, MetaABMPackage.Literals.IVALUE__ACCESSORS,
+                    accessors.size(), accessors.toArray());
         }
         return new EcoreEList.UnmodifiableEList.FastCompare<EObject>(this, MetaABMPackage.Literals.IVALUE__ACCESSORS,
-            accessors.size(), accessors.toArray());
+            0,
+                new EObject[] {});
     }
 
     public boolean accesses(AAct act) {
@@ -149,7 +154,9 @@ public class SStateValueImpl extends SNamedImpl implements SStateValue {
      * @generated
      */
     public SState getSet() {
-        if (eContainerFeatureID() != MetaABMPackage.SSTATE_VALUE__SET) return null;
+        if (eContainerFeatureID() != MetaABMPackage.SSTATE_VALUE__SET) {
+            return null;
+        }
         return (SState) eContainer();
     }
 
@@ -168,17 +175,24 @@ public class SStateValueImpl extends SNamedImpl implements SStateValue {
      */
     public void setSet(SState newSet) {
         if (newSet != eInternalContainer()
-            || (eContainerFeatureID() != MetaABMPackage.SSTATE_VALUE__SET && newSet != null)) {
-            if (EcoreUtil.isAncestor(this, newSet))
+                || eContainerFeatureID() != MetaABMPackage.SSTATE_VALUE__SET && newSet != null) {
+            if (EcoreUtil.isAncestor(this, newSet)) {
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+            }
             NotificationChain msgs = null;
-            if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
-            if (newSet != null)
+            if (eInternalContainer() != null) {
+                msgs = eBasicRemoveFromContainer(msgs);
+            }
+            if (newSet != null) {
                 msgs = ((InternalEObject) newSet).eInverseAdd(this, MetaABMPackage.SSTATE__OPTIONS, SState.class, msgs);
+            }
             msgs = basicSetSet(newSet, msgs);
-            if (msgs != null) msgs.dispatch();
-        } else if (eNotificationRequired())
+            if (msgs != null) {
+                msgs.dispatch();
+            }
+        } else if (eNotificationRequired()) {
             eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SSTATE_VALUE__SET, newSet, newSet));
+        }
     }
 
     /**
@@ -189,7 +203,9 @@ public class SStateValueImpl extends SNamedImpl implements SStateValue {
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
             case MetaABMPackage.SSTATE_VALUE__SET:
-                if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
+                if (eInternalContainer() != null) {
+                    msgs = eBasicRemoveFromContainer(msgs);
+                }
                 return basicSetSet((SState) otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
