@@ -10,11 +10,11 @@ extension metaabm::tmpl::util;
 context IID ERROR "ID for " + usageLabel() + " is not valid. (It must contain only alphanumeric characters and begin with a letter.)": 
    id().validateID();
 
-context IID ERROR "Label for " + usageLabel() + " is null": 
-   label != null;
+context IID ERROR "Label for " + usageLabel() + " is blank.": 
+   label != null && label != "";
 
-context IID ERROR "ID for " + usageLabel() + " is null": 
-   id() != null;
+context IID ERROR "ID for " + usageLabel() + " is blank": 
+   id() != null && id() != "" || !id().validateID();
    
 context ARoot ERROR "Agent Root Acts cannot refer to another agent : " + usageLabel(): 
    agent == reference;
@@ -22,7 +22,7 @@ context ARoot ERROR "Agent Root Acts cannot refer to another agent : " + usageLa
 context AAct ERROR "Orphaned act: " + usageLabel() + ". This should not happen, please run cleanup.": 
    ARoot.isInstance(this) || AGroup.isInstance(this) || sources.size > 0;
    
-context ASink ERROR "No function defined for " + usageLabel():
+context ASink ERROR "Function not defined for " + usageLabel():
    function != null;
    
 context ASink ERROR "Unknown Function \"" + function.label + "\" for " + usageLabel(): 
@@ -37,76 +37,76 @@ context AAct ERROR "Cycle Detected from " + usageLabel():
 context ASink ERROR "Circular reference for " + usageLabel() + " Input: " + allTargets.intersect(inputs.collect(i | i.value)): 
    allTargets.intersect(inputs.collect(i | i.value)).isEmpty;
    
-context AAct ERROR "The selection for " + usageLabel() + " is not in path.": 
+context AAct ERROR "Selection for " + usageLabel() + " is not in path": 
    this == selected || AGroup.isInstance(this) || allSources.contains(selected);
    
-context AInput ERROR "The selection for " + usageLabel() + " is not in path.": 
+context AInput ERROR "Selection for " + usageLabel() + " is not in path": 
    sink.allSources.contains(selected);
    
 //context AInput ERROR "Input " + usageLabel() + " has no value": 
 //   value != null;
    
-context AInput ERROR "Input " + usageLabel() + " has no selection": 
+context AInput ERROR "Selection not specified for Input " + usageLabel(): 
    selected != null || literal != null;
    
-context AInput ERROR "Input " + usageLabel() + " is not in path.": 
+context AInput ERROR "Input " + usageLabel() + " is not in path": 
    selected == null || value == null || SAttribute.isInstance(value) || SStateValue.isInstance(value) || ALiteral.isInstance(value) || sink.allSources.contains(value);
    
-context AAct ERROR "Act " + usageLabel() + " has no selection": 
+context AAct ERROR "Selection not specified for " + usageLabel(): 
    AGroup.isInstance(this) || selected != null;
    
-context AMove WARNING "Destination for " + usageLabel() + " is the same as selection, do you really want to apply the selection into itself?": 
-   selected != destination;
-   
-context ATransform ERROR "The destination for " + usageLabel() + " is not reachable.": 
+context ATransform ERROR "Destination for " + usageLabel() + " is not reachable": 
    allSources.contains(destination);
    
-context ITyped ERROR usageLabel() + "does not specify a type": 
+context ITyped ERROR "Type not specified for " + usageLabel(): 
    sType != null;
    
-context ASet ERROR "No parameter defined for " + usageLabel() : 
+context ASet ERROR "Parameter not specified for " + usageLabel() : 
    parameter != null;
-   
-context AAccessor ERROR "No attribute defined for " + usageLabel() : 
+
+context AAccessor ERROR "Attribute not specified for " + usageLabel() : 
    attribute != null;
-   
-context ABuildProjection ERROR usageLabel() + " does not specify a projection": 
+
+context ABuildProjection ERROR "Space not specified for " + usageLabel(): 
    projection != null;
-   
-context ASelect WARNING usageLabel() + " does not specify a space; assuming that search is across all agents of type": 
+
+context ASelect WARNING "Space not specfied for " + usageLabel() + "; assuming that search is across all agents of type": 
    space != null || ARoot.isInstance(this) || ACreateAgents.isInstance(this) || ABuildProjection.isInstance(this);
    
-context ASelect ERROR usageLabel() + " does not specify an agent": 
+context ASelect ERROR "Agent not specified for " + usageLabel(): 
    	agent != null;
    
-context ASelect ERROR usageLabel() + " uses itself as selection": 
+context ASelect ERROR "Selection refers to itself in " + usageLabel(): 
    	selected != this || rootSelected == this;
 
 context EObject ERROR "Required values missing for " + usageLabel() + ": " + missingNames().toString(", ") :
 	ASet.isInstance(this) || missingFeatures().size == 0;
    
-context ASelect WARNING "Sorry, metaABM currently only supports selection of ONE agent.": 
+context ASelect WARNING "Sorry, metaABM currently only supports selection of ONE agent": 
    for == ASelectTypes::One || for == null;
    
-context AQuery WARNING "Currently, spatial queries should only be direct targets of selections. The behavior of other usages is undefined.": 
+context AQuery WARNING "Currently, spatial queries should only be direct targets of selections. The behavior of other usages is undefined": 
    !isSpatialControl() || sources.typeSelect(ASelect).size == sources.size;
    
-context SState ERROR "No default state specified for " + usageLabel(): 
+context SState ERROR "Default Option not specified for " + usageLabel(): 
    defaultValue != null;
    
-context SAttribute ERROR "Default size must be provided for: " + usageLabel(): 
-   !SNDimensional.isInstance(owner) || defaultValue != null || SAttributeArray.isInstance(this);
-  
+context SAttribute ERROR "Default Value not specified for " + usageLabel(): 
+   defaultValue != null && defaultValue != "" || SAttributeArray.isInstance(this);
+   
+context SNDimensional ERROR "Dimensionality of 0 for " + usageLabel() + ". A space must have dimensionality of 1 or greater" : 
+   dimensionality > 0;
+
+context ANetwork ERROR "Within network not specified in " + usageLabel():
+    within != null;
+
+context AMove ERROR "Destination not specified for " + usageLabel():
+    destination.space != null;
+      
+context AMove WARNING "Destination for " + usageLabel() + " is the same as selection, do you really want to apply the selection into itself?": 
+   selected != destination;
+     
 //Too common a situation 
 //context SAttribute WARNING "No default value specified for " + usageLabel() + ". Assuming " + defaultValue(): 
 //   SState.isInstance(this) || defaultValue != null;
-   
-context SNDimensional ERROR usageLabel() + " has 0 dimensions." : 
-   dimensionality > 0;
-
-context ANetwork ERROR "No network has been defined to operate within for " + usageLabel():
-    within != null;
-
-context AMove ERROR "No space has been defined for the destination of " + usageLabel():
-    destination.space != null;
    
