@@ -741,6 +741,10 @@ IMenuListener, IViewerProvider, IGotoMarker {
         super.firePropertyChange(action);
     }
 
+    public void setSelectionForMarker(EObject eObject) {
+        setSelectionToViewer(Collections.singleton(editingDomain.getWrapper(eObject)));
+    }
+
     /**
      * This sets the selection into whichever viewer is active. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
@@ -1656,15 +1660,15 @@ IMenuListener, IViewerProvider, IGotoMarker {
                     URI uri = URI.createURI(uriAttribute);
                     EObject eObject = editingDomain.getResourceSet().getEObject(uri, true);
                     if (eObject != null) {
-                        setSelectionToViewer(Collections.singleton(editingDomain.getWrapper(eObject)));
+                        setSelectionForMarker(eObject);
                     }
                 }
-            } else if (marker.getType().equals("modelproblem")) {
+            } else if (marker.getType().equals("org.eclipse.amp.amf.gen.ide.modelproblem")) {
                 String elementPath = marker.getAttribute("modelElement", null);
                 URI uri = URI.createURI(elementPath);
                 EObject eObject = editingDomain.getResourceSet().getEObject(uri, true);
                 if (eObject != null) {
-                    setSelectionToViewer(Collections.singleton(editingDomain.getWrapper(eObject)));
+                    setSelectionForMarker(eObject);
                 } else {
                     StatusManager.getManager().handle(
                                                       new Status(Status.WARNING, "org.metaabm.ide", "Couldn't locate: "
