@@ -2,11 +2,9 @@
 «IMPORT metaabm»
 «IMPORT metaabm::act»
 «IMPORT metaabm::function»
-«IMPORT metaabm::tmpl::Java»
 
 «EXTENSION metaabm::tmpl::types»
 «EXTENSION metaabm::tmpl::names» 
-«EXTENSION metaabm::tmpl::infer»
 «EXTENSION metaabm::tmpl::util»
 «EXTENSION metaabm::tmpl::projections»
 «EXTENSION metaabm::tmpl::infer»
