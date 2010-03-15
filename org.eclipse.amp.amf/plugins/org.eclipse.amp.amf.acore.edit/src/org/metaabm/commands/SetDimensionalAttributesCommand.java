@@ -12,7 +12,7 @@
  *   Argonne National Laboratory - Initial development (pre-contribution)
  *   Metascape - Subsequent development and maintenance
  *
- * </copyright> $Id: SetDimensionalAttributesCommand.java,v 1.2 2010/03/15 17:18:30 mparker Exp $
+ * </copyright> $Id: SetDimensionalAttributesCommand.java,v 1.3 2010/03/15 20:45:26 mparker Exp $
  */
 package org.metaabm.commands;
 
@@ -148,8 +148,8 @@ public class SetDimensionalAttributesCommand extends SetCommand {
     @Override
     public void doExecute() {
         oldValue = owner.eGet(getFeature());
-        super.doExecute();
         suggestLabelCommand = new SuggestLabelCommand(domain, (SNDimensional) getOwner());
+        super.doExecute();
         command = createDependents(getDomain(), (SNDimensional) getOwner(), (Integer) getValue());
     }
 }
