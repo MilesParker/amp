@@ -39,7 +39,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.metaabm.act.provider.MetaABMActItemProviderAdapterFactory;
 import org.metaabm.function.provider.MetaABMFunctionItemProviderAdapterFactory;
@@ -55,7 +54,7 @@ import org.metaabm.util.MetaABMAdapterFactory;
  * @generated
  */
 public class MetaABMItemProviderAdapterFactory extends MetaABMAdapterFactory implements ComposeableAdapterFactory,
-        IChangeNotifier, IDisposable {
+IChangeNotifier, IDisposable {
     /**
      * This keeps track of the root adapter factory that delegates to this adapter factory.
      * <!-- begin-user-doc --> <!--
@@ -420,7 +419,7 @@ public class MetaABMItemProviderAdapterFactory extends MetaABMAdapterFactory imp
     public Object adapt(Object object, Object type) {
         if (isFactoryForType(type)) {
             Object adapter = super.adapt(object, type);
-            if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
+            if (!(type instanceof Class<?>) || ((Class<?>) type).isInstance(adapter)) {
                 return adapter;
             }
         }
@@ -474,7 +473,7 @@ public class MetaABMItemProviderAdapterFactory extends MetaABMAdapterFactory imp
     }
 
     /**
-     * This disposes all of the item providers created by this factory. 
+     * This disposes all of the item providers created by this factory.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
@@ -491,7 +490,7 @@ public class MetaABMItemProviderAdapterFactory extends MetaABMAdapterFactory imp
             factories.add(new MetaABMItemProviderAdapterFactory());
             factories.add(new MetaABMActItemProviderAdapterFactory());
             factories.add(new MetaABMFunctionItemProviderAdapterFactory());
-            factories.add(new ReflectiveItemProviderAdapterFactory());
+            // factories.add(new ReflectiveItemProviderAdapterFactory());
             genericFactory = new ComposedAdapterFactory(factories);
         }
         return genericFactory;

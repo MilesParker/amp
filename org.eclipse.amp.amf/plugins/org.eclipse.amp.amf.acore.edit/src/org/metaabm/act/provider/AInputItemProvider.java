@@ -42,6 +42,7 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.metaabm.IID;
 import org.metaabm.IValue;
 import org.metaabm.SAgent;
@@ -299,7 +300,7 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
                 text = value.getLabel();
                 // }
                 if (input.getSelected() != null && input.getSink() != null
-                    && input.getSelected() != input.getSink().getRootSelected()) {
+                        && input.getSelected() != input.getSink().getRootSelected()) {
                     text = input.getSelected().getLabel() + ": " + text;
                 }
                 return text;
@@ -369,7 +370,7 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     @Override
     public String getColumnText(Object object, int columnIndex) {
         IValue value = ((AInput) object).getValue();
-        if (columnIndex == 0) {
+        if (value != null && columnIndex == 0) {
             return value.getLabel();
         } else if (columnIndex == 1) {
             if (value instanceof SNamed) {
