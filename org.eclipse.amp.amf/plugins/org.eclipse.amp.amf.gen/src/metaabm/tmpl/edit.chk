@@ -91,8 +91,11 @@ context AQuery WARNING "Currently, spatial queries should only be direct targets
 context SState ERROR "Default Option not specified for " + usageLabel(): 
    defaultValue != null;
    
-context SAttribute ERROR "Default Value not specified for " + usageLabel(): 
-   defaultValue != null && defaultValue != "" || SAttributeArray.isInstance(this);
+context SAttribute ERROR "Default Value needed for " + usageLabel(): 
+   !SNDimensional.isInstance(owner) || (defaultValue != null && defaultValue != "") || SAttributeArray.isInstance(this);
+   
+context SAttribute WARNING "Default Value not set for " + usageLabel() + ". Assuming empty value": 
+   SNDimensional.isInstance(owner) || SAttributeArray.isInstance(this) || (defaultValue != null && defaultValue != "");
    
 context SNDimensional ERROR "Dimensionality of 0 for " + usageLabel() + ". A space must have dimensionality of 1 or greater" : 
    dimensionality > 0;
