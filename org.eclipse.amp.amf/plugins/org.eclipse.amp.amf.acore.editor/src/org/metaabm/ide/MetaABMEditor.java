@@ -71,7 +71,6 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IWrapperItemProvider;
-import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
@@ -80,7 +79,6 @@ import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
 import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
@@ -144,6 +142,7 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+
 import org.metaabm.SAgent;
 import org.metaabm.act.AInput;
 import org.metaabm.act.provider.MetaABMActItemProviderAdapterFactory;
@@ -691,7 +690,7 @@ IMenuListener, IViewerProvider, IGotoMarker {
         adapterFactory.addAdapterFactory(new MetaABMItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new MetaABMFunctionItemProviderAdapterFactory());
         adapterFactory.addAdapterFactory(new MetaABMActItemProviderAdapterFactory());
-        adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+        // adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
         // Create the command stack that will notify this editor as commands are
         // executed.
@@ -739,10 +738,6 @@ IMenuListener, IViewerProvider, IGotoMarker {
     @Override
     protected void firePropertyChange(int action) {
         super.firePropertyChange(action);
-    }
-
-    public void setSelectionForMarker(EObject eObject) {
-        setSelectionToViewer(Collections.singleton(editingDomain.getWrapper(eObject)));
     }
 
     /**
@@ -936,7 +931,7 @@ IMenuListener, IViewerProvider, IGotoMarker {
         contextMenu.addMenuListener(this);
         Menu menu = contextMenu.createContextMenu(viewer.getControl());
         viewer.getControl().setMenu(menu);
-        getSite().registerContextMenu(contextMenu, new UnwrappingSelectionProvider(viewer));
+        // getSite().registerContextMenu(contextMenu, new UnwrappingSelectionProvider(viewer));
         if (viewer == selectionViewer) {
             viewer.addDoubleClickListener(new TreeExpansionListener());
         }
@@ -1681,8 +1676,16 @@ IMenuListener, IViewerProvider, IGotoMarker {
     }
 
     /**
-     * This is called during startup. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
+     * Set the selection in the case where we want to allow for external navigation only.
+     * 
+     * @param eObject
+     */
+    protected void setSelectionForMarker(EObject eObject) {
+        setSelectionToViewer(Collections.singleton(editingDomain.getWrapper(eObject)));
+    }
+
+    /**
+     * This is called during startup. <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated
      */
@@ -1898,5 +1901,12 @@ IMenuListener, IViewerProvider, IGotoMarker {
 
     public AgentAction getImportFromClassAction() {
         return importFromClassAction;
+    }
+
+    /**
+     * @return the markerHelper
+     */
+    public MarkerHelper getMarkerHelper() {
+        return markerHelper;
     }
 }
