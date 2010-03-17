@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MeasurementItemProvider.java,v 1.1 2010/02/13 04:00:11 mparker Exp $
+ * $Id: MeasurementItemProvider.java,v 1.2 2010/03/17 04:12:55 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.provider;
 
@@ -64,10 +64,32 @@ public class MeasurementItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addMeasurePropertyDescriptor(object);
+            addTypePropertyDescriptor(object);
             addAttributePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
+    }
+
+    /**
+     * This adds a property descriptor for the Type feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addTypePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_Measurement_type_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Measurement_type_feature", "_UI_Measurement_type"),
+                 DataPackage.Literals.MEASUREMENT__TYPE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -87,28 +109,6 @@ public class MeasurementItemProvider
                  true,
                  false,
                  true,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
-
-    /**
-     * This adds a property descriptor for the Measure feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addMeasurePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Measurement_measure_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Measurement_measure_feature", "_UI_Measurement_type"),
-                 DataPackage.Literals.MEASUREMENT__MEASURE,
-                 true,
-                 false,
-                 false,
                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
@@ -143,7 +143,7 @@ public class MeasurementItemProvider
      */
     @Override
     public String getText(Object object) {
-        ScaleType labelValue = ((Measurement)object).getMeasure();
+        ScaleType labelValue = ((Measurement)object).getType();
         String label = labelValue == null ? null : labelValue.toString();
         return label == null || label.length() == 0 ?
             getString("_UI_Measurement_type") :
@@ -162,7 +162,7 @@ public class MeasurementItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(Measurement.class)) {
-            case DataPackage.MEASUREMENT__MEASURE:
+            case DataPackage.MEASUREMENT__TYPE:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }
