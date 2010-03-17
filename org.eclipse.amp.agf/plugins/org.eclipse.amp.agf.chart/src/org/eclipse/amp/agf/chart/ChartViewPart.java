@@ -41,7 +41,7 @@ public class ChartViewPart extends EditPartViewPart {
      */
     public void createModelListeners() {
         // super.createModelListeners();
-        getRootListener().setWaitForUpdate(false);
+        // getRootListener().setWaitForUpdate(false);
     }
 
     @Override
