@@ -104,7 +104,7 @@ public class TreeViewPart extends EditPartViewPart {
      */
     protected void modelChanged(final IModel activeModel) {
         setModel(activeModel);
-        if (getViewer().getControl() != null) {
+        if (getViewer().getControl() != null && !getViewer().getControl().isDisposed()) {
             if (activeModel != null) {
                 ModelFactoryProvider provider = getModelFactoryProvider(activeModel);
                 EditPartFactory editPartTreeFactory = provider.getEditPartTreeFactory();
