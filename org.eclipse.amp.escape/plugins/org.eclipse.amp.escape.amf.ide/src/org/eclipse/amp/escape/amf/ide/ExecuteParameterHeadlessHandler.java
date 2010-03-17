@@ -15,6 +15,8 @@
  */
 package org.eclipse.amp.escape.amf.ide;
 
+import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class ExecuteParameterHeadlessHandler.
@@ -26,5 +28,16 @@ public class ExecuteParameterHeadlessHandler extends ExecuteParameterHandler {
      */
     public ExecuteParameterHeadlessHandler() {
         super(true);
+    }
+
+    /**
+     * @return
+     * @see org.eclipse.amp.escape.amf.ide.ExecuteParameterHandler#createRunner()
+     */
+    protected EclipseEscapeRunner createRunner() {
+        EclipseEscapeRunner runner = super.createRunner();
+        runner.setCloseOnStop(true);
+        runner.setAutoRestart(false);
+        return runner;
     }
 }

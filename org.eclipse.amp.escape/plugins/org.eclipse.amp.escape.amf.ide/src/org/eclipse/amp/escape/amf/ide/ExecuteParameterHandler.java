@@ -15,7 +15,6 @@
  */
 package org.eclipse.amp.escape.amf.ide;
 
-import org.ascape.runtime.Runner;
 import org.eclipse.amp.amf.parameters.AParFactory;
 import org.eclipse.amp.amf.parameters.AParInterpreter;
 import org.eclipse.amp.escape.command.ExecuteHandler;
@@ -23,6 +22,8 @@ import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IProgressMonitor;
+
+import org.ascape.runtime.Runner;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -62,6 +63,7 @@ public class ExecuteParameterHandler extends ExecuteHandler {
             if (modelResource.getFileExtension().equals("apar")) {
                 // a bit awkward..
                 setInterpreter((AParInterpreter) AParFactory.create(null).getInterpreter(modelResource));
+                eclipseRunner.setAutoRestart(false);
                 eclipseRunner.open(project, getInterpreter().getRootContext().getImplementation().getQualifiedName(),
                                    getInterpreter().getRunName(), getInterpreter().getArgs());
             }

@@ -24,10 +24,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TooManyListenersException;
 
-import org.ascape.model.event.ScapeEvent;
-import org.ascape.util.PropertyAccessor;
-import org.ascape.util.data.DataSeries;
-import org.ascape.view.nonvis.DataView;
 import org.eclipse.amp.amf.adata.Catalog;
 import org.eclipse.amp.amf.adata.DataPackage;
 import org.eclipse.amp.amf.adata.DataPoint;
@@ -37,6 +33,7 @@ import org.eclipse.amp.amf.adata.ParameterSet;
 import org.eclipse.amp.amf.adata.Run;
 import org.eclipse.amp.amf.adata.ScaleType;
 import org.eclipse.amp.amf.adata.impl.DataFactoryImpl;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
@@ -46,6 +43,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+
+import org.apache.commons.lang.time.DateFormatUtils;
+import org.ascape.model.event.ScapeEvent;
+import org.ascape.util.PropertyAccessor;
+import org.ascape.util.data.DataSeries;
+import org.ascape.view.nonvis.DataView;
 
 /**
  * 
@@ -78,9 +81,17 @@ public class EMFDataOutputView extends DataView {
         IProject project = resource.getProject();
         IPath projectPath = RESULTS_FOLDER.append(
                                                   resource.getProjectRelativePath().removeFirstSegments(1)
-                                                  .removeLastSegments(1)).append(name + ".adata");
+                                                  .removeLastSegments(1)).append(
+                                                                                 getFileName(resource)
+                                                                                 + ".adata");
 
         dataFileURI = URI.createPlatformResourceURI(project.getName() + "/" + projectPath, true);
+    }
+
+    private String getFileName(IResource resource) {
+        String name = ((IFile) resource).getProjectRelativePath().removeFileExtension().lastSegment();
+        name += DateFormatUtils.format(System.currentTimeMillis(), "MM-dd-yy_HH-mm-S");
+        return name;
     }
 
     /**
@@ -137,19 +148,19 @@ public class EMFDataOutputView extends DataView {
             measure.setAttribute(selectedSeries.getDataPoint().getName());
 
             if (selectedSeries.getMeasureName() == "Count") {
-                measure.setMeasure(ScaleType.COUNT);
+                measure.setType(ScaleType.COUNT);
             } else if (selectedSeries.getMeasureName() == "Sum") {
-                measure.setMeasure(ScaleType.SUM);
+                measure.setType(ScaleType.SUM);
             } else if (selectedSeries.getMeasureName() == "Average") {
-                measure.setMeasure(ScaleType.AVERAGE);
+                measure.setType(ScaleType.AVERAGE);
             } else if (selectedSeries.getMeasureName() == "Minimum") {
-                measure.setMeasure(ScaleType.MINIMUM);
+                measure.setType(ScaleType.MINIMUM);
             } else if (selectedSeries.getMeasureName() == "Maximum") {
-                measure.setMeasure(ScaleType.MAXIMUM);
+                measure.setType(ScaleType.MAXIMUM);
             } else if (selectedSeries.getMeasureName() == "Standard Deviation") {
-                measure.setMeasure(ScaleType.STANDARD_DEVIATION);
+                measure.setType(ScaleType.STANDARD_DEVIATION);
             } else if (selectedSeries.getMeasureName() == "Variance") {
-                measure.setMeasure(ScaleType.VARIANCE);
+                measure.setType(ScaleType.VARIANCE);
             }
             measureForSeries.put(selectedSeries, measure);
 
@@ -215,15 +226,6 @@ public class EMFDataOutputView extends DataView {
         // let's save results in case we get interrupted
         saveResults();
         super.scapeStopped(scapeEvent);
-    }
-
-    /**
-     * @param scapeEvent
-     * @see org.ascape.model.event.DefaultScapeListener#scapeClosing(org.ascape.model.event.ScapeEvent)
-     */
-    public void scapeClosing(ScapeEvent scapeEvent) {
-        saveResults();
-        super.scapeClosing(scapeEvent);
     }
 
     private synchronized void saveResults() {

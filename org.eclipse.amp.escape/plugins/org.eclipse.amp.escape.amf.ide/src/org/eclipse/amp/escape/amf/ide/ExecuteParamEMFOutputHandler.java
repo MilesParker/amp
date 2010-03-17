@@ -15,9 +15,10 @@
  */
 package org.eclipse.amp.escape.amf.ide;
 
-import org.ascape.runtime.Runner;
 import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
 import org.eclipse.amp.escape.view.EMFDataOutputView;
+
+import org.ascape.runtime.Runner;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -54,6 +55,8 @@ public class ExecuteParamEMFOutputHandler extends ExecuteParameterHeadlessHandle
             }
 
         };
+        runner.setCloseOnStop(true);
+        runner.setAutoRestart(false);
         return runner;
     }
 

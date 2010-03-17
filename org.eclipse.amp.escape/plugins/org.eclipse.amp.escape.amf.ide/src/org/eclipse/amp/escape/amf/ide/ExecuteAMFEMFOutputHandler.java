@@ -15,18 +15,16 @@
  */
 package org.eclipse.amp.escape.amf.ide;
 
-import org.ascape.runtime.Runner;
 import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
 import org.eclipse.amp.escape.view.EMFDataOutputView;
-import org.eclipse.core.resources.IResource;
+
+import org.ascape.runtime.Runner;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class ExecuteParameterHandler.
  */
 public class ExecuteAMFEMFOutputHandler extends ExecuteAMFHeadlessHandler {
-
-    protected IResource modelResource;
 
     /**
      * Instantiates a new execute parameter handler.
@@ -41,6 +39,12 @@ public class ExecuteAMFEMFOutputHandler extends ExecuteAMFHeadlessHandler {
      */
     protected EclipseEscapeRunner createRunner() {
         Runner.setDisplayGraphics(!isHeadless());
+        // if (modelResource.getFileExtension().equals("apar")) {
+        // // a bit awkward..
+        // setInterpreter((AParInterpreter) AParFactory.create(null).getInterpreter(modelResource));
+        // eclipseRunner.open(project, getInterpreter().getRootContext().getImplementation().getQualifiedName(),
+        // getInterpreter().getRunName(), getInterpreter().getArgs());
+        // }
         EclipseEscapeRunner runner = new EclipseEscapeRunner() {
             private static final long serialVersionUID = 1L;
 

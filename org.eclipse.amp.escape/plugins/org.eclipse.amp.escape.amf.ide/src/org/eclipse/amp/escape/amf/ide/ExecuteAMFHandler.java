@@ -29,6 +29,8 @@ import org.metaabm.xsd.MetaABMPersist;
 
 public class ExecuteAMFHandler extends ExecuteHandler {
 
+    protected IResource modelResource;
+
     public ExecuteAMFHandler() {
         super(false);
     }
@@ -39,7 +41,7 @@ public class ExecuteAMFHandler extends ExecuteHandler {
 
     protected void executeOpen(EclipseEscapeRunner eclipseRunner, Object executed, IProgressMonitor monitor) {
         if (executed instanceof IResource) {
-            IResource modelResource = (IResource) executed;
+            modelResource = (IResource) executed;
             File file = modelResource.getLocation().toFile();
             if (modelResource.getFileExtension().equals("metaabm")) {
                 try {

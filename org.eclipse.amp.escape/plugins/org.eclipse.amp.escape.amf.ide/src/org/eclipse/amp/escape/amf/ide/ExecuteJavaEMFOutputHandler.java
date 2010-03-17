@@ -15,11 +15,12 @@
  */
 package org.eclipse.amp.escape.amf.ide;
 
-import org.ascape.runtime.Runner;
 import org.eclipse.amp.escape.command.ExecuteJavaHeadlessHandler;
 import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
 import org.eclipse.amp.escape.view.EMFDataOutputView;
 import org.eclipse.core.resources.IResource;
+
+import org.ascape.runtime.Runner;
 
 // TODO: Auto-generated Javadoc
 /**

@@ -30,3 +30,4 @@ Export-Package: org.eclipse.amp.escape.amf.ide,
  org.eclipse.amp.escape.view
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
+Import-Package: org.apache.commons.lang.time
