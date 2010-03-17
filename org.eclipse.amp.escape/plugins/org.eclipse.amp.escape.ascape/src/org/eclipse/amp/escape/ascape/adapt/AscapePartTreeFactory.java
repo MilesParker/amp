@@ -15,13 +15,14 @@
  */
 package org.eclipse.amp.escape.ascape.adapt;
 
-import org.ascape.model.Agent;
-import org.ascape.model.Scape;
 import org.eclipse.amp.agf.tree.AgentTreePart;
 import org.eclipse.amp.agf.tree.ScapeTreePart;
 import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
+
+import org.ascape.model.Agent;
+import org.ascape.model.Scape;
 
 
 // TODO: Auto-generated Javadoc
@@ -40,7 +41,9 @@ public class AscapePartTreeFactory implements EditPartFactory {
      */
     public EditPart createEditPart(EditPart context, Object model) {
         EditPart part = getPartForElement(model);
-        part.setModel(model);
+        if (part != null) {
+            part.setModel(model);
+        }
         return part;
     }
 
