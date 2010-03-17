@@ -18,14 +18,6 @@ package org.eclipse.amp.escape.ide;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.ascape.AscapeRuntimePlugin;
-import org.ascape.model.Agent;
-import org.ascape.model.Scape;
-import org.ascape.model.event.ControlEvent;
-import org.ascape.model.event.ScapeEvent;
-import org.ascape.model.event.ScapeListener;
-import org.ascape.model.rule.PropogateScapeOnly;
-import org.ascape.runtime.NonGraphicRunner;
 import org.eclipse.amp.axf.core.IEngine;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
 import org.eclipse.amp.axf.core.IModel;
@@ -49,6 +41,15 @@ import org.eclipse.ui.console.IConsole;
 import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.statushandlers.StatusManager;
 
+import org.ascape.AscapeRuntimePlugin;
+import org.ascape.model.Agent;
+import org.ascape.model.Scape;
+import org.ascape.model.event.ControlEvent;
+import org.ascape.model.event.ScapeEvent;
+import org.ascape.model.event.ScapeListener;
+import org.ascape.model.rule.PropogateScapeOnly;
+import org.ascape.runtime.NonGraphicRunner;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class EclipseEscapeRunner.
@@ -70,6 +71,9 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
     TimeGranularity updateGranularity = TimeGranularity.DEFAULT_GRANULARITY;
 
     public final static long KILL_AFTER_NO_RESPONSE_TIME = 5000;
+
+    // would be nice to have this in Ascape proper but not worth IP submission
+    private boolean closeOnStop = false;
 
     /**
      * Open.
@@ -231,6 +235,9 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
                     // do {
                     try {
                         EclipseEscapeRunner.this.run();
+                        if (closeOnStop) {
+                            close();
+                        }
                     } catch (RuntimeException e) {
                         closeFinally();
                         throw e;
@@ -244,7 +251,11 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
                     }
                     StatusManager.getManager().handle(new Status(Status.ERROR, project.getName(), message, e),
                                                       StatusManager.SHOW | StatusManager.LOG);
-                    stop();
+                    if (closeOnStop) {
+                        close();
+                    } else {
+                        stop();
+                    }
                 }
                 return Status.OK_STATUS;
             }
@@ -521,6 +532,35 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 
     public IProject getExecutingProject() {
         return project;
+    }
+
+    /**
+     * Should the model exit upon a stop command?
+     * 
+     * @see #setCloseOnStop
+     * @return whether to complete run on model stop; default is false
+     */
+    public boolean isCloseOnStop() {
+        return closeOnStop;
+    }
+
+    /**
+     * Specifies whether the runner should exit upon a model stop. The default behavior is false, which leaves the model
+     * open (and typically able to restart) until explicitly closed. For batch runs we don't want the model to stay open
+     * as that requires a view notification and response to close it. It's probably cleaner to allow the runner to exit
+     * immediately rather than wait for a listener to trigger one.
+     * 
+     * Note that the model will not stop in the case where a restart has been requested, and listener's will be notified
+     * of a model stop before actually closing. This gives output control listeners -- for a parameter sweep control,
+     * for example -- an opportunity to set restart to request a restart. It also implies that it makes no sense to have
+     * autoRestart true if this value is also true. Since auto-restart is by default true, be sure to set it to false.
+     * 
+     * This setting can be safely changed during a model run.
+     * 
+     * @param closeOnStop whether to complete run on model stop; default is false
+     */
+    public void setCloseOnStop(boolean closeOnStop) {
+        this.closeOnStop = closeOnStop;
     }
 
     // public Object getAdapter(Object adaptableObject, Class adapterType) {

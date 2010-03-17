@@ -15,7 +15,6 @@
  */
 package org.eclipse.amp.escape.command;
 
-import org.ascape.runtime.Runner;
 import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.expressions.EvaluationContext;
@@ -24,6 +23,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.viewers.IStructuredSelection;
+
+import org.ascape.runtime.Runner;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -48,7 +49,7 @@ public abstract class ExecuteHandler extends ResourceHandler {
      * 
      * @see org.eclipse.amp.escape.command.ResourceHandler#execute(java.lang.Object, java.lang.String)
      */
-    public void execute(final Object executed, String name) throws ExecutionException {
+    public final void execute(final Object executed, String name) throws ExecutionException {
         final EclipseEscapeRunner eclipseRunner = createRunner();
         Job escapeRun = new Job("Run " + name) {
             protected IStatus run(IProgressMonitor monitor) {
