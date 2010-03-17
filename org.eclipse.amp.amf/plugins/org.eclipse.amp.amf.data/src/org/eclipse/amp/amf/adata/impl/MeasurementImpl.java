@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MeasurementImpl.java,v 1.1 2010/02/13 03:59:09 mparker Exp $
+ * $Id: MeasurementImpl.java,v 1.2 2010/03/17 04:12:59 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.impl;
 
@@ -27,7 +27,7 @@ import org.metaabm.SAttribute;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.amp.amf.adata.impl.MeasurementImpl#getMeasure <em>Measure</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.adata.impl.MeasurementImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.adata.impl.MeasurementImpl#getAttribute <em>Attribute</em>}</li>
  * </ul>
  * </p>
@@ -36,24 +36,24 @@ import org.metaabm.SAttribute;
  */
 public class MeasurementImpl extends EObjectImpl implements Measurement {
     /**
-     * The default value of the '{@link #getMeasure() <em>Measure</em>}' attribute.
+     * The default value of the '{@link #getType() <em>Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMeasure()
+     * @see #getType()
      * @generated
      * @ordered
      */
-    protected static final ScaleType MEASURE_EDEFAULT = ScaleType.COUNT;
+    protected static final ScaleType TYPE_EDEFAULT = ScaleType.COUNT;
 
     /**
-     * The cached value of the '{@link #getMeasure() <em>Measure</em>}' attribute.
+     * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMeasure()
+     * @see #getType()
      * @generated
      * @ordered
      */
-    protected ScaleType measure = MEASURE_EDEFAULT;
+    protected ScaleType type = TYPE_EDEFAULT;
 
     /**
      * The default value of the '{@link #getAttribute() <em>Attribute</em>}' attribute.
@@ -99,6 +99,27 @@ public class MeasurementImpl extends EObjectImpl implements Measurement {
      * <!-- end-user-doc -->
      * @generated
      */
+    public ScaleType getType() {
+        return type;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setType(ScaleType newType) {
+        ScaleType oldType = type;
+        type = newType == null ? TYPE_EDEFAULT : newType;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.MEASUREMENT__TYPE, oldType, type));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public String getAttribute() {
         return attribute;
     }
@@ -120,32 +141,11 @@ public class MeasurementImpl extends EObjectImpl implements Measurement {
      * <!-- end-user-doc -->
      * @generated
      */
-    public ScaleType getMeasure() {
-        return measure;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setMeasure(ScaleType newMeasure) {
-        ScaleType oldMeasure = measure;
-        measure = newMeasure == null ? MEASURE_EDEFAULT : newMeasure;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.MEASUREMENT__MEASURE, oldMeasure, measure));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case DataPackage.MEASUREMENT__MEASURE:
-                return getMeasure();
+            case DataPackage.MEASUREMENT__TYPE:
+                return getType();
             case DataPackage.MEASUREMENT__ATTRIBUTE:
                 return getAttribute();
         }
@@ -160,8 +160,8 @@ public class MeasurementImpl extends EObjectImpl implements Measurement {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case DataPackage.MEASUREMENT__MEASURE:
-                setMeasure((ScaleType)newValue);
+            case DataPackage.MEASUREMENT__TYPE:
+                setType((ScaleType)newValue);
                 return;
             case DataPackage.MEASUREMENT__ATTRIBUTE:
                 setAttribute((String)newValue);
@@ -178,8 +178,8 @@ public class MeasurementImpl extends EObjectImpl implements Measurement {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case DataPackage.MEASUREMENT__MEASURE:
-                setMeasure(MEASURE_EDEFAULT);
+            case DataPackage.MEASUREMENT__TYPE:
+                setType(TYPE_EDEFAULT);
                 return;
             case DataPackage.MEASUREMENT__ATTRIBUTE:
                 setAttribute(ATTRIBUTE_EDEFAULT);
@@ -196,8 +196,8 @@ public class MeasurementImpl extends EObjectImpl implements Measurement {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case DataPackage.MEASUREMENT__MEASURE:
-                return measure != MEASURE_EDEFAULT;
+            case DataPackage.MEASUREMENT__TYPE:
+                return type != TYPE_EDEFAULT;
             case DataPackage.MEASUREMENT__ATTRIBUTE:
                 return ATTRIBUTE_EDEFAULT == null ? attribute != null : !ATTRIBUTE_EDEFAULT.equals(attribute);
         }
@@ -214,8 +214,8 @@ public class MeasurementImpl extends EObjectImpl implements Measurement {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (measure: ");
-        result.append(measure);
+        result.append(" (type: ");
+        result.append(type);
         result.append(", attribute: ");
         result.append(attribute);
         result.append(')');

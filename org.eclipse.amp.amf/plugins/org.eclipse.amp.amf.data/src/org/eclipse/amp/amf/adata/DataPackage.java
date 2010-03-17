@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DataPackage.java,v 1.1 2010/02/13 03:59:06 mparker Exp $
+ * $Id: DataPackage.java,v 1.2 2010/03/17 04:12:59 mparker Exp $
  */
 package org.eclipse.amp.amf.adata;
 
@@ -282,13 +282,13 @@ public interface DataPackage extends EPackage {
     int MEASUREMENT = 4;
 
     /**
-     * The feature id for the '<em><b>Measure</b></em>' attribute.
+     * The feature id for the '<em><b>Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int MEASUREMENT__MEASURE = 0;
+    int MEASUREMENT__TYPE = 0;
 
     /**
      * The feature id for the '<em><b>Attribute</b></em>' attribute.
@@ -563,6 +563,17 @@ public interface DataPackage extends EPackage {
     EClass getMeasurement();
 
     /**
+     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.adata.Measurement#getType <em>Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Type</em>'.
+     * @see org.eclipse.amp.amf.adata.Measurement#getType()
+     * @see #getMeasurement()
+     * @generated
+     */
+    EAttribute getMeasurement_Type();
+
+    /**
      * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.adata.Measurement#getAttribute <em>Attribute</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -593,17 +604,6 @@ public interface DataPackage extends EPackage {
      * @generated
      */
     EReference getParameterSet_Members();
-
-    /**
-     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.adata.Measurement#getMeasure <em>Measure</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Measure</em>'.
-     * @see org.eclipse.amp.amf.adata.Measurement#getMeasure()
-     * @see #getMeasurement()
-     * @generated
-     */
-    EAttribute getMeasurement_Measure();
 
     /**
      * Returns the meta object for enum '{@link org.eclipse.amp.amf.adata.ScaleType <em>Scale Type</em>}'.
@@ -808,6 +808,14 @@ public interface DataPackage extends EPackage {
         EClass MEASUREMENT = eINSTANCE.getMeasurement();
 
         /**
+         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute MEASUREMENT__TYPE = eINSTANCE.getMeasurement_Type();
+
+        /**
          * The meta object literal for the '<em><b>Attribute</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -832,14 +840,6 @@ public interface DataPackage extends EPackage {
          * @generated
          */
         EReference PARAMETER_SET__MEMBERS = eINSTANCE.getParameterSet_Members();
-
-        /**
-         * The meta object literal for the '<em><b>Measure</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute MEASUREMENT__MEASURE = eINSTANCE.getMeasurement_Measure();
 
         /**
          * The meta object literal for the '{@link org.eclipse.amp.amf.adata.ScaleType <em>Scale Type</em>}' enum.

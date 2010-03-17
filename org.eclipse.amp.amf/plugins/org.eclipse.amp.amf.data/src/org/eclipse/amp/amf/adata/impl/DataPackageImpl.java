@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DataPackageImpl.java,v 1.1 2010/02/13 03:59:10 mparker Exp $
+ * $Id: DataPackageImpl.java,v 1.2 2010/03/17 04:12:59 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.impl;
 
@@ -333,6 +333,15 @@ public class DataPackageImpl extends EPackageImpl implements DataPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    public EAttribute getMeasurement_Type() {
+        return (EAttribute)measurementEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     public EAttribute getMeasurement_Attribute() {
         return (EAttribute)measurementEClass.getEStructuralFeatures().get(1);
     }
@@ -353,15 +362,6 @@ public class DataPackageImpl extends EPackageImpl implements DataPackage {
      */
     public EReference getParameterSet_Members() {
         return (EReference)parameterSetEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getMeasurement_Measure() {
-        return (EAttribute)measurementEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -425,7 +425,7 @@ public class DataPackageImpl extends EPackageImpl implements DataPackage {
         createEReference(catalogEClass, CATALOG__RUNS);
 
         measurementEClass = createEClass(MEASUREMENT);
-        createEAttribute(measurementEClass, MEASUREMENT__MEASURE);
+        createEAttribute(measurementEClass, MEASUREMENT__TYPE);
         createEAttribute(measurementEClass, MEASUREMENT__ATTRIBUTE);
 
         parameterSetEClass = createEClass(PARAMETER_SET);
@@ -492,7 +492,7 @@ public class DataPackageImpl extends EPackageImpl implements DataPackage {
         initEReference(getCatalog_Runs(), this.getRun(), null, "runs", null, 0, -1, Catalog.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(measurementEClass, Measurement.class, "Measurement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getMeasurement_Measure(), this.getScaleType(), "measure", null, 0, 1, Measurement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEAttribute(getMeasurement_Type(), this.getScaleType(), "type", null, 0, 1, Measurement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getMeasurement_Attribute(), ecorePackage.getEString(), "attribute", null, 1, 1, Measurement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(parameterSetEClass, ParameterSet.class, "ParameterSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

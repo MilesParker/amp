@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Measurement.java,v 1.1 2010/02/13 03:59:06 mparker Exp $
+ * $Id: Measurement.java,v 1.2 2010/03/17 04:12:59 mparker Exp $
  */
 package org.eclipse.amp.amf.adata;
 
@@ -18,7 +18,7 @@ import org.metaabm.SAttribute;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.amp.amf.adata.Measurement#getMeasure <em>Measure</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.adata.Measurement#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.adata.Measurement#getAttribute <em>Attribute</em>}</li>
  * </ul>
  * </p>
@@ -28,6 +28,35 @@ import org.metaabm.SAttribute;
  * @generated
  */
 public interface Measurement extends EObject {
+    /**
+     * Returns the value of the '<em><b>Type</b></em>' attribute.
+     * The literals are from the enumeration {@link org.eclipse.amp.amf.adata.ScaleType}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Type</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Type</em>' attribute.
+     * @see org.eclipse.amp.amf.adata.ScaleType
+     * @see #setType(ScaleType)
+     * @see org.eclipse.amp.amf.adata.DataPackage#getMeasurement_Type()
+     * @model unique="false" ordered="false"
+     * @generated
+     */
+    ScaleType getType();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.amp.amf.adata.Measurement#getType <em>Type</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Type</em>' attribute.
+     * @see org.eclipse.amp.amf.adata.ScaleType
+     * @see #getType()
+     * @generated
+     */
+    void setType(ScaleType value);
+
     /**
      * Returns the value of the '<em><b>Attribute</b></em>' attribute.
      * <!-- begin-user-doc -->
@@ -53,34 +82,5 @@ public interface Measurement extends EObject {
      * @generated
      */
     void setAttribute(String value);
-
-    /**
-     * Returns the value of the '<em><b>Measure</b></em>' attribute.
-     * The literals are from the enumeration {@link org.eclipse.amp.amf.adata.ScaleType}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Measure</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Measure</em>' attribute.
-     * @see org.eclipse.amp.amf.adata.ScaleType
-     * @see #setMeasure(ScaleType)
-     * @see org.eclipse.amp.amf.adata.DataPackage#getMeasurement_Measure()
-     * @model unique="false" ordered="false"
-     * @generated
-     */
-    ScaleType getMeasure();
-
-    /**
-     * Sets the value of the '{@link org.eclipse.amp.amf.adata.Measurement#getMeasure <em>Measure</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Measure</em>' attribute.
-     * @see org.eclipse.amp.amf.adata.ScaleType
-     * @see #getMeasure()
-     * @generated
-     */
-    void setMeasure(ScaleType value);
 
 } // Measurement
