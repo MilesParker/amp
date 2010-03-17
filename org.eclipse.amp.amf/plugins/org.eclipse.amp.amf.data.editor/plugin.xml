@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.1 2010/02/13 04:03:16 mparker Exp $
+ $Id: plugin.xml,v 1.2 2010/03/17 04:12:56 mparker Exp $
 -->
 
 <plugin>
@@ -28,7 +28,7 @@
             id="org.eclipse.amp.amf.adata.presentation.DataEditorID"
             name="%_UI_DataEditor_label"
             icon="icons/full/obj16/DataModelFile.gif"
-            extensions="data"
+            extensions="adata"
             class="org.eclipse.amp.amf.adata.presentation.DataEditor"
             contributorClass="org.eclipse.amp.amf.adata.presentation.DataActionBarContributor">
       </editor>
