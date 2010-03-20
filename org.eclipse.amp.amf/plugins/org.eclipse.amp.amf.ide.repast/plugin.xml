@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.2 2009/09/19 01:26:00 mparker Exp $
+ $Id: plugin.xml,v 1.3 2010/03/20 20:23:47 mparker Exp $
 -->
 
 <plugin> 
@@ -91,7 +91,7 @@
           descriptionImage="icons/obj16/Repast16.gif"
           icon="icons/obj16/Repast16.gif"
           id="org.eclipse.amp.amf.ide.repast.wizards.newProject"
-          name="Simphony MetaABM Project"
+          name="Simphony Modeling Project"
           project="true">
       <description>Creates a new project for generating Repast implementations from MetaABM models.</description>
     </wizard>
@@ -101,7 +101,7 @@
           descriptionImage="icons/obj16/Repast16.gif"
           icon="icons/obj16/Repast16.gif"
           id="org.eclipse.amp.amf.ide.repast.wizards.newBareProject"
-          name="Simphony Basic Project"
+          name="Simphony Java Project"
           project="true">
        <description>
           Creates a new project for bare Java (POJO) projects. Does not support MetaABM or Simphony visual editing tools.
