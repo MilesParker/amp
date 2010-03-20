@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.2 2009/09/08 21:27:31 mparker Exp $
+ $Id: plugin.xml,v 1.3 2010/03/20 20:23:48 mparker Exp $
 -->
 
 <plugin>
@@ -19,7 +19,7 @@
           class="org.metaabm.ide.CustomMetaABMModelWizard"
           icon="icons/full/obj16/MetaPerspective.gif"
           id="org.eclipse.amp.amf.ide.wizards.metaabmmodel"
-          name="MetaABM Model"
+          name="Agent Model (MetaABM)"
           project="false">
       <description>Creates a new MetaABM model for use in this project.</description>
       <selection class = "org.eclipse.core.resources.IResource" />
