@@ -203,6 +203,64 @@ public class ModelViewManager implements IAdapterFactory {
      * Instantiates a new model view manager.
      */
     public ModelViewManager() {
+        // Display.getDefault().asyncExec(new Runnable() {
+        // /*
+        // * (non-Javadoc)
+        // *
+        // * @see java.lang.Runnable#run()
+        // */
+        // public void run() {
+        // final IWorkbenchWindow workbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+        // if (workbenchWindow != null) {
+        // workbenchWindow.addPerspectiveListener(new PerspectiveAdapter() {
+        // /*
+        // * (non-Javadoc)
+        // *
+        // * @see org.eclipse.ui.PerspectiveAdapter#perspectiveActivated(org.eclipse.ui.IWorkbenchPage,
+        // * org.eclipse.ui.IPerspectiveDescriptor)
+        // */
+        // @Override
+        // public void perspectiveActivated(IWorkbenchPage page,
+        // IPerspectiveDescriptor perspectiveDescriptor) {
+        // super.perspectiveActivated(page, perspectiveDescriptor);
+        // if (perspectiveDescriptor.getId().indexOf("org.eclipse.amp.axf.ExecutionPerspective") > -1) {
+        // if (workbenchWindow.getActivePage() instanceof WorkbenchPage) {
+        // WorkbenchPage worbenchPage = (WorkbenchPage) workbenchWindow.getActivePage();
+        // // Get the perspective
+        // Perspective perspective = worbenchPage.findPerspective(perspectiveDescriptor);
+        // ArrayList toRemove = new ArrayList();
+        // if (perspective != null) {
+        // for (IActionSetDescriptor actionSetDescriptor : perspective
+        // .getAlwaysOnActionSets()) {
+        // // if
+        // // (actionSetDescriptor.getId().indexOf("org.eclipse.search.searchActionSet")
+        // // > -1) {
+        // // // Add the action set descriptor to the list of the action sets to remove
+        // toRemove.add(actionSetDescriptor);
+        // System.err.println();
+        // // }
+        // }
+        // perspective.turnOffActionSets((IActionSetDescriptor[]) toRemove
+        // .toArray(new IActionSetDescriptor[toRemove.size()]));
+        // for (IActionSetDescriptor actionSetDescriptor : perspective
+        // .getAlwaysOffActionSets()) {
+        // // if
+        // // (actionSetDescriptor.getId().indexOf("org.eclipse.search.searchActionSet")
+        // // > -1) {
+        // // // Add the action set descriptor to the list of the action sets to remove
+        // toRemove.add(actionSetDescriptor);
+        // System.err.println();
+        // // }
+        // }
+        //
+        // }
+        // }
+        // }
+        // }
+        // });
+        // }
+        // }
+        // });
     }
 
     /**
@@ -501,8 +559,14 @@ public class ModelViewManager implements IAdapterFactory {
             public void run() {
                 try {
                     contextService = (IContextService) wb.getService(IContextService.class);
+                    // for (Object o : contextService.getActiveContextIds()) {
+                    // System.err.pri0ntln(o);
+                    // contextService
+                    // contextService.deactivateContext();
+                    // }
                     ideContext = contextService.activateContext("org.eclipse.amp.axf.executionContext");
                     partContext = contextService.activateContext("org.eclipse.amp.axf.activeEditorContext");
+                    // contextService.deactivateContext(ideContext);
 
                 } catch (Exception e) {
                     throw new RuntimeException("Couldn't activate services.", e);

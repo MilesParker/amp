@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.9 2010/02/03 03:51:36 mparker Exp $
+ $Id: plugin.xml,v 1.10 2010/03/21 03:41:46 mparker Exp $
 -->
 
 <plugin>
@@ -71,7 +71,8 @@
                    disabledIcon="icons/dtool16/run_exc.gif"
                    icon="icons/etool16/run_exc.gif"
                    label="Start"
-                   style="push">
+                   style="push"
+                   tooltip="Begin executing the model from time 0.">
                 <visibleWhen
                       checkEnabled="false">
                    <reference
@@ -83,7 +84,8 @@
                    commandId="org.eclipse.amp.axf.ui.restart"
                    icon="icons/etool16/run_restart.gif"
                    label="Restart"
-                   style="push">
+                   style="push"
+                   tooltip="Stop the current run and begin a new one.">
                 <visibleWhen
                       checkEnabled="false">
                    <reference
@@ -97,7 +99,7 @@
                    icon="icons/etool16/run_pause.gif"
                    label="Pause"
                    style="push"
-                   tooltip="Pause the model.">
+                   tooltip="Temporarily suspend model execution.">
                 <visibleWhen
                       checkEnabled="false">
                    <reference
@@ -111,7 +113,7 @@
                    icon="icons/etool16/run_step.gif"
                    label="Step"
                    style="push"
-                   tooltip="Move forward one step.">
+                   tooltip="Move the model forward one step.">
                 <visibleWhen
                       checkEnabled="false">
                    <reference
@@ -138,7 +140,8 @@
                    disabledIcon="icons/dtool16/run_stop.gif"
                    icon="icons/etool16/run_stop.gif"
                    label="Stop"
-                   style="push">
+                   style="push"
+                   tooltip="Stop executing the current model. You will not be able to continue executing the same model.">
                 <visibleWhen
                       checkEnabled="false">
                    <reference
@@ -151,7 +154,8 @@
                    disabledIcon="icons/dtool16/run_close.gif"
                    icon="icons/etool16/run_close.gif"
                    label="Close"
-                   style="push">
+                   style="push"
+                   tooltip="Close the model. If no models remain excuting, the model exection session will end.">
                 <visibleWhen
                       checkEnabled="false">
                    <reference
