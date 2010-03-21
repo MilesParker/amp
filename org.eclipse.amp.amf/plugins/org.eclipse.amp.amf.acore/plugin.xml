@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.2 2010/02/10 21:37:35 mparker Exp $
+ $Id: plugin.xml,v 1.3 2010/03/21 01:37:27 mparker Exp $
 -->
 
 <plugin>
@@ -13,21 +13,33 @@
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://metaabm.org/structure" 
-       class = "org.metaabm.MetaABMPackage" />
+       class = "org.metaabm.MetaABMPackage"
+       genModel = "model/metaabm.genmodel" />
   </extension>
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://metaabm.org/act" 
-       class = "org.metaabm.act.MetaABMActPackage" />
+       class = "org.metaabm.act.MetaABMActPackage"
+       genModel = "model/metaabm.genmodel"  />
   </extension>
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://metaabm.org/function" 
-       class = "org.metaabm.function.MetaABMFunctionPackage" />
+       class = "org.metaabm.function.MetaABMFunctionPackage"
+       genModel = "model/metaabm.genmodel"  />
   </extension>
-
+  
+  <!--Here for backward compatibility for old url issue -->
+ <extension
+       point="org.eclipse.emf.ecore.generated_package">
+    <package
+          class="org.metaabm.MetaABMPackage"
+          uri="http://metaabm.org/metaabm.org/structure"
+          genModel = "model/metaabm.genmodel"/>
+ </extension>
+ 
   <extension point="org.eclipse.emf.ecore.extension_parser">
     <parser 
        type="metaabm" 
@@ -40,13 +52,7 @@
            target="platform:/plugin/org.eclipse.amp.amf.acore/src/model/core_library.metaabm">
      </mapping>
   </extension>
- <extension
-       point="org.eclipse.emf.ecore.generated_package">
-    <package
-          class="org.metaabm.MetaABMPackage"
-          uri="http://metaabm.org/metaabm.org/structure">
-    </package>
- </extension>
+
 
 </plugin>
 
