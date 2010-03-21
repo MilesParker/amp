@@ -1,0 +1,47 @@
+=Overview=
+
+In this section of the documentation we'll provide an in-depth understanding of what goes into an Agent Model and how you can use the Agent Modeling Framework tools to design them. Fundamentally, an agent-based model, or "ABM", is composed of five pieces: Agents, Attributes, Actions, Spaces and Styles. We'll describe each component in depth. But first a generic concept:
+
+==Descriptions==
+
+Everything represented in an Acore model needs to be referred to in some way. Just as software classes have names, Acore provides a way to label and describe every entity, but in a richer and more maintainable way. All entities in Acore define:
+
+=====Label=====
+''A reasonably short, human readable name for the agent. For example, "Timber Wolf", "Forex Trader" or "Movement Probability". These should be defined so that they fit in well with auto-generated documentation.''
+=====ID=====
+''An identifier tha can be used to represent the object in a software program. This means that it must follow certain rules such as no-spaces or non alpha-numeric characters. The editing tools will help make sure that this value is legal. Note that when you enter a label, a legal ID is automatically created for you! Usually you won't need to change this, but you might if for example you want the value to match up with some database or other extrenal representation. So reasonable values here might be "timberWolf" or perhaps "MVMNT_PRB" if say you're trying to match up to some old statistics records you have. (Note that currently IDs by default use "camel case", i.e. "thisIsAnExampleOfCamelCase" to match with Java variable naming conventions, but this is likely to change.)''
+
+And most entities also define:
+
+=====Description=====
+''A complete textual description of the object. Don't overlook this -- it is the most important part of your model. The description will show up in your auto-generated html documentation, software documentation and even in your running model. You should include enough information that model users will understand what the entity is for and what it does without referring elsewhere. This is also where any attributions and references should go. You can put html tags in here -- such as href's to external papers, but keep those to a minimum as they won't be rendered as html in all contexts.''
+=====Plural Label=====
+''The plural representation of the entity. This can be a surprisingly useful thing to have in generated documenation and software code, so it's worth maintaining. The editor will automatically add an "s" at the end of the label you've entered above, but you change it to whatever is appropriate. For example "Person", or "Timber Wolves".''
+
+
+==Agents==
+
+An Agent is simply a software object that has autonomous behavior and (generally speaking) exists within some set of spaces. By autonomous, we mean that agents make the choice about when and how to execute a behavior, as opposed to have that controlled from "above", so to speak. Like any software objects, agents have attributes (fields) and actions (methods) associated with them.
+
+Agents also form the basic structural component of an agent-based model. Unlike in a traditional Object Oriented model, the dominant organizing principal for agents follow a compositional hierarchical model as opposed to an inheritance model. (Inheritance like behavior will be supported in forthcoming versions of Acore, but in a more sophisticated, flexible and dynamic way than is supported by traditional programming languages such as Java.) Contexts -- also referred to as "Swarms" or "Scapes", are simply Agents that are capable of containing other agents. With this basic construct -- known as a Composition in design pattern language -- agents are able to contain other agents. To get an idea for how this works, have a look at the "EpidemicRegional.metaabm" model.
+
+==Attributes==
+
+Agents need some way to represent their internal state. For example, an agent in an economic model might have a wealth attribute, and an agent in an ecology model might have a quantity of food and a particular vision range. These states are represented as attributes just as all software objects do. In an agent model, we keep richer information about these attributes and generally represent them at a higher level. For example, rather than specify that a real value is a "double", a "float" or a "big number", we represent them as "Reals" so that they can be implemented and tested in different environments. This might allow us for instance to ensure that a model's behavior is not dependent on a particular machine implementation of floating point arithmetic. Here are the basic types of attributes available in Acore models:
+
+===Basic Attributes===
+
+We refer to these simply as "attributes" -- they are single values that a given agent might take on. Attributes have descriptions of course, and they also have:
+
+=====Type=====
+
+{| cellpadding="10" cellspacing="0" border="1"
+|Integer
+|A discrete whole number value, such as "100", "-1", "10029920". It's generally a good idea to represent any value that can never have a decimal value as an integer.
+|-
+|Real
+|A continuous number value. While these are typically represented in software as floating point numbers, they can conceivably represent numbers at any arbitrary precision and in any scheme. Note that while technically speaking we should be representing irrational numbers, this is not currently supported for default values and users should simply use the closest decimal approximation.
+|-
+|Butter
+|Ice cream 
+|}
