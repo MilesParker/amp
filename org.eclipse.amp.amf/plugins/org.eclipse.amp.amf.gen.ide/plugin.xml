@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.3 2010/03/20 20:23:49 mparker Exp $
+ $Id: plugin.xml,v 1.4 2010/03/23 06:03:47 mparker Exp $
 -->
 
 <plugin>
@@ -18,9 +18,9 @@
           category="org.eclipse.amp.amf.ide.wizards"
           class="org.eclipse.amp.amf.gen.ide.BasicProjectWizard"
           descriptionImage="icons/full/obj16/MetaPerspective.gif"
-          icon="icons/full/obj16/MetaPerspective.gif"
+          icon="icons/full/obj16/AMF16.png"
           id="org.eclipse.amp.amf.ide.wizards.newBaseProject"
-          name="Basic Agent Modeling Project"
+          name="Agent Modeling Basic Project"
           project="true">
        <description>
           Creates a new project for MetaABM. Does not support any targets, e.g. it does not generate Repast or Ascape Java code, but it does allow full model editing and generation of common interfaces and test cases and so may be useful for DIY ABM projects.
