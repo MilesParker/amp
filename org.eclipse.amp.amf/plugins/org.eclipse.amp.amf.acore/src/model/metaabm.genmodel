@@ -60,7 +60,8 @@
       <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SShapeType/Polygon"/>
     </genEnums>
     <genClasses image="false" ecoreClass="metaabm.ecore#//IID">
-      <genFeatures createChild="false" propertyCategory="IDs" ecoreFeature="ecore:EAttribute metaabm.ecore#//IID/label"/>
+      <genFeatures createChild="false" propertyCategory="IDs" propertyDescription="A reasonably short, human readable name for the agent. For example, &quot;Timber Wolf&quot;, &quot;Forex Trader&quot; or &quot;Movement Probability&quot;. These should be defined so that they fit in well with auto-generated documentation."
+          ecoreFeature="ecore:EAttribute metaabm.ecore#//IID/label"/>
       <genFeatures createChild="false" propertyCategory="IDs" ecoreFeature="ecore:EAttribute metaabm.ecore#//IID/ID"/>
     </genClasses>
     <genClasses image="false" ecoreClass="metaabm.ecore#//ITyped">
