@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.11 2010/02/13 04:07:27 mparker Exp $
+ $Id: plugin.xml,v 1.12 2010/03/23 06:03:45 mparker Exp $
 -->
 
 <plugin>
@@ -538,7 +538,7 @@
           descriptionImage="icons/etool16/generic_agent.gif"
           icon="icons/escape16.png"
           id="org.eclipse.amp.escape.amf.wizards.newProject"
-          name="Escape Modeling Project"
+          name="Agent Modeling Escape Project"
           project="true">
       <description>Creates a new project for generating Escape implementations from MetaABM models.</description>
     </wizard>
@@ -565,7 +565,7 @@
                 id="org.eclipse.amp.escape.amf.wizards.newProject">
           </newWizardShortcut>
           <newWizardShortcut
-                id="org.eclipse.amp.escape.amf.ide.newWizardShortcut2">
+                id="org.eclipse.amp.escape.wizards.newParameters">
           </newWizardShortcut>
           <newWizardShortcut
                 id="org.eclipse.amp.escape.wizards.newTest">
