@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: ModelMarkerHelper.java,v 1.1 2009/07/16 21:01:08 mparker Exp $
+ * </copyright> $Id: ModelMarkerHelper.java,v 1.2 2010/03/23 18:28:25 mparker Exp $
  */
 package org.eclipse.amp.amf.gen.ide;
 import java.lang.reflect.InvocationTargetException;
@@ -90,13 +90,15 @@ public class ModelMarkerHelper {
         final IMarker marker = resource.createMarker(MARKER_ID);
         marker.setAttribute(IMarker.MESSAGE, issue.getMessage());
         marker.setAttribute(IMarker.SEVERITY, severity);
-        EObject eObject = (EObject) issue.getElement();
-        String location = (String) extendNames.call("usageLabel", new Object[] { eObject });
-        marker.setAttribute(IMarker.LOCATION, location);
-        String objectPath = eObject.eResource().getURIFragment(eObject);
-        String filePath = resource.getProject().getName() + "/" + resource.getProjectRelativePath().toString();
-        String finalPath = URI.createPlatformResourceURI(filePath, false) + "#" + objectPath;
-        marker.setAttribute(MARKER_ELEMENT, finalPath);
+        if (issue.getElement() instanceof EObject) {
+            EObject eObject = (EObject) issue.getElement();
+            String location = (String) extendNames.call("usageLabel", new Object[] { eObject });
+            marker.setAttribute(IMarker.LOCATION, location);
+            String objectPath = eObject.eResource().getURIFragment(eObject);
+            String filePath = resource.getProject().getName() + "/" + resource.getProjectRelativePath().toString();
+            String finalPath = URI.createPlatformResourceURI(filePath, false) + "#" + objectPath;
+            marker.setAttribute(MARKER_ELEMENT, finalPath);
+        }
     }
 
 }
