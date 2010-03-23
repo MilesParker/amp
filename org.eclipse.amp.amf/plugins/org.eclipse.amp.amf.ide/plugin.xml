@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.4 2010/02/24 03:57:09 mparker Exp $
+ $Id: plugin.xml,v 1.5 2010/03/23 06:05:40 mparker Exp $
 -->
 
 <plugin>
@@ -23,8 +23,8 @@
             targetID="org.eclipse.amp.amf.AgentModelingPerspective"> 
             <perspectiveShortcut id="org.eclipse.amp.amf.AgentModelingPerspective"/>
             <view
-                  id="org.eclipse.jdt.ui.PackageExplorer"
-                  ratio=".3"
+                  id="org.eclipse.ui.navigator.ProjectExplorer"
+                  ratio=".25"
                   relationship="left"
                   relative="org.eclipse.ui.editorss"
                   standalone="false">
@@ -33,15 +33,15 @@
                   id="org.eclipse.ui.views.PropertySheet"
                   ratio=".70"
                   relationship="bottom"
-                  relative="org.eclipse.ui.editorss"
+                  relative="org.eclipse.ui.navigator.ProjectExplorer"
                   standalone="false">
             </view>
             <view
                   id="org.eclipse.ui.views.ContentOutline"
                   minimized="false"
-                  ratio="0.24"
-                  relationship="left"
-                  relative="org.eclipse.ui.editorss"
+                  ratio="0.5"
+                  relationship="right"
+                  relative="org.eclipse.ui.navigator.ProjectExplorer"
                   standalone="false">
             </view>
             <view
@@ -49,7 +49,7 @@
                   minimized="true"
                   ratio=".78"
                   relationship="bottom"
-                  relative="org.eclipse.ui.views.PropertySheet"
+                  relative="org.eclipse.ui.editorss"
                   standalone="false">
             </view>
             <view
@@ -79,12 +79,6 @@
                   id="org.eclipse.pde.runtime.LogView">
             </viewShortcut>
             <viewShortcut
-                  id="org.eclipse.jdt.ui.SourceView">
-            </viewShortcut>
-            <viewShortcut
-                  id="org.eclipse.jdt.ui.JavadocView">
-            </viewShortcut>
-            <viewShortcut
                   id="org.eclipse.ui.views.ResourceNavigator">
             </viewShortcut>
             <viewShortcut
@@ -94,28 +88,20 @@
             <newWizardShortcut
                   id="org.eclipse.ui.wizards.new.folder"/>
             <newWizardShortcut
-                  id="org.eclipse.jdt.ui.wizards.NewPackageCreationWizard"/>
-            <newWizardShortcut
-                  id="org.eclipse.jdt.ui.wizards.NewClassCreationWizard"/>
-            <newWizardShortcut
-                  id="org.eclipse.jdt.ui.wizards.NewClassCreationWizard"/>
-            <newWizardShortcut
-                  id="org.eclipse.jdt.ui.wizards.NewInterfaceCreationWizard"/>
-            <actionSet
-                  id="org.eclipse.debug.ui.launchActionSet">
-            </actionSet>
-            <actionSet
-                  id="org.eclipse.jdt.ui.JavaActionSet">
-            </actionSet>
-            <actionSet
-                  id="org.eclipse.jdt.ui.JavaElementCreationActionSet">
-            </actionSet>
-            <actionSet
-                  id="org.eclipse.ui.NavigateActionSet">
-            </actionSet>
-            <newWizardShortcut
                   id="org.eclipse.amp.amf.ide.wizards.newBaseProject">
             </newWizardShortcut>
+            <hiddenToolBarItem
+                  id="org.eclipse.ui.edit.findIncremental">
+            </hiddenToolBarItem>
+            <hiddenToolBarItem
+                  id="org.eclipse.ui.edit.findIncrementalReverse">
+            </hiddenToolBarItem>
+            <hiddenToolBarItem
+                  id="org.eclipse.ui.edit.findPrevious">
+            </hiddenToolBarItem>
+            <hiddenToolBarItem
+                  id="org.eclipse.ui.edit.findNext">
+            </hiddenToolBarItem>
         </perspectiveExtension>
         <perspectiveExtension
               targetID="org.eclipse.jdt.ui.JavaPerspective">
