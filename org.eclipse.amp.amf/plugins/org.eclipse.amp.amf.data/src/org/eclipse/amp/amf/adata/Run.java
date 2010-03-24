@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Run.java,v 1.1 2010/02/13 03:59:06 mparker Exp $
+ * $Id: Run.java,v 1.2 2010/03/24 04:09:09 mparker Exp $
  */
 package org.eclipse.amp.amf.adata;
 
@@ -144,7 +144,7 @@ public interface Run extends EObject {
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(String)
      * @see org.eclipse.amp.amf.adata.DataPackage#getRun_Name()
-     * @model required="true"
+     * @model unique="false" required="true"
      * @generated
      */
     String getName();

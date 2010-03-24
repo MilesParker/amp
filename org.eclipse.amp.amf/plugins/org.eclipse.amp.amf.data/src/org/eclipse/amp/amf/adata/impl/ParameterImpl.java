@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ParameterImpl.java,v 1.1 2010/02/13 03:59:10 mparker Exp $
+ * $Id: ParameterImpl.java,v 1.2 2010/03/24 04:09:17 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.impl;
 
@@ -32,34 +32,15 @@ import org.metaabm.SAttribute;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.amp.amf.adata.impl.ParameterImpl#getAttribute <em>Attribute</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.adata.impl.ParameterImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.adata.impl.ParameterImpl#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.adata.impl.ParameterImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ParameterImpl extends EObjectImpl implements Parameter {
-    /**
-     * The default value of the '{@link #getAttribute() <em>Attribute</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getAttribute()
-     * @generated
-     * @ordered
-     */
-    protected static final String ATTRIBUTE_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getAttribute()
-     * @generated
-     * @ordered
-     */
-    protected String attribute = ATTRIBUTE_EDEFAULT;
-
     /**
      * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -79,6 +60,36 @@ public class ParameterImpl extends EObjectImpl implements Parameter {
      * @ordered
      */
     protected String value = VALUE_EDEFAULT;
+
+    /**
+     * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getAttribute()
+     * @generated
+     * @ordered
+     */
+    protected SAttribute attribute;
+
+    /**
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
+    protected static final String NAME_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
+    protected String name = NAME_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -104,7 +115,15 @@ public class ParameterImpl extends EObjectImpl implements Parameter {
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getAttribute() {
+    public SAttribute getAttribute() {
+        if (attribute != null && attribute.eIsProxy()) {
+            InternalEObject oldAttribute = (InternalEObject)attribute;
+            attribute = (SAttribute)eResolveProxy(oldAttribute);
+            if (attribute != oldAttribute) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, DataPackage.PARAMETER__ATTRIBUTE, oldAttribute, attribute));
+            }
+        }
         return attribute;
     }
 
@@ -113,11 +132,41 @@ public class ParameterImpl extends EObjectImpl implements Parameter {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setAttribute(String newAttribute) {
-        String oldAttribute = attribute;
+    public SAttribute basicGetAttribute() {
+        return attribute;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setAttribute(SAttribute newAttribute) {
+        SAttribute oldAttribute = attribute;
         attribute = newAttribute;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.PARAMETER__ATTRIBUTE, oldAttribute, attribute));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setName(String newName) {
+        String oldName = name;
+        name = newName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.PARAMETER__NAME, oldName, name));
     }
 
     /**
@@ -149,10 +198,13 @@ public class ParameterImpl extends EObjectImpl implements Parameter {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case DataPackage.PARAMETER__ATTRIBUTE:
-                return getAttribute();
             case DataPackage.PARAMETER__VALUE:
                 return getValue();
+            case DataPackage.PARAMETER__ATTRIBUTE:
+                if (resolve) return getAttribute();
+                return basicGetAttribute();
+            case DataPackage.PARAMETER__NAME:
+                return getName();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -166,11 +218,14 @@ public class ParameterImpl extends EObjectImpl implements Parameter {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case DataPackage.PARAMETER__ATTRIBUTE:
-                setAttribute((String)newValue);
-                return;
             case DataPackage.PARAMETER__VALUE:
                 setValue((String)newValue);
+                return;
+            case DataPackage.PARAMETER__ATTRIBUTE:
+                setAttribute((SAttribute)newValue);
+                return;
+            case DataPackage.PARAMETER__NAME:
+                setName((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -184,11 +239,14 @@ public class ParameterImpl extends EObjectImpl implements Parameter {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case DataPackage.PARAMETER__ATTRIBUTE:
-                setAttribute(ATTRIBUTE_EDEFAULT);
-                return;
             case DataPackage.PARAMETER__VALUE:
                 setValue(VALUE_EDEFAULT);
+                return;
+            case DataPackage.PARAMETER__ATTRIBUTE:
+                setAttribute((SAttribute)null);
+                return;
+            case DataPackage.PARAMETER__NAME:
+                setName(NAME_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -202,10 +260,12 @@ public class ParameterImpl extends EObjectImpl implements Parameter {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case DataPackage.PARAMETER__ATTRIBUTE:
-                return ATTRIBUTE_EDEFAULT == null ? attribute != null : !ATTRIBUTE_EDEFAULT.equals(attribute);
             case DataPackage.PARAMETER__VALUE:
                 return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+            case DataPackage.PARAMETER__ATTRIBUTE:
+                return attribute != null;
+            case DataPackage.PARAMETER__NAME:
+                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
         }
         return super.eIsSet(featureID);
     }
@@ -220,10 +280,10 @@ public class ParameterImpl extends EObjectImpl implements Parameter {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (attribute: ");
-        result.append(attribute);
-        result.append(", value: ");
+        result.append(" (value: ");
         result.append(value);
+        result.append(", name: ");
+        result.append(name);
         result.append(')');
         return result.toString();
     }

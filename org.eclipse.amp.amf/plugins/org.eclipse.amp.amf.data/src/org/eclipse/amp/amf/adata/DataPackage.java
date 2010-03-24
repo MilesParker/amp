@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DataPackage.java,v 1.2 2010/03/17 04:12:59 mparker Exp $
+ * $Id: DataPackage.java,v 1.3 2010/03/24 04:09:10 mparker Exp $
  */
 package org.eclipse.amp.amf.adata;
 
@@ -153,22 +153,31 @@ public interface DataPackage extends EPackage {
     int PARAMETER = 1;
 
     /**
-     * The feature id for the '<em><b>Attribute</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PARAMETER__ATTRIBUTE = 0;
-
-    /**
      * The feature id for the '<em><b>Value</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PARAMETER__VALUE = 1;
+    int PARAMETER__VALUE = 0;
+
+    /**
+     * The feature id for the '<em><b>Attribute</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARAMETER__ATTRIBUTE = 1;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PARAMETER__NAME = 2;
 
     /**
      * The number of structural features of the '<em>Parameter</em>' class.
@@ -177,7 +186,7 @@ public interface DataPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PARAMETER_FEATURE_COUNT = 2;
+    int PARAMETER_FEATURE_COUNT = 3;
 
     /**
      * The meta object id for the '{@link org.eclipse.amp.amf.adata.impl.DataPointImpl <em>Point</em>}' class.
@@ -291,13 +300,22 @@ public interface DataPackage extends EPackage {
     int MEASUREMENT__TYPE = 0;
 
     /**
-     * The feature id for the '<em><b>Attribute</b></em>' attribute.
+     * The feature id for the '<em><b>Value</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int MEASUREMENT__ATTRIBUTE = 1;
+    int MEASUREMENT__VALUE = 1;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MEASUREMENT__NAME = 2;
 
     /**
      * The number of structural features of the '<em>Measurement</em>' class.
@@ -306,7 +324,7 @@ public interface DataPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int MEASUREMENT_FEATURE_COUNT = 2;
+    int MEASUREMENT_FEATURE_COUNT = 3;
 
     /**
      * The meta object id for the '{@link org.eclipse.amp.amf.adata.impl.ParameterSetImpl <em>Parameter Set</em>}' class.
@@ -445,15 +463,26 @@ public interface DataPackage extends EPackage {
     EClass getParameter();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.adata.Parameter#getAttribute <em>Attribute</em>}'.
+     * Returns the meta object for the reference '{@link org.eclipse.amp.amf.adata.Parameter#getAttribute <em>Attribute</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Attribute</em>'.
+     * @return the meta object for the reference '<em>Attribute</em>'.
      * @see org.eclipse.amp.amf.adata.Parameter#getAttribute()
      * @see #getParameter()
      * @generated
      */
-    EAttribute getParameter_Attribute();
+    EReference getParameter_Attribute();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.adata.Parameter#getName <em>Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Name</em>'.
+     * @see org.eclipse.amp.amf.adata.Parameter#getName()
+     * @see #getParameter()
+     * @generated
+     */
+    EAttribute getParameter_Name();
 
     /**
      * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.adata.Parameter#getValue <em>Value</em>}'.
@@ -574,15 +603,26 @@ public interface DataPackage extends EPackage {
     EAttribute getMeasurement_Type();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.adata.Measurement#getAttribute <em>Attribute</em>}'.
+     * Returns the meta object for the reference '{@link org.eclipse.amp.amf.adata.Measurement#getValue <em>Value</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Attribute</em>'.
-     * @see org.eclipse.amp.amf.adata.Measurement#getAttribute()
+     * @return the meta object for the reference '<em>Value</em>'.
+     * @see org.eclipse.amp.amf.adata.Measurement#getValue()
      * @see #getMeasurement()
      * @generated
      */
-    EAttribute getMeasurement_Attribute();
+    EReference getMeasurement_Value();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.adata.Measurement#getName <em>Name</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Name</em>'.
+     * @see org.eclipse.amp.amf.adata.Measurement#getName()
+     * @see #getMeasurement()
+     * @generated
+     */
+    EAttribute getMeasurement_Name();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.amp.amf.adata.ParameterSet <em>Parameter Set</em>}'.
@@ -714,12 +754,20 @@ public interface DataPackage extends EPackage {
         EClass PARAMETER = eINSTANCE.getParameter();
 
         /**
-         * The meta object literal for the '<em><b>Attribute</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute PARAMETER__ATTRIBUTE = eINSTANCE.getParameter_Attribute();
+        EReference PARAMETER__ATTRIBUTE = eINSTANCE.getParameter_Attribute();
+
+        /**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PARAMETER__NAME = eINSTANCE.getParameter_Name();
 
         /**
          * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -816,12 +864,20 @@ public interface DataPackage extends EPackage {
         EAttribute MEASUREMENT__TYPE = eINSTANCE.getMeasurement_Type();
 
         /**
-         * The meta object literal for the '<em><b>Attribute</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Value</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute MEASUREMENT__ATTRIBUTE = eINSTANCE.getMeasurement_Attribute();
+        EReference MEASUREMENT__VALUE = eINSTANCE.getMeasurement_Value();
+
+        /**
+         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute MEASUREMENT__NAME = eINSTANCE.getMeasurement_Name();
 
         /**
          * The meta object literal for the '{@link org.eclipse.amp.amf.adata.impl.ParameterSetImpl <em>Parameter Set</em>}' class.

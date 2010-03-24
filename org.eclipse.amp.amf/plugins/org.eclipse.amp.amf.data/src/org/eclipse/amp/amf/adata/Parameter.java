@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Parameter.java,v 1.1 2010/02/13 03:59:06 mparker Exp $
+ * $Id: Parameter.java,v 1.2 2010/03/24 04:09:09 mparker Exp $
  */
 package org.eclipse.amp.amf.adata;
 
@@ -21,8 +21,9 @@ import org.metaabm.SAttribute;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.amp.amf.adata.Parameter#getAttribute <em>Attribute</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.adata.Parameter#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.adata.Parameter#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.adata.Parameter#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,30 +33,56 @@ import org.metaabm.SAttribute;
  */
 public interface Parameter extends EObject {
     /**
-     * Returns the value of the '<em><b>Attribute</b></em>' attribute.
+     * Returns the value of the '<em><b>Attribute</b></em>' reference.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Attribute</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Attribute</em>' attribute.
-     * @see #setAttribute(String)
+     * @return the value of the '<em>Attribute</em>' reference.
+     * @see #setAttribute(SAttribute)
      * @see org.eclipse.amp.amf.adata.DataPackage#getParameter_Attribute()
-     * @model required="true"
+     * @model
      * @generated
      */
-    String getAttribute();
+    SAttribute getAttribute();
 
     /**
-     * Sets the value of the '{@link org.eclipse.amp.amf.adata.Parameter#getAttribute <em>Attribute</em>}' attribute.
+     * Sets the value of the '{@link org.eclipse.amp.amf.adata.Parameter#getAttribute <em>Attribute</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Attribute</em>' attribute.
+     * @param value the new value of the '<em>Attribute</em>' reference.
      * @see #getAttribute()
      * @generated
      */
-    void setAttribute(String value);
+    void setAttribute(SAttribute value);
+
+    /**
+     * Returns the value of the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Name</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Name</em>' attribute.
+     * @see #setName(String)
+     * @see org.eclipse.amp.amf.adata.DataPackage#getParameter_Name()
+     * @model required="true"
+     * @generated
+     */
+    String getName();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.amp.amf.adata.Parameter#getName <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Name</em>' attribute.
+     * @see #getName()
+     * @generated
+     */
+    void setName(String value);
 
     /**
      * Returns the value of the '<em><b>Value</b></em>' attribute.

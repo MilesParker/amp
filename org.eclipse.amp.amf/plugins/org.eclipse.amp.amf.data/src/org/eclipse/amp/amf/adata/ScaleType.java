@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ScaleType.java,v 1.1 2010/02/13 03:59:05 mparker Exp $
+ * $Id: ScaleType.java,v 1.2 2010/03/24 04:09:09 mparker Exp $
  */
 package org.eclipse.amp.amf.adata;
 
@@ -23,6 +23,14 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum ScaleType implements Enumerator {
     /**
+     * The '<em><b>Individual</b></em>' literal object.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #INDIVIDUAL_VALUE
+     * @generated
+     * @ordered
+     */
+    INDIVIDUAL(0, "Individual", "INDIVIDUAL"), /**
      * The '<em><b>Count</b></em>' literal object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -100,17 +108,22 @@ public enum ScaleType implements Enumerator {
      * @generated
      * @ordered
      */
-    CUSTOM(1000, "Custom", "CUSTOM"),
+    CUSTOM(1000, "Custom", "CUSTOM");
 
     /**
-     * The '<em><b>Single</b></em>' literal object.
+     * The '<em><b>Individual</b></em>' literal value.
      * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of '<em><b>Individual</b></em>' literal object isn't clear,
+     * there really should be more of a description here...
+     * </p>
      * <!-- end-user-doc -->
-     * @see #SINGLE_VALUE
+     * @see #INDIVIDUAL
+     * @model name="Individual" literal="INDIVIDUAL"
      * @generated
      * @ordered
      */
-    SINGLE(0, "single", "Single");
+    public static final int INDIVIDUAL_VALUE = 0;
 
     /**
      * The '<em><b>Count</b></em>' literal value.
@@ -233,21 +246,6 @@ public enum ScaleType implements Enumerator {
     public static final int CUSTOM_VALUE = 1000;
 
     /**
-     * The '<em><b>Single</b></em>' literal value.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of '<em><b>Single</b></em>' literal object isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @see #SINGLE
-     * @model name="single" literal="Single"
-     * @generated
-     * @ordered
-     */
-    public static final int SINGLE_VALUE = 0;
-
-    /**
      * An array of all the '<em><b>Scale Type</b></em>' enumerators.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -255,6 +253,7 @@ public enum ScaleType implements Enumerator {
      */
     private static final ScaleType[] VALUES_ARRAY =
         new ScaleType[] {
+            INDIVIDUAL,
             COUNT,
             SUM,
             AVERAGE,
@@ -263,7 +262,6 @@ public enum ScaleType implements Enumerator {
             STANDARD_DEVIATION,
             VARIANCE,
             CUSTOM,
-            SINGLE,
         };
 
     /**
@@ -314,6 +312,7 @@ public enum ScaleType implements Enumerator {
      */
     public static ScaleType get(int value) {
         switch (value) {
+            case INDIVIDUAL_VALUE: return INDIVIDUAL;
             case COUNT_VALUE: return COUNT;
             case SUM_VALUE: return SUM;
             case AVERAGE_VALUE: return AVERAGE;
@@ -322,7 +321,6 @@ public enum ScaleType implements Enumerator {
             case STANDARD_DEVIATION_VALUE: return STANDARD_DEVIATION;
             case VARIANCE_VALUE: return VARIANCE;
             case CUSTOM_VALUE: return CUSTOM;
-            case SINGLE_VALUE: return SINGLE;
         }
         return null;
     }

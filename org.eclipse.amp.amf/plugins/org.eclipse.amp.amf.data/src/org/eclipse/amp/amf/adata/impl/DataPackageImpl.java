@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DataPackageImpl.java,v 1.2 2010/03/17 04:12:59 mparker Exp $
+ * $Id: DataPackageImpl.java,v 1.3 2010/03/24 04:09:10 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.impl;
 
@@ -234,8 +234,17 @@ public class DataPackageImpl extends EPackageImpl implements DataPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getParameter_Attribute() {
-        return (EAttribute)parameterEClass.getEStructuralFeatures().get(0);
+    public EReference getParameter_Attribute() {
+        return (EReference)parameterEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getParameter_Name() {
+        return (EAttribute)parameterEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -244,7 +253,7 @@ public class DataPackageImpl extends EPackageImpl implements DataPackage {
      * @generated
      */
     public EAttribute getParameter_Value() {
-        return (EAttribute)parameterEClass.getEStructuralFeatures().get(1);
+        return (EAttribute)parameterEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -342,8 +351,17 @@ public class DataPackageImpl extends EPackageImpl implements DataPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getMeasurement_Attribute() {
-        return (EAttribute)measurementEClass.getEStructuralFeatures().get(1);
+    public EReference getMeasurement_Value() {
+        return (EReference)measurementEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getMeasurement_Name() {
+        return (EAttribute)measurementEClass.getEStructuralFeatures().get(2);
     }
 
     /**
@@ -411,8 +429,9 @@ public class DataPackageImpl extends EPackageImpl implements DataPackage {
         createEReference(runEClass, RUN__MEASUREMENTS);
 
         parameterEClass = createEClass(PARAMETER);
-        createEAttribute(parameterEClass, PARAMETER__ATTRIBUTE);
         createEAttribute(parameterEClass, PARAMETER__VALUE);
+        createEReference(parameterEClass, PARAMETER__ATTRIBUTE);
+        createEAttribute(parameterEClass, PARAMETER__NAME);
 
         dataPointEClass = createEClass(DATA_POINT);
         createEAttribute(dataPointEClass, DATA_POINT__PERIOD);
@@ -426,7 +445,8 @@ public class DataPackageImpl extends EPackageImpl implements DataPackage {
 
         measurementEClass = createEClass(MEASUREMENT);
         createEAttribute(measurementEClass, MEASUREMENT__TYPE);
-        createEAttribute(measurementEClass, MEASUREMENT__ATTRIBUTE);
+        createEReference(measurementEClass, MEASUREMENT__VALUE);
+        createEAttribute(measurementEClass, MEASUREMENT__NAME);
 
         parameterSetEClass = createEClass(PARAMETER_SET);
         createEReference(parameterSetEClass, PARAMETER_SET__MEMBERS);
@@ -473,13 +493,14 @@ public class DataPackageImpl extends EPackageImpl implements DataPackage {
         initEAttribute(getRun_Started(), ecorePackage.getEDate(), "started", null, 0, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getRun_Finished(), ecorePackage.getEDate(), "finished", null, 0, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRun_Entries(), this.getDataPoint(), this.getDataPoint_Run(), "entries", null, 0, -1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEAttribute(getRun_Name(), ecorePackage.getEString(), "name", null, 1, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getRun_Name(), ecorePackage.getEString(), "name", null, 1, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRun_ParameterSets(), this.getParameterSet(), null, "parameterSets", null, 0, -1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRun_Measurements(), this.getMeasurement(), null, "measurements", null, 0, -1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getParameter_Attribute(), ecorePackage.getEString(), "attribute", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getParameter_Value(), ecorePackage.getEString(), "value", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getParameter_Attribute(), theMetaABMPackage.getSAttribute(), null, "attribute", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getParameter_Name(), ecorePackage.getEString(), "name", null, 1, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(dataPointEClass, DataPoint.class, "DataPoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDataPoint_Period(), ecorePackage.getELong(), "period", null, 0, 1, DataPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
@@ -493,13 +514,15 @@ public class DataPackageImpl extends EPackageImpl implements DataPackage {
 
         initEClass(measurementEClass, Measurement.class, "Measurement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getMeasurement_Type(), this.getScaleType(), "type", null, 0, 1, Measurement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-        initEAttribute(getMeasurement_Attribute(), ecorePackage.getEString(), "attribute", null, 1, 1, Measurement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getMeasurement_Value(), theMetaABMPackage.getIValue(), null, "value", null, 0, 1, Measurement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getMeasurement_Name(), ecorePackage.getEString(), "name", null, 1, 1, Measurement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(parameterSetEClass, ParameterSet.class, "ParameterSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getParameterSet_Members(), this.getParameter(), null, "members", null, 0, -1, ParameterSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(scaleTypeEEnum, ScaleType.class, "ScaleType");
+        addEEnumLiteral(scaleTypeEEnum, ScaleType.INDIVIDUAL);
         addEEnumLiteral(scaleTypeEEnum, ScaleType.COUNT);
         addEEnumLiteral(scaleTypeEEnum, ScaleType.SUM);
         addEEnumLiteral(scaleTypeEEnum, ScaleType.AVERAGE);
@@ -508,7 +531,6 @@ public class DataPackageImpl extends EPackageImpl implements DataPackage {
         addEEnumLiteral(scaleTypeEEnum, ScaleType.STANDARD_DEVIATION);
         addEEnumLiteral(scaleTypeEEnum, ScaleType.VARIANCE);
         addEEnumLiteral(scaleTypeEEnum, ScaleType.CUSTOM);
-        addEEnumLiteral(scaleTypeEEnum, ScaleType.SINGLE);
 
         // Create resource
         createResource(eNS_URI);

@@ -2,12 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Measurement.java,v 1.2 2010/03/17 04:12:59 mparker Exp $
+ * $Id: Measurement.java,v 1.3 2010/03/24 04:09:10 mparker Exp $
  */
 package org.eclipse.amp.amf.adata;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.metaabm.IValue;
 import org.metaabm.SAttribute;
 
 /**
@@ -19,7 +20,8 @@ import org.metaabm.SAttribute;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.amp.amf.adata.Measurement#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.amp.amf.adata.Measurement#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.adata.Measurement#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.adata.Measurement#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,29 +60,55 @@ public interface Measurement extends EObject {
     void setType(ScaleType value);
 
     /**
-     * Returns the value of the '<em><b>Attribute</b></em>' attribute.
+     * Returns the value of the '<em><b>Value</b></em>' reference.
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Attribute</em>' reference isn't clear,
+     * If the meaning of the '<em>Value</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Attribute</em>' attribute.
-     * @see #setAttribute(String)
-     * @see org.eclipse.amp.amf.adata.DataPackage#getMeasurement_Attribute()
+     * @return the value of the '<em>Value</em>' reference.
+     * @see #setValue(IValue)
+     * @see org.eclipse.amp.amf.adata.DataPackage#getMeasurement_Value()
+     * @model
+     * @generated
+     */
+    IValue getValue();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.amp.amf.adata.Measurement#getValue <em>Value</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Value</em>' reference.
+     * @see #getValue()
+     * @generated
+     */
+    void setValue(IValue value);
+
+    /**
+     * Returns the value of the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Name</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Name</em>' attribute.
+     * @see #setName(String)
+     * @see org.eclipse.amp.amf.adata.DataPackage#getMeasurement_Name()
      * @model required="true"
      * @generated
      */
-    String getAttribute();
+    String getName();
 
     /**
-     * Sets the value of the '{@link org.eclipse.amp.amf.adata.Measurement#getAttribute <em>Attribute</em>}' attribute.
+     * Sets the value of the '{@link org.eclipse.amp.amf.adata.Measurement#getName <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Attribute</em>' attribute.
-     * @see #getAttribute()
+     * @param value the new value of the '<em>Name</em>' attribute.
+     * @see #getName()
      * @generated
      */
-    void setAttribute(String value);
+    void setName(String value);
 
 } // Measurement

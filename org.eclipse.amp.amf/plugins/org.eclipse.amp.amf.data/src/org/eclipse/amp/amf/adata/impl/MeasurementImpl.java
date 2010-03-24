@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MeasurementImpl.java,v 1.2 2010/03/17 04:12:59 mparker Exp $
+ * $Id: MeasurementImpl.java,v 1.3 2010/03/24 04:09:10 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.impl;
 
@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.metaabm.IValue;
 import org.metaabm.SAttribute;
 
 /**
@@ -28,7 +29,8 @@ import org.metaabm.SAttribute;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.amp.amf.adata.impl.MeasurementImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.amp.amf.adata.impl.MeasurementImpl#getAttribute <em>Attribute</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.adata.impl.MeasurementImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.adata.impl.MeasurementImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,7 +45,7 @@ public class MeasurementImpl extends EObjectImpl implements Measurement {
      * @generated
      * @ordered
      */
-    protected static final ScaleType TYPE_EDEFAULT = ScaleType.COUNT;
+    protected static final ScaleType TYPE_EDEFAULT = ScaleType.INDIVIDUAL;
 
     /**
      * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -56,24 +58,34 @@ public class MeasurementImpl extends EObjectImpl implements Measurement {
     protected ScaleType type = TYPE_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getAttribute() <em>Attribute</em>}' attribute.
+     * The cached value of the '{@link #getValue() <em>Value</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAttribute()
+     * @see #getValue()
      * @generated
      * @ordered
      */
-    protected static final String ATTRIBUTE_EDEFAULT = null;
+    protected IValue value;
 
     /**
-     * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' attribute.
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAttribute()
+     * @see #getName()
      * @generated
      * @ordered
      */
-    protected String attribute = ATTRIBUTE_EDEFAULT;
+    protected static final String NAME_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
+    protected String name = NAME_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -120,8 +132,16 @@ public class MeasurementImpl extends EObjectImpl implements Measurement {
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getAttribute() {
-        return attribute;
+    public IValue getValue() {
+        if (value != null && value.eIsProxy()) {
+            InternalEObject oldValue = (InternalEObject)value;
+            value = (IValue)eResolveProxy(oldValue);
+            if (value != oldValue) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, DataPackage.MEASUREMENT__VALUE, oldValue, value));
+            }
+        }
+        return value;
     }
 
     /**
@@ -129,11 +149,41 @@ public class MeasurementImpl extends EObjectImpl implements Measurement {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setAttribute(String newAttribute) {
-        String oldAttribute = attribute;
-        attribute = newAttribute;
+    public IValue basicGetValue() {
+        return value;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setValue(IValue newValue) {
+        IValue oldValue = value;
+        value = newValue;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.MEASUREMENT__ATTRIBUTE, oldAttribute, attribute));
+            eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.MEASUREMENT__VALUE, oldValue, value));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setName(String newName) {
+        String oldName = name;
+        name = newName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.MEASUREMENT__NAME, oldName, name));
     }
 
     /**
@@ -146,8 +196,11 @@ public class MeasurementImpl extends EObjectImpl implements Measurement {
         switch (featureID) {
             case DataPackage.MEASUREMENT__TYPE:
                 return getType();
-            case DataPackage.MEASUREMENT__ATTRIBUTE:
-                return getAttribute();
+            case DataPackage.MEASUREMENT__VALUE:
+                if (resolve) return getValue();
+                return basicGetValue();
+            case DataPackage.MEASUREMENT__NAME:
+                return getName();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -163,8 +216,11 @@ public class MeasurementImpl extends EObjectImpl implements Measurement {
             case DataPackage.MEASUREMENT__TYPE:
                 setType((ScaleType)newValue);
                 return;
-            case DataPackage.MEASUREMENT__ATTRIBUTE:
-                setAttribute((String)newValue);
+            case DataPackage.MEASUREMENT__VALUE:
+                setValue((IValue)newValue);
+                return;
+            case DataPackage.MEASUREMENT__NAME:
+                setName((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -181,8 +237,11 @@ public class MeasurementImpl extends EObjectImpl implements Measurement {
             case DataPackage.MEASUREMENT__TYPE:
                 setType(TYPE_EDEFAULT);
                 return;
-            case DataPackage.MEASUREMENT__ATTRIBUTE:
-                setAttribute(ATTRIBUTE_EDEFAULT);
+            case DataPackage.MEASUREMENT__VALUE:
+                setValue((IValue)null);
+                return;
+            case DataPackage.MEASUREMENT__NAME:
+                setName(NAME_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -198,8 +257,10 @@ public class MeasurementImpl extends EObjectImpl implements Measurement {
         switch (featureID) {
             case DataPackage.MEASUREMENT__TYPE:
                 return type != TYPE_EDEFAULT;
-            case DataPackage.MEASUREMENT__ATTRIBUTE:
-                return ATTRIBUTE_EDEFAULT == null ? attribute != null : !ATTRIBUTE_EDEFAULT.equals(attribute);
+            case DataPackage.MEASUREMENT__VALUE:
+                return value != null;
+            case DataPackage.MEASUREMENT__NAME:
+                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
         }
         return super.eIsSet(featureID);
     }
@@ -216,8 +277,8 @@ public class MeasurementImpl extends EObjectImpl implements Measurement {
         StringBuffer result = new StringBuffer(super.toString());
         result.append(" (type: ");
         result.append(type);
-        result.append(", attribute: ");
-        result.append(attribute);
+        result.append(", name: ");
+        result.append(name);
         result.append(')');
         return result.toString();
     }
