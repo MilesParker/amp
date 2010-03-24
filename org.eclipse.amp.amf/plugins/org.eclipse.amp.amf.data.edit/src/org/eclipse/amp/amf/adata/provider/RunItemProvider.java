@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RunItemProvider.java,v 1.1 2010/02/13 04:00:12 mparker Exp $
+ * $Id: RunItemProvider.java,v 1.2 2010/03/24 04:09:28 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.provider;
 
@@ -198,7 +198,6 @@ public class RunItemProvider
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(DataPackage.Literals.RUN__ENTRIES);
             childrenFeatures.add(DataPackage.Literals.RUN__PARAMETER_SETS);
             childrenFeatures.add(DataPackage.Literals.RUN__MEASUREMENTS);
         }
@@ -288,11 +287,6 @@ public class RunItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-
-        newChildDescriptors.add
-            (createChildParameter
-                (DataPackage.Literals.RUN__ENTRIES,
-                 DataFactory.eINSTANCE.createDataPoint()));
 
         newChildDescriptors.add
             (createChildParameter

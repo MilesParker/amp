@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CatalogItemProvider.java,v 1.1 2010/02/13 04:00:13 mparker Exp $
+ * $Id: CatalogItemProvider.java,v 1.2 2010/03/24 04:09:28 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.provider;
 
@@ -142,9 +142,6 @@ public class CatalogItemProvider
         updateChildren(notification);
 
         switch (notification.getFeatureID(Catalog.class)) {
-            case DataPackage.CATALOG__ENTRIES:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
             case DataPackage.CATALOG__RUNS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
@@ -162,11 +159,6 @@ public class CatalogItemProvider
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
-
-        newChildDescriptors.add
-            (createChildParameter
-                (DataPackage.Literals.CATALOG__ENTRIES,
-                 DataFactory.eINSTANCE.createDataPoint()));
     }
 
     /**

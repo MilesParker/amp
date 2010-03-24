@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ParameterItemProvider.java,v 1.1 2010/02/13 04:00:12 mparker Exp $
+ * $Id: ParameterItemProvider.java,v 1.2 2010/03/24 04:09:28 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.provider;
 
@@ -30,6 +30,7 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.amp.amf.adata.Parameter} object.
@@ -62,8 +63,9 @@ public class ParameterItemProvider
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addAttributePropertyDescriptor(object);
             addValuePropertyDescriptor(object);
+            addAttributePropertyDescriptor(object);
+            addNamePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -85,6 +87,28 @@ public class ParameterItemProvider
                  true,
                  false,
                  true,
+                 null,
+                 null,
+                 null));
+    }
+
+    /**
+     * This adds a property descriptor for the Name feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addNamePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_Parameter_name_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Parameter_name_feature", "_UI_Parameter_type"),
+                 DataPackage.Literals.PARAMETER__NAME,
+                 true,
+                 false,
+                 false,
                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                  null,
                  null));
@@ -141,7 +165,7 @@ public class ParameterItemProvider
      */
     @Override
     public String getText(Object object) {
-        String label = ((Parameter)object).getAttribute();
+        String label = ((Parameter)object).getName();
         return label == null || label.length() == 0 ?
             getString("_UI_Parameter_type") :
             getString("_UI_Parameter_type") + " " + label;
@@ -157,6 +181,12 @@ public class ParameterItemProvider
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
+
+        switch (notification.getFeatureID(Parameter.class)) {
+            case DataPackage.PARAMETER__NAME:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+        }
         super.notifyChanged(notification);
     }
 
