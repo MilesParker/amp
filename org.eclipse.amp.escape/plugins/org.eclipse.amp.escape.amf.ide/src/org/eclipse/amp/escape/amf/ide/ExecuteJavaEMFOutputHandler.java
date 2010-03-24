@@ -17,7 +17,6 @@ package org.eclipse.amp.escape.amf.ide;
 
 import org.eclipse.amp.escape.command.ExecuteJavaHeadlessHandler;
 import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
-import org.eclipse.amp.escape.view.EMFDataOutputView;
 import org.eclipse.core.resources.IResource;
 
 import org.ascape.runtime.Runner;
@@ -45,7 +44,7 @@ public class ExecuteJavaEMFOutputHandler extends ExecuteJavaHeadlessHandler {
              * @see org.ascape.runtime.Runner#run()
              */
             public synchronized void run() {
-                getScape().addView(new EMFDataOutputView(modelResource));
+                // getScape().addView(new EMFDataOutputView(modelResource));
                 super.run();
             }
         };

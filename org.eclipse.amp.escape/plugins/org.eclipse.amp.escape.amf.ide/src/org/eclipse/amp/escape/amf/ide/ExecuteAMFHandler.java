@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.escape.amf.ide;
 
 import java.io.File;
@@ -23,6 +23,7 @@ import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
 import org.eclipse.amp.escape.ide.EscapeIDEPlugin;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IProgressMonitor;
+
 import org.metaabm.SContext;
 import org.metaabm.SImplementation;
 import org.metaabm.xsd.MetaABMPersist;
@@ -30,6 +31,7 @@ import org.metaabm.xsd.MetaABMPersist;
 public class ExecuteAMFHandler extends ExecuteHandler {
 
     protected IResource modelResource;
+    private SContext model;
 
     public ExecuteAMFHandler() {
         super(false);
@@ -45,10 +47,10 @@ public class ExecuteAMFHandler extends ExecuteHandler {
             File file = modelResource.getLocation().toFile();
             if (modelResource.getFileExtension().equals("metaabm")) {
                 try {
-                    SContext context = MetaABMPersist.create(file).load();
-                    SImplementation impl = context.getImplementation();
+                    model = MetaABMPersist.create(file).load();
+                    SImplementation impl = model.getImplementation();
                     final String modelClassName = impl.getQualifiedName();
-                    eclipseRunner.open(modelResource, modelClassName, context.getLabel());
+                    eclipseRunner.open(modelResource, modelClassName, model.getLabel());
                 } catch (IOException e) {
                     EscapeIDEPlugin.warn("Couldn't load model.", e);
                 }
@@ -59,5 +61,12 @@ public class ExecuteAMFHandler extends ExecuteHandler {
     protected boolean handleSelect(Object sel) {
         return sel instanceof IResource && ((IResource) sel).getFileExtension() != null
         && ((IResource) sel).getFileExtension().equals("metaabm");
+    }
+
+    /**
+     * @return the model
+     */
+    public SContext getModel() {
+        return model;
     }
 }

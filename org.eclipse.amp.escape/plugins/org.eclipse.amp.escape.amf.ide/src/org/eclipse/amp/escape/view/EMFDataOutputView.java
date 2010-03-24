@@ -38,17 +38,24 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.ui.statushandlers.StatusManager;
 
-import org.apache.commons.lang.time.DateFormatUtils;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.util.PropertyAccessor;
 import org.ascape.util.data.DataSeries;
 import org.ascape.view.nonvis.DataView;
+import org.metaabm.IValue;
+import org.metaabm.SAgent;
+import org.metaabm.SAttribute;
+import org.metaabm.SContext;
+import org.metaabm.SState;
+import org.metaabm.SStateValue;
 
 /**
  * 
@@ -68,15 +75,11 @@ public class EMFDataOutputView extends DataView {
     private Resource dataResource;
 
     public final static IPath RESULTS_FOLDER = new Path("output");
+    private final SContext model;
 
-    public EMFDataOutputView(String projectName, String path) {
+    public EMFDataOutputView(IResource resource, SContext model) {
         super();
-        IPath projectPath = new Path(projectName).append(RESULTS_FOLDER).append(new Path(path)).append(name + ".adata");
-        dataFileURI = URI.createPlatformResourceURI(projectPath.toString(), true);
-    }
-
-    public EMFDataOutputView(IResource resource) {
-        super();
+        this.model = model;
 
         IProject project = resource.getProject();
         IPath projectPath = RESULTS_FOLDER.append(
@@ -90,7 +93,7 @@ public class EMFDataOutputView extends DataView {
 
     private String getFileName(IResource resource) {
         String name = ((IFile) resource).getProjectRelativePath().removeFileExtension().lastSegment();
-        name += DateFormatUtils.format(System.currentTimeMillis(), "MM-dd-yy_HH-mm-S");
+        // name += DateFormatUtils.format(System.currentTimeMillis(), "MM-dd-yy_HH-mm-S");
         return name;
     }
 
@@ -104,14 +107,20 @@ public class EMFDataOutputView extends DataView {
         getDataSelection().selectAll();
         resourceSet = new ResourceSetImpl();
 
-        resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
-        resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
-        resourceSet.getLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
-        dataResource = resourceSet.createResource(dataFileURI);
+        // resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
+        // resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
+        // resourceSet.getLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.FALSE);
+        dataResource = resourceSet.getResource(dataFileURI, true);
 
-        catalog = DataFactoryImpl.eINSTANCE.createCatalog();
+        if (dataResource == null) {
+            dataResource = resourceSet.createResource(dataFileURI);
+            catalog = DataFactoryImpl.eINSTANCE.createCatalog();
 
-        dataResource.getContents().add(catalog);
+            dataResource.getContents().add(catalog);
+        } else {
+            catalog = (Catalog) dataResource.getContents().get(0);
+
+        }
 
         saveResults();
     }
@@ -126,15 +135,16 @@ public class EMFDataOutputView extends DataView {
 
         catalog.getRuns().add(currentRun);
 
+        currentRun.setModel(model);
         currentRun.setName(getScape().getName());
 
         ParameterSet createParameterSet = DataFactoryImpl.eINSTANCE.createParameterSet();
         currentRun.getParameterSets().add(createParameterSet);
 
-        addParameter(createParameterSet, "runCount", new Integer(1));
-        addParameter(createParameterSet, "startPeriod", new Integer(scape.getStartPeriod()));
-        addParameter(createParameterSet, "stopPeriod", new Integer(scape.getPeriod()));
-        addParameter(createParameterSet, "randomSeed", new Long(scape.getRandomSeed()));
+        // addParameter(createParameterSet, "runCount", new Integer(1));
+        // addParameter(createParameterSet, "startPeriod", new Integer(scape.getStartPeriod()));
+        // addParameter(createParameterSet, "stopPeriod", new Integer(scape.getPeriod()));
+        // addParameter(createParameterSet, "randomSeed", new Long(scape.getRandomSeed()));
 
         List accessors = scape.retrieveAllAccessorsOrdered();
         for (Iterator propertyAccessorIt = accessors.iterator(); propertyAccessorIt.hasNext();) {
@@ -145,7 +155,10 @@ public class EMFDataOutputView extends DataView {
         for (int i = 0; i < dataSelection.getSelectionSize(); i++) {
             DataSeries selectedSeries = dataSelection.getSelectedSeries(i);
             Measurement measure = DataFactoryImpl.eINSTANCE.createMeasurement();
-            measure.setAttribute(selectedSeries.getDataPoint().getName());
+            String measureName = selectedSeries.getDataPoint().getName();
+            IValue valueForName = getValueForName(measureName);
+            measure.setValue(valueForName);
+            measure.setName(measureName);
 
             if (selectedSeries.getMeasureName() == "Count") {
                 measure.setType(ScaleType.COUNT);
@@ -168,6 +181,41 @@ public class EMFDataOutputView extends DataView {
         }
 
         super.scapeStarted(scapeEvent);
+    }
+
+    private IValue getValueForName(String attrName) {
+        String searchName = attrName.toLowerCase().replace(" ", "");
+        for (EObject object : model.getAllAgents()) {
+            SAgent agent = (SAgent) object;
+            for (SAttribute attribute : agent.getAttributes()) {
+                // TODO there is actually some low possibility of name clash here..
+                String matchName = attribute.getLabel();
+                if (attribute instanceof SState) {
+                    for (SStateValue value : ((SState) attribute).getOptions()) {
+                        String stateName = value.getLabel() + " " + matchName;
+                        if (agent.getOwner() != null) {
+                            stateName = agent.getLabel() + " " + stateName;
+                        }
+                        stateName = stateName.toLowerCase().replace(" ", "");
+                        if (stateName.equals(searchName)) {
+                            return value;
+                        }
+                    }
+                } else {
+                    if (agent.getOwner() != null) {
+                        matchName = agent.getLabel() + " " + matchName;
+                    }
+                    matchName = matchName.toLowerCase().replace(" ", "");
+                    if (matchName.equals(searchName)) {
+                        return attribute;
+                    }
+                }
+            }
+        }
+        StatusManager.getManager().handle(
+                                          new Status(Status.WARNING, "org.eclipse.amp.escape.amf.ide",
+                                                     "Couldn't find attribute for parameter name: " + attrName));
+        return null;
     }
 
     /**
@@ -194,8 +242,11 @@ public class EMFDataOutputView extends DataView {
      */
     private void addParameter(ParameterSet set, String attrName, Object object) {
         Parameter param = DataFactoryImpl.eINSTANCE.createParameter();
-        param.setAttribute(attrName);
-
+        IValue valueForName = getValueForName(attrName);
+        if (valueForName instanceof SAttribute) {
+            param.setAttribute((SAttribute) valueForName);
+        }
+        param.setName(attrName);
         // Object createFromString = null;
         // // EcoreUtil.create(EcorePackage.Literals.EINTEGER_OBJECT);
         // if (object instanceof Boolean) {

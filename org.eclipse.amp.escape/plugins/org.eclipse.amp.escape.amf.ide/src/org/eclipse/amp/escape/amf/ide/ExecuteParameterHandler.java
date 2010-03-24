@@ -24,6 +24,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IProgressMonitor;
 
 import org.ascape.runtime.Runner;
+import org.metaabm.SContext;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -33,6 +34,7 @@ public class ExecuteParameterHandler extends ExecuteHandler {
 
     private AParInterpreter interpreter;
     protected IResource modelResource;
+    private SContext model;
 
     /**
      * Instantiates a new execute parameter handler.
@@ -64,7 +66,8 @@ public class ExecuteParameterHandler extends ExecuteHandler {
                 // a bit awkward..
                 setInterpreter((AParInterpreter) AParFactory.create(null).getInterpreter(modelResource));
                 eclipseRunner.setAutoRestart(false);
-                eclipseRunner.open(project, getInterpreter().getRootContext().getImplementation().getQualifiedName(),
+                model = getInterpreter().getRootContext();
+                eclipseRunner.open(project, model.getImplementation().getQualifiedName(),
                                    getInterpreter().getRunName(), getInterpreter().getArgs());
             }
         }
@@ -109,5 +112,12 @@ public class ExecuteParameterHandler extends ExecuteHandler {
 
     public AParInterpreter getInterpreter() {
         return interpreter;
+    }
+
+    /**
+     * @return the model
+     */
+    public SContext getModel() {
+        return model;
     }
 }

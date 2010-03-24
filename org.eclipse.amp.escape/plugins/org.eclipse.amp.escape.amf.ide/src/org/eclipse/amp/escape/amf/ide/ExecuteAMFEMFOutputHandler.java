@@ -53,7 +53,7 @@ public class ExecuteAMFEMFOutputHandler extends ExecuteAMFHeadlessHandler {
              * @see org.ascape.runtime.Runner#run()
              */
             public synchronized void run() {
-                getScape().addView(new EMFDataOutputView(modelResource));
+                getScape().addView(new EMFDataOutputView(modelResource, ExecuteAMFEMFOutputHandler.this.getModel()));
                 super.run();
             }
         };

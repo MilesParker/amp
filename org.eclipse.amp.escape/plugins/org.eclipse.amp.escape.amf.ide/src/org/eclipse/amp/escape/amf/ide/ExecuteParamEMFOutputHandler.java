@@ -40,7 +40,7 @@ public class ExecuteParamEMFOutputHandler extends ExecuteParameterHeadlessHandle
              * @see org.ascape.runtime.Runner#run()
              */
             public synchronized void run() {
-                getScape().addView(new EMFDataOutputView(modelResource));
+                getScape().addView(new EMFDataOutputView(modelResource, ExecuteParamEMFOutputHandler.this.getModel()));
                 super.run();
             }
 
