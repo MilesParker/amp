@@ -15,6 +15,7 @@
  */
 package org.eclipse.amp.escape.command;
 
+import org.eclipse.amp.axf.time.TimeGranularity;
 import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.expressions.EvaluationContext;
@@ -51,6 +52,9 @@ public abstract class ExecuteHandler extends ResourceHandler {
      */
     public final void execute(final Object executed, String name) throws ExecutionException {
         final EclipseEscapeRunner eclipseRunner = createRunner();
+        if (isHeadless()) {
+            eclipseRunner.setUpdateGranularity(TimeGranularity.createFrequencyGranularity(Integer.MAX_VALUE));
+        }
         Job escapeRun = new Job("Run " + name) {
             protected IStatus run(IProgressMonitor monitor) {
                 setMonitor(monitor);
