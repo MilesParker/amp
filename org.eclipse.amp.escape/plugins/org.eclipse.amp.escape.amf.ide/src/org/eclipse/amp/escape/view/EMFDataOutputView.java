@@ -110,16 +110,14 @@ public class EMFDataOutputView extends DataView {
         // resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
         // resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
         // resourceSet.getLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.FALSE);
-        dataResource = resourceSet.getResource(dataFileURI, true);
-
-        if (dataResource == null) {
+        boolean exists = resourceSet.getURIConverter().exists(dataFileURI, null);
+        if (exists) {
+            dataResource = resourceSet.getResource(dataFileURI, true);
+            catalog = (Catalog) dataResource.getContents().get(0);
+        } else {
             dataResource = resourceSet.createResource(dataFileURI);
             catalog = DataFactoryImpl.eINSTANCE.createCatalog();
-
             dataResource.getContents().add(catalog);
-        } else {
-            catalog = (Catalog) dataResource.getContents().get(0);
-
         }
 
         saveResults();
@@ -232,7 +230,7 @@ public class EMFDataOutputView extends DataView {
             dataPoint.setPeriod(getScape().getPeriod());
             dataPoint.setRun(currentRun);
             dataPoint.setValue(selectedSeries.getValue());
-            catalog.getEntries().add(dataPoint);
+            measurement.getEntries().add(dataPoint);
         }
     }
 
