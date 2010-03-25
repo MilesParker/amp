@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DataPointItemProvider.java,v 1.1 2010/02/13 04:00:11 mparker Exp $
+ * $Id: DataPointItemProvider.java,v 1.2 2010/03/25 03:01:38 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.provider;
 
@@ -12,12 +12,9 @@ import java.util.List;
 
 import org.eclipse.amp.amf.adata.DataPackage;
 import org.eclipse.amp.amf.adata.DataPoint;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -39,9 +36,9 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class DataPointItemProvider
-    extends ItemProviderAdapter
-    implements
-        IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+extends ItemProviderAdapter
+implements
+IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
@@ -79,18 +76,18 @@ public class DataPointItemProvider
      */
     protected void addPeriodPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_DataPoint_period_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_DataPoint_period_feature", "_UI_DataPoint_type"),
-                 DataPackage.Literals.DATA_POINT__PERIOD,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_DataPoint_period_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_DataPoint_period_feature", "_UI_DataPoint_type"),
+          DataPackage.Literals.DATA_POINT__PERIOD,
+          true,
+          false,
+          false,
+          ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+          null,
+          null));
     }
 
     /**
@@ -101,18 +98,18 @@ public class DataPointItemProvider
      */
     protected void addValuePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_DataPoint_value_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_DataPoint_value_feature", "_UI_DataPoint_type"),
-                 DataPackage.Literals.DATA_POINT__VALUE,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_DataPoint_value_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_DataPoint_value_feature", "_UI_DataPoint_type"),
+          DataPackage.Literals.DATA_POINT__VALUE,
+          true,
+          false,
+          false,
+          ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+          null,
+          null));
     }
 
     /**
@@ -123,18 +120,18 @@ public class DataPointItemProvider
      */
     protected void addRunPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_DataPoint_run_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_DataPoint_run_feature", "_UI_DataPoint_type"),
-                 DataPackage.Literals.DATA_POINT__RUN,
-                 true,
-                 false,
-                 true,
-                 null,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_DataPoint_run_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_DataPoint_run_feature", "_UI_DataPoint_type"),
+          DataPackage.Literals.DATA_POINT__RUN,
+          true,
+          false,
+          true,
+          null,
+          null,
+          null));
     }
 
     /**
@@ -145,18 +142,18 @@ public class DataPointItemProvider
      */
     protected void addMeasurePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_DataPoint_measure_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_DataPoint_measure_feature", "_UI_DataPoint_type"),
-                 DataPackage.Literals.DATA_POINT__MEASURE,
-                 true,
-                 false,
-                 true,
-                 null,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_DataPoint_measure_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_DataPoint_measure_feature", "_UI_DataPoint_type"),
+          DataPackage.Literals.DATA_POINT__MEASURE,
+          true,
+          false,
+          true,
+          null,
+          null,
+          null));
     }
 
     /**
@@ -181,15 +178,14 @@ public class DataPointItemProvider
     }
 
     /**
-     * This returns the label text for the adapted class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+     * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @generated NOT
      */
     @Override
     public String getText(Object object) {
-        DataPoint dataPoint = (DataPoint)object;
-        return getString("_UI_DataPoint_type") + " " + dataPoint.getPeriod();
+        DataPoint dataPoint = (DataPoint) object;
+        return dataPoint.getPeriod() + ": " + Double.toString(dataPoint.getValue());
     }
 
     /**

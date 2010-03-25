@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ParameterItemProvider.java,v 1.2 2010/03/24 04:09:28 mparker Exp $
+ * $Id: ParameterItemProvider.java,v 1.3 2010/03/25 03:01:38 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.provider;
 
@@ -11,13 +11,10 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.amp.amf.adata.DataPackage;
-
 import org.eclipse.amp.amf.adata.Parameter;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -39,9 +36,9 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class ParameterItemProvider
-    extends ItemProviderAdapter
-    implements
-        IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+extends ItemProviderAdapter
+implements
+IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
@@ -78,18 +75,18 @@ public class ParameterItemProvider
      */
     protected void addAttributePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Parameter_attribute_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Parameter_attribute_feature", "_UI_Parameter_type"),
-                 DataPackage.Literals.PARAMETER__ATTRIBUTE,
-                 true,
-                 false,
-                 true,
-                 null,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Parameter_attribute_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Parameter_attribute_feature", "_UI_Parameter_type"),
+          DataPackage.Literals.PARAMETER__ATTRIBUTE,
+          true,
+          false,
+          true,
+          null,
+          null,
+          null));
     }
 
     /**
@@ -100,18 +97,18 @@ public class ParameterItemProvider
      */
     protected void addNamePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Parameter_name_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Parameter_name_feature", "_UI_Parameter_type"),
-                 DataPackage.Literals.PARAMETER__NAME,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Parameter_name_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Parameter_name_feature", "_UI_Parameter_type"),
+          DataPackage.Literals.PARAMETER__NAME,
+          true,
+          false,
+          false,
+          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+          null,
+          null));
     }
 
     /**
@@ -122,18 +119,18 @@ public class ParameterItemProvider
      */
     protected void addValuePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Parameter_value_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Parameter_value_feature", "_UI_Parameter_type"),
-                 DataPackage.Literals.PARAMETER__VALUE,
-                 true,
-                 false,
-                 true,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Parameter_value_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Parameter_value_feature", "_UI_Parameter_type"),
+          DataPackage.Literals.PARAMETER__VALUE,
+          true,
+          false,
+          true,
+          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+          null,
+          null));
     }
 
     /**
@@ -158,17 +155,20 @@ public class ParameterItemProvider
     }
 
     /**
-     * This returns the label text for the adapted class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+     * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @generated NOT
      */
     @Override
     public String getText(Object object) {
-        String label = ((Parameter)object).getName();
-        return label == null || label.length() == 0 ?
-            getString("_UI_Parameter_type") :
-            getString("_UI_Parameter_type") + " " + label;
+        Parameter parameter = (Parameter) object;
+        String label = parameter.getValue();
+        if (parameter.getAttribute() != null) {
+            label = parameter.getAttribute().getLabel() + "=" + label;
+        } else {
+            label = parameter.getName();
+        }
+        return label;
     }
 
     /**

@@ -2,26 +2,22 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RunItemProvider.java,v 1.2 2010/03/24 04:09:28 mparker Exp $
+ * $Id: RunItemProvider.java,v 1.3 2010/03/25 03:01:38 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.provider;
 
 
+import java.text.DateFormat;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import org.eclipse.amp.amf.adata.DataFactory;
 import org.eclipse.amp.amf.adata.DataPackage;
 import org.eclipse.amp.amf.adata.Run;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -43,9 +39,9 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * @generated
  */
 public class RunItemProvider
-    extends ItemProviderAdapter
-    implements
-        IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+extends ItemProviderAdapter
+implements
+IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
@@ -84,18 +80,18 @@ public class RunItemProvider
      */
     protected void addModelPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Run_model_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Run_model_feature", "_UI_Run_type"),
-                 DataPackage.Literals.RUN__MODEL,
-                 true,
-                 false,
-                 true,
-                 null,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Run_model_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Run_model_feature", "_UI_Run_type"),
+          DataPackage.Literals.RUN__MODEL,
+          true,
+          false,
+          true,
+          null,
+          null,
+          null));
     }
 
     /**
@@ -106,18 +102,18 @@ public class RunItemProvider
      */
     protected void addStartedPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Run_started_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Run_started_feature", "_UI_Run_type"),
-                 DataPackage.Literals.RUN__STARTED,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Run_started_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Run_started_feature", "_UI_Run_type"),
+          DataPackage.Literals.RUN__STARTED,
+          true,
+          false,
+          false,
+          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+          null,
+          null));
     }
 
     /**
@@ -128,18 +124,18 @@ public class RunItemProvider
      */
     protected void addFinishedPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Run_finished_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Run_finished_feature", "_UI_Run_type"),
-                 DataPackage.Literals.RUN__FINISHED,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Run_finished_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Run_finished_feature", "_UI_Run_type"),
+          DataPackage.Literals.RUN__FINISHED,
+          true,
+          false,
+          false,
+          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+          null,
+          null));
     }
 
     /**
@@ -150,18 +146,18 @@ public class RunItemProvider
      */
     protected void addEntriesPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Run_entries_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Run_entries_feature", "_UI_Run_type"),
-                 DataPackage.Literals.RUN__ENTRIES,
-                 true,
-                 false,
-                 true,
-                 null,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Run_entries_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Run_entries_feature", "_UI_Run_type"),
+          DataPackage.Literals.RUN__ENTRIES,
+          true,
+          false,
+          true,
+          null,
+          null,
+          null));
     }
 
     /**
@@ -172,18 +168,18 @@ public class RunItemProvider
      */
     protected void addNamePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_Run_name_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_Run_name_feature", "_UI_Run_type"),
-                 DataPackage.Literals.RUN__NAME,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
+        (createItemPropertyDescriptor
+         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+          getResourceLocator(),
+          getString("_UI_Run_name_feature"),
+          getString("_UI_PropertyDescriptor_description", "_UI_Run_name_feature", "_UI_Run_type"),
+          DataPackage.Literals.RUN__NAME,
+          true,
+          false,
+          false,
+          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+          null,
+          null));
     }
 
     /**
@@ -239,17 +235,16 @@ public class RunItemProvider
     }
 
     /**
-     * This returns the label text for the adapted class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
+     * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @generated NOT
      */
     @Override
     public String getText(Object object) {
-        String label = ((Run)object).getName();
-        return label == null || label.length() == 0 ?
-            getString("_UI_Run_type") :
-            getString("_UI_Run_type") + " " + label;
+        Run run = (Run) object;
+        String label = run.getName();
+        label += " " + DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG).format(run.getFinished());
+        return label;
     }
 
     /**
@@ -289,14 +284,14 @@ public class RunItemProvider
         super.collectNewChildDescriptors(newChildDescriptors, object);
 
         newChildDescriptors.add
-            (createChildParameter
-                (DataPackage.Literals.RUN__PARAMETER_SETS,
-                 DataFactory.eINSTANCE.createParameterSet()));
+        (createChildParameter
+         (DataPackage.Literals.RUN__PARAMETER_SETS,
+          DataFactory.eINSTANCE.createParameterSet()));
 
         newChildDescriptors.add
-            (createChildParameter
-                (DataPackage.Literals.RUN__MEASUREMENTS,
-                 DataFactory.eINSTANCE.createMeasurement()));
+        (createChildParameter
+         (DataPackage.Literals.RUN__MEASUREMENTS,
+          DataFactory.eINSTANCE.createMeasurement()));
     }
 
     /**
