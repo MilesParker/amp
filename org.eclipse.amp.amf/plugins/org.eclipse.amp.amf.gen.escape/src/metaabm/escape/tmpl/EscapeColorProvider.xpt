@@ -11,6 +11,18 @@
 «EXTENSION metaabm::ascape::tmpl::namesascape»
 «EXTENSION metaabm::ascape::tmpl::inferascape»
 
+«AROUND metaabm::tmpl::Java::Imports FOR SStyle-»
+import org.ascape.util.vis.ColorFeature;
+import org.ascape.model.CellOccupant;
+import org.ascape.model.HostCell;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.draw2d.Shape;
+import org.eclipse.draw2d.ColorConstants;
+
+import org.eclipse.jface.viewers.IColorProvider;
+«ENDAROUND»
+
 «AROUND metaabm::tmpl::Java::ClassFile FOR IID-»
 «IF generate()»
 	«IF SStyle.isInstance(this)»
@@ -21,6 +33,14 @@
 	«IF SContext.isInstance(this)»
     «FILE javaFileLoc().replaceFirst(".java", "3D.java")-»
 package «package()»;
+
+import org.eclipse.amp.escape.ascape.agf3d.GEF3DView;
+import org.eclipse.amp.escape.ascape.adapt.Ascape3DPartFactory;
+import org.eclipse.amp.agf3d.I3DModelFactoryProvider;
+import org.eclipse.amp.escape.ascape.agf3d.GEF3DView;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.jface.viewers.IColorProvider;
+import org.eclipse.gef.EditPartFactory;
 
 /**
     «EXPAND metaabm::tmpl::Java::ClassComments-»
@@ -35,14 +55,14 @@ public «EXPAND metaabm::tmpl::Java::ClassKeyword» «EXPAND metaabm::tmpl::Java::C
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ExtendType FOR ASink-»
-	«IF function.color()-»org.eclipse.swt.graphics.Color
+	«IF function.color()-»Color
 	«ELSE-»«typeName()»«ENDIF-»
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ClassName FOR IID-»«typeName()»«IF SStyle.isInstance(this)»ColorProvider«ELSE»3D«ENDIF»«ENDAROUND»
 
-«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SStyle-» implements org.eclipse.jface.viewers.IColorProvider«ENDAROUND»
-«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-» extends «typeName()» implements org.eclipse.amp.agf3d.I3DModelFactoryProvider«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SStyle-» implements IColorProvider«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-» extends «typeName()» implements I3DModelFactoryProvider«ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ActivityPotentialMethod (AAct within) FOR SContext-»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::SetterClient FOR SContext-»«ENDAROUND»
@@ -67,12 +87,12 @@ public «EXPAND metaabm::tmpl::Java::ClassKeyword» «EXPAND metaabm::tmpl::Java::C
 
 «AROUND metaabm::tmpl::Java::Body FOR SContext-»
     public void createGraphicViews() {
-        addView(new org.eclipse.amp.escape.ascape.agf3d.GEF3DView());
+        addView(new GEF3DView());
     }
     
-    public org.eclipse.gef.EditPartFactory getEditPart3DFactory() {
-        return new org.eclipse.amp.escape.ascape.adapt.Ascape3DPartFactory() {
-            public org.eclipse.jface.viewers.IColorProvider getColorProvider(Object model) {
+    public EditPartFactory getEditPart3DFactory() {
+        return new Ascape3DPartFactory() {
+            public IColorProvider getColorProvider(Object model) {
             	«EXPAND RecurseAgentProviders FOREACH agents»
 	            return null;
             }
@@ -88,14 +108,14 @@ public «EXPAND metaabm::tmpl::Java::ClassKeyword» «EXPAND metaabm::tmpl::Java::C
      * @return	the foreground color for the element, or <code>null</code> 
      *   to use the default foreground color
      */
-    public org.eclipse.swt.graphics.Color getForeground(Object object) {
+    public Color getForeground(Object object) {
 		«EXPAND MethodSetup-»
 		if (outlineColor != null) {
 			return outlineColor;
 		} else if (fillColor != null) {
 			return fillColor;
 		}
-		return org.ascape.util.vis.ColorFeature.BLACK;
+		return ColorFeature.BLACK;
     }
 
     /**
@@ -105,22 +125,22 @@ public «EXPAND metaabm::tmpl::Java::ClassKeyword» «EXPAND metaabm::tmpl::Java::C
      * @return	the background color for the element, or <code>null</code> 
      *   to use the default background color
      */
-    public org.eclipse.swt.graphics.Color getBackground(Object object) {
+    public Color getBackground(Object object) {
 		«EXPAND MethodSetup-»
 		if (fillColor != null) {
 			return fillColor;
 		} else if (outlineColor != null) {
 			return outlineColor;
 		}
-		return org.ascape.util.vis.ColorFeature.BLACK;
+		return ColorFeature.BLACK;
     }
 «ENDAROUND»
 
 «DEFINE MethodSetup FOR SStyle»
 	//todo separate out this functionality
-	org.eclipse.swt.graphics.Color color = null;
-	org.eclipse.swt.graphics.Color fillColor = null;
-	org.eclipse.swt.graphics.Color outlineColor = null;
+	Color color = null;
+	Color fillColor = null;
+	Color outlineColor = null;
 	«agent.typeName()» «rootActivity.id()» = («agent.typeName()») object;
 	«FOREACH ((AGroup) rootActivity).roots AS act»«agent.typeName()» «act.id()» = «rootActivity.id()»;«ENDFOREACH»
 	«EXPAND metaabm::tmpl::Java::ActionBody-»
@@ -131,7 +151,7 @@ public «EXPAND metaabm::tmpl::Java::ClassKeyword» «EXPAND metaabm::tmpl::Java::C
 		«reference.typeName()» «selector().id()» = («reference.typeName()») object;
 		«EXPAND metaabm::tmpl::Java::Block ({}, false, true)-»
 	«ELSE-»
-        «pkgm()»HostCell «selector().id()»Cell = («pkgm()»HostCell) object;
+        HostCell «selector().id()»Cell = (HostCell) object;
         if («selector().id()»Cell.getOccupant() instanceof «reference.typeName()») {
 			«reference.typeName()» «selector().id()» = («reference.typeName()») «selector().id()»Cell.getOccupant();
 			«EXPAND metaabm::tmpl::Java::Block ({}, false, true)-»}
@@ -173,9 +193,9 @@ public «EXPAND metaabm::tmpl::Java::ClassKeyword» «EXPAND metaabm::tmpl::Java::C
     «ELSEIF function.id() == "withinBoundaries"-»
         «expressionSink(path, function, inner)»
     «ELSEIF function.id() == "colorRGB"-»
-        new org.eclipse.swt.graphics.Color(org.eclipse.swt.widgets.Display.getCurrent(), (int) («inputs.expression(path, inner).toString(" * 255), (int) (")» * 255))
+        new Color(Display.getCurrent(), (int) («inputs.expression(path, inner).toString(" * 255), (int) (")» * 255))
     «ELSEIF function.id().startsWith("color")-»
-        org.eclipse.draw2d.ColorConstants.«function.id().replaceFirst("color","").toFirstLower()»
+        ColorConstants.«function.id().replaceFirst("color","").toFirstLower()»
 	«ELSE-»
 		«targetDef.proceed()»
 	«ENDIF-»

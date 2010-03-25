@@ -12,13 +12,55 @@
 «EXTENSION metaabm::ascape::tmpl::inferascape»
 «EXTENSION metaabm::escape::tmpl::inferescape»
 
-«AROUND metaabm::tmpl::Java::ExtendType FOR SProjection-»«pkgm()-»Scape«ENDAROUND»
-«AROUND metaabm::tmpl::Java::ExtendType FOR SContext-»«typeName()-»«ENDAROUND»
-«AROUND metaabm::tmpl::Java::ExtendType FOR SAgent-»«pkgm()-»Scape«ENDAROUND»
+«AROUND metaabm::tmpl::Java::Imports FOR SStyle-»
+import org.ascape.model.CellOccupant;
+import org.ascape.model.HostCell;
+import org.ascape.util.vis.ColorFeatureConcrete;
+import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Shape;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.amp.agf.gef.AgentEditPart;
+import org.eclipse.amp.escape.ascape.gef.HostCellEditPart;
+«ENDAROUND»
 
-«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-» extends org.ascape.model.Scape implements org.eclipse.amp.agf.gef.ModelFactoryProvider«ENDAROUND»
-«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SAgent-» extends «pkgm()»«IF isHost()-»HostCell«ELSE»CellOccupant«ENDIF-»«ENDAROUND»
-«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SStyle-» extends «(agent.isHost() ? "org.eclipse.amp.escape.ascape.gef.HostCell" : "org.eclipse.amp.agf.gef.Agent")»EditPart«ENDAROUND»
+«AROUND metaabm::tmpl::Java::Imports FOR SAgent-»
+import java.util.List;
+
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.jface.viewers.IColorProvider;
+
+import org.ascape.model.Agent;
+import org.ascape.model.CellOccupant;
+import org.ascape.model.HostCell;
+import org.ascape.model.Scape;
+import org.ascape.model.event.ScapeEvent;
+import org.ascape.model.rule.Rule;
+import org.ascape.model.space.CollectionSpace;
+import org.ascape.model.space.Coordinate2DDiscrete;
+import org.ascape.model.space.Graph;
+import org.ascape.model.space.Location;
+import org.ascape.runtime.NonGraphicRunner;
+import org.ascape.util.Conditional;
+import org.ascape.util.vis.ColorFeature;
+import org.ascape.util.vis.ColorFeatureConcrete;
+import org.ascape.view.vis.ChartView;
+import org.ascape.view.vis.GEFView;
+
+import org.eclipse.gef.EditPartFactory;
+import org.eclipse.amp.agf.gef.ModelFactoryProvider;
+import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
+import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::ExtendType FOR SProjection-»Scape«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ExtendType FOR SContext-»«typeName()-»«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ExtendType FOR SAgent-»Scape«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-» extends Scape implements ModelFactoryProvider«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SAgent-» extends «IF isHost()-»HostCell«ELSE»CellOccupant«ENDIF-»«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SStyle-» extends «(agent.isHost() ? "HostCell" : "Agent")»EditPart«ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::Body FOR SAgent-»
 	«targetDef.proceed()»
@@ -27,31 +69,31 @@
 
 «AROUND metaabm::tmpl::Java::Body FOR SContext-»
     
-    org.eclipse.gef.EditPartFactory factory;
+    EditPartFactory factory;
     
-    org.eclipse.gef.EditPartFactory treeFactory;
+    EditPartFactory treeFactory;
     
     «EXPAND metaabm::ascape::tmpl::ScapeAspect::ScapeBody-»
     
-    public org.eclipse.gef.EditPartFactory getEditPartFactory() {
+    public EditPartFactory getEditPartFactory() {
     	if (factory == null) {
 	        factory = new «implementation.className»PartFactory();
     	}
         return factory;
     }
     
-    public org.eclipse.gef.EditPartFactory getEditPartTreeFactory() {
+    public EditPartFactory getEditPartTreeFactory() {
     	if (treeFactory == null) {
-	        treeFactory = new org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory();
+	        treeFactory = new AscapePartTreeFactory();
     	}
         return treeFactory;
     }
 
-    private org.eclipse.swt.graphics.Color getInferredChartColor(Object agent,
-        org.eclipse.jface.viewers.IColorProvider colorProvider) {
-        org.eclipse.swt.graphics.Color color = colorProvider.getForeground(agent);
-		if (color == org.ascape.util.vis.ColorFeature.BLACK) {
-			color = org.ascape.util.vis.ColorFeatureConcrete
+    private Color getInferredChartColor(Object agent,
+        IColorProvider colorProvider) {
+        Color color = colorProvider.getForeground(agent);
+		if (color == ColorFeature.BLACK) {
+			color = ColorFeatureConcrete
 					.createHSB((float) java.lang.Math.random() * 360f, 1.0f,
 							0.8f);
 		}
@@ -59,21 +101,21 @@
     }
     
     public static void main(String[] args) {
-        (new org.ascape.runtime.NonGraphicRunner()).openInstance("«implementation.qualifiedName»");
+        (new NonGraphicRunner()).openInstance("«implementation.qualifiedName»");
     }
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::Body FOR SStyle-»
     «targetDef.proceed()»
-    org.eclipse.draw2d.geometry.Dimension notShown = new org.eclipse.draw2d.geometry.Dimension(0, 0);
+    Dimension notShown = new Dimension(0, 0);
         
-    protected org.eclipse.draw2d.IFigure buildFigure(org.eclipse.draw2d.IFigure figure) {
-        org.eclipse.swt.graphics.Color color = null;
+    protected IFigure buildFigure(IFigure figure) {
+        Color color = null;
         boolean createFigure = figure == null;
-        org.eclipse.draw2d.Shape markerFigure = null;
+        Shape markerFigure = null;
         if (!createFigure) {
-	        ((org.eclipse.draw2d.Shape) figure).setFill(false);
-			((org.eclipse.draw2d.Shape) figure).setOutline(false);
+	        ((Shape) figure).setFill(false);
+			((Shape) figure).setOutline(false);
 		}
 		«FOREACH ((AGroup) rootActivity).roots AS act»«agent.typeName()» «act.id()» = («agent.typeName()») getModel();«ENDFOREACH»
         «EXPAND metaabm::tmpl::Java::ActionBody-»
@@ -83,12 +125,12 @@
 
 «AROUND metaabm::ascape::tmpl::ScapeAspect::ViewBuilder FOR AGroup-»
 	«IF reference.parent == null»
-	org.ascape.view.vis.ChartView chart = new org.ascape.view.vis.ChartView();
+	ChartView chart = new ChartView();
 	«EXPAND BuildChartSelection FOREACH ((SContext) reference).agents-»
     addView(chart);
     «ENDIF»
     «IF !((SContext) reference).projections.isEmpty»
-    addView(new org.ascape.view.vis.GEFView());
+    addView(new GEFView());
     «ENDIF»
     «targetDef.proceed()-»
 «ENDAROUND»
@@ -96,24 +138,24 @@
 «DEFINE BuildChartSelection FOR SAgent»
     «IF !styles.isEmpty-»
     final «owner.typeName()» «id()»Scape = new «owner.typeName()»();
-    «id()»Scape.setRunner(new org.ascape.runtime.NonGraphicRunner());
+    «id()»Scape.setRunner(new NonGraphicRunner());
 	«typeName()» «id()» = new «typeName()»() {
-                public void requestUpdate() {
-                }
-                public «owner.typeName()» get«owner.typeName()»() {
-                	return «id()»Scape;
-                }
-            };
+            public void requestUpdate() {
+            }
+            public «owner.typeName()» get«owner.typeName()»() {
+            	return «id()»Scape;
+            }
+        };
     «id()»Scape.add(«id()»);
 	«IF !isHost()-»
-	org.ascape.model.HostCell «id()»Host = new org.ascape.model.HostCell() {
-                public void requestUpdate() {
-                }
-            };
-	«id()»Host.setOccupant((org.ascape.model.CellOccupant) «id()»);
+	HostCell «id()»Host = new HostCell() {
+            public void requestUpdate() {
+            }
+        };
+	«id()»Host.setOccupant((CellOccupant) «id()»);
 	«ENDIF-»
     «FOREACH styles AS style»
-    org.eclipse.jface.viewers.IColorProvider «style.id()»ColorProvider = new «styles.get(0).typeName()»ColorProvider();
+    IColorProvider «style.id()»ColorProvider = new «styles.get(0).typeName()»ColorProvider();
 	«FOREACH style.setterSpace() AS setter»
     «((List) setter).last()»;
 	chart.addSeries("Count «typeName()» «((List) setter).first()»", getInferredChartColor(«id()», «style.id()»ColorProvider));
@@ -135,10 +177,10 @@
 	        color = «EXPAND metaabm::tmpl::Java::FunctionInnerBlock(path, inner)»;
 	    «ELSEIF function.id().startsWith("graphicFill")-»
 	        figure.setBackgroundColor(color);
-	        ((org.eclipse.draw2d.Shape) figure).setFill(true);
+	        ((Shape) figure).setFill(true);
 	    «ELSEIF function.id().startsWith("graphicOutline")-»
 	        figure.setForegroundColor(color);
-	        ((org.eclipse.draw2d.Shape) figure).setOutline(true);
+	        ((Shape) figure).setOutline(true);
 	    «ENDIF»
         «IF function.id().startsWith("graphic") && !path.typeSelect(ASink).select(e | ((ASink) e).function.id().startsWith("shapeMarker")).isEmpty»
 	        figure = getFigure();
@@ -163,9 +205,9 @@
     «ELSEIF function.id() == "withinBoundaries"-»
         «expressionSink(path, function, inner)»
     «ELSEIF function.id() == "colorRGB"-»
-        org.ascape.util.vis.ColorFeatureConcrete.create((int) («inputs.expression(path, inner).toString(" * 255), (int) (")» * 255))
+        ColorFeatureConcrete.create((int) («inputs.expression(path, inner).toString(" * 255), (int) (")» * 255))
     «ELSEIF function.id().startsWith("color")-»
-        org.eclipse.draw2d.ColorConstants.«function.id().replaceFirst("color","").toFirstLower()»
+        ColorConstants.«function.id().replaceFirst("color","").toFirstLower()»
 	«ELSE-»
 		«targetDef.proceed()»
 	«ENDIF-»
@@ -191,9 +233,14 @@
     «IF generate()-»
     «FILE javaFileLoc().replaceFirst(".java", "PartFactory.java")»
     package «package()»;
-    public class «typeName()»PartFactory extends org.eclipse.amp.escape.ascape.adapt.AscapePartFactory {
     
-        protected org.eclipse.gef.EditPart getPartForElement(Object model) {
+    import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
+    import org.eclipse.gef.EditPart;
+    
+    
+    public class «typeName()»PartFactory extends AscapePartFactory {
+    
+        protected EditPart getPartForElement(Object model) {
         	«EXPAND RecurseAgentProviders FOREACH agents»
             return super.getPartForElement(model);
         }
@@ -203,9 +250,9 @@
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ExtendType FOR ASink-»
-	«IF function.color()-»org.eclipse.swt.graphics.Color
-	«ELSEIF function.shape()-»org.eclipse.draw2d.Shape
-	«ELSEIF function.id().startsWith("graphic")-»org.eclipse.draw2d.Shape
+	«IF function.color()-»Color
+	«ELSEIF function.shape()-»Shape
+	«ELSEIF function.id().startsWith("graphic")-»Shape
 	«ELSEIF function.id() == "randomState"-»«inputs.get(0).value.typeName()»
 	«ELSE-»«typeName()»«ENDIF-»
 «ENDAROUND»
@@ -271,7 +318,7 @@
 
 «AROUND metaabm::tmpl::Java::ActionBody FOR FFunction-»
 	«IF id() == "withinBoundaries"-»
-        «pkgs()»Coordinate2DDiscrete coor = («pkgs()»Coordinate2DDiscrete) getCoordinate();
+        Coordinate2DDiscrete coor = (Coordinate2DDiscrete) getCoordinate();
         return (coor.getYValue() >= bounds[0]
                 && coor.getXValue() >= bounds[1]
                 && coor.getYValue() <= bounds[2]

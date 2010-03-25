@@ -11,6 +11,35 @@
 «EXTENSION metaabm::ascape::tmpl::namesascape»
 «EXTENSION metaabm::ascape::tmpl::inferascape»
 
+«AROUND metaabm::tmpl::Java::Imports FOR SStyle-»
+import org.eclipse.draw2d.ColorConstants;
+import org.eclipse.draw2d.Graphics;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
+
+import org.ascape.model.Agent;
+import org.ascape.model.CellOccupant;
+import org.ascape.model.HostCell;
+
+import org.ascape.util.vis.DrawFeature;
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::Imports FOR SAgent-»
+import java.util.List;
+
+import org.ascape.model.Agent;
+import org.ascape.model.CellOccupant;
+import org.ascape.model.HostCell;
+import org.ascape.model.Scape;
+import org.ascape.model.event.ScapeEvent;
+import org.ascape.model.rule.Rule;
+import org.ascape.model.space.CollectionSpace;
+import org.ascape.model.space.Coordinate2DDiscrete;
+import org.ascape.model.space.Graph;
+import org.ascape.model.space.Location;
+import org.ascape.util.Conditional;
+«ENDAROUND»
+
 «AROUND metaabm::tmpl::Java::ClassFile FOR IID-»
 	«IF generate() && SStyle.isInstance(this)»
     «FILE javaFileLoc().replaceFirst(".java", "Graphics.java")-»
@@ -20,16 +49,16 @@
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ExtendType FOR ASink-»
-	«IF function.color()-»org.eclipse.swt.graphics.Color
-	«ELSEIF function.shape()-»org.eclipse.draw2d.Shape
-	«ELSEIF function.id().startsWith("graphic")-»org.eclipse.draw2d.Shape
+	«IF function.color()-»Color
+	«ELSEIF function.shape()-»Shape
+	«ELSEIF function.id().startsWith("graphic")-»Shape
 	«ELSEIF function.id() == "randomState"-»«inputs.get(0).value.typeName()»
 	«ELSE-»«typeName()»«ENDIF-»
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ClassName FOR IID-»«typeName()»Graphics«ENDAROUND»
 
-«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SStyle-» extends org.ascape.util.vis.DrawFeature«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SStyle-» extends DrawFeature«ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::Body FOR SStyle-»
     «targetDef.proceed()»
@@ -38,14 +67,14 @@
 	
 	Shapes shape = Shapes.rectangle;
 
-    public void draw(org.eclipse.draw2d.Graphics g, Object object, int width, int height) {
+    public void draw(Graphics g, Object object, int width, int height) {
 
 		«IF agent.isHost()-»
 			«agent.typeName()» «rootActivity.id()» = («agent.typeName()») object;
 			«FOREACH ((AGroup) rootActivity).roots AS act»«agent.typeName()» «act.id()» = «rootActivity.id()»;«ENDFOREACH»
 			«EXPAND metaabm::tmpl::Java::ActionBody-»
 		«ELSE-»
-	        «pkgm()»HostCell «rootActivity.id()»Cell = («pkgm()»HostCell) object;
+	        HostCell «rootActivity.id()»Cell = (HostCell) object;
 	        if («rootActivity.id()»Cell.getOccupant() instanceof «agent.typeName()») {
 				«agent.typeName()» «rootActivity.id()» = («agent.typeName()») «rootActivity.id()»Cell.getOccupant();
 				«FOREACH ((AGroup) rootActivity).roots AS act»«agent.typeName()» «act.id()» = «rootActivity.id()»;«ENDFOREACH»
@@ -107,9 +136,9 @@
     «ELSEIF function.id() == "withinBoundaries"-»
         «expressionSink(path, function, inner)»
     «ELSEIF function.id() == "colorRGB"-»
-        new org.eclipse.swt.graphics.Color(org.eclipse.swt.widgets.Display.getCurrent(), (int) («inputs.expression(path, inner).toString(" * 255), (int) (")» * 255))
+        new Color(Display.getCurrent(), (int) («inputs.expression(path, inner).toString(" * 255), (int) (")» * 255))
     «ELSEIF function.id().startsWith("color")-»
-        org.eclipse.draw2d.ColorConstants.«function.id().replaceFirst("color","").toFirstLower()»
+        ColorConstants.«function.id().replaceFirst("color","").toFirstLower()»
 	«ELSE-»
 		«targetDef.proceed()»
 	«ENDIF-»
