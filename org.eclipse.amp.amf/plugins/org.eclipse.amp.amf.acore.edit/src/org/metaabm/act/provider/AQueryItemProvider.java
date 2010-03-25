@@ -34,6 +34,7 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.metaabm.IID;
+import org.metaabm.act.ASink;
 import org.metaabm.function.FFunction;
 
 /*
@@ -42,8 +43,8 @@ import org.metaabm.function.FFunction;
  * @generated
  */
 public class AQueryItemProvider extends ASinkItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier. <!--
      * begin-user-doc --> <!-- end-user-doc -->
@@ -107,7 +108,10 @@ public class AQueryItemProvider extends ASinkItemProvider implements IEditingDom
      * @generated NOT
      */
     public Object getImage(Object object) {
-        return super.getImage(object);
+        if (((ASink) object).getFunction() != null) {
+            return super.getImage(object);
+        }
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/AQuery"));
     }
 
     public String suggestLabel(IID object) {
