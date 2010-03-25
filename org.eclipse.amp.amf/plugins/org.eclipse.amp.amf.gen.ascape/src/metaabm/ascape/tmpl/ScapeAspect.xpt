@@ -12,7 +12,6 @@
 «EXTENSION metaabm::ascape::tmpl::namesascape»
 «EXTENSION metaabm::ascape::tmpl::inferascape»
 
-
 «DEFINE AgentBody FOR SAgent-»
 	«IF owner != null»
 	public «owner.typeName()» «owner.getterName()»() {
@@ -21,7 +20,7 @@
 	«ENDIF»
 	«IF parent != null && !((SContext) parent).projections.typeSelect(SNetwork).isEmpty-»
 	public java.util.List getNetwork() {
-		return ((«pkgs()»Graph) «((SContext) parent).getterName()»().«((SContext) parent).projections.typeSelect(SNetwork).get(0).getterName()»().getSpace()).getNeighborsFor(this);
+		return ((Graph) «((SContext) parent).getterName()»().«((SContext) parent).projections.typeSelect(SNetwork).get(0).getterName()»().getSpace()).getNeighborsFor(this);
 	}
 	«ENDIF-»
 «ENDDEFINE»
@@ -96,7 +95,7 @@
 		«ENDIF-»
 	}
 	
-    public void scapeSetup(«pkgm()»event.ScapeEvent scapeEvent) {
+    public void scapeSetup(ScapeEvent scapeEvent) {
         //Set the size of the scape populations, e.g. for mutable scapes that need to have their size reset
         «EXPAND metaabm::tmpl::Java::ProtectedRegion("ScapeSetup")»
 		«IF (rootActivity != null)-»
@@ -128,7 +127,7 @@
 
 «DEFINE Conditional (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
     «IF conditionForAscape()-»
-        «pkgu()»Conditional «selector().id()»Condition = new «pkgu()»Conditional() {
+        Conditional «selector().id()»Condition = new Conditional() {
             private static final long serialVersionUID = 6846144446402098985L;
 
             public boolean meetsCondition(Object «selector().id()»Cell) {
@@ -155,7 +154,7 @@
     «selector().typeName()» «selector().id()» = («selector().typeName()») «findStatement(path)»;
     «ELSE-»
     «selector().typeName()» «selector().id()» = null;
-    «pkgs()»Location «selector().id()»Location = «findStatement(path)»;
+    Location «selector().id()»Location = «findStatement(path)»;
     if («selector().id()»Location != null) {
         «selector().id()» = («selector().typeName()») «converted(selector().id() + "Location")»;
     }
@@ -199,19 +198,19 @@
 «DEFINE CreateScape(int stage) FOR ABuildSpace-»«ENDDEFINE»
 «DEFINE CreateScape(int stage) FOR ABuildNetwork-»
 		«IF stage == 0-»
-        «projection.fieldName()» = new «pkgm()»Scape(new «projection.spaceClass()»());
+        «projection.fieldName()» = new Scape(new «projection.spaceClass()»());
         «projection.fieldName()».setName("«label»");
 		add(«projection.fieldName()»);
 		«ENDIF-»
 «ENDDEFINE»
 «DEFINE CreateScape(int stage) FOR ABuildGrid-»
 		«IF stage == 0-»
-	        «projection.fieldName()» = new «pkgm()»Scape(new «projection.spaceClass()»());
+	        «projection.fieldName()» = new Scape(new «projection.spaceClass()»());
 	        «projection.fieldName()».setPrototypeAgent(new «fillAgent.typeName()»());
 	        «projection.fieldName()».setExtent(new «projection.coordinateType()»(«projection.getterName()»Dimensions()));
 	        «projection.fieldName()».setName("«label»");
 	        «IF projection.periodic() != ""-»
-	        ((«pkgs()»CollectionSpace) «projection.fieldName()».getSpace()).setPeriodic(«projection.periodic()»);
+	        ((CollectionSpace) «projection.fieldName()».getSpace()).setPeriodic(«projection.periodic()»);
 	        «ENDIF-»
 			add(«projection.fieldName()»);
 			org.ascape.model.Scape «fillAgent.fieldName()» = «projection.id()»;
@@ -232,10 +231,10 @@
 	«IF !isHost()»
 		«IF stage == 0-»
 		«typeName()» «proto()» = create«typeName()»Prototype();
-		«scape()» = new «pkgm()»Scape();
+		«scape()» = new Scape();
 		«scape()».setName("«label»");
 		«scape()».setPrototypeAgent(«proto()»);
-        «scape()».setExecutionOrder(«pkgm()»Scape.RULE_ORDER);
+        «scape()».setExecutionOrder(Scape.RULE_ORDER);
 		«ELSEIF stage == 1»
 		add(«scape()»);
 		«ELSEIF stage == 2»
@@ -318,18 +317,18 @@
 «ENDDEFINE»
 
 «DEFINE ChildBuilder FOR ARule-»
-		«reference.scape()».addRule(new «pkgm()»rule.Rule("«label»") {
+		«reference.scape()».addRule(new Rule("«label»") {
 			private static final long serialVersionUID = 6846144446402098981L;
-			public void execute(«pkgm()»Agent a) {
+			public void execute(Agent a) {
 				((«reference.implementation.qualifiedName») a).«id()»();
 			}
 		});
 «ENDDEFINE»
 «DEFINE ChildBuilder FOR AInitialize-»
 		«REM»Initialize is automatically invoked by default from framework«ENDREM»
-		«reference.scape()».addInitialRule(new «pkgm()»rule.Rule("«label»") {
+		«reference.scape()».addInitialRule(new Rule("«label»") {
 			private static final long serialVersionUID = 6846144446402098982L;
-			public void execute(«pkgm()»Agent a) {
+			public void execute(Agent a) {
 				((«reference.implementation.qualifiedName») a).«id()»();
 			}
 		});

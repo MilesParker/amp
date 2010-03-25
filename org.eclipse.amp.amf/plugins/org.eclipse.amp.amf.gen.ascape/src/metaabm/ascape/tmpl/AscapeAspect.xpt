@@ -11,21 +11,52 @@
 «EXTENSION metaabm::ascape::tmpl::namesascape»
 «EXTENSION metaabm::ascape::tmpl::inferascape»
 
-«AROUND metaabm::tmpl::Java::ExtendType FOR SProjection-»«pkgm()-»Scape«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ExtendType FOR SProjection-»Scape«ENDAROUND»
 «AROUND metaabm::tmpl::Java::ExtendType FOR SContext-»«typeName()-»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::ExtendType FOR SAgent-»«pkgm()-»Scape«ENDAROUND»
 
-«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-» extends «pkgm()»Scape«ENDAROUND»
-«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SAgent-» extends «pkgm()»«IF isHost()-»HostCell«ELSE-»CellOccupant«ENDIF-»«ENDAROUND»
-«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SStyle-» extends org.ascape.util.vis.DrawFeature«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-» extends Scape«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SAgent-» extends «IF isHost()-»HostCell«ELSE-»CellOccupant«ENDIF-»«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SStyle-» extends DrawFeature«ENDAROUND»
 
+«AROUND metaabm::tmpl::Java::Imports FOR SStyle-»
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
+import org.ascape.util.vis.DrawFeature;
+
+import org.ascape.model.CellOccupant;
+import org.ascape.model.HostCell;
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::Imports FOR SAgent-»
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+
+import java.util.List;
+
+import org.ascape.model.Agent;
+import org.ascape.model.CellOccupant;
+import org.ascape.model.HostCell;
+import org.ascape.model.Scape;
+import org.ascape.model.event.ScapeEvent;
+import org.ascape.model.rule.Rule;
+import org.ascape.model.space.CollectionSpace;
+import org.ascape.model.space.Coordinate2DDiscrete;
+import org.ascape.model.space.Graph;
+import org.ascape.model.space.Location;
+import org.ascape.util.Conditional;
+«ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::Body FOR SAgent-»
 	«targetDef.proceed()»
 	«EXPAND metaabm::ascape::tmpl::ScapeAspect::AgentBody-»
 
-    public java.awt.Color getColor() {
-    	return java.awt.Color.LIGHT_GRAY;
+    public Color getColor() {
+    	return Color.LIGHT_GRAY;
     }
 «ENDAROUND»
 
@@ -39,14 +70,14 @@
 
 «AROUND metaabm::tmpl::Java::Body FOR SStyle-»
 	«targetDef.proceed()»
-    public void draw(java.awt.Graphics g, Object object, int width, int height) {
-    	java.awt.Shape shape = null;
+    public void draw(Graphics g, Object object, int width, int height) {
+    	Shape shape = null;
 		«IF agent.isHost()-»
 			«agent.typeName()» «rootActivity.id()» = («agent.typeName()») object;
 			«FOREACH ((AGroup) rootActivity).roots AS act»«agent.typeName()» «act.id()» = «rootActivity.id()»;«ENDFOREACH»
 			«EXPAND metaabm::tmpl::Java::ActionBody-»
 		«ELSE-»
-	        «pkgm()»HostCell «rootActivity.id()»Cell = («pkgm()»HostCell) object;
+	        HostCell «rootActivity.id()»Cell = (HostCell) object;
 	        if («rootActivity.id()»Cell.getOccupant() instanceof «agent.typeName()») {
 				«agent.typeName()» «rootActivity.id()» = («agent.typeName()») «rootActivity.id()»Cell.getOccupant();
 				«FOREACH ((AGroup) rootActivity).roots AS act»«agent.typeName()» «act.id()» = «rootActivity.id()»;«ENDFOREACH»
@@ -66,7 +97,7 @@
 	//if (getRunner().getEnvironment() instanceof org.ascape.runtime.applet.AppletEnvironment) {
     //    chart.getChart().getLegend().setAnchor(com.jrefinery.chart.Legend.SOUTH);
 	//}
-	java.awt.Graphics dummyGraphics = new java.awt.image.BufferedImage(10, 10, java.awt.image.BufferedImage.TYPE_INT_RGB).getGraphics();
+	Graphics dummyGraphics = new BufferedImage(10, 10, BufferedImage.TYPE_INT_RGB).getGraphics();
 
     «FOREACH ((SContext) reference).agents AS agent»
     «IF !agent.styles.isEmpty-»
@@ -98,7 +129,7 @@
     «style.id()».draw(dummyGraphics, «agent.id()»Host, 4, 4);
     «ENDIF»
     {
-    java.awt.Color agentColor = dummyGraphics.getColor();
+    Color agentColor = dummyGraphics.getColor();
 	chart.addSeries("Count «agent.typeName()» «((List) setter).first()»", agentColor);
 	}
     «ENDFOREACH-»
@@ -150,19 +181,19 @@
 		«targetDef.proceed()»
 		g.setColor(«id()»);
 	«ELSEIF function.id() == "shapeOval"-»
-		shape = new java.awt.geom.Ellipse2D.Double(0, 0, width - 2, height - 2);
+		shape = new Ellipse2D.Double(0, 0, width - 2, height - 2);
 	«ELSEIF function.id() == "shapeRectangle"-»
 		«IF !reference.isHost()-»
-		shape = new java.awt.geom.Rectangle2D.Double(0, 0, width - 1, height - 1);
+		shape = new Rectangle2D.Double(0, 0, width - 1, height - 1);
 		«ELSE-»
-		shape = new java.awt.geom.Rectangle2D.Double(0, 0, width, height);
+		shape = new Rectangle2D.Double(0, 0, width, height);
 		«ENDIF-»
 	«ELSEIF function.id() == "shapeMarker"-»
-        shape = new java.awt.geom.Ellipse2D.Double(width * .25 - 1, width * .25 - 1, width * .5 - 1, width * .5 - 1);
+        shape = new Ellipse2D.Double(width * .25 - 1, width * .25 - 1, width * .5 - 1, width * .5 - 1);
 	«ELSEIF function.id().startsWith("graphicFill")-»
-        ((java.awt.Graphics2D) g).fill(shape);
+        ((Graphics2D) g).fill(shape);
 	«ELSEIF function.id().startsWith("graphicOutline")-»
-        ((java.awt.Graphics2D) g).draw(shape);
+        ((Graphics2D) g).draw(shape);
     «ELSE-»
 	 	«IF selected == rootSelected || allTargets.typeSelect(ASet).collect(e | e.parameter).size > 0»
 			«targetDef.proceed()»
@@ -252,7 +283,7 @@
 
 «AROUND metaabm::tmpl::Java::ActionBody FOR FFunction-»
 	«IF id() == "withinBoundaries"-»
-        «pkgs()»Coordinate2DDiscrete coor = («pkgs()»Coordinate2DDiscrete) getCoordinate();
+        Coordinate2DDiscrete coor = (Coordinate2DDiscrete) getCoordinate();
         return (coor.getYValue() >= bounds[0]
                 && coor.getXValue() >= bounds[1]
                 && coor.getYValue() <= bounds[2]
