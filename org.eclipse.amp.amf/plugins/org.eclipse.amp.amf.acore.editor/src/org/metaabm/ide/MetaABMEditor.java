@@ -101,7 +101,6 @@ import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
-import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
@@ -117,7 +116,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Menu;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.TreeItem;
@@ -1136,74 +1134,75 @@ IMenuListener, IViewerProvider, IGotoMarker {
             int pageIndex = addPage(viewerPane.getControl());
             setPageText(pageIndex, getString("_UI_SelectionPage_label"));
         }
-        // This is the page for the list viewer
+
+        // // This is the page for the list viewer
+        // //
+        // {
+        // ViewerPane viewerPane = new ViewerPane(getSite().getPage(), MetaABMEditor.this) {
+        // @Override
+        // public Viewer createViewer(Composite composite) {
+        // return new ListViewer(composite);
+        // }
         //
-        {
-            ViewerPane viewerPane = new ViewerPane(getSite().getPage(), MetaABMEditor.this) {
-                @Override
-                public Viewer createViewer(Composite composite) {
-                    return new ListViewer(composite);
-                }
-
-                @Override
-                public void requestActivation() {
-                    super.requestActivation();
-                    setCurrentViewerPane(this);
-                }
-            };
-            viewerPane.createControl(getContainer());
-            listViewer = (ListViewer) viewerPane.getViewer();
-            listViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-            listViewer.setLabelProvider(new AdapterFactoryLabelProvider.ColorProvider(adapterFactory, listViewer));
-
-            createContextMenuFor(listViewer);
-            int pageIndex = addPage(viewerPane.getControl());
-            setPageText(pageIndex, getString("_UI_ListPage_label"));
-        }
-
-        // This is the page for the table viewer.
+        // @Override
+        // public void requestActivation() {
+        // super.requestActivation();
+        // setCurrentViewerPane(this);
+        // }
+        // };
+        // viewerPane.createControl(getContainer());
+        // listViewer = (ListViewer) viewerPane.getViewer();
+        // listViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+        // listViewer.setLabelProvider(new AdapterFactoryLabelProvider.ColorProvider(adapterFactory, listViewer));
         //
-        {
-            ViewerPane viewerPane = new ViewerPane(getSite().getPage(), MetaABMEditor.this) {
-                @Override
-                public Viewer createViewer(Composite composite) {
-                    return new TableViewer(composite);
-                }
+        // createContextMenuFor(listViewer);
+        // int pageIndex = addPage(viewerPane.getControl());
+        // setPageText(pageIndex, getString("_UI_ListPage_label"));
+        // }
 
-                @Override
-                public void requestActivation() {
-                    super.requestActivation();
-                    setCurrentViewerPane(this);
-                }
-            };
-            viewerPane.createControl(getContainer());
-            tableViewer = (TableViewer) viewerPane.getViewer();
-
-            Table table = tableViewer.getTable();
-            TableLayout layout = new TableLayout();
-            table.setLayout(layout);
-            table.setHeaderVisible(true);
-            table.setLinesVisible(true);
-
-            // TableColumn objectColumn = new TableColumn(table, SWT.NONE);
-            // layout.addColumnData(new ColumnWeightData(3, 100, true));
-            // objectColumn.setText(getString("_UI_ObjectColumn_label"));
-            // objectColumn.setResizable(true);
-            //
-            // TableColumn selfColumn = new TableColumn(table, SWT.NONE);
-            // layout.addColumnData(new ColumnWeightData(2, 100, true));
-            // selfColumn.setText(getString("_UI_SelfColumn_label"));
-            // selfColumn.setResizable(true);
-
-            tableViewer.setColumnProperties(new String[] { "a", "b" });
-            tableViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
-            tableViewer
-            .setLabelProvider(new AdapterFactoryLabelProvider.ColorProvider(adapterFactory, tableViewer));
-
-            createContextMenuFor(tableViewer);
-            int pageIndex = addPage(viewerPane.getControl());
-            setPageText(pageIndex, getString("_UI_TablePage_label"));
-        }
+        // // This is the page for the table viewer.
+        // //
+        // {
+        // ViewerPane viewerPane = new ViewerPane(getSite().getPage(), MetaABMEditor.this) {
+        // @Override
+        // public Viewer createViewer(Composite composite) {
+        // return new TableViewer(composite);
+        // }
+        //
+        // @Override
+        // public void requestActivation() {
+        // super.requestActivation();
+        // setCurrentViewerPane(this);
+        // }
+        // };
+        // viewerPane.createControl(getContainer());
+        // tableViewer = (TableViewer) viewerPane.getViewer();
+        //
+        // Table table = tableViewer.getTable();
+        // TableLayout layout = new TableLayout();
+        // table.setLayout(layout);
+        // table.setHeaderVisible(true);
+        // table.setLinesVisible(true);
+        //
+        // // TableColumn objectColumn = new TableColumn(table, SWT.NONE);
+        // // layout.addColumnData(new ColumnWeightData(3, 100, true));
+        // // objectColumn.setText(getString("_UI_ObjectColumn_label"));
+        // // objectColumn.setResizable(true);
+        // //
+        // // TableColumn selfColumn = new TableColumn(table, SWT.NONE);
+        // // layout.addColumnData(new ColumnWeightData(2, 100, true));
+        // // selfColumn.setText(getString("_UI_SelfColumn_label"));
+        // // selfColumn.setResizable(true);
+        //
+        // tableViewer.setColumnProperties(new String[] { "a", "b" });
+        // tableViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+        // tableViewer
+        // .setLabelProvider(new AdapterFactoryLabelProvider.ColorProvider(adapterFactory, tableViewer));
+        //
+        // createContextMenuFor(tableViewer);
+        // int pageIndex = addPage(viewerPane.getControl());
+        // setPageText(pageIndex, getString("_UI_TablePage_label"));
+        // }
 
         // This is the page for the table tree viewer.
         //
