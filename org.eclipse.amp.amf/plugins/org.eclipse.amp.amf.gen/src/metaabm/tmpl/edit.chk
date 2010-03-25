@@ -95,7 +95,7 @@ context SAttribute ERROR "Default Value needed for " + usageLabel():
    !SNDimensional.isInstance(owner) || (defaultValue != null && defaultValue != "") || SAttributeArray.isInstance(this);
    
 context SAttribute WARNING "Default Value not set for " + usageLabel() + ". Assuming empty value": 
-   SNDimensional.isInstance(owner) || SAttributeArray.isInstance(this) || (defaultValue != null && defaultValue != "");
+   SNDimensional.isInstance(owner) || SAttributeArray.isInstance(this) || (defaultValue != "");
    
 context SNDimensional ERROR "Dimensionality of 0 for " + usageLabel() + ". A space must have dimensionality of 1 or greater" : 
    dimensionality > 0;
