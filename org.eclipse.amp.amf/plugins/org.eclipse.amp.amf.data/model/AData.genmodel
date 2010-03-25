@@ -47,6 +47,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AData.ecore#//Measurement/type"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference AData.ecore#//Measurement/value"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute AData.ecore#//Measurement/name"/>
+      <genFeatures property="None" notify="false" children="true" createChild="false"
+          ecoreFeature="ecore:EReference AData.ecore#//Measurement/entries"/>
     </genClasses>
     <genClasses ecoreClass="AData.ecore#//ParameterSet">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference AData.ecore#//ParameterSet/members"/>

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DataPackageImpl.java,v 1.3 2010/03/24 04:09:10 mparker Exp $
+ * $Id: DataPackageImpl.java,v 1.4 2010/03/25 03:01:44 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.impl;
 
@@ -315,17 +315,8 @@ public class DataPackageImpl extends EPackageImpl implements DataPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getCatalog_Entries() {
-        return (EReference)catalogEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EReference getCatalog_Runs() {
-        return (EReference)catalogEClass.getEStructuralFeatures().get(1);
+        return (EReference)catalogEClass.getEStructuralFeatures().get(0);
     }
 
     /**
@@ -362,6 +353,15 @@ public class DataPackageImpl extends EPackageImpl implements DataPackage {
      */
     public EAttribute getMeasurement_Name() {
         return (EAttribute)measurementEClass.getEStructuralFeatures().get(2);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getMeasurement_Entries() {
+        return (EReference)measurementEClass.getEStructuralFeatures().get(3);
     }
 
     /**
@@ -440,13 +440,13 @@ public class DataPackageImpl extends EPackageImpl implements DataPackage {
         createEReference(dataPointEClass, DATA_POINT__MEASURE);
 
         catalogEClass = createEClass(CATALOG);
-        createEReference(catalogEClass, CATALOG__ENTRIES);
         createEReference(catalogEClass, CATALOG__RUNS);
 
         measurementEClass = createEClass(MEASUREMENT);
         createEAttribute(measurementEClass, MEASUREMENT__TYPE);
         createEReference(measurementEClass, MEASUREMENT__VALUE);
         createEAttribute(measurementEClass, MEASUREMENT__NAME);
+        createEReference(measurementEClass, MEASUREMENT__ENTRIES);
 
         parameterSetEClass = createEClass(PARAMETER_SET);
         createEReference(parameterSetEClass, PARAMETER_SET__MEMBERS);
@@ -492,7 +492,7 @@ public class DataPackageImpl extends EPackageImpl implements DataPackage {
         initEReference(getRun_Model(), theMetaABMPackage.getSContext(), null, "model", null, 1, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getRun_Started(), ecorePackage.getEDate(), "started", null, 0, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getRun_Finished(), ecorePackage.getEDate(), "finished", null, 0, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getRun_Entries(), this.getDataPoint(), this.getDataPoint_Run(), "entries", null, 0, -1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+        initEReference(getRun_Entries(), this.getDataPoint(), this.getDataPoint_Run(), "entries", null, 0, -1, Run.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getRun_Name(), ecorePackage.getEString(), "name", null, 1, 1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRun_ParameterSets(), this.getParameterSet(), null, "parameterSets", null, 0, -1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getRun_Measurements(), this.getMeasurement(), null, "measurements", null, 0, -1, Run.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -505,17 +505,17 @@ public class DataPackageImpl extends EPackageImpl implements DataPackage {
         initEClass(dataPointEClass, DataPoint.class, "DataPoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getDataPoint_Period(), ecorePackage.getELong(), "period", null, 0, 1, DataPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEAttribute(getDataPoint_Value(), ecorePackage.getEDouble(), "value", null, 0, 1, DataPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getDataPoint_Run(), this.getRun(), this.getRun_Entries(), "run", null, 0, 1, DataPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getDataPoint_Run(), this.getRun(), this.getRun_Entries(), "run", null, 0, 1, DataPoint.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getDataPoint_Measure(), this.getMeasurement(), null, "measure", null, 0, 1, DataPoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(catalogEClass, Catalog.class, "Catalog", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getCatalog_Entries(), this.getDataPoint(), null, "entries", null, 0, -1, Catalog.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getCatalog_Runs(), this.getRun(), null, "runs", null, 0, -1, Catalog.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(measurementEClass, Measurement.class, "Measurement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getMeasurement_Type(), this.getScaleType(), "type", null, 0, 1, Measurement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
         initEReference(getMeasurement_Value(), theMetaABMPackage.getIValue(), null, "value", null, 0, 1, Measurement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getMeasurement_Name(), ecorePackage.getEString(), "name", null, 1, 1, Measurement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getMeasurement_Entries(), this.getDataPoint(), null, "entries", null, 0, -1, Measurement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
         initEClass(parameterSetEClass, ParameterSet.class, "ParameterSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getParameterSet_Members(), this.getParameter(), null, "members", null, 0, -1, ParameterSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

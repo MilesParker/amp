@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DataPoint.java,v 1.1 2010/02/13 03:59:06 mparker Exp $
+ * $Id: DataPoint.java,v 1.2 2010/03/25 03:01:42 mparker Exp $
  */
 package org.eclipse.amp.amf.adata;
 
@@ -93,7 +93,7 @@ public interface DataPoint extends EObject {
      * @see #setRun(Run)
      * @see org.eclipse.amp.amf.adata.DataPackage#getDataPoint_Run()
      * @see org.eclipse.amp.amf.adata.Run#getEntries
-     * @model opposite="entries"
+     * @model opposite="entries" transient="true"
      * @generated
      */
     Run getRun();

@@ -2,10 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Measurement.java,v 1.3 2010/03/24 04:09:10 mparker Exp $
+ * $Id: Measurement.java,v 1.4 2010/03/25 03:01:43 mparker Exp $
  */
 package org.eclipse.amp.amf.adata;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 import org.metaabm.IValue;
@@ -22,6 +23,7 @@ import org.metaabm.SAttribute;
  *   <li>{@link org.eclipse.amp.amf.adata.Measurement#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.adata.Measurement#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.adata.Measurement#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.adata.Measurement#getEntries <em>Entries</em>}</li>
  * </ul>
  * </p>
  *
@@ -110,5 +112,21 @@ public interface Measurement extends EObject {
      * @generated
      */
     void setName(String value);
+
+    /**
+     * Returns the value of the '<em><b>Entries</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.amp.amf.adata.DataPoint}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Entries</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Entries</em>' containment reference list.
+     * @see org.eclipse.amp.amf.adata.DataPackage#getMeasurement_Entries()
+     * @model containment="true" ordered="false"
+     * @generated
+     */
+    EList<DataPoint> getEntries();
 
 } // Measurement

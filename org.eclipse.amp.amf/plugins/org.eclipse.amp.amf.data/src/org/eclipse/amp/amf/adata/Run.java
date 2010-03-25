@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Run.java,v 1.2 2010/03/24 04:09:09 mparker Exp $
+ * $Id: Run.java,v 1.3 2010/03/25 03:01:42 mparker Exp $
  */
 package org.eclipse.amp.amf.adata;
 
@@ -128,7 +128,7 @@ public interface Run extends EObject {
      * @return the value of the '<em>Entries</em>' reference list.
      * @see org.eclipse.amp.amf.adata.DataPackage#getRun_Entries()
      * @see org.eclipse.amp.amf.adata.DataPoint#getRun
-     * @model opposite="run" resolveProxies="false" ordered="false"
+     * @model opposite="run" resolveProxies="false" transient="true" ordered="false"
      * @generated
      */
     EList<DataPoint> getEntries();

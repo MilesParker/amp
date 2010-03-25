@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DataPackage.java,v 1.3 2010/03/24 04:09:10 mparker Exp $
+ * $Id: DataPackage.java,v 1.4 2010/03/25 03:01:43 mparker Exp $
  */
 package org.eclipse.amp.amf.adata;
 
@@ -254,22 +254,13 @@ public interface DataPackage extends EPackage {
     int CATALOG = 3;
 
     /**
-     * The feature id for the '<em><b>Entries</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int CATALOG__ENTRIES = 0;
-
-    /**
      * The feature id for the '<em><b>Runs</b></em>' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CATALOG__RUNS = 1;
+    int CATALOG__RUNS = 0;
 
     /**
      * The number of structural features of the '<em>Catalog</em>' class.
@@ -278,7 +269,7 @@ public interface DataPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int CATALOG_FEATURE_COUNT = 2;
+    int CATALOG_FEATURE_COUNT = 1;
 
     /**
      * The meta object id for the '{@link org.eclipse.amp.amf.adata.impl.MeasurementImpl <em>Measurement</em>}' class.
@@ -318,13 +309,22 @@ public interface DataPackage extends EPackage {
     int MEASUREMENT__NAME = 2;
 
     /**
+     * The feature id for the '<em><b>Entries</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int MEASUREMENT__ENTRIES = 3;
+
+    /**
      * The number of structural features of the '<em>Measurement</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int MEASUREMENT_FEATURE_COUNT = 3;
+    int MEASUREMENT_FEATURE_COUNT = 4;
 
     /**
      * The meta object id for the '{@link org.eclipse.amp.amf.adata.impl.ParameterSetImpl <em>Parameter Set</em>}' class.
@@ -560,17 +560,6 @@ public interface DataPackage extends EPackage {
     EClass getCatalog();
 
     /**
-     * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.adata.Catalog#getEntries <em>Entries</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Entries</em>'.
-     * @see org.eclipse.amp.amf.adata.Catalog#getEntries()
-     * @see #getCatalog()
-     * @generated
-     */
-    EReference getCatalog_Entries();
-
-    /**
      * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.adata.Catalog#getRuns <em>Runs</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -623,6 +612,17 @@ public interface DataPackage extends EPackage {
      * @generated
      */
     EAttribute getMeasurement_Name();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.adata.Measurement#getEntries <em>Entries</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Entries</em>'.
+     * @see org.eclipse.amp.amf.adata.Measurement#getEntries()
+     * @see #getMeasurement()
+     * @generated
+     */
+    EReference getMeasurement_Entries();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.amp.amf.adata.ParameterSet <em>Parameter Set</em>}'.
@@ -830,14 +830,6 @@ public interface DataPackage extends EPackage {
         EClass CATALOG = eINSTANCE.getCatalog();
 
         /**
-         * The meta object literal for the '<em><b>Entries</b></em>' containment reference list feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference CATALOG__ENTRIES = eINSTANCE.getCatalog_Entries();
-
-        /**
          * The meta object literal for the '<em><b>Runs</b></em>' containment reference list feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -878,6 +870,14 @@ public interface DataPackage extends EPackage {
          * @generated
          */
         EAttribute MEASUREMENT__NAME = eINSTANCE.getMeasurement_Name();
+
+        /**
+         * The meta object literal for the '<em><b>Entries</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference MEASUREMENT__ENTRIES = eINSTANCE.getMeasurement_Entries();
 
         /**
          * The meta object literal for the '{@link org.eclipse.amp.amf.adata.impl.ParameterSetImpl <em>Parameter Set</em>}' class.

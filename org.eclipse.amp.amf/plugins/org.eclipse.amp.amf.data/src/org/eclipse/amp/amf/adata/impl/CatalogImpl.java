@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CatalogImpl.java,v 1.1 2010/02/13 03:59:09 mparker Exp $
+ * $Id: CatalogImpl.java,v 1.2 2010/03/25 03:01:44 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.impl;
 
@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -32,7 +33,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.amp.amf.adata.impl.CatalogImpl#getEntries <em>Entries</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.adata.impl.CatalogImpl#getRuns <em>Runs</em>}</li>
  * </ul>
  * </p>
@@ -40,16 +40,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class CatalogImpl extends EObjectImpl implements Catalog {
-    /**
-     * The cached value of the '{@link #getEntries() <em>Entries</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getEntries()
-     * @generated
-     * @ordered
-     */
-    protected EList<DataPoint> entries;
-
     /**
      * The cached value of the '{@link #getRuns() <em>Runs</em>}' containment reference list.
      * <!-- begin-user-doc -->
@@ -84,18 +74,6 @@ public class CatalogImpl extends EObjectImpl implements Catalog {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EList<DataPoint> getEntries() {
-        if (entries == null) {
-            entries = new EObjectContainmentEList<DataPoint>(DataPoint.class, this, DataPackage.CATALOG__ENTRIES);
-        }
-        return entries;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EList<Run> getRuns() {
         if (runs == null) {
             runs = new EObjectContainmentEList<Run>(Run.class, this, DataPackage.CATALOG__RUNS);
@@ -111,8 +89,6 @@ public class CatalogImpl extends EObjectImpl implements Catalog {
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-            case DataPackage.CATALOG__ENTRIES:
-                return ((InternalEList<?>)getEntries()).basicRemove(otherEnd, msgs);
             case DataPackage.CATALOG__RUNS:
                 return ((InternalEList<?>)getRuns()).basicRemove(otherEnd, msgs);
         }
@@ -127,8 +103,6 @@ public class CatalogImpl extends EObjectImpl implements Catalog {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case DataPackage.CATALOG__ENTRIES:
-                return getEntries();
             case DataPackage.CATALOG__RUNS:
                 return getRuns();
         }
@@ -144,10 +118,6 @@ public class CatalogImpl extends EObjectImpl implements Catalog {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case DataPackage.CATALOG__ENTRIES:
-                getEntries().clear();
-                getEntries().addAll((Collection<? extends DataPoint>)newValue);
-                return;
             case DataPackage.CATALOG__RUNS:
                 getRuns().clear();
                 getRuns().addAll((Collection<? extends Run>)newValue);
@@ -164,9 +134,6 @@ public class CatalogImpl extends EObjectImpl implements Catalog {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case DataPackage.CATALOG__ENTRIES:
-                getEntries().clear();
-                return;
             case DataPackage.CATALOG__RUNS:
                 getRuns().clear();
                 return;
@@ -182,8 +149,6 @@ public class CatalogImpl extends EObjectImpl implements Catalog {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case DataPackage.CATALOG__ENTRIES:
-                return entries != null && !entries.isEmpty();
             case DataPackage.CATALOG__RUNS:
                 return runs != null && !runs.isEmpty();
         }
