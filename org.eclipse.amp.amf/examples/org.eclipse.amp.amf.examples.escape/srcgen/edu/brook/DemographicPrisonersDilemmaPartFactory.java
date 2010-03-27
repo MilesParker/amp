@@ -1,9 +1,11 @@
 package edu.brook;
-public class DemographicPrisonersDilemmaPartFactory
-		extends
-			org.eclipse.amp.escape.ascape.adapt.AscapePartFactory {
 
-	protected org.eclipse.gef.EditPart getPartForElement(Object model) {
+import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
+import org.eclipse.gef.EditPart;
+
+public class DemographicPrisonersDilemmaPartFactory extends AscapePartFactory {
+
+	protected EditPart getPartForElement(Object model) {
 
 		if (model instanceof Player) {
 			return new edu.brook.CooperateDefectStyle();

@@ -1,9 +1,11 @@
 package org.metaabm.examples.stupid5;
-public class StupidModel5PartFactory
-		extends
-			org.eclipse.amp.escape.ascape.adapt.AscapePartFactory {
 
-	protected org.eclipse.gef.EditPart getPartForElement(Object model) {
+import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
+import org.eclipse.gef.EditPart;
+
+public class StupidModel5PartFactory extends AscapePartFactory {
+
+	protected EditPart getPartForElement(Object model) {
 
 		if (model instanceof Bug) {
 			return new org.metaabm.examples.stupid5.BugStyle2D();

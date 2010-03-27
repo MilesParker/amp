@@ -1,9 +1,11 @@
 package name.milesparker.epi.region;
-public class RegionPartFactory
-		extends
-			org.eclipse.amp.escape.ascape.adapt.AscapePartFactory {
 
-	protected org.eclipse.gef.EditPart getPartForElement(Object model) {
+import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
+import org.eclipse.gef.EditPart;
+
+public class RegionPartFactory extends AscapePartFactory {
+
+	protected EditPart getPartForElement(Object model) {
 
 		if (model instanceof City) {
 			return new name.milesparker.epi.region.CityStyle2D();

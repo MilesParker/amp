@@ -1,16 +1,18 @@
 package name.milesparker.epi;
-public class EpidemicPartFactory
-		extends
-			org.eclipse.amp.escape.ascape.adapt.AscapePartFactory {
 
-	protected org.eclipse.gef.EditPart getPartForElement(Object model) {
+import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
+import org.eclipse.gef.EditPart;
+
+public class EpidemicPartFactory extends AscapePartFactory {
+
+	protected EditPart getPartForElement(Object model) {
 
 		if (model instanceof Individual) {
 			return new name.milesparker.epi.IndividualStyle2D();
 		}
 
-		if (model instanceof Location) {
-			return new name.milesparker.epi.LocationStyle2D();
+		if (model instanceof Place) {
+			return new name.milesparker.epi.PlaceStyle2D();
 		}
 
 		return super.getPartForElement(model);
