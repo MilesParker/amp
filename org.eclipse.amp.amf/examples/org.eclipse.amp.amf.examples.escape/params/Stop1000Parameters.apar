@@ -1,0 +1,2 @@
+model "platform:/resource/org.eclipse.amp.amf.examples.escape/Epidemic.metaabm"
+"Stop Period"=1000

@@ -1,5 +1,6 @@
-model "|EpidemicRegional.metaabm" 
-"Regional Map Width"=8
-"Regional Map Height"=2
-"City Count"=12
-"Migration Probability"=.0004
+model "platform:/resource/org.eclipse.amp.amf.examples.escape/EpidemicRegional.metaabm"
+incorporates "platform:/resource/org.eclipse.amp.amf.examples.escape/params/EpidemicRegions.apar"
+stopPeriod=10
+
+
+
