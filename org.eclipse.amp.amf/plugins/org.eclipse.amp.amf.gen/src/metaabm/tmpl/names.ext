@@ -97,6 +97,9 @@ cached List[String] ids(List[IID] ids) :
 cached String libid(FFunction fun) :
     (fun.eContainer.metaType == FLibrary) ? ((FLibrary) fun.eContainer).id() : "";
 
+cached String usageLabel(EObject object) :
+	object.toString();
+	
 cached String usageLabel(IID id) :
 	id.label;
 
@@ -109,8 +112,6 @@ cached String usageLabel(AInput id) :
 cached String usageLabel(SImplementation id) :
 	id.target.usageLabel();
 
-cached String usageLabel(EObject object) :
-	object.toString();
 
 cached String methodName(IID val) :
 	val.id().length > 0 ? val.id() : "//noMethodNameFor" + val.metaType;

@@ -490,3 +490,19 @@ List[AWatch] watchCycle(AWatch current, SAttribute attr, Collection chain) :
 	
 List[AWatch] watchCycle(AWatch current, SAttribute attr) :
 		watchCycle(current, attr, {});
+
+List[AAct] members(IAct iact) :
+	{};
+
+List[AAct] members(AGroup group) :
+	group.members;
+
+List[AAct] acts(SAgent agent) :
+	agent.rootActivity.members();
+		
+//ABuildProjection builder(SProjection space) :
+//	space.owner.acts().typeSelect(ABuildProjection).select(a | a.projection == space);
+		
+ABuildGrid builder(SGrid space) :
+	space.owner.acts().typeSelect(ABuildGrid).select(a | a.projection == space).first();
+	
