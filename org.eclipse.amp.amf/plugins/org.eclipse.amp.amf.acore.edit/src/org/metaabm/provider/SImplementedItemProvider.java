@@ -83,7 +83,7 @@ public class SImplementedItemProvider extends IIDItemProvider implements IEditin
     public static void addImplementationAsProperties(SImplemented implemented, ItemProviderAdapter adapter) {
         SImplementation implementation = implemented.getImplementation();
         SImplementationItemProvider implProv = (SImplementationItemProvider) adapter.getAdapterFactory()
-                .adapt(implementation, IItemPropertySource.class);
+                .adapt(implementation, IItemLabelProvider.class);
         List<?> implDesc = implProv.getPropertyDescriptors(implementation);
         final String feature = adapter.getString("_UI_SImplemented_implementation_feature");
         for (Object name : implDesc) {

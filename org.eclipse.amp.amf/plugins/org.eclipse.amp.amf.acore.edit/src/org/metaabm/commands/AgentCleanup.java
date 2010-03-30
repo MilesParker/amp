@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: AgentCleanup.java,v 1.1 2009/07/16 19:58:58 mparker Exp $
+ * </copyright> $Id: AgentCleanup.java,v 1.2 2010/03/30 01:39:13 mparker Exp $
  */
 package org.metaabm.commands;
 
@@ -25,7 +25,6 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.ui.statushandlers.StatusManager;
 import org.metaabm.SAgent;
 import org.metaabm.act.AAct;
 import org.metaabm.act.AGroup;
@@ -92,11 +91,11 @@ public class AgentCleanup extends Job {
                                                         MetaABMActPackage.Literals.AGROUP__MEMBERS, orphans));
         if (command.canExecute()) {
             domain.getCommandStack().execute(command);
-            StatusManager.getManager().handle(
-                                              new Status(IStatus.INFO, "org.eclipse.amp.amf.ide", "Cleanup succesful for: " + agent.getLabel()));
+//            StatusManager.getManager().handle(
+//                                              new Status(IStatus.INFO, "org.eclipse.amp.amf.ide", "Cleanup succesful for: " + agent.getLabel()));
         } else {
-            StatusManager.getManager().handle(
-                                              new Status(IStatus.ERROR, "org.eclipse.amp.amf.ide", "Sorry, couldn't cleanup: " + agent.getLabel()));
+//            StatusManager.getManager().handle(
+//                                              new Status(IStatus.ERROR, "org.eclipse.amp.amf.ide", "Sorry, couldn't cleanup: " + agent.getLabel()));
         }
         return Status.OK_STATUS;
     }
