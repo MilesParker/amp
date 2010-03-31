@@ -15,23 +15,16 @@
  */
 package org.eclipse.amp.agf.chart.ide;
 
-import org.eclipse.amp.agf.chart.ChartEditPart;
 import org.eclipse.amp.agf.chart.ChartType;
-import org.eclipse.amp.agf.chart.ChartViewPart;
 import org.eclipse.amp.agf.chart.IChartDesignStrategy;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.ui.IViewActionDelegate;
-import org.eclipse.ui.IViewPart;
 
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class DisplayLegendAction.
  */
-public class SelectAreaAction implements IViewActionDelegate {
-
-    ChartEditPart editor;
+public class SelectAreaAction extends ChartAction {
 
     /**
      *
@@ -39,23 +32,8 @@ public class SelectAreaAction implements IViewActionDelegate {
      */
     public void run(IAction action) {
         IChartDesignStrategy createChart = ChartType.STACKED_AREA.createStrategy();
-        editor.setChartStrategy(createChart);
+        getEditor().setChartStrategy(createChart);
         createChart.update();
-    }
-
-    /**
-     *
-     * @see org.eclipse.ui.IViewActionDelegate#init(org.eclipse.ui.IViewPart)
-     */
-    public void init(IViewPart view) {
-        editor = (ChartEditPart) ((ChartViewPart) view).getEditPart();
-    }
-
-    /**
-     *
-     * @see org.eclipse.ui.IActionDelegate#selectionChanged(org.eclipse.jface.action.IAction, org.eclipse.jface.viewers.ISelection)
-     */
-    public void selectionChanged(IAction action, ISelection selection) {
     }
 
 }
