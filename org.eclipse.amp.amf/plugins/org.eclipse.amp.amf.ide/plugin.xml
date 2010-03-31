@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.6 2010/03/27 03:23:45 mparker Exp $
+ $Id: plugin.xml,v 1.7 2010/03/31 05:51:17 mparker Exp $
 -->
 
 <plugin>
@@ -33,7 +33,7 @@
                   id="org.eclipse.ui.views.PropertySheet"
                   ratio=".70"
                   relationship="bottom"
-                  relative="org.eclipse.ui.navigator.ProjectExplorer"
+                  relative="org.eclipse.jdt.ui.PackageExplorer"
                   standalone="false">
             </view>
             <view
@@ -41,7 +41,7 @@
                   minimized="false"
                   ratio="0.5"
                   relationship="right"
-                  relative="org.eclipse.ui.navigator.ProjectExplorer"
+                  relative="org.eclipse.jdt.ui.PackageExplorer"
                   standalone="false">
             </view>
             <view
