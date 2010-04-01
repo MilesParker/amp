@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.5 2010/03/23 06:03:44 mparker Exp $
+ $Id: plugin.xml,v 1.6 2010/04/01 00:03:03 mparker Exp $
 -->
 
 <plugin>
@@ -74,7 +74,7 @@
           category="org.eclipse.amp.amf.ide.wizards"
           class="org.eclipse.amp.amf.ide.ascape.AscapeProjectWizard"
           descriptionImage="icons/obj16/Ascape16.gif"
-          icon="icons/Ascape16.png"
+          icon="icons/obj16/AscapeProject.gif"
           id="org.eclipse.amp.amf.ide.ascape.wizards.newProject"
           name="Agent Modeling Ascape Project"
           project="true">
