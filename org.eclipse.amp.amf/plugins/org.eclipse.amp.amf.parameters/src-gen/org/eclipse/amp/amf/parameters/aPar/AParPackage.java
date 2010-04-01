@@ -28,325 +28,325 @@ import org.eclipse.emf.ecore.EReference;
 public interface AParPackage extends EPackage
 {
   /**
-     * The package name.
-     * <!-- begin-user-doc -->
+   * The package name.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   String eNAME = "aPar";
 
   /**
-     * The package namespace URI.
-     * <!-- begin-user-doc -->
+   * The package namespace URI.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   String eNS_URI = "http://www.eclipse.org/amp/amf/parameters/APar";
 
   /**
-     * The package namespace name.
-     * <!-- begin-user-doc -->
+   * The package namespace name.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   String eNS_PREFIX = "aPar";
 
   /**
-     * The singleton instance of the package.
-     * <!-- begin-user-doc -->
+   * The singleton instance of the package.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   AParPackage eINSTANCE = org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl.init();
 
   /**
-     * The meta object id for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.ModelImpl <em>Model</em>}' class.
-     * <!-- begin-user-doc -->
+   * The meta object id for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.ModelImpl <em>Model</em>}' class.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @see org.eclipse.amp.amf.parameters.aPar.impl.ModelImpl
-     * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getModel()
-     * @generated
-     */
+   * @see org.eclipse.amp.amf.parameters.aPar.impl.ModelImpl
+   * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getModel()
+   * @generated
+   */
   int MODEL = 0;
 
   /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
+   * @generated
+   * @ordered
+   */
   int MODEL__NAME = 0;
 
   /**
-     * The feature id for the '<em><b>Model</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
+   * The feature id for the '<em><b>Model</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
+   * @generated
+   * @ordered
+   */
   int MODEL__MODEL = 1;
 
   /**
-     * The feature id for the '<em><b>Incorporates</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
+   * The feature id for the '<em><b>Incorporates</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
+   * @generated
+   * @ordered
+   */
   int MODEL__INCORPORATES = 2;
 
   /**
-     * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
-     * <!-- begin-user-doc -->
+   * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
+   * @generated
+   * @ordered
+   */
   int MODEL__PARAMETERS = 3;
 
   /**
-     * The number of structural features of the '<em>Model</em>' class.
-     * <!-- begin-user-doc -->
+   * The number of structural features of the '<em>Model</em>' class.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
+   * @generated
+   * @ordered
+   */
   int MODEL_FEATURE_COUNT = 4;
 
   /**
-     * The meta object id for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.ImportImpl <em>Import</em>}' class.
-     * <!-- begin-user-doc -->
+   * The meta object id for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.ImportImpl <em>Import</em>}' class.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @see org.eclipse.amp.amf.parameters.aPar.impl.ImportImpl
-     * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getImport()
-     * @generated
-     */
+   * @see org.eclipse.amp.amf.parameters.aPar.impl.ImportImpl
+   * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getImport()
+   * @generated
+   */
   int IMPORT = 1;
 
   /**
-     * The feature id for the '<em><b>Import URI</b></em>' attribute.
-     * <!-- begin-user-doc -->
+   * The feature id for the '<em><b>Import URI</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
+   * @generated
+   * @ordered
+   */
   int IMPORT__IMPORT_URI = 0;
 
   /**
-     * The number of structural features of the '<em>Import</em>' class.
-     * <!-- begin-user-doc -->
+   * The number of structural features of the '<em>Import</em>' class.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
+   * @generated
+   * @ordered
+   */
   int IMPORT_FEATURE_COUNT = 1;
 
   /**
-     * The meta object id for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.IncorporatesImpl <em>Incorporates</em>}' class.
-     * <!-- begin-user-doc -->
+   * The meta object id for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.IncorporatesImpl <em>Incorporates</em>}' class.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @see org.eclipse.amp.amf.parameters.aPar.impl.IncorporatesImpl
-     * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getIncorporates()
-     * @generated
-     */
+   * @see org.eclipse.amp.amf.parameters.aPar.impl.IncorporatesImpl
+   * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getIncorporates()
+   * @generated
+   */
   int INCORPORATES = 2;
 
   /**
-     * The feature id for the '<em><b>Import URI</b></em>' attribute.
-     * <!-- begin-user-doc -->
+   * The feature id for the '<em><b>Import URI</b></em>' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
+   * @generated
+   * @ordered
+   */
   int INCORPORATES__IMPORT_URI = 0;
 
   /**
-     * The number of structural features of the '<em>Incorporates</em>' class.
-     * <!-- begin-user-doc -->
+   * The number of structural features of the '<em>Incorporates</em>' class.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
+   * @generated
+   * @ordered
+   */
   int INCORPORATES_FEATURE_COUNT = 1;
 
   /**
-     * The meta object id for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.ParameterImpl <em>Parameter</em>}' class.
-     * <!-- begin-user-doc -->
+   * The meta object id for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.ParameterImpl <em>Parameter</em>}' class.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @see org.eclipse.amp.amf.parameters.aPar.impl.ParameterImpl
-     * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getParameter()
-     * @generated
-     */
+   * @see org.eclipse.amp.amf.parameters.aPar.impl.ParameterImpl
+   * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getParameter()
+   * @generated
+   */
   int PARAMETER = 3;
 
   /**
-     * The feature id for the '<em><b>Attribute</b></em>' reference.
-     * <!-- begin-user-doc -->
+   * The feature id for the '<em><b>Attribute</b></em>' reference.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
+   * @generated
+   * @ordered
+   */
   int PARAMETER__ATTRIBUTE = 0;
 
   /**
-     * The feature id for the '<em><b>Value</b></em>' containment reference.
-     * <!-- begin-user-doc -->
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
+   * @generated
+   * @ordered
+   */
   int PARAMETER__VALUE = 1;
 
   /**
-     * The number of structural features of the '<em>Parameter</em>' class.
-     * <!-- begin-user-doc -->
+   * The number of structural features of the '<em>Parameter</em>' class.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
+   * @generated
+   * @ordered
+   */
   int PARAMETER_FEATURE_COUNT = 2;
 
 
   /**
-     * Returns the meta object for class '{@link org.eclipse.amp.amf.parameters.aPar.Model <em>Model</em>}'.
-     * <!-- begin-user-doc -->
+   * Returns the meta object for class '{@link org.eclipse.amp.amf.parameters.aPar.Model <em>Model</em>}'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Model</em>'.
-     * @see org.eclipse.amp.amf.parameters.aPar.Model
-     * @generated
-     */
+   * @return the meta object for class '<em>Model</em>'.
+   * @see org.eclipse.amp.amf.parameters.aPar.Model
+   * @generated
+   */
   EClass getModel();
 
   /**
-     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.parameters.aPar.Model#getName <em>Name</em>}'.
-     * <!-- begin-user-doc -->
+   * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.parameters.aPar.Model#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Name</em>'.
-     * @see org.eclipse.amp.amf.parameters.aPar.Model#getName()
-     * @see #getModel()
-     * @generated
-     */
+   * @return the meta object for the attribute '<em>Name</em>'.
+   * @see org.eclipse.amp.amf.parameters.aPar.Model#getName()
+   * @see #getModel()
+   * @generated
+   */
   EAttribute getModel_Name();
 
   /**
-     * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.parameters.aPar.Model#getModel <em>Model</em>}'.
-     * <!-- begin-user-doc -->
+   * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.parameters.aPar.Model#getModel <em>Model</em>}'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Model</em>'.
-     * @see org.eclipse.amp.amf.parameters.aPar.Model#getModel()
-     * @see #getModel()
-     * @generated
-     */
+   * @return the meta object for the containment reference list '<em>Model</em>'.
+   * @see org.eclipse.amp.amf.parameters.aPar.Model#getModel()
+   * @see #getModel()
+   * @generated
+   */
   EReference getModel_Model();
 
   /**
-     * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.parameters.aPar.Model#getIncorporates <em>Incorporates</em>}'.
-     * <!-- begin-user-doc -->
+   * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.parameters.aPar.Model#getIncorporates <em>Incorporates</em>}'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Incorporates</em>'.
-     * @see org.eclipse.amp.amf.parameters.aPar.Model#getIncorporates()
-     * @see #getModel()
-     * @generated
-     */
+   * @return the meta object for the containment reference list '<em>Incorporates</em>'.
+   * @see org.eclipse.amp.amf.parameters.aPar.Model#getIncorporates()
+   * @see #getModel()
+   * @generated
+   */
   EReference getModel_Incorporates();
 
   /**
-     * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.parameters.aPar.Model#getParameters <em>Parameters</em>}'.
-     * <!-- begin-user-doc -->
+   * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.parameters.aPar.Model#getParameters <em>Parameters</em>}'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return the meta object for the containment reference list '<em>Parameters</em>'.
-     * @see org.eclipse.amp.amf.parameters.aPar.Model#getParameters()
-     * @see #getModel()
-     * @generated
-     */
+   * @return the meta object for the containment reference list '<em>Parameters</em>'.
+   * @see org.eclipse.amp.amf.parameters.aPar.Model#getParameters()
+   * @see #getModel()
+   * @generated
+   */
   EReference getModel_Parameters();
 
   /**
-     * Returns the meta object for class '{@link org.eclipse.amp.amf.parameters.aPar.Import <em>Import</em>}'.
-     * <!-- begin-user-doc -->
+   * Returns the meta object for class '{@link org.eclipse.amp.amf.parameters.aPar.Import <em>Import</em>}'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Import</em>'.
-     * @see org.eclipse.amp.amf.parameters.aPar.Import
-     * @generated
-     */
+   * @return the meta object for class '<em>Import</em>'.
+   * @see org.eclipse.amp.amf.parameters.aPar.Import
+   * @generated
+   */
   EClass getImport();
 
   /**
-     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.parameters.aPar.Import#getImportURI <em>Import URI</em>}'.
-     * <!-- begin-user-doc -->
+   * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.parameters.aPar.Import#getImportURI <em>Import URI</em>}'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Import URI</em>'.
-     * @see org.eclipse.amp.amf.parameters.aPar.Import#getImportURI()
-     * @see #getImport()
-     * @generated
-     */
+   * @return the meta object for the attribute '<em>Import URI</em>'.
+   * @see org.eclipse.amp.amf.parameters.aPar.Import#getImportURI()
+   * @see #getImport()
+   * @generated
+   */
   EAttribute getImport_ImportURI();
 
   /**
-     * Returns the meta object for class '{@link org.eclipse.amp.amf.parameters.aPar.Incorporates <em>Incorporates</em>}'.
-     * <!-- begin-user-doc -->
+   * Returns the meta object for class '{@link org.eclipse.amp.amf.parameters.aPar.Incorporates <em>Incorporates</em>}'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Incorporates</em>'.
-     * @see org.eclipse.amp.amf.parameters.aPar.Incorporates
-     * @generated
-     */
+   * @return the meta object for class '<em>Incorporates</em>'.
+   * @see org.eclipse.amp.amf.parameters.aPar.Incorporates
+   * @generated
+   */
   EClass getIncorporates();
 
   /**
-     * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.parameters.aPar.Incorporates#getImportURI <em>Import URI</em>}'.
-     * <!-- begin-user-doc -->
+   * Returns the meta object for the attribute '{@link org.eclipse.amp.amf.parameters.aPar.Incorporates#getImportURI <em>Import URI</em>}'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Import URI</em>'.
-     * @see org.eclipse.amp.amf.parameters.aPar.Incorporates#getImportURI()
-     * @see #getIncorporates()
-     * @generated
-     */
+   * @return the meta object for the attribute '<em>Import URI</em>'.
+   * @see org.eclipse.amp.amf.parameters.aPar.Incorporates#getImportURI()
+   * @see #getIncorporates()
+   * @generated
+   */
   EAttribute getIncorporates_ImportURI();
 
   /**
-     * Returns the meta object for class '{@link org.eclipse.amp.amf.parameters.aPar.Parameter <em>Parameter</em>}'.
-     * <!-- begin-user-doc -->
+   * Returns the meta object for class '{@link org.eclipse.amp.amf.parameters.aPar.Parameter <em>Parameter</em>}'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Parameter</em>'.
-     * @see org.eclipse.amp.amf.parameters.aPar.Parameter
-     * @generated
-     */
+   * @return the meta object for class '<em>Parameter</em>'.
+   * @see org.eclipse.amp.amf.parameters.aPar.Parameter
+   * @generated
+   */
   EClass getParameter();
 
   /**
-     * Returns the meta object for the reference '{@link org.eclipse.amp.amf.parameters.aPar.Parameter#getAttribute <em>Attribute</em>}'.
-     * <!-- begin-user-doc -->
+   * Returns the meta object for the reference '{@link org.eclipse.amp.amf.parameters.aPar.Parameter#getAttribute <em>Attribute</em>}'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Attribute</em>'.
-     * @see org.eclipse.amp.amf.parameters.aPar.Parameter#getAttribute()
-     * @see #getParameter()
-     * @generated
-     */
+   * @return the meta object for the reference '<em>Attribute</em>'.
+   * @see org.eclipse.amp.amf.parameters.aPar.Parameter#getAttribute()
+   * @see #getParameter()
+   * @generated
+   */
   EReference getParameter_Attribute();
 
   /**
-     * Returns the meta object for the containment reference '{@link org.eclipse.amp.amf.parameters.aPar.Parameter#getValue <em>Value</em>}'.
-     * <!-- begin-user-doc -->
+   * Returns the meta object for the containment reference '{@link org.eclipse.amp.amf.parameters.aPar.Parameter#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Value</em>'.
-     * @see org.eclipse.amp.amf.parameters.aPar.Parameter#getValue()
-     * @see #getParameter()
-     * @generated
-     */
+   * @return the meta object for the containment reference '<em>Value</em>'.
+   * @see org.eclipse.amp.amf.parameters.aPar.Parameter#getValue()
+   * @see #getParameter()
+   * @generated
+   */
   EReference getParameter_Value();
 
   /**
-     * Returns the factory that creates the instances of the model.
-     * <!-- begin-user-doc -->
+   * Returns the factory that creates the instances of the model.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @return the factory that creates the instances of the model.
-     * @generated
-     */
+   * @return the factory that creates the instances of the model.
+   * @generated
+   */
   AParFactory getAParFactory();
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * Defines literals for the meta objects that represent
    * <ul>
    *   <li>each class,</li>
@@ -355,112 +355,112 @@ public interface AParPackage extends EPackage
    *   <li>and each data type</li>
    * </ul>
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   interface Literals
   {
     /**
-         * The meta object literal for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.ModelImpl <em>Model</em>}' class.
-         * <!-- begin-user-doc -->
+     * The meta object literal for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.ModelImpl <em>Model</em>}' class.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @see org.eclipse.amp.amf.parameters.aPar.impl.ModelImpl
-         * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getModel()
-         * @generated
-         */
+     * @see org.eclipse.amp.amf.parameters.aPar.impl.ModelImpl
+     * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getModel()
+     * @generated
+     */
     EClass MODEL = eINSTANCE.getModel();
 
     /**
-         * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
+     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
     EAttribute MODEL__NAME = eINSTANCE.getModel_Name();
 
     /**
-         * The meta object literal for the '<em><b>Model</b></em>' containment reference list feature.
-         * <!-- begin-user-doc -->
+     * The meta object literal for the '<em><b>Model</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
     EReference MODEL__MODEL = eINSTANCE.getModel_Model();
 
     /**
-         * The meta object literal for the '<em><b>Incorporates</b></em>' containment reference list feature.
-         * <!-- begin-user-doc -->
+     * The meta object literal for the '<em><b>Incorporates</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
     EReference MODEL__INCORPORATES = eINSTANCE.getModel_Incorporates();
 
     /**
-         * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
-         * <!-- begin-user-doc -->
+     * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
     EReference MODEL__PARAMETERS = eINSTANCE.getModel_Parameters();
 
     /**
-         * The meta object literal for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.ImportImpl <em>Import</em>}' class.
-         * <!-- begin-user-doc -->
+     * The meta object literal for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.ImportImpl <em>Import</em>}' class.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @see org.eclipse.amp.amf.parameters.aPar.impl.ImportImpl
-         * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getImport()
-         * @generated
-         */
+     * @see org.eclipse.amp.amf.parameters.aPar.impl.ImportImpl
+     * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getImport()
+     * @generated
+     */
     EClass IMPORT = eINSTANCE.getImport();
 
     /**
-         * The meta object literal for the '<em><b>Import URI</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
+     * The meta object literal for the '<em><b>Import URI</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
     EAttribute IMPORT__IMPORT_URI = eINSTANCE.getImport_ImportURI();
 
     /**
-         * The meta object literal for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.IncorporatesImpl <em>Incorporates</em>}' class.
-         * <!-- begin-user-doc -->
+     * The meta object literal for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.IncorporatesImpl <em>Incorporates</em>}' class.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @see org.eclipse.amp.amf.parameters.aPar.impl.IncorporatesImpl
-         * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getIncorporates()
-         * @generated
-         */
+     * @see org.eclipse.amp.amf.parameters.aPar.impl.IncorporatesImpl
+     * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getIncorporates()
+     * @generated
+     */
     EClass INCORPORATES = eINSTANCE.getIncorporates();
 
     /**
-         * The meta object literal for the '<em><b>Import URI</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
+     * The meta object literal for the '<em><b>Import URI</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
     EAttribute INCORPORATES__IMPORT_URI = eINSTANCE.getIncorporates_ImportURI();
 
     /**
-         * The meta object literal for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.ParameterImpl <em>Parameter</em>}' class.
-         * <!-- begin-user-doc -->
+     * The meta object literal for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.ParameterImpl <em>Parameter</em>}' class.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @see org.eclipse.amp.amf.parameters.aPar.impl.ParameterImpl
-         * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getParameter()
-         * @generated
-         */
+     * @see org.eclipse.amp.amf.parameters.aPar.impl.ParameterImpl
+     * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getParameter()
+     * @generated
+     */
     EClass PARAMETER = eINSTANCE.getParameter();
 
     /**
-         * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
-         * <!-- begin-user-doc -->
+     * The meta object literal for the '<em><b>Attribute</b></em>' reference feature.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
     EReference PARAMETER__ATTRIBUTE = eINSTANCE.getParameter_Attribute();
 
     /**
-         * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-         * <!-- begin-user-doc -->
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-         * @generated
-         */
+     * @generated
+     */
     EReference PARAMETER__VALUE = eINSTANCE.getParameter_Value();
 
   }

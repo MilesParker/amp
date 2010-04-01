@@ -6,7 +6,7 @@
     modelPluginID="org.eclipse.amp.amf.parameters" forceOverwrite="true" modelName="APar"
     updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.amp.amf.parameters.edit"
-    editorPluginID="org.eclipse.amp.amf.parameters.editor" usedGenPackages="platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.genmodel#//metaabm platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.genmodel#//aBase">
+    editorPluginID="org.eclipse.amp.amf.parameters.editor" usedGenPackages="../../../../../../../org.eclipse.amp.amf.acore/src/model/metaabm.genmodel#//metaabm ../../../../../../../org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.genmodel#//aBase">
   <genPackages prefix="APar" basePackage="org.eclipse.amp.amf.parameters" disposableProviderFactory="true"
       ecorePackage="APar.ecore#/">
     <genClasses ecoreClass="APar.ecore#//Model">

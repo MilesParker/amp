@@ -12,6 +12,7 @@ var runtimeProject = "../${projectName}"
 Workflow {
     bean = StandaloneSetup {
 		platformUri = "${runtimeProject}/.."
+		registerEcoreFile="platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.ecore"
 	}
 	
 	component = DirectoryCleaner {
@@ -66,16 +67,17 @@ Workflow {
                 composedCheck = "org.eclipse.xtext.validation.ImportUriValidator"
                 composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
             }
+
             
+			//fragment =org.eclipse.xtext.generator.scoping.JavaScopingFragment {}
+			            
 			// scoping and exporting API
-			/*
 			fragment = scoping.ImportURIScopingFragment {}
 			fragment = exporting.SimpleNamesFragment {}
-			*/
 			
 			// scoping and exporting API 
-			fragment = scoping.ImportNamespacesScopingFragment {}
-			fragment = exporting.QualifiedNamesFragment {}
+			//fragment = scoping.ImportNamespacesScopingFragment {}
+			//fragment = exporting.QualifiedNamesFragment {}
 			
 			// formatter API 
 			fragment = formatting.FormatterFragment {}

@@ -4,7 +4,7 @@
 package org.eclipse.amp.amf.parameters.parser.antlr;
 
 import org.antlr.runtime.ANTLRInputStream;
-import org.eclipse.xtext.parser.antlr.ITokenDefProvider;
+import org.antlr.runtime.TokenSource;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.parser.ParseException;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
@@ -15,20 +15,18 @@ import org.eclipse.amp.amf.parameters.services.AParGrammarAccess;
 
 public class AParParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
 	
-	@Inject 
-    protected ITokenDefProvider antlrTokenDefProvider;
-	
 	@Inject
 	private AParGrammarAccess grammarAccess;
 	
 	@Override
 	protected IParseResult parse(String ruleName, ANTLRInputStream in) {
-		org.eclipse.amp.amf.parameters.parser.antlr.internal.InternalAParLexer lexer = new org.eclipse.amp.amf.parameters.parser.antlr.internal.InternalAParLexer(in);
-		XtextTokenStream stream = new XtextTokenStream(lexer, antlrTokenDefProvider);
-		stream.setInitialHiddenTokens("RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT");
-		org.eclipse.amp.amf.parameters.parser.antlr.internal.InternalAParParser parser = new org.eclipse.amp.amf.parameters.parser.antlr.internal.InternalAParParser(
-				stream, getElementFactory(), grammarAccess);
-		parser.setTokenTypeMap(antlrTokenDefProvider.getTokenDefMap());
+		TokenSource tokenSource = createLexer(in);
+		XtextTokenStream tokenStream = createTokenStream(tokenSource);
+		tokenStream.setInitialHiddenTokens("RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT");
+		org.eclipse.amp.amf.parameters.parser.antlr.internal.InternalAParParser parser = createParser(tokenStream);
+		parser.setTokenTypeMap(getTokenDefProvider().getTokenDefMap());
+		parser.setSyntaxErrorProvider(getSyntaxErrorProvider());
+		parser.setUnorderedGroupHelper(getUnorderedGroupHelper().get());
 		try {
 			if(ruleName != null)
 				return parser.parse(ruleName);
@@ -36,6 +34,10 @@ public class AParParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrPars
 		} catch (Exception re) {
 			throw new ParseException(re.getMessage(),re);
 		}
+	}
+	
+	protected org.eclipse.amp.amf.parameters.parser.antlr.internal.InternalAParParser createParser(XtextTokenStream stream) {
+		return new org.eclipse.amp.amf.parameters.parser.antlr.internal.InternalAParParser(stream, getElementFactory(), getGrammarAccess());
 	}
 	
 	@Override 
@@ -50,4 +52,5 @@ public class AParParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrPars
 	public void setGrammarAccess(AParGrammarAccess grammarAccess) {
 		this.grammarAccess = grammarAccess;
 	}
+	
 }

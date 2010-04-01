@@ -46,268 +46,276 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 {
   /**
-     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
   protected static final String NAME_EDEFAULT = null;
 
   /**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
   protected String name = NAME_EDEFAULT;
 
   /**
-     * The cached value of the '{@link #getModel() <em>Model</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getModel() <em>Model</em>}' containment reference list.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @see #getModel()
-     * @generated
-     * @ordered
-     */
+   * @see #getModel()
+   * @generated
+   * @ordered
+   */
   protected EList<Import> model;
 
   /**
-     * The cached value of the '{@link #getIncorporates() <em>Incorporates</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getIncorporates() <em>Incorporates</em>}' containment reference list.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @see #getIncorporates()
-     * @generated
-     * @ordered
-     */
+   * @see #getIncorporates()
+   * @generated
+   * @ordered
+   */
   protected EList<Incorporates> incorporates;
 
   /**
-     * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+   * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @see #getParameters()
-     * @generated
-     * @ordered
-     */
+   * @see #getParameters()
+   * @generated
+   * @ordered
+   */
   protected EList<Parameter> parameters;
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   protected ModelImpl()
   {
-        super();
-    }
+    super();
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   @Override
   protected EClass eStaticClass()
   {
-        return AParPackage.Literals.MODEL;
-    }
+    return AParPackage.Literals.MODEL;
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   public String getName()
   {
-        return name;
-    }
+    return name;
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   public void setName(String newName)
   {
-        String oldName = name;
-        name = newName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, AParPackage.MODEL__NAME, oldName, name));
-    }
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AParPackage.MODEL__NAME, oldName, name));
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   public EList<Import> getModel()
   {
-        if (model == null) {
-            model = new EObjectContainmentEList<Import>(Import.class, this, AParPackage.MODEL__MODEL);
-        }
-        return model;
+    if (model == null)
+    {
+      model = new EObjectContainmentEList<Import>(Import.class, this, AParPackage.MODEL__MODEL);
     }
+    return model;
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   public EList<Incorporates> getIncorporates()
   {
-        if (incorporates == null) {
-            incorporates = new EObjectContainmentEList<Incorporates>(Incorporates.class, this, AParPackage.MODEL__INCORPORATES);
-        }
-        return incorporates;
+    if (incorporates == null)
+    {
+      incorporates = new EObjectContainmentEList<Incorporates>(Incorporates.class, this, AParPackage.MODEL__INCORPORATES);
     }
+    return incorporates;
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   public EList<Parameter> getParameters()
   {
-        if (parameters == null) {
-            parameters = new EObjectContainmentEList<Parameter>(Parameter.class, this, AParPackage.MODEL__PARAMETERS);
-        }
-        return parameters;
+    if (parameters == null)
+    {
+      parameters = new EObjectContainmentEList<Parameter>(Parameter.class, this, AParPackage.MODEL__PARAMETERS);
     }
+    return parameters;
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-        switch (featureID) {
-            case AParPackage.MODEL__MODEL:
-                return ((InternalEList<?>)getModel()).basicRemove(otherEnd, msgs);
-            case AParPackage.MODEL__INCORPORATES:
-                return ((InternalEList<?>)getIncorporates()).basicRemove(otherEnd, msgs);
-            case AParPackage.MODEL__PARAMETERS:
-                return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
+    switch (featureID)
+    {
+      case AParPackage.MODEL__MODEL:
+        return ((InternalEList<?>)getModel()).basicRemove(otherEnd, msgs);
+      case AParPackage.MODEL__INCORPORATES:
+        return ((InternalEList<?>)getIncorporates()).basicRemove(otherEnd, msgs);
+      case AParPackage.MODEL__PARAMETERS:
+        return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
     }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-        switch (featureID) {
-            case AParPackage.MODEL__NAME:
-                return getName();
-            case AParPackage.MODEL__MODEL:
-                return getModel();
-            case AParPackage.MODEL__INCORPORATES:
-                return getIncorporates();
-            case AParPackage.MODEL__PARAMETERS:
-                return getParameters();
-        }
-        return super.eGet(featureID, resolve, coreType);
+    switch (featureID)
+    {
+      case AParPackage.MODEL__NAME:
+        return getName();
+      case AParPackage.MODEL__MODEL:
+        return getModel();
+      case AParPackage.MODEL__INCORPORATES:
+        return getIncorporates();
+      case AParPackage.MODEL__PARAMETERS:
+        return getParameters();
     }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
-        switch (featureID) {
-            case AParPackage.MODEL__NAME:
-                setName((String)newValue);
-                return;
-            case AParPackage.MODEL__MODEL:
-                getModel().clear();
-                getModel().addAll((Collection<? extends Import>)newValue);
-                return;
-            case AParPackage.MODEL__INCORPORATES:
-                getIncorporates().clear();
-                getIncorporates().addAll((Collection<? extends Incorporates>)newValue);
-                return;
-            case AParPackage.MODEL__PARAMETERS:
-                getParameters().clear();
-                getParameters().addAll((Collection<? extends Parameter>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
+    switch (featureID)
+    {
+      case AParPackage.MODEL__NAME:
+        setName((String)newValue);
+        return;
+      case AParPackage.MODEL__MODEL:
+        getModel().clear();
+        getModel().addAll((Collection<? extends Import>)newValue);
+        return;
+      case AParPackage.MODEL__INCORPORATES:
+        getIncorporates().clear();
+        getIncorporates().addAll((Collection<? extends Incorporates>)newValue);
+        return;
+      case AParPackage.MODEL__PARAMETERS:
+        getParameters().clear();
+        getParameters().addAll((Collection<? extends Parameter>)newValue);
+        return;
     }
+    super.eSet(featureID, newValue);
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   @Override
   public void eUnset(int featureID)
   {
-        switch (featureID) {
-            case AParPackage.MODEL__NAME:
-                setName(NAME_EDEFAULT);
-                return;
-            case AParPackage.MODEL__MODEL:
-                getModel().clear();
-                return;
-            case AParPackage.MODEL__INCORPORATES:
-                getIncorporates().clear();
-                return;
-            case AParPackage.MODEL__PARAMETERS:
-                getParameters().clear();
-                return;
-        }
-        super.eUnset(featureID);
+    switch (featureID)
+    {
+      case AParPackage.MODEL__NAME:
+        setName(NAME_EDEFAULT);
+        return;
+      case AParPackage.MODEL__MODEL:
+        getModel().clear();
+        return;
+      case AParPackage.MODEL__INCORPORATES:
+        getIncorporates().clear();
+        return;
+      case AParPackage.MODEL__PARAMETERS:
+        getParameters().clear();
+        return;
     }
+    super.eUnset(featureID);
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   @Override
   public boolean eIsSet(int featureID)
   {
-        switch (featureID) {
-            case AParPackage.MODEL__NAME:
-                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-            case AParPackage.MODEL__MODEL:
-                return model != null && !model.isEmpty();
-            case AParPackage.MODEL__INCORPORATES:
-                return incorporates != null && !incorporates.isEmpty();
-            case AParPackage.MODEL__PARAMETERS:
-                return parameters != null && !parameters.isEmpty();
-        }
-        return super.eIsSet(featureID);
+    switch (featureID)
+    {
+      case AParPackage.MODEL__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case AParPackage.MODEL__MODEL:
+        return model != null && !model.isEmpty();
+      case AParPackage.MODEL__INCORPORATES:
+        return incorporates != null && !incorporates.isEmpty();
+      case AParPackage.MODEL__PARAMETERS:
+        return parameters != null && !parameters.isEmpty();
     }
+    return super.eIsSet(featureID);
+  }
 
   /**
-     * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-     * @generated
-     */
+   * @generated
+   */
   @Override
   public String toString()
   {
-        if (eIsProxy()) return super.toString();
+    if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (name: ");
-        result.append(name);
-        result.append(')');
-        return result.toString();
-    }
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(')');
+    return result.toString();
+  }
 
 } //ModelImpl
