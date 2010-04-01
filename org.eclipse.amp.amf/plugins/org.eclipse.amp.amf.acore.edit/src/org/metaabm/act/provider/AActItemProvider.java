@@ -22,7 +22,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
@@ -50,6 +49,8 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import org.apache.commons.lang.StringUtils;
 import org.metaabm.IID;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SNamed;
@@ -266,6 +267,7 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
             childrenFeatures.add(MetaABMActPackage.Literals.AACT__TARGETS);
         }
         return childrenFeatures;
+        // return Collections.EMPTY_LIST;
     }
 
     // /**
