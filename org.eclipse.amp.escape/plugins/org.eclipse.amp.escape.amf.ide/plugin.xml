@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.12 2010/03/23 06:03:45 mparker Exp $
+ $Id: plugin.xml,v 1.13 2010/04/01 00:03:08 mparker Exp $
 -->
 
 <plugin>
@@ -536,7 +536,7 @@
           category="org.eclipse.amp.amf.ide.wizards"
           class="org.eclipse.amp.escape.amf.ide.EscapeAMFProjectWizard"
           descriptionImage="icons/etool16/generic_agent.gif"
-          icon="icons/escape16.png"
+          icon="icons/etool16/EscapeProject.gif"
           id="org.eclipse.amp.escape.amf.wizards.newProject"
           name="Agent Modeling Escape Project"
           project="true">
