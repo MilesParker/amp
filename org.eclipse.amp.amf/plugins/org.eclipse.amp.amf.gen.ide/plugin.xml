@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.4 2010/03/23 06:03:47 mparker Exp $
+ $Id: plugin.xml,v 1.5 2010/04/01 00:03:01 mparker Exp $
 -->
 
 <plugin>
@@ -18,7 +18,7 @@
           category="org.eclipse.amp.amf.ide.wizards"
           class="org.eclipse.amp.amf.gen.ide.BasicProjectWizard"
           descriptionImage="icons/full/obj16/MetaPerspective.gif"
-          icon="icons/full/obj16/AMF16.png"
+          icon="icons/full/obj16/AMFProject.gif"
           id="org.eclipse.amp.amf.ide.wizards.newBaseProject"
           name="Agent Modeling Basic Project"
           project="true">
