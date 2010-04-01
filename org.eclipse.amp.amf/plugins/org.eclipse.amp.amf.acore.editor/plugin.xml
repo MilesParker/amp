@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.4 2010/03/23 06:03:47 mparker Exp $
+ $Id: plugin.xml,v 1.5 2010/04/01 00:03:09 mparker Exp $
 -->
 
 <plugin>
@@ -17,7 +17,7 @@
     <wizard
           category="org.eclipse.amp.amf.ide.wizards"
           class="org.metaabm.ide.CustomMetaABMModelWizard"
-          icon="icons/AMF16.png"
+          icon="icons/full/obj16/AMFModel.gif"
           id="org.eclipse.amp.amf.ide.wizards.metaabmmodel"
           name="Agent Model (MetaABM)"
           project="false">
@@ -29,7 +29,7 @@
         <editor
         id = "org.eclipse.amp.amf.ide.editor"
         name = "MetaABM Editor"
-        icon = "icons/full/obj16/MetaPerspective.gif"
+        icon = "icons/full/obj16/AMFModel.gif"
         extensions = "metaabm"
         class = "org.metaabm.ide.MetaABMEditor" 
         contributorClass="org.metaabm.ide.MetaABMEditorActionBarContributor" >
