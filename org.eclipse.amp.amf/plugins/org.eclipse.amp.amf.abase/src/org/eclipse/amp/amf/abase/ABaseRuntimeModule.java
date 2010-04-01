@@ -4,6 +4,8 @@
 package org.eclipse.amp.amf.abase;
 
 import org.eclipse.xtext.conversion.IValueConverterService;
+import org.eclipse.xtext.linking.ILinker;
+import org.eclipse.xtext.linking.impl.Linker;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -16,5 +18,14 @@ public class ABaseRuntimeModule extends org.eclipse.amp.amf.abase.AbstractABaseR
      */
     public Class<? extends IValueConverterService> bindIValueConverterService() {
         return AMPTerminalConverters.class;
+    }
+
+    @Override
+    /**
+     * @return
+     * @see org.eclipse.xtext.service.DefaultRuntimeModule#bindILinker()
+     */
+    public Class<? extends ILinker> bindILinker() {
+        return Linker.class;
     }
 }
