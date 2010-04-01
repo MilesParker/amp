@@ -23,7 +23,8 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.amp.amf.acore,
  org.eclipse.amp.amf.parameters,
  org.eclipse.amp.amf.abase,
- org.eclipse.xtext.util
+ org.eclipse.xtext.util,
+ org.eclipse.emf.mwe2.launch;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: .
 Export-Package: org.eclipse.amp.amf.testing,
@@ -41,3 +42,4 @@ Export-Package: org.eclipse.amp.amf.testing,
  org.eclipse.amp.amf.testing.services,
  org.eclipse.amp.amf.testing.validation
 Bundle-Localization: plugin
+Import-Package: org.apache.log4j

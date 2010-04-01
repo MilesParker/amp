@@ -6,7 +6,7 @@
     modelPluginID="org.eclipse.amp.amf.testing" forceOverwrite="true" modelName="ATest"
     updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.amp.amf.testing.edit"
-    editorPluginID="org.eclipse.amp.amf.testing.editor" usedGenPackages="platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.genmodel#//metaabm platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.genmodel#//aBase">
+    editorPluginID="org.eclipse.amp.amf.testing.editor" usedGenPackages="../../../../../../../org.eclipse.amp.amf.acore/src/model/metaabm.genmodel#//metaabm ../../../../../../../org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.genmodel#//aBase">
   <genPackages prefix="ATest" basePackage="org.eclipse.amp.amf.testing" disposableProviderFactory="true"
       ecorePackage="ATest.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="ATest.ecore#//Measure">

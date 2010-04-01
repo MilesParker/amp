@@ -17,10 +17,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.xtext.resource.EObjectDescription;
+import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
-import org.eclipse.xtext.scoping.IScopedElement;
-import org.eclipse.xtext.scoping.impl.ScopedElement;
 import org.eclipse.xtext.scoping.impl.SimpleScope;
+
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAgent;
 import org.metaabm.SState;
@@ -48,7 +49,7 @@ public class ATestScopeProvider extends AParScopeProvider {
         IScope defaultScope = super.getScope(object, reference);
         if (object instanceof Constraint) {
             Constraint constraint = (Constraint) object;
-            List<IScopedElement> allElems = new ArrayList<IScopedElement>();
+            List<IEObjectDescription> allElems = new ArrayList<IEObjectDescription>();
             if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAgent()
                     || reference.getEType() == MetaABMPackage.eINSTANCE.getSAttribute()
                     || reference.getEType() == MetaABMPackage.eINSTANCE.getSStateValue()) {
@@ -64,7 +65,7 @@ public class ATestScopeProvider extends AParScopeProvider {
                             EObject next = iter.next();
                             if (next instanceof SAgent) {
                                 SAgent sAgent = (SAgent) next;
-                                allElems.add(ScopedElement.create(sAgent.getLabel(), sAgent));
+                                allElems.add(EObjectDescription.create(sAgent.getLabel(), sAgent));
                             }
                         }
                     }
@@ -78,7 +79,7 @@ public class ATestScopeProvider extends AParScopeProvider {
                     if (constraint.getAttribute() instanceof SState) {
                         SState state = (SState) constraint.getAttribute();
                         for (SStateValue value : state.getOptions()) {
-                            allElems.add(ScopedElement.create(value.getLabel(), value));
+                            allElems.add(EObjectDescription.create(value.getLabel(), value));
                         }
                     } else {
                         return IScope.NULLSCOPE;
