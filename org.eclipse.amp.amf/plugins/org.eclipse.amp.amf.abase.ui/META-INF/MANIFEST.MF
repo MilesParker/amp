@@ -4,18 +4,25 @@ Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Version: 0.5.0.qualifier
 Bundle-SymbolicName: org.eclipse.amp.amf.abase.ui; singleton:=true
-Eclipse-RegisterBuddy: org.eclipse.xtext.log4j
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.amp.amf.abase;visibility:=reexport,
- org.eclipse.xtext.ui.core,
- org.eclipse.xtext.ui.common,
- org.eclipse.ui.editors,
- org.eclipse.ui.ide,
+ org.eclipse.xtext.ui,
+ org.eclipse.ui.editors;bundle-version="3.5.0",
+ org.eclipse.ui.ide;bundle-version="3.5.0",
+ org.eclipse.xtext.ui.shared,
  org.eclipse.ui,
- org.antlr.runtime
+ org.antlr.runtime,
+ org.eclipse.xtext.builder
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.amp.amf.abase.contentassist,
- org.eclipse.amp.amf.abase.contentassist.antlr
-Bundle-Activator: org.eclipse.amp.amf.abase.internal.ABaseActivator
+Bundle-Activator: org.eclipse.amp.amf.abase.ui.internal.ABaseActivator
 Bundle-ClassPath: .
 Bundle-Localization: plugin
+Import-Package: org.apache.log4j
+Export-Package: org.eclipse.amp.amf.abase.ui,
+ org.eclipse.amp.amf.abase.ui.contentassist,
+ org.eclipse.amp.amf.abase.ui.contentassist.antlr,
+ org.eclipse.amp.amf.abase.ui.contentassist.antlr.internal,
+ org.eclipse.amp.amf.abase.ui.internal,
+ org.eclipse.amp.amf.abase.ui.labeling,
+ org.eclipse.amp.amf.abase.ui.outline,
+ org.eclipse.amp.amf.abase.ui.quickfix
