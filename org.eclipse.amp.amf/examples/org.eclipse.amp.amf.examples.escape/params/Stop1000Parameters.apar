@@ -1,2 +1,7 @@
-model "platform:/resource/org.eclipse.amp.amf.examples.escape/Epidemic.metaabm"
-"Stop Period"=1000
+"MyModel"
+model "|Epidemic.metaabm"
+incorporates ["EpidemicRegions.apar" ]
+"Epidemic" [
+"Individual Count" =10
+"Stop Period"=10
+]

@@ -1,6 +1,5 @@
-model "platform:/resource/org.eclipse.amp.amf.examples.escape/EpidemicRegional.metaabm"
-incorporates "platform:/resource/org.eclipse.amp.amf.examples.escape/params/EpidemicRegions.apar"
-stopPeriod=10
-
-
+model "|EpidemicRegional.metaabm"
+"Region" [ 
+"Stop Period"=100
+]
 
