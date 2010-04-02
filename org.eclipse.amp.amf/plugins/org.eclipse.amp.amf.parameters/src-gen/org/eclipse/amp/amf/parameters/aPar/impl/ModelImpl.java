@@ -46,309 +46,300 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
   protected static final String NAME_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
+     * @see #getName()
+     * @generated
+     * @ordered
+     */
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getModel() <em>Model</em>}' containment reference.
-   * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getModel() <em>Model</em>}' containment reference.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getModel()
-   * @generated
-   * @ordered
-   */
+     * @see #getModel()
+     * @generated
+     * @ordered
+     */
   protected Import model;
 
   /**
-   * The cached value of the '{@link #getIncorporates() <em>Incorporates</em>}' containment reference list.
-   * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getIncorporates() <em>Incorporates</em>}' containment reference list.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIncorporates()
-   * @generated
-   * @ordered
-   */
+     * @see #getIncorporates()
+     * @generated
+     * @ordered
+     */
   protected EList<Incorporates> incorporates;
 
   /**
-   * The cached value of the '{@link #getAgents() <em>Agents</em>}' containment reference list.
-   * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAgents() <em>Agents</em>}' containment reference list.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAgents()
-   * @generated
-   * @ordered
-   */
+     * @see #getAgents()
+     * @generated
+     * @ordered
+     */
   protected EList<AgentParameters> agents;
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   protected ModelImpl()
   {
-    super();
-  }
+        super();
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   protected EClass eStaticClass()
   {
-    return AParPackage.Literals.MODEL;
-  }
+        return AParPackage.Literals.MODEL;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public String getName()
   {
-    return name;
-  }
+        return name;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public void setName(String newName)
   {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AParPackage.MODEL__NAME, oldName, name));
-  }
+        String oldName = name;
+        name = newName;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, AParPackage.MODEL__NAME, oldName, name));
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public Import getModel()
   {
-    return model;
-  }
+        return model;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public NotificationChain basicSetModel(Import newModel, NotificationChain msgs)
   {
-    Import oldModel = model;
-    model = newModel;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AParPackage.MODEL__MODEL, oldModel, newModel);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+        Import oldModel = model;
+        model = newModel;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AParPackage.MODEL__MODEL, oldModel, newModel);
+            if (msgs == null) msgs = notification; else msgs.add(notification);
+        }
+        return msgs;
     }
-    return msgs;
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public void setModel(Import newModel)
   {
-    if (newModel != model)
-    {
-      NotificationChain msgs = null;
-      if (model != null)
-        msgs = ((InternalEObject)model).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AParPackage.MODEL__MODEL, null, msgs);
-      if (newModel != null)
-        msgs = ((InternalEObject)newModel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AParPackage.MODEL__MODEL, null, msgs);
-      msgs = basicSetModel(newModel, msgs);
-      if (msgs != null) msgs.dispatch();
+        if (newModel != model) {
+            NotificationChain msgs = null;
+            if (model != null)
+                msgs = ((InternalEObject)model).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AParPackage.MODEL__MODEL, null, msgs);
+            if (newModel != null)
+                msgs = ((InternalEObject)newModel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AParPackage.MODEL__MODEL, null, msgs);
+            msgs = basicSetModel(newModel, msgs);
+            if (msgs != null) msgs.dispatch();
+        }
+        else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, AParPackage.MODEL__MODEL, newModel, newModel));
     }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AParPackage.MODEL__MODEL, newModel, newModel));
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public EList<Incorporates> getIncorporates()
   {
-    if (incorporates == null)
-    {
-      incorporates = new EObjectContainmentEList<Incorporates>(Incorporates.class, this, AParPackage.MODEL__INCORPORATES);
+        if (incorporates == null) {
+            incorporates = new EObjectContainmentEList<Incorporates>(Incorporates.class, this, AParPackage.MODEL__INCORPORATES);
+        }
+        return incorporates;
     }
-    return incorporates;
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public EList<AgentParameters> getAgents()
   {
-    if (agents == null)
-    {
-      agents = new EObjectContainmentEList<AgentParameters>(AgentParameters.class, this, AParPackage.MODEL__AGENTS);
+        if (agents == null) {
+            agents = new EObjectContainmentEList<AgentParameters>(AgentParameters.class, this, AParPackage.MODEL__AGENTS);
+        }
+        return agents;
     }
-    return agents;
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case AParPackage.MODEL__MODEL:
-        return basicSetModel(null, msgs);
-      case AParPackage.MODEL__INCORPORATES:
-        return ((InternalEList<?>)getIncorporates()).basicRemove(otherEnd, msgs);
-      case AParPackage.MODEL__AGENTS:
-        return ((InternalEList<?>)getAgents()).basicRemove(otherEnd, msgs);
+        switch (featureID) {
+            case AParPackage.MODEL__MODEL:
+                return basicSetModel(null, msgs);
+            case AParPackage.MODEL__INCORPORATES:
+                return ((InternalEList<?>)getIncorporates()).basicRemove(otherEnd, msgs);
+            case AParPackage.MODEL__AGENTS:
+                return ((InternalEList<?>)getAgents()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
     }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (featureID)
-    {
-      case AParPackage.MODEL__NAME:
-        return getName();
-      case AParPackage.MODEL__MODEL:
-        return getModel();
-      case AParPackage.MODEL__INCORPORATES:
-        return getIncorporates();
-      case AParPackage.MODEL__AGENTS:
-        return getAgents();
+        switch (featureID) {
+            case AParPackage.MODEL__NAME:
+                return getName();
+            case AParPackage.MODEL__MODEL:
+                return getModel();
+            case AParPackage.MODEL__INCORPORATES:
+                return getIncorporates();
+            case AParPackage.MODEL__AGENTS:
+                return getAgents();
+        }
+        return super.eGet(featureID, resolve, coreType);
     }
-    return super.eGet(featureID, resolve, coreType);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
-    switch (featureID)
-    {
-      case AParPackage.MODEL__NAME:
-        setName((String)newValue);
-        return;
-      case AParPackage.MODEL__MODEL:
-        setModel((Import)newValue);
-        return;
-      case AParPackage.MODEL__INCORPORATES:
-        getIncorporates().clear();
-        getIncorporates().addAll((Collection<? extends Incorporates>)newValue);
-        return;
-      case AParPackage.MODEL__AGENTS:
-        getAgents().clear();
-        getAgents().addAll((Collection<? extends AgentParameters>)newValue);
-        return;
+        switch (featureID) {
+            case AParPackage.MODEL__NAME:
+                setName((String)newValue);
+                return;
+            case AParPackage.MODEL__MODEL:
+                setModel((Import)newValue);
+                return;
+            case AParPackage.MODEL__INCORPORATES:
+                getIncorporates().clear();
+                getIncorporates().addAll((Collection<? extends Incorporates>)newValue);
+                return;
+            case AParPackage.MODEL__AGENTS:
+                getAgents().clear();
+                getAgents().addAll((Collection<? extends AgentParameters>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
     }
-    super.eSet(featureID, newValue);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public void eUnset(int featureID)
   {
-    switch (featureID)
-    {
-      case AParPackage.MODEL__NAME:
-        setName(NAME_EDEFAULT);
-        return;
-      case AParPackage.MODEL__MODEL:
-        setModel((Import)null);
-        return;
-      case AParPackage.MODEL__INCORPORATES:
-        getIncorporates().clear();
-        return;
-      case AParPackage.MODEL__AGENTS:
-        getAgents().clear();
-        return;
+        switch (featureID) {
+            case AParPackage.MODEL__NAME:
+                setName(NAME_EDEFAULT);
+                return;
+            case AParPackage.MODEL__MODEL:
+                setModel((Import)null);
+                return;
+            case AParPackage.MODEL__INCORPORATES:
+                getIncorporates().clear();
+                return;
+            case AParPackage.MODEL__AGENTS:
+                getAgents().clear();
+                return;
+        }
+        super.eUnset(featureID);
     }
-    super.eUnset(featureID);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public boolean eIsSet(int featureID)
   {
-    switch (featureID)
-    {
-      case AParPackage.MODEL__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case AParPackage.MODEL__MODEL:
-        return model != null;
-      case AParPackage.MODEL__INCORPORATES:
-        return incorporates != null && !incorporates.isEmpty();
-      case AParPackage.MODEL__AGENTS:
-        return agents != null && !agents.isEmpty();
+        switch (featureID) {
+            case AParPackage.MODEL__NAME:
+                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+            case AParPackage.MODEL__MODEL:
+                return model != null;
+            case AParPackage.MODEL__INCORPORATES:
+                return incorporates != null && !incorporates.isEmpty();
+            case AParPackage.MODEL__AGENTS:
+                return agents != null && !agents.isEmpty();
+        }
+        return super.eIsSet(featureID);
     }
-    return super.eIsSet(featureID);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public String toString()
   {
-    if (eIsProxy()) return super.toString();
+        if (eIsProxy()) return super.toString();
 
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: ");
-    result.append(name);
-    result.append(')');
-    return result.toString();
-  }
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (name: ");
+        result.append(name);
+        result.append(')');
+        return result.toString();
+    }
 
 } //ModelImpl

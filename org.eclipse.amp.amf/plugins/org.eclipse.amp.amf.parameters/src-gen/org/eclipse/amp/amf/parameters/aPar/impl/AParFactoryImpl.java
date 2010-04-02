@@ -24,134 +24,130 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 public class AParFactoryImpl extends EFactoryImpl implements AParFactory
 {
   /**
-   * Creates the default factory implementation.
-   * <!-- begin-user-doc -->
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public static AParFactory init()
   {
-    try
-    {
-      AParFactory theAParFactory = (AParFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/amp/amf/parameters/APar"); 
-      if (theAParFactory != null)
-      {
-        return theAParFactory;
-      }
+        try {
+            AParFactory theAParFactory = (AParFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/amp/amf/parameters/APar"); 
+            if (theAParFactory != null) {
+                return theAParFactory;
+            }
+        }
+        catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new AParFactoryImpl();
     }
-    catch (Exception exception)
-    {
-      EcorePlugin.INSTANCE.log(exception);
-    }
-    return new AParFactoryImpl();
-  }
 
   /**
-   * Creates an instance of the factory.
-   * <!-- begin-user-doc -->
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public AParFactoryImpl()
   {
-    super();
-  }
+        super();
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public EObject create(EClass eClass)
   {
-    switch (eClass.getClassifierID())
-    {
-      case AParPackage.MODEL: return createModel();
-      case AParPackage.AGENT_PARAMETERS: return createAgentParameters();
-      case AParPackage.IMPORT: return createImport();
-      case AParPackage.INCORPORATES: return createIncorporates();
-      case AParPackage.PARAMETER: return createParameter();
-      default:
-        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        switch (eClass.getClassifierID()) {
+            case AParPackage.MODEL: return createModel();
+            case AParPackage.AGENT_PARAMETERS: return createAgentParameters();
+            case AParPackage.IMPORT: return createImport();
+            case AParPackage.INCORPORATES: return createIncorporates();
+            case AParPackage.PARAMETER: return createParameter();
+            default:
+                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+        }
     }
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public Model createModel()
   {
-    ModelImpl model = new ModelImpl();
-    return model;
-  }
+        ModelImpl model = new ModelImpl();
+        return model;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public AgentParameters createAgentParameters()
   {
-    AgentParametersImpl agentParameters = new AgentParametersImpl();
-    return agentParameters;
-  }
+        AgentParametersImpl agentParameters = new AgentParametersImpl();
+        return agentParameters;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public Import createImport()
   {
-    ImportImpl import_ = new ImportImpl();
-    return import_;
-  }
+        ImportImpl import_ = new ImportImpl();
+        return import_;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public Incorporates createIncorporates()
   {
-    IncorporatesImpl incorporates = new IncorporatesImpl();
-    return incorporates;
-  }
+        IncorporatesImpl incorporates = new IncorporatesImpl();
+        return incorporates;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public Parameter createParameter()
   {
-    ParameterImpl parameter = new ParameterImpl();
-    return parameter;
-  }
+        ParameterImpl parameter = new ParameterImpl();
+        return parameter;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public AParPackage getAParPackage()
   {
-    return (AParPackage)getEPackage();
-  }
+        return (AParPackage)getEPackage();
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @deprecated
-   * @generated
-   */
+     * @deprecated
+     * @generated
+     */
   @Deprecated
   public static AParPackage getPackage()
   {
-    return AParPackage.eINSTANCE;
-  }
+        return AParPackage.eINSTANCE;
+    }
 
 } //AParFactoryImpl

@@ -44,196 +44,188 @@ import org.metaabm.SAgent;
 public class AgentParametersImpl extends MinimalEObjectImpl.Container implements AgentParameters
 {
   /**
-   * The cached value of the '{@link #getAgent() <em>Agent</em>}' reference.
-   * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getAgent() <em>Agent</em>}' reference.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAgent()
-   * @generated
-   * @ordered
-   */
+     * @see #getAgent()
+     * @generated
+     * @ordered
+     */
   protected SAgent agent;
 
   /**
-   * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
-   * <!-- begin-user-doc -->
+     * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getParameters()
-   * @generated
-   * @ordered
-   */
+     * @see #getParameters()
+     * @generated
+     * @ordered
+     */
   protected EList<Parameter> parameters;
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   protected AgentParametersImpl()
   {
-    super();
-  }
+        super();
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   protected EClass eStaticClass()
   {
-    return AParPackage.Literals.AGENT_PARAMETERS;
-  }
+        return AParPackage.Literals.AGENT_PARAMETERS;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public SAgent getAgent()
   {
-    if (agent != null && agent.eIsProxy())
-    {
-      InternalEObject oldAgent = (InternalEObject)agent;
-      agent = (SAgent)eResolveProxy(oldAgent);
-      if (agent != oldAgent)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, AParPackage.AGENT_PARAMETERS__AGENT, oldAgent, agent));
-      }
+        if (agent != null && agent.eIsProxy()) {
+            InternalEObject oldAgent = (InternalEObject)agent;
+            agent = (SAgent)eResolveProxy(oldAgent);
+            if (agent != oldAgent) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, AParPackage.AGENT_PARAMETERS__AGENT, oldAgent, agent));
+            }
+        }
+        return agent;
     }
-    return agent;
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public SAgent basicGetAgent()
   {
-    return agent;
-  }
+        return agent;
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public void setAgent(SAgent newAgent)
   {
-    SAgent oldAgent = agent;
-    agent = newAgent;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AParPackage.AGENT_PARAMETERS__AGENT, oldAgent, agent));
-  }
+        SAgent oldAgent = agent;
+        agent = newAgent;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, AParPackage.AGENT_PARAMETERS__AGENT, oldAgent, agent));
+    }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   public EList<Parameter> getParameters()
   {
-    if (parameters == null)
-    {
-      parameters = new EObjectContainmentEList<Parameter>(Parameter.class, this, AParPackage.AGENT_PARAMETERS__PARAMETERS);
+        if (parameters == null) {
+            parameters = new EObjectContainmentEList<Parameter>(Parameter.class, this, AParPackage.AGENT_PARAMETERS__PARAMETERS);
+        }
+        return parameters;
     }
-    return parameters;
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    switch (featureID)
-    {
-      case AParPackage.AGENT_PARAMETERS__PARAMETERS:
-        return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
+        switch (featureID) {
+            case AParPackage.AGENT_PARAMETERS__PARAMETERS:
+                return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
     }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
-    switch (featureID)
-    {
-      case AParPackage.AGENT_PARAMETERS__AGENT:
-        if (resolve) return getAgent();
-        return basicGetAgent();
-      case AParPackage.AGENT_PARAMETERS__PARAMETERS:
-        return getParameters();
+        switch (featureID) {
+            case AParPackage.AGENT_PARAMETERS__AGENT:
+                if (resolve) return getAgent();
+                return basicGetAgent();
+            case AParPackage.AGENT_PARAMETERS__PARAMETERS:
+                return getParameters();
+        }
+        return super.eGet(featureID, resolve, coreType);
     }
-    return super.eGet(featureID, resolve, coreType);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
-    switch (featureID)
-    {
-      case AParPackage.AGENT_PARAMETERS__AGENT:
-        setAgent((SAgent)newValue);
-        return;
-      case AParPackage.AGENT_PARAMETERS__PARAMETERS:
-        getParameters().clear();
-        getParameters().addAll((Collection<? extends Parameter>)newValue);
-        return;
+        switch (featureID) {
+            case AParPackage.AGENT_PARAMETERS__AGENT:
+                setAgent((SAgent)newValue);
+                return;
+            case AParPackage.AGENT_PARAMETERS__PARAMETERS:
+                getParameters().clear();
+                getParameters().addAll((Collection<? extends Parameter>)newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
     }
-    super.eSet(featureID, newValue);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public void eUnset(int featureID)
   {
-    switch (featureID)
-    {
-      case AParPackage.AGENT_PARAMETERS__AGENT:
-        setAgent((SAgent)null);
-        return;
-      case AParPackage.AGENT_PARAMETERS__PARAMETERS:
-        getParameters().clear();
-        return;
+        switch (featureID) {
+            case AParPackage.AGENT_PARAMETERS__AGENT:
+                setAgent((SAgent)null);
+                return;
+            case AParPackage.AGENT_PARAMETERS__PARAMETERS:
+                getParameters().clear();
+                return;
+        }
+        super.eUnset(featureID);
     }
-    super.eUnset(featureID);
-  }
 
   /**
-   * <!-- begin-user-doc -->
+     * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+     * @generated
+     */
   @Override
   public boolean eIsSet(int featureID)
   {
-    switch (featureID)
-    {
-      case AParPackage.AGENT_PARAMETERS__AGENT:
-        return agent != null;
-      case AParPackage.AGENT_PARAMETERS__PARAMETERS:
-        return parameters != null && !parameters.isEmpty();
+        switch (featureID) {
+            case AParPackage.AGENT_PARAMETERS__AGENT:
+                return agent != null;
+            case AParPackage.AGENT_PARAMETERS__PARAMETERS:
+                return parameters != null && !parameters.isEmpty();
+        }
+        return super.eIsSet(featureID);
     }
-    return super.eIsSet(featureID);
-  }
 
 } //AgentParametersImpl
