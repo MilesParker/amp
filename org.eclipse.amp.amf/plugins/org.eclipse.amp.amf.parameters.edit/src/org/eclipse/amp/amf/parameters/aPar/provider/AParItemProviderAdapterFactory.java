@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AParItemProviderAdapterFactory.java,v 1.7 2009/11/06 21:26:50 mparker Exp $
+ * $Id: AParItemProviderAdapterFactory.java,v 1.8 2010/04/02 03:12:06 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 
@@ -94,6 +94,29 @@ public class AParItemProviderAdapterFactory extends AParAdapterFactory implement
         }
 
         return modelItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.parameters.aPar.AgentParameters} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected AgentParametersItemProvider agentParametersItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.amp.amf.parameters.aPar.AgentParameters}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createAgentParametersAdapter() {
+        if (agentParametersItemProvider == null) {
+            agentParametersItemProvider = new AgentParametersItemProvider(this);
+        }
+
+        return agentParametersItemProvider;
     }
 
     /**
@@ -265,6 +288,7 @@ public class AParItemProviderAdapterFactory extends AParAdapterFactory implement
      */
     public void dispose() {
         if (modelItemProvider != null) modelItemProvider.dispose();
+        if (agentParametersItemProvider != null) agentParametersItemProvider.dispose();
         if (importItemProvider != null) importItemProvider.dispose();
         if (incorporatesItemProvider != null) incorporatesItemProvider.dispose();
         if (parameterItemProvider != null) parameterItemProvider.dispose();

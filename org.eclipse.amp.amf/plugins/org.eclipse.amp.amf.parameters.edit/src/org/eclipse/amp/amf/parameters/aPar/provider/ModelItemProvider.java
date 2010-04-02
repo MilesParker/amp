@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ModelItemProvider.java,v 1.7 2009/11/06 21:26:50 mparker Exp $
+ * $Id: ModelItemProvider.java,v 1.8 2010/04/02 03:12:05 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 
@@ -94,7 +94,7 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
             super.getChildrenFeatures(object);
             childrenFeatures.add(AParPackage.Literals.MODEL__MODEL);
             childrenFeatures.add(AParPackage.Literals.MODEL__INCORPORATES);
-            childrenFeatures.add(AParPackage.Literals.MODEL__PARAMETERS);
+            childrenFeatures.add(AParPackage.Literals.MODEL__AGENTS);
         }
         return childrenFeatures;
     }
@@ -152,7 +152,7 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
                 return;
             case AParPackage.MODEL__MODEL:
             case AParPackage.MODEL__INCORPORATES:
-            case AParPackage.MODEL__PARAMETERS:
+            case AParPackage.MODEL__AGENTS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
         }
@@ -181,8 +181,8 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
 
         newChildDescriptors.add
             (createChildParameter
-                (AParPackage.Literals.MODEL__PARAMETERS,
-                 AParFactory.eINSTANCE.createParameter()));
+                (AParPackage.Literals.MODEL__AGENTS,
+                 AParFactory.eINSTANCE.createAgentParameters()));
     }
 
     /**
