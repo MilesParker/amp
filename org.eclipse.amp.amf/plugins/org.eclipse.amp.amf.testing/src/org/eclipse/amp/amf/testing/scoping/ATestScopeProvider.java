@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.eclipse.amp.amf.parameters.AParInterpreter;
 import org.eclipse.amp.amf.parameters.aPar.Model;
-import org.eclipse.amp.amf.parameters.scoping.AParScopeProvider;
 import org.eclipse.amp.amf.testing.ATestInterpreter;
 import org.eclipse.amp.amf.testing.aTest.Constraint;
 import org.eclipse.emf.common.util.URI;
@@ -17,13 +16,19 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.scoping.impl.SimpleScope;
 
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAgent;
+import org.metaabm.SAttribute;
+import org.metaabm.SAttributed;
+import org.metaabm.SContext;
+import org.metaabm.SProjection;
 import org.metaabm.SState;
 import org.metaabm.SStateValue;
 
@@ -36,7 +41,7 @@ import com.google.inject.Singleton;
  * 
  */
 @Singleton
-public class ATestScopeProvider extends AParScopeProvider {
+public class ATestScopeProvider extends AbstractDeclarativeScopeProvider {
 
     /**
      * @param object
@@ -46,19 +51,14 @@ public class ATestScopeProvider extends AParScopeProvider {
      *      org.eclipse.emf.ecore.EReference)
      */
     public IScope getScope(EObject object, EReference reference) {
-        IScope defaultScope = super.getScope(object, reference);
         if (object instanceof Constraint) {
             Constraint constraint = (Constraint) object;
             List<IEObjectDescription> allElems = new ArrayList<IEObjectDescription>();
+            ResourceSet resourceSet = getResourceSet(object);
             if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAgent()
                     || reference.getEType() == MetaABMPackage.eINSTANCE.getSAttribute()
                     || reference.getEType() == MetaABMPackage.eINSTANCE.getSStateValue()) {
-                ResourceSet resourceSet = object.eResource().getResourceSet();
-                URI aparURI = ATestInterpreter.getParameterURI(object.eResource());
-                Resource aparAnalog = resourceSet.getResource(aparURI, true);
-                Model aparModel = (Model) aparAnalog.getContents().get(0);
-                Resource agentModel = resourceSet.getResource(URI.createURI(AParInterpreter.convertURI(aparModel
-                                                                                                       .getModel().get(0)), true), true);
+
                 if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAgent()) {
                     for (Resource resource : resourceSet.getResources()) {
                         for (Iterator<EObject> iter = resource.getAllContents(); iter.hasNext();) {
@@ -86,9 +86,46 @@ public class ATestScopeProvider extends AParScopeProvider {
                     }
                 }
             }
-            IScope attrScope = new SimpleScope(defaultScope, allElems);
+            IScope attrScope = new SimpleScope(allElems);
             return attrScope;
         }
+        System.err.println(object);
+
         return super.getScope(object, reference);
+    }
+
+    protected ResourceSet getResourceSet(EObject object) {
+        ResourceSet resourceSet = object.eResource().getResourceSet();
+        URI aparURI = ATestInterpreter.getParameterURI(object.eResource());
+        if (aparURI.isPlatform()) {
+            if (URIConverter.INSTANCE.exists(aparURI, null)) {
+                Resource aparAnalog = resourceSet.getResource(aparURI, true);
+                if (aparAnalog != null && aparAnalog.getContents().size() > 0) {
+                    Model aparModel = (Model) aparAnalog.getContents().get(0);
+                    Resource agentModel = resourceSet.getResource(URI.createURI(AParInterpreter.convertURI(aparModel
+                                                                                                           .getModel()), true), true);
+                }
+            }
+        }
+        return resourceSet;
+    }
+
+    protected void findAttributes(SAttributed attributed, List<IEObjectDescription> allElems, String qualifier) {
+        for (SAttribute attr : attributed.getAttributes()) {
+            // don't want to allow parameter entries that can't be changed..which is also why we don't get
+            // core attributes.
+            if (!attr.isImmutable()) {
+                addElem(attr, allElems, qualifier);
+            }
+        }
+        if (attributed instanceof SContext) {
+            for (SProjection proj : ((SContext) attributed).getProjections()) {
+                findAttributes(proj, allElems, proj.getLabel() + " ");
+            }
+        }
+    }
+
+    private void addElem(SAttribute attr, List<IEObjectDescription> allElems, String qualifier) {
+        allElems.add(EObjectDescription.create(qualifier + attr.getLabel(), attr));
     }
 }
