@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AParModelWizard.java,v 1.1 2009/07/18 01:08:48 mparker Exp $
+ * $Id: AParModelWizard.java,v 1.2 2010/04/02 03:11:54 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.presentation;
 
@@ -293,7 +293,7 @@ public class AParModelWizard extends Wizard implements INewWizard {
             try {
                 page.openEditor
                     (new FileEditorInput(modelFile),
-                     workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
+                     workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
             }
             catch (PartInitException exception) {
                 MessageDialog.openError(workbenchWindow.getShell(), AParEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
