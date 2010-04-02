@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ATestModelWizard.java,v 1.2 2009/09/22 02:05:08 mparker Exp $
+ * $Id: ATestModelWizard.java,v 1.3 2010/04/02 03:12:04 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.aTest.presentation;
 
@@ -268,7 +268,7 @@ public class ATestModelWizard extends Wizard implements INewWizard {
             try {
                 page.openEditor
                     (new FileEditorInput(modelFile),
-                     workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
+                     workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());					 	 
             }
             catch (PartInitException exception) {
                 MessageDialog.openError(workbenchWindow.getShell(), ATestEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
