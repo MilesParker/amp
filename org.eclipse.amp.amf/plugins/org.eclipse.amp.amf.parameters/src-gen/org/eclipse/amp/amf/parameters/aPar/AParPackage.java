@@ -79,7 +79,7 @@ public interface AParPackage extends EPackage
   int MODEL__NAME = 0;
 
   /**
-   * The feature id for the '<em><b>Model</b></em>' containment reference list.
+   * The feature id for the '<em><b>Model</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -97,13 +97,13 @@ public interface AParPackage extends EPackage
   int MODEL__INCORPORATES = 2;
 
   /**
-   * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+   * The feature id for the '<em><b>Agents</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL__PARAMETERS = 3;
+  int MODEL__AGENTS = 3;
 
   /**
    * The number of structural features of the '<em>Model</em>' class.
@@ -115,6 +115,43 @@ public interface AParPackage extends EPackage
   int MODEL_FEATURE_COUNT = 4;
 
   /**
+   * The meta object id for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.AgentParametersImpl <em>Agent Parameters</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.amp.amf.parameters.aPar.impl.AgentParametersImpl
+   * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getAgentParameters()
+   * @generated
+   */
+  int AGENT_PARAMETERS = 1;
+
+  /**
+   * The feature id for the '<em><b>Agent</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AGENT_PARAMETERS__AGENT = 0;
+
+  /**
+   * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AGENT_PARAMETERS__PARAMETERS = 1;
+
+  /**
+   * The number of structural features of the '<em>Agent Parameters</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AGENT_PARAMETERS_FEATURE_COUNT = 2;
+
+  /**
    * The meta object id for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.ImportImpl <em>Import</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -122,7 +159,7 @@ public interface AParPackage extends EPackage
    * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getImport()
    * @generated
    */
-  int IMPORT = 1;
+  int IMPORT = 2;
 
   /**
    * The feature id for the '<em><b>Import URI</b></em>' attribute.
@@ -150,7 +187,7 @@ public interface AParPackage extends EPackage
    * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getIncorporates()
    * @generated
    */
-  int INCORPORATES = 2;
+  int INCORPORATES = 3;
 
   /**
    * The feature id for the '<em><b>Import URI</b></em>' attribute.
@@ -178,7 +215,7 @@ public interface AParPackage extends EPackage
    * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getParameter()
    * @generated
    */
-  int PARAMETER = 3;
+  int PARAMETER = 4;
 
   /**
    * The feature id for the '<em><b>Attribute</b></em>' reference.
@@ -230,10 +267,10 @@ public interface AParPackage extends EPackage
   EAttribute getModel_Name();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.parameters.aPar.Model#getModel <em>Model</em>}'.
+   * Returns the meta object for the containment reference '{@link org.eclipse.amp.amf.parameters.aPar.Model#getModel <em>Model</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Model</em>'.
+   * @return the meta object for the containment reference '<em>Model</em>'.
    * @see org.eclipse.amp.amf.parameters.aPar.Model#getModel()
    * @see #getModel()
    * @generated
@@ -252,15 +289,47 @@ public interface AParPackage extends EPackage
   EReference getModel_Incorporates();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.parameters.aPar.Model#getParameters <em>Parameters</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.parameters.aPar.Model#getAgents <em>Agents</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Parameters</em>'.
-   * @see org.eclipse.amp.amf.parameters.aPar.Model#getParameters()
+   * @return the meta object for the containment reference list '<em>Agents</em>'.
+   * @see org.eclipse.amp.amf.parameters.aPar.Model#getAgents()
    * @see #getModel()
    * @generated
    */
-  EReference getModel_Parameters();
+  EReference getModel_Agents();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.amp.amf.parameters.aPar.AgentParameters <em>Agent Parameters</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Agent Parameters</em>'.
+   * @see org.eclipse.amp.amf.parameters.aPar.AgentParameters
+   * @generated
+   */
+  EClass getAgentParameters();
+
+  /**
+   * Returns the meta object for the reference '{@link org.eclipse.amp.amf.parameters.aPar.AgentParameters#getAgent <em>Agent</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Agent</em>'.
+   * @see org.eclipse.amp.amf.parameters.aPar.AgentParameters#getAgent()
+   * @see #getAgentParameters()
+   * @generated
+   */
+  EReference getAgentParameters_Agent();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.eclipse.amp.amf.parameters.aPar.AgentParameters#getParameters <em>Parameters</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Parameters</em>'.
+   * @see org.eclipse.amp.amf.parameters.aPar.AgentParameters#getParameters()
+   * @see #getAgentParameters()
+   * @generated
+   */
+  EReference getAgentParameters_Parameters();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.amp.amf.parameters.aPar.Import <em>Import</em>}'.
@@ -378,7 +447,7 @@ public interface AParPackage extends EPackage
     EAttribute MODEL__NAME = eINSTANCE.getModel_Name();
 
     /**
-     * The meta object literal for the '<em><b>Model</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Model</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -394,12 +463,38 @@ public interface AParPackage extends EPackage
     EReference MODEL__INCORPORATES = eINSTANCE.getModel_Incorporates();
 
     /**
+     * The meta object literal for the '<em><b>Agents</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MODEL__AGENTS = eINSTANCE.getModel_Agents();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.AgentParametersImpl <em>Agent Parameters</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.amp.amf.parameters.aPar.impl.AgentParametersImpl
+     * @see org.eclipse.amp.amf.parameters.aPar.impl.AParPackageImpl#getAgentParameters()
+     * @generated
+     */
+    EClass AGENT_PARAMETERS = eINSTANCE.getAgentParameters();
+
+    /**
+     * The meta object literal for the '<em><b>Agent</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference AGENT_PARAMETERS__AGENT = eINSTANCE.getAgentParameters_Agent();
+
+    /**
      * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MODEL__PARAMETERS = eINSTANCE.getModel_Parameters();
+    EReference AGENT_PARAMETERS__PARAMETERS = eINSTANCE.getAgentParameters_Parameters();
 
     /**
      * The meta object literal for the '{@link org.eclipse.amp.amf.parameters.aPar.impl.ImportImpl <em>Import</em>}' class.

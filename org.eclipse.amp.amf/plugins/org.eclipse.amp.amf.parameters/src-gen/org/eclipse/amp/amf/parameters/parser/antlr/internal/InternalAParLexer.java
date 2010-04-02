@@ -13,9 +13,10 @@ import java.util.ArrayList;
 public class InternalAParLexer extends Lexer {
     public static final int RULE_ID=8;
     public static final int RULE_ANY_OTHER=13;
+    public static final int Tokens=21;
     public static final int EOF=-1;
     public static final int RULE_SL_COMMENT=11;
-    public static final int Tokens=19;
+    public static final int T20=20;
     public static final int RULE_ML_COMMENT=10;
     public static final int RULE_STRING=4;
     public static final int RULE_INT=9;
@@ -27,6 +28,7 @@ public class InternalAParLexer extends Lexer {
     public static final int T16=16;
     public static final int T17=17;
     public static final int T18=18;
+    public static final int T19=19;
     public static final int RULE_INTEGER=5;
     public InternalAParLexer() {;} 
     public InternalAParLexer(CharStream input) {
@@ -76,10 +78,10 @@ public class InternalAParLexer extends Lexer {
     public final void mT16() throws RecognitionException {
         try {
             int _type = T16;
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:12:5: ( '=' )
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:12:7: '='
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:12:5: ( '[' )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:12:7: '['
             {
-            match('='); 
+            match('['); 
 
             }
 
@@ -94,11 +96,10 @@ public class InternalAParLexer extends Lexer {
     public final void mT17() throws RecognitionException {
         try {
             int _type = T17;
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:13:5: ( 'true' )
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:13:7: 'true'
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:13:5: ( ']' )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:13:7: ']'
             {
-            match("true"); 
-
+            match(']'); 
 
             }
 
@@ -113,8 +114,45 @@ public class InternalAParLexer extends Lexer {
     public final void mT18() throws RecognitionException {
         try {
             int _type = T18;
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:14:5: ( 'false' )
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:14:7: 'false'
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:14:5: ( '=' )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:14:7: '='
+            {
+            match('='); 
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T18
+
+    // $ANTLR start T19
+    public final void mT19() throws RecognitionException {
+        try {
+            int _type = T19;
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:15:5: ( 'true' )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:15:7: 'true'
+            {
+            match("true"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T19
+
+    // $ANTLR start T20
+    public final void mT20() throws RecognitionException {
+        try {
+            int _type = T20;
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:16:5: ( 'false' )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:16:7: 'false'
             {
             match("false"); 
 
@@ -126,16 +164,16 @@ public class InternalAParLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end T18
+    // $ANTLR end T20
 
     // $ANTLR start RULE_INTEGER
     public final void mRULE_INTEGER() throws RecognitionException {
         try {
             int _type = RULE_INTEGER;
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:634:14: ( ( '-' )? ( '0' .. '9' )+ )
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:634:16: ( '-' )? ( '0' .. '9' )+
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:711:14: ( ( '-' )? ( '0' .. '9' )+ )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:711:16: ( '-' )? ( '0' .. '9' )+
             {
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:634:16: ( '-' )?
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:711:16: ( '-' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -144,7 +182,7 @@ public class InternalAParLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:634:16: '-'
+                    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:711:16: '-'
                     {
                     match('-'); 
 
@@ -153,7 +191,7 @@ public class InternalAParLexer extends Lexer {
 
             }
 
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:634:21: ( '0' .. '9' )+
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:711:21: ( '0' .. '9' )+
             int cnt2=0;
             loop2:
             do {
@@ -167,7 +205,7 @@ public class InternalAParLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:634:22: '0' .. '9'
+            	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:711:22: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -197,10 +235,10 @@ public class InternalAParLexer extends Lexer {
     public final void mRULE_REAL() throws RecognitionException {
         try {
             int _type = RULE_REAL;
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:636:11: ( ( '-' )? ( '0' .. '9' )* '.' ( '0' .. '9' )* )
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:636:13: ( '-' )? ( '0' .. '9' )* '.' ( '0' .. '9' )*
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:713:11: ( ( '-' )? ( '0' .. '9' )* '.' ( '0' .. '9' )* )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:713:13: ( '-' )? ( '0' .. '9' )* '.' ( '0' .. '9' )*
             {
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:636:13: ( '-' )?
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:713:13: ( '-' )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -209,7 +247,7 @@ public class InternalAParLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:636:13: '-'
+                    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:713:13: '-'
                     {
                     match('-'); 
 
@@ -218,7 +256,7 @@ public class InternalAParLexer extends Lexer {
 
             }
 
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:636:18: ( '0' .. '9' )*
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:713:18: ( '0' .. '9' )*
             loop4:
             do {
                 int alt4=2;
@@ -231,7 +269,7 @@ public class InternalAParLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:636:19: '0' .. '9'
+            	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:713:19: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -244,7 +282,7 @@ public class InternalAParLexer extends Lexer {
             } while (true);
 
             match('.'); 
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:636:34: ( '0' .. '9' )*
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:713:34: ( '0' .. '9' )*
             loop5:
             do {
                 int alt5=2;
@@ -257,7 +295,7 @@ public class InternalAParLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:636:35: '0' .. '9'
+            	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:713:35: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -283,11 +321,11 @@ public class InternalAParLexer extends Lexer {
     public final void mRULE_DESC_STRING() throws RecognitionException {
         try {
             int _type = RULE_DESC_STRING;
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:638:18: ( '\\u00AB' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' ) | ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) ) )* '\\u00BB' )
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:638:20: '\\u00AB' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' ) | ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) ) )* '\\u00BB'
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:715:18: ( '\\u00AB' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' ) | ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) ) )* '\\u00BB' )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:715:20: '\\u00AB' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' ) | ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) ) )* '\\u00BB'
             {
             match('\u00AB'); 
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:638:29: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' ) | ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) ) )*
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:715:29: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' ) | ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) ) )*
             loop6:
             do {
                 int alt6=3;
@@ -303,7 +341,7 @@ public class InternalAParLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:638:30: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' )
+            	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:715:30: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\u00AB' | '\\u00BB' | '\\\\' )
             	    {
             	    match('\\'); 
             	    if ( input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t'||input.LA(1)=='\u00AB'||input.LA(1)=='\u00BB' ) {
@@ -320,7 +358,7 @@ public class InternalAParLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:638:80: ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) )
+            	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:715:80: ~ ( ( '\\\\' | '\\u00AB' | '\\u00BB' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\u00AA')||(input.LA(1)>='\u00AC' && input.LA(1)<='\u00BA')||(input.LA(1)>='\u00BC' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -356,10 +394,10 @@ public class InternalAParLexer extends Lexer {
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:640:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:640:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:717:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:717:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:640:11: ( '^' )?
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:717:11: ( '^' )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -368,7 +406,7 @@ public class InternalAParLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:640:11: '^'
+                    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:717:11: '^'
                     {
                     match('^'); 
 
@@ -387,7 +425,7 @@ public class InternalAParLexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:640:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:717:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop8:
             do {
                 int alt8=2;
@@ -435,10 +473,10 @@ public class InternalAParLexer extends Lexer {
     public final void mRULE_INT() throws RecognitionException {
         try {
             int _type = RULE_INT;
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:642:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:642:12: ( '0' .. '9' )+
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:719:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:719:12: ( '0' .. '9' )+
             {
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:642:12: ( '0' .. '9' )+
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:719:12: ( '0' .. '9' )+
             int cnt9=0;
             loop9:
             do {
@@ -452,7 +490,7 @@ public class InternalAParLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:642:13: '0' .. '9'
+            	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:719:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -482,10 +520,10 @@ public class InternalAParLexer extends Lexer {
     public final void mRULE_STRING() throws RecognitionException {
         try {
             int _type = RULE_STRING;
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:644:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:644:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:721:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:721:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:644:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:721:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -497,16 +535,16 @@ public class InternalAParLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("644:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )", 12, 0, input);
+                    new NoViableAltException("721:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )", 12, 0, input);
 
                 throw nvae;
             }
             switch (alt12) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:644:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:721:16: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:644:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:721:20: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop10:
                     do {
                         int alt10=3;
@@ -522,7 +560,7 @@ public class InternalAParLexer extends Lexer {
 
                         switch (alt10) {
                     	case 1 :
-                    	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:644:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:721:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -539,7 +577,7 @@ public class InternalAParLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:644:62: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:721:62: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -565,10 +603,10 @@ public class InternalAParLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:644:82: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:721:82: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:644:87: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:721:87: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop11:
                     do {
                         int alt11=3;
@@ -584,7 +622,7 @@ public class InternalAParLexer extends Lexer {
 
                         switch (alt11) {
                     	case 1 :
-                    	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:644:88: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+                    	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:721:88: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -601,7 +639,7 @@ public class InternalAParLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:644:129: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:721:129: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -643,12 +681,12 @@ public class InternalAParLexer extends Lexer {
     public final void mRULE_ML_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_ML_COMMENT;
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:646:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:646:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:723:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:723:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:646:24: ( options {greedy=false; } : . )*
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:723:24: ( options {greedy=false; } : . )*
             loop13:
             do {
                 int alt13=2;
@@ -673,7 +711,7 @@ public class InternalAParLexer extends Lexer {
 
                 switch (alt13) {
             	case 1 :
-            	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:646:52: .
+            	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:723:52: .
             	    {
             	    matchAny(); 
 
@@ -701,12 +739,12 @@ public class InternalAParLexer extends Lexer {
     public final void mRULE_SL_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_SL_COMMENT;
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:648:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:648:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:725:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:725:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:648:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:725:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop14:
             do {
                 int alt14=2;
@@ -719,7 +757,7 @@ public class InternalAParLexer extends Lexer {
 
                 switch (alt14) {
             	case 1 :
-            	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:648:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:725:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -740,7 +778,7 @@ public class InternalAParLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:648:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:725:40: ( ( '\\r' )? '\\n' )?
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -749,9 +787,9 @@ public class InternalAParLexer extends Lexer {
             }
             switch (alt16) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:648:41: ( '\\r' )? '\\n'
+                    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:725:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:648:41: ( '\\r' )?
+                    // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:725:41: ( '\\r' )?
                     int alt15=2;
                     int LA15_0 = input.LA(1);
 
@@ -760,7 +798,7 @@ public class InternalAParLexer extends Lexer {
                     }
                     switch (alt15) {
                         case 1 :
-                            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:648:41: '\\r'
+                            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:725:41: '\\r'
                             {
                             match('\r'); 
 
@@ -790,10 +828,10 @@ public class InternalAParLexer extends Lexer {
     public final void mRULE_WS() throws RecognitionException {
         try {
             int _type = RULE_WS;
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:650:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:650:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:727:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:727:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:650:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:727:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt17=0;
             loop17:
             do {
@@ -846,8 +884,8 @@ public class InternalAParLexer extends Lexer {
     public final void mRULE_ANY_OTHER() throws RecognitionException {
         try {
             int _type = RULE_ANY_OTHER;
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:652:16: ( . )
-            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:652:18: .
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:729:16: ( . )
+            // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:729:18: .
             {
             matchAny(); 
 
@@ -861,8 +899,8 @@ public class InternalAParLexer extends Lexer {
     // $ANTLR end RULE_ANY_OTHER
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:8: ( T14 | T15 | T16 | T17 | T18 | RULE_INTEGER | RULE_REAL | RULE_DESC_STRING | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt18=15;
+        // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:8: ( T14 | T15 | T16 | T17 | T18 | T19 | T20 | RULE_INTEGER | RULE_REAL | RULE_DESC_STRING | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt18=17;
         alt18 = dfa18.predict(input);
         switch (alt18) {
             case 1 :
@@ -901,70 +939,84 @@ public class InternalAParLexer extends Lexer {
                 }
                 break;
             case 6 :
-                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:30: RULE_INTEGER
+                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:30: T19
+                {
+                mT19(); 
+
+                }
+                break;
+            case 7 :
+                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:34: T20
+                {
+                mT20(); 
+
+                }
+                break;
+            case 8 :
+                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:38: RULE_INTEGER
                 {
                 mRULE_INTEGER(); 
 
                 }
                 break;
-            case 7 :
-                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:43: RULE_REAL
+            case 9 :
+                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:51: RULE_REAL
                 {
                 mRULE_REAL(); 
 
                 }
                 break;
-            case 8 :
-                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:53: RULE_DESC_STRING
+            case 10 :
+                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:61: RULE_DESC_STRING
                 {
                 mRULE_DESC_STRING(); 
 
                 }
                 break;
-            case 9 :
-                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:70: RULE_ID
+            case 11 :
+                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:78: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 10 :
-                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:78: RULE_INT
+            case 12 :
+                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:86: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 11 :
-                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:87: RULE_STRING
+            case 13 :
+                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:95: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 12 :
-                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:99: RULE_ML_COMMENT
+            case 14 :
+                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:107: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 13 :
-                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:115: RULE_SL_COMMENT
+            case 15 :
+                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:123: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 14 :
-                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:131: RULE_WS
+            case 16 :
+                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:139: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 15 :
-                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:139: RULE_ANY_OTHER
+            case 17 :
+                // ../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/parser/antlr/internal/InternalAPar.g:1:147: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -978,86 +1030,92 @@ public class InternalAParLexer extends Lexer {
 
     protected DFA18 dfa18 = new DFA18(this);
     static final String DFA18_eotS =
-        "\1\uffff\2\22\1\uffff\2\22\1\20\1\31\1\uffff\2\20\1\uffff\3\20\2"+
-        "\uffff\1\22\1\uffff\1\22\1\uffff\2\22\1\31\2\uffff\1\31\5\uffff"+
-        "\6\22\1\52\1\22\1\54\1\22\1\uffff\1\56\1\uffff\1\22\1\uffff\5\22"+
-        "\1\65\1\uffff";
+        "\1\uffff\2\24\3\uffff\2\24\1\22\1\35\1\uffff\2\22\1\uffff\3\22\2"+
+        "\uffff\1\24\1\uffff\1\24\3\uffff\2\24\1\35\2\uffff\1\35\5\uffff"+
+        "\6\24\1\56\1\24\1\60\1\24\1\uffff\1\62\1\uffff\1\24\1\uffff\5\24"+
+        "\1\71\1\uffff";
     static final String DFA18_eofS =
-        "\66\uffff";
+        "\72\uffff";
     static final String DFA18_minS =
-        "\1\0\1\157\1\156\1\uffff\1\162\1\141\2\56\1\uffff\1\0\1\101\1\uffff"+
-        "\2\0\1\52\2\uffff\1\144\1\uffff\1\143\1\uffff\1\165\1\154\1\56\2"+
+        "\1\0\1\157\1\156\3\uffff\1\162\1\141\2\56\1\uffff\1\0\1\101\1\uffff"+
+        "\2\0\1\52\2\uffff\1\144\1\uffff\1\143\3\uffff\1\165\1\154\1\56\2"+
         "\uffff\1\56\5\uffff\1\145\1\157\1\145\1\163\1\154\1\162\1\60\1\145"+
         "\1\60\1\160\1\uffff\1\60\1\uffff\1\157\1\uffff\1\162\1\141\1\164"+
         "\1\145\1\163\1\60\1\uffff";
     static final String DFA18_maxS =
-        "\1\ufffe\1\157\1\156\1\uffff\1\162\1\141\2\71\1\uffff\1\ufffe\1"+
-        "\172\1\uffff\2\ufffe\1\57\2\uffff\1\144\1\uffff\1\143\1\uffff\1"+
+        "\1\ufffe\1\157\1\156\3\uffff\1\162\1\141\2\71\1\uffff\1\ufffe\1"+
+        "\172\1\uffff\2\ufffe\1\57\2\uffff\1\144\1\uffff\1\143\3\uffff\1"+
         "\165\1\154\1\71\2\uffff\1\71\5\uffff\1\145\1\157\1\145\1\163\1\154"+
         "\1\162\1\172\1\145\1\172\1\160\1\uffff\1\172\1\uffff\1\157\1\uffff"+
         "\1\162\1\141\1\164\1\145\1\163\1\172\1\uffff";
     static final String DFA18_acceptS =
-        "\3\uffff\1\3\4\uffff\1\7\2\uffff\1\11\3\uffff\1\16\1\17\1\uffff"+
-        "\1\11\1\uffff\1\3\3\uffff\1\7\1\6\1\uffff\1\10\1\13\1\15\1\14\1"+
-        "\16\12\uffff\1\4\1\uffff\1\1\1\uffff\1\5\6\uffff\1\2";
+        "\3\uffff\1\3\1\4\1\5\4\uffff\1\11\2\uffff\1\13\3\uffff\1\20\1\21"+
+        "\1\uffff\1\13\1\uffff\1\3\1\4\1\5\3\uffff\1\11\1\10\1\uffff\1\12"+
+        "\1\15\1\16\1\17\1\20\12\uffff\1\6\1\uffff\1\1\1\uffff\1\7\6\uffff"+
+        "\1\2";
     static final String DFA18_specialS =
-        "\66\uffff}>";
+        "\72\uffff}>";
     static final String[] DFA18_transitionS = {
-            "\11\20\2\17\2\20\1\17\22\20\1\17\1\20\1\14\4\20\1\15\5\20\1"+
-            "\6\1\10\1\16\12\7\3\20\1\3\3\20\32\13\3\20\1\12\1\13\1\20\5"+
-            "\13\1\5\2\13\1\2\3\13\1\1\6\13\1\4\6\13\60\20\1\11\uff53\20",
-            "\1\21",
+            "\11\22\2\21\2\22\1\21\22\22\1\21\1\22\1\16\4\22\1\17\5\22\1"+
+            "\10\1\12\1\20\12\11\3\22\1\5\3\22\32\15\1\3\1\22\1\4\1\14\1"+
+            "\15\1\22\5\15\1\7\2\15\1\2\3\15\1\1\6\15\1\6\6\15\60\22\1\13"+
+            "\uff53\22",
             "\1\23",
-            "",
             "\1\25",
-            "\1\26",
-            "\1\30\1\uffff\12\27",
-            "\1\30\1\uffff\12\32",
-            "",
-            "\u00ab\33\1\uffff\uff53\33",
-            "\32\22\4\uffff\1\22\1\uffff\32\22",
-            "",
-            "\uffff\34",
-            "\uffff\34",
-            "\1\36\4\uffff\1\35",
-            "",
-            "",
-            "\1\40",
-            "",
-            "\1\41",
-            "",
-            "\1\42",
-            "\1\43",
-            "\1\30\1\uffff\12\27",
-            "",
-            "",
-            "\1\30\1\uffff\12\32",
             "",
             "",
             "",
+            "\1\31",
+            "\1\32",
+            "\1\34\1\uffff\12\33",
+            "\1\34\1\uffff\12\36",
+            "",
+            "\u00ab\37\1\uffff\uff53\37",
+            "\32\24\4\uffff\1\24\1\uffff\32\24",
+            "",
+            "\uffff\40",
+            "\uffff\40",
+            "\1\41\4\uffff\1\42",
             "",
             "",
             "\1\44",
+            "",
             "\1\45",
+            "",
+            "",
+            "",
             "\1\46",
             "\1\47",
+            "\1\34\1\uffff\12\33",
+            "",
+            "",
+            "\1\34\1\uffff\12\36",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\50",
             "\1\51",
-            "\12\22\7\uffff\32\22\4\uffff\1\22\1\uffff\32\22",
+            "\1\52",
             "\1\53",
-            "\12\22\7\uffff\32\22\4\uffff\1\22\1\uffff\32\22",
+            "\1\54",
             "\1\55",
-            "",
-            "\12\22\7\uffff\32\22\4\uffff\1\22\1\uffff\32\22",
-            "",
+            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\32\24",
             "\1\57",
-            "",
-            "\1\60",
+            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\32\24",
             "\1\61",
-            "\1\62",
+            "",
+            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\32\24",
+            "",
             "\1\63",
+            "",
             "\1\64",
-            "\12\22\7\uffff\32\22\4\uffff\1\22\1\uffff\32\22",
+            "\1\65",
+            "\1\66",
+            "\1\67",
+            "\1\70",
+            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\32\24",
             ""
     };
 
@@ -1091,7 +1149,7 @@ public class InternalAParLexer extends Lexer {
             this.transition = DFA18_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T14 | T15 | T16 | T17 | T18 | RULE_INTEGER | RULE_REAL | RULE_DESC_STRING | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( T14 | T15 | T16 | T17 | T18 | T19 | T20 | RULE_INTEGER | RULE_REAL | RULE_DESC_STRING | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
     }
  

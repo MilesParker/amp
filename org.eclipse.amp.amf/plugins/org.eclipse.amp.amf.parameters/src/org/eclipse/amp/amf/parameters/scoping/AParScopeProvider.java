@@ -20,16 +20,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.amp.amf.parameters.AParInterpreter;
+import org.eclipse.amp.amf.parameters.aPar.AgentParameters;
 import org.eclipse.amp.amf.parameters.aPar.Model;
 import org.eclipse.amp.amf.parameters.aPar.Parameter;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.amp.amf.parameters.aPar.impl.ModelImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.ui.statushandlers.StatusManager;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
@@ -37,6 +37,7 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.scoping.impl.SimpleScope;
 
 import org.metaabm.MetaABMPackage;
+import org.metaabm.SAgent;
 import org.metaabm.SAttribute;
 import org.metaabm.SAttributed;
 import org.metaabm.SContext;
@@ -52,6 +53,8 @@ import com.google.inject.Singleton;
 @Singleton
 public class AParScopeProvider extends AbstractDeclarativeScopeProvider {
 
+    List<IEObjectDescription> engineAttributes;
+
     /**
      * @param context
      * @param reference
@@ -62,58 +65,70 @@ public class AParScopeProvider extends AbstractDeclarativeScopeProvider {
     public IScope getScope(EObject object, EReference reference) {
         // todo optimization -- for obscure reasons we need to get the references loaded this way but it doesn't have to
         // happen every time.
-        if (object instanceof Parameter) {
-            if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAttribute()) {
-                // if (attrScope == null) {
-                List<IEObjectDescription> allElems = new ArrayList<IEObjectDescription>();
-                AParInterpreter.convertURI(object, NAMED_DELEGATE);
-                ResourceSet resourceSet = getResourceSet(object);
-                Parameter param = (Parameter) object;
-                String convertURI = AParInterpreter.convertURI(((Model) param.eContainer()).getModel().get(0));
-                URI modelURI = URI.createURI(convertURI);
-                Resource found = resourceSet.getResource(modelURI, true);
-                EList<Resource> resources = resourceSet.getResources();
-                for (Resource resource : resources) {
-                    if (resource.getURI().fileExtension().equals("metaabm")) {
-                        EObject content = resource.getContents().get(0);
-                        if (content instanceof SAttributed) {
-                            findAttributes((SAttributed) content, allElems, "");
-                        }
-                    }
-                }
-                // IScope defaultScope = super.getScope(object, reference);
-                IScope attrScope = new SimpleScope(allElems);
-                return attrScope;
+        // if (object instanceof Model) {
+        // // resourceSet = getResourceSet(object);
+        // getResourceSet(object);
+        // super.getScope(object, reference);
+        // }
+        if (object instanceof Parameter && reference.getEType() == MetaABMPackage.eINSTANCE.getSAttribute()) {
+            getResourceSet(object);
+            // if (attrScope == null) {
+            if (engineAttributes == null) {
+                engineAttributes = new ArrayList<IEObjectDescription>();
+                ResourceSet resourceSet = object.eResource().getResourceSet();
+                Resource found = resourceSet.getResource(URI.createURI("http://metaabm.org/Engine.metaabm"), true);
+                findAttributes((SContext) found.getContents().get(0), engineAttributes, "");
             }
+            List<IEObjectDescription> allElems = new ArrayList<IEObjectDescription>();
+            Parameter parameter = (Parameter) object;
+            AgentParameters params = (AgentParameters) parameter.eContainer();
+            SAgent agent = getAgent(params);
+            if (agent != null) {
+                findAttributes(agent, allElems, "");
+            }
+            // IScope defaultScope = super.getScope(object, reference);
+            allElems.addAll(engineAttributes);
+            IScope attrScope = new SimpleScope(allElems);
+            return attrScope;
+        } else if (object instanceof AgentParameters && reference.getEType() == MetaABMPackage.eINSTANCE.getSAgent()) {
+            getResourceSet(object);
+            AgentParameters params = (AgentParameters) object;
+            SAgent context = getAgent(params);
+            List<IEObjectDescription> allElems = new ArrayList<IEObjectDescription>();
+            allElems.add(EObjectDescription.create(context.getLabel(), context));
+            IScope attrScope = new SimpleScope(allElems);
+            return attrScope;
+        } else if (object instanceof ModelImpl) {
+            getResourceSet(object);
         }
+
         return super.getScope(object, reference);
     }
 
-    private ResourceSet getResourceSet(EObject context) {
-        ResourceSet resourceSet = context.eResource().getResourceSet();
-        Resource found = resourceSet.getResource(URI.createURI("http://metaabm.org/Engine.metaabm"), true);
-        // if (context instanceof Model) {
-        // Import importVal = ((Model) context).getModel().get(0);
-        // resourceSet.getResource(URI.createURI(importVal.getImportURI()), true);
-        // }
-        // resourceSet.getResource(URI
-        // .createURI("platform:/resource/org.eclipse.amp.amf.examples.escape/Epidemic.metaabm"), true);
-        if (found == null) {
-            StatusManager.getManager().handle(
-                                              new Status(Status.WARNING, "org.eclipse.amp.amf.parameters",
-                                              "Couldn't locate engine context."));
+    protected SAgent getAgent(AgentParameters params) {
+        Model model = (Model) params.eContainer();
+        String modelURI = AParInterpreter.convertURI(model.getModel());
+        ResourceSet resourceSet = params.eResource().getResourceSet();
+        Resource modelResource = resourceSet.getResource(URI.createURI(modelURI), true);
+        SContext context = (SContext) modelResource.getContents().get(0);
+        return context;
+    }
+
+    protected ResourceSet getResourceSet(EObject object) {
+        ResourceSet resourceSet = object.eResource().getResourceSet();
+        resourceSet.getResource(URI.createURI("http://metaabm.org/Engine.metaabm"), true);
+        Model model = (Model) object.eResource().getContents().get(0);
+        String convertURI = AParInterpreter.convertURI(model.getModel());
+        URI aparURI = URI.createURI(convertURI, true);
+        if (aparURI.isPlatform()) {
+            if (URIConverter.INSTANCE.exists(aparURI, null)) {
+                Resource resource = resourceSet.getResource(aparURI, true);
+                resource.getContents().get(0);
+            }
         }
         return resourceSet;
     }
 
-    // private void addDumyAttr(String label) {
-    // SAttribute dummyAttr = MetaABMFactory.eINSTANCE.createSAttribute();
-    // dummyAttr.setLabel(label);
-    // String id = StringUtils.replace(label, " ", "");
-    // id = StringUtils.uncapitalize(id);
-    // dummyAttr.setID(id);
-    // addElem(dummyAttr, "");
-    // }
 
     protected void findAttributes(SAttributed attributed, List<IEObjectDescription> allElems, String qualifier) {
         for (SAttribute attr : attributed.getAttributes()) {

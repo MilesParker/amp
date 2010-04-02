@@ -102,6 +102,13 @@ public class AParSwitch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case AParPackage.AGENT_PARAMETERS:
+      {
+        AgentParameters agentParameters = (AgentParameters)theEObject;
+        T result = caseAgentParameters(agentParameters);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case AParPackage.IMPORT:
       {
         Import import_ = (Import)theEObject;
@@ -139,6 +146,22 @@ public class AParSwitch<T>
    * @generated
    */
   public T caseModel(Model object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Agent Parameters</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Agent Parameters</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAgentParameters(AgentParameters object)
   {
     return null;
   }

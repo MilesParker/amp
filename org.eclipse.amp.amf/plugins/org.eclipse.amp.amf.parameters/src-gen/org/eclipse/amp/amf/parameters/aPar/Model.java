@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.amp.amf.parameters.aPar.Model#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.parameters.aPar.Model#getModel <em>Model</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.parameters.aPar.Model#getIncorporates <em>Incorporates</em>}</li>
- *   <li>{@link org.eclipse.amp.amf.parameters.aPar.Model#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.parameters.aPar.Model#getAgents <em>Agents</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,20 +57,30 @@ public interface Model extends EObject
   void setName(String value);
 
   /**
-   * Returns the value of the '<em><b>Model</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.amp.amf.parameters.aPar.Import}.
+   * Returns the value of the '<em><b>Model</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Model</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Model</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Model</em>' containment reference list.
+   * @return the value of the '<em>Model</em>' containment reference.
+   * @see #setModel(Import)
    * @see org.eclipse.amp.amf.parameters.aPar.AParPackage#getModel_Model()
    * @model containment="true"
    * @generated
    */
-  EList<Import> getModel();
+  Import getModel();
+
+  /**
+   * Sets the value of the '{@link org.eclipse.amp.amf.parameters.aPar.Model#getModel <em>Model</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Model</em>' containment reference.
+   * @see #getModel()
+   * @generated
+   */
+  void setModel(Import value);
 
   /**
    * Returns the value of the '<em><b>Incorporates</b></em>' containment reference list.
@@ -89,19 +99,19 @@ public interface Model extends EObject
   EList<Incorporates> getIncorporates();
 
   /**
-   * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.amp.amf.parameters.aPar.Parameter}.
+   * Returns the value of the '<em><b>Agents</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.amp.amf.parameters.aPar.AgentParameters}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Agents</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Parameters</em>' containment reference list.
-   * @see org.eclipse.amp.amf.parameters.aPar.AParPackage#getModel_Parameters()
+   * @return the value of the '<em>Agents</em>' containment reference list.
+   * @see org.eclipse.amp.amf.parameters.aPar.AParPackage#getModel_Agents()
    * @model containment="true"
    * @generated
    */
-  EList<Parameter> getParameters();
+  EList<AgentParameters> getAgents();
 
 } // Model

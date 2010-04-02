@@ -22,18 +22,25 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cNameSTRINGTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Assignment cModelAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cModelImportParserRuleCall_1_0 = (RuleCall)cModelAssignment_1.eContents().get(0);
-		private final Assignment cIncorporatesAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cIncorporatesIncorporatesParserRuleCall_2_0 = (RuleCall)cIncorporatesAssignment_2.eContents().get(0);
-		private final Assignment cParametersAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cParametersParameterParserRuleCall_3_0 = (RuleCall)cParametersAssignment_3.eContents().get(0);
+		private final Keyword cModelKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cModelAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cModelImportParserRuleCall_2_0 = (RuleCall)cModelAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final Keyword cIncorporatesKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_3_1 = (Keyword)cGroup_3.eContents().get(1);
+		private final Assignment cIncorporatesAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
+		private final RuleCall cIncorporatesIncorporatesParserRuleCall_3_2_0 = (RuleCall)cIncorporatesAssignment_3_2.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3_3 = (Keyword)cGroup_3.eContents().get(3);
+		private final Assignment cAgentsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cAgentsAgentParametersParserRuleCall_4_0 = (RuleCall)cAgentsAssignment_4.eContents().get(0);
 		
 		//Model:
-		//  name=STRING? model+=Import incorporates+=Incorporates* parameters+=Parameter*;
+		//  name=STRING? "model" model=Import ("incorporates" "[" incorporates+=Incorporates* "]")
+		//  ? agents+=AgentParameters*;
 		public ParserRule getRule() { return rule; }
 
-		//name=STRING? model+=Import incorporates+=Incorporates* parameters+=Parameter*
+		//name=STRING? "model" model=Import ("incorporates" "[" incorporates+=Incorporates* "]")
+		//? agents+=AgentParameters*
 		public Group getGroup() { return cGroup; }
 
 		//name=STRING?
@@ -42,71 +49,110 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 		//STRING
 		public RuleCall getNameSTRINGTerminalRuleCall_0_0() { return cNameSTRINGTerminalRuleCall_0_0; }
 
-		//model+=Import
-		public Assignment getModelAssignment_1() { return cModelAssignment_1; }
+		//"model"
+		public Keyword getModelKeyword_1() { return cModelKeyword_1; }
+
+		//model=Import
+		public Assignment getModelAssignment_2() { return cModelAssignment_2; }
 
 		//Import
-		public RuleCall getModelImportParserRuleCall_1_0() { return cModelImportParserRuleCall_1_0; }
+		public RuleCall getModelImportParserRuleCall_2_0() { return cModelImportParserRuleCall_2_0; }
+
+		//("incorporates" "[" incorporates+=Incorporates* "]")?
+		public Group getGroup_3() { return cGroup_3; }
+
+		//"incorporates"
+		public Keyword getIncorporatesKeyword_3_0() { return cIncorporatesKeyword_3_0; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_3_1() { return cLeftSquareBracketKeyword_3_1; }
 
 		//incorporates+=Incorporates*
-		public Assignment getIncorporatesAssignment_2() { return cIncorporatesAssignment_2; }
+		public Assignment getIncorporatesAssignment_3_2() { return cIncorporatesAssignment_3_2; }
 
 		//Incorporates
-		public RuleCall getIncorporatesIncorporatesParserRuleCall_2_0() { return cIncorporatesIncorporatesParserRuleCall_2_0; }
+		public RuleCall getIncorporatesIncorporatesParserRuleCall_3_2_0() { return cIncorporatesIncorporatesParserRuleCall_3_2_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_3_3() { return cRightSquareBracketKeyword_3_3; }
+
+		//agents+=AgentParameters*
+		public Assignment getAgentsAssignment_4() { return cAgentsAssignment_4; }
+
+		//AgentParameters
+		public RuleCall getAgentsAgentParametersParserRuleCall_4_0() { return cAgentsAgentParametersParserRuleCall_4_0; }
+	}
+
+	public class AgentParametersElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AgentParameters");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cAgentAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cAgentSAgentCrossReference_0_0 = (CrossReference)cAgentAssignment_0.eContents().get(0);
+		private final RuleCall cAgentSAgentSTRINGTerminalRuleCall_0_0_1 = (RuleCall)cAgentSAgentCrossReference_0_0.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cParametersAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cParametersParameterParserRuleCall_2_0 = (RuleCall)cParametersAssignment_2.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//AgentParameters:
+		//  agent=[SAgent|STRING] "[" parameters+=Parameter* "]";
+		public ParserRule getRule() { return rule; }
+
+		//agent=[SAgent|STRING] "[" parameters+=Parameter* "]"
+		public Group getGroup() { return cGroup; }
+
+		//agent=[SAgent|STRING]
+		public Assignment getAgentAssignment_0() { return cAgentAssignment_0; }
+
+		//[SAgent|STRING]
+		public CrossReference getAgentSAgentCrossReference_0_0() { return cAgentSAgentCrossReference_0_0; }
+
+		//STRING
+		public RuleCall getAgentSAgentSTRINGTerminalRuleCall_0_0_1() { return cAgentSAgentSTRINGTerminalRuleCall_0_0_1; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
 
 		//parameters+=Parameter*
-		public Assignment getParametersAssignment_3() { return cParametersAssignment_3; }
+		public Assignment getParametersAssignment_2() { return cParametersAssignment_2; }
 
 		//Parameter
-		public RuleCall getParametersParameterParserRuleCall_3_0() { return cParametersParameterParserRuleCall_3_0; }
+		public RuleCall getParametersParameterParserRuleCall_2_0() { return cParametersParameterParserRuleCall_2_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
 	}
 
 	public class ImportElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Import");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cModelKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cImportURIAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cImportURISTRINGTerminalRuleCall_1_0 = (RuleCall)cImportURIAssignment_1.eContents().get(0);
+		private final Assignment cImportURIAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cImportURISTRINGTerminalRuleCall_0 = (RuleCall)cImportURIAssignment.eContents().get(0);
 		
 		//Import:
-		//  "model" importURI=STRING;
+		//  importURI=STRING;
 		public ParserRule getRule() { return rule; }
 
-		//"model" importURI=STRING
-		public Group getGroup() { return cGroup; }
-
-		//"model"
-		public Keyword getModelKeyword_0() { return cModelKeyword_0; }
-
 		//importURI=STRING
-		public Assignment getImportURIAssignment_1() { return cImportURIAssignment_1; }
+		public Assignment getImportURIAssignment() { return cImportURIAssignment; }
 
 		//STRING
-		public RuleCall getImportURISTRINGTerminalRuleCall_1_0() { return cImportURISTRINGTerminalRuleCall_1_0; }
+		public RuleCall getImportURISTRINGTerminalRuleCall_0() { return cImportURISTRINGTerminalRuleCall_0; }
 	}
 
 	public class IncorporatesElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Incorporates");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cIncorporatesKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cImportURIAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cImportURISTRINGTerminalRuleCall_1_0 = (RuleCall)cImportURIAssignment_1.eContents().get(0);
+		private final Assignment cImportURIAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cImportURISTRINGTerminalRuleCall_0 = (RuleCall)cImportURIAssignment.eContents().get(0);
 		
 		//Incorporates:
-		//  "incorporates" importURI=STRING;
+		//  importURI=STRING;
 		public ParserRule getRule() { return rule; }
 
-		//"incorporates" importURI=STRING
-		public Group getGroup() { return cGroup; }
-
-		//"incorporates"
-		public Keyword getIncorporatesKeyword_0() { return cIncorporatesKeyword_0; }
-
 		//importURI=STRING
-		public Assignment getImportURIAssignment_1() { return cImportURIAssignment_1; }
+		public Assignment getImportURIAssignment() { return cImportURIAssignment; }
 
 		//STRING
-		public RuleCall getImportURISTRINGTerminalRuleCall_1_0() { return cImportURISTRINGTerminalRuleCall_1_0; }
+		public RuleCall getImportURISTRINGTerminalRuleCall_0() { return cImportURISTRINGTerminalRuleCall_0; }
 	}
 
 	public class ParameterElements extends AbstractParserRuleElementFinder {
@@ -147,6 +193,7 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	private ModelElements pModel;
+	private AgentParametersElements pAgentParameters;
 	private ImportElements pImport;
 	private IncorporatesElements pIncorporates;
 	private ParameterElements pParameter;
@@ -173,7 +220,8 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Model:
-	//  name=STRING? model+=Import incorporates+=Incorporates* parameters+=Parameter*;
+	//  name=STRING? "model" model=Import ("incorporates" "[" incorporates+=Incorporates* "]")
+	//  ? agents+=AgentParameters*;
 	public ModelElements getModelAccess() {
 		return (pModel != null) ? pModel : (pModel = new ModelElements());
 	}
@@ -182,8 +230,18 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 		return getModelAccess().getRule();
 	}
 
+	//AgentParameters:
+	//  agent=[SAgent|STRING] "[" parameters+=Parameter* "]";
+	public AgentParametersElements getAgentParametersAccess() {
+		return (pAgentParameters != null) ? pAgentParameters : (pAgentParameters = new AgentParametersElements());
+	}
+	
+	public ParserRule getAgentParametersRule() {
+		return getAgentParametersAccess().getRule();
+	}
+
 	//Import:
-	//  "model" importURI=STRING;
+	//  importURI=STRING;
 	public ImportElements getImportAccess() {
 		return (pImport != null) ? pImport : (pImport = new ImportElements());
 	}
@@ -193,7 +251,7 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Incorporates:
-	//  "incorporates" importURI=STRING;
+	//  importURI=STRING;
 	public IncorporatesElements getIncorporatesAccess() {
 		return (pIncorporates != null) ? pIncorporates : (pIncorporates = new IncorporatesElements());
 	}

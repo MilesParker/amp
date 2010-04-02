@@ -8,15 +8,20 @@ import 'platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.ecore'
 
 Model :
 	(name=STRING)?
-	model+=Import
-	(incorporates+=Incorporates)*
-	(parameters+=Parameter)*;
+	"model" model=Import
+	("incorporates" "[" (incorporates+=Incorporates)* "]")?
+	(agents+=AgentParameters)*;
+
+AgentParameters :
+//Note: Putting any token here makes code completion work, otherwise it doesn't
+	agent=[SAgent|STRING] "["
+	(parameters+=Parameter)* "]";
 
 Import :
-	'model' importURI=STRING;
+	importURI=STRING;
 
 Incorporates :
-	'incorporates' importURI=STRING;
+	importURI=STRING;
 
 Parameter :
 	attribute=[SAttribute|STRING] "=" value=Value;

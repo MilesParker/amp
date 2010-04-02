@@ -8,10 +8,10 @@ package org.eclipse.amp.amf.parameters.aPar.impl;
 import java.util.Collection;
 
 import org.eclipse.amp.amf.parameters.aPar.AParPackage;
+import org.eclipse.amp.amf.parameters.aPar.AgentParameters;
 import org.eclipse.amp.amf.parameters.aPar.Import;
 import org.eclipse.amp.amf.parameters.aPar.Incorporates;
 import org.eclipse.amp.amf.parameters.aPar.Model;
-import org.eclipse.amp.amf.parameters.aPar.Parameter;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.amp.amf.parameters.aPar.impl.ModelImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.parameters.aPar.impl.ModelImpl#getModel <em>Model</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.parameters.aPar.impl.ModelImpl#getIncorporates <em>Incorporates</em>}</li>
- *   <li>{@link org.eclipse.amp.amf.parameters.aPar.impl.ModelImpl#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.parameters.aPar.impl.ModelImpl#getAgents <em>Agents</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,14 +66,14 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getModel() <em>Model</em>}' containment reference list.
+   * The cached value of the '{@link #getModel() <em>Model</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getModel()
    * @generated
    * @ordered
    */
-  protected EList<Import> model;
+  protected Import model;
 
   /**
    * The cached value of the '{@link #getIncorporates() <em>Incorporates</em>}' containment reference list.
@@ -86,14 +86,14 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   protected EList<Incorporates> incorporates;
 
   /**
-   * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
+   * The cached value of the '{@link #getAgents() <em>Agents</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getParameters()
+   * @see #getAgents()
    * @generated
    * @ordered
    */
-  protected EList<Parameter> parameters;
+  protected EList<AgentParameters> agents;
 
   /**
    * <!-- begin-user-doc -->
@@ -144,13 +144,47 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Import> getModel()
+  public Import getModel()
   {
-    if (model == null)
-    {
-      model = new EObjectContainmentEList<Import>(Import.class, this, AParPackage.MODEL__MODEL);
-    }
     return model;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetModel(Import newModel, NotificationChain msgs)
+  {
+    Import oldModel = model;
+    model = newModel;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AParPackage.MODEL__MODEL, oldModel, newModel);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setModel(Import newModel)
+  {
+    if (newModel != model)
+    {
+      NotificationChain msgs = null;
+      if (model != null)
+        msgs = ((InternalEObject)model).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AParPackage.MODEL__MODEL, null, msgs);
+      if (newModel != null)
+        msgs = ((InternalEObject)newModel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AParPackage.MODEL__MODEL, null, msgs);
+      msgs = basicSetModel(newModel, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AParPackage.MODEL__MODEL, newModel, newModel));
   }
 
   /**
@@ -172,13 +206,13 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Parameter> getParameters()
+  public EList<AgentParameters> getAgents()
   {
-    if (parameters == null)
+    if (agents == null)
     {
-      parameters = new EObjectContainmentEList<Parameter>(Parameter.class, this, AParPackage.MODEL__PARAMETERS);
+      agents = new EObjectContainmentEList<AgentParameters>(AgentParameters.class, this, AParPackage.MODEL__AGENTS);
     }
-    return parameters;
+    return agents;
   }
 
   /**
@@ -192,11 +226,11 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
     switch (featureID)
     {
       case AParPackage.MODEL__MODEL:
-        return ((InternalEList<?>)getModel()).basicRemove(otherEnd, msgs);
+        return basicSetModel(null, msgs);
       case AParPackage.MODEL__INCORPORATES:
         return ((InternalEList<?>)getIncorporates()).basicRemove(otherEnd, msgs);
-      case AParPackage.MODEL__PARAMETERS:
-        return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
+      case AParPackage.MODEL__AGENTS:
+        return ((InternalEList<?>)getAgents()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -217,8 +251,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         return getModel();
       case AParPackage.MODEL__INCORPORATES:
         return getIncorporates();
-      case AParPackage.MODEL__PARAMETERS:
-        return getParameters();
+      case AParPackage.MODEL__AGENTS:
+        return getAgents();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -238,16 +272,15 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         setName((String)newValue);
         return;
       case AParPackage.MODEL__MODEL:
-        getModel().clear();
-        getModel().addAll((Collection<? extends Import>)newValue);
+        setModel((Import)newValue);
         return;
       case AParPackage.MODEL__INCORPORATES:
         getIncorporates().clear();
         getIncorporates().addAll((Collection<? extends Incorporates>)newValue);
         return;
-      case AParPackage.MODEL__PARAMETERS:
-        getParameters().clear();
-        getParameters().addAll((Collection<? extends Parameter>)newValue);
+      case AParPackage.MODEL__AGENTS:
+        getAgents().clear();
+        getAgents().addAll((Collection<? extends AgentParameters>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -267,13 +300,13 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
         setName(NAME_EDEFAULT);
         return;
       case AParPackage.MODEL__MODEL:
-        getModel().clear();
+        setModel((Import)null);
         return;
       case AParPackage.MODEL__INCORPORATES:
         getIncorporates().clear();
         return;
-      case AParPackage.MODEL__PARAMETERS:
-        getParameters().clear();
+      case AParPackage.MODEL__AGENTS:
+        getAgents().clear();
         return;
     }
     super.eUnset(featureID);
@@ -292,11 +325,11 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
       case AParPackage.MODEL__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case AParPackage.MODEL__MODEL:
-        return model != null && !model.isEmpty();
+        return model != null;
       case AParPackage.MODEL__INCORPORATES:
         return incorporates != null && !incorporates.isEmpty();
-      case AParPackage.MODEL__PARAMETERS:
-        return parameters != null && !parameters.isEmpty();
+      case AParPackage.MODEL__AGENTS:
+        return agents != null && !agents.isEmpty();
     }
     return super.eIsSet(featureID);
   }

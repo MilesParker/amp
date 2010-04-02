@@ -27,8 +27,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
 import org.eclipse.amp.amf.abase.ICached;
 import org.eclipse.amp.amf.abase.IInterpreterProvider;
 import org.eclipse.amp.amf.abase.aBase.BOOLEAN;
@@ -36,6 +34,7 @@ import org.eclipse.amp.amf.abase.aBase.BooleanValue;
 import org.eclipse.amp.amf.abase.aBase.IntValue;
 import org.eclipse.amp.amf.abase.aBase.RealValue;
 import org.eclipse.amp.amf.abase.aBase.StringValue;
+import org.eclipse.amp.amf.parameters.aPar.AgentParameters;
 import org.eclipse.amp.amf.parameters.aPar.Import;
 import org.eclipse.amp.amf.parameters.aPar.Incorporates;
 import org.eclipse.amp.amf.parameters.aPar.Model;
@@ -48,6 +47,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+
+import org.apache.commons.lang.StringUtils;
 import org.metaabm.SAttribute;
 import org.metaabm.SAttributeType;
 import org.metaabm.SContext;
@@ -76,7 +77,7 @@ public class AParInterpreter implements ICached {
 
         aparModel = (Model) emfResource.getContents().get(0);
         assert aparModel != null;
-        String convertURI = AParInterpreter.convertURI(aparModel.getModel().get(0));
+        String convertURI = AParInterpreter.convertURI(aparModel.getModel());
         URI modelURI = URI.createURI(convertURI);
         Resource amfResource = emfResource.getResourceSet().getResource(modelURI, true);
         ((ResourceImpl) amfResource).setIntrinsicIDToEObjectMap(new HashMap<String, EObject>());
@@ -109,18 +110,22 @@ public class AParInterpreter implements ICached {
 
     List<Parameter> collect(Set<String> overridden) {
         List<Parameter> includeIncorporated = new ArrayList<Parameter>();
-        for (Parameter parameter : aparModel.getParameters()) {
-            String label = parameter.getAttribute().getLabel();
-            if (parameter.getAttribute().getOwner() != rootContext) {
-                label = parameter.getAttribute().getOwner().getLabel() + " " + label;
-            }
-            if (!overridden.contains(label)) {
-                includeIncorporated.add(parameter);
-                overridden.add(label);
+        for (AgentParameters parameterSet : aparModel.getAgents()) {
+            for (Parameter parameter : parameterSet.getParameters()) {
+                String label = parameter.getAttribute().getLabel();
+                if (parameterSet.getAgent() != rootContext) {
+                    label = parameterSet.getAgent().getLabel() + " " + label;
+                }
+                if (!overridden.contains(label)) {
+                    includeIncorporated.add(parameter);
+                    overridden.add(label);
+                }
             }
         }
-        Incorporates[] reverseIncorporates = (Incorporates[]) aparModel.getIncorporates().toArray();
-        CollectionUtils.reverseArray(reverseIncorporates);
+        Incorporates[] reverseIncorporates = new Incorporates[aparModel.getIncorporates().size()];
+        for (int i = 0; i < reverseIncorporates.length; i++) {
+            reverseIncorporates[reverseIncorporates.length - (i + 1)] = aparModel.getIncorporates().get(i);
+        }
         for (Incorporates incorporates : reverseIncorporates) {
             String convertURI = AParInterpreter.convertURI(incorporates);
             URI incURI = URI.createURI(convertURI);

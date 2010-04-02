@@ -83,6 +83,11 @@ public class AParAdapterFactory extends AdapterFactoryImpl
         return createModelAdapter();
       }
       @Override
+      public Adapter caseAgentParameters(AgentParameters object)
+      {
+        return createAgentParametersAdapter();
+      }
+      @Override
       public Adapter caseImport(Import object)
       {
         return createImportAdapter();
@@ -130,6 +135,21 @@ public class AParAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createModelAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.amp.amf.parameters.aPar.AgentParameters <em>Agent Parameters</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.amp.amf.parameters.aPar.AgentParameters
+   * @generated
+   */
+  public Adapter createAgentParametersAdapter()
   {
     return null;
   }

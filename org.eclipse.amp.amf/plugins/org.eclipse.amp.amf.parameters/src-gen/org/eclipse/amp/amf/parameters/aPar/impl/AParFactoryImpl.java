@@ -68,6 +68,7 @@ public class AParFactoryImpl extends EFactoryImpl implements AParFactory
     switch (eClass.getClassifierID())
     {
       case AParPackage.MODEL: return createModel();
+      case AParPackage.AGENT_PARAMETERS: return createAgentParameters();
       case AParPackage.IMPORT: return createImport();
       case AParPackage.INCORPORATES: return createIncorporates();
       case AParPackage.PARAMETER: return createParameter();
@@ -85,6 +86,17 @@ public class AParFactoryImpl extends EFactoryImpl implements AParFactory
   {
     ModelImpl model = new ModelImpl();
     return model;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AgentParameters createAgentParameters()
+  {
+    AgentParametersImpl agentParameters = new AgentParametersImpl();
+    return agentParameters;
   }
 
   /**
