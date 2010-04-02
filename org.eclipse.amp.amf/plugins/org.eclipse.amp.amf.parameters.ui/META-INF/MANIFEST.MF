@@ -1,11 +1,12 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-Vendor: %providerName
-Bundle-Version: 0.5.0.qualifier
 Bundle-SymbolicName: org.eclipse.amp.amf.parameters.ui; singleton:=true
-Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.amp.amf.parameters;visibility:=reexport,
+Bundle-Version: 0.5.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.amp.amf.parameters.ui.internal.AParActivator
+Bundle-Vendor: %providerName
+Require-Bundle: org.eclipse.amp.amf.parameters,
  org.eclipse.amp.amf.abase;bundle-version="0.5.0",
  org.eclipse.amp.amf.abase.ui;bundle-version="0.5.0",
  org.eclipse.amp.amf.acore,
@@ -18,7 +19,14 @@ Require-Bundle: org.eclipse.amp.amf.parameters;visibility:=reexport,
  org.eclipse.xtext.builder,
  org.eclipse.xtext.ui.ecore;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Activator: org.eclipse.amp.amf.parameters.ui.internal.AParActivator
+Export-Package: org.eclipse.amp.amf.parameters.ui,
+ org.eclipse.amp.amf.parameters.ui.contentassist,
+ org.eclipse.amp.amf.parameters.ui.contentassist.antlr,
+ org.eclipse.amp.amf.parameters.ui.contentassist.antlr.internal,
+ org.eclipse.amp.amf.parameters.ui.internal,
+ org.eclipse.amp.amf.parameters.ui.labeling,
+ org.eclipse.amp.amf.parameters.ui.outline,
+ org.eclipse.amp.amf.parameters.ui.quickfix
+Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
 Import-Package: org.apache.log4j
-Export-Package: org.eclipse.amp.amf.parameters.ui.contentassist.antlr

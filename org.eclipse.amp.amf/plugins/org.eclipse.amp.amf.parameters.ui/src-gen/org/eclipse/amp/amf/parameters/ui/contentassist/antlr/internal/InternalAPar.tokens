@@ -9,7 +9,9 @@ RULE_DESC_STRING=7
 RULE_INTEGER=5
 RULE_ML_COMMENT=10
 'true'=14
-'='=18
+'='=20
 'false'=15
 'model'=16
+'['=18
 'incorporates'=17
+']'=19
