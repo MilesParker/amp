@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ConstraintItemProvider.java,v 1.6 2009/11/06 21:26:52 mparker Exp $
+ * $Id: ConstraintItemProvider.java,v 1.7 2010/04/02 03:11:55 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.aTest.provider;
 
@@ -72,18 +72,18 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     protected void addMeasurePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-        (createItemPropertyDescriptor
-         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-          getResourceLocator(),
-          getString("_UI_Constraint_measure_feature"),
-          getString("_UI_PropertyDescriptor_description", "_UI_Constraint_measure_feature", "_UI_Constraint_type"),
-          ATestPackage.Literals.CONSTRAINT__MEASURE,
-          true,
-          false,
-          false,
-          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-          null,
-          null));
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_Constraint_measure_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Constraint_measure_feature", "_UI_Constraint_type"),
+                 ATestPackage.Literals.CONSTRAINT__MEASURE,
+                 true,
+                 false,
+                 false,
+                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                 null,
+                 null));
     }
 
     /**
@@ -93,18 +93,18 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     protected void addAgentPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-        (createItemPropertyDescriptor
-         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-          getResourceLocator(),
-          getString("_UI_Constraint_agent_feature"),
-          getString("_UI_PropertyDescriptor_description", "_UI_Constraint_agent_feature", "_UI_Constraint_type"),
-          ATestPackage.Literals.CONSTRAINT__AGENT,
-          true,
-          false,
-          true,
-          null,
-          null,
-          null));
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_Constraint_agent_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Constraint_agent_feature", "_UI_Constraint_type"),
+                 ATestPackage.Literals.CONSTRAINT__AGENT,
+                 true,
+                 false,
+                 true,
+                 null,
+                 null,
+                 null));
     }
 
     /**
@@ -114,18 +114,18 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     protected void addAttributePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-        (createItemPropertyDescriptor
-         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-          getResourceLocator(),
-          getString("_UI_Constraint_attribute_feature"),
-          getString("_UI_PropertyDescriptor_description", "_UI_Constraint_attribute_feature", "_UI_Constraint_type"),
-          ATestPackage.Literals.CONSTRAINT__ATTRIBUTE,
-          true,
-          false,
-          true,
-          null,
-          null,
-          null));
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_Constraint_attribute_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Constraint_attribute_feature", "_UI_Constraint_type"),
+                 ATestPackage.Literals.CONSTRAINT__ATTRIBUTE,
+                 true,
+                 false,
+                 true,
+                 null,
+                 null,
+                 null));
     }
 
     /**
@@ -135,18 +135,18 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     protected void addQualifierPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add
-        (createItemPropertyDescriptor
-         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-          getResourceLocator(),
-          getString("_UI_Constraint_qualifier_feature"),
-          getString("_UI_PropertyDescriptor_description", "_UI_Constraint_qualifier_feature", "_UI_Constraint_type"),
-          ATestPackage.Literals.CONSTRAINT__QUALIFIER,
-          true,
-          false,
-          true,
-          null,
-          null,
-          null));
+            (createItemPropertyDescriptor
+                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+                 getResourceLocator(),
+                 getString("_UI_Constraint_qualifier_feature"),
+                 getString("_UI_PropertyDescriptor_description", "_UI_Constraint_qualifier_feature", "_UI_Constraint_type"),
+                 ATestPackage.Literals.CONSTRAINT__QUALIFIER,
+                 true,
+                 false,
+                 true,
+                 null,
+                 null,
+                 null));
     }
 
     /**
@@ -241,54 +241,54 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
         super.collectNewChildDescriptors(newChildDescriptors, object);
 
         newChildDescriptors.add
-        (createChildParameter
-         (ATestPackage.Literals.CONSTRAINT__MIN_VALUE,
-          ABaseFactory.eINSTANCE.createValue()));
+            (createChildParameter
+                (ATestPackage.Literals.CONSTRAINT__MIN_VALUE,
+                 ABaseFactory.eINSTANCE.createValue()));
 
         newChildDescriptors.add
-        (createChildParameter
-         (ATestPackage.Literals.CONSTRAINT__MIN_VALUE,
-          ABaseFactory.eINSTANCE.createIntValue()));
+            (createChildParameter
+                (ATestPackage.Literals.CONSTRAINT__MIN_VALUE,
+                 ABaseFactory.eINSTANCE.createIntValue()));
 
         newChildDescriptors.add
-        (createChildParameter
-         (ATestPackage.Literals.CONSTRAINT__MIN_VALUE,
-          ABaseFactory.eINSTANCE.createRealValue()));
+            (createChildParameter
+                (ATestPackage.Literals.CONSTRAINT__MIN_VALUE,
+                 ABaseFactory.eINSTANCE.createRealValue()));
 
         newChildDescriptors.add
-        (createChildParameter
-         (ATestPackage.Literals.CONSTRAINT__MIN_VALUE,
-          ABaseFactory.eINSTANCE.createStringValue()));
+            (createChildParameter
+                (ATestPackage.Literals.CONSTRAINT__MIN_VALUE,
+                 ABaseFactory.eINSTANCE.createStringValue()));
 
         newChildDescriptors.add
-        (createChildParameter
-         (ATestPackage.Literals.CONSTRAINT__MIN_VALUE,
-          ABaseFactory.eINSTANCE.createBooleanValue()));
+            (createChildParameter
+                (ATestPackage.Literals.CONSTRAINT__MIN_VALUE,
+                 ABaseFactory.eINSTANCE.createBooleanValue()));
 
         newChildDescriptors.add
-        (createChildParameter
-         (ATestPackage.Literals.CONSTRAINT__MAX_VALUE,
-          ABaseFactory.eINSTANCE.createValue()));
+            (createChildParameter
+                (ATestPackage.Literals.CONSTRAINT__MAX_VALUE,
+                 ABaseFactory.eINSTANCE.createValue()));
 
         newChildDescriptors.add
-        (createChildParameter
-         (ATestPackage.Literals.CONSTRAINT__MAX_VALUE,
-          ABaseFactory.eINSTANCE.createIntValue()));
+            (createChildParameter
+                (ATestPackage.Literals.CONSTRAINT__MAX_VALUE,
+                 ABaseFactory.eINSTANCE.createIntValue()));
 
         newChildDescriptors.add
-        (createChildParameter
-         (ATestPackage.Literals.CONSTRAINT__MAX_VALUE,
-          ABaseFactory.eINSTANCE.createRealValue()));
+            (createChildParameter
+                (ATestPackage.Literals.CONSTRAINT__MAX_VALUE,
+                 ABaseFactory.eINSTANCE.createRealValue()));
 
         newChildDescriptors.add
-        (createChildParameter
-         (ATestPackage.Literals.CONSTRAINT__MAX_VALUE,
-          ABaseFactory.eINSTANCE.createStringValue()));
+            (createChildParameter
+                (ATestPackage.Literals.CONSTRAINT__MAX_VALUE,
+                 ABaseFactory.eINSTANCE.createStringValue()));
 
         newChildDescriptors.add
-        (createChildParameter
-         (ATestPackage.Literals.CONSTRAINT__MAX_VALUE,
-          ABaseFactory.eINSTANCE.createBooleanValue()));
+            (createChildParameter
+                (ATestPackage.Literals.CONSTRAINT__MAX_VALUE,
+                 ABaseFactory.eINSTANCE.createBooleanValue()));
     }
 
     /**
@@ -308,8 +308,8 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
 
         if (qualify) {
             return getString
-            ("_UI_CreateChild_text2",
-             new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+                ("_UI_CreateChild_text2",
+                 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
         }
         return super.getCreateChildText(owner, feature, child, selection);
     }
