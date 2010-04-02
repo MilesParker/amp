@@ -89,7 +89,6 @@ public class ATestScopeProvider extends AbstractDeclarativeScopeProvider {
             IScope attrScope = new SimpleScope(allElems);
             return attrScope;
         }
-        System.err.println(object);
 
         return super.getScope(object, reference);
     }
