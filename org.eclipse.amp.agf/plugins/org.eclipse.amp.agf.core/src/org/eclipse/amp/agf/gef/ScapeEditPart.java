@@ -25,7 +25,7 @@ import java.util.Map;
 
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.space.IGraphProvider;
-import org.eclipse.amp.axf.space.ILocation;
+import org.eclipse.amp.axf.space.ILocation2D;
 import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Figure;
@@ -108,13 +108,16 @@ public class ScapeEditPart extends GenericEditPart implements PropertyChangeList
         }
     }
 
+    public Dimension calculateDimension() {
+        return GEFUtils.getScaledExtent(locationProvider, getModel());
+    }
+
     protected void calculateConstraints(GraphicalEditPart editPart) {
         Object agent = editPart.getModel();
-        ILocation location = locationProvider.getLocation(agent);
+        ILocation2D location = (ILocation2D) locationProvider.getLocation(agent);
         if (location != null) {
             IFigure childFigure = editPart.getFigure();
-            Rectangle bounds = new Rectangle(new Point(location.getX() * GenericEditPart.SCALE, location.getY()
-                                                       * GenericEditPart.SCALE), childFigure.getSize());
+            Rectangle bounds = new Rectangle(GEFUtils.toScaledPoint(location), childFigure.getSize());
             getFigure().setConstraint(childFigure, bounds);
         }
     }
@@ -245,14 +248,6 @@ public class ScapeEditPart extends GenericEditPart implements PropertyChangeList
 
     public ConnectionAnchor getTargetConnectionAnchor(Request request) {
         // TODO Auto-generated method stub
-        return null;
-    }
-
-    public Dimension calculateDimension() {
-        ILocation extent = locationProvider.getExtent(getModel());
-        if (extent != null) {
-            return new Dimension(extent.getX() * GenericEditPart.SCALE, extent.getY() * GenericEditPart.SCALE);
-        }
         return null;
     }
 
