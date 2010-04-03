@@ -19,19 +19,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.ascape.model.Agent;
-import org.ascape.model.AscapeObject;
-import org.ascape.model.CellOccupant;
-import org.ascape.model.HostCell;
-import org.ascape.model.LocatedAgent;
-import org.ascape.model.Scape;
-import org.ascape.model.event.ScapeListener;
-import org.ascape.model.space.Array2D;
-import org.ascape.model.space.Coordinate;
-import org.ascape.model.space.Coordinate2DDiscrete;
-import org.ascape.model.space.Graph;
-import org.ascape.model.space.Node;
-import org.ascape.model.space.Singleton;
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.space.IGraphProvider;
 import org.eclipse.amp.axf.space.ILocation;
@@ -44,6 +31,18 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
+import org.ascape.model.Agent;
+import org.ascape.model.AscapeObject;
+import org.ascape.model.CellOccupant;
+import org.ascape.model.HostCell;
+import org.ascape.model.LocatedAgent;
+import org.ascape.model.Scape;
+import org.ascape.model.event.ScapeListener;
+import org.ascape.model.space.Coordinate;
+import org.ascape.model.space.Graph;
+import org.ascape.model.space.Node;
+import org.ascape.model.space.Singleton;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class AscapeProvider.
@@ -53,42 +52,6 @@ ICompositionProvider,
 IColorProvider {
 
     static AscapeProvider singleton;
-
-    /**
-     * The Class Location.
-     */
-    class Location implements ILocation {
-        int x;
-        int y;
-
-        /**
-         * Instantiates a new location.
-         * 
-         * @param x the x
-         * @param y the y
-         */
-        public Location(int x, int y) {
-            super();
-            this.x = x;
-            this.y = y;
-        }
-
-        /**
-         * @return
-         * @see org.eclipse.amp.axf.space.ILocation#getX()
-         */
-        public int getX() {
-            return x;
-        }
-
-        /**
-         * @return
-         * @see org.eclipse.amp.axf.space.ILocation#getY()
-         */
-        public int getY() {
-            return y;
-        }
-    }
 
     /**
      * @param element
@@ -142,11 +105,7 @@ IColorProvider {
         } else {
             coor = agent.getCoordinate();
         }
-        if (coor instanceof Coordinate2DDiscrete) {
-            Coordinate2DDiscrete coor2D = (Coordinate2DDiscrete) coor;
-            return new Location(coor2D.getXValue(), coor2D.getYValue());
-        }
-        return null;
+        return AscapeGEFUtils.adaptCoordinate(coor);
     }
 
     /**
@@ -155,40 +114,28 @@ IColorProvider {
      * @see org.eclipse.amp.axf.space.ILocationProvider#getExtent(java.lang.Object)
      */
     public ILocation getExtent(Object located) {
-        final Array2D array2D = getArray2D((Scape) getUnwrapped(located));
-        if (array2D != null) {
-            return new ILocation() {
-                public int getX() {
-                    return ((Coordinate2DDiscrete) array2D.getExtent()).getXValue();
-                }
-
-                public int getY() {
-                    return ((Coordinate2DDiscrete) array2D.getExtent()).getYValue();
-                }
-            };
-        }
-        return null;
+        return AscapeGEFUtils.adaptCoordinate(((Scape) getUnwrapped(located)).getExtent());
     }
 
-    /**
-     * Gets the array2 d.
-     * 
-     * @param scape the scape
-     * 
-     * @return the array2 d
-     */
-    public Array2D getArray2D(Scape scape) {
-        if (scape.getSpace() instanceof Array2D) {
-            return (Array2D) scape.getSpace();
-        } else {
-            if (scape.getPrototypeAgent() instanceof Scape) {
-                for (Object subScape : scape) {
-                    return getArray2D((Scape) subScape);
-                }
-            }
-        }
-        return null;
-    }
+    // /**
+    // * Gets the array2 d.
+    // *
+    // * @param scape the scape
+    // *
+    // * @return the array2 d
+    // */
+    // public Array2D getSpace(Scape scape) {
+    // if (scape.getSpace() instanceof Array2D) {
+    // return (Array2D) scape.getSpace();
+    // } else {
+    // if (scape.getPrototypeAgent() instanceof Scape) {
+    // for (Object subScape : scape) {
+    // return getArray2D((Scape) subScape);
+    // }
+    // }
+    // }
+    // return null;
+    // }
 
     /**
      * @param graph

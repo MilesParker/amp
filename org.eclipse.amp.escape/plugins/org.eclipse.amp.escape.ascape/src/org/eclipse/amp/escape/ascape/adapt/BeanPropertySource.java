@@ -17,11 +17,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.ascape.model.CellOccupant;
-import org.ascape.model.HostCell;
-import org.ascape.model.Scape;
-import org.ascape.util.PropertyAccessor;
 import org.eclipse.amp.agf.IPropertyChangeProvider;
+import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.properties.ComboBoxPropertyDescriptor;
@@ -30,6 +27,11 @@ import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.IPropertySource2;
 import org.eclipse.ui.views.properties.PropertyDescriptor;
 import org.eclipse.ui.views.properties.TextPropertyDescriptor;
+
+import org.ascape.model.CellOccupant;
+import org.ascape.model.HostCell;
+import org.ascape.model.Scape;
+import org.ascape.util.PropertyAccessor;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -53,6 +55,9 @@ public class BeanPropertySource implements IPropertySource, IPropertySource2, IP
     public BeanPropertySource(Object source) {
         super();
         this.source = source;
+        if (this.source instanceof ScapeWrapperModel) {
+            this.source = ((ScapeWrapperModel) source).getScape();
+        }
         descriptorsSet = new HashMap<Method, java.beans.PropertyDescriptor>();
         createDescriptors();
     }
@@ -169,7 +174,9 @@ public class BeanPropertySource implements IPropertySource, IPropertySource2, IP
 
     protected void createDescriptors() {
         if (source instanceof Scape) {
-            createDescriptors(source.getClass(), Scape.class, null);
+            if (source.getClass() != Scape.class) {
+                createDescriptors(source.getClass(), Scape.class, null);
+            }
             createDescriptors(Scape.class, null, "Model");
         } else if (source instanceof HostCell) {
             createDescriptors(source.getClass(), HostCell.class, null);
@@ -305,7 +312,7 @@ public class BeanPropertySource implements IPropertySource, IPropertySource2, IP
             }
             firePropertyChange(((Method) id).toString(), oldValue, value);
         } catch (IllegalArgumentException e) {
-            throw new RuntimeException(e);
+            // throw new RuntimeException(e);
         } catch (InvocationTargetException e) {
             throw new RuntimeException(e);
         }

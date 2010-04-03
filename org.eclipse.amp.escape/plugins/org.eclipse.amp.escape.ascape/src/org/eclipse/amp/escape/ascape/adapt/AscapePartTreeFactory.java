@@ -42,7 +42,11 @@ public class AscapePartTreeFactory implements EditPartFactory {
     public EditPart createEditPart(EditPart context, Object model) {
         EditPart part = getPartForElement(model);
         if (part != null) {
-            part.setModel(model);
+            if (model instanceof ScapeWrapperModel) {
+                part.setModel(((ScapeWrapperModel) model).getScape());
+            } else {
+                part.setModel(model);
+            }
         }
         return part;
     }
