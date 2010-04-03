@@ -22,7 +22,7 @@ import org.eclipse.amp.agf.gef.AgentEditPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.space.IGraphProvider;
-import org.eclipse.amp.axf.space.ILocation;
+import org.eclipse.amp.axf.space.ILocation2D;
 import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.amp.axf.view.SWTAsyncModelListener;
 import org.eclipse.draw2d.IFigure;
@@ -186,9 +186,9 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
     }
 
     private void moveCameraScaled(float locX, float locY, float locZ, float targetX, float targetY, float targetZ) {
-        ILocation extent = getLocationProvider().getExtent(getModel());
-        float ex = extent.getX() * AgentEditPart.SCALE;
-        float ey = extent.getY() * AgentEditPart.SCALE;
+        ILocation2D extent = (ILocation2D) getLocationProvider().getExtent(getModel());
+        float ex = (float) (extent.getXDouble() * AgentEditPart.SCALE);
+        float ey = (float) (extent.getYDouble() * AgentEditPart.SCALE);
         moveCamera(new Vector3fImpl(ex * locX, ey * locY, Math.min(ex, ey) * locZ), new Vector3fImpl(ex * targetX, ey
                                                                                                      * targetY, Math.min(ex, ey)
                                                                                                      * targetZ));

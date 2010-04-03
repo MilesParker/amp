@@ -26,7 +26,7 @@ import org.eclipse.amp.agf.gef.ScapeEditPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.space.IGraphProvider;
-import org.eclipse.amp.axf.space.ILocation;
+import org.eclipse.amp.axf.space.ILocation2D;
 import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.XYLayout;
@@ -129,12 +129,12 @@ public class ScapeEdit3DPart extends ScapeEditPart {
     protected synchronized void calculateConstraints(GraphicalEditPart editPart) {
         Object agent = editPart.getModel();
 
-        ILocation location = getLocationProvider().getLocation(agent);
+        ILocation2D location = (ILocation2D) getLocationProvider().getLocation(agent);
         IFigure3D agentFigure = (IFigure3D) editPart.getFigure();
         Vector3f endPoint = null;
         if (location != null && editPart instanceof AgentEdit3DPart) {
-            endPoint = new Vector3fImpl((float) GenericEditPart.SCALE * location.getX(), (float) GenericEditPart.SCALE
-                                        * location.getY(), 0);
+            endPoint = new Vector3fImpl((float) (GenericEditPart.SCALE * location.getXDouble()),
+                (float) (GenericEditPart.SCALE * location.getYDouble()), 0.0f);
             endPoint = Math3DVector3f.add(endPoint, ((AgentEdit3DPart) editPart).getRelativeLocation3D(), endPoint);
             ScapeEditRoot3DPart root = (ScapeEditRoot3DPart) getRootScapeEditPart();
             Vector3f priorPeriodLocation = lastPoints.get(agent);
@@ -181,7 +181,7 @@ public class ScapeEdit3DPart extends ScapeEditPart {
                         float f = (float) root.getAnimationStep() / (float) root.getAnimationStepCount();
                         int scaledColor = (int) (f * 256f) - 1;
                         ((IFigure3D) figure).setForegroundColor(new Color(getViewer().getControl().getDisplay(),
-                            scaledColor, scaledColor, 255));
+                                                                          scaledColor, scaledColor, 255));
                         figure.repaint();
                     }
 
