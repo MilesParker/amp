@@ -7,16 +7,15 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
+ * Contributors:
  *   Metascape - Initial API and Implementation
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.axf.space;
 
 public interface ILocation {
-    public int getX();
-
-    public int getY();
+    public static ILocation NOT_LOCATED = new ILocation() {
+    };
 }
