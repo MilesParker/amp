@@ -502,7 +502,7 @@ List[AAct] acts(SAgent agent) :
 		
 //ABuildProjection builder(SProjection space) :
 //	space.owner.acts().typeSelect(ABuildProjection).select(a | a.projection == space);
-		
+	
 ABuildGrid builder(SGrid space) :
 	space.owner.acts().typeSelect(ABuildGrid).select(a | a.projection == space).first();
 	

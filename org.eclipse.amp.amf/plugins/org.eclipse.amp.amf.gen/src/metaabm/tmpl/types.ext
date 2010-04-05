@@ -168,7 +168,7 @@ cached String typeName(IID target) : target.ID.toFirstUpper();
  
 cached String typeName(SImplemented target) : target.implementation.className;
  
-cached String typeName(ASelect target) : target.agent.typeName();
+cached String typeName(ASelect target) : target.agent != null ? target.agent.typeName() : "Object";
     
 cached String typeName(SAttributeType attrType) :
     switch (attrType) {
