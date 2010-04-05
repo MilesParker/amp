@@ -21,12 +21,11 @@ import org.ascape.model.HostCell;
 import org.ascape.model.Scape;
 import org.ascape.model.space.Graph;
 import org.eclipse.amp.agf.gef.AgentConnectionPart;
-import org.eclipse.amp.agf.gef.AgentEditPart;
 import org.eclipse.amp.agf.gef.NetworkConnection;
 import org.eclipse.amp.agf.gef.ScapeEditPart;
 import org.eclipse.amp.agf.gef.ScapeGraphEditPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
-import org.eclipse.amp.escape.ascape.gef.CellOccupantEditPart;
+import org.eclipse.amp.escape.ascape.gef.AscapeAgentEditPart;
 import org.eclipse.amp.escape.ascape.gef.HostCellEditPart;
 import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
 import org.eclipse.gef.EditPart;
@@ -80,9 +79,9 @@ public class AscapePartFactory implements EditPartFactory {
         } else if (model instanceof HostCell) {
             return new HostCellEditPart();
         } else if (model instanceof CellOccupant) {
-            return new CellOccupantEditPart();
+            return new AscapeAgentEditPart();
         } else if (model instanceof Agent) {
-            return new AgentEditPart();
+            return new AscapeAgentEditPart();
         } else if (model instanceof NetworkConnection) {
             return new AgentConnectionPart();
         } else {

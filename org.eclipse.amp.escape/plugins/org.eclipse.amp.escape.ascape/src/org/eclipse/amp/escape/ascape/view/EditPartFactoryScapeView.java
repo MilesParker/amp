@@ -36,4 +36,8 @@ public abstract class EditPartFactoryScapeView extends ModelScapeView {
         }
         return super.getAdapter(key);
     }
+
+    public RootEditPart getRootPart() {
+        return rootPart;
+    }
 }

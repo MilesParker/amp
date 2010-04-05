@@ -7,15 +7,15 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
+ * Contributors:
  *   Metascape - Initial API and Implementation
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.escape.ascape.gef;
 
-import org.ascape.model.Cell;
+import org.ascape.model.LocatedAgent;
 import org.eclipse.amp.agf.gef.AgentEditPart;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
@@ -34,10 +34,13 @@ public class HostCellEditPart extends AgentEditPart {
      */
     @Override
     protected IFigure buildFigure(IFigure figure) {
+        LocatedAgent agent = (LocatedAgent) getModel();
         if (figure == null) {
-            figure = shapeRectangle();
+            figure = shapeOval();
+            int size = AgentEditPart.SCALE * agent.getAgentSize();
+            // figure.setSize(size, size);
         }
-        Color platformColor = (Color) ((Cell) getModel()).getPlatformColor();
+        Color platformColor = (Color) agent.getPlatformColor();
         ((Shape) figure).setForegroundColor(platformColor);
         ((Shape) figure).setBackgroundColor(platformColor);
         return figure;

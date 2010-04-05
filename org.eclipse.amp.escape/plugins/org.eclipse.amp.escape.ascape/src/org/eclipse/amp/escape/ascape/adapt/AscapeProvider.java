@@ -19,9 +19,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.ascape.model.Agent;
+import org.ascape.model.AscapeObject;
+import org.ascape.model.CellOccupant;
+import org.ascape.model.HostCell;
+import org.ascape.model.LocatedAgent;
+import org.ascape.model.Scape;
+import org.ascape.model.event.ScapeListener;
+import org.ascape.model.space.Array2D;
+import org.ascape.model.space.Continuous2D;
+import org.ascape.model.space.Coordinate;
+import org.ascape.model.space.Graph;
+import org.ascape.model.space.Node;
+import org.ascape.model.space.Singleton;
+import org.ascape.model.space.Space;
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.space.IGraphProvider;
 import org.eclipse.amp.axf.space.ILocation;
+import org.eclipse.amp.axf.space.ILocation2D;
 import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
 import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModelListener;
@@ -31,24 +46,11 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
-import org.ascape.model.Agent;
-import org.ascape.model.AscapeObject;
-import org.ascape.model.CellOccupant;
-import org.ascape.model.HostCell;
-import org.ascape.model.LocatedAgent;
-import org.ascape.model.Scape;
-import org.ascape.model.event.ScapeListener;
-import org.ascape.model.space.Coordinate;
-import org.ascape.model.space.Graph;
-import org.ascape.model.space.Node;
-import org.ascape.model.space.Singleton;
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class AscapeProvider.
  */
-public class AscapeProvider implements ILocationProvider, IGraphProvider, ILabelProvider,
-ICompositionProvider,
+public class AscapeProvider implements ILocationProvider, IGraphProvider, ILabelProvider, ICompositionProvider,
 IColorProvider {
 
     static AscapeProvider singleton;
@@ -105,7 +107,11 @@ IColorProvider {
         } else {
             coor = agent.getCoordinate();
         }
-        return AscapeGEFUtils.adaptCoordinate(coor);
+        ILocation adaptCoordinate = AscapeGEFUtils.adaptCoordinate(coor);
+        if (adaptCoordinate instanceof ILocation2D) {
+            return adaptCoordinate;
+        }
+        return null;
     }
 
     /**
@@ -114,28 +120,37 @@ IColorProvider {
      * @see org.eclipse.amp.axf.space.ILocationProvider#getExtent(java.lang.Object)
      */
     public ILocation getExtent(Object located) {
-        return AscapeGEFUtils.adaptCoordinate(((Scape) getUnwrapped(located)).getExtent());
+        Space spatialScape = getSpatialScape((Scape) getUnwrapped(located));
+        if (spatialScape != null) {
+            return AscapeGEFUtils.adaptCoordinate(spatialScape.getExtent());
+        }
+        return null;
     }
 
-    // /**
-    // * Gets the array2 d.
-    // *
-    // * @param scape the scape
-    // *
-    // * @return the array2 d
-    // */
-    // public Array2D getSpace(Scape scape) {
-    // if (scape.getSpace() instanceof Array2D) {
-    // return (Array2D) scape.getSpace();
-    // } else {
-    // if (scape.getPrototypeAgent() instanceof Scape) {
-    // for (Object subScape : scape) {
-    // return getArray2D((Scape) subScape);
-    // }
-    // }
-    // }
-    // return null;
-    // }
+    /**
+     * Gets the array2 d.
+     * 
+     * @param scape the scape
+     * 
+     * @return the array2 d
+     */
+    public Space getSpatialScape(Scape scape) {
+        if (scape.getSpace() instanceof Array2D) {
+            return scape.getSpace();
+        } else if (scape.getSpace() instanceof Continuous2D) {
+            return scape.getSpace();
+        } else {
+            if (scape.getPrototypeAgent() instanceof Scape) {
+                for (Object subScape : scape) {
+                    Space spatialScape = getSpatialScape((Scape) subScape);
+                    if (spatialScape != null) {
+                        return spatialScape;
+                    }
+                }
+            }
+        }
+        return null;
+    }
 
     /**
      * @param graph
@@ -191,6 +206,9 @@ IColorProvider {
                     hosts.add(agent);
                 }
                 if (((Scape) agent).getSpace() instanceof Graph) {
+                    graphs.add(agent);
+                }
+                if (((Scape) agent).getSpace() instanceof Continuous2D) {
                     graphs.add(agent);
                 }
                 if (((Scape) agent).getSpace() instanceof Singleton) {
