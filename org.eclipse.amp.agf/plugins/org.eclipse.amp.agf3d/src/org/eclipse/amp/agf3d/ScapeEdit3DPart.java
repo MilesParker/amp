@@ -134,7 +134,7 @@ public class ScapeEdit3DPart extends ScapeEditPart {
         Vector3f endPoint = null;
         if (location != null && editPart instanceof AgentEdit3DPart) {
             endPoint = new Vector3fImpl((float) (GenericEditPart.SCALE * location.getXDouble()),
-                (float) (GenericEditPart.SCALE * location.getYDouble()), 0.0f);
+                                        (float) (GenericEditPart.SCALE * location.getYDouble()), 0.0f);
             endPoint = Math3DVector3f.add(endPoint, ((AgentEdit3DPart) editPart).getRelativeLocation3D(), endPoint);
             ScapeEditRoot3DPart root = (ScapeEditRoot3DPart) getRootScapeEditPart();
             Vector3f priorPeriodLocation = lastPoints.get(agent);
@@ -144,8 +144,8 @@ public class ScapeEdit3DPart extends ScapeEditPart {
                     distance = Math3DVector3f.sub(endPoint, priorPeriodLocation, distance);
                     distance = Math3DVector3f.abs(distance, distance);
                     if (root.getAnimationStepCount() > 1 && getRootScapeEditPart().getModel() != null
-                            && ((IModel) getRootScapeEditPart().getModel()).getPeriod() > 0 && priorPeriodLocation != null
-                            && distance.getX() + distance.getY() < GenericEditPart.SCALE * 5) {
+                        && ((IModel) getRootScapeEditPart().getModel()).getPeriod() > 0 && priorPeriodLocation != null) {
+                        // && distance.getX() + distance.getY() < GenericEditPart.SCALE * 5) {
                         IVector3f startPoint;
                         Vector3f addPoint;
                         if (root.getAnimationStep() == 0) {

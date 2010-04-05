@@ -25,6 +25,7 @@ import org.eclipse.amp.axf.space.IGraphProvider;
 import org.eclipse.amp.axf.space.ILocation2D;
 import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.amp.axf.view.SWTAsyncModelListener;
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Point;
@@ -120,6 +121,7 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
         figure.setLayoutManager(new XYLayout());
         Rectangle bounds = new Rectangle(new Point(0, 0), calculateDimension());
         figure.setBounds(bounds);
+        figure.setBackgroundColor(ColorConstants.black);
         return figure;
     }
 
