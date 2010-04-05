@@ -25,6 +25,7 @@ import java.util.Map;
 
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.space.IGraphProvider;
+import org.eclipse.amp.axf.space.ILocation;
 import org.eclipse.amp.axf.space.ILocation2D;
 import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.draw2d.ConnectionAnchor;
@@ -109,7 +110,11 @@ public class ScapeEditPart extends GenericEditPart implements PropertyChangeList
     }
 
     public Dimension calculateDimension() {
-        return GEFUtils.getScaledExtent(locationProvider, getModel());
+        ILocation extent = locationProvider.getExtent(getModel());
+        if (extent instanceof ILocation2D) {
+            return GEFUtils.toScaledDimension((ILocation2D) extent);
+        }
+        return null;
     }
 
     protected void calculateConstraints(GraphicalEditPart editPart) {
@@ -149,14 +154,14 @@ public class ScapeEditPart extends GenericEditPart implements PropertyChangeList
             for (Object agent : memberProvider.getIteratable(getModel())) {
                 boolean hasChild = false;
                 for (Object child : getChildren()) {
-                    ScapeEditPart part = (ScapeEditPart) child;
+                    EditPart part = (EditPart) child;
                     if (agent == part.getModel()) {
                         hasChild = true;
                         break;
                     }
                 }
                 if (!hasChild) {
-                    ScapeEditPart editPart = (ScapeEditPart) createChild(agent);
+                    EditPart editPart = createChild(agent);
                     addChild(editPart, -1);
                 }
             }
