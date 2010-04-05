@@ -34,10 +34,12 @@ import org.eclipse.jface.viewers.IColorProvider;
 import org.ascape.model.Agent;
 import org.ascape.model.CellOccupant;
 import org.ascape.model.HostCell;
+import org.ascape.model.LocatedAgent;
 import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.rule.Rule;
 import org.ascape.model.space.CollectionSpace;
+import org.ascape.model.space.Coordinate;
 import org.ascape.model.space.Coordinate2DDiscrete;
 import org.ascape.model.space.Graph;
 import org.ascape.model.space.Location;
@@ -59,7 +61,7 @@ import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
 «AROUND metaabm::tmpl::Java::ExtendType FOR SAgent-»Scape«ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-» extends Scape implements ModelFactoryProvider«ENDAROUND»
-«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SAgent-» extends «IF isHost()-»HostCell«ELSE»CellOccupant«ENDIF-»«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SAgent-» extends «extendType()»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::ClassInheiritance FOR SStyle-» extends «(agent.isHost() ? "HostCell" : "Agent")»EditPart«ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::Body FOR SAgent-»
@@ -129,9 +131,9 @@ import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
 	«EXPAND BuildChartSelection FOREACH ((SContext) reference).agents-»
     addView(chart);
     «ENDIF»
-    «IF !((SContext) reference).projections.isEmpty»
-    addView(new GEFView());
-    «ENDIF»
+    «FOREACH members.typeSelect(ABuildProjection) AS builder»
+	    «builder.projection.id()».addView(new GEFView());
+    «ENDFOREACH»
     «targetDef.proceed()-»
 «ENDAROUND»
 
@@ -147,7 +149,7 @@ import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
             }
         };
     «id()»Scape.add(«id()»);
-	«IF !isHost()-»
+	«IF !isHost() && isDiscrete()-»
 	HostCell «id()»Host = new HostCell() {
             public void requestUpdate() {
             }
