@@ -8,7 +8,7 @@
 «EXTENSION metaabm::tmpl::infer»
 «EXTENSION metaabm::tmpl::util»
 «EXTENSION metaabm::tmpl::projections»
-«EXTENSION metaabm::ascape::tmpl::namesascape»
+«EXTENSION metaabm::ascape::tmpl::namesascape» 
 «EXTENSION metaabm::ascape::tmpl::inferascape»
 
 «AROUND metaabm::tmpl::Java::ExtendType FOR SProjection-»Scape«ENDAROUND»
@@ -16,7 +16,7 @@
 «AROUND metaabm::tmpl::Java::ExtendType FOR SAgent-»«pkgm()-»Scape«ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-» extends Scape«ENDAROUND»
-«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SAgent-» extends «IF isHost()-»HostCell«ELSE-»CellOccupant«ENDIF-»«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SAgent-» extends «extendType()»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::ClassInheiritance FOR SStyle-» extends DrawFeature«ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::Imports FOR SStyle-»
@@ -41,10 +41,12 @@ import java.util.List;
 import org.ascape.model.Agent;
 import org.ascape.model.CellOccupant;
 import org.ascape.model.HostCell;
+import org.ascape.model.LocatedAgent;
 import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.rule.Rule;
 import org.ascape.model.space.CollectionSpace;
+import org.ascape.model.space.Coordinate;
 import org.ascape.model.space.Coordinate2DDiscrete;
 import org.ascape.model.space.Graph;
 import org.ascape.model.space.Location;

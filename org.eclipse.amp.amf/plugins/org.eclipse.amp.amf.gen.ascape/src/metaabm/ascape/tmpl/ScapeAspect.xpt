@@ -195,7 +195,17 @@
 	«ENDIF-»
 	«ENDIF-»
 «ENDDEFINE»
-«DEFINE CreateScape(int stage) FOR ABuildSpace-»«ENDDEFINE»
+«DEFINE CreateScape(int stage) FOR ABuildSpace-»
+		«IF stage == 0-»
+	        «projection.fieldName()» = new Scape(new «projection.spaceClass()»());
+	        «projection.fieldName()».setExtent(new «projection.coordinateType()»(«projection.getterName()»Width(), «projection.getterName()»Height()));
+	        «projection.fieldName()».setName("«label»");
+	        ((CollectionSpace) «projection.fieldName()».getSpace()).setPeriodic(«projection.periodic()»);
+	        «projection.fieldName()».setPrototypeAgent(new «agents.get(0).typeName()»());
+	        
+			add(«projection.fieldName()»);
+	  «ENDIF»
+«ENDDEFINE»
 «DEFINE CreateScape(int stage) FOR ABuildNetwork-»
 		«IF stage == 0-»
         «projection.fieldName()» = new Scape(new «projection.spaceClass()»());
@@ -346,10 +356,12 @@
 «ENDDEFINE»
 
 «DEFINE InnerBlockCall(List[metaabm::act::AAct] path, Boolean inner) FOR AMove-»
+	«IF destination.space.metaType == SGrid»
 	if («selected.asAgent().pre()»getHostScape() != «destination.selid().expl()».getScape()) {
 	    die();
 	    «destination.selid().pre()»«destination.agent.owner.getterName()»().get«selected.agent.scape().toFirstUpper()»().add(«selected.asAgent().expl()»);
 	}
+	«ENDIF»
 	«call(path, inner)»
 «ENDDEFINE»
 

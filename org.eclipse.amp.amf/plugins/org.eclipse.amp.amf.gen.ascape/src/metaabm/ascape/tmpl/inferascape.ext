@@ -13,6 +13,16 @@ cached String toHost(String wrapped) :
 			
 cached String toAgent(String wrapped) :
 	"((org.ascape.model.HostCell" + ") " + wrapped.expl() + ").getOccupant()";
+
+cached Boolean isDiscrete(SAgent agent) :
+	agent.owner.rootActivity.members().typeSelect(ABuildGrid).collect(a | a.agents).contains(agent);
+
+cached String extendType(SAgent agent) :
+	agent.isDiscrete()
+	?	(isHost()
+			? "HostCell"
+			: "CellOccupant")
+	: "LocatedAgent";
     
 cached String asHost(ASelect act) :
     act.agent.isHost() 
@@ -78,8 +88,13 @@ cached String network(ANetwork net) :
 cached String spacePath(ASelect act, List[AAct] path, Boolean inner) :
 	act.selector().agent.getterPath(act.reference.parent, false) + ".get" + act.agent.scape().toFirstUpper() + "().getSpace()";
 
+cached String destTerm(ASelect sel) :
+	sel.agent != null
+		? act.destination.asHost().expl()
+		: "((Coordinate)" + sel.id() + ")";
+
 cached String call(AMove act, List[AAct] path, Boolean inner) :
-		act.selected.asAgent().pre() + act.method(path, inner) + "(" + act.destination.asHost().expl() + ");";
+		act.selected.asAgent().pre() + act.method(path, inner) + "(" + act.destination.destTerm() + ");";
 
 cached String call(ACreateAgents act, List[AAct] path, Boolean inner) :
 	act.agent.typeName() + " " + act.id() + " = (" + act.agent.typeName() + ")" + spacePath(act, path, inner) + ".newLocation(false);";
@@ -133,7 +148,7 @@ cached String conditionParam(AAct act) :
 	act.conditionForAscape() ? act.selector().selid() + "Condition" : ((act.hasControl("available") && act.hasControl("within")) ? "null" : "");
 
 cached String findSpace(AAct act) :
-    act.selector().space != null ? "((org.ascape.model.space.Discrete)" + act.selector().getterPath(act.selector().space, false) + ".getSpace())." : "getScape().";
+    act.selector().space != null ? act.selector().getterPath(act.selector().space, false) + ".getSpace()." : "getScape().";
  
 cached Boolean allTerms(AAct act) :
     (act.hasControl("nearest") || act.hasControl("within"));
@@ -180,8 +195,11 @@ cached String withinTerm(AAct act) :
 cached String neighborTerm(AAct act) :
     act.hasControl("neighbor") ? "Neighbor" : "";
 
+cached String continuousTerm(AAct act) :
+    act.selector().space.metaType == SContinuousSpace ? "Coordinate" : "";
+
 cached String findMethod(AAct act) :
-    "find" + act.nearestTerm() + act.randomTerm() + act.availableTerm() + act.withinTerm() + act.neighborTerm();
+    "find" + act.nearestTerm() + act.randomTerm() + act.availableTerm() + act.withinTerm() + act.neighborTerm() + act.continuousTerm();
 
 //        : (act.hasControl("here") 
 //        	? "(" + act.selector().selected.asHost().expl() + "==" + act.rootSelected.asHost().expl() + " ? " + act.selector().selected.selid().expl() + " : null);"

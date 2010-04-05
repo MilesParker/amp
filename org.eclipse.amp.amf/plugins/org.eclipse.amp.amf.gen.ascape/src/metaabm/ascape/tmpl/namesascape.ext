@@ -40,10 +40,10 @@ cached String spaceClass(SContinuousSpace proj) :
 cached String spaceClass(SNetwork proj) :           
     pkgs() + "Graph";
 
-cached String periodic(SProjection proj) :
-    "";
+cached Boolean periodic(SProjection proj) :
+    false;
 
-cached String periodic(SNDimensional proj) :
+cached Boolean periodic(SNDimensional proj) :
     proj.borderRule == SBorderRule::Periodic;
     
 cached Integer dimension(SProjection proj) :
