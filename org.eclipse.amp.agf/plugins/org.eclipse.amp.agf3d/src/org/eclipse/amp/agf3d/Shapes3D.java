@@ -37,9 +37,6 @@ import org.eclipse.draw3d.shapes.SphereFigureShape;
  */
 public class Shapes3D {
 
-    private static final Vector3fImpl FULL_SIZE = new Vector3fImpl(GenericEditPart.SCALE, GenericEditPart.SCALE,
-                                                                   GenericEditPart.SCALE);
-
     private static final Vector3fImpl ORIGIN = new Vector3fImpl(0.0f, 0.0f, 0.0f);
 
     private static final Vector3fImpl FLAT_SIZE = new Vector3fImpl(GenericEditPart.SCALE, GenericEditPart.SCALE, 0.0f);
@@ -47,20 +44,32 @@ public class Shapes3D {
     private static final Vector3fImpl NINETYPCT_SIZE = new Vector3fImpl(GenericEditPart.SCALE * .9f,
                                                                         GenericEditPart.SCALE * .9f, GenericEditPart.SCALE * .9f);
 
-    private static final Vector3fImpl IN_TWENTIETH = new Vector3fImpl(GenericEditPart.SCALE * .05f,
-                                                                      GenericEditPart.SCALE * .05f, 0);
-
     private static final Vector3fImpl DISC_SIZE = new Vector3fImpl(GenericEditPart.SCALE * .9f,
                                                                    GenericEditPart.SCALE * .9f, GenericEditPart.SCALE * .20f);
 
     private static final Vector3fImpl CYLINDER_SIZE = new Vector3fImpl(GenericEditPart.SCALE * .9f,
                                                                        GenericEditPart.SCALE * .9f, GenericEditPart.SCALE * .80f);
 
-    private static final Vector3fImpl QUARTER_IN = new Vector3fImpl(GenericEditPart.SCALE * .125f,
-                                                                    GenericEditPart.SCALE * .125f, 0);
+    private static final Vector3fImpl TWENTIETH_IN = new Vector3fImpl(GenericEditPart.SCALE * .05f,
+                                                                      GenericEditPart.SCALE * .05f, 0);
+
+    private static final Vector3fImpl EIGHTH_IN = new Vector3fImpl(GenericEditPart.SCALE * .125f,
+                                                                   GenericEditPart.SCALE * .125f, 0);
+
+    private static final Vector3fImpl THREE_EIGHTS_IN = new Vector3fImpl(GenericEditPart.SCALE * .375f,
+                                                                         GenericEditPart.SCALE * .3755f, 0);
 
     private static final Vector3fImpl THREE_QUARTER_SIZE = new Vector3fImpl(GenericEditPart.SCALE * .75f,
                                                                             GenericEditPart.SCALE * .75f, GenericEditPart.SCALE * .75f);
+
+    private static final Vector3fImpl FULL_SIZE = new Vector3fImpl(GenericEditPart.SCALE, GenericEditPart.SCALE,
+                                                                   GenericEditPart.SCALE);
+
+    private static final Vector3fImpl HALF_SIZE = new Vector3fImpl(GenericEditPart.SCALE * .5f,
+                                                                   GenericEditPart.SCALE * .5f, GenericEditPart.SCALE * .5f);
+
+    private static final Vector3fImpl QUARTER_SIZE = new Vector3fImpl(GenericEditPart.SCALE * .25f,
+                                                                      GenericEditPart.SCALE * .25f, GenericEditPart.SCALE * .25f);
 
     public enum ShapeType {
         CUBE, TILE, SPHERE, CYLINDER
@@ -76,7 +85,7 @@ public class Shapes3D {
         }
 
         public IVector3f getRelativeLocation3D(Object object) {
-            return QUARTER_IN;
+            return EIGHTH_IN;
         }
     };
 
@@ -91,7 +100,7 @@ public class Shapes3D {
 
         public IVector3f getRelativeLocation3D(Object object) {
             // "checker"
-            return IN_TWENTIETH;
+            return TWENTIETH_IN;
         }
     };
     public static IShape3DProvider DISC_SHAPE_PROVIDER = new IShape3DProvider() {
@@ -107,7 +116,23 @@ public class Shapes3D {
 
         public IVector3f getRelativeLocation3D(Object object) {
             // "checker"
-            return IN_TWENTIETH;
+            return TWENTIETH_IN;
+        }
+    };
+    public static IShape3DProvider SMALL_DISC_SHAPE_PROVIDER = new IShape3DProvider() {
+        public Shape getShape3D(Object object, IFigure3D figure) {
+            CylindricFigureShape cylindricFigureShape = new CylindricFigureShape(figure, 30, 1.0f, true);
+            cylindricFigureShape.setFill(true);
+            return cylindricFigureShape;
+        }
+
+        public IVector3f getSize3D(Object object) {
+            return QUARTER_SIZE;
+        }
+
+        public IVector3f getRelativeLocation3D(Object object) {
+            // "checker"
+            return THREE_EIGHTS_IN;
         }
     };
     public static IShape3DProvider SPHERE_SHAPE_PROVIDER = new IShape3DProvider() {
@@ -120,7 +145,7 @@ public class Shapes3D {
         }
 
         public IVector3f getRelativeLocation3D(Object object) {
-            return IN_TWENTIETH;
+            return TWENTIETH_IN;
         }
     };
     public static IShape3DProvider TILE_SHAPE_PROVIDER = new IShape3DProvider() {

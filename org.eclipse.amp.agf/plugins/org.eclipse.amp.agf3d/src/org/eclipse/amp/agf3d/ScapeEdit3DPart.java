@@ -31,6 +31,7 @@ import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.draw3d.Figure3D;
 import org.eclipse.draw3d.FigureSurface;
 import org.eclipse.draw3d.IFigure3D;
@@ -138,14 +139,15 @@ public class ScapeEdit3DPart extends ScapeEditPart {
             endPoint = Math3DVector3f.add(endPoint, ((AgentEdit3DPart) editPart).getRelativeLocation3D(), endPoint);
             ScapeEditRoot3DPart root = (ScapeEditRoot3DPart) getRootScapeEditPart();
             Vector3f priorPeriodLocation = lastPoints.get(agent);
-            Vector3f distance = new Vector3fImpl();
             if (root.getAnimationStepCount() > 1) {
                 if (priorPeriodLocation != null) {
-                    distance = Math3DVector3f.sub(endPoint, priorPeriodLocation, distance);
-                    distance = Math3DVector3f.abs(distance, distance);
+                    Vector3f difference = new Vector3fImpl();
+                    difference = Math3DVector3f.sub(endPoint, priorPeriodLocation, difference);
+                    difference = Math3DVector3f.abs(difference, difference);
+                    Rectangle bounds = getFigure().getBounds();
                     if (root.getAnimationStepCount() > 1 && getRootScapeEditPart().getModel() != null
-                        && ((IModel) getRootScapeEditPart().getModel()).getPeriod() > 0 && priorPeriodLocation != null) {
-                        // && distance.getX() + distance.getY() < GenericEditPart.SCALE * 5) {
+                            && ((IModel) getRootScapeEditPart().getModel()).getPeriod() > 0
+                            && difference.getX() < bounds.width * .7f && difference.getY() < bounds.height * .7f) {
                         IVector3f startPoint;
                         Vector3f addPoint;
                         if (root.getAnimationStep() == 0) {
