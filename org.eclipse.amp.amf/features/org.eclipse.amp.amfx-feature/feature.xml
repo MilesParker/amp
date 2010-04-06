@@ -47,7 +47,6 @@
       <import plugin="org.eclipse.amp.amf.abase.ui" version="0.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.editors" version="3.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.mwe.utils"/>
-      <import plugin="org.eclipse.emf.mwe2.launch" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xtext.ecore" version="1.0.0" match="greaterOrEqual"/>
       <import plugin="org.apache.log4j"/>
       <import plugin="org.eclipse.xtext.ui"/>
