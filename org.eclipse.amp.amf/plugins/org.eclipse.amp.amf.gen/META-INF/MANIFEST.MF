@@ -9,11 +9,11 @@ Require-Bundle:
  org.eclipse.amp.amf.acore,
  org.eclipse.jdt.core,
  org.eclipse.core.runtime,
- org.eclipse.xpand,
- org.eclipse.xtend,
- org.eclipse.xtend.typesystem.emf,
- org.eclipse.emf.mwe.utils,
- org.eclipse.emf.mwe.ui
+ org.eclipse.xpand;bundle-version="1.0.0",
+ org.eclipse.xtend;bundle-version="1.0.0",
+ org.eclipse.xtend.typesystem.emf;bundle-version="1.0.0",
+ org.eclipse.emf.mwe.utils;bundle-version="1.0.0",
+ org.eclipse.emf.mwe.ui;bundle-version="1.0.0"
 Bundle-ClassPath: .
 Export-Package: metaabm.tmpl,
  model,
