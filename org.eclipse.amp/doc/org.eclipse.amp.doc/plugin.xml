@@ -3,6 +3,10 @@
 <plugin>
    <extension point="org.eclipse.help.toc">
       <toc file="wiki/AMP-toc.xml" primary="true"/>
+      <toc
+            file="wiki/ModelersGuide-toc.xml"
+            primary="false">
+      </toc>
    </extension>
       <extension
          id="org.eclipse.amp.agents.cheatsheets"

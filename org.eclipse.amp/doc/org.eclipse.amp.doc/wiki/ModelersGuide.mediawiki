@@ -227,13 +227,13 @@ The selection that we are searching "from". This seems to be the concept that ne
 
 =====Agent=====
 
-Here we define what agent we will be looking for. In order for this to make sense, the agent has to be related in some meaningful way to the agent whose behavior we are defining. For example, it might be a partner agent or a location that we might want to move to. An agent must be specified unless we are searching within a continuous space, in which case this value should be empty, and the result of the selection will represent some locaiton in that space. In the current version of the framework, we treat destination cell locations as agents, and require that location to be specified as a target agent, but in a future version we'll allow searches without defining an agent within grid spaces as well.
+Here we define what agent we will be looking for. In order for this to make sense, the agent has to be related in some meaningful way to the agent whose behavior we are defining. For example, it might be a partner agent or a location that we might want to move to. An agent must be specified unless we are searching within a continuous space, in which case this value should be empty, and the result of the selection will represent some location in that space. In the current version of the framework, we treat destination cell locations as agents, and require that location to be specified as a target agent, but in a future version we'll allow searches without defining an agent within grid spaces as well.
 
 =====Space=====
 
 The space that we want to search within. Of course, this must be specified if we use any spatial query terms (see below), but if we simply want to search across all agents it should not be specified.
 
-Represent Queries (Controls) on agents and Transformations, or Commands, on the result of those queries. Queries, Transformations and other  in which each child target carries the execution and data context for it's particular path.</p>
+Represent Queries (Controls) on agents and Transformations, or Commands, on the result of those queries. Queries, Transformations and other  in which each child target carries the execution and data context for it's particular path.
 
 =====For=====
 
