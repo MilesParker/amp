@@ -23,6 +23,7 @@ import org.eclipse.amp.amf.abase.IInterpreterProvider;
 import org.eclipse.amp.amf.abase.aBase.Value;
 import org.eclipse.amp.amf.parameters.AParInterpreter;
 import org.eclipse.amp.amf.parameters.aPar.AParFactory;
+import org.eclipse.amp.amf.parameters.aPar.AgentParameters;
 import org.eclipse.amp.amf.parameters.aPar.Parameter;
 import org.eclipse.amp.amf.testing.ATestInterpreter;
 import org.eclipse.amp.amf.testing.aTest.ATestFactory;
@@ -155,12 +156,13 @@ public class TestRun {
                         shallowCopy.setQualifier(constraint.getQualifier());
                         run.getConstraints().add(shallowCopy);
                     }
-                    for (Parameter param : aPar.getParameters()) {
-                        Parameter shallowCopy = AParFactory.eINSTANCE.createParameter();
-                        shallowCopy.setAttribute(param.getAttribute());
-                        shallowCopy.setValue((Value) EcoreUtil.copy(param
-                                                                    .getValue()));
-                        run.getParameters().add(shallowCopy);
+                    for (AgentParameters agents : aPar.getAgents()) {
+                        for (Parameter param : agents.getParameters()) {
+                            Parameter shallowCopy = AParFactory.eINSTANCE.createParameter();
+                            shallowCopy.setAttribute(param.getAttribute());
+                            shallowCopy.setValue((Value) EcoreUtil.copy(param.getValue()));
+                            run.getParameters().add(shallowCopy);
+                        }
                     }
                     run.setTest(aTest);
                     run.setStarted(new Date());
@@ -202,7 +204,10 @@ public class TestRun {
             aParInterpreter = (AParInterpreter) aParPool.getInterpreter(aparURI);
             aPar = aParInterpreter.getModel();
             Resource agentModelResource = testRunSet.getResourceSet()
-            .getResource(URI.createURI(AParInterpreter.convertURI(aPar.getModel().get(0)), true), true);
+            .getResource(
+                         URI.createURI(AParInterpreter
+                                       .convertURI(aPar.getModel()),
+                                       true), true);
             rootContext = (SContext) agentModelResource.getContents().get(0);
         }
     }
