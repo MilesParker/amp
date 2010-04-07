@@ -3,13 +3,13 @@
 «IMPORT metaabm::act»
 «IMPORT metaabm::function»
 
+«EXTENSION metaabm::tmpl::names»
 «EXTENSION metaabm::tmpl::types»
-«EXTENSION metaabm::tmpl::names» 
 «EXTENSION metaabm::tmpl::infer»
 «EXTENSION metaabm::tmpl::util»
 «EXTENSION metaabm::tmpl::projections»
-«EXTENSION metaabm::ascape::tmpl::namesascape» 
 «EXTENSION metaabm::ascape::tmpl::inferascape»
+«EXTENSION metaabm::ascape::tmpl::namesascape» 
 
 «AROUND metaabm::tmpl::Java::ExtendType FOR SProjection-»Scape«ENDAROUND»
 «AROUND metaabm::tmpl::Java::ExtendType FOR SContext-»«typeName()-»«ENDAROUND»
