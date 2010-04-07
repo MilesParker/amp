@@ -67,7 +67,9 @@ public class GraphicsView extends EditPartScapeView implements ISelectionProvide
 
     protected Image image;
 
-    IFigure imageFigure;
+    protected IFigure imageFigure;
+
+    protected Graphics imageGraphics;
 
     /**
      * Size of each individual cell, typically in pixels. 6 by default.
@@ -75,8 +77,6 @@ public class GraphicsView extends EditPartScapeView implements ISelectionProvide
     protected int agentSize = 20;
 
     protected GC imageGC;
-
-    Graphics imageGraphics;
 
     public void createImageFigure() {
         imageFigure = new Figure() {
