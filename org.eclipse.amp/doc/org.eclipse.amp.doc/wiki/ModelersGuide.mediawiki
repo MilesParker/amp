@@ -173,36 +173,45 @@ Actions are connected together in a series of sources and targets. (Technically,
 	
 Why are these distinctions between traditional Object-Oriented and the Action approaches important? They give us the advantages of simplicity, clarity and flexibility that [[http://en.wikipedia.org/wiki/Dataflow_programming|data-flow approaches]] like spreadsheets and some query languages have, but with less restrictions. At the same time, they can bring us much of the power and expresivity of [[http://en.wikipedia.org/wiki/Functional_programming|functional languages]] like Lisp or [[http://en.wikipedia.org/wiki/Logical_programming|logical languages]] like Prolog, but without the level of complexity and obscurity that such languages can have.
 
+We can get a better idea for how Actions work by thinking about how a spreadsheet works. In a spreadsheet, we might define a cell A that adds up a row of data, say "Income". We might define another cell C ("Profit") that takes A and adds it to another cell B that adds up another row of data ("Expenses"). Now, if we change a value in any of the rows, all of the other rows are added up and we get the results in A and B updated automatically. We never had to write code that said something like "for each cell in row X, where...". In fact, we don't really care ''how'' our Spreadsheet program adds up the numbers -- it could have added them all up at once but in backward order, or stored a running total somewhere and updated just the difference in value for the cell we changed -- what we care about is ''what'' the result is, and whether it is correct.
+
+But Actions are much more powerful than a spreadsheet, because what is flowing from Action A to Action B is not just a number, but any model component such as a space or a set of agents that we need to use in target actions.
+
 ===Example===
 
-We can get a better idea for how Actions work by thinking about how a spreadsheet works. In a spreadsheet, we might define a cell A that adds up a row of data. We might define another cell that takes A and adds it to another cell B that takes adds up another set of data. Now, if we change a value in any of the rows, all of the other rows are added up and we get the results in A and B updated automatically. We never had to write code that said something like "for each cell in row X, where...". In fact, we don't really care ''how'' our Spreadsheet program adds up the numbers -- it could have added them all up at once but in backward order, or stored a running total somewhere and updated just the difference in value for the cell we changed -- what we care about is ''what'' the result is, and wether it is correct.
-
-But Actions are much more powerful than a spreadsheet, because what is flowing from Action A to Action B is not just a number, but any model component such as a space or a set of agents that we need to use in target actions. Let's go through an example of how that works. Say we want to define a behavior like:
+In this section, we'll look at an example that should make clear how the basic Actions approach works in a model. Say we want to define a behavior like:
 
  "Search for a random agent within my vision that is the same age as I am. Find a location next to that agent that is not already occupied and move to it."
 
 Here, we create a sequence of actions like so:
 
-#Selects every agent for every period of the model. ("Find Partner" Rule)
+#Select every agent for every period of the model. ("Find Partner" Rule)
 #For every member of that selection, search for other agents of the same age within vision distance. ("Partner" selection.)
 #From "Partners" find a random member and search for a neighboring locations. ("Partner Neighbor" selection.)
 #Finally, move the agent in "Find Partner" to the "Partner Neighbor" location.
 
-Now, notice that although it's convenient to speak as if there is only one "Find Partner" and one "Partner Neighbor" in step 4 above, in fact selections are flowing through for each of the results of each of the previous ation sequences, and we can refer to each of the directly. We could represent this set of rules in many diferent ways. For example, we might have a graphical language or in a textual language:
+Now, notice that although it's convenient to speak as if there is only one "Find Partner" and one "Partner Neighbor" in step 4 above, in fact selections are flowing through for each of the results of each of the previous action sequences, and we can refer to each of the directly. We could represent these behaviors in many different ways. For example, we might want to specify the model in a (hand-drawn) graphical language or in a (made-up) textual language:
 
-[image:ActionsExample.png|800px|Actions Example]
+[[Image:image/ActionsExample.png]]
 
-Here is a bit more detail about how this actually works.
-#Create a Rule that will trigger the behavior. In this case, we want this rule to apply to all "Individual" agents within the model. (We can define the space as well, but that's not relevant yet.
+This is how it looks in an actual model:
+
+[[Image:image/ActionsExampleNew.png]]
+
+And here is how this works in detail:
+
+#Create a Rule that will trigger the behavior. In this case, we want this rule to apply to all "Individual" agents within the model. (Space isn't relevant in this case.
 #Create a child Select Action that will find our partner. Two important things to note here:
-##The selection occurs "upon" the "find partner" select. On other words, for each Individual in the model, we'll be searching from the point of view of that agent to some other selection of agents.
-##We also need to define what type of agent we want and in this case the space does matter. We want to be sure that the agent is nearby in the City space not any other space we might have defined.
+##The selection occurs based on the "Find Partner" selection. This means that for each Individual in the model, we'll be searching from the point of view of that agent to some other selection of agents.
+##We also need to define what type of agent we want and in this case the space does matter. We want to find an agent that is nearby within the City space. If instead we wanted to find a partner in a social network, we'd specify that instead.
 #Create two child Query Actions:
-##We want to search using a function for nearness, "within", which takes a parameter of vision. Note that the spatial functions are all polymorphic -- if we decided later on that we would rather search within say "Kevin Bacon space", that is a graph structure representation of space, we would only need to change the space we've defined in Select Partner. (Design discussion note: re-examine this issue WRT possibility of allowing users to search in multiple spaces within the same query.)
-##We also want to search for someone who is the same age as us. This highlights the importance of the idea of the Selection in the Actions design. We're qualifying Age by our <font color="green">Partner</font> and <font color="red">ourselves</font>. The seleciton carries throughout the flow of execution and this context is an explicit part of the entire structure. Note that this is very different from the way control flow works in a traditional Imperative language such as Java.
-#Intersect (All in metaabm) these two queries. This delineates the end of the selection definition for any target Actions.
+##We want to search for someone who is the same age as us. This highlights the importance of the idea of the Selection in the Actions design. We're qualifying Age by our <font color="green">Partner</font> and <font color="red">ourselves</font>. The selection carries throughout the flow of execution and this context is an explicit part of the entire structure. Note that this is very different from the way control flow works in a traditional imperative language such as Java.
+##We also want to search using a function for nearness, "within", which takes a parameter of vision. Note that the spatial functions are all polymorphic -- if we decided later on that we would rather search within say "Kevin Bacon space", that is a graph structure representation of space, we would only need to change the space we've defined in Select Partner. (Design discussion note: re-examine this issue WRT possibility of allowing users to search in multiple spaces within the same query.)
+#Intersect the results of these two query components. This delineates the end of the selection definition for any target Actions.
 #Select a neighbor. Again, we can see the importance of Selections. Here, we are selecting from the point of view of the partner, not the initial agent that the current Rule is being executed for. Note that this time our target agent is a "Block", that is, a location within the city.
-#As above, define some queries. This time we want only those agents that are available and neighbors of our partner.
+#As above, define some queries. This time we want only those agents that are:
+##available, and
+##neighbors of our partner.
 #And another intersection..
 #Finally, we move to the location we've found. All that's required at this point is to specify:
 ##The movement selection, or those agents that are moving, which in this case is the original agent we're executing the rule for, and
@@ -211,11 +220,20 @@ Here is a bit more detail about how this actually works.
 
 ===Action Composition===
 
-Actions are strung together in a sequence. They're always composed of two parts, though those parts can be assembled and intermixed in many different ways. And another useful way of looking at the Actions approach is as a Query Transformation language, as with SQL and Stored Procedures. Except again, the results of the queries along with the transformations, flow through from one query to the next. We refer to these parts as Selections and Commands. Selections have two special categories. Roots represent behavior that is defined for all members of agents; these are the basic defintions that we use to define an agent's behavior, such as "Find Partners" or "Eat" or "Reproduce". A third special category of actions are similar to Selections, except instead of searching for agents, we create them. We call these Builders.
+Actions are strung together in a sequence. They're always composed of two parts, though those parts can be assembled and intermixed in many different ways. And another useful way of looking at the Actions approach is as a Query Transformation language, as with SQL and Stored Procedures. Except again, the results of the queries along with the transformations, flow through from one query to the next. We refer to these parts as Selections and Commands. Selections have two special categories. Roots -- which we'll look at first -- represent behavior that is defined for all members of agents; these are the basic defintions that we use to define an agent's behavior, such as "Find Partners" or "Eat" or "Reproduce". A third special category of actions are similar to Selections, except instead of searching for agents, we create them. We call these Builders.
+
+These are all summarized in the diagram below. The details arent important -- this is a technical diagram, and it makes things look a little more complex than they are. The thing to focus on is the 
+
+[[Image:image/ActionsDiagram.png]]
+
 
 ===Selections===
 
 A selection defines a particular set of agents that we want to do something with. Selections are made up of the Select action itself, along with Query and Logic actions. When we refer to a selection in any target command, we are referring to the selection in the context of where we have defined the behavior.
+
+===Root Actions===
+
+Root actions are a special case of a selection. You'll see these 
 
 ====Selection====
 
@@ -239,6 +257,8 @@ Represent Queries (Controls) on agents and Transformations, or Commands, on the 
 
 This value is obsolete and will be replaced with a different mechanism in the next version of the modeling environment.
 
+
+
 ====Query====
 
 A Query represents a concrete cirteria for our search. The name will be changed in a future release because of potential for confusion with a generic query.) Queries -- along with their cousin Evaluators -- define a function that is evaluated and that can take Agent atrributes and the results of other Actions as input. Queries are combined with each other and with the logic actions to determine the results of a selection for their direct target actions. 
@@ -246,6 +266,4 @@ A Query represents a concrete cirteria for our search. The name will be changed 
 =====Function=====
 
 A query function is evaluated to determine the results of a particular selection. Functions can represent very simple search criteria such as "My Age = Your Age", but they can also representSee the functions section for more information on specific functions.
-
-===Root Actions===
 
