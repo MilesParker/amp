@@ -8,10 +8,12 @@ import org.eclipse.jface.viewers.IColorProvider;
 import org.ascape.model.Agent;
 import org.ascape.model.CellOccupant;
 import org.ascape.model.HostCell;
+import org.ascape.model.LocatedAgent;
 import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.rule.Rule;
 import org.ascape.model.space.CollectionSpace;
+import org.ascape.model.space.Coordinate;
 import org.ascape.model.space.Coordinate2DDiscrete;
 import org.ascape.model.space.Graph;
 import org.ascape.model.space.Location;
@@ -101,6 +103,7 @@ public class Bug extends CellOccupant {
 				die();
 				randomHabitat.getStupidModel5().getBugScape().add(this);
 			}
+
 			moveTo(randomHabitat);
 
 		}
@@ -112,36 +115,18 @@ public class Bug extends CellOccupant {
 
 	public void randomMovement() {
 
-		Conditional nearbySpaceCondition = new Conditional() {
-			private static final long serialVersionUID = 6846144446402098985L;
-
-			public boolean meetsCondition(Object nearbySpaceCell) {
-				nearbySpaceCell = ((org.ascape.model.HostCell) nearbySpaceCell)
-						.getOccupant();
-				if (nearbySpaceCell instanceof Bug) {
-					return true;
-				} else {
-					return false;
-				}
-			}
-		};
-
-		Bug nearbySpace = null;
-		Location nearbySpaceLocation = ((org.ascape.model.space.Discrete) getStupidModel5()
+		Habitat nearbySpace = (Habitat) ((org.ascape.model.space.Discrete) getStupidModel5()
 				.getGrid2D().getSpace()).findRandomAvailable(
-				((org.ascape.model.CellOccupant) this).getHostCell(),
-				nearbySpaceCondition, false, getStupidModel5().getBugVision());
-		if (nearbySpaceLocation != null) {
-			nearbySpace = (Bug) ((org.ascape.model.HostCell) nearbySpaceLocation)
-					.getOccupant();
-		}
+				((org.ascape.model.CellOccupant) this).getHostCell(), null,
+				false, getStupidModel5().getBugVision());
 		if (nearbySpace != null) {
 
 			if (getHostScape() != nearbySpace.getScape()) {
 				die();
 				nearbySpace.getStupidModel5().getBugScape().add(this);
 			}
-			moveTo(((org.ascape.model.CellOccupant) nearbySpace).getHostCell());
+
+			moveTo(nearbySpace);
 
 		}
 

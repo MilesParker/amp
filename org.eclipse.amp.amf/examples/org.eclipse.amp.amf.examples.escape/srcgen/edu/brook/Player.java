@@ -8,10 +8,12 @@ import org.eclipse.jface.viewers.IColorProvider;
 import org.ascape.model.Agent;
 import org.ascape.model.CellOccupant;
 import org.ascape.model.HostCell;
+import org.ascape.model.LocatedAgent;
 import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.rule.Rule;
 import org.ascape.model.space.CollectionSpace;
+import org.ascape.model.space.Coordinate;
 import org.ascape.model.space.Coordinate2DDiscrete;
 import org.ascape.model.space.Graph;
 import org.ascape.model.space.Location;
@@ -115,6 +117,7 @@ public class Player extends CellOccupant {
 				randomCell2.getDemographicPrisoner_sDilemma().getPlayerScape()
 						.add(this);
 			}
+
 			moveTo(randomCell2);
 
 		}
@@ -138,6 +141,7 @@ public class Player extends CellOccupant {
 				randomNeighbor.getDemographicPrisoner_sDilemma()
 						.getPlayerScape().add(this);
 			}
+
 			moveTo(randomNeighbor);
 
 		}
@@ -250,6 +254,7 @@ public class Player extends CellOccupant {
 					birthLocation.getDemographicPrisoner_sDilemma()
 							.getPlayerScape().add(createAgents);
 				}
+
 				createAgents.moveTo(birthLocation);
 
 				createAgents.setWealth(getDemographicPrisoner_sDilemma()

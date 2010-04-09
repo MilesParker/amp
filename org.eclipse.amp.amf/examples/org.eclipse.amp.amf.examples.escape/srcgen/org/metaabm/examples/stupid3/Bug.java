@@ -8,10 +8,12 @@ import org.eclipse.jface.viewers.IColorProvider;
 import org.ascape.model.Agent;
 import org.ascape.model.CellOccupant;
 import org.ascape.model.HostCell;
+import org.ascape.model.LocatedAgent;
 import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.rule.Rule;
 import org.ascape.model.space.CollectionSpace;
+import org.ascape.model.space.Coordinate;
 import org.ascape.model.space.Coordinate2DDiscrete;
 import org.ascape.model.space.Graph;
 import org.ascape.model.space.Location;
@@ -91,6 +93,7 @@ public class Bug extends CellOccupant {
 				die();
 				randomHabitat.getStupidModel3().getBugScape().add(this);
 			}
+
 			moveTo(randomHabitat);
 
 		}
@@ -112,6 +115,7 @@ public class Bug extends CellOccupant {
 				die();
 				nearbySpace.getStupidModel3().getBugScape().add(this);
 			}
+
 			moveTo(nearbySpace);
 
 		}
