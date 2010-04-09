@@ -1,0 +1,77 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>General</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="Agent Modeling Guide">
+<link rel="up" href="index.html" title="Agent Modeling Guide">
+<link rel="prev" href="Introduction.html" title="Introduction">
+<link rel="next" href="Structure.html" title="Structure">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">General</h1>
+<div class="section" title="Descriptions">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Descriptions"></a>Descriptions</h2>
+</div>
+</div>
+</div>
+<p>Everything represented in an Acore model needs to be referred to in some way. Just as software classes have names, Acore provides a way to label and describe every entity, but in a richer and more maintainable way. All entities in Acore define:</p>
+<div class="section">
+<div class="titlepage"></div>
+<div class="section">
+<div class="titlepage"></div>
+<div class="section" title="Label">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="N10018"></a>Label</h5>
+</div>
+</div>
+</div>
+<p>A reasonably short, human readable name for the agent. For example, "Timber Wolf", "Forex Trader" or "Movement Probability". These should be defined so that they fit in well with auto-generated documentation.</p>
+</div>
+<div class="section" title="ID">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="ID"></a>ID</h5>
+</div>
+</div>
+</div>
+<p>An ID is an identifier that can be used to represent the object in a software program. This means that it must follow certain rules such as no-spaces or non alpha-numeric characters. The editing tools will help make sure that this value is legal. Note that when you enter a label, a legal ID is automatically created for you! Usually you won't need to change this, but you might if for example you want the value to match up with some database or other external representation. So reasonable values here might be "timberWolf" or perhaps "MVMNT_PRB" if say you're trying to match up to some old statistics records you have. (Note that currently IDs by default use "camel case", i.e. "thisIsAnExampleOfCamelCase" to match with Java variable naming conventions, but this is likely to change.)</p>
+<p>And most entities also define:</p>
+</div>
+<div class="section" title="Description">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Description"></a>Description</h5>
+</div>
+</div>
+</div>
+<p>A complete textual description of the object. Don't overlook this -- it is the most important part of your model. The description will show up in your auto-generated html documentation, software documentation and even in your running model. You should include enough information that model users will understand what the entity is for and what it does without referring elsewhere. This is also where any attributions and references should go. You can put html tags in here -- such as href's to external papers, but keep those to a minimum as they won't be rendered as html in all contexts.</p>
+</div>
+<div class="section" title="Plural Label">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Plural_Label"></a>Plural Label</h5>
+</div>
+</div>
+</div>
+<p>The plural representation of an entity. This can be a surprisingly useful thing to have in generated documentation and software code, so it's worth maintaining. The editor will automatically add an "s" at the end of the label you've entered above, but you change it to whatever is appropriate. For example "Person", or "Timber Wolves".</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

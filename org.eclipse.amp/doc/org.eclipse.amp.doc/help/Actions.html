@@ -1,0 +1,42 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Actions</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="Agent Modeling Guide">
+<link rel="up" href="index.html" title="Agent Modeling Guide">
+<link rel="prev" href="Reference.html" title="Reference">
+<link rel="next" href="Types_of_Actions.html" title="Types of Actions">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Actions</h1>
+<p>Actions are the most important part of an agent model. While Agents, Attributes and Spaces define what we're modeling, it is Actions that give the models life.</p>
+<div class="section" title="Background">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Background"></a>Background</h2>
+</div>
+</div>
+</div>
+<p>Actions allow the definition of behavior for agents at a very high level. You can think of actions as being analogous to methods in a traditional object-oriented model but that analogy only goes so far. In the same way that methods are defined as part of objects, actions belong to particular agents. (Though even more expressive ways of defining actions are contemplated in future releases.) In the next section we go into detail about what Actions are and how they can be used to define all agent behavior. They are also conceptually more challenging as unlike with structure they have no direct analogies to past agent representations.</p>
+<p>An action provides simple, well-defined details that a model can use to determine what steps to take in model execution. That definition seems general enough to be almost useless, but its important to understand that an action is not equivalent to an instruction, a method or a query. In fact, actions can have aspects of all of these. But an action is not in itself an instruction specifying exactly 
+				<span class="italic">how</span> the modeling engine should do something -- instead an action represents 
+				<span class="italic">what</span> the modeler intends for the agents to do. (Technically, we might say that Actions takes a "declarative" approach instead of an 'imperative' approach, but that's not quite true, because actions do allow us to define behavior in a richer way than most declarative approaches, and many action constructs map directly to imperative approaches.)
+			</p>
+<p>Actions are connected together in a series of sources and targets. (Technically, an acyclic directed graph.) In an abstract sense that is similar to the way any programming language is defined although that structure isn't usually obvious because of the constraints of textual representations. But unlike a typical programming language, in Actions it is not the execution thread (the processor) that moves from one instruction to the next, but the result of the previous action. In this way, action results "flow" from the output of one action into the next action.</p>
+<p>Why are these distinctions between traditional Object-Oriented and the Action approaches important? They give us the advantages of simplicity, clarity and flexibility that 
+				<a class="ulink" href="/wiki/http://en.wikipedia.org/wiki/Dataflow_programming" target="_new">data-flow approaches</a> like spreadsheets and some query languages have, but with less restrictions. At the same time, they can bring us much of the power and expressivity of 
+				<a class="ulink" href="/wiki/http://en.wikipedia.org/wiki/Functional_programming" target="_new">functional languages</a> like Lisp or 
+				<a class="ulink" href="/wiki/http://en.wikipedia.org/wiki/Logical_programming" target="_new">logical languages</a> like Prolog, but without the level of complexity and obscurity that such languages can have.
+			</p>
+<p>We can get a better idea for how Actions work by thinking about how a spreadsheet works. In a spreadsheet, we might define a cell A that adds up a row of data, say "Income". We might define another cell C ("Profit") that takes A and adds it to another cell B that adds up another row of data ("Expenses"). Now, if we change a value in any of the rows, all of the other rows are added up and we get the results in A and B updated automatically. We never had to write code that said something like "for each cell in row X, where...". In fact, we don't really care 
+				<span class="italic">how</span> our Spreadsheet program adds up the numbers -- it could have added them all up at once but in backward order, or stored a running total somewhere and updated just the difference in value for the cell we changed -- what we care about is 
+				<span class="italic">what</span> the result is, and whether it is correct.
+			</p>
+<p>But Actions are much more powerful than a spreadsheet, because what is flowing from Action A to Action B is not just a number, but any model component such as a space or a set of agents that we need to use in target actions.</p>
+</div>
+</body>
+</html>

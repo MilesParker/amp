@@ -2,9 +2,9 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension point="org.eclipse.help.toc">
-      <toc file="wiki/AMP-toc.xml" primary="true"/>
+      <toc file="doc/AMP-toc.xml" primary="true"/>
       <toc
-            file="wiki/ModelersGuide-toc.xml"
+            file="toc.xml"
             primary="false">
       </toc>
    </extension>

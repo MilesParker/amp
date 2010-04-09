@@ -172,13 +172,13 @@ For readers familiar with UML and meta-modeling, the following diagrams give mor
 
 Our first diagram depicts the core structural design of the model. 
 
-[[Image:image/StructureComplexDiagram.png]] 
+[[Image:images/StructureComplexDiagram.png]] 
 
  There seems to be a lot going on here, but the basic components are pretty straightforward as we can see in the next diagram.
 
 ====Key Collaborations====
 
-[[Image:image/StructureSimpleDiagram.png]]
+[[Image:images/StructureSimpleDiagram.png]]
 
  Core interactions are in Red. The meta-model structure is essentially a Composite pattern. 
 
@@ -218,7 +218,7 @@ There are two other special categories of actions. One we use to crate the space
 
 These are all summarized in the diagram below.
 
-[[Image:image/ActionsBlocks.png]] 
+[[Image:images/ActionsBlocks.png]] 
 
 
 ==Selections==
@@ -229,29 +229,29 @@ A selection defines a particular set of agents that we want to do something with
 
 Again, a set of Behaviors in Actions is always defined by a set of selections and queries. In the following diagram, we can see the pattern.
 
-[[Image:image/ActionsSequence.png]]
+[[Image:images/ActionsSequence.png]]
 
 First, we define a Root Selection for a Rule, Schedule or other triggering event. Then, we might add a series of Query and Logic Actions to define the specific agents that we are intrested in. These are all part of the Selection. Next, we might define a series of Commands to determine what to do with those agents. Or, we could use the result of that selection to immediatly define another selection, for example if we are searching for an agent that is near another agent. The next diagram depicts a simple example.
 
-[[Image:image/ActionsSimpleSequence.png]]
+[[Image:images/ActionsSimpleSequence.png]]
 
 Here, we create a rule, and then check the results of two queries. For any agents that meet those criteria, we'll evaluate some function based on their state, and then set some value on them. In the next example, we'll first create the rule, and then create a new selection with a set of criteria. Finally, we'll do a move based on those queries.
 
-[[Image:image/ActionsSimpleSequence2.png]]
+[[Image:images/ActionsSimpleSequence2.png]]
 
 Logic Actions are used to assemble any kind of query structure needed. In the following example, we've defined a selection where the Set action occurs for any agent whoe meets the criteria defined by (Query 1 AND Query 2) OR Query 3. (Readers with experience with programming or formal logic will note that this looks just like a parse tree, and while that's basically what it is, there are important differences from how such trees are generally treated as we'll see later.)
 
-[[Image:image/ActionsComplexLogic.png]]
+[[Image:images/ActionsComplexLogic.png]]
 
 Note that Unions are often superfulous, though they can be useful for organizing queries. This is because all sources that flow into a given target Action act just like a union since any of the paths might reach that target. The following Action design is fully equivalant to the one above.
 
-[[Image:image/ActionsComplexLogicNoOr.png]]
+[[Image:images/ActionsComplexLogicNoOr.png]]
 
 ===Boundaries===
 
 An important concept in Actions is the idea of selection boundaries. A selection boundary is defined as the limit of a query directly upon a given Select Action. For example, in the following diagram, we can see the extent of the boundary for a straightforward selection.
 
-[[Image:image/ActionsSelBoundary1.png]]
+[[Image:images/ActionsSelBoundary1.png]]
 
 When does one selection boundary end and the next one begin? The simple rule is that the end of the boundary is defined for a given Action by the place where:
 
@@ -260,11 +260,11 @@ When does one selection boundary end and the next one begin? The simple rule is 
 
 In other words, as soon as a Logic Action occurs in a path leading to an Action, and other Query will define a new Selection, as we can see in the following example.
 
-[[Image:image/ActionsSelBoundary2.png]]
+[[Image:images/ActionsSelBoundary2.png]]
 
 These rules allow actions to be defined in the simplest possible way, but it is important to understand their implication as they result in behvavior that can be different from what someone used to and imperative programming environment such as Java might expect. In a simple case the distinciton might not matter. For example, if we are using a Query 1 to test wether an agent's attribute a = x and attribute b = y, we would get the same outcome if we placed intersected the queries as if we simply put them in sequence. Internally we would actually be searching for agents with a = x, and ''then'' taking those agents and choosing those agents with b=y, but the outcome would be the same. But consider a more sophisticated case, where we are searching for neighboring available cells.
 
-[[Image:image/ActionsSelBoundaryComplex.png]]
+[[Image:images/ActionsSelBoundaryComplex.png]]
 
 In the first case, we execute a search for all agents that meet the two criteria. This means that if there are ''any'' neighboring cells whcih are available, we're guranteed to find one (random) cell. In the second case, we first search for all cells that are neighbors. This will match any agents that include both available and non available agents. Now, at this point since our search returns one agent (in the current AMF design -- richer behavior will be supported in the future) the randomly selected agent could be either available or not. So in the second case, we might end up with no cell to move to, and thus make no move at all.
 
@@ -375,11 +375,11 @@ Here, we create a sequence of actions like so:
 
 Now, notice that although it's convenient to speak as if there is only one "Find Partner" and one "Partner Neighbor" in step 4 above, in fact selections are flowing through for each of the results of each of the previous action sequences, and we can refer to each of the directly. We could represent these behaviors in many different ways. For example, we might want to specify the model in a (hand-drawn) graphical language or in a (made-up) textual language:
 
-[[Image:image/ActionsExample.png]]
+[[Image:images/ActionsExample.png]]
 
 This is how it looks in an actual model:
 
-[[Image:image/ActionsExampleNew.png]]
+[[Image:images/ActionsExampleNew.png]]
 
 And here is how this works in detail:
 
@@ -408,7 +408,7 @@ The following diagram may be helpful to readers familiar with UML and Meta-model
 
 ====Meta-Classes====
 
-[[Image:image/ActionsDiagram.png]]
+[[Image:images/ActionsDiagram.png]]
 
 ====Details====
 
@@ -448,4 +448,4 @@ The following diagram may be helpful to readers familiar with UML and Meta-model
 
 ====Meta-Classes====
 
-[[Image:image/FunctionsDiagram.png]]
+[[Image:images/FunctionsDiagram.png]]

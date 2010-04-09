@@ -1,13 +1,15 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <toc topic="wiki/AMP.html" label="Agent Modeling Guide">
 	<topic href="wiki/AMP.html" label="Overview"></topic>
+<topic href="help/Introduction" label="Modeler's Guide">
+   <link toc="toc.xml"/>
+</topic>
 	<topic href="wiki/AMP.html#Getting_Started" label="Getting Started">
 		<topic href="wiki/AMP.html#ABM_Explorers" label="ABM Explorers"></topic>
 		<topic href="wiki/AMP.html#ABM_Researchers" label="ABM Researchers"></topic>
 		<topic href="wiki/AMP.html#ABM_Java_Developers" label="ABM Java Developers"></topic>
 		<topic href="wiki/AMP.html#Eclipse_Plugin_Developers" label="Eclipse Plugin Developers"></topic>
 	</topic>
- <link toc="wiki/ModelersGuide-toc.xml"/>
 	 <topic href="wiki/AMF.html" label="Agent Modeling Framework (AMF)">
 			<topic href="wiki/AMF.html#Understanding_AMF" label="Understanding AMF"></topic>
 			<topic href="wiki/AMF.html#Tutorials" label="Tutorials">

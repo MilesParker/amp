@@ -1,0 +1,125 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Example</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="Agent Modeling Guide">
+<link rel="up" href="Actions.html" title="Actions">
+<link rel="prev" href="Selections.html" title="Selections">
+<link rel="next" href="Reference_2.html" title="Reference">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Example</h1>
+<p>In this section, we'll look at an example that should make clear how the basic Actions approach works in a model. Say we want to define a behavior like:</p>
+<div class="literallayout">
+<p>"Search&nbsp;for&nbsp;a&nbsp;random&nbsp;agent&nbsp;within&nbsp;my&nbsp;vision&nbsp;that&nbsp;is&nbsp;the&nbsp;same&nbsp;age&nbsp;as&nbsp;I&nbsp;am.&nbsp;Find&nbsp;a&nbsp;location&nbsp;next&nbsp;to&nbsp;that&nbsp;agent&nbsp;that&nbsp;is&nbsp;not&nbsp;already&nbsp;occupied&nbsp;and&nbsp;move&nbsp;to&nbsp;it."<br>
+
+</p>
+</div>
+<p>Here, we create a sequence of actions like so:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>Select every agent for every period of the model. ("Find Partner" Rule)</p>
+</li>
+<li class="listitem">
+<p>For every member of that selection, search for other agents of the same age within vision distance. ("Partner" selection.)</p>
+</li>
+<li class="listitem">
+<p>From "Partners" find a random member and search for a neighboring locations. ("Partner Neighbor" selection.)</p>
+</li>
+<li class="listitem">
+<p>Finally, move the agent in "Find Partner" to the "Partner Neighbor" location.</p>
+</li>
+</ol>
+</div>
+<p>Now, notice that although it's convenient to speak as if there is only one "Find Partner" and one "Partner Neighbor" in step 4 above, in fact selections are flowing through for each of the results of each of the previous action sequences, and we can refer to each of the directly. We could represent these behaviors in many different ways. For example, we might want to specify the model in a (hand-drawn) graphical language or in a (made-up) textual language:</p>
+<p>
+				
+</p>
+<div class="mediaobject">
+<img src="images/ActionsExample.png"></div>
+<p>
+			
+</p>
+<p>This is how it looks in an actual model:</p>
+<p>
+				
+</p>
+<div class="mediaobject">
+<img src="images/ActionsExampleNew.png"></div>
+<p>
+			
+</p>
+<p>And here is how this works in detail:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>Create a Rule that will trigger the behavior. In this case, we want this rule to apply to all "Individual" agents within the model. (Space isn't relevant in this case.</p>
+</li>
+<li class="listitem">
+<p>Create a child Select Action that will find our partner. Two important things to note here:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="a">
+<li class="listitem">
+<p>The selection occurs based on the "Find Partner" selection. This means that for each Individual in the model, we'll be searching from the point of view of that agent to some other selection of agents.</p>
+</li>
+<li class="listitem">
+<p>We also need to define what type of agent we want and in this case the space does matter. We want to find an agent that is nearby within the City space. If instead we wanted to find a partner in a social network, we'd specify that instead.</p>
+</li>
+</ol>
+</div>
+</li>
+<li class="listitem">
+<p>Create two child Query Actions:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="a">
+<li class="listitem">
+<p>We want to search for someone who is the same age as us. This highlights the importance of the idea of the Selection in the Actions design. We're qualifying Age by our <span style="color: red">&lt;font&gt;Partner&lt;/font&gt;</span> and <span style="color: red">&lt;font&gt;ourselves&lt;/font&gt;</span>. The selection carries throughout the flow of execution and this context is an explicit part of the entire structure. Note that this is very different from the way control flow works in a traditional imperative language such as Java.</p>
+</li>
+<li class="listitem">
+<p>We also want to search using a function for nearness, "within", which takes a parameter of vision. Note that the spatial functions are all polymorphic -- if we decided later on that we would rather search within say "Kevin Bacon space", that is a graph structure representation of space, we would only need to change the space we've defined in Select Partner. (Design discussion note: re-examine this issue WRT possibility of allowing users to search in multiple spaces within the same query.)</p>
+</li>
+</ol>
+</div>
+</li>
+<li class="listitem">
+<p>Intersect the results of these two query components. This delineates the end of the selection definition for any target Actions.</p>
+</li>
+<li class="listitem">
+<p>Select a neighbor. Again, we can see the importance of Selections. Here, we are selecting from the point of view of the partner, not the initial agent that the current Rule is being executed for. Note that this time our target agent is a "Block", that is, a location within the city.</p>
+</li>
+<li class="listitem">
+<p>As above, define some queries. This time we want only those agents that are:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="a">
+<li class="listitem">
+<p>available, and</p>
+</li>
+<li class="listitem">
+<p>neighbors of our partner.</p>
+</li>
+</ol>
+</div>
+</li>
+<li class="listitem">
+<p>And another intersection..</p>
+</li>
+<li class="listitem">
+<p>Finally, we move to the location we've found. All that's required at this point is to specify:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="a">
+<li class="listitem">
+<p>The movement selection, or those agents that are moving, which in this case is the original agent we're executing the rule for, and</p>
+</li>
+<li class="listitem">
+<p>The destination, which is the cell that we've found. Note that the framework infers from the space definition that the Block agent is capable of hosting the Individual.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</body>
+</html>
