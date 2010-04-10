@@ -131,9 +131,7 @@ import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
 	«EXPAND BuildChartSelection FOREACH ((SContext) reference).agents-»
     addView(chart);
     «ENDIF»
-    «FOREACH members.typeSelect(ABuildProjection) AS builder»
-	    «builder.projection.id()».addView(new GEFView());
-    «ENDFOREACH»
+	addView(new GEFView());
     «targetDef.proceed()-»
 «ENDAROUND»
 
