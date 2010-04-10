@@ -1,0 +1,65 @@
+«IMPORT metaabm»
+«IMPORT metaabm::act»
+«IMPORT metaabm::function»
+
+«EXTENSION metaabm::tmpl::infer» 
+«EXTENSION metaabm::tmpl::util»
+«EXTENSION metaabm::tmpl::names»
+«EXTENSION metaabm::tmpl::types»
+«EXTENSION metaabm::tmpl::projections»
+
+«DEFINE Usage FOR FOperator-»
+«IF arity==0-»
+«symbol»
+«ELSEIF arity==1-»
+«symbol»X
+«ELSEIF arity==2-»
+X«symbol»Y
+«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE Usage FOR FGenericFunction-»
+«IF inputPrototypes.size > 0-»
+«FOREACH inputPrototypes AS input» «input.typeName()» «input.descrText()»
+«ENDFOREACH-»
+«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE Usage FOR FFunction-»«ENDDEFINE»
+
+«DEFINE LibraryTable FOR FLibrary-»
+	«IF !subs.isEmpty-»
+		«FOREACH subs AS sub-»
+|-
+|colspan="3" style="color:white; background-color:black;" | «sub.label»
+			«EXPAND LibraryTable FOR sub-»
+		«ENDFOREACH-»
+	«ENDIF-»
+	«IF !functions.isEmpty-»
+	«FOREACH functions AS function-»
+|-
+| «function.label» 
+| «function.descrText().replaceAll("\r\n","")»
+«EXPAND Usage FOR function-»
+	«ENDFOREACH-»
+	«ENDIF-»
+«ENDDEFINE»
+«DEFINE LibraryTable FOR IArtifact-»
+«ENDDEFINE»
+
+«DEFINE LibraryTable FOR SContext-»
+«IF !library.isEmpty»
+==Function Library==
+{| border="1" cellpadding="2" cellspacing="0"
+|-
+! Name !! Description
+	«EXPAND LibraryTable FOREACH library-»
+|}
+«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE Model FOR SContext-»
+	«FILE ("doc/" + implementation.className + ".mediawiki") -»
+		«EXPAND LibraryTable-»
+	«ENDFILE»
+«ENDDEFINE»

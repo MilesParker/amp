@@ -4,34 +4,19 @@
 	<property name="modelPath" value="test/"/>
 	<property name="modelFile" value="TestGeneration.metaabm"/>
     <property name="srcDir" value="srcgen"/>
-	<property name="testing" value="false"/>
-    <property name="buildProject" value="undefined.project"/>
-    <property name="packageModifier" value=""/>
 	
-	<bean class="org.eclipse.emf.Setup">
-      <uriMap to="model/core_library.metaabm" from="http://metaabm.org/core_library.metaabm" />
-      <uriMap to="model/metaabm.xsd" from="http://metaabm.org/structure" />
-      <uriMap to="model/metaabm.act.xsd" from="http://metaabm.org/act" />
-      <uriMap to="model/metaabm.function.xsd" from="http://metaabm.org/function" />
-   	</bean> 
+
+    <bean id="metaabm" class="org.eclipse.xtend.typesystem.emf.EmfRegistryMetaModel"/>
    
-    <bean id="metaabm" class="org.openarchitectureware.type.emf.EmfMetaModel">
-          <metaModelPackage value="org.metaabm.MetaABMPackage"/> 
-    </bean>
+	<component id="xmiParser" class="org.eclipse.emf.mwe.utils.Reader">
+        <uri value="${modelPath}"/>
+        <modelSlot value="model"/>
+  	</component>
 	
-	<component id="xmiParser" class="org.openarchitectureware.emf.XmiReader">
-		<modelFile value="${modelPath}${modelFile}"/>
-		<metaModelPackage value="org.metaabm.MetaABMPackage"/> 
-		<outputSlot value="model"/>
-	</component>
-	
-	<component id="textGenerator" class="org.openarchitectureware.xpand2.Generator" skipOnErrors="true" fileEncoding="iso-8859-1">
+	<component id="textGenerator" class="org.eclipse.xpand2.Generator" skipOnErrors="true" fileEncoding="iso-8859-1">
 		<metaModel idRef="metaabm"/>
 		<expand value="metaabm::ext::tmpl::TextDoc::Model FOR model"/>
 	    <outlet path="${outputPath}" overwrite="true"/> 
-		<globalVarDef name="testing" value="${testing}"/> 
-        <globalVarDef name="buildProject" value="'${buildProject}'"/> 
-        <globalVarDef name="packageModifier" value="'${packageModifier}'"/> 
-        <exceptionHandler class="org.eclipse.amp.amf.gen.mweExceptionHandler"/>
+		<fileEncoding value="ISO-8859-1"/> 
 	</component>    
 </workflow>
