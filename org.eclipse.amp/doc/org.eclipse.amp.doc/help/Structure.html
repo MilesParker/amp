@@ -6,32 +6,22 @@
 <meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
 <link rel="home" href="index.html" title="Agent Modeling Guide">
 <link rel="up" href="index.html" title="Agent Modeling Guide">
-<link rel="prev" href="General.html" title="General">
-<link rel="next" href="Attributes.html" title="Attributes">
+<link rel="prev" href="Other_Uses.html" title="Other Uses">
+<link rel="next" href="Types.html" title="Types">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Structure</h1>
-<div class="section" title="Agents">
+<div class="section" title="Design">
 <div class="titlepage">
 <div>
 <div>
 <h2 class="title" style="clear: both">
-<a name="Agents"></a>Agents</h2>
+<a name="Design"></a>Design</h2>
 </div>
 </div>
 </div>
-<p>An Agent is simply a software object that has autonomous behavior and (generally speaking) exists within some set of spaces. By autonomous, we mean that agents make the choice about when and how to execute a behavior, as opposed to have that controlled from "above", so to speak. Like any software objects, agents have attributes (fields) and actions (methods) associated with them.</p>
-<div class="section" title="Context Agents (Contexts)">
-<div class="titlepage">
-<div>
-<div>
-<h3 class="title">
-<a name="Context_Agents_.28Contexts.29"></a>Context Agents (Contexts)</h3>
-</div>
-</div>
-</div>
-<p>Agents also form the basic structural component of an agent-based model. Unlike the approach of a traditional Object Oriented environment, the dominant organizing principal for agents within AMF follows a compositional hierarchical model, not an inheritance model. (Inheritance-like behavior will be supported in forthcoming versions of Acore, but in a more sophisticated, flexible and dynamic way than is supported by traditional programming languages such as Java.) Contexts -- also referred to as "Swarms" or "Scapes", are simply Agents that are capable of containing other agents. With this basic construct -- known as a Composition in design pattern language -- agents are able to contain other agents. To get an idea for how this works, have a look at the "EpidemicRegional.metaabm" model. Note that in future releases, we will probably refer to Contexts as "Scapes".</p>
-</div>
+<p>The basic structure of an agent-based model can be quite simple. While there are many subtle complexities  -- beyond the scope of this manual -- we can construct most models following some straightforward and elegant design principles. And in fact, one of the main goals of the Agent Modeling Framework is to provide a consistent framework that can support using those principles to support the creation of models that can be eaisily understood, shared, and that can be used interchangably as components in other models.</p>
+<p>Unlike the approach of a traditional Object Oriented environment, the dominant organizing principal for agents within AMF follows a compositional hierarchical model, not an inheritance model. (Inheritance-like behavior will be supported in forthcoming versions of Acore, but in a more sophisticated, flexible and dynamic way than is supported by traditional programming languages such as Java.) Contexts -- also referred to as "Swarms" or "Scapes", are simply Agents that are capable of containing other agents. With this basic construct -- known as a Composition in design pattern language -- agents are able to contain other agents.</p>
 </div>
 </body>
 </html>

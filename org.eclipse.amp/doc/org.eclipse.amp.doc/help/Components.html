@@ -1,125 +1,17 @@
 <html>
 <head>
 <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Selections</title>
+<title>Components</title>
 <link href="book.css" rel="stylesheet" type="text/css">
 <meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
 <link rel="home" href="index.html" title="Agent Modeling Guide">
 <link rel="up" href="Actions.html" title="Actions">
-<link rel="prev" href="Types_of_Actions.html" title="Types of Actions">
+<link rel="prev" href="Design_2.html" title="Design">
 <link rel="next" href="Example.html" title="Example">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Selections</h1>
-<p>A selection defines a particular set of agents that we want to do something with. Selections are made up of the Select action itself, along with Query and Logic actions. When we refer to a selection in any target command, we are referring to the selection in the context of where we have defined the behavior.</p>
-<div class="section" title="Sequences">
-<div class="titlepage">
-<div>
-<div>
-<h3 class="title">
-<a name="Sequences"></a>Sequences</h3>
-</div>
-</div>
-</div>
-<p>Again, a set of Behaviors in Actions is always defined by a set of selections and queries. In the following diagram, we can see the pattern.</p>
-<p>
-					
-</p>
-<div class="mediaobject">
-<img src="images/ActionsSequence.png"></div>
-<p>
-				
-</p>
-<p>First, we define a Root Selection for a Rule, Schedule or other triggering event. Then, we might add a series of Query and Logic Actions to define the specific agents that we are intrested in. These are all part of the Selection. Next, we might define a series of Commands to determine what to do with those agents. Or, we could use the result of that selection to immediatly define another selection, for example if we are searching for an agent that is near another agent. The next diagram depicts a simple example.</p>
-<p>
-					
-</p>
-<div class="mediaobject">
-<img src="images/ActionsSimpleSequence.png"></div>
-<p>
-				
-</p>
-<p>Here, we create a rule, and then check the results of two queries. For any agents that meet those criteria, we'll evaluate some function based on their state, and then set some value on them. In the next example, we'll first create the rule, and then create a new selection with a set of criteria. Finally, we'll do a move based on those queries.</p>
-<p>
-					
-</p>
-<div class="mediaobject">
-<img src="images/ActionsSimpleSequence2.png"></div>
-<p>
-				
-</p>
-<p>Logic Actions are used to assemble any kind of query structure needed. In the following example, we've defined a selection where the Set action occurs for any agent whoe meets the criteria defined by (Query 1 AND Query 2) OR Query 3. (Readers with experience with programming or formal logic will note that this looks just like a parse tree, and while that's basically what it is, there are important differences from how such trees are generally treated as we'll see later.)</p>
-<p>
-					
-</p>
-<div class="mediaobject">
-<img src="images/ActionsComplexLogic.png"></div>
-<p>
-				
-</p>
-<p>Note that Unions are often superfulous, though they can be useful for organizing queries. This is because all sources that flow into a given target Action act just like a union since any of the paths might reach that target. The following Action design is fully equivalant to the one above.</p>
-<p>
-					
-</p>
-<div class="mediaobject">
-<img src="images/ActionsComplexLogicNoOr.png"></div>
-<p>
-				
-</p>
-</div>
-<div class="section" title="Boundaries">
-<div class="titlepage">
-<div>
-<div>
-<h3 class="title">
-<a name="Boundaries"></a>Boundaries</h3>
-</div>
-</div>
-</div>
-<p>An important concept in Actions is the idea of selection boundaries. A selection boundary is defined as the limit of a query directly upon a given Select Action. For example, in the following diagram, we can see the extent of the boundary for a straightforward selection.</p>
-<p>
-					
-</p>
-<div class="mediaobject">
-<img src="images/ActionsSelBoundary1.png"></div>
-<p>
-				
-</p>
-<p>When does one selection boundary end and the next one begin? The simple rule is that the end of the boundary is defined for a given Action by the place where:</p>
-<div class="orderedlist">
-<ol class="orderedlist" type="1">
-<li class="listitem">
-<p>A Query Action is not followed by a Logic Action, or</p>
-</li>
-<li class="listitem">
-<p>A Logic Action is not followed by another Logic Action</p>
-</li>
-</ol>
-</div>
-<p>In other words, as soon as a Logic Action occurs in a path leading to an Action, and other Query will define a new Selection, as we can see in the following example.</p>
-<p>
-					
-</p>
-<div class="mediaobject">
-<img src="images/ActionsSelBoundary2.png"></div>
-<p>
-				
-</p>
-<p>These rules allow actions to be defined in the simplest possible way, but it is important to understand their implication as they result in behvavior that can be different from what someone used to and imperative programming environment such as Java might expect. In a simple case the distinciton might not matter. For example, if we are using a Query 1 to test wether an agent's attribute a = x and attribute b = y, we would get the same outcome if we placed intersected the queries as if we simply put them in sequence. Internally we would actually be searching for agents with a = x, and 
-					<span class="italic">then</span> taking those agents and choosing those agents with b=y, but the outcome would be the same. But consider a more sophisticated case, where we are searching for neighboring available cells.
-				</p>
-<p>
-					
-</p>
-<div class="mediaobject">
-<img src="images/ActionsSelBoundaryComplex.png"></div>
-<p>
-				
-</p>
-<p>In the first case, we execute a search for all agents that meet the two criteria. This means that if there are 
-					<span class="italic">any</span> neighboring cells whcih are available, we're guranteed to find one (random) cell. In the second case, we first search for all cells that are neighbors. This will match any agents that include both available and non available agents. Now, at this point since our search returns one agent (in the current AMF design -- richer behavior will be supported in the future) the randomly selected agent could be either available or not. So in the second case, we might end up with no cell to move to, and thus make no move at all.
-				</p>
-</div>
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Components</h1>
+<p>A selection defines a particular set of agents that we want to do something with. Selections are made up of the Select action itself, along with Query and Logic actions. When we refer to a selection in any target command, we are referring to the selection in the context of where we have defined the behavior. We'll see how that works, below.</p>
 <div class="section" title="Root Actions">
 <div class="titlepage">
 <div>
@@ -258,7 +150,7 @@
 <div>
 <div>
 <h5 class="title">
-<a name="N1029D"></a>Selection</h5>
+<a name="N10357"></a>Selection</h5>
 </div>
 </div>
 </div>
@@ -317,7 +209,7 @@
 <div>
 <div>
 <h5 class="title">
-<a name="N102BE"></a>Function</h5>
+<a name="N10378"></a>Function</h5>
 </div>
 </div>
 </div>
