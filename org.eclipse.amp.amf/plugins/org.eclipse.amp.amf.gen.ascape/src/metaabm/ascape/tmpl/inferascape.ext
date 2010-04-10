@@ -148,7 +148,11 @@ cached String conditionParam(AAct act) :
 	act.conditionForAscape() ? act.selector().selid() + "Condition" : ((act.hasControl("available") && act.hasControl("within")) ? "null" : "");
 
 cached String findSpace(AAct act) :
-    act.selector().space != null ? act.selector().getterPath(act.selector().space, false) + ".getSpace()." : "getScape().";
+    act.selector().space != null
+    	? (act.selector().space.metaType != SGrid
+    		? act.selector().getterPath(act.selector().space, false) + ".getSpace()."
+    		: "((org.ascape.model.space.Discrete)" + act.selector().getterPath(act.selector().space, false) + ".getSpace()).")
+    	: "getScape().";
  
 cached Boolean allTerms(AAct act) :
     (act.hasControl("nearest") || act.hasControl("within"));
