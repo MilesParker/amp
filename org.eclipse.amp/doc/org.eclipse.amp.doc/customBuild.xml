@@ -19,6 +19,7 @@
 	
 	<property name="build.dir" value="build" />
 	<property name="download.dir" value="${java.io.tmpdir}${file.separator}downloads"/>
+	<property name="website.dir" value="../../../amp"/>
 	
 	<!--  
 		WikiText Toolchain 
@@ -116,6 +117,19 @@
 	<target name="init">
 		<mkdir dir="${download.dir}"/>
 		<mkdir dir="${build.dir}"/>
+	</target>
+	
+	<target name="promote-doc">
+		<copy todir="${website.dir}/documentation" overwrite="true">
+			<fileset dir="html/">
+				<include name="**" />
+			</fileset>
+		</copy>
+		<copy todir="${website.dir}/documentation" overwrite="true">
+			<fileset dir="manual/">
+				<include name="**" />
+			</fileset>
+		</copy>
 	</target>
 	
 	<target name="build-doc" depends="init, install-wikitext, get-docbook-xsl, get-fop">

@@ -7,6 +7,7 @@
 <link rel="home" href="index.html" title="Agent Modeling Guide">
 <link rel="up" href="index.html" title="Agent Modeling Guide">
 <link rel="prev" href="Reference_2.html" title="Reference">
+<link rel="next" href="Function_Library_2.html" title="Function Library">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Functions</h1>
@@ -17,7 +18,7 @@
 <p>Operators are simple calculations sharing the same type.</p>
 </li>
 <li class="listitem">
-<p>Generics that can represent any general function that takes some well-defined input(s) and returns some well-defined output(s).</p>
+<p>Functions that can represent any general function that takes some well-defined input(s) and returns some well-defined output(s).</p>
 </li>
 </ol>
 </div>
@@ -25,51 +26,23 @@
 <div class="orderedlist">
 <ol class="orderedlist" type="1">
 <li class="listitem">
-<p>Functions proper can return any value and are used in Evaluate actions.</p>
+<p>Generics can return any value and are used in Evaluate actions.</p>
 </li>
 <li class="listitem">
-<p>Logicals return some boolean result and are used by Query actions to decide wether target Actions apply to a particular selection, and by Evaluate actions just as with any other functions. Input types should be defined as generally as possible.</p>
+<p>Logicals return some boolean result and are used by Query actions to decide whether target Actions apply to a particular selection, and by Evaluate actions just as with any other functions. Input types should be defined as generally as possible.</p>
 </li>
 </ol>
 </div>
+<p>These overlap, so we have operators, logical operators, functions and logical functions.</p>
+<p>Functions are also divided into categories, as we'll see.</p>
 <p>A technical note: conceptually, functions can return multi-values, but that is not currently implemented in the reference targets because of limitations of the target language Java.</p>
-<p>These overlap, so we have </p>
-<div class="section" title="Reference">
+<div class="section" title="Function Library">
 <div class="titlepage">
 <div>
 <div>
 <h2 class="title" style="clear: both">
-<a name="Reference_3"></a>Reference</h2>
+<a name="Function_Library"></a>Function Library</h2>
 </div>
-</div>
-</div>
-<div class="section" title="Diagrams">
-<div class="titlepage">
-<div>
-<div>
-<h3 class="title">
-<a name="Diagrams_3"></a>Diagrams</h3>
-</div>
-</div>
-</div>
-<p>The following diagram may be helpful to readers familiar with UML and Meta-modeling:</p>
-<div class="section" title="Meta-Classes">
-<div class="titlepage">
-<div>
-<div>
-<h4 class="title">
-<a name="Meta-Classes_3"></a>Meta-Classes</h4>
-</div>
-</div>
-</div>
-<p>
-						
-</p>
-<div class="mediaobject">
-<img src="images/FunctionsDiagram.png"></div>
-<p>
-					
-</p>
 </div>
 </div>
 </div>

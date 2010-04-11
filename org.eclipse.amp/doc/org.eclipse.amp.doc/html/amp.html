@@ -81,6 +81,12 @@
 <dd>
 <dl>
 <dt>
+<span class="section"><a href="#Function_Library">Function Library</a></span>
+</dt>
+<dt>
+<span class="section"><a href="#Function_Library_2">Function Library</a></span>
+</dt>
+<dt>
 <span class="section"><a href="#Reference_3">Reference</a></span>
 </dt>
 </dl>
@@ -1496,7 +1502,7 @@
 <p>Operators are simple calculations sharing the same type.</p>
 </li>
 <li class="listitem">
-<p>Generics that can represent any general function that takes some well-defined input(s) and returns some well-defined output(s).</p>
+<p>Functions that can represent any general function that takes some well-defined input(s) and returns some well-defined output(s).</p>
 </li>
 </ol>
 </div>
@@ -1504,15 +1510,640 @@
 <div class="orderedlist">
 <ol class="orderedlist" type="1">
 <li class="listitem">
-<p>Functions proper can return any value and are used in Evaluate actions.</p>
+<p>Generics can return any value and are used in Evaluate actions.</p>
 </li>
 <li class="listitem">
-<p>Logicals return some boolean result and are used by Query actions to decide wether target Actions apply to a particular selection, and by Evaluate actions just as with any other functions. Input types should be defined as generally as possible.</p>
+<p>Logicals return some boolean result and are used by Query actions to decide whether target Actions apply to a particular selection, and by Evaluate actions just as with any other functions. Input types should be defined as generally as possible.</p>
 </li>
 </ol>
 </div>
+<p>These overlap, so we have operators, logical operators, functions and logical functions.</p>
+<p>Functions are also divided into categories, as we'll see.</p>
 <p>A technical note: conceptually, functions can return multi-values, but that is not currently implemented in the reference targets because of limitations of the target language Java.</p>
-<p>These overlap, so we have </p>
+<div class="section" title="Function Library">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Function_Library"></a>Function Library</h2>
+</div>
+</div>
+</div>
+</div>
+<div class="section" title="Function Library">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Function_Library_2"></a>Function Library</h2>
+</div>
+</div>
+</div>
+<table id="N10464">
+<tr>
+					
+<th>Name</th>
+					<th>Description</th>
+				
+</tr>
+<tr>
+					
+<td>Operators</td>
+				
+</tr>
+<tr>
+					
+<td>Logical Operators</td>
+				
+</tr>
+<tr>
+					
+<td>Not </td>
+				
+</tr>
+<tr>
+					
+<td>Equal </td>
+				
+</tr>
+<tr>
+					
+<td>Identical </td>
+				
+</tr>
+<tr>
+					
+<td>Greater </td>
+				
+</tr>
+<tr>
+					
+<td>Lesser </td>
+				
+</tr>
+<tr>
+					
+<td>Greater or Equal </td>
+				
+</tr>
+<tr>
+					
+<td>Lesser or Equal </td>
+				
+</tr>
+<tr>
+					
+<td>True </td>
+				
+</tr>
+<tr>
+					
+<td>False </td>
+				
+</tr>
+<tr>
+					
+<td>Identity </td>
+				
+</tr>
+<tr>
+					
+<td>Different </td>
+				
+</tr>
+<tr>
+					
+<td>Numeric Operators</td>
+				
+</tr>
+<tr>
+					
+<td>Negative Value </td>
+				
+</tr>
+<tr>
+					
+<td>Add </td>
+				
+</tr>
+<tr>
+					
+<td>Subtract </td>
+				
+</tr>
+<tr>
+					
+<td>Multiply </td>
+				
+</tr>
+<tr>
+					
+<td>Divide </td>
+				
+</tr>
+<tr>
+					
+<td>Power </td>
+				
+</tr>
+<tr>
+					
+<td>Modulo </td>
+				
+</tr>
+<tr>
+					
+<td>Increment </td>
+					<td>Incremented numeric value by 1 unit. Not transformative of initial value like C!</td>
+				
+</tr>
+<tr>
+					
+<td>Decrement </td>
+					<td>Decrement numeric value by 1 unit.</td>
+				
+</tr>
+<tr>
+					
+<td>Unit Value </td>
+					<td>The value of one common unit, e.g. 1.</td>
+				
+</tr>
+<tr>
+					
+<td>Zero Value </td>
+					<td>The value of no units, e.g. zero.</td>
+				
+</tr>
+<tr>
+					
+<td>Original Value </td>
+					<td>The original value, e.g. the value for the value client at time 0.</td>
+				
+</tr>
+<tr>
+					
+<td>Spatial</td>
+				
+</tr>
+<tr>
+					
+<td>Nearest  </td>
+					<td>Represents the nearest agents (including gird cells) or locations to this agent. If more than one agent or location is the same distance away they will all be considered. Note that while this function is defined for the selection of an agent, the result of this function is defined by the context within which it is used. If the selection specifies another agent within a space, this function will represent the nearest agent in that space. If the selection specifies a Cell within a grid space, this function will represent that cell.</td>
+				
+</tr>
+<tr>
+					
+<td>Toward </td>
+					<td>Represents a location that is on the shortest path to a particular agent or location from the source agent (that is, the selection's selection's agent). This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction towards some objective.</td>
+				
+</tr>
+<tr>
+					
+<td>Within </td>
+					<td>Represents a limit to the distance of a spatial search. When used in combination with other spatial functions such as "nearest" requires that all agents or locations must be within the distance specified by the input value.</td>
+				
+</tr>
+<tr>
+					
+<td>Neighbor </td>
+					<td>Represents any agents that are nearest neighbors to the agent, that is nominally of distance 1. This function is only relevant in discrete spaces -- grids and networks -- where there are immediate neighboring cells as defined by the geometry of the selection's space.</td>
+				
+</tr>
+<tr>
+					
+<td>Include Self </td>
+					<td>Specifies wether the agent that we are searching from -- that is, the agent of the selection for this Query Action's selection -- is included in the results of the search.</td>
+				
+</tr>
+<tr>
+					
+<td>Within 2D Boundary </td>
+					<td>Represents agents or locaitons who exist within the boundary specified by the inputs.</td>
+				
+</tr>
+<tr>
+					
+<td>Here </td>
+					<td>Represents the location of the searching agent. For example, if a selection is defined for an agent cell, and that selection's selection's agent is an occupant of a cell, the cell that the agent is occupying will be used. </td>
+				
+</tr>
+<tr>
+					
+<td>Available </td>
+					<td>Represents cells which are not currently occupied. This function is only relevant for grids which are not multi-occupant.</td>
+				
+</tr>
+<tr>
+					
+<td>Distance </td>
+					<td>The distance between the source agent and an agent represented by this selection. If more than one agent is represented by the other functions in the selection, this funciton will the distance to an arbitrary (randomly selected) agent as deifned by those other functions.</td>
+				
+</tr>
+<tr>
+					
+<td>Away </td>
+					<td>Represents a location that is on the path that will take the source agent (that is, the selection's selection's agent) the farthest distance from the agent(s) represented by the search. This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction away from some location or agent.</td>
+				
+</tr>
+<tr>
+					
+<td>Minimize </td>
+					<td>This funciton is not currently supported.</td>
+				
+</tr>
+<tr>
+					
+<td>Maximize </td>
+					<td>This funciton is not currently supported.</td>
+				
+</tr>
+<tr>
+					
+<td>Location 2D </td>
+					<td>Represents the location of the current agent for use in subsequent selections.</td>
+				
+</tr>
+<tr>
+					
+<td>Boundary 2D </td>
+					<td>Represents a two-dimensional boundary within a space. (Not currently relevant for any general usages.)</td>
+				
+</tr>
+<tr>
+					
+<td>Random</td>
+				
+</tr>
+<tr>
+					
+<td>Random In Range </td>
+					<td>A random value within that numeric range specified as drawn from a uniform distribution. The minimum values are inclusive. The maximum values are inclusive for integer inputs and exclusive for Real inputs.</td>
+				
+</tr>
+<tr>
+					
+<td>Random To Limit </td>
+					<td>A random value between zero and the value specified by the (non-zero) input and drawn from a uniform range. That value is inclusive for Integers and exclusive for Reals. (Note that as with the random in range function in the context of real numbers the distinction between an exclusive and inclusive limit is essentially meaningless.)</td>
+				
+</tr>
+<tr>
+					
+<td>Random Unit </td>
+					<td>A random Real value between 0 and 1 drawn from a unifor distribution. (The distinction between inclusive and exclusive range is essentially meaningless in this context and we can assume that the result will never be greater or equal to 1.)</td>
+				
+</tr>
+<tr>
+					
+<td>Random Boolean </td>
+					<td>A value that is randomly true or false, i.e. a fair coin toss.</td>
+				
+</tr>
+<tr>
+					
+<td>Random Weighted </td>
+					<td>An indexed value weighted against a probability distribution. The total probability must sum to 1.0. For example, an input of {.1,.2,.7} under a unifrom distribution would would have 10% probability of producing "0" , 20%  for "1" and 70% for "2".</td>
+				
+</tr>
+<tr>
+					
+<td>Random Member </td>
+					<td>Represents a random value drawn from the set of Real values specified.</td>
+				
+</tr>
+<tr>
+					
+<td>Random State </td>
+					<td>A random specified value (option) from the specified state.</td>
+				
+</tr>
+<tr>
+					
+<td>Graphic</td>
+				
+</tr>
+<tr>
+					
+<td>Shape Oval </td>
+					<td>Draw a generic oval.</td>
+				
+</tr>
+<tr>
+					
+<td>Shape Rectangle </td>
+					<td>Draws a rectangular shape.</td>
+				
+</tr>
+<tr>
+					
+<td>Shape Marker </td>
+					<td>Draw a marker, that is a graphical indicator that can be used to add an addiitonal queue about the object state. For example, in a 2D graphics representation this might be a small shape drawn inset at the corner of the larger shape. </td>
+				
+</tr>
+<tr>
+					
+<td>Graphic Outline </td>
+					<td>Draws an outline of the last evaluated shape, using the last specified color or the default color (usually black) if none has been specified.</td>
+				
+</tr>
+<tr>
+					
+<td>Graphic Fill </td>
+					<td>Fills the last evaluated shape with the last specified color or the default color (usually black) if none has been specified.</td>
+				
+</tr>
+<tr>
+					
+<td>Shape Inset </td>
+					<td>Shrinks the current shape by the input amount. (The overeall scale is currently unspecified, but in most implementations should be 20.)</td>
+				
+</tr>
+<tr>
+					
+<td>Color RGB </td>
+					<td>A color specified by the three inputs for Red, Green and Blue color components. Those inputs are expected to be in the range 0..1.</td>
+				
+</tr>
+<tr>
+					
+<td>Color Red </td>
+					<td>The color red.</td>
+				
+</tr>
+<tr>
+					
+<td>Color Yellow </td>
+					<td>The color yellow.</td>
+				
+</tr>
+<tr>
+					
+<td>Color Blue </td>
+					<td>The color blue.</td>
+				
+</tr>
+<tr>
+					
+<td>Color Orange </td>
+					<td>The color orange.</td>
+				
+</tr>
+<tr>
+					
+<td>Color Green </td>
+					<td>The color green.</td>
+				
+</tr>
+<tr>
+					
+<td>Color Purple </td>
+					<td>The color purple. No kidding.</td>
+				
+</tr>
+<tr>
+					
+<td>Color Black </td>
+					<td>The color black. (It's always in style.)</td>
+				
+</tr>
+<tr>
+					
+<td>Color White </td>
+					<td>The color white.</td>
+				
+</tr>
+<tr>
+					
+<td>Color Gray </td>
+					<td>The color gray.</td>
+				
+</tr>
+<tr>
+					
+<td>Shape Marker 2 </td>
+					<td>Represents a marker placed in a different location from the other shape markers.</td>
+				
+</tr>
+<tr>
+					
+<td>Shape Marker 3 </td>
+					<td>Represents a marker placed in a different location from the other shape markers.</td>
+				
+</tr>
+<tr>
+					
+<td>Time</td>
+				
+</tr>
+<tr>
+					
+<td>Now </td>
+					<td>The current simulation period, that is the number of iterations that the model has gone through, or in the case of models with callibrarted time, the number of iterations added to the model's nominal start time.</td>
+				
+</tr>
+<tr>
+					
+<td>Math</td>
+				
+</tr>
+<tr>
+					
+<td>Sine </td>
+				
+</tr>
+<tr>
+					
+<td>Cosine </td>
+				
+</tr>
+<tr>
+					
+<td>Tangent </td>
+				
+</tr>
+<tr>
+					
+<td>Arc Sine </td>
+				
+</tr>
+<tr>
+					
+<td>Arc Cosine </td>
+				
+</tr>
+<tr>
+					
+<td>Arc Tangent </td>
+				
+</tr>
+<tr>
+					
+<td>Convert Degree to Radians </td>
+				
+</tr>
+<tr>
+					
+<td>Convert Radians to Degrees </td>
+				
+</tr>
+<tr>
+					
+<td>Exp </td>
+				
+</tr>
+<tr>
+					
+<td>Log </td>
+				
+</tr>
+<tr>
+					
+<td>Log b10 </td>
+				
+</tr>
+<tr>
+					
+<td>Square Root </td>
+				
+</tr>
+<tr>
+					
+<td>Cube Root </td>
+				
+</tr>
+<tr>
+					
+<td>Remainder </td>
+				
+</tr>
+<tr>
+					
+<td>Ceiling </td>
+				
+</tr>
+<tr>
+					
+<td>Floor </td>
+				
+</tr>
+<tr>
+					
+<td>Rount </td>
+				
+</tr>
+<tr>
+					
+<td>Arc Tangent Rectangular </td>
+				
+</tr>
+<tr>
+					
+<td>Power </td>
+				
+</tr>
+<tr>
+					
+<td>Absolute Value </td>
+				
+</tr>
+<tr>
+					
+<td>Maximum </td>
+				
+</tr>
+<tr>
+					
+<td>Minimum </td>
+				
+</tr>
+<tr>
+					
+<td>ULP </td>
+				
+</tr>
+<tr>
+					
+<td>Sign </td>
+				
+</tr>
+<tr>
+					
+<td>Hyperbolic Sine </td>
+				
+</tr>
+<tr>
+					
+<td>Hyperbolic Cosine </td>
+				
+</tr>
+<tr>
+					
+<td>Hyperbolic Tan </td>
+				
+</tr>
+<tr>
+					
+<td>Hypotuneuse </td>
+				
+</tr>
+<tr>
+					
+<td>Expm1 </td>
+				
+</tr>
+<tr>
+					
+<td>Log1p </td>
+				
+</tr>
+<tr>
+					
+<td>List</td>
+				
+</tr>
+<tr>
+					
+<td>Item </td>
+					<td>Returns the item at the specified index from the list of items provided. Those items will typically be input primitives such as Integer or Real values.</td>
+				
+</tr>
+<tr>
+					
+<td>Length </td>
+					<td>The number of items in the provided list of items.</td>
+				
+</tr>
+<tr>
+					
+<td>Distribution</td>
+				
+</tr>
+<tr>
+					
+<td>Uniform Cross Distribution </td>
+					<td>A ranom number taken from a distribution of values as defined by a cross of all values. (See Cross Distribution.) This funciton then returns a value drawn from the minimum and maximum values as determined by the current agent state. In the cross distribution, each of the values is treated independently so that an input attribute is created for every potential combination of states.</td>
+				
+</tr>
+<tr>
+					
+<td>Uniform Additive Distribution </td>
+					<td>A random number taken from a distribution of values in which each of the minimum and maximum values are added to determine a total minimum and maximum value. (See Additive Distribution.) In the additive distribution, each of the values is treated as dependent on the others so that an input attribute is only created for each seperate state.</td>
+				
+</tr>
+<tr>
+					
+<td>Cross Distribution </td>
+					<td>A value taken from a set of (auto-generated) attributes based on the value of each state included. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create seperate input attributes for AI, AII, BI and BII. Then for an agent with States A and II this function would return the value specified by the AII input attribute.</td>
+				
+</tr>
+<tr>
+					
+<td>Additive Distribution </td>
+					<td>A value taken from a set of (auto-generated) attributes based on the combined values of the states provided. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create input attributes for A, B, I and II. Those values would then be added together, so that for an Agent with state A and II this function would return A + II.</td>
+				
+</tr>
+</table>
+</div>
 <div class="section" title="Reference">
 <div class="titlepage">
 <div>
