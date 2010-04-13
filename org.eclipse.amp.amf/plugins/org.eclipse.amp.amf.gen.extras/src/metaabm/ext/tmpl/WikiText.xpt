@@ -9,52 +9,74 @@
 «EXTENSION metaabm::tmpl::projections»
 
 «DEFINE Usage FOR FOperator-»
-«IF arity==0-»
-«symbol»
+The result of the expression «IF arity==0-»«symbol».
 «ELSEIF arity==1-»
-«symbol»X
+«symbol»X.
 «ELSEIF arity==2-»
-X«symbol»Y
+X«symbol»Y.
+«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE Usage FOR FFunction-»
+«IF parent().id() != "math"-»
+«descrText().replaceAll("\r\n","")»
+	«IF inputPrototypes.size> 0-»
+		«IF inputPrototypes.size > 0-»
+ Inputs:
+			«FOREACH inputPrototypes AS input-»
+ [«input.typeLongName()»] «input.descrText()»
+			«ENDFOREACH-»
+		«ENDIF-»
+	«ENDIF-»
+«ELSE-»
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#«id()»(«FOREACH inputPrototypes AS input SEPARATOR ",%20"-»«input.typeName()»«ENDFOREACH»)]
 «ENDIF-»
 «ENDDEFINE»
 
 «DEFINE Usage FOR FGenericFunction-»
-«IF inputPrototypes.size > 0-»
-«FOREACH inputPrototypes AS input» «input.typeName()» «input.descrText()»
-«ENDFOREACH-»
+«IF parent().id() != "math"-»
+«descrText().replaceAll("\r\n","")»
+	«IF inputPrototypes.size + outputPrototypes.size> 0-»
+		«IF inputPrototypes.size > 0-»
+ Inputs:
+			«FOREACH inputPrototypes AS input-»
+ [«input.typeLongName()»] «input.descrText()»
+			«ENDFOREACH-»
+		«ENDIF-»
+		«IF outputPrototypes.size > 0-»
+ Outputs:
+			«FOREACH outputPrototypes AS output-»
+ [«output.typeLongName()»] «output.descrText()»
+			«ENDFOREACH-»
+		«ENDIF-»
+	«ENDIF-»
+«ELSE-»
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#«id()»(«FOREACH inputPrototypes AS input SEPARATOR ",%20"-»«input.typeName()»«ENDFOREACH»)]
 «ENDIF-»
 «ENDDEFINE»
-
-«DEFINE Usage FOR FFunction-»«ENDDEFINE»
 
 «DEFINE LibraryTable FOR FLibrary-»
 	«IF !subs.isEmpty-»
 		«FOREACH subs AS sub-»
-|-
-|colspan="3" style="color:white; background-color:black;" | «sub.label»
+====«sub.label»====
 			«EXPAND LibraryTable FOR sub-»
 		«ENDFOREACH-»
 	«ENDIF-»
 	«IF !functions.isEmpty-»
 	«FOREACH functions AS function-»
-|-
-| «function.label» 
-| «function.descrText().replaceAll("\r\n","")»
-«EXPAND Usage FOR function-»
+=====«function.label»=====
+		«EXPAND Usage FOR function-»
 	«ENDFOREACH-»
 	«ENDIF-»
 «ENDDEFINE»
+
 «DEFINE LibraryTable FOR IArtifact-»
 «ENDDEFINE»
 
 «DEFINE LibraryTable FOR SContext-»
 «IF !library.isEmpty»
-==Function Library==
-{| border="1" cellpadding="2" cellspacing="0"
-|-
-! Name !! Description
+===Function Library===
 	«EXPAND LibraryTable FOREACH library-»
-|}
 «ENDIF-»
 «ENDDEFINE»
 
