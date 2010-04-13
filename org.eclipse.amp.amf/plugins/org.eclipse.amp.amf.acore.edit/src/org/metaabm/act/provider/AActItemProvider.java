@@ -23,6 +23,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang.StringUtils;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
@@ -52,8 +53,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.apache.commons.lang.StringUtils;
 import org.metaabm.IID;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SNamed;
@@ -261,6 +260,18 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
                                                     new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
+    public void addTargets(EList<AAct> sources, EList<AAct> result) {
+        result.addAll(sources);
+        for (AAct source : sources) {
+            EList<AAct> next = new BasicEList<AAct>();
+            for (AAct target : source.getTargets()) {
+                if (!result.contains(target)) {
+                    addTargets(new BasicEList(Collections.singleton(target)), result);
+                }
+            }
+        }
+    }
+
     @SuppressWarnings("unchecked")
     public Collection<?> getChildren(Object object) {
         if (object instanceof ARoot) {
@@ -270,10 +281,9 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
             // for (AAct members : root.getTargets()) {
             //
             // }
-            EList<AAct> allTargets = new BasicEList(root.getAllTargets());
-            allTargets.removeAll(targets);
-            allTargets.addAll(0, targets);
-            return allTargets;
+            BasicEList result = new BasicEList();
+            addTargets(targets, result);
+            return result;
         } else {
             // Collection<Object> children = new ArrayList<Object>();
             // if (providerForFeature == null) {
@@ -686,6 +696,11 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
 
     @Override
     public boolean hasChildren(Object object) {
+        AAct act = (AAct) object;
+        if (act.getTargets().size() <= 1 && act.getSources().size() <= 1 && !(object instanceof ASink)
+                && !(object instanceof AGroup) && !(object instanceof ARoot)) {
+            return false;
+        }
         return super.hasChildren(object, false);
     }
 
@@ -768,7 +783,9 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
         if (act instanceof ASink) {
             for (AInput input : ((ASink) act).getInputs()) {
                 if (!allSourceSelects.contains(input.getSelected()) && !processed.contains(input)) {
-                    cmd.append(SetCommand.create(domain, input, MetaABMActPackage.Literals.AINPUT__SELECTED, newSelect));
+                    cmd
+                    .append(SetCommand.create(domain, input, MetaABMActPackage.Literals.AINPUT__SELECTED,
+                                              newSelect));
                     processed.add(input);
                 }
             }
