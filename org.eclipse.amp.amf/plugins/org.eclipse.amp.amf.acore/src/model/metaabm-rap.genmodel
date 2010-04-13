@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2007-2009 Metascape, LLC, Copyright (c) 2006-2007 Argonne National Labs&#xA;All rights reserved. This program and the accompanying materials&#xA;are made available under the terms of the Eclipse Public License v1.0&#xA;which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html"
+    modelDirectory="/org.eclipse.amp.amf.acore/srcgen" editDirectory="/org.eclipse.amp.amf.acore.edit.rap/src"
+    editorDirectory="/org.eclipse.amp.amf.acore.editor.rap/src" modelPluginID="org.eclipse.amp.amf.acore"
+    templateDirectory="/org.eclipse.amp.amf.acore/" modelName="metaabm" editPluginClass="org.metaabm.provider.MetaABMEditPlugin"
+    editorPluginClass="org.metaabm.ide.MetaModelerPlugin" updateClasspath="false"
+    generateSchema="true" rootImplementsInterface="" featureMapWrapperInterface=""
+    featureMapWrapperInternalInterface="" featureMapWrapperClass="" codeFormatting="true"
+    testsDirectory="/org.eclipse.amp.amf.acore.test/test" testSuiteClass="org.metaabm.tests.MetaABMAllTests"
+    booleanFlagsField="" importerID="org.eclipse.emf.importer.ecore" suppressUnsettable="true"
+    complianceLevel="5.0" copyrightFields="false" providerRootExtendsClass="MetaABMItemProvider"
+    editPluginID="org.eclipse.amp.amf.acore.edit.rap" editorPluginID="org.eclipse.amp.amf.acore.editor.rap"
+    optimizedHasChildren="true" tableProviders="true" colorProviders="true" richAjaxPlatform="true">
+  <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+    <genAnnotations source="selectedPackages">
+      <details key="http://metaabm.org/structure" value="metaabm.xsd"/>
+      <details key="http://metaabm.org/function" value="metaabm.function.xsd"/>
+      <details key="http://metaabm.org/act" value="metaabm.act.xsd"/>
+    </genAnnotations>
+    <details key="directoryURI" value="."/>
+  </genAnnotations>
+  <foreignModel>metaabm.ecore</foreignModel>
+  <genPackages prefix="MetaABM" basePackage="org" resource="XMI" disposableProviderFactory="true"
+      loadInitialization="true" presentationPackageSuffix="ide" contentTypeIdentifier=""
+      ecorePackage="metaabm.ecore#/">
+    <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+      <genAnnotations source="metaabm.xsd"/>
+    </genAnnotations>
+    <genEnums ecoreEnum="metaabm.ecore#//SAttributeType">
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SAttributeType/Boolean"/>
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SAttributeType/Integer"/>
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SAttributeType/Real"/>
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SAttributeType/Symbol"/>
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SAttributeType/Undefined"/>
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SAttributeType/Numeric"/>
+    </genEnums>
+    <genEnums ecoreEnum="metaabm.ecore#//SBorderRule">
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SBorderRule/Sticky"/>
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SBorderRule/Strict"/>
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SBorderRule/Bouncy"/>
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SBorderRule/Periodic"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="metaabm.ecore#//SNeighborhoodType">
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SNeighborhoodType/Euclidian"/>
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SNeighborhoodType/Moore"/>
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SNeighborhoodType/VonNeumann"/>
+    </genEnums>
+    <genEnums ecoreEnum="metaabm.ecore#//SImplementationMode">
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SImplementationMode/Generate"/>
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SImplementationMode/GenerateProtected"/>
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SImplementationMode/GenerateEmpty"/>
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SImplementationMode/Load"/>
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SImplementationMode/External"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="metaabm.ecore#//SShapeType">
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SShapeType/Point"/>
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SShapeType/Line"/>
+      <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SShapeType/Polygon"/>
+    </genEnums>
+    <genClasses image="false" ecoreClass="metaabm.ecore#//IID">
+      <genFeatures createChild="false" propertyCategory="IDs" propertyDescription="A reasonably short, human readable name for the agent. For example, Timber Wolf, Forex Trader or Movement Probability. These should be defined so that they fit in well with auto-generated documentation."
+          ecoreFeature="ecore:EAttribute metaabm.ecore#//IID/label"/>
+      <genFeatures createChild="false" propertyCategory="IDs" ecoreFeature="ecore:EAttribute metaabm.ecore#//IID/ID"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="metaabm.ecore#//ITyped">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//ITyped/sType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="metaabm.ecore#//ITypedArray">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//ITypedArray/size"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="metaabm.ecore#//IValue">
+      <genFeatures property="None" notify="false" children="true" createChild="false"
+          propertyCategory="Relations" ecoreFeature="ecore:EReference metaabm.ecore#//IValue/accessors">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//IValue/availableTypes">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+    </genClasses>
+    <genClasses image="false" ecoreClass="metaabm.ecore#//IArtifact"/>
+    <genClasses provider="Stateful" image="false" ecoreClass="metaabm.ecore#//IAct"/>
+    <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//SNamed">
+      <genFeatures createChild="false" propertyCategory="IDs" ecoreFeature="ecore:EAttribute metaabm.ecore#//SNamed/pluralLabel"/>
+      <genFeatures createChild="false" propertyCategory="IDs" propertyMultiLine="true"
+          ecoreFeature="ecore:EAttribute metaabm.ecore#//SNamed/description"/>
+    </genClasses>
+    <genClasses provider="Stateful" image="false" ecoreClass="metaabm.ecore#//SAttributed">
+      <genFeatures property="None" children="true" createChild="true" propertyCategory="Relations"
+          ecoreFeature="ecore:EReference metaabm.ecore#//SAttributed/attributes"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="metaabm.ecore#//SActable">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metaabm.ecore#//SActable/rootActivity"/>
+    </genClasses>
+    <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//SAttribute">
+      <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Relations"
+          ecoreFeature="ecore:EReference metaabm.ecore#//SAttribute/owner">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+      <genFeatures createChild="false" propertyCategory="Values" ecoreFeature="ecore:EAttribute metaabm.ecore#//SAttribute/gatherData"/>
+      <genFeatures createChild="false" propertyCategory="Values" ecoreFeature="ecore:EAttribute metaabm.ecore#//SAttribute/defaultValue"/>
+      <genFeatures createChild="false" propertyCategory="Values" ecoreFeature="ecore:EAttribute metaabm.ecore#//SAttribute/units"/>
+      <genFeatures createChild="false" propertyCategory="Values" ecoreFeature="ecore:EAttribute metaabm.ecore#//SAttribute/immutable"/>
+    </genClasses>
+    <genClasses ecoreClass="metaabm.ecore#//SAttributeArray"/>
+    <genClasses ecoreClass="metaabm.ecore#//SState">
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference metaabm.ecore#//SState/options"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference metaabm.ecore#//SState/defaultOption"/>
+    </genClasses>
+    <genClasses ecoreClass="metaabm.ecore#//SStateValue">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference metaabm.ecore#//SStateValue/set"/>
+    </genClasses>
+    <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//SAgent">
+      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference metaabm.ecore#//SAgent/styles"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Relations"
+          ecoreFeature="ecore:EReference metaabm.ecore#//SAgent/owner">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+    </genClasses>
+    <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//SContext">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metaabm.ecore#//SContext/agents"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metaabm.ecore#//SContext/projections"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metaabm.ecore#//SContext/valueLayers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metaabm.ecore#//SContext/library"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference metaabm.ecore#//SContext/allAgents"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference metaabm.ecore#//SContext/allContexts"/>
+    </genClasses>
+    <genClasses ecoreClass="metaabm.ecore#//SProjection">
+      <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Relations"
+          propertyDescription="" ecoreFeature="ecore:EReference metaabm.ecore#//SProjection/owner">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+    </genClasses>
+    <genClasses image="false" ecoreClass="metaabm.ecore#//SNDimensional">
+      <genFeatures createChild="false" propertyCategory="Values" ecoreFeature="ecore:EAttribute metaabm.ecore#//SNDimensional/dimensionality"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//SNDimensional/borderRule"/>
+    </genClasses>
+    <genClasses ecoreClass="metaabm.ecore#//SContinuousSpace"/>
+    <genClasses ecoreClass="metaabm.ecore#//SGrid">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//SGrid/multiOccupant"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//SGrid/neighborhood"/>
+    </genClasses>
+    <genClasses ecoreClass="metaabm.ecore#//SNetwork">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//SNetwork/directed"/>
+    </genClasses>
+    <genClasses ecoreClass="metaabm.ecore#//SGeography"/>
+    <genClasses ecoreClass="metaabm.ecore#//SValueLayer"/>
+    <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//SStyle">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference metaabm.ecore#//SStyle/agent">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+    </genClasses>
+    <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//SStyle2D"/>
+    <genClasses ecoreClass="metaabm.ecore#//SStyleShape">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//SStyleShape/shape"/>
+    </genClasses>
+    <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//SStyle3D"/>
+    <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//SImplemented">
+      <genFeatures property="None" createChild="true" propertyCategory="org.eclipse.ui.views.properties.expert"
+          propertyDescription="" propertyMultiLine="true" ecoreFeature="ecore:EReference metaabm.ecore#//SImplemented/implementation">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+      <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Relations"
+          ecoreFeature="ecore:EReference metaabm.ecore#//SImplemented/parent">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+    </genClasses>
+    <genClasses ecoreClass="metaabm.ecore#//SImplementation">
+      <genFeatures createChild="false" propertyCategory="" propertyDescription="Specify package name, e.g. org.myorg.myproject. (If blank, parent's value will be used.) "
+          ecoreFeature="ecore:EAttribute metaabm.ecore#//SImplementation/package"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//SImplementation/className"/>
+      <genFeatures createChild="false" propertyDescription="The relative or absolute path to the base directory containing implementing code, e.g. ../myproject, /MyDrive/local/myproject."
+          ecoreFeature="ecore:EAttribute metaabm.ecore#//SImplementation/basePath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//SImplementation/mode"/>
+      <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory=""
+          propertyDescription="" ecoreFeature="ecore:EReference metaabm.ecore#//SImplementation/target">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//SImplementation/qualifiedName">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+      <genFeatures property="Readonly" createChild="false" propertyCategory="" ecoreFeature="ecore:EAttribute metaabm.ecore#//SImplementation/derivedPath">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+      <genFeatures property="Readonly" createChild="false" propertyCategory="" propertyDescription=""
+          ecoreFeature="ecore:EAttribute metaabm.ecore#//SImplementation/derivedPackage">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//SImplementation/javaFileLoc"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//SImplementation/srcDir"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//SImplementation/binDir"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//SImplementation/classFileLoc"/>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//SImplementation/derivedBinDir">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//SImplementation/derivedSrcDir">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+    </genClasses>
+    <nestedGenPackages prefix="MetaABMFunction" basePackage="org.metaabm" resource="XML"
+        disposableProviderFactory="true" loadInitialization="true" presentationPackageSuffix="ide"
+        generateModelWizard="false" ecorePackage="metaabm.ecore#//function">
+      <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+        <genAnnotations source="metaabm.function.xsd"/>
+      </genAnnotations>
+      <genClasses ecoreClass="metaabm.ecore#//function/FArgumentPrototype">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference metaabm.ecore#//function/FArgumentPrototype/inputFunction"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference metaabm.ecore#//function/FArgumentPrototype/outputFunction"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//function/FArgumentPrototype/optional"/>
+      </genClasses>
+      <genClasses ecoreClass="metaabm.ecore#//function/FArgumentArrayPrototype"/>
+      <genClasses image="false" ecoreClass="metaabm.ecore#//function/FFunction">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//function/FFunction/availableTypes"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metaabm.ecore#//function/FFunction/inputPrototypes"/>
+        <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//function/FFunction/multiValue">
+          <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+        </genFeatures>
+      </genClasses>
+      <genClasses image="false" ecoreClass="metaabm.ecore#//function/FLogical"/>
+      <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//function/FOperator">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//function/FOperator/symbol"/>
+        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//function/FOperator/arity"/>
+      </genClasses>
+      <genClasses ecoreClass="metaabm.ecore#//function/FLogicalOperator"/>
+      <genClasses image="false" ecoreClass="metaabm.ecore#//function/FGeneric"/>
+      <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//function/FGenericFunction">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metaabm.ecore#//function/FGenericFunction/outputPrototypes"/>
+      </genClasses>
+      <genClasses ecoreClass="metaabm.ecore#//function/FGenericLogical"/>
+      <genClasses ecoreClass="metaabm.ecore#//function/FLibrary">
+        <genFeatures children="true" createChild="true" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//function/FLibrary/functions"/>
+        <genFeatures children="true" createChild="true" propertyDescription="" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//function/FLibrary/subs"/>
+      </genClasses>
+      <genClasses ecoreClass="metaabm.ecore#//function/FImplementedLibrary"/>
+      <genClasses ecoreClass="metaabm.ecore#//function/FMultiArgumentPrototype"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="MetaABMAct" basePackage="org.metaabm" resource="XML"
+        disposableProviderFactory="true" loadInitialization="true" presentationPackageSuffix="ide"
+        generateModelWizard="false" ecorePackage="metaabm.ecore#//act">
+      <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
+        <genAnnotations source="metaabm.act.xsd"/>
+      </genAnnotations>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="metaabm.ecore#//act/ABuildSpaceTypes">
+        <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//act/ABuildSpaceTypes/Random"/>
+        <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//act/ABuildSpaceTypes/RandomAroundPoint"/>
+        <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//act/ABuildSpaceTypes/File"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="metaabm.ecore#//act/ABuildNetworkTypes">
+        <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//act/ABuildNetworkTypes/Barabasi"/>
+        <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//act/ABuildNetworkTypes/ErdosRenyi"/>
+        <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//act/ABuildNetworkTypes/EppsteinPowerLaw"/>
+        <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//act/ABuildNetworkTypes/GraphML"/>
+        <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//act/ABuildNetworkTypes/KleinbergSmallWorld"/>
+        <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//act/ABuildNetworkTypes/Lattice1D"/>
+        <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//act/ABuildNetworkTypes/Lattice2D"/>
+        <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//act/ABuildNetworkTypes/Pajek"/>
+        <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//act/ABuildNetworkTypes/RandomDensity"/>
+        <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//act/ABuildNetworkTypes/WattsSmallWorld"/>
+        <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//act/ABuildNetworkTypes/ASCIIMatrix"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="metaabm.ecore#//act/ASelectTypes">
+        <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//act/ASelectTypes/One"/>
+        <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//act/ASelectTypes/All"/>
+      </genEnums>
+      <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//act/AInput">
+        <genFeatures property="None" createChild="false" propertyCategory="Relations"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/AInput/sink">
+          <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+        </genFeatures>
+        <genFeatures createChild="false" propertyCategory="Act" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/AInput/selected"/>
+        <genFeatures property="Readonly" createChild="true" propertyCategory="Relations"
+            propertyDescription="" ecoreFeature="ecore:EReference metaabm.ecore#//act/AInput/literal">
+          <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+        </genFeatures>
+        <genFeatures children="true" createChild="false" propertyCategory="Act" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/AInput/value"/>
+      </genClasses>
+      <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//act/ALiteral">
+        <genFeatures createChild="false" propertyCategory="IDs" ecoreFeature="ecore:EAttribute metaabm.ecore#//act/ALiteral/valueLiteral"/>
+      </genClasses>
+      <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//act/AMultiValue">
+        <genFeatures children="true" createChild="false" propertyDescription="" propertyMultiLine="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/AMultiValue/values"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="metaabm.ecore#//act/AShaped">
+        <genFeatures createChild="false" propertyCategory="Act" ecoreFeature="ecore:EAttribute metaabm.ecore#//act/AShaped/shape"/>
+      </genClasses>
+      <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//act/AAct">
+        <genFeatures createChild="false" propertyCategory="Relations" propertyDescription=""
+            propertySortChoices="true" ecoreFeature="ecore:EReference metaabm.ecore#//act/AAct/sources">
+          <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+        </genFeatures>
+        <genFeatures children="true" createChild="true" propertyCategory="Relations"
+            propertySortChoices="true" ecoreFeature="ecore:EReference metaabm.ecore#//act/AAct/targets">
+          <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+        </genFeatures>
+        <genFeatures property="Readonly" createChild="false" propertyCategory="Relations"
+            propertySortChoices="true" ecoreFeature="ecore:EReference metaabm.ecore#//act/AAct/reference">
+          <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+        </genFeatures>
+        <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Relations"
+            propertySortChoices="true" ecoreFeature="ecore:EReference metaabm.ecore#//act/AAct/group">
+          <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+        </genFeatures>
+        <genFeatures createChild="false" propertyCategory="Act" propertyDescription=""
+            propertyMultiLine="true" propertySortChoices="true" ecoreFeature="ecore:EReference metaabm.ecore#//act/AAct/selected"/>
+        <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Relations"
+            propertySortChoices="true" ecoreFeature="ecore:EReference metaabm.ecore#//act/AAct/allSources">
+          <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+        </genFeatures>
+        <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Relations"
+            propertySortChoices="true" ecoreFeature="ecore:EReference metaabm.ecore#//act/AAct/allTargets">
+          <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+        </genFeatures>
+        <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Relations"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/AAct/rootSelected">
+          <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+        </genFeatures>
+      </genClasses>
+      <genClasses image="false" ecoreClass="metaabm.ecore#//act/AControl"/>
+      <genClasses image="false" ecoreClass="metaabm.ecore#//act/ARoot"/>
+      <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//act/AGroup">
+        <genFeatures property="Readonly" children="true" createChild="false" propertyCategory="Relations"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/AGroup/roots"/>
+        <genFeatures createChild="true" propertyCategory="Relations" propertyMultiLine="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/AGroup/members">
+          <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+        </genFeatures>
+      </genClasses>
+      <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//act/ASchedule">
+        <genFeatures createChild="false" propertyCategory="Act" ecoreFeature="ecore:EAttribute metaabm.ecore#//act/ASchedule/start"/>
+        <genFeatures createChild="false" propertyCategory="Act" ecoreFeature="ecore:EAttribute metaabm.ecore#//act/ASchedule/interval"/>
+        <genFeatures createChild="false" propertyCategory="Act" ecoreFeature="ecore:EAttribute metaabm.ecore#//act/ASchedule/priority"/>
+        <genFeatures createChild="false" propertyCategory="Act" ecoreFeature="ecore:EAttribute metaabm.ecore#//act/ASchedule/pick"/>
+      </genClasses>
+      <genClasses ecoreClass="metaabm.ecore#//act/ARule"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/ABuild"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/AInitialize"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/AMethod">
+        <genFeatures createChild="false" propertyCategory="Act" propertyMultiLine="true"
+            ecoreFeature="ecore:EAttribute metaabm.ecore#//act/AMethod/body"/>
+        <genFeatures createChild="false" propertyCategory="Act" ecoreFeature="ecore:EAttribute metaabm.ecore#//act/AMethod/generate"/>
+      </genClasses>
+      <genClasses provider="Stateful" image="false" ecoreClass="metaabm.ecore#//act/ASink">
+        <genFeatures createChild="true" propertyCategory="Relations" propertyMultiLine="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/ASink/inputs">
+          <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+        </genFeatures>
+        <genFeatures createChild="false" propertyCategory="Act" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/ASink/function"/>
+      </genClasses>
+      <genClasses ecoreClass="metaabm.ecore#//act/ALogic"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/AAny"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/AAll"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/ANone"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/AQuery"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/AEvaluate"/>
+      <genClasses image="false" ecoreClass="metaabm.ecore#//act/AAccessor">
+        <genFeatures createChild="false" propertyCategory="Act" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/AAccessor/attribute"/>
+      </genClasses>
+      <genClasses ecoreClass="metaabm.ecore#//act/AWatch"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/ASet">
+        <genFeatures notify="false" createChild="false" propertyCategory="Act" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/ASet/parameter"/>
+      </genClasses>
+      <genClasses ecoreClass="metaabm.ecore#//act/ACreateAgents">
+        <genFeatures notify="false" createChild="false" propertyCategory="Act" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/ACreateAgents/agentCount"/>
+      </genClasses>
+      <genClasses ecoreClass="metaabm.ecore#//act/ACreateShapedAgents"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/ALoadAgents">
+        <genFeatures createChild="false" propertyCategory="Act" ecoreFeature="ecore:EAttribute metaabm.ecore#//act/ALoadAgents/sourceURL"/>
+      </genClasses>
+      <genClasses ecoreClass="metaabm.ecore#//act/ALoadShapedAgents"/>
+      <genClasses image="false" ecoreClass="metaabm.ecore#//act/ABuildProjection">
+        <genFeatures notify="false" createChild="false" propertyCategory="Act" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/ABuildProjection/agents"/>
+        <genFeatures notify="false" createChild="false" propertyCategory="Act" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/ABuildProjection/projection"/>
+        <genFeatures notify="false" createChild="false" propertyCategory="Act" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/ABuildProjection/attributes"/>
+      </genClasses>
+      <genClasses ecoreClass="metaabm.ecore#//act/ABuildNetwork">
+        <genFeatures createChild="false" propertyCategory="Act" ecoreFeature="ecore:EAttribute metaabm.ecore#//act/ABuildNetwork/networkType"/>
+      </genClasses>
+      <genClasses ecoreClass="metaabm.ecore#//act/ABuildSpace">
+        <genFeatures createChild="false" propertyCategory="Act" ecoreFeature="ecore:EAttribute metaabm.ecore#//act/ABuildSpace/spaceType"/>
+      </genClasses>
+      <genClasses ecoreClass="metaabm.ecore#//act/ABuildGeography"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/ABuildGrid">
+        <genFeatures notify="false" createChild="false" propertyCategory="Act" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/ABuildGrid/fillAgent"/>
+      </genClasses>
+      <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//act/ASelect">
+        <genFeatures createChild="false" propertyCategory="Act" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/ASelect/agent"/>
+        <genFeatures createChild="false" propertyCategory="Act" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/ASelect/space"/>
+        <genFeatures createChild="false" propertyCategory="Act" ecoreFeature="ecore:EAttribute metaabm.ecore#//act/ASelect/for"/>
+      </genClasses>
+      <genClasses ecoreClass="metaabm.ecore#//act/AMove"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/ATransform">
+        <genFeatures notify="false" createChild="false" propertyCategory="Act" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/ATransform/destination"/>
+      </genClasses>
+      <genClasses ecoreClass="metaabm.ecore#//act/ALeave"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/ADie"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/AConnect">
+        <genFeatures createChild="false" propertyCategory="Act" ecoreFeature="ecore:EAttribute metaabm.ecore#//act/AConnect/directed"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="metaabm.ecore#//act/ANetwork">
+        <genFeatures notify="false" createChild="false" propertyCategory="Act" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/ANetwork/within"/>
+      </genClasses>
+      <genClasses ecoreClass="metaabm.ecore#//act/ADisconnect"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/AReplace"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/ACommand"/>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

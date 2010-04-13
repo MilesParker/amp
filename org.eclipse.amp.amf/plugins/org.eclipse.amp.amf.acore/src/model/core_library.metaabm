@@ -88,88 +88,88 @@
       </subs>
     </subs>
     <subs label="Spatial" ID="spatial" pluralLabel="Spatials">
-      <functions xsi:type="function:FGenericLogical" label="Nearest " ID="nearest" pluralLabel="Nearests"/>
-      <functions xsi:type="function:FGenericLogical" label="Toward" ID="toward" pluralLabel="Towards"/>
-      <functions xsi:type="function:FGenericLogical" label="Within" ID="within" pluralLabel="Withins">
+      <functions xsi:type="function:FGenericLogical" label="Nearest " ID="nearest" pluralLabel="Nearests" description="Represents the nearest agents (including gird cells) or locations to this agent. If more than one agent or location is the same distance away they will all be considered. Note that while this function is defined for the selection of an agent, the result of this function is defined by the context within which it is used. If the selection specifies another agent within a space, this function will represent the nearest agent in that space. If the selection specifies a Cell within a grid space, this function will represent that cell."/>
+      <functions xsi:type="function:FGenericLogical" label="Toward" ID="toward" pluralLabel="Towards" description="Represents a location that is on the shortest path to a particular agent or location from the source agent (that is, the selection's selection's agent). This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction towards some objective."/>
+      <functions xsi:type="function:FGenericLogical" label="Within" ID="within" pluralLabel="Withins" description="Represents a limit to the distance of a spatial search. When used in combination with other spatial functions such as &quot;nearest&quot; requires that all agents or locations must be within the distance specified by the input value.">
         <inputPrototypes label="Distance" ID="distance" sType="NUMERIC" pluralLabel="Distances" description=""/>
       </functions>
-      <functions xsi:type="function:FGenericLogical" label="Neighbor" ID="neighbor" pluralLabel="Neighbors" description=""/>
-      <functions xsi:type="function:FGenericLogical" label="Include Self" ID="includeSelf" pluralLabel="Include Selfs"/>
-      <functions xsi:type="function:FGenericLogical" label="Within 2D Boundary" ID="withinBoundaries" pluralLabel="Within 2D Boundarys">
+      <functions xsi:type="function:FGenericLogical" label="Neighbor" ID="neighbor" pluralLabel="Neighbors" description="Represents any agents that are nearest neighbors to the agent, that is nominally of distance 1. This function is only relevant in discrete spaces -- grids and networks -- where there are immediate neighboring cells as defined by the geometry of the selection's space."/>
+      <functions xsi:type="function:FGenericLogical" label="Include Self" ID="includeSelf" pluralLabel="Include Selfs" description="Specifies whether the agent that we are searching from -- that is, the agent of the selection for this Query Action's selection -- is included in the results of the search."/>
+      <functions xsi:type="function:FGenericLogical" label="Within 2D Boundary" ID="withinBoundaries" pluralLabel="Within 2D Boundarys" description="Represents agents or locations that exist within the boundary specified by the inputs.">
         <inputPrototypes xsi:type="function:FArgumentArrayPrototype" label="Bounds" ID="bounds" sType="NUMERIC" pluralLabel="Bounds" size="4"/>
       </functions>
-      <functions xsi:type="function:FGenericLogical" label="Here" ID="here" pluralLabel="Heres"/>
-      <functions xsi:type="function:FGenericLogical" label="Available" ID="available" pluralLabel="Availables"/>
-      <functions xsi:type="function:FGenericFunction" label="Distance" ID="distance" pluralLabel="Distances">
+      <functions xsi:type="function:FGenericLogical" label="Here" ID="here" pluralLabel="Heres" description="Represents the location of the searching agent. For example, if a selection is defined for an agent cell, and that selection's selection's agent is an occupant of a cell, the cell that the agent is occupying will be used. "/>
+      <functions xsi:type="function:FGenericLogical" label="Available" ID="available" pluralLabel="Availables" description="Represents cells which are not currently occupied. This function is only relevant for grids which are not multi-occupant."/>
+      <functions xsi:type="function:FGenericFunction" label="Distance" ID="distance" pluralLabel="Distances" description="The distance between the source agent and an agent represented by this selection. If more than one agent is represented by the other functions in the selection, this function will the distance to an arbitrary (randomly selected) agent as defined by those other functions.">
         <outputPrototypes label="Distance Between Agents" ID="distance" sType="REAL"/>
       </functions>
-      <functions xsi:type="function:FGenericLogical" label="Away" ID="away" pluralLabel="Aways" description=""/>
-      <functions xsi:type="function:FGenericLogical" label="Minimize" ID="minimize" pluralLabel="Minimizes"/>
-      <functions xsi:type="function:FGenericLogical" label="Maximize" ID="maximize" pluralLabel="Maximizes"/>
-      <functions xsi:type="function:FGenericLogical" label="Location 2D" ID="location2D" pluralLabel="Location 2Ds">
+      <functions xsi:type="function:FGenericLogical" label="Away" ID="away" pluralLabel="Aways" description="Represents a location that is on the path that will take the source agent (that is, the selection's selection's agent) the farthest distance from the agent(s) represented by the search. This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction away from some location or agent."/>
+      <functions xsi:type="function:FGenericLogical" label="Minimize" ID="minimize" pluralLabel="Minimizes" description="This function is not currently supported."/>
+      <functions xsi:type="function:FGenericLogical" label="Maximize" ID="maximize" pluralLabel="Maximizes" description="This function is not currently supported."/>
+      <functions xsi:type="function:FGenericLogical" label="Location 2D" ID="location2D" pluralLabel="Location 2Ds" description="Represents the location of the current agent for use in subsequent selections.">
         <inputPrototypes label="X" ID="x" sType="REAL" pluralLabel="Xs"/>
         <inputPrototypes label="Y" ID="y" sType="REAL" pluralLabel="Ys"/>
       </functions>
-      <functions xsi:type="function:FGenericFunction" label="Boundary 2D" ID="boundary2D" pluralLabel="Boundary 2Ds">
+      <functions xsi:type="function:FGenericFunction" label="Boundary 2D" ID="boundary2D" pluralLabel="Boundary 2Ds" description="Represents a two-dimensional boundary within a space. (Not currently relevant for any general usages.)">
         <outputPrototypes label="X" ID="x" sType="REAL" pluralLabel="Xs"/>
         <outputPrototypes label="Y" ID="y" sType="REAL" pluralLabel="Ys"/>
       </functions>
     </subs>
     <subs label="Random" ID="random" pluralLabel="Randoms">
-      <functions xsi:type="function:FGenericFunction" label="Random In Range" ID="randomInRange" pluralLabel="Random In Ranges">
+      <functions xsi:type="function:FGenericFunction" label="Random In Range" ID="randomInRange" pluralLabel="Random In Ranges" description="A pseudo-random value within that numeric range specified as drawn from a uniform distribution. The minimum values are inclusive. The maximum values are inclusive for integer inputs and exclusive for Real inputs.">
         <inputPrototypes label="Minimum Value" ID="min" sType="NUMERIC" pluralLabel="Minimum Values" description="The minimum value (inclusive)."/>
         <inputPrototypes label="Maximum Value" ID="max" sType="NUMERIC" pluralLabel="Maximum Values" description="The maximum value (inclusive)."/>
-        <outputPrototypes label="Random Number" ID="randomNumber" sType="NUMERIC" pluralLabel="Random Numbers" description="Resulting Number"/>
+        <outputPrototypes label="Random Number" ID="randomNumber" sType="NUMERIC" pluralLabel="Random Numbers" description="The random number."/>
       </functions>
-      <functions xsi:type="function:FGenericFunction" label="Random To Limit" ID="randomToLimit" pluralLabel="Random To Limits">
+      <functions xsi:type="function:FGenericFunction" label="Random To Limit" ID="randomToLimit" pluralLabel="Random To Limits" description="A pseudo-random value between zero and the value specified by the (non-zero) input and drawn from a uniform range. That value is inclusive for Integers and exclusive for Reals. (Note that as with the random in range function in the context of real numbers the distinction between an exclusive and inclusive limit is essentially meaningless.)">
         <inputPrototypes label="Maximum Value" ID="max" sType="NUMERIC" pluralLabel="Maximum Values" description="The maximum value (inclusive)."/>
-        <outputPrototypes label="Random Number" ID="randomNumber" sType="NUMERIC" pluralLabel="Random Numbers"/>
+        <outputPrototypes label="Random Number" ID="randomNumber" sType="NUMERIC" pluralLabel="Random Numbers" description="The result."/>
       </functions>
-      <functions xsi:type="function:FGenericFunction" label="Random Unit" ID="randomUnit" pluralLabel="Random Units">
+      <functions xsi:type="function:FGenericFunction" label="Random Unit" ID="randomUnit" pluralLabel="Random Units" description="A pseudo-random Real value between 0 and 1 drawn from a uniform distribution. (The distinction between inclusive and exclusive range is essentially meaningless in this context and we can assume that the result will never be greater or equal to 1.)">
         <outputPrototypes label="Random Value" ID="randomValue" sType="REAL" description=""/>
       </functions>
-      <functions xsi:type="function:FGenericLogical" label="Random Boolean" ID="randomIs" pluralLabel="Random Booleans"/>
-      <functions xsi:type="function:FGenericFunction" label="Random Weighted" ID="randomWeighted" pluralLabel="Random Weighteds" description="An indexed value weighted against a probability distribution. The total probability must sum to 1.0. For example, an input of {.1,.2,.7} under a unifrom distribution would would have 10% probability of producing &quot;0&quot; , 20%  for &quot;1&quot; and 70% for &quot;2&quot;.">
-        <inputPrototypes xsi:type="function:FArgumentArrayPrototype" label="Weights" ID="weights" sType="REAL" pluralLabel="Weightss" size="-1"/>
-        <outputPrototypes label="Result" ID="result" sType="INTEGER" pluralLabel="Results"/>
+      <functions xsi:type="function:FGenericLogical" label="Random Boolean" ID="randomIs" pluralLabel="Random Booleans" description="A value that is randomly true or false, i.e. a fair coin toss."/>
+      <functions xsi:type="function:FGenericFunction" label="Random Weighted" ID="randomWeighted" pluralLabel="Random Weighteds" description="An indexed value weighted against a probability distribution. The total probability must sum to 1.0. For example, an input of {.1,.2,.7} under a uniform distribution would would have 10% probability of producing &quot;0&quot; , 20%  for &quot;1&quot; and 70% for &quot;2&quot;. This function can then be used with Item to return a biased result from another list.">
+        <inputPrototypes xsi:type="function:FArgumentArrayPrototype" label="Weights" ID="weights" sType="REAL" pluralLabel="Weightss" description="A list of values that will determine the resulting weighted index." size="-1"/>
+        <outputPrototypes label="Result" ID="result" sType="INTEGER" pluralLabel="Results" description="A resulting indexed value bounded by 0 and the length of the input list - 1."/>
       </functions>
-      <functions xsi:type="function:FGenericFunction" label="Random Member" ID="randomMember" pluralLabel="Random Members">
-        <inputPrototypes xsi:type="function:FArgumentArrayPrototype" label="List" ID="list" sType="REAL" pluralLabel="Lists" size="-1"/>
-        <outputPrototypes label="Member" ID="member" sType="UNDEFINED" pluralLabel="Members"/>
+      <functions xsi:type="function:FGenericFunction" label="Random Member" ID="randomMember" pluralLabel="Random Members" description="Represents a random value drawn from the set of Real values specified.">
+        <inputPrototypes xsi:type="function:FArgumentArrayPrototype" label="List" ID="list" sType="REAL" pluralLabel="Lists" description="Returns a random member of the supplied list of numbers." size="-1"/>
+        <outputPrototypes label="Member" ID="member" sType="UNDEFINED" pluralLabel="Members" description="The value of the item at a random index."/>
       </functions>
-      <functions xsi:type="function:FGenericFunction" label="Random State" ID="randomState" pluralLabel="Random States">
-        <inputPrototypes label="Strategy Enum" ID="strategyEnum" sType="UNDEFINED" pluralLabel="Strategy Enums"/>
-        <outputPrototypes label="Selected Strategy" ID="selectedStrategy" pluralLabel="Selected Strategys"/>
+      <functions xsi:type="function:FGenericFunction" label="Random State" ID="randomState" pluralLabel="Random States" description="A random specified value (option) from the specified state.">
+        <inputPrototypes label="Strategy Enum" ID="strategyEnum" sType="UNDEFINED" pluralLabel="Strategy Enums" description="The state to select items from. All items are included."/>
+        <outputPrototypes label="Selected Strategy" ID="selectedStrategy" pluralLabel="Selected Strategys" description="The resulting option. "/>
       </functions>
     </subs>
     <subs label="Graphic" ID="graphic" pluralLabel="Graphics">
       <functions xsi:type="function:FGenericFunction" label="Shape Oval" ID="shapeOval" pluralLabel="Shape Ovals" description="Draw a generic oval."/>
-      <functions xsi:type="function:FGenericFunction" label="Shape Rectangle" ID="shapeRectangle" pluralLabel="Shape Rectangles"/>
-      <functions xsi:type="function:FGenericFunction" label="Shape Marker" ID="shapeMarker" pluralLabel="Shape Markers"/>
-      <functions xsi:type="function:FGenericFunction" label="Graphic Outline" ID="graphicOutline" pluralLabel="Graphic Outlines"/>
-      <functions xsi:type="function:FGenericFunction" label="Graphic Fill" ID="graphicFill" pluralLabel="Graphic Fills"/>
-      <functions xsi:type="function:FGenericFunction" label="Shape Inset" ID="shapeInset" pluralLabel="Shape Insets">
+      <functions xsi:type="function:FGenericFunction" label="Shape Rectangle" ID="shapeRectangle" pluralLabel="Shape Rectangles" description="Draws a rectangular shape."/>
+      <functions xsi:type="function:FGenericFunction" label="Shape Inset" ID="shapeInset" pluralLabel="Shape Insets" description="Shrinks the current shape by the input amount. (The overall scale is currently unspecified, but in most implementations should be 20.)">
         <inputPrototypes label="Value" ID="value" sType="INTEGER" pluralLabel="Values" description="Number of nominal pixels to inset."/>
       </functions>
-      <functions xsi:type="function:FGenericFunction" label="Color RGB" ID="colorRGB" pluralLabel="Color RGBs">
+      <functions xsi:type="function:FGenericFunction" label="Shape Marker" ID="shapeMarker" pluralLabel="Shape Markers" description="Draw a marker, that is a graphical indicator that can be used to add an additional que about the object state. For example, in a two-dimensional graphics representation this might be a small shape drawn inset at the corner of the larger shape. "/>
+      <functions xsi:type="function:FGenericFunction" label="Shape Marker 2" ID="shapeMarker2" pluralLabel="Shape Marker 2s" description="Represents a marker placed in a different location from the other shape markers."/>
+      <functions xsi:type="function:FGenericFunction" label="Shape Marker 3" ID="shapeMarker3" pluralLabel="Shape Marker 3s" description="Represents a marker placed in a different location from the other shape markers."/>
+      <functions xsi:type="function:FGenericFunction" label="Color RGB" ID="colorRGB" pluralLabel="Color RGBs" description="A color specified by the three inputs for Red, Green and Blue color components. Those inputs are expected to be in the range 0..1.">
         <inputPrototypes label="Red Component" ID="red" sType="REAL" pluralLabel="Red Components" description="A value from 0.0 to 1.0."/>
         <inputPrototypes label="Green Component" ID="green" sType="REAL" pluralLabel="Green Components" description="A value from 0.0 to 1.0."/>
         <inputPrototypes label="Blue Component" ID="blue" sType="REAL" pluralLabel="Blue Components" description="A value from 0.0 to 1.0."/>
       </functions>
-      <functions xsi:type="function:FGenericFunction" label="Color Red" ID="colorRed" pluralLabel="Color Reds"/>
-      <functions xsi:type="function:FGenericFunction" label="Color Yellow" ID="colorYellow" pluralLabel="Color Yellows"/>
-      <functions xsi:type="function:FGenericFunction" label="Color Blue" ID="colorBlue" pluralLabel="Color Blues"/>
-      <functions xsi:type="function:FGenericFunction" label="Color Orange" ID="colorOrange" pluralLabel="Color Oranges"/>
-      <functions xsi:type="function:FGenericFunction" label="Color Green" ID="colorGreen" pluralLabel="Color Greens"/>
-      <functions xsi:type="function:FGenericFunction" label="Color Purple" ID="colorPurple" pluralLabel="Color Purples"/>
-      <functions xsi:type="function:FGenericFunction" label="Color Black" ID="colorBlack" pluralLabel="Color Blacks"/>
-      <functions xsi:type="function:FGenericFunction" label="Color White" ID="colorWhite" pluralLabel="Color Whites"/>
-      <functions xsi:type="function:FGenericFunction" label="Color Gray" ID="colorGray" pluralLabel="Color Grays"/>
-      <functions xsi:type="function:FGenericFunction" label="Shape Marker 2" ID="shapeMarker2" pluralLabel="Shape Marker 2s"/>
-      <functions xsi:type="function:FGenericFunction" label="Shape Marker 3" ID="shapeMarker3" pluralLabel="Shape Marker 3s"/>
+      <functions xsi:type="function:FGenericFunction" label="Color Red" ID="colorRed" pluralLabel="Color Reds" description="The color red."/>
+      <functions xsi:type="function:FGenericFunction" label="Color Yellow" ID="colorYellow" pluralLabel="Color Yellows" description="The color yellow."/>
+      <functions xsi:type="function:FGenericFunction" label="Color Blue" ID="colorBlue" pluralLabel="Color Blues" description="The color blue."/>
+      <functions xsi:type="function:FGenericFunction" label="Color Orange" ID="colorOrange" pluralLabel="Color Oranges" description="The color orange."/>
+      <functions xsi:type="function:FGenericFunction" label="Color Green" ID="colorGreen" pluralLabel="Color Greens" description="The color green."/>
+      <functions xsi:type="function:FGenericFunction" label="Color Purple" ID="colorPurple" pluralLabel="Color Purples" description="The color purple."/>
+      <functions xsi:type="function:FGenericFunction" label="Color Black" ID="colorBlack" pluralLabel="Color Blacks" description="The color black."/>
+      <functions xsi:type="function:FGenericFunction" label="Color White" ID="colorWhite" pluralLabel="Color Whites" description="The color white."/>
+      <functions xsi:type="function:FGenericFunction" label="Color Gray" ID="colorGray" pluralLabel="Color Grays" description="The color gray."/>
+      <functions xsi:type="function:FGenericFunction" label="Graphic Outline" ID="graphicOutline" pluralLabel="Graphic Outlines" description="Draws an outline of the last evaluated shape, using the last specified color or the default color (usually black) if none has been specified."/>
+      <functions xsi:type="function:FGenericFunction" label="Graphic Fill" ID="graphicFill" pluralLabel="Graphic Fills" description="Fills the last evaluated shape with the last specified color or the default color (usually black) if none has been specified."/>
     </subs>
     <subs label="Time" ID="time" pluralLabel="Times">
-      <functions xsi:type="function:FGenericFunction" label="Now" ID="timeNow" pluralLabel="Nows">
+      <functions xsi:type="function:FGenericFunction" label="Now" ID="timeNow" pluralLabel="Nows" description="The current simulation period, that is the number of iterations that the model has gone through, or in the case of models with callibrarted time, the number of iterations added to the model's nominal start time.">
         <outputPrototypes label="Period" ID="period" sType="INTEGER" pluralLabel="Periods" description="The current period."/>
       </functions>
     </subs>
@@ -302,38 +302,38 @@
       </functions>
     </subs>
     <subs label="List" ID="list" pluralLabel="Lists">
-      <functions xsi:type="function:FGenericFunction" label="Item" ID="item" pluralLabel="Items">
+      <functions xsi:type="function:FGenericFunction" label="Item" ID="item" pluralLabel="Items" description="Returns the item at the specified index from the list of items provided. Those items will typically be input primitives such as Integer or Real values.">
         <inputPrototypes xsi:type="function:FArgumentArrayPrototype" label="List" ID="list" sType="UNDEFINED" pluralLabel="Lists" size="-1"/>
         <inputPrototypes label="Index" ID="index" sType="INTEGER" pluralLabel="Indexs"/>
         <outputPrototypes label="Member" ID="member" sType="UNDEFINED" pluralLabel="Members"/>
       </functions>
-      <functions xsi:type="function:FGenericFunction" label="Length" ID="length" pluralLabel="Lengths">
+      <functions xsi:type="function:FGenericFunction" label="Length" ID="length" pluralLabel="Lengths" description="The number of items in the provided list of items.">
         <inputPrototypes xsi:type="function:FArgumentArrayPrototype" label="List" ID="list" sType="UNDEFINED" pluralLabel="Lists" size="-1"/>
         <outputPrototypes label="Value" ID="value" sType="INTEGER" pluralLabel="Values"/>
       </functions>
     </subs>
     <subs label="Distribution" ID="distribution" pluralLabel="Distributions">
-      <functions xsi:type="function:FGenericFunction" label="Uniform Cross Distribution" ID="uniformCrossDistribution" pluralLabel="Uniform Cross Distributions">
-        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="States" ID="states" sType="UNDEFINED" pluralLabel="Statess"/>
-        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="Minimum" ID="minimum" sType="REAL" pluralLabel="Minimums"/>
-        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="Maximum" ID="maximum" sType="REAL" pluralLabel="Maximums"/>
-        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results"/>
+      <functions xsi:type="function:FGenericFunction" label="Uniform Cross Distribution" ID="uniformCrossDistribution" pluralLabel="Uniform Cross Distributions" description="A random number taken from a distribution of values as defined by a cross of all values. (See Cross Distribution.) This funciton then returns a value drawn from the minimum and maximum values as determined by the current agent state. In the cross distribution, each of the values is treated independently so that an input attribute is created for every potential combination of states.">
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="States" ID="states" sType="UNDEFINED" pluralLabel="Statess" description="The list of states to factor into the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments."/>
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="Minimum" ID="minimum" sType="REAL" pluralLabel="Minimums" description="The set of attributes that will determine the minimum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited."/>
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="Maximum" ID="maximum" sType="REAL" pluralLabel="Maximums" description="The set of attributes that will determine the maximum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited."/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description="The resulting random number based on the current agent state and the input parameters."/>
       </functions>
-      <functions xsi:type="function:FGenericFunction" label="Uniform Additive Distribution" ID="uniformAdditiveDistribution" pluralLabel="Uniform Additive Distributions">
-        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="States" ID="states" sType="UNDEFINED" pluralLabel="States"/>
-        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="Minimum" ID="minimum" sType="REAL" pluralLabel="Minimums"/>
-        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="Maximum" ID="maximum" sType="REAL" pluralLabel="Maximums"/>
-        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results"/>
+      <functions xsi:type="function:FGenericFunction" label="Uniform Additive Distribution" ID="uniformAdditiveDistribution" pluralLabel="Uniform Additive Distributions" description="A random number taken from a distribution of values in which each of the minimum and maximum values are added to determine a total minimum and maximum value. (See Additive Distribution.) In the additive distribution, each of the values is treated as dependent on the others so that an input attribute is only created for each seperate state.">
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="States" ID="states" sType="UNDEFINED" pluralLabel="States" description="The list of states to factor into the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments."/>
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="Minimum" ID="minimum" sType="REAL" pluralLabel="Minimums" description="The set of attributes that will determine the minimum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited."/>
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="Maximum" ID="maximum" sType="REAL" pluralLabel="Maximums" description="The set of attributes that will determine the maximum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited."/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description="The resulting random number based on the current agent state and the input parameters."/>
       </functions>
-      <functions xsi:type="function:FGenericFunction" label="Cross Distribution" ID="crossDistribution" pluralLabel="Cross Distributions">
-        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="States" ID="states" sType="UNDEFINED" pluralLabel="Statess"/>
-        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="Value" ID="value" sType="REAL" pluralLabel="Values"/>
-        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results"/>
+      <functions xsi:type="function:FGenericFunction" label="Cross Distribution" ID="crossDistribution" pluralLabel="Cross Distributions" description="A value taken from a set of (auto-generated) attributes based on the value of each state included. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create separate input attributes for AI, AII, BI and BII. Then for an agent with States A and II this function would return the value specified by the AII input attribute.">
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="States" ID="states" sType="UNDEFINED" pluralLabel="Statess" description="The list of states to factor into the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments."/>
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="Value" ID="value" sType="REAL" pluralLabel="Values" description="The set of attributes that when multiplied against each other will determine the value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited."/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description="The resulting value based on the current agent state and the input parameters."/>
       </functions>
-      <functions xsi:type="function:FGenericFunction" label="Additive Distribution" ID="additiveDistribution" pluralLabel="Additive Distributions">
-        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="States" ID="states" sType="UNDEFINED" pluralLabel="Statess"/>
-        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="Factor" ID="factor" sType="REAL" pluralLabel="Factors"/>
-        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results"/>
+      <functions xsi:type="function:FGenericFunction" label="Additive Distribution" ID="additiveDistribution" pluralLabel="Additive Distributions" description="A value taken from a set of (auto-generated) attributes based on the combined values of the states provided. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create input attributes for A, B, I and II. Those values would then be added together, so that for an Agent with state A and II this function would return A + II.">
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="States" ID="states" sType="UNDEFINED" pluralLabel="Statess" description="The states to include in the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments."/>
+        <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="Factor" ID="factor" sType="REAL" pluralLabel="Factors" description="The set of attributes that when combined with each other determine the value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited."/>
+        <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description="The resulting value based on the current agent state and the input parameters."/>
       </functions>
     </subs>
   </library>

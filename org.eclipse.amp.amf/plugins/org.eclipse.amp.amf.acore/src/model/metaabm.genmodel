@@ -60,7 +60,7 @@
       <genEnumLiterals ecoreEnumLiteral="metaabm.ecore#//SShapeType/Polygon"/>
     </genEnums>
     <genClasses image="false" ecoreClass="metaabm.ecore#//IID">
-      <genFeatures createChild="false" propertyCategory="IDs" propertyDescription="A reasonably short, human readable name for the agent. For example, &quot;Timber Wolf&quot;, &quot;Forex Trader&quot; or &quot;Movement Probability&quot;. These should be defined so that they fit in well with auto-generated documentation."
+      <genFeatures createChild="false" propertyCategory="IDs" propertyDescription="A reasonably short, human readable name for the agent. For example, Timber Wolf, Forex Trader or Movement Probability. These should be defined so that they fit in well with auto-generated documentation."
           ecoreFeature="ecore:EAttribute metaabm.ecore#//IID/label"/>
       <genFeatures createChild="false" propertyCategory="IDs" ecoreFeature="ecore:EAttribute metaabm.ecore#//IID/ID"/>
     </genClasses>
@@ -290,8 +290,8 @@
         <genFeatures createChild="false" propertyCategory="Act" ecoreFeature="ecore:EAttribute metaabm.ecore#//act/AShaped/shape"/>
       </genClasses>
       <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//act/AAct">
-        <genFeatures createChild="false" propertyCategory="Relations" propertyDescription=""
-            propertySortChoices="true" ecoreFeature="ecore:EReference metaabm.ecore#//act/AAct/sources">
+        <genFeatures children="true" createChild="false" propertyCategory="Relations"
+            propertyDescription="" propertySortChoices="true" ecoreFeature="ecore:EReference metaabm.ecore#//act/AAct/sources">
           <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
         </genFeatures>
         <genFeatures children="true" createChild="true" propertyCategory="Relations"
@@ -326,8 +326,8 @@
       <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//act/AGroup">
         <genFeatures property="Readonly" children="true" createChild="false" propertyCategory="Relations"
             ecoreFeature="ecore:EReference metaabm.ecore#//act/AGroup/roots"/>
-        <genFeatures createChild="true" propertyCategory="Relations" propertyMultiLine="true"
-            ecoreFeature="ecore:EReference metaabm.ecore#//act/AGroup/members">
+        <genFeatures children="true" createChild="true" propertyCategory="Relations"
+            propertyMultiLine="true" ecoreFeature="ecore:EReference metaabm.ecore#//act/AGroup/members">
           <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
         </genFeatures>
       </genClasses>
