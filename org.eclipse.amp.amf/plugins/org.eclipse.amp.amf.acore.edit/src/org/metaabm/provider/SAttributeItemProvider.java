@@ -53,8 +53,8 @@ import org.metaabm.commands.SuggestLabelCommand;
  * @generated
  */
 public class SAttributeItemProvider extends SNamedItemProvider implements IEditingDomainItemProvider,
-IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -92,10 +92,10 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
      */
     protected void addSTypePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_ITyped_sType_feature"),
+                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_ITyped_sType_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_ITyped_sType_feature",
-                                                                 "_UI_ITyped_type"),
+                                                                           "_UI_ITyped_type"),
                                                                  MetaABMPackage.Literals.ITYPED__STYPE, true, false,
                                                                  false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                                                                  null, null));
@@ -106,7 +106,7 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
 
         if (parent instanceof SAgent) {
             SAgentItemProvider parentItemProvider = (SAgentItemProvider) adapterFactory
-            .adapt(parent, IEditingDomainItemProvider.class);
+                    .adapt(parent, IEditingDomainItemProvider.class);
 
             return parentItemProvider != null ? parentItemProvider.getAttributes() : null;
         } else {
@@ -121,13 +121,13 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
      */
     protected void addOwnerPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                          getResourceLocator(), getString("_UI_SAttribute_owner_feature"),
-                                          getString("_UI_PropertyDescriptor_description",
-                                                    "_UI_SAttribute_owner_feature", "_UI_SAttribute_type"),
-                                                    MetaABMPackage.Literals.SATTRIBUTE__OWNER, false, false, false, null,
-                                                    getString("_UI_RelationsPropertyCategory"),
-                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
+                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                                  getResourceLocator(), getString("_UI_SAttribute_owner_feature"),
+                                                  getString("_UI_PropertyDescriptor_description",
+                                                            "_UI_SAttribute_owner_feature", "_UI_SAttribute_type"),
+                                                  MetaABMPackage.Literals.SATTRIBUTE__OWNER, false, false, false, null,
+                                                  getString("_UI_RelationsPropertyCategory"),
+                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     /**
@@ -137,13 +137,13 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
      */
     protected void addAvailableTypesPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                          getResourceLocator(), getString("_UI_IValue_availableTypes_feature"),
-                                          getString("_UI_PropertyDescriptor_description",
-                                                    "_UI_IValue_availableTypes_feature", "_UI_IValue_type"),
-                                                    MetaABMPackage.Literals.IVALUE__AVAILABLE_TYPES, true, false, false,
-                                                    ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
+                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                                  getResourceLocator(), getString("_UI_IValue_availableTypes_feature"),
+                                                  getString("_UI_PropertyDescriptor_description",
+                                                            "_UI_IValue_availableTypes_feature", "_UI_IValue_type"),
+                                                  MetaABMPackage.Literals.IVALUE__AVAILABLE_TYPES, true, false, false,
+                                                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     /**
@@ -153,10 +153,10 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
      */
     protected void addGatherDataPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SAttribute_gatherData_feature"),
+                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SAttribute_gatherData_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SAttribute_gatherData_feature",
-                                                                 "_UI_SAttribute_type"),
+                                                                           "_UI_SAttribute_type"),
                                                                  MetaABMPackage.Literals.SATTRIBUTE__GATHER_DATA, true,
                                                                  false, false,
                                                                  ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
@@ -170,10 +170,10 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
      */
     protected void addDefaultValuePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SAttribute_defaultValue_feature"),
+                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SAttribute_defaultValue_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SAttribute_defaultValue_feature",
-                                                                 "_UI_SAttribute_type"),
+                                                                           "_UI_SAttribute_type"),
                                                                  MetaABMPackage.Literals.SATTRIBUTE__DEFAULT_VALUE,
                                                                  true, false, false,
                                                                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
@@ -187,10 +187,10 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
      */
     protected void addUnitsPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SAttribute_units_feature"),
+                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SAttribute_units_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SAttribute_units_feature",
-                                                                 "_UI_SAttribute_type"),
+                                                                           "_UI_SAttribute_type"),
                                                                  MetaABMPackage.Literals.SATTRIBUTE__UNITS, true,
                                                                  false, false,
                                                                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
@@ -204,10 +204,10 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
      */
     protected void addImmutablePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SAttribute_immutable_feature"),
+                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SAttribute_immutable_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SAttribute_immutable_feature",
-                                                                 "_UI_SAttribute_type"),
+                                                                           "_UI_SAttribute_type"),
                                                                  MetaABMPackage.Literals.SATTRIBUTE__IMMUTABLE, true,
                                                                  false, false,
                                                                  ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,

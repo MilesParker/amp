@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: AShapedItemProvider.java,v 1.2 2009/09/10 20:26:17 mparker Exp $
+ * </copyright> $Id: AShapedItemProvider.java,v 1.3 2010/04/13 03:54:34 mparker Exp $
  */
 package org.metaabm.act.provider;
 
@@ -32,6 +32,7 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.metaabm.SShapeType;
 import org.metaabm.act.AShaped;
 import org.metaabm.act.MetaABMActPackage;
 import org.metaabm.provider.MetaABMEditPlugin;

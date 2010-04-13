@@ -50,6 +50,7 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.metaabm.MetaABMFactory;
 import org.metaabm.IID;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAgent;
@@ -70,8 +71,8 @@ import org.metaabm.commands.SuggestLabelCommand;
  * @generated
  */
 public class SAgentItemProvider extends SActableItemProvider implements IEditingDomainItemProvider,
-IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     private AttributesItemProvider attributesItemProvider;
 
     private StylesItemProvider stylesItemProvider;
@@ -240,15 +241,15 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
      */
     protected void addParentPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-        .add(createItemPropertyDescriptor(
-                                          ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                          getResourceLocator(),
-                                          getString("_UI_SImplemented_parent_feature"),
-                                          getString("_UI_PropertyDescriptor_description",
-                                                    "_UI_SImplemented_parent_feature", "_UI_SImplemented_type"),
-                                                    MetaABMPackage.Literals.SIMPLEMENTED__PARENT, false, false, false,
-                                                    null, getString("_UI_RelationsPropertyCategory"),
-                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
+                .add(createItemPropertyDescriptor(
+                                                  ((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                                  getResourceLocator(),
+                                                  getString("_UI_SImplemented_parent_feature"),
+                                                  getString("_UI_PropertyDescriptor_description",
+                                                            "_UI_SImplemented_parent_feature", "_UI_SImplemented_type"),
+                                                  MetaABMPackage.Literals.SIMPLEMENTED__PARENT, false, false, false,
+                                                  null, getString("_UI_RelationsPropertyCategory"),
+                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     /**
@@ -258,10 +259,10 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
      */
     protected void addStylesPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SAgent_styles_feature"),
+                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SAgent_styles_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SAgent_styles_feature",
-                                                                 "_UI_SAgent_type"),
+                                                                           "_UI_SAgent_type"),
                                                                  MetaABMPackage.Literals.SAGENT__STYLES, true, false,
                                                                  false, null, null, null));
     }
@@ -273,13 +274,13 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
      */
     protected void addOwnerPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                          getResourceLocator(), getString("_UI_SAgent_owner_feature"),
-                                          getString("_UI_PropertyDescriptor_description",
-                                                    "_UI_SAgent_owner_feature", "_UI_SAgent_type"),
-                                                    MetaABMPackage.Literals.SAGENT__OWNER, false, false, false, null,
-                                                    getString("_UI_RelationsPropertyCategory"),
-                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
+                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                                  getResourceLocator(), getString("_UI_SAgent_owner_feature"),
+                                                  getString("_UI_PropertyDescriptor_description",
+                                                            "_UI_SAgent_owner_feature", "_UI_SAgent_type"),
+                                                  MetaABMPackage.Literals.SAGENT__OWNER, false, false, false, null,
+                                                  getString("_UI_RelationsPropertyCategory"),
+                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     /**
@@ -375,15 +376,15 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
 
         if (selectionObject == owner) {
             return getResourceLocator()
-            .getString("_UI_CreateChild_description",
-                       new Object[] { childType, getFeatureText(feature), getTypeText(owner) });
+                    .getString("_UI_CreateChild_description",
+                               new Object[] { childType, getFeatureText(feature), getTypeText(owner) });
         }
 
         Object sibling = selectionObject;
         Object siblingFeature = getChildFeature(owner, sibling);
 
         if (siblingFeature instanceof EStructuralFeature
-                && FeatureMapUtil.isFeatureMap((EStructuralFeature) siblingFeature)) {
+            && FeatureMapUtil.isFeatureMap((EStructuralFeature) siblingFeature)) {
             FeatureMap.Entry entry = (FeatureMap.Entry) sibling;
             siblingFeature = entry.getEStructuralFeature();
             sibling = entry.getValue();

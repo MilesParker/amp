@@ -21,12 +21,14 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EClass;
@@ -48,6 +50,7 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.apache.commons.lang.StringUtils;
@@ -69,6 +72,7 @@ import org.metaabm.commands.SuggestLabelCommand;
 import org.metaabm.function.FFunction;
 import org.metaabm.provider.IIDItemProvider;
 import org.metaabm.provider.MetaABMEditPlugin;
+import org.metaabm.provider.TransientGroupedItemProvider;
 
 /*
  * This is the item provider adapter for a {@link org.metaabm.act.AAct} object.
@@ -78,11 +82,16 @@ import org.metaabm.provider.MetaABMEditPlugin;
 public class AActItemProvider extends IIDItemProvider implements IEditingDomainItemProvider,
 IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
 ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
-    // Map<EReference, ItemProviderAdapter> providerForFeature;
+
+    private TransientGroupedItemProvider sourcesItemProvider;
+
+    private TransientGroupedItemProvider targetsItemProvider;
+
+    Map<EReference, ItemProviderAdapter> providerForFeature;
 
     /**
-     * This constructs an instance from a factory and a notifier.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     public AActItemProvider(AdapterFactory adapterFactory) {
@@ -90,8 +99,8 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     }
 
     /**
-     * This returns the property descriptors for the adapted class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -112,8 +121,8 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     }
 
     /**
-     * This adds a property descriptor for the Sources feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the Sources feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addSourcesPropertyDescriptor(Object object) {
@@ -128,8 +137,8 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     }
 
     /**
-     * This adds a property descriptor for the Targets feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the Targets feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addTargetsPropertyDescriptor(Object object) {
@@ -144,8 +153,8 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     }
 
     /**
-     * This adds a property descriptor for the Reference feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the Reference feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addReferencePropertyDescriptor(Object object) {
@@ -160,8 +169,8 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     }
 
     /**
-     * This adds a property descriptor for the Group feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the Group feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addGroupPropertyDescriptor(Object object) {
@@ -205,8 +214,8 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     }
 
     /**
-     * This adds a property descriptor for the All Sources feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the All Sources feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addAllSourcesPropertyDescriptor(Object object) {
@@ -221,8 +230,8 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     }
 
     /**
-     * This adds a property descriptor for the All Targets feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the All Targets feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addAllTargetsPropertyDescriptor(Object object) {
@@ -237,8 +246,8 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     }
 
     /**
-     * This adds a property descriptor for the Root Selected feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the Root Selected feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addRootSelectedPropertyDescriptor(Object object) {
@@ -250,6 +259,38 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
                                                     MetaABMActPackage.Literals.AACT__ROOT_SELECTED, false, false, false,
                                                     null, getString("_UI_RelationsPropertyCategory"),
                                                     new String[] { "org.eclipse.ui.views.properties.expert" }));
+    }
+
+    @SuppressWarnings("unchecked")
+    public Collection<?> getChildren(Object object) {
+        if (object instanceof ARoot) {
+            ARoot root = (ARoot) object;
+            EList<AAct> targets = new BasicEList(root.getTargets());
+            // Collection<AAct> visited = new HashSet<AAct>();
+            // for (AAct members : root.getTargets()) {
+            //
+            // }
+            EList<AAct> allTargets = new BasicEList(root.getAllTargets());
+            allTargets.removeAll(targets);
+            allTargets.addAll(0, targets);
+            return allTargets;
+        } else {
+            // Collection<Object> children = new ArrayList<Object>();
+            // if (providerForFeature == null) {
+            // // children = new ArrayList<Object>();
+            // EObject parent = (EObject) object;
+            // providerForFeature = new HashMap<EReference, ItemProviderAdapter>();
+            // sourcesItemProvider = new RelatedActsItemProvider(adapterFactory, parent,
+            // MetaABMActPackage.Literals.AACT__SOURCES, "Sources");
+            // targetsItemProvider = new RelatedActsItemProvider(adapterFactory, parent,
+            // MetaABMActPackage.Literals.AACT__TARGETS, "Targets");
+            // }
+            // if (!children.contains(sourcesItemProvider)) {
+            // children.add(sourcesItemProvider);
+            // children.add(targetsItemProvider);
+            // }
+            return super.getChildren(object);
+        }
     }
 
     /**
@@ -505,6 +546,7 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -516,8 +558,8 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     }
 
     /**
-     * This returns AAct.gif.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This returns AAct.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -610,17 +652,19 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
      */
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-        // Don't allow creation of roots
-        for (EClassifier cl : MetaABMActPackage.eINSTANCE.getEClassifiers()) {
-            if (cl instanceof EClass) {
-                EClass actClass = (EClass) cl;
-                if (MetaABMActPackage.Literals.AACT.isSuperTypeOf(actClass)
-                        && !MetaABMActPackage.Literals.AROOT.isSuperTypeOf(actClass) && !actClass.isAbstract()) {
-                    newChildDescriptors.add(createChildParameter(MetaABMActPackage.Literals.AACT__TARGETS,
-                                                                 MetaABMActFactory.eINSTANCE.create(actClass)));
+        if (object instanceof ARoot) {
+            for (EClassifier cl : MetaABMActPackage.eINSTANCE.getEClassifiers()) {
+                if (cl instanceof EClass) {
+                    EClass actClass = (EClass) cl;
+                    if (MetaABMActPackage.Literals.AACT.isSuperTypeOf(actClass)
+                            && !MetaABMActPackage.Literals.AROOT.isSuperTypeOf(actClass) && !actClass.isAbstract()) {
+                        newChildDescriptors.add(createChildParameter(MetaABMActPackage.Literals.AACT__TARGETS,
+                                                                     MetaABMActFactory.eINSTANCE.create(actClass)));
+                    }
                 }
             }
         }
+        // // Don't allow creation of roots
     }
 
     @Override
@@ -724,9 +768,7 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
         if (act instanceof ASink) {
             for (AInput input : ((ASink) act).getInputs()) {
                 if (!allSourceSelects.contains(input.getSelected()) && !processed.contains(input)) {
-                    cmd
-                    .append(SetCommand.create(domain, input, MetaABMActPackage.Literals.AINPUT__SELECTED,
-                                              newSelect));
+                    cmd.append(SetCommand.create(domain, input, MetaABMActPackage.Literals.AINPUT__SELECTED, newSelect));
                     processed.add(input);
                 }
             }
@@ -807,8 +849,8 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     // }
 
     /**
-     * Return the resource locator for this item provider's resources.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override

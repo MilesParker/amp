@@ -47,8 +47,8 @@ import org.metaabm.provider.SNamedItemProvider;
  * @generated
  */
 public class FLibraryItemProvider extends SNamedItemProvider implements IEditingDomainItemProvider,
-IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier. <!--
      * begin-user-doc --> <!-- end-user-doc -->
@@ -84,10 +84,10 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
      */
     protected void addFunctionsPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_FLibrary_functions_feature"),
+                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_FLibrary_functions_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_FLibrary_functions_feature",
-                                                                 "_UI_FLibrary_type"),
+                                                                           "_UI_FLibrary_type"),
                                                                  MetaABMFunctionPackage.Literals.FLIBRARY__FUNCTIONS,
                                                                  true, false, true, null, null, null));
     }
@@ -100,10 +100,10 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
      */
     protected void addSubsPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_FLibrary_subs_feature"),
+                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_FLibrary_subs_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_FLibrary_subs_feature",
-                                                                 "_UI_FLibrary_type"),
+                                                                           "_UI_FLibrary_type"),
                                                                  MetaABMFunctionPackage.Literals.FLIBRARY__SUBS, true,
                                                                  false, true, null, null, null));
     }

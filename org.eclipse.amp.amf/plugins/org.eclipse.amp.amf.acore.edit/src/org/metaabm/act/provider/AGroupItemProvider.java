@@ -46,6 +46,7 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAgent;
 import org.metaabm.SContext;
@@ -189,7 +190,6 @@ public class AGroupItemProvider extends AActItemProvider implements IEditingDoma
         if (childrenFeatures == null) {
             childrenFeatures = new ArrayList<EStructuralFeature>();
             childrenFeatures.add(MetaABMActPackage.Literals.AGROUP__ROOTS);
-            childrenFeatures.add(MetaABMActPackage.Literals.AACT__TARGETS);
         }
         return childrenFeatures;
     }

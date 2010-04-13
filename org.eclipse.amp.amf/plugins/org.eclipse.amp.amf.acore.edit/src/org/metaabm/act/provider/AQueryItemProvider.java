@@ -33,6 +33,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.metaabm.act.AQuery;
 import org.metaabm.IID;
 import org.metaabm.act.ASink;
 import org.metaabm.function.FFunction;
@@ -43,8 +44,8 @@ import org.metaabm.function.FFunction;
  * @generated
  */
 public class AQueryItemProvider extends ASinkItemProvider implements IEditingDomainItemProvider,
-IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier. <!--
      * begin-user-doc --> <!-- end-user-doc -->

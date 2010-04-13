@@ -54,7 +54,7 @@ import org.metaabm.util.MetaABMAdapterFactory;
  * @generated
  */
 public class MetaABMItemProviderAdapterFactory extends MetaABMAdapterFactory implements ComposeableAdapterFactory,
-IChangeNotifier, IDisposable {
+        IChangeNotifier, IDisposable {
     /**
      * This keeps track of the root adapter factory that delegates to this adapter factory.
      * <!-- begin-user-doc --> <!--
@@ -419,7 +419,7 @@ IChangeNotifier, IDisposable {
     public Object adapt(Object object, Object type) {
         if (isFactoryForType(type)) {
             Object adapter = super.adapt(object, type);
-            if (!(type instanceof Class<?>) || ((Class<?>) type).isInstance(adapter)) {
+            if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
                 return adapter;
             }
         }
@@ -473,7 +473,7 @@ IChangeNotifier, IDisposable {
     }
 
     /**
-     * This disposes all of the item providers created by this factory.
+     * This disposes all of the item providers created by this factory. 
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */

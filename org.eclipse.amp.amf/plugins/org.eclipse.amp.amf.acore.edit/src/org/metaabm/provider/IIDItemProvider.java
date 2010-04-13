@@ -79,8 +79,7 @@ public class IIDItemProvider extends MetaABMItemProvider implements IEditingDoma
     protected void addLabelPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_IID_label_feature"),
-                                                                 getString("_UI_PropertyDescriptor_description",
-                                                                           "_UI_IID_label_feature", "_UI_IID_type"),
+                                                                 getString("_UI_IID_label_description"),
                                                                  MetaABMPackage.Literals.IID__LABEL, true, false,
                                                                  false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                                                                  getString("_UI_IDsPropertyCategory"), null));

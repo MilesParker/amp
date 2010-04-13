@@ -47,8 +47,8 @@ import org.metaabm.provider.MetaABMItemProvider;
  * @generated
  */
 public class ASetItemProvider extends AAccessorItemProvider implements IEditingDomainItemProvider,
-IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier. <!--
      * begin-user-doc --> <!-- end-user-doc -->
@@ -83,10 +83,10 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
      */
     protected void addParameterPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                               .getRootAdapterFactory(), getResourceLocator(), getString("_UI_ASet_parameter_feature"),
-                                                               getString("_UI_PropertyDescriptor_description", "_UI_ASet_parameter_feature", "_UI_ASet_type"),
-                                                               MetaABMActPackage.Literals.ASET__PARAMETER, true, false, true, null, getString("_UI_ActPropertyCategory"),
-                                                               null) {
+                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_ASet_parameter_feature"),
+            getString("_UI_PropertyDescriptor_description", "_UI_ASet_parameter_feature", "_UI_ASet_type"),
+            MetaABMActPackage.Literals.ASET__PARAMETER, true, false, true, null, getString("_UI_ActPropertyCategory"),
+            null) {
             @SuppressWarnings("unchecked")
             public Collection<?> getChoiceOfValues(Object object) {
                 ASet set = (ASet) object;
@@ -133,7 +133,7 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
                 .getLabel()
             + " " : "";
         return "Set " + selected + (valueProvider != null ? valueProvider.getText(set.getAttribute()) : "[?]") + " to "
-        + (parameterProvider != null ? parameterProvider.getText(set.getParameter()) : "[?]");
+            + (parameterProvider != null ? parameterProvider.getText(set.getParameter()) : "[?]");
     }
 
     /**
@@ -152,7 +152,7 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     public String suggestLabel(IID object) {
         ASet acc = (ASet) object;
         return "Set " + (acc.getAttribute() != null ? acc.getAttribute().getLabel() : "[?]") + " To "
-        + (acc.getParameter() != null ? acc.getParameter().getLabel() : "[?]");
+            + (acc.getParameter() != null ? acc.getParameter().getLabel() : "[?]");
     }
 
     /**

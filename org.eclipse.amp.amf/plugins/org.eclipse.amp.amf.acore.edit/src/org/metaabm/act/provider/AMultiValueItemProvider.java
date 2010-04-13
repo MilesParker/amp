@@ -55,8 +55,8 @@ import org.metaabm.commands.RemoveMultiValueStateCommand;
  * @generated
  */
 public class AMultiValueItemProvider extends ALiteralItemProvider implements IEditingDomainItemProvider,
-IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier. <!--
      * begin-user-doc --> <!-- end-user-doc -->
@@ -125,9 +125,9 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
      */
     protected void addValuesPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                               .getRootAdapterFactory(), getResourceLocator(), getString("_UI_AMultiValue_values_feature"),
-                                                               getString("_UI_PropertyDescriptor_description", "_UI_AMultiValue_values_feature", "_UI_AMultiValue_type"),
-                                                               MetaABMActPackage.Literals.AMULTI_VALUE__VALUES, true, true, false, null, null, null) {
+                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_AMultiValue_values_feature"),
+            getString("_UI_PropertyDescriptor_description", "_UI_AMultiValue_values_feature", "_UI_AMultiValue_type"),
+            MetaABMActPackage.Literals.AMULTI_VALUE__VALUES, true, true, false, null, null, null) {
             public Collection<?> getChoiceOfValues(Object object) {
                 Collection<?> choiceOfValues = super.getChoiceOfValues(object);
                 ASink sink = ((AInput) ((AMultiValue) object).eContainer()).getSink();

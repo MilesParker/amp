@@ -30,6 +30,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.metaabm.SStyle3D;
 
 /*
  * This is the item provider adapter for a {@link org.metaabm.SStyle3D} object.
