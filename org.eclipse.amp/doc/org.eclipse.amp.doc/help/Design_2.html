@@ -7,22 +7,22 @@
 <link rel="home" href="index.html" title="Agent Modeling Guide">
 <link rel="up" href="Actions.html" title="Actions">
 <link rel="prev" href="Actions.html" title="Actions">
-<link rel="next" href="Components.html" title="Components">
+<link rel="next" href="Details_3.html" title="Details">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Design</h1>
-<div class="section" title="Types">
+<p>In this section, we'll describe how modelers can assemble actions into sets of behavior that accomplish complex tasks on interrelated agents and spaces over time.</p>
+<div class="section" title="Kinds of Actions">
 <div class="titlepage">
 <div>
 <div>
 <h3 class="title">
-<a name="Types_2"></a>Types</h3>
+<a name="Kinds_of_Actions"></a>Kinds of Actions</h3>
 </div>
 </div>
 </div>
-<p>Before getting into the details of how each Actions work together, or the various kinds of Actions, we should understand how they all fit together. As discussed above, actions are strung together in a sequence or flow. They're always composed of two parts, though those parts can be assembled and intermixed in many different ways. First, we search for a collection of agents, and then we do something with that selection. We refer to these two parts as Selections and Commands. There are two special kinds of selections. First, we need some way to start the whole chain of actions off, and so we have a kind of Selection called a Root Selection, or simply a Root. Secondly, we need some way to actually make the agents exist in the model in the first place, so we have a Create Agents action. For the technically minded, another useful way of looking at the Actions approach is as a Query Transformation language, as with SQL and Stored Procedures. Except again, the results of the queries along with the transformations flow through from one query to the next.</p>
-<p>There are two other special categories of actions. One we use to crate the spaces that agents exist upon. We call these Builders. The other category contains just one member, "Method".</p>
-<p>These are all summarized in the diagram below.</p>
+<p>Before getting into the details of how each Actions work together, or the various kinds of Actions, it will be helpful to take a broad overview of how they all fit together. As discussed above, actions are strung together in a sequence or flow. They're always composed of two parts, though those parts can be assembled and intermixed in many different ways. First, we search for a collection of agents, and then we do something with that selection. We refer to these two parts as Selections and Commands. (For the technically minded, another useful way of looking at the Actions approach is as a Query Transformation language, as with SQL and Stored Procedures.  Except again, the results of the queries along with the transformations flow through from one query to the next.) Selections find the agents we want to do something with, and the commands do it. We need some way to start the whole chain of actions off, and so we have a kind of Selection called a Root Selection, or simply a Root. Secondly, we need some way to actually make the agents exist in the model in the first place, so we have a Create Agents action. Finally, we have special commands called builders that allow us to create the spaces that the agents will occupy. All of these are discussed in detail in the section that follows this one.</p>
+<p>These are all summarized in the diagram below:</p>
 <p>
 					
 </p>
@@ -31,7 +31,6 @@
 <p> 
 				
 </p>
-<p>In this section, we'll describe how modelers can assemble actions into sets of behavior that accomplish complex tasks on interelated agents and spaces over time.</p>
 </div>
 <div class="section" title="Flow">
 <div class="titlepage">
@@ -74,35 +73,58 @@
 <p>
 				
 </p>
-<p>Logic Actions are used to assemble any kind of query structure needed. In the following example, we've defined a selection where the Set action occurs for any agent whoe meets the criteria defined by (Query 1 AND Query 2) OR Query 3. (Readers with experience with programming or formal logic will note that this looks just like a parse tree, and while that's basically what it is, there are important differences from how such trees are generally treated as we'll see later.)</p>
+<p>In the following example, we've defined a set of actions and their relationships. We have a selection, a few queries and a couple of logic operators leading to a Set Action. We'll describe in detail below how Logic Actions are used in conjunction with other actions to assemble any kind of query structure needed. But for now, we'll focus on the control flow itself.</p>
 <p>
 					
 </p>
 <div class="mediaobject">
-<img src="images/ActionsComplexLogic.png"></div>
+<img src="images/ActionsFlowSimple.png"></div>
 <p>
 				
 </p>
-<p>Note that Unions are often superfluous, though they can be useful for organizing queries. This is because all sources that flow into a given target Action act just like a union since any of the paths might reach that target. The following Action design is fully equivalent to the one above.</p>
+<p>As you have probably already guessed, the agents that have the Set Action applied to them could take one of two paths through the Action flow. Readers with experience with programming or formal logic will note that this looks just like a parse tree, and while that's basically what it is, there are important differences. For example, if we looked at the following structure as a definition of control flow for a single agent we'd take them to be equivalent. Both would evaluate the statement (Query 1 AND Query 2) OR Query 3 for each agent.</p>
 <p>
 					
 </p>
 <div class="mediaobject">
-<img src="images/ActionsComplexLogicNoOr.png"></div>
+<img src="images/ActionsFlowUnion.png"></div>
 <p>
 				
+</p>
+<p>Within Actions in many cases these two approaches will also act equivalently. If we are simply setting a value, it doesn't matter how an agent gets to that Set Action, as long as it gets there. All sources that flow into a given target Action act like a logical union since any of the paths might reach that target. But note that we have two flows moving in parallel in the flow on the right. What happens when the conditions for 
+					<span class="italic">both</span> branches are true? As the set of agents flow through each branch the Set Action on the left will be evaluated once, while the one on the right will be evaluated twice. Again, this often ends up with the same behavior, but not always. If for example, the evaluate Action uses the value of the attribute that we are setting as input, we can get different results. Of course, you can write code in any language that accomplishes the same thing, but the code will look quite different. For example, if we wrote the same basic logic in Java, in the first case we'd have something like:
+				</p>
+<div class="literallayout">
+<p>if&nbsp;((query1.evaluate()&nbsp;&amp;&amp;&nbsp;query2.evaluate())&nbsp;||&nbsp;query3.evaluate())&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;doSomething();<br>
+}<br>
+
 </p>
 </div>
-<div class="section" title="Boundaries and Query Refinement">
+<p>In the second we'd have:</p>
+<div class="literallayout">
+<p>if&nbsp;(query1.evaluate()&nbsp;&amp;&amp;&nbsp;query2.evaluate())&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;doSomething();<br>
+}<br>
+if&nbsp;(query3.evaluate())&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;doSomething();<br>
+}<br>
+
+</p>
+</div>
+<p>This is a simple example, but with multiple branches such code design issues can quickly grow complex. The flow approach allows us to express things in a way that is often more natural and expressive. The important thing to keep in mind when desiging action flows is to see the flow as representing a selection of agents moving through streams independently. In the Actions example we expressed both approaches in nearly the same way, except in the case on the left we used a Union Action to bring the two branches of flow back together.</p>
+</div>
+<div class="section" title="Selections">
 <div class="titlepage">
 <div>
 <div>
 <h3 class="title">
-<a name="Boundaries_and_Query_Refinement"></a>Boundaries and Query Refinement</h3>
+<a name="Selections"></a>Selections</h3>
 </div>
 </div>
 </div>
-<p>An important concept in Actions is the idea of selection boundaries. A selection boundary is defined as the limit of a query directly upon a given Select Action. For example, in the following diagram, we can see the extent of the boundary for a straightforward selection.</p>
+<p>Selections are a key concept in Actions. Put simply, selections define what we are searching for and where. They are defined by a combination of Select, Query and Logic Actions. Each time we create a new Select Action, we define a new selection. Queries can be used to further refine selections either immediately after or later in the Action flow, as described in the next section. Logic Actions are used to combine and organize the Action flow defined by Query Actions. In order to understand how these three pieces work together, we need to understand the idea of selection boundaries.</p>
+<p>A selection boundary determines the set of selection actions that are used to determine what agents to apply target actions to. For example, in the following diagram, we can see the extent of the boundary for a straightforward selection.</p>
 <p>
 					
 </p>
@@ -111,7 +133,7 @@
 <p>
 				
 </p>
-<p>Selection boundaries are defined by Select, Query and Logic Actions. And we each time we create a new selection, we define a new set of boundaries.</p>
+<p>Each time we create a new selection, we define a new set of boundaries.</p>
 <p>
 					
 </p>
@@ -120,7 +142,7 @@
 <p> 
 				
 </p>
-<p>A very important aspect of boundaries is that they can be defined by the beginning of Query actions as well as by Select Actions. This is because Query Actions can be directly part of a selection definition, but they can also refine selections, as we'll see. So where does one selection boundary end and the next one begin? The simple rule is that the end of the boundary is defined for a given Action by the place where:</p>
+<p>A very important aspect of boundaries is that they apply to a group of actions that begin with a Query Action, and not just such a group that begins with a Select Action. This is because Query Actions can be directly part of a selection definition, but they can also refine selections, as we'll see. So where does one selection boundary end and the next one begin? The simple rule is that the end of the boundary is defined for a given Action by the place where:</p>
 <div class="orderedlist">
 <ol class="orderedlist" type="1">
 <li class="listitem">
@@ -165,7 +187,7 @@
 </div>
 </div>
 </div>
-<p>Now, let's put the concepts of Actions sequences and boundaries together to see how we can easily define complex interactions between multiple selections. When we define a Select, the state of its selection flows through and wtih any subsequent selections. So for example, if we have a Root Action rule, and then do a selection based on it, we'll have access to the agent from the orginal context as well as all of the subsequent selections. We can refer to any previous selection for any subsequent action. For example, instead of setting the value for the rule agent, we might instead set a value for an agent we've found in a target selection.</p>
+<p>Now, let's put the concepts of Actions sequences and boundaries together to see how we can easily define complex interactions between multiple selections. When we define a Select, the state of its selection flows through and with any subsequent selections. So for example, if we have a Root Action rule, and then do a selection based on it, we'll have access to the agent from the original context as well as all of the subsequent selections. We can refer to any previous selection for any subsequent action. For example, instead of setting the value for the rule agent, we might instead set a value for an agent we've found in a target selection.</p>
 <p>
 					
 </p>
@@ -174,7 +196,7 @@
 <p>
 				
 </p>
-<p>Inputs to functions also use selections. (We'll discuss more details in the functions section.) In the following example, we're adding the weath of the Selection 1 agent to the wealth of the Selection 2 agent and using that value to set some other value. (Here, perhaps we are modeling an agent in a winner takes all game, in which case we'd also add a Set Action on Selection 2 and set the second agent's wealth to 0.)</p>
+<p>Inputs to functions also use selections. (We'll discuss more details in the functions section.) In the following example, we're adding the wealth of the Selection 1 agent to the wealth of the Selection 2 agent and using that value to set some other value. (Here, perhaps we are modeling an agent in a winner takes all game, in which case we'd also add a Set Action on Selection 2 and set the second agent's wealth to 0.)</p>
 <p>
 					
 </p>
@@ -192,16 +214,7 @@
 <p>
 				
 </p>
-<p>Now, we can combine this weaving with the sequence flow described above. In the simplest case, this again behaves just like any other program control flow. In the example below, as you have probably already assumed, the agents that have the Set Action applied to them could take one of two paths through the Action flow, either by meeting the criteria for Query 1 AND Query 2, or the criteria for Query 3.</p>
-<p>
-					
-</p>
-<div class="mediaobject">
-<img src="images/ActionsWeavingSimple.png"></div>
-<p>
-				
-</p>
-<p>If we use multiple paths in the Query, the path we take though any prior Query will determine which agents are used as the basis for subsequent selections. So in this case, the Rule agent might actually move twice if it meets the criteria for both the blue path and the red path.</p>
+<p>Finally, we can put all of these concepts together by weaving selections together with flows. As we discussed in the flow section, if we use multiple paths in the Query, the agents that flow through from any prior Query can follow multiple paths at once. And as we discussed in the selection section, the selection and its boundaries determine what agents we will be working with at any given evaluation point in the flow. Now, consider the following example:</p>
 <p>
 					
 </p>
@@ -210,7 +223,7 @@
 <p>
 				
 </p>
-<p>In the above example, we introduce one more important concept. As we'll see in the detailed explanation of each Action below, Transformation Actions such as Move or Connect take multiple selections. The first selection defines the set of agents that will be performing the action. In the case of a Move agent, this refers to the mover. The second selection, which for Move we call "destination", refers to the selection that will be recieving the action. In the case of movement this is the agent or location that the Rule agent will be moving to.</p>
+<p>Before going into further details we need to introduce one more important concept. As we'll see in the detailed explanation of each Action below, Transformation Actions such as Move or Connect take multiple selections. The first selection defines the set of agents that will be performing the action. In the case of a Move agent, this refers to the mover. The second selection, which for Move we call "destination", refers to the selection that will be receiving the action. In the case of movement this is the agent or location that the Rule agent will be moving to. If we follow the flows through, we can note two important outcomes of our model design -- a Rule agent might move twice if it meets the criteria for both the blue path and the red path and that it might move to a different location each time.</p>
 </div>
 </body>
 </html>

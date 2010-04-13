@@ -1,12 +1,12 @@
 =Introduction=
 
-In this Modeler's Guide we provide an in-depth understanding of what goes into an Agent Model and how you can use the Agent Modeling Framework tools to design one. Fundamentally, an agent-based model, or "ABM", is composed of five pieces: Agents and Context Agents, Attributes, Spaces, and Actions. The first three refer to structural components, whereas Actions define behavior. Agent models also have styles, which are a special kind of Action used to determine how to portray an agent in a visualization. Finally Actions make use of Functions. We'll describe of these components in a seperate section.
+In this Modeler's Guide we provide an in-depth understanding of what goes into an Agent Model and how you can use the Agent Modeling Framework tools to design one. Fundamentally, an agent-based model, or "ABM", is composed of five pieces: Agents and Context Agents, Attributes, Spaces, and Actions. The first three refer to structural components, whereas Actions define behavior. Agent models also have styles, which are a special kind of Action used to determine how to portray an agent in a visualization. Finally Actions make use of Functions. We'll describe of these components in a separate section.
 
 But first, we'll give a quick overview at what agent-based modeling is is and how the Agent Modeling Framework can help you to develop models for ABM or other problem domains.
 
 ==Agent-Based Modeling==
 
-The primary focus of the Agent Modeling Platform tools is "Agent-Based Modeling" (ABM). ABM is an innovative technique used to explore complex phenomenon in many domains, including economics, social sciences, bio-medicine, ecology and business operations. ABMs share characteristics with object models, but are:
+The primary focus of the Agent Modeling Platform tools is "Agent-Based Modeling" (ABM). ABM is an innovative technique used to explore complex phenomenon in many domains, including economics, social sciences, biomedicine, ecology and business operations. ABMs share characteristics with object models, but are:
 
 ;Spatial
 : Models have explicit environment(s) in which agents interact. (An environment need not be a physical landscape; other examples of spatial relationships include social networks or positions within a logic system.)
@@ -14,7 +14,7 @@ The primary focus of the Agent Modeling Platform tools is "Agent-Based Modeling"
 : Models change over discrete units of time.
 ;Autonomous
 : Agent behaviors are activated independently from other object requests.
-;Heterogenous
+;Heterogeneous
 : Agents may share behavior definitions but have apparent and distinct states and behaviors.
 ;Collective
 : Models contain large communities of agents which exhibit collaborative and competitive behaviors.
@@ -27,11 +27,11 @@ Agent-Based Models (ABMs) seek to represent important real-world dynamics by des
 
 ==Agent Modeling Framework==
 
-The Eclipse Platform provides many unique features that make it ideal for an ABM platform. AMF provides easy to use and powerful tools and techniques for desiging Agent-Based Models, including a common representation, editors, generators and development environment.
+The Eclipse Platform provides many unique features that make it ideal for an ABM platform. AMF provides easy to use and powerful tools and techniques for designing Agent-Based Models, including a common representation, editors, generators and development environment.
 
-The Agent Modeling Framework (AMF) provides high level representations for commmon ABM constructs, and introduces novel ways of representing agents and their behaviors. As detailed in other documentation sections, the Agent Modeling Framework and related tools have been designed to allow researchers to explore complex models in an intuitive way. One of our major design goals has been to create tools that non-programmers can use to create sophisiticated models. It has been our experience that using Model-Driven Software Development (MDSD) techniques increase productivity for all developers regardless of skill level. For those familiar with Model-Driven Developemnt tools, AMF is analogous to EMF but is targeted toward the design and execution of models composed of agents. The AMF meta-model (currently "MetaABM", but in the process of evolving to a new compatible "Acore" specification) is defined in Ecore but provides a more direct and high-level ABM representation of agents, including spatial, behavioral and functional features sufficient to generate complete executable models for the target platforms.
+The Agent Modeling Framework (AMF) provides high level representations for common ABM constructs, and introduces novel ways of representing agents and their behaviors. As detailed in other documentation sections, the Agent Modeling Framework and related tools have been designed to allow researchers to explore complex models in an intuitive way. One of our major design goals has been to create tools that non-programmers can use to create sophisticated models. It has been our experience that using Model-Driven Software Development (MDSD) techniques increase productivity for all developers regardless of skill level. For those familiar with Model-Driven Development tools, AMF is analogous to EMF but is targeted toward the design and execution of models composed of agents. The AMF meta-model (currently "MetaABM", but in the process of evolving to a new compatible "Acore" specification) is defined in Ecore but provides a more direct and high-level ABM representation of agents, including spatial, behavioral and functional features sufficient to generate complete executable models for the target platforms.
 
-Models designed in AMF are transparantly converted to Java code for leading Agent-Based Modeling tools, such as the Escape tools which are included in AMP and allow direct execution of models within the AMP environment, and Repast Simphony, another popular Java based ABM tool. These tools create Java code that can then be compiled, executed and event modified in these environments just as with any other Java program. AMF's generative capability is designed to be pluggable and modular so that other developers can create AMF generators for their own tools. In fact, targets can be designed that have no inherent dependencies on Eclipse or even on a traditional platform.
+Models designed in AMF are transparently converted to Java code for leading Agent-Based Modeling tools, such as the Escape tools which are included in AMP and allow direct execution of models within the AMP environment, and Repast Simphony, another popular Java based ABM tool. These tools create Java code that can then be compiled, executed and event modified in these environments just as with any other Java program. AMF's generative capability is designed to be pluggable and modular so that other developers can create AMF generators for their own tools. In fact, targets can be designed that have no inherent dependencies on Eclipse or even on a traditional platform.
 
 ==Other Uses==
 
@@ -43,22 +43,20 @@ We hope you enjoy using the tool, and we look forward to your comments and feedb
 
 ==Design==
 
-The basic structure of an agent-based model can be quite simple. While there are many subtle complexities  -- beyond the scope of this manual -- we can construct most models following some straightforward and elegant design principles. And in fact, one of the main goals of the Agent Modeling Framework is to provide a consistent framework that can support using those principles to support the creation of models that can be eaisily understood, shared, and that can be used interchangably as components in other models.
+The basic structure of an agent-based model can be quite simple. While there are many subtle complexities  -- beyond the scope of this manual -- we can construct most models following some straightforward and elegant design principles. And in fact, one of the main goals of the Agent Modeling Framework is to provide a consistent framework that can support using those principles to support the creation of models that can be easily understood, shared, and that can be used interchangeably as components in other models.
 
 Unlike the approach of a traditional Object Oriented environment, the dominant organizing principal for agents within AMF follows a compositional hierarchical model, not an inheritance model. (Inheritance-like behavior will be supported in forthcoming versions of Acore, but in a more sophisticated, flexible and dynamic way than is supported by traditional programming languages such as Java.) Contexts -- also referred to as "Swarms" or "Scapes", are simply Agents that are capable of containing other agents. With this basic construct -- known as a Composition in design pattern language -- agents are able to contain other agents.
 
-
-
-==Types==
+==Details==
 
 ===General===
 
-Everything represented in an Acore model needs to be referred to in some way. Just as software classes have names, Acore provides a way to label and describe every entity, but in a richer and more maintainable way. All entities in Acore -- including Actions and Functions which we descibe in the next two sections -- have a number of shared values.
+Everything represented in an Acore model needs to be referred to in some way. Just as software classes have names, Acore provides a way to label and describe every entity, but in a richer and more maintainable way. All entities in Acore -- including Actions and Functions which we describe in the next two sections -- have a number of shared values.
 
 ====Named Entities====
 
 =====Label=====
-A reasonably short, human readable name for the agent. For example, "Timber Wolf", "Forex Trader" or "Movement Probability". These should be defined so that they fit in well with auto-generated documentation.
+A reasonably short, human readable name for the agent. For example, "Timber Wolf", "Exchange Trader" or "Movement Probability". These should be defined so that they fit in well with auto-generated documentation.
 =====ID=====
 An ID is an identifier that can be used to represent the object in a software program. This means that it must follow certain rules such as no-spaces or non alpha-numeric characters. The editing tools will help make sure that this value is legal. Note that when you enter a label, a legal ID is automatically created for you! Usually you won't need to change this, but you might if for example you want the value to match up with some database or other external representation. So reasonable values here might be "timberWolf" or perhaps "MVMNT_PRB" if say you're trying to match up to some old statistics records you have. (Note that currently IDs by default use "camel case", i.e. "thisIsAnExampleOfCamelCase" to match with Java variable naming conventions, but this is likely to change.)
 
@@ -77,7 +75,7 @@ An Agent is simply a software object that has autonomous behavior and (generally
 
 =====Attributes=====
 
-As described int eh attribute sections above.
+As described in the attribute sections above.
 
 =====Actions======
 
@@ -85,7 +83,7 @@ Described in the "Actions" section.
 
 =====Styles=====
 
-Special actions that are used to define how to draw an agent grpahically as also described in the "Actions" section and detailed in the "Functions" section.
+Special actions that are used to define how to draw an agent graphically as also described in the "Actions" section and detailed in the "Functions" section.
 
 ====Context Agents (Contexts)====
 
@@ -97,7 +95,7 @@ The agents that are contained within this context. For example, a context repres
 
 =====Spaces=====
 
-The set of all spaces contained or subsumed by the agent. For example, a context representing a city might contain a geographical space and a transporation network space.
+The set of all spaces contained or subsumed by the agent. For example, a context representing a city might contain a geographical space and a transportation network space.
 
 ===Attributes===
 
@@ -107,7 +105,7 @@ Here are the basic types of attributes available in Acore models:
 
 ====Basic Attributes====
 
-Attributes are single values that a given agent contains. For example, an agent might have an "Age" attribute. In this section we go over the values you can set for the attrributes. For those with a tecnical bent, note that we are technically describing the meta-attributes for the meta-class "SAttribute". But it is far too confusing to refer to the attributes of attributes! So we'll just refer to the attributes that any of our model components as "values".
+Attributes are single values that a given agent contains. For example, an agent might have an "Age" attribute. In this section we go over the values you can set for the attributes. For those with a tecnical bent, note that we are technically describing the meta-attributes for the meta-class "SAttribute". But it is far too confusing to refer to the attributes of attributes! So we'll just refer to the attributes that any of our model components as "values".
 
 =====Type=====
 
@@ -149,7 +147,7 @@ Specifies what the attribute is actually measuring. For example, if you're defin
 
 ====Arrays====
 
-Arrays are simply attributes with zero or more entries. For example, you might have an array of three Real numbers representing the Red Green and Blue color components for an object. Note that if you find yourself defining very complex sets of arrays, its likely that what you really want to define is a new agent with attributes for each array. In addition to whatis defined above, arrays specify:
+Arrays are simply attributes with zero or more entries. For example, you might have an array of three Real numbers representing the Red Green and Blue color components for an object. Note that if you find yourself defining very complex sets of arrays, its likely that what you really want to define is a new agent with attributes for each array. In addition to what is defined above, arrays specify:
 
 =====Size=====
 
@@ -192,31 +190,31 @@ The "Strict" and "Bouncy" values are obsolete and should not be used.
 
  =====Dimensionality=====
  
-The number of dimensions that the space has. After selecting a dimensionality, attributes will be added to represent each dimension. For example, if you enter 3 here, you will have an attrbiute for X, Y, and Z. Be sure to enter default values here, as they will be used to specify the actual size of the space.
+The number of dimensions that the space has. After selecting a dimensionality, attributes will be added to represent each dimension. For example, if you enter 3 here, you will have an attribute for X, Y, and Z. Be sure to enter default values here, as they will be used to specify the actual size of the space.
 
 ====Grid====
 
-A grid is technically a regular lattice structure. Currently, only rectilinear strcutures are supported, i.e. a One-dimensional vector, a two-dimensional grid, a three-dimensional cube and so on. (Though none of the current target platfroms support n-d spaces yet.) 
+A grid is technically a regular lattice structure. Currently, only rectilinear structures are supported, i.e. a One-dimensional vector, a two-dimensional grid, a three-dimensional cube and so on. (Though none of the current target platforms support n-d spaces yet.) 
 
 Like continuous spaces, a grid has a border rule and dimensionality. A grid has a couple of other important values:
 
 =====Multi-Occupant=====
 
-Does the grid allow more than one agent to occupy it at a time? This value can usually be ignored and will likely be deprecated in future releases.
+Does the grid allow more than one agent to occupy it at a time? This value may be replaced with another mechanism in future releases.
 
 =====Neighborhood=====
 
-This value determines what constitutes a region within a particular distance from the agent. The value for this is often ciritical in obtaining particular behavior from a model, and shouldn't be overlooked. There are three possible values:
+This value determines what constitutes a region within a particular distance from the agent. The value for this is often critical in obtaining particular behavior from a model, and shouldn't be overlooked. There are three possible values:
 
 {| cellpadding="10" cellspacing="0" border="1"
 |Euclidian
-|The distance between any two cells is taken to be the "real" distance. For example, if an agent was within a chess board, and we wanted to find all agents within distance three of it, we could determine that by taking a string of length 3, tacking it to the center of the source square, and including all cells whose centers we can reach with the other string end. Note that although Euclidian space may seem the most reasonable neighborhood configuration to choose, this really isn't the case. Euclidian space is continuous whereas grid space is discrete, and mapping the two to each other can create unexpected issues. Still, this is a good choice for models representing notionally real spaces.
+|The distance between any two cells is taken to be the "real" distance. For example, if an agent was within a chess board, and we wanted to find all agents within distance three of it, we could determine that by taking a string of length 3, tacking it to the center of the source square, and including all cells whose centers we can reach with the other string end. Note that although Euclidean space may seem the most reasonable neighborhood configuration to choose, this really isn't the case. Euclidean space is continuous whereas grid space is discrete, and mapping the two to each other can create unexpected issues. Still, this is a good choice for models representing notional real spaces.
 |-
 |Moore
-|Here, the distance between any two cells is defined by the number of edge <i>or</i> corner adjacent cells crossed to get between them. To continue the chess board analaogy, this is the set of moves that a king can make. Note that this does not map well to real space at all, as a cell at distance 1 in a moore space is at distance sqrt(2) in "real" space.
+|Here, the distance between any two cells is defined by the number of edge <i>or</i> corner adjacent cells crossed to get between them. To continue the chess board analogy, this is the set of moves that a king can make. Note that this does not map well to real space at all, as a cell at distance 1 in a moore space is at distance sqrt(2) in "real" space.
 |-
 |Von-Neumann
-|Here, the distance between any two cells is defined by the number of edge adjacent cells crossed to get between them. This is the set of moves that a rook might make on a chess board -- if a rook could only move one square at a time.
+|Here, the distance between any two cells is defined by the number of edge adjacent cells crossed to get between them. This is the set of moves that a rook might make on a chess board -- if a rook could only move one square at a time. It is also often referred to as a Manhattan distance for the self-evident reason.
 |}
  
 ====Network====
@@ -258,9 +256,9 @@ Our first diagram depicts the core structural design of the model.
 #Every model has at its root a Context (Scape). Contexts are Agents that are capable of containing other Agents (including other contexts, naturally). 
 #(Meta-level) Contexts contain (meta-level) Agents at the model (design-time) level.  At runtime, (model-level) Context instances defined in a (meta-level) SContext will contain (model-level) agent instances of the defined (meta-level) SAgent. This sounds more complicated than it is, so let's look at a simple example. Suppose we create a new Context, and give it a label of "Wiki Example". Within that Context, we create an Agent and give it a label of "Individual" and another Agent with the label "Block". At runtime when we are actually executing the model we will have one WikiExample model instance  which contains a number of Individuals.
 #Agents contain Attributes, such as Vision and Age. Context attributes often represent input parameters for contained agents. For example, our Wiki Agent Context might contain an Individual Count as well as a Minimum Age and Maximum Age.
-#Contexts can contain Projections (Spaces), which represent some kind of spatial or structural interaction space for the agents; either a grid, a continuous (euclidian) space, or a network (graph) or geographic space of some kind. For example, we might want to have a City that contains Blocks and that an Individual can move around within.
-#Agents are Actables and thus can contain any number of behaviors called "Actions", described in detail in the next section. Actions can describe individual behavior, and at the Context (Scape) level can define how member Agents and Projections are created.
-#Styles provide a mechanism for defining generic visualization behavior for Agents and so are also Actables. For example, an Agent might have an Action that says effectively "draw a red circle shaded red for the wealth of the agent".
+#Contexts can contain Projections (Spaces), which represent some kind of spatial or structural interaction space for the agents; either a grid, a continuous (euclidean) space, or a network (graph) or geographic space of some kind. For example, we might want to have a City that contains Blocks and that an Individual can move around within.
+#Agents are Actable and thus can contain any number of behaviors called "Actions", described in detail in the next section. Actions can describe individual behavior, and at the Context (Scape) level can define how member Agents and Projections are created.
+#Styles provide a mechanism for defining generic visualization behavior for Agents and so are also Actable. For example, an Agent might have an Action that says effectively "draw a red circle shaded red for the wealth of the agent".
 
 
 =Actions=
@@ -275,7 +273,7 @@ An action provides simple, well-defined details that a model can use to determin
 
 Actions are connected together in a series of sources and targets. (Technically, an acyclic directed graph.) In an abstract sense that is similar to the way any programming language is defined although that structure isn't usually obvious because of the constraints of textual representations. But unlike a typical programming language, in Actions it is not the execution thread (the processor) that moves from one instruction to the next, but the result of the previous action. In this way, action results "flow" from the output of one action into the next action.
 	
-Why are these distinctions between traditional Object-Oriented and the Action approaches important? They give us the advantages of simplicity, clarity and flexibility that [[http://en.wikipedia.org/wiki/Dataflow_programming|data-flow approaches]] like spreadsheets and some query languages have, but with less restrictions. At the same time, they can bring us much of the power and expressivity of [[http://en.wikipedia.org/wiki/Functional_programming|functional languages]] like Lisp or [[http://en.wikipedia.org/wiki/Logical_programming|logical languages]] like Prolog, but without the level of complexity and obscurity that such languages can have.
+Why are these distinctions between traditional Object-Oriented and the Action approaches important? They give us the advantages of simplicity, clarity and flexibility that [[http://en.wikipedia.org/wiki/Dataflow_programming|data-flow approaches]] like spreadsheets and some query languages have, but with less restrictions. At the same time, they can bring us much of the power and expressiveness of [[http://en.wikipedia.org/wiki/Functional_programming|functional languages]] like Lisp or [[http://en.wikipedia.org/wiki/Logical_programming|logical languages]] like Prolog, but without the level of complexity and obscurity that such languages can have.
 
 We can get a better idea for how Actions work by thinking about how a spreadsheet works. In a spreadsheet, we might define a cell A that adds up a row of data, say "Income". We might define another cell C ("Profit") that takes A and adds it to another cell B that adds up another row of data ("Expenses"). Now, if we change a value in any of the rows, all of the other rows are added up and we get the results in A and B updated automatically. We never had to write code that said something like "for each cell in row X, where...". In fact, we don't really care ''how'' our Spreadsheet program adds up the numbers -- it could have added them all up at once but in backward order, or stored a running total somewhere and updated just the difference in value for the cell we changed -- what we care about is ''what'' the result is, and whether it is correct.
 
@@ -284,17 +282,15 @@ But Actions are much more powerful than a spreadsheet, because what is flowing f
 
 ==Design==
 
-===Types===
+In this section, we'll describe how modelers can assemble actions into sets of behavior that accomplish complex tasks on interrelated agents and spaces over time.
 
-Before getting into the details of how each Actions work together, or the various kinds of Actions, we should understand how they all fit together. As discussed above, actions are strung together in a sequence or flow. They're always composed of two parts, though those parts can be assembled and intermixed in many different ways. First, we search for a collection of agents, and then we do something with that selection. We refer to these two parts as Selections and Commands. There are two special kinds of selections. First, we need some way to start the whole chain of actions off, and so we have a kind of Selection called a Root Selection, or simply a Root. Secondly, we need some way to actually make the agents exist in the model in the first place, so we have a Create Agents action. For the technically minded, another useful way of looking at the Actions approach is as a Query Transformation language, as with SQL and Stored Procedures. Except again, the results of the queries along with the transformations flow through from one query to the next.
+===Kinds of Actions===
 
-There are two other special categories of actions. One we use to crate the spaces that agents exist upon. We call these Builders. The other category contains just one member, "Method".
+Before getting into the details of how each Actions work together, or the various kinds of Actions, it will be helpful to take a broad overview of how they all fit together. As discussed above, actions are strung together in a sequence or flow. They're always composed of two parts, though those parts can be assembled and intermixed in many different ways. First, we search for a collection of agents, and then we do something with that selection. We refer to these two parts as Selections and Commands. (For the technically minded, another useful way of looking at the Actions approach is as a Query Transformation language, as with SQL and Stored Procedures.  Except again, the results of the queries along with the transformations flow through from one query to the next.) Selections find the agents we want to do something with, and the commands do it. We need some way to start the whole chain of actions off, and so we have a kind of Selection called a Root Selection, or simply a Root. Secondly, we need some way to actually make the agents exist in the model in the first place, so we have a Create Agents action. Finally, we have special commands called builders that allow us to create the spaces that the agents will occupy. All of these are discussed in detail in the section that follows this one.
 
-These are all summarized in the diagram below.
+These are all summarized in the diagram below:
 
 [[Image:images/ActionsBlocks.png]] 
-
-In this section, we'll describe how modelers can assemble actions into sets of behavior that accomplish complex tasks on interelated agents and spaces over time.
 
 ===Flow===
 
@@ -314,25 +310,44 @@ Here, we create a rule, and then check the results of two queries. For any agent
 
 [[Image:images/ActionsSimpleSequence2.png]]
 
-Logic Actions are used to assemble any kind of query structure needed. In the following example, we've defined a selection where the Set action occurs for any agent whoe meets the criteria defined by (Query 1 AND Query 2) OR Query 3. (Readers with experience with programming or formal logic will note that this looks just like a parse tree, and while that's basically what it is, there are important differences from how such trees are generally treated as we'll see later.)
+In the following example, we've defined a set of actions and their relationships. We have a selection, a few queries and a couple of logic operators leading to a Set Action. We'll describe in detail below how Logic Actions are used in conjunction with other actions to assemble any kind of query structure needed. But for now, we'll focus on the control flow itself.
 
-[[Image:images/ActionsComplexLogic.png]]
+[[Image:images/ActionsFlowSimple.png]]
 
-Note that Unions are often superfluous, though they can be useful for organizing queries. This is because all sources that flow into a given target Action act just like a union since any of the paths might reach that target. The following Action design is fully equivalent to the one above.
+As you have probably already guessed, the agents that have the Set Action applied to them could take one of two paths through the Action flow. Readers with experience with programming or formal logic will note that this looks just like a parse tree, and while that's basically what it is, there are important differences. For example, if we looked at the following structure as a definition of control flow for a single agent we'd take them to be equivalent. Both would evaluate the statement (Query 1 AND Query 2) OR Query 3 for each agent.
 
-[[Image:images/ActionsComplexLogicNoOr.png]]
+[[Image:images/ActionsFlowUnion.png]]
 
-===Boundaries and Query Refinement===
+Within Actions in many cases these two approaches will also act equivalently. If we are simply setting a value, it doesn't matter how an agent gets to that Set Action, as long as it gets there. All sources that flow into a given target Action act like a logical union since any of the paths might reach that target. But note that we have two flows moving in parallel in the flow on the right. What happens when the conditions for ''both'' branches are true? As the set of agents flow through each branch the Set Action on the left will be evaluated once, while the one on the right will be evaluated twice. Again, this often ends up with the same behavior, but not always. If for example, the evaluate Action uses the value of the attribute that we are setting as input, we can get different results. Of course, you can write code in any language that accomplishes the same thing, but the code will look quite different. For example, if we wrote the same basic logic in Java, in the first case we'd have something like:
 
-An important concept in Actions is the idea of selection boundaries. A selection boundary is defined as the limit of a query directly upon a given Select Action. For example, in the following diagram, we can see the extent of the boundary for a straightforward selection.
+ if ((query1.evaluate() && query2.evaluate()) || query3.evaluate()) {
+     doSomething();
+ }
+ 
+In the second we'd have:
+
+ if (query1.evaluate() && query2.evaluate()) {
+     doSomething();
+ }
+ if (query3.evaluate()) {
+     doSomething();
+ }
+
+This is a simple example, but with multiple branches such code design issues can quickly grow complex. The flow approach allows us to express things in a way that is often more natural and expressive. The important thing to keep in mind when desiging action flows is to see the flow as representing a selection of agents moving through streams independently. In the Actions example we expressed both approaches in nearly the same way, except in the case on the left we used a Union Action to bring the two branches of flow back together.
+
+===Selections===
+
+Selections are a key concept in Actions. Put simply, selections define what we are searching for and where. They are defined by a combination of Select, Query and Logic Actions. Each time we create a new Select Action, we define a new selection. Queries can be used to further refine selections either immediately after or later in the Action flow, as described in the next section. Logic Actions are used to combine and organize the Action flow defined by Query Actions. In order to understand how these three pieces work together, we need to understand the idea of selection boundaries.
+
+A selection boundary determines the set of selection actions that are used to determine what agents to apply target actions to. For example, in the following diagram, we can see the extent of the boundary for a straightforward selection.
 
 [[Image:images/ActionsSelBoundarySimple.png]]
 
-Selection boundaries are defined by Select, Query and Logic Actions. And we each time we create a new selection, we define a new set of boundaries.
+Each time we create a new selection, we define a new set of boundaries.
 
 [[Image:images/ActionsSelBoundary2Parts.png]] 
 
-A very important aspect of boundaries is that they can be defined by the beginning of Query actions as well as by Select Actions. This is because Query Actions can be directly part of a selection definition, but they can also refine selections, as we'll see. So where does one selection boundary end and the next one begin? The simple rule is that the end of the boundary is defined for a given Action by the place where:
+A very important aspect of boundaries is that they apply to a group of actions that begin with a Query Action, and not just such a group that begins with a Select Action. This is because Query Actions can be directly part of a selection definition, but they can also refine selections, as we'll see. So where does one selection boundary end and the next one begin? The simple rule is that the end of the boundary is defined for a given Action by the place where:
 
 #A Query Action is not followed by a Logic Action, or
 #A Logic Action is not followed by another Logic Action
@@ -351,11 +366,11 @@ In the first case, we execute a search for all agents that meet the two criteria
 
 ===Weaving===
 
-Now, let's put the concepts of Actions sequences and boundaries together to see how we can easily define complex interactions between multiple selections. When we define a Select, the state of its selection flows through and wtih any subsequent selections. So for example, if we have a Root Action rule, and then do a selection based on it, we'll have access to the agent from the orginal context as well as all of the subsequent selections. We can refer to any previous selection for any subsequent action. For example, instead of setting the value for the rule agent, we might instead set a value for an agent we've found in a target selection.
+Now, let's put the concepts of Actions sequences and boundaries together to see how we can easily define complex interactions between multiple selections. When we define a Select, the state of its selection flows through and with any subsequent selections. So for example, if we have a Root Action rule, and then do a selection based on it, we'll have access to the agent from the original context as well as all of the subsequent selections. We can refer to any previous selection for any subsequent action. For example, instead of setting the value for the rule agent, we might instead set a value for an agent we've found in a target selection.
 
 [[Image:images/ActionsWeavingSetAnother.png]]
 
-Inputs to functions also use selections. (We'll discuss more details in the functions section.) In the following example, we're adding the weath of the Selection 1 agent to the wealth of the Selection 2 agent and using that value to set some other value. (Here, perhaps we are modeling an agent in a winner takes all game, in which case we'd also add a Set Action on Selection 2 and set the second agent's wealth to 0.)
+Inputs to functions also use selections. (We'll discuss more details in the functions section.) In the following example, we're adding the wealth of the Selection 1 agent to the wealth of the Selection 2 agent and using that value to set some other value. (Here, perhaps we are modeling an agent in a winner takes all game, in which case we'd also add a Set Action on Selection 2 and set the second agent's wealth to 0.)
 
 [[Image:images/ActionsWeavingEvaluate.png]]
 
@@ -363,32 +378,81 @@ But we can also use selections in defining Query Actions themselves. So in the f
 
 [[Image:images/ActionsWeaving1A.png]]
 
-
-Now, we can combine this weaving with the sequence flow described above. In the simplest case, this again behaves just like any other program control flow. In the example below, as you have probably already assumed, the agents that have the Set Action applied to them could take one of two paths through the Action flow, either by meeting the criteria for Query 1 AND Query 2, or the criteria for Query 3.
-
-[[Image:images/ActionsWeavingSimple.png]]
-
-If we use multiple paths in the Query, the path we take though any prior Query will determine which agents are used as the basis for subsequent selections. So in this case, the Rule agent might actually move twice if it meets the criteria for both the blue path and the red path.
+Finally, we can put all of these concepts together by weaving selections together with flows. As we discussed in the flow section, if we use multiple paths in the Query, the agents that flow through from any prior Query can follow multiple paths at once. And as we discussed in the selection section, the selection and its boundaries determine what agents we will be working with at any given evaluation point in the flow. Now, consider the following example:
 
 [[Image:images/ActionsWeaving2.png]]
 
-In the above example, we introduce one more important concept. As we'll see in the detailed explanation of each Action below, Transformation Actions such as Move or Connect take multiple selections. The first selection defines the set of agents that will be performing the action. In the case of a Move agent, this refers to the mover. The second selection, which for Move we call "destination", refers to the selection that will be recieving the action. In the case of movement this is the agent or location that the Rule agent will be moving to.
+Before going into further details we need to introduce one more important concept. As we'll see in the detailed explanation of each Action below, Transformation Actions such as Move or Connect take multiple selections. The first selection defines the set of agents that will be performing the action. In the case of a Move agent, this refers to the mover. The second selection, which for Move we call "destination", refers to the selection that will be receiving the action. In the case of movement this is the agent or location that the Rule agent will be moving to. If we follow the flows through, we can note two important outcomes of our model design -- a Rule agent might move twice if it meets the criteria for both the blue path and the red path and that it might move to a different location each time.
 
-==Components==
+==Details==
 
-A selection defines a particular set of agents that we want to do something with. Selections are made up of the Select action itself, along with Query and Logic actions. When we refer to a selection in any target command, we are referring to the selection in the context of where we have defined the behavior. We'll see how that works, below.
+In this section, we'll dig into the specific role of each of the Actions. From the design discussion we hopefully have some sense of how these all fit together in general.
+Let's look at the overall view again amd then dig into the details.
 
-===Root Actions===
+[[Image:images/ActionsBlocks.png]] 
+
+
+===Selections===
+
+A selection defines a particular set of agents that we want to do something with. Selections are made up of the Select action itself, along with Query and Logic actions. When we refer to a selection in any target command, we are referring to the selection in the context of where we have defined the behavior.
+
+====Select====
+
+As we discussed above, when we refer to a Select, we're actually referring to the selection as a whole leading up to the current action. The Select Action itself is used to define what we are searching for (Agent), where we are searching for it (Space), and from whose perspective we are doing it (Selection):
+
+=====Selection=====
+
+The selection that we are searching "from". This seems to be the concept that new users have the most difficulty with, but it is key to understanding how Actions works. Just as with any other Action -- a Move command for example -- a selection needs to know what set of agents that it is working with. For example, if we want to define a selection B that finds the cells neighboring a rule B's agent, we would set selection B's selection to A.
+
+=====Agent=====
+
+Here we define what agent we will be looking for. In order for this to make sense, the agent has to be related in some meaningful way to the agent whose behavior we are defining. For example, it might be a partner agent or a location that we might want to move to. An agent must be specified unless we are searching within a continuous space, in which case this value should be empty, and the result of the selection will represent some location in that space. In the current version of the framework, we treat destination cell locations as agents, and require that location to be specified as a target agent, but in a future version we'll allow searches without defining an agent within grid spaces as well.
+
+=====Space=====
+
+The space that we want to search within. Of course, this must be specified if we use any spatial query terms (see below), but if we simply want to search across all agents it should not be specified.
+
+Represent Queries (Controls) on agents and Transformations, or Commands, on the result of those queries. Queries, Transformations and other  in which each child target carries the execution and data context for it's particular path.
+
+=====For=====
+
+This value is obsolete and will be replaced with a different mechanism in the next version of the modeling environment.
+
+====Query====
+
+A Query represents a concrete criteria for our search. The name is a bit confusing because of potential for confusion with a generic query. Queries -- along with their cousin Evaluators -- define a function that is evaluated and that can take Agent attributes and the results of other Actions as input. Queries are combined with each other and with the logic actions to determine the results of a selection for their direct target actions. 
+
+=====Function=====
+
+A query function is evaluated to determine the results of a particular selection. Functions can represent very simple search criteria such as "My Age = Your Age", but they can also represent complex and inter-related concepts such as spatial relationships. See the functions section for more information on specific functions.
+
+====Logic====
+
+These Actions provide us with the ability to combine queries with one another, and follow the basic rules of set logic. But as we've seen above, it is important to understand that there are important differences between Logic Actions and typical programming logic. Most importantly, they apply not to individual agents per se, but to the set of agents that move through them. Also, there is not neccesarily short circuit execution (it's not needed) and much richer criteria can be joined together because of the action flow design.
+
+====Intersection====
+
+An intersection contains only those agents that match all of its source actions. This is essentially equivalent to a logical AND statement and has similarities to an && operator in a java "if" statement. An agent must be able to flow through all incoming actions in order to flow out of an Intersection Action.
+
+====Union====
+
+A union contains all agents that match any of its source actions. This shares similiarities to a logical OR statement and the || operator in a java "if" statement. It does mroe than that however, as it acts to join multiple flows of action. That is, as set logic implies, an agent will never appear in the result of a union more than once.
+
+====Difference====
+
+A difference contains all agents that do not match any of its source actions. This essentially equivalent to a logical NOT statement, and has similarities to the Java else statement. Like the Union Action, difference implies that a given agent will only appear once in any subsequent targets. No agents that reach a Difference Action will flow through to the next action(s), and all agents (that meet the definition of the Select Action) that cannot reach that action will.
+
+====Roots====
 
 Root actions are a special case of a selection. These represent behaviors that are defined for all members of agents; these are the highest granularity of an agent's behavior, such as "Find Partners" or "Eat" or "Reproduce". When you want to create a new set of Actions, you have the following choices.
 
 ====Build====
 
-The Build Action is a specialized action that allow the construction of member agents and spaces within a parent context. A Build Action executes once for each context before any initialization actions occur for any children agents of that context. Currently it is undefined wether a context's own Initialize Action is executed before the Build Action occurs, so implementors should not rely on any initialized values being available at build time.
+The Build Action is a specialized action that allow the construction of member agents and spaces within a parent context. A Build Action executes once for each context before any initialization actions occur for any children agents of that context. Currently it is undefined whether a context's own Initialize Action is executed before the Build Action occurs, so implementors should not rely on any initialized values being available at build time.
 
 ====Initialize====
 
-An Initialize action is excuted once and only once for every agent when the model is first started -- at time 0. Initialize Actions are guranteed to execute before any other non-builder action occurs.
+An Initialize action is executed once and only once for every agent when the model is first started -- at time 0. Initialize Actions are guaranteed to execute before any other non-builder action occurs.
 
 ====Rule====
 
@@ -412,63 +476,45 @@ Where the rule will be placed in the execution queue for a given time period. Fo
 
 =====Pick=====
 
-Controls how many agents to execute the schedule against. While this value will have an effect on the Repast target, it is not recommended to be used for general models and is likely to be repalced by another approach.
+Controls how many agents to execute the schedule against. While this value will have an effect on the Repast target, it is not recommended to be used for general models and is likely to be replaced by another approach.
 
 ====Watch====
 
-A Watch action is executed anytime the watched value is set for any agent. Note that the Action will be triggerred even if the state is simply set back to the value that it already has. It is important to be careful about creating Watches that might set the values of other Watch actions which might in turn trigger this watch. To clarify, if a modeler creates a Watch A for attribute a, and creates a target Set for it for attribute b, and Watch B is watching attribute b, then if Watch B has a target Set for attribute A, a circular execution could occur. This would cause the model to get stuck in its current iteration. To help model developers avoid this case, a warning will be provided if such a set of circular watch dependencies is created.
+A Watch action is executed any time the watched value is set for any agent. Note that the Action will be triggerred even if the state is simply set back to the value that it already has. It is important to be careful about creating Watches that might set the values of other Watch actions which might in turn trigger this watch. To clarify, if a modeler creates a Watch A for attribute a, and creates a target Set for it for attribute b, and Watch B is watching attribute b, then if Watch B has a target Set for attribute A, a circular execution could occur. This would cause the model to get stuck in its current iteration. To help model developers avoid this case, a warning will be provided if such a set of circular watch dependencies is created.
 
 =====Attribute=====
 
 The attribute that will be monitored for change.
 
-===Selection===
+===Commands===
 
-A selection defines what we are searching for (Agent), where we are searching for it (Space), and from whose perspective we are doing it (Selection):
+====Evaluate====
+
+Evaluate Actions define some calculation on a function based on the model state and a set of input(s). The inputs that an Evaluate Action can take is determined by its functions and can be either agent attributes, prior evaluations or literals. The result is then determined based on those inputs. In some cases Evaluate functions can be used to determine some action indirectly, such as with a graphics fill, but they can never be used to directly change model state.
 
 =====Selection=====
 
-The selection that we are searching "from". This seems to be the concept that new users have the most difficulty with, but it is key to understanding how Actions works. Just as with any other Action -- a Move command for example -- a selection needs to know what set of agents that it is working with. For example, if we want to define a selection B that finds the cells neighboring a rule B's agent, we would set selection B's selection to A.
-
-=====Agent=====
-
-Here we define what agent we will be looking for. In order for this to make sense, the agent has to be related in some meaningful way to the agent whose behavior we are defining. For example, it might be a partner agent or a location that we might want to move to. An agent must be specified unless we are searching within a continuous space, in which case this value should be empty, and the result of the selection will represent some location in that space. In the current version of the framework, we treat destination cell locations as agents, and require that location to be specified as a target agent, but in a future version we'll allow searches without defining an agent within grid spaces as well.
-
-=====Space=====
-
-The space that we want to search within. Of course, this must be specified if we use any spatial query terms (see below), but if we simply want to search across all agents it should not be specified.
-
-Represent Queries (Controls) on agents and Transformations, or Commands, on the result of those queries. Queries, Transformations and other  in which each child target carries the execution and data context for it's particular path.
-
-=====For=====
-
-This value is obsolete and will be replaced with a different mechanism in the next version of the modeling environment.
-
-
-
-===Query===
-
-A Query represents a concrete criteria for our search. The name is a bit confusing because of potential for confusion with a generic query. Queries -- along with their cousin Evaluators -- define a function that is evaluated and that can take Agent attributes, and the results of other Actions as input. Queries are combined with each other and with the logic actions to determine the results of a selection for their direct target actions. 
+As with all other actions, evaluations specify a selection, and just as with the other actions, this determines the set of agents that the evaluation occurs for, but the input selections determine what agent is used for the calculation itself.
 
 =====Function=====
 
-A query function is evaluated to determine the results of a particular selection. Functions can represent very simple search criteria such as "My Age = Your Age", but they can also representSee the functions section for more information on specific functions.
+A with queries, a function is evaluated against its input set. Functions can represent simple operators as well as complex functions. See the functions section for more information on specific functions.
 
-===Logic===
+=====Inputs=====
 
+The set of values that will be used to determine the result, in the order of the function prototype. Inputs can specify any source evaluation and any agent state or agent parent context state. The selection determines which agent's will be used to determine the value, and different inputs can specify different selections.
 
+====Move====
 
-====Intersection====
+The Move Action causes an agent to change its location in some space or network. The agent will leave whatever location it was in before within the selection space, and move to its new destination.
 
-An intersection contains only those agents that match all of its source actions. This is essentially equivalent to a logical AND statement and has similarities to an && operator in a java "if" statement. But it carries important differences too. For example, there is not neccesarily short circuit execution (it's not needed) and much richer criteria can be joined together.
+=====Selection=====
 
-====Union====
+As with any 
 
-A union contains all agents that match any of its source actions. This essentially equivalent to a logical OR statement and shares similarities with the || operator in a java "if" statement.
+====Set====
 
-====Difference====
-
-A difference contains all agents that do not match any of its source actions. This essentailly equivalent to a logical NOT statement, and has similarities to (and important differences from) the Java else statement.
+The Set Action assigns some value to another value.
 
 ==Example==
 
@@ -499,7 +545,7 @@ And here is how this works in detail:
 ##We also need to define what type of agent we want and in this case the space does matter. We want to find an agent that is nearby within the City space. If instead we wanted to find a partner in a social network, we'd specify that instead.
 #Create two child Query Actions:
 ##We want to search for someone who is the same age as us. This highlights the importance of the idea of the Selection in the Actions design. We're qualifying Age by our <font color="green">Partner</font> and <font color="red">ourselves</font>. The selection carries throughout the flow of execution and this context is an explicit part of the entire structure. Note that this is very different from the way control flow works in a traditional imperative language such as Java.
-##We also want to search using a function for nearness, "within", which takes a parameter of vision. Note that the spatial functions are all polymorphic -- if we decided later on that we would rather search within say "Kevin Bacon space", that is a graph structure representation of space, we would only need to change the space we've defined in Select Partner. (Design discussion note: re-examine this issue WRT possibility of allowing users to search in multiple spaces within the same query.)
+##We also want to search using a function for nearness, "within", which takes a parameter of vision. Note that the spatial functions are all polymorphic -- if we decided later on that we would rather search within say "Kevin Bacon space", that is a graph structure representation of space, we would only need to change the space we've defined in Select Partner.
 #Intersect the results of these two query components. This delineates the end of the selection definition for any target Actions.
 #Select a neighbor. Again, we can see the importance of Selections. Here, we are selecting from the point of view of the partner, not the initial agent that the current Rule is being executed for. Note that this time our target agent is a "Block", that is, a location within the city.
 #As above, define some queries. This time we want only those agents that are:
@@ -524,7 +570,7 @@ The following diagram may be helpful to readers familiar with UML and Meta-model
 
 In the diagram above, all meta-objects except for Input, Literal, and the enumerators (lists of options) are Actions. Blue meta-classes are concrete (you can create and use them directly). Red meta-classes are key collaborations.
 #An Act is anything that might happen during the execution of an Agent-Based Model.
-#All Actions have as their root-most source action a Root. These are added first to any agent behavior and act as triggers for all target behavior. For example, a Watch will execute anytime the watched attribute is modified. (As the diagrams do not refer to elements outside of the current package, we cannot see here that Accessor includes a reference to some Attribute, but it does. To see these kinds of relationships you will want to refer to the metaabm.ecore file itself.)#Actions are targets and sources of one another, but an Act can never have itself as a source. (That is, Actions are acyclic, but branches can re-converge. When we refer to an Act source or target, we typically mean to include all ancestors or descendants, not just the immediately connected Act.)
+#All Actions have as their root-most source action a Root. These are added first to any agent behavior and act as triggers for all target behavior. For example, a Watch will execute any time the watched attribute is modified. (As the diagrams do not refer to elements outside of the current package, we cannot see here that Accessor includes a reference to some Attribute, but it does. To see these kinds of relationships you will want to refer to the metaabm.ecore file itself.)#Actions are targets and sources of one another, but an Act can never have itself as a source. (That is, Actions are acyclic, but branches can re-converge. When we refer to an Act source or target, we typically mean to include all ancestors or descendants, not just the immediately connected Act.)
 #All Actions (except for root Actions) reference a Select, referred to as the "selected" relation. An ASelect represents the model aspects that the Act is working within; that is, the spatial, temporal and type (agent) "world" that is currently being selected.
 #Commands trigger some model state change (Set) or spatial transformation (Transform).
 #Controls determine whether target Actions are executed and against what agents. They are in some sense query terms and include Query actions and Logic Actions.
@@ -550,335 +596,293 @@ Functions are also divided into categories, as we'll see.
 
 A technical note: conceptually, functions can return multi-values, but that is not currently implemented in the reference targets because of limitations of the target language Java.
 
-		
-==Function Library==
-		
-==Function Library==
-{| border="1" cellpadding="2" cellspacing="0"
-|-
-! Name !! Description
-|-
-|colspan="3" style="color:white; background-color:black;" | Operators
-|-
-|colspan="3" style="color:white; background-color:black;" | Logical Operators
-|-
-| Not 
-| 
-|-
-| Equal 
-| 
-|-
-| Identical 
-| 
-|-
-| Greater 
-| 
-|-
-| Lesser 
-| 
-|-
-| Greater or Equal 
-| 
-|-
-| Lesser or Equal 
-| 
-|-
-| True 
-| 
-|-
-| False 
-| 
-|-
-| Identity 
-| 
-|-
-| Different 
-| 
-|-
-|colspan="3" style="color:white; background-color:black;" | Numeric Operators
-|-
-| Negative Value 
-| 
-|-
-| Add 
-| 
-|-
-| Subtract 
-| 
-|-
-| Multiply 
-| 
-|-
-| Divide 
-| 
-|-
-| Power 
-| 
-|-
-| Modulo 
-| 
-|-
-| Increment 
-| Incremented numeric value by 1 unit. Not transformative of initial value like C!
-|-
-| Decrement 
-| Decrement numeric value by 1 unit.
-|-
-| Unit Value 
-| The value of one common unit, e.g. 1.
-|-
-| Zero Value 
-| The value of no units, e.g. zero.
-|-
-| Original Value 
-| The original value, e.g. the value for the value client at time 0.
-|-
-|colspan="3" style="color:white; background-color:black;" | Spatial
-|-
-| Nearest  
-| Represents the nearest agents (including gird cells) or locations to this agent. If more than one agent or location is the same distance away they will all be considered. Note that while this function is defined for the selection of an agent, the result of this function is defined by the context within which it is used. If the selection specifies another agent within a space, this function will represent the nearest agent in that space. If the selection specifies a Cell within a grid space, this function will represent that cell.
-|-
-| Toward 
-| Represents a location that is on the shortest path to a particular agent or location from the source agent (that is, the selection's selection's agent). This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction towards some objective.
-|-
-| Within 
-| Represents a limit to the distance of a spatial search. When used in combination with other spatial functions such as "nearest" requires that all agents or locations must be within the distance specified by the input value.
-|-
-| Neighbor 
-| Represents any agents that are nearest neighbors to the agent, that is nominally of distance 1. This function is only relevant in discrete spaces -- grids and networks -- where there are immediate neighboring cells as defined by the geometry of the selection's space.
-|-
-| Include Self 
-| Specifies wether the agent that we are searching from -- that is, the agent of the selection for this Query Action's selection -- is included in the results of the search.
-|-
-| Within 2D Boundary 
-| Represents agents or locaitons who exist within the boundary specified by the inputs.
-|-
-| Here 
-| Represents the location of the searching agent. For example, if a selection is defined for an agent cell, and that selection's selection's agent is an occupant of a cell, the cell that the agent is occupying will be used. 
-|-
-| Available 
-| Represents cells which are not currently occupied. This function is only relevant for grids which are not multi-occupant.
-|-
-| Distance 
-| The distance between the source agent and an agent represented by this selection. If more than one agent is represented by the other functions in the selection, this funciton will the distance to an arbitrary (randomly selected) agent as deifned by those other functions.
-|-
-| Away 
-| Represents a location that is on the path that will take the source agent (that is, the selection's selection's agent) the farthest distance from the agent(s) represented by the search. This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction away from some location or agent.
-|-
-| Minimize 
-| This funciton is not currently supported.
-|-
-| Maximize 
-| This funciton is not currently supported.
-|-
-| Location 2D 
-| Represents the location of the current agent for use in subsequent selections.
-|-
-| Boundary 2D 
-| Represents a two-dimensional boundary within a space. (Not currently relevant for any general usages.)
-|-
-|colspan="3" style="color:white; background-color:black;" | Random
-|-
-| Random In Range 
-| A random value within that numeric range specified as drawn from a uniform distribution. The minimum values are inclusive. The maximum values are inclusive for integer inputs and exclusive for Real inputs.
-|-
-| Random To Limit 
-| A random value between zero and the value specified by the (non-zero) input and drawn from a uniform range. That value is inclusive for Integers and exclusive for Reals. (Note that as with the random in range function in the context of real numbers the distinction between an exclusive and inclusive limit is essentially meaningless.)
-|-
-| Random Unit 
-| A random Real value between 0 and 1 drawn from a unifor distribution. (The distinction between inclusive and exclusive range is essentially meaningless in this context and we can assume that the result will never be greater or equal to 1.)
-|-
-| Random Boolean 
-| A value that is randomly true or false, i.e. a fair coin toss.
-|-
-| Random Weighted 
-| An indexed value weighted against a probability distribution. The total probability must sum to 1.0. For example, an input of {.1,.2,.7} under a unifrom distribution would would have 10% probability of producing "0" , 20%  for "1" and 70% for "2".
-|-
-| Random Member 
-| Represents a random value drawn from the set of Real values specified.
-|-
-| Random State 
-| A random specified value (option) from the specified state.
-|-
-|colspan="3" style="color:white; background-color:black;" | Graphic
-|-
-| Shape Oval 
-| Draw a generic oval.
-|-
-| Shape Rectangle 
-| Draws a rectangular shape.
-|-
-| Shape Marker 
-| Draw a marker, that is a graphical indicator that can be used to add an addiitonal queue about the object state. For example, in a 2D graphics representation this might be a small shape drawn inset at the corner of the larger shape. 
-|-
-| Graphic Outline 
-| Draws an outline of the last evaluated shape, using the last specified color or the default color (usually black) if none has been specified.
-|-
-| Graphic Fill 
-| Fills the last evaluated shape with the last specified color or the default color (usually black) if none has been specified.
-|-
-| Shape Inset 
-| Shrinks the current shape by the input amount. (The overeall scale is currently unspecified, but in most implementations should be 20.)
-|-
-| Color RGB 
-| A color specified by the three inputs for Red, Green and Blue color components. Those inputs are expected to be in the range 0..1.
-|-
-| Color Red 
-| The color red.
-|-
-| Color Yellow 
-| The color yellow.
-|-
-| Color Blue 
-| The color blue.
-|-
-| Color Orange 
-| The color orange.
-|-
-| Color Green 
-| The color green.
-|-
-| Color Purple 
-| The color purple. No kidding.
-|-
-| Color Black 
-| The color black. (It's always in style.)
-|-
-| Color White 
-| The color white.
-|-
-| Color Gray 
-| The color gray.
-|-
-| Shape Marker 2 
-| Represents a marker placed in a different location from the other shape markers.
-|-
-| Shape Marker 3 
-| Represents a marker placed in a different location from the other shape markers.
-|-
-|colspan="3" style="color:white; background-color:black;" | Time
-|-
-| Now 
-| The current simulation period, that is the number of iterations that the model has gone through, or in the case of models with callibrarted time, the number of iterations added to the model's nominal start time.
-|-
-|colspan="3" style="color:white; background-color:black;" | Math
-|-
-| Sine 
-| 
-|-
-| Cosine 
-| 
-|-
-| Tangent 
-| 
-|-
-| Arc Sine 
-| 
-|-
-| Arc Cosine 
-| 
-|-
-| Arc Tangent 
-| 
-|-
-| Convert Degree to Radians 
-| 
-|-
-| Convert Radians to Degrees 
-| 
-|-
-| Exp 
-| 
-|-
-| Log 
-| 
-|-
-| Log b10 
-| 
-|-
-| Square Root 
-| 
-|-
-| Cube Root 
-| 
-|-
-| Remainder 
-| 
-|-
-| Ceiling 
-| 
-|-
-| Floor 
-| 
-|-
-| Rount 
-| 
-|-
-| Arc Tangent Rectangular 
-| 
-|-
-| Power 
-| 
-|-
-| Absolute Value 
-| 
-|-
-| Maximum 
-| 
-|-
-| Minimum 
-| 
-|-
-| ULP 
-| 
-|-
-| Sign 
-| 
-|-
-| Hyperbolic Sine 
-| 
-|-
-| Hyperbolic Cosine 
-| 
-|-
-| Hyperbolic Tan 
-| 
-|-
-| Hypotuneuse 
-| 
-|-
-| Expm1 
-| 
-|-
-| Log1p 
-| 
-|-
-|colspan="3" style="color:white; background-color:black;" | List
-|-
-| Item 
-| Returns the item at the specified index from the list of items provided. Those items will typically be input primitives such as Integer or Real values.
-|-
-| Length 
-| The number of items in the provided list of items.
-|-
-|colspan="3" style="color:white; background-color:black;" | Distribution
-|-
-| Uniform Cross Distribution 
-| A ranom number taken from a distribution of values as defined by a cross of all values. (See Cross Distribution.) This funciton then returns a value drawn from the minimum and maximum values as determined by the current agent state. In the cross distribution, each of the values is treated independently so that an input attribute is created for every potential combination of states.
-|-
-| Uniform Additive Distribution 
-| A random number taken from a distribution of values in which each of the minimum and maximum values are added to determine a total minimum and maximum value. (See Additive Distribution.) In the additive distribution, each of the values is treated as dependent on the others so that an input attribute is only created for each seperate state.
-|-
-| Cross Distribution 
-| A value taken from a set of (auto-generated) attributes based on the value of each state included. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create seperate input attributes for AI, AII, BI and BII. Then for an agent with States A and II this function would return the value specified by the AII input attribute.
-|-
-| Additive Distribution 
-| A value taken from a set of (auto-generated) attributes based on the combined values of the states provided. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create input attributes for A, B, I and II. Those values would then be added together, so that for an Agent with state A and II this function would return A + II.
-|}
-	
-	
-==Reference==
 
+==Reference==
+		
+===Function Library===
+====Operators====
+====Logical Operators====
+=====Not=====
+The result of the expression !X.
+=====Equal=====
+The result of the expression X==Y.
+=====Identical=====
+The result of the expression X==Y.
+=====Greater=====
+The result of the expression X>Y.
+=====Lesser=====
+The result of the expression X<Y.
+=====Greater or Equal=====
+The result of the expression X>=Y.
+=====Lesser or Equal=====
+The result of the expression X<=Y.
+=====True=====
+The result of the expression true.
+=====False=====
+The result of the expression false.
+=====Identity=====
+The result of the expression X.
+=====Different=====
+The result of the expression X!=Y.
+====Numeric Operators====
+=====Negative Value=====
+The result of the expression -X.
+=====Add=====
+The result of the expression X+Y.
+=====Subtract=====
+The result of the expression X-Y.
+=====Multiply=====
+The result of the expression X*Y.
+=====Divide=====
+The result of the expression X/Y.
+=====Power=====
+The result of the expression X^Y.
+=====Modulo=====
+The result of the expression X%Y.
+=====Increment=====
+The result of the expression ++X.
+=====Decrement=====
+The result of the expression --X.
+=====Unit Value=====
+The result of the expression 1.
+=====Zero Value=====
+The result of the expression 0.
+=====Original Value=====
+The result of the expression o.
+====Spatial====
+=====Nearest =====
+Represents the nearest agents (including gird cells) or locations to this agent. If more than one agent or location is the same distance away they will all be considered. Note that while this function is defined for the selection of an agent, the result of this function is defined by the context within which it is used. If the selection specifies another agent within a space, this function will represent the nearest agent in that space. If the selection specifies a Cell within a grid space, this function will represent that cell.
+=====Toward=====
+Represents a location that is on the shortest path to a particular agent or location from the source agent (that is, the selection's selection's agent). This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction towards some objective.
+=====Within=====
+Represents a limit to the distance of a spatial search. When used in combination with other spatial functions such as "nearest" requires that all agents or locations must be within the distance specified by the input value.
+ Inputs:
+ [Numeral] 
+=====Neighbor=====
+Represents any agents that are nearest neighbors to the agent, that is nominally of distance 1. This function is only relevant in discrete spaces -- grids and networks -- where there are immediate neighboring cells as defined by the geometry of the selection's space.
+=====Include Self=====
+Specifies whether the agent that we are searching from -- that is, the agent of the selection for this Query Action's selection -- is included in the results of the search.
+=====Within 2D Boundary=====
+Represents agents or locations that exist within the boundary specified by the inputs.
+ Inputs:
+ [Numeral] 
+=====Here=====
+Represents the location of the searching agent. For example, if a selection is defined for an agent cell, and that selection's selection's agent is an occupant of a cell, the cell that the agent is occupying will be used. 
+=====Available=====
+Represents cells which are not currently occupied. This function is only relevant for grids which are not multi-occupant.
+=====Distance=====
+The distance between the source agent and an agent represented by this selection. If more than one agent is represented by the other functions in the selection, this function will the distance to an arbitrary (randomly selected) agent as defined by those other functions.
+ Outputs:
+ [Real] 
+=====Away=====
+Represents a location that is on the path that will take the source agent (that is, the selection's selection's agent) the farthest distance from the agent(s) represented by the search. This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction away from some location or agent.
+=====Minimize=====
+This function is not currently supported.
+=====Maximize=====
+This function is not currently supported.
+=====Location 2D=====
+Represents the location of the current agent for use in subsequent selections.
+ Inputs:
+ [Real] 
+ [Real] 
+=====Boundary 2D=====
+Represents a two-dimensional boundary within a space. (Not currently relevant for any general usages.)
+ Outputs:
+ [Real] 
+ [Real] 
+====Random====
+=====Random In Range=====
+A pseudo-random value within that numeric range specified as drawn from a uniform distribution. The minimum values are inclusive. The maximum values are inclusive for integer inputs and exclusive for Real inputs.
+ Inputs:
+ [Numeral] The minimum value (inclusive).
+ [Numeral] The maximum value (inclusive).
+ Outputs:
+ [Numeral] The random number.
+=====Random To Limit=====
+A pseudo-random value between zero and the value specified by the (non-zero) input and drawn from a uniform range. That value is inclusive for Integers and exclusive for Reals. (Note that as with the random in range function in the context of real numbers the distinction between an exclusive and inclusive limit is essentially meaningless.)
+ Inputs:
+ [Numeral] The maximum value (inclusive).
+ Outputs:
+ [Numeral] The result.
+=====Random Unit=====
+A pseudo-random Real value between 0 and 1 drawn from a uniform distribution. (The distinction between inclusive and exclusive range is essentially meaningless in this context and we can assume that the result will never be greater or equal to 1.)
+ Outputs:
+ [Real] 
+=====Random Boolean=====
+A value that is randomly true or false, i.e. a fair coin toss.
+=====Random Weighted=====
+An indexed value weighted against a probability distribution. The total probability must sum to 1.0. For example, an input of {.1,.2,.7} under a uniform distribution would would have 10% probability of producing "0" , 20%  for "1" and 70% for "2". This function can then be used with Item to return a biased result from another list.
+ Inputs:
+ [Real] A list of values that will determine the resulting weighted index.
+ Outputs:
+ [Integer] A resulting indexed value bounded by 0 and the length of the input list - 1.
+=====Random Member=====
+Represents a random value drawn from the set of Real values specified.
+ Inputs:
+ [Real] Returns a random member of the supplied list of numbers.
+ Outputs:
+ [Generic] The value of the item at a random index.
+=====Random State=====
+A random specified value (option) from the specified state.
+ Inputs:
+ [Generic] The state to select items from. All items are included.
+ Outputs:
+ [Boolean] The resulting option. 
+====Graphic====
+=====Shape Oval=====
+Draw a generic oval.
+=====Shape Rectangle=====
+Draws a rectangular shape.
+=====Shape Inset=====
+Shrinks the current shape by the input amount. (The overall scale is currently unspecified, but in most implementations should be 20.)
+ Inputs:
+ [Integer] Number of nominal pixels to inset.
+=====Shape Marker=====
+Draw a marker, that is a graphical indicator that can be used to add an additional que about the object state. For example, in a two-dimensional graphics representation this might be a small shape drawn inset at the corner of the larger shape. 
+=====Shape Marker 2=====
+Represents a marker placed in a different location from the other shape markers.
+=====Shape Marker 3=====
+Represents a marker placed in a different location from the other shape markers.
+=====Color RGB=====
+A color specified by the three inputs for Red, Green and Blue color components. Those inputs are expected to be in the range 0..1.
+ Inputs:
+ [Real] A value from 0.0 to 1.0.
+ [Real] A value from 0.0 to 1.0.
+ [Real] A value from 0.0 to 1.0.
+=====Color Red=====
+The color red.
+=====Color Yellow=====
+The color yellow.
+=====Color Blue=====
+The color blue.
+=====Color Orange=====
+The color orange.
+=====Color Green=====
+The color green.
+=====Color Purple=====
+The color purple.
+=====Color Black=====
+The color black.
+=====Color White=====
+The color white.
+=====Color Gray=====
+The color gray.
+=====Graphic Outline=====
+Draws an outline of the last evaluated shape, using the last specified color or the default color (usually black) if none has been specified.
+=====Graphic Fill=====
+Fills the last evaluated shape with the last specified color or the default color (usually black) if none has been specified.
+====Time====
+=====Now=====
+The current simulation period, that is the number of iterations that the model has gone through, or in the case of models with callibrarted time, the number of iterations added to the model's nominal start time.
+ Outputs:
+ [Integer] The current period.
+====Math====
+=====Sine=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sin(double)]
+=====Cosine=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cos(double)]
+=====Tangent=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tan(double)]
+=====Arc Sine=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#asin(double)]
+=====Arc Cosine=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#acos(double)]
+=====Arc Tangent=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan(double)]
+=====Convert Degree to Radians=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toRadians(double)]
+=====Convert Radians to Degrees=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toDegrees(double)]
+=====Exp=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#exp(double)]
+=====Log=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log(double)]
+=====Log b10=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log10(double)]
+=====Square Root=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#squareRoot(double)]
+=====Cube Root=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cbrt(double)]
+=====Remainder=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#iEEEremainder(double,%20double)]
+=====Ceiling=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ceil(double)]
+=====Floor=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#floor(double)]
+=====Rount=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#rint(double)]
+=====Arc Tangent Rectangular=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan2(double,%20double)]
+=====Power=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#pow(double,%20double)]
+=====Absolute Value=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#abs(double)]
+=====Maximum=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#max(double,%20double)]
+=====Minimum=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#min(double,%20double)]
+=====ULP=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ulp(double)]
+=====Sign=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#signum(double)]
+=====Hyperbolic Sine=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sinh(double)]
+=====Hyperbolic Cosine=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cosh(double)]
+=====Hyperbolic Tan=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tanh(double)]
+=====Hypotuneuse=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#hypotuneuse(double,%20double)]
+=====Expm1=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#expm1(double)]
+=====Log1p=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log1p(double)]
+====List====
+=====Item=====
+Returns the item at the specified index from the list of items provided. Those items will typically be input primitives such as Integer or Real values.
+ Inputs:
+ [Generic] 
+ [Integer] 
+ Outputs:
+ [Generic] 
+=====Length=====
+The number of items in the provided list of items.
+ Inputs:
+ [Generic] 
+ Outputs:
+ [Integer] 
+====Distribution====
+=====Uniform Cross Distribution=====
+A random number taken from a distribution of values as defined by a cross of all values. (See Cross Distribution.) This funciton then returns a value drawn from the minimum and maximum values as determined by the current agent state. In the cross distribution, each of the values is treated independently so that an input attribute is created for every potential combination of states.
+ Inputs:
+ [Generic] The list of states to factor into the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
+ [Real] The set of attributes that will determine the minimum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
+ [Real] The set of attributes that will determine the maximum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
+ Outputs:
+ [Real] The resulting random number based on the current agent state and the input parameters.
+=====Uniform Additive Distribution=====
+A random number taken from a distribution of values in which each of the minimum and maximum values are added to determine a total minimum and maximum value. (See Additive Distribution.) In the additive distribution, each of the values is treated as dependent on the others so that an input attribute is only created for each seperate state.
+ Inputs:
+ [Generic] The list of states to factor into the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
+ [Real] The set of attributes that will determine the minimum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
+ [Real] The set of attributes that will determine the maximum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
+ Outputs:
+ [Real] The resulting random number based on the current agent state and the input parameters.
+=====Cross Distribution=====
+A value taken from a set of (auto-generated) attributes based on the value of each state included. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create separate input attributes for AI, AII, BI and BII. Then for an agent with States A and II this function would return the value specified by the AII input attribute.
+ Inputs:
+ [Generic] The list of states to factor into the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
+ [Real] The set of attributes that when multiplied against each other will determine the value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
+ Outputs:
+ [Real] The resulting value based on the current agent state and the input parameters.
+=====Additive Distribution=====
+A value taken from a set of (auto-generated) attributes based on the combined values of the states provided. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create input attributes for A, B, I and II. Those values would then be added together, so that for an Agent with state A and II this function would return A + II.
+ Inputs:
+ [Generic] The states to include in the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
+ [Real] The set of attributes that when combined with each other determine the value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
+ Outputs:
+ [Real] The resulting value based on the current agent state and the input parameters.
+	
 ===Diagrams===
 
 The following diagram may be helpful to readers familiar with UML and Meta-modeling:

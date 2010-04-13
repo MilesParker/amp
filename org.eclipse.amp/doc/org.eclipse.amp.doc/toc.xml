@@ -6,121 +6,246 @@
 </topic>
 <topic href="help/Structure.html" label="Structure">
 <topic href="help/Structure.html#Design" label="Design"></topic>
-<topic href="help/Types.html" label="Types">
-<topic href="help/Types.html#General" label="General">
-<topic href="help/Types.html#Named_Entities" label="Named Entities">
-<topic href="help/Types.html#Label" label="Label"></topic>
-<topic href="help/Types.html#ID" label="ID"></topic>
-<topic href="help/Types.html#Description" label="Description"></topic>
-<topic href="help/Types.html#Plural_Label" label="Plural Label"></topic>
+<topic href="help/Details.html" label="Details">
+<topic href="help/Details.html#General" label="General">
+<topic href="help/Details.html#Named_Entities" label="Named Entities">
+<topic href="help/Details.html#Label" label="Label"></topic>
+<topic href="help/Details.html#ID" label="ID"></topic>
+<topic href="help/Details.html#Description" label="Description"></topic>
+<topic href="help/Details.html#Plural_Label" label="Plural Label"></topic>
 </topic>
 </topic>
-<topic href="help/Types.html#Agents" label="Agents">
-<topic href="help/Types.html#Simple_Agents" label="Simple Agents">
-<topic href="help/Types.html#Attributes" label="Attributes"></topic>
-<topic href="help/Types.html#Actions.3D" label="Actions="></topic>
-<topic href="help/Types.html#Styles" label="Styles"></topic>
+<topic href="help/Details.html#Agents" label="Agents">
+<topic href="help/Details.html#Simple_Agents" label="Simple Agents">
+<topic href="help/Details.html#Attributes" label="Attributes"></topic>
+<topic href="help/Details.html#Actions.3D" label="Actions="></topic>
+<topic href="help/Details.html#Styles" label="Styles"></topic>
 </topic>
-<topic href="help/Types.html#Context_Agents_.28Contexts.29" label="Context Agents (Contexts)">
-<topic href="help/Types.html#Agents_2" label="Agents"></topic>
-<topic href="help/Types.html#Spaces" label="Spaces"></topic>
-</topic>
-</topic>
-<topic href="help/Types.html#Attributes_2" label="Attributes">
-<topic href="help/Types.html#Basic_Attributes" label="Basic Attributes">
-<topic href="help/Types.html#Type" label="Type"></topic>
-<topic href="help/Types.html#Default_Value" label="Default Value"></topic>
-<topic href="help/Types.html#Gather_Data" label="Gather Data"></topic>
-<topic href="help/Types.html#Immutable" label="Immutable"></topic>
-<topic href="help/Types.html#Units" label="Units"></topic>
-</topic>
-<topic href="help/Types.html#Arrays" label="Arrays">
-<topic href="help/Types.html#Size" label="Size"></topic>
-</topic>
-<topic href="help/Types.html#States" label="States">
-<topic href="help/Types.html#State_Options" label="State Options"></topic>
-<topic href="help/Types.html#Default_Option" label="Default Option"></topic>
+<topic href="help/Details.html#Context_Agents_.28Contexts.29" label="Context Agents (Contexts)">
+<topic href="help/Details.html#Agents_2" label="Agents"></topic>
+<topic href="help/Details.html#Spaces" label="Spaces"></topic>
 </topic>
 </topic>
-<topic href="help/Types.html#Spaces_2" label="Spaces">
-<topic href="help/Types.html#Space_.28Continuous.29" label="Space (Continuous)">
-<topic href="help/Types.html#Border_Rule" label="Border Rule"></topic>
-<topic href="help/Types.html#Dimensionality" label="Dimensionality"></topic>
+<topic href="help/Details.html#Attributes_2" label="Attributes">
+<topic href="help/Details.html#Basic_Attributes" label="Basic Attributes">
+<topic href="help/Details.html#Type" label="Type"></topic>
+<topic href="help/Details.html#Default_Value" label="Default Value"></topic>
+<topic href="help/Details.html#Gather_Data" label="Gather Data"></topic>
+<topic href="help/Details.html#Immutable" label="Immutable"></topic>
+<topic href="help/Details.html#Units" label="Units"></topic>
 </topic>
-<topic href="help/Types.html#Grid" label="Grid">
-<topic href="help/Types.html#Multi-Occupant" label="Multi-Occupant"></topic>
-<topic href="help/Types.html#Neighborhood" label="Neighborhood"></topic>
+<topic href="help/Details.html#Arrays" label="Arrays">
+<topic href="help/Details.html#Size" label="Size"></topic>
 </topic>
-<topic href="help/Types.html#Network" label="Network">
-<topic href="help/Types.html#Directed" label="Directed"></topic>
+<topic href="help/Details.html#States" label="States">
+<topic href="help/Details.html#State_Options" label="State Options"></topic>
+<topic href="help/Details.html#Default_Option" label="Default Option"></topic>
 </topic>
-<topic href="help/Types.html#Geography" label="Geography"></topic>
+</topic>
+<topic href="help/Details.html#Spaces_2" label="Spaces">
+<topic href="help/Details.html#Space_.28Continuous.29" label="Space (Continuous)">
+<topic href="help/Details.html#Border_Rule" label="Border Rule"></topic>
+<topic href="help/Details.html#Dimensionality" label="Dimensionality"></topic>
+</topic>
+<topic href="help/Details.html#Grid" label="Grid">
+<topic href="help/Details.html#Multi-Occupant" label="Multi-Occupant"></topic>
+<topic href="help/Details.html#Neighborhood" label="Neighborhood"></topic>
+</topic>
+<topic href="help/Details.html#Network" label="Network">
+<topic href="help/Details.html#Directed" label="Directed"></topic>
+</topic>
+<topic href="help/Details.html#Geography" label="Geography"></topic>
 </topic>
 </topic>
 <topic href="help/Reference.html" label="Reference">
 <topic href="help/Reference.html#Diagrams" label="Diagrams">
 <topic href="help/Reference.html#Meta-Classes" label="Meta-Classes"></topic>
 <topic href="help/Reference.html#Key_Collaborations" label="Key Collaborations"></topic>
-<topic href="help/Reference.html#Details" label="Details"></topic>
+<topic href="help/Reference.html#Details_2" label="Details"></topic>
 </topic>
 </topic>
 </topic>
 <topic href="help/Actions.html" label="Actions">
 <topic href="help/Actions.html#Background" label="Background"></topic>
 <topic href="help/Design_2.html" label="Design">
-<topic href="help/Design_2.html#Types_2" label="Types"></topic>
+<topic href="help/Design_2.html#Kinds_of_Actions" label="Kinds of Actions"></topic>
 <topic href="help/Design_2.html#Flow" label="Flow"></topic>
-<topic href="help/Design_2.html#Boundaries_and_Query_Refinement" label="Boundaries and Query Refinement"></topic>
+<topic href="help/Design_2.html#Selections" label="Selections"></topic>
 <topic href="help/Design_2.html#Weaving" label="Weaving"></topic>
 </topic>
-<topic href="help/Components.html" label="Components">
-<topic href="help/Components.html#Root_Actions" label="Root Actions">
-<topic href="help/Components.html#Build" label="Build"></topic>
-<topic href="help/Components.html#Initialize" label="Initialize"></topic>
-<topic href="help/Components.html#Rule" label="Rule"></topic>
-<topic href="help/Components.html#Schedule" label="Schedule">
-<topic href="help/Components.html#Start" label="Start"></topic>
-<topic href="help/Components.html#Interval" label="Interval"></topic>
-<topic href="help/Components.html#Priority" label="Priority"></topic>
-<topic href="help/Components.html#Pick" label="Pick"></topic>
+<topic href="help/Details_3.html" label="Details">
+<topic href="help/Details_3.html#Selections_2" label="Selections">
+<topic href="help/Details_3.html#Select" label="Select">
+<topic href="help/Details_3.html#Selection" label="Selection"></topic>
+<topic href="help/Details_3.html#Agent" label="Agent"></topic>
+<topic href="help/Details_3.html#Space" label="Space"></topic>
+<topic href="help/Details_3.html#For" label="For"></topic>
 </topic>
-<topic href="help/Components.html#Watch" label="Watch">
-<topic href="help/Components.html#Attribute" label="Attribute"></topic>
+<topic href="help/Details_3.html#Query" label="Query">
+<topic href="help/Details_3.html#Function" label="Function"></topic>
+</topic>
+<topic href="help/Details_3.html#Logic" label="Logic"></topic>
+<topic href="help/Details_3.html#Intersection" label="Intersection"></topic>
+<topic href="help/Details_3.html#Union" label="Union"></topic>
+<topic href="help/Details_3.html#Difference" label="Difference"></topic>
+<topic href="help/Details_3.html#Roots" label="Roots"></topic>
+<topic href="help/Details_3.html#Build" label="Build"></topic>
+<topic href="help/Details_3.html#Initialize" label="Initialize"></topic>
+<topic href="help/Details_3.html#Rule" label="Rule"></topic>
+<topic href="help/Details_3.html#Schedule" label="Schedule">
+<topic href="help/Details_3.html#Start" label="Start"></topic>
+<topic href="help/Details_3.html#Interval" label="Interval"></topic>
+<topic href="help/Details_3.html#Priority" label="Priority"></topic>
+<topic href="help/Details_3.html#Pick" label="Pick"></topic>
+</topic>
+<topic href="help/Details_3.html#Watch" label="Watch">
+<topic href="help/Details_3.html#Attribute" label="Attribute"></topic>
 </topic>
 </topic>
-<topic href="help/Components.html#Selection" label="Selection">
-<topic href="help/Components.html#Selection_2" label="">
-<topic href="help/Components.html#N10357" label="Selection"></topic>
-<topic href="help/Components.html#Agent" label="Agent"></topic>
-<topic href="help/Components.html#Space" label="Space"></topic>
-<topic href="help/Components.html#For" label="For"></topic>
+<topic href="help/Details_3.html#Commands" label="Commands">
+<topic href="help/Details_3.html#Evaluate" label="Evaluate">
+<topic href="help/Details_3.html#Selection_2" label="Selection"></topic>
+<topic href="help/Details_3.html#Function_2" label="Function"></topic>
+<topic href="help/Details_3.html#Inputs" label="Inputs"></topic>
 </topic>
+<topic href="help/Details_3.html#Move" label="Move">
+<topic href="help/Details_3.html#Selection_3" label="Selection"></topic>
 </topic>
-<topic href="help/Components.html#Query" label="Query">
-<topic href="help/Components.html#Function" label="">
-<topic href="help/Components.html#N10378" label="Function"></topic>
-</topic>
-</topic>
-<topic href="help/Components.html#Logic" label="Logic">
-<topic href="help/Components.html#Intersection" label="Intersection"></topic>
-<topic href="help/Components.html#Union" label="Union"></topic>
-<topic href="help/Components.html#Difference" label="Difference"></topic>
+<topic href="help/Details_3.html#Set" label="Set"></topic>
 </topic>
 </topic>
 <topic href="help/Example.html" label="Example"></topic>
 <topic href="help/Reference_2.html" label="Reference">
 <topic href="help/Reference_2.html#Diagrams_2" label="Diagrams">
 <topic href="help/Reference_2.html#Meta-Classes_2" label="Meta-Classes"></topic>
-<topic href="help/Reference_2.html#Details_2" label="Details"></topic>
+<topic href="help/Reference_2.html#Details_4" label="Details"></topic>
 </topic>
 </topic>
 </topic>
 <topic href="help/Functions.html" label="Functions">
-<topic href="help/Functions.html#Function_Library" label="Function Library"></topic>
-<topic href="help/Function_Library_2.html" label="Function Library"></topic>
-<topic href="help/Reference_3.html" label="Reference">
-<topic href="help/Reference_3.html#Diagrams_3" label="Diagrams">
-<topic href="help/Reference_3.html#Meta-Classes_3" label="Meta-Classes"></topic>
+<topic href="help/Functions.html#Reference_3" label="Reference">
+<topic href="help/Functions.html#Function_Library" label="Function Library">
+<topic href="help/Functions.html#Operators" label="Operators"></topic>
+<topic href="help/Functions.html#Logical_Operators" label="Logical Operators">
+<topic href="help/Functions.html#Not" label="Not"></topic>
+<topic href="help/Functions.html#Equal" label="Equal"></topic>
+<topic href="help/Functions.html#Identical" label="Identical"></topic>
+<topic href="help/Functions.html#Greater" label="Greater"></topic>
+<topic href="help/Functions.html#Lesser" label="Lesser"></topic>
+<topic href="help/Functions.html#Greater_or_Equal" label="Greater or Equal"></topic>
+<topic href="help/Functions.html#Lesser_or_Equal" label="Lesser or Equal"></topic>
+<topic href="help/Functions.html#True" label="True"></topic>
+<topic href="help/Functions.html#False" label="False"></topic>
+<topic href="help/Functions.html#Identity" label="Identity"></topic>
+<topic href="help/Functions.html#Different" label="Different"></topic>
+</topic>
+<topic href="help/Functions.html#Numeric_Operators" label="Numeric Operators">
+<topic href="help/Functions.html#Negative_Value" label="Negative Value"></topic>
+<topic href="help/Functions.html#Add" label="Add"></topic>
+<topic href="help/Functions.html#Subtract" label="Subtract"></topic>
+<topic href="help/Functions.html#Multiply" label="Multiply"></topic>
+<topic href="help/Functions.html#Divide" label="Divide"></topic>
+<topic href="help/Functions.html#Power" label="Power"></topic>
+<topic href="help/Functions.html#Modulo" label="Modulo"></topic>
+<topic href="help/Functions.html#Increment" label="Increment"></topic>
+<topic href="help/Functions.html#Decrement" label="Decrement"></topic>
+<topic href="help/Functions.html#Unit_Value" label="Unit Value"></topic>
+<topic href="help/Functions.html#Zero_Value" label="Zero Value"></topic>
+<topic href="help/Functions.html#Original_Value" label="Original Value"></topic>
+</topic>
+<topic href="help/Functions.html#Spatial" label="Spatial">
+<topic href="help/Functions.html#Nearest" label="Nearest"></topic>
+<topic href="help/Functions.html#Toward" label="Toward"></topic>
+<topic href="help/Functions.html#Within" label="Within"></topic>
+<topic href="help/Functions.html#Neighbor" label="Neighbor"></topic>
+<topic href="help/Functions.html#Include_Self" label="Include Self"></topic>
+<topic href="help/Functions.html#Within_2D_Boundary" label="Within 2D Boundary"></topic>
+<topic href="help/Functions.html#Here" label="Here"></topic>
+<topic href="help/Functions.html#Available" label="Available"></topic>
+<topic href="help/Functions.html#Distance" label="Distance"></topic>
+<topic href="help/Functions.html#Away" label="Away"></topic>
+<topic href="help/Functions.html#Minimize" label="Minimize"></topic>
+<topic href="help/Functions.html#Maximize" label="Maximize"></topic>
+<topic href="help/Functions.html#Location_2D" label="Location 2D"></topic>
+<topic href="help/Functions.html#Boundary_2D" label="Boundary 2D"></topic>
+</topic>
+<topic href="help/Functions.html#Random" label="Random">
+<topic href="help/Functions.html#Random_In_Range" label="Random In Range"></topic>
+<topic href="help/Functions.html#Random_To_Limit" label="Random To Limit"></topic>
+<topic href="help/Functions.html#Random_Unit" label="Random Unit"></topic>
+<topic href="help/Functions.html#Random_Boolean" label="Random Boolean"></topic>
+<topic href="help/Functions.html#Random_Weighted" label="Random Weighted"></topic>
+<topic href="help/Functions.html#Random_Member" label="Random Member"></topic>
+<topic href="help/Functions.html#Random_State" label="Random State"></topic>
+</topic>
+<topic href="help/Functions.html#Graphic" label="Graphic">
+<topic href="help/Functions.html#Shape_Oval" label="Shape Oval"></topic>
+<topic href="help/Functions.html#Shape_Rectangle" label="Shape Rectangle"></topic>
+<topic href="help/Functions.html#Shape_Inset" label="Shape Inset"></topic>
+<topic href="help/Functions.html#Shape_Marker" label="Shape Marker"></topic>
+<topic href="help/Functions.html#Shape_Marker_2" label="Shape Marker 2"></topic>
+<topic href="help/Functions.html#Shape_Marker_3" label="Shape Marker 3"></topic>
+<topic href="help/Functions.html#Color_RGB" label="Color RGB"></topic>
+<topic href="help/Functions.html#Color_Red" label="Color Red"></topic>
+<topic href="help/Functions.html#Color_Yellow" label="Color Yellow"></topic>
+<topic href="help/Functions.html#Color_Blue" label="Color Blue"></topic>
+<topic href="help/Functions.html#Color_Orange" label="Color Orange"></topic>
+<topic href="help/Functions.html#Color_Green" label="Color Green"></topic>
+<topic href="help/Functions.html#Color_Purple" label="Color Purple"></topic>
+<topic href="help/Functions.html#Color_Black" label="Color Black"></topic>
+<topic href="help/Functions.html#Color_White" label="Color White"></topic>
+<topic href="help/Functions.html#Color_Gray" label="Color Gray"></topic>
+<topic href="help/Functions.html#Graphic_Outline" label="Graphic Outline"></topic>
+<topic href="help/Functions.html#Graphic_Fill" label="Graphic Fill"></topic>
+</topic>
+<topic href="help/Functions.html#Time" label="Time">
+<topic href="help/Functions.html#Now" label="Now"></topic>
+</topic>
+<topic href="help/Functions.html#Math" label="Math">
+<topic href="help/Functions.html#Sine" label="Sine"></topic>
+<topic href="help/Functions.html#Cosine" label="Cosine"></topic>
+<topic href="help/Functions.html#Tangent" label="Tangent"></topic>
+<topic href="help/Functions.html#Arc_Sine" label="Arc Sine"></topic>
+<topic href="help/Functions.html#Arc_Cosine" label="Arc Cosine"></topic>
+<topic href="help/Functions.html#Arc_Tangent" label="Arc Tangent"></topic>
+<topic href="help/Functions.html#Convert_Degree_to_Radians" label="Convert Degree to Radians"></topic>
+<topic href="help/Functions.html#Convert_Radians_to_Degrees" label="Convert Radians to Degrees"></topic>
+<topic href="help/Functions.html#Exp" label="Exp"></topic>
+<topic href="help/Functions.html#Log" label="Log"></topic>
+<topic href="help/Functions.html#Log_b10" label="Log b10"></topic>
+<topic href="help/Functions.html#Square_Root" label="Square Root"></topic>
+<topic href="help/Functions.html#Cube_Root" label="Cube Root"></topic>
+<topic href="help/Functions.html#Remainder" label="Remainder"></topic>
+<topic href="help/Functions.html#Ceiling" label="Ceiling"></topic>
+<topic href="help/Functions.html#Floor" label="Floor"></topic>
+<topic href="help/Functions.html#Rount" label="Rount"></topic>
+<topic href="help/Functions.html#Arc_Tangent_Rectangular" label="Arc Tangent Rectangular"></topic>
+<topic href="help/Functions.html#Power_2" label="Power"></topic>
+<topic href="help/Functions.html#Absolute_Value" label="Absolute Value"></topic>
+<topic href="help/Functions.html#Maximum" label="Maximum"></topic>
+<topic href="help/Functions.html#Minimum" label="Minimum"></topic>
+<topic href="help/Functions.html#ULP" label="ULP"></topic>
+<topic href="help/Functions.html#Sign" label="Sign"></topic>
+<topic href="help/Functions.html#Hyperbolic_Sine" label="Hyperbolic Sine"></topic>
+<topic href="help/Functions.html#Hyperbolic_Cosine" label="Hyperbolic Cosine"></topic>
+<topic href="help/Functions.html#Hyperbolic_Tan" label="Hyperbolic Tan"></topic>
+<topic href="help/Functions.html#Hypotuneuse" label="Hypotuneuse"></topic>
+<topic href="help/Functions.html#Expm1" label="Expm1"></topic>
+<topic href="help/Functions.html#Log1p" label="Log1p"></topic>
+</topic>
+<topic href="help/Functions.html#List" label="List">
+<topic href="help/Functions.html#Item" label="Item"></topic>
+<topic href="help/Functions.html#Length" label="Length"></topic>
+</topic>
+<topic href="help/Functions.html#Distribution" label="Distribution">
+<topic href="help/Functions.html#Uniform_Cross_Distribution" label="Uniform Cross Distribution"></topic>
+<topic href="help/Functions.html#Uniform_Additive_Distribution" label="Uniform Additive Distribution"></topic>
+<topic href="help/Functions.html#Cross_Distribution" label="Cross Distribution"></topic>
+<topic href="help/Functions.html#Additive_Distribution" label="Additive Distribution"></topic>
+</topic>
+</topic>
+<topic href="help/Functions.html#Diagrams_3" label="Diagrams">
+<topic href="help/Functions.html#Meta-Classes_3" label="Meta-Classes"></topic>
 </topic>
 </topic>
 </topic>
