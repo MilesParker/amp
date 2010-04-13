@@ -30,7 +30,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.metaabm.act.AReplace;
 
 /*
  * This is the item provider adapter for a {@link org.metaabm.act.AReplace}
@@ -38,8 +37,8 @@ import org.metaabm.act.AReplace;
  * @generated
  */
 public class AReplaceItemProvider extends AConnectItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier. <!--
      * begin-user-doc --> <!-- end-user-doc -->
@@ -83,9 +82,10 @@ public class AReplaceItemProvider extends AConnectItemProvider implements IEditi
      */
     @Override
     public String getText(Object object) {
-        String label = ((AReplace) object).getID();
-        return label == null || label.length() == 0 ? getString("_UI_AReplace_type") : getString("_UI_AReplace_type")
-            + " " + label;
+        return super.getText(object);
+        // String label = ((AReplace) object).getID();
+        // return label == null || label.length() == 0 ? getString("_UI_AReplace_type") : getString("_UI_AReplace_type")
+        // + " " + label;
     }
 
     /**

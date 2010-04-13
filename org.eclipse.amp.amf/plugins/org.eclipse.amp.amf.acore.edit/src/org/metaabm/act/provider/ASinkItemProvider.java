@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.MissingResourceException;
 
-import org.apache.commons.lang.StringUtils;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -46,6 +45,8 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import org.apache.commons.lang.StringUtils;
 import org.metaabm.IID;
 import org.metaabm.IValue;
 import org.metaabm.MetaABMPackage;
@@ -70,8 +71,8 @@ import org.metaabm.function.FOperator;
  * @generated
  */
 public class ASinkItemProvider extends AActItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
 
     /**
      * This constructs an instance from a factory and a notifier.
@@ -136,13 +137,13 @@ public class ASinkItemProvider extends AActItemProvider implements IEditingDomai
      */
     protected void addAvailableTypesPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(), getString("_UI_IValue_availableTypes_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_IValue_availableTypes_feature", "_UI_IValue_type"),
-                                                  MetaABMPackage.Literals.IVALUE__AVAILABLE_TYPES, true, false, false,
-                                                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(), getString("_UI_IValue_availableTypes_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_IValue_availableTypes_feature", "_UI_IValue_type"),
+                                                    MetaABMPackage.Literals.IVALUE__AVAILABLE_TYPES, true, false, false,
+                                                    ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     /**
@@ -152,13 +153,13 @@ public class ASinkItemProvider extends AActItemProvider implements IEditingDomai
      */
     protected void addInputsPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(), getString("_UI_ASink_inputs_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_ASink_inputs_feature", "_UI_ASink_type"),
-                                                  MetaABMActPackage.Literals.ASINK__INPUTS, true, true, false, null,
-                                                  getString("_UI_RelationsPropertyCategory"),
-                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(), getString("_UI_ASink_inputs_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_ASink_inputs_feature", "_UI_ASink_type"),
+                                                    MetaABMActPackage.Literals.ASINK__INPUTS, true, true, false, null,
+                                                    getString("_UI_RelationsPropertyCategory"),
+                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     /**
@@ -168,10 +169,10 @@ public class ASinkItemProvider extends AActItemProvider implements IEditingDomai
      */
     protected void addFunctionPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_ASink_function_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_ASink_function_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_ASink_function_feature",
-                                                                           "_UI_ASink_type"),
+                                                                 "_UI_ASink_type"),
                                                                  MetaABMActPackage.Literals.ASINK__FUNCTION, true,
                                                                  false, true, null,
                                                                  getString("_UI_ActPropertyCategory"), null));
@@ -279,10 +280,10 @@ public class ASinkItemProvider extends AActItemProvider implements IEditingDomai
             if (function instanceof FOperator) {
                 return StringUtils.capitalize(function.getID());
             } else if (function.eContainer() instanceof FLibrary
-                && ((FLibrary) function.eContainer()).getID().equals("spatial")) {
+                    && ((FLibrary) function.eContainer()).getID().equals("spatial")) {
                 return "Spatial";
             } else if (function.eContainer() instanceof FLibrary
-                && ((FLibrary) function.eContainer()).getID().equals("random")) {
+                    && ((FLibrary) function.eContainer()).getID().equals("random")) {
                 return "Random";
             } else if (function instanceof FGenericLogical) {
                 return "GenericLogical";
@@ -383,22 +384,22 @@ public class ASinkItemProvider extends AActItemProvider implements IEditingDomai
      */
     @Override
     public String getText(Object object) {
-        ASink sink = (ASink) object;
-        String label = sink.getLabel();
-        // Don't show selected if it is root
-        if (sink.getRootSelected() != null && sink.getRootSelected().getLabel() != null) {
-            label = label.replace(sink.getRootSelected().getLabel() + ": ", "");
-        }
-        return label;
+        // ASink sink = (ASink) object;
+        // String label = sink.getLabel();
+        // // Don't show selected if it is root
+        // if (sink.getRootSelected() != null && sink.getRootSelected().getLabel() != null) {
+        // label = label.replace(sink.getRootSelected().getLabel() + ": ", "");
+        // }
+        return super.getText(object);
     }
 
     public String suggestLabel(IID object) {
         ASink sink = (ASink) object;
         StringBuffer expression = new StringBuffer();
-        if (sink.getSelected() != null && sink.getSelected().getLabel() != null) {
-            expression.append(sink.getSelected().getLabel());
-            expression.append(": ");
-        }
+        // if (sink.getSelected() != null && sink.getSelected().getLabel() != null) {
+        // expression.append(sink.getSelected().getLabel());
+        // expression.append(": ");
+        // }
         appendFunctionLabel(sink, expression);
         return expression.toString();
     }

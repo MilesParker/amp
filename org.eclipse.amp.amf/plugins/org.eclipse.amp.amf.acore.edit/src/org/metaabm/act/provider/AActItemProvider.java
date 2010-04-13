@@ -23,7 +23,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
@@ -53,6 +52,8 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import org.apache.commons.lang.StringUtils;
 import org.metaabm.IID;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SNamed;
@@ -261,14 +262,18 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     }
 
     public void addTargets(EList<AAct> sources, EList<AAct> result) {
-        result.addAll(sources);
         for (AAct source : sources) {
-            EList<AAct> next = new BasicEList<AAct>();
+            if (!result.contains(source)) {
+                result.add(source);
+            }
             for (AAct target : source.getTargets()) {
-                if (!result.contains(target)) {
-                    addTargets(new BasicEList(Collections.singleton(target)), result);
+                AAct run = target;
+                while (run.getTargets().size() == 1 && run.getSources().size() == 1 && !result.contains(run)) {
+                    result.add(run);
+                    run = run.getTargets().get(0);
                 }
             }
+            addTargets(source.getTargets(), result);
         }
     }
 
@@ -276,13 +281,14 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     public Collection<?> getChildren(Object object) {
         if (object instanceof ARoot) {
             ARoot root = (ARoot) object;
-            EList<AAct> targets = new BasicEList(root.getTargets());
+            EList<AAct> targets = new BasicEList(Collections.singleton(root));
             // Collection<AAct> visited = new HashSet<AAct>();
             // for (AAct members : root.getTargets()) {
             //
             // }
             BasicEList result = new BasicEList();
             addTargets(targets, result);
+            result.remove(root);
             return result;
         } else {
             // Collection<Object> children = new ArrayList<Object>();
@@ -299,8 +305,15 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
             // children.add(sourcesItemProvider);
             // children.add(targetsItemProvider);
             // }
+            // AAct act = (AAct) object;
+            // if (act.getTargets().size() > 1 || act instanceof AGroup) {
             return super.getChildren(object);
+            // } else if (act instanceof ASink) {
+            // EList<AAct> children = new BasicEList(((ASink) object).getInputs());
+            // return children;
+            // }
         }
+        // return Collections.EMPTY_LIST;
     }
 
     /**
@@ -587,7 +600,15 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
         AAct act = (AAct) object;
         String label = act.getLabel();
         if (!(act.getSelected() instanceof ARoot) && act.getSelected() != null) {
-            label = act.getSelected().getLabel() + ": " + label;
+            label += " [" + act.getSelected().getLabel() + "]";
+        }
+        if (act.getSources().size() > 0) {
+            label += " <-";
+            String[] terms = new String[act.getSources().size()];
+            for (int i = 0; i < terms.length; i++) {
+                terms[i] = act.getSources().get(i).getLabel();
+            }
+            label += "[" + StringUtils.join(terms, ",") + "]";
         }
         return label == null || label.length() == 0 ? getString("_UI_" + ((EObject) object).eClass().getName()
                                                                 + "_type") : label;
@@ -622,18 +643,25 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
                 // fireNotifyChanged(new ViewerNotification(notification,
                 // notification.getNotifier(), true, false));
                 AAct owner = (AAct) notification.getNotifier();
-                for (AAct act : owner.getAllTargets()) {
-                    if (act instanceof ASink) {
-                        for (AInput input : ((ASink) act).getInputs()) {
-                            if (input.getValue() == owner) {
-                                fireNotifyChanged(new ViewerNotification(notification, input, true, true));
+                ASelect rootSelected = owner.getRootSelected();
+                if (rootSelected != null) { // should only be true for testing..
+                    for (AAct act : rootSelected.getAllTargets()) {
+                        if (act != owner) {
+                            fireNotifyChanged(new ViewerNotification(notification, act, false, true));
+                            if (act instanceof ASink) {
+                                for (AInput input : ((ASink) act).getInputs()) {
+                                    if (input.getValue() == owner) {
+                                        fireNotifyChanged(new ViewerNotification(notification, input, false, true));
+                                    }
+                                }
                             }
                         }
                     }
                 }
-                if (owner instanceof ASelect) {
-                    fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, true));
-                    return;
+                for (Object object : getChildren(notification.getNotifier())) {
+                    if (object instanceof AActWrapperItemProvider) {
+                        fireNotifyChanged(new ViewerNotification(notification, object, false, true));
+                    }
                 }
                 // fall through to notify
                 // return;
@@ -662,15 +690,13 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
      */
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-        if (object instanceof ARoot) {
-            for (EClassifier cl : MetaABMActPackage.eINSTANCE.getEClassifiers()) {
-                if (cl instanceof EClass) {
-                    EClass actClass = (EClass) cl;
-                    if (MetaABMActPackage.Literals.AACT.isSuperTypeOf(actClass)
-                            && !MetaABMActPackage.Literals.AROOT.isSuperTypeOf(actClass) && !actClass.isAbstract()) {
-                        newChildDescriptors.add(createChildParameter(MetaABMActPackage.Literals.AACT__TARGETS,
-                                                                     MetaABMActFactory.eINSTANCE.create(actClass)));
-                    }
+        for (EClassifier cl : MetaABMActPackage.eINSTANCE.getEClassifiers()) {
+            if (cl instanceof EClass) {
+                EClass actClass = (EClass) cl;
+                if (MetaABMActPackage.Literals.AACT.isSuperTypeOf(actClass)
+                        && !MetaABMActPackage.Literals.AROOT.isSuperTypeOf(actClass) && !actClass.isAbstract()) {
+                    newChildDescriptors.add(createChildParameter(MetaABMActPackage.Literals.AACT__TARGETS,
+                                                                 MetaABMActFactory.eINSTANCE.create(actClass)));
                 }
             }
         }
@@ -696,11 +722,11 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
 
     @Override
     public boolean hasChildren(Object object) {
-        AAct act = (AAct) object;
-        if (act.getTargets().size() <= 1 && act.getSources().size() <= 1 && !(object instanceof ASink)
-                && !(object instanceof AGroup) && !(object instanceof ARoot)) {
-            return false;
-        }
+        // AAct act = (AAct) object;
+        // if (act.getTargets().size() <= 1 && (!(object instanceof ASink) || ((ASink) object).getInputs().size() == 0)
+        // && !(object instanceof AGroup) && !(object instanceof ARoot)) {
+        // return false;
+        // }
         return super.hasChildren(object, false);
     }
 
@@ -783,9 +809,7 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
         if (act instanceof ASink) {
             for (AInput input : ((ASink) act).getInputs()) {
                 if (!allSourceSelects.contains(input.getSelected()) && !processed.contains(input)) {
-                    cmd
-                    .append(SetCommand.create(domain, input, MetaABMActPackage.Literals.AINPUT__SELECTED,
-                                              newSelect));
+                    cmd.append(SetCommand.create(domain, input, MetaABMActPackage.Literals.AINPUT__SELECTED, newSelect));
                     processed.add(input);
                 }
             }
@@ -822,10 +846,10 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
             default:
                 label = "(" + StringUtils.join(labels(sources).iterator(), " " + seperator + " ") + ")";
         }
-        if (source.getSelected() != null && source.getSelected().getLabel() != null) {
-            String selLabel = source.getSelected().getLabel();
-            label = selLabel + " " + label.replace(selLabel + ": ", "");
-        }
+        // if (source.getSelected() != null && source.getSelected().getLabel() != null) {
+        // String selLabel = source.getSelected().getLabel();
+        // label = selLabel + " " + label.replace(selLabel + ": ", "");
+        // }
         return label;
     }
 

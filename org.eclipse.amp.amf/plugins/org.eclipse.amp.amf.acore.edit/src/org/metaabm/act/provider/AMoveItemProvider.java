@@ -21,7 +21,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -31,6 +30,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
 import org.metaabm.IID;
 import org.metaabm.act.AMove;
 
@@ -40,8 +40,8 @@ import org.metaabm.act.AMove;
  * @generated
  */
 public class AMoveItemProvider extends ATransformItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier. <!--
      * begin-user-doc --> <!-- end-user-doc -->
@@ -94,14 +94,14 @@ public class AMoveItemProvider extends ATransformItemProvider implements IEditin
         AMove move = (AMove) object;
         String name = "Move";
         name = name
-            + ((move.getSelected() != null && move.getSelected().getAgent() != null) ? (" " + move.getSelected()
-                    .getAgent().getLabel()) : "");
+        + (move.getSelected() != null && move.getSelected().getAgent() != null ? " " + move.getSelected()
+            .getAgent().getLabel() : "");
         name = name
-            + ((move.getDestination() != null && move.getDestination().getAgent() != null) ? (" to " + move
-                    .getDestination().getAgent().getLabel()) : "");
+        + (move.getDestination() != null && move.getDestination().getAgent() != null ? " to " + move
+            .getDestination().getAgent().getLabel() : "");
         name = name
-            + ((move.getDestination() != null && move.getDestination().getSpace() != null) ? (" in " + move
-                    .getDestination().getSpace().getLabel()) : "");
+        + (move.getDestination() != null && move.getDestination().getSpace() != null ? " in " + move
+            .getDestination().getSpace().getLabel() : "");
         return name;
     }
 
@@ -113,10 +113,11 @@ public class AMoveItemProvider extends ATransformItemProvider implements IEditin
      */
     @Override
     public String getText(Object object) {
-        AMove cmd = (AMove) object;
-        return getString("_UI_" + ((EObject) object).eClass().getName() + "_type") + ": "
-            + (cmd.getSelected() != null ? cmd.getSelected().getLabel() : "[?]") + " to "
-            + (cmd.getDestination() != null ? cmd.getDestination().getLabel() : "[?]");
+        return super.getText(object);
+        // AMove cmd = (AMove) object;
+        // return getString("_UI_" + ((EObject) object).eClass().getName() + "_type") + ": "
+        // + (cmd.getSelected() != null ? cmd.getSelected().getLabel() : "[?]") + " to "
+        // + (cmd.getDestination() != null ? cmd.getDestination().getLabel() : "[?]");
     }
 
     /**

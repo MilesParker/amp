@@ -30,7 +30,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.metaabm.act.ADisconnect;
 
 /*
  * This is the item provider adapter for a {@link org.metaabm.act.ADisconnect}
@@ -38,8 +37,8 @@ import org.metaabm.act.ADisconnect;
  * @generated
  */
 public class ADisconnectItemProvider extends ANetworkItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier. <!--
      * begin-user-doc --> <!-- end-user-doc -->
@@ -84,9 +83,10 @@ public class ADisconnectItemProvider extends ANetworkItemProvider implements IEd
      */
     @Override
     public String getText(Object object) {
-        String label = ((ADisconnect) object).getID();
-        return label == null || label.length() == 0 ? getString("_UI_ADisconnect_type")
-            : getString("_UI_ADisconnect_type") + " " + label;
+        return super.getText(object);
+        // String label = ((ADisconnect) object).getID();
+        // return label == null || label.length() == 0 ? getString("_UI_ADisconnect_type")
+        // : getString("_UI_ADisconnect_type") + " " + label;
     }
 
     /**
