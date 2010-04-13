@@ -183,14 +183,17 @@ cached String typeName(SAttributeType attrType) :
     
 cached String typeLongName(SAttributeType attrType) :
     switch (attrType) {
-        case SAttributeType::Numeric : "Real"
+        case SAttributeType::Numeric : "Numeral"
         case SAttributeType::Real : "Real"
         case SAttributeType::Integer : "Integer"
         case SAttributeType::Boolean : "Boolean"
-        case SAttributeType::Symbol : "String"
-        case SAttributeType::Undefined : "[Undefined]"
+        case SAttributeType::Symbol : "Symbol"
+        case SAttributeType::Undefined : "Generic"
         default : "[Error]"
     };
+
+cached String typeLongName(ITyped attr) :
+	attr.sType.typeLongName();
 	
 cached String typeName(ASink sink) :			
 	sink.resultType().typeName();
