@@ -25,6 +25,7 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
+
 import org.metaabm.IID;
 import org.metaabm.MetaABMFactory;
 import org.metaabm.MetaABMPackage;
@@ -73,17 +74,17 @@ public class ModelActsCommandTest extends CommandTest {
             public void preCondition() {
                 assertEquals(rootAct().getMembers().size(), 0);
                 assertEquals(rootAct().getRoots().size(), 0);
-                assertNull(rootAct().findMember("rootContextRule"));
+                assertNull(rootAct().findMember(getRuleID()));
             }
 
             public void postCondition() {
                 assertEquals(rootAct().getRoots().get(0).getLabel(), "Root Context Rule");
-                assertNotNull(rootAct().findMember("rootContextRule"));
+                assertNotNull(rootAct().findMember(getRuleID()));
             }
         });
         cmds.add(new CommandTransformer() {
             public Command getCommand() {
-                return AddCommand.create(getDomain(), rootAct().findMember("rootContextRule"),
+                return AddCommand.create(getDomain(), rootAct().findMember(getRuleID()),
                                          MetaABMActPackage.Literals.AACT__TARGETS, MetaABMActFactory.eINSTANCE
                                          .createAQuery());
             }
@@ -95,7 +96,7 @@ public class ModelActsCommandTest extends CommandTest {
             }
 
             public void postCondition() {
-                AQuery query = (AQuery) rootAct().findMember("rootContextRule_Unspecified_Query");
+                AQuery query = (AQuery) rootAct().findMember("_Unspecified_Query");
                 assertNotNull(query);
                 assertEquals(query.getInputs().size(), 0);
             }
@@ -103,19 +104,19 @@ public class ModelActsCommandTest extends CommandTest {
         cmds.add(new CommandTransformer() {
             public Command getCommand() {
 
-                return SetCommand.create(getDomain(), rootAct().findMember("rootContextRule_Unspecified_Query"),
+                return SetCommand.create(getDomain(), rootAct().findMember("_Unspecified_Query"),
                                          MetaABMActPackage.Literals.ASINK__FUNCTION, funcEq);
             }
 
             public void preCondition() {
                 assertEquals(rootAct().getMembers().size(), 2);
-                assertNotNull(rootAct().findMember("rootContextRule_Unspecified_Query"));
-                assertNull(rootAct().findMember("rootContextRule_Unspecified_equal"));
+                assertNotNull(rootAct().findMember("_Unspecified_Query"));
+                assertNull(rootAct().findMember("_Unspecified_equal"));
             }
 
             public void postCondition() {
-                assertEquals(rootAct().getMembers().get(1).getID(), "rootContextRuleEqualQuery");
-                AQuery andQuery = (AQuery) rootAct().findMember("rootContextRuleEqualQuery");
+                assertEquals(rootAct().getMembers().get(1).getID(), "equalQuery");
+                AQuery andQuery = (AQuery) rootAct().findMember("equalQuery");
                 assertNotNull(andQuery);
                 assertEquals(andQuery.getInputs().size(), 2);
             }
@@ -123,21 +124,21 @@ public class ModelActsCommandTest extends CommandTest {
         cmds.add(new CommandTransformer() {
             public Command getCommand() {
 
-                return SetCommand.create(getDomain(), rootAct().findMember("rootContextRuleEqualQuery"),
+                return SetCommand.create(getDomain(), rootAct().findMember("equalQuery"),
                                          MetaABMActPackage.Literals.ASINK__FUNCTION, funcNot);
             }
 
             public void preCondition() {
 
-                assertNotNull(rootAct().findMember("rootContextRuleEqualQuery"));
-                assertNull(rootAct().findMember("rootContextRuleNotQuery"));
+                assertNotNull(rootAct().findMember("equalQuery"));
+                assertNull(rootAct().findMember("notQuery"));
             }
 
             public void postCondition() {
 
-                assertNotNull(rootAct().findMember("rootContextRuleNotQuery"));
-                assertNull(rootAct().findMember("rootContextRuleEqualQuery"));
-                AQuery notQuery = (AQuery) rootAct().findMember("rootContextRuleNotQuery");
+                assertNotNull(rootAct().findMember("notQuery"));
+                assertNull(rootAct().findMember("equalQuery"));
+                AQuery notQuery = (AQuery) rootAct().findMember("notQuery");
                 assertNotNull(notQuery);
                 assertEquals(notQuery.getInputs().size(), 1);
             }
@@ -254,8 +255,8 @@ public class ModelActsCommandTest extends CommandTest {
 
             public void preCondition() {
                 SAttribute findAttribute = model.findAttribute("rootC");
-                assertEquals(agQuery().getID(), "rootContextAgentRuleAgentAEqualRootCQuery");
-                AQuery query = (AQuery) agentRootAct().findMember("rootContextAgentRuleAgentAEqualRootCQuery");
+                assertEquals(agQuery().getID(), "agentAEqualRootCQuery");
+                AQuery query = (AQuery) agentRootAct().findMember("agentAEqualRootCQuery");
                 assertNotNull(query);
                 assertEquals(model.getAttributes().size(), 3);
                 assertEquals(findAttribute.getAccessors().size(), 1);
@@ -267,8 +268,8 @@ public class ModelActsCommandTest extends CommandTest {
 
             public void postCondition() {
                 assertNull(model.findAttribute("rootC"));
-                assertEquals(agQuery().getID(), "rootContextAgentRuleAgentAEqualQuery");
-                AQuery query = (AQuery) agentRootAct().findMember("rootContextAgentRuleAgentAEqualQuery");
+                assertEquals(agQuery().getID(), "agentAEqualQuery");
+                AQuery query = (AQuery) agentRootAct().findMember("agentAEqualQuery");
                 assertNotNull(query);
                 AInput delInput = query.getInputs().get(1);
                 assertNull(delInput.getValue());
@@ -403,17 +404,17 @@ public class ModelActsCommandTest extends CommandTest {
             public void preCondition() {
                 assertEquals(agentRootAct().getMembers().size(), 0);
                 assertEquals(agentRootAct().getRoots().size(), 0);
-                assertNull(agentRootAct().findMember("rootContextAgentRule"));
+                assertNull(agentRootAct().findMember(getAgentRuleID()));
             }
 
             public void postCondition() {
                 assertEquals(agentRootAct().getRoots().size(), 1);
-                assertNotNull(agentRootAct().findMember("rootContextAgentRule"));
+                assertNotNull(agentRootAct().findMember(getAgentRuleID()));
             }
         });
         cmds.add(new CommandTransformer() {
             public Command getCommand() {
-                return AddCommand.create(getDomain(), agentRootAct().findMember("rootContextAgentRule"),
+                return AddCommand.create(getDomain(), agentRootAct().findMember(getAgentRuleID()),
                                          MetaABMActPackage.Literals.AACT__TARGETS, MetaABMActFactory.eINSTANCE
                                          .createAQuery());
             }
@@ -427,8 +428,8 @@ public class ModelActsCommandTest extends CommandTest {
             public void postCondition() {
                 assertEquals(agentRootAct().getMembers().size(), 2);
                 assertEquals(agentRootAct().getRoots().size(), 1);
-                assertNotNull(agentRootAct().findMember("rootContextAgentRule_Unspecified_Query"));
-                AAct rootContextRule = agentRootAct().findMember("rootContextAgentRule");
+                assertNotNull(agentRootAct().findMember("_Unspecified_Query"));
+                AAct rootContextRule = agentRootAct().findMember(getAgentRuleID());
                 assertEquals(rootContextRule.getTargets().size(), 1);
             }
         });
@@ -506,7 +507,7 @@ public class ModelActsCommandTest extends CommandTest {
                 assertEquals(attr(2).getAccessors().size(), 1);
                 assertEquals(agInput(1).getValue(), attr(2));
                 assertEquals(agInput(0), agAttr(0).getAccessors().get(0));
-                assertEquals(agQuery().getID(), "rootContextAgentRuleAgentAEqualRootCQuery");
+                assertEquals(agQuery().getID(), "agentAEqualRootCQuery");
             }
         });
     }
@@ -520,7 +521,7 @@ public class ModelActsCommandTest extends CommandTest {
         buildLogicAct(cmds);
         cmds.add(new CommandTransformer() {
             public Command getCommand() {
-                AAct allSource = rootAct().findMember("at0Every0_NotAQueryAndAAddB_");
+                AAct allSource = rootAct().findMember("_NotAQueryAndAAddB_");
                 assertNotNull(allSource);
                 AAct allFinal = MetaABMActFactory.eINSTANCE.createAAll();
                 return AddCommand.create(getDomain(), allSource, MetaABMActPackage.Literals.AACT__TARGETS, allFinal);
@@ -529,14 +530,14 @@ public class ModelActsCommandTest extends CommandTest {
             public void postCondition() {
                 super.postCondition();
                 AAll allFinal = (AAll) rootAct().getMembers().get(11);
-                assertEquals(allFinal.getID(), "at0Every0_And_At0Every0_NotAQueryAndAAddB_");
+                assertEquals(allFinal.getID(), "_And__NotAQueryAndAAddB_");
             }
         });
         cmds.add(new CommandTransformer() {
             public Command getCommand() {
-                AAct allSource = rootAct().findMember("at0Every0_NotAQueryOrAAddB_");
+                AAct allSource = rootAct().findMember("_NotAQueryOrAAddB_");
                 assertNotNull(allSource);
-                AAct allFinal = rootAct().findMember("at0Every0_And_At0Every0_NotAQueryAndAAddB_");
+                AAct allFinal = rootAct().findMember("_And__NotAQueryAndAAddB_");
                 return AddCommand.create(getDomain(), allSource, MetaABMActPackage.Literals.AACT__TARGETS, allFinal);
             }
 
@@ -545,7 +546,7 @@ public class ModelActsCommandTest extends CommandTest {
                 assertEquals(rootAct().getMembers().size(), 12);
                 AAll allFinal = (AAll) rootAct().getMembers().get(11);
                 assertEquals(allFinal.getID(),
-                "at0Every0_At0Every0_NotAQueryAndAAddB_AndAt0Every0_NotAQueryOrAAddB__");
+                "__NotAQueryAndAAddB_And_NotAQueryOrAAddB__");
             }
         });
         cmds.add(new SetLabel("A", "C") {
@@ -557,7 +558,7 @@ public class ModelActsCommandTest extends CommandTest {
                 super.postCondition();
                 AAll allFinal = (AAll) rootAct().getMembers().get(11);
                 assertEquals(allFinal.getID(),
-                "at0Every0_At0Every0_NotCQueryAndCAddB_AndAt0Every0_NotCQueryOrCAddB__");
+ "__NotCQueryAndCAddB_And_NotCQueryOrCAddB__");
             }
         });
         executeTests(cmds);
@@ -575,15 +576,15 @@ public class ModelActsCommandTest extends CommandTest {
                 assertTrue(funcNot instanceof FOperator);
                 assertEquals(((FOperator) funcNot).getArity(), 1);
                 assertNull(filter.getFunction());
-                assertEquals(filter.getLabel(), "At 0 Every 0: [Unspecified]() Query");
-                assertEquals(filter.getID(), "at0Every0_Unspecified_Query");
+                assertEquals(filter.getLabel(), "[Unspecified]() Query");
+                assertEquals(filter.getID(), "_Unspecified_Query");
             }
 
             public void postCondition() {
                 AQuery filter = (AQuery) rootAct().getMembers().get(6);
                 assertNotNull(filter.getFunction());
                 assertSame(filter.getFunction(), funcNot);
-                assertEquals(filter.getID(), "at0Every0NotQuery");
+                assertEquals(filter.getID(), "notQuery");
                 assertEquals(filter.getInputs().size(), 1);
             }
         });
@@ -607,7 +608,7 @@ public class ModelActsCommandTest extends CommandTest {
                 assertSame(model.getAttributes().get(2), model.findAttribute("a"));
                 assertSame(model.getAttributes().get(3), model.findAttribute("b"));
                 AQuery query = (AQuery) rootAct().getMembers().get(6);
-                assertEquals(query.getID(), "at0Every0NotQuery");
+                assertEquals(query.getID(), "notQuery");
             }
         });
         cmds.add(new CommandTransformer() {
@@ -632,14 +633,14 @@ public class ModelActsCommandTest extends CommandTest {
                 // assertEquals(input0.getID(), "null0Input");
                 assertEquals(input0.getValue(), null);
                 assertEquals(input0.getLiteral(), null);
-                assertEquals(query.getID(), "at0Every0NotQuery");
+                assertEquals(query.getID(), "notQuery");
             }
 
             public void postCondition() {
                 AQuery query = (AQuery) getIID();
                 assertNotNull(query.getFunction());
                 assertSame(query.getFunction(), funcNot);
-                assertEquals(query.getID(), "at0Every0NotAQuery");
+                assertEquals(query.getID(), "notAQuery");
                 AInput input0 = query.getInputs().get(0);
                 SAttribute findAttribute = model.findAttribute("a");
                 assertNotNull(findAttribute);
@@ -659,7 +660,7 @@ public class ModelActsCommandTest extends CommandTest {
             public void preCondition() {
                 AEvaluate eval = (AEvaluate) rootAct().getMembers().get(7);
                 assertNull(eval.getFunction());
-                assertEquals(eval.getID(), "at0Every0_Unspecified_");
+                assertEquals(eval.getID(), "_Unspecified_");
             }
 
             public void postCondition() {
@@ -667,7 +668,7 @@ public class ModelActsCommandTest extends CommandTest {
                 assertNotNull(eval.getFunction());
                 assertSame(eval.getFunction(), funcAdd);
                 assertEquals(eval.getInputs().size(), 2);
-                assertEquals(eval.getID(), "at0Every0Add");
+                assertEquals(eval.getID(), "add");
             }
         });
         cmds.add(new CommandTransformer() {
@@ -692,7 +693,7 @@ public class ModelActsCommandTest extends CommandTest {
             public void preCondition() {
                 assertTrue(getIID() instanceof AEvaluate);
                 AEvaluate eval = (AEvaluate) rootAct().getMembers().get(7);
-                assertEquals(eval.getID(), "at0Every0Add");
+                assertEquals(eval.getID(), "add");
             }
 
             public void postCondition() {
@@ -700,8 +701,8 @@ public class ModelActsCommandTest extends CommandTest {
                 assertEquals(eval.getInputs().size(), 2);
                 assertNotNull(eval.getFunction());
                 assertSame(eval.getFunction(), funcAdd);
-                assertEquals(eval.getLabel(), "At 0 Every 0: A Add B");
-                assertEquals(eval.getID(), "at0Every0AAddB");
+                assertEquals(eval.getLabel(), "A Add B");
+                assertEquals(eval.getID(), "aAddB");
                 assertSame(eval.getInputs().get(1).getValue(), model.findAttribute("b"));
             }
         });
@@ -726,7 +727,7 @@ public class ModelActsCommandTest extends CommandTest {
                 assertTrue(getIID() instanceof ASchedule);
                 assertEquals(getIID().getInterval(), 0);
                 assertEquals(getIID().getLabel(), "At 0 Every 0");
-                assertEquals(getIID().getID(), "at0Every0");
+                assertEquals(getIID().getID(), getScheduleID());
             }
 
             public void postCondition() {
@@ -751,7 +752,7 @@ public class ModelActsCommandTest extends CommandTest {
     private static void buildLogicAct(List<CommandTransformer> cmds) {
         cmds.add(new CommandTransformer() {
             public Command getCommand() {
-                AAct noneAct = rootAct().findMember("at0Every0NotAQuery");
+                AAct noneAct = rootAct().findMember("notAQuery");
                 assertNotNull(noneAct);
                 AAct all = MetaABMActFactory.eINSTANCE.createAAll();
                 return AddCommand.create(getDomain(), noneAct, MetaABMActPackage.Literals.AACT__TARGETS, all);
@@ -760,19 +761,19 @@ public class ModelActsCommandTest extends CommandTest {
             public void postCondition() {
                 super.postCondition();
                 AAll all = (AAll) rootAct().getMembers().get(8);
-                AAct noneAct = rootAct().findMember("at0Every0NotAQuery");
+                AAct noneAct = rootAct().findMember("notAQuery");
                 assertEquals(all.getSources().get(0), noneAct);
                 assertNotNull(all.getSelected());
                 assertEquals(all.getSources().get(0).getSelected(), all.getSelected());
                 assertEquals(all.getSelected().getLabel(), "At 0 Every 0");
-                assertEquals(all.getLabel(), "At 0 Every 0 (&) Not A Query");
-                assertEquals(all.getID(), "at0Every0_And_NotAQuery");
+                assertEquals(all.getLabel(), "(&) Not A Query");
+                assertEquals(all.getID(), "_And_NotAQuery");
             }
         });
         cmds.add(new CommandTransformer() {
             public Command getCommand() {
                 AAll allAct = (AAll) rootAct().getMembers().get(8);
-                AAct addAct = rootAct().findMember("at0Every0AAddB");
+                AAct addAct = rootAct().findMember("aAddB");
                 assertNotNull(addAct);
                 return AddCommand.create(getDomain(), addAct, MetaABMActPackage.Literals.AACT__TARGETS, allAct);
             }
@@ -780,13 +781,13 @@ public class ModelActsCommandTest extends CommandTest {
             public void postCondition() {
                 super.postCondition();
                 AAll all = (AAll) rootAct().getMembers().get(8);
-                assertEquals(all.getID(), "at0Every0_NotAQueryAndAAddB_");
-                assertEquals(all.getLabel(), "At 0 Every 0 (Not A Query & A Add B)");
+                assertEquals(all.getID(), "_NotAQueryAndAAddB_");
+                assertEquals(all.getLabel(), "(Not A Query & A Add B)");
             }
         });
         cmds.add(new CommandTransformer() {
             public Command getCommand() {
-                AAct noneAct = rootAct().findMember("at0Every0NotAQuery");
+                AAct noneAct = rootAct().findMember("notAQuery");
                 assertNotNull(noneAct);
                 AAct any = MetaABMActFactory.eINSTANCE.createAAny();
                 return AddCommand.create(getDomain(), noneAct, MetaABMActPackage.Literals.AACT__TARGETS, any);
@@ -795,7 +796,7 @@ public class ModelActsCommandTest extends CommandTest {
         cmds.add(new CommandTransformer() {
             public Command getCommand() {
                 AAny anyAct = (AAny) rootAct().getMembers().get(9);
-                AAct addAct = rootAct().findMember("at0Every0AAddB");
+                AAct addAct = rootAct().findMember("aAddB");
                 assertNotNull(addAct);
                 return AddCommand.create(getDomain(), addAct, MetaABMActPackage.Literals.AACT__TARGETS, anyAct);
             }
@@ -803,13 +804,13 @@ public class ModelActsCommandTest extends CommandTest {
             public void postCondition() {
                 super.postCondition();
                 AAny anyAct = (AAny) rootAct().getMembers().get(9);
-                assertEquals(anyAct.getID(), "at0Every0_NotAQueryOrAAddB_");
-                assertEquals(anyAct.getLabel(), "At 0 Every 0 (Not A Query | A Add B)");
+                assertEquals(anyAct.getID(), "_NotAQueryOrAAddB_");
+                assertEquals(anyAct.getLabel(), "(Not A Query | A Add B)");
             }
         });
         cmds.add(new CommandTransformer() {
             public Command getCommand() {
-                AAct notAct = rootAct().findMember("at0Every0NotAQuery");
+                AAct notAct = rootAct().findMember("notAQuery");
                 assertNotNull(notAct);
                 AAct noneAct = MetaABMActFactory.eINSTANCE.createANone();
                 return AddCommand.create(getDomain(), notAct, MetaABMActPackage.Literals.AACT__TARGETS, noneAct);
@@ -818,7 +819,7 @@ public class ModelActsCommandTest extends CommandTest {
         cmds.add(new CommandTransformer() {
             public Command getCommand() {
                 ANone noneAct = (ANone) rootAct().getMembers().get(10);
-                AAct addAct = rootAct().findMember("at0Every0AAddB");
+                AAct addAct = rootAct().findMember("aAddB");
                 assertNotNull(addAct);
                 return AddCommand.create(getDomain(), addAct, MetaABMActPackage.Literals.AACT__TARGETS, noneAct);
             }
@@ -826,8 +827,8 @@ public class ModelActsCommandTest extends CommandTest {
             public void postCondition() {
                 super.postCondition();
                 ANone noneAct = (ANone) rootAct().getMembers().get(10);
-                assertEquals(noneAct.getID(), "not_At0Every0_NotAQueryOrAAddB__");
-                assertEquals(noneAct.getLabel(), "!(At 0 Every 0 (Not A Query | A Add B))");
+                assertEquals(noneAct.getID(), "not__NotAQueryOrAAddB__");
+                assertEquals(noneAct.getLabel(), "!((Not A Query | A Add B))");
             }
         });
     }
@@ -900,7 +901,7 @@ public class ModelActsCommandTest extends CommandTest {
 
                 CommandTest.assertEquals(rootAct().getMembers().size(), 3);
                 assertEquals(rootAct().getRoots().size(), 1);
-                assertNull(rootAct().findMember("rootContextRule"));
+                assertNull(rootAct().findMember(getRuleID()));
                 assertNotNull(rootAct().findMember("buildRootContext"));
                 assertNotNull(rootAct().findMember("createRootContextAgents"));
                 assertNotNull(rootAct().findMember("createRootContextContexts"));
@@ -910,7 +911,7 @@ public class ModelActsCommandTest extends CommandTest {
 
                 assertEquals(rootAct().getMembers().size(), 4);
                 assertEquals(rootAct().getRoots().size(), 2);
-                assertNotNull(rootAct().findMember("rootContextRule"));
+                assertNotNull(rootAct().findMember(getRuleID()));
                 assertNotNull(rootAct().findMember("buildRootContext"));
                 assertNotNull(rootAct().findMember("createRootContextAgents"));
                 assertNotNull(rootAct().findMember("createRootContextContexts"));
@@ -920,14 +921,14 @@ public class ModelActsCommandTest extends CommandTest {
             public Command getCommand() {
 
                 return RemoveCommand.create(getDomain(), rootAct(), MetaABMActPackage.Literals.AGROUP__MEMBERS,
-                                            rootAct().findMember("rootContextRule"));
+                                            rootAct().findMember(getRuleID()));
             }
 
             public void preCondition() {
 
                 assertEquals(rootAct().getMembers().size(), 4);
                 assertEquals(rootAct().getRoots().size(), 2);
-                assertNotNull(rootAct().findMember("rootContextRule"));
+                assertNotNull(rootAct().findMember(getRuleID()));
                 assertNotNull(rootAct().findMember("buildRootContext"));
                 assertNotNull(rootAct().findMember("createRootContextAgents"));
                 assertNotNull(rootAct().findMember("createRootContextContexts"));
@@ -937,7 +938,7 @@ public class ModelActsCommandTest extends CommandTest {
 
                 assertEquals(rootAct().getMembers().size(), 3);
                 assertEquals(rootAct().getRoots().size(), 1);
-                assertNull(rootAct().findMember("rootContextRule"));
+                assertNull(rootAct().findMember(getRuleID()));
                 assertNotNull(rootAct().findMember("buildRootContext"));
                 assertNotNull(rootAct().findMember("createRootContextAgents"));
                 assertNotNull(rootAct().findMember("createRootContextContexts"));
@@ -955,18 +956,18 @@ public class ModelActsCommandTest extends CommandTest {
             public Command getCommand() {
 
                 return RemoveCommand.create(getDomain(), rootAct(), MetaABMActPackage.Literals.AGROUP__MEMBERS,
-                                            rootAct().findMember("at0Every0_Unspecified_"));
+                                            rootAct().findMember("_Unspecified_"));
             }
 
             public void preCondition() {
 
                 assertEquals(rootAct().getMembers().size(), 8);
                 assertEquals(rootAct().getRoots().size(), 3);
-                assertNotNull(rootAct().findMember("at0Every0"));
-                assertNotNull(rootAct().findMember("at0Every0_Unspecified_Query"));
+                assertNotNull(rootAct().findMember(getScheduleID()));
+                assertNotNull(rootAct().findMember("_Unspecified_Query"));
                 AAct setTo = rootAct().findMember("setTo");
-                AAct schedule = rootAct().findMember("at0Every0");
-                AAct rule = rootAct().findMember("rootContextRule");
+                AAct schedule = rootAct().findMember(getScheduleID());
+                AAct rule = rootAct().findMember(getRuleID());
                 assertEquals(rule.getTargets().size(), 1);
                 assertEquals(schedule.getTargets().size(), 2);
                 assertEquals(setTo.getSources().size(), 2);
@@ -977,12 +978,12 @@ public class ModelActsCommandTest extends CommandTest {
 
                 assertEquals(rootAct().getMembers().size(), 7);
                 assertEquals(rootAct().getRoots().size(), 3);
-                assertNotNull(rootAct().findMember("rootContextRule"));
-                assertNotNull(rootAct().findMember("at0Every0"));
-                assertNull(rootAct().findMember("at0Every0_Unspecified_"));
+                assertNotNull(rootAct().findMember(getRuleID()));
+                assertNotNull(rootAct().findMember(getScheduleID()));
+                assertNull(rootAct().findMember("_Unspecified_"));
                 AAct setTo = rootAct().findMember("setTo");
-                AAct schedule = rootAct().findMember("at0Every0");
-                AAct rule = rootAct().findMember("rootContextRule");
+                AAct schedule = rootAct().findMember(getScheduleID());
+                AAct rule = rootAct().findMember(getRuleID());
                 assertEquals(rule.getTargets().size(), 1);
                 assertEquals(schedule.getTargets().size(), 2);
                 assertEquals(setTo.getSources().size(), 2);
@@ -995,13 +996,13 @@ public class ModelActsCommandTest extends CommandTest {
             public Command getCommand() {
 
                 return RemoveCommand.create(getDomain(), rootAct(), MetaABMActPackage.Literals.AGROUP__MEMBERS,
-                                            rootAct().findMember("rootContextRule"));
+                                            rootAct().findMember(getRuleID()));
             }
 
             public void preCondition() {
                 assertEquals(rootAct().getMembers().size(), 7);
                 assertEquals(rootAct().getRoots().size(), 3);
-                assertNotNull(rootAct().findMember("rootContextRule"));
+                assertNotNull(rootAct().findMember(getRuleID()));
                 assertNotNull(rootAct().findMember("setTo"));
             }
 
@@ -1009,7 +1010,7 @@ public class ModelActsCommandTest extends CommandTest {
 
                 assertEquals(rootAct().getMembers().size(), 6);
                 assertEquals(rootAct().getRoots().size(), 2);
-                assertNull(rootAct().findMember("rootContextRule"));
+                assertNull(rootAct().findMember(getRuleID()));
                 assertNotNull(rootAct().findMember("setTo"));
             }
         });
@@ -1018,7 +1019,7 @@ public class ModelActsCommandTest extends CommandTest {
             public Command getCommand() {
 
                 return RemoveCommand.create(getDomain(), rootAct(), MetaABMActPackage.Literals.AGROUP__MEMBERS,
-                                            rootAct().findMember("at0Every0"));
+                                            rootAct().findMember(getScheduleID()));
             }
 
             public void preCondition() {
@@ -1027,7 +1028,7 @@ public class ModelActsCommandTest extends CommandTest {
                 assertEquals(rootAct().getRoots().size(), 2);
                 AAct set = rootAct().findMember("setTo");
                 assertNotNull(set);
-                AAct schedule = rootAct().findMember("at0Every0");
+                AAct schedule = rootAct().findMember(getScheduleID());
                 assertNotNull(schedule);
                 assertEquals(set.getSources().size(), 1);
                 assertEquals(schedule.getTargets().size(), 2);
@@ -1035,7 +1036,7 @@ public class ModelActsCommandTest extends CommandTest {
 
             public void postCondition() {
                 assertNull(rootAct().findMember("setTo"));
-                assertNull(rootAct().findMember("at0Every0"));
+                assertNull(rootAct().findMember(getScheduleID()));
                 assertNull(rootAct().findMember("_Unspecified_()"));
 
                 assertEquals(rootAct().getMembers().size(), 3);
@@ -1062,8 +1063,8 @@ public class ModelActsCommandTest extends CommandTest {
             public void preCondition() {
                 AEvaluate eval = (AEvaluate) getIID();
                 assertNull(eval.getFunction());
-                assertEquals(eval.getLabel(), "At 0 Every 0: [Unspecified]()");
-                assertEquals(eval.getID(), "at0Every0_Unspecified_");
+                assertEquals(eval.getLabel(), "[Unspecified]()");
+                assertEquals(eval.getID(), "_Unspecified_");
             }
 
             public void postCondition() {
@@ -1072,8 +1073,8 @@ public class ModelActsCommandTest extends CommandTest {
                 assertNotNull(eval.getFunction());
                 assertSame(eval.getFunction(), funcAdd);
                 assertEquals(eval.getInputs().size(), 2);
-                assertEquals(eval.getLabel(), "At 0 Every 0: [?] Add [?]");
-                assertEquals(eval.getID(), "at0Every0Add");
+                assertEquals(eval.getLabel(), "[?] Add [?]");
+                assertEquals(eval.getID(), "add");
             }
         });
         cmds.add(new CommandTransformer() {
@@ -1094,7 +1095,7 @@ public class ModelActsCommandTest extends CommandTest {
                 // assertEquals(input1.getLabel(), "null Input");
                 assertNotNull(input1);
                 assertSame(eval.getFunction(), funcAdd);
-                assertEquals(eval.getID(), "at0Every0nullAdd");
+                assertEquals(eval.getID(), "nullAdd");
                 assertSame(input1.getValue(), input1.getLiteral());
             }
         });
@@ -1113,8 +1114,8 @@ public class ModelActsCommandTest extends CommandTest {
                 AInput input1 = eval.getInputs().get(0);
                 assertSame(input1.getLiteral().getValueLiteral(), "13");
                 assertEquals(input1.getLiteral().getLabel(), "Literal 13");
-                assertEquals(eval.getLabel(), "At 0 Every 0: Literal 13 Add [?]");
-                assertEquals(eval.getID(), "at0Every0Literal13Add");
+                assertEquals(eval.getLabel(), "Literal 13 Add [?]");
+                assertEquals(eval.getID(), "literal13Add");
             }
         });
         cmds.add(new CommandTransformer() {
@@ -1155,11 +1156,11 @@ public class ModelActsCommandTest extends CommandTest {
     //
     // assertEquals(rootAct().getMembers().size(), 8);
     // assertEquals(rootAct().getRoots().size(), 3);
-    // assertNotNull(rootAct().findMember("at0Every0"));
+    // assertNotNull(rootAct().findMember(""));
     // assertNotNull(rootAct().findMember("is"));
     // AAct setTo = rootAct().findMember("setTo");
-    // AAct schedule = rootAct().findMember("at0Every0");
-    // AAct rule = rootAct().findMember("rootContextRule");
+    // AAct schedule = rootAct().findMember("");
+    // AAct rule = rootAct().findMember(getRuleName()+"");
     // assertEquals(rule.getTargets().size(), 1);
     // assertEquals(schedule.getTargets().size(), 2);
     // assertEquals(setTo.getSources().size(), 2);
@@ -1169,12 +1170,12 @@ public class ModelActsCommandTest extends CommandTest {
     //
     // assertEquals(rootAct().getMembers().size(), 7);
     // assertEquals(rootAct().getRoots().size(), 3);
-    // assertNotNull(rootAct().findMember("rootContextRule"));
-    // assertNotNull(rootAct().findMember("at0Every0"));
+    // assertNotNull(rootAct().findMember(getRuleName()+""));
+    // assertNotNull(rootAct().findMember(""));
     // assertNull(rootAct().findMember("is"));
     // AAct setTo = rootAct().findMember("setTo");
-    // AAct schedule = rootAct().findMember("at0Every0");
-    // AAct rule = rootAct().findMember("rootContextRule");
+    // AAct schedule = rootAct().findMember("");
+    // AAct rule = rootAct().findMember(getRuleName()+"");
     // assertEquals(rule.getTargets().size(), 1);
     // assertEquals(schedule.getTargets().size(), 1);
     // assertEquals(setTo.getSources().size(), 2);
@@ -1188,14 +1189,14 @@ public class ModelActsCommandTest extends CommandTest {
     // AGroup memberAct = (AGroup) memAgent().getrootAct()ivity();
     // return MoveCommand.create(getDomain(), memberAct,
     // MetaABMActPackage.Literals.AGROUP__MEMBERS, rootAct()
-    // .findMember("rootContextRule"), 0);
+    // .findMember(getRuleName()+""), 0);
     // }
     //
     // public void preCondition() {
     //
     // assertEquals(rootAct().getMembers().size(), 7);
     // assertEquals(rootAct().getRoots().size(), 3);
-    // assertNotNull(rootAct().findMember("rootContextRule"));
+    // assertNotNull(rootAct().findMember(getRuleName()+""));
     // assertNotNull(rootAct().findMember("setTo"));
     // }
     //
@@ -1203,7 +1204,7 @@ public class ModelActsCommandTest extends CommandTest {
     //
     // assertEquals(rootAct().getMembers().size(), 6);
     // assertEquals(rootAct().getRoots().size(), 2);
-    // assertNull(rootAct().findMember("rootContextRule"));
+    // assertNull(rootAct().findMember(getRuleName()+""));
     // assertNotNull(rootAct().findMember("setTo"));
     // }
     // });
@@ -1214,7 +1215,7 @@ public class ModelActsCommandTest extends CommandTest {
     // AGroup memberAct = (AGroup) memAgent().getrootAct()ivity();
     // return MoveCommand.create(getDomain(), memberAct,
     // MetaABMActPackage.Literals.AGROUP__MEMBERS, rootAct()
-    // .findMember("at0Every0"), 0);
+    // .findMember(""), 0);
     // }
     //
     // public void preCondition() {
@@ -1223,7 +1224,7 @@ public class ModelActsCommandTest extends CommandTest {
     // assertEquals(rootAct().getRoots().size(), 2);
     // AAct set = rootAct().findMember("setTo");
     // assertNotNull(set);
-    // AAct schedule = rootAct().findMember("at0Every0");
+    // AAct schedule = rootAct().findMember("");
     // assertNotNull(schedule);
     // assertEquals(set.getSources().size(), 1);
     // assertEquals(schedule.getTargets().size(), 1);
@@ -1234,7 +1235,7 @@ public class ModelActsCommandTest extends CommandTest {
     // public void postCondition() {
     //
     // assertNull(rootAct().findMember("setTo"));
-    // assertNull(rootAct().findMember("at0Every0"));
+    // assertNull(rootAct().findMember(""));
     // AAct eval = rootAct().findMember("value_Unspecified_()");
     // assertNull(eval);
     //
@@ -1258,14 +1259,14 @@ public class ModelActsCommandTest extends CommandTest {
 
                 assertEquals(rootAct().getMembers().size(), 3);
                 assertEquals(rootAct().getRoots().size(), 1);
-                assertNull(rootAct().findMember("rootContextRule"));
+                assertNull(rootAct().findMember(getRuleID()));
             }
 
             public void postCondition() {
 
                 assertEquals(rootAct().getRoots().size(), 2);
                 assertEquals(rootAct().getRoots().get(1).getLabel(), "Root Context Rule");
-                assertNotNull(rootAct().findMember("rootContextRule"));
+                assertNotNull(rootAct().findMember(getRuleID()));
             }
         });
         cmds.add(new CommandTransformer() {
@@ -1281,7 +1282,7 @@ public class ModelActsCommandTest extends CommandTest {
                 assertEquals(rootAct().getMembers().size(), 4);
                 assertEquals(rootAct().getRoots().size(), 2);
                 assertNull(rootAct().findMember("setTo"));
-                assertNotNull(rootAct().findMember("rootContextRule"));
+                assertNotNull(rootAct().findMember(getRuleID()));
             }
 
             public void postCondition() {
@@ -1289,7 +1290,7 @@ public class ModelActsCommandTest extends CommandTest {
                 assertEquals(rootAct().getMembers().size(), 5);
                 assertEquals(rootAct().getRoots().size(), 2);
                 AAct setTo = rootAct().findMember("setTo");
-                AAct rootContextRule = rootAct().findMember("rootContextRule");
+                AAct rootContextRule = rootAct().findMember(getRuleID());
                 assertNotNull(rootContextRule);
                 assertNotNull(setTo);
                 assertTrue(rootContextRule.getTargets().contains(setTo));
@@ -1307,9 +1308,9 @@ public class ModelActsCommandTest extends CommandTest {
             public void preCondition() {
                 assertEquals(rootAct().getMembers().size(), 5);
                 assertEquals(rootAct().getRoots().size(), 2);
-                assertNull(rootAct().findMember("at0Every0in"));
+                assertNull(rootAct().findMember("in"));
                 assertNotNull(rootAct().findMember("setTo"));
-                assertNotNull(rootAct().findMember("rootContextRule"));
+                assertNotNull(rootAct().findMember(getRuleID()));
             }
 
             public void postCondition() {
@@ -1321,29 +1322,29 @@ public class ModelActsCommandTest extends CommandTest {
                 assertNotNull(schedule.getSelected().getAgent());
                 assertEquals(schedule.getSelected().getAgent().getLabel(), "Root Context");
                 assertEquals(schedule.getLabel(), "At 0 Every 0");
-                assertNotNull(rootAct().findMember("at0Every0"));
+                assertNotNull(rootAct().findMember(getScheduleID()));
                 assertNotNull(rootAct().findMember("setTo"));
             }
         });
         cmds.add(new CommandTransformer() {
             public Command getCommand() {
 
-                return AddCommand.create(getDomain(), rootAct().findMember("at0Every0"),
+                return AddCommand.create(getDomain(), rootAct().findMember(getScheduleID()),
                                          MetaABMActPackage.Literals.AACT__TARGETS, rootAct().findMember("setTo"));
             }
 
             public void preCondition() {
                 assertEquals(rootAct().getMembers().size(), 6);
                 assertEquals(rootAct().getRoots().size(), 3);
-                assertNotNull(rootAct().findMember("at0Every0"));
+                assertNotNull(rootAct().findMember(getScheduleID()));
                 assertNotNull(rootAct().findMember("setTo"));
             }
 
             public void postCondition() {
                 preCondition();
                 AAct setTo = rootAct().findMember("setTo");
-                AAct schedule = rootAct().findMember("at0Every0");
-                AAct rootContextRule = rootAct().findMember("rootContextRule");
+                AAct schedule = rootAct().findMember(getScheduleID());
+                AAct rootContextRule = rootAct().findMember(getRuleID());
                 assertEquals(rootContextRule.getTargets().size(), 1);
                 assertEquals(schedule.getTargets().size(), 1);
                 assertEquals(setTo.getSources().size(), 2);
@@ -1352,7 +1353,7 @@ public class ModelActsCommandTest extends CommandTest {
         cmds.add(new CommandTransformer() {
             public Command getCommand() {
 
-                return AddCommand.create(getDomain(), rootAct().findMember("at0Every0"),
+                return AddCommand.create(getDomain(), rootAct().findMember(getScheduleID()),
                                          MetaABMActPackage.Literals.AACT__TARGETS, MetaABMActFactory.eINSTANCE
                                          .createAQuery());
             }
@@ -1361,18 +1362,18 @@ public class ModelActsCommandTest extends CommandTest {
                 assertEquals(rootAct().getMembers().size(), 6);
                 assertEquals(rootAct().getRoots().size(), 3);
                 assertNull(rootAct().findMember("is"));
-                AAct schedule = rootAct().findMember("at0Every0");
+                AAct schedule = rootAct().findMember(getScheduleID());
                 assertEquals(schedule.getTargets().size(), 1);
             }
 
             public void postCondition() {
                 assertEquals(rootAct().getMembers().size(), 7);
-                assertEquals(rootAct().getMembers().get(6).getID(), "at0Every0_Unspecified_Query");
+                assertEquals(rootAct().getMembers().get(6).getID(), "_Unspecified_Query");
                 assertEquals(rootAct().getRoots().size(), 3);
-                assertNotNull(rootAct().findMember("at0Every0_Unspecified_Query"));
+                assertNotNull(rootAct().findMember("_Unspecified_Query"));
                 AAct setTo = rootAct().findMember("setTo");
-                AAct schedule = rootAct().findMember("at0Every0");
-                AAct rootContextRule = rootAct().findMember("rootContextRule");
+                AAct schedule = rootAct().findMember(getScheduleID());
+                AAct rootContextRule = rootAct().findMember(getRuleID());
                 assertEquals(rootContextRule.getTargets().size(), 1);
                 assertEquals(schedule.getTargets().size(), 2);
                 assertEquals(setTo.getSources().size(), 2);
@@ -1393,7 +1394,7 @@ public class ModelActsCommandTest extends CommandTest {
                 assertEquals(set.getTargets().size(), 0);
                 assertEquals(rootAct().getMembers().size(), 7);
                 assertEquals(rootAct().getRoots().size(), 3);
-                assertNotNull(rootAct().findMember("at0Every0_Unspecified_Query"));
+                assertNotNull(rootAct().findMember("_Unspecified_Query"));
             }
 
             public void postCondition() {
@@ -1402,7 +1403,7 @@ public class ModelActsCommandTest extends CommandTest {
                 assertEquals(rootAct().getRoots().size(), 3);
                 AAct set = rootAct().findMember("setTo");
                 assertEquals(set.getTargets().size(), 1);
-                assertNotNull(rootAct().findMember("at0Every0_Unspecified_Query"));
+                assertNotNull(rootAct().findMember("_Unspecified_Query"));
                 // AAct eval = rootAct().findMember("value_Unspecified_()");
                 // assertEquals(eval.getSources().size(), 1);
                 // assertSame(eval.getSources().get(0), set);
@@ -1660,5 +1661,17 @@ public class ModelActsCommandTest extends CommandTest {
         cmd.appendAndExecute(AddCommand.create(getDomain(), target, MetaABMActPackage.Literals.AACT__TARGETS, created));
         cmd.appendAndExecute(SetCommand.create(getDomain(), created, MetaABMPackage.Literals.IID__LABEL, label));
         return created;
+    }
+
+    protected static String getRuleID() {
+        return "rootContextRule";
+    }
+
+    protected static String getScheduleID() {
+        return "at0Every0";
+    }
+
+    protected static String getAgentRuleID() {
+        return "rootContextAgentRule";
     }
 }
