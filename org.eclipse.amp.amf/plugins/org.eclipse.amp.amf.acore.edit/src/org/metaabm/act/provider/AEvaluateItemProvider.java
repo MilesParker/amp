@@ -33,6 +33,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
 import org.metaabm.act.AEvaluate;
 import org.metaabm.function.FFunction;
 
@@ -43,8 +44,8 @@ import org.metaabm.function.FFunction;
  * @generated
  */
 public class AEvaluateItemProvider extends ASinkItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
 
     static URI TANGERINE_COLOR = URI.createURI("color://rgb/255/140/0");
 
@@ -134,10 +135,10 @@ public class AEvaluateItemProvider extends ASinkItemProvider implements IEditing
         return "F";
     }
 
-    @Override
-    public Object getForeground(Object object) {
-        return TANGERINE_COLOR;
-    }
+    // @Override
+    // public Object getForeground(Object object) {
+    // return TANGERINE_COLOR;
+    // }
 
     /**
      * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s

@@ -34,6 +34,7 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.metaabm.IID;
 import org.metaabm.MetaABMPackage;
 
@@ -44,8 +45,8 @@ import org.metaabm.MetaABMPackage;
  * @generated
  */
 public class IIDItemProvider extends MetaABMItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -78,7 +79,7 @@ public class IIDItemProvider extends MetaABMItemProvider implements IEditingDoma
      */
     protected void addLabelPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_IID_label_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_IID_label_feature"),
                                                                  getString("_UI_IID_label_description"),
                                                                  MetaABMPackage.Literals.IID__LABEL, true, false,
                                                                  false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
@@ -92,12 +93,12 @@ public class IIDItemProvider extends MetaABMItemProvider implements IEditingDoma
      */
     protected void addIDPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_IID_ID_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_IID_ID_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_IID_ID_feature", "_UI_IID_type"),
-                                                                 MetaABMPackage.Literals.IID__ID, true, false, false,
-                                                                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                                                                 getString("_UI_IDsPropertyCategory"), null));
+                                                                           MetaABMPackage.Literals.IID__ID, true, false, false,
+                                                                           ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                                                                           getString("_UI_IDsPropertyCategory"), null));
     }
 
     /**

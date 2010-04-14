@@ -21,7 +21,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -50,7 +49,6 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.apache.commons.lang.StringUtils;
@@ -72,7 +70,6 @@ import org.metaabm.commands.SuggestLabelCommand;
 import org.metaabm.function.FFunction;
 import org.metaabm.provider.IIDItemProvider;
 import org.metaabm.provider.MetaABMEditPlugin;
-import org.metaabm.provider.TransientGroupedItemProvider;
 
 /*
  * This is the item provider adapter for a {@link org.metaabm.act.AAct} object.
@@ -82,12 +79,6 @@ import org.metaabm.provider.TransientGroupedItemProvider;
 public class AActItemProvider extends IIDItemProvider implements IEditingDomainItemProvider,
 IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
 ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
-
-    private TransientGroupedItemProvider sourcesItemProvider;
-
-    private TransientGroupedItemProvider targetsItemProvider;
-
-    Map<EReference, ItemProviderAdapter> providerForFeature;
 
     /**
      * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
