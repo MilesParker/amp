@@ -2,12 +2,8 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension point="org.eclipse.help.toc">
-      <toc file="doc/AMP-toc.xml" primary="true"/>
-      <toc
-            file="toc.xml"
-            primary="false">
-      </toc>
-   </extension>
+      <toc file="toc.xml" primary="true"/>
+      </extension>
       <extension
          id="org.eclipse.amp.agents.cheatsheets"
          name="Introduction"

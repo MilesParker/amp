@@ -4,7 +4,7 @@
     (c) Lawrence Mandel <lmandel@ca.ibm.com>
     (c) Peter Friese <peter.friese@itemis.com>
 -->
-<project name="org.eclipse.amp.doc" default="build-doc" basedir=".">
+<project name="org.eclipse.amp.doc" default="build-and-deploy-doc" basedir=".">
 	
 	<!--
 		Global vars
@@ -119,7 +119,7 @@
 		<mkdir dir="${build.dir}"/>
 	</target>
 	
-	<target name="promote-doc">
+	<target name="deploy-doc">
 		<copy todir="${website.dir}/documentation" overwrite="true">
 			<fileset dir="html/">
 				<include name="**" />
@@ -141,6 +141,9 @@
 		<antcall target="wikitext2eclipsehelp"/>
 		-->
 		<antcall target="docbook2eclipsehelp"/>
+	</target>
+	
+	<target name="build-and-deploy-doc" depends="build-doc, deploy-doc">
 	</target>
 	
 	<target name="check-docbook">

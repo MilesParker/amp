@@ -5,23 +5,599 @@
 <link href="book.css" rel="stylesheet" type="text/css">
 <meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
 <link rel="home" href="index.html" title="Agent Modeling Guide">
-<link rel="up" href="index.html" title="Agent Modeling Guide">
-<link rel="prev" href="Other_Uses.html" title="Other Uses">
-<link rel="next" href="Details.html" title="Details">
+<link rel="up" href="Modeler.27s_Guide.html" title="Modeler's Guide">
+<link rel="prev" href="Modeler.27s_Guide.html" title="Modeler's Guide">
+<link rel="next" href="Actions_2.html" title="Actions">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Structure</h1>
-<div class="section" title="Design">
+<div class="section" title="Overview">
 <div class="titlepage">
 <div>
 <div>
-<h2 class="title" style="clear: both">
-<a name="Design"></a>Design</h2>
+<h3 class="title">
+<a name="Overview_2"></a>Overview</h3>
 </div>
 </div>
 </div>
 <p>The basic structure of an agent-based model can be quite simple. While there are many subtle complexities  -- beyond the scope of this manual -- we can construct most models following some straightforward and elegant design principles. And in fact, one of the main goals of the Agent Modeling Framework is to provide a consistent framework that can support using those principles to support the creation of models that can be easily understood, shared, and that can be used interchangeably as components in other models.</p>
 <p>Unlike the approach of a traditional Object Oriented environment, the dominant organizing principal for agents within AMF follows a compositional hierarchical model, not an inheritance model. (Inheritance-like behavior will be supported in forthcoming versions of Acore, but in a more sophisticated, flexible and dynamic way than is supported by traditional programming languages such as Java.) Contexts -- also referred to as "Swarms" or "Scapes", are simply Agents that are capable of containing other agents. With this basic construct -- known as a Composition in design pattern language -- agents are able to contain other agents.</p>
+</div>
+<div class="section" title="Details">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Details"></a>Details</h3>
+</div>
+</div>
+</div>
+<div class="section" title="General">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="General"></a>General</h4>
+</div>
+</div>
+</div>
+<p>Everything represented in an Acore model needs to be referred to in some way. Just as software classes have names, Acore provides a way to label and describe every entity, but in a richer and more maintainable way. All entities in Acore -- including Actions and Functions which we describe in the next two sections -- have a number of shared values.</p>
+<div class="section" title="Named Entities">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Named_Entities"></a>Named Entities</h5>
+</div>
+</div>
+</div>
+<div class="section" title="Label">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Label"></a>Label</h6>
+</div>
+</div>
+</div>
+<p>A reasonably short, human readable name for the agent. For example, "Timber Wolf", "Exchange Trader" or "Movement Probability". These should be defined so that they fit in well with auto-generated documentation.</p>
+</div>
+<div class="section" title="ID">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="ID"></a>ID</h6>
+</div>
+</div>
+</div>
+<p>An ID is an identifier that can be used to represent the object in a software program. This means that it must follow certain rules such as no-spaces or non alpha-numeric characters. The editing tools will help make sure that this value is legal. Note that when you enter a label, a legal ID is automatically created for you! Usually you won't need to change this, but you might if for example you want the value to match up with some database or other external representation. So reasonable values here might be "timberWolf" or perhaps "MVMNT_PRB" if say you're trying to match up to some old statistics records you have. (Note that currently IDs by default use "camel case", i.e. "thisIsAnExampleOfCamelCase" to match with Java variable naming conventions, but this is likely to change.)</p>
+<p>And most entities also define:</p>
+</div>
+<div class="section" title="Description">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Description"></a>Description</h6>
+</div>
+</div>
+</div>
+<p>A complete textual description of the object. Don't overlook this -- it is the most important part of your model. The description will show up in your auto-generated html documentation, software documentation and even in your running model. You should include enough information that model users will understand what the entity is for and what it does without referring elsewhere. This is also where any attributions and references should go. You can put html tags in here -- such as href's to external papers, but keep those to a minimum as they won't be rendered as html in all contexts.</p>
+</div>
+<div class="section" title="Plural Label">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Plural_Label"></a>Plural Label</h6>
+</div>
+</div>
+</div>
+<p>The plural representation of an entity. This can be a surprisingly useful thing to have in generated documentation and software code, so it's worth maintaining. The editor will automatically add an "s" at the end of the label you've entered above, but you change it to whatever is appropriate. For example "Person", or "Timber Wolves".</p>
+</div>
+</div>
+</div>
+<div class="section" title="Agents">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Agents"></a>Agents</h4>
+</div>
+</div>
+</div>
+<div class="section" title="Simple Agents">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Simple_Agents"></a>Simple Agents</h5>
+</div>
+</div>
+</div>
+<p>An Agent is simply a software object that has autonomous behavior and (generally speaking) exists within some set of spaces. By autonomous, we mean that agents make the choice about when and how to execute a behavior, as opposed to have that controlled from "above", so to speak. Like any software objects, agents have attributes (fields) and actions (methods) associated with them.</p>
+<div class="section" title="Attributes">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Attributes"></a>Attributes</h6>
+</div>
+</div>
+</div>
+<p>As described in the attribute sections above.</p>
+</div>
+<div class="section" title="Actions">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Actions"></a>Actions</h6>
+</div>
+</div>
+</div>
+<p>Described in the "Actions" section.</p>
+</div>
+<div class="section" title="Styles">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Styles"></a>Styles</h6>
+</div>
+</div>
+</div>
+<p>Special actions that are used to define how to draw an agent graphically as also described in the "Actions" section and detailed in the "Functions" section.</p>
+</div>
+</div>
+<div class="section" title="Context Agents (Contexts)">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Context_Agents_.28Contexts.29"></a>Context Agents (Contexts)</h5>
+</div>
+</div>
+</div>
+<p>As detailed above, agents also form the basic structural component of an agent-based model. To get an idea for how this works, have a look at the "EpidemicRegional.metaabm" model. Note that in future releases, we will probably refer to Contexts as "Scapes".</p>
+<div class="section" title="Agents">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Agents_2"></a>Agents</h6>
+</div>
+</div>
+</div>
+<p>The agents that are contained within this context. For example, a context representing a city might contain an Individual Agent for defining all individuals in the model, and a Vehicle agent defining all vehicles. Note that when we refer to an agent in this context, we mean a general type or class of agent, not the agent itself.</p>
+</div>
+<div class="section" title="Spaces">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Spaces"></a>Spaces</h6>
+</div>
+</div>
+</div>
+<p>The set of all spaces contained or subsumed by the agent. For example, a context representing a city might contain a geographical space and a transportation network space.</p>
+</div>
+</div>
+</div>
+<div class="section" title="Attributes">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Attributes_2"></a>Attributes</h4>
+</div>
+</div>
+</div>
+<p>Agents need some way to represent their internal state. For example, an agent in an economic model might have a wealth attribute, and an agent in an ecology model might have a quantity of food and a particular vision range. These states are represented as attributes just as all software objects do. In an agent model, we keep richer information about these attributes and generally represent them at a higher level. For example, rather than specify that a real value is a "double", a "float" or a "big number", we represent them as "Reals" so that they can be implemented and tested in different environments. This might allow us for instance to ensure that a model's behavior is not dependent on a particular machine implementation of floating point arithmetic. Also, note that attributes only represent so-called "primitive" values -- that is, actual measurable features of a particular agent but not an agent's relationship to other agents or objects. See the discussion about networks for more on this key topic.</p>
+<p>Here are the basic types of attributes available in Acore models:</p>
+<div class="section" title="Basic Attributes">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Basic_Attributes"></a>Basic Attributes</h5>
+</div>
+</div>
+</div>
+<p>Attributes are single values that a given agent contains. For example, an agent might have an "Age" attribute. In this section we go over the values you can set for the attributes. For those with a tecnical bent, note that we are technically describing the meta-attributes for the meta-class "SAttribute". But it is far too confusing to refer to the attributes of attributes! So we'll just refer to the attributes that any of our model components as "values".</p>
+<div class="section" title="Type">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Type"></a>Type</h6>
+</div>
+</div>
+</div>
+<p>These can be anyone of the following: </p>
+<table id="N10130">
+<tr>
+									
+<td>Boolean</td>
+									<td>A value that is simply true or false. Note that unless this value really is a simple binary value, you should consider using state instead. (See details below.) For example, rather than representing gender as a 'Female' boolean value, define a 'Gender' state with values 'Male' and "Female'. Generated artifacts and documentation will be much clearer, and you'll be able to easily modify the model later if for example you discover that there are more than two potential gender categories that are relevant to your model.</td>
+								
+</tr>
+<tr>
+									
+<td>Integer</td>
+									<td>A discrete whole number value, such as "100", "-1", "10029920". It's generally a good idea to represent any value that can never have a decimal value as an integer.</td>
+								
+</tr>
+<tr>
+									
+<td>Real</td>
+									<td>A continuous number value. While these are typically represented in software as floating point numbers, they can conceivably represent numbers at any arbitrary precision and in any scheme. Note that while technically speaking we should be representing irrational numbers, this is not currently supported for default values and users should simply use the closest decimal approximation.</td>
+								
+</tr>
+<tr>
+									
+<td>Symbol</td>
+									<td>A string representing some state. More precisely, a computationally arbitrary value with contextual meaning. This could be any kind of identifier. For example, you might use it to store some kind of input coding from data that is then converted into an object state. Or it could simply be an agent's name. But theoretically (though this is not currently supported) one could imagine a symbol using an idiogram, an icon or even a sound that identifies or represents the agent in question.</td>
+								
+</tr>
+</table>
+<p>(Undefined and Numeric types should not be used within a well-defined model.)</p>
+</div>
+<div class="section" title="Default Value">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Default_Value"></a>Default Value</h6>
+</div>
+</div>
+</div>
+<p>The value that should be assigned to the attribute at the beginning of any model run. The attribute may of course be assigned a different value in an Initialize rule, but its a good idea to specify one here. It's OK to leave it blank, in which case a sensible 'empty' value will be assigned, i.e. false for Boolean, 0 for Integers and Reals, and an empty string for Symbol.</p>
+</div>
+<div class="section" title="Gather Data">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Gather_Data"></a>Gather Data</h6>
+</div>
+</div>
+</div>
+<p>Here you can specify whether executing models should collect aggregate values for the data. For example, if you select this value as true for a 'Wealth' attribute, Escape will automatically keep track of minimum, maximum, average, sum and optionally standard deviation and variance across all agents for each model execution period. All of these statistics will then be selectable with a mouse click to appear in your model charts at runtime.</p>
+</div>
+<div class="section" title="Immutable">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Immutable"></a>Immutable</h6>
+</div>
+</div>
+</div>
+<p>This value indicates whether you expect the model value to change. If you know that it won't or shouldn't, this value should be true.</p>
+</div>
+<div class="section" title="Units">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Units"></a>Units</h6>
+</div>
+</div>
+</div>
+<p>Specifies what the attribute is actually measuring. For example, if you're defining an attribute for "Wealth" in the context of a model of the world economy, you might specify "USD". If you're defining "Age", you might specify "Years", for "Mass" "Kg". Like description, this value is often overlooked, but can be critically important to allowing yourself and others to understand and correctly calibrate a model. Note that this will also allow you to simplify variable names -- instead of using "Age in Years", you can simply specify "Age" and the appropriate unit. It may be obvious to you that your model is concerned with age in years, but a user who needs to specify a different granularity will be grateful for more clarity.</p>
+</div>
+</div>
+<div class="section" title="Arrays">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Arrays"></a>Arrays</h5>
+</div>
+</div>
+</div>
+<p>Arrays are simply attributes with zero or more entries. For example, you might have an array of three Real numbers representing the Red Green and Blue color components for an object. Note that if you find yourself defining very complex sets of arrays, its likely that what you really want to define is a new agent with attributes for each array. In addition to what is defined above, arrays specify:</p>
+<div class="section" title="Size">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Size"></a>Size</h6>
+</div>
+</div>
+</div>
+<p>The number of values that the array attribute will contain.</p>
+</div>
+</div>
+<div class="section" title="States">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="States"></a>States</h5>
+</div>
+</div>
+</div>
+<p>States represent any agent quality that may take on one of a number of well defined values. For example, an "Ice Cream Consumer" Agent might contain a state of "Ice Cream Preference" with options of "Chocolate", "Vanilla" and "Ginger".</p>
+<div class="section" title="State Options">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="State_Options"></a>State Options</h6>
+</div>
+</div>
+</div>
+<p>Create new options for states by adding them to the state node. States are simple described items. Don't forget to provide a description! States also have</p>
+</div>
+<div class="section" title="Default Option">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Default_Option"></a>Default Option</h6>
+</div>
+</div>
+</div>
+<p>unlike for regular attributes, this option is not optional! Simply pick a state option to be assigned that the agent will take if no other option has been assigned.</p>
+</div>
+</div>
+</div>
+<div class="section" title="Spaces">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Spaces_2"></a>Spaces</h4>
+</div>
+</div>
+</div>
+<p>All contexts can contain spaces. Spaces provide an environment in which agents can have a physical or notional location and upon which they can interact with one another and their environment. Agents can exist in more than one space at a time, and a given agent need not exist in every space. (Note that this is different from the Repast Simphony notion of projections, though the two representational approaches are generally compatible.) Agents need not represent explicit, "real" spatial structures such as a landscape, though this is of course the most common use. They can also represent relational and state information, such as a belief space or a social network. There are four kinds of space represented:</p>
+<div class="section" title="Space (Continuous)">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Space_.28Continuous.29"></a>Space (Continuous)</h5>
+</div>
+</div>
+</div>
+<p>In the modeling tools, we simply refer to this as a "Space" as it is represents the general concept of a space. A space is simply something that contains objects with certain locations and extents and has a certain number of dimensions. The space is continuous, in the sense that objects can be placed anywhere with arbitrary position. Spaces hold attributes, which simply define their dimensions-- see below.</p>
+<div class="section" title="Border Rule">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Border_Rule"></a>Border Rule</h6>
+</div>
+</div>
+</div>
+<p>A value representing what happens to an agent when that agent is asked to move beyond its extent.</p>
+<div class="variablelist">
+<dl>
+<dt>
+<span class="term">Periodic</span>
+</dt>
+<dd>
+<p>When encountering an edge, the agent will treat the space as wrapping around to the other side of the space. For example, if the agent at location {1,2} (0-based) within a Moore space (see grid discussion below) of size {10,10} is asked to find some other agent within distance 3, the agent look in the square defined between {8,9} and {4,5}. An agent asked to move beyond the confines of the space will simply stop when it reaches the edge. You can imagine this as taking a piece of graph paper and connecting the opposite edges. You can't actually do that with paper, but if you could you would have a toroidal (donut) shape in three dimensions defining the shape in two.</p>
+</dd>
+<dt>
+<span class="term">APeriodic</span>
+</dt>
+<dd>
+<p>When encountering an edge, the agent treats it as the edge of the space. For example, if the agent at location {1,2} is asked to find some other agent within distance 3, the agent look between {0,0} and {4,5}. An agent asked to move beyond the confines of the space will simply stop when it reaches the edge.</p>
+</dd>
+</dl>
+</div>
+<p>The "Strict" and "Bouncy" values are obsolete and should not be used.</p>
+</div>
+<div class="section" title="Dimensionality">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Dimensionality"></a>Dimensionality</h6>
+</div>
+</div>
+</div>
+<p>The number of dimensions that the space has. After selecting a dimensionality, attributes will be added to represent each dimension. For example, if you enter 3 here, you will have an attribute for X, Y, and Z. Be sure to enter default values here, as they will be used to specify the actual size of the space.</p>
+</div>
+</div>
+<div class="section" title="Grid">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Grid"></a>Grid</h5>
+</div>
+</div>
+</div>
+<p>A grid is technically a regular lattice structure. Currently, only rectilinear structures are supported, i.e. a One-dimensional vector, a two-dimensional grid, a three-dimensional cube and so on. (Though none of the current target platforms support n-d spaces yet.) </p>
+<p>Like continuous spaces, a grid has a border rule and dimensionality. A grid has a couple of other important values:</p>
+<div class="section" title="Multi-Occupant">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Multi-Occupant"></a>Multi-Occupant</h6>
+</div>
+</div>
+</div>
+<p>Does the grid allow more than one agent to occupy it at a time? This value may be replaced with another mechanism in future releases.</p>
+</div>
+<div class="section" title="Neighborhood">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Neighborhood"></a>Neighborhood</h6>
+</div>
+</div>
+</div>
+<p>This value determines what constitutes a region within a particular distance from the agent. The value for this is often critical in obtaining particular behavior from a model, and shouldn't be overlooked. There are three possible values:</p>
+<div class="variablelist">
+<dl>
+<dt>
+<span class="term">Euclidean</span>
+</dt>
+<dd>
+<p>The distance between any two cells is taken to be the "real" distance. For example, if an agent was within a chess board, and we wanted to find all agents within distance three of it, we could determine that by taking a string of length 3, tacking it to the center of the source square, and including all cells whose centers we can reach with the other string end. Note that although Euclidean space may seem the most reasonable neighborhood configuration to choose, this really isn't the case. Euclidean space is continuous whereas grid space is discrete, and mapping the two to each other can create unexpected issues. Still, this is a good choice for models representing notional real spaces.</p>
+</dd>
+<dt>
+<span class="term">Moore</span>
+</dt>
+<dd>
+<p>Here, the distance between any two cells is defined by the number of edge 
+											<span class="italic">or</span> corner adjacent cells crossed to get between them. To continue the chess board analogy, this is the set of moves that a king can make. Note that this does not map well to real space at all, as a cell at distance 1 in a moore space is at distance sqrt(2) in "real" space.
+										</p>
+</dd>
+<dt>
+<span class="term">Von-Neumann</span>
+</dt>
+<dd>
+<p>Here, the distance between any two cells is defined by the number of edge adjacent cells crossed to get between them. This is the set of moves that a rook might make on a chess board -- if a rook could only move one square at a time. It is also often referred to as a Manhattan distance for the self-evident reason.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="section" title="Network">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Network"></a>Network</h5>
+</div>
+</div>
+</div>
+<p>A network represents a set of relationships between agents, in a graph structure. The concept is pretty simple, but note that a network is actually a critical part of many AMF models. This is because we use networks to represent any kind of references between agents. You may have noticed in the discussion about attributes that there is no generic "object" type for an attribute. In fact, attributes only contain primitive values. So we will use networks to do the kinds of things that we would often use object references for in a traditional Object-Oriented model. For example, if an agent is a member of a family, rather than have that agent have a member attribute of "family" with a reference to the "Family" object, the modeler would create a "Family Members" network and connect agent's to their families as appropriate. This implies that network members can contain members of many different types.</p>
+<p>A network has only one value to specify:</p>
+<div class="section" title="Directed">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Directed"></a>Directed</h6>
+</div>
+</div>
+</div>
+<p>This indicates whether connections between agents are one-way or two-way. If this value is false, then if a connection is made between an agent A and an agent B, and agent B searches within distance 1, agent B will find agent A. If this value is true, agent A can find agent B, but agent B can not find agent A. (Unless of course some other path leads B to A.)</p>
+</div>
+</div>
+<div class="section" title="Geography">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Geography"></a>Geography</h5>
+</div>
+</div>
+</div>
+<p>A geography represents a physical landscape. Here we assume that that landscape is going to be defined by an external data source and representational scheme -- typically a Geographical Information System. We'll describe how to work with GIS in more detail when we discuss builder actions.</p>
+</div>
+</div>
+</div>
+<div class="section" title="Reference">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Reference"></a>Reference</h3>
+</div>
+</div>
+</div>
+<div class="section" title="Diagrams">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Diagrams"></a>Diagrams</h4>
+</div>
+</div>
+</div>
+<p>For readers familiar with UML and meta-modeling, the following diagrams give more detail on the structural design.</p>
+<div class="section" title="Meta-Classes">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Meta-Classes"></a>Meta-Classes</h5>
+</div>
+</div>
+</div>
+<p>Our first diagram depicts the core structural design of the model. </p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/StructureComplexDiagram.png"></div>
+<p> 
+						
+</p>
+<div class="literallayout">
+<p>There&nbsp;seems&nbsp;to&nbsp;be&nbsp;a&nbsp;lot&nbsp;going&nbsp;on&nbsp;here,&nbsp;but&nbsp;the&nbsp;basic&nbsp;components&nbsp;are&nbsp;pretty&nbsp;straightforward&nbsp;as&nbsp;we&nbsp;can&nbsp;see&nbsp;in&nbsp;the&nbsp;next&nbsp;diagram.<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Key Collaborations">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Key_Collaborations"></a>Key Collaborations</h5>
+</div>
+</div>
+</div>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/StructureSimpleDiagram.png"></div>
+<p>
+						
+</p>
+<div class="literallayout">
+<p>Core&nbsp;interactions&nbsp;are&nbsp;in&nbsp;Red.&nbsp;The&nbsp;meta-model&nbsp;structure&nbsp;is&nbsp;essentially&nbsp;a&nbsp;Composite&nbsp;pattern.&nbsp;<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Details">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Details_2"></a>Details</h5>
+</div>
+</div>
+</div>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>Every model has at its root a Context (Scape). Contexts are Agents that are capable of containing other Agents (including other contexts, naturally). </p>
+</li>
+<li class="listitem">
+<p>(Meta-level) Contexts contain (meta-level) Agents at the model (design-time) level.  At runtime, (model-level) Context instances defined in a (meta-level) SContext will contain (model-level) agent instances of the defined (meta-level) SAgent. This sounds more complicated than it is, so let's look at a simple example. Suppose we create a new Context, and give it a label of "Wiki Example". Within that Context, we create an Agent and give it a label of "Individual" and another Agent with the label "Block". At runtime when we are actually executing the model we will have one WikiExample model instance  which contains a number of Individuals.</p>
+</li>
+<li class="listitem">
+<p>Agents contain Attributes, such as Vision and Age. Context attributes often represent input parameters for contained agents. For example, our Wiki Agent Context might contain an Individual Count as well as a Minimum Age and Maximum Age.</p>
+</li>
+<li class="listitem">
+<p>Contexts can contain Projections (Spaces), which represent some kind of spatial or structural interaction space for the agents; either a grid, a continuous (euclidean) space, or a network (graph) or geographic space of some kind. For example, we might want to have a City that contains Blocks and that an Individual can move around within.</p>
+</li>
+<li class="listitem">
+<p>Agents are Actable and thus can contain any number of behaviors called "Actions", described in detail in the next section. Actions can describe individual behavior, and at the Context (Scape) level can define how member Agents and Projections are created.</p>
+</li>
+<li class="listitem">
+<p>Styles provide a mechanism for defining generic visualization behavior for Agents and so are also Actable. For example, an Agent might have an Action that says effectively "draw a red circle shaded red for the wealth of the agent".</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
 </div>
 </body>
 </html>

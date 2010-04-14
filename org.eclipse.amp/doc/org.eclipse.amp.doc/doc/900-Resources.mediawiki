@@ -1,0 +1,13 @@
+=More Information=
+
+==Obtaining Example Models==
+
+There is a cheat-sheet available for obtaining the example models. If you would rather obtain them yourself, here is the CVS information:
+
+====Import from CVS====
+*Import the CVS projects from the AMP project repository. For help, see [http://help.eclipse.org/help32/index.jsp?topic=/org.eclipse.platform.doc.user/reference/ref-40a.htm this page]. For repository details, see [http://eclipse.org/amp/developers/repositoryDetails.php http://eclipse.org/amp/developers/repositoryDetails.php]. These are the example projects:
+ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape 
+ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.escape 
+ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast 
+*Right-click on the models to execute them.
+*Play around with the model attribute settings and behavior (Acts).

@@ -5,11 +5,21 @@
 <link href="book.css" rel="stylesheet" type="text/css">
 <meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
 <link rel="home" href="index.html" title="Agent Modeling Guide">
-<link rel="up" href="index.html" title="Agent Modeling Guide">
-<link rel="prev" href="Reference_2.html" title="Reference">
+<link rel="up" href="Modeler.27s_Guide.html" title="Modeler's Guide">
+<link rel="prev" href="Actions_2.html" title="Actions">
+<link rel="next" href="Creating_Agent_Models.html" title="Creating Agent Models">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Functions</h1>
+<div class="section" title="Overview">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Overview_4"></a>Overview</h3>
+</div>
+</div>
+</div>
 <p>Functions are relatively simple in terms of model design, but we need to understand how particular functions work in order to develop models. Functions are divided in two ways. By type:</p>
 <div class="orderedlist">
 <ol class="orderedlist" type="1">
@@ -32,43 +42,35 @@
 </li>
 </ol>
 </div>
-<p>These overlap, so we have operators, logical operators, functions and logical functions.</p>
-<p>Functions are also divided into categories, as we'll see.</p>
+<p>These overlap, so we have operators, logical operators, functions and logical functions. Functions are also divided into categories. We'll go through each of these in depth below.</p>
+<p>The most important thing to point out about functions is that - as we've seen with other Acore concepts -- they provide richer sets of functionality than traditional approaches. Many functions are designed to collaborate with one another as we'll see when looking at Spatial and Graphical functions. Functions can also trigger the creation of related model artifacts as we'll see with the Distribution functions.</p>
 <p>A technical note: conceptually, functions can return multi-values, but that is not currently implemented in the reference targets because of limitations of the target language Java.</p>
-<div class="section" title="Reference">
-<div class="titlepage">
-<div>
-<div>
-<h2 class="title" style="clear: both">
-<a name="Reference_3"></a>Reference</h2>
 </div>
-</div>
-</div>
-<div class="section" title="Function Library">
+<div class="section" title="Details">
 <div class="titlepage">
 <div>
 <div>
 <h3 class="title">
-<a name="Function_Library"></a>Function Library</h3>
+<a name="Details_5"></a>Details</h3>
 </div>
 </div>
 </div>
-<div class="section" title="Operators">
+<div class="section" title="General Functions">
 <div class="titlepage">
 <div>
 <div>
 <h4 class="title">
-<a name="Operators"></a>Operators</h4>
+<a name="General_Functions"></a>General Functions</h4>
 </div>
 </div>
 </div>
-</div>
+<p>Naturally, the Modeling tools provide general functions for performing calculations, comparisons and more complex mathematical expressions. The function library can be easily extended, and we'll be adding additional capabilities over time. As always, we welcome feedback and we'd like to hear what functions you need that aren't covered here.</p>
 <div class="section" title="Logical Operators">
 <div class="titlepage">
 <div>
 <div>
-<h4 class="title">
-<a name="Logical_Operators"></a>Logical Operators</h4>
+<h5 class="title">
+<a name="Logical_Operators"></a>Logical Operators</h5>
 </div>
 </div>
 </div>
@@ -76,8 +78,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Not"></a>Not</h5>
+<h6 class="title">
+<a name="Not"></a>Not</h6>
 </div>
 </div>
 </div>
@@ -87,8 +89,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Equal"></a>Equal</h5>
+<h6 class="title">
+<a name="Equal"></a>Equal</h6>
 </div>
 </div>
 </div>
@@ -98,8 +100,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Identical"></a>Identical</h5>
+<h6 class="title">
+<a name="Identical"></a>Identical</h6>
 </div>
 </div>
 </div>
@@ -109,8 +111,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Greater"></a>Greater</h5>
+<h6 class="title">
+<a name="Greater"></a>Greater</h6>
 </div>
 </div>
 </div>
@@ -120,8 +122,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Lesser"></a>Lesser</h5>
+<h6 class="title">
+<a name="Lesser"></a>Lesser</h6>
 </div>
 </div>
 </div>
@@ -131,8 +133,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Greater_or_Equal"></a>Greater or Equal</h5>
+<h6 class="title">
+<a name="Greater_or_Equal"></a>Greater or Equal</h6>
 </div>
 </div>
 </div>
@@ -142,8 +144,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Lesser_or_Equal"></a>Lesser or Equal</h5>
+<h6 class="title">
+<a name="Lesser_or_Equal"></a>Lesser or Equal</h6>
 </div>
 </div>
 </div>
@@ -153,8 +155,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="True"></a>True</h5>
+<h6 class="title">
+<a name="True"></a>True</h6>
 </div>
 </div>
 </div>
@@ -164,8 +166,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="False"></a>False</h5>
+<h6 class="title">
+<a name="False"></a>False</h6>
 </div>
 </div>
 </div>
@@ -175,8 +177,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Identity"></a>Identity</h5>
+<h6 class="title">
+<a name="Identity"></a>Identity</h6>
 </div>
 </div>
 </div>
@@ -186,8 +188,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Different"></a>Different</h5>
+<h6 class="title">
+<a name="Different"></a>Different</h6>
 </div>
 </div>
 </div>
@@ -198,8 +200,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h4 class="title">
-<a name="Numeric_Operators"></a>Numeric Operators</h4>
+<h5 class="title">
+<a name="Numeric_Operators"></a>Numeric Operators</h5>
 </div>
 </div>
 </div>
@@ -207,8 +209,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Negative_Value"></a>Negative Value</h5>
+<h6 class="title">
+<a name="Negative_Value"></a>Negative Value</h6>
 </div>
 </div>
 </div>
@@ -218,8 +220,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Add"></a>Add</h5>
+<h6 class="title">
+<a name="Add"></a>Add</h6>
 </div>
 </div>
 </div>
@@ -229,8 +231,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Subtract"></a>Subtract</h5>
+<h6 class="title">
+<a name="Subtract"></a>Subtract</h6>
 </div>
 </div>
 </div>
@@ -240,8 +242,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Multiply"></a>Multiply</h5>
+<h6 class="title">
+<a name="Multiply"></a>Multiply</h6>
 </div>
 </div>
 </div>
@@ -251,8 +253,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Divide"></a>Divide</h5>
+<h6 class="title">
+<a name="Divide"></a>Divide</h6>
 </div>
 </div>
 </div>
@@ -262,8 +264,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Power"></a>Power</h5>
+<h6 class="title">
+<a name="Power"></a>Power</h6>
 </div>
 </div>
 </div>
@@ -273,8 +275,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Modulo"></a>Modulo</h5>
+<h6 class="title">
+<a name="Modulo"></a>Modulo</h6>
 </div>
 </div>
 </div>
@@ -284,8 +286,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Increment"></a>Increment</h5>
+<h6 class="title">
+<a name="Increment"></a>Increment</h6>
 </div>
 </div>
 </div>
@@ -295,8 +297,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Decrement"></a>Decrement</h5>
+<h6 class="title">
+<a name="Decrement"></a>Decrement</h6>
 </div>
 </div>
 </div>
@@ -306,8 +308,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Unit_Value"></a>Unit Value</h5>
+<h6 class="title">
+<a name="Unit_Value"></a>Unit Value</h6>
 </div>
 </div>
 </div>
@@ -317,8 +319,8 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Zero_Value"></a>Zero Value</h5>
+<h6 class="title">
+<a name="Zero_Value"></a>Zero Value</h6>
 </div>
 </div>
 </div>
@@ -328,206 +330,442 @@
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Original_Value"></a>Original Value</h5>
+<h6 class="title">
+<a name="Original_Value"></a>Original Value</h6>
 </div>
 </div>
 </div>
 <p>The result of the expression o.</p>
 </div>
 </div>
-<div class="section" title="Spatial">
-<div class="titlepage">
-<div>
-<div>
-<h4 class="title">
-<a name="Spatial"></a>Spatial</h4>
-</div>
-</div>
-</div>
-<div class="section" title="Nearest">
+<div class="section" title="Math">
 <div class="titlepage">
 <div>
 <div>
 <h5 class="title">
-<a name="Nearest"></a>Nearest</h5>
+<a name="Math"></a>Math</h5>
 </div>
 </div>
 </div>
-<p>Represents the nearest agents (including gird cells) or locations to this agent. If more than one agent or location is the same distance away they will all be considered. Note that while this function is defined for the selection of an agent, the result of this function is defined by the context within which it is used. If the selection specifies another agent within a space, this function will represent the nearest agent in that space. If the selection specifies a Cell within a grid space, this function will represent that cell.</p>
-</div>
-<div class="section" title="Toward">
+<p>The math functions use the extremely well specified and tested routines form the Java Math library. (Because of copyright restrictions, we aren't able to include the exact definitions here. Click on the links to get more details on each function.)</p>
+<div class="section" title="Sine">
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Toward"></a>Toward</h5>
+<h6 class="title">
+<a name="Sine"></a>Sine</h6>
 </div>
 </div>
 </div>
-<p>Represents a location that is on the shortest path to a particular agent or location from the source agent (that is, the selection's selection's agent). This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction towards some objective.</p>
-</div>
-<div class="section" title="Within">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Within"></a>Within</h5>
-</div>
-</div>
-</div>
-<p>Represents a limit to the distance of a spatial search. When used in combination with other spatial functions such as "nearest" requires that all agents or locations must be within the distance specified by the input value.</p>
-<div class="literallayout">
-<p>Inputs:<br>
-[Numeral]&nbsp;<br>
-
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sin(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sin(double)</a>
+							
 </p>
 </div>
-</div>
-<div class="section" title="Neighbor">
+<div class="section" title="Cosine">
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Neighbor"></a>Neighbor</h5>
+<h6 class="title">
+<a name="Cosine"></a>Cosine</h6>
 </div>
 </div>
 </div>
-<p>Represents any agents that are nearest neighbors to the agent, that is nominally of distance 1. This function is only relevant in discrete spaces -- grids and networks -- where there are immediate neighboring cells as defined by the geometry of the selection's space.</p>
-</div>
-<div class="section" title="Include Self">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Include_Self"></a>Include Self</h5>
-</div>
-</div>
-</div>
-<p>Specifies whether the agent that we are searching from -- that is, the agent of the selection for this Query Action's selection -- is included in the results of the search.</p>
-</div>
-<div class="section" title="Within 2D Boundary">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Within_2D_Boundary"></a>Within 2D Boundary</h5>
-</div>
-</div>
-</div>
-<p>Represents agents or locations that exist within the boundary specified by the inputs.</p>
-<div class="literallayout">
-<p>Inputs:<br>
-[Numeral]&nbsp;<br>
-
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cos(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cos(double)</a>
+							
 </p>
 </div>
-</div>
-<div class="section" title="Here">
+<div class="section" title="Tangent">
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Here"></a>Here</h5>
+<h6 class="title">
+<a name="Tangent"></a>Tangent</h6>
 </div>
 </div>
 </div>
-<p>Represents the location of the searching agent. For example, if a selection is defined for an agent cell, and that selection's selection's agent is an occupant of a cell, the cell that the agent is occupying will be used. </p>
-</div>
-<div class="section" title="Available">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Available"></a>Available</h5>
-</div>
-</div>
-</div>
-<p>Represents cells which are not currently occupied. This function is only relevant for grids which are not multi-occupant.</p>
-</div>
-<div class="section" title="Distance">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Distance"></a>Distance</h5>
-</div>
-</div>
-</div>
-<p>The distance between the source agent and an agent represented by this selection. If more than one agent is represented by the other functions in the selection, this function will the distance to an arbitrary (randomly selected) agent as defined by those other functions.</p>
-<div class="literallayout">
-<p>Outputs:<br>
-[Real]&nbsp;<br>
-
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tan(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tan(double)</a>
+							
 </p>
 </div>
-</div>
-<div class="section" title="Away">
+<div class="section" title="Arc Sine">
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Away"></a>Away</h5>
+<h6 class="title">
+<a name="Arc_Sine"></a>Arc Sine</h6>
 </div>
 </div>
 </div>
-<p>Represents a location that is on the path that will take the source agent (that is, the selection's selection's agent) the farthest distance from the agent(s) represented by the search. This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction away from some location or agent.</p>
-</div>
-<div class="section" title="Minimize">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Minimize"></a>Minimize</h5>
-</div>
-</div>
-</div>
-<p>This function is not currently supported.</p>
-</div>
-<div class="section" title="Maximize">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Maximize"></a>Maximize</h5>
-</div>
-</div>
-</div>
-<p>This function is not currently supported.</p>
-</div>
-<div class="section" title="Location 2D">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Location_2D"></a>Location 2D</h5>
-</div>
-</div>
-</div>
-<p>Represents the location of the current agent for use in subsequent selections.</p>
-<div class="literallayout">
-<p>Inputs:<br>
-[Real]&nbsp;<br>
-[Real]&nbsp;<br>
-
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#asin(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#asin(double)</a>
+							
 </p>
 </div>
-</div>
-<div class="section" title="Boundary 2D">
+<div class="section" title="Arc Cosine">
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Boundary_2D"></a>Boundary 2D</h5>
+<h6 class="title">
+<a name="Arc_Cosine"></a>Arc Cosine</h6>
 </div>
 </div>
 </div>
-<p>Represents a two-dimensional boundary within a space. (Not currently relevant for any general usages.)</p>
-<div class="literallayout">
-<p>Outputs:<br>
-[Real]&nbsp;<br>
-[Real]&nbsp;<br>
-
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#acos(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#acos(double)</a>
+							
+</p>
+</div>
+<div class="section" title="Arc Tangent">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Arc_Tangent"></a>Arc Tangent</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan(double)</a>
+							
+</p>
+</div>
+<div class="section" title="Convert Degree to Radians">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Convert_Degree_to_Radians"></a>Convert Degree to Radians</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toRadians(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toRadians(double)</a>
+							
+</p>
+</div>
+<div class="section" title="Convert Radians to Degrees">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Convert_Radians_to_Degrees"></a>Convert Radians to Degrees</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toDegrees(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toDegrees(double)</a>
+							
+</p>
+</div>
+<div class="section" title="Exp">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Exp"></a>Exp</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#exp(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#exp(double)</a>
+							
+</p>
+</div>
+<div class="section" title="Log">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Log"></a>Log</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log(double)</a>
+							
+</p>
+</div>
+<div class="section" title="Log b10">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Log_b10"></a>Log b10</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log10(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log10(double)</a>
+							
+</p>
+</div>
+<div class="section" title="Square Root">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Square_Root"></a>Square Root</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#squareRoot(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#squareRoot(double)</a>
+							
+</p>
+</div>
+<div class="section" title="Cube Root">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Cube_Root"></a>Cube Root</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cbrt(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cbrt(double)</a>
+							
+</p>
+</div>
+<div class="section" title="Remainder">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Remainder"></a>Remainder</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#iEEEremainder(double,%20double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#iEEEremainder(double,%20double)</a>
+							
+</p>
+</div>
+<div class="section" title="Ceiling">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Ceiling"></a>Ceiling</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ceil(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ceil(double)</a>
+							
+</p>
+</div>
+<div class="section" title="Floor">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Floor"></a>Floor</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#floor(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#floor(double)</a>
+							
+</p>
+</div>
+<div class="section" title="Rount">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Rount"></a>Rount</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#rint(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#rint(double)</a>
+							
+</p>
+</div>
+<div class="section" title="Arc Tangent Rectangular">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Arc_Tangent_Rectangular"></a>Arc Tangent Rectangular</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan2(double,%20double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan2(double,%20double)</a>
+							
+</p>
+</div>
+<div class="section" title="Power">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Power_2"></a>Power</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#pow(double,%20double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#pow(double,%20double)</a>
+							
+</p>
+</div>
+<div class="section" title="Absolute Value">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Absolute_Value"></a>Absolute Value</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#abs(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#abs(double)</a>
+							
+</p>
+</div>
+<div class="section" title="Maximum">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Maximum"></a>Maximum</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#max(double,%20double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#max(double,%20double)</a>
+							
+</p>
+</div>
+<div class="section" title="Minimum">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Minimum"></a>Minimum</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#min(double,%20double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#min(double,%20double)</a>
+							
+</p>
+</div>
+<div class="section" title="ULP">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="ULP"></a>ULP</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ulp(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ulp(double)</a>
+							
+</p>
+</div>
+<div class="section" title="Sign">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Sign"></a>Sign</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#signum(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#signum(double)</a>
+							
+</p>
+</div>
+<div class="section" title="Hyperbolic Sine">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Hyperbolic_Sine"></a>Hyperbolic Sine</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sinh(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sinh(double)</a>
+							
+</p>
+</div>
+<div class="section" title="Hyperbolic Cosine">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Hyperbolic_Cosine"></a>Hyperbolic Cosine</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cosh(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cosh(double)</a>
+							
+</p>
+</div>
+<div class="section" title="Hyperbolic Tan">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Hyperbolic_Tan"></a>Hyperbolic Tan</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tanh(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tanh(double)</a>
+							
+</p>
+</div>
+<div class="section" title="Hypotuneuse">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Hypotuneuse"></a>Hypotuneuse</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#hypotuneuse(double,%20double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#hypotuneuse(double,%20double)</a>
+							
+</p>
+</div>
+<div class="section" title="Expm1">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Expm1"></a>Expm1</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#expm1(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#expm1(double)</a>
+							
+</p>
+</div>
+<div class="section" title="Log1p">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Log1p"></a>Log1p</h6>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+								<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log1p(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log1p(double)</a>
+							
 </p>
 </div>
 </div>
@@ -541,12 +779,33 @@
 </div>
 </div>
 </div>
-<div class="section" title="Random In Range">
+<div class="section" title="Design">
 <div class="titlepage">
 <div>
 <div>
 <h5 class="title">
-<a name="Random_In_Range"></a>Random In Range</h5>
+<a name="Design_2"></a>Design</h5>
+</div>
+</div>
+</div>
+<p>Random functions are especially significant for agent models. Of particular interest are the weighted membership and random state and boolean value functions. You should be familiar with these functions so that you don't have to create more complex Action flows to accomplish the same thing.</p>
+<p>Note that we only have support for uniform distributions as of this release. We're working on a collaborative design for evaluations that allow easy mixing and matching of random functions and distributions.</p>
+</div>
+<div class="section" title="Details">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Details_6"></a>Details</h5>
+</div>
+</div>
+</div>
+<div class="section" title="Random In Range">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Random_In_Range"></a>Random In Range</h6>
 </div>
 </div>
 </div>
@@ -565,8 +824,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Random_To_Limit"></a>Random To Limit</h5>
+<h6 class="title">
+<a name="Random_To_Limit"></a>Random To Limit</h6>
 </div>
 </div>
 </div>
@@ -584,8 +843,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Random_Unit"></a>Random Unit</h5>
+<h6 class="title">
+<a name="Random_Unit"></a>Random Unit</h6>
 </div>
 </div>
 </div>
@@ -601,8 +860,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Random_Boolean"></a>Random Boolean</h5>
+<h6 class="title">
+<a name="Random_Boolean"></a>Random Boolean</h6>
 </div>
 </div>
 </div>
@@ -612,8 +871,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Random_Weighted"></a>Random Weighted</h5>
+<h6 class="title">
+<a name="Random_Weighted"></a>Random Weighted</h6>
 </div>
 </div>
 </div>
@@ -631,8 +890,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Random_Member"></a>Random Member</h5>
+<h6 class="title">
+<a name="Random_Member"></a>Random Member</h6>
 </div>
 </div>
 </div>
@@ -650,8 +909,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Random_State"></a>Random State</h5>
+<h6 class="title">
+<a name="Random_State"></a>Random State</h6>
 </div>
 </div>
 </div>
@@ -666,12 +925,307 @@ Outputs:<br>
 </div>
 </div>
 </div>
-<div class="section" title="Graphic">
+</div>
+<div class="section" title="Space">
 <div class="titlepage">
 <div>
 <div>
 <h4 class="title">
-<a name="Graphic"></a>Graphic</h4>
+<a name="Space_2"></a>Space</h4>
+</div>
+</div>
+</div>
+<div class="section" title="Design">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Design_3"></a>Design</h5>
+</div>
+</div>
+</div>
+<p>Spatial functions provide the core functionality for Agent Models. Spatial functions are polymorphic, which basically means that they don't care what space they are operating on as long as that space is suitable for them. Spatial functions are designed to collaborate with one another. For example, by intersecting the "Neighbor", "Available" and "Toward" functions, we can design a rule that causes the agent to move to the next neighboring cell that get's it closer to some target agent. See the function details for more information.</p>
+</div>
+<div class="section" title="Details">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Details_7"></a>Details</h5>
+</div>
+</div>
+</div>
+<div class="section" title="Nearest">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Nearest"></a>Nearest</h6>
+</div>
+</div>
+</div>
+<p>Represents the nearest agents (including gird cells) or locations to this agent. If more than one agent or location is the same distance away they will all be considered. Note that while this function is defined for the selection of an agent, the result of this function is defined by the context within which it is used. If the selection specifies another agent within a space, this function will represent the nearest agent in that space. If the selection specifies a Cell within a grid space, this function will represent that cell.</p>
+</div>
+<div class="section" title="Toward">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Toward"></a>Toward</h6>
+</div>
+</div>
+</div>
+<p>Represents a location that is on the shortest path to a particular agent or location from the source agent (that is, the selection's selection's agent). This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction towards some objective.</p>
+</div>
+<div class="section" title="Within">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Within"></a>Within</h6>
+</div>
+</div>
+</div>
+<p>Represents a limit to the distance of a spatial search. When used in combination with other spatial functions such as "nearest" requires that all agents or locations must be within the distance specified by the input value.</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Numeral]&nbsp;<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Neighbor">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Neighbor"></a>Neighbor</h6>
+</div>
+</div>
+</div>
+<p>Represents any agents that are nearest neighbors to the agent, that is nominally of distance 1. This function is only relevant in discrete spaces -- grids and networks -- where there are immediate neighboring cells as defined by the geometry of the selection's space.</p>
+</div>
+<div class="section" title="Include Self">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Include_Self"></a>Include Self</h6>
+</div>
+</div>
+</div>
+<p>Specifies whether the agent that we are searching from -- that is, the agent of the selection for this Query Action's selection -- is included in the results of the search.</p>
+</div>
+<div class="section" title="Within 2D Boundary">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Within_2D_Boundary"></a>Within 2D Boundary</h6>
+</div>
+</div>
+</div>
+<p>Represents agents or locations that exist within the boundary specified by the inputs.</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Numeral]&nbsp;<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Here">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Here"></a>Here</h6>
+</div>
+</div>
+</div>
+<p>Represents the location of the searching agent. For example, if a selection is defined for an agent cell, and that selection's selection's agent is an occupant of a cell, the cell that the agent is occupying will be used. </p>
+</div>
+<div class="section" title="Available">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Available"></a>Available</h6>
+</div>
+</div>
+</div>
+<p>Represents cells which are not currently occupied. This function is only relevant for grids which are not multi-occupant.</p>
+</div>
+<div class="section" title="Distance">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Distance"></a>Distance</h6>
+</div>
+</div>
+</div>
+<p>The distance between the source agent and an agent represented by this selection. If more than one agent is represented by the other functions in the selection, this function will the distance to an arbitrary (randomly selected) agent as defined by those other functions.</p>
+<div class="literallayout">
+<p>Outputs:<br>
+[Real]&nbsp;<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Away">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Away"></a>Away</h6>
+</div>
+</div>
+</div>
+<p>Represents a location that is on the path that will take the source agent (that is, the selection's selection's agent) the farthest distance from the agent(s) represented by the search. This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction away from some location or agent.</p>
+</div>
+<div class="section" title="Minimize">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Minimize"></a>Minimize</h6>
+</div>
+</div>
+</div>
+<p>This function is not currently supported.</p>
+</div>
+<div class="section" title="Maximize">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Maximize"></a>Maximize</h6>
+</div>
+</div>
+</div>
+<p>This function is not currently supported.</p>
+</div>
+<div class="section" title="Location 2D">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Location_2D"></a>Location 2D</h6>
+</div>
+</div>
+</div>
+<p>Represents the location of the current agent for use in subsequent selections.</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Real]&nbsp;<br>
+[Real]&nbsp;<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Boundary 2D">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Boundary_2D"></a>Boundary 2D</h6>
+</div>
+</div>
+</div>
+<p>Represents a two-dimensional boundary within a space. (Not currently relevant for any general usages.)</p>
+<div class="literallayout">
+<p>Outputs:<br>
+[Real]&nbsp;<br>
+[Real]&nbsp;<br>
+
+</p>
+</div>
+</div>
+</div>
+<div class="section" title="Example">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Example_2"></a>Example</h5>
+</div>
+</div>
+</div>
+<p>For examples of how spatial functions can be used within action flows to provide agents with complex movement behaviors, see the Modelers Guide actions examples. In the following example from that section, we define an action that causes a partner agent to move to an available neighboring space.</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/ActionsExampleNew.png"></div>
+<p>
+						
+</p>
+</div>
+</div>
+<div class="section" title="Time">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Time"></a>Time</h4>
+</div>
+</div>
+</div>
+<div class="section" title="Details">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Details_8"></a>Details</h5>
+</div>
+</div>
+</div>
+<div class="section" title="Now">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Now"></a>Now</h6>
+</div>
+</div>
+</div>
+<p>The current simulation period, that is the number of iterations that the model has gone through, or in the case of models with callibrarted time, the number of iterations added to the model's nominal start time.</p>
+<div class="literallayout">
+<p>Outputs:<br>
+[Integer]&nbsp;The&nbsp;current&nbsp;period.<br>
+
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" title="Graphics">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Graphics"></a>Graphics</h4>
+</div>
+</div>
+</div>
+<div class="section" title="Design">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Design_4"></a>Design</h5>
+</div>
+</div>
+</div>
+<p>Graphic functions are combined within Style Evaluate Actions to determine how to draw an agent within a visualization. One nice aspect of this approach is that the same style definition can be used in multiple places without changing any code. For example, the same style could be used to draw an agent on a two-dimensional grid within Escape, a three-dimensional shape within Escape, a Java Swing based visualization in Ascape, and an XML configured visualizaiton in Repast Simphony.</p>
+<p>To define a graphic style for an agent, design a flow in which you create Evaluate Actions for color and shape, and then create an Evaluate Action with the graphic fill or outline function as a target of these.</p>
+</div>
+<div class="section" title="Details">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Details_9"></a>Details</h5>
 </div>
 </div>
 </div>
@@ -679,8 +1233,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Shape_Oval"></a>Shape Oval</h5>
+<h6 class="title">
+<a name="Shape_Oval"></a>Shape Oval</h6>
 </div>
 </div>
 </div>
@@ -690,8 +1244,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Shape_Rectangle"></a>Shape Rectangle</h5>
+<h6 class="title">
+<a name="Shape_Rectangle"></a>Shape Rectangle</h6>
 </div>
 </div>
 </div>
@@ -701,8 +1255,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Shape_Inset"></a>Shape Inset</h5>
+<h6 class="title">
+<a name="Shape_Inset"></a>Shape Inset</h6>
 </div>
 </div>
 </div>
@@ -718,19 +1272,19 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Shape_Marker"></a>Shape Marker</h5>
+<h6 class="title">
+<a name="Shape_Marker"></a>Shape Marker</h6>
 </div>
 </div>
 </div>
-<p>Draw a marker, that is a graphical indicator that can be used to add an additional que about the object state. For example, in a two-dimensional graphics representation this might be a small shape drawn inset at the corner of the larger shape. </p>
+<p>Draw a marker, that is a graphical indicator that can be used to add an additional cue about the object state. For example, in a two-dimensional graphics representation this might be a small shape drawn inset at the corner of the larger shape. </p>
 </div>
 <div class="section" title="Shape Marker 2">
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Shape_Marker_2"></a>Shape Marker 2</h5>
+<h6 class="title">
+<a name="Shape_Marker_2"></a>Shape Marker 2</h6>
 </div>
 </div>
 </div>
@@ -740,8 +1294,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Shape_Marker_3"></a>Shape Marker 3</h5>
+<h6 class="title">
+<a name="Shape_Marker_3"></a>Shape Marker 3</h6>
 </div>
 </div>
 </div>
@@ -751,8 +1305,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Color_RGB"></a>Color RGB</h5>
+<h6 class="title">
+<a name="Color_RGB"></a>Color RGB</h6>
 </div>
 </div>
 </div>
@@ -770,8 +1324,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Color_Red"></a>Color Red</h5>
+<h6 class="title">
+<a name="Color_Red"></a>Color Red</h6>
 </div>
 </div>
 </div>
@@ -781,8 +1335,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Color_Yellow"></a>Color Yellow</h5>
+<h6 class="title">
+<a name="Color_Yellow"></a>Color Yellow</h6>
 </div>
 </div>
 </div>
@@ -792,8 +1346,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Color_Blue"></a>Color Blue</h5>
+<h6 class="title">
+<a name="Color_Blue"></a>Color Blue</h6>
 </div>
 </div>
 </div>
@@ -803,8 +1357,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Color_Orange"></a>Color Orange</h5>
+<h6 class="title">
+<a name="Color_Orange"></a>Color Orange</h6>
 </div>
 </div>
 </div>
@@ -814,8 +1368,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Color_Green"></a>Color Green</h5>
+<h6 class="title">
+<a name="Color_Green"></a>Color Green</h6>
 </div>
 </div>
 </div>
@@ -825,8 +1379,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Color_Purple"></a>Color Purple</h5>
+<h6 class="title">
+<a name="Color_Purple"></a>Color Purple</h6>
 </div>
 </div>
 </div>
@@ -836,8 +1390,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Color_Black"></a>Color Black</h5>
+<h6 class="title">
+<a name="Color_Black"></a>Color Black</h6>
 </div>
 </div>
 </div>
@@ -847,8 +1401,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Color_White"></a>Color White</h5>
+<h6 class="title">
+<a name="Color_White"></a>Color White</h6>
 </div>
 </div>
 </div>
@@ -858,8 +1412,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Color_Gray"></a>Color Gray</h5>
+<h6 class="title">
+<a name="Color_Gray"></a>Color Gray</h6>
 </div>
 </div>
 </div>
@@ -869,8 +1423,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Graphic_Outline"></a>Graphic Outline</h5>
+<h6 class="title">
+<a name="Graphic_Outline"></a>Graphic Outline</h6>
 </div>
 </div>
 </div>
@@ -880,477 +1434,58 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Graphic_Fill"></a>Graphic Fill</h5>
+<h6 class="title">
+<a name="Graphic_Fill"></a>Graphic Fill</h6>
 </div>
 </div>
 </div>
 <p>Fills the last evaluated shape with the last specified color or the default color (usually black) if none has been specified.</p>
 </div>
 </div>
-<div class="section" title="Time">
+<div class="section" title="Example">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Example_3"></a>Example</h5>
+</div>
+</div>
+</div>
+<p>In the following action flow for the epidemic style, we've create Query Actions to determine each agent's current state, picked a color based on that, and then used a shared target to select a shape for the agent style and fill it:</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/GraphicsFunctionExampleDesign.png"></div>
+<p>
+						
+</p>
+<p>After saving the model we can execute the two and three dimensional visualizations. Note something really nice -- even the charts have used the colors we've defined!</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/GraphicsFunctionExampleRun.png"></div>
+<p>
+						
+</p>
+</div>
+</div>
+<div class="section" title="Lists">
 <div class="titlepage">
 <div>
 <div>
 <h4 class="title">
-<a name="Time"></a>Time</h4>
+<a name="Lists"></a>Lists</h4>
 </div>
 </div>
 </div>
-<div class="section" title="Now">
+<div class="section" title="Details">
 <div class="titlepage">
 <div>
 <div>
 <h5 class="title">
-<a name="Now"></a>Now</h5>
-</div>
-</div>
-</div>
-<p>The current simulation period, that is the number of iterations that the model has gone through, or in the case of models with callibrarted time, the number of iterations added to the model's nominal start time.</p>
-<div class="literallayout">
-<p>Outputs:<br>
-[Integer]&nbsp;The&nbsp;current&nbsp;period.<br>
-
-</p>
-</div>
-</div>
-</div>
-<div class="section" title="Math">
-<div class="titlepage">
-<div>
-<div>
-<h4 class="title">
-<a name="Math"></a>Math</h4>
-</div>
-</div>
-</div>
-<div class="section" title="Sine">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Sine"></a>Sine</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sin(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sin(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Cosine">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Cosine"></a>Cosine</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cos(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cos(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Tangent">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Tangent"></a>Tangent</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tan(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tan(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Arc Sine">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Arc_Sine"></a>Arc Sine</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#asin(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#asin(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Arc Cosine">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Arc_Cosine"></a>Arc Cosine</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#acos(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#acos(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Arc Tangent">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Arc_Tangent"></a>Arc Tangent</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Convert Degree to Radians">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Convert_Degree_to_Radians"></a>Convert Degree to Radians</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toRadians(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toRadians(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Convert Radians to Degrees">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Convert_Radians_to_Degrees"></a>Convert Radians to Degrees</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toDegrees(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toDegrees(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Exp">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Exp"></a>Exp</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#exp(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#exp(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Log">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Log"></a>Log</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Log b10">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Log_b10"></a>Log b10</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log10(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log10(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Square Root">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Square_Root"></a>Square Root</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#squareRoot(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#squareRoot(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Cube Root">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Cube_Root"></a>Cube Root</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cbrt(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cbrt(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Remainder">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Remainder"></a>Remainder</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#iEEEremainder(double,%20double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#iEEEremainder(double,%20double)</a>
-						
-</p>
-</div>
-<div class="section" title="Ceiling">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Ceiling"></a>Ceiling</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ceil(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ceil(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Floor">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Floor"></a>Floor</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#floor(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#floor(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Rount">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Rount"></a>Rount</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#rint(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#rint(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Arc Tangent Rectangular">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Arc_Tangent_Rectangular"></a>Arc Tangent Rectangular</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan2(double,%20double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan2(double,%20double)</a>
-						
-</p>
-</div>
-<div class="section" title="Power">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Power_2"></a>Power</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#pow(double,%20double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#pow(double,%20double)</a>
-						
-</p>
-</div>
-<div class="section" title="Absolute Value">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Absolute_Value"></a>Absolute Value</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#abs(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#abs(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Maximum">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Maximum"></a>Maximum</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#max(double,%20double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#max(double,%20double)</a>
-						
-</p>
-</div>
-<div class="section" title="Minimum">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Minimum"></a>Minimum</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#min(double,%20double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#min(double,%20double)</a>
-						
-</p>
-</div>
-<div class="section" title="ULP">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="ULP"></a>ULP</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ulp(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ulp(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Sign">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Sign"></a>Sign</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#signum(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#signum(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Hyperbolic Sine">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Hyperbolic_Sine"></a>Hyperbolic Sine</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sinh(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sinh(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Hyperbolic Cosine">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Hyperbolic_Cosine"></a>Hyperbolic Cosine</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cosh(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cosh(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Hyperbolic Tan">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Hyperbolic_Tan"></a>Hyperbolic Tan</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tanh(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tanh(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Hypotuneuse">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Hypotuneuse"></a>Hypotuneuse</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#hypotuneuse(double,%20double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#hypotuneuse(double,%20double)</a>
-						
-</p>
-</div>
-<div class="section" title="Expm1">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Expm1"></a>Expm1</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#expm1(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#expm1(double)</a>
-						
-</p>
-</div>
-<div class="section" title="Log1p">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Log1p"></a>Log1p</h5>
-</div>
-</div>
-</div>
-<p>See JavaDoc: 
-							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log1p(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log1p(double)</a>
-						
-</p>
-</div>
-</div>
-<div class="section" title="List">
-<div class="titlepage">
-<div>
-<div>
-<h4 class="title">
-<a name="List"></a>List</h4>
+<a name="Details_10"></a>Details</h5>
 </div>
 </div>
 </div>
@@ -1358,8 +1493,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Item"></a>Item</h5>
+<h6 class="title">
+<a name="Item"></a>Item</h6>
 </div>
 </div>
 </div>
@@ -1378,8 +1513,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Length"></a>Length</h5>
+<h6 class="title">
+<a name="Length"></a>Length</h6>
 </div>
 </div>
 </div>
@@ -1394,12 +1529,23 @@ Outputs:<br>
 </div>
 </div>
 </div>
-<div class="section" title="Distribution">
+</div>
+<div class="section" title="Attribute Distributions">
 <div class="titlepage">
 <div>
 <div>
 <h4 class="title">
-<a name="Distribution"></a>Distribution</h4>
+<a name="Attribute_Distributions"></a>Attribute Distributions</h4>
+</div>
+</div>
+</div>
+<p>One of the most common tasks in the Agent Modeling process is the creation of agents with particular states drawn from a distribution. For example, you might want to create a number of agents with wealth randomly distributed between some minimum and maximum values. The distribution functions greatly ease the process of setting up those initializations and their associated parameters.</p>
+<div class="section" title="Distribution">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Distribution"></a>Distribution</h5>
 </div>
 </div>
 </div>
@@ -1407,8 +1553,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Uniform_Cross_Distribution"></a>Uniform Cross Distribution</h5>
+<h6 class="title">
+<a name="Uniform_Cross_Distribution"></a>Uniform Cross Distribution</h6>
 </div>
 </div>
 </div>
@@ -1428,8 +1574,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Uniform_Additive_Distribution"></a>Uniform Additive Distribution</h5>
+<h6 class="title">
+<a name="Uniform_Additive_Distribution"></a>Uniform Additive Distribution</h6>
 </div>
 </div>
 </div>
@@ -1449,8 +1595,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Cross_Distribution"></a>Cross Distribution</h5>
+<h6 class="title">
+<a name="Cross_Distribution"></a>Cross Distribution</h6>
 </div>
 </div>
 </div>
@@ -1469,8 +1615,8 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Additive_Distribution"></a>Additive Distribution</h5>
+<h6 class="title">
+<a name="Additive_Distribution"></a>Additive Distribution</h6>
 </div>
 </div>
 </div>
@@ -1486,13 +1632,58 @@ Outputs:<br>
 </div>
 </div>
 </div>
+<div class="section" title="Example">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Example_4"></a>Example</h5>
+</div>
+</div>
+</div>
+<p>In the following example, we walk through the process of using a distribution functions, demonstrating how we can easily modify the Epidemic model so that instead of simply setting an initial exposed population, we can define factors that take together will determine an individuals initial exposure state. We simply:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>Create an Evaluate Action called "Initial Status". </p>
+</li>
+<li class="listitem">
+<p>Set the function to "Cross Distribution"</p>
+</li>
+<li class="listitem">
+<p>Opened the "Multiple Value" node in the editor, and clicked the "Multiple Values" item within it.</p>
+</li>
+<li class="listitem">
+<p>Selected the "Status" attribute.</p>
+</li>
+</ol>
+</div>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/DistributionDesignChoice.png"></div>
+<p> 
+						
+</p>
+<p>The appropriate attributes are automatically added to the model, as you can see below.</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/DistributionDesign.png"></div>
+<p> 
+						
+</p>
+<p>In order to assign these values to the agent, we'd simply need to assign the results of this Evaluate Action to the agent.</p>
+</div>
 </div>
 <div class="section" title="Diagrams">
 <div class="titlepage">
 <div>
 <div>
-<h3 class="title">
-<a name="Diagrams_3"></a>Diagrams</h3>
+<h4 class="title">
+<a name="Diagrams_3"></a>Diagrams</h4>
 </div>
 </div>
 </div>
@@ -1501,18 +1692,18 @@ Outputs:<br>
 <div class="titlepage">
 <div>
 <div>
-<h4 class="title">
-<a name="Meta-Classes_3"></a>Meta-Classes</h4>
+<h5 class="title">
+<a name="Meta-Classes_3"></a>Meta-Classes</h5>
 </div>
 </div>
 </div>
 <p>
-						
+							
 </p>
 <div class="mediaobject">
 <img src="images/FunctionsDiagram.png"></div>
 <p>
-					
+						
 </p>
 </div>
 </div>

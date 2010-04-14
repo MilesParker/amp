@@ -1,0 +1,207 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Exploring Example ABM Models</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="Agent Modeling Guide">
+<link rel="up" href="Programer.27s_Guide.html" title="Programer's Guide">
+<link rel="prev" href="Installation.html" title="Installation">
+<link rel="next" href="Developing_Models.html" title="Developing Models">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Exploring Example ABM Models</h1>
+<p>The first thing most people will want to do in AMP is to play with the example models. You don't need to do any programming for this, and the setup is really straightforward. Of course, the first think you'll need to do is 
+				<a class="ulink" href="http://eclipse.org/amp/installing" target="_new">Install AMP</a>. (You don't need any of the optional components unless you want to play with the 3D visualizations, Ascape, or Repast.) You can explore AMF models as well as some really interesting classic ABM models.
+			</p>
+<div class="section" title="AMF Models">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="AMF_Models"></a>AMF Models</h3>
+</div>
+</div>
+</div>
+<p>There are a number of models developed with AMF that can automatically generate example models to run in Escape. There are two ways to run the example models:</p>
+<div class="section" title="Setup Escape Projects">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Setup_Escape_Projects"></a>Setup Escape Projects</h4>
+</div>
+</div>
+</div>
+<div class="section" title="Creating a New Escape Project">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Creating_a_New_Escape_Project"></a>Creating a New Escape Project</h5>
+</div>
+</div>
+</div>
+<p>The best option is to simply create a new Escape project and drag the models into it! We're working on a simple cheat sheet for this, but until then, just follow these simple steps:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>If you're not already there, open the Agent Modeling Perspective. Select Window &gt; Open Perspective &gt; Other.. and then Agent Modeling. (Or you can choose Window &gt; Reset Perspective and the Agent Modeling perspective should appear in the Open Perspective list itself.)</p>
+</li>
+<li class="listitem">
+<p>Next, let's create the project where we'll place our model. Select File &gt; New &gt; Escape AMF Project. Give it a name like "escape.tutorial", then click Finish.</p>
+</li>
+<li class="listitem">
+<p>Finally grab the Epidemic.metaabm model at 
+									<a class="ulink" href="http://download.eclipse.org/amp/models/Epidemic.metaabm" target="_new">http://download.eclipse.org/amp/models/Epidemic.metaabm</a> and drag it into the project. (Depending on your browser the file may load as text directly into your browser, in which case just right-click on the link and save it to a file.)
+								</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" title="Using an Pre-Built Example Project">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Using_an_Pre-Built_Example_Project"></a>Using an Pre-Built Example Project</h5>
+</div>
+</div>
+</div>
+<p>If you get really stuck somewhere, you can also get ready made projects from CVS. See 
+							<a class="ulink" href="http://eclipse.org/amp/developers/repositoryDetails.php" target="_new">this page</a> for information on CVS setup. The project for Escape example models are located at:
+						</p>
+<div class="literallayout">
+<p>org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.escape<br>
+
+</p>
+</div>
+</div>
+</div>
+<div class="section" title="Run the Model">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Run_the_Model"></a>Run the Model</h4>
+</div>
+</div>
+</div>
+<p>Right-click on the model, and select "Execute"! You should see something like this:</p>
+<p>
+						
+<a class="ulink" href="/wiki/image:EpidemicModelRunning.png" target="_new">image:EpidemicModelRunning.png</a>
+					
+</p>
+<p>We're working on more end-user documentaiton, but hopefully you'll find model control pretty self-explanatory. The toolbar buttons allow you to control model execution.</p>
+<p>
+						
+<a class="ulink" href="/wiki/image:EpidemicModelControls.png" target="_new">image:EpidemicModelControls.png</a>
+					
+</p>
+<p>From right to left, you can start, restart, pause, step, stop and close a model. You can even run multiple models and control them independently. You can also move views around, close them and so on as with any other Eclipse views. Here we're running two separate models for comparison.</p>
+<p>
+						
+<a class="ulink" href="/wiki/image:EpidemicModelComparison.png" target="_new">image:EpidemicModelComparison.png</a>
+					
+</p>
+<p>If you want to find out more about an agent, show the properties view, and click on agent.</p>
+<p>
+						
+<a class="ulink" href="/wiki/image:EpidemicModelAgentProperties.png" target="_new">image:EpidemicModelAgentProperties.png</a>
+					
+</p>
+<p>You can experiment with different parameters (settings) for models by then clicking in the gray area away within the view.</p>
+<p>
+						
+<a class="ulink" href="/wiki/image:EpidemicModelProperties.png" target="_new">image:EpidemicModelProperties.png</a>
+					
+</p>
+<p>There are a number of other things to play around with, such as zooming the agent view or selecting other chart series to display using the Chart Customizer, so just explore. You can always close an active model by clicking on the close toolbar button. Or if you can't access the models controls for some reason, you can open the progress view and close projects form there.</p>
+</div>
+<div class="section" title="Next Steps">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Next_Steps"></a>Next Steps</h4>
+</div>
+</div>
+</div>
+<p>Other models are located at: (to do)</p>
+<p>To understand the capabilities of AMF, you might also want to try out running the same models automatically generated for Ascape or Repast.</p>
+<div class="literallayout">
+<p>org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape<br>
+org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast<br>
+
+</p>
+</div>
+</div>
+</div>
+<div class="section" title="Classic Java ABM Models">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Classic_Java_ABM_Models"></a>Classic Java ABM Models</h3>
+</div>
+</div>
+</div>
+<p>Many models have been created using Ascape over the years, including all of the classic models created at Brookings and some other cool models such as Craig Reynold's Boids and a pretty cool little traffic model, and they've all been converted to run in Escape. They're in Java but you can execute and explore them in exactly the same way as the Epidemic model above. All of the Ascape example models have been converted (a straightforward process) from their intial Ascape incarnations. For licensing reasons (they're BSD, not EPL) we can't host them directly on the Eclipse site.  You can get the projects in two ways:</p>
+<div class="section" title="From Project Archive">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="From_Project_Archive"></a>From Project Archive</h4>
+</div>
+</div>
+</div>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Download the Escape examples zip from the Ascape sourceforge site: 
+								<a class="ulink" href="http://sourceforge.net/projects/ascape/files/Escape/5.2.0/EscapeExamples.zip/download" target="_new">http://sourceforge.net/projects/ascape/files/Escape/5.2.0/EscapeExamples.zip/download</a>
+							
+</p>
+</li>
+<li class="listitem">
+<p>Unzip the file.</p>
+</li>
+<li class="listitem">
+<p>Import them into your workspace. For help, see 
+								<a class="ulink" href="http://help.eclipse.org/help32/index.jsp?topic=/org.eclipse.jst.j2ee.doc.user/topics/ph-projects.html" target="_new">this page</a>.
+							</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" title="From SVN">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="From_SVN"></a>From SVN</h4>
+</div>
+</div>
+</div>
+<div class="itemizedlist">
+<ul class="itemizedlist" type="disc">
+<li class="listitem">
+<p>Import the SVN projects from the sourceforge SVN. For help, see 
+								<a class="ulink" href="/wiki/http://www.eclipse.org/subversive/documentation/teamSupport/find_check_wiz.php_this_page" target="_new">http://www.eclipse.org/subversive/documentation/teamSupport/find_check_wiz.php this page</a>.
+							</p>
+</li>
+</ul>
+</div>
+<div class="literallayout">
+<p>http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.brook<br>
+http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.examples<br>
+
+</p>
+</div>
+<p>Once you've downloaded the projects, open up the src folder and navigate to the Java files for the actual models. For example, to run Conway's Life, you'll want src/edu.brook.life.ConwayLife. Right-click on the Java file and select "Execute". There are many models to explore! (It's not always obvious which Java files are for models, so you may have to poke around a bit. We need to put together a catalog here. Another nice opportunity for user contributions.)</p>
+</div>
+</div>
+</body>
+</html>
