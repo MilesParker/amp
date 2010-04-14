@@ -241,17 +241,51 @@ A with queries, a function is evaluated against its input set. Functions can rep
 
 The set of values that will be used to determine the result, in the order of the function prototype. Inputs can specify any source evaluation and any agent state or agent parent context state. The selection determines which agent's will be used to determine the value, and different inputs can specify different selections.
 
+=====Set=====
+
+The Set Action assigns some value to another value.
+
+======Selection======
+
+Here the selection refers to the agent that we want to change. This does not have to be the immediatily preceeding selection but can be any accessible selection.
+
+======Attribute======
+
+The attribute to modify. It must be a member of this action's agent or of that agent's parent context.
+
+======Parameter======
+
+The value to assign to the attribute. Here, we can use either another agent attribute, or the results of a source evaluation. 
+
+
 =====Move=====
 
 The Move Action causes an agent to change its location in some space or network. The agent will leave whatever location it was in before within the selection space, and move to its new destination.
 
 ======Selection======
 
-As with any 
+As in any other action, the selection determines what agent is affected -- in this case the agent that is being moved.
 
-=====Set=====
+=======Destination======
 
-The Set Action assigns some value to another value.
+Specifies the target agent or location for the movement.
+
+
+=====Leave=====
+
+Causes the agent to leave a particular space.
+
+======Selection======
+
+The selection determines what space the agent will be leaving. If the agent doesn't exist in that space nothing will happen.
+
+=======Destination======
+
+The desitination is irrelevant for a leave action and should not be specified.
+
+=====Die=====
+
+Causes the agent to cease to exist within the model as a whole.
 
 ===Example===
 
