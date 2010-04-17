@@ -234,14 +234,21 @@ import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
     «FILE javaFileLoc().replaceFirst(".java", "PartFactory.java")»
     package «package()»;
     
+    import org.ascape.model.HostCell;
     import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
     import org.eclipse.gef.EditPart;
+	import org.eclipse.amp.escape.ascape.gef.DefaultHostCellEditPart;
     
     
     public class «typeName()»PartFactory extends AscapePartFactory {
     
         protected EditPart getPartForElement(Object model) {
         	«EXPAND RecurseAgentProviders FOREACH agents»
+			«IF ((AGroup) rootActivity).members.typeSelect(ABuildGrid).size > 0 && !((AGroup) rootActivity).members.typeSelect(ABuildGrid).exists(e | ((ABuildGrid) e).fillAgent != null)»
+	        if (model instanceof HostCell) {
+	            return new DefaultHostCellEditPart();
+	        }
+			«ENDIF»
             return super.getPartForElement(model);
         }
     }
