@@ -26,6 +26,10 @@ cached Boolean isHost(SGrid proj) :
 cached Boolean isHost(SAgent agent) :
 	!hosts(agent).isEmpty;
 	
+//We can assume that a selection that doesn't have an agent but is being used in a grid context must be referring to a host cell
+cached Boolean isHost(ASelect sel) :
+	sel.agent == null || sel.agent.isHost();
+	
 cached String short(IID id) :
 	id.id().length >= 3 ? id.id().subString(0, 2) : "*BAD ID for "+ id.label + "*";
 
