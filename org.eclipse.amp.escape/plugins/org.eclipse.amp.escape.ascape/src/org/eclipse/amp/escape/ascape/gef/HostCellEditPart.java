@@ -15,11 +15,12 @@
  */
 package org.eclipse.amp.escape.ascape.gef;
 
-import org.ascape.model.LocatedAgent;
 import org.eclipse.amp.agf.gef.AgentEditPart;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.swt.graphics.Color;
+
+import org.ascape.model.LocatedAgent;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -36,7 +37,7 @@ public class HostCellEditPart extends AgentEditPart {
     protected IFigure buildFigure(IFigure figure) {
         LocatedAgent agent = (LocatedAgent) getModel();
         if (figure == null) {
-            figure = shapeOval();
+            figure = shapeRectangle();
             int size = AgentEditPart.SCALE * agent.getAgentSize();
             // figure.setSize(size, size);
         }
