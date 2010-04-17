@@ -99,9 +99,9 @@ public class Bug extends CellOccupant {
 				.getGrid2D().getSpace()).findRandomAvailable();
 		if (randomHabitat != null) {
 
-			if (getHostScape() != randomHabitat.getScape()) {
+			if (getHostScape() != ((Agent) randomHabitat).getScape()) {
 				die();
-				randomHabitat.getStupidModel5().getBugScape().add(this);
+				getStupidModel5().getBugScape().add(this);
 			}
 
 			moveTo(randomHabitat);
@@ -121,9 +121,9 @@ public class Bug extends CellOccupant {
 				false, getStupidModel5().getBugVision());
 		if (nearbySpace != null) {
 
-			if (getHostScape() != nearbySpace.getScape()) {
+			if (getHostScape() != ((Agent) nearbySpace).getScape()) {
 				die();
-				nearbySpace.getStupidModel5().getBugScape().add(this);
+				getStupidModel5().getBugScape().add(this);
 			}
 
 			moveTo(nearbySpace);

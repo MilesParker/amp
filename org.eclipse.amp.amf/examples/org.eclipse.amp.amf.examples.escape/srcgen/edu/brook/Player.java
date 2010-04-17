@@ -112,10 +112,9 @@ public class Player extends CellOccupant {
 				.getGameSpace().getSpace()).findRandomAvailable();
 		if (randomCell2 != null) {
 
-			if (getHostScape() != randomCell2.getScape()) {
+			if (getHostScape() != ((Agent) randomCell2).getScape()) {
 				die();
-				randomCell2.getDemographicPrisoner_sDilemma().getPlayerScape()
-						.add(this);
+				getDemographicPrisoner_sDilemma().getPlayerScape().add(this);
 			}
 
 			moveTo(randomCell2);
@@ -136,10 +135,9 @@ public class Player extends CellOccupant {
 						.getHostCell());
 		if (randomNeighbor != null) {
 
-			if (getHostScape() != randomNeighbor.getScape()) {
+			if (getHostScape() != ((Agent) randomNeighbor).getScape()) {
 				die();
-				randomNeighbor.getDemographicPrisoner_sDilemma()
-						.getPlayerScape().add(this);
+				getDemographicPrisoner_sDilemma().getPlayerScape().add(this);
 			}
 
 			moveTo(randomNeighbor);
@@ -249,10 +247,11 @@ public class Player extends CellOccupant {
 
 				Player createAgents = (Player) getDemographicPrisoner_sDilemma()
 						.getPlayerScape().getSpace().newLocation(false);
-				if (createAgents.getHostScape() != birthLocation.getScape()) {
+				if (createAgents.getHostScape() != ((Agent) birthLocation)
+						.getScape()) {
 					die();
-					birthLocation.getDemographicPrisoner_sDilemma()
-							.getPlayerScape().add(createAgents);
+					getDemographicPrisoner_sDilemma().getPlayerScape().add(
+							createAgents);
 				}
 
 				createAgents.moveTo(birthLocation);

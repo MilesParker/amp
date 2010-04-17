@@ -152,6 +152,7 @@ public class City extends Scape implements ModelFactoryProvider {
 		map.setName("Build City");
 		((CollectionSpace) map.getSpace()).setPeriodic(false);
 		add(map);
+
 		org.ascape.model.Scape placeScape = map;
 
 		add(individualScape);
@@ -355,9 +356,9 @@ public class City extends Scape implements ModelFactoryProvider {
 				.getRegionalMap().getSpace()).findRandomAvailable();
 		if (cityLocation != null) {
 
-			if (getHostScape() != cityLocation.getScape()) {
+			if (getHostScape() != ((Agent) cityLocation).getScape()) {
 				die();
-				cityLocation.getRegion().getCityScape().add(this);
+				getRegion().getCityScape().add(this);
 			}
 
 			moveTo(cityLocation);

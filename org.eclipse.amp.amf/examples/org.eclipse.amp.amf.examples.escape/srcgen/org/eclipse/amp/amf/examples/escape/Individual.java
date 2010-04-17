@@ -127,10 +127,9 @@ public class Individual extends CellOccupant {
 							.getHostCell());
 			if (partnerNeighbor != null) {
 
-				if (getHostScape() != partnerNeighbor.getScape()) {
+				if (getHostScape() != ((Agent) partnerNeighbor).getScape()) {
 					die();
-					partnerNeighbor.getWikiExample().getIndividualScape().add(
-							this);
+					getWikiExample().getIndividualScape().add(this);
 				}
 
 				moveTo(partnerNeighbor);
@@ -163,9 +162,9 @@ public class Individual extends CellOccupant {
 				.getCity().getSpace()).findRandomAvailable();
 		if (individual != null) {
 
-			if (getHostScape() != individual.getScape()) {
+			if (getHostScape() != ((Agent) individual).getScape()) {
 				die();
-				individual.getWikiExample().getIndividualScape().add(this);
+				getWikiExample().getIndividualScape().add(this);
 			}
 
 			moveTo(individual);

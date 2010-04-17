@@ -196,6 +196,7 @@ public class DemographicPrisonersDilemma extends Scape
 		gameSpace.setName("Build Grid");
 		((CollectionSpace) gameSpace.getSpace()).setPeriodic(true);
 		add(gameSpace);
+
 		org.ascape.model.Scape playCellScape = gameSpace;
 
 		add(playerScape);

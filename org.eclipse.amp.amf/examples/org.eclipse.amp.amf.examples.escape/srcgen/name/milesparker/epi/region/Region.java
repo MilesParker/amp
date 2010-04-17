@@ -198,6 +198,7 @@ public class Region extends Scape implements ModelFactoryProvider {
 		regionalMap.setName("Build Regional Map");
 		((CollectionSpace) regionalMap.getSpace()).setPeriodic(true);
 		add(regionalMap);
+
 		org.ascape.model.Scape regionalLocationScape = regionalMap;
 
 		add(cityScape);

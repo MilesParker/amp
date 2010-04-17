@@ -138,6 +138,7 @@ public class WikiExample extends Scape implements ModelFactoryProvider {
 		city.setName("Build Grid 2D");
 		((CollectionSpace) city.getSpace()).setPeriodic(false);
 		add(city);
+
 		org.ascape.model.Scape blockScape = city;
 
 		add(individualScape);

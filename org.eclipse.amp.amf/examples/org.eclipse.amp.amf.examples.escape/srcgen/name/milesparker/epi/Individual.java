@@ -105,16 +105,16 @@ public class Individual extends CellOccupant {
 
 	public void initializeLocation() {
 
-		Place cityLocation = (Place) ((org.ascape.model.space.Discrete) getEpidemic()
+		Object cityLocation = (Object) ((org.ascape.model.space.Discrete) getEpidemic()
 				.getCity().getSpace()).findRandomAvailable();
 		if (cityLocation != null) {
 
-			if (getHostScape() != cityLocation.getScape()) {
+			if (getHostScape() != ((Agent) cityLocation).getScape()) {
 				die();
-				cityLocation.getEpidemic().getIndividualScape().add(this);
+				getEpidemic().getIndividualScape().add(this);
 			}
 
-			moveTo(cityLocation);
+			moveTo(((HostCell) cityLocation));
 
 		}
 
@@ -132,19 +132,18 @@ public class Individual extends CellOccupant {
 				&& getStatus() != StatusEnum.symptomInfectious && movementDraw < getEpidemic()
 				.getMovementProbability())) {
 
-			Place neighboringLocation = (Place) ((org.ascape.model.space.Discrete) getEpidemic()
+			Object neighboringLocation = (Object) ((org.ascape.model.space.Discrete) getEpidemic()
 					.getCity().getSpace())
 					.findRandomAvailableNeighbor(((org.ascape.model.CellOccupant) this)
 							.getHostCell());
 			if (neighboringLocation != null) {
 
-				if (getHostScape() != neighboringLocation.getScape()) {
+				if (getHostScape() != ((Agent) neighboringLocation).getScape()) {
 					die();
-					neighboringLocation.getEpidemic().getIndividualScape().add(
-							this);
+					getEpidemic().getIndividualScape().add(this);
 				}
 
-				moveTo(neighboringLocation);
+				moveTo(((HostCell) neighboringLocation));
 
 			}
 
@@ -177,11 +176,11 @@ public class Individual extends CellOccupant {
 
 		if ((getStatus() == StatusEnum.symptomInfectious || getStatus() == StatusEnum.asymptomInfectious)) {
 
-			Conditional vulnerableCondition = new Conditional() {
+			Conditional potentialExposureCondition = new Conditional() {
 				private static final long serialVersionUID = 6846144446402098985L;
 
-				public boolean meetsCondition(Object vulnerableCell) {
-					if (vulnerableCell instanceof Individual) {
+				public boolean meetsCondition(Object potentialExposureCell) {
+					if (potentialExposureCell instanceof Individual) {
 						return true;
 					} else {
 						return false;
@@ -189,18 +188,18 @@ public class Individual extends CellOccupant {
 				}
 			};
 
-			Individual vulnerable = (Individual) ((org.ascape.model.space.Discrete) getEpidemic()
+			Individual potentialExposure = (Individual) ((org.ascape.model.space.Discrete) getEpidemic()
 					.getCity().getSpace()).findRandomNeighbor(this,
-					vulnerableCondition);
-			if (vulnerable != null) {
+					potentialExposureCondition);
+			if (potentialExposure != null) {
 
-				if (vulnerable.getStatus() == StatusEnum.susceptible) {
+				if (potentialExposure.getStatus() == StatusEnum.susceptible) {
 
 					double transmissionDraw = getRandom().nextDouble();
-					if (transmissionDraw < vulnerable
+					if (transmissionDraw < potentialExposure
 							.getContactTransmissionProbability()) {
 
-						vulnerable.setStatus(StatusEnum.exposed);
+						potentialExposure.setStatus(StatusEnum.exposed);
 					}
 
 				}
@@ -216,14 +215,14 @@ public class Individual extends CellOccupant {
 
 	public void progression() {
 
-		int progressionPeriod = getScape().getPeriod();
+		int currentPeriod = getScape().getPeriod();
 
-		if ((getExposureEndPeriod() != getAsymptomaticEndPeriod() && progressionPeriod == getExposureEndPeriod())) {
+		if ((getExposureEndPeriod() != getAsymptomaticEndPeriod() && currentPeriod == getExposureEndPeriod())) {
 
 			setStatus(StatusEnum.asymptomInfectious);
 		}
 
-		if (progressionPeriod == getOutcomePeriod()) {
+		if (currentPeriod == getOutcomePeriod()) {
 
 			double mortalityDraw = getRandom().nextDouble();
 			if (mortalityDraw < getEpidemic().getCaseMortalityRate()) {
@@ -238,12 +237,12 @@ public class Individual extends CellOccupant {
 
 		}
 
-		if ((progressionPeriod == getExposureEndPeriod() && getExposureEndPeriod() == getAsymptomaticEndPeriod())) {
+		if ((currentPeriod == getExposureEndPeriod() && getExposureEndPeriod() == getAsymptomaticEndPeriod())) {
 
 			setStatus(StatusEnum.symptomInfectious);
 		}
 
-		if ((progressionPeriod == getAsymptomaticEndPeriod() && getExposureEndPeriod() != getAsymptomaticEndPeriod())) {
+		if ((currentPeriod == getAsymptomaticEndPeriod() && getExposureEndPeriod() != getAsymptomaticEndPeriod())) {
 
 			setStatus(StatusEnum.symptomInfectious);
 		}

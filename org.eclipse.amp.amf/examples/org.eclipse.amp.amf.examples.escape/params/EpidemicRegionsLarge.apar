@@ -1,4 +1,6 @@
 model "|EpidemicRegional.metaabm"
+incorporates []
+
 "Region" [ 
 "Stop Period"=100
 ] 

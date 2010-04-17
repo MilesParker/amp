@@ -30,10 +30,6 @@ public class Epidemic3D extends Epidemic implements I3DModelFactoryProvider {
 					return new name.milesparker.epi.IndividualStyle2DColorProvider();
 				}
 
-				if (model instanceof Place) {
-					return new name.milesparker.epi.PlaceStyle2DColorProvider();
-				}
-
 				return null;
 			}
 		};

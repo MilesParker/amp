@@ -143,6 +143,7 @@ public class StupidModel2 extends Scape implements ModelFactoryProvider {
 		grid2D.setName("Fill Grid");
 		((CollectionSpace) grid2D.getSpace()).setPeriodic(true);
 		add(grid2D);
+
 		org.ascape.model.Scape habitatScape = grid2D;
 
 		add(bugScape);

@@ -1,7 +1,9 @@
 package org.metaabm.examples.stupid3;
 
+import org.ascape.model.HostCell;
 import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
 import org.eclipse.gef.EditPart;
+import org.eclipse.amp.escape.ascape.gef.DefaultHostCellEditPart;
 
 public class StupidModel3PartFactory extends AscapePartFactory {
 

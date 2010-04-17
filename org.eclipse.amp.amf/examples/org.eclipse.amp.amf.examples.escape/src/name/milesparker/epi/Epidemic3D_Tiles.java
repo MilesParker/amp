@@ -73,7 +73,7 @@ public class Epidemic3D_Tiles extends Epidemic3D implements I3DModelFactoryProvi
     public EditPartFactory getEditPart3DFactory() {
         return new Ascape3DPartFactory() {
             public IColorProvider getColorProvider(Object object) {
-                if (object instanceof Place) {
+                if (object instanceof HostCell) {
                     return INFECTED_TILE_COLOR_PROVIDER;
                 }
                 return super.getColorProvider(object);
