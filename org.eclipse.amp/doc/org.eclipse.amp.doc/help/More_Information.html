@@ -5,60 +5,79 @@
 <link href="book.css" rel="stylesheet" type="text/css">
 <meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
 <link rel="home" href="index.html" title="Agent Modeling Guide">
-<link rel="up" href="index.html" title="Agent Modeling Guide">
+<link rel="up" href="Reference_3.html" title="Reference">
 <link rel="prev" href="Reference_3.html" title="Reference">
+<link rel="next" href="More_Information_2.html" title="More Information">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">More Information</h1>
-<div class="section" title="Obtaining Example Models">
+<div class="section" title="Integrating Java and AMF Models">
 <div class="titlepage">
 <div>
 <div>
-<h2 class="title" style="clear: both">
-<a name="Obtaining_Example_Models"></a>Obtaining Example Models</h2>
+<h3 class="title">
+<a name="Integrating_Java_and_AMF_Models"></a>Integrating Java and AMF Models</h3>
 </div>
 </div>
 </div>
-<p>There is a cheat-sheet available for obtaining the example models. If you would rather obtain them yourself, here is the CVS information:</p>
-<div class="section">
-<div class="titlepage"></div>
-<div class="section" title="Import from CVS">
+<p>If you're like many Java developers, you might find point-and-click interfaces a bit lame. Personally, I've changed my tune in this, and I now define all of my ABM models from the editor, saving Java for truly specialized tasks. But even without generation of agent behavior, Acore can be a really valuable tool, as the GIS example shows. The way to look at metaABM is as a way to compose your overall model and automate the tedious parts. Apart from Java generated code, the AMF meta-model maintains a number of very useful artifacts. For example, the Repast Simphony target maintains model.score and all of the model.rs component. Generally, AMF should save time and hassle while making your models far more transparent even if you never use the Actions component to define agent behavior.</p>
+<div class="section" title="Method Action">
 <div class="titlepage">
 <div>
 <div>
 <h4 class="title">
-<a name="N109FA"></a>Import from CVS</h4>
+<a name="Method_Action"></a>Method Action</h4>
 </div>
 </div>
 </div>
-<div class="itemizedlist">
-<ul class="itemizedlist" type="disc">
-<li class="listitem">
-<p>Import the CVS projects from the AMP project repository. For help, see 
-								<a class="ulink" href="http://help.eclipse.org/help32/index.jsp?topic=/org.eclipse.platform.doc.user/reference/ref-40a.htm" target="_new">this page</a>. For repository details, see 
-								<a class="ulink" href="http://eclipse.org/amp/developers/repositoryDetails.php" target="_new">http://eclipse.org/amp/developers/repositoryDetails.php</a>. These are the example projects:
-							</p>
-</li>
-</ul>
+<p>As explained in the action section, you can simply create a "Method" act with hand-written Java code. This option is nice because all code is contained within the AMF file. But it can be difficult to maintain large blocks of Java code as you aren't using a Java editor to edit the Java code itself. One way to get around this is to create your code in the generated Java method and then copy it into the Method action. Note one imporant issue here -- you'll generally have to fully qualify your Java references as you won't be able to change the imports statements directly. </p>
 </div>
-<div class="literallayout">
-<p>org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape&nbsp;<br>
-org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.escape&nbsp;<br>
-org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast&nbsp;<br>
-
+<div class="section" title="Protected Code Regions">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Protected_Code_Regions"></a>Protected Code Regions</h4>
+</div>
+</div>
+</div>
+<p>You can mix and match Action behavior with Java and generated code with POJOs. One way to do this is through using protected regions. Select the agent you want to create protected methods for and then select "Generate Protected" from the "Mode" property. Now, create actions just as you have before, or use your existing ones. On code generation, open up the relevant java file and examine the methods that have been created. </p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/ProgrammingPojoGenerateProps.png"></div>
+<p>
+					
+</p>
+<p>You can put whatever you want within the PROTECTED REGION comments and those changes will be preserved when the model is regenerated. You can create a schedule, rule or watcher, maintain custom code for the actual implementations, and still have the model adapt to changes in the underlying data structure -- if for example you want to import a modified shape file.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/ProgrammingPojoGenerateCode.png"></div>
+<p>
+					
 </p>
 </div>
-<div class="itemizedlist">
-<ul class="itemizedlist" type="disc">
-<li class="listitem">
-<p>Right-click on the models to execute them.</p>
-</li>
-<li class="listitem">
-<p>Play around with the model attribute settings and behavior (Acts).</p>
-</li>
-</ul>
+<div class="section" title="Implement Sub-classes">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Implement_Sub-classes"></a>Implement Sub-classes</h4>
 </div>
 </div>
+</div>
+<p>Another approach which can be more robust is to generate the basic model stubs (like an abstract base class except that it isn't abstract) and then override your model with implementations. AMF provides support for generic skeletons and interfaces.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/ProgrammingPojoGenerate.png"></div>
+<p>
+					
+</p>
 </div>
 </div>
 </body>

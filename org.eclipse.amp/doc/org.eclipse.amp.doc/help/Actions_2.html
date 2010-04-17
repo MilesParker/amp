@@ -300,7 +300,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 </div>
 </div>
 </div>
-<p>As we discussed above, when we refer to a Select, we're actually referring to the selection as a whole leading up to the current action. The Select Action itself is used to define what we are searching for (Agent), where we are searching for it (Space), and from whose perspective we are doing it (Selection):</p>
+<p>As we discussed above, when we refer to a Select, we're actually referring to the selection as a whole leading up to the current action. The Select Action itself is used to define what we are searching for (Agent), where we are searching for it (Space), and from whose perspective we are doing it (Selection). Create Actions are a sepecial kind of Select Action that are used to create agents. See the decription in the Builders section below for more information.</p>
 <div class="section" title="Selection">
 <div class="titlepage">
 <div>
@@ -413,17 +413,17 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 </div>
 <p>A difference contains all agents that do not match any of its source actions. This essentially equivalent to a logical NOT statement, and has similarities to the Java else statement. Like the Union Action, difference implies that a given agent will only appear once in any subsequent targets. No agents that reach a Difference Action will flow through to the next action(s), and all agents (that meet the definition of the Select Action) that cannot reach that action will.</p>
 </div>
+</div>
 <div class="section" title="Roots">
 <div class="titlepage">
 <div>
 <div>
-<h5 class="title">
-<a name="Roots"></a>Roots</h5>
+<h4 class="title">
+<a name="Roots"></a>Roots</h4>
 </div>
 </div>
 </div>
 <p>Root actions are a special case of a selection. These represent behaviors that are defined for all members of agents; these are the highest granularity of an agent's behavior, such as "Find Partners" or "Eat" or "Reproduce". When you want to create a new set of Actions, you have the following choices.</p>
-</div>
 <div class="section" title="Build">
 <div class="titlepage">
 <div>
@@ -588,6 +588,50 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 <p>The set of values that will be used to determine the result, in the order of the function prototype. Inputs can specify any source evaluation and any agent state or agent parent context state. The selection determines which agent's will be used to determine the value, and different inputs can specify different selections.</p>
 </div>
 </div>
+<div class="section" title="Set">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Set"></a>Set</h5>
+</div>
+</div>
+</div>
+<p>The Set Action assigns some value to another value.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_3"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>Here the selection refers to the agent that we want to change. This does not have to be the immediatily preceeding selection but can be any accessible selection.</p>
+</div>
+<div class="section" title="Attribute">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Attribute_2"></a>Attribute</h6>
+</div>
+</div>
+</div>
+<p>The attribute to modify. It must be a member of this action's agent or of that agent's parent context.</p>
+</div>
+<div class="section" title="Parameter">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Parameter"></a>Parameter</h6>
+</div>
+</div>
+</div>
+<p>The value to assign to the attribute. Here, we can use either another agent attribute, or the results of a source evaluation. </p>
+</div>
+</div>
 <div class="section" title="Move">
 <div class="titlepage">
 <div>
@@ -603,23 +647,553 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 <div>
 <div>
 <h6 class="title">
-<a name="Selection_3"></a>Selection</h6>
+<a name="Selection_4"></a>Selection</h6>
 </div>
 </div>
 </div>
-<p>As with any </p>
+<p>As in any other action, the selection determines what agent is affected -- in this case the agent that is being moved.</p>
+</div>
+<div class="section" title="=Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name=".3DDestination"></a>=Destination</h6>
 </div>
 </div>
-<div class="section" title="Set">
+</div>
+<p>Specifies the target agent or location for the movement.</p>
+</div>
+</div>
+<div class="section" title="Leave">
 <div class="titlepage">
 <div>
 <div>
 <h5 class="title">
-<a name="Set"></a>Set</h5>
+<a name="Leave"></a>Leave</h5>
 </div>
 </div>
 </div>
-<p>The Set Action assigns some value to another value.</p>
+<p>Causes the agent to leave a particular space.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_5"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines what agent will be leaving and what space the agent will be leaving. If the agent doesn't exist in that space nothing will happen.</p>
+</div>
+<div class="section" title="=Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name=".3DDestination_2"></a>=Destination</h6>
+</div>
+</div>
+</div>
+<p>The destination is irrelevant for a leave action and should not be specified.</p>
+</div>
+</div>
+<div class="section" title="Die">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Die"></a>Die</h5>
+</div>
+</div>
+</div>
+<p>Causes the agent to cease to exist within the model as a whole.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_6"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines what space the agent to remove.</p>
+</div>
+<div class="section" title="=Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name=".3DDestination_3"></a>=Destination</h6>
+</div>
+</div>
+</div>
+<p>The destination is irrelevant in this case and will probably be removed.</p>
+</div>
+</div>
+<div class="section" title="Connect">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Connect"></a>Connect</h5>
+</div>
+</div>
+</div>
+<p>Connects two agents within a network space. This Action is not applicable for any other kinds of spaces. Note that unlike with other transformational commands, we do not use the destination space to determine the space that will be impacted by the Action. This provides a more efficient representation without any loss in generality, because it allows us to search for a source and target agent within other spaces and then create a connection without creating a separate selection. As the important structural feature of networks are the relationships themselves, not the nodes this provides a more direct way to specify these relationships.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_7"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.</p>
+</div>
+<div class="section" title="=Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name=".3DDestination_4"></a>=Destination</h6>
+</div>
+</div>
+</div>
+<p>The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.</p>
+</div>
+<div class="section" title="Within">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Within"></a>Within</h6>
+</div>
+</div>
+</div>
+<p>Specifies the network that the connection will be created within.</p>
+</div>
+</div>
+<div class="section" title="Directed">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Directed_2"></a>Directed</h5>
+</div>
+</div>
+</div>
+<p>Determines whether the connection made is directed or not. If true, selections from source agents will include the target, but target agent selections will not include the source agents (unless they are connected through some other path).</p>
+</div>
+<div class="section" title="Disconnect">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Disconnect"></a>Disconnect</h5>
+</div>
+</div>
+</div>
+<p>Removes the connection between agents within a network space. See the description of the Connect Action for important details.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_8"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines one side of the agent relationship that will be disconnected.</p>
+</div>
+<div class="section" title="=Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name=".3DDestination_5"></a>=Destination</h6>
+</div>
+</div>
+</div>
+<p>The selection determines one other side of the agent relationship that will be disconnected.</p>
+</div>
+<div class="section" title="Within">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Within_2"></a>Within</h6>
+</div>
+</div>
+</div>
+<p>Specifies the network that the connection will be created within.</p>
+</div>
+</div>
+<div class="section" title="Replace">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Replace"></a>Replace</h5>
+</div>
+</div>
+</div>
+<p>Functions in the same way as a Connect Action excepth that all other connections to other agents will first be removed.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_9"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.</p>
+</div>
+<div class="section" title="=Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name=".3DDestination_6"></a>=Destination</h6>
+</div>
+</div>
+</div>
+<p>The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.</p>
+</div>
+<div class="section" title="Within">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Within_3"></a>Within</h6>
+</div>
+</div>
+</div>
+<p>Specifies the network that the connection will be created within.</p>
+</div>
+</div>
+<div class="section" title="Directed">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Directed_3"></a>Directed</h5>
+</div>
+</div>
+</div>
+<p>Determines whether the connection made is directed or not. See the Connect description for more details.</p>
+</div>
+</div>
+<div class="section" title="Builders">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Builders"></a>Builders</h4>
+</div>
+</div>
+</div>
+<p>Builders are a special category of actions that are used to create spaces. They should not be confused with the Build Action itself which is a root selection that defines the time at which builder actions should occur. Generally speaking, specific Builder Actions for spaces and Create Actions for agents are targets of Build Actions.</p>
+<div class="section" title="Create Agents">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Create_Agents"></a>Create Agents</h5>
+</div>
+</div>
+</div>
+<p>Agents are crete using the Create Agent action. The Create Agent Action is actually a special kind of Select Action that is used to actually create agents rather than simply search for them. Other than this capability, a Create Agent action can be used just like any other action except that Query and Logic actions aren't needed or genrally appropriate as this action defines a set number of agents to perform an action against. Create Agent actions have the special feature of being usable from the containing context, so that contexts can create initial agent populations before any agents exist within the context to perform actions against. But they can also be used directly within agent rules, for example to create a child agent as the result of a reproducation rule. Note that Initialize Actions are 
+							<span class="italic">not</span> performed on agents that have been created within a model during regular (non-initialization time) execution. If the model creates actions during the regular model run, any state initialization should be handled by the targets of this action directly. (Naturally, if the enclosing context is used to create agents at the beginning of a model run, then the Initialize action is used as part of the normal model life-cycle.)
+						</p>
+<div class="section" title="Agent">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Agent_2"></a>Agent</h6>
+</div>
+</div>
+</div>
+<p>The kind of agent to create.</p>
+</div>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_10"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection to use as the basic for this selection. This is generally not important except to define control flow.</p>
+</div>
+<div class="section" title="Space">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Space_2"></a>Space</h6>
+</div>
+</div>
+</div>
+<p>Not generally relevant for agent actions, as agents are not placed into a space unless explicitly moved to that space. Potential associations between agents and spaces are defined by the space building actions.</p>
+</div>
+<div class="section" title="=Agent Count">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name=".3DAgent_Count"></a>=Agent Count</h6>
+</div>
+</div>
+</div>
+<p>The number of agents to create. If used as part of an enclosing context's Initialize Action(s) an Attribute parameter will automatically be created. If not, then an evaluation or agent attribute should be used to define this number.</p>
+</div>
+<div class="section" title="For">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="For_2"></a>For</h6>
+</div>
+</div>
+</div>
+<p>Deprected. Should not be used.</p>
+</div>
+</div>
+<div class="section" title="Create Shaped Agent">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Create_Shaped_Agent"></a>Create Shaped Agent</h5>
+</div>
+</div>
+</div>
+<p>Creates an agent that has a particular shape extent within some continuous (i.e. vector as opposed to raster) space. This action performs just like a Create Action except for the following attribute:</p>
+<div class="section" title="Shape">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Shape"></a>Shape</h6>
+</div>
+</div>
+</div>
+<p>Determines how each agent's spatial extent will be defined. The actual form of that shape is implementation specific. For example, in a GIS space (the immediate rationale for this Action) a polygon represents a region on a map and the extent of that shape might be determined by a .shape file. The available shape types are:</p>
+<div class="variablelist">
+<dl>
+<dt>
+<span class="term">Point</span>
+</dt>
+<dd>
+<p>A simple point in space, fully equivalent to a standard continuous space location.</p>
+</dd>
+<dt>
+<span class="term">Line</span>
+</dt>
+<dd>
+<p>A single line within a continuous space. Technically this represents a line segment as it is expected to have a beginning and ending point. In the future, this might refer more generically to planes in three dimensional space and hypersurfaces in n-dimensional spaces, but this is currently not supported by any AMF target implementations.</p>
+</dd>
+<dt>
+<span class="term">Polygon</span>
+</dt>
+<dd>
+<p>A region within a space defined by an arbitrarily large set of line segments. Potentially this could be used to refer to polyhedrons in three-dimeensional space, or even more genrally as polytopes, but this is currently not supported by any AMF target implementations.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="section" title="Load Agents">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Load_Agents"></a>Load Agents</h5>
+</div>
+</div>
+</div>
+<p>Imports and creates a set of agents from some input file. The actual form and manner of the import is implementation specific but should be inferrable from any source file based on the URL provided, assuming that the target platform or the AMF platform supports the appropriate imput type. For example, a Tab-CR delimited file might be used to populate a set of agents with various attributes. Additional meta-data could be provided by the URL, but we will likely add additional extensible meta-data to this action to better support the definition of expected input types and routines from within an AMF model itself. This action is equivalent to the Create Agents action except for:</p>
+<div class="section" title="Source URL">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Source_URL"></a>Source URL</h6>
+</div>
+</div>
+</div>
+<p>The location of the input file or set of meta-data used to determine the location and type of the input file.</p>
+</div>
+</div>
+<div class="section" title="Load Shaped Agents">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Load_Shaped_Agents"></a>Load Shaped Agents</h5>
+</div>
+</div>
+</div>
+<p>Combines the properties of the Create Shaped Agent and Load Agent Actions. The source url should of course specify an input format that supports the shape type specified. See the descriptions of the related actions for more details.</p>
+</div>
+<div class="section" title="Build Network">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Build_Network"></a>Build Network</h5>
+</div>
+</div>
+</div>
+<p>Creates a network, i.e. a graph structure, supporting the establishment of edges between arbitrary nodes.</p>
+<div class="section" title="Agents">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Agents_3"></a>Agents</h6>
+</div>
+</div>
+</div>
+<p>Specifies the set of agents that can exist within this network. Agents must be included here in order for them to make connections within the network but agents included here are not required to have connections within the network, nor are such connections created for them. (See important note regarding network types below.)</p>
+</div>
+<div class="section" title="Attributes">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Attributes_3"></a>Attributes</h6>
+</div>
+</div>
+</div>
+<p>Not currently used for networks.</p>
+</div>
+<div class="section" title="Network Type">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Network_Type"></a>Network Type</h6>
+</div>
+</div>
+</div>
+<p>Deprecated. This feature is only currently supported for Repast targets and is likely to be removed from future versions of the AMF meta-model. Future AMF implementations are likely will provide a different mechanism for instantiating and importing network structures either within the network defintion or through other Action definitions. Instead of using this feature, modelers should create specific networks by building them up with Connect Actions for indivdual agents. For example to create a small world netowrk, a modeler might create random links between agents and then replace or augment those connections.</p>
+</div>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_11"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>Not relevant for network builders except as part of normal control flow.</p>
+</div>
+</div>
+<div class="section" title="Build Grid">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Build_Grid"></a>Build Grid</h5>
+</div>
+</div>
+</div>
+<p>Creates a grid space.</p>
+<div class="section" title="Agents">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Agents_4"></a>Agents</h6>
+</div>
+</div>
+</div>
+<p>The set of agents that might exist as occupants of this grid; that is, members of individual cells within a given grid. Agents must be included here in order for instances to exist within the space, but agents included here do not actually have to exist within the space. (In the Repast implementation, all agents technically are memebers of the spatial projection, but are not required to have valid coordinates within that space.) For example, in an agriculture model these might represent agents moving about and harvesting plots of land.</p>
+</div>
+<div class="section" title="Fill Agent">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Fill_Agent"></a>Fill Agent</h6>
+</div>
+</div>
+</div>
+<p>The agent that will be used to populate the grid itself. A gird is guranteed to contain one and only one fill agent within each grid locaiton. The grid will be populated with instances of the specified agent and these agents cannot move, leave or die within this space. This value need not be specified -- if left blank a default cell without any state will be used. For example, in an agriculture model, this agent might represent a single plot of land.</p>
+</div>
+<div class="section" title="Space Type">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Space_Type"></a>Space Type</h6>
+</div>
+</div>
+</div>
+<p>Deprecated. Should not be used.</p>
+</div>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_12"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>Not relevant for builders except as part of normal control flow.</p>
+</div>
+<div class="section" title="Attributes">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Attributes_4"></a>Attributes</h6>
+</div>
+</div>
+</div>
+<p>Not currently used for spaces.</p>
+</div>
+</div>
+<div class="section" title="Build Space">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Build_Space"></a>Build Space</h5>
+</div>
+</div>
+</div>
+<p>Creates a continous space. The actual dimensionality and other qualities of the space are currently defined in the space itself though this might change in future versions. All other values are used in the same way as for the gird and other builder actions.</p>
+<div class="section" title="Agents">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Agents_5"></a>Agents</h6>
+</div>
+</div>
+</div>
+<p>The set of agents that might be a part of this space. Agents must be included here in order for instances to exist within the space, but agents included here do not actually have to exist within the space. (In the Repast implementation, all agents technically are memebers of the spatial projection, but are not required to have valid coordinates within that space.)</p>
+</div>
+</div>
+<div class="section" title="Build Geography">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Build_Geography"></a>Build Geography</h5>
+</div>
+</div>
+</div>
+<p>Constructs a geographical space. All details of this space are specfied by the implementation, i.e. a specific geographical imported space. Generally these would be defined by a Create Agents action; that is a set of imported agents representing US states would also represent the overall space of interest.</p>
 </div>
 </div>
 </div>

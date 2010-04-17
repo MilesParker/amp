@@ -3,7 +3,7 @@
 110-ModelersGuide_Structure.mediawiki
 120-ModelersGuide_Actions.mediawiki
 130-ModelersGuide_Functions.mediawiki
-200-ModelersGuide_Creating.mediawiki
+200-ModelersGuide_Tutorial.mediawiki
 300-ModelersGuide_Exploring.mediawiki
 400-ProgrammersGuide_Escape.mediawiki
 410-ProgrammersGuide_AMFPojo.mediawiki
