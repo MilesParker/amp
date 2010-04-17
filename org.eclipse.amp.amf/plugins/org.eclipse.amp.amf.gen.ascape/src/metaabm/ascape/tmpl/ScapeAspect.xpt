@@ -216,14 +216,16 @@
 «DEFINE CreateScape(int stage) FOR ABuildGrid-»
 		«IF stage == 0-»
 	        «projection.fieldName()» = new Scape(new «projection.spaceClass()»());
-	        «projection.fieldName()».setPrototypeAgent(new «fillAgent.typeName()»());
+	        «projection.fieldName()».setPrototypeAgent(new «fillAgentType()»());
 	        «projection.fieldName()».setExtent(new «projection.coordinateType()»(«projection.getterName()»Dimensions()));
 	        «projection.fieldName()».setName("«label»");
 	        «IF projection.periodic() != ""-»
 	        ((CollectionSpace) «projection.fieldName()».getSpace()).setPeriodic(«projection.periodic()»);
 	        «ENDIF-»
 			add(«projection.fieldName()»);
+			«IF fillAgent != null»
 			org.ascape.model.Scape «fillAgent.fieldName()» = «projection.id()»;
+			«ENDIF»
 	        «IF fillAgent.metaType == SContext»
 	        «projection.fieldName()».setAutoCreate(false);
 	        «projection.fieldName()».createScape();
@@ -232,7 +234,7 @@
 	        «FOREACH agents AS agent-»
 	        «agent.proto()».setHostScape(«projection.fieldName()»);
 	        «ENDFOREACH-»
-        	«IF ((AGroup) fillAgent.rootActivity).members.isEmpty-»
+        	«IF fillAgent == null || ((AGroup) fillAgent.rootActivity).members.isEmpty-»
 				«projection.fieldName()».getRules().clear();
 			«ENDIF-»
         «ENDIF-»
@@ -357,9 +359,9 @@
 
 «DEFINE InnerBlockCall(List[metaabm::act::AAct] path, Boolean inner) FOR AMove-»
 	«IF destination.space.metaType == SGrid»
-	if («selected.asAgent().pre()»getHostScape() != «destination.selid().expl()».getScape()) {
+	if («selected.asAgent().pre()»getHostScape() != ((Agent) «destination.selid().expl()»).getScape()) {
 	    die();
-	    «destination.selid().pre()»«destination.agent.owner.getterName()»().get«selected.agent.scape().toFirstUpper()»().add(«selected.asAgent().expl()»);
+	    «selected.agent.owner.getterName()»().get«selected.agent.scape().toFirstUpper()»().add(«selected.asAgent().expl()»);
 	}
 	«ENDIF»
 	«call(path, inner)»

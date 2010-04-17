@@ -42,6 +42,9 @@ cached String asAgent(SAgent agent) :
 cached Boolean returnsHost(AAct act) :
     act.selector().space != null &&  act.selector().space.isHost() && (!act.hasControl("neighbor") || act.hasControl("available"));
 
+cached String fillAgentType(ABuildGrid act) :
+    act.fillAgent != null ? act.fillAgent.typeName() : "HostCell";
+    
 cached Boolean findFromHost(AAct act) :
     !act.selector().selected.agent.isHost() && act.returnsHost();
 
@@ -49,10 +52,10 @@ cached String convertedAgent(AAct act, String wrapped) :
     act.convertToAgent() ? wrapped.toAgent() : wrapped;
 
 cached Boolean convertToAgent(AAct act) :
-    act.selector().space != null && act.selector().space.isHost() && !act.selector().agent.isHost() && act.returnsHost();
+    act.selector().space != null && act.selector().space.isHost() && !act.selector().isHost() && act.returnsHost();
 
 cached Boolean convertToHost(AAct act) :
-    (act.selector().space != null && act.selector().agent == act.reference && act.selector().space.isHost() && act.selector().agent.isHost() && !act.returnsHost()) || (act.hasControl("here") && !act.selector().selected.agent.isHost() && act.selector().agent.isHost());
+    (act.selector().space != null && act.selector().agent == act.reference && act.selector().space.isHost() && act.selector().isHost() && !act.returnsHost()) || (act.hasControl("here") && !act.selector().selected.agent.isHost() && act.selector().agent.isHost());
 
 cached String convertedHost(AAct act, String wrapped) :
     act.convertToHost() ? wrapped.toHost() : wrapped;
@@ -91,7 +94,9 @@ cached String spacePath(ASelect act, List[AAct] path, Boolean inner) :
 cached String destTerm(ASelect sel) :
 	sel.agent != null
 		? sel.asHost().expl()
-		: "((Coordinate)" + sel.id() + ")";
+		: (sel.space.metaType == SContinuousSpace
+			? "((Coordinate)" + sel.id() + ")"
+			: "((HostCell)" +sel.id()) + ")";
 
 cached String call(AMove act, List[AAct] path, Boolean inner) :
 		act.selected.asAgent().pre() + act.method(path, inner) + "(" + act.destination.destTerm() + ");";
@@ -136,7 +141,7 @@ cached List[AAct] conditionForState(AAct act) :
 	act.selector().targets.queries().nonSpatial().intersect(act.allSources.union({act}));
 		
 cached Boolean conditionForAscape(AControl act) :
-	(act.conditionFor() || act.convertToAgent() || !act.selector().agent.isHost()) && !act.hasControl("here") && !act.selector().isRoot();
+	(act.conditionFor() || act.convertToAgent() || !act.selector().isHost()) && !act.hasControl("here") && !act.selector().isRoot();
         
 cached Boolean conditionForAscape(ASelect act) :
     act.conditionFor() || act.convertToAgent();
@@ -161,9 +166,11 @@ cached Boolean hasParent(SAgent child, SAgent candidate) :
 	child.parent == candidate || child.parent != null && ((SAgent) child.parent).hasParent(candidate);
 
 cached String locationAgent(AAct act) :
-	!act.reference.hasParent(act.selector().agent)
-	? (act.findFromHost() ? act.selector().selected.selid().toHost() : act.selector().selected.selid())
-    : act.selector().agent.getterName() + "()";
+	act.selector().agent == null || !act.reference.hasParent(act.selector().agent)
+		? (act.findFromHost() 
+			? act.selector().selected.selid().toHost()
+			: act.selector().selected.selid())
+	    : act.selector().agent.getterName() + "()";
 
 cached String locationTerm(AAct act) :
     (act.hasControl("includeSelf") || act.hasControl("neighbor") || act.allTerms()) ? act.locationAgent().expl() : "";

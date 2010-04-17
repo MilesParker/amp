@@ -166,14 +166,18 @@ import org.ascape.util.Conditional;
 		«IF !((SContext) reference).projections.typeSelect(SNetwork).isEmpty-»
 		«projection.id()»View.setDrawNetwork(true);
 		«ENDIF-»
+		«IF fillAgent != null»
         «EXPAND StyleBuilder (projection) FOREACH fillAgent.styles-»
+        «ENDIF»
         «FOREACH agents AS buildAgent-»
         «EXPAND StyleBuilder (projection) FOREACH buildAgent.styles-»
         «ENDFOREACH-»
         «FOREACH agents AS buildAgent-»
         «EXPAND StyleSelector (projection) FOREACH buildAgent.styles-»
         «ENDFOREACH-»
+		«IF fillAgent != null»
         «EXPAND StyleSelector (projection) FOREACH fillAgent.styles-»
+        «ENDIF»
         «EXPAND StyleSelector (projection) FOR projection-»
 	«ENDIF-»
 «ENDAROUND»
