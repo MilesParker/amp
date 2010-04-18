@@ -113,7 +113,7 @@ context AMove WARNING "Destination for " + usageLabel() + " is the same as selec
    selected != destination;
       
 context AMove ERROR "Destination " + destination.usageLabel() + " for " + usageLabel() + " is not a cell. (The destination agent is " + destination.agent.usageLabel() + " and the fill agent for the destination is " + ((SGrid) destination.space).builder().fillAgent.usageLabel() + ".)": 
-   destination.space.metaType != SGrid || ((SGrid) destination.space).builder().fillAgent == destination.agent;
+   destination.space.metaType != SGrid || ((SGrid) destination.space).builder().fillAgent == null || ((SGrid) destination.space).builder().fillAgent == destination.agent;
      
 //Too common a situation 
 //context SAttribute WARNING "No default value specified for " + usageLabel() + ". Assuming " + defaultValue(): 
