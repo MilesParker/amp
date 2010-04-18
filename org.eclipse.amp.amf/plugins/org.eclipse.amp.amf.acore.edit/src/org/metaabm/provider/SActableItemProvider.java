@@ -40,7 +40,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SActable;
-import org.metaabm.act.MetaABMActFactory;
 import org.metaabm.act.AGroup;
 
 /*
@@ -49,8 +48,8 @@ import org.metaabm.act.AGroup;
  * @generated
  */
 public class SActableItemProvider extends SAttributedItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -148,7 +147,7 @@ public class SActableItemProvider extends SAttributedItemProvider implements IEd
             CompoundCommand cmd = new CompoundCommand();
             cmd.append(super.createSetCommand(domain, owner, feature, value, index));
             if (value instanceof AGroup) {
-                cmd.append(SetCommand.create(domain, value, MetaABMPackage.Literals.IID__LABEL, "Root Act Group"));
+                cmd.append(SetCommand.create(domain, value, MetaABMPackage.Literals.IID__LABEL, "Actions"));
             }
             return cmd;
         }

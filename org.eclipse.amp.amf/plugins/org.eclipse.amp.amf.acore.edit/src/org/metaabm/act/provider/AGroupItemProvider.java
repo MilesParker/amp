@@ -46,7 +46,6 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAgent;
 import org.metaabm.SContext;
@@ -65,8 +64,8 @@ import org.metaabm.commands.RemoveMultiValueCommand;
  * @generated
  */
 public class AGroupItemProvider extends AActItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier. <!--
      * begin-user-doc --> <!-- end-user-doc -->
@@ -104,10 +103,10 @@ public class AGroupItemProvider extends AActItemProvider implements IEditingDoma
      */
     protected void addPluralLabelPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SNamed_pluralLabel_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SNamed_pluralLabel_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SNamed_pluralLabel_feature",
-                                                                           "_UI_SNamed_type"),
+                                                                 "_UI_SNamed_type"),
                                                                  MetaABMPackage.Literals.SNAMED__PLURAL_LABEL, true,
                                                                  false, false,
                                                                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
@@ -122,10 +121,10 @@ public class AGroupItemProvider extends AActItemProvider implements IEditingDoma
      */
     protected void addDescriptionPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SNamed_description_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SNamed_description_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SNamed_description_feature",
-                                                                           "_UI_SNamed_type"),
+                                                                 "_UI_SNamed_type"),
                                                                  MetaABMPackage.Literals.SNAMED__DESCRIPTION, true,
                                                                  true, false,
                                                                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
@@ -140,10 +139,10 @@ public class AGroupItemProvider extends AActItemProvider implements IEditingDoma
      */
     protected void addRootsPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_AGroup_roots_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_AGroup_roots_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_AGroup_roots_feature",
-                                                                           "_UI_AGroup_type"),
+                                                                 "_UI_AGroup_type"),
                                                                  MetaABMActPackage.Literals.AGROUP__ROOTS, false,
                                                                  false, false, null,
                                                                  getString("_UI_RelationsPropertyCategory"), null));
@@ -157,13 +156,13 @@ public class AGroupItemProvider extends AActItemProvider implements IEditingDoma
      */
     protected void addMembersPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(), getString("_UI_AGroup_members_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_AGroup_members_feature", "_UI_AGroup_type"),
-                                                  MetaABMActPackage.Literals.AGROUP__MEMBERS, true, true, false, null,
-                                                  getString("_UI_RelationsPropertyCategory"),
-                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(), getString("_UI_AGroup_members_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_AGroup_members_feature", "_UI_AGroup_type"),
+                                                    MetaABMActPackage.Literals.AGROUP__MEMBERS, true, true, false, null,
+                                                    getString("_UI_RelationsPropertyCategory"),
+                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     // public Collection getChildren(Object object) {
@@ -224,7 +223,7 @@ public class AGroupItemProvider extends AActItemProvider implements IEditingDoma
      */
     public String getText(Object object) {
         if (getParent(object) instanceof SAgent) {
-            return "Acts";
+            return "Actions";
         } else {
             return super.getText(object);
         }
@@ -255,7 +254,7 @@ public class AGroupItemProvider extends AActItemProvider implements IEditingDoma
             case MetaABMActPackage.AGROUP__ROOTS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 fireNotifyChanged(new ViewerNotification(notification, getParent(notification.getNotifier()), true,
-                    false));
+                                                         false));
             case MetaABMActPackage.AGROUP__MEMBERS:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
                 return;
@@ -275,7 +274,7 @@ public class AGroupItemProvider extends AActItemProvider implements IEditingDoma
             // domain.getResourceSet());
             for (AAct act : (Collection<AAct>) collection) {
                 cmd.appendIfCanExecute(RemoveCommand.create(domain, act, MetaABMActPackage.Literals.AACT__TARGETS, act
-                        .getTargets()));
+                                                            .getTargets()));
                 if (act.getSelected() == act) {
                     cmd.append(SetCommand.create(domain, act, MetaABMActPackage.Literals.AACT__SELECTED, null));
                 }
@@ -291,7 +290,7 @@ public class AGroupItemProvider extends AActItemProvider implements IEditingDoma
             }
             for (AAct act : (Collection<AAct>) collection) {
                 cmd.appendIfCanExecute(RemoveCommand.create(domain, act, MetaABMActPackage.Literals.AACT__SOURCES, act
-                        .getSources()));
+                                                            .getSources()));
             }
             cmd.append(super.createRemoveCommand(domain, owner,
                                                  (EStructuralFeature) MetaABMActPackage.Literals.AGROUP__MEMBERS,
@@ -334,13 +333,13 @@ public class AGroupItemProvider extends AActItemProvider implements IEditingDoma
                     AGroup group = (AGroup) owner;
                     SContext context = group.getReference().getOwner();
                     Command create = SetCommand.create(domain, act, MetaABMActPackage.Literals.ASELECT__AGENT, group
-                            .getReference());
+                                                       .getReference());
                     cmd.appendIfCanExecute(create);
                     if (context != null) {
                         if (context.getProjections().size() == 1) {
                             cmd.appendIfCanExecute(SetCommand.create(domain, act,
                                                                      MetaABMActPackage.Literals.ASELECT__SPACE, context
-                                                                             .getProjections().get(0)));
+                                                                     .getProjections().get(0)));
                         }
                     }
                 }
