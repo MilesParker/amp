@@ -27,8 +27,8 @@ public class NewAgentGenCondition extends NewContextMemberGenCondition {
     public void postCondition() {
         postCondition(0);
         CommandTest.assertNotNull(model.getRootActivity());
-        CommandTest.assertEquals(model.getRootActivity().getLabel(), "Root Act Group");
-        CommandTest.assertEquals(model.getRootActivity().getID(), "rootActGroup");
+        CommandTest.assertEquals(model.getRootActivity().getLabel(), "Actions");
+        CommandTest.assertEquals(model.getRootActivity().getID(), "actions");
 
         CommandTest.assertEquals(build.getLabel(), "Build Root Context");
         CommandTest.assertEquals(create.getLabel(), "Create Root Context Agents");

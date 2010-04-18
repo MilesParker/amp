@@ -42,6 +42,6 @@ public class AddStyle2D extends CommandTransformer {
         CommandTest.assertEquals(style.getID(), "rootContextStyle2D");
         CommandTest.assertTrue(style.getAgent() == model);
         CommandTest.assertNotNull(style.getRootActivity());
-        CommandTest.assertEquals(style.getRootActivity().getLabel(), "Root Act Group");
+        CommandTest.assertEquals(style.getRootActivity().getLabel(), "Actions");
     }
 }
