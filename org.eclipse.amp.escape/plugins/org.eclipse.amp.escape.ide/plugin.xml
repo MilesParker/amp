@@ -281,8 +281,7 @@
 			</view>
 			<view
          id="org.eclipse.amp.view.TreeView"
-         ratio="0.25"
-         relationship="right"
+         relationship="stack"
          relative="org.eclipse.amp.view.ModelManager"
          visible="true">
 			</view>
@@ -298,7 +297,7 @@
    </perspectiveShortcut>
    <view
          id="org.eclipse.amp.escape.ide.InfoView"
-         minimized="false"
+         minimized="true"
          ratio=".3"
          relationship="right"
          relative="org.eclipse.amp.view.TreeView"
