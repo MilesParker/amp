@@ -43,8 +43,8 @@ context AAct ERROR "Selection for " + usageLabel() + " is not in path":
 context AInput ERROR "Selection for " + usageLabel() + " is not in path": 
    sink.allSources.contains(selected);
    
-//context AInput ERROR "Input " + usageLabel() + " has no value": 
-//   value != null;
+context AInput ERROR "Input " + usageLabel() + " has no value": 
+   value != null;
    
 context AInput ERROR "Selection not specified for Input " + usageLabel(): 
    selected != null || literal != null;
