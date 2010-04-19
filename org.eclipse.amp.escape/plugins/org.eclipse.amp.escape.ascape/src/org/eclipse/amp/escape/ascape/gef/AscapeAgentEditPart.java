@@ -19,6 +19,7 @@ import org.ascape.model.LocatedAgent;
 import org.eclipse.amp.agf.gef.AgentEditPart;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Shape;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 
 // TODO: Auto-generated Javadoc
@@ -37,10 +38,12 @@ public class AscapeAgentEditPart extends AgentEditPart {
         LocatedAgent agent = (LocatedAgent) getModel();
         if (figure == null) {
             figure = shapeOval();
-            int size = AgentEditPart.SCALE * agent.getAgentSize();
-            figure.setSize(size, size);
         }
-        ((Shape) figure).setBackgroundColor((Color) agent.getPlatformColor());
+        Color platformColor = (Color) agent.getPlatformColor();
+        if (platformColor == null) {
+            platformColor = getViewer().getControl().getDisplay().getSystemColor(SWT.COLOR_BLACK);
+        }
+        ((Shape) figure).setBackgroundColor(platformColor);
         return figure;
     }
 }
