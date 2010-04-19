@@ -1,4 +1,0 @@
-=Creating Agent Models=
-
-==Getting Started==
-

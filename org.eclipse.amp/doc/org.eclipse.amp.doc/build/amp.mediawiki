@@ -442,7 +442,7 @@ A selection defines a particular set of agents that we want to do something with
 
 =====Select=====
 
-As we discussed above, when we refer to a Select, we're actually referring to the selection as a whole leading up to the current action. The Select Action itself is used to define what we are searching for (Agent), where we are searching for it (Space), and from whose perspective we are doing it (Selection):
+As we discussed above, when we refer to a Select, we're actually referring to the selection as a whole leading up to the current action. The Select Action itself is used to define what we are searching for (Agent), where we are searching for it (Space), and from whose perspective we are doing it (Selection). Create Actions are a sepecial kind of Select Action that are used to create agents. See the decription in the Builders section below for more information.
 
 ======Selection======
 
@@ -486,7 +486,7 @@ A union contains all agents that match any of its source actions. This shares si
 
 A difference contains all agents that do not match any of its source actions. This essentially equivalent to a logical NOT statement, and has similarities to the Java else statement. Like the Union Action, difference implies that a given agent will only appear once in any subsequent targets. No agents that reach a Difference Action will flow through to the next action(s), and all agents (that meet the definition of the Select Action) that cannot reach that action will.
 
-=====Roots=====
+====Roots====
 
 Root actions are a special case of a selection. These represent behaviors that are defined for all members of agents; these are the highest granularity of an agent's behavior, such as "Find Partners" or "Eat" or "Reproduce". When you want to create a new set of Actions, you have the following choices.
 
@@ -548,17 +548,226 @@ A with queries, a function is evaluated against its input set. Functions can rep
 
 The set of values that will be used to determine the result, in the order of the function prototype. Inputs can specify any source evaluation and any agent state or agent parent context state. The selection determines which agent's will be used to determine the value, and different inputs can specify different selections.
 
+=====Set=====
+
+The Set Action assigns some value to another value.
+
+======Selection======
+
+Here the selection refers to the agent that we want to change. This does not have to be the immediatily preceeding selection but can be any accessible selection.
+
+======Attribute======
+
+The attribute to modify. It must be a member of this action's agent or of that agent's parent context.
+
+======Parameter======
+
+The value to assign to the attribute. Here, we can use either another agent attribute, or the results of a source evaluation. 
+
+
 =====Move=====
 
 The Move Action causes an agent to change its location in some space or network. The agent will leave whatever location it was in before within the selection space, and move to its new destination.
 
 ======Selection======
 
-As with any 
+As in any other action, the selection determines what agent is affected -- in this case the agent that is being moved.
 
-=====Set=====
+=======Destination======
 
-The Set Action assigns some value to another value.
+Specifies the target agent or location for the movement.
+
+
+=====Leave=====
+
+Causes the agent to leave a particular space.
+
+======Selection======
+
+The selection determines what agent will be leaving and what space the agent will be leaving. If the agent doesn't exist in that space nothing will happen.
+
+=======Destination======
+
+The destination is irrelevant for a leave action and should not be specified.
+
+=====Die=====
+
+Causes the agent to cease to exist within the model as a whole.
+
+======Selection======
+
+The selection determines what space the agent to remove.
+
+=======Destination======
+
+The destination is irrelevant in this case and will probably be removed.
+
+=====Connect=====
+
+Connects two agents within a network space. This Action is not applicable for any other kinds of spaces. Note that unlike with other transformational commands, we do not use the destination space to determine the space that will be impacted by the Action. This provides a more efficient representation without any loss in generality, because it allows us to search for a source and target agent within other spaces and then create a connection without creating a separate selection. As the important structural feature of networks are the relationships themselves, not the nodes this provides a more direct way to specify these relationships.
+
+======Selection======
+
+The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.
+
+=======Destination======
+
+The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.
+
+======Within======
+
+Specifies the network that the connection will be created within.
+
+=====Directed=====
+
+Determines whether the connection made is directed or not. If true, selections from source agents will include the target, but target agent selections will not include the source agents (unless they are connected through some other path).
+
+=====Disconnect=====
+
+Removes the connection between agents within a network space. See the description of the Connect Action for important details.
+
+======Selection======
+
+The selection determines one side of the agent relationship that will be disconnected.
+
+=======Destination======
+
+The selection determines one other side of the agent relationship that will be disconnected.
+
+======Within======
+
+Specifies the network that the connection will be created within.
+
+=====Replace=====
+
+Functions in the same way as a Connect Action excepth that all other connections to other agents will first be removed.
+
+======Selection======
+
+The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.
+
+=======Destination======
+
+The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.
+
+======Within======
+
+Specifies the network that the connection will be created within.
+
+=====Directed=====
+
+Determines whether the connection made is directed or not. See the Connect description for more details.
+
+====Builders====
+
+Builders are a special category of actions that are used to create spaces. They should not be confused with the Build Action itself which is a root selection that defines the time at which builder actions should occur. Generally speaking, specific Builder Actions for spaces and Create Actions for agents are targets of Build Actions.
+
+=====Create Agents=====
+
+Agents are crete using the Create Agent action. The Create Agent Action is actually a special kind of Select Action that is used to actually create agents rather than simply search for them. Other than this capability, a Create Agent action can be used just like any other action except that Query and Logic actions aren't needed or genrally appropriate as this action defines a set number of agents to perform an action against. Create Agent actions have the special feature of being usable from the containing context, so that contexts can create initial agent populations before any agents exist within the context to perform actions against. But they can also be used directly within agent rules, for example to create a child agent as the result of a reproducation rule. Note that Initialize Actions are ''not'' performed on agents that have been created within a model during regular (non-initialization time) execution. If the model creates actions during the regular model run, any state initialization should be handled by the targets of this action directly. (Naturally, if the enclosing context is used to create agents at the beginning of a model run, then the Initialize action is used as part of the normal model life-cycle.)
+
+======Agent======
+
+The kind of agent to create.
+
+======Selection======
+
+The selection to use as the basic for this selection. This is generally not important except to define control flow.
+
+======Space======
+
+Not generally relevant for agent actions, as agents are not placed into a space unless explicitly moved to that space. Potential associations between agents and spaces are defined by the space building actions.
+
+=======Agent Count======
+
+The number of agents to create. If used as part of an enclosing context's Initialize Action(s) an Attribute parameter will automatically be created. If not, then an evaluation or agent attribute should be used to define this number.
+
+======For======
+
+Deprected. Should not be used.
+
+=====Create Shaped Agent=====
+
+Creates an agent that has a particular shape extent within some continuous (i.e. vector as opposed to raster) space. This action performs just like a Create Action except for the following attribute:
+
+======Shape======
+
+Determines how each agent's spatial extent will be defined. The actual form of that shape is implementation specific. For example, in a GIS space (the immediate rationale for this Action) a polygon represents a region on a map and the extent of that shape might be determined by a .shape file. The available shape types are:
+
+; Point
+: A simple point in space, fully equivalent to a standard continuous space location.
+; Line
+: A single line within a continuous space. Technically this represents a line segment as it is expected to have a beginning and ending point. In the future, this might refer more generically to planes in three dimensional space and hypersurfaces in n-dimensional spaces, but this is currently not supported by any AMF target implementations.
+; Polygon
+: A region within a space defined by an arbitrarily large set of line segments. Potentially this could be used to refer to polyhedrons in three-dimeensional space, or even more genrally as polytopes, but this is currently not supported by any AMF target implementations.
+
+=====Load Agents=====
+
+Imports and creates a set of agents from some input file. The actual form and manner of the import is implementation specific but should be inferrable from any source file based on the URL provided, assuming that the target platform or the AMF platform supports the appropriate imput type. For example, a Tab-CR delimited file might be used to populate a set of agents with various attributes. Additional meta-data could be provided by the URL, but we will likely add additional extensible meta-data to this action to better support the definition of expected input types and routines from within an AMF model itself. This action is equivalent to the Create Agents action except for:
+
+======Source URL======
+
+The location of the input file or set of meta-data used to determine the location and type of the input file.
+
+=====Load Shaped Agents=====
+
+Combines the properties of the Create Shaped Agent and Load Agent Actions. The source url should of course specify an input format that supports the shape type specified. See the descriptions of the related actions for more details.
+
+=====Build Network=====
+
+Creates a network, i.e. a graph structure, supporting the establishment of edges between arbitrary nodes.
+
+======Agents======
+
+Specifies the set of agents that can exist within this network. Agents must be included here in order for them to make connections within the network but agents included here are not required to have connections within the network, nor are such connections created for them. (See important note regarding network types below.)
+
+======Attributes======
+
+Not currently used for networks.
+
+======Network Type======
+
+Deprecated. This feature is only currently supported for Repast targets and is likely to be removed from future versions of the AMF meta-model. Future AMF implementations are likely will provide a different mechanism for instantiating and importing network structures either within the network defintion or through other Action definitions. Instead of using this feature, modelers should create specific networks by building them up with Connect Actions for indivdual agents. For example to create a small world netowrk, a modeler might create random links between agents and then replace or augment those connections.
+
+======Selection======
+
+Not relevant for network builders except as part of normal control flow.
+
+=====Build Grid=====
+
+Creates a grid space.
+
+======Agents======
+
+The set of agents that might exist as occupants of this grid; that is, members of individual cells within a given grid. Agents must be included here in order for instances to exist within the space, but agents included here do not actually have to exist within the space. (In the Repast implementation, all agents technically are memebers of the spatial projection, but are not required to have valid coordinates within that space.) For example, in an agriculture model these might represent agents moving about and harvesting plots of land.
+
+======Fill Agent======
+
+The agent that will be used to populate the grid itself. A gird is guranteed to contain one and only one fill agent within each grid locaiton. The grid will be populated with instances of the specified agent and these agents cannot move, leave or die within this space. This value need not be specified -- if left blank a default cell without any state will be used. For example, in an agriculture model, this agent might represent a single plot of land.
+
+======Space Type======
+
+Deprecated. Should not be used.
+
+======Selection======
+
+Not relevant for builders except as part of normal control flow.
+
+======Attributes======
+
+Not currently used for spaces.
+
+=====Build Space=====
+
+Creates a continous space. The actual dimensionality and other qualities of the space are currently defined in the space itself though this might change in future versions. All other values are used in the same way as for the gird and other builder actions.
+
+======Agents======
+
+The set of agents that might be a part of this space. Agents must be included here in order for instances to exist within the space, but agents included here do not actually have to exist within the space. (In the Repast implementation, all agents technically are memebers of the spatial projection, but are not required to have valid coordinates within that space.)
+
+=====Build Geography=====
+
+Constructs a geographical space. All details of this space are specfied by the implementation, i.e. a specific geographical imported space. Generally these would be defined by a Create Agents action; that is a set of imported agents representing US states would also represent the overall space of interest.
 
 ===Example===
 
@@ -1012,9 +1221,270 @@ The following diagram may be helpful to readers familiar with UML and Meta-model
 =====Meta-Classes=====
 
 [[Image:images/FunctionsDiagram.png]]
-=Creating Agent Models=
+==Tutorial==
 
-==Getting Started==
+===Designing a Model===
+
+====Model Goals====
+
+Before beginning a modeling project it is important to have a clear idea of what is being modeled and how it
+should be modeled. We need to know a bit about where we are going before we start. This is our target, from the
+Railsback, Lytien and Grimm paper:
+#The space is a two-dimensional grid of dimensions 100 x 100. The space is toroidal, meaning that if bugs
+    move off one edge of the grid they appear on the opposite edge.
+#100 bug agents are created. They have one behavior: moving to a randomly chosen grid location within +/- 4
+    cells of their current location, in both the X and Y directions. If there already is a bug at the location
+    (including the moving bug itself, bugs are not allowed to stay at their current location unless none of the
+    neighborhood cells are vacant), then another new location is chosen. This action is executed once per time step.
+#The bugs are displayed on the space. Bugs are drawn as red circles. The display is updated at the end of each time step.
+===Model Implementation===
+
+====Setup====
+
+=====Open Agent Modeling Perspective=====
+
+A special Agent Modeling '''Perspective''' can be used to setup your '''Workspace''' for modeling. Depending on your how you installed the agent modeling tools, you can simply pick the perspective from the choices in the upper-right hand of your workbench:
+[[Image:images/SimpleTutorial0Perspective.png]]
+
+Or, if you can't see it there, you can access it by selecting the menu '''Open Perspective > Other... and then selecting the Agent Modeling perspective from the provided options:
+
+[[Image:images/SimpleTutorial0Perspective2.png]]
+
+
+=====Create Project=====
+
+Before doing anything else, we need a project -- a folder to organize our models within. Right-click in the Package Explorer and select '''New > Agent Modeling Escape Project'''.
+
+[[Image:images/SimpleTutorial1.png]]
+
+=====Name project=====
+
+We'll get a dialog allowing us to name the project. Let's call it something simple.
+
+[[Image:images/SimpleTutorial2.png]]
+
+=====Create Model=====
+
+We'll need a model as well. This is the container for all of the the agents and behaviors we'll be defining. Right-click on the project folder and choose '''New > Agent Model'''.
+
+[[Image:images/SimpleTutorial3CreateModel.png]]
+
+You'll see a model creation wizard from which you can name the model. Just give it the name "StupidModel.metaabm".
+
+[[Image:images/SimpleTutorial4CreateModel.png]]
+
+Click '''Next''' to see some other options. We don't need to change any of this:
+
+[[Image:images/SimpleTutorial5CreatePage2.png]]
+
+So just click the '''Finish''' button and we're ready to move on with the tutorial.
+
+====Structure====
+
+=====Create Agent=====
+
+Our first step is to create an agent. The root contexts and a number of neccessary model components were already created automatically. So right-click on the root "StupidModel1" context and select '''Create Member > Agent'''.
+
+[[Image:images/SimpleTutorial6Createagent.png]]
+
+Let's call it "Bug". In the lower left-hand corner you should see the '''Properties''' View. This is where you'll edit model values when working with the tree editor. The properties view -- as with any other view--- can be moved anywhere within the workbench and if you can't find it -- or any other views -- you can always lcoate it through '''Window > Show View > Other'''. Find the "Label" property and type our new name into it. You'll see that all of the related name properites are also updated.
+
+[[Image:images/SimpleTutorial6NameBug.png]]
+
+While we've been making these changes, the modeling framework has also been doing some work behind the scenes. For example, it has created an attribute and a rule to create the agents. Open the Actions node and the Attributes node to see these changes. If we look at the attributes for the model, we can see that an attribute specifying the number of agents has been created called "Bug Count". Select it, then enter "100" as the default value. The default value is the value the model will use if no value is specified anywhere else (like in the parameter launcher).
+
+[[Image:images/SimpleTutorial10AgentCount.png]]
+
+You might want to take a look at the Create Bugs rule, but there isn't anything we need to change there.
+
+[[Image:images/SimpleTutorial11BuildAgents.png]]
+
+=====Create Grid=====
+
+Next, we'll create a grid for the Bugs to move around upon. Right-click on the StupidModel1 context and choose '''New > Grid'''.
+
+[[Image:images/SimpleTutorial7CreateGrid.png]]
+
+Now, looking at the properties for the Grid we've just created, we can see that there are a number of properties to set. We want to make a number of changes.
+
+#Set the space's "Border Rule" property to be "Periodic" -- the edges wrap around from one ege to the other.
+#Set the "Neighborhood" property to be "Moore" -- that's how we are going to interpret the statement "in the X and Y directions".
+#Set the dimenionality to "2". (You might need to enlarge the Property view or use the scroll bar to see the Dimensionality property.)
+
+[[Image:images/SimpleTutorial8GridParameters.png]]
+
+Again, the framework has taken care of some thigns for us automatically. If we now open the Grid node, we can see that "Width" and "Height" attributes have been created based on the dimensionality we've just defined. We'll set each of them to "100", so that we end up with a 100 x 100 grid. (Which is pretty large for a model of this kind, but we want to go with the basic specification.)
+
+[[Image:images/SimpleTutorial9GridDims.png]]
+
+=====Create the Grid Builder=====
+
+We need to do one other thing to set up the structure. The editor has created behaviors (we call them "Actions") for creating agents, but we need to create an Act to build the grid Habitat members and make it a hospitable (or at least known) space for our bugs. So right-click to create a new Build Grid Act within the <i>Build Stupid Model</i> node within <i>Simple Agent's</i> Actions. (You may need to expand some nodes to get there.)
+
+So, select "Grid 2D" (the only choice) from the Space property.
+
+[[Image:images/SimpleTutorial14BuildGridParams.png]]
+
+Then click the '''...''' button next to the "Agents" property and add the Bug agent we created abovve to the Feature list in the dialog.
+
+[[Image:images/SimpleTutorial13BuildGridAgents.png]]
+
+====Actions====
+
+=====Create Initialize Rule=====
+
+Now we can make these bugs do something. Let's create our first rule. In this case we're going to create a special Initialize Action that executes once when the model is first created for each agent. All Actions begin from the agent (or style) Actions list and there are only a few Actions that can serve as roots. See the Design section of this guide for much more on that. Open the Bug node by clicking the triangle icon, right-click on the Actions node and select the '''Create Member > Initialize Action.
+
+[[Image:images/SimpleTutorial15CreateInitialize.png]]
+
+======Create Select Action======
+
+Next, right click on the new Initialize node and choose '''Create Member > Select''' to create a Select target.
+
+[[Image:images/SimpleTutorial16CreateSelect.png]]
+
+Selects are the central building blocks of model actions and define the basis for Query and Logic Actions that can be modified and used in subsequent targets. Targets are actions that "follow from" other actions. With this Select we are going to be searching for places for the Bug to move to at the very start of the model run. Here we need to specify the space we will be looking for cells within, so we set the Space property to "Grid 2D". Normally, we'd specify an agent as well, but as the Grid 2D cells don't have any attributes, we don't need to define them explicitly. So we just need to make sure that the Agent property is null (blank).
+
+[[Image:images/SimpleTutorial165Select2.png]]
+
+======Create Query Action======
+
+Next, we create a Query Action. A query is really a query term; we're specifying some aspect of the search that we're interested in.
+
+[[Image:images/SimpleTutorial17CreateQuery.png]]
+
+In this case we want a special kind of query, a query within space for any agents that are available; that is unoccupied by another agent. So we select "Spatial: Available" form the drop down list of query functions.
+
+[[Image:images/SimpleTutorial18QueryFunction.png]]
+
+======Create Move Action======
+
+Finally, as the last part of the initial action specification, we'll create a Move Action using '''Create Member > Move'''. (Not shown.) The properties should be correct, but check to make sure that the selection property is "Initialize" (the root), and the destination property is "Bug" (the Select Action we've defined above). Like this:
+
+[[Image:images/SimpleTutorial19Move.png]]
+
+=====Run Initial Model=====
+
+That's all we have to do to create our first working model! Now, go to the '''Package Explorer''' and select the StupidModel1.metaabm file. Right-click on it and select '''Execute'''. Or click on the first "m" button in the toolbar. (Again, we've simplified the toolbar for this tutorial, so you may have more buttons appearing then we're showing here.
+
+[[Image:images/SimpleTutorial20ExecuteModel.png]]
+
+A new perspective for "Agent Execution" will automatically open up and you can see that the agents have placed themselves in the grid. They don't do anything else yet.
+
+[[Image:images/SimpleTutorial21Execute2.png | right]]
+
+====Styles====
+
+=====Create Bug Style=====
+
+======Create Style======
+
+While Escape assigns a default color of black for the agents, we'll want something more interesting -- so let's make the Bugs red. Agent visualization is accomplished using the same mechanism as ordinary agent rules. So first, let's create a new Style. Right click on the "Styles" node and select '''
+
+[[Image:images/SimpleTutorial22CreateStyle.png | right]]
+
+By default the style will be called BugStyle2D. Open the Style to the Actions node and create a rule.
+
+======Create Style Rule======
+
+[[Image:images/SimpleTutorial23CreateStyleRule.png | right]]
+
+Now we need to create a series of evaluations. An Evaluation is like a Query in that it performs some kind of function in the broadest sense, but unlike a Query, it does not affect whether target (downstream) Acts are performed. For Styles we have a set of Graphic functions that we will chain together to draw a figure. First we create the Evaluation.
+
+======Create Evaluations======
+
+We make the first Evaluation define a Color of "Red". Right click on the new Rule, and select '''New > Command > Evaluate''' (not shown) to create an Evaluation. Then in the function property, select "Graphic: Color Red".
+
+[[Image:images/SimpleTutorial24EvaluationFunction.png | right]]
+
+We'll create two more evaluation targets. Right-click on the "Color Red" evaluation and create an Evaluation. Pick the "Graphic: Draw Oval" fill. For the last part of our style, we need to actually draw the figure. To do this we create a last Evaluation target for "Draw Oval" and give it the "Graphic: Fill Shape" function. By now it should be clear how to do this. "Fill" or "Outline" will always come last in a chain of graphic evaluations, but otherwise the order shouldn't matter. See the Demographic Prisoner's Dilemma model for an example of how this can be used to selectively pick Colors and or Shapes. You should end up with something like this:
+
+[[Image:images/SimpleTutorial25FinishStyle.png | right]]
+
+
+====Actions 2 Movement Rule====
+
+To make our agents move randomly every iteration, we will create a Rule. (For those familiar with Repast or other scheduling oriented AM platforms, a rule is just a schedule that gets activated each and every period for all agents.) At this point in the tutorial, we'll show screenshots only for aspects of the modeling process that haven't already been covered.
+
+======Create Select and Query Actions======
+
+The first part of the Bug Rule is exactly the same as the Initialize rule. We'll make the Select statement "Agent" property blank, as we want to move to a cell. As before, we want to make sure the Cell is free before we try to move in, so we'll select a "Spatial: Available" Query function.(By the way, to make scrolling through the list easier, you can type the first letters of the selection, in this case "SP".)
+
+But now, instead of moving <i>anywhere</i> we want to move nearby. So now, we create a ''parallel'' or "sibling" Query from the same Select root. Because this new Query Action is a child of the Select Action and not the "Space Available" Query we've just created, we'll right-click on the ''Select'' Action and choose '''Create Target > Select > Query'''. Like so:
+
+[[Image:images/SimpleTutorial26CreateQuery2.png | right]]
+
+Often, we would pick the "Spatial: Neighbor" function to take a random walk, but according to the specification, we actually want to move into some random Cell within distance four (4). So we will pick "Spatial: Within" from the list of functions. Instead of specifying the actual distance now, let's see how the Agent Modeling Framework error checking capabilities can help us in model development. Save the model by selecting '''File > Save''' from the application menu.
+    <p>You should see an error message.
+    
+[[Image:images/SimpleTutorial26CreateQuery2.png | right]]
+    
+    <img src="images/tutorials/stupidmodel1/ErrorChecking/ErrorMessage.jpg" alt="" />
+    <p>Over in the Package Explorer (file list) you can see that the .metaabm file has been marked with an error
+    symbol.</p>
+    <img src="images/tutorials/stupidmodel1/ErrorChecking/ProblemView.png" alt="" />
+    <p>Double-click on the problem marker and the offending item will be highlighted.</p>
+    <img src="images/tutorials/stupidmodel1/ErrorChecking/HighlightedError.jpg" alt="" /> <span class="info">
+    <p>In addition to error markers, metaABM provides warnings designed to help you avoid common design mistakes.
+    For example, a warning will be issued if you attempt to move an agent from its selection to the same selection; this
+    is not strictly speaking an error, but it doesn't make much sense. Notice that the Demographic Prisonner's Dilemma
+    model has a warning marker, this is because we are happy with the default values for the attributes and didn't
+    provide any.</p>
+    </span> <span class="note">You might also notice a number of Java warnings. By default the Eclipse IDE is very
+    conservative when it comes to warnings, and expects the usage of language constructs that we choose not to use. A
+    full discussion of all of this is beyond the scope of the tutorial, but see the Eclipse documentation on problem
+    views for more ideas about how to customize these views.</span>
+    <li class="arrow1">
+    <p>Returning to our model, we need a cell that is <i>both</i> Available and Within 4. To accomplish this,
+    metaABM supports Logical Acts which control how various Queries work together. So create an All Act as a target of
+    the Spatial Available Query.</p>
+    <img src="images/tutorials/stupidmodel1/BugRandomMovement/CreateAllTarget_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>Now for an interesting issue. Option-Drag the All node to <i>also</i> be a target of the Spatial Within Act.
+    (This is a copy and drag action -- the same one you would use to copy a file from one directory to another without
+    removing it form the original location. Depending on your OS, you may need to use the ALT or SHIFT key to accomplish
+    this.)</p>
+    <img src="images/tutorials/stupidmodel1/BugRandomMovement/CopyAll_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>We can then create a Target movement just as we did for the Initialize method above. But now as we have
+    defined parallel but Logically linked Acts the same Move node shows up in our hierarchical editor twice!</p>
+    <span class="note">This is probably a bit confusing for new users, but it is one of the aspects of the
+    metaABM design that provides efficient behavior representation. Supporting tools such as the Metascape IDE
+    Visualizer provide other ways to explore more complex Act structures.</span> <img
+        src="images/tutorials/stupidmodel1/BugRandomMovement/MoveFromAll_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>Now we just need to assign a value for search distance. We <i>could</i> simply create a literal for the
+    Spatial: Within Query but that isn't really god practice. (In fact, originally metaABM didn't allow any literals,
+    but that began to seem a little too hard-headed.) So we will create our first Attribute. In this case, we want the
+    Attribute to belong to Simple Model as it will be the same value for all Agents for now. So right-click on Simple
+    Agent: Attributes and create a new one.</p>
+    <img src="images/tutorials/stupidmodel1/BugRandomMovement/CreateBugVision_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>Name the Attribute -- "Bug Vision" seems descriptive -- give it a type of Integer, and assign it a default
+    value of 4. This will allow most ABM platforms to provide the ability to change vision at runtime or through batch
+    definitions, something we couldn't do if we had used a literal value.</p>
+    <img src="images/tutorials/stupidmodel1/BugRandomMovement/DefineBugVision_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>Finally, we assign the Vision attribute to the "Input" node in our Spatial: Within Query.</p>
+    <img src="images/tutorials/stupidmodel1/BugRandomMovement/SetWithinBugVision_75.jpg" alt="" /></li>
+    <hr />
+    <p style="text-align: right"><a name="run" shape="rect" /><a href="#top" shape="rect">contents</a></p>
+    <h3>Run Final Model</h3>
+    <li class="arrow1">
+    <p>And here is our final model! Not looking much different in a snapshot, but those agents should now be moving
+    around.</p>
+    <img src="images/tutorials/stupidmodel1/RunModel/RunFinalModel_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>We have built a complete Ascape model from our metaABM model. But that's not all -- we also have a complete
+    Repast model! We will leave this as an exercise -- you can simply follow the directions in the example model section
+    on Demographic Prisoner's Dilemma.</p>
+    <span class="info">If you get completely stuck, SimpleModel1 is available in <a href="../downloads/models/StupidModel1.metaabm">model downloads</a>.</span>
+    <h4>That's all for Now</h4>
+    <p>We hope these "Getting Started" has enabled you to get up and running and given you some familiarity with the
+    basic metaABM approach. Upcoming articles will explore metaABM model design in more depth and provide a complete
+    Stupid Model implementation. Technical Articles will provide more explanation of the theoretical and practical
+    decisions that went into metaABM.</p>
+    </li>
 
 =Exploring Agent Models=
 =Programer's Guide=
@@ -1167,6 +1637,31 @@ That's about it, though it's probable that we've missed something. Please post a
 ====Configuration====
 
 Instead of using Ant, Escape has really nice support for parameterizing and testing models. See [[Experimenting and Testing]] (todo). If you do want to work with ant you will need to install the plugins from the Sourceforge download site. (These have dependencies that I didn't want to bother with going through the Eclipse IP process to get in. If for some reason you think these should be part of core Escape let Miles know and I'll take care of it.) Ant has not been tested for Escape so it's not even clear it will work.
+==More Information==
+
+===Integrating Java and AMF Models===
+
+If you're like many Java developers, you might find point-and-click interfaces a bit lame. Personally, I've changed my tune in this, and I now define all of my ABM models from the editor, saving Java for truly specialized tasks. But even without generation of agent behavior, Acore can be a really valuable tool, as the GIS example shows. The way to look at metaABM is as a way to compose your overall model and automate the tedious parts. Apart from Java generated code, the AMF meta-model maintains a number of very useful artifacts. For example, the Repast Simphony target maintains model.score and all of the model.rs component. Generally, AMF should save time and hassle while making your models far more transparent even if you never use the Actions component to define agent behavior.
+
+====Method Action====
+
+As explained in the action section, you can simply create a "Method" act with hand-written Java code. This option is nice because all code is contained within the AMF file. But it can be difficult to maintain large blocks of Java code as you aren't using a Java editor to edit the Java code itself. One way to get around this is to create your code in the generated Java method and then copy it into the Method action. Note one imporant issue here -- you'll generally have to fully qualify your Java references as you won't be able to change the imports statements directly. 
+
+====Protected Code Regions====
+
+You can mix and match Action behavior with Java and generated code with POJOs. One way to do this is through using protected regions. Select the agent you want to create protected methods for and then select "Generate Protected" from the "Mode" property. Now, create actions just as you have before, or use your existing ones. On code generation, open up the relevant java file and examine the methods that have been created. 
+
+[[Image:images/ProgrammingPojoGenerateProps.png]]
+
+You can put whatever you want within the PROTECTED REGION comments and those changes will be preserved when the model is regenerated. You can create a schedule, rule or watcher, maintain custom code for the actual implementations, and still have the model adapt to changes in the underlying data structure -- if for example you want to import a modified shape file.
+
+[[Image:images/ProgrammingPojoGenerateCode.png]]
+
+====Implement Sub-classes====
+
+Another approach which can be more robust is to generate the basic model stubs (like an abstract base class except that it isn't abstract) and then override your model with implementations. AMF provides support for generic skeletons and interfaces.
+
+[[Image:images/ProgrammingPojoGenerate.png]]
 =More Information=
 
 ==Obtaining Example Models==

@@ -20,11 +20,10 @@ Railsback, Lytien and Grimm paper:
 
 =====Open Agent Modeling Perspective=====
 
-A special Agent Modeling '''Perspective''' can be used to setup your '''Workspace''' for modeling. Dependening on your installtion of the agent modeling tools, you can simply pick the perspective from the choices in the upper-right hand of your workbench:
-
+A special Agent Modeling '''Perspective''' can be used to setup your '''Workspace''' for modeling. Depending on your how you installed the agent modeling tools, you can simply pick the perspective from the choices in the upper-right hand of your workbench:
 [[Image:images/SimpleTutorial0Perspective.png]]
 
-Or, if you can't see it there, you can access it by selecting the mene '''Open Perspective > Other... and selecting the Agent Modeling persspective from the provided options:
+Or, if you can't see it there, you can access it by selecting the menu '''Open Perspective > Other... and then selecting the Agent Modeling perspective from the provided options:
 
 [[Image:images/SimpleTutorial0Perspective2.png]]
 
@@ -109,17 +108,23 @@ Then click the '''...''' button next to the "Agents" property and add the Bug ag
 
 ====Actions====
 
+=====Create Initialize Rule=====
+
 Now we can make these bugs do something. Let's create our first rule. In this case we're going to create a special Initialize Action that executes once when the model is first created for each agent. All Actions begin from the agent (or style) Actions list and there are only a few Actions that can serve as roots. See the Design section of this guide for much more on that. Open the Bug node by clicking the triangle icon, right-click on the Actions node and select the '''Create Member > Initialize Action.
 
 [[Image:images/SimpleTutorial15CreateInitialize.png]]
+
+======Create Select Action======
 
 Next, right click on the new Initialize node and choose '''Create Member > Select''' to create a Select target.
 
 [[Image:images/SimpleTutorial16CreateSelect.png]]
 
-Selects are the central building blocks of model actions and define the basis for Query and Logic Actions that can be modified and used in subsequent targets. Targets are actions that "follow from" other actions. With this Select we are going to be searching for places for the Bug to move to at the very start of the model run. Here we just need to specify the space we will be looking for cells within, so we set the Space property to "Grid 2D". (Normally, we'd specify an agent as well, but as the Grid 2D cells don't have any attributes, we don't need to define them explicitly. In more complex models, we would.)
+Selects are the central building blocks of model actions and define the basis for Query and Logic Actions that can be modified and used in subsequent targets. Targets are actions that "follow from" other actions. With this Select we are going to be searching for places for the Bug to move to at the very start of the model run. Here we need to specify the space we will be looking for cells within, so we set the Space property to "Grid 2D". Normally, we'd specify an agent as well, but as the Grid 2D cells don't have any attributes, we don't need to define them explicitly. So we just need to make sure that the Agent property is null (blank).
 
-[[Image:images/SimpleTutorial165CreateSelect2.png]]
+[[Image:images/SimpleTutorial165Select2.png]]
+
+======Create Query Action======
 
 Next, we create a Query Action. A query is really a query term; we're specifying some aspect of the search that we're interested in.
 
@@ -129,8 +134,113 @@ In this case we want a special kind of query, a query within space for any agent
 
 [[Image:images/SimpleTutorial18QueryFunction.png]]
 
+======Create Move Action======
+
 Finally, as the last part of the initial action specification, we'll create a Move Action using '''Create Member > Move'''. (Not shown.) The properties should be correct, but check to make sure that the selection property is "Initialize" (the root), and the destination property is "Bug" (the Select Action we've defined above). Like this:
 
-
 [[Image:images/SimpleTutorial19Move.png]]
+
+=====Run Initial Model=====
+
+That's all we have to do to create our first working model! Now, go to the '''Package Explorer''' and select the StupidModel1.metaabm file. Right-click on it and select '''Execute'''. Or click on the first "m" button in the toolbar. (Again, we've simplified the toolbar for this tutorial, so you may have more buttons appearing then we're showing here.
+
+[[Image:images/SimpleTutorial20ExecuteModel.png]]
+
+A new perspective for "Agent Execution" will automatically open up and you can see that the agents have placed themselves in the grid. They don't do anything else yet.
+
+[[Image:images/SimpleTutorial21Execute2.png | right]]
+
+====Styles====
+
+=====Create Bug Style=====
+
+======Create Style======
+
+While Escape assigns a default color of black for the agents, we'll want something more interesting -- so let's make the Bugs red. Agent visualization is accomplished using the same mechanism as ordinary agent rules. So first, let's create a new Style. Right click on the "Styles" node and select '''
+
+[[Image:images/SimpleTutorial22CreateStyle.png | right]]
+
+By default the style will be called BugStyle2D. Open the Style to the Actions node and create a rule.
+
+======Create Style Rule======
+
+[[Image:images/SimpleTutorial23CreateStyleRule.png | right]]
+
+Now we need to create a series of evaluations. An Evaluation is like a Query in that it performs some kind of function in the broadest sense, but unlike a Query, it does not affect whether target (downstream) Acts are performed. For Styles we have a set of Graphic functions that we will chain together to draw a figure. First we create the Evaluation.
+
+======Create Evaluations======
+
+We make the first Evaluation define a Color of "Red". Right click on the new Rule, and select '''New > Command > Evaluate''' (not shown) to create an Evaluation. Then in the function property, select "Graphic: Color Red".
+
+[[Image:images/SimpleTutorial24EvaluationFunction.png | right]]
+
+We'll create two more evaluation targets. Right-click on the "Color Red" evaluation and create an Evaluation. Pick the "Graphic: Draw Oval" fill. For the last part of our style, we need to actually draw the figure. To do this we create a last Evaluation target for "Draw Oval" and give it the "Graphic: Fill Shape" function. By now it should be clear how to do this. "Fill" or "Outline" will always come last in a chain of graphic evaluations, but otherwise the order shouldn't matter. See the Demographic Prisoner's Dilemma model for an example of how this can be used to selectively pick Colors and or Shapes. You should end up with something like this:
+
+[[Image:images/SimpleTutorial25FinishStyle.png | right]]
+
+
+====Actions 2 Movement Rule====
+
+To make our agents move randomly every iteration, we will create a Rule. (For those familiar with Repast or other scheduling oriented AM platforms, a rule is just a schedule that gets activated each and every period for all agents.) At this point in the tutorial, we'll show screenshots only for aspects of the modeling process that haven't already been covered.
+
+======Create Select and Query Actions======
+
+The first part of the Bug Rule is exactly the same as the Initialize rule. We'll make the Select statement "Agent" property blank, as we want to move to a cell. As before, we want to make sure the Cell is free before we try to move in, so we'll select a "Spatial: Available" Query function.(By the way, to make scrolling through the list easier, you can type the first letters of the selection, in this case "SP".)
+
+But now, instead of moving <i>anywhere</i> we want to move nearby. So now, we create a ''parallel'' or "sibling" Query from the same Select root. Because this new Query Action is a child of the Select Action and not the "Space Available" Query we've just created, we'll right-click on the ''Select'' Action and choose '''Create Target > Select > Query'''. Like so:
+
+[[Image:images/SimpleTutorial26CreateQuery2.png | right]]
+
+Often, we would pick the "Spatial: Neighbor" function to take a random walk, but according to the specification, we actually want to move into some random Cell within distance four (4). So we will pick "Spatial: Within" from the list of functions. Instead of specifying the actual distance now, let's see how the Agent Modeling Framework error checking capabilities can help us in model development. Save the model by selecting '''File > Save''' from the application menu. Notice that a red marker appears next to the StupidModel1.metaabm file. If you reveal the '''Problems View''' you'll see a list of current errors and warnings and if you open the errors node in that list, you'll see an item reporting that the input has no value. If you double-click on that item, you'll be taken to the input for the Within query and you'll be able to edit it.
+
+[[Image:images/SimpleTutorial27NoValue.png | right]]
+    
+In addition to error markers, metaABM provides warnings designed to help you avoid common design mistakes. For example, a warning will be issued if you attempt to move an agent from its selection to the same selection; this is not strictly speaking an error, but it doesn't make much sense. You'll also recieve warning for default values that have not been specified. You might notice that the Demographic Prisonner's Dilemma model has warning markers, this is because we were happy with the '0' default values for the attributes and didn't provide any. (By the way, you might also notice a number of Java warnings. By default the Eclipse IDE is very conservative when it comes to warnings, and expects the usage of language constructs that we choose not to use. A full discussion of all of this is beyond the scope of the tutorial, but see the Eclipse documentation on problem views for more ideas about how to customize these views.)
+
+Now we just need to assign a value for search distance. We <i>could</i> simply create a literal for the Spatial: Within Query but that isn't really god practice. (In fact, originally metaABM didn't allow any literals, but that began to seem a little too hard-headed.) So we will create our first Attribute. In this case, we want the Attribute to belong to Simple Model as it will be the same value for all Agents for now. So right-click on Simple Agent: Attributes and create a new one.
+
+
+Name the Attribute -- "Bug Vision" seems descriptive -- give it a type of Integer, and assign it a default value of 4. This will allow most ABM platforms to provide the ability to change vision at runtime or through batch definitions, something we couldn't do if we had used a literal value.
+
+Finally, we assign the Vision attribute to the "Input" node in our Spatial: Within Query.
+
+Now, we need to combine the requirement that the cell be available with the requirement that it be within 4 cell's distance. To accomplish this, we'll add an Intersetion Action. The Logical Actions, including "Intersection", "Union" and "None" define how Query Actions work together. So create an Intersection Actions as a target of the Spatial Available Query.
+    <p>Now for an interesting issue. Option-Drag the All node to <i>also</i> be a target of the Spatial Within Act.
+    (This is a copy and drag action -- the same one you would use to copy a file from one directory to another without
+    removing it form the original location. Depending on your OS, you may need to use the ALT or SHIFT key to accomplish
+    this.)</p>
+    <img src="images/tutorials/stupidmodel1/BugRandomMovement/CopyAll_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>We can then create a Target movement just as we did for the Initialize method above. But now as we have
+    defined parallel but Logically linked Acts the same Move node shows up in our hierarchical editor twice!</p>
+    <span class="note">This is probably a bit confusing for new users, but it is one of the aspects of the
+    metaABM design that provides efficient behavior representation. Supporting tools such as the Metascape IDE
+    Visualizer provide other ways to explore more complex Act structures.</span> <img
+        src="images/tutorials/stupidmodel1/BugRandomMovement/MoveFromAll_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>Name the Attribute -- "Bug Vision" seems descriptive -- give it a type of Integer, and assign it a default
+    value of 4. This will allow most ABM platforms to provide the ability to change vision at runtime or through batch
+    definitions, something we couldn't do if we had used a literal value.</p>
+    <img src="images/tutorials/stupidmodel1/BugRandomMovement/DefineBugVision_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>Finally, we assign the Vision attribute to the "Input" node in our Spatial: Within Query.</p>
+    <img src="images/tutorials/stupidmodel1/BugRandomMovement/SetWithinBugVision_75.jpg" alt="" /></li>
+    <hr />
+    <p style="text-align: right"><a name="run" shape="rect" /><a href="#top" shape="rect">contents</a></p>
+    <h3>Run Final Model</h3>
+    <li class="arrow1">
+    <p>And here is our final model! Not looking much different in a snapshot, but those agents should now be moving
+    around.</p>
+    <img src="images/tutorials/stupidmodel1/RunModel/RunFinalModel_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>We have built a complete Ascape model from our metaABM model. But that's not all -- we also have a complete
+    Repast model! We will leave this as an exercise -- you can simply follow the directions in the example model section
+    on Demographic Prisoner's Dilemma.</p>
+    <span class="info">If you get completely stuck, SimpleModel1 is available in <a href="../downloads/models/StupidModel1.metaabm">model downloads</a>.</span>
+    <h4>That's all for Now</h4>
+    <p>We hope these "Getting Started" has enabled you to get up and running and given you some familiarity with the
+    basic metaABM approach. Upcoming articles will explore metaABM model design in more depth and provide a complete
+    Stupid Model implementation. Technical Articles will provide more explanation of the theoretical and practical
+    decisions that went into metaABM.</p>
+    </li>
 

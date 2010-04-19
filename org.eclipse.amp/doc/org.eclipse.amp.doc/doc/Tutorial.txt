@@ -1,0 +1,145 @@
+
+    <img src="images/tutorials/stupidmodel1/BugInitialMovement/NameRandomHabitatQuery_75.jpg" alt="" /></li>
+    <span class="note">By the way, you've probably noticed that the platform creates names that often make sense,
+    but you can always replace them with more descriptive names. </span>
+    <li class="arrow1">
+    <p>Now that we know our destination we can Move. Create a Move Rule. (At this point you should be getting
+    familiar with the interface, so we will skip steps here and there.) For the Move we need to define a Select from
+    which we want to Move; "Selected", and a Select that we want to move to; "Destination". MetaABM picks exactly what
+    we want here for this common case.<span></span></p>
+    <img src="images/tutorials/stupidmodel1/BugInitialMovement/AddMoveMethod_75.jpg" alt="" /></li>
+    <hr />
+    <p style="text-align: right"><a name="style" shape="rect" /><a href="#top" shape="rect">contents</a></p>
+    <h3>Agent Styles</h3>
+    <li>
+    <p>There is one other thing to do before we can see what we have accomplished. While most ABM platforms have
+    some kind of default color scheme, let's make the Bugs red. Agent visualization is accomplished using the same
+    mechanism as ordinary agent rules. So first, let's create a new Style. By default the style will be called
+    BugStyle2D, and that will work fine for now.</p>
+    <img src="images/tutorials/stupidmodel1/DefineStyle/CreateBugStyle_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>Now we need to create a series of evaluations. An Evaluation is like a Query in that it performs some kind of
+    function in the broadest sense, but unlike a Query, it does not affect whether target (downstream) Acts are
+    performed. For Styles we have a set of Graphic functions that we will chain together to draw a figure. First we
+    create the Evaluation.</p>
+    <img src="images/tutorials/stupidmodel1/DefineStyle/CreateStyleEval_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>We make the first Evaluation define a Color of "Red".</p>
+    <img src="images/tutorials/stupidmodel1/DefineStyle/BugStyleColor_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>Next, create a "Draw Oval" fill. <span class="note">There are other graphic shapes, but at this
+    writing we only have implementations for Ovals and Rectangles and Markers.</span></p>
+    </li>
+    <li class="arrow1">
+    <p>For the last part of our style, we need to actually draw the figure. To do this we create a last Evaluation
+    of "Graphic: Fill Shape".</p>
+    <span class="info">"Fill" or "Outline" will always come last in a chain of graphic evaluations, but otherwise
+    the order shouldn't matter. See the Demographic Prisoner's Dilemma model for an example of how this can be used to
+    selectively pick Colors and or Shapes.</span> <img
+        src="images/tutorials/stupidmodel1/DefineStyle/BugStyleGraphicFill_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>We can also create a Style for the Habitat. This gives the cells a nice green Color, and will come in handy
+    later when we want to draw state for the Habitat agents. (Also it is currently necessary to make our implementation
+    of Repast graphics work correctly.)</p>
+    <img src="images/tutorials/stupidmodel1/DefineStyle/CreateHabitatStyle_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>It is time to run our model. Right-click on the StupidModel metaabm file, and select Run As..:Ascape metaABM
+    Model.</p>
+    <img src="images/tutorials/stupidmodel1/RunModel/RunInitialModel_75.jpg" alt="" />
+    <p>Voila!</p>
+    <img src="images/tutorials/stupidmodel1/RunModel/RunningInitialModel_75.jpg" alt="" /></li>
+    <hr />
+    <p style="text-align: right"><a name="movement" shape="rect" /><a href="#top" shape="rect">contents</a></p>
+    <h3>Agent Movement</h3>
+    <li class="arrow1">
+    <p>To make our agents move randomly every iteration, we will create a Rule. (For those familiar with Repast or
+    other scheduling oriented AM platforms, a rule is just a schedule that gets activated each and every period for all
+    agents.)</p>
+    <img src="images/tutorials/stupidmodel1/BugRandomMovement/CreateBugRule_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>The first part of the Bug Rule is exactly the same as the Initialize rule. Remember to make the Select
+    statement Agent property "Habitat" instead of "Bug", as we want to move to a habitat cell. (We should really assign
+    a better name then "Bug Rule" perhaps "Random Movement".) As before, we want to make sure the Cell is free before we
+    try to move in, so we'll select a "Spatial: Available" Query function.(By the way, to make scrolling through the
+    list easier, you can type the first letters of the selection, in this case "SP".)</p>
+    <img src="images/tutorials/stupidmodel1/BugRandomMovement/SelectAvailable_75.jpg" alt="" /></li>
+    <li>
+    <hr />
+    <p style="text-align: right"><a name="errors" shape="rect" /><a href="#top" shape="rect">contents</a></p>
+    <h3>Error Checking</h3>
+    <p>But now, instead of moving <i>anywhere</i> we want to move nearby. So now, we create a <i>parallel</i> or
+    "sibling" Query from the same Select root. Often, we would pick the "Spatial: Neighbor" function to take a random
+    walk, but according to the specification, we actually want to move into some random Cell within distance four (4).
+    So we will pick "Spatial: Within" from the list of functions. Instead of specifying the actual distance now, let's
+    examine another feature of metaABM, error checking. Save the model by selecting File:Save or the appropriate
+    keyboard command.</p>
+    <p>You should see an error message.</p>
+    <img src="images/tutorials/stupidmodel1/ErrorChecking/ErrorMessage.jpg" alt="" />
+    <p>Over in the Package Explorer (file list) you can see that the .metaabm file has been marked with an error
+    symbol.</p>
+    <img src="images/tutorials/stupidmodel1/ErrorChecking/ProblemView.png" alt="" />
+    <p>Double-click on the problem marker and the offending item will be highlighted.</p>
+    <img src="images/tutorials/stupidmodel1/ErrorChecking/HighlightedError.jpg" alt="" /> <span class="info">
+    <p>In addition to error markers, metaABM provides warnings designed to help you avoid common design mistakes.
+    For example, a warning will be issued if you attempt to move an agent from its selection to the same selection; this
+    is not strictly speaking an error, but it doesn't make much sense. Notice that the Demographic Prisonner's Dilemma
+    model has a warning marker, this is because we are happy with the default values for the attributes and didn't
+    provide any.</p>
+    </span> <span class="note">You might also notice a number of Java warnings. By default the Eclipse IDE is very
+    conservative when it comes to warnings, and expects the usage of language constructs that we choose not to use. A
+    full discussion of all of this is beyond the scope of the tutorial, but see the Eclipse documentation on problem
+    views for more ideas about how to customize these views.</span>
+    <li class="arrow1">
+    <p>Returning to our model, we need a cell that is <i>both</i> Available and Within 4. To accomplish this,
+    metaABM supports Logical Acts which control how various Queries work together. So create an All Act as a target of
+    the Spatial Available Query.</p>
+    <img src="images/tutorials/stupidmodel1/BugRandomMovement/CreateAllTarget_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>Now for an interesting issue. Option-Drag the All node to <i>also</i> be a target of the Spatial Within Act.
+    (This is a copy and drag action -- the same one you would use to copy a file from one directory to another without
+    removing it form the original location. Depending on your OS, you may need to use the ALT or SHIFT key to accomplish
+    this.)</p>
+    <img src="images/tutorials/stupidmodel1/BugRandomMovement/CopyAll_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>We can then create a Target movement just as we did for the Initialize method above. But now as we have
+    defined parallel but Logically linked Acts the same Move node shows up in our hierarchical editor twice!</p>
+    <span class="note">This is probably a bit confusing for new users, but it is one of the aspects of the
+    metaABM design that provides efficient behavior representation. Supporting tools such as the Metascape IDE
+    Visualizer provide other ways to explore more complex Act structures.</span> <img
+        src="images/tutorials/stupidmodel1/BugRandomMovement/MoveFromAll_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>Now we just need to assign a value for search distance. We <i>could</i> simply create a literal for the
+    Spatial: Within Query but that isn't really god practice. (In fact, originally metaABM didn't allow any literals,
+    but that began to seem a little too hard-headed.) So we will create our first Attribute. In this case, we want the
+    Attribute to belong to Simple Model as it will be the same value for all Agents for now. So right-click on Simple
+    Agent: Attributes and create a new one.</p>
+    <img src="images/tutorials/stupidmodel1/BugRandomMovement/CreateBugVision_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>Name the Attribute -- "Bug Vision" seems descriptive -- give it a type of Integer, and assign it a default
+    value of 4. This will allow most ABM platforms to provide the ability to change vision at runtime or through batch
+    definitions, something we couldn't do if we had used a literal value.</p>
+    <img src="images/tutorials/stupidmodel1/BugRandomMovement/DefineBugVision_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>Finally, we assign the Vision attribute to the "Input" node in our Spatial: Within Query.</p>
+    <img src="images/tutorials/stupidmodel1/BugRandomMovement/SetWithinBugVision_75.jpg" alt="" /></li>
+    <hr />
+    <p style="text-align: right"><a name="run" shape="rect" /><a href="#top" shape="rect">contents</a></p>
+    <h3>Run Final Model</h3>
+    <li class="arrow1">
+    <p>And here is our final model! Not looking much different in a snapshot, but those agents should now be moving
+    around.</p>
+    <img src="images/tutorials/stupidmodel1/RunModel/RunFinalModel_75.jpg" alt="" /></li>
+    <li class="arrow1">
+    <p>We have built a complete Ascape model from our metaABM model. But that's not all -- we also have a complete
+    Repast model! We will leave this as an exercise -- you can simply follow the directions in the example model section
+    on Demographic Prisoner's Dilemma.</p>
+    <span class="info">If you get completely stuck, SimpleModel1 is available in <a href="../downloads/models/StupidModel1.metaabm">model downloads</a>.</span>
+    <h4>That's all for Now</h4>
+    <p>We hope these "Getting Started" has enabled you to get up and running and given you some familiarity with the
+    basic metaABM approach. Upcoming articles will explore metaABM model design in more depth and provide a complete
+    Stupid Model implementation. Technical Articles will provide more explanation of the theoretical and practical
+    decisions that went into metaABM.</p>
+    </li>
+</ul>
+<small>All contents &copy; Copyright 2008 Metascape, LLC. All rights reserved.</small></body>
+</html>

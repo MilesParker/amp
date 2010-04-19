@@ -358,7 +358,26 @@
 <topic href="help/Tutorial.html#Create_Grid" label="Create Grid"></topic>
 <topic href="help/Tutorial.html#Create_the_Grid_Builder" label="Create the Grid Builder"></topic>
 </topic>
-<topic href="help/Tutorial.html#Actions_3" label="Actions"></topic>
+<topic href="help/Tutorial.html#Actions_3" label="Actions">
+<topic href="help/Tutorial.html#Create_Initialize_Rule" label="Create Initialize Rule">
+<topic href="help/Tutorial.html#Create_Select_Action" label="Create Select Action"></topic>
+<topic href="help/Tutorial.html#Create_Query_Action" label="Create Query Action"></topic>
+<topic href="help/Tutorial.html#Create_Move_Action" label="Create Move Action"></topic>
+</topic>
+<topic href="help/Tutorial.html#Run_Initial_Model" label="Run Initial Model"></topic>
+</topic>
+<topic href="help/Tutorial.html#Styles_2" label="Styles">
+<topic href="help/Tutorial.html#Create_Bug_Style" label="Create Bug Style">
+<topic href="help/Tutorial.html#Create_Style" label="Create Style"></topic>
+<topic href="help/Tutorial.html#Create_Style_Rule" label="Create Style Rule"></topic>
+<topic href="help/Tutorial.html#Create_Evaluations" label="Create Evaluations"></topic>
+</topic>
+</topic>
+<topic href="help/Tutorial.html#Actions_2_Movement_Rule" label="Actions 2 Movement Rule">
+<topic href="help/Tutorial.html#Create_Select_and_Query_Actions" label="">
+<topic href="help/Tutorial.html#N10BBD" label="Create Select and Query Actions"></topic>
+</topic>
+</topic>
 </topic>
 </topic>
 </topic>
@@ -388,7 +407,7 @@
 <topic href="help/Reference_3.html" label="Reference">
 <topic href="help/Reference_3.html#Converting_Existing_Ascape_models" label="Converting Existing Ascape models">
 <topic href="help/Reference_3.html#Model" label="">
-<topic href="help/Reference_3.html#N10C3C" label="Model"></topic>
+<topic href="help/Reference_3.html#N10CE0" label="Model"></topic>
 <topic href="help/Reference_3.html#View" label="View">
 <topic href="help/Reference_3.html#Convert_the_low-level_imports_from_AWT_and_Swing_to_SWT" label="Convert the low-level imports from AWT and Swing to SWT"></topic>
 <topic href="help/Reference_3.html#Convert_color_features" label="Convert color features"></topic>
@@ -410,7 +429,7 @@
 <topic href="help/More_Information_2.html" label="More Information">
 <topic href="help/More_Information_2.html#Obtaining_Example_Models" label="Obtaining Example Models">
 <topic href="help/More_Information_2.html#Import_from_CVS" label="">
-<topic href="help/More_Information_2.html#N10CCC" label="Import from CVS"></topic>
+<topic href="help/More_Information_2.html#N10D70" label="Import from CVS"></topic>
 </topic>
 </topic>
 </topic>
