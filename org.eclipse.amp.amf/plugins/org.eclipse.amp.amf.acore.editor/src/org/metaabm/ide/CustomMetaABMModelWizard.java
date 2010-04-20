@@ -64,7 +64,7 @@ import org.metaabm.SContext;
 import org.metaabm.SImplementationMode;
 import org.metaabm.act.MetaABMActFactory;
 import org.metaabm.act.provider.MetaABMActItemProviderAdapterFactory;
-import org.metaabm.commands.AddAgentActsCommand;
+import org.metaabm.commands.AddAgentsActsCommand;
 import org.metaabm.commands.AddImplementatedCommand;
 import org.metaabm.function.provider.MetaABMFunctionItemProviderAdapterFactory;
 import org.metaabm.provider.MetaABMItemProviderAdapterFactory;
@@ -169,7 +169,7 @@ public class CustomMetaABMModelWizard extends Wizard implements INewWizard {
         domain.getCommandStack().execute(
                         SetCommand.create(domain, rootContext, MetaABMPackage.Literals.SACTABLE__ROOT_ACTIVITY,
                                         MetaABMActFactory.eINSTANCE.createAGroup()));
-        Command actsCmd = new AddAgentActsCommand(domain, null, Collections.singleton(rootContext));
+        Command actsCmd = new AddAgentsActsCommand(domain, null, Collections.singleton(rootContext));
         domain.getCommandStack().execute(actsCmd);
         Command setNameCmd =
                         SetCommand.create(domain, rootContext, MetaABMPackage.Literals.IID__LABEL, contextPage
