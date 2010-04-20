@@ -37,6 +37,7 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.metaabm.IID;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SNDimensional;
@@ -48,8 +49,8 @@ import org.metaabm.commands.SetDimensionalAttributesCommand;
  * @generated
  */
 public class SNDimensionalItemProvider extends SProjectionItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -82,15 +83,15 @@ public class SNDimensionalItemProvider extends SProjectionItemProvider implement
      */
     protected void addDimensionalityPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(),
-                                                  getString("_UI_SNDimensional_dimensionality_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_SNDimensional_dimensionality_feature",
-                                                            "_UI_SNDimensional_type"),
-                                                  MetaABMPackage.Literals.SN_DIMENSIONAL__DIMENSIONALITY, true, false,
-                                                  false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-                                                  getString("_UI_ValuesPropertyCategory"), null));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(),
+                                          getString("_UI_SNDimensional_dimensionality_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_SNDimensional_dimensionality_feature",
+                                          "_UI_SNDimensional_type"),
+                                          MetaABMPackage.Literals.SN_DIMENSIONAL__DIMENSIONALITY, true, false,
+                                          false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+                                          getString("_UI_ValuesPropertyCategory"), null));
     }
 
     /**
@@ -100,14 +101,14 @@ public class SNDimensionalItemProvider extends SProjectionItemProvider implement
      */
     protected void addBorderRulePropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(),
-                                                  getString("_UI_SNDimensional_borderRule_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_SNDimensional_borderRule_feature",
-                                                            "_UI_SNDimensional_type"),
-                                                  MetaABMPackage.Literals.SN_DIMENSIONAL__BORDER_RULE, true, false,
-                                                  false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(),
+                                          getString("_UI_SNDimensional_borderRule_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_SNDimensional_borderRule_feature",
+                                          "_UI_SNDimensional_type"),
+                                          MetaABMPackage.Literals.SN_DIMENSIONAL__BORDER_RULE, true, false,
+                                          false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
     }
 
     /**
@@ -117,9 +118,7 @@ public class SNDimensionalItemProvider extends SProjectionItemProvider implement
      */
     @Override
     public String getText(Object object) {
-        String label = ((SNDimensional) object).getID();
-        return label == null || label.length() == 0 ? getString("_UI_SNDimensional_type")
-            : getString("_UI_SNDimensional_type") + " " + label;
+        return super.getText(object);
     }
 
     /**
@@ -148,10 +147,6 @@ public class SNDimensionalItemProvider extends SProjectionItemProvider implement
         String suggested = getString("_UI_" + object.eClass().getName() + "_type") + (dims > 0 ? " " + dims + "D" : "");
 
         return suggested;
-    }
-
-    public String suggestID(IID object) {
-        return "";
     }
 
     protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value,

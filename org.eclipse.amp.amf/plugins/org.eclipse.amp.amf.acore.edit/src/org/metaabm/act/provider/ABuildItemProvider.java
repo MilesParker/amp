@@ -19,7 +19,6 @@ package org.metaabm.act.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -34,6 +33,7 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.metaabm.IID;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAgent;
@@ -47,8 +47,8 @@ import org.metaabm.act.MetaABMActPackage;
  * @generated
  */
 public class ABuildItemProvider extends ASelectItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier. <!--
      * begin-user-doc --> <!-- end-user-doc -->
@@ -84,10 +84,10 @@ public class ABuildItemProvider extends ASelectItemProvider implements IEditingD
      */
     protected void addPluralLabelPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SNamed_pluralLabel_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SNamed_pluralLabel_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SNamed_pluralLabel_feature",
-                                                                           "_UI_SNamed_type"),
+                                                                 "_UI_SNamed_type"),
                                                                  MetaABMPackage.Literals.SNAMED__PLURAL_LABEL, true,
                                                                  false, false,
                                                                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
@@ -102,10 +102,10 @@ public class ABuildItemProvider extends ASelectItemProvider implements IEditingD
      */
     protected void addDescriptionPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SNamed_description_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SNamed_description_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SNamed_description_feature",
-                                                                           "_UI_SNamed_type"),
+                                                                 "_UI_SNamed_type"),
                                                                  MetaABMPackage.Literals.SNAMED__DESCRIPTION, true,
                                                                  true, false,
                                                                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
@@ -135,12 +135,7 @@ public class ABuildItemProvider extends ASelectItemProvider implements IEditingD
 
     public String suggestLabel(IID object) {
         SAgent agent = ((ABuild) object).getReference();
-        return "Build " + ((agent != null) ? agent.getLabel() : "Unspecified");
-    }
-
-    public String suggestID(IID object) {
-        SAgent agent = ((ABuild) object).getReference();
-        return super.suggestID(object) + ((agent != null) ? StringUtils.capitalize(agent.getID()) : "Unspecified");
+        return "Build " + (agent != null ? agent.getLabel() : "Context");
     }
 
     /**

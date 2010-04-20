@@ -12,7 +12,7 @@
  *   Argonne National Laboratory - Initial development (pre-contribution)
  *   Metascape - Subsequent development and maintenance
  *
- * </copyright> $Id: AddAgentActsCommand.java,v 1.1 2009/07/16 19:58:58 mparker Exp $
+ * </copyright> $Id: AddAgentsActsCommand.java,v 1.1 2010/04/20 22:25:54 mparker Exp $
  */
 package org.metaabm.commands;
 
@@ -44,7 +44,7 @@ import org.metaabm.act.MetaABMActPackage;
  * @author milesparker
  * 
  */
-public class AddAgentActsCommand extends AbstractOverrideableCommand {
+public class AddAgentsActsCommand extends AbstractOverrideableCommand {
 
     protected CompoundCommand command;
 
@@ -52,7 +52,7 @@ public class AddAgentActsCommand extends AbstractOverrideableCommand {
 
     Collection<?> agents;
 
-    public AddAgentActsCommand(EditingDomain domain, SContext parent, Collection<?> agents) {
+    public AddAgentsActsCommand(EditingDomain domain, SContext parent, Collection<?> agents) {
         super(domain, "Add Agent Acts");
         this.agents = agents;
         this.parent = parent;

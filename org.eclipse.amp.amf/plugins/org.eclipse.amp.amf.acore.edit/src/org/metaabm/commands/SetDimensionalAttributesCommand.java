@@ -12,7 +12,7 @@
  *   Argonne National Laboratory - Initial development (pre-contribution)
  *   Metascape - Subsequent development and maintenance
  *
- * </copyright> $Id: SetDimensionalAttributesCommand.java,v 1.3 2010/03/15 20:45:26 mparker Exp $
+ * </copyright> $Id: SetDimensionalAttributesCommand.java,v 1.4 2010/04/20 22:25:54 mparker Exp $
  */
 package org.metaabm.commands;
 
@@ -25,9 +25,9 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAttribute;
-import org.metaabm.SAttributeArray;
 import org.metaabm.SAttributeType;
 import org.metaabm.SNDimensional;
 import org.metaabm.impl.MetaABMFactoryImpl;
@@ -41,7 +41,7 @@ import org.metaabm.impl.MetaABMFactoryImpl;
  */
 public class SetDimensionalAttributesCommand extends SetCommand {
 
-    Command command;
+    CompoundCommand command;
     SuggestLabelCommand suggestLabelCommand;
 
     public SetDimensionalAttributesCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
@@ -73,29 +73,30 @@ public class SetDimensionalAttributesCommand extends SetCommand {
     static DimAttributeVals ARRAY_DESC = new DimAttributeVals("Dimensions", "The size of each dimension.");
 
     protected Command createDependents(EditingDomain domain, SNDimensional proj, int newDim) {
-        CompoundCommand command = new CompoundCommand();
+        command = new CompoundCommand();
         EList<SAttribute> attrs = proj.getAttributes();
         if (newDim > 0) {
-            SAttributeArray dims = (SAttributeArray) proj.findAttribute(ARRAY_DESC.name.toLowerCase());
-            if (dims == null) {
-                dims = MetaABMFactoryImpl.eINSTANCE.createSAttributeArray();
-                // todo make this all into a composite command
-                command.appendAndExecute(AddCommand.create(domain, proj,
-                                                           MetaABMPackage.Literals.SATTRIBUTED__ATTRIBUTES, dims));
-                command.appendAndExecute(SetLabelCommand.create(domain, dims, MetaABMPackage.Literals.IID__LABEL,
-                                                                ARRAY_DESC.name));
-                command.appendAndExecute(SetCommand.create(domain, dims, MetaABMPackage.Literals.SNAMED__DESCRIPTION,
-                                                           ARRAY_DESC.desc));
-                command.appendAndExecute(SetCommand.create(domain, dims, MetaABMPackage.Literals.ITYPED__STYPE,
-                                                           SAttributeType.INTEGER_LITERAL));
-            }
-            command.appendAndExecute(SetCommand
-                                     .create(domain, dims, MetaABMPackage.Literals.ITYPED_ARRAY__SIZE, newDim));
-            while (attrs.size() > newDim + 1) {
+            // SAttributeArray dims = (SAttributeArray) proj.findAttribute(ARRAY_DESC.name.toLowerCase());
+            // if (dims == null) {
+            // dims = MetaABMFactoryImpl.eINSTANCE.createSAttributeArray();
+            // // todo make this all into a composite command
+            // command.appendAndExecute(AddCommand.create(domain, proj,
+            // MetaABMPackage.Literals.SATTRIBUTED__ATTRIBUTES, dims));
+            // command.appendAndExecute(SetLabelCommand
+            // .create(domain, dims, MetaABMPackage.Literals.IID__LABEL,
+            // ARRAY_DESC.name));
+            // command.appendAndExecute(SetCommand.create(domain, dims, MetaABMPackage.Literals.SNAMED__DESCRIPTION,
+            // ARRAY_DESC.desc));
+            // command.appendAndExecute(SetCommand.create(domain, dims, MetaABMPackage.Literals.ITYPED__STYPE,
+            // SAttributeType.INTEGER_LITERAL));
+            // }
+            // command.appendAndExecute(SetCommand
+            // .create(domain, dims, MetaABMPackage.Literals.ITYPED_ARRAY__SIZE, newDim));
+            while (attrs.size() > newDim) {
                 command.appendAndExecute(RemoveCommand.create(domain, proj,
                                                               MetaABMPackage.Literals.SATTRIBUTED__ATTRIBUTES, attrs.get(attrs.size() - 1)));
             }
-            while (attrs.size() < newDim + 1) {
+            while (attrs.size() < newDim) {
                 SAttribute attr = MetaABMFactoryImpl.eINSTANCE.createSAttribute();
                 command.appendAndExecute(AddCommand.create(domain, proj,
                                                            MetaABMPackage.Literals.SATTRIBUTED__ATTRIBUTES, attr));
@@ -104,7 +105,7 @@ public class SetDimensionalAttributesCommand extends SetCommand {
                 newDim = 0;
             }
             if (newDim > 0) {
-                int index = 1;
+                int index = 0;
                 for (DimAttributeVals attrVal : ATTR_DESCS[newDim]) {
                     SAttribute attr = attrs.get(index);
                     command.appendAndExecute(SetLabelCommand.create(domain, attr, MetaABMPackage.Literals.IID__LABEL,
@@ -120,7 +121,6 @@ public class SetDimensionalAttributesCommand extends SetCommand {
             command.appendAndExecute(RemoveCommand.create(domain, proj,
                                                           MetaABMPackage.Literals.SATTRIBUTED__ATTRIBUTES, attrs));
         }
-        command.appendAndExecute(suggestLabelCommand);
         // getDomain().getCommandStack().execute(cmd);
         return command;
     }
@@ -135,8 +135,10 @@ public class SetDimensionalAttributesCommand extends SetCommand {
     @Override
     public void doUndo() {
         // TODO Auto-generated method stub
+        suggestLabelCommand = new SuggestLabelCommand(domain, (SNDimensional) getOwner());
         command.undo();
         super.doUndo();
+        suggestLabelCommand.execute();
         // int oldDim = -1;
         // if (getOldValue() instanceof Integer) {
         // oldDim = (Integer) oldValue;
@@ -150,6 +152,8 @@ public class SetDimensionalAttributesCommand extends SetCommand {
         oldValue = owner.eGet(getFeature());
         suggestLabelCommand = new SuggestLabelCommand(domain, (SNDimensional) getOwner());
         super.doExecute();
-        command = createDependents(getDomain(), (SNDimensional) getOwner(), (Integer) getValue());
+        createDependents(getDomain(), (SNDimensional) getOwner(), (Integer) getValue());
+        command.appendAndExecute(suggestLabelCommand);
+        suggestLabelCommand.execute();
     }
 }

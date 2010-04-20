@@ -473,7 +473,7 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
                 || feature == MetaABMActPackage.Literals.AINPUT__LITERAL
                 || feature == MetaABMActPackage.Literals.AACCESSOR__ATTRIBUTE
                 || feature == MetaABMActPackage.Literals.ASET__PARAMETER
-                || feature == MetaABMActPackage.Literals.ABUILD_PROJECTION__PROJECTION
+            || feature == MetaABMActPackage.Literals.ABUILD_PROJECTION__PROJECTION
                 || feature == MetaABMActPackage.Literals.ACREATE_AGENTS__AGENT_COUNT
                 || feature == MetaABMActPackage.Literals.ASCHEDULE__PICK
                 || feature == MetaABMActPackage.Literals.ASCHEDULE__PRIORITY

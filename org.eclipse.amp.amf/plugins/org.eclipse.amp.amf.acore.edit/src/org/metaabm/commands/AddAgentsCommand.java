@@ -12,7 +12,7 @@
  *   Argonne National Laboratory - Initial development (pre-contribution)
  *   Metascape - Subsequent development and maintenance
  *
- * </copyright> $Id: AddAgentsCommand.java,v 1.1 2009/07/16 19:58:58 mparker Exp $
+ * </copyright> $Id: AddAgentsCommand.java,v 1.2 2010/04/20 22:25:55 mparker Exp $
  */
 package org.metaabm.commands;
 
@@ -53,7 +53,7 @@ public class AddAgentsCommand extends AddCommand {
         super.doExecute();
         command = new CompoundCommand();
         command.appendAndExecute(new AddImplementatedCommand(domain, collection));
-        command.appendAndExecute(new AddAgentActsCommand(domain, (SContext) owner, collection));
+        command.appendAndExecute(new AddAgentsActsCommand(domain, (SContext) owner, collection));
         command.appendAndExecute(AddCommand.create(domain, command, command, collection));
         command.appendAndExecute(new SuggestLabelCommand(domain, (Collection<IID>) collection));
         // for (Object object : collection) {

@@ -33,9 +33,9 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SGrid;
-import org.metaabm.SNamed;
 
 /*
  * This is the item provider adapter for a {@link org.metaabm.SGrid} object.
@@ -43,11 +43,11 @@ import org.metaabm.SNamed;
  * @generated
  */
 public class SGridItemProvider extends SNDimensionalItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
-     * This constructs an instance from a factory and a notifier.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     public SGridItemProvider(AdapterFactory adapterFactory) {
@@ -55,8 +55,8 @@ public class SGridItemProvider extends SNDimensionalItemProvider implements IEdi
     }
 
     /**
-     * This returns the property descriptors for the adapted class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -71,38 +71,38 @@ public class SGridItemProvider extends SNDimensionalItemProvider implements IEdi
     }
 
     /**
-     * This adds a property descriptor for the Multi Occupant feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the Multi Occupant feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addMultiOccupantPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(), getString("_UI_SGrid_multiOccupant_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_SGrid_multiOccupant_feature", "_UI_SGrid_type"),
-                                                  MetaABMPackage.Literals.SGRID__MULTI_OCCUPANT, true, false, false,
-                                                  ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(), getString("_UI_SGrid_multiOccupant_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_SGrid_multiOccupant_feature", "_UI_SGrid_type"),
+                                                    MetaABMPackage.Literals.SGRID__MULTI_OCCUPANT, true, false, false,
+                                                    ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
     }
 
     /**
-     * This adds a property descriptor for the Neighborhood feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the Neighborhood feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addNeighborhoodPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(), getString("_UI_SGrid_neighborhood_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_SGrid_neighborhood_feature", "_UI_SGrid_type"),
-                                                  MetaABMPackage.Literals.SGRID__NEIGHBORHOOD, true, false, false,
-                                                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(), getString("_UI_SGrid_neighborhood_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_SGrid_neighborhood_feature", "_UI_SGrid_type"),
+                                                    MetaABMPackage.Literals.SGRID__NEIGHBORHOOD, true, false, false,
+                                                    ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
     }
 
     /**
-     * This returns SGrid.gif.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This returns SGrid.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -117,8 +117,7 @@ public class SGridItemProvider extends SNDimensionalItemProvider implements IEdi
      */
     @Override
     public String getText(Object object) {
-        String label = ((SNamed) object).getLabel();
-        return label == null || label.length() == 0 ? getString("_UI_SGrid_type") : label;
+        return super.getText(object);
     }
 
     /**
@@ -142,9 +141,9 @@ public class SGridItemProvider extends SNDimensionalItemProvider implements IEdi
     }
 
     /**
-     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-     * that can be created under this object.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+     * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override

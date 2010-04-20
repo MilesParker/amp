@@ -34,7 +34,7 @@ import org.metaabm.act.MetaABMActPackage;
  * @author milesparker
  * 
  */
-public class AddAgentActsLoaderCommand extends AddAgentActsCommand {
+public class AddAgentsActsLoaderCommand extends AddAgentsActsCommand {
 
     SProjection projection;
 
@@ -42,7 +42,7 @@ public class AddAgentActsLoaderCommand extends AddAgentActsCommand {
 
     ALoadAgents agentAct;
 
-    public AddAgentActsLoaderCommand(EditingDomain domain, SContext parent, SProjection projection, URL url,
+    public AddAgentsActsLoaderCommand(EditingDomain domain, SContext parent, SProjection projection, URL url,
             Collection<?> agents) {
         super(domain, parent, agents);
         this.projection = projection;

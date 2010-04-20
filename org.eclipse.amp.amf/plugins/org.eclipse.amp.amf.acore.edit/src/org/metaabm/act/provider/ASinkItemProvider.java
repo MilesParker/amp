@@ -23,7 +23,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.MissingResourceException;
 
-import org.apache.commons.lang.StringUtils;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -46,6 +45,8 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import org.apache.commons.lang.StringUtils;
 import org.metaabm.IID;
 import org.metaabm.IValue;
 import org.metaabm.MetaABMPackage;
@@ -183,7 +184,6 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
         if (feature == MetaABMActPackage.Literals.ASINK__INPUTS) {
             CompoundCommand cmd = new CompoundCommand("Add Sink Inputs");
             SuggestLabelCommand suggestLabelCommand = new SuggestLabelCommand(this, domain, (IID) owner);
-            ;
             cmd.append(super.createAddCommand(domain, owner, feature, collection, index));
             for (AInput input : (Collection<AInput>) collection) {
                 ASelect selected = ((ASink) owner).getSelected();

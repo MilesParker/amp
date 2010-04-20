@@ -40,10 +40,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SProjection;
-import org.metaabm.act.AAct;
-import org.metaabm.act.ABuildProjection;
-import org.metaabm.act.AGroup;
-import org.metaabm.commands.SuggestLabelCommand;
 
 /*
  * This is the item provider adapter for a {@link org.metaabm.SProjection}
@@ -90,13 +86,19 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
         CompoundCommand cmd = new CompoundCommand();
         if (feature == MetaABMPackage.Literals.IID__LABEL) {
             SProjection proj = (SProjection) owner;
+            // List<Command> sugLabels = new ArrayList<Command>();
+            // for (AAct act : ((AGroup) proj.getOwner().getRootActivity()).getMembers()) {
+            // if (act instanceof ABuildProjection && ((ABuildProjection) act).getProjection() == proj) {
+            // sugLabels.add(new SuggestLabelCommand(domain, act));
+            // }
+            // }
+
             cmd.append(super.createSetCommand(domain, owner, feature, value));
-            SuggestLabelCommand labelCommand = null;
-            for (AAct act : ((AGroup) proj.getOwner().getRootActivity()).getMembers()) {
-                if (act instanceof ABuildProjection && ((ABuildProjection) act).getProjection() == proj) {
-                    cmd.appendAndExecute(new SuggestLabelCommand(domain, act));
-                }
-            }
+            // for (AAct act : ((AGroup) proj.getOwner().getRootActivity()).getMembers()) {
+            // if (act instanceof ABuildProjection && ((ABuildProjection) act).getProjection() == proj) {
+            // cmd.append(new SuggestLabelCommand(domain, act));
+            // }
+            // }
         } else {
             cmd.append(super.createSetCommand(domain, owner, feature, value));
         }
@@ -104,8 +106,8 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     }
 
     /**
-     * This adds a property descriptor for the Owner feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the Owner feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addOwnerPropertyDescriptor(Object object) {
@@ -130,15 +132,13 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     }
 
     /**
-     * This returns the label text for the adapted class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
+     * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @generated NOT
      */
     @Override
     public String getText(Object object) {
-        String label = ((SProjection) object).getID();
-        return label == null || label.length() == 0 ? getString("_UI_SProjection_type")
-            : getString("_UI_SProjection_type") + " " + label;
+        return super.getText(object);
     }
 
     /**

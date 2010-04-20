@@ -21,13 +21,10 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -45,19 +42,9 @@ import org.metaabm.IID;
 import org.metaabm.MetaABMFactory;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SContext;
-import org.metaabm.SContinuousSpace;
-import org.metaabm.SGeography;
-import org.metaabm.SGrid;
-import org.metaabm.SNetwork;
-import org.metaabm.SProjection;
-import org.metaabm.act.ABuild;
-import org.metaabm.act.ABuildProjection;
-import org.metaabm.act.MetaABMActFactory;
-import org.metaabm.act.MetaABMActPackage;
-import org.metaabm.commands.AddAgentActsCommand;
 import org.metaabm.commands.AddAgentsCommand;
+import org.metaabm.commands.AddSpacesCommand;
 import org.metaabm.commands.RemoveAgentActsCommand;
-import org.metaabm.commands.SetLabelCommand;
 import org.metaabm.function.MetaABMFunctionFactory;
 
 /*
@@ -69,8 +56,8 @@ public class SContextItemProvider extends SAgentItemProvider implements IEditing
 IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
 ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
-     * This constructs an instance from a factory and a notifier.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     public SContextItemProvider(AdapterFactory adapterFactory) {
@@ -78,8 +65,8 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     }
 
     /**
-     * This returns the property descriptors for the adapted class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -94,8 +81,8 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     }
 
     /**
-     * This adds a property descriptor for the All Agents feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the All Agents feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addAllAgentsPropertyDescriptor(Object object) {
@@ -109,8 +96,8 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     }
 
     /**
-     * This adds a property descriptor for the All Contexts feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the All Contexts feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addAllContextsPropertyDescriptor(Object object) {
@@ -125,48 +112,9 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
 
     protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
             Collection<?> collection, int index) {
-        if (feature == MetaABMPackage.eINSTANCE.getSContext_Projections()) {
-            CompoundCommand cmd = new CompoundCommand();
-            SContext context = (SContext) owner;
-            ABuild builder = AddAgentActsCommand.findBuilderOf(context);
-            if (builder == null) {
-                builder = MetaABMActFactory.eINSTANCE.createABuild();
-                cmd.append(AddCommand.create(domain, context.getRootActivity(),
-                                             MetaABMActPackage.Literals.AGROUP__MEMBERS, builder));
-            }
-            cmd.append(super.createAddCommand(domain, owner, feature, collection, index));
-            for (Object projObject : collection) {
-                SProjection proj = (SProjection) projObject;
-                ABuildProjection projBuilder = null;
-                String name = "Build ";
-                if (proj instanceof SContinuousSpace) {
-                    projBuilder = MetaABMActFactory.eINSTANCE.createABuildSpace();
-                    name += "Space";
-                } else if (proj instanceof SGrid) {
-                    projBuilder = MetaABMActFactory.eINSTANCE.createABuildGrid();
-                    name += "Grid";
-                } else if (proj instanceof SGeography) {
-                    projBuilder = MetaABMActFactory.eINSTANCE.createABuildGeography();
-                    name += "Geography";
-                } else if (proj instanceof SNetwork) {
-                    projBuilder = MetaABMActFactory.eINSTANCE.createABuildNetwork();
-                    name += "Network";
-                }
-                cmd.append(AddCommand.create(domain, builder, MetaABMActPackage.Literals.AACT__TARGETS, projBuilder));
-                cmd.append(SetCommand.create(domain, projBuilder,
-                                             MetaABMActPackage.Literals.ABUILD_PROJECTION__PROJECTION, proj));
-                if (context.getAgents().size() == 1) {
-                    // assume that the agent is an occupant
-                    cmd.append(AddCommand.create(domain, projBuilder,
-                                                 MetaABMActPackage.Literals.ABUILD_PROJECTION__AGENTS, context
-                                                 .getAgents().get(0)));
-                }
-                // cmd.append(new SuggestLabelCommand(domain, projBuilder));
-                cmd.append(SetLabelCommand.create(domain, projBuilder, name));
-            }
-            return cmd;
-        }
-        if (feature == MetaABMPackage.eINSTANCE.getSContext_Agents()) {
+        if (feature == MetaABMPackage.Literals.SCONTEXT__PROJECTIONS) {
+            return new AddSpacesCommand(domain, owner, collection, index);
+        } else if (feature == MetaABMPackage.Literals.SCONTEXT__AGENTS) {
             return new AddAgentsCommand(domain, owner, collection, index);
         } else {
             return super.createAddCommand(domain, owner, feature, collection, index);
@@ -209,6 +157,7 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -220,8 +169,8 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     }
 
     /**
-     * This returns SContext.gif.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This returns SContext.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -262,9 +211,9 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     }
 
     /**
-     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-     * that can be created under this object.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+     * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override

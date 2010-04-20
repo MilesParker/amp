@@ -12,24 +12,28 @@
  *   Argonne National Laboratory - Initial development (pre-contribution)
  *   Metascape - Subsequent development and maintenance
  *
- * </copyright> $Id: TargetTranslator.java,v 1.1 2009/07/16 19:58:58 mparker Exp $
+ * </copyright> $Id: TargetTranslator.java,v 1.2 2010/04/20 22:25:54 mparker Exp $
  */
 package org.metaabm.commands;
 
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+
+import org.apache.commons.lang.StringUtils;
 import org.metaabm.IID;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAgent;
+import org.metaabm.SContext;
 import org.metaabm.SImplemented;
+import org.metaabm.SProjection;
+import org.metaabm.act.ABuildProjection;
 import org.metaabm.act.ACreateAgents;
 import org.metaabm.act.ALoadAgents;
 import org.metaabm.act.ALoadShapedAgents;
@@ -47,8 +51,8 @@ public abstract class TargetTranslator implements StringTranslator {
 
     EStructuralFeature targetFeature;
 
-    public final static TargetTranslator LABEL_TO_CLASSNAME_TRANSLATOR =
-        new TargetTranslator(MetaABMPackage.Literals.SIMPLEMENTATION__CLASS_NAME) {
+    public final static TargetTranslator LABEL_TO_CLASSNAME_TRANSLATOR = new TargetTranslator(
+                                                                                              MetaABMPackage.Literals.SIMPLEMENTATION__CLASS_NAME) {
         public String translateName(String otherName, IID source) {
             String className = removeSpecialChars(otherName);
             return className;
@@ -59,9 +63,8 @@ public abstract class TargetTranslator implements StringTranslator {
         }
     };
 
-    public final static TargetTranslator LABEL_TO_AGENT_COUNT_DESC_TRANSLATOR =
-        new TargetTranslator(MetaABMPackage.Literals.SNAMED__PLURAL_LABEL,
-                             MetaABMPackage.Literals.SNAMED__DESCRIPTION) {
+    public final static TargetTranslator LABEL_TO_AGENT_COUNT_DESC_TRANSLATOR = new TargetTranslator(
+                                                                                                     MetaABMPackage.Literals.SNAMED__PLURAL_LABEL, MetaABMPackage.Literals.SNAMED__DESCRIPTION) {
         public String translateName(String otherName, IID source) {
             // todo would like to have real support for plural
             // names
@@ -70,7 +73,7 @@ public abstract class TargetTranslator implements StringTranslator {
         }
 
         public EObject targetFor(EObject source) {
-            ACreateAgents creator = AddAgentActsCommand.findCreatorFor((SAgent) source);
+            ACreateAgents creator = AddAgentsActsCommand.findCreatorFor((SAgent) source);
             return creator != null ? creator.getAgentCount() : null;
         }
     };
@@ -81,13 +84,13 @@ public abstract class TargetTranslator implements StringTranslator {
         }
 
         public EObject targetFor(EObject source) {
-            ACreateAgents creator = AddAgentActsCommand.findCreatorFor((SAgent) source);
+            ACreateAgents creator = AddAgentsActsCommand.findCreatorFor((SAgent) source);
             return creator != null ? creator.getAgentCount() : null;
         }
     };
 
-    public final static TargetTranslator LABEL_TO_AGENT_CREATOR_LABEL_TRANSLATOR =
-        new TargetTranslator(MetaABMPackage.Literals.SNAMED__PLURAL_LABEL, MetaABMPackage.Literals.IID__LABEL) {
+    public final static TargetTranslator LABEL_TO_AGENT_CREATOR_LABEL_TRANSLATOR = new TargetTranslator(
+                                                                                                        MetaABMPackage.Literals.SNAMED__PLURAL_LABEL, MetaABMPackage.Literals.IID__LABEL) {
         public String translateName(String otherName, IID source) {
             String label = !StringUtils.isEmpty(otherName) ? otherName : "Unspecified";
             if (source instanceof ALoadAgents || source instanceof ALoadShapedAgents) {
@@ -99,20 +102,36 @@ public abstract class TargetTranslator implements StringTranslator {
         }
 
         public EObject targetFor(EObject source) {
-            ACreateAgents creator = AddAgentActsCommand.findCreatorFor((SAgent) source);
+            ACreateAgents creator = AddAgentsActsCommand.findCreatorFor((SAgent) source);
             return creator;
         }
     };
 
-    public final static TargetTranslator LABEL_TO_PLURAL_NAME_TRANSLATOR =
-        new TargetTranslator(MetaABMPackage.Literals.SNAMED__PLURAL_LABEL) {
+    public final static TargetTranslator LABEL_TO_SPACE_BUILDER_LABEL_TRANSLATOR = new TargetTranslator(
+                                                                                                        MetaABMPackage.Literals.SNAMED__PLURAL_LABEL, MetaABMPackage.Literals.IID__LABEL) {
+        public String translateName(String otherName, IID source) {
+            String label = !StringUtils.isEmpty(otherName) ? otherName : "Undefined";
+            if (source instanceof ABuildProjection) {
+                label = "Build " + label;
+            }
+            return label;
+        }
+
+        public EObject targetFor(EObject source) {
+            ABuildProjection creator = AddSpacesActsCommand.findBuilderOf((SContext) ((SProjection) source)
+                                                                          .eContainer(), (SProjection) source);
+            return creator;
+        }
+    };
+
+    public final static TargetTranslator LABEL_TO_PLURAL_NAME_TRANSLATOR = new TargetTranslator(
+                                                                                                MetaABMPackage.Literals.SNAMED__PLURAL_LABEL) {
         public String translateName(String otherName, IID source) {
             return !StringUtils.isEmpty(otherName) ? otherName.concat("s") : "";
         }
     };
 
-    public final static TargetTranslator LABEL_TO_ID_TRANSLATOR =
-        new TargetTranslator(MetaABMPackage.Literals.IID__ID) {
+    public final static TargetTranslator LABEL_TO_ID_TRANSLATOR = new TargetTranslator(MetaABMPackage.Literals.IID__ID) {
         public String translateName(String otherName, IID source) {
             String legalID = removeSpecialChars(otherName);
             legalID = StringUtils.uncapitalize(legalID);
@@ -123,22 +142,26 @@ public abstract class TargetTranslator implements StringTranslator {
     // todo clean-up
     public final static List<TargetTranslator> ID_TRANSLATORS = Arrays.asList(LABEL_TO_ID_TRANSLATOR);
 
-    public final static List<TargetTranslator> PLURAL_TRANSLATORS =
-        Arrays.asList(LABEL_TO_AGENT_CREATOR_LABEL_TRANSLATOR, LABEL_TO_AGENT_COUNT_DESC_TRANSLATOR);
+    public final static List<TargetTranslator> PLURAL_TRANSLATORS = Arrays
+    .asList(LABEL_TO_AGENT_CREATOR_LABEL_TRANSLATOR, LABEL_TO_AGENT_COUNT_DESC_TRANSLATOR);
 
-    public final static List<TargetTranslator> AGENT_TRANSLATORS =
-        Arrays.asList(LABEL_TO_ID_TRANSLATOR, LABEL_TO_PLURAL_NAME_TRANSLATOR, LABEL_TO_CLASSNAME_TRANSLATOR,
-                      LABEL_TO_AGENT_COUNT_DESC_TRANSLATOR, LABEL_TO_AGENT_CREATOR_LABEL_TRANSLATOR,
-                      LABEL_TO_AGENT_COUNT_LABEL_TRANSLATOR);
+    public final static List<TargetTranslator> AGENT_TRANSLATORS = Arrays
+    .asList(LABEL_TO_ID_TRANSLATOR, LABEL_TO_PLURAL_NAME_TRANSLATOR, LABEL_TO_CLASSNAME_TRANSLATOR,
+            LABEL_TO_AGENT_COUNT_DESC_TRANSLATOR, LABEL_TO_AGENT_CREATOR_LABEL_TRANSLATOR,
+            LABEL_TO_AGENT_COUNT_LABEL_TRANSLATOR);
 
-    public final static List<TargetTranslator> NAMED_IMPLEMENTED_TRANSLATORS =
-        Arrays.asList(LABEL_TO_ID_TRANSLATOR, LABEL_TO_PLURAL_NAME_TRANSLATOR, LABEL_TO_CLASSNAME_TRANSLATOR);
+    public final static List<TargetTranslator> SAPCE_TRANSLATORS = Arrays.asList(LABEL_TO_ID_TRANSLATOR,
+                                                                                 LABEL_TO_PLURAL_NAME_TRANSLATOR,
+                                                                                 LABEL_TO_SPACE_BUILDER_LABEL_TRANSLATOR);
 
-    public final static List<TargetTranslator> NAMED_TRANSLATORS =
-        Arrays.asList(LABEL_TO_ID_TRANSLATOR, LABEL_TO_PLURAL_NAME_TRANSLATOR);
+    public final static List<TargetTranslator> NAMED_IMPLEMENTED_TRANSLATORS = Arrays
+    .asList(LABEL_TO_ID_TRANSLATOR, LABEL_TO_PLURAL_NAME_TRANSLATOR, LABEL_TO_CLASSNAME_TRANSLATOR);
 
-    public final static List<TargetTranslator> IMPLEMENTED_TRANSLATORS =
-        Arrays.asList(LABEL_TO_ID_TRANSLATOR, LABEL_TO_CLASSNAME_TRANSLATOR);
+    public final static List<TargetTranslator> NAMED_TRANSLATORS = Arrays.asList(LABEL_TO_ID_TRANSLATOR,
+                                                                                 LABEL_TO_PLURAL_NAME_TRANSLATOR);
+
+    public final static List<TargetTranslator> IMPLEMENTED_TRANSLATORS = Arrays.asList(LABEL_TO_ID_TRANSLATOR,
+                                                                                       LABEL_TO_CLASSNAME_TRANSLATOR);
 
     public TargetTranslator() {
         this(MetaABMPackage.Literals.IID__LABEL);
@@ -183,10 +206,10 @@ public abstract class TargetTranslator implements StringTranslator {
             if (!StringUtils.isEmpty(StringUtils.deleteWhitespace(oldName)) && !oldName.equals(oldTranslatedName)) {
                 if (target instanceof IID) {
                     SuggestLabelCommand testCmd = new SuggestLabelCommand(domain, (IID) target);
-                    if (targetFeature == MetaABMPackage.Literals.IID__LABEL && (testCmd.suggestLabel((IID) target)
-                            .equals(oldName) || defaultString.equals(oldName))
-                            || targetFeature == MetaABMPackage.Literals.IID__ID && testCmd.suggestID((IID) target)
-                            .equals(oldName)) {
+                    if (targetFeature == MetaABMPackage.Literals.IID__LABEL
+                            && (testCmd.suggestLabel((IID) target).equals(oldName) || defaultString.equals(oldName))
+                            || targetFeature == MetaABMPackage.Literals.IID__ID
+                            && testCmd.suggestID((IID) target).equals(oldName)) {
                         // || ((targetFeature ==
                         // MetaABMPackage.Literals.SNAMED__PLURAL_LABEL) &&
                         // SetLabelCommand.LABEL_TO_PLURAL_NAME_TRANSLATOR.

@@ -12,14 +12,13 @@
  *   Argonne National Laboratory - Initial development (pre-contribution)
  *   Metascape - Subsequent development and maintenance
  *
- * </copyright> $Id: SetLabelCommand.java,v 1.1 2009/07/16 19:58:58 mparker Exp $
+ * </copyright> $Id: SetLabelCommand.java,v 1.2 2010/04/20 22:25:54 mparker Exp $
  */
 package org.metaabm.commands;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.util.EList;
@@ -28,6 +27,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+
+import org.apache.commons.collections.CollectionUtils;
 import org.metaabm.IID;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAgent;
@@ -35,6 +36,7 @@ import org.metaabm.SContext;
 import org.metaabm.SImplementationMode;
 import org.metaabm.SImplemented;
 import org.metaabm.SNamed;
+import org.metaabm.SProjection;
 
 /**
  * Propagates name changes to other object identifiers.
@@ -89,6 +91,8 @@ public class SetLabelCommand extends SetCommand {
                 return TargetTranslator.NAMED_IMPLEMENTED_TRANSLATORS;
             } else if (source instanceof SAgent) {
                 return TargetTranslator.AGENT_TRANSLATORS;
+            } else if (source instanceof SProjection) {
+                return TargetTranslator.SAPCE_TRANSLATORS;
             } else if (source instanceof SImplemented && source instanceof SNamed) {
                 return TargetTranslator.NAMED_IMPLEMENTED_TRANSLATORS;
             } else if (source instanceof SImplemented) {

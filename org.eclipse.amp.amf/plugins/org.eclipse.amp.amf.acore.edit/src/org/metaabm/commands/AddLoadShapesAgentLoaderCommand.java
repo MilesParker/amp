@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: AddLoadShapesAgentLoaderCommand.java,v 1.1 2009/07/16 19:58:58 mparker Exp $
+ * </copyright> $Id: AddLoadShapesAgentLoaderCommand.java,v 1.2 2010/04/20 22:25:54 mparker Exp $
  */
 package org.metaabm.commands;
 
@@ -31,7 +31,7 @@ import org.metaabm.act.MetaABMActFactory;
  * @author milesparker
  * 
  */
-public class AddLoadShapesAgentLoaderCommand extends AddAgentActsLoaderCommand {
+public class AddLoadShapesAgentLoaderCommand extends AddAgentsActsLoaderCommand {
 
     public AddLoadShapesAgentLoaderCommand(EditingDomain domain, SContext parent, SProjection projection, URL url,
             Collection<?> agents) {

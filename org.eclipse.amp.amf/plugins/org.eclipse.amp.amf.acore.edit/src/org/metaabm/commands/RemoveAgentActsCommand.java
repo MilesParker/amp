@@ -12,7 +12,7 @@
  *   Argonne National Laboratory - Initial development (pre-contribution)
  *   Metascape - Subsequent development and maintenance
  *
- * </copyright> $Id: RemoveAgentActsCommand.java,v 1.1 2009/07/16 19:58:58 mparker Exp $
+ * </copyright> $Id: RemoveAgentActsCommand.java,v 1.2 2010/04/20 22:25:54 mparker Exp $
  */
 package org.metaabm.commands;
 
@@ -61,7 +61,7 @@ public class RemoveAgentActsCommand extends RemoveCommand {
             if (context != null && context.getRootActivity() != null) {
                 AGroup rootAct = (AGroup) context.getRootActivity();
                 if (rootAct != null) {
-                    ACreateAgents create = AddAgentActsCommand.findCreatorFor(agent);
+                    ACreateAgents create = AddAgentsActsCommand.findCreatorFor(agent);
                     if (create != null) {
                         if (context.getAttributes().contains(create.getAgentCount())) {
                             command.appendAndExecute(RemoveCommand.create(domain, context,

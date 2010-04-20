@@ -12,7 +12,7 @@
  *   Argonne National Laboratory - Initial development (pre-contribution)
  *   Metascape - Subsequent development and maintenance
  *
- * </copyright> $Id: SetGenerateCommand.java,v 1.1 2009/07/16 19:58:58 mparker Exp $
+ * </copyright> $Id: SetGenerateCommand.java,v 1.2 2010/04/20 22:25:54 mparker Exp $
  */
 package org.metaabm.commands;
 
@@ -78,7 +78,7 @@ public class SetGenerateCommand extends SetCommand {
             SContext context = (SContext) actable;
             SuggestLabelCommand suggestCommand =
                 new SuggestLabelCommand(getDomain(), ((AGroup) context.getRootActivity()).getMembers());
-            command.appendAndExecute(new AddAgentActsCommand(getDomain(), context, context.getAgents()));
+            command.appendAndExecute(new AddAgentsActsCommand(getDomain(), context, context.getAgents()));
             command.appendAndExecute(new SuggestLabelCommand(getDomain(), context.getAgents()));
             command.appendAndExecute(suggestCommand);
         }
