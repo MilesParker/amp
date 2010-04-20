@@ -18,6 +18,7 @@ package org.eclipse.amp.amf.acore.edit.commands.test;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.command.SetCommand;
+
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAttribute;
 import org.metaabm.SNDimensional;
@@ -36,6 +37,7 @@ public class SetGridDimensions2 extends CommandTransformer {
     public void preCondition() {
         SProjection grid = model.getProjections().get(0);
         CommandTest.assertEquals(grid.getLabel(), "Grid");
+        CommandTest.assertEquals(grid.getID(), "grid");
         CommandTest.assertEquals(grid.getAttributes().size(), 0);
     }
 
@@ -43,10 +45,11 @@ public class SetGridDimensions2 extends CommandTransformer {
         SNDimensional grid = (SNDimensional) model.getProjections().get(0);
         CommandTest.assertEquals(grid.getDimensionality(), 2);
         CommandTest.assertEquals(grid.getLabel(), "Grid 2D");
+        CommandTest.assertEquals(grid.getID(), "grid2D");
         EList<SAttribute> attrs = grid.getAttributes();
-        CommandTest.assertEquals(attrs.size(), 3);
-        CommandTest.assertEquals(grid.findAttribute("dimensions"), grid.getAttributes().get(0));
-        CommandTest.assertEquals(grid.findAttribute("width"), attrs.get(1));
-        CommandTest.assertEquals(grid.findAttribute("height"), attrs.get(2));
+        CommandTest.assertEquals(attrs.size(), 2);
+        // CommandTest.assertEquals(grid.findAttribute("dimensions"), grid.getAttributes().get(0));
+        CommandTest.assertEquals(grid.findAttribute("width"), attrs.get(0));
+        CommandTest.assertEquals(grid.findAttribute("height"), attrs.get(1));
     }
 }

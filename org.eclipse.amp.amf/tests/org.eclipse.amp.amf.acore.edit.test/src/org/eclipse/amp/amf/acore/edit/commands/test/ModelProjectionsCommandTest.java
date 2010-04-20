@@ -47,28 +47,28 @@ public class ModelProjectionsCommandTest extends CommandTest {
             public void preCondition() {
                 SProjection grid = model.getProjections().get(0);
                 CommandTest.assertEquals(grid.getLabel(), "Grid 2D");
-                CommandTest.assertEquals(grid.getAttributes().size(), 3);
+                CommandTest.assertEquals(grid.getAttributes().size(), 2);
             }
         });
         cmds.add(new SetGridDimensions1() {
             public void preCondition() {
                 SProjection grid = model.getProjections().get(0);
                 CommandTest.assertEquals(grid.getLabel(), "Grid 3D");
-                CommandTest.assertEquals(grid.getAttributes().size(), 4);
+                CommandTest.assertEquals(grid.getAttributes().size(), 3);
             }
         });
         cmds.add(new SetGridDimensions3() {
             public void preCondition() {
                 SProjection grid = model.getProjections().get(0);
                 CommandTest.assertEquals(grid.getLabel(), "Grid 1D");
-                CommandTest.assertEquals(grid.getAttributes().size(), 2);
+                CommandTest.assertEquals(grid.getAttributes().size(), 1);
             }
         });
         cmds.add(new SetGridDimensions0() {
             public void preCondition() {
                 SProjection grid = model.getProjections().get(0);
                 CommandTest.assertEquals(grid.getLabel(), "Grid 3D");
-                CommandTest.assertEquals(grid.getAttributes().size(), 4);
+                CommandTest.assertEquals(grid.getAttributes().size(), 3);
             }
         });
         cmds.add(new SetGridDimensions3() {
