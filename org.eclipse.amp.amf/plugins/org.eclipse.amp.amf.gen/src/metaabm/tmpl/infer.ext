@@ -98,7 +98,7 @@ cached String accessPathContext(AAct act, SProjection value, Boolean inner) :
 	act.selector().selected.firstSelection() ? accessPath(value.owner, act.selector().reference) : act.selector().selected.selid().pre() + (act.selector().selected.agent != value.owner ? accessPath(value.owner, act.selector().agent) : "");		
 	
 cached String accessPathSelected(AAct act, EObject value, Boolean inner) :
-	((SAttribute.isInstance(value.valueSource())) && ((!inner && (value.dest() != null && !value.dest().firstSelection())) || (inner && value.dest() != act))
+	(SAttribute.isInstance(value.valueSource()) && ((!inner && (value.dest() != null && value.dest().agent != null && !value.dest().firstSelection())) || (inner && value.dest() != act))
 	   ? value.dest().id()
 	   : "");
         
