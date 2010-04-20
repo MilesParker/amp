@@ -27,6 +27,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -39,16 +40,24 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
 import org.metaabm.IID;
 import org.metaabm.MetaABMFactory;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SContext;
+import org.metaabm.SContinuousSpace;
+import org.metaabm.SGeography;
+import org.metaabm.SGrid;
+import org.metaabm.SNetwork;
+import org.metaabm.SProjection;
 import org.metaabm.act.ABuild;
+import org.metaabm.act.ABuildProjection;
 import org.metaabm.act.MetaABMActFactory;
 import org.metaabm.act.MetaABMActPackage;
 import org.metaabm.commands.AddAgentActsCommand;
 import org.metaabm.commands.AddAgentsCommand;
 import org.metaabm.commands.RemoveAgentActsCommand;
+import org.metaabm.commands.SetLabelCommand;
 import org.metaabm.function.MetaABMFunctionFactory;
 
 /*
@@ -57,8 +66,8 @@ import org.metaabm.function.MetaABMFunctionFactory;
  * @generated
  */
 public class SContextItemProvider extends SAgentItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -91,10 +100,10 @@ public class SContextItemProvider extends SAgentItemProvider implements IEditing
      */
     protected void addAllAgentsPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SContext_allAgents_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SContext_allAgents_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SContext_allAgents_feature",
-                                                                           "_UI_SContext_type"),
+                                                                 "_UI_SContext_type"),
                                                                  MetaABMPackage.Literals.SCONTEXT__ALL_AGENTS, true,
                                                                  false, true, null, null, null));
     }
@@ -106,10 +115,10 @@ public class SContextItemProvider extends SAgentItemProvider implements IEditing
      */
     protected void addAllContextsPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SContext_allContexts_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SContext_allContexts_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SContext_allContexts_feature",
-                                                                           "_UI_SContext_type"),
+                                                                 "_UI_SContext_type"),
                                                                  MetaABMPackage.Literals.SCONTEXT__ALL_CONTEXTS, true,
                                                                  false, true, null, null, null));
     }
@@ -126,28 +135,35 @@ public class SContextItemProvider extends SAgentItemProvider implements IEditing
                                              MetaABMActPackage.Literals.AGROUP__MEMBERS, builder));
             }
             cmd.append(super.createAddCommand(domain, owner, feature, collection, index));
-            // for (Object projObject : collection) {
-            // SProjection proj = (SProjection) projObject;
-            // ABuildProjection projBuilder = null;
-            // String name = "Build ";
-            // if (proj instanceof SContinuousSpace) {
-            // projBuilder = MetaABMActFactory.eINSTANCE.createABuildSpace();
-            // name += "Space";
-            // } else if (proj instanceof SGrid) {
-            // projBuilder = MetaABMActFactory.eINSTANCE.createABuildGrid();
-            // name += "Grid";
-            // } else if (proj instanceof SGeography) {
-            // projBuilder = MetaABMActFactory.eINSTANCE.createABuildGeography();
-            // name += "Geography";
-            // } else if (proj instanceof SNetwork) {
-            // projBuilder = MetaABMActFactory.eINSTANCE.createABuildNetwork();
-            // name += "Network";
-            // }
-            // cmd.append(AddCommand.create(domain, builder, MetaABMActPackage.Literals.AACT__TARGETS, projBuilder));
-            // cmd.append(SetCommand.create(domain, projBuilder,
-            // MetaABMActPackage.Literals.ABUILD_PROJECTION__PROJECTION, proj));
-            // cmd.append(SetCommand.create(domain, projBuilder, MetaABMPackage.Literals.IID__LABEL, name));
-            // }
+            for (Object projObject : collection) {
+                SProjection proj = (SProjection) projObject;
+                ABuildProjection projBuilder = null;
+                String name = "Build ";
+                if (proj instanceof SContinuousSpace) {
+                    projBuilder = MetaABMActFactory.eINSTANCE.createABuildSpace();
+                    name += "Space";
+                } else if (proj instanceof SGrid) {
+                    projBuilder = MetaABMActFactory.eINSTANCE.createABuildGrid();
+                    name += "Grid";
+                } else if (proj instanceof SGeography) {
+                    projBuilder = MetaABMActFactory.eINSTANCE.createABuildGeography();
+                    name += "Geography";
+                } else if (proj instanceof SNetwork) {
+                    projBuilder = MetaABMActFactory.eINSTANCE.createABuildNetwork();
+                    name += "Network";
+                }
+                cmd.append(AddCommand.create(domain, builder, MetaABMActPackage.Literals.AACT__TARGETS, projBuilder));
+                cmd.append(SetCommand.create(domain, projBuilder,
+                                             MetaABMActPackage.Literals.ABUILD_PROJECTION__PROJECTION, proj));
+                if (context.getAgents().size() == 1) {
+                    // assume that the agent is an occupant
+                    cmd.append(AddCommand.create(domain, projBuilder,
+                                                 MetaABMActPackage.Literals.ABUILD_PROJECTION__AGENTS, context
+                                                 .getAgents().get(0)));
+                }
+                // cmd.append(new SuggestLabelCommand(domain, projBuilder));
+                cmd.append(SetLabelCommand.create(domain, projBuilder, name));
+            }
             return cmd;
         }
         if (feature == MetaABMPackage.eINSTANCE.getSContext_Agents()) {
@@ -256,10 +272,10 @@ public class SContextItemProvider extends SAgentItemProvider implements IEditing
         super.collectNewChildDescriptors(newChildDescriptors, object);
 
         newChildDescriptors.add(createChildParameter(MetaABMPackage.Literals.SCONTEXT__AGENTS, MetaABMFactory.eINSTANCE
-                .createSAgent()));
+                                                     .createSAgent()));
 
         newChildDescriptors.add(createChildParameter(MetaABMPackage.Literals.SCONTEXT__AGENTS, MetaABMFactory.eINSTANCE
-                .createSContext()));
+                                                     .createSContext()));
 
         newChildDescriptors.add(createChildParameter(MetaABMPackage.Literals.SCONTEXT__PROJECTIONS,
                                                      MetaABMFactory.eINSTANCE.createSContinuousSpace()));

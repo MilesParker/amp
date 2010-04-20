@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -36,8 +37,13 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SProjection;
+import org.metaabm.act.AAct;
+import org.metaabm.act.ABuildProjection;
+import org.metaabm.act.AGroup;
+import org.metaabm.commands.SuggestLabelCommand;
 
 /*
  * This is the item provider adapter for a {@link org.metaabm.SProjection}
@@ -45,8 +51,8 @@ import org.metaabm.SProjection;
  * @generated
  */
 public class SProjectionItemProvider extends SAttributedItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -72,19 +78,45 @@ public class SProjectionItemProvider extends SAttributedItemProvider implements 
     }
 
     /**
+     * @param domain
+     * @param owner
+     * @param feature
+     * @param value
+     * @return
+     * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createSetCommand(org.eclipse.emf.edit.domain.EditingDomain,
+     *      org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, java.lang.Object)
+     */
+    protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value) {
+        CompoundCommand cmd = new CompoundCommand();
+        if (feature == MetaABMPackage.Literals.IID__LABEL) {
+            SProjection proj = (SProjection) owner;
+            cmd.append(super.createSetCommand(domain, owner, feature, value));
+            SuggestLabelCommand labelCommand = null;
+            for (AAct act : ((AGroup) proj.getOwner().getRootActivity()).getMembers()) {
+                if (act instanceof ABuildProjection && ((ABuildProjection) act).getProjection() == proj) {
+                    cmd.appendAndExecute(new SuggestLabelCommand(domain, act));
+                }
+            }
+        } else {
+            cmd.append(super.createSetCommand(domain, owner, feature, value));
+        }
+        return cmd;
+    }
+
+    /**
      * This adds a property descriptor for the Owner feature.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
     protected void addOwnerPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(), getString("_UI_SProjection_owner_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_SProjection_owner_feature", "_UI_SProjection_type"),
-                                                  MetaABMPackage.Literals.SPROJECTION__OWNER, false, false, false,
-                                                  null, getString("_UI_RelationsPropertyCategory"),
-                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(), getString("_UI_SProjection_owner_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_SProjection_owner_feature", "_UI_SProjection_type"),
+                                                    MetaABMPackage.Literals.SPROJECTION__OWNER, false, false, false,
+                                                    null, getString("_UI_RelationsPropertyCategory"),
+                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     /**

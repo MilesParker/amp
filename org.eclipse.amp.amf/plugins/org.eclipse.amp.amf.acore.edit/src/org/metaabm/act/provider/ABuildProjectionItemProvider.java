@@ -19,7 +19,6 @@ package org.metaabm.act.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -34,6 +33,8 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import org.apache.commons.lang.StringUtils;
 import org.metaabm.IID;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SProjection;
@@ -47,8 +48,8 @@ import org.metaabm.act.MetaABMActPackage;
  * @generated
  */
 public class ABuildProjectionItemProvider extends AActItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
      * This constructs an instance from a factory and a notifier. <!--
      * begin-user-doc --> <!-- end-user-doc -->
@@ -87,10 +88,10 @@ public class ABuildProjectionItemProvider extends AActItemProvider implements IE
      */
     protected void addPluralLabelPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SNamed_pluralLabel_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SNamed_pluralLabel_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SNamed_pluralLabel_feature",
-                                                                           "_UI_SNamed_type"),
+                                                                 "_UI_SNamed_type"),
                                                                  MetaABMPackage.Literals.SNAMED__PLURAL_LABEL, true,
                                                                  false, false,
                                                                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
@@ -105,10 +106,10 @@ public class ABuildProjectionItemProvider extends AActItemProvider implements IE
      */
     protected void addDescriptionPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SNamed_description_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_SNamed_description_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SNamed_description_feature",
-                                                                           "_UI_SNamed_type"),
+                                                                 "_UI_SNamed_type"),
                                                                  MetaABMPackage.Literals.SNAMED__DESCRIPTION, true,
                                                                  true, false,
                                                                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
@@ -123,10 +124,10 @@ public class ABuildProjectionItemProvider extends AActItemProvider implements IE
      */
     protected void addAgentsPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                .getRootAdapterFactory(), getResourceLocator(), getString("_UI_ABuildProjection_agents_feature"),
+                                                                 .getRootAdapterFactory(), getResourceLocator(), getString("_UI_ABuildProjection_agents_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_ABuildProjection_agents_feature",
-                                                                           "_UI_ABuildProjection_type"),
+                                                                 "_UI_ABuildProjection_type"),
                                                                  MetaABMActPackage.Literals.ABUILD_PROJECTION__AGENTS,
                                                                  true, false, true, null,
                                                                  getString("_UI_ActPropertyCategory"), null));
@@ -140,14 +141,14 @@ public class ABuildProjectionItemProvider extends AActItemProvider implements IE
      */
     protected void addProjectionPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(),
-                                                  getString("_UI_ABuildProjection_projection_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_ABuildProjection_projection_feature",
-                                                            "_UI_ABuildProjection_type"),
-                                                  MetaABMActPackage.Literals.ABUILD_PROJECTION__PROJECTION, true,
-                                                  false, true, null, getString("_UI_ActPropertyCategory"), null));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(),
+                                          getString("_UI_ABuildProjection_projection_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_ABuildProjection_projection_feature",
+                                          "_UI_ABuildProjection_type"),
+                                          MetaABMActPackage.Literals.ABUILD_PROJECTION__PROJECTION, true,
+                                          false, true, null, getString("_UI_ActPropertyCategory"), null));
     }
 
     /**
@@ -158,14 +159,14 @@ public class ABuildProjectionItemProvider extends AActItemProvider implements IE
      */
     protected void addAttributesPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(),
-                                                  getString("_UI_ABuildProjection_attributes_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_ABuildProjection_attributes_feature",
-                                                            "_UI_ABuildProjection_type"),
-                                                  MetaABMActPackage.Literals.ABUILD_PROJECTION__ATTRIBUTES, true,
-                                                  false, true, null, getString("_UI_ActPropertyCategory"), null));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(),
+                                          getString("_UI_ABuildProjection_attributes_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_ABuildProjection_attributes_feature",
+                                          "_UI_ABuildProjection_type"),
+                                          MetaABMActPackage.Literals.ABUILD_PROJECTION__ATTRIBUTES, true,
+                                          false, true, null, getString("_UI_ActPropertyCategory"), null));
     }
 
     /**
@@ -175,7 +176,7 @@ public class ABuildProjectionItemProvider extends AActItemProvider implements IE
      * @generated NOT
      */
     public String getText(Object object) {
-        return ((IID) object).getLabel();
+        return super.getText(object);
     }
 
     /**
@@ -192,6 +193,10 @@ public class ABuildProjectionItemProvider extends AActItemProvider implements IE
         switch (notification.getFeatureID(ABuildProjection.class)) {
             case MetaABMActPackage.ABUILD_PROJECTION__PLURAL_LABEL:
             case MetaABMActPackage.ABUILD_PROJECTION__DESCRIPTION:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+            case MetaABMActPackage.ABUILD_PROJECTION__AGENTS:
+            case MetaABMActPackage.ABUILD_PROJECTION__SELECTED:
                 fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
                 return;
         }
@@ -213,7 +218,7 @@ public class ABuildProjectionItemProvider extends AActItemProvider implements IE
     public String suggestLabel(IID object) {
         SProjection projection = ((ABuildProjection) object).getProjection();
         return "Build "
-            + (projection != null && projection.getLabel() != null ? StringUtils.capitalize(projection.getLabel())
-                : "[?]");
+        + (projection != null && projection.getLabel() != null ? StringUtils.capitalize(projection.getLabel())
+            : "[?]");
     }
 }
