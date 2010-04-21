@@ -1,4 +1,4 @@
-=More Information=
+=Resources=
 
 ==Obtaining Example Models==
 
@@ -11,3 +11,18 @@ There is a cheat-sheet available for obtaining the example models. If you would 
  org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast 
 *Right-click on the models to execute them.
 *Play around with the model attribute settings and behavior (Acts).
+
+==Websites==
+
+[http://www.eclipse.org/amp Eclipse Agent Modeling Project (Incubation)]
+
+[http://ascape.sourceforge.net Ascape]
+
+[http://metascapeabm.com Metascape, LLC]
+
+==Papers==
+
+[http://www.pnas.org/content/99/suppl.3/7304.full Ascape]
+[http://www.pnas.org/content/99/suppl.3/7280.full Agent-Based Modeling]
+[http://jasss.soc.surrey.ac.uk/11/4/12.html Why Model?]
+

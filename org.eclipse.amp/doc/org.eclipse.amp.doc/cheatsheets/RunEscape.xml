@@ -10,7 +10,7 @@
          skip="true"
          title="Import Example Projects">
       <description>
-         If you haven&apos;t already loaded the exaple projects, you&apos;ll need to do that first.
+         If you haven&apos;t already loaded the example projects, you&apos;ll need to do that first.
       </description>
       <command
             required="false"
@@ -37,13 +37,11 @@
    <item
          title="Start the model">
       <description>
-         Now we can start the model in one of three ways.&lt;BR/&gt;
-&lt;BR/&gt;
- •Right-click and select &quot;Execute&quot; from the menu.&lt;BR/&gt;
- •Select the &quot;Execute&quot; from the toolbar.&lt;BR/&gt;
- •Select &quot;Execute&quot; from the &quot;Control&quot; menu.&lt;BR/&gt;
-&lt;BR/&gt;
-If you&apos;ve imported the example projects and want to run the Epidmic model, you can just Click to Perform and we&apos;ll do it for you!
+        Now we can start the model in one of three ways.
+ •Right-click and select &quot;Execute&quot; from the menu.
+ •Select the &quot;Execute&quot; from the toolbar.
+ •Select &quot;Execute&quot; from the &quot;Control&quot; menu.
+If you&apos;ve imported the example projects and want to run the Epidmic model, you can just Click to Perform and we&apos;ll do it for you!!
       </description>
       <command
             required="true"
@@ -65,17 +63,14 @@ If you&apos;ve imported the example projects and want to run the Epidmic model, 
    <item
          title="Select Chart Items">
       <description>
-         If you look at the Chart Customizer (Click to Perform) you&apos;ll see that it provides a very quick way to select different chart series to view. Each row represents a statistic that has been defined for the model, and each column represents a measure (i.e. Average or Sum) that is automatically being tracked for that statistic. No need to setup a complex chart series! Click some chart items to see how this works. Note that you can clear all of the current selection by clicking the gray &quot;X&quot; box.
+         If you look at the Chart Customizer (Click to Perform) you&apos;ll see that it provides a very quick way to select different chart series to view. Select the chart for the running model and note that the available chart items are updated. Each row represents a statistic that has been defined for the model, and each column represents a measure (i.e. Average or Sum) that is automatically being tracked for that statistic. No need to setup a complex chart series! Click some chart items to see how this works. Note that you can clear all of the current selection by clicking the gray &quot;X&quot; box.
       </description>
       <command
             required="false"
             serialization="org.eclipse.ui.views.showView(org.eclipse.ui.views.showView.viewId=org.eclipse.amp.view.customizer.Chart)"/>
    </item>
    <item
-         skip="true"
-         title="Find out more about the model">
-      <description>
-         If the model developer has provided an &quot;About[model].html&quot; file in a &quot;res&quot; directory, you;ll be able to find out more about the model by looking at the &quot;About Model&quot; view.
+      If the model developer has provided an &quot;About[model].html&quot; file in the project &apos;res&apos; directory, you&apos;ll be able to find out more about the model by looking at the &quot;About Model&quot; view.;ll be able to find out more about the model by looking at the &quot;About Model&quot; view.
       </description>
       <command
             required="false"

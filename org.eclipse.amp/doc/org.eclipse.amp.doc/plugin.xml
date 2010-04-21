@@ -18,40 +18,36 @@
             contentFile="cheatsheets/CreateEscapeAMFProject.xml"
             id="org.eclipse.amp.escape.amf.createProject"
             name="Create an AMF Escape Project"/>
-      <category
-            id="org.eclipse.amp.escape"
-            name="Escape">
-      </category>
       <cheatsheet
-            category="org.eclipse.amp.escape"
+            category="org.eclipse.amp"
             composite="true"
             contentFile="cheatsheets/CreateAndRunJava.xml"
             id="org.eclipse.amp.escape.escapeJava"
             name="Build and Run an Escape Java Model">
       </cheatsheet>
       <cheatsheet
-            category="org.eclipse.amp.escape"
+            category="org.eclipse.amp"
             composite="false"
             contentFile="cheatsheets/CreateEscapeJavaProject.xml"
             id="org.eclipse.amp.escape.createProject"
             name="Create an Escape Project for Java">
       </cheatsheet>
       <cheatsheet
-            category="org.eclipse.amp.escape"
+            category="org.eclipse.amp"
             composite="false"
             contentFile="cheatsheets/LoadSampleProjects.xml"
             id="org.eclipse.amp.escape.loadProjects"
             name="Load Example Projects">
       </cheatsheet>
       <cheatsheet
-            category="org.eclipse.amp.escape"
+            category="org.eclipse.amp"
             composite="false"
             contentFile="cheatsheets/CreateEscapeJavaModel.xml"
             id="org.eclipse.amp.escape.createJava"
             name="Create an Escape Java Model">
       </cheatsheet>
       <cheatsheet
-            category="org.eclipse.amp.escape"
+            category="org.eclipse.amp"
             composite="false"
             contentFile="cheatsheets/RunEscape.xml"
             id="org.eclipse.amp.escape.runExample"

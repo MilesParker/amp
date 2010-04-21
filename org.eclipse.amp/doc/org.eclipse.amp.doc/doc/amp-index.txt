@@ -1,4 +1,6 @@
 000-Guide_Overview.mediawiki
+001-Architecture_Overview.mediawiki
+010-GettingStarted.mediawiki
 100-ModelersGuide_Intro.mediawiki
 110-ModelersGuide_Structure.mediawiki
 120-ModelersGuide_Actions.mediawiki
@@ -7,4 +9,5 @@
 300-ModelersGuide_Exploring.mediawiki
 400-ProgrammersGuide_Escape.mediawiki
 410-ProgrammersGuide_AMFPojo.mediawiki
+420-ProgrammersGuide_Converting.mediawiki
 900-Resources.mediawiki

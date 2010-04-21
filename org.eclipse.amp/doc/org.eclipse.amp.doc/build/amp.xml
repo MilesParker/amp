@@ -5,48 +5,66 @@
 		<title>Overview</title>
 		<para>The Eclipse Agent Modeling Project (AMP) provides extensible frameworks and exemplary tools for representing, editing, generating,
 			executing and visualizing agent-based models (ABMs) and any other domain requiring spatial, behavioral and functional features. </para>
+		<para>This guide is divided into three main sections: a modelers guide for general users, a programmers guide for those wishing to develop models in or extensions of AMP, and a resources section.</para>
+		<para>This manual is integrated with the Eclipse help system. In some sections of the manual you'll see links to related help topics and cheat sheets. Naturally, you'll have access to these resources only when you're using the Eclipse help system.</para>
 		<section id="Architecture">
 			<title>Architecture</title>
 			<para>AMP has two main themes that complement but don't depend on one another: </para>
 			<para>The overall AMP architecture and Eclipse project dependencies are summarized below:</para>
 			<para>
-				<ulink url="/wiki/image:AMPArchitectureDiagram.jpg">image:AMPArchitectureDiagram.jpg</ulink>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/AMPArchitectureDiagram.jpg"/>
+					</imageobject>
+				</mediaobject>
 			</para>
+			<section id="Agent_Modeling_Framework_.28AMF.29">
+				<title>Agent Modeling Framework (AMF)</title>
+				<para>AMF provides an ABM meta-model representation, editor, generator and development environment. The AMF Acore meta-model is similar to EMF Ecore and defined in Ecore, but provides high-level support for complex agents.AMF generates complete executable models for Escape, Ascape and Repast Simphony, as well as Java Skeletons and Interfaces, JUnit test cases and documentation and is easily extensible to support additional targets.</para>
+			</section>
+			<section id="Agent_Execution_Framework_.28AXF.29">
+				<title>Agent Execution Framework (AXF)</title>
+				<para>The execution framework provides services and UI for model management, execution, and views. Arbitrary toolkits can easily integrate with Eclipse and AXF by implementing pluggable providers like engines, agents and view parts. AXF is not just for ABM -- anyone who needs support for executing, managing and visualizing collections of objects may find it useful.</para>
+			</section>
+			<section id="Agent_Graphics_Framework_.28AGF.29">
+				<title>Agent Graphics Framework (AGF)</title>
+				<para>The graphics framework extends GEF, GEF3D, Zest, and the BIRT charting engine to support real-time visualization of and interaction with agent models. AGF currently provides support for 2D, 2 1/2 D. and graph structures, and will be extended to 3-D, GIS and others. As with other AMP components, the AGF design focus is to provide an extensible infrastructure so that platform adopters can easily create their own view and editor parts.</para>
+			</section>
 		</section>
-	</chapter>
-	<chapter id="Getting_Started">
-		<title>Getting Started</title>
-		<para>AMP has many potential facets and use cases. Here are a few ways to get started with it.</para>
-		<para>First, if you aren't using a full download version of AMP, you'll need to 
-			<ulink url="http://eclipse.org/amp/installing/">install it</ulink>. Then...
-		</para>
-		<section id="ABM_Modelers">
-			<title>ABM Modelers</title>
-			<para>Experiment with example Java and AMF based models without writing code.</para>
-			<para>
-				<ulink url="/wiki/AMP/Running_Examples">Run Example Models</ulink>
-			</para>
-		</section>
-		<section id="ABM_Researchers">
-			<title>ABM Researchers</title>
-			<para>Create Agent-Based models using simple visual tools and deploy them to a number of popular ABM platforms, including Escape.</para>
-			<para>
-				<ulink url="/wiki/AMP/UserGuide/AMF#Getting_Started">Modeling with AMF</ulink>
-			</para>
-		</section>
-		<section id="ABM_Java_Developers">
-			<title>ABM Java Developers</title>
-			<para>Write POJO Java models within a full-featured agent-based modeling framework.</para>
-			<para>
-				<ulink url="/wiki/AMP/UserGuide/Escape#Getting_Started">Programming with Escape</ulink>
-			</para>
-		</section>
-		<section id="Eclipse_Plugin_Developers">
-			<title>Eclipse Plugin Developers</title>
-			<para>AXF and AGF provide a number of features based around Eclipse technologies such as GEF, GEF3D, BIRT Charts and Zest. For example, AGF supports dynamic visualization of objects in space, and AXF supports managed UI and headless execution for models of any kind.</para>
-			<para>
-				<ulink url="/wiki/AMP/AGF_AXF_API">Programming with AXF and AGF</ulink> (todo)
-			</para>
+		<section id="Getting_Started">
+			<title>Getting Started</title>
+			<para>AMP has many potential facets and use cases.</para>
+			<section id="Setting_up_Eclipse">
+				<title>Setting up Eclipse</title>
+				<para>If you're reading this from the Eclipse help browser, you can ignore this section! Otherwise, if you aren't using a full download version of AMP, you'll need to 
+					<ulink url="http://eclipse.org/amp/installing/">install it</ulink>. Once you've done that, select the 
+					<emphasis role="bold">Help &gt; Help Contents</emphasis> menu, find the Agent Modeling Guide and open this overview page within that guide.
+				</para>
+				<para>Some installations will also include a Welcome screen which will guide you through the same set of steps.</para>
+			</section>
+			<section id="Get_the_Example_Projects">
+				<title>Get the Example Projects</title>
+				<para>You can do that using a cheat sheet. Select 
+					<emphasis role="bold">Help &gt; Cheat Sheets...</emphasis> and then under the "Agent Modeling" category, select "Load Sample Projects".
+				</para>
+				<para>Then check out the following sections of the manual for more information about..</para>
+			</section>
+			<section id="ABM_Researchers">
+				<title>ABM Researchers</title>
+				<para>Run an example model using the "Run an Example Model" cheat sheet.</para>
+			</section>
+			<section id="ABM_Modelers">
+				<title>ABM Modelers</title>
+				<para>Create Agent-Based models using simple visual tools and deploy them to a number of popular ABM platforms, including Escape. Follow the tutorial section of the Modeler's guide.</para>
+			</section>
+			<section id="ABM_Java_Developers">
+				<title>ABM Java Developers</title>
+				<para>Write "Plain Old Java" models within a full-featured agent-based modeling framework. Read Programmers Guide and then try the "Create an Escape Java Model" cheat sheet.</para>
+			</section>
+			<section id="Eclipse_Plugin_Developers">
+				<title>Eclipse Plugin Developers</title>
+				<para>AXF and AGF provide a number of features based around Eclipse technologies such as GEF, GEF3D, BIRT Charts and Zest. For example, AGF supports dynamic visualization of objects in space, and AXF supports managed UI and headless execution for models of any kind. There isn't currently any general documentation for these features, but we encourage you to look at the APIs and at Escape's implementation of them. They're straightforward and can be useful for a variety of general science platform needs.</para>
+			</section>
 		</section>
 	</chapter>
 	<chapter id="Modeler.27s_Guide">
@@ -2203,7 +2221,7 @@ Outputs:
 							</para>
 							<para>In addition to error markers, metaABM provides warnings designed to help you avoid common design mistakes. For example, a warning will be issued if you attempt to move an agent from its selection to the same selection; this is not strictly speaking an error, but it doesn't make much sense. You'll also recieve warning for default values that have not been specified. You might notice that the Demographic Prisonner's Dilemma model has warning markers, this is because we were happy with the '0' default values for the attributes and didn't provide any. (By the way, you might also notice a number of Java warnings. By default the Eclipse IDE is very conservative when it comes to warnings, and expects the usage of language constructs that we choose not to use. A full discussion of all of this is beyond the scope of the tutorial, but see the Eclipse documentation on problem views for more ideas about how to customize these views.)</para>
 							<para>To fix this error we just need to assign a value for search distance. We 
-								<emphasis role="bold">could</emphasis> simply create a literal for the Spatial: Within Query but that isn't really god practice. (Originally the Agent Modeling Framework didn't even support Literal values, but we added them for convenience.) Now, we will create our first Attribute. In this case, we want the Attribute to belong to Simple Model as it will be the same value for all Agents for now. So right-click on the Stupid Model context Attributes node and create a new one.
+								<emphasis role="bold">could</emphasis> simply create a literal for the Spatial: Within Query but that isn't really good practice. (Originally the Agent Modeling Framework didn't even support Literal values, but we added them for convenience.) Now, we will create our first Attribute. In this case, we want the Attribute to belong to the Stupid Model as it will be the same value for all Agents for now. So right-click on the Stupid Model context Attributes node and create a new one.
 							</para>
 							<para>
 								<mediaobject>
@@ -2276,50 +2294,42 @@ Outputs:
 				</section>
 			</section>
 		</section>
-	</chapter>
-	<chapter id="Exploring_Agent_Models">
-		<title>Exploring Agent Models</title>
-	</chapter>
-	<chapter id="Programer.27s_Guide">
-		<title>Programer's Guide</title>
-		<section id="Overview_5">
-			<title>Overview</title>
-			<para>Escape is a full-featured Agent-Based Modeling (ABM) integrated development environment (IDE) with a Java based API and end user modeling tools. It's based on Ascape, which has been in use for more than 10 years. The core API is very stable, and that should give users a way to explore the features of AMP without concerns about keeping in synch with the rapidly evolving AXF /AGF API. It allows modelers to code in Java and/or generate models with AMF and then execute those models within the same development environment.</para>
-			<para>
-				<ulink url="/wiki/image:EscapeExecutionScreenshot.png">image:EscapeExecutionScreenshot.png</ulink>
-			</para>
-			<para>A primary purpose of the Escape project -- apart from the obvious goal of providing a nice Eclipse hosted ABM toolkit -- is to provide an exemplar to demonstrate how any arbitrary agent modeling framework can be integrated within the AMP environment. A cool aspect of this is that AMP has no dependencies on Escape, but also that the underlying ABM modeling framework for Escape has no dependencies on AMP -- instead Escape simply provides the runtime glue between AMP and the ABM framework. The underlying ABM framework uses the Ascape API, an API that first began development more than ten years ago and that has not been modified at all in order for it to work within the AMP environment.</para>
-			<para>(Well, not quite.. Ascape was refactored into separate non-UI core and a Swing UI projects. This involved a bit of repackaging, but was really straightforward as Ascape follows a strict MVC architecture. Note that currently Escape is bulkier than it will eventually be -- over time we will be generalizing more aspects of Escape into the AMP AXF and AGF components.)</para>
-		</section>
-		<section id="Getting_Started_2">
-			<title>Getting Started</title>
-			<section id="Documentation_and_other_Resources">
-				<title>Documentation and other Resources</title>
-				<para>Because it's API is based on Ascape, Escape is one component of AMP that already has extensive documentation. There is complete Javadoc as well as a manual and other web resources. See the 
-					<ulink url="http://ascape.sourceforge.net">Ascape Website</ulink> to locate these resources. The documentation on the main page is a good place to start. It's written for Ascape so ignore all of the bits about project setup, and a lot of the UI is different, but the basics apply to Escape just as well. The 
-					<ulink url="http://ascape.sourceforge.net/docs/TheAscapeManual5.pdf">Ascape Manual</ulink> written by Damon Centola should be very helpful. Take a look at the conversion link below for ideas on how to make the models form the manual work under Ascape. (Converting these models is a great opportunity for a community contribution!)
-				</para>
-			</section>
-		</section>
-		<section id="Installation">
-			<title>Installation</title>
-			<para>Escape is 
-				<ulink url="http://eclipse.org/amp/installing/">installed</ulink> by default with the other model components. If you want to do 3D (really 2 1/2) visualizations, you will want AGF3D and the LWJGL dependency. You can build from source but in that case you'l need to launch a self-hosted runtime, so it's best to simply install from the update site if you're not actually doing AMP development.
-			</para>
-		</section>
-		<section id="Exploring_Example_ABM_Models">
-			<title>Exploring Example ABM Models</title>
-			<para>The first thing most people will want to do in AMP is to play with the example models. You don't need to do any programming for this, and the setup is really straightforward. Of course, the first think you'll need to do is 
-				<ulink url="http://eclipse.org/amp/installing">Install AMP</ulink>. (You don't need any of the optional components unless you want to play with the 3D visualizations, Ascape, or Repast.) You can explore AMF models as well as some really interesting classic ABM models.
-			</para>
-			<section id="AMF_Models">
-				<title>AMF Models</title>
-				<para>There are a number of models developed with AMF that can automatically generate example models to run in Escape. There are two ways to run the example models:</para>
-				<section id="Setup_Escape_Projects">
-					<title>Setup Escape Projects</title>
+		<section id="Running_Agent_Models">
+			<title>Running Agent Models</title>
+			<section id="Exploring_Example_ABM_Models">
+				<title>Exploring Example ABM Models</title>
+				<para>The first thing most people will want to do in AMP is to play with the example models. You can explore AMF models as well as some really interesting classic ABM models.</para>
+				<section id="Downloading_Models">
+					<title>Downloading Models</title>
+					<para>To obtain the models, simply launch the cheat sheet. Go to the 
+						<emphasis role="bold">Help &gt; Cheat Sheets...</emphasis> menu and choose "Load Sample Projects".
+					</para>
+					<para>Or you can get them yourself from the following locations:</para>
+					<section id="AMF_Models">
+						<title>AMF Models</title>
+						<literallayout>org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.escape
+</literallayout>
+						<para>To understand the capabilities of AMF, you might also want to try out running the same models automatically generated for Ascape or Repast. These are located at dev.eclipse.org in cvsroot/modeling:</para>
+						<literallayout>org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape
+org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
+</literallayout>
+					</section>
+					<section id="Escape_.2F_Ascape_Java_Models">
+						<title>Escape / Ascape Java Models</title>
+						<para>These are SVN projects in the sourceforge SVN. For help, see 
+							<ulink url="/wiki/http://www.eclipse.org/subversive/documentation/teamSupport/find_check_wiz.php_this_page">http://www.eclipse.org/subversive/documentation/teamSupport/find_check_wiz.php this page</ulink>.
+						</para>
+						<literallayout>http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.brook
+http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.examples
+</literallayout>
+					</section>
+				</section>
+				<section id="Generating_Models">
+					<title>Generating Models</title>
+					<para>There are a number of models developed with AMF that can automatically generate example models to run in Escape. There are two ways to run the example models:</para>
 					<section id="Creating_a_New_Escape_Project">
 						<title>Creating a New Escape Project</title>
-						<para>The best option is to simply create a new Escape project and drag the models into it! We're working on a simple cheat sheet for this, but until then, just follow these simple steps:</para>
+						<para>The best option is to simply create a new Escape project and drag the models into it!</para>
 						<orderedlist>
 							<listitem>
 								<para>If you're not already there, open the Agent Modeling Perspective. Select Window &gt; Open Perspective &gt; Other.. and then Agent Modeling. (Or you can choose Window &gt; Reset Perspective and the Agent Modeling perspective should appear in the Open Perspective list itself.)</para>
@@ -2334,42 +2344,56 @@ Outputs:
 							</listitem>
 						</orderedlist>
 					</section>
-					<section id="Using_an_Pre-Built_Example_Project">
-						<title>Using an Pre-Built Example Project</title>
-						<para>If you get really stuck somewhere, you can also get ready made projects from CVS. See 
-							<ulink url="http://eclipse.org/amp/developers/repositoryDetails.php">this page</ulink> for information on CVS setup. The project for Escape example models are located at:
-						</para>
-						<literallayout>org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.escape
-</literallayout>
-					</section>
 				</section>
-				<section id="Run_the_Model">
-					<title>Run the Model</title>
-					<para>Right-click on the model, and select "Execute"! You should see something like this:</para>
-					<para>
-						<ulink url="/wiki/image:EpidemicModelRunning.png">image:EpidemicModelRunning.png</ulink>
-					</para>
-					<para>We're working on more end-user documentaiton, but hopefully you'll find model control pretty self-explanatory. The toolbar buttons allow you to control model execution.</para>
-					<para>
-						<ulink url="/wiki/image:EpidemicModelControls.png">image:EpidemicModelControls.png</ulink>
-					</para>
-					<para>From right to left, you can start, restart, pause, step, stop and close a model. You can even run multiple models and control them independently. You can also move views around, close them and so on as with any other Eclipse views. Here we're running two separate models for comparison.</para>
-					<para>
-						<ulink url="/wiki/image:EpidemicModelComparison.png">image:EpidemicModelComparison.png</ulink>
-					</para>
-					<para>If you want to find out more about an agent, show the properties view, and click on agent.</para>
-					<para>
-						<ulink url="/wiki/image:EpidemicModelAgentProperties.png">image:EpidemicModelAgentProperties.png</ulink>
-					</para>
-					<para>You can experiment with different parameters (settings) for models by then clicking in the gray area away within the view.</para>
-					<para>
-						<ulink url="/wiki/image:EpidemicModelProperties.png">image:EpidemicModelProperties.png</ulink>
-					</para>
-					<para>There are a number of other things to play around with, such as zooming the agent view or selecting other chart series to display using the Chart Customizer, so just explore. You can always close an active model by clicking on the close toolbar button. Or if you can't access the models controls for some reason, you can open the progress view and close projects form there.</para>
-				</section>
+			</section>
+			<section id="Tutorial_2">
+				<title>Tutorial</title>
+				<para>We've developer have a complete cheat sheet supporting this tutorial. Simply go to 
+					<emphasis role="bold">Help &gt; Cheat Sheets...</emphasis> and then select "Run an Example Model" from within the "Agent Modeling" category. Or install the example models and then explore the following steps.
+				</para>
+				<para>Right-click on the model, and select "Execute". You should see something like this:</para>
+				<para>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/EpidemicModelRunning.png"/>
+						</imageobject>
+					</mediaobject>
+				</para>
+				<para>The toolbar buttons allow you to control model execution.</para>
+				<para>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/EpidemicModelControls.png"/>
+						</imageobject>
+					</mediaobject>
+				</para>
+				<para>From right to left, you can start, restart, pause, step, stop and close a model. You can even run multiple models and control them independently. You can also move views around, close them and so on as with any other Eclipse views. Here we're running two separate models for comparison.</para>
+				<para>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/EpidemicModelComparison.png"/>
+						</imageobject>
+					</mediaobject>
+				</para>
+				<para>If you want to find out more about an agent, show the properties view, and click on agent.</para>
+				<para>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/EpidemicModelAgentProperties.png"/>
+						</imageobject>
+					</mediaobject>
+				</para>
+				<para>You can experiment with different parameters (settings) for models by then clicking in the gray area away within the view.</para>
+				<para>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/EpidemicModelProperties.png"/>
+						</imageobject>
+					</mediaobject>
+				</para>
+				<para>There are a number of other things to play around with, such as zooming the agent view or selecting other chart series to display using the Chart Customizer, so just explore. You can always close an active model by clicking on the close toolbar button. Or if you can't access the models controls for some reason, you can open the progress view and close projects form there.</para>
 				<section id="Next_Steps">
 					<title>Next Steps</title>
-					<para>Other models are located at: (to do)</para>
 					<para>To understand the capabilities of AMF, you might also want to try out running the same models automatically generated for Ascape or Repast.</para>
 					<literallayout>org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape
 org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
@@ -2379,61 +2403,100 @@ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
 			<section id="Classic_Java_ABM_Models">
 				<title>Classic Java ABM Models</title>
 				<para>Many models have been created using Ascape over the years, including all of the classic models created at Brookings and some other cool models such as Craig Reynold's Boids and a pretty cool little traffic model, and they've all been converted to run in Escape. They're in Java but you can execute and explore them in exactly the same way as the Epidemic model above. All of the Ascape example models have been converted (a straightforward process) from their intial Ascape incarnations. For licensing reasons (they're BSD, not EPL) we can't host them directly on the Eclipse site.  You can get the projects in two ways:</para>
-				<section id="From_Project_Archive">
-					<title>From Project Archive</title>
-					<itemizedlist>
-						<listitem>
-							<para>Download the Escape examples zip from the Ascape sourceforge site: 
-								<ulink url="http://sourceforge.net/projects/ascape/files/Escape/5.2.0/EscapeExamples.zip/download">http://sourceforge.net/projects/ascape/files/Escape/5.2.0/EscapeExamples.zip/download</ulink>
-							</para>
-						</listitem>
-						<listitem>
-							<para>Unzip the file.</para>
-						</listitem>
-						<listitem>
-							<para>Import them into your workspace. For help, see 
-								<ulink url="http://help.eclipse.org/help32/index.jsp?topic=/org.eclipse.jst.j2ee.doc.user/topics/ph-projects.html">this page</ulink>.
-							</para>
-						</listitem>
-					</itemizedlist>
-				</section>
-				<section id="From_SVN">
-					<title>From SVN</title>
-					<itemizedlist>
-						<listitem>
-							<para>Import the SVN projects from the sourceforge SVN. For help, see 
-								<ulink url="/wiki/http://www.eclipse.org/subversive/documentation/teamSupport/find_check_wiz.php_this_page">http://www.eclipse.org/subversive/documentation/teamSupport/find_check_wiz.php this page</ulink>.
-							</para>
-						</listitem>
-					</itemizedlist>
-					<literallayout>http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.brook
-http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.examples
-</literallayout>
-					<para>Once you've downloaded the projects, open up the src folder and navigate to the Java files for the actual models. For example, to run Conway's Life, you'll want src/edu.brook.life.ConwayLife. Right-click on the Java file and select "Execute". There are many models to explore! (It's not always obvious which Java files are for models, so you may have to poke around a bit. We need to put together a catalog here. Another nice opportunity for user contributions.)</para>
-				</section>
+				<para>Once you've downloaded the projects, open up the src folder and navigate to the Java files for the actual models. For example, to run Conway's Life, you'll want src/edu.brook.life.ConwayLife. Right-click on the Java file and select "Execute". There are many models to explore! (It's not always obvious which Java files are for models, so you may have to poke around a bit. We need to put together a catalog here. Another nice opportunity for user contributions.)</para>
+			</section>
+		</section>
+	</chapter>
+	<chapter id="Programer.27s_Guide">
+		<title>Programer's Guide</title>
+		<section id="Overview_5">
+			<title>Overview</title>
+			<para>Escape is a full-featured Agent-Based Modeling (ABM) integrated development environment (IDE) with a Java based API and end user modeling tools. It's based on Ascape, which has been in use for more than 10 years. The core API is very stable, and that should give users a way to explore the features of AMP without concerns about keeping in synch with the rapidly evolving AXF /AGF API. It allows modelers to code in Java and/or generate models with AMF and then execute those models within the same development environment.</para>
+			<para>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/EscapeExecutionScreenshot.png"/>
+					</imageobject>
+				</mediaobject>
+			</para>
+			<para>A primary purpose of the Escape project -- apart from the obvious goal of providing a nice Eclipse hosted ABM toolkit -- is to provide an exemplar to demonstrate how any arbitrary agent modeling framework can be integrated within the AMP environment. A cool aspect of this is that AMP has no dependencies on Escape, but also that the underlying ABM modeling framework for Escape has no dependencies on AMP -- instead Escape simply provides the runtime glue between AMP and the ABM framework. The underlying ABM framework uses the Ascape API, an API that first began development more than ten years ago and that has not been modified at all in order for it to work within the AMP environment.</para>
+		</section>
+		<section id="Getting_Started_2">
+			<title>Getting Started</title>
+			<section id="Documentation_and_other_Resources">
+				<title>Documentation and other Resources</title>
+				<para>Because it's API is based on Ascape, Escape is one component of AMP that already has extensive documentation. There is complete Javadoc as well as a manual and other web resources. See the 
+					<ulink url="http://ascape.sourceforge.net">Ascape Website</ulink> to locate these resources. There is a 
+					<ulink url="http://ascape.sourceforge.net/docs/TheAscapeManual5.pdf">full manual</ulink> for Ascape available on that site. Or, you can install the Ascape Manual into the eclipse help system by adding the following update site and selecting the "Documentations and Source Code" feature.
+				</para>
+				<para>
+					<ulink url="http://ascape.sourceforge.net/eclipse">http://ascape.sourceforge.net/eclipse</ulink>
+				</para>
+			</section>
+			<section id="Installation">
+				<title>Installation</title>
+				<para>Escape is 
+					<ulink url="http://eclipse.org/amp/installing/">installed</ulink> by default with the other model components. If you want to do 3D (really 2 1/2) visualizations, you will want AGF3D and the LWJGL dependency. You can build from source but in that case you'l need to launch a self-hosted runtime, so it's best to simply install from the update site if you're not actually doing AMP development.
+				</para>
 			</section>
 		</section>
 		<section id="Developing_Models">
 			<title>Developing Models</title>
-			<para>The easiest way for Java developers to get started doing agent-based modeling in Eclipse is to begin to write programs using it.To develop new models, you can:</para>
+			<para>The easiest way for Java developers to get started doing agent-based modeling in Eclipse is to begin to write programs using it. To develop new models, you can:</para>
 			<orderedlist>
 				<listitem>
-					<para>Create a new Escape project. The Escape projects are actually configured for AMF code generation so there are dependencies and builders in there that you don't need; you can remove all of the escape builders and any of the kitchen sink items. We'll try to get a POJO Escape project wizard out there at some point.</para>
+					<para>Create a new Escape project. The Escape projects are actually configured for AMF code generation so there are dependencies and builders in there that you don't need; you can remove all of the escape builders and any of the kitchen sink items. The "Create an Escape Java Model" cheat sheet will walk you through the process of creating a new Java based project and model.</para>
 				</listitem>
 				<listitem>
-					<para> But it might be simpler to just create a new Plugin Project and add the necessary dependencies there. Have a look at the example escape project to see what you need. Note that you will likely need more dependencies then you need to simply build -- this is because the class loader uses the classes from the project path and so runtime classes have to be there as well. We may simply package an Eclipse runtime convenience plugin to gather these dependencies up a bit.</para>
+					<para>Or for more experienced Eclipse users, you can simply to just create a new Plugin Project and add the necessary dependencies there. Have a look at the example escape project to see what you need. Note that you will likely need more dependencies then you need to simply build -- this is because the class loader uses the classes from the project path and so runtime classes have to be there as well. We may simply package an Eclipse runtime convenience plugin to gather these dependencies up a bit.</para>
 				</listitem>
 			</orderedlist>
 			<para>Then just create new Java classes for your root model scape and agents just as you would for an Ascape project.</para>
 		</section>
-	</chapter>
-	<chapter id="Reference_3">
-		<title>Reference</title>
-		<section id="Converting_Existing_Ascape_models">
-			<title>Converting Existing Ascape models</title>
-			<para>There are only a few changes should have to make to existing Ascape models or to use existing Ascape documentation to develop Escape models.</para>
-			<section id="Model">
-				<section>
+		<section id="More_Information">
+			<title>More Information</title>
+			<section id="Integrating_Java_and_AMF_Models">
+				<title>Integrating Java and AMF Models</title>
+				<para>If you're like many Java developers, you might find point-and-click interfaces a bit lame. Personally, I've changed my tune in this, and I now define all of my ABM models from the editor, saving Java for truly specialized tasks. But even without generation of agent behavior, Acore can be a really valuable tool, as the GIS example shows. The way to look at metaABM is as a way to compose your overall model and automate the tedious parts. Apart from Java generated code, the AMF meta-model maintains a number of very useful artifacts. For example, the Repast Simphony target maintains model.score and all of the model.rs component. Generally, AMF should save time and hassle while making your models far more transparent even if you never use the Actions component to define agent behavior.</para>
+				<section id="Method_Action">
+					<title>Method Action</title>
+					<para>As explained in the action section, you can simply create a "Method" act with hand-written Java code. This option is nice because all code is contained within the AMF file. But it can be difficult to maintain large blocks of Java code as you aren't using a Java editor to edit the Java code itself. One way to get around this is to create your code in the generated Java method and then copy it into the Method action. Note one imporant issue here -- you'll generally have to fully qualify your Java references as you won't be able to change the imports statements directly. </para>
+				</section>
+				<section id="Protected_Code_Regions">
+					<title>Protected Code Regions</title>
+					<para>You can mix and match Action behavior with Java and generated code with POJOs. One way to do this is through using protected regions. Select the agent you want to create protected methods for and then select "Generate Protected" from the "Mode" property. Now, create actions just as you have before, or use your existing ones. On code generation, open up the relevant java file and examine the methods that have been created. </para>
+					<para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/ProgrammingPojoGenerateProps.png"/>
+							</imageobject>
+						</mediaobject>
+					</para>
+					<para>You can put whatever you want within the PROTECTED REGION comments and those changes will be preserved when the model is regenerated. You can create a schedule, rule or watcher, maintain custom code for the actual implementations, and still have the model adapt to changes in the underlying data structure -- if for example you want to import a modified shape file.</para>
+					<para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/ProgrammingPojoGenerateCode.png"/>
+							</imageobject>
+						</mediaobject>
+					</para>
+				</section>
+				<section id="Implement_Sub-classes">
+					<title>Implement Sub-classes</title>
+					<para>Another approach which can be more robust is to generate the basic model stubs (like an abstract base class except that it isn't abstract) and then override your model with implementations. AMF provides support for generic skeletons and interfaces.</para>
+					<para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/ProgrammingPojoGenerate.png"/>
+							</imageobject>
+						</mediaobject>
+					</para>
+				</section>
+			</section>
+			<section id="Converting_Existing_Ascape_models">
+				<title>Converting Existing Ascape models</title>
+				<para>There are only a few changes should have to make to existing Ascape models or to use existing Ascape documentation to develop Escape models.</para>
+				<section id="Model">
 					<title>Model</title>
 					<para>The core model is completely API compatible. No changes!</para>
 				</section>
@@ -2493,50 +2556,9 @@ g.fillOval(..
 				</section>
 			</section>
 		</section>
-		<section id="More_Information">
-			<title>More Information</title>
-			<section id="Integrating_Java_and_AMF_Models">
-				<title>Integrating Java and AMF Models</title>
-				<para>If you're like many Java developers, you might find point-and-click interfaces a bit lame. Personally, I've changed my tune in this, and I now define all of my ABM models from the editor, saving Java for truly specialized tasks. But even without generation of agent behavior, Acore can be a really valuable tool, as the GIS example shows. The way to look at metaABM is as a way to compose your overall model and automate the tedious parts. Apart from Java generated code, the AMF meta-model maintains a number of very useful artifacts. For example, the Repast Simphony target maintains model.score and all of the model.rs component. Generally, AMF should save time and hassle while making your models far more transparent even if you never use the Actions component to define agent behavior.</para>
-				<section id="Method_Action">
-					<title>Method Action</title>
-					<para>As explained in the action section, you can simply create a "Method" act with hand-written Java code. This option is nice because all code is contained within the AMF file. But it can be difficult to maintain large blocks of Java code as you aren't using a Java editor to edit the Java code itself. One way to get around this is to create your code in the generated Java method and then copy it into the Method action. Note one imporant issue here -- you'll generally have to fully qualify your Java references as you won't be able to change the imports statements directly. </para>
-				</section>
-				<section id="Protected_Code_Regions">
-					<title>Protected Code Regions</title>
-					<para>You can mix and match Action behavior with Java and generated code with POJOs. One way to do this is through using protected regions. Select the agent you want to create protected methods for and then select "Generate Protected" from the "Mode" property. Now, create actions just as you have before, or use your existing ones. On code generation, open up the relevant java file and examine the methods that have been created. </para>
-					<para>
-						<mediaobject>
-							<imageobject>
-								<imagedata fileref="images/ProgrammingPojoGenerateProps.png"/>
-							</imageobject>
-						</mediaobject>
-					</para>
-					<para>You can put whatever you want within the PROTECTED REGION comments and those changes will be preserved when the model is regenerated. You can create a schedule, rule or watcher, maintain custom code for the actual implementations, and still have the model adapt to changes in the underlying data structure -- if for example you want to import a modified shape file.</para>
-					<para>
-						<mediaobject>
-							<imageobject>
-								<imagedata fileref="images/ProgrammingPojoGenerateCode.png"/>
-							</imageobject>
-						</mediaobject>
-					</para>
-				</section>
-				<section id="Implement_Sub-classes">
-					<title>Implement Sub-classes</title>
-					<para>Another approach which can be more robust is to generate the basic model stubs (like an abstract base class except that it isn't abstract) and then override your model with implementations. AMF provides support for generic skeletons and interfaces.</para>
-					<para>
-						<mediaobject>
-							<imageobject>
-								<imagedata fileref="images/ProgrammingPojoGenerate.png"/>
-							</imageobject>
-						</mediaobject>
-					</para>
-				</section>
-			</section>
-		</section>
 	</chapter>
-	<chapter id="More_Information_2">
-		<title>More Information</title>
+	<chapter id="Resources">
+		<title>Resources</title>
 		<section id="Obtaining_Example_Models">
 			<title>Obtaining Example Models</title>
 			<para>There is a cheat-sheet available for obtaining the example models. If you would rather obtain them yourself, here is the CVS information:</para>
@@ -2565,6 +2587,28 @@ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
 					</itemizedlist>
 				</section>
 			</section>
+		</section>
+		<section id="Websites">
+			<title>Websites</title>
+			<para>
+				<ulink url="http://www.eclipse.org/amp">Eclipse Agent Modeling Project (Incubation)</ulink>
+			</para>
+			<para>
+				<ulink url="http://ascape.sourceforge.net">Ascape</ulink>
+			</para>
+			<para>
+				<ulink url="http://metascapeabm.com">Metascape, LLC</ulink>
+			</para>
+		</section>
+		<section id="Papers">
+			<title>Papers</title>
+			<para>
+				<ulink url="http://www.pnas.org/content/99/suppl.3/7304.full">Ascape</ulink>
+
+				<ulink url="http://www.pnas.org/content/99/suppl.3/7280.full">Agent-Based Modeling</ulink>
+
+				<ulink url="http://jasss.soc.surrey.ac.uk/11/4/12.html">Why Model?</ulink>
+			</para>
 		</section>
 	</chapter>
 </book>

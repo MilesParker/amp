@@ -1,0 +1,33 @@
+
+==Getting Started==
+
+AMP has many potential facets and use cases.
+
+===Setting up Eclipse===
+
+If you're reading this from the Eclipse help browser, you can ignore this section! Otherwise, if you aren't using a full download version of AMP, you'll need to [http://eclipse.org/amp/installing/ install it]. Once you've done that, select the '''Help > Help Contents''' menu, find the Agent Modeling Guide and open this overview page within that guide.
+
+Some installations will also include a Welcome screen which will guide you through the same set of steps.
+
+===Get the Example Projects===
+
+You can do that using a cheat sheet. Select '''Help > Cheat Sheets...''' and then under the "Agent Modeling" category, select "Load Sample Projects".
+
+Then check out the following sections of the manual for more information about..
+
+===ABM Researchers===
+
+Run an example model using the "Run an Example Model" cheat sheet.
+
+===ABM Modelers===
+
+Create Agent-Based models using simple visual tools and deploy them to a number of popular ABM platforms, including Escape. Follow the tutorial section of the Modeler's guide.
+
+===ABM Java Developers===
+
+Write "Plain Old Java" models within a full-featured agent-based modeling framework. Read Programmers Guide and then try the "Create an Escape Java Model" cheat sheet.
+
+===Eclipse Plugin Developers===
+
+AXF and AGF provide a number of features based around Eclipse technologies such as GEF, GEF3D, BIRT Charts and Zest. For example, AGF supports dynamic visualization of objects in space, and AXF supports managed UI and headless execution for models of any kind. There isn't currently any general documentation for these features, but we encourage you to look at the APIs and at Escape's implementation of them. They're straightforward and can be useful for a variety of general science platform needs.
+

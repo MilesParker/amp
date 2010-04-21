@@ -3,40 +3,7 @@
 The Eclipse Agent Modeling Project (AMP) provides extensible frameworks and exemplary tools for representing, editing, generating,
 executing and visualizing agent-based models (ABMs) and any other domain requiring spatial, behavioral and functional features. 
 
-==Architecture==
+This guide is divided into three main sections: a modelers guide for general users, a programmers guide for those wishing to develop models in or extensions of AMP, and a resources section.
 
-AMP has two main themes that complement but don't depend on one another: 
+This manual is integrated with the Eclipse help system. In some sections of the manual you'll see links to related help topics and cheat sheets. Naturally, you'll have access to these resources only when you're using the Eclipse help system.
 
-The overall AMP architecture and Eclipse project dependencies are summarized below:
-
-[[image:AMPArchitectureDiagram.jpg]]
-
-=Getting Started=
-
-AMP has many potential facets and use cases. Here are a few ways to get started with it.
-
-First, if you aren't using a full download version of AMP, you'll need to [http://eclipse.org/amp/installing/ install it]. Then...
-
-==ABM Modelers==
-
-Experiment with example Java and AMF based models without writing code.
-
-[[AMP/Running_Examples|Run Example Models]]
-
-==ABM Researchers==
-
-Create Agent-Based models using simple visual tools and deploy them to a number of popular ABM platforms, including Escape.
-
-[[AMP/UserGuide/AMF#Getting Started|Modeling with AMF]]
-
-==ABM Java Developers==
-
-Write POJO Java models within a full-featured agent-based modeling framework.
-
-[[AMP/UserGuide/Escape#Getting_Started|Programming with Escape]]
-
-==Eclipse Plugin Developers==
-
-AXF and AGF provide a number of features based around Eclipse technologies such as GEF, GEF3D, BIRT Charts and Zest. For example, AGF supports dynamic visualization of objects in space, and AXF supports managed UI and headless execution for models of any kind.
-
-[[AMP/AGF_AXF_API|Programming with AXF and AGF]] (todo)
