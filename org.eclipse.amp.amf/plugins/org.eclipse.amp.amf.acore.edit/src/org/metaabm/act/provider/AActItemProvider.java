@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
@@ -36,6 +37,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.DragAndDropFeedback;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -50,8 +53,6 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.apache.commons.lang.StringUtils;
 import org.metaabm.IID;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SNamed;
@@ -281,30 +282,10 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
             addTargets(targets, result);
             result.remove(root);
             return result;
-        } else {
-            // Collection<Object> children = new ArrayList<Object>();
-            // if (providerForFeature == null) {
-            // // children = new ArrayList<Object>();
-            // EObject parent = (EObject) object;
-            // providerForFeature = new HashMap<EReference, ItemProviderAdapter>();
-            // sourcesItemProvider = new RelatedActsItemProvider(adapterFactory, parent,
-            // MetaABMActPackage.Literals.AACT__SOURCES, "Sources");
-            // targetsItemProvider = new RelatedActsItemProvider(adapterFactory, parent,
-            // MetaABMActPackage.Literals.AACT__TARGETS, "Targets");
-            // }
-            // if (!children.contains(sourcesItemProvider)) {
-            // children.add(sourcesItemProvider);
-            // children.add(targetsItemProvider);
-            // }
-            // AAct act = (AAct) object;
-            // if (act.getTargets().size() > 1 || act instanceof AGroup) {
+        } else if (object instanceof AGroup) {
             return super.getChildren(object);
-            // } else if (act instanceof ASink) {
-            // EList<AAct> children = new BasicEList(((ASink) object).getInputs());
-            // return children;
-            // }
         }
-        // return Collections.EMPTY_LIST;
+        return Collections.EMPTY_LIST;
     }
 
     /**
@@ -319,10 +300,52 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             childrenFeatures = new ArrayList<EStructuralFeature>();
-            childrenFeatures.add(MetaABMActPackage.Literals.AACT__TARGETS);
+            if (object instanceof ARoot) {
+                childrenFeatures.add(MetaABMActPackage.Literals.AACT__TARGETS);
+            }
         }
         return childrenFeatures;
-        // return Collections.EMPTY_LIST;
+    }
+
+    @Override
+    protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
+            int operation, Collection<?> collection) {
+        AAct source = (AAct) unwrap(owner);
+        List<AAct> allSources = new ArrayList<AAct>(source.getAllSources());
+        allSources.add(source);
+        if (Collections.disjoint(allSources, collection)) {
+            CompoundCommand cmd = new CompoundCommand();
+            if (operation == DragAndDropFeedback.DROP_LINK) {
+                Collection<AAct> unwrapped = new ArrayList<AAct>();
+                for (Object object : collection) {
+                    AAct act = (AAct) unwrap(object);
+                    unwrapped.add(act);
+                }
+                cmd.append(super.createDragAndDropCommand(domain, owner, location, operations, operation, unwrapped));
+            } else if (operation == DragAndDropFeedback.DROP_COPY) {
+                Collection<AAct> unwrapped = new ArrayList<AAct>();
+                for (Object object : collection) {
+                    AAct act = (AAct) unwrap(object);
+                    unwrapped.add(act);
+                }
+                cmd.append(super.createDragAndDropCommand(domain, owner, location, operations, operation, unwrapped));
+            } else if (operation == DragAndDropFeedback.DROP_MOVE) {
+                Collection<AAct> targets = new ArrayList<AAct>();
+                for (Object object : collection) {
+                    AAct act = (AAct) unwrap(object);
+                    targets.add(act);
+                }
+                cmd.append(super.createDragAndDropCommand(domain, owner, location, operations, operation, targets));
+                for (AAct target : targets) {
+                    for (AAct lastSource : target.getSources()) {
+                        cmd.append(RemoveCommand.create(domain, lastSource,
+                                                        MetaABMActPackage.Literals.AACT__TARGETS, Collections.singleton(target)));
+                    }
+                }
+            }
+            return cmd;
+        }
+        return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
     }
 
     // /**
@@ -473,7 +496,7 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
                 || feature == MetaABMActPackage.Literals.AINPUT__LITERAL
                 || feature == MetaABMActPackage.Literals.AACCESSOR__ATTRIBUTE
                 || feature == MetaABMActPackage.Literals.ASET__PARAMETER
-            || feature == MetaABMActPackage.Literals.ABUILD_PROJECTION__PROJECTION
+                || feature == MetaABMActPackage.Literals.ABUILD_PROJECTION__PROJECTION
                 || feature == MetaABMActPackage.Literals.ACREATE_AGENTS__AGENT_COUNT
                 || feature == MetaABMActPackage.Literals.ASCHEDULE__PICK
                 || feature == MetaABMActPackage.Literals.ASCHEDULE__PRIORITY
@@ -705,10 +728,10 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     }
 
     protected boolean isWrappingNeeded(Object object) {
-        if (object instanceof AAct) {
-            return true;
-        }
-        return super.isWrappingNeeded(object);
+        // if (object instanceof AAct) {
+        // return true;
+        // }
+        return false;// super.isWrappingNeeded(object);
     }
 
     @Override
@@ -718,7 +741,9 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
         // && !(object instanceof AGroup) && !(object instanceof ARoot)) {
         // return false;
         // }
-        return super.hasChildren(object, false);
+        return object instanceof ARoot && ((AAct) object).getTargets().size() > 0 || object instanceof AGroup
+        && ((AGroup) object).getMembers().size() > 0;
+        // return super.hasChildren(object, false);
     }
 
     // protected Command wrapCommand(Command command, Object object, Class<?
@@ -800,7 +825,9 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
         if (act instanceof ASink) {
             for (AInput input : ((ASink) act).getInputs()) {
                 if (!allSourceSelects.contains(input.getSelected()) && !processed.contains(input)) {
-                    cmd.append(SetCommand.create(domain, input, MetaABMActPackage.Literals.AINPUT__SELECTED, newSelect));
+                    cmd
+                    .append(SetCommand.create(domain, input, MetaABMActPackage.Literals.AINPUT__SELECTED,
+                                              newSelect));
                     processed.add(input);
                 }
             }
