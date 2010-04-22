@@ -17,6 +17,7 @@ import org.eclipse.emf.edit.command.DragAndDropFeedback;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
 import org.eclipse.emf.edit.provider.IWrapperItemProvider;
+
 import org.metaabm.act.AAct;
 import org.metaabm.act.MetaABMActPackage;
 import org.metaabm.commands.RemoveActTargetsCommand;
@@ -56,30 +57,22 @@ public class AActWrapperItemProvider extends DelegatingWrapperItemProvider {
         List<AAct> allSources = new ArrayList<AAct>(source.getAllSources());
         allSources.add(source);
         if (Collections.disjoint(allSources, collection)) {
+            CompoundCommand cmd = new CompoundCommand();
             if (operation == DragAndDropFeedback.DROP_LINK) {
-                CompoundCommand cmd = new CompoundCommand();
                 Collection<AAct> unwrapped = new ArrayList<AAct>();
                 for (Object object : collection) {
                     AAct act = (AAct) unwrap(object);
                     unwrapped.add(act);
                 }
                 cmd.append(super.createDragAndDropCommand(domain, owner, location, operations, operation, unwrapped));
-                // for (AAct act : unwrapped) {
-                // AActItemProvider.reassignSelects(domain, cmd, newSource,
-                // act);
-                // }
-                return cmd;
             } else if (operation == DragAndDropFeedback.DROP_COPY) {
-                CompoundCommand cmd = new CompoundCommand();
                 Collection<AAct> unwrapped = new ArrayList<AAct>();
                 for (Object object : collection) {
                     AAct act = (AAct) unwrap(object);
                     unwrapped.add(act);
                 }
                 cmd.append(super.createDragAndDropCommand(domain, owner, location, operations, operation, unwrapped));
-                return cmd;
             } else if (operation == DragAndDropFeedback.DROP_MOVE) {
-                CompoundCommand cmd = new CompoundCommand();
                 Collection<AAct> targets = new ArrayList<AAct>();
                 for (Object object : collection) {
                     AAct act = (AAct) unwrap(object);
@@ -93,8 +86,8 @@ public class AActWrapperItemProvider extends DelegatingWrapperItemProvider {
                     }
                     AActItemProvider.reassignSelects(domain, cmd, source, target);
                 }
-                return cmd;
             }
+            return cmd;
         }
         return super.createDragAndDropCommand(domain, owner, location, operations, operation, collection);
     }
