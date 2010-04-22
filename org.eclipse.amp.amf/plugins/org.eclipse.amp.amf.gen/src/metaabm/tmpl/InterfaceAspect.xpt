@@ -30,13 +30,13 @@
 «AROUND metaabm::tmpl::Java::SetterMethod FOR IID-»
     public «EXPAND metaabm::tmpl::Java::Modifier»void «setterName()»(«EXPAND metaabm::tmpl::Java::ExtendType-» _«paramName()»);
 «ENDAROUND»
-«AROUND metaabm::tmpl::Java::ActivityMethod FOR IID-»
+«AROUND metaabm::tmpl::Java::MethodImpl FOR IID-»
     public «methodTypeName()» «methodName()»(«methodParamList()»);
 «ENDAROUND»
 «AROUND metaabm::tmpl::Java::OtherAccessors FOR SContext-»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::OtherAccessors FOR SAgent-»«ENDAROUND»
 
-«AROUND metaabm::tmpl::Java::ActivityPotentialMethod (metaabm::act::AAct within) FOR AMethod-»
+«AROUND metaabm::tmpl::Java::Method (metaabm::act::AAct within) FOR AMethod-»
     «IF !(id().startsWith("test") || id().startsWith("assert"))-»
     «targetDef.proceed()»
     «ENDIF-»

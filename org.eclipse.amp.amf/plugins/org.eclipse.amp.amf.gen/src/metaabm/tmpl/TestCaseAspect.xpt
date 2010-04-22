@@ -9,7 +9,7 @@
 «EXTENSION metaabm::tmpl::util»
 
 «DEFINE Model FOR SContext-»
-    «FILE javaFileLoc().replaceFirst("srcgen", "src").replaceFirst(typeName(), "All" + typeName() + "Tests")-»
+    «FILE javaFileLoc().replaceFirst("srcgen", "test").replaceFirst(typeName(), "All" + typeName() + "Tests")-»
 package «package()»;
 
 import org.junit.runner.RunWith;
@@ -23,7 +23,7 @@ public class All«impl().className»Tests {
     «ENDFILE-»
 «ENDDEFINE»
 
-«AROUND metaabm::tmpl::Java::ActivityMethod FOR IID-»
+«AROUND metaabm::tmpl::Java::MethodImpl FOR IID-»
 	@org.junit.Test
     public «methodTypeName()» «methodName()»(«methodParamList()») {
         «PROTECT CSTART "/*" CEND "*/" ID typeName() + "_" + methodName() + "_Pre"»
