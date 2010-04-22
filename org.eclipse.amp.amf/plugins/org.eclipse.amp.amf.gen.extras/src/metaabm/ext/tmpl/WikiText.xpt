@@ -75,7 +75,6 @@ See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#«id()»(«
 
 «DEFINE LibraryTable FOR SContext-»
 «IF !library.isEmpty»
-===Function Library===
 	«EXPAND LibraryTable FOREACH library-»
 «ENDIF-»
 «ENDDEFINE»
