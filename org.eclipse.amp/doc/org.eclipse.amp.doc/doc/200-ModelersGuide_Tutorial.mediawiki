@@ -20,38 +20,37 @@ Before beginning a modeling project it is important to have a clear idea of what
 
 A special Agent Modeling '''Perspective''' can be used to setup your '''Workspace''' for modeling. Depending on your how you installed the agent modeling tools, you can simply pick the perspective from the choices in the upper-right hand of your workbench:
 
-[[Image:images/SimpleTutorial0Perspective.png]]
+[[Image:images/edit_tutorial/SimpleTutorial0Perspective.png]]
 
 Or, if you can't see it there, you can access it by selecting the menu '''Open Perspective > Other... and then selecting the Agent Modeling perspective from the provided options:
 
-[[Image:images/SimpleTutorial0Perspective2.png]]
-
+[[Image:images/edit_tutorial/SimpleTutorial0Perspective2.png]]
 
 =====Create Project=====
 
 Before doing anything else, we need a project -- a folder to organize our models within. Right-click in the Package Explorer and select '''New > Agent Modeling Escape Project'''.
 
-[[Image:images/SimpleTutorial1.png]]
+[[Image:images/edit_tutorial/SimpleTutorial1.png]]
 
 =====Name project=====
 
 We'll get a dialog allowing us to name the project. Let's call it something simple.
 
-[[Image:images/SimpleTutorial2.png]]
+[[Image:images/edit_tutorial/SimpleTutorial2.png]]
 
 =====Create Model=====
 
 We'll need a model as well. This is the container for all of the the agents and behaviors we'll be defining. Right-click on the project folder and choose '''New > Agent Model'''.
 
-[[Image:images/SimpleTutorial3CreateModel.png]]
+[[Image:images/edit_tutorial/SimpleTutorial3CreateModel.png]]
 
 You'll see a model creation wizard from which you can name the model. Just give it the name "StupidModel.metaabm".
 
-[[Image:images/SimpleTutorial4CreateModel.png]]
+[[Image:images/edit_tutorial/SimpleTutorial4CreateModel.png]]
 
 Click '''Next''' to see some other options. We don't need to change any of this:
 
-[[Image:images/SimpleTutorial5CreatePage2.png]]
+[[Image:images/edit_tutorial/SimpleTutorial5CreatePage2.png]]
 
 So just click the '''Finish''' button and we're ready to move on with the tutorial.
 
@@ -63,23 +62,23 @@ So just click the '''Finish''' button and we're ready to move on with the tutori
 
 Our first step is to create an agent. The root contexts and a number of neccessary model components were already created automatically. So right-click on the root "StupidModel1" context and select '''Create Member > Agent'''.
 
-[[Image:images/SimpleTutorial6Createagent.png]]
+[[Image:images/edit_tutorial/SimpleTutorial6Createagent.png]]
 
 ======Name Agent======
 
 Let's call it "Bug". In the lower left-hand corner you should see the '''Properties''' View. This is where you'll edit model values when working with the tree editor. The properties view -- as with any other view--- can be moved anywhere within the workbench and if you can't find it -- or any other views -- you can always lcoate it through '''Window > Show View > Other'''. Find the "Label" property and type our new name into it. You'll see that all of the related name properites are also updated.
 
-[[Image:images/SimpleTutorial6NameBug.png]]
+[[Image:images/edit_tutorial/SimpleTutorial6NameBug.png]]
 
 ======The Create Agent Action====== 
 
 While we've been making these changes, the modeling framework has also been doing some work behind the scenes. For example, it has created an attribute and a rule to create the agents. Open the Actions node and the Attributes node to see these changes. If we look at the attributes for the model, we can see that an attribute specifying the number of agents has been created called "Bug Count". Select it, then enter "100" as the default value. The default value is the value the model will use if no value is specified anywhere else (like in the parameter launcher).
 
-[[Image:images/SimpleTutorial10AgentCount.png]]
+[[Image:images/edit_tutorial/SimpleTutorial10AgentCount.png]]
 
 You might want to take a look at the Create Bugs rule, but there isn't anything we need to change there.
 
-[[Image:images/SimpleTutorial11BuildAgents.png]]
+[[Image:images/edit_tutorial/SimpleTutorial11BuildAgents.png]]
 
 =====Grid Space=====
 
@@ -87,7 +86,7 @@ You might want to take a look at the Create Bugs rule, but there isn't anything 
 
 Next, we'll create a grid for the Bugs to move around upon. Right-click on the StupidModel1 context and choose '''New > Grid'''.
 
-[[Image:images/SimpleTutorial7CreateGrid.png]]
+[[Image:images/edit_tutorial/SimpleTutorial7CreateGrid.png]]
 
 ======Set Grid Parameters======
 
@@ -97,21 +96,21 @@ Now, looking at the properties for the Grid we've just created, we can see that 
 #Set the "Neighborhood" property to be "Moore" -- that's how we are going to interpret the statement "in the X and Y directions".
 #Set the dimensionality to "2". (You might need to enlarge the Property view or use the scroll bar to see the Dimensionality property.)
 
-[[Image:images/SimpleTutorial8GridParameters.png]]
+[[Image:images/edit_tutorial/SimpleTutorial8GridParameters.png]]
 
 Again, the framework has taken care of some things for us automatically. If we now open the Grid node, we can see that "Width" and "Height" attributes have been created based on the dimensionality we've just defined. We'll set each of them to "100", so that we end up with a 100 x 100 grid. (Which is pretty large for a model of this kind, but we want to go with the basic specification.)
 
-[[Image:images/SimpleTutorial9GridDims.png]]
+[[Image:images/edit_tutorial/SimpleTutorial9GridDims.png]]
 
 ======The Build Grid Action======
 
 The Agent Modeling Framework has also created a Build Gird Action for us. If you navigate to the StupidModel1 context Actions node again, you can see the Action. If you click on it you should see the following properties set:
 
-[[Image:images/SimpleTutorial14BuildGridParams.png]]
+[[Image:images/edit_tutorial/SimpleTutorial14BuildGridParams.png]]
 
 If you click on the '''...''' button next to the "Agents" property you'll see see the Bug, which is the agent that will be moving around upon the grid.
 
-[[Image:images/SimpleTutorial13BuildGridAgents.png]]
+[[Image:images/edit_tutorial/SimpleTutorial13BuildGridAgents.png]]
 
 ====Actions====
 
@@ -119,43 +118,43 @@ If you click on the '''...''' button next to the "Agents" property you'll see se
 
 Now we can make these bugs do something. Let's create our first rule. In this case we're going to create a special Initialize Action that executes once when the model is first created for each agent. All Actions begin from the agent (or style) Actions list and there are only a few Actions that can serve as roots. See the Design section of this guide for much more on that. Open the Bug node by clicking the triangle icon, right-click on the Actions node and select the '''Create Member > Initialize Action.
 
-[[Image:images/SimpleTutorial15CreateInitialize.png]]
+[[Image:images/edit_tutorial/SimpleTutorial15CreateInitialize.png]]
 
 ======Create Select Action======
 
 Next, right click on the new Initialize node and choose '''Create Member > Select''' to create a Select target.
 
-[[Image:images/SimpleTutorial16CreateSelect.png]]
+[[Image:images/edit_tutorial/SimpleTutorial16CreateSelect.png]]
 
 Selects are the central building blocks of model actions and define the basis for Query and Logic Actions that can be modified and used in subsequent targets. Targets are actions that "follow from" other actions. With this Select we are going to be searching for places for the Bug to move to at the very start of the model run. Here we need to specify the space we will be looking for cells within, so we set the Space property to "Grid 2D". Normally, we'd specify an agent as well, but as the Grid 2D cells don't have any attributes, we don't need to define them explicitly. So we just need to make sure that the Agent property is null (blank).
 
-[[Image:images/SimpleTutorial165Select2.png]]
+[[Image:images/edit_tutorial/SimpleTutorial165Select2.png]]
 
 ======Create Query Action======
 
 Next, we create a Query Action. A query is really a query term; we're specifying some aspect of the search that we're interested in.
 
-[[Image:images/SimpleTutorial17CreateQuery.png]]
+[[Image:images/edit_tutorial/SimpleTutorial17CreateQuery.png]]
 
 In this case we want a special kind of query, a query within space for any agents that are available; that is unoccupied by another agent. So we select "Spatial: Available" form the drop down list of query functions.
 
-[[Image:images/SimpleTutorial18QueryFunction.png]]
+[[Image:images/edit_tutorial/SimpleTutorial18QueryFunction.png]]
 
 ======Create Move Action======
 
 Finally, as the last part of the initial action specification, we'll create a Move Action using '''Create Member > Move'''. (Not shown.) The properties should be correct, but check to make sure that the selection property is "Initialize" (the root), and the destination property is "Bug" (the Select Action we've defined above). Like this:
 
-[[Image:images/SimpleTutorial19Move.png]]
+[[Image:images/edit_tutorial/SimpleTutorial19Move.png]]
 
 =====Run Initial Model=====
 
 That's all we have to do to create our first working model! Now, go to the '''Package Explorer''' and select the StupidModel1.metaabm file. Right-click on it and select '''Execute'''. Or click on the first "m" button in the toolbar. (Again, we've simplified the toolbar for this tutorial, so you may have more buttons appearing then we're showing here.
 
-[[Image:images/SimpleTutorial20ExecuteModel.png]]
+[[Image:images/edit_tutorial/SimpleTutorial20ExecuteModel.png]]
 
 A new perspective for "Agent Execution" will automatically open up and you can see that the agents have placed themselves in the grid. They don't do anything else yet.
 
-[[Image:images/SimpleTutorial21Execute2.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial21Execute2.png | right]]
 
 ====Styles====
 
@@ -165,13 +164,13 @@ A new perspective for "Agent Execution" will automatically open up and you can s
 
 While Escape assigns a default color of black for the agents, we'll want something more interesting -- so let's make the Bugs red. Agent visualization is accomplished using the same mechanism as ordinary agent rules. So first, let's create a new Style. Right click on the "Styles" node and select '''
 
-[[Image:images/SimpleTutorial22CreateStyle.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial22CreateStyle.png | right]]
 
 By default the style will be called BugStyle2D. Open the Style to the Actions node and create a rule.
 
 ======Create Style Rule======
 
-[[Image:images/SimpleTutorial23CreateStyleRule.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial23CreateStyleRule.png | right]]
 
 Now we need to create a series of evaluations. An Evaluation is like a Query in that it performs some kind of function in the broadest sense, but unlike a Query, it does not affect whether target (downstream) Acts are performed. For Styles we have a set of Graphic functions that we will chain together to draw a figure. First we create the Evaluation.
 
@@ -179,11 +178,11 @@ Now we need to create a series of evaluations. An Evaluation is like a Query in 
 
 We make the first Evaluation define a Color of "Red". Right click on the new Rule, and select '''New > Command > Evaluate''' (not shown) to create an Evaluation. Then in the function property, select "Graphic: Color Red".
 
-[[Image:images/SimpleTutorial24EvaluationFunction.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial24EvaluationFunction.png | right]]
 
 We'll create two more evaluation targets. Right-click on the "Color Red" evaluation and create an Evaluation. Pick the "Graphic: Draw Oval" fill. For the last part of our style, we need to actually draw the figure. To do this we create a last Evaluation target for "Draw Oval" and give it the "Graphic: Fill Shape" function. By now it should be clear how to do this. "Fill" or "Outline" will always come last in a chain of graphic evaluations, but otherwise the order shouldn't matter. See the Demographic Prisoner's Dilemma model for an example of how this can be used to selectively pick Colors and or Shapes. You should end up with something like this:
 
-[[Image:images/SimpleTutorial25FinishStyle.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial25FinishStyle.png | right]]
 
 
 ====Actions 2 Movement Rule====
@@ -196,7 +195,7 @@ The first part of the Bug Rule is exactly the same as the Initialize rule. Creat
 
 But now, instead of moving <i>anywhere</i> we want to move nearby. So now, we create a ''parallel'' or "sibling" Query from the same Select root. Because this new Query Action is a child of the Select Action and not the "Space Available" Query we've just created, we'll right-click on the ''Select'' Action and choose '''Create Target > Select > Query'''. Like so:
 
-[[Image:images/SimpleTutorial26CreateQuery2.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial26CreateQuery2.png | right]]
 
 Often, we would pick the "Spatial: Neighbor" function to take a random walk, but according to the specification, we actually want to move into some random Cell within distance four (4). So we will pick "Spatial: Within" from the list of functions.
 
@@ -204,33 +203,33 @@ Often, we would pick the "Spatial: Neighbor" function to take a random walk, but
 
 Instead of specifying the actual distance now, let's see how the Agent Modeling Framework error checking capabilities can help us in model development. Save the model by selecting '''File > Save''' from the application menu. Notice that a red marker appears next to the StupidModel1.metaabm file. If you reveal the '''Problems View''' you'll see a list of current errors and warnings and if you open the errors node in that list, you'll see an item reporting that the input has no value. If you double-click on that item, you'll be taken to the input for the Within query and you'll be able to edit it.
 
-[[Image:images/SimpleTutorial27NoValue.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial27NoValue.png | right]]
     
 In addition to error markers, metaABM provides warnings designed to help you avoid common design mistakes. For example, a warning will be issued if you attempt to move an agent from its selection to the same selection; this is not strictly speaking an error, but it doesn't make much sense. You'll also recieve warning for default values that have not been specified. You might notice that the Demographic Prisonner's Dilemma model has warning markers, this is because we were happy with the '0' default values for the attributes and didn't provide any. (By the way, you might also notice a number of Java warnings. By default the Eclipse IDE is very conservative when it comes to warnings, and expects the usage of language constructs that we choose not to use. A full discussion of all of this is beyond the scope of the tutorial, but see the Eclipse documentation on problem views for more ideas about how to customize these views.)
 
 To fix this error we just need to assign a value for search distance. We '''could''' simply create a literal for the Spatial: Within Query but that isn't really good practice. (Originally the Agent Modeling Framework didn't even support Literal values, but we added them for convenience.) Now, we will create our first Attribute. In this case, we want the Attribute to belong to the Stupid Model as it will be the same value for all Agents for now. So right-click on the Stupid Model context Attributes node and create a new one.
 
-[[Image:images/SimpleTutorial28CreateAttribute.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial28CreateAttribute.png | right]]
 
 Name the Attribute -- "Bug Vision" seems descriptive -- give it a type of Integer, and assign it a default value of 4. This will allow most ABM platforms to provide the ability to change vision at runtime or through batch definitions, something we couldn't do if we had used a literal value.
 
-[[Image:images/SimpleTutorial29AttributeValues.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial29AttributeValues.png | right]]
 
 Finally, we assign the Vision attribute to the "Input" node in our Spatial: Within Query.
 
-[[Image:images/SimpleTutorial30AttributeInput.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial30AttributeInput.png | right]]
 
 Now, we need to combine the requirement that the cell be available with the requirement that it be within 4 cell's distance. To accomplish this, we'll add an Intersection Action. The Logical Actions, including "Intersection", "Union" and "None" define how Query Actions work together. So create an Intersection Actions as a target of the Spatial Available Query. (Not the Within Query).
 
-[[Image:images/SimpleTutorial31Intersect.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial31Intersect.png | right]]
 
 The Intersection Action needs to be a target of ''both'' the Available and Within targets. To accomplish this, drag the Intersection Action over the Within Query. It's a bit hard to see this in a static image, but you simply need to click on the Intersection Action, move it so that it is over the Within target, and release the mouse.
 
-[[Image:images/SimpleTutorial32IntersectAdd.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial32IntersectAdd.png | right]]
 
 Finally, add a Move target to the Intersection.
 
-[[Image:images/SimpleTutorial33Move.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial33Move.png | right]]
 
 A few notes on the screenshot above. To make things a bit clearer, we've edited the names for the final panel. Also, the Intersection node might not appear in the same place. We've expanded the nodes so that you can see that while the actions are all listed together, they are actually defined as a tree structure internally. You can follow that tree to see all of the actions that might be the result of any of the actions in the list. To help understand the structure at a glance, the labels include an <- indicator showing the immediate sources of each of the nodes. ''Note especially than while the targets for actions often appear immediately following their source actions, this is not always the case.''
 
@@ -238,7 +237,7 @@ A few notes on the screenshot above. To make things a bit clearer, we've edited 
 
 Now, we can select the model in the '''Package Navigator''' again, and run the model. It doesn't look much different in a snapshot, but those agents should now be moving around. We have built a complete Ascape model from our model.
 
-[[Image:images/SimpleTutorial34RunFinal.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial34RunFinal.png | right]]
 
 We hope this tutorial has enabled you to get up and running and given you some familiarity with the basic Agent Modeling Framework approach. The example models include the other "stupid models" from the paper, as well as a number of other interesting models.
 

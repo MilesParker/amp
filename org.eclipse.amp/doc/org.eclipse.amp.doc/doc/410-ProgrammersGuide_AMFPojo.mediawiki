@@ -12,14 +12,14 @@ As explained in the action section, you can simply create a "Method" act with ha
 
 You can mix and match Action behavior with Java and generated code with POJOs. One way to do this is through using protected regions. Select the agent you want to create protected methods for and then select "Generate Protected" from the "Mode" property. Now, create actions just as you have before, or use your existing ones. On code generation, open up the relevant java file and examine the methods that have been created. 
 
-[[Image:images/ProgrammingPojoGenerateProps.png]]
+[[Image:images/pojo/ProgrammingPojoGenerateProps.png]]
 
 You can put whatever you want within the PROTECTED REGION comments and those changes will be preserved when the model is regenerated. You can create a schedule, rule or watcher, maintain custom code for the actual implementations, and still have the model adapt to changes in the underlying data structure -- if for example you want to import a modified shape file.
 
-[[Image:images/ProgrammingPojoGenerateCode.png]]
+[[Image:images/pojo/ProgrammingPojoGenerateCode.png]]
 
 ====Implement Sub-classes====
 
 Another approach which can be more robust is to generate the basic model stubs (like an abstract base class except that it isn't abstract) and then override your model with implementations. AMF provides support for generic skeletons and interfaces.
 
-[[Image:images/ProgrammingPojoGenerate.png]]
+[[Image:images/pojo/ProgrammingPojoGenerate.png]]

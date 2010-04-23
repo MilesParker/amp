@@ -52,10 +52,10 @@
 <span class="section"><a href="#Functions">Functions</a></span>
 </dt>
 <dt>
-<span class="section"><a href="#Tutorial">Tutorial</a></span>
+<span class="section"><a href="#Tools">Tools</a></span>
 </dt>
 <dt>
-<span class="section"><a href="#Running_Agent_Models">Running Agent Models</a></span>
+<span class="section"><a href="#Tutorial">Tutorial</a></span>
 </dt>
 </dl>
 </dd>
@@ -65,7 +65,7 @@
 <dd>
 <dl>
 <dt>
-<span class="section"><a href="#Overview_5">Overview</a></span>
+<span class="section"><a href="#Overview_6">Overview</a></span>
 </dt>
 <dt>
 <span class="section"><a href="#Getting_Started_2">Getting Started</a></span>
@@ -75,6 +75,9 @@
 </dt>
 <dt>
 <span class="section"><a href="#More_Information">More Information</a></span>
+</dt>
+<dt>
+<span class="section"><a href="#Running_Agent_Models">Running Agent Models</a></span>
 </dt>
 </dl>
 </dd>
@@ -91,6 +94,22 @@
 </dt>
 <dt>
 <span class="section"><a href="#Papers">Papers</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="chapter"><a href="#Support">5. Support</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="#Issues">Issues</a></span>
+</dt>
+<dt>
+<span class="section"><a href="#Feedback">Feedback</a></span>
+</dt>
+<dt>
+<span class="section"><a href="#Get_Involved">Get Involved</a></span>
 </dt>
 </dl>
 </dd>
@@ -265,7 +284,7 @@
 </div>
 </div>
 </div>
-<p>In this Modeler's Guide we provide an in-depth understanding of what goes into an Agent Model and how you can use the Agent Modeling Framework tools to design one. Fundamentally, an agent-based model, or "ABM", is composed of five pieces: Agents and Context Agents, Attributes, Spaces, and Actions. The first three refer to structural components, whereas Actions define behavior. Agent models also have styles, which are a special kind of Action used to determine how to portray an agent in a visualization. Finally Actions make use of Functions. We'll describe of these components in a separate section.</p>
+<p>In this Modeler's Guide we provide an in-depth understanding of what goes into an Agent Model and how you can use the Agent Modeling Framework and related tools to design one. Fundamentally, an agent-based model, or "ABM", is composed of five pieces: Agents and Context Agents, Attributes, Spaces, and Actions. The first three refer to structural components, whereas Actions define behavior. Agent models also have styles, which are a special kind of Action used to determine how to portray an agent in a visualization. Finally Actions make use of Functions. We'll describe of these components in a separate section.</p>
 <p>But first, we'll give a quick overview at what agent-based modeling is is and how the Agent Modeling Framework can help you to develop models for ABM or other problem domains.</p>
 <div class="section" title="Agent-Based Modeling">
 <div class="titlepage">
@@ -387,12 +406,12 @@
 <p>The basic structure of an agent-based model can be quite simple. While there are many subtle complexities  -- beyond the scope of this manual -- we can construct most models following some straightforward and elegant design principles. And in fact, one of the main goals of the Agent Modeling Framework is to provide a consistent framework that can support using those principles to support the creation of models that can be easily understood, shared, and that can be used interchangeably as components in other models.</p>
 <p>Unlike the approach of a traditional Object Oriented environment, the dominant organizing principal for agents within AMF follows a compositional hierarchical model, not an inheritance model. (Inheritance-like behavior will be supported in forthcoming versions of Acore, but in a more sophisticated, flexible and dynamic way than is supported by traditional programming languages such as Java.) Contexts -- also referred to as "Swarms" or "Scapes", are simply Agents that are capable of containing other agents. With this basic construct -- known as a Composition in design pattern language -- agents are able to contain other agents.</p>
 </div>
-<div class="section" title="Details">
+<div class="section" title="Concepts">
 <div class="titlepage">
 <div>
 <div>
 <h3 class="title">
-<a name="Details"></a>Details</h3>
+<a name="Concepts"></a>Concepts</h3>
 </div>
 </div>
 </div>
@@ -424,7 +443,7 @@
 </div>
 </div>
 </div>
-<p>A reasonably short, human readable name for the agent. For example, "Timber Wolf", "Exchange Trader" or "Movement Probability". These should be defined so that they fit in well with auto-generated documentation.</p>
+<p>A reasonably short, human readable name for the agent. For example, "Timber Wolf", "Exchange Trader" or "Movement Probability". These should be defined so that they fit in well with auto-generated documentation. Note that Labels must be unique throughout the model. (This may change in future releases for Action names.) If you try to provide an object with a name that is already in use, "Copy" will be appended to the end of the name. </p>
 </div>
 <div class="section" title="ID">
 <div class="titlepage">
@@ -435,7 +454,7 @@
 </div>
 </div>
 </div>
-<p>An ID is an identifier that can be used to represent the object in a software program. This means that it must follow certain rules such as no-spaces or non alpha-numeric characters. The editing tools will help make sure that this value is legal. Note that when you enter a label, a legal ID is automatically created for you! Usually you won't need to change this, but you might if for example you want the value to match up with some database or other external representation. So reasonable values here might be "timberWolf" or perhaps "MVMNT_PRB" if say you're trying to match up to some old statistics records you have. (Note that currently IDs by default use "camel case", i.e. "thisIsAnExampleOfCamelCase" to match with Java variable naming conventions, but this is likely to change.)</p>
+<p>An ID is an identifier that can be used to represent the object in a software program. This means that it must follow certain rules such as no-spaces or non alpha-numeric characters. The editing tools will help make sure that this value is legal. Note that when you enter a label, a legal ID is automatically created for you! Usually you won't need to change this, but you might if for example you want the value to match up with some database or other external representation. So reasonable values here might be "timberWolf" or perhaps "MVMNT_PRB" if say you're trying to match up to some old statistics records you have. (Note that currently IDs by default use "camel case", i.e. "thisIsAnExampleOfCamelCase" to match with Java variable naming conventions, but this is likely to change.) Like labels, IDs need to be unique across the model, and the editing tools will assign a different id if you attempt to give two entities the same id.</p>
 <p>And most entities also define:</p>
 </div>
 <div class="section" title="Description">
@@ -896,7 +915,7 @@
 							
 </p>
 <div class="mediaobject">
-<img src="images/StructureComplexDiagram.png"></div>
+<img src="images/structure/StructureComplexDiagram.png"></div>
 <p> 
 						
 </p>
@@ -919,7 +938,7 @@
 							
 </p>
 <div class="mediaobject">
-<img src="images/StructureSimpleDiagram.png"></div>
+<img src="images/structure/StructureSimpleDiagram.png"></div>
 <p>
 						
 </p>
@@ -934,7 +953,7 @@
 <div>
 <div>
 <h5 class="title">
-<a name="Details_2"></a>Details</h5>
+<a name="Details"></a>Details</h5>
 </div>
 </div>
 </div>
@@ -1025,7 +1044,7 @@
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsBlocks.png"></div>
+<img src="images/actions/ActionsBlocks.png"></div>
 <p> 
 					
 </p>
@@ -1041,6 +1060,9 @@
 </div>
 <p>First, let's look at how actions define the basic path that agents take during a model run. As with any programming language, the path we take through the program specification is what determines our state when we get there. In a pure object oriented program, the path just defines the control flow -- what we are doing. The actual state of our model is defined within the object itself. If we call a method B from another method A, we'll be relying on method A to set the values that we need into the object state itself. In a purely functional program the path defines how we are going to deal with whatever has been explicitly passed in to a function that has been called, that is the function parameters. In fact, most languages such as Java combine aspects of both approaches.</p>
 <p>In Actions, the path itself implicitly carries all of the context of prior execution with it. This means that we don't have to worry about storing context in the object -- as we would in an object-oriented language -- or passing the correct values from one method call to the next as we would in a functional language. Instead, Actions can use the implicit context of the path of flow to determine what the current state of execution is.</p>
+<p>An important aspect of the Actions design is that loop structures are not allowed -- that is, flows are acyclic. An action can never have an ancestor target (that is targets, targets of targets, etc..) that has as one of its ancestors that same action. As you'll see, actions don't typically 
+						<span class="italic">need</span> loop structures. By far the most common use of loops in conventional programming langauges is to loop through collections of objects. As selections (see below) refer to the entire collection of agents, any actions on a selection apply to all members of that collection. Recursive structures are needed for some particular usages and will be supported in future releases, but not through an explicit looping construct.
+					</p>
 <p>Again, behaviors in Actions are always defined by a set of 
 						<span class="italic">selections</span> and 
 						<span class="italic">queries</span>. In the following diagram, we can see the pattern.
@@ -1049,7 +1071,7 @@
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsSequence.png"></div>
+<img src="images/actions/ActionsSequence.png"></div>
 <p>
 					
 </p>
@@ -1058,7 +1080,7 @@
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsSimpleSequence.png"></div>
+<img src="images/actions/ActionsSimpleSequence.png"></div>
 <p>
 					
 </p>
@@ -1067,7 +1089,7 @@
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsSimpleSequence2.png"></div>
+<img src="images/actions/ActionsSimpleSequence2.png"></div>
 <p>
 					
 </p>
@@ -1076,7 +1098,7 @@
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsFlowSimple.png"></div>
+<img src="images/actions/ActionsFlowSimple.png"></div>
 <p>
 					
 </p>
@@ -1085,7 +1107,7 @@
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsFlowUnion.png"></div>
+<img src="images/actions/ActionsFlowUnion.png"></div>
 <p>
 					
 </p>
@@ -1127,7 +1149,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsSelBoundarySimple.png"></div>
+<img src="images/actions/ActionsSelBoundarySimple.png"></div>
 <p>
 					
 </p>
@@ -1136,7 +1158,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsSelBoundary2Parts.png"></div>
+<img src="images/actions/ActionsSelBoundary2Parts.png"></div>
 <p> 
 					
 </p>
@@ -1156,7 +1178,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsSelBoundary11A.png"></div>
+<img src="images/actions/ActionsSelBoundary11A.png"></div>
 <p>
 					
 </p>
@@ -1168,7 +1190,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsSelBoundaryComplex.png"></div>
+<img src="images/actions/ActionsSelBoundaryComplex.png"></div>
 <p>
 					
 </p>
@@ -1190,7 +1212,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsWeavingSetAnother.png"></div>
+<img src="images/actions/ActionsWeavingSetAnother.png"></div>
 <p>
 					
 </p>
@@ -1199,7 +1221,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsWeavingEvaluate.png"></div>
+<img src="images/actions/ActionsWeavingEvaluate.png"></div>
 <p>
 					
 </p>
@@ -1208,7 +1230,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsWeaving1A.png"></div>
+<img src="images/actions/ActionsWeaving1A.png"></div>
 <p>
 					
 </p>
@@ -1217,19 +1239,19 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsWeaving2.png"></div>
+<img src="images/actions/ActionsWeaving2.png"></div>
 <p>
 					
 </p>
 <p>Before going into further details we need to introduce one more important concept. As we'll see in the detailed explanation of each Action below, Transformation Actions such as Move or Connect take multiple selections. The first selection defines the set of agents that will be performing the action. In the case of a Move agent, this refers to the mover. The second selection, which for Move we call "destination", refers to the selection that will be receiving the action. In the case of movement this is the agent or location that the Rule agent will be moving to. If we follow the flows through, we can note two important outcomes of our model design -- a Rule agent might move twice if it meets the criteria for both the blue path and the red path and that it might move to a different location each time.</p>
 </div>
 </div>
-<div class="section" title="Details">
+<div class="section" title="Concepts">
 <div class="titlepage">
 <div>
 <div>
 <h3 class="title">
-<a name="Details_3"></a>Details</h3>
+<a name="Concepts_2"></a>Concepts</h3>
 </div>
 </div>
 </div>
@@ -1239,7 +1261,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 					
 </p>
 <div class="mediaobject">
-<img src="images/ActionsBlocks.png"></div>
+<img src="images/actions/ActionsBlocks.png"></div>
 <p> 
 				
 </p>
@@ -1319,6 +1341,17 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 </div>
 </div>
 <p>A Query represents a concrete criteria for our search. The name is a bit confusing because of potential for confusion with a generic query. Queries -- along with their cousin Evaluators -- define a function that is evaluated and that can take Agent attributes and the results of other Actions as input. Queries are combined with each other and with the logic actions to determine the results of a selection for their direct target actions. </p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_2"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>As with all other actions, evaluations specify a selection, and just as with the other actions, this determines the set of agents that the evaluation occurs for, but the input selections determine what agent is used for the calculation itself.</p>
+</div>
 <div class="section" title="Function">
 <div class="titlepage">
 <div>
@@ -1328,7 +1361,18 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 </div>
 </div>
 </div>
-<p>A query function is evaluated to determine the results of a particular selection. Functions can represent very simple search criteria such as "My Age == Your Age", but they can also represent complex and inter-related concepts such as spatial relationships. See the functions section for more information on specific functions.</p>
+<p>A query function is evaluated to determine the results of a particular selection. Functions can represent very simple search criteria such as "My Age == Your Age", but they can also represent complex and inter-related concepts such as spatial relationships. They must return logical values. See the functions section for more information on specific functions.</p>
+</div>
+<div class="section" title="Inputs">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Inputs"></a>Inputs</h6>
+</div>
+</div>
+</div>
+<p>The set of values that will be used to determine the result, in the order specified by the function prototype. Inputs can specify any source evaluation and any agent state or agent parent context state. They can also be literal values -- see the section on literals below. The selection determines which agent's will be used to determine the value, and different inputs can specify different selections.</p>
 </div>
 </div>
 <div class="section" title="Logic">
@@ -1497,357 +1541,6 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 </div>
 </div>
 </div>
-<div class="section" title="Commands">
-<div class="titlepage">
-<div>
-<div>
-<h4 class="title">
-<a name="Commands"></a>Commands</h4>
-</div>
-</div>
-</div>
-<div class="section" title="Evaluate">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Evaluate"></a>Evaluate</h5>
-</div>
-</div>
-</div>
-<p>Evaluate Actions define some calculation on a function based on the model state and a set of input(s). The inputs that an Evaluate Action can take is determined by its functions and can be either agent attributes, prior evaluations or literals. The result is then determined based on those inputs. In some cases Evaluate functions can be used to determine some action indirectly, such as with a graphics fill, but they can never be used to directly change model state.</p>
-<div class="section" title="Selection">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Selection_2"></a>Selection</h6>
-</div>
-</div>
-</div>
-<p>As with all other actions, evaluations specify a selection, and just as with the other actions, this determines the set of agents that the evaluation occurs for, but the input selections determine what agent is used for the calculation itself.</p>
-</div>
-<div class="section" title="Function">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Function_2"></a>Function</h6>
-</div>
-</div>
-</div>
-<p>A with queries, a function is evaluated against its input set. Functions can represent simple operators as well as complex functions. See the functions section for more information on specific functions.</p>
-</div>
-<div class="section" title="Inputs">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Inputs"></a>Inputs</h6>
-</div>
-</div>
-</div>
-<p>The set of values that will be used to determine the result, in the order of the function prototype. Inputs can specify any source evaluation and any agent state or agent parent context state. The selection determines which agent's will be used to determine the value, and different inputs can specify different selections.</p>
-</div>
-</div>
-<div class="section" title="Set">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Set"></a>Set</h5>
-</div>
-</div>
-</div>
-<p>The Set Action assigns some value to another value.</p>
-<div class="section" title="Selection">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Selection_3"></a>Selection</h6>
-</div>
-</div>
-</div>
-<p>Here the selection refers to the agent that we want to change. This does not have to be the immediatily preceeding selection but can be any accessible selection.</p>
-</div>
-<div class="section" title="Attribute">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Attribute_2"></a>Attribute</h6>
-</div>
-</div>
-</div>
-<p>The attribute to modify. It must be a member of this action's agent or of that agent's parent context.</p>
-</div>
-<div class="section" title="Parameter">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Parameter"></a>Parameter</h6>
-</div>
-</div>
-</div>
-<p>The value to assign to the attribute. Here, we can use either another agent attribute, or the results of a source evaluation. </p>
-</div>
-</div>
-<div class="section" title="Move">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Move"></a>Move</h5>
-</div>
-</div>
-</div>
-<p>The Move Action causes an agent to change its location in some space or network. The agent will leave whatever location it was in before within the selection space, and move to its new destination.</p>
-<div class="section" title="Selection">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Selection_4"></a>Selection</h6>
-</div>
-</div>
-</div>
-<p>As in any other action, the selection determines what agent is affected -- in this case the agent that is being moved.</p>
-</div>
-<div class="section" title="=Destination">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name=".3DDestination"></a>=Destination</h6>
-</div>
-</div>
-</div>
-<p>Specifies the target agent or location for the movement.</p>
-</div>
-</div>
-<div class="section" title="Leave">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Leave"></a>Leave</h5>
-</div>
-</div>
-</div>
-<p>Causes the agent to leave a particular space.</p>
-<div class="section" title="Selection">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Selection_5"></a>Selection</h6>
-</div>
-</div>
-</div>
-<p>The selection determines what agent will be leaving and what space the agent will be leaving. If the agent doesn't exist in that space nothing will happen.</p>
-</div>
-<div class="section" title="=Destination">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name=".3DDestination_2"></a>=Destination</h6>
-</div>
-</div>
-</div>
-<p>The destination is irrelevant for a leave action and should not be specified.</p>
-</div>
-</div>
-<div class="section" title="Die">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Die"></a>Die</h5>
-</div>
-</div>
-</div>
-<p>Causes the agent to cease to exist within the model as a whole.</p>
-<div class="section" title="Selection">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Selection_6"></a>Selection</h6>
-</div>
-</div>
-</div>
-<p>The selection determines what space the agent to remove.</p>
-</div>
-<div class="section" title="=Destination">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name=".3DDestination_3"></a>=Destination</h6>
-</div>
-</div>
-</div>
-<p>The destination is irrelevant in this case and will probably be removed.</p>
-</div>
-</div>
-<div class="section" title="Connect">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Connect"></a>Connect</h5>
-</div>
-</div>
-</div>
-<p>Connects two agents within a network space. This Action is not applicable for any other kinds of spaces. Note that unlike with other transformational commands, we do not use the destination space to determine the space that will be impacted by the Action. This provides a more efficient representation without any loss in generality, because it allows us to search for a source and target agent within other spaces and then create a connection without creating a separate selection. As the important structural feature of networks are the relationships themselves, not the nodes this provides a more direct way to specify these relationships.</p>
-<div class="section" title="Selection">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Selection_7"></a>Selection</h6>
-</div>
-</div>
-</div>
-<p>The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.</p>
-</div>
-<div class="section" title="=Destination">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name=".3DDestination_4"></a>=Destination</h6>
-</div>
-</div>
-</div>
-<p>The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.</p>
-</div>
-<div class="section" title="Within">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Within"></a>Within</h6>
-</div>
-</div>
-</div>
-<p>Specifies the network that the connection will be created within.</p>
-</div>
-</div>
-<div class="section" title="Directed">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Directed_2"></a>Directed</h5>
-</div>
-</div>
-</div>
-<p>Determines whether the connection made is directed or not. If true, selections from source agents will include the target, but target agent selections will not include the source agents (unless they are connected through some other path).</p>
-</div>
-<div class="section" title="Disconnect">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Disconnect"></a>Disconnect</h5>
-</div>
-</div>
-</div>
-<p>Removes the connection between agents within a network space. See the description of the Connect Action for important details.</p>
-<div class="section" title="Selection">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Selection_8"></a>Selection</h6>
-</div>
-</div>
-</div>
-<p>The selection determines one side of the agent relationship that will be disconnected.</p>
-</div>
-<div class="section" title="=Destination">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name=".3DDestination_5"></a>=Destination</h6>
-</div>
-</div>
-</div>
-<p>The selection determines one other side of the agent relationship that will be disconnected.</p>
-</div>
-<div class="section" title="Within">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Within_2"></a>Within</h6>
-</div>
-</div>
-</div>
-<p>Specifies the network that the connection will be created within.</p>
-</div>
-</div>
-<div class="section" title="Replace">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Replace"></a>Replace</h5>
-</div>
-</div>
-</div>
-<p>Functions in the same way as a Connect Action excepth that all other connections to other agents will first be removed.</p>
-<div class="section" title="Selection">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Selection_9"></a>Selection</h6>
-</div>
-</div>
-</div>
-<p>The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.</p>
-</div>
-<div class="section" title="=Destination">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name=".3DDestination_6"></a>=Destination</h6>
-</div>
-</div>
-</div>
-<p>The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.</p>
-</div>
-<div class="section" title="Within">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Within_3"></a>Within</h6>
-</div>
-</div>
-</div>
-<p>Specifies the network that the connection will be created within.</p>
-</div>
-</div>
-<div class="section" title="Directed">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Directed_3"></a>Directed</h5>
-</div>
-</div>
-</div>
-<p>Determines whether the connection made is directed or not. See the Connect description for more details.</p>
-</div>
-</div>
 <div class="section" title="Builders">
 <div class="titlepage">
 <div>
@@ -1886,7 +1579,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 <div>
 <div>
 <h6 class="title">
-<a name="Selection_10"></a>Selection</h6>
+<a name="Selection_3"></a>Selection</h6>
 </div>
 </div>
 </div>
@@ -1903,12 +1596,12 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 </div>
 <p>Not generally relevant for agent actions, as agents are not placed into a space unless explicitly moved to that space. Potential associations between agents and spaces are defined by the space building actions.</p>
 </div>
-<div class="section" title="=Agent Count">
+<div class="section" title="Agent Count">
 <div class="titlepage">
 <div>
 <div>
 <h6 class="title">
-<a name=".3DAgent_Count"></a>=Agent Count</h6>
+<a name="Agent_Count"></a>Agent Count</h6>
 </div>
 </div>
 </div>
@@ -2051,7 +1744,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 <div>
 <div>
 <h6 class="title">
-<a name="Selection_11"></a>Selection</h6>
+<a name="Selection_4"></a>Selection</h6>
 </div>
 </div>
 </div>
@@ -2106,7 +1799,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 <div>
 <div>
 <h6 class="title">
-<a name="Selection_12"></a>Selection</h6>
+<a name="Selection_5"></a>Selection</h6>
 </div>
 </div>
 </div>
@@ -2158,6 +1851,459 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 <p>Constructs a geographical space. All details of this space are specfied by the implementation, i.e. a specific geographical imported space. Generally these would be defined by a Create Agents action; that is a set of imported agents representing US states would also represent the overall space of interest.</p>
 </div>
 </div>
+<div class="section" title="Commands">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Commands"></a>Commands</h4>
+</div>
+</div>
+</div>
+<div class="section" title="Evaluate">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Evaluate"></a>Evaluate</h5>
+</div>
+</div>
+</div>
+<p>Evaluate Actions define some calculation on a function based on the model state and a set of input(s). The inputs that an Evaluate Action can take is determined by its functions and can be either agent attributes, prior evaluations or literals. The result is then determined based on those inputs. In some cases Evaluate functions can be used to determine some action indirectly, such as with a graphics fill, but they can never be used to directly change model state.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_6"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>As with all other actions, evaluations specify a selection, and just as with the other actions, this determines the set of agents that the evaluation occurs for, but the input selections determine what agent is used for the calculation itself.</p>
+</div>
+<div class="section" title="Function">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Function_2"></a>Function</h6>
+</div>
+</div>
+</div>
+<p>A with queries, a function is evaluated against its input set. Functions can represent simple operators as well as complex functions. See the functions section for more information on specific functions.</p>
+</div>
+<div class="section" title="Inputs">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Inputs_2"></a>Inputs</h6>
+</div>
+</div>
+</div>
+<p>The set of values that will be used to determine the result, in the order of the function prototype. Inputs can specify any source evaluation and any agent state or agent parent context state. They can also be literal values -- see the discussion in the Tools section. The selection determines which agent's will be used to determine the value, and different inputs can specify different selections.</p>
+</div>
+</div>
+<div class="section" title="Set">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Set"></a>Set</h5>
+</div>
+</div>
+</div>
+<p>The Set Action assigns some value to another value.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_7"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>Here the selection refers to the agent that we want to change. This does not have to be the immediatily preceeding selection but can be any accessible selection.</p>
+</div>
+<div class="section" title="Attribute">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Attribute_2"></a>Attribute</h6>
+</div>
+</div>
+</div>
+<p>The attribute to modify. It must be a member of this action's agent or of that agent's parent context.</p>
+</div>
+<div class="section" title="Parameter">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Parameter"></a>Parameter</h6>
+</div>
+</div>
+</div>
+<p>The value to assign to the attribute. Here, we can use either another agent attribute, or the results of a source evaluation. </p>
+</div>
+</div>
+<div class="section" title="Move">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Move"></a>Move</h5>
+</div>
+</div>
+</div>
+<p>The Move Action causes an agent to change its location in some space or network. The agent will leave whatever location it was in before within the selection space, and move to its new destination.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_8"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>As in any other action, the selection determines what agent is affected -- in this case the agent that is being moved.</p>
+</div>
+<div class="section" title="Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Destination"></a>Destination</h6>
+</div>
+</div>
+</div>
+<p>Specifies the target agent or location for the movement.</p>
+</div>
+</div>
+<div class="section" title="Leave">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Leave"></a>Leave</h5>
+</div>
+</div>
+</div>
+<p>Causes the agent to leave a particular space.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_9"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines what agent will be leaving and what space the agent will be leaving. If the agent doesn't exist in that space nothing will happen.</p>
+</div>
+<div class="section" title="Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Destination_2"></a>Destination</h6>
+</div>
+</div>
+</div>
+<p>The destination is irrelevant for a leave action and should not be specified.</p>
+</div>
+</div>
+<div class="section" title="Die">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Die"></a>Die</h5>
+</div>
+</div>
+</div>
+<p>Causes the agent to cease to exist within the model as a whole.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_10"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines what space the agent to remove.</p>
+</div>
+<div class="section" title="=Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name=".3DDestination"></a>=Destination</h6>
+</div>
+</div>
+</div>
+<p>The destination is irrelevant in this case and will probably be removed.</p>
+</div>
+</div>
+<div class="section" title="Connect">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Connect"></a>Connect</h5>
+</div>
+</div>
+</div>
+<p>Connects two agents within a network space. This Action is not applicable for any other kinds of spaces. Note that unlike with other transformational commands, we do not use the destination space to determine the space that will be impacted by the Action. This provides a more efficient representation without any loss in generality, because it allows us to search for a source and target agent within other spaces and then create a connection without creating a separate selection. As the important structural feature of networks are the relationships themselves, not the nodes this provides a more direct way to specify these relationships.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_11"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.</p>
+</div>
+<div class="section" title="=Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name=".3DDestination_2"></a>=Destination</h6>
+</div>
+</div>
+</div>
+<p>The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.</p>
+</div>
+<div class="section" title="Within">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Within"></a>Within</h6>
+</div>
+</div>
+</div>
+<p>Specifies the network that the connection will be created within.</p>
+</div>
+</div>
+<div class="section" title="Directed">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Directed_2"></a>Directed</h5>
+</div>
+</div>
+</div>
+<p>Determines whether the connection made is directed or not. If true, selections from source agents will include the target, but target agent selections will not include the source agents (unless they are connected through some other path).</p>
+</div>
+<div class="section" title="Disconnect">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Disconnect"></a>Disconnect</h5>
+</div>
+</div>
+</div>
+<p>Removes the connection between agents within a network space. See the description of the Connect Action for important details.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_12"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines one side of the agent relationship that will be disconnected.</p>
+</div>
+<div class="section" title="Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Destination_3"></a>Destination</h6>
+</div>
+</div>
+</div>
+<p>The selection determines one other side of the agent relationship that will be disconnected.</p>
+</div>
+<div class="section" title="Within">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Within_2"></a>Within</h6>
+</div>
+</div>
+</div>
+<p>Specifies the network that the connection will be created within.</p>
+</div>
+</div>
+<div class="section" title="Replace">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Replace"></a>Replace</h5>
+</div>
+</div>
+</div>
+<p>Functions in the same way as a Connect Action excepth that all other connections to other agents will first be removed.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_13"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.</p>
+</div>
+<div class="section" title="Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Destination_4"></a>Destination</h6>
+</div>
+</div>
+</div>
+<p>The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.</p>
+</div>
+<div class="section" title="Within">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Within_3"></a>Within</h6>
+</div>
+</div>
+</div>
+<p>Specifies the network that the connection will be created within.</p>
+</div>
+</div>
+<div class="section" title="Directed">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Directed_3"></a>Directed</h5>
+</div>
+</div>
+</div>
+<p>Determines whether the connection made is directed or not. See the Connect description for more details.</p>
+</div>
+</div>
+<div class="section" title="Other">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Other"></a>Other</h4>
+</div>
+</div>
+</div>
+<div class="section" title="Method">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Method"></a>Method</h5>
+</div>
+</div>
+</div>
+<p>The Method action supports inclusion of arbitrary code within a generated method. Generally, this will be Java code as all of the current target platforms are Java-based but there is no technical requirement that it must be. For example, if a target has been developed to produce code for Swarm running on an iPad (and no, there are no current plans to support such a thing, though it would certainly be cool!) then the modeler could define Objective C code for the method.</p>
+<p>Please note that the Method Action should be avoided whenever possible. You should consider using it only in the case where there doesn't appear to be a way to construct equivalent functionality using the native Actions framework, such as when interfacing with third party APIs.  The aim of Actions is to provide the most general support for Agent Modeling possible without compromising the core design. Any use of native Java code strongly limits the set of platforms that your model will be able to generate code for and prevents you from using the AMF edit tools to explore the model behavior. In the case where you wish to construct a model feature and believe that it isn't possible or practical to do it with Actions, please contact us (see support section) so that we can suggest how you can accomplish what you want within Actions. If that is not possible, we'll consider developing new features that will support what you want to do.</p>
+<p>On the other hand, you may simply wish to use the Agent Modeling Framework to build a scaffolding for your model -- perhaps using your own custom Java framework for example -- and Method would be a good way to accomplish that. Also, note there are a number of other approaches to mixing hand-crafted Java together with AMF generated code. Please see the Programmer's Guide section "Integrating Java and AMF Models" for more on that.</p>
+<p>If you do decide to use the Method Action, keep in mind the following design practice recommendations:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>Keep your usage of external API references to a minimum. If you can use only code provied by the core Java classes as well as the Apache Collections library, your code should work on every current Java target. On the other hand, if you make use of a specific ABM platform APIs your code will obviously only compile and run against that target.</p>
+</li>
+<li class="listitem">
+<p>Code should be in the form of a method body, excluding the signature. A single Java method is created using this code body. There is no support for input parameters -- if you need access to evaluated values from source actions, create agent attributes for them, set their values for the selected agents, and use them as sources for your Method Action.</p>
+</li>
+<li class="listitem">
+<p>All Java class references should be fully qualified. For example, if you wish to use the eclipse Draw2D Graphics class, you should refer to "org.eclipse.draw2d.Graphics", not simply "Graphics". If classes are not fully qualified, you will recieve compile errors. You can usually easily fix these by selecting your source code directory and choosing 
+									<span class="bold"><strong>Source &gt; Organize Imports..</strong></span> but it prevents automatic code generation.
+								</p>
+</li>
+<li class="listitem">
+<p>The method interface has no support for code completion, syntax checking or other common Java development environment features. You can avoid code maintenance and even support targetting multiple APIs by using the following technique. From your method body, call a helper method in a seperate class. The referred class could use a static method call, or you could instantiate the class and call a method against it, passing in the agent class so that the helper class can reference the agent's state. For example, if you wanted to use some custom java code to import agents from a specialized input file, you could put the following code in the Method Action body for the root Context: <span style="color: red">&lt;pre&gt;(new org.me.SpecialFileLoader()).load(this);&lt;/pre&gt;</span>Then create a new source directory in your project called "src" (
+									<span class="bold"><strong>New &gt; Source Folder...</strong></span>) and create the class for the specialized file loader including the following method: <span style="color: red">&lt;pre&gt;public void load(MyRootModel model) {...}&lt;/pre&gt;</span> This approach allows you to a) maintain the working code using the Java Development Environment, b) avoid changes to the Method Action within the model, and most importantly, c) allow other implementations of the code using multiple APIs. For example, if you need to create a specialized graphics routine, you could create seperate implementations for your Escape (Eclipse Draw 2D), Ascape (Java Swing), and Repast (Simphony API) and place them in the appropriate projects. As long as the different Java source files have the same names and signatures, they will all compile correctly and execute the appropriate behavior.
+								</p>
+</li>
+</ol>
+</div>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_14"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines what Agent class the code will be created within and the set of agents the method will be called upon.</p>
+</div>
+<div class="section" title="Body">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Body"></a>Body</h6>
+</div>
+</div>
+</div>
+<p>The actual code to insert in the method body. See the detailed recommendations for code use above.</p>
+</div>
+<div class="section" title="Generate">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Generate"></a>Generate</h6>
+</div>
+</div>
+</div>
+<p>Determines wether the code is actually inserted. If this is false, a bare method body will be constructed instead. This can be useful if you wish to turn off method generation in certain model implementaitons without removing the actual code.</p>
+</div>
+</div>
+</div>
+<div class="section" title="Query and Evaluation Inputs">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Query_and_Evaluation_Inputs"></a>Query and Evaluation Inputs</h4>
+</div>
+</div>
+</div>
+<p>Query and Evaluation Actions are both "Sinks" which means that they are capable of containing inputs. When you select a function, the appropriate number of inputs will be created. After selecting a function, you can view and select the inputs. The choices for the inputs will be constrained by the type of the function and the other operands you've selected.</p>
+<div class="section">
+<div class="titlepage"></div>
+<div class="section" title="Input Literals">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="N105BB"></a>Input Literals</h6>
+</div>
+</div>
+</div>
+<p>Inputs can take literal values; that is values that you specify simply by entering them directly into the query. In general it is useful to think of literals as similar to local variables in a conventional programming language, whereas attributes are analogous to member variables. (And this is how they are represented in the generated Java code.) As with local variables in model code, literals are not recommended for any values that can change model behavior. The value cannot be easily accessed or changed by other model users. For greater transparency, you should instead create an Attribute with an appropriate default value, setting the "immutable" value to true. Still, literals can be useful for values that are special cases related to the evaluation or query, such as an input code, and for quickly prototyping functionality.</p>
+</div>
+</div>
+</div>
 </div>
 <div class="section" title="Example">
 <div class="titlepage">
@@ -2196,7 +2342,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 					
 </p>
 <div class="mediaobject">
-<img src="images/ActionsExample.png"></div>
+<img src="images/actions/ActionsExample.png"></div>
 <p>
 				
 </p>
@@ -2205,7 +2351,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 					
 </p>
 <div class="mediaobject">
-<img src="images/ActionsExampleNew.png"></div>
+<img src="images/actions/ActionsExampleNew.png"></div>
 <p>
 				
 </p>
@@ -2311,7 +2457,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 							
 </p>
 <div class="mediaobject">
-<img src="images/ActionsDiagram.png"></div>
+<img src="images/actions/ActionsDiagram.png"></div>
 <p>
 						
 </p>
@@ -2321,7 +2467,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 <div>
 <div>
 <h5 class="title">
-<a name="Details_4"></a>Details</h5>
+<a name="Details_2"></a>Details</h5>
 </div>
 </div>
 </div>
@@ -2399,12 +2545,12 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 <p>The most important thing to point out about functions is that - as we've seen with other Acore concepts -- they provide richer sets of functionality than traditional approaches. Many functions are designed to collaborate with one another as we'll see when looking at Spatial and Graphical functions. Functions can also trigger the creation of related model artifacts as we'll see with the Distribution functions.</p>
 <p>A technical note: conceptually, functions can return multi-values, but that is not currently implemented in the reference targets because of limitations of the target language Java.</p>
 </div>
-<div class="section" title="Details">
+<div class="section" title="Concepts">
 <div class="titlepage">
 <div>
 <div>
 <h3 class="title">
-<a name="Details_5"></a>Details</h3>
+<a name="Concepts_3"></a>Concepts</h3>
 </div>
 </div>
 </div>
@@ -3149,7 +3295,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 <div>
 <div>
 <h5 class="title">
-<a name="Details_6"></a>Details</h5>
+<a name="Details_3"></a>Details</h5>
 </div>
 </div>
 </div>
@@ -3304,7 +3450,7 @@ Outputs:<br>
 <div>
 <div>
 <h5 class="title">
-<a name="Details_7"></a>Details</h5>
+<a name="Details_4"></a>Details</h5>
 </div>
 </div>
 </div>
@@ -3509,7 +3655,7 @@ Outputs:<br>
 							
 </p>
 <div class="mediaobject">
-<img src="images/ActionsExampleNew.png"></div>
+<img src="images/actions/ActionsExampleNew.png"></div>
 <p>
 						
 </p>
@@ -3529,7 +3675,7 @@ Outputs:<br>
 <div>
 <div>
 <h5 class="title">
-<a name="Details_8"></a>Details</h5>
+<a name="Details_5"></a>Details</h5>
 </div>
 </div>
 </div>
@@ -3578,7 +3724,7 @@ Outputs:<br>
 <div>
 <div>
 <h5 class="title">
-<a name="Details_9"></a>Details</h5>
+<a name="Details_6"></a>Details</h5>
 </div>
 </div>
 </div>
@@ -3809,7 +3955,7 @@ Outputs:<br>
 							
 </p>
 <div class="mediaobject">
-<img src="images/GraphicsFunctionExampleDesign.png"></div>
+<img src="images/functions/GraphicsFunctionExampleDesign.png"></div>
 <p>
 						
 </p>
@@ -3818,7 +3964,7 @@ Outputs:<br>
 							
 </p>
 <div class="mediaobject">
-<img src="images/GraphicsFunctionExampleRun.png"></div>
+<img src="images/functions/GraphicsFunctionExampleRun.png"></div>
 <p>
 						
 </p>
@@ -3838,7 +3984,7 @@ Outputs:<br>
 <div>
 <div>
 <h5 class="title">
-<a name="Details_10"></a>Details</h5>
+<a name="Details_7"></a>Details</h5>
 </div>
 </div>
 </div>
@@ -4015,7 +4161,7 @@ Outputs:<br>
 							
 </p>
 <div class="mediaobject">
-<img src="images/DistributionDesignChoice.png"></div>
+<img src="images/functions/DistributionDesignChoice.png"></div>
 <p> 
 						
 </p>
@@ -4024,7 +4170,7 @@ Outputs:<br>
 							
 </p>
 <div class="mediaobject">
-<img src="images/DistributionDesign.png"></div>
+<img src="images/functions/DistributionDesign.png"></div>
 <p> 
 						
 </p>
@@ -4054,10 +4200,1114 @@ Outputs:<br>
 							
 </p>
 <div class="mediaobject">
-<img src="images/FunctionsDiagram.png"></div>
+<img src="images/functions/FunctionsDiagram.png"></div>
 <p>
 						
 </p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" title="Tools">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Tools"></a>Tools</h2>
+</div>
+</div>
+</div>
+<p>In this section of the guide, we'll discuss specific aspects of the Agent Modeling tools and show you how to use them in your day to day agent development activities. We discuss only tools specific to Agent Modeling itself. For more general information about the tools, such as how to customize editors, views, and perspectives, see the 
+				<span class="bold"><strong>Workbench User Guide</strong></span>.
+			</p>
+<div class="section" title="Overview">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Overview_5"></a>Overview</h3>
+</div>
+</div>
+</div>
+<p>The Agent Modeling Platform provides two general modes or "perspectives" for working with Agent Models.</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/tools/Perspectives.png"></div>
+<p>
+				
+</p>
+<p>
+					
+<span class="bold"><strong>Agent Modeling</strong></span> supports all aspects of working with models, including editing models and automatically generating all the of your code and documentation. 
+					<span class="bold"><strong>Agent Execution</strong></span> supports running and exploring those models. A key feature of the Agent Modeling Platform is the ability to execute models within the same environment that they are developed within -- you don't need to launch a separate environment in order to run a model. Agent Execution automatically activates when you launch a model. We'll discuss the agent modeling tools first, and then turn to agent execution.
+				</p>
+</div>
+<div class="section" title="Agent Modeling">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Agent_Modeling"></a>Agent Modeling</h3>
+</div>
+</div>
+</div>
+<div class="section" title="Perspective">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Perspective"></a>Perspective</h4>
+</div>
+</div>
+</div>
+<p>The Provides a custom layout menus and tools specific to working with agent models. Because the agent modeling process also often involves Java and Eclipse Plugin development we include easy access to many of those tools here as well.</p>
+</div>
+<div class="section" title="Creating Projects and Models">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Creating_Projects_and_Models"></a>Creating Projects and Models</h4>
+</div>
+</div>
+</div>
+<p>You can create projects and project components using the Popup menu. Just click in a blank space within the Package Explorer. Any installed project targets are displayed in this menu. For example, if you've installed the Simphony target, you'd see that displayed in this menu as well.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial3CreateModel.png"></div>
+<p>
+					
+</p>
+</div>
+<div class="section" title="Menus, Popups and Toolbar">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Menus.2C_Popups_and_Toolbar"></a>Menus, Popups and Toolbar</h4>
+</div>
+</div>
+</div>
+<p>The popup menus and application menus provide access to various model features and are context sensitive.  Throughout these screenshots, we've customized the toolbar in order to only show the agent Modeling specific features.</p>
+</div>
+<div class="section" title="Views">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Views"></a>Views</h4>
+</div>
+</div>
+</div>
+<p>By default the workbench includes a number of views. See the Workbench documentation for more details on how they can be customized accessed and used.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/tools/Workbench.png"></div>
+<p>
+					
+</p>
+<div class="section" title="Editor">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Editor"></a>Editor</h5>
+</div>
+</div>
+</div>
+<p>This is not technically a view in itself. It is the major focus of the workbench and contains any edit models or other files such as Java source or parameters.</p>
+</div>
+<div class="section" title="Default Views">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Default_Views"></a>Default Views</h5>
+</div>
+</div>
+</div>
+<p>The default modeling views are visible by default.</p>
+<div class="section" title="Package Explorer">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Package_Explorer"></a>Package Explorer</h6>
+</div>
+</div>
+</div>
+<p>Supports navigation within projects.</p>
+</div>
+<div class="section" title="Properties">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Properties"></a>Properties</h6>
+</div>
+</div>
+</div>
+<p>The properties allows you to view and edit specific details for the currently selected object. For example, if you select a model context, you'll be able to edit its attributes here.</p>
+</div>
+<div class="section" title="Outline">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Outline"></a>Outline</h6>
+</div>
+</div>
+</div>
+<p>The outline view supports easy navigation within the edited files. See the model editing sections for more on how the outline can be used to assist exploration of Agent Models.</p>
+</div>
+</div>
+<div class="section" title="Diagnostic Views">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Diagnostic_Views"></a>Diagnostic Views</h5>
+</div>
+</div>
+</div>
+<p>There are a number of views that can be used to explore issues that might come up during the modeling process. You can see them on the lower left-hand corner of the screenshot above. Click on one of the icons to view their contents.</p>
+<div class="section" title="Problems">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Problems"></a>Problems</h6>
+</div>
+</div>
+</div>
+<p>This view is one that you'll become very familiar with. It is used to display specific about problems with any of the artifacts (files) in your modeling project. If you see a red or yellow marker on a file, opening the view will present a list of the issues that are currently being reported. For a usage example, please see the Tutorial.</p>
+</div>
+<div class="section" title="Console">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Console"></a>Console</h6>
+</div>
+</div>
+</div>
+<p>This view displays text (console) output for appropriate processes. For example, if you launch an Ascape project, this will display any output that would go to the Java console.</p>
+</div>
+<div class="section" title="Errors">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Errors"></a>Errors</h6>
+</div>
+</div>
+</div>
+<p>This is another view that you will find valuable in your day to day modeling activities. The error log lists everything important that happens during model execution. It's the first place to look if something mysterious goes wrong, and when you report problems it's always helpful to include anything that could be relevant in the log. Despite its name, the Errors view is not just for reporting errors -- it is also used to report progress on normal operations. For example, when models are automatically generated that is reported to the log, as we can see in the following example:</p>
+</div>
+</div>
+</div>
+<div class="section" title="Editing Models">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Editing_Models"></a>Editing Models</h4>
+</div>
+</div>
+</div>
+<p>The Eclipse Agent Modeling Framework includes a full-featured model editor based on the Eclipse Modeling Framework's Edit tools. All aspects of an AMF model can be managed from within this tool. Note that the tree editor is only one of many ways of editing a model. Other editors of AMF models incude textual languages and custom editors that are part of commercial offerings.</p>
+<div class="section" title="Opening the Editor">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Opening_the_Editor"></a>Opening the Editor</h5>
+</div>
+</div>
+</div>
+<p>To open a model in the editor, simply double-click on it. If the model doesn't open in the model editor (if for example it had been previously opened using another editor), you can always access the editor using 
+							<span class="bold"><strong>Open With &gt; Other...</strong></span> and selecting "MetaABM Editor". The editor has two pages, an Editor page that we'll focus on first and a "description" page that we'll dicuss at the end of this section.
+						</p>
+</div>
+<div class="section" title="Editing Structure">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Editing_Structure"></a>Editing Structure</h5>
+</div>
+</div>
+</div>
+<p>The model is composed of nodes representing specific model entities such as agents, actions and spaces. For details about any of these entities, see the Concepts section.</p>
+<div class="section" title="Opening Components">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Opening_Components"></a>Opening Components</h6>
+</div>
+</div>
+</div>
+<p>After opening a model, you can see the contents by clicking the Triangle symbol to the left of an item. For example, opening the root context node, we see:</p>
+<p>
+								
+</p>
+<div class="mediaobject">
+<img src="images/tools/Editor.png"></div>
+<p>
+							
+</p>
+</div>
+<div class="section" title="Editing Components">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Editing_Components"></a>Editing Components</h6>
+</div>
+</div>
+</div>
+<p>To edit components, select the node you want to modify. The 
+								<span class="bold"><strong>Properties View</strong></span> will be updated with the agent details. Use the properties view to modify the values. In the screenshot below, we're editing the values for the City space.
+							</p>
+<p>
+								
+</p>
+<div class="mediaobject">
+<img src="images/tools/EditorEditing.png"></div>
+<p>
+							
+</p>
+</div>
+<div class="section" title="Adding Components">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Adding_Components"></a>Adding Components</h6>
+</div>
+</div>
+</div>
+<p>You add nodes by right-clicking on a node, like so:</p>
+<p>
+								
+</p>
+<div class="mediaobject">
+<img src="images/tools/EditorAdd.png"></div>
+<p>
+							
+</p>
+</div>
+<div class="section" title="Moving Components">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Moving_Components"></a>Moving Components</h6>
+</div>
+</div>
+</div>
+<p>You can often rearrange model components by dragging them from one place to another. In the following example, we're creating a model of a regional epidemic by creating a City sub-context and moving the agent into it: </p>
+<p>
+								
+</p>
+<div class="mediaobject">
+<img src="images/tools/EditorMoving.png"></div>
+<p>
+							
+</p>
+</div>
+<div class="section" title="Removing Components">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Removing_Components"></a>Removing Components</h6>
+</div>
+</div>
+</div>
+<p>You can remove actions by deleting or cutting them using the popup menu. When you delete an entity, all of its children are deleted as well, except in some special cases (such as with actions) where other paths to that entitiy still exist.</p>
+</div>
+<div class="section" title="Copying Components">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Copying_Components"></a>Copying Components</h6>
+</div>
+</div>
+</div>
+<p>To make a copy of an entity and place it in a new location, option-drag the entity to the destination. You can make a copy in the existing location by dragging it into the same parent. The name will automatically be updated with "copy" appended to it.</p>
+</div>
+<div class="section" title="Editing Attributes">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Editing_Attributes"></a>Editing Attributes</h6>
+</div>
+</div>
+</div>
+<p>The attributes node -- along with the actions and styles nodes -- represents a group of components rather than an entity itself. It contains all of the attributes for the parent agent or context. In the examples below, we can see the attributes for the Epidemic route model. Note that the top level attributes in a root context act as the parameters for the model itself.</p>
+<p>
+								
+</p>
+<div class="mediaobject">
+<img src="images/tools/EditorAttributes.png"></div>
+<p>
+							
+</p>
+</div>
+<div class="section" title="Editing Styles">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Editing_Styles"></a>Editing Styles</h6>
+</div>
+</div>
+</div>
+<p>The Styles node is another group node, in this case representing a set of styles that can be used to visualize the agents. When creating a style, you will need to create a Rule for each style as well, like so:</p>
+<p>
+								
+</p>
+<div class="mediaobject">
+<img src="images/tools/EditorStyles.png"></div>
+<p>
+							
+</p>
+</div>
+</div>
+<div class="section" title="Editing Actions">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Editing_Actions"></a>Editing Actions</h5>
+</div>
+</div>
+</div>
+<p>Actions are a key and relatively complex aspect of the model editor. Because actions are actually related in a graph structure, a tree-based editor will not be able to represent a the underlying strucuture of action relationships directly. (This is actually no different from most development environments -- for example, Java code is edited in a text based editor, but the call structure represents a complex graph. Advance tools developed by AMP contributors do support more sophisticated methods for action browsing and we'll have simple versions of them available in future releases of the AMF edit tools.) Therefore, it's helpful to take time to understand how action relationships appear in the editor.</p>
+<p>Like attributes and styles, every agent has a single Actions nodes which contains its Root Action(s).</p>
+<div class="section" title="Order">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Order"></a>Order</h6>
+</div>
+</div>
+</div>
+<p>Generally, action sources will appear above their targets. In the case where there is only one source for a given target, and that target has no other sources, they will appear directly above one another. Its important to note however that 
+								<span class="italic">the order of the nodes does not indicate a specific source and target relationship</span>. For example, in the case where there are multiple targets for a source, they will typically follow that source immediately. To make the relationships clear, every action lists its source actions as part of the action label. Agent selections also appear as part .
+							</p>
+<p>
+								
+</p>
+<div class="mediaobject">
+<img src="images/tools/ActionsExample.png"></div>
+<p>
+							
+</p>
+<p>In the above example, the Initialize Location "Initialize Action" is straightforward. We simply define a Select Action, a Query Action target for that selection, and then a Move Action target for the query. The "Transmission" Rule is more complicated. Note for example that the "Infectious" Union Action is the target of both the "Asymptomatic Infectious" and  "Symptomatic Infectious" Query Actions. The "Vulnerable Neighbor" action has the label "Vulnerable Neighbor [Potential Exposure] &lt;- [Potential Exposure]" indicating that the "Potential Exposure" action serves as its selection as well as its source.</p>
+</div>
+<div class="section" title="Initial Order">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Initial_Order"></a>Initial Order</h6>
+</div>
+</div>
+</div>
+<p>A new action's initial target will be the action that you clicked on when creating it. For an action that should always act within a given root action (i.e. Rule, Schedule, etc..), add it to the root action. A root action can have more than one target.</p>
+</div>
+<div class="section" title="Changing Sources and Targets (Reordering)">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Changing_Sources_and_Targets_.28Reordering.29"></a>Changing Sources and Targets (Reordering)</h6>
+</div>
+</div>
+</div>
+<p>An action's target can be changed by dragging it over the new target action. Note that this is a different behavior from that of standard entity movement. You cannot make an action a target of an action that is itself a source of the modified action! (See the concepts section for why.) Using the default tree editor you cannot change an action's targets directly; instead select the action's target and move that. </p>
+</div>
+<div class="section" title="Adding Sources and Targets">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Adding_Sources_and_Targets"></a>Adding Sources and Targets</h6>
+</div>
+</div>
+</div>
+<p>As discussed earlier, actions often have multiple sources and targets. To make an action the target of an additional action, click on target action, hold down the control key, and drag the action to its new destination. See the tutorial for a complete example.</p>
+</div>
+<div class="section" title="Removing Sources and Targets">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Removing_Sources_and_Targets"></a>Removing Sources and Targets</h6>
+</div>
+</div>
+</div>
+<p>You cannot remove single sources from targets directly using the tree editor. Instead, first drag the agent to a source nodes that will be part of its changed set of sources. That will remove all existing actions sources but for the one you have just dragged it to. Then add back any of the other source and target nodes you wish to retain.</p>
+</div>
+<div class="section" title="Removing Actions">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Removing_Actions"></a>Removing Actions</h6>
+</div>
+</div>
+</div>
+<p>You can remove actions in the same way as with strucutral model components. Note that just as when you delete an agent, all of that agent's attributes, actions and styles are also deleted form the model, when you delete an Action, any of its targets will also be removed, unless there is some other source action path that connects it to the root action. And of course, any targets of such targets will be affected in the same way and so on. If you remove a node from igh in the action tree a lot of nodes could disappear at once! If you have actions that you want to retain as part of the flow, you should first make them targets of a new action before deleting their parent action.</p>
+</div>
+<div class="section" title="Copying Actions">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Copying_Actions"></a>Copying Actions</h6>
+</div>
+</div>
+</div>
+<p>Copying actions works just as with other entities, and copies will become targets of their option-drag destination. </p>
+</div>
+<div class="section" title="Query and Evaluation Inputs">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Query_and_Evaluation_Inputs_2"></a>Query and Evaluation Inputs</h6>
+</div>
+</div>
+</div>
+<p>The number of inputs is determined by the selected functions. (In rare cases where a function can take an arbitrary number of arguments you may need to create additional values or delete existing ones.) In the following example, we're picking the Symptom Infectious status for a query that will affect the potentially exposed agents. Note that is instead you wanted to compare another kind of value -- for example an Integer value -- you would need to change the first input listed before changing the second input so that you will be able to get the appropriate options for the second.</p>
+<p>
+								
+</p>
+<div class="mediaobject">
+<img src="images/tools/ActionsExample.png"></div>
+<p>
+							
+</p>
+</div>
+<div class="section" title="Input Literals">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Input_Literals_2"></a>Input Literals</h6>
+</div>
+</div>
+</div>
+<p>To create an input value, right click on the input and select 
+								<span class="bold"><strong>Create Member &gt; Literal</strong></span>. Then specify the actual value in the Value property in the 
+								<span class="bold"><strong>Properties View</strong></span>.
+							</p>
+</div>
+</div>
+</div>
+<div class="section" title="Building Models">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Building_Models"></a>Building Models</h4>
+</div>
+</div>
+</div>
+<p>If you've used other development environments, you're probably used to a separate build step. For example, if you edit a set of Java files, you might invoke a compile command. Eclipse and the Agent Modeling Platform support automatic building. This means that in order to build your code, you simply save the model and the environment takes care of the rest. What gets built is defined by the project. For example, if you save a model that is contained within an Agent Modeling Escape Project, the following steps occur automatically:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>The Escape builder generates Java code for the Escape API, including support for specialized graphics and (if enabled) 3D visualization.</p>
+</li>
+<li class="listitem">
+<p>The Documentation builder generates custom html documentation for the model.</p>
+</li>
+<li class="listitem">
+<p>The Java builder takes the Java code generated above and compiles it.</p>
+</li>
+<li class="listitem">
+<p>The Manifest and Schema builders package the project for use as part of the Eclipse plugin environment.</p>
+</li>
+</ol>
+</div>
+<p>So what do you do if you want to generate code for a different target, such as Repast? Here, you simply create another project and drag the model into it. You can also edit the builders for a given project (see the Workbench Documentation) but you'll only want to do that if you're making permanent changes to the project itself.</p>
+</div>
+<div class="section" title="Generating Specialized Model Artifacts">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Generating_Specialized_Model_Artifacts"></a>Generating Specialized Model Artifacts</h4>
+</div>
+</div>
+</div>
+<p>You can also manually generate code for models. This is useful if you want to create code for a model in a non target project and don't want the automatic build capabilities. There are also specialized targets that can be generated manually that are bundled with the tools -- AMP plugin developers can easily add custom generation targets for this menu. To generate custom artifacts, right-click on a model and select 
+						<span class="bold"><strong>Generate</strong></span>.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/tools/GenerateMenu.png"></div>
+<p>
+					
+</p>
+<p>Targets include:</p>
+<div class="section" title="Platform Targets">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Platform_Targets"></a>Platform Targets</h5>
+</div>
+</div>
+</div>
+<p>Creates code for one of the installed targets, such as Ascape, Escape, and Simphony. (Again, these generators are unnecessary for projects that already have target specific builders configured.)</p>
+</div>
+<div class="section" title="Interfaces">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Interfaces"></a>Interfaces</h5>
+</div>
+</div>
+</div>
+<p>Creates a complete set of interfaces for the model classes. These can be very useful for development and integration in enterprise environments. Generated classes are placed in the src directory with "I" added to the name. For example, if you generate interfaces for a model with an "Individual" agent, this target will create an "IIndividual" interface that includes getters, setters and methods for all of the agent's attributes and actions.</p>
+</div>
+<div class="section" title="Skeleton">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Skeleton"></a>Skeleton</h5>
+</div>
+</div>
+</div>
+<p>Creates a base class for the model. This is essentially a complete implementation, but without the action implementations. Again, these classes can be useful when generating code for use in enterprise and other specialized environments.</p>
+</div>
+<div class="section" title="Test Cases">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Test_Cases"></a>Test Cases</h5>
+</div>
+</div>
+</div>
+<p>Generates base support (needing customization) test cases for use in JUnit tests.</p>
+</div>
+<div class="section" title="Text Documents">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Text_Documents"></a>Text Documents</h5>
+</div>
+</div>
+</div>
+<p>Creates simple text documentation for use in other documents.</p>
+</div>
+<div class="section" title="Generate Key Graphics">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Generate_Key_Graphics"></a>Generate Key Graphics</h5>
+</div>
+</div>
+</div>
+<p>This specialized target supports the creation of graphic keys for the model. To use this target:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>Generate the code.</p>
+</li>
+<li class="listitem">
+<p>Add a dependency to the Manifest for "org.eclipse.amp.amf.gen.extras".</p>
+</li>
+<li class="listitem">
+<p>In the srcutil directory find the Java source code for the calss {RootContext}GraphicsWriter. For example, for the Epidemic model, this would be srcutil/name.milesparker.epi/EpidemicGraphicsWriter.java.</p>
+</li>
+<li class="listitem">
+<p>Right-click, and select 
+									<span class="bold"><strong>Run As &gt; Java Application</strong></span>.
+								</p>
+</li>
+<li class="listitem">
+<p>Refresh the project by right-clicking on it and selecting 
+									<span class="bold"><strong>Refresh</strong></span>.
+								</p>
+</li>
+<li class="listitem">
+<p>The Doc directory will now contain a number of new files, including</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="a">
+<li class="listitem">
+<p>{RootContext}Key.png</p>
+</li>
+<li class="listitem">
+<p>{RootContext}GraphicsKey.html</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<p>Both files contain graphic representations of the model using the definitions defined by the model styles, very useful artifacts for inclusion in papers and web pages describing your model. For example, here is the EpidemicKey.png:</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/tools/EpidemicKey.png"></div>
+<p>
+						
+</p>
+</div>
+<div class="section" title="Function Docs">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Function_Docs"></a>Function Docs</h5>
+</div>
+</div>
+</div>
+<p>Generates WikiText documentation for function libraries. We use it to create the function documentation in this guide!</p>
+</div>
+</div>
+</div>
+<div class="section" title="Agent Execution">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Agent_Execution"></a>Agent Execution</h3>
+</div>
+</div>
+</div>
+<div class="section" title="Launching a Model (AMF)">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Launching_a_Model_.28AMF.29"></a>Launching a Model (AMF)</h4>
+</div>
+</div>
+</div>
+<p>When an AMF file is selected -- in any of the perspectives -- the pop-up menu looks like this:</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/tools/EditorMenu.png "></div>
+<p>
+					
+</p>
+<p>(In this case we've selected the "Execute Headless" option.) Note that the toolbar and Application menus are updated to reflect the file you've selected and can provide more convenient access to many of the functions. For example, when we click on a metaabm file in the package explorer, model execution buttons appear in the toolbar. An important note: the execution framework doesn't know whether your code exists in an Escape project or anohter target project. If you attempt to execute a .metaabm model in an Ascape project for example, you will get an error.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/tools/EditorToolbar.png"></div>
+<p>
+					
+</p>
+<p>To launch a model, select one of the options.</p>
+<p>One a model has been launched, the Agent Execution Perspective automatically becomes active. The Provides a custom layout menus and tools specific to executing agent models.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/execution/EpidemicModelRunning.png"></div>
+<p>
+					
+</p>
+<p>The execution options are:</p>
+<div class="section" title="Execute">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Execute"></a>Execute</h5>
+</div>
+</div>
+</div>
+<p>Launches the model using default graphics, opening the Agent Execution perspective.</p>
+</div>
+<div class="section" title="Execute Headless">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Execute_Headless"></a>Execute Headless</h5>
+</div>
+</div>
+</div>
+<p>Launches the model without graphics, opening the Agent Execution perspective.</p>
+</div>
+<div class="section" title="Execute Headless (Data)">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Execute_Headless_.28Data.29"></a>Execute Headless (Data)</h5>
+</div>
+</div>
+</div>
+<p>Launches the model with an observer that collects data into the AMF adata model representation.</p>
+</div>
+</div>
+<div class="section" title="Executing a Model (Java / 3D)">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Executing_a_Model_.28Java_.2F_3D.29"></a>Executing a Model (Java / 3D)</h4>
+</div>
+</div>
+</div>
+<p>You can execute any Escape model directly from its Java file by right-clicking on it. This is used for models that have been written directly in Java, or that you have created or that have been automatically generated, such as the 3D versions of AMF models. In order for the model to launch correctly, it must have as a superclass the Escape "Scape" class. In the following screenshot, we've launched a 3D version of the Epidemic model. The 3D models are automatically generated for all .metaabm models.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/execution/Epidemic3D.png"></div>
+<p>
+					
+</p>
+</div>
+<div class="section" title="Controlling Model Execution">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Controlling_Model_Execution"></a>Controlling Model Execution</h4>
+</div>
+</div>
+</div>
+<p>Once a model has been launched, the toolbar buttons allow you to control model execution.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/execution/EpidemicModelControls.png"></div>
+<p>
+					
+</p>
+<p>From right to left, you can start, restart, pause, step, stop and close a model. You can even run multiple models and control them independently. You can also move views around, close them and so on as with any other Eclipse views. Here we're running two separate models for comparison.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/execution/EpidemicModelComparison.png"></div>
+<p>
+					
+</p>
+<div class="section" title="The Active Model">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="The_Active_Model"></a>The Active Model</h5>
+</div>
+</div>
+</div>
+<p>An important concept in the execution workbench is the "active model". The active model is the model that is controlled by the toolbar buttons. As discussed, the Escape environment supports more than one running model at any given time. The active model is the current "focused" or front-most model, there can be only one active model at any given time and whenever any models are running one of them will be active. To make a model become the active model, you simply select a view of that model or select the model in the model manager (see below). When a model is closed, another model is automatically activated.</p>
+</div>
+</div>
+<div class="section" title="Views">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Views_2"></a>Views</h4>
+</div>
+</div>
+</div>
+<p>There are many views specific to the Agent Execution environment that will enable you to explore and control running models.</p>
+<div class="section" title="Properties">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Properties_2"></a>Properties</h5>
+</div>
+</div>
+</div>
+<p>If you want to find out more about an agent, show the properties view, and click on agent in the 2D view or any other views that support agent selection such as the tree view.</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/execution/EpidemicModelAgentProperties.png"></div>
+<p>
+						
+</p>
+<p>You can experiment with different parameters (settings) for models by then clicking on the model in the Model Manager or by selecting a general mode area such as the gray area enclosing the 2D view.</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/execution/EpidemicModelProperties.png"></div>
+<p>
+						
+</p>
+</div>
+<div class="section" title="Agent Navigator">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Agent_Navigator"></a>Agent Navigator</h5>
+</div>
+</div>
+</div>
+<p>The 
+							<span class="bold"><strong>Agent Navigator</strong></span> allows you to select agents from a tree view. The agent selection is coordinated across views so that for example when you select an agent in the navigator it is also selected in the 2D view. In the following screenshot you can see an agent selected in both views as well as the properties editor.
+						</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/execution/AgentNavigator.png"></div>
+<p>
+						
+</p>
+</div>
+<div class="section" title="Model Manager">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Model_Manager"></a>Model Manager</h5>
+</div>
+</div>
+</div>
+<p>The 
+							<span class="bold"><strong>'Model Manager</strong></span>' allows you to examine and control the status of all running models. In the following screenshot, we've launched four separate models so that we can compare the typical model state at different periods.
+						</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/execution/ModelManager.png"></div>
+<p>
+						
+</p>
+<p>The manager shows that two of the models are running and two are paused. By opening the model node, we can see the views that are currently being displayed. Note that we mean something different by "Views" in this context. Here "Views" are any thing that is monitoring the state of a running model. A view may not have a graphical component at all.</p>
+<p>You can make any model the current active model by clicking on its node in this view.</p>
+<div class="section" title="&quot;About this Model&quot;">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name=".22About_this_Model.22"></a>"About this Model"</h6>
+</div>
+</div>
+</div>
+<p>The 
+								<span class="bold"><strong>'About this Model</strong></span>' view displays information about a (AMF or Java based) model if it has been provided by the developer. In order to appear in this dialog, create a file named "About[MyModel].html" where "MyModel" is the model's Scape Class Name (not the AMF model file name). The file should be placed in a "res" source folder in the model project directory in a parallel directory path to the root scape's Java class package. For example, an about file for a model defined by the scape "edu.brook.norms.Norms" should be placed at "res/edu/brook/norms/AboutNorms.html". The file should be an html fragment -- that is, without body and head tags -- and can include any valid html tags, including links.
+							</p>
+<p>
+								
+</p>
+<div class="mediaobject">
+<img src="images/execution/AboutView.png"></div>
+<p>
+							
+</p>
+</div>
+</div>
+</div>
+<div class="section" title="Visualization">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Visualization"></a>Visualization</h4>
+</div>
+</div>
+</div>
+<p>The Agent Modeling Environment is designed to support many kinds of 2D or 3D visualization. AMP includes the following views for generated models. The Escape API supports a number of additional visualization to support Ascape models that aren't shown here. Look at the example org.ascape.escape.models.examples and org.ascape.escape.models.brook for examples of those.</p>
+<div class="section" title="2D Views">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="2D_Views"></a>2D Views</h5>
+</div>
+</div>
+</div>
+<p>The 
+							<span class="bold"><strong>Graphic 2D</strong></span> view is the most common view way to work with an Agent Model and is automatically generated and displayed for executing models.
+						</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/execution/Epidemic2DView.png"></div>
+<p>
+						
+</p>
+<p>There are a number of view widgets in the upper-right hand corner that you can use to modify the view. You can:</p>
+<div class="section" title="Scaling">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Scaling"></a>Scaling</h6>
+</div>
+</div>
+</div>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>Enter or select a specific scale in the combo menu.</p>
+</li>
+<li class="listitem">
+<p>Select a button to have the model scale either:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="a">
+<li class="listitem">
+<p>Freely</p>
+</li>
+<li class="listitem">
+<p>Within the bounds of the view</p>
+</li>
+<li class="listitem">
+<p>Within the vertical bounds of the view</p>
+</li>
+<li class="listitem">
+<p>Within the horizontal bounds of the view</p>
+</li>
+</ol>
+</div>
+</li>
+<li class="listitem">
+<p>Zoom In</p>
+</li>
+<li class="listitem">
+<p>Zoom Out</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" title="Charts">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Charts"></a>Charts</h5>
+</div>
+</div>
+</div>
+<p>A 
+							<span class="bold"><strong>Chart</strong></span> view is automatically created and displayed for executing models. It can display aggregate values for any of the agent attributes you have set the "gather data" value to true for. Charts can be easily modified. While the built-in view is not meant to be the sole tool for Escape model data analysis, it provides an easy to use and powerful way to explore models interactively. The Chart view widgets allow you to modify the chart with the click of a button.
+						</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/execution/EpidemicChartOptions.png"></div>
+<p>
+						
+</p>
+<div class="section" title="Chart Type">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Chart_Type"></a>Chart Type</h6>
+</div>
+</div>
+</div>
+<p>Several chart types are supported: The line, area, bar and pie chart. Click on one of the icons to select that type.</p>
+<p>
+								
+</p>
+<div class="mediaobject">
+<img src="images/execution/LineChart.png"></div>
+<p>
+
+								
+</p>
+<div class="mediaobject">
+<img src="images/execution/AreaChart.png"></div>
+<p>
+
+								
+</p>
+<div class="mediaobject">
+<img src="images/execution/BarChart.png"></div>
+<p>
+
+								
+</p>
+<div class="mediaobject">
+<img src="images/execution/PieChart.png"></div>
+<p>
+							
+</p>
+</div>
+<div class="section" title="Chart Legend">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Chart_Legend"></a>Chart Legend</h6>
+</div>
+</div>
+</div>
+<p>Turn the legend on and off by selecting the "T" icon.</p>
+</div>
+<div class="section" title="Chart Data">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Chart_Data"></a>Chart Data</h6>
+</div>
+</div>
+</div>
+<p>To select the statistics to display, show the 
+								<span class="bold"><strong>Chart Customizer</strong></span> view. When the customizer has been selected, select a chart to customize. The customizer presents the possible choices in a 2D format. On one axis are the attributes that have data being collected, and on the other are the measurements collected on those axes, i.e. Count, Minimum, Maximum, Variance, Standard Deviation, Sum and Average. To clear all selections, click the Gray "X" button.
+							</p>
+<p>
+								
+</p>
+<div class="mediaobject">
+<img src="images/execution/EpidemicChartCustomize.png"></div>
+<p>
+							
+</p>
+<p>There are a number of other things to play around with, such as zooming the agent view or selecting other chart series to display using the Chart Customizer, so just explore. You can always close an active model by clicking on the close toolbar button. Or if you can't access the models controls for some reason, you can open the progress view and close projects form there.</p>
+</div>
+</div>
+</div>
+<div class="section" title="Executing Internal Targets">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Executing_Internal_Targets"></a>Executing Internal Targets</h4>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -4141,7 +5391,7 @@ Outputs:<br>
 							
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial0Perspective.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial0Perspective.png"></div>
 <p>
 						
 </p>
@@ -4150,7 +5400,7 @@ Outputs:<br>
 							
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial0Perspective2.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial0Perspective2.png"></div>
 <p>
 						
 </p>
@@ -4171,7 +5421,7 @@ Outputs:<br>
 							
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial1.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial1.png"></div>
 <p>
 						
 </p>
@@ -4190,7 +5440,7 @@ Outputs:<br>
 							
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial2.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial2.png"></div>
 <p>
 						
 </p>
@@ -4211,7 +5461,7 @@ Outputs:<br>
 							
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial3CreateModel.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial3CreateModel.png"></div>
 <p>
 						
 </p>
@@ -4220,7 +5470,7 @@ Outputs:<br>
 							
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial4CreateModel.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial4CreateModel.png"></div>
 <p>
 						
 </p>
@@ -4231,7 +5481,7 @@ Outputs:<br>
 							
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial5CreatePage2.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial5CreatePage2.png"></div>
 <p>
 						
 </p>
@@ -4274,7 +5524,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial6Createagent.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial6Createagent.png"></div>
 <p>
 							
 </p>
@@ -4296,7 +5546,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial6NameBug.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial6NameBug.png"></div>
 <p>
 							
 </p>
@@ -4315,7 +5565,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial10AgentCount.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial10AgentCount.png"></div>
 <p>
 							
 </p>
@@ -4324,7 +5574,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial11BuildAgents.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial11BuildAgents.png"></div>
 <p>
 							
 </p>
@@ -4355,7 +5605,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial7CreateGrid.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial7CreateGrid.png"></div>
 <p>
 							
 </p>
@@ -4387,7 +5637,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial8GridParameters.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial8GridParameters.png"></div>
 <p>
 							
 </p>
@@ -4396,7 +5646,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial9GridDims.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial9GridDims.png"></div>
 <p>
 							
 </p>
@@ -4415,7 +5665,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial14BuildGridParams.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial14BuildGridParams.png"></div>
 <p>
 							
 </p>
@@ -4426,7 +5676,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial13BuildGridAgents.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial13BuildGridAgents.png"></div>
 <p>
 							
 </p>
@@ -4456,7 +5706,7 @@ Outputs:<br>
 							
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial15CreateInitialize.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial15CreateInitialize.png"></div>
 <p>
 						
 </p>
@@ -4476,7 +5726,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial16CreateSelect.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial16CreateSelect.png"></div>
 <p>
 							
 </p>
@@ -4485,7 +5735,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial165Select2.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial165Select2.png"></div>
 <p>
 							
 </p>
@@ -4504,7 +5754,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial17CreateQuery.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial17CreateQuery.png"></div>
 <p>
 							
 </p>
@@ -4513,7 +5763,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial18QueryFunction.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial18QueryFunction.png"></div>
 <p>
 							
 </p>
@@ -4534,7 +5784,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial19Move.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial19Move.png"></div>
 <p>
 							
 </p>
@@ -4557,7 +5807,7 @@ Outputs:<br>
 							
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial20ExecuteModel.png"></div>
+<img src="images/edit_tutorial/SimpleTutorial20ExecuteModel.png"></div>
 <p>
 						
 </p>
@@ -4566,7 +5816,7 @@ Outputs:<br>
 							
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial21Execute2.png "></div>
+<img src="images/edit_tutorial/SimpleTutorial21Execute2.png "></div>
 <p>
 						
 </p>
@@ -4604,7 +5854,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial22CreateStyle.png "></div>
+<img src="images/edit_tutorial/SimpleTutorial22CreateStyle.png "></div>
 <p>
 							
 </p>
@@ -4623,7 +5873,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial23CreateStyleRule.png "></div>
+<img src="images/edit_tutorial/SimpleTutorial23CreateStyleRule.png "></div>
 <p>
 							
 </p>
@@ -4645,7 +5895,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial24EvaluationFunction.png "></div>
+<img src="images/edit_tutorial/SimpleTutorial24EvaluationFunction.png "></div>
 <p>
 							
 </p>
@@ -4654,7 +5904,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial25FinishStyle.png "></div>
+<img src="images/edit_tutorial/SimpleTutorial25FinishStyle.png "></div>
 <p>
 							
 </p>
@@ -4678,7 +5928,7 @@ Outputs:<br>
 <div>
 <div>
 <h6 class="title">
-<a name="N10BD4"></a>Create Select and Query Actions</h6>
+<a name="N10F3E"></a>Create Select and Query Actions</h6>
 </div>
 </div>
 </div>
@@ -4692,7 +5942,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial26CreateQuery2.png "></div>
+<img src="images/edit_tutorial/SimpleTutorial26CreateQuery2.png "></div>
 <p>
 							
 </p>
@@ -4715,7 +5965,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial27NoValue.png "></div>
+<img src="images/edit_tutorial/SimpleTutorial27NoValue.png "></div>
 <p>
 							
 </p>
@@ -4727,7 +5977,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial28CreateAttribute.png "></div>
+<img src="images/edit_tutorial/SimpleTutorial28CreateAttribute.png "></div>
 <p>
 							
 </p>
@@ -4736,7 +5986,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial29AttributeValues.png "></div>
+<img src="images/edit_tutorial/SimpleTutorial29AttributeValues.png "></div>
 <p>
 							
 </p>
@@ -4745,7 +5995,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial30AttributeInput.png "></div>
+<img src="images/edit_tutorial/SimpleTutorial30AttributeInput.png "></div>
 <p>
 							
 </p>
@@ -4754,7 +6004,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial31Intersect.png "></div>
+<img src="images/edit_tutorial/SimpleTutorial31Intersect.png "></div>
 <p>
 							
 </p>
@@ -4765,7 +6015,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial32IntersectAdd.png "></div>
+<img src="images/edit_tutorial/SimpleTutorial32IntersectAdd.png "></div>
 <p>
 							
 </p>
@@ -4774,7 +6024,7 @@ Outputs:<br>
 								
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial33Move.png "></div>
+<img src="images/edit_tutorial/SimpleTutorial33Move.png "></div>
 <p>
 							
 </p>
@@ -4800,214 +6050,13 @@ Outputs:<br>
 							
 </p>
 <div class="mediaobject">
-<img src="images/SimpleTutorial34RunFinal.png "></div>
+<img src="images/edit_tutorial/SimpleTutorial34RunFinal.png "></div>
 <p>
 						
 </p>
 <p>We hope this tutorial has enabled you to get up and running and given you some familiarity with the basic Agent Modeling Framework approach. The example models include the other "stupid models" from the paper, as well as a number of other interesting models.</p>
 </div>
 </div>
-</div>
-</div>
-<div class="section" title="Running Agent Models">
-<div class="titlepage">
-<div>
-<div>
-<h2 class="title" style="clear: both">
-<a name="Running_Agent_Models"></a>Running Agent Models</h2>
-</div>
-</div>
-</div>
-<div class="section" title="Exploring Example ABM Models">
-<div class="titlepage">
-<div>
-<div>
-<h3 class="title">
-<a name="Exploring_Example_ABM_Models"></a>Exploring Example ABM Models</h3>
-</div>
-</div>
-</div>
-<p>The first thing most people will want to do in AMP is to play with the example models. You can explore AMF models as well as some really interesting classic ABM models.</p>
-<div class="section" title="Downloading Models">
-<div class="titlepage">
-<div>
-<div>
-<h4 class="title">
-<a name="Downloading_Models"></a>Downloading Models</h4>
-</div>
-</div>
-</div>
-<p>To obtain the models, simply launch the cheat sheet. Go to the 
-						<span class="bold"><strong>Help &gt; Cheat Sheets...</strong></span> menu and choose "Load Sample Projects".
-					</p>
-<p>Or you can get them yourself from the following locations:</p>
-<div class="section" title="AMF Models">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="AMF_Models"></a>AMF Models</h5>
-</div>
-</div>
-</div>
-<div class="literallayout">
-<p>org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.escape<br>
-
-</p>
-</div>
-<p>To understand the capabilities of AMF, you might also want to try out running the same models automatically generated for Ascape or Repast. These are located at dev.eclipse.org in cvsroot/modeling:</p>
-<div class="literallayout">
-<p>org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape<br>
-org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast<br>
-
-</p>
-</div>
-</div>
-<div class="section" title="Escape / Ascape Java Models">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Escape_.2F_Ascape_Java_Models"></a>Escape / Ascape Java Models</h5>
-</div>
-</div>
-</div>
-<p>These are SVN projects in the sourceforge SVN. For help, see 
-							<a class="ulink" href="/wiki/http://www.eclipse.org/subversive/documentation/teamSupport/find_check_wiz.php_this_page" target="_new">http://www.eclipse.org/subversive/documentation/teamSupport/find_check_wiz.php this page</a>.
-						</p>
-<div class="literallayout">
-<p>http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.brook<br>
-http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.examples<br>
-
-</p>
-</div>
-</div>
-</div>
-<div class="section" title="Generating Models">
-<div class="titlepage">
-<div>
-<div>
-<h4 class="title">
-<a name="Generating_Models"></a>Generating Models</h4>
-</div>
-</div>
-</div>
-<p>There are a number of models developed with AMF that can automatically generate example models to run in Escape. There are two ways to run the example models:</p>
-<div class="section" title="Creating a New Escape Project">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Creating_a_New_Escape_Project"></a>Creating a New Escape Project</h5>
-</div>
-</div>
-</div>
-<p>The best option is to simply create a new Escape project and drag the models into it!</p>
-<div class="orderedlist">
-<ol class="orderedlist" type="1">
-<li class="listitem">
-<p>If you're not already there, open the Agent Modeling Perspective. Select Window &gt; Open Perspective &gt; Other.. and then Agent Modeling. (Or you can choose Window &gt; Reset Perspective and the Agent Modeling perspective should appear in the Open Perspective list itself.)</p>
-</li>
-<li class="listitem">
-<p>Next, let's create the project where we'll place our model. Select File &gt; New &gt; Escape AMF Project. Give it a name like "escape.tutorial", then click Finish.</p>
-</li>
-<li class="listitem">
-<p>Finally grab the Epidemic.metaabm model at 
-									<a class="ulink" href="http://download.eclipse.org/amp/models/Epidemic.metaabm" target="_new">http://download.eclipse.org/amp/models/Epidemic.metaabm</a> and drag it into the project. (Depending on your browser the file may load as text directly into your browser, in which case just right-click on the link and save it to a file.)
-								</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-<div class="section" title="Tutorial">
-<div class="titlepage">
-<div>
-<div>
-<h3 class="title">
-<a name="Tutorial_2"></a>Tutorial</h3>
-</div>
-</div>
-</div>
-<p>We've developer have a complete cheat sheet supporting this tutorial. Simply go to 
-					<span class="bold"><strong>Help &gt; Cheat Sheets...</strong></span> and then select "Run an Example Model" from within the "Agent Modeling" category. Or install the example models and then explore the following steps.
-				</p>
-<p>Right-click on the model, and select "Execute". You should see something like this:</p>
-<p>
-					
-</p>
-<div class="mediaobject">
-<img src="images/EpidemicModelRunning.png"></div>
-<p>
-				
-</p>
-<p>The toolbar buttons allow you to control model execution.</p>
-<p>
-					
-</p>
-<div class="mediaobject">
-<img src="images/EpidemicModelControls.png"></div>
-<p>
-				
-</p>
-<p>From right to left, you can start, restart, pause, step, stop and close a model. You can even run multiple models and control them independently. You can also move views around, close them and so on as with any other Eclipse views. Here we're running two separate models for comparison.</p>
-<p>
-					
-</p>
-<div class="mediaobject">
-<img src="images/EpidemicModelComparison.png"></div>
-<p>
-				
-</p>
-<p>If you want to find out more about an agent, show the properties view, and click on agent.</p>
-<p>
-					
-</p>
-<div class="mediaobject">
-<img src="images/EpidemicModelAgentProperties.png"></div>
-<p>
-				
-</p>
-<p>You can experiment with different parameters (settings) for models by then clicking in the gray area away within the view.</p>
-<p>
-					
-</p>
-<div class="mediaobject">
-<img src="images/EpidemicModelProperties.png"></div>
-<p>
-				
-</p>
-<p>There are a number of other things to play around with, such as zooming the agent view or selecting other chart series to display using the Chart Customizer, so just explore. You can always close an active model by clicking on the close toolbar button. Or if you can't access the models controls for some reason, you can open the progress view and close projects form there.</p>
-<div class="section" title="Next Steps">
-<div class="titlepage">
-<div>
-<div>
-<h4 class="title">
-<a name="Next_Steps"></a>Next Steps</h4>
-</div>
-</div>
-</div>
-<p>To understand the capabilities of AMF, you might also want to try out running the same models automatically generated for Ascape or Repast.</p>
-<div class="literallayout">
-<p>org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape<br>
-org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast<br>
-
-</p>
-</div>
-</div>
-</div>
-<div class="section" title="Classic Java ABM Models">
-<div class="titlepage">
-<div>
-<div>
-<h3 class="title">
-<a name="Classic_Java_ABM_Models"></a>Classic Java ABM Models</h3>
-</div>
-</div>
-</div>
-<p>Many models have been created using Ascape over the years, including all of the classic models created at Brookings and some other cool models such as Craig Reynold's Boids and a pretty cool little traffic model, and they've all been converted to run in Escape. They're in Java but you can execute and explore them in exactly the same way as the Epidemic model above. All of the Ascape example models have been converted (a straightforward process) from their intial Ascape incarnations. For licensing reasons (they're BSD, not EPL) we can't host them directly on the Eclipse site.  You can get the projects in two ways:</p>
-<p>Once you've downloaded the projects, open up the src folder and navigate to the Java files for the actual models. For example, to run Conway's Life, you'll want src/edu.brook.life.ConwayLife. Right-click on the Java file and select "Execute". There are many models to explore! (It's not always obvious which Java files are for models, so you may have to poke around a bit. We need to put together a catalog here. Another nice opportunity for user contributions.)</p>
 </div>
 </div>
 </div>
@@ -5025,7 +6074,7 @@ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
 <div>
 <div>
 <h2 class="title" style="clear: both">
-<a name="Overview_5"></a>Overview</h2>
+<a name="Overview_6"></a>Overview</h2>
 </div>
 </div>
 </div>
@@ -5148,7 +6197,7 @@ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
 						
 </p>
 <div class="mediaobject">
-<img src="images/ProgrammingPojoGenerateProps.png"></div>
+<img src="images/pojo/ProgrammingPojoGenerateProps.png"></div>
 <p>
 					
 </p>
@@ -5157,7 +6206,7 @@ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
 						
 </p>
 <div class="mediaobject">
-<img src="images/ProgrammingPojoGenerateCode.png"></div>
+<img src="images/pojo/ProgrammingPojoGenerateCode.png"></div>
 <p>
 					
 </p>
@@ -5176,7 +6225,7 @@ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
 						
 </p>
 <div class="mediaobject">
-<img src="images/ProgrammingPojoGenerate.png"></div>
+<img src="images/pojo/ProgrammingPojoGenerate.png"></div>
 <p>
 					
 </p>
@@ -5326,6 +6375,161 @@ g.fillOval(..<br>
 </div>
 </div>
 </div>
+<div class="section" title="Running Agent Models">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Running_Agent_Models"></a>Running Agent Models</h2>
+</div>
+</div>
+</div>
+<div class="section" title="Exploring Example ABM Models">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Exploring_Example_ABM_Models"></a>Exploring Example ABM Models</h3>
+</div>
+</div>
+</div>
+<p>The first thing most people will want to do in AMP is to play with the example models. You can explore AMF models as well as some really interesting classic ABM models.</p>
+<div class="section" title="Downloading Models">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Downloading_Models"></a>Downloading Models</h4>
+</div>
+</div>
+</div>
+<p>To obtain the models, simply launch the cheat sheet. Go to the 
+						<span class="bold"><strong>Help &gt; Cheat Sheets...</strong></span> menu and choose "Load Sample Projects".
+					</p>
+<p>Or you can get them yourself from the following locations:</p>
+<div class="section" title="AMF Models">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="AMF_Models"></a>AMF Models</h5>
+</div>
+</div>
+</div>
+<div class="literallayout">
+<p>org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.escape<br>
+
+</p>
+</div>
+<p>To understand the capabilities of AMF, you might also want to try out running the same models automatically generated for Ascape or Repast. These are located at dev.eclipse.org in cvsroot/modeling:</p>
+<div class="literallayout">
+<p>org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape<br>
+org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Escape / Ascape Java Models">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Escape_.2F_Ascape_Java_Models"></a>Escape / Ascape Java Models</h5>
+</div>
+</div>
+</div>
+<p>These are SVN projects in the sourceforge SVN. For help, see 
+							<a class="ulink" href="/wiki/http://www.eclipse.org/subversive/documentation/teamSupport/find_check_wiz.php_this_page" target="_new">http://www.eclipse.org/subversive/documentation/teamSupport/find_check_wiz.php this page</a>.
+						</p>
+<div class="literallayout">
+<p>http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.brook<br>
+http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.examples<br>
+
+</p>
+</div>
+</div>
+</div>
+<div class="section" title="Generating Models">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Generating_Models"></a>Generating Models</h4>
+</div>
+</div>
+</div>
+<p>There are a number of models developed with AMF that can automatically generate example models to run in Escape. There are two ways to run the example models:</p>
+<div class="section" title="Creating a New Escape Project">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Creating_a_New_Escape_Project"></a>Creating a New Escape Project</h5>
+</div>
+</div>
+</div>
+<p>The best option is to simply create a new Escape project and drag the models into it!</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>If you're not already there, open the Agent Modeling Perspective. Select Window &gt; Open Perspective &gt; Other.. and then Agent Modeling. (Or you can choose Window &gt; Reset Perspective and the Agent Modeling perspective should appear in the Open Perspective list itself.)</p>
+</li>
+<li class="listitem">
+<p>Next, let's create the project where we'll place our model. Select File &gt; New &gt; Escape AMF Project. Give it a name like "escape.tutorial", then click Finish.</p>
+</li>
+<li class="listitem">
+<p>Finally grab the Epidemic.metaabm model at 
+									<a class="ulink" href="http://download.eclipse.org/amp/models/Epidemic.metaabm" target="_new">http://download.eclipse.org/amp/models/Epidemic.metaabm</a> and drag it into the project. (Depending on your browser the file may load as text directly into your browser, in which case just right-click on the link and save it to a file.)
+								</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="section" title="Tutorial">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Tutorial_2"></a>Tutorial</h3>
+</div>
+</div>
+</div>
+<p>We've developer have a complete cheat sheet supporting this tutorial. Simply go to 
+					<span class="bold"><strong>Help &gt; Cheat Sheets...</strong></span> and then select "Run an Example Model" from within the "Agent Modeling" category.
+				</p>
+<div class="section" title="Next Steps">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Next_Steps"></a>Next Steps</h4>
+</div>
+</div>
+</div>
+<p>To understand the capabilities of AMF, you might also want to try out running the same models automatically generated for Ascape or Repast.</p>
+<div class="literallayout">
+<p>org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape<br>
+org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast<br>
+
+</p>
+</div>
+</div>
+</div>
+<div class="section" title="Classic Java ABM Models">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Classic_Java_ABM_Models"></a>Classic Java ABM Models</h3>
+</div>
+</div>
+</div>
+<p>Many models have been created using Ascape over the years, including all of the classic models created at Brookings and some other cool models such as Craig Reynold's Boids and a pretty cool little traffic model, and they've all been converted to run in Escape. They're in Java but you can execute and explore them in exactly the same way as the Epidemic model above. All of the Ascape example models have been converted (a straightforward process) from their intial Ascape incarnations. For licensing reasons (they're BSD, not EPL) we can't host them directly on the Eclipse site.  You can get the projects in two ways:</p>
+<p>Once you've downloaded the projects, open up the src folder and navigate to the Java files for the actual models. For example, to run Conway's Life, you'll want src/edu.brook.life.ConwayLife. Right-click on the Java file and select "Execute". There are many models to explore! (It's not always obvious which Java files are for models, so you may have to poke around a bit. We need to put together a catalog here. Another nice opportunity for user contributions.)</p>
+</div>
+</div>
 </div>
 <div class="chapter" title="Chapter&nbsp;4.&nbsp;Resources">
 <div class="titlepage">
@@ -5353,7 +6557,7 @@ g.fillOval(..<br>
 <div>
 <div>
 <h4 class="title">
-<a name="N10DD7"></a>Import from CVS</h4>
+<a name="N11112"></a>Import from CVS</h4>
 </div>
 </div>
 </div>
@@ -5430,6 +6634,133 @@ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
 				<a class="ulink" href="http://jasss.soc.surrey.ac.uk/11/4/12.html" target="_new">Why Model?</a>
 			
 </p>
+</div>
+</div>
+<div class="chapter" title="Chapter&nbsp;5.&nbsp;Support">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="Support"></a>Chapter&nbsp;5.&nbsp;Support</h2>
+</div>
+</div>
+</div>
+<div class="section" title="Issues">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Issues"></a>Issues</h2>
+</div>
+</div>
+</div>
+<p>Eclipse and the AMP project have a mandate for open communication. Please note that unless you are a customer of an AMP project contributor we will not respond to direct requests for support. We 
+				<span class="italic">will</span> make every effort to support your use of AMP in the following ways:
+			</p>
+<div class="section" title="General Support, Questions and Discussion">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="General_Support.2C_Questions_and_Discussion"></a>General Support, Questions and Discussion</h3>
+</div>
+</div>
+</div>
+<p>The 
+					<a class="ulink" href="http://www.eclipse.org/forums/index.php?t=thread&frm_id=17&S=f4fa6cb31327772a3b626dc409db409b" target="_new">Agent Modeling Platform Newsgroup</a> is the place to discuss or get support for any of the Eclipse AMP tools. 
+				</p>
+</div>
+<div class="section" title="View Existing Bugs and Feature Requests">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="View_Existing_Bugs_and_Feature_Requests"></a>View Existing Bugs and Feature Requests</h3>
+</div>
+</div>
+</div>
+<p>If you have a problem or idea for improvement, there's a good chance that its already been discovered. To avoid duplication, please check the current bugs before filing a new bug report or feature request.</p>
+<p>
+					
+<a class="ulink" href="https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&short_desc_type=allwordssubstr&short_desc=&product=AMP&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&status_whiteboard_type=allwordssubstr&status_whiteboard=&keywords_type=allwords&keywords=&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0=" target="_new">Search Existing Bugs</a>
+				
+</p>
+</div>
+<div class="section" title="File a Bug">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="File_a_Bug"></a>File a Bug</h3>
+</div>
+</div>
+</div>
+<p>This may sound obvious, but if something doesn't work as it should, the only way that we're going to find out is if someone reports it. All AMP related bugs or feature requests should use the Eclipse Bugzilla.</p>
+<p>
+					
+<a class="ulink" href="https://bugs.eclipse.org/bugs/enter_bug.cgi?product=AMP&rep_platform=All&op_sys=All" target="_new">File a Bug or Feature Request</a>
+				
+</p>
+</div>
+<div class="section" title="Discuss AMP Development and Project">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Discuss_AMP_Development_and_Project"></a>Discuss AMP Development and Project</h3>
+</div>
+</div>
+</div>
+<p>All discussion about software development, design and project management issues take place on the AMP dev-list. If you're interested in contributing to the AMP project, this is a good place to contact us. 
+					<a class="ulink" href="https://dev.eclipse.org/mailman/listinfo/amp-dev" target="_new">https://dev.eclipse.org/mailman/listinfo/amp-dev</a>.
+				</p>
+</div>
+<div class="section" title="Professional Support">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Professional_Support"></a>Professional Support</h3>
+</div>
+</div>
+</div>
+<p>The AMP project developers -- among the most experienced developers of agent models and tools anywhere -- are naturally the best source for Agent Modeling development, support and training. Please feel free to contact the project lead or other project contributors directly to discuss professional support options.</p>
+</div>
+<div class="section" title="Media and Private Communications">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Media_and_Private_Communications"></a>Media and Private Communications</h3>
+</div>
+</div>
+</div>
+<p>For project related but non-public communications such as media enquires or potential project sponsorship, please contact Miles Parker, the Eclipse AMP project lead, at amp_enquiry@metascapeabm.com. (Requests for support and other communications to this address will be ignored.)</p>
+</div>
+</div>
+<div class="section" title="Feedback">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Feedback"></a>Feedback</h2>
+</div>
+</div>
+</div>
+<p>If you have ideas, comments or requests for information about the project please contact us at the .</p>
+</div>
+<div class="section" title="Get Involved">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Get_Involved"></a>Get Involved</h2>
+</div>
+</div>
+</div>
+<p>If you find this tool valuable, please be aware that most of its development occurred through volunteer contributions from individuals and companies that have received no direct funding. You can support continual development efforts financially by purchasing related software tools from companies and organizations that help develop it, including funding for developer time in grant proposals. You can support the Eclipse platform in general by becoming a member organization of Eclipse. But the most important thing that you can contribute is your own time and enthusiasm, either through directly contributing to AMP or by promoting its use in blogs and other social media. For more detailed information about contributing to AMP, please see 
+				<a class="ulink" href="http://wiki.eclipse.org/AMP/Getting_Involved" target="_new">our wiki</a>.
+			</p>
 </div>
 </div>
 </div>

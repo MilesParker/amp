@@ -6,7 +6,7 @@ The basic structure of an agent-based model can be quite simple. While there are
 
 Unlike the approach of a traditional Object Oriented environment, the dominant organizing principal for agents within AMF follows a compositional hierarchical model, not an inheritance model. (Inheritance-like behavior will be supported in forthcoming versions of Acore, but in a more sophisticated, flexible and dynamic way than is supported by traditional programming languages such as Java.) Contexts -- also referred to as "Swarms" or "Scapes", are simply Agents that are capable of containing other agents. With this basic construct -- known as a Composition in design pattern language -- agents are able to contain other agents.
 
-===Details===
+===Concepts===
 
 ====General====
 
@@ -15,9 +15,10 @@ Everything represented in an Acore model needs to be referred to in some way. Ju
 =====Named Entities=====
 
 ======Label======
-A reasonably short, human readable name for the agent. For example, "Timber Wolf", "Exchange Trader" or "Movement Probability". These should be defined so that they fit in well with auto-generated documentation.
+A reasonably short, human readable name for the agent. For example, "Timber Wolf", "Exchange Trader" or "Movement Probability". These should be defined so that they fit in well with auto-generated documentation. Note that Labels must be unique throughout the model. (This may change in future releases for Action names.) If you try to provide an object with a name that is already in use, "Copy" will be appended to the end of the name. 
+
 ======ID======
-An ID is an identifier that can be used to represent the object in a software program. This means that it must follow certain rules such as no-spaces or non alpha-numeric characters. The editing tools will help make sure that this value is legal. Note that when you enter a label, a legal ID is automatically created for you! Usually you won't need to change this, but you might if for example you want the value to match up with some database or other external representation. So reasonable values here might be "timberWolf" or perhaps "MVMNT_PRB" if say you're trying to match up to some old statistics records you have. (Note that currently IDs by default use "camel case", i.e. "thisIsAnExampleOfCamelCase" to match with Java variable naming conventions, but this is likely to change.)
+An ID is an identifier that can be used to represent the object in a software program. This means that it must follow certain rules such as no-spaces or non alpha-numeric characters. The editing tools will help make sure that this value is legal. Note that when you enter a label, a legal ID is automatically created for you! Usually you won't need to change this, but you might if for example you want the value to match up with some database or other external representation. So reasonable values here might be "timberWolf" or perhaps "MVMNT_PRB" if say you're trying to match up to some old statistics records you have. (Note that currently IDs by default use "camel case", i.e. "thisIsAnExampleOfCamelCase" to match with Java variable naming conventions, but this is likely to change.) Like labels, IDs need to be unique across the model, and the editing tools will assign a different id if you attempt to give two entities the same id.
 
 And most entities also define:
 
@@ -193,13 +194,13 @@ For readers familiar with UML and meta-modeling, the following diagrams give mor
 
 Our first diagram depicts the core structural design of the model. 
 
-[[Image:images/StructureComplexDiagram.png|800px]] 
+[[Image:images/structure/StructureComplexDiagram.png|800px]] 
 
  There seems to be a lot going on here, but the basic components are pretty straightforward as we can see in the next diagram.
 
 =====Key Collaborations=====
 
-[[Image:images/StructureSimpleDiagram.png]]
+[[Image:images/structure/StructureSimpleDiagram.png]]
 
  Core interactions are in Red. The meta-model structure is essentially a Composite pattern. 
 

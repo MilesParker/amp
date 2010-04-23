@@ -41,29 +41,8 @@ The best option is to simply create a new Escape project and drag the models int
 
 ===Tutorial===
 
-We've developer have a complete cheat sheet supporting this tutorial. Simply go to '''Help > Cheat Sheets...''' and then select "Run an Example Model" from within the "Agent Modeling" category. Or install the example models and then explore the following steps.
+We've developer have a complete cheat sheet supporting this tutorial. Simply go to '''Help > Cheat Sheets...''' and then select "Run an Example Model" from within the "Agent Modeling" category.
 
-Right-click on the model, and select "Execute". You should see something like this:
-
-[[Image:images/EpidemicModelRunning.png]]
-
-The toolbar buttons allow you to control model execution.
-
-[[Image:images/EpidemicModelControls.png]]
-
-From right to left, you can start, restart, pause, step, stop and close a model. You can even run multiple models and control them independently. You can also move views around, close them and so on as with any other Eclipse views. Here we're running two separate models for comparison.
-
-[[Image:images/EpidemicModelComparison.png]]
-
-If you want to find out more about an agent, show the properties view, and click on agent.
-
-[[Image:images/EpidemicModelAgentProperties.png]]
-
-You can experiment with different parameters (settings) for models by then clicking in the gray area away within the view.
-
-[[Image:images/EpidemicModelProperties.png]]
-
-There are a number of other things to play around with, such as zooming the agent view or selecting other chart series to display using the Chart Customizer, so just explore. You can always close an active model by clicking on the close toolbar button. Or if you can't access the models controls for some reason, you can open the progress view and close projects form there.
 
 ====Next Steps====
 

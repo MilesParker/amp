@@ -1,0 +1,104 @@
+====Editing Models====
+
+The Eclipse Agent Modeling Framework includes a full-featured model editor based on the Eclipse Modeling Framework's Edit tools. All aspects of an AMF model can be managed from within this tool. Note that the tree editor is only one of many ways of editing a model. Other editors of AMF models incude textual languages and custom editors that are part of commercial offerings.
+
+=====Opening the Editor=====
+
+To open a model in the editor, simply double-click on it. If the model doesn't open in the model editor (if for example it had been previously opened using another editor), you can always access the editor using '''Open With > Other...''' and selecting "MetaABM Editor". The editor has two pages, an Editor page that we'll focus on first and a "description" page that we'll dicuss at the end of this section.
+
+=====Editing Structure=====
+
+The model is composed of nodes representing specific model entities such as agents, actions and spaces. For details about any of these entities, see the Concepts section.
+
+======Opening Components======
+
+After opening a model, you can see the contents by clicking the Triangle symbol to the left of an item. For example, opening the root context node, we see:
+
+[[Image:images/tools/Editor.png]]
+
+======Editing Components======
+
+To edit components, select the node you want to modify. The '''Properties View''' will be updated with the agent details. Use the properties view to modify the values. In the screenshot below, we're editing the values for the City space.
+
+[[Image:images/tools/EditorEditing.png]]
+
+======Adding Components======
+
+You add nodes by right-clicking on a node, like so:
+
+[[Image:images/tools/EditorAdd.png]]
+
+======Moving Components======
+
+You can often rearrange model components by dragging them from one place to another. In the following example, we're creating a model of a regional epidemic by creating a City sub-context and moving the agent into it: 
+
+[[Image:images/tools/EditorMoving.png]]
+
+======Removing Components======
+
+You can remove actions by deleting or cutting them using the popup menu. When you delete an entity, all of its children are deleted as well, except in some special cases (such as with actions) where other paths to that entitiy still exist.
+
+======Copying Components======
+
+To make a copy of an entity and place it in a new location, option-drag the entity to the destination. You can make a copy in the existing location by dragging it into the same parent. The name will automatically be updated with "copy" appended to it.
+
+======Editing Attributes======
+
+The attributes node -- along with the actions and styles nodes -- represents a group of components rather than an entity itself. It contains all of the attributes for the parent agent or context. In the examples below, we can see the attributes for the Epidemic route model. Note that the top level attributes in a root context act as the parameters for the model itself.
+
+[[Image:images/tools/EditorAttributes.png]]
+
+======Editing Styles======
+
+The Styles node is another group node, in this case representing a set of styles that can be used to visualize the agents. When creating a style, you will need to create a Rule for each style as well, like so:
+
+[[Image:images/tools/EditorStyles.png]]
+
+=====Editing Actions=====
+
+Actions are a key and relatively complex aspect of the model editor. Because actions are actually related in a graph structure, a tree-based editor will not be able to represent a the underlying strucuture of action relationships directly. (This is actually no different from most development environments -- for example, Java code is edited in a text based editor, but the call structure represents a complex graph. Advance tools developed by AMP contributors do support more sophisticated methods for action browsing and we'll have simple versions of them available in future releases of the AMF edit tools.) Therefore, it's helpful to take time to understand how action relationships appear in the editor.
+
+Like attributes and styles, every agent has a single Actions nodes which contains its Root Action(s).
+
+======Order======
+
+Generally, action sources will appear above their targets. In the case where there is only one source for a given target, and that target has no other sources, they will appear directly above one another. Its important to note however that ''the order of the nodes does not indicate a specific source and target relationship''. For example, in the case where there are multiple targets for a source, they will typically follow that source immediately. To make the relationships clear, every action lists its source actions as part of the action label. Agent selections also appear as part .
+
+[[Image:images/tools/ActionsExample.png]]
+
+In the above example, the Initialize Location "Initialize Action" is straightforward. We simply define a Select Action, a Query Action target for that selection, and then a Move Action target for the query. The "Transmission" Rule is more complicated. Note for example that the "Infectious" Union Action is the target of both the "Asymptomatic Infectious" and  "Symptomatic Infectious" Query Actions. The "Vulnerable Neighbor" action has the label <nowiki>"Vulnerable Neighbor [Potential Exposure] <- [Potential Exposure]"</nowiki> indicating that the "Potential Exposure" action serves as its selection as well as its source.
+
+======Initial Order======
+
+A new action's initial target will be the action that you clicked on when creating it. For an action that should always act within a given root action (i.e. Rule, Schedule, etc..), add it to the root action. A root action can have more than one target.
+
+======Changing Sources and Targets (Reordering)======
+
+An action's target can be changed by dragging it over the new target action. Note that this is a different behavior from that of standard entity movement. You cannot make an action a target of an action that is itself a source of the modified action! (See the concepts section for why.) Using the default tree editor you cannot change an action's targets directly; instead select the action's target and move that. 
+
+======Adding Sources and Targets======
+
+As discussed earlier, actions often have multiple sources and targets. To make an action the target of an additional action, click on target action, hold down the control key, and drag the action to its new destination. See the tutorial for a complete example.
+
+======Removing Sources and Targets======
+
+You cannot remove single sources from targets directly using the tree editor. Instead, first drag the agent to a source nodes that will be part of its changed set of sources. That will remove all existing actions sources but for the one you have just dragged it to. Then add back any of the other source and target nodes you wish to retain.
+
+======Removing Actions======
+
+You can remove actions in the same way as with strucutral model components. Note that just as when you delete an agent, all of that agent's attributes, actions and styles are also deleted form the model, when you delete an Action, any of its targets will also be removed, unless there is some other source action path that connects it to the root action. And of course, any targets of such targets will be affected in the same way and so on. If you remove a node from igh in the action tree a lot of nodes could disappear at once! If you have actions that you want to retain as part of the flow, you should first make them targets of a new action before deleting their parent action.
+
+======Copying Actions======
+
+Copying actions works just as with other entities, and copies will become targets of their option-drag destination. 
+
+======Query and Evaluation Inputs======
+
+The number of inputs is determined by the selected functions. (In rare cases where a function can take an arbitrary number of arguments you may need to create additional values or delete existing ones.) In the following example, we're picking the Symptom Infectious status for a query that will affect the potentially exposed agents. Note that is instead you wanted to compare another kind of value -- for example an Integer value -- you would need to change the first input listed before changing the second input so that you will be able to get the appropriate options for the second.
+ 
+[[Image:images/tools/ActionsExample.png]]
+
+
+======Input Literals======
+
+To create an input value, right click on the input and select '''Create Member > Literal'''. Then specify the actual value in the Value property in the '''Properties View'''.

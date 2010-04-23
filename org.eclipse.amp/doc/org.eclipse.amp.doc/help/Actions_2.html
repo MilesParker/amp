@@ -63,7 +63,7 @@
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsBlocks.png"></div>
+<img src="images/actions/ActionsBlocks.png"></div>
 <p> 
 					
 </p>
@@ -79,6 +79,9 @@
 </div>
 <p>First, let's look at how actions define the basic path that agents take during a model run. As with any programming language, the path we take through the program specification is what determines our state when we get there. In a pure object oriented program, the path just defines the control flow -- what we are doing. The actual state of our model is defined within the object itself. If we call a method B from another method A, we'll be relying on method A to set the values that we need into the object state itself. In a purely functional program the path defines how we are going to deal with whatever has been explicitly passed in to a function that has been called, that is the function parameters. In fact, most languages such as Java combine aspects of both approaches.</p>
 <p>In Actions, the path itself implicitly carries all of the context of prior execution with it. This means that we don't have to worry about storing context in the object -- as we would in an object-oriented language -- or passing the correct values from one method call to the next as we would in a functional language. Instead, Actions can use the implicit context of the path of flow to determine what the current state of execution is.</p>
+<p>An important aspect of the Actions design is that loop structures are not allowed -- that is, flows are acyclic. An action can never have an ancestor target (that is targets, targets of targets, etc..) that has as one of its ancestors that same action. As you'll see, actions don't typically 
+						<span class="italic">need</span> loop structures. By far the most common use of loops in conventional programming langauges is to loop through collections of objects. As selections (see below) refer to the entire collection of agents, any actions on a selection apply to all members of that collection. Recursive structures are needed for some particular usages and will be supported in future releases, but not through an explicit looping construct.
+					</p>
 <p>Again, behaviors in Actions are always defined by a set of 
 						<span class="italic">selections</span> and 
 						<span class="italic">queries</span>. In the following diagram, we can see the pattern.
@@ -87,7 +90,7 @@
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsSequence.png"></div>
+<img src="images/actions/ActionsSequence.png"></div>
 <p>
 					
 </p>
@@ -96,7 +99,7 @@
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsSimpleSequence.png"></div>
+<img src="images/actions/ActionsSimpleSequence.png"></div>
 <p>
 					
 </p>
@@ -105,7 +108,7 @@
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsSimpleSequence2.png"></div>
+<img src="images/actions/ActionsSimpleSequence2.png"></div>
 <p>
 					
 </p>
@@ -114,7 +117,7 @@
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsFlowSimple.png"></div>
+<img src="images/actions/ActionsFlowSimple.png"></div>
 <p>
 					
 </p>
@@ -123,7 +126,7 @@
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsFlowUnion.png"></div>
+<img src="images/actions/ActionsFlowUnion.png"></div>
 <p>
 					
 </p>
@@ -165,7 +168,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsSelBoundarySimple.png"></div>
+<img src="images/actions/ActionsSelBoundarySimple.png"></div>
 <p>
 					
 </p>
@@ -174,7 +177,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsSelBoundary2Parts.png"></div>
+<img src="images/actions/ActionsSelBoundary2Parts.png"></div>
 <p> 
 					
 </p>
@@ -194,7 +197,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsSelBoundary11A.png"></div>
+<img src="images/actions/ActionsSelBoundary11A.png"></div>
 <p>
 					
 </p>
@@ -206,7 +209,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsSelBoundaryComplex.png"></div>
+<img src="images/actions/ActionsSelBoundaryComplex.png"></div>
 <p>
 					
 </p>
@@ -228,7 +231,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsWeavingSetAnother.png"></div>
+<img src="images/actions/ActionsWeavingSetAnother.png"></div>
 <p>
 					
 </p>
@@ -237,7 +240,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsWeavingEvaluate.png"></div>
+<img src="images/actions/ActionsWeavingEvaluate.png"></div>
 <p>
 					
 </p>
@@ -246,7 +249,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsWeaving1A.png"></div>
+<img src="images/actions/ActionsWeaving1A.png"></div>
 <p>
 					
 </p>
@@ -255,19 +258,19 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </p>
 <div class="mediaobject">
-<img src="images/ActionsWeaving2.png"></div>
+<img src="images/actions/ActionsWeaving2.png"></div>
 <p>
 					
 </p>
 <p>Before going into further details we need to introduce one more important concept. As we'll see in the detailed explanation of each Action below, Transformation Actions such as Move or Connect take multiple selections. The first selection defines the set of agents that will be performing the action. In the case of a Move agent, this refers to the mover. The second selection, which for Move we call "destination", refers to the selection that will be receiving the action. In the case of movement this is the agent or location that the Rule agent will be moving to. If we follow the flows through, we can note two important outcomes of our model design -- a Rule agent might move twice if it meets the criteria for both the blue path and the red path and that it might move to a different location each time.</p>
 </div>
 </div>
-<div class="section" title="Details">
+<div class="section" title="Concepts">
 <div class="titlepage">
 <div>
 <div>
 <h3 class="title">
-<a name="Details_3"></a>Details</h3>
+<a name="Concepts_2"></a>Concepts</h3>
 </div>
 </div>
 </div>
@@ -277,7 +280,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 					
 </p>
 <div class="mediaobject">
-<img src="images/ActionsBlocks.png"></div>
+<img src="images/actions/ActionsBlocks.png"></div>
 <p> 
 				
 </p>
@@ -357,6 +360,17 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 </div>
 </div>
 <p>A Query represents a concrete criteria for our search. The name is a bit confusing because of potential for confusion with a generic query. Queries -- along with their cousin Evaluators -- define a function that is evaluated and that can take Agent attributes and the results of other Actions as input. Queries are combined with each other and with the logic actions to determine the results of a selection for their direct target actions. </p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_2"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>As with all other actions, evaluations specify a selection, and just as with the other actions, this determines the set of agents that the evaluation occurs for, but the input selections determine what agent is used for the calculation itself.</p>
+</div>
 <div class="section" title="Function">
 <div class="titlepage">
 <div>
@@ -366,7 +380,18 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 </div>
 </div>
 </div>
-<p>A query function is evaluated to determine the results of a particular selection. Functions can represent very simple search criteria such as "My Age == Your Age", but they can also represent complex and inter-related concepts such as spatial relationships. See the functions section for more information on specific functions.</p>
+<p>A query function is evaluated to determine the results of a particular selection. Functions can represent very simple search criteria such as "My Age == Your Age", but they can also represent complex and inter-related concepts such as spatial relationships. They must return logical values. See the functions section for more information on specific functions.</p>
+</div>
+<div class="section" title="Inputs">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Inputs"></a>Inputs</h6>
+</div>
+</div>
+</div>
+<p>The set of values that will be used to determine the result, in the order specified by the function prototype. Inputs can specify any source evaluation and any agent state or agent parent context state. They can also be literal values -- see the section on literals below. The selection determines which agent's will be used to determine the value, and different inputs can specify different selections.</p>
 </div>
 </div>
 <div class="section" title="Logic">
@@ -535,357 +560,6 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 </div>
 </div>
 </div>
-<div class="section" title="Commands">
-<div class="titlepage">
-<div>
-<div>
-<h4 class="title">
-<a name="Commands"></a>Commands</h4>
-</div>
-</div>
-</div>
-<div class="section" title="Evaluate">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Evaluate"></a>Evaluate</h5>
-</div>
-</div>
-</div>
-<p>Evaluate Actions define some calculation on a function based on the model state and a set of input(s). The inputs that an Evaluate Action can take is determined by its functions and can be either agent attributes, prior evaluations or literals. The result is then determined based on those inputs. In some cases Evaluate functions can be used to determine some action indirectly, such as with a graphics fill, but they can never be used to directly change model state.</p>
-<div class="section" title="Selection">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Selection_2"></a>Selection</h6>
-</div>
-</div>
-</div>
-<p>As with all other actions, evaluations specify a selection, and just as with the other actions, this determines the set of agents that the evaluation occurs for, but the input selections determine what agent is used for the calculation itself.</p>
-</div>
-<div class="section" title="Function">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Function_2"></a>Function</h6>
-</div>
-</div>
-</div>
-<p>A with queries, a function is evaluated against its input set. Functions can represent simple operators as well as complex functions. See the functions section for more information on specific functions.</p>
-</div>
-<div class="section" title="Inputs">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Inputs"></a>Inputs</h6>
-</div>
-</div>
-</div>
-<p>The set of values that will be used to determine the result, in the order of the function prototype. Inputs can specify any source evaluation and any agent state or agent parent context state. The selection determines which agent's will be used to determine the value, and different inputs can specify different selections.</p>
-</div>
-</div>
-<div class="section" title="Set">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Set"></a>Set</h5>
-</div>
-</div>
-</div>
-<p>The Set Action assigns some value to another value.</p>
-<div class="section" title="Selection">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Selection_3"></a>Selection</h6>
-</div>
-</div>
-</div>
-<p>Here the selection refers to the agent that we want to change. This does not have to be the immediatily preceeding selection but can be any accessible selection.</p>
-</div>
-<div class="section" title="Attribute">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Attribute_2"></a>Attribute</h6>
-</div>
-</div>
-</div>
-<p>The attribute to modify. It must be a member of this action's agent or of that agent's parent context.</p>
-</div>
-<div class="section" title="Parameter">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Parameter"></a>Parameter</h6>
-</div>
-</div>
-</div>
-<p>The value to assign to the attribute. Here, we can use either another agent attribute, or the results of a source evaluation. </p>
-</div>
-</div>
-<div class="section" title="Move">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Move"></a>Move</h5>
-</div>
-</div>
-</div>
-<p>The Move Action causes an agent to change its location in some space or network. The agent will leave whatever location it was in before within the selection space, and move to its new destination.</p>
-<div class="section" title="Selection">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Selection_4"></a>Selection</h6>
-</div>
-</div>
-</div>
-<p>As in any other action, the selection determines what agent is affected -- in this case the agent that is being moved.</p>
-</div>
-<div class="section" title="=Destination">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name=".3DDestination"></a>=Destination</h6>
-</div>
-</div>
-</div>
-<p>Specifies the target agent or location for the movement.</p>
-</div>
-</div>
-<div class="section" title="Leave">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Leave"></a>Leave</h5>
-</div>
-</div>
-</div>
-<p>Causes the agent to leave a particular space.</p>
-<div class="section" title="Selection">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Selection_5"></a>Selection</h6>
-</div>
-</div>
-</div>
-<p>The selection determines what agent will be leaving and what space the agent will be leaving. If the agent doesn't exist in that space nothing will happen.</p>
-</div>
-<div class="section" title="=Destination">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name=".3DDestination_2"></a>=Destination</h6>
-</div>
-</div>
-</div>
-<p>The destination is irrelevant for a leave action and should not be specified.</p>
-</div>
-</div>
-<div class="section" title="Die">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Die"></a>Die</h5>
-</div>
-</div>
-</div>
-<p>Causes the agent to cease to exist within the model as a whole.</p>
-<div class="section" title="Selection">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Selection_6"></a>Selection</h6>
-</div>
-</div>
-</div>
-<p>The selection determines what space the agent to remove.</p>
-</div>
-<div class="section" title="=Destination">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name=".3DDestination_3"></a>=Destination</h6>
-</div>
-</div>
-</div>
-<p>The destination is irrelevant in this case and will probably be removed.</p>
-</div>
-</div>
-<div class="section" title="Connect">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Connect"></a>Connect</h5>
-</div>
-</div>
-</div>
-<p>Connects two agents within a network space. This Action is not applicable for any other kinds of spaces. Note that unlike with other transformational commands, we do not use the destination space to determine the space that will be impacted by the Action. This provides a more efficient representation without any loss in generality, because it allows us to search for a source and target agent within other spaces and then create a connection without creating a separate selection. As the important structural feature of networks are the relationships themselves, not the nodes this provides a more direct way to specify these relationships.</p>
-<div class="section" title="Selection">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Selection_7"></a>Selection</h6>
-</div>
-</div>
-</div>
-<p>The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.</p>
-</div>
-<div class="section" title="=Destination">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name=".3DDestination_4"></a>=Destination</h6>
-</div>
-</div>
-</div>
-<p>The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.</p>
-</div>
-<div class="section" title="Within">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Within"></a>Within</h6>
-</div>
-</div>
-</div>
-<p>Specifies the network that the connection will be created within.</p>
-</div>
-</div>
-<div class="section" title="Directed">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Directed_2"></a>Directed</h5>
-</div>
-</div>
-</div>
-<p>Determines whether the connection made is directed or not. If true, selections from source agents will include the target, but target agent selections will not include the source agents (unless they are connected through some other path).</p>
-</div>
-<div class="section" title="Disconnect">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Disconnect"></a>Disconnect</h5>
-</div>
-</div>
-</div>
-<p>Removes the connection between agents within a network space. See the description of the Connect Action for important details.</p>
-<div class="section" title="Selection">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Selection_8"></a>Selection</h6>
-</div>
-</div>
-</div>
-<p>The selection determines one side of the agent relationship that will be disconnected.</p>
-</div>
-<div class="section" title="=Destination">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name=".3DDestination_5"></a>=Destination</h6>
-</div>
-</div>
-</div>
-<p>The selection determines one other side of the agent relationship that will be disconnected.</p>
-</div>
-<div class="section" title="Within">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Within_2"></a>Within</h6>
-</div>
-</div>
-</div>
-<p>Specifies the network that the connection will be created within.</p>
-</div>
-</div>
-<div class="section" title="Replace">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Replace"></a>Replace</h5>
-</div>
-</div>
-</div>
-<p>Functions in the same way as a Connect Action excepth that all other connections to other agents will first be removed.</p>
-<div class="section" title="Selection">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Selection_9"></a>Selection</h6>
-</div>
-</div>
-</div>
-<p>The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.</p>
-</div>
-<div class="section" title="=Destination">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name=".3DDestination_6"></a>=Destination</h6>
-</div>
-</div>
-</div>
-<p>The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.</p>
-</div>
-<div class="section" title="Within">
-<div class="titlepage">
-<div>
-<div>
-<h6 class="title">
-<a name="Within_3"></a>Within</h6>
-</div>
-</div>
-</div>
-<p>Specifies the network that the connection will be created within.</p>
-</div>
-</div>
-<div class="section" title="Directed">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Directed_3"></a>Directed</h5>
-</div>
-</div>
-</div>
-<p>Determines whether the connection made is directed or not. See the Connect description for more details.</p>
-</div>
-</div>
 <div class="section" title="Builders">
 <div class="titlepage">
 <div>
@@ -924,7 +598,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 <div>
 <div>
 <h6 class="title">
-<a name="Selection_10"></a>Selection</h6>
+<a name="Selection_3"></a>Selection</h6>
 </div>
 </div>
 </div>
@@ -941,12 +615,12 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 </div>
 <p>Not generally relevant for agent actions, as agents are not placed into a space unless explicitly moved to that space. Potential associations between agents and spaces are defined by the space building actions.</p>
 </div>
-<div class="section" title="=Agent Count">
+<div class="section" title="Agent Count">
 <div class="titlepage">
 <div>
 <div>
 <h6 class="title">
-<a name=".3DAgent_Count"></a>=Agent Count</h6>
+<a name="Agent_Count"></a>Agent Count</h6>
 </div>
 </div>
 </div>
@@ -1089,7 +763,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 <div>
 <div>
 <h6 class="title">
-<a name="Selection_11"></a>Selection</h6>
+<a name="Selection_4"></a>Selection</h6>
 </div>
 </div>
 </div>
@@ -1144,7 +818,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 <div>
 <div>
 <h6 class="title">
-<a name="Selection_12"></a>Selection</h6>
+<a name="Selection_5"></a>Selection</h6>
 </div>
 </div>
 </div>
@@ -1196,6 +870,459 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 <p>Constructs a geographical space. All details of this space are specfied by the implementation, i.e. a specific geographical imported space. Generally these would be defined by a Create Agents action; that is a set of imported agents representing US states would also represent the overall space of interest.</p>
 </div>
 </div>
+<div class="section" title="Commands">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Commands"></a>Commands</h4>
+</div>
+</div>
+</div>
+<div class="section" title="Evaluate">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Evaluate"></a>Evaluate</h5>
+</div>
+</div>
+</div>
+<p>Evaluate Actions define some calculation on a function based on the model state and a set of input(s). The inputs that an Evaluate Action can take is determined by its functions and can be either agent attributes, prior evaluations or literals. The result is then determined based on those inputs. In some cases Evaluate functions can be used to determine some action indirectly, such as with a graphics fill, but they can never be used to directly change model state.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_6"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>As with all other actions, evaluations specify a selection, and just as with the other actions, this determines the set of agents that the evaluation occurs for, but the input selections determine what agent is used for the calculation itself.</p>
+</div>
+<div class="section" title="Function">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Function_2"></a>Function</h6>
+</div>
+</div>
+</div>
+<p>A with queries, a function is evaluated against its input set. Functions can represent simple operators as well as complex functions. See the functions section for more information on specific functions.</p>
+</div>
+<div class="section" title="Inputs">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Inputs_2"></a>Inputs</h6>
+</div>
+</div>
+</div>
+<p>The set of values that will be used to determine the result, in the order of the function prototype. Inputs can specify any source evaluation and any agent state or agent parent context state. They can also be literal values -- see the discussion in the Tools section. The selection determines which agent's will be used to determine the value, and different inputs can specify different selections.</p>
+</div>
+</div>
+<div class="section" title="Set">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Set"></a>Set</h5>
+</div>
+</div>
+</div>
+<p>The Set Action assigns some value to another value.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_7"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>Here the selection refers to the agent that we want to change. This does not have to be the immediatily preceeding selection but can be any accessible selection.</p>
+</div>
+<div class="section" title="Attribute">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Attribute_2"></a>Attribute</h6>
+</div>
+</div>
+</div>
+<p>The attribute to modify. It must be a member of this action's agent or of that agent's parent context.</p>
+</div>
+<div class="section" title="Parameter">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Parameter"></a>Parameter</h6>
+</div>
+</div>
+</div>
+<p>The value to assign to the attribute. Here, we can use either another agent attribute, or the results of a source evaluation. </p>
+</div>
+</div>
+<div class="section" title="Move">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Move"></a>Move</h5>
+</div>
+</div>
+</div>
+<p>The Move Action causes an agent to change its location in some space or network. The agent will leave whatever location it was in before within the selection space, and move to its new destination.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_8"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>As in any other action, the selection determines what agent is affected -- in this case the agent that is being moved.</p>
+</div>
+<div class="section" title="Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Destination"></a>Destination</h6>
+</div>
+</div>
+</div>
+<p>Specifies the target agent or location for the movement.</p>
+</div>
+</div>
+<div class="section" title="Leave">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Leave"></a>Leave</h5>
+</div>
+</div>
+</div>
+<p>Causes the agent to leave a particular space.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_9"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines what agent will be leaving and what space the agent will be leaving. If the agent doesn't exist in that space nothing will happen.</p>
+</div>
+<div class="section" title="Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Destination_2"></a>Destination</h6>
+</div>
+</div>
+</div>
+<p>The destination is irrelevant for a leave action and should not be specified.</p>
+</div>
+</div>
+<div class="section" title="Die">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Die"></a>Die</h5>
+</div>
+</div>
+</div>
+<p>Causes the agent to cease to exist within the model as a whole.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_10"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines what space the agent to remove.</p>
+</div>
+<div class="section" title="=Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name=".3DDestination"></a>=Destination</h6>
+</div>
+</div>
+</div>
+<p>The destination is irrelevant in this case and will probably be removed.</p>
+</div>
+</div>
+<div class="section" title="Connect">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Connect"></a>Connect</h5>
+</div>
+</div>
+</div>
+<p>Connects two agents within a network space. This Action is not applicable for any other kinds of spaces. Note that unlike with other transformational commands, we do not use the destination space to determine the space that will be impacted by the Action. This provides a more efficient representation without any loss in generality, because it allows us to search for a source and target agent within other spaces and then create a connection without creating a separate selection. As the important structural feature of networks are the relationships themselves, not the nodes this provides a more direct way to specify these relationships.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_11"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.</p>
+</div>
+<div class="section" title="=Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name=".3DDestination_2"></a>=Destination</h6>
+</div>
+</div>
+</div>
+<p>The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.</p>
+</div>
+<div class="section" title="Within">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Within"></a>Within</h6>
+</div>
+</div>
+</div>
+<p>Specifies the network that the connection will be created within.</p>
+</div>
+</div>
+<div class="section" title="Directed">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Directed_2"></a>Directed</h5>
+</div>
+</div>
+</div>
+<p>Determines whether the connection made is directed or not. If true, selections from source agents will include the target, but target agent selections will not include the source agents (unless they are connected through some other path).</p>
+</div>
+<div class="section" title="Disconnect">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Disconnect"></a>Disconnect</h5>
+</div>
+</div>
+</div>
+<p>Removes the connection between agents within a network space. See the description of the Connect Action for important details.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_12"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines one side of the agent relationship that will be disconnected.</p>
+</div>
+<div class="section" title="Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Destination_3"></a>Destination</h6>
+</div>
+</div>
+</div>
+<p>The selection determines one other side of the agent relationship that will be disconnected.</p>
+</div>
+<div class="section" title="Within">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Within_2"></a>Within</h6>
+</div>
+</div>
+</div>
+<p>Specifies the network that the connection will be created within.</p>
+</div>
+</div>
+<div class="section" title="Replace">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Replace"></a>Replace</h5>
+</div>
+</div>
+</div>
+<p>Functions in the same way as a Connect Action excepth that all other connections to other agents will first be removed.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_13"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.</p>
+</div>
+<div class="section" title="Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Destination_4"></a>Destination</h6>
+</div>
+</div>
+</div>
+<p>The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.</p>
+</div>
+<div class="section" title="Within">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Within_3"></a>Within</h6>
+</div>
+</div>
+</div>
+<p>Specifies the network that the connection will be created within.</p>
+</div>
+</div>
+<div class="section" title="Directed">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Directed_3"></a>Directed</h5>
+</div>
+</div>
+</div>
+<p>Determines whether the connection made is directed or not. See the Connect description for more details.</p>
+</div>
+</div>
+<div class="section" title="Other">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Other"></a>Other</h4>
+</div>
+</div>
+</div>
+<div class="section" title="Method">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Method"></a>Method</h5>
+</div>
+</div>
+</div>
+<p>The Method action supports inclusion of arbitrary code within a generated method. Generally, this will be Java code as all of the current target platforms are Java-based but there is no technical requirement that it must be. For example, if a target has been developed to produce code for Swarm running on an iPad (and no, there are no current plans to support such a thing, though it would certainly be cool!) then the modeler could define Objective C code for the method.</p>
+<p>Please note that the Method Action should be avoided whenever possible. You should consider using it only in the case where there doesn't appear to be a way to construct equivalent functionality using the native Actions framework, such as when interfacing with third party APIs.  The aim of Actions is to provide the most general support for Agent Modeling possible without compromising the core design. Any use of native Java code strongly limits the set of platforms that your model will be able to generate code for and prevents you from using the AMF edit tools to explore the model behavior. In the case where you wish to construct a model feature and believe that it isn't possible or practical to do it with Actions, please contact us (see support section) so that we can suggest how you can accomplish what you want within Actions. If that is not possible, we'll consider developing new features that will support what you want to do.</p>
+<p>On the other hand, you may simply wish to use the Agent Modeling Framework to build a scaffolding for your model -- perhaps using your own custom Java framework for example -- and Method would be a good way to accomplish that. Also, note there are a number of other approaches to mixing hand-crafted Java together with AMF generated code. Please see the Programmer's Guide section "Integrating Java and AMF Models" for more on that.</p>
+<p>If you do decide to use the Method Action, keep in mind the following design practice recommendations:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>Keep your usage of external API references to a minimum. If you can use only code provied by the core Java classes as well as the Apache Collections library, your code should work on every current Java target. On the other hand, if you make use of a specific ABM platform APIs your code will obviously only compile and run against that target.</p>
+</li>
+<li class="listitem">
+<p>Code should be in the form of a method body, excluding the signature. A single Java method is created using this code body. There is no support for input parameters -- if you need access to evaluated values from source actions, create agent attributes for them, set their values for the selected agents, and use them as sources for your Method Action.</p>
+</li>
+<li class="listitem">
+<p>All Java class references should be fully qualified. For example, if you wish to use the eclipse Draw2D Graphics class, you should refer to "org.eclipse.draw2d.Graphics", not simply "Graphics". If classes are not fully qualified, you will recieve compile errors. You can usually easily fix these by selecting your source code directory and choosing 
+									<span class="bold"><strong>Source &gt; Organize Imports..</strong></span> but it prevents automatic code generation.
+								</p>
+</li>
+<li class="listitem">
+<p>The method interface has no support for code completion, syntax checking or other common Java development environment features. You can avoid code maintenance and even support targetting multiple APIs by using the following technique. From your method body, call a helper method in a seperate class. The referred class could use a static method call, or you could instantiate the class and call a method against it, passing in the agent class so that the helper class can reference the agent's state. For example, if you wanted to use some custom java code to import agents from a specialized input file, you could put the following code in the Method Action body for the root Context: <span style="color: red">&lt;pre&gt;(new org.me.SpecialFileLoader()).load(this);&lt;/pre&gt;</span>Then create a new source directory in your project called "src" (
+									<span class="bold"><strong>New &gt; Source Folder...</strong></span>) and create the class for the specialized file loader including the following method: <span style="color: red">&lt;pre&gt;public void load(MyRootModel model) {...}&lt;/pre&gt;</span> This approach allows you to a) maintain the working code using the Java Development Environment, b) avoid changes to the Method Action within the model, and most importantly, c) allow other implementations of the code using multiple APIs. For example, if you need to create a specialized graphics routine, you could create seperate implementations for your Escape (Eclipse Draw 2D), Ascape (Java Swing), and Repast (Simphony API) and place them in the appropriate projects. As long as the different Java source files have the same names and signatures, they will all compile correctly and execute the appropriate behavior.
+								</p>
+</li>
+</ol>
+</div>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_14"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines what Agent class the code will be created within and the set of agents the method will be called upon.</p>
+</div>
+<div class="section" title="Body">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Body"></a>Body</h6>
+</div>
+</div>
+</div>
+<p>The actual code to insert in the method body. See the detailed recommendations for code use above.</p>
+</div>
+<div class="section" title="Generate">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Generate"></a>Generate</h6>
+</div>
+</div>
+</div>
+<p>Determines wether the code is actually inserted. If this is false, a bare method body will be constructed instead. This can be useful if you wish to turn off method generation in certain model implementaitons without removing the actual code.</p>
+</div>
+</div>
+</div>
+<div class="section" title="Query and Evaluation Inputs">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Query_and_Evaluation_Inputs"></a>Query and Evaluation Inputs</h4>
+</div>
+</div>
+</div>
+<p>Query and Evaluation Actions are both "Sinks" which means that they are capable of containing inputs. When you select a function, the appropriate number of inputs will be created. After selecting a function, you can view and select the inputs. The choices for the inputs will be constrained by the type of the function and the other operands you've selected.</p>
+<div class="section">
+<div class="titlepage"></div>
+<div class="section" title="Input Literals">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="N105BB"></a>Input Literals</h6>
+</div>
+</div>
+</div>
+<p>Inputs can take literal values; that is values that you specify simply by entering them directly into the query. In general it is useful to think of literals as similar to local variables in a conventional programming language, whereas attributes are analogous to member variables. (And this is how they are represented in the generated Java code.) As with local variables in model code, literals are not recommended for any values that can change model behavior. The value cannot be easily accessed or changed by other model users. For greater transparency, you should instead create an Attribute with an appropriate default value, setting the "immutable" value to true. Still, literals can be useful for values that are special cases related to the evaluation or query, such as an input code, and for quickly prototyping functionality.</p>
+</div>
+</div>
+</div>
 </div>
 <div class="section" title="Example">
 <div class="titlepage">
@@ -1234,7 +1361,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 					
 </p>
 <div class="mediaobject">
-<img src="images/ActionsExample.png"></div>
+<img src="images/actions/ActionsExample.png"></div>
 <p>
 				
 </p>
@@ -1243,7 +1370,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 					
 </p>
 <div class="mediaobject">
-<img src="images/ActionsExampleNew.png"></div>
+<img src="images/actions/ActionsExampleNew.png"></div>
 <p>
 				
 </p>
@@ -1349,7 +1476,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 							
 </p>
 <div class="mediaobject">
-<img src="images/ActionsDiagram.png"></div>
+<img src="images/actions/ActionsDiagram.png"></div>
 <p>
 						
 </p>
@@ -1359,7 +1486,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 <div>
 <div>
 <h5 class="title">
-<a name="Details_4"></a>Details</h5>
+<a name="Details_2"></a>Details</h5>
 </div>
 </div>
 </div>

@@ -236,7 +236,11 @@
 			<param name="admon.graphics.extension" expression=".gif"/>
 			<param name="admon.textlabel" expression="0"/>
 			<param name="admon.graphics" expression="1"/>
-			<param name="default.image.width" expression="400px"/>
+			<param name="scale" expression="30"/>
+			<param name="width" expression="50%"/>
+			<param name="contentdepth" expression="50%"/>
+		    <param name="default.image.width" expression="400"/>
+				
 		</xslt>
 
 		<docbook2pdf 

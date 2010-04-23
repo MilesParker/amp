@@ -1,0 +1,59 @@
+====Building Models====
+
+If you've used other development environments, you're probably used to a separate build step. For example, if you edit a set of Java files, you might invoke a compile command. Eclipse and the Agent Modeling Platform support automatic building. This means that in order to build your code, you simply save the model and the environment takes care of the rest. What gets built is defined by the project. For example, if you save a model that is contained within an Agent Modeling Escape Project, the following steps occur automatically:
+
+#The Escape builder generates Java code for the Escape API, including support for specialized graphics and (if enabled) 3D visualization.
+#The Documentation builder generates custom html documentation for the model.
+#The Java builder takes the Java code generated above and compiles it.
+#The Manifest and Schema builders package the project for use as part of the Eclipse plugin environment.
+
+So what do you do if you want to generate code for a different target, such as Repast? Here, you simply create another project and drag the model into it. You can also edit the builders for a given project (see the Workbench Documentation) but you'll only want to do that if you're making permanent changes to the project itself.
+
+====Generating Specialized Model Artifacts====
+
+You can also manually generate code for models. This is useful if you want to create code for a model in a non target project and don't want the automatic build capabilities. There are also specialized targets that can be generated manually that are bundled with the tools -- AMP plugin developers can easily add custom generation targets for this menu. To generate custom artifacts, right-click on a model and select '''Generate'''.
+
+[[Image:images/tools/GenerateMenu.png]]
+
+Targets include:
+
+=====Platform Targets=====
+
+Creates code for one of the installed targets, such as Ascape, Escape, and Simphony. (Again, these generators are unnecessary for projects that already have target specific builders configured.)
+
+=====Interfaces=====
+
+Creates a complete set of interfaces for the model classes. These can be very useful for development and integration in enterprise environments. Generated classes are placed in the src directory with "I" added to the name. For example, if you generate interfaces for a model with an "Individual" agent, this target will create an "IIndividual" interface that includes getters, setters and methods for all of the agent's attributes and actions.
+
+=====Skeleton===== 
+
+Creates a base class for the model. This is essentially a complete implementation, but without the action implementations. Again, these classes can be useful when generating code for use in enterprise and other specialized environments.
+
+=====Test Cases===== 
+
+Generates base support (needing customization) test cases for use in JUnit tests.
+
+=====Text Documents=====
+
+Creates simple text documentation for use in other documents.
+
+=====Generate Key Graphics===== 
+
+This specialized target supports the creation of graphic keys for the model. To use this target:
+
+#Generate the code.
+#Add a dependency to the Manifest for "org.eclipse.amp.amf.gen.extras".
+#In the srcutil directory find the Java source code for the calss {RootContext}GraphicsWriter. For example, for the Epidemic model, this would be srcutil/name.milesparker.epi/EpidemicGraphicsWriter.java.
+#Right-click, and select '''Run As > Java Application'''.
+#Refresh the project by right-clicking on it and selecting '''Refresh'''.
+#The Doc directory will now contain a number of new files, including
+##{RootContext}Key.png
+##{RootContext}GraphicsKey.html
+
+Both files contain graphic representations of the model using the definitions defined by the model styles, very useful artifacts for inclusion in papers and web pages describing your model. For example, here is the EpidemicKey.png:
+
+[[Image:images/tools/EpidemicKey.png]]
+
+=====Function Docs=====
+
+Generates WikiText documentation for function libraries. We use it to create the function documentation in this guide!

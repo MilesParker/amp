@@ -27,7 +27,7 @@ Before getting into the details of how each Actions work together, or the variou
 
 These are all summarized in the diagram below:
 
-[[Image:images/ActionsBlocks.png]] 
+[[Image:images/actions/ActionsBlocks.png]] 
 
 ====Flow====
 
@@ -35,25 +35,27 @@ First, let's look at how actions define the basic path that agents take during a
 
 In Actions, the path itself implicitly carries all of the context of prior execution with it. This means that we don't have to worry about storing context in the object -- as we would in an object-oriented language -- or passing the correct values from one method call to the next as we would in a functional language. Instead, Actions can use the implicit context of the path of flow to determine what the current state of execution is.
 
+An important aspect of the Actions design is that loop structures are not allowed -- that is, flows are acyclic. An action can never have an ancestor target (that is targets, targets of targets, etc..) that has as one of its ancestors that same action. As you'll see, actions don't typically ''need'' loop structures. By far the most common use of loops in conventional programming langauges is to loop through collections of objects. As selections (see below) refer to the entire collection of agents, any actions on a selection apply to all members of that collection. Recursive structures are needed for some particular usages and will be supported in future releases, but not through an explicit looping construct.
+
 Again, behaviors in Actions are always defined by a set of ''selections'' and ''queries''. In the following diagram, we can see the pattern.
 
-[[Image:images/ActionsSequence.png]]
+[[Image:images/actions/ActionsSequence.png]]
 
 First, we define a Root Selection for a Rule, Schedule or other triggering event. Then, we might add a series of Query and Logic Actions to define the specific agents that we are interested in. These are all part of the Selection. Next, we might define a series of Commands to determine what to do with those agents. Or, we could use the result of that selection to immediately define another selection, for example if we are searching for an agent that is near another agent. The next diagram depicts a simple example.
 
-[[Image:images/ActionsSimpleSequence.png]]
+[[Image:images/actions/ActionsSimpleSequence.png]]
 
 Here, we create a rule, and then check the results of two queries. For any agents that meet those criteria, we'll evaluate some function based on their state, and then set some value on them. In the next example, we'll first create the rule, and then create a new selection with a set of criteria. Finally, we'll do a move based on those queries.
 
-[[Image:images/ActionsSimpleSequence2.png]]
+[[Image:images/actions/ActionsSimpleSequence2.png]]
 
 In the following example, we've defined a set of actions and their relationships. We have a selection, a few queries and a couple of logic operators leading to a Set Action. We'll describe in detail below how Logic Actions are used in conjunction with other actions to assemble any kind of query structure needed. But for now, we'll focus on the control flow itself.
 
-[[Image:images/ActionsFlowSimple.png]]
+[[Image:images/actions/ActionsFlowSimple.png]]
 
 As you have probably already guessed, the agents that have the Set Action applied to them could take one of two paths through the Action flow. Readers with experience with programming or formal logic will note that this looks just like a parse tree, and while that's basically what it is, there are important differences. For example, if we looked at the following structure as a definition of control flow for a single agent we'd take them to be equivalent. Both would evaluate the statement (Query 1 AND Query 2) OR Query 3 for each agent.
 
-[[Image:images/ActionsFlowUnion.png]]
+[[Image:images/actions/ActionsFlowUnion.png]]
 
 Within Actions in many cases these two approaches will also act equivalently. If we are simply setting a value, it doesn't matter how an agent gets to that Set Action, as long as it gets there. All sources that flow into a given target Action act like a logical union since any of the paths might reach that target. But note that we have two flows moving in parallel in the flow on the right. What happens when the conditions for ''both'' branches are true? As the set of agents flow through each branch the Set Action on the left will be evaluated once, while the one on the right will be evaluated twice. Again, this often ends up with the same behavior, but not always. If for example, the evaluate Action uses the value of the attribute that we are setting as input, we can get different results. Of course, you can write code in any language that accomplishes the same thing, but the code will look quite different. For example, if we wrote the same basic logic in Java, in the first case we'd have something like:
 
@@ -78,11 +80,11 @@ Selections are a key concept in Actions. Put simply, selections define what we a
 
 A selection boundary determines the set of selection actions that are used to determine what agents to apply target actions to. For example, in the following diagram, we can see the extent of the boundary for a straightforward selection.
 
-[[Image:images/ActionsSelBoundarySimple.png]]
+[[Image:images/actions/ActionsSelBoundarySimple.png]]
 
 Each time we create a new selection, we define a new set of boundaries.
 
-[[Image:images/ActionsSelBoundary2Parts.png]] 
+[[Image:images/actions/ActionsSelBoundary2Parts.png]] 
 
 A very important aspect of boundaries is that they apply to a group of actions that begin with a Query Action, and not just such a group that begins with a Select Action. This is because Query Actions can be directly part of a selection definition, but they can also refine selections, as we'll see. So where does one selection boundary end and the next one begin? The simple rule is that the end of the boundary is defined for a given Action by the place where:
 
@@ -91,13 +93,13 @@ A very important aspect of boundaries is that they apply to a group of actions t
 
 In other words, as soon as a Logic Action occurs in a path leading to an Action, any following Query will define a new boundary, as we can see in the following example. 
 
-[[Image:images/ActionsSelBoundary11A.png]]
+[[Image:images/actions/ActionsSelBoundary11A.png]]
 
 Note that we refer to "Selection 1" and Selection 1A". This is because Selection 1A is a refinement of Selection 1 along its particular path of flow. When a query appears for the same selection but past a particular boundary, you can think of it as a sort of filter on the selection contents. We don't have a "Selection 2" here because any Actions that refer to "Selection 1" along the current path of flow will be acting on the selection defined by Selection 1 and Selection 1A.
 
 These rules allow actions to be defined in the simplest possible way, but it is important to understand their implication as they result in behavior that can be different from what someone used to and imperative programming environment such as Java might expect. In a simple case the distinction might not matter. For example, if we are using a Query 1 to test whether an agent's attribute a == x and attribute b == y, we would get the same outcome if we placed intersected the queries as if we simply put them in sequence. Internally we would actually be searching for agents with a == x, and ''then'' taking those agents and choosing those agents with b==y, but the outcome would be the same. But consider a more sophisticated case, where we are searching for neighboring available cells.
 
-[[Image:images/ActionsSelBoundaryComplex.png]]
+[[Image:images/actions/ActionsSelBoundaryComplex.png]]
 
 In the first case, we execute a search for all agents that meet the two criteria. This means that if there are ''any'' neighboring cells which are available, we're guaranteed to find one (random) cell. In the second case, we first search for all cells that are neighbors. This will match any agents that include both available and non available agents. Now, at this point since our search returns one agent (in the current AMF design -- richer behavior will be supported in the future) the randomly selected agent could be either available or not. So in the second case, we might end up with no cell to move to, and thus make no move at all. This then becomes an important aspect of model design. For example, if one were defining a model where neighbors played a game with each other, one might want to instruct agents to play the game only with neighbors that have a certain wealth threshold. In the real-world situation that we are modeling, we might simply search for neighbors who are over a given wealth threshold and then play the game with them. This would imply that information about other agent's wealth is open knowledge. Or, we might simply select a random neighbor, and ask that neighbor to play a game with us. Upon discovering that our neighbor does not meet our wealth criteria, we would then choose not to play with them. Here we are modeling a cost in time to obtain information about another agent's wealth, because we might miss an opportunity to play the game with another agent on that round.
 
@@ -105,28 +107,28 @@ In the first case, we execute a search for all agents that meet the two criteria
 
 Now, let's put the concepts of Actions sequences and boundaries together to see how we can easily define complex interactions between multiple selections. When we define a Select, the state of its selection flows through and with any subsequent selections. So for example, if we have a Root Action rule, and then do a selection based on it, we'll have access to the agent from the original context as well as all of the subsequent selections. We can refer to any previous selection for any subsequent action. For example, instead of setting the value for the rule agent, we might instead set a value for an agent we've found in a target selection.
 
-[[Image:images/ActionsWeavingSetAnother.png]]
+[[Image:images/actions/ActionsWeavingSetAnother.png]]
 
 Inputs to functions also use selections. (We'll discuss more details in the functions section.) In the following example, we're adding the wealth of the Selection 1 agent to the wealth of the Selection 2 agent and using that value to set some other value. (Here, perhaps we are modeling an agent in a winner takes all game, in which case we'd also add a Set Action on Selection 2 and set the second agent's wealth to 0.)
 
-[[Image:images/ActionsWeavingEvaluate.png]]
+[[Image:images/actions/ActionsWeavingEvaluate.png]]
 
 But we can also use selections in defining Query Actions themselves. So in the following example, we select a neighbor agent and then compare the age of our Rule agent with the age of the Selection 2 agent. If and only if those ages are the same will we execute the target Set Action. This example also demonstrates why we refer to the data flow as weaving. Query Actions can be used to refine selections at any point in the data flow. Selections and their uses are interwoven throughout an action sequence.
 
-[[Image:images/ActionsWeaving1A.png]]
+[[Image:images/actions/ActionsWeaving1A.png]]
 
 Finally, we can put all of these concepts together by weaving selections together with flows. As we discussed in the flow section, if we use multiple paths in the Query, the agents that flow through from any prior Query can follow multiple paths at once. And as we discussed in the selection section, the selection and its boundaries determine what agents we will be working with at any given evaluation point in the flow. Now, consider the following example:
 
-[[Image:images/ActionsWeaving2.png]]
+[[Image:images/actions/ActionsWeaving2.png]]
 
 Before going into further details we need to introduce one more important concept. As we'll see in the detailed explanation of each Action below, Transformation Actions such as Move or Connect take multiple selections. The first selection defines the set of agents that will be performing the action. In the case of a Move agent, this refers to the mover. The second selection, which for Move we call "destination", refers to the selection that will be receiving the action. In the case of movement this is the agent or location that the Rule agent will be moving to. If we follow the flows through, we can note two important outcomes of our model design -- a Rule agent might move twice if it meets the criteria for both the blue path and the red path and that it might move to a different location each time.
 
-===Details===
+===Concepts===
 
 In this section, we'll dig into the specific role of each of the Actions. From the design discussion we hopefully have some sense of how these all fit together in general.
 Let's look at the overall view again amd then dig into the details.
 
-[[Image:images/ActionsBlocks.png]] 
+[[Image:images/actions/ActionsBlocks.png]] 
 
 
 ====Selections====
@@ -159,9 +161,17 @@ This value is obsolete and will be replaced with a different mechanism in the ne
 
 A Query represents a concrete criteria for our search. The name is a bit confusing because of potential for confusion with a generic query. Queries -- along with their cousin Evaluators -- define a function that is evaluated and that can take Agent attributes and the results of other Actions as input. Queries are combined with each other and with the logic actions to determine the results of a selection for their direct target actions. 
 
+======Selection======
+
+As with all other actions, evaluations specify a selection, and just as with the other actions, this determines the set of agents that the evaluation occurs for, but the input selections determine what agent is used for the calculation itself.
+
 ======Function======
 
-A query function is evaluated to determine the results of a particular selection. Functions can represent very simple search criteria such as "My Age == Your Age", but they can also represent complex and inter-related concepts such as spatial relationships. See the functions section for more information on specific functions.
+A query function is evaluated to determine the results of a particular selection. Functions can represent very simple search criteria such as "My Age == Your Age", but they can also represent complex and inter-related concepts such as spatial relationships. They must return logical values. See the functions section for more information on specific functions.
+
+======Inputs======
+
+The set of values that will be used to determine the result, in the order specified by the function prototype. Inputs can specify any source evaluation and any agent state or agent parent context state. They can also be literal values -- see the section on literals below. The selection determines which agent's will be used to determine the value, and different inputs can specify different selections.
 
 =====Logic=====
 
@@ -223,134 +233,6 @@ A Watch action is executed any time the watched value is set for any agent. Note
 
 The attribute that will be monitored for change.
 
-====Commands====
-
-=====Evaluate=====
-
-Evaluate Actions define some calculation on a function based on the model state and a set of input(s). The inputs that an Evaluate Action can take is determined by its functions and can be either agent attributes, prior evaluations or literals. The result is then determined based on those inputs. In some cases Evaluate functions can be used to determine some action indirectly, such as with a graphics fill, but they can never be used to directly change model state.
-
-======Selection======
-
-As with all other actions, evaluations specify a selection, and just as with the other actions, this determines the set of agents that the evaluation occurs for, but the input selections determine what agent is used for the calculation itself.
-
-======Function======
-
-A with queries, a function is evaluated against its input set. Functions can represent simple operators as well as complex functions. See the functions section for more information on specific functions.
-
-======Inputs======
-
-The set of values that will be used to determine the result, in the order of the function prototype. Inputs can specify any source evaluation and any agent state or agent parent context state. The selection determines which agent's will be used to determine the value, and different inputs can specify different selections.
-
-=====Set=====
-
-The Set Action assigns some value to another value.
-
-======Selection======
-
-Here the selection refers to the agent that we want to change. This does not have to be the immediatily preceeding selection but can be any accessible selection.
-
-======Attribute======
-
-The attribute to modify. It must be a member of this action's agent or of that agent's parent context.
-
-======Parameter======
-
-The value to assign to the attribute. Here, we can use either another agent attribute, or the results of a source evaluation. 
-
-
-=====Move=====
-
-The Move Action causes an agent to change its location in some space or network. The agent will leave whatever location it was in before within the selection space, and move to its new destination.
-
-======Selection======
-
-As in any other action, the selection determines what agent is affected -- in this case the agent that is being moved.
-
-=======Destination======
-
-Specifies the target agent or location for the movement.
-
-
-=====Leave=====
-
-Causes the agent to leave a particular space.
-
-======Selection======
-
-The selection determines what agent will be leaving and what space the agent will be leaving. If the agent doesn't exist in that space nothing will happen.
-
-=======Destination======
-
-The destination is irrelevant for a leave action and should not be specified.
-
-=====Die=====
-
-Causes the agent to cease to exist within the model as a whole.
-
-======Selection======
-
-The selection determines what space the agent to remove.
-
-=======Destination======
-
-The destination is irrelevant in this case and will probably be removed.
-
-=====Connect=====
-
-Connects two agents within a network space. This Action is not applicable for any other kinds of spaces. Note that unlike with other transformational commands, we do not use the destination space to determine the space that will be impacted by the Action. This provides a more efficient representation without any loss in generality, because it allows us to search for a source and target agent within other spaces and then create a connection without creating a separate selection. As the important structural feature of networks are the relationships themselves, not the nodes this provides a more direct way to specify these relationships.
-
-======Selection======
-
-The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.
-
-=======Destination======
-
-The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.
-
-======Within======
-
-Specifies the network that the connection will be created within.
-
-=====Directed=====
-
-Determines whether the connection made is directed or not. If true, selections from source agents will include the target, but target agent selections will not include the source agents (unless they are connected through some other path).
-
-=====Disconnect=====
-
-Removes the connection between agents within a network space. See the description of the Connect Action for important details.
-
-======Selection======
-
-The selection determines one side of the agent relationship that will be disconnected.
-
-=======Destination======
-
-The selection determines one other side of the agent relationship that will be disconnected.
-
-======Within======
-
-Specifies the network that the connection will be created within.
-
-=====Replace=====
-
-Functions in the same way as a Connect Action excepth that all other connections to other agents will first be removed.
-
-======Selection======
-
-The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.
-
-=======Destination======
-
-The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.
-
-======Within======
-
-Specifies the network that the connection will be created within.
-
-=====Directed=====
-
-Determines whether the connection made is directed or not. See the Connect description for more details.
-
 ====Builders====
 
 Builders are a special category of actions that are used to create spaces. They should not be confused with the Build Action itself which is a root selection that defines the time at which builder actions should occur. Generally speaking, specific Builder Actions for spaces and Create Actions for agents are targets of Build Actions.
@@ -371,7 +253,7 @@ The selection to use as the basic for this selection. This is generally not impo
 
 Not generally relevant for agent actions, as agents are not placed into a space unless explicitly moved to that space. Potential associations between agents and spaces are defined by the space building actions.
 
-=======Agent Count======
+======Agent Count======
 
 The number of agents to create. If used as part of an enclosing context's Initialize Action(s) an Attribute parameter will automatically be created. If not, then an evaluation or agent attribute should be used to define this number.
 
@@ -462,6 +344,171 @@ The set of agents that might be a part of this space. Agents must be included he
 
 Constructs a geographical space. All details of this space are specfied by the implementation, i.e. a specific geographical imported space. Generally these would be defined by a Create Agents action; that is a set of imported agents representing US states would also represent the overall space of interest.
 
+====Commands====
+
+=====Evaluate=====
+
+Evaluate Actions define some calculation on a function based on the model state and a set of input(s). The inputs that an Evaluate Action can take is determined by its functions and can be either agent attributes, prior evaluations or literals. The result is then determined based on those inputs. In some cases Evaluate functions can be used to determine some action indirectly, such as with a graphics fill, but they can never be used to directly change model state.
+
+======Selection======
+
+As with all other actions, evaluations specify a selection, and just as with the other actions, this determines the set of agents that the evaluation occurs for, but the input selections determine what agent is used for the calculation itself.
+
+======Function======
+
+A with queries, a function is evaluated against its input set. Functions can represent simple operators as well as complex functions. See the functions section for more information on specific functions.
+
+======Inputs======
+
+The set of values that will be used to determine the result, in the order of the function prototype. Inputs can specify any source evaluation and any agent state or agent parent context state. They can also be literal values -- see the discussion in the Tools section. The selection determines which agent's will be used to determine the value, and different inputs can specify different selections.
+
+=====Set=====
+
+The Set Action assigns some value to another value.
+
+======Selection======
+
+Here the selection refers to the agent that we want to change. This does not have to be the immediatily preceeding selection but can be any accessible selection.
+
+======Attribute======
+
+The attribute to modify. It must be a member of this action's agent or of that agent's parent context.
+
+======Parameter======
+
+The value to assign to the attribute. Here, we can use either another agent attribute, or the results of a source evaluation. 
+
+
+=====Move=====
+
+The Move Action causes an agent to change its location in some space or network. The agent will leave whatever location it was in before within the selection space, and move to its new destination.
+
+======Selection======
+
+As in any other action, the selection determines what agent is affected -- in this case the agent that is being moved.
+
+======Destination======
+
+Specifies the target agent or location for the movement.
+
+
+=====Leave=====
+
+Causes the agent to leave a particular space.
+
+======Selection======
+
+The selection determines what agent will be leaving and what space the agent will be leaving. If the agent doesn't exist in that space nothing will happen.
+
+======Destination======
+
+The destination is irrelevant for a leave action and should not be specified.
+
+=====Die=====
+
+Causes the agent to cease to exist within the model as a whole.
+
+======Selection======
+
+The selection determines what space the agent to remove.
+
+=======Destination======
+
+The destination is irrelevant in this case and will probably be removed.
+
+=====Connect=====
+
+Connects two agents within a network space. This Action is not applicable for any other kinds of spaces. Note that unlike with other transformational commands, we do not use the destination space to determine the space that will be impacted by the Action. This provides a more efficient representation without any loss in generality, because it allows us to search for a source and target agent within other spaces and then create a connection without creating a separate selection. As the important structural feature of networks are the relationships themselves, not the nodes this provides a more direct way to specify these relationships.
+
+======Selection======
+
+The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.
+
+=======Destination======
+
+The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.
+
+======Within======
+
+Specifies the network that the connection will be created within.
+
+=====Directed=====
+
+Determines whether the connection made is directed or not. If true, selections from source agents will include the target, but target agent selections will not include the source agents (unless they are connected through some other path).
+
+=====Disconnect=====
+
+Removes the connection between agents within a network space. See the description of the Connect Action for important details.
+
+======Selection======
+
+The selection determines one side of the agent relationship that will be disconnected.
+
+======Destination======
+
+The selection determines one other side of the agent relationship that will be disconnected.
+
+======Within======
+
+Specifies the network that the connection will be created within.
+
+=====Replace=====
+
+Functions in the same way as a Connect Action excepth that all other connections to other agents will first be removed.
+
+======Selection======
+
+The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.
+
+======Destination======
+
+The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.
+
+======Within======
+
+Specifies the network that the connection will be created within.
+
+=====Directed=====
+
+Determines whether the connection made is directed or not. See the Connect description for more details.
+
+====Other====
+
+=====Method=====
+
+The Method action supports inclusion of arbitrary code within a generated method. Generally, this will be Java code as all of the current target platforms are Java-based but there is no technical requirement that it must be. For example, if a target has been developed to produce code for Swarm running on an iPad (and no, there are no current plans to support such a thing, though it would certainly be cool!) then the modeler could define Objective C code for the method.
+
+Please note that the Method Action should be avoided whenever possible. You should consider using it only in the case where there doesn't appear to be a way to construct equivalent functionality using the native Actions framework, such as when interfacing with third party APIs.  The aim of Actions is to provide the most general support for Agent Modeling possible without compromising the core design. Any use of native Java code strongly limits the set of platforms that your model will be able to generate code for and prevents you from using the AMF edit tools to explore the model behavior. In the case where you wish to construct a model feature and believe that it isn't possible or practical to do it with Actions, please contact us (see support section) so that we can suggest how you can accomplish what you want within Actions. If that is not possible, we'll consider developing new features that will support what you want to do.
+
+On the other hand, you may simply wish to use the Agent Modeling Framework to build a scaffolding for your model -- perhaps using your own custom Java framework for example -- and Method would be a good way to accomplish that. Also, note there are a number of other approaches to mixing hand-crafted Java together with AMF generated code. Please see the Programmer's Guide section "Integrating Java and AMF Models" for more on that.
+
+If you do decide to use the Method Action, keep in mind the following design practice recommendations:
+
+#Keep your usage of external API references to a minimum. If you can use only code provied by the core Java classes as well as the Apache Collections library, your code should work on every current Java target. On the other hand, if you make use of a specific ABM platform APIs your code will obviously only compile and run against that target.
+#Code should be in the form of a method body, excluding the signature. A single Java method is created using this code body. There is no support for input parameters -- if you need access to evaluated values from source actions, create agent attributes for them, set their values for the selected agents, and use them as sources for your Method Action.
+#All Java class references should be fully qualified. For example, if you wish to use the eclipse Draw2D Graphics class, you should refer to "org.eclipse.draw2d.Graphics", not simply "Graphics". If classes are not fully qualified, you will recieve compile errors. You can usually easily fix these by selecting your source code directory and choosing '''Source > Organize Imports..''' but it prevents automatic code generation.
+#The method interface has no support for code completion, syntax checking or other common Java development environment features. You can avoid code maintenance and even support targetting multiple APIs by using the following technique. From your method body, call a helper method in a seperate class. The referred class could use a static method call, or you could instantiate the class and call a method against it, passing in the agent class so that the helper class can reference the agent's state. For example, if you wanted to use some custom java code to import agents from a specialized input file, you could put the following code in the Method Action body for the root Context: <pre>(new org.me.SpecialFileLoader()).load(this);</pre>Then create a new source directory in your project called "src" ('''New > Source Folder...''') and create the class for the specialized file loader including the following method: <pre>public void load(MyRootModel model) {...}</pre> This approach allows you to a) maintain the working code using the Java Development Environment, b) avoid changes to the Method Action within the model, and most importantly, c) allow other implementations of the code using multiple APIs. For example, if you need to create a specialized graphics routine, you could create seperate implementations for your Escape (Eclipse Draw 2D), Ascape (Java Swing), and Repast (Simphony API) and place them in the appropriate projects. As long as the different Java source files have the same names and signatures, they will all compile correctly and execute the appropriate behavior.
+
+======Selection======
+
+The selection determines what Agent class the code will be created within and the set of agents the method will be called upon.
+
+======Body======
+
+The actual code to insert in the method body. See the detailed recommendations for code use above.
+
+======Generate======
+
+Determines wether the code is actually inserted. If this is false, a bare method body will be constructed instead. This can be useful if you wish to turn off method generation in certain model implementaitons without removing the actual code.
+
+====Query and Evaluation Inputs====
+
+Query and Evaluation Actions are both "Sinks" which means that they are capable of containing inputs. When you select a function, the appropriate number of inputs will be created. After selecting a function, you can view and select the inputs. The choices for the inputs will be constrained by the type of the function and the other operands you've selected.
+
+======Input Literals======
+
+Inputs can take literal values; that is values that you specify simply by entering them directly into the query. In general it is useful to think of literals as similar to local variables in a conventional programming language, whereas attributes are analogous to member variables. (And this is how they are represented in the generated Java code.) As with local variables in model code, literals are not recommended for any values that can change model behavior. The value cannot be easily accessed or changed by other model users. For greater transparency, you should instead create an Attribute with an appropriate default value, setting the "immutable" value to true. Still, literals can be useful for values that are special cases related to the evaluation or query, such as an input code, and for quickly prototyping functionality.
+
 ===Example===
 
 In this section, we'll look at an example that should make clear how the basic Actions approach works in a model. Say we want to define a behavior like:
@@ -477,11 +524,11 @@ Here, we create a sequence of actions like so:
 
 Now, notice that although it's convenient to speak as if there is only one "Find Partner" and one "Partner Neighbor" in step 4 above, in fact selections are flowing through for each of the results of each of the previous action sequences, and we can refer to each of the directly. We could represent these behaviors in many different ways. For example, we might want to specify the model in a (hand-drawn) graphical language or in a (made-up) textual language:
 
-[[Image:images/ActionsExample.png|800px]]
+[[Image:images/actions/ActionsExample.png|800px]]
 
 This is how it looks in an actual model:
 
-[[Image:images/ActionsExampleNew.png|800px]]
+[[Image:images/actions/ActionsExampleNew.png|800px]]
 
 And here is how this works in detail:
 
@@ -510,7 +557,7 @@ The following diagram may be helpful to readers familiar with UML and Meta-model
 
 =====Meta-Classes=====
 
-[[Image:images/ActionsDiagram.png|800px]]
+[[Image:images/actions/ActionsDiagram.png|800px]]
 
 =====Details=====
 

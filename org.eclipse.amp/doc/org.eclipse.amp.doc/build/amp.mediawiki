@@ -62,7 +62,7 @@ AXF and AGF provide a number of features based around Eclipse technologies such 
 
 ==Introduction==
 
-In this Modeler's Guide we provide an in-depth understanding of what goes into an Agent Model and how you can use the Agent Modeling Framework tools to design one. Fundamentally, an agent-based model, or "ABM", is composed of five pieces: Agents and Context Agents, Attributes, Spaces, and Actions. The first three refer to structural components, whereas Actions define behavior. Agent models also have styles, which are a special kind of Action used to determine how to portray an agent in a visualization. Finally Actions make use of Functions. We'll describe of these components in a separate section.
+In this Modeler's Guide we provide an in-depth understanding of what goes into an Agent Model and how you can use the Agent Modeling Framework and related tools to design one. Fundamentally, an agent-based model, or "ABM", is composed of five pieces: Agents and Context Agents, Attributes, Spaces, and Actions. The first three refer to structural components, whereas Actions define behavior. Agent models also have styles, which are a special kind of Action used to determine how to portray an agent in a visualization. Finally Actions make use of Functions. We'll describe of these components in a separate section.
 
 But first, we'll give a quick overview at what agent-based modeling is is and how the Agent Modeling Framework can help you to develop models for ABM or other problem domains.
 
@@ -118,7 +118,7 @@ The basic structure of an agent-based model can be quite simple. While there are
 
 Unlike the approach of a traditional Object Oriented environment, the dominant organizing principal for agents within AMF follows a compositional hierarchical model, not an inheritance model. (Inheritance-like behavior will be supported in forthcoming versions of Acore, but in a more sophisticated, flexible and dynamic way than is supported by traditional programming languages such as Java.) Contexts -- also referred to as "Swarms" or "Scapes", are simply Agents that are capable of containing other agents. With this basic construct -- known as a Composition in design pattern language -- agents are able to contain other agents.
 
-===Details===
+===Concepts===
 
 ====General====
 
@@ -127,9 +127,10 @@ Everything represented in an Acore model needs to be referred to in some way. Ju
 =====Named Entities=====
 
 ======Label======
-A reasonably short, human readable name for the agent. For example, "Timber Wolf", "Exchange Trader" or "Movement Probability". These should be defined so that they fit in well with auto-generated documentation.
+A reasonably short, human readable name for the agent. For example, "Timber Wolf", "Exchange Trader" or "Movement Probability". These should be defined so that they fit in well with auto-generated documentation. Note that Labels must be unique throughout the model. (This may change in future releases for Action names.) If you try to provide an object with a name that is already in use, "Copy" will be appended to the end of the name. 
+
 ======ID======
-An ID is an identifier that can be used to represent the object in a software program. This means that it must follow certain rules such as no-spaces or non alpha-numeric characters. The editing tools will help make sure that this value is legal. Note that when you enter a label, a legal ID is automatically created for you! Usually you won't need to change this, but you might if for example you want the value to match up with some database or other external representation. So reasonable values here might be "timberWolf" or perhaps "MVMNT_PRB" if say you're trying to match up to some old statistics records you have. (Note that currently IDs by default use "camel case", i.e. "thisIsAnExampleOfCamelCase" to match with Java variable naming conventions, but this is likely to change.)
+An ID is an identifier that can be used to represent the object in a software program. This means that it must follow certain rules such as no-spaces or non alpha-numeric characters. The editing tools will help make sure that this value is legal. Note that when you enter a label, a legal ID is automatically created for you! Usually you won't need to change this, but you might if for example you want the value to match up with some database or other external representation. So reasonable values here might be "timberWolf" or perhaps "MVMNT_PRB" if say you're trying to match up to some old statistics records you have. (Note that currently IDs by default use "camel case", i.e. "thisIsAnExampleOfCamelCase" to match with Java variable naming conventions, but this is likely to change.) Like labels, IDs need to be unique across the model, and the editing tools will assign a different id if you attempt to give two entities the same id.
 
 And most entities also define:
 
@@ -305,13 +306,13 @@ For readers familiar with UML and meta-modeling, the following diagrams give mor
 
 Our first diagram depicts the core structural design of the model. 
 
-[[Image:images/StructureComplexDiagram.png|800px]] 
+[[Image:images/structure/StructureComplexDiagram.png|800px]] 
 
  There seems to be a lot going on here, but the basic components are pretty straightforward as we can see in the next diagram.
 
 =====Key Collaborations=====
 
-[[Image:images/StructureSimpleDiagram.png]]
+[[Image:images/structure/StructureSimpleDiagram.png]]
 
  Core interactions are in Red. The meta-model structure is essentially a Composite pattern. 
 
@@ -352,7 +353,7 @@ Before getting into the details of how each Actions work together, or the variou
 
 These are all summarized in the diagram below:
 
-[[Image:images/ActionsBlocks.png]] 
+[[Image:images/actions/ActionsBlocks.png]] 
 
 ====Flow====
 
@@ -360,25 +361,27 @@ First, let's look at how actions define the basic path that agents take during a
 
 In Actions, the path itself implicitly carries all of the context of prior execution with it. This means that we don't have to worry about storing context in the object -- as we would in an object-oriented language -- or passing the correct values from one method call to the next as we would in a functional language. Instead, Actions can use the implicit context of the path of flow to determine what the current state of execution is.
 
+An important aspect of the Actions design is that loop structures are not allowed -- that is, flows are acyclic. An action can never have an ancestor target (that is targets, targets of targets, etc..) that has as one of its ancestors that same action. As you'll see, actions don't typically ''need'' loop structures. By far the most common use of loops in conventional programming langauges is to loop through collections of objects. As selections (see below) refer to the entire collection of agents, any actions on a selection apply to all members of that collection. Recursive structures are needed for some particular usages and will be supported in future releases, but not through an explicit looping construct.
+
 Again, behaviors in Actions are always defined by a set of ''selections'' and ''queries''. In the following diagram, we can see the pattern.
 
-[[Image:images/ActionsSequence.png]]
+[[Image:images/actions/ActionsSequence.png]]
 
 First, we define a Root Selection for a Rule, Schedule or other triggering event. Then, we might add a series of Query and Logic Actions to define the specific agents that we are interested in. These are all part of the Selection. Next, we might define a series of Commands to determine what to do with those agents. Or, we could use the result of that selection to immediately define another selection, for example if we are searching for an agent that is near another agent. The next diagram depicts a simple example.
 
-[[Image:images/ActionsSimpleSequence.png]]
+[[Image:images/actions/ActionsSimpleSequence.png]]
 
 Here, we create a rule, and then check the results of two queries. For any agents that meet those criteria, we'll evaluate some function based on their state, and then set some value on them. In the next example, we'll first create the rule, and then create a new selection with a set of criteria. Finally, we'll do a move based on those queries.
 
-[[Image:images/ActionsSimpleSequence2.png]]
+[[Image:images/actions/ActionsSimpleSequence2.png]]
 
 In the following example, we've defined a set of actions and their relationships. We have a selection, a few queries and a couple of logic operators leading to a Set Action. We'll describe in detail below how Logic Actions are used in conjunction with other actions to assemble any kind of query structure needed. But for now, we'll focus on the control flow itself.
 
-[[Image:images/ActionsFlowSimple.png]]
+[[Image:images/actions/ActionsFlowSimple.png]]
 
 As you have probably already guessed, the agents that have the Set Action applied to them could take one of two paths through the Action flow. Readers with experience with programming or formal logic will note that this looks just like a parse tree, and while that's basically what it is, there are important differences. For example, if we looked at the following structure as a definition of control flow for a single agent we'd take them to be equivalent. Both would evaluate the statement (Query 1 AND Query 2) OR Query 3 for each agent.
 
-[[Image:images/ActionsFlowUnion.png]]
+[[Image:images/actions/ActionsFlowUnion.png]]
 
 Within Actions in many cases these two approaches will also act equivalently. If we are simply setting a value, it doesn't matter how an agent gets to that Set Action, as long as it gets there. All sources that flow into a given target Action act like a logical union since any of the paths might reach that target. But note that we have two flows moving in parallel in the flow on the right. What happens when the conditions for ''both'' branches are true? As the set of agents flow through each branch the Set Action on the left will be evaluated once, while the one on the right will be evaluated twice. Again, this often ends up with the same behavior, but not always. If for example, the evaluate Action uses the value of the attribute that we are setting as input, we can get different results. Of course, you can write code in any language that accomplishes the same thing, but the code will look quite different. For example, if we wrote the same basic logic in Java, in the first case we'd have something like:
 
@@ -403,11 +406,11 @@ Selections are a key concept in Actions. Put simply, selections define what we a
 
 A selection boundary determines the set of selection actions that are used to determine what agents to apply target actions to. For example, in the following diagram, we can see the extent of the boundary for a straightforward selection.
 
-[[Image:images/ActionsSelBoundarySimple.png]]
+[[Image:images/actions/ActionsSelBoundarySimple.png]]
 
 Each time we create a new selection, we define a new set of boundaries.
 
-[[Image:images/ActionsSelBoundary2Parts.png]] 
+[[Image:images/actions/ActionsSelBoundary2Parts.png]] 
 
 A very important aspect of boundaries is that they apply to a group of actions that begin with a Query Action, and not just such a group that begins with a Select Action. This is because Query Actions can be directly part of a selection definition, but they can also refine selections, as we'll see. So where does one selection boundary end and the next one begin? The simple rule is that the end of the boundary is defined for a given Action by the place where:
 
@@ -416,13 +419,13 @@ A very important aspect of boundaries is that they apply to a group of actions t
 
 In other words, as soon as a Logic Action occurs in a path leading to an Action, any following Query will define a new boundary, as we can see in the following example. 
 
-[[Image:images/ActionsSelBoundary11A.png]]
+[[Image:images/actions/ActionsSelBoundary11A.png]]
 
 Note that we refer to "Selection 1" and Selection 1A". This is because Selection 1A is a refinement of Selection 1 along its particular path of flow. When a query appears for the same selection but past a particular boundary, you can think of it as a sort of filter on the selection contents. We don't have a "Selection 2" here because any Actions that refer to "Selection 1" along the current path of flow will be acting on the selection defined by Selection 1 and Selection 1A.
 
 These rules allow actions to be defined in the simplest possible way, but it is important to understand their implication as they result in behavior that can be different from what someone used to and imperative programming environment such as Java might expect. In a simple case the distinction might not matter. For example, if we are using a Query 1 to test whether an agent's attribute a == x and attribute b == y, we would get the same outcome if we placed intersected the queries as if we simply put them in sequence. Internally we would actually be searching for agents with a == x, and ''then'' taking those agents and choosing those agents with b==y, but the outcome would be the same. But consider a more sophisticated case, where we are searching for neighboring available cells.
 
-[[Image:images/ActionsSelBoundaryComplex.png]]
+[[Image:images/actions/ActionsSelBoundaryComplex.png]]
 
 In the first case, we execute a search for all agents that meet the two criteria. This means that if there are ''any'' neighboring cells which are available, we're guaranteed to find one (random) cell. In the second case, we first search for all cells that are neighbors. This will match any agents that include both available and non available agents. Now, at this point since our search returns one agent (in the current AMF design -- richer behavior will be supported in the future) the randomly selected agent could be either available or not. So in the second case, we might end up with no cell to move to, and thus make no move at all. This then becomes an important aspect of model design. For example, if one were defining a model where neighbors played a game with each other, one might want to instruct agents to play the game only with neighbors that have a certain wealth threshold. In the real-world situation that we are modeling, we might simply search for neighbors who are over a given wealth threshold and then play the game with them. This would imply that information about other agent's wealth is open knowledge. Or, we might simply select a random neighbor, and ask that neighbor to play a game with us. Upon discovering that our neighbor does not meet our wealth criteria, we would then choose not to play with them. Here we are modeling a cost in time to obtain information about another agent's wealth, because we might miss an opportunity to play the game with another agent on that round.
 
@@ -430,28 +433,28 @@ In the first case, we execute a search for all agents that meet the two criteria
 
 Now, let's put the concepts of Actions sequences and boundaries together to see how we can easily define complex interactions between multiple selections. When we define a Select, the state of its selection flows through and with any subsequent selections. So for example, if we have a Root Action rule, and then do a selection based on it, we'll have access to the agent from the original context as well as all of the subsequent selections. We can refer to any previous selection for any subsequent action. For example, instead of setting the value for the rule agent, we might instead set a value for an agent we've found in a target selection.
 
-[[Image:images/ActionsWeavingSetAnother.png]]
+[[Image:images/actions/ActionsWeavingSetAnother.png]]
 
 Inputs to functions also use selections. (We'll discuss more details in the functions section.) In the following example, we're adding the wealth of the Selection 1 agent to the wealth of the Selection 2 agent and using that value to set some other value. (Here, perhaps we are modeling an agent in a winner takes all game, in which case we'd also add a Set Action on Selection 2 and set the second agent's wealth to 0.)
 
-[[Image:images/ActionsWeavingEvaluate.png]]
+[[Image:images/actions/ActionsWeavingEvaluate.png]]
 
 But we can also use selections in defining Query Actions themselves. So in the following example, we select a neighbor agent and then compare the age of our Rule agent with the age of the Selection 2 agent. If and only if those ages are the same will we execute the target Set Action. This example also demonstrates why we refer to the data flow as weaving. Query Actions can be used to refine selections at any point in the data flow. Selections and their uses are interwoven throughout an action sequence.
 
-[[Image:images/ActionsWeaving1A.png]]
+[[Image:images/actions/ActionsWeaving1A.png]]
 
 Finally, we can put all of these concepts together by weaving selections together with flows. As we discussed in the flow section, if we use multiple paths in the Query, the agents that flow through from any prior Query can follow multiple paths at once. And as we discussed in the selection section, the selection and its boundaries determine what agents we will be working with at any given evaluation point in the flow. Now, consider the following example:
 
-[[Image:images/ActionsWeaving2.png]]
+[[Image:images/actions/ActionsWeaving2.png]]
 
 Before going into further details we need to introduce one more important concept. As we'll see in the detailed explanation of each Action below, Transformation Actions such as Move or Connect take multiple selections. The first selection defines the set of agents that will be performing the action. In the case of a Move agent, this refers to the mover. The second selection, which for Move we call "destination", refers to the selection that will be receiving the action. In the case of movement this is the agent or location that the Rule agent will be moving to. If we follow the flows through, we can note two important outcomes of our model design -- a Rule agent might move twice if it meets the criteria for both the blue path and the red path and that it might move to a different location each time.
 
-===Details===
+===Concepts===
 
 In this section, we'll dig into the specific role of each of the Actions. From the design discussion we hopefully have some sense of how these all fit together in general.
 Let's look at the overall view again amd then dig into the details.
 
-[[Image:images/ActionsBlocks.png]] 
+[[Image:images/actions/ActionsBlocks.png]] 
 
 
 ====Selections====
@@ -484,9 +487,17 @@ This value is obsolete and will be replaced with a different mechanism in the ne
 
 A Query represents a concrete criteria for our search. The name is a bit confusing because of potential for confusion with a generic query. Queries -- along with their cousin Evaluators -- define a function that is evaluated and that can take Agent attributes and the results of other Actions as input. Queries are combined with each other and with the logic actions to determine the results of a selection for their direct target actions. 
 
+======Selection======
+
+As with all other actions, evaluations specify a selection, and just as with the other actions, this determines the set of agents that the evaluation occurs for, but the input selections determine what agent is used for the calculation itself.
+
 ======Function======
 
-A query function is evaluated to determine the results of a particular selection. Functions can represent very simple search criteria such as "My Age == Your Age", but they can also represent complex and inter-related concepts such as spatial relationships. See the functions section for more information on specific functions.
+A query function is evaluated to determine the results of a particular selection. Functions can represent very simple search criteria such as "My Age == Your Age", but they can also represent complex and inter-related concepts such as spatial relationships. They must return logical values. See the functions section for more information on specific functions.
+
+======Inputs======
+
+The set of values that will be used to determine the result, in the order specified by the function prototype. Inputs can specify any source evaluation and any agent state or agent parent context state. They can also be literal values -- see the section on literals below. The selection determines which agent's will be used to determine the value, and different inputs can specify different selections.
 
 =====Logic=====
 
@@ -548,134 +559,6 @@ A Watch action is executed any time the watched value is set for any agent. Note
 
 The attribute that will be monitored for change.
 
-====Commands====
-
-=====Evaluate=====
-
-Evaluate Actions define some calculation on a function based on the model state and a set of input(s). The inputs that an Evaluate Action can take is determined by its functions and can be either agent attributes, prior evaluations or literals. The result is then determined based on those inputs. In some cases Evaluate functions can be used to determine some action indirectly, such as with a graphics fill, but they can never be used to directly change model state.
-
-======Selection======
-
-As with all other actions, evaluations specify a selection, and just as with the other actions, this determines the set of agents that the evaluation occurs for, but the input selections determine what agent is used for the calculation itself.
-
-======Function======
-
-A with queries, a function is evaluated against its input set. Functions can represent simple operators as well as complex functions. See the functions section for more information on specific functions.
-
-======Inputs======
-
-The set of values that will be used to determine the result, in the order of the function prototype. Inputs can specify any source evaluation and any agent state or agent parent context state. The selection determines which agent's will be used to determine the value, and different inputs can specify different selections.
-
-=====Set=====
-
-The Set Action assigns some value to another value.
-
-======Selection======
-
-Here the selection refers to the agent that we want to change. This does not have to be the immediatily preceeding selection but can be any accessible selection.
-
-======Attribute======
-
-The attribute to modify. It must be a member of this action's agent or of that agent's parent context.
-
-======Parameter======
-
-The value to assign to the attribute. Here, we can use either another agent attribute, or the results of a source evaluation. 
-
-
-=====Move=====
-
-The Move Action causes an agent to change its location in some space or network. The agent will leave whatever location it was in before within the selection space, and move to its new destination.
-
-======Selection======
-
-As in any other action, the selection determines what agent is affected -- in this case the agent that is being moved.
-
-=======Destination======
-
-Specifies the target agent or location for the movement.
-
-
-=====Leave=====
-
-Causes the agent to leave a particular space.
-
-======Selection======
-
-The selection determines what agent will be leaving and what space the agent will be leaving. If the agent doesn't exist in that space nothing will happen.
-
-=======Destination======
-
-The destination is irrelevant for a leave action and should not be specified.
-
-=====Die=====
-
-Causes the agent to cease to exist within the model as a whole.
-
-======Selection======
-
-The selection determines what space the agent to remove.
-
-=======Destination======
-
-The destination is irrelevant in this case and will probably be removed.
-
-=====Connect=====
-
-Connects two agents within a network space. This Action is not applicable for any other kinds of spaces. Note that unlike with other transformational commands, we do not use the destination space to determine the space that will be impacted by the Action. This provides a more efficient representation without any loss in generality, because it allows us to search for a source and target agent within other spaces and then create a connection without creating a separate selection. As the important structural feature of networks are the relationships themselves, not the nodes this provides a more direct way to specify these relationships.
-
-======Selection======
-
-The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.
-
-=======Destination======
-
-The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.
-
-======Within======
-
-Specifies the network that the connection will be created within.
-
-=====Directed=====
-
-Determines whether the connection made is directed or not. If true, selections from source agents will include the target, but target agent selections will not include the source agents (unless they are connected through some other path).
-
-=====Disconnect=====
-
-Removes the connection between agents within a network space. See the description of the Connect Action for important details.
-
-======Selection======
-
-The selection determines one side of the agent relationship that will be disconnected.
-
-=======Destination======
-
-The selection determines one other side of the agent relationship that will be disconnected.
-
-======Within======
-
-Specifies the network that the connection will be created within.
-
-=====Replace=====
-
-Functions in the same way as a Connect Action excepth that all other connections to other agents will first be removed.
-
-======Selection======
-
-The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.
-
-=======Destination======
-
-The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.
-
-======Within======
-
-Specifies the network that the connection will be created within.
-
-=====Directed=====
-
-Determines whether the connection made is directed or not. See the Connect description for more details.
-
 ====Builders====
 
 Builders are a special category of actions that are used to create spaces. They should not be confused with the Build Action itself which is a root selection that defines the time at which builder actions should occur. Generally speaking, specific Builder Actions for spaces and Create Actions for agents are targets of Build Actions.
@@ -696,7 +579,7 @@ The selection to use as the basic for this selection. This is generally not impo
 
 Not generally relevant for agent actions, as agents are not placed into a space unless explicitly moved to that space. Potential associations between agents and spaces are defined by the space building actions.
 
-=======Agent Count======
+======Agent Count======
 
 The number of agents to create. If used as part of an enclosing context's Initialize Action(s) an Attribute parameter will automatically be created. If not, then an evaluation or agent attribute should be used to define this number.
 
@@ -787,6 +670,171 @@ The set of agents that might be a part of this space. Agents must be included he
 
 Constructs a geographical space. All details of this space are specfied by the implementation, i.e. a specific geographical imported space. Generally these would be defined by a Create Agents action; that is a set of imported agents representing US states would also represent the overall space of interest.
 
+====Commands====
+
+=====Evaluate=====
+
+Evaluate Actions define some calculation on a function based on the model state and a set of input(s). The inputs that an Evaluate Action can take is determined by its functions and can be either agent attributes, prior evaluations or literals. The result is then determined based on those inputs. In some cases Evaluate functions can be used to determine some action indirectly, such as with a graphics fill, but they can never be used to directly change model state.
+
+======Selection======
+
+As with all other actions, evaluations specify a selection, and just as with the other actions, this determines the set of agents that the evaluation occurs for, but the input selections determine what agent is used for the calculation itself.
+
+======Function======
+
+A with queries, a function is evaluated against its input set. Functions can represent simple operators as well as complex functions. See the functions section for more information on specific functions.
+
+======Inputs======
+
+The set of values that will be used to determine the result, in the order of the function prototype. Inputs can specify any source evaluation and any agent state or agent parent context state. They can also be literal values -- see the discussion in the Tools section. The selection determines which agent's will be used to determine the value, and different inputs can specify different selections.
+
+=====Set=====
+
+The Set Action assigns some value to another value.
+
+======Selection======
+
+Here the selection refers to the agent that we want to change. This does not have to be the immediatily preceeding selection but can be any accessible selection.
+
+======Attribute======
+
+The attribute to modify. It must be a member of this action's agent or of that agent's parent context.
+
+======Parameter======
+
+The value to assign to the attribute. Here, we can use either another agent attribute, or the results of a source evaluation. 
+
+
+=====Move=====
+
+The Move Action causes an agent to change its location in some space or network. The agent will leave whatever location it was in before within the selection space, and move to its new destination.
+
+======Selection======
+
+As in any other action, the selection determines what agent is affected -- in this case the agent that is being moved.
+
+======Destination======
+
+Specifies the target agent or location for the movement.
+
+
+=====Leave=====
+
+Causes the agent to leave a particular space.
+
+======Selection======
+
+The selection determines what agent will be leaving and what space the agent will be leaving. If the agent doesn't exist in that space nothing will happen.
+
+======Destination======
+
+The destination is irrelevant for a leave action and should not be specified.
+
+=====Die=====
+
+Causes the agent to cease to exist within the model as a whole.
+
+======Selection======
+
+The selection determines what space the agent to remove.
+
+=======Destination======
+
+The destination is irrelevant in this case and will probably be removed.
+
+=====Connect=====
+
+Connects two agents within a network space. This Action is not applicable for any other kinds of spaces. Note that unlike with other transformational commands, we do not use the destination space to determine the space that will be impacted by the Action. This provides a more efficient representation without any loss in generality, because it allows us to search for a source and target agent within other spaces and then create a connection without creating a separate selection. As the important structural feature of networks are the relationships themselves, not the nodes this provides a more direct way to specify these relationships.
+
+======Selection======
+
+The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.
+
+=======Destination======
+
+The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.
+
+======Within======
+
+Specifies the network that the connection will be created within.
+
+=====Directed=====
+
+Determines whether the connection made is directed or not. If true, selections from source agents will include the target, but target agent selections will not include the source agents (unless they are connected through some other path).
+
+=====Disconnect=====
+
+Removes the connection between agents within a network space. See the description of the Connect Action for important details.
+
+======Selection======
+
+The selection determines one side of the agent relationship that will be disconnected.
+
+======Destination======
+
+The selection determines one other side of the agent relationship that will be disconnected.
+
+======Within======
+
+Specifies the network that the connection will be created within.
+
+=====Replace=====
+
+Functions in the same way as a Connect Action excepth that all other connections to other agents will first be removed.
+
+======Selection======
+
+The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.
+
+======Destination======
+
+The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.
+
+======Within======
+
+Specifies the network that the connection will be created within.
+
+=====Directed=====
+
+Determines whether the connection made is directed or not. See the Connect description for more details.
+
+====Other====
+
+=====Method=====
+
+The Method action supports inclusion of arbitrary code within a generated method. Generally, this will be Java code as all of the current target platforms are Java-based but there is no technical requirement that it must be. For example, if a target has been developed to produce code for Swarm running on an iPad (and no, there are no current plans to support such a thing, though it would certainly be cool!) then the modeler could define Objective C code for the method.
+
+Please note that the Method Action should be avoided whenever possible. You should consider using it only in the case where there doesn't appear to be a way to construct equivalent functionality using the native Actions framework, such as when interfacing with third party APIs.  The aim of Actions is to provide the most general support for Agent Modeling possible without compromising the core design. Any use of native Java code strongly limits the set of platforms that your model will be able to generate code for and prevents you from using the AMF edit tools to explore the model behavior. In the case where you wish to construct a model feature and believe that it isn't possible or practical to do it with Actions, please contact us (see support section) so that we can suggest how you can accomplish what you want within Actions. If that is not possible, we'll consider developing new features that will support what you want to do.
+
+On the other hand, you may simply wish to use the Agent Modeling Framework to build a scaffolding for your model -- perhaps using your own custom Java framework for example -- and Method would be a good way to accomplish that. Also, note there are a number of other approaches to mixing hand-crafted Java together with AMF generated code. Please see the Programmer's Guide section "Integrating Java and AMF Models" for more on that.
+
+If you do decide to use the Method Action, keep in mind the following design practice recommendations:
+
+#Keep your usage of external API references to a minimum. If you can use only code provied by the core Java classes as well as the Apache Collections library, your code should work on every current Java target. On the other hand, if you make use of a specific ABM platform APIs your code will obviously only compile and run against that target.
+#Code should be in the form of a method body, excluding the signature. A single Java method is created using this code body. There is no support for input parameters -- if you need access to evaluated values from source actions, create agent attributes for them, set their values for the selected agents, and use them as sources for your Method Action.
+#All Java class references should be fully qualified. For example, if you wish to use the eclipse Draw2D Graphics class, you should refer to "org.eclipse.draw2d.Graphics", not simply "Graphics". If classes are not fully qualified, you will recieve compile errors. You can usually easily fix these by selecting your source code directory and choosing '''Source > Organize Imports..''' but it prevents automatic code generation.
+#The method interface has no support for code completion, syntax checking or other common Java development environment features. You can avoid code maintenance and even support targetting multiple APIs by using the following technique. From your method body, call a helper method in a seperate class. The referred class could use a static method call, or you could instantiate the class and call a method against it, passing in the agent class so that the helper class can reference the agent's state. For example, if you wanted to use some custom java code to import agents from a specialized input file, you could put the following code in the Method Action body for the root Context: <pre>(new org.me.SpecialFileLoader()).load(this);</pre>Then create a new source directory in your project called "src" ('''New > Source Folder...''') and create the class for the specialized file loader including the following method: <pre>public void load(MyRootModel model) {...}</pre> This approach allows you to a) maintain the working code using the Java Development Environment, b) avoid changes to the Method Action within the model, and most importantly, c) allow other implementations of the code using multiple APIs. For example, if you need to create a specialized graphics routine, you could create seperate implementations for your Escape (Eclipse Draw 2D), Ascape (Java Swing), and Repast (Simphony API) and place them in the appropriate projects. As long as the different Java source files have the same names and signatures, they will all compile correctly and execute the appropriate behavior.
+
+======Selection======
+
+The selection determines what Agent class the code will be created within and the set of agents the method will be called upon.
+
+======Body======
+
+The actual code to insert in the method body. See the detailed recommendations for code use above.
+
+======Generate======
+
+Determines wether the code is actually inserted. If this is false, a bare method body will be constructed instead. This can be useful if you wish to turn off method generation in certain model implementaitons without removing the actual code.
+
+====Query and Evaluation Inputs====
+
+Query and Evaluation Actions are both "Sinks" which means that they are capable of containing inputs. When you select a function, the appropriate number of inputs will be created. After selecting a function, you can view and select the inputs. The choices for the inputs will be constrained by the type of the function and the other operands you've selected.
+
+======Input Literals======
+
+Inputs can take literal values; that is values that you specify simply by entering them directly into the query. In general it is useful to think of literals as similar to local variables in a conventional programming language, whereas attributes are analogous to member variables. (And this is how they are represented in the generated Java code.) As with local variables in model code, literals are not recommended for any values that can change model behavior. The value cannot be easily accessed or changed by other model users. For greater transparency, you should instead create an Attribute with an appropriate default value, setting the "immutable" value to true. Still, literals can be useful for values that are special cases related to the evaluation or query, such as an input code, and for quickly prototyping functionality.
+
 ===Example===
 
 In this section, we'll look at an example that should make clear how the basic Actions approach works in a model. Say we want to define a behavior like:
@@ -802,11 +850,11 @@ Here, we create a sequence of actions like so:
 
 Now, notice that although it's convenient to speak as if there is only one "Find Partner" and one "Partner Neighbor" in step 4 above, in fact selections are flowing through for each of the results of each of the previous action sequences, and we can refer to each of the directly. We could represent these behaviors in many different ways. For example, we might want to specify the model in a (hand-drawn) graphical language or in a (made-up) textual language:
 
-[[Image:images/ActionsExample.png|800px]]
+[[Image:images/actions/ActionsExample.png|800px]]
 
 This is how it looks in an actual model:
 
-[[Image:images/ActionsExampleNew.png|800px]]
+[[Image:images/actions/ActionsExampleNew.png|800px]]
 
 And here is how this works in detail:
 
@@ -835,7 +883,7 @@ The following diagram may be helpful to readers familiar with UML and Meta-model
 
 =====Meta-Classes=====
 
-[[Image:images/ActionsDiagram.png|800px]]
+[[Image:images/actions/ActionsDiagram.png|800px]]
 
 =====Details=====
 
@@ -867,7 +915,7 @@ The most important thing to point out about functions is that - as we've seen wi
 
 A technical note: conceptually, functions can return multi-values, but that is not currently implemented in the reference targets because of limitations of the target language Java.
 
-===Details===
+===Concepts===
 
 ====General Functions====
 
@@ -1088,7 +1136,7 @@ Represents a two-dimensional boundary within a space. (Not currently relevant fo
 
 For examples of how spatial functions can be used within action flows to provide agents with complex movement behaviors, see the Modelers Guide actions examples. In the following example from that section, we define an action that causes a partner agent to move to an available neighboring space.
 
-[[Image:images/ActionsExampleNew.png|800px]]
+[[Image:images/actions/ActionsExampleNew.png|800px]]
 
 ====Time====
 =====Details=====
@@ -1155,11 +1203,11 @@ Fills the last evaluated shape with the last specified color or the default colo
 
 In the following action flow for the epidemic style, we've create Query Actions to determine each agent's current state, picked a color based on that, and then used a shared target to select a shape for the agent style and fill it:
 
-[[Image:images/GraphicsFunctionExampleDesign.png]]
+[[Image:images/functions/GraphicsFunctionExampleDesign.png]]
 
 After saving the model we can execute the two and three dimensional visualizations. Note something really nice -- even the charts have used the colors we've defined!
 
-[[Image:images/GraphicsFunctionExampleRun.png]]
+[[Image:images/functions/GraphicsFunctionExampleRun.png]]
 
 ====Lists====
 
@@ -1224,11 +1272,11 @@ In the following example, we walk through the process of using a distribution fu
 # Opened the "Multiple Value" node in the editor, and clicked the "Multiple Values" item within it.
 # Selected the "Status" attribute.
 
-[[Image:images/DistributionDesignChoice.png]] 
+[[Image:images/functions/DistributionDesignChoice.png]] 
 
 The appropriate attributes are automatically added to the model, as you can see below.
 
-[[Image:images/DistributionDesign.png]] 
+[[Image:images/functions/DistributionDesign.png]] 
 
 In order to assign these values to the agent, we'd simply need to assign the results of this Evaluate Action to the agent.
 
@@ -1238,7 +1286,381 @@ The following diagram may be helpful to readers familiar with UML and Meta-model
 
 =====Meta-Classes=====
 
-[[Image:images/FunctionsDiagram.png]]
+[[Image:images/functions/FunctionsDiagram.png]]
+==Tools==
+
+In this section of the guide, we'll discuss specific aspects of the Agent Modeling tools and show you how to use them in your day to day agent development activities. We discuss only tools specific to Agent Modeling itself. For more general information about the tools, such as how to customize editors, views, and perspectives, see the '''Workbench User Guide'''.
+
+===Overview===
+
+The Agent Modeling Platform provides two general modes or "perspectives" for working with Agent Models.
+
+[[Image:images/tools/Perspectives.png]]
+
+'''Agent Modeling''' supports all aspects of working with models, including editing models and automatically generating all the of your code and documentation. '''Agent Execution''' supports running and exploring those models. A key feature of the Agent Modeling Platform is the ability to execute models within the same environment that they are developed within -- you don't need to launch a separate environment in order to run a model. Agent Execution automatically activates when you launch a model. We'll discuss the agent modeling tools first, and then turn to agent execution.
+===Agent Modeling===
+
+====Perspective====
+
+The Provides a custom layout menus and tools specific to working with agent models. Because the agent modeling process also often involves Java and Eclipse Plugin development we include easy access to many of those tools here as well.
+
+====Creating Projects and Models====
+
+You can create projects and project components using the Popup menu. Just click in a blank space within the Package Explorer. Any installed project targets are displayed in this menu. For example, if you've installed the Simphony target, you'd see that displayed in this menu as well.
+
+[[Image:images/edit_tutorial/SimpleTutorial3CreateModel.png]]
+
+====Menus, Popups and Toolbar====
+
+The popup menus and application menus provide access to various model features and are context sensitive.  Throughout these screenshots, we've customized the toolbar in order to only show the agent Modeling specific features.
+====Views====
+
+By default the workbench includes a number of views. See the Workbench documentation for more details on how they can be customized accessed and used.
+
+[[Image:images/tools/Workbench.png]]
+
+=====Editor=====
+
+This is not technically a view in itself. It is the major focus of the workbench and contains any edit models or other files such as Java source or parameters.
+
+=====Default Views=====
+
+The default modeling views are visible by default.
+
+======Package Explorer======
+
+Supports navigation within projects.
+
+======Properties======
+
+The properties allows you to view and edit specific details for the currently selected object. For example, if you select a model context, you'll be able to edit its attributes here.
+
+======Outline======
+
+The outline view supports easy navigation within the edited files. See the model editing sections for more on how the outline can be used to assist exploration of Agent Models.
+
+=====Diagnostic Views=====
+
+There are a number of views that can be used to explore issues that might come up during the modeling process. You can see them on the lower left-hand corner of the screenshot above. Click on one of the icons to view their contents.
+
+======Problems======
+
+This view is one that you'll become very familiar with. It is used to display specific about problems with any of the artifacts (files) in your modeling project. If you see a red or yellow marker on a file, opening the view will present a list of the issues that are currently being reported. For a usage example, please see the Tutorial.
+
+======Console======
+
+This view displays text (console) output for appropriate processes. For example, if you launch an Ascape project, this will display any output that would go to the Java console.
+
+======Errors======
+
+This is another view that you will find valuable in your day to day modeling activities. The error log lists everything important that happens during model execution. It's the first place to look if something mysterious goes wrong, and when you report problems it's always helpful to include anything that could be relevant in the log. Despite its name, the Errors view is not just for reporting errors -- it is also used to report progress on normal operations. For example, when models are automatically generated that is reported to the log, as we can see in the following example:
+
+   
+====Editing Models====
+
+The Eclipse Agent Modeling Framework includes a full-featured model editor based on the Eclipse Modeling Framework's Edit tools. All aspects of an AMF model can be managed from within this tool. Note that the tree editor is only one of many ways of editing a model. Other editors of AMF models incude textual languages and custom editors that are part of commercial offerings.
+
+=====Opening the Editor=====
+
+To open a model in the editor, simply double-click on it. If the model doesn't open in the model editor (if for example it had been previously opened using another editor), you can always access the editor using '''Open With > Other...''' and selecting "MetaABM Editor". The editor has two pages, an Editor page that we'll focus on first and a "description" page that we'll dicuss at the end of this section.
+
+=====Editing Structure=====
+
+The model is composed of nodes representing specific model entities such as agents, actions and spaces. For details about any of these entities, see the Concepts section.
+
+======Opening Components======
+
+After opening a model, you can see the contents by clicking the Triangle symbol to the left of an item. For example, opening the root context node, we see:
+
+[[Image:images/tools/Editor.png]]
+
+======Editing Components======
+
+To edit components, select the node you want to modify. The '''Properties View''' will be updated with the agent details. Use the properties view to modify the values. In the screenshot below, we're editing the values for the City space.
+
+[[Image:images/tools/EditorEditing.png]]
+
+======Adding Components======
+
+You add nodes by right-clicking on a node, like so:
+
+[[Image:images/tools/EditorAdd.png]]
+
+======Moving Components======
+
+You can often rearrange model components by dragging them from one place to another. In the following example, we're creating a model of a regional epidemic by creating a City sub-context and moving the agent into it: 
+
+[[Image:images/tools/EditorMoving.png]]
+
+======Removing Components======
+
+You can remove actions by deleting or cutting them using the popup menu. When you delete an entity, all of its children are deleted as well, except in some special cases (such as with actions) where other paths to that entitiy still exist.
+
+======Copying Components======
+
+To make a copy of an entity and place it in a new location, option-drag the entity to the destination. You can make a copy in the existing location by dragging it into the same parent. The name will automatically be updated with "copy" appended to it.
+
+======Editing Attributes======
+
+The attributes node -- along with the actions and styles nodes -- represents a group of components rather than an entity itself. It contains all of the attributes for the parent agent or context. In the examples below, we can see the attributes for the Epidemic route model. Note that the top level attributes in a root context act as the parameters for the model itself.
+
+[[Image:images/tools/EditorAttributes.png]]
+
+======Editing Styles======
+
+The Styles node is another group node, in this case representing a set of styles that can be used to visualize the agents. When creating a style, you will need to create a Rule for each style as well, like so:
+
+[[Image:images/tools/EditorStyles.png]]
+
+=====Editing Actions=====
+
+Actions are a key and relatively complex aspect of the model editor. Because actions are actually related in a graph structure, a tree-based editor will not be able to represent a the underlying strucuture of action relationships directly. (This is actually no different from most development environments -- for example, Java code is edited in a text based editor, but the call structure represents a complex graph. Advance tools developed by AMP contributors do support more sophisticated methods for action browsing and we'll have simple versions of them available in future releases of the AMF edit tools.) Therefore, it's helpful to take time to understand how action relationships appear in the editor.
+
+Like attributes and styles, every agent has a single Actions nodes which contains its Root Action(s).
+
+======Order======
+
+Generally, action sources will appear above their targets. In the case where there is only one source for a given target, and that target has no other sources, they will appear directly above one another. Its important to note however that ''the order of the nodes does not indicate a specific source and target relationship''. For example, in the case where there are multiple targets for a source, they will typically follow that source immediately. To make the relationships clear, every action lists its source actions as part of the action label. Agent selections also appear as part .
+
+[[Image:images/tools/ActionsExample.png]]
+
+In the above example, the Initialize Location "Initialize Action" is straightforward. We simply define a Select Action, a Query Action target for that selection, and then a Move Action target for the query. The "Transmission" Rule is more complicated. Note for example that the "Infectious" Union Action is the target of both the "Asymptomatic Infectious" and  "Symptomatic Infectious" Query Actions. The "Vulnerable Neighbor" action has the label <nowiki>"Vulnerable Neighbor [Potential Exposure] <- [Potential Exposure]"</nowiki> indicating that the "Potential Exposure" action serves as its selection as well as its source.
+
+======Initial Order======
+
+A new action's initial target will be the action that you clicked on when creating it. For an action that should always act within a given root action (i.e. Rule, Schedule, etc..), add it to the root action. A root action can have more than one target.
+
+======Changing Sources and Targets (Reordering)======
+
+An action's target can be changed by dragging it over the new target action. Note that this is a different behavior from that of standard entity movement. You cannot make an action a target of an action that is itself a source of the modified action! (See the concepts section for why.) Using the default tree editor you cannot change an action's targets directly; instead select the action's target and move that. 
+
+======Adding Sources and Targets======
+
+As discussed earlier, actions often have multiple sources and targets. To make an action the target of an additional action, click on target action, hold down the control key, and drag the action to its new destination. See the tutorial for a complete example.
+
+======Removing Sources and Targets======
+
+You cannot remove single sources from targets directly using the tree editor. Instead, first drag the agent to a source nodes that will be part of its changed set of sources. That will remove all existing actions sources but for the one you have just dragged it to. Then add back any of the other source and target nodes you wish to retain.
+
+======Removing Actions======
+
+You can remove actions in the same way as with strucutral model components. Note that just as when you delete an agent, all of that agent's attributes, actions and styles are also deleted form the model, when you delete an Action, any of its targets will also be removed, unless there is some other source action path that connects it to the root action. And of course, any targets of such targets will be affected in the same way and so on. If you remove a node from igh in the action tree a lot of nodes could disappear at once! If you have actions that you want to retain as part of the flow, you should first make them targets of a new action before deleting their parent action.
+
+======Copying Actions======
+
+Copying actions works just as with other entities, and copies will become targets of their option-drag destination. 
+
+======Query and Evaluation Inputs======
+
+The number of inputs is determined by the selected functions. (In rare cases where a function can take an arbitrary number of arguments you may need to create additional values or delete existing ones.) In the following example, we're picking the Symptom Infectious status for a query that will affect the potentially exposed agents. Note that is instead you wanted to compare another kind of value -- for example an Integer value -- you would need to change the first input listed before changing the second input so that you will be able to get the appropriate options for the second.
+ 
+[[Image:images/tools/ActionsExample.png]]
+
+
+======Input Literals======
+
+To create an input value, right click on the input and select '''Create Member > Literal'''. Then specify the actual value in the Value property in the '''Properties View'''.
+====Building Models====
+
+If you've used other development environments, you're probably used to a separate build step. For example, if you edit a set of Java files, you might invoke a compile command. Eclipse and the Agent Modeling Platform support automatic building. This means that in order to build your code, you simply save the model and the environment takes care of the rest. What gets built is defined by the project. For example, if you save a model that is contained within an Agent Modeling Escape Project, the following steps occur automatically:
+
+#The Escape builder generates Java code for the Escape API, including support for specialized graphics and (if enabled) 3D visualization.
+#The Documentation builder generates custom html documentation for the model.
+#The Java builder takes the Java code generated above and compiles it.
+#The Manifest and Schema builders package the project for use as part of the Eclipse plugin environment.
+
+So what do you do if you want to generate code for a different target, such as Repast? Here, you simply create another project and drag the model into it. You can also edit the builders for a given project (see the Workbench Documentation) but you'll only want to do that if you're making permanent changes to the project itself.
+
+====Generating Specialized Model Artifacts====
+
+You can also manually generate code for models. This is useful if you want to create code for a model in a non target project and don't want the automatic build capabilities. There are also specialized targets that can be generated manually that are bundled with the tools -- AMP plugin developers can easily add custom generation targets for this menu. To generate custom artifacts, right-click on a model and select '''Generate'''.
+
+[[Image:images/tools/GenerateMenu.png]]
+
+Targets include:
+
+=====Platform Targets=====
+
+Creates code for one of the installed targets, such as Ascape, Escape, and Simphony. (Again, these generators are unnecessary for projects that already have target specific builders configured.)
+
+=====Interfaces=====
+
+Creates a complete set of interfaces for the model classes. These can be very useful for development and integration in enterprise environments. Generated classes are placed in the src directory with "I" added to the name. For example, if you generate interfaces for a model with an "Individual" agent, this target will create an "IIndividual" interface that includes getters, setters and methods for all of the agent's attributes and actions.
+
+=====Skeleton===== 
+
+Creates a base class for the model. This is essentially a complete implementation, but without the action implementations. Again, these classes can be useful when generating code for use in enterprise and other specialized environments.
+
+=====Test Cases===== 
+
+Generates base support (needing customization) test cases for use in JUnit tests.
+
+=====Text Documents=====
+
+Creates simple text documentation for use in other documents.
+
+=====Generate Key Graphics===== 
+
+This specialized target supports the creation of graphic keys for the model. To use this target:
+
+#Generate the code.
+#Add a dependency to the Manifest for "org.eclipse.amp.amf.gen.extras".
+#In the srcutil directory find the Java source code for the calss {RootContext}GraphicsWriter. For example, for the Epidemic model, this would be srcutil/name.milesparker.epi/EpidemicGraphicsWriter.java.
+#Right-click, and select '''Run As > Java Application'''.
+#Refresh the project by right-clicking on it and selecting '''Refresh'''.
+#The Doc directory will now contain a number of new files, including
+##{RootContext}Key.png
+##{RootContext}GraphicsKey.html
+
+Both files contain graphic representations of the model using the definitions defined by the model styles, very useful artifacts for inclusion in papers and web pages describing your model. For example, here is the EpidemicKey.png:
+
+[[Image:images/tools/EpidemicKey.png]]
+
+=====Function Docs=====
+
+Generates WikiText documentation for function libraries. We use it to create the function documentation in this guide!
+===Agent Execution===
+
+====Launching a Model (AMF)====
+
+
+When an AMF file is selected -- in any of the perspectives -- the pop-up menu looks like this:
+
+[[Image:images/tools/EditorMenu.png | left]]
+
+(In this case we've selected the "Execute Headless" option.) Note that the toolbar and Application menus are updated to reflect the file you've selected and can provide more convenient access to many of the functions. For example, when we click on a metaabm file in the package explorer, model execution buttons appear in the toolbar. An important note: the execution framework doesn't know whether your code exists in an Escape project or anohter target project. If you attempt to execute a .metaabm model in an Ascape project for example, you will get an error.
+
+[[Image:images/tools/EditorToolbar.png]]
+
+To launch a model, select one of the options.
+
+One a model has been launched, the Agent Execution Perspective automatically becomes active. The Provides a custom layout menus and tools specific to executing agent models.
+
+[[Image:images/execution/EpidemicModelRunning.png]]
+
+The execution options are:
+
+=====Execute=====
+
+Launches the model using default graphics, opening the Agent Execution perspective.
+
+=====Execute Headless=====
+
+Launches the model without graphics, opening the Agent Execution perspective.
+
+=====Execute Headless (Data)=====
+
+Launches the model with an observer that collects data into the AMF adata model representation.
+
+====Executing a Model (Java / 3D)====
+
+You can execute any Escape model directly from its Java file by right-clicking on it. This is used for models that have been written directly in Java, or that you have created or that have been automatically generated, such as the 3D versions of AMF models. In order for the model to launch correctly, it must have as a superclass the Escape "Scape" class. In the following screenshot, we've launched a 3D version of the Epidemic model. The 3D models are automatically generated for all .metaabm models.
+
+[[Image:images/execution/Epidemic3D.png]]
+
+====Controlling Model Execution====
+
+Once a model has been launched, the toolbar buttons allow you to control model execution.
+
+[[Image:images/execution/EpidemicModelControls.png]]
+
+From right to left, you can start, restart, pause, step, stop and close a model. You can even run multiple models and control them independently. You can also move views around, close them and so on as with any other Eclipse views. Here we're running two separate models for comparison.
+
+[[Image:images/execution/EpidemicModelComparison.png]]
+
+=====The Active Model=====
+
+An important concept in the execution workbench is the "active model". The active model is the model that is controlled by the toolbar buttons. As discussed, the Escape environment supports more than one running model at any given time. The active model is the current "focused" or front-most model, there can be only one active model at any given time and whenever any models are running one of them will be active. To make a model become the active model, you simply select a view of that model or select the model in the model manager (see below). When a model is closed, another model is automatically activated.
+
+====Views====
+
+There are many views specific to the Agent Execution environment that will enable you to explore and control running models.
+
+=====Properties=====
+
+If you want to find out more about an agent, show the properties view, and click on agent in the 2D view or any other views that support agent selection such as the tree view.
+
+[[Image:images/execution/EpidemicModelAgentProperties.png]]
+
+You can experiment with different parameters (settings) for models by then clicking on the model in the Model Manager or by selecting a general mode area such as the gray area enclosing the 2D view.
+
+[[Image:images/execution/EpidemicModelProperties.png]]
+
+=====Agent Navigator=====
+
+The '''Agent Navigator''' allows you to select agents from a tree view. The agent selection is coordinated across views so that for example when you select an agent in the navigator it is also selected in the 2D view. In the following screenshot you can see an agent selected in both views as well as the properties editor.
+
+[[Image:images/execution/AgentNavigator.png]]
+
+=====Model Manager=====
+
+The ''''Model Manager'''' allows you to examine and control the status of all running models. In the following screenshot, we've launched four separate models so that we can compare the typical model state at different periods.
+
+[[Image:images/execution/ModelManager.png]]
+
+The manager shows that two of the models are running and two are paused. By opening the model node, we can see the views that are currently being displayed. Note that we mean something different by "Views" in this context. Here "Views" are any thing that is monitoring the state of a running model. A view may not have a graphical component at all.
+
+You can make any model the current active model by clicking on its node in this view.
+
+======"About this Model"======
+
+The ''''About this Model'''' view displays information about a (AMF or Java based) model if it has been provided by the developer. In order to appear in this dialog, create a file named <nowiki>"About[MyModel].html"</nowiki> where "MyModel" is the model's Scape Class Name (not the AMF model file name). The file should be placed in a "res" source folder in the model project directory in a parallel directory path to the root scape's Java class package. For example, an about file for a model defined by the scape "edu.brook.norms.Norms" should be placed at "res/edu/brook/norms/AboutNorms.html". The file should be an html fragment -- that is, without body and head tags -- and can include any valid html tags, including links.
+
+[[Image:images/execution/AboutView.png]]
+
+
+====Visualization====
+
+The Agent Modeling Environment is designed to support many kinds of 2D or 3D visualization. AMP includes the following views for generated models. The Escape API supports a number of additional visualization to support Ascape models that aren't shown here. Look at the example org.ascape.escape.models.examples and org.ascape.escape.models.brook for examples of those.
+
+=====2D Views=====
+
+The '''Graphic 2D''' view is the most common view way to work with an Agent Model and is automatically generated and displayed for executing models.
+
+[[Image:images/execution/Epidemic2DView.png]]
+
+There are a number of view widgets in the upper-right hand corner that you can use to modify the view. You can:
+
+======Scaling======
+
+#Enter or select a specific scale in the combo menu.
+#Select a button to have the model scale either:
+##Freely
+##Within the bounds of the view
+##Within the vertical bounds of the view
+##Within the horizontal bounds of the view
+#Zoom In
+#Zoom Out
+
+=====Charts=====
+
+A '''Chart''' view is automatically created and displayed for executing models. It can display aggregate values for any of the agent attributes you have set the "gather data" value to true for. Charts can be easily modified. While the built-in view is not meant to be the sole tool for Escape model data analysis, it provides an easy to use and powerful way to explore models interactively. The Chart view widgets allow you to modify the chart with the click of a button.
+
+[[Image:images/execution/EpidemicChartOptions.png]]
+
+======Chart Type======
+
+Several chart types are supported: The line, area, bar and pie chart. Click on one of the icons to select that type.
+
+[[Image:images/execution/LineChart.png|400px|Line Chart]]
+[[Image:images/execution/AreaChart.png|400px|Area Chart]]
+[[Image:images/execution/BarChart.png|400px|Bar Chart]]
+[[Image:images/execution/PieChart.png|400px|Pie Chart]]
+
+======Chart Legend======
+
+Turn the legend on and off by selecting the "T" icon.
+
+======Chart Data======
+
+To select the statistics to display, show the '''Chart Customizer''' view. When the customizer has been selected, select a chart to customize. The customizer presents the possible choices in a 2D format. On one axis are the attributes that have data being collected, and on the other are the measurements collected on those axes, i.e. Count, Minimum, Maximum, Variance, Standard Deviation, Sum and Average. To clear all selections, click the Gray "X" button.
+
+[[Image:images/execution/EpidemicChartCustomize.png]]
+
+There are a number of other things to play around with, such as zooming the agent view or selecting other chart series to display using the Chart Customizer, so just explore. You can always close an active model by clicking on the close toolbar button. Or if you can't access the models controls for some reason, you can open the progress view and close projects form there.
+
+
+====Executing Internal Targets==== 
 ==Tutorial==
 
 ===Designing a Model===
@@ -1261,38 +1683,37 @@ Before beginning a modeling project it is important to have a clear idea of what
 
 A special Agent Modeling '''Perspective''' can be used to setup your '''Workspace''' for modeling. Depending on your how you installed the agent modeling tools, you can simply pick the perspective from the choices in the upper-right hand of your workbench:
 
-[[Image:images/SimpleTutorial0Perspective.png]]
+[[Image:images/edit_tutorial/SimpleTutorial0Perspective.png]]
 
 Or, if you can't see it there, you can access it by selecting the menu '''Open Perspective > Other... and then selecting the Agent Modeling perspective from the provided options:
 
-[[Image:images/SimpleTutorial0Perspective2.png]]
-
+[[Image:images/edit_tutorial/SimpleTutorial0Perspective2.png]]
 
 =====Create Project=====
 
 Before doing anything else, we need a project -- a folder to organize our models within. Right-click in the Package Explorer and select '''New > Agent Modeling Escape Project'''.
 
-[[Image:images/SimpleTutorial1.png]]
+[[Image:images/edit_tutorial/SimpleTutorial1.png]]
 
 =====Name project=====
 
 We'll get a dialog allowing us to name the project. Let's call it something simple.
 
-[[Image:images/SimpleTutorial2.png]]
+[[Image:images/edit_tutorial/SimpleTutorial2.png]]
 
 =====Create Model=====
 
 We'll need a model as well. This is the container for all of the the agents and behaviors we'll be defining. Right-click on the project folder and choose '''New > Agent Model'''.
 
-[[Image:images/SimpleTutorial3CreateModel.png]]
+[[Image:images/edit_tutorial/SimpleTutorial3CreateModel.png]]
 
 You'll see a model creation wizard from which you can name the model. Just give it the name "StupidModel.metaabm".
 
-[[Image:images/SimpleTutorial4CreateModel.png]]
+[[Image:images/edit_tutorial/SimpleTutorial4CreateModel.png]]
 
 Click '''Next''' to see some other options. We don't need to change any of this:
 
-[[Image:images/SimpleTutorial5CreatePage2.png]]
+[[Image:images/edit_tutorial/SimpleTutorial5CreatePage2.png]]
 
 So just click the '''Finish''' button and we're ready to move on with the tutorial.
 
@@ -1304,23 +1725,23 @@ So just click the '''Finish''' button and we're ready to move on with the tutori
 
 Our first step is to create an agent. The root contexts and a number of neccessary model components were already created automatically. So right-click on the root "StupidModel1" context and select '''Create Member > Agent'''.
 
-[[Image:images/SimpleTutorial6Createagent.png]]
+[[Image:images/edit_tutorial/SimpleTutorial6Createagent.png]]
 
 ======Name Agent======
 
 Let's call it "Bug". In the lower left-hand corner you should see the '''Properties''' View. This is where you'll edit model values when working with the tree editor. The properties view -- as with any other view--- can be moved anywhere within the workbench and if you can't find it -- or any other views -- you can always lcoate it through '''Window > Show View > Other'''. Find the "Label" property and type our new name into it. You'll see that all of the related name properites are also updated.
 
-[[Image:images/SimpleTutorial6NameBug.png]]
+[[Image:images/edit_tutorial/SimpleTutorial6NameBug.png]]
 
 ======The Create Agent Action====== 
 
 While we've been making these changes, the modeling framework has also been doing some work behind the scenes. For example, it has created an attribute and a rule to create the agents. Open the Actions node and the Attributes node to see these changes. If we look at the attributes for the model, we can see that an attribute specifying the number of agents has been created called "Bug Count". Select it, then enter "100" as the default value. The default value is the value the model will use if no value is specified anywhere else (like in the parameter launcher).
 
-[[Image:images/SimpleTutorial10AgentCount.png]]
+[[Image:images/edit_tutorial/SimpleTutorial10AgentCount.png]]
 
 You might want to take a look at the Create Bugs rule, but there isn't anything we need to change there.
 
-[[Image:images/SimpleTutorial11BuildAgents.png]]
+[[Image:images/edit_tutorial/SimpleTutorial11BuildAgents.png]]
 
 =====Grid Space=====
 
@@ -1328,7 +1749,7 @@ You might want to take a look at the Create Bugs rule, but there isn't anything 
 
 Next, we'll create a grid for the Bugs to move around upon. Right-click on the StupidModel1 context and choose '''New > Grid'''.
 
-[[Image:images/SimpleTutorial7CreateGrid.png]]
+[[Image:images/edit_tutorial/SimpleTutorial7CreateGrid.png]]
 
 ======Set Grid Parameters======
 
@@ -1338,21 +1759,21 @@ Now, looking at the properties for the Grid we've just created, we can see that 
 #Set the "Neighborhood" property to be "Moore" -- that's how we are going to interpret the statement "in the X and Y directions".
 #Set the dimensionality to "2". (You might need to enlarge the Property view or use the scroll bar to see the Dimensionality property.)
 
-[[Image:images/SimpleTutorial8GridParameters.png]]
+[[Image:images/edit_tutorial/SimpleTutorial8GridParameters.png]]
 
 Again, the framework has taken care of some things for us automatically. If we now open the Grid node, we can see that "Width" and "Height" attributes have been created based on the dimensionality we've just defined. We'll set each of them to "100", so that we end up with a 100 x 100 grid. (Which is pretty large for a model of this kind, but we want to go with the basic specification.)
 
-[[Image:images/SimpleTutorial9GridDims.png]]
+[[Image:images/edit_tutorial/SimpleTutorial9GridDims.png]]
 
 ======The Build Grid Action======
 
 The Agent Modeling Framework has also created a Build Gird Action for us. If you navigate to the StupidModel1 context Actions node again, you can see the Action. If you click on it you should see the following properties set:
 
-[[Image:images/SimpleTutorial14BuildGridParams.png]]
+[[Image:images/edit_tutorial/SimpleTutorial14BuildGridParams.png]]
 
 If you click on the '''...''' button next to the "Agents" property you'll see see the Bug, which is the agent that will be moving around upon the grid.
 
-[[Image:images/SimpleTutorial13BuildGridAgents.png]]
+[[Image:images/edit_tutorial/SimpleTutorial13BuildGridAgents.png]]
 
 ====Actions====
 
@@ -1360,43 +1781,43 @@ If you click on the '''...''' button next to the "Agents" property you'll see se
 
 Now we can make these bugs do something. Let's create our first rule. In this case we're going to create a special Initialize Action that executes once when the model is first created for each agent. All Actions begin from the agent (or style) Actions list and there are only a few Actions that can serve as roots. See the Design section of this guide for much more on that. Open the Bug node by clicking the triangle icon, right-click on the Actions node and select the '''Create Member > Initialize Action.
 
-[[Image:images/SimpleTutorial15CreateInitialize.png]]
+[[Image:images/edit_tutorial/SimpleTutorial15CreateInitialize.png]]
 
 ======Create Select Action======
 
 Next, right click on the new Initialize node and choose '''Create Member > Select''' to create a Select target.
 
-[[Image:images/SimpleTutorial16CreateSelect.png]]
+[[Image:images/edit_tutorial/SimpleTutorial16CreateSelect.png]]
 
 Selects are the central building blocks of model actions and define the basis for Query and Logic Actions that can be modified and used in subsequent targets. Targets are actions that "follow from" other actions. With this Select we are going to be searching for places for the Bug to move to at the very start of the model run. Here we need to specify the space we will be looking for cells within, so we set the Space property to "Grid 2D". Normally, we'd specify an agent as well, but as the Grid 2D cells don't have any attributes, we don't need to define them explicitly. So we just need to make sure that the Agent property is null (blank).
 
-[[Image:images/SimpleTutorial165Select2.png]]
+[[Image:images/edit_tutorial/SimpleTutorial165Select2.png]]
 
 ======Create Query Action======
 
 Next, we create a Query Action. A query is really a query term; we're specifying some aspect of the search that we're interested in.
 
-[[Image:images/SimpleTutorial17CreateQuery.png]]
+[[Image:images/edit_tutorial/SimpleTutorial17CreateQuery.png]]
 
 In this case we want a special kind of query, a query within space for any agents that are available; that is unoccupied by another agent. So we select "Spatial: Available" form the drop down list of query functions.
 
-[[Image:images/SimpleTutorial18QueryFunction.png]]
+[[Image:images/edit_tutorial/SimpleTutorial18QueryFunction.png]]
 
 ======Create Move Action======
 
 Finally, as the last part of the initial action specification, we'll create a Move Action using '''Create Member > Move'''. (Not shown.) The properties should be correct, but check to make sure that the selection property is "Initialize" (the root), and the destination property is "Bug" (the Select Action we've defined above). Like this:
 
-[[Image:images/SimpleTutorial19Move.png]]
+[[Image:images/edit_tutorial/SimpleTutorial19Move.png]]
 
 =====Run Initial Model=====
 
 That's all we have to do to create our first working model! Now, go to the '''Package Explorer''' and select the StupidModel1.metaabm file. Right-click on it and select '''Execute'''. Or click on the first "m" button in the toolbar. (Again, we've simplified the toolbar for this tutorial, so you may have more buttons appearing then we're showing here.
 
-[[Image:images/SimpleTutorial20ExecuteModel.png]]
+[[Image:images/edit_tutorial/SimpleTutorial20ExecuteModel.png]]
 
 A new perspective for "Agent Execution" will automatically open up and you can see that the agents have placed themselves in the grid. They don't do anything else yet.
 
-[[Image:images/SimpleTutorial21Execute2.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial21Execute2.png | right]]
 
 ====Styles====
 
@@ -1406,13 +1827,13 @@ A new perspective for "Agent Execution" will automatically open up and you can s
 
 While Escape assigns a default color of black for the agents, we'll want something more interesting -- so let's make the Bugs red. Agent visualization is accomplished using the same mechanism as ordinary agent rules. So first, let's create a new Style. Right click on the "Styles" node and select '''
 
-[[Image:images/SimpleTutorial22CreateStyle.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial22CreateStyle.png | right]]
 
 By default the style will be called BugStyle2D. Open the Style to the Actions node and create a rule.
 
 ======Create Style Rule======
 
-[[Image:images/SimpleTutorial23CreateStyleRule.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial23CreateStyleRule.png | right]]
 
 Now we need to create a series of evaluations. An Evaluation is like a Query in that it performs some kind of function in the broadest sense, but unlike a Query, it does not affect whether target (downstream) Acts are performed. For Styles we have a set of Graphic functions that we will chain together to draw a figure. First we create the Evaluation.
 
@@ -1420,11 +1841,11 @@ Now we need to create a series of evaluations. An Evaluation is like a Query in 
 
 We make the first Evaluation define a Color of "Red". Right click on the new Rule, and select '''New > Command > Evaluate''' (not shown) to create an Evaluation. Then in the function property, select "Graphic: Color Red".
 
-[[Image:images/SimpleTutorial24EvaluationFunction.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial24EvaluationFunction.png | right]]
 
 We'll create two more evaluation targets. Right-click on the "Color Red" evaluation and create an Evaluation. Pick the "Graphic: Draw Oval" fill. For the last part of our style, we need to actually draw the figure. To do this we create a last Evaluation target for "Draw Oval" and give it the "Graphic: Fill Shape" function. By now it should be clear how to do this. "Fill" or "Outline" will always come last in a chain of graphic evaluations, but otherwise the order shouldn't matter. See the Demographic Prisoner's Dilemma model for an example of how this can be used to selectively pick Colors and or Shapes. You should end up with something like this:
 
-[[Image:images/SimpleTutorial25FinishStyle.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial25FinishStyle.png | right]]
 
 
 ====Actions 2 Movement Rule====
@@ -1437,7 +1858,7 @@ The first part of the Bug Rule is exactly the same as the Initialize rule. Creat
 
 But now, instead of moving <i>anywhere</i> we want to move nearby. So now, we create a ''parallel'' or "sibling" Query from the same Select root. Because this new Query Action is a child of the Select Action and not the "Space Available" Query we've just created, we'll right-click on the ''Select'' Action and choose '''Create Target > Select > Query'''. Like so:
 
-[[Image:images/SimpleTutorial26CreateQuery2.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial26CreateQuery2.png | right]]
 
 Often, we would pick the "Spatial: Neighbor" function to take a random walk, but according to the specification, we actually want to move into some random Cell within distance four (4). So we will pick "Spatial: Within" from the list of functions.
 
@@ -1445,33 +1866,33 @@ Often, we would pick the "Spatial: Neighbor" function to take a random walk, but
 
 Instead of specifying the actual distance now, let's see how the Agent Modeling Framework error checking capabilities can help us in model development. Save the model by selecting '''File > Save''' from the application menu. Notice that a red marker appears next to the StupidModel1.metaabm file. If you reveal the '''Problems View''' you'll see a list of current errors and warnings and if you open the errors node in that list, you'll see an item reporting that the input has no value. If you double-click on that item, you'll be taken to the input for the Within query and you'll be able to edit it.
 
-[[Image:images/SimpleTutorial27NoValue.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial27NoValue.png | right]]
     
 In addition to error markers, metaABM provides warnings designed to help you avoid common design mistakes. For example, a warning will be issued if you attempt to move an agent from its selection to the same selection; this is not strictly speaking an error, but it doesn't make much sense. You'll also recieve warning for default values that have not been specified. You might notice that the Demographic Prisonner's Dilemma model has warning markers, this is because we were happy with the '0' default values for the attributes and didn't provide any. (By the way, you might also notice a number of Java warnings. By default the Eclipse IDE is very conservative when it comes to warnings, and expects the usage of language constructs that we choose not to use. A full discussion of all of this is beyond the scope of the tutorial, but see the Eclipse documentation on problem views for more ideas about how to customize these views.)
 
 To fix this error we just need to assign a value for search distance. We '''could''' simply create a literal for the Spatial: Within Query but that isn't really good practice. (Originally the Agent Modeling Framework didn't even support Literal values, but we added them for convenience.) Now, we will create our first Attribute. In this case, we want the Attribute to belong to the Stupid Model as it will be the same value for all Agents for now. So right-click on the Stupid Model context Attributes node and create a new one.
 
-[[Image:images/SimpleTutorial28CreateAttribute.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial28CreateAttribute.png | right]]
 
 Name the Attribute -- "Bug Vision" seems descriptive -- give it a type of Integer, and assign it a default value of 4. This will allow most ABM platforms to provide the ability to change vision at runtime or through batch definitions, something we couldn't do if we had used a literal value.
 
-[[Image:images/SimpleTutorial29AttributeValues.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial29AttributeValues.png | right]]
 
 Finally, we assign the Vision attribute to the "Input" node in our Spatial: Within Query.
 
-[[Image:images/SimpleTutorial30AttributeInput.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial30AttributeInput.png | right]]
 
 Now, we need to combine the requirement that the cell be available with the requirement that it be within 4 cell's distance. To accomplish this, we'll add an Intersection Action. The Logical Actions, including "Intersection", "Union" and "None" define how Query Actions work together. So create an Intersection Actions as a target of the Spatial Available Query. (Not the Within Query).
 
-[[Image:images/SimpleTutorial31Intersect.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial31Intersect.png | right]]
 
 The Intersection Action needs to be a target of ''both'' the Available and Within targets. To accomplish this, drag the Intersection Action over the Within Query. It's a bit hard to see this in a static image, but you simply need to click on the Intersection Action, move it so that it is over the Within target, and release the mouse.
 
-[[Image:images/SimpleTutorial32IntersectAdd.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial32IntersectAdd.png | right]]
 
 Finally, add a Move target to the Intersection.
 
-[[Image:images/SimpleTutorial33Move.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial33Move.png | right]]
 
 A few notes on the screenshot above. To make things a bit clearer, we've edited the names for the final panel. Also, the Intersection node might not appear in the same place. We've expanded the nodes so that you can see that while the actions are all listed together, they are actually defined as a tree structure internally. You can follow that tree to see all of the actions that might be the result of any of the actions in the list. To help understand the structure at a glance, the labels include an <- indicator showing the immediate sources of each of the nodes. ''Note especially than while the targets for actions often appear immediately following their source actions, this is not always the case.''
 
@@ -1479,89 +1900,10 @@ A few notes on the screenshot above. To make things a bit clearer, we've edited 
 
 Now, we can select the model in the '''Package Navigator''' again, and run the model. It doesn't look much different in a snapshot, but those agents should now be moving around. We have built a complete Ascape model from our model.
 
-[[Image:images/SimpleTutorial34RunFinal.png | right]]
+[[Image:images/edit_tutorial/SimpleTutorial34RunFinal.png | right]]
 
 We hope this tutorial has enabled you to get up and running and given you some familiarity with the basic Agent Modeling Framework approach. The example models include the other "stupid models" from the paper, as well as a number of other interesting models.
 
-==Running Agent Models==
-
-
-===Exploring Example ABM Models===
-
-The first thing most people will want to do in AMP is to play with the example models. You can explore AMF models as well as some really interesting classic ABM models.
-
-====Downloading Models====
-
-To obtain the models, simply launch the cheat sheet. Go to the '''Help > Cheat Sheets...''' menu and choose "Load Sample Projects".
-
-Or you can get them yourself from the following locations:
-
-=====AMF Models=====
-
- org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.escape
-
-To understand the capabilities of AMF, you might also want to try out running the same models automatically generated for Ascape or Repast. These are located at dev.eclipse.org in cvsroot/modeling:
-
- org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape
- org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
-
-=====Escape / Ascape Java Models=====
-
-These are SVN projects in the sourceforge SVN. For help, see [[http://www.eclipse.org/subversive/documentation/teamSupport/find_check_wiz.php this page]].
-
- http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.brook
- http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.examples
- 
-====Generating Models====
-
-There are a number of models developed with AMF that can automatically generate example models to run in Escape. There are two ways to run the example models:
-
-=====Creating a New Escape Project=====
-
-The best option is to simply create a new Escape project and drag the models into it!
-
-#If you're not already there, open the Agent Modeling Perspective. Select Window > Open Perspective > Other.. and then Agent Modeling. (Or you can choose Window > Reset Perspective and the Agent Modeling perspective should appear in the Open Perspective list itself.)
-#Next, let's create the project where we'll place our model. Select File > New > Escape AMF Project. Give it a name like "escape.tutorial", then click Finish.
-#Finally grab the Epidemic.metaabm model at http://download.eclipse.org/amp/models/Epidemic.metaabm and drag it into the project. (Depending on your browser the file may load as text directly into your browser, in which case just right-click on the link and save it to a file.)
-
-===Tutorial===
-
-We've developer have a complete cheat sheet supporting this tutorial. Simply go to '''Help > Cheat Sheets...''' and then select "Run an Example Model" from within the "Agent Modeling" category. Or install the example models and then explore the following steps.
-
-Right-click on the model, and select "Execute". You should see something like this:
-
-[[Image:images/EpidemicModelRunning.png]]
-
-The toolbar buttons allow you to control model execution.
-
-[[Image:images/EpidemicModelControls.png]]
-
-From right to left, you can start, restart, pause, step, stop and close a model. You can even run multiple models and control them independently. You can also move views around, close them and so on as with any other Eclipse views. Here we're running two separate models for comparison.
-
-[[Image:images/EpidemicModelComparison.png]]
-
-If you want to find out more about an agent, show the properties view, and click on agent.
-
-[[Image:images/EpidemicModelAgentProperties.png]]
-
-You can experiment with different parameters (settings) for models by then clicking in the gray area away within the view.
-
-[[Image:images/EpidemicModelProperties.png]]
-
-There are a number of other things to play around with, such as zooming the agent view or selecting other chart series to display using the Chart Customizer, so just explore. You can always close an active model by clicking on the close toolbar button. Or if you can't access the models controls for some reason, you can open the progress view and close projects form there.
-
-====Next Steps====
-
-To understand the capabilities of AMF, you might also want to try out running the same models automatically generated for Ascape or Repast.
-
- org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape
- org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
-
-===Classic Java ABM Models===
-
-Many models have been created using Ascape over the years, including all of the classic models created at Brookings and some other cool models such as Craig Reynold's Boids and a pretty cool little traffic model, and they've all been converted to run in Escape. They're in Java but you can execute and explore them in exactly the same way as the Epidemic model above. All of the Ascape example models have been converted (a straightforward process) from their intial Ascape incarnations. For licensing reasons (they're BSD, not EPL) we can't host them directly on the Eclipse site.  You can get the projects in two ways:
-
-Once you've downloaded the projects, open up the src folder and navigate to the Java files for the actual models. For example, to run Conway's Life, you'll want src/edu.brook.life.ConwayLife. Right-click on the Java file and select "Execute". There are many models to explore! (It's not always obvious which Java files are for models, so you may have to poke around a bit. We need to put together a catalog here. Another nice opportunity for user contributions.)
 =Programer's Guide=
 
 ==Overview==
@@ -1607,17 +1949,17 @@ As explained in the action section, you can simply create a "Method" act with ha
 
 You can mix and match Action behavior with Java and generated code with POJOs. One way to do this is through using protected regions. Select the agent you want to create protected methods for and then select "Generate Protected" from the "Mode" property. Now, create actions just as you have before, or use your existing ones. On code generation, open up the relevant java file and examine the methods that have been created. 
 
-[[Image:images/ProgrammingPojoGenerateProps.png]]
+[[Image:images/pojo/ProgrammingPojoGenerateProps.png]]
 
 You can put whatever you want within the PROTECTED REGION comments and those changes will be preserved when the model is regenerated. You can create a schedule, rule or watcher, maintain custom code for the actual implementations, and still have the model adapt to changes in the underlying data structure -- if for example you want to import a modified shape file.
 
-[[Image:images/ProgrammingPojoGenerateCode.png]]
+[[Image:images/pojo/ProgrammingPojoGenerateCode.png]]
 
 ====Implement Sub-classes====
 
 Another approach which can be more robust is to generate the basic model stubs (like an abstract base class except that it isn't abstract) and then override your model with implementations. AMF provides support for generic skeletons and interfaces.
 
-[[Image:images/ProgrammingPojoGenerate.png]]
+[[Image:images/pojo/ProgrammingPojoGenerate.png]]
 
 ===Converting Existing Ascape models===
 
@@ -1664,6 +2006,64 @@ That's about it, though it's probable that we've missed something. Please post a
 ====Configuration====
 
 Instead of using Ant, Escape has really nice support for parameterizing and testing models. See [[Experimenting and Testing]] (todo). If you do want to work with ant you will need to install the plugins from the Sourceforge download site. (These have dependencies that I didn't want to bother with going through the Eclipse IP process to get in. If for some reason you think these should be part of core Escape let Miles know and I'll take care of it.) Ant has not been tested for Escape so it's not even clear it will work.
+==Running Agent Models==
+
+
+===Exploring Example ABM Models===
+
+The first thing most people will want to do in AMP is to play with the example models. You can explore AMF models as well as some really interesting classic ABM models.
+
+====Downloading Models====
+
+To obtain the models, simply launch the cheat sheet. Go to the '''Help > Cheat Sheets...''' menu and choose "Load Sample Projects".
+
+Or you can get them yourself from the following locations:
+
+=====AMF Models=====
+
+ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.escape
+
+To understand the capabilities of AMF, you might also want to try out running the same models automatically generated for Ascape or Repast. These are located at dev.eclipse.org in cvsroot/modeling:
+
+ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape
+ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
+
+=====Escape / Ascape Java Models=====
+
+These are SVN projects in the sourceforge SVN. For help, see [[http://www.eclipse.org/subversive/documentation/teamSupport/find_check_wiz.php this page]].
+
+ http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.brook
+ http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.examples
+ 
+====Generating Models====
+
+There are a number of models developed with AMF that can automatically generate example models to run in Escape. There are two ways to run the example models:
+
+=====Creating a New Escape Project=====
+
+The best option is to simply create a new Escape project and drag the models into it!
+
+#If you're not already there, open the Agent Modeling Perspective. Select Window > Open Perspective > Other.. and then Agent Modeling. (Or you can choose Window > Reset Perspective and the Agent Modeling perspective should appear in the Open Perspective list itself.)
+#Next, let's create the project where we'll place our model. Select File > New > Escape AMF Project. Give it a name like "escape.tutorial", then click Finish.
+#Finally grab the Epidemic.metaabm model at http://download.eclipse.org/amp/models/Epidemic.metaabm and drag it into the project. (Depending on your browser the file may load as text directly into your browser, in which case just right-click on the link and save it to a file.)
+
+===Tutorial===
+
+We've developer have a complete cheat sheet supporting this tutorial. Simply go to '''Help > Cheat Sheets...''' and then select "Run an Example Model" from within the "Agent Modeling" category.
+
+
+====Next Steps====
+
+To understand the capabilities of AMF, you might also want to try out running the same models automatically generated for Ascape or Repast.
+
+ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape
+ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
+
+===Classic Java ABM Models===
+
+Many models have been created using Ascape over the years, including all of the classic models created at Brookings and some other cool models such as Craig Reynold's Boids and a pretty cool little traffic model, and they've all been converted to run in Escape. They're in Java but you can execute and explore them in exactly the same way as the Epidemic model above. All of the Ascape example models have been converted (a straightforward process) from their intial Ascape incarnations. For licensing reasons (they're BSD, not EPL) we can't host them directly on the Eclipse site.  You can get the projects in two ways:
+
+Once you've downloaded the projects, open up the src folder and navigate to the Java files for the actual models. For example, to run Conway's Life, you'll want src/edu.brook.life.ConwayLife. Right-click on the Java file and select "Execute". There are many models to explore! (It's not always obvious which Java files are for models, so you may have to poke around a bit. We need to put together a catalog here. Another nice opportunity for user contributions.)
 =Resources=
 
 ==Obtaining Example Models==
@@ -1692,3 +2092,46 @@ There is a cheat-sheet available for obtaining the example models. If you would 
 [http://www.pnas.org/content/99/suppl.3/7280.full Agent-Based Modeling]
 [http://jasss.soc.surrey.ac.uk/11/4/12.html Why Model?]
 
+=Support=
+
+==Issues==
+
+Eclipse and the AMP project have a mandate for open communication. Please note that unless you are a customer of an AMP project contributor we will not respond to direct requests for support. We ''will'' make every effort to support your use of AMP in the following ways:
+
+===General Support, Questions and Discussion===
+
+The [http://www.eclipse.org/forums/index.php?t=thread&frm_id=17&S=f4fa6cb31327772a3b626dc409db409b Agent Modeling Platform Newsgroup] is the place to discuss or get support for any of the Eclipse AMP tools. 
+
+===View Existing Bugs and Feature Requests===
+
+If you have a problem or idea for improvement, there's a good chance that its already been discovered. To avoid duplication, please check the current bugs before filing a new bug report or feature request.
+
+[https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&short_desc_type=allwordssubstr&short_desc=&product=AMP&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&status_whiteboard_type=allwordssubstr&status_whiteboard=&keywords_type=allwords&keywords=&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0= Search Existing Bugs]
+
+===File a Bug===
+
+This may sound obvious, but if something doesn't work as it should, the only way that we're going to find out is if someone reports it. All AMP related bugs or feature requests should use the Eclipse Bugzilla.
+
+[https://bugs.eclipse.org/bugs/enter_bug.cgi?product=AMP&rep_platform=All&op_sys=All File a Bug or Feature Request]
+
+===Discuss AMP Development and Project===
+
+All discussion about software development, design and project management issues take place on the AMP dev-list. If you're interested in contributing to the AMP project, this is a good place to contact us. [https://dev.eclipse.org/mailman/listinfo/amp-dev].
+
+===Professional Support===
+
+The AMP project developers -- among the most experienced developers of agent models and tools anywhere -- are naturally the best source for Agent Modeling development, support and training. Please feel free to contact the project lead or other project contributors directly to discuss professional support options.
+
+===Media and Private Communications===
+
+For project related but non-public communications such as media enquires or potential project sponsorship, please contact Miles Parker, the Eclipse AMP project lead, at amp_enquiry@metascapeabm.com. (Requests for support and other communications to this address will be ignored.)
+
+==Feedback==
+
+If you have ideas, comments or requests for information about the project please contact us at the .
+
+==Get Involved==
+
+If you find this tool valuable, please be aware that most of its development occurred through volunteer contributions from individuals and companies that have received no direct funding. You can support continual development efforts financially by purchasing related software tools from companies and organizations that help develop it, including funding for developer time in grant proposals. You can support the Eclipse platform in general by becoming a member organization of Eclipse. But the most important thing that you can contribute is your own time and enthusiasm, either through directly contributing to AMP or by promoting its use in blogs and other social media. For more detailed information about contributing to AMP, please see [http://wiki.eclipse.org/AMP/Getting_Involved our wiki].
+
+ 
