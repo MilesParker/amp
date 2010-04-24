@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/metaabm.org/structure" label="Root Context" ID="rootContext" pluralLabel="Root Contexts">
+<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/structure" label="Root Context" ID="rootContext" pluralLabel="Root Contexts">
   <attributes label="Root Context Agent Count" ID="rootContextAgentCount" pluralLabel="Root Context Agent Counts" description="The number of root context agents to create." sType="INTEGER"/>
   <attributes label="Root Context Context Count" ID="rootContextContextCount" pluralLabel="Root Context Context Counts" description="The number of root context contexts to create." sType="INTEGER"/>
   <attributes label="Root C" ID="rootC" pluralLabel="Root Cs"/>
@@ -9,7 +9,7 @@
   <attributes label="Happiness State 2 Option 0 Maximum" ID="happinessState2Option0Maximum" pluralLabel="Happiness State 2 Option 0 Maximums" sType="REAL"/>
   <attributes label="Happiness State 2 Option 1 Minimum" ID="happinessState2Option1Minimum" pluralLabel="Happiness State 2 Option 1 Minimums" sType="REAL"/>
   <attributes label="Happiness State 2 Option 1 Maximum" ID="happinessState2Option1Maximum" pluralLabel="Happiness State 2 Option 1 Maximums" sType="REAL"/>
-  <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
+  <rootActivity xsi:type="act:AGroup" label="Actions" ID="actions" pluralLabel="Actionss">
     <members xsi:type="act:ABuild" label="Build Root Context" ID="buildRootContext" targets="//@rootActivity/@members[ID='createRootContextAgents'] //@rootActivity/@members[ID='createRootContextContexts']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="/" pluralLabel="Build Root Contexts"/>
     <members xsi:type="act:ACreateAgents" label="Create Root Context Agents" ID="createRootContextAgents" sources="//@rootActivity/@members[ID='buildRootContext']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="//@agents[ID='rootContextAgent']" agentCount="//@attributes[ID='rootContextAgentCount']"/>
     <members xsi:type="act:ACreateAgents" label="Create Root Context Contexts" ID="createRootContextContexts" sources="//@rootActivity/@members[ID='buildRootContext']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="//@agents[ID='rootContextContext']" agentCount="//@attributes[ID='rootContextContextCount']"/>
@@ -25,7 +25,7 @@
       <options label="State 2 Option 0" ID="state2Option0" pluralLabel="State 2 Option 0s"/>
       <options label="State 2 Option 1" ID="state2Option1" pluralLabel="State 2 Option 1s"/>
     </attributes>
-    <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
+    <rootActivity xsi:type="act:AGroup" label="Actions" ID="actions" pluralLabel="Actionss">
       <members xsi:type="act:ARule" label="Root Context Agent Rule" ID="rootContextAgentRule" targets="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='happiness']" selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" agent="//@agents[ID='rootContextAgent']" pluralLabel="Root Context Agent Rules"/>
       <members xsi:type="act:AQuery" label="Happiness" ID="happiness" sources="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']">
         <inputs selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" value="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='happiness']/@inputs.0/@literal">
@@ -43,7 +43,7 @@
     <implementation className="RootContextAgent"/>
   </agents>
   <agents xsi:type="metaabm:SContext" label="Root Context Context" ID="rootContextContext" pluralLabel="Root Context Contexts">
-    <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups"/>
+    <rootActivity xsi:type="act:AGroup" label="Actions" ID="actions" pluralLabel="Actionss"/>
     <implementation className="RootContextContext"/>
   </agents>
 </metaabm:SContext>

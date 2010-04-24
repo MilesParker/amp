@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ASCII"?>
-<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/metaabm.org/structure" label="Root Context" ID="rootContext" pluralLabel="Root Contexts">
+<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/structure" label="Root Context" ID="rootContext" pluralLabel="Root Contexts">
   <attributes label="Root Context Agent Count" ID="rootContextAgentCount" pluralLabel="Root Context Agent Counts" description="The number of root context agents to create." sType="INTEGER"/>
   <attributes label="Root Context Context Count" ID="rootContextContextCount" pluralLabel="Root Context Context Counts" description="The number of root context contexts to create." sType="INTEGER"/>
   <attributes label="Root C" ID="rootC" pluralLabel="Root Cs"/>
-  <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
+  <rootActivity xsi:type="act:AGroup" label="Actions" ID="actions" pluralLabel="Actionss">
     <members xsi:type="act:ABuild" label="Build Root Context" ID="buildRootContext" targets="//@rootActivity/@members[ID='createRootContextAgents'] //@rootActivity/@members[ID='createRootContextContexts']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="/" pluralLabel="Build Root Contexts"/>
     <members xsi:type="act:ACreateAgents" label="Create Root Context Agents" ID="createRootContextAgents" sources="//@rootActivity/@members[ID='buildRootContext']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="//@agents[ID='rootContextAgent']" agentCount="//@attributes[ID='rootContextAgentCount']"/>
     <members xsi:type="act:ACreateAgents" label="Create Root Context Contexts" ID="createRootContextContexts" sources="//@rootActivity/@members[ID='buildRootContext']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="//@agents[ID='rootContextContext']" agentCount="//@attributes[ID='rootContextContextCount']"/>
@@ -11,9 +11,9 @@
   <implementation className="RootContext"/>
   <agents label="Root Context Agent" ID="rootContextAgent" pluralLabel="Root Context Agents">
     <attributes label="Agent A" ID="agentA" pluralLabel="Agent As"/>
-    <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
-      <members xsi:type="act:ARule" label="Root Context Agent Rule" ID="rootContextAgentRule" targets="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRuleAgentAEqualRootCQuery']" selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" agent="//@agents[ID='rootContextAgent']" pluralLabel="Root Context Agent Rules"/>
-      <members xsi:type="act:AQuery" label="Root Context Agent Rule: Agent A Equal Root C Query" ID="rootContextAgentRuleAgentAEqualRootCQuery" sources="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']">
+    <rootActivity xsi:type="act:AGroup" label="Actions" ID="actions" pluralLabel="Actionss">
+      <members xsi:type="act:ARule" label="Root Context Agent Rule" ID="rootContextAgentRule" targets="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='agentAEqualRootCQuery']" selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" agent="//@agents[ID='rootContextAgent']" pluralLabel="Root Context Agent Rules"/>
+      <members xsi:type="act:AQuery" label="Agent A Equal Root C Query" ID="agentAEqualRootCQuery" sources="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']">
         <inputs selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" value="//@agents[ID='rootContextAgent']/@attributes[ID='agentA']"/>
         <inputs selected="//@agents[ID='rootContextAgent']/@rootActivity/@members[ID='rootContextAgentRule']" value="//@attributes[ID='rootC']"/>
         <function xsi:type="function:FLogicalOperator" href="http://metaabm.org/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='operators']/@subs[ID='logicalOperators']/@functions[ID='equal']"/>
@@ -22,7 +22,7 @@
     <implementation className="RootContextAgent"/>
   </agents>
   <agents xsi:type="metaabm:SContext" label="Root Context Context" ID="rootContextContext" pluralLabel="Root Context Contexts">
-    <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups"/>
+    <rootActivity xsi:type="act:AGroup" label="Actions" ID="actions" pluralLabel="Actionss"/>
     <implementation className="RootContextContext"/>
   </agents>
 </metaabm:SContext>

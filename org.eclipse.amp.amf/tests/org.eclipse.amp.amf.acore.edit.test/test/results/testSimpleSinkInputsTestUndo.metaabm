@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ASCII"?>
-<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/metaabm.org/structure" label="Root Context" ID="rootContext" pluralLabel="Root Contexts">
-  <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
-    <members xsi:type="act:ARule" label="Root Context Rule" ID="rootContextRule" targets="//@rootActivity/@members[ID='rootContextRuleEqualQuery']" selected="//@rootActivity/@members[ID='rootContextRule']" agent="/" pluralLabel="Root Context Rules"/>
-    <members xsi:type="act:AQuery" label="Root Context Rule: [?] Equal [?] Query" ID="rootContextRuleEqualQuery" sources="//@rootActivity/@members[ID='rootContextRule']" selected="//@rootActivity/@members[ID='rootContextRule']">
+<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/structure" label="Root Context" ID="rootContext" pluralLabel="Root Contexts">
+  <rootActivity xsi:type="act:AGroup" label="Actions" ID="actions" pluralLabel="Actionss">
+    <members xsi:type="act:ARule" label="Root Context Rule" ID="rootContextRule" targets="//@rootActivity/@members[ID='equalQuery']" selected="//@rootActivity/@members[ID='rootContextRule']" agent="/" pluralLabel="Root Context Rules"/>
+    <members xsi:type="act:AQuery" label="[?] Equal [?] Query" ID="equalQuery" sources="//@rootActivity/@members[ID='rootContextRule']" selected="//@rootActivity/@members[ID='rootContextRule']">
       <inputs selected="//@rootActivity/@members[ID='rootContextRule']"/>
       <inputs selected="//@rootActivity/@members[ID='rootContextRule']"/>
       <function xsi:type="function:FLogicalOperator" href="http://metaabm.org/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='operators']/@subs[ID='logicalOperators']/@functions[ID='equal']"/>

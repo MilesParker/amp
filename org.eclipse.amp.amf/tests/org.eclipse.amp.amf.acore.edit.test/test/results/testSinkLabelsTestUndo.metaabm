@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="ASCII"?>
-<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/metaabm.org/structure" label="Root Context" ID="rootContext" pluralLabel="Root Contexts">
+<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/structure" label="Root Context" ID="rootContext" pluralLabel="Root Contexts">
   <attributes label="Root Context Agent Count" ID="rootContextAgentCount" pluralLabel="Root Context Agent Counts" description="The number of root context agents to create." sType="INTEGER"/>
   <attributes label="Root Context Context Count" ID="rootContextContextCount" pluralLabel="Root Context Context Counts" description="The number of root context contexts to create." sType="INTEGER"/>
   <attributes label="A" ID="a" pluralLabel="As"/>
   <attributes label="B" ID="b" pluralLabel="Bs"/>
-  <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
+  <rootActivity xsi:type="act:AGroup" label="Actions" ID="actions" pluralLabel="Actionss">
     <members xsi:type="act:ABuild" label="Build Root Context" ID="buildRootContext" targets="//@rootActivity/@members[ID='createRootContextAgents'] //@rootActivity/@members[ID='createRootContextContexts']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="/" pluralLabel="Build Root Contexts"/>
     <members xsi:type="act:ACreateAgents" label="Create Root Context Agents" ID="createRootContextAgents" sources="//@rootActivity/@members[ID='buildRootContext']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="//@agents[ID='rootContextAgent']" agentCount="//@attributes[ID='rootContextAgentCount']"/>
     <members xsi:type="act:ACreateAgents" label="Create Root Context Contexts" ID="createRootContextContexts" sources="//@rootActivity/@members[ID='buildRootContext']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="//@agents[ID='rootContextContext']" agentCount="//@attributes[ID='rootContextContextCount']"/>
     <members xsi:type="act:ARule" label="Root Context Rule" ID="rootContextRule" targets="//@rootActivity/@members[ID='setTo']" selected="//@rootActivity/@members[ID='rootContextRule']" agent="/" pluralLabel="Root Context Rules"/>
-    <members xsi:type="act:ASet" label="Set [?] To [?]" ID="setTo" sources="//@rootActivity/@members[ID='rootContextRule'] //@rootActivity/@members[ID='at0Every0']" targets="//@rootActivity/@members[ID='at0Every0AAddB']" selected="//@rootActivity/@members[ID='at0Every0']"/>
-    <members xsi:type="act:ASchedule" label="At 0 Every 0" ID="at0Every0" targets="//@rootActivity/@members[ID='setTo'] //@rootActivity/@members[ID='at0Every0NotAQuery']" selected="//@rootActivity/@members[ID='at0Every0']" agent="/" pluralLabel="At 0 Every 0s"/>
-    <members xsi:type="act:AQuery" label="At 0 Every 0: Not A Query" ID="at0Every0NotAQuery" sources="//@rootActivity/@members[ID='at0Every0']" targets="//@rootActivity/@members[ID='at0Every0_NotAQueryAndAAddB_'] //@rootActivity/@members[ID='at0Every0_NotAQueryOrAAddB_'] //@rootActivity/@members[ID='not_At0Every0_NotAQueryOrAAddB__']" selected="//@rootActivity/@members[ID='at0Every0']">
+    <members xsi:type="act:ASet" label="Set [?] To [?]" ID="setTo" sources="//@rootActivity/@members[ID='rootContextRule'] //@rootActivity/@members[ID='at0Every0']" targets="//@rootActivity/@members[ID='aAddB']" selected="//@rootActivity/@members[ID='at0Every0']"/>
+    <members xsi:type="act:ASchedule" label="At 0 Every 0" ID="at0Every0" targets="//@rootActivity/@members[ID='setTo'] //@rootActivity/@members[ID='notAQuery']" selected="//@rootActivity/@members[ID='at0Every0']" agent="/" pluralLabel="At 0 Every 0s"/>
+    <members xsi:type="act:AQuery" label="Not A Query" ID="notAQuery" sources="//@rootActivity/@members[ID='at0Every0']" targets="//@rootActivity/@members[ID='_NotAQueryAndAAddB_'] //@rootActivity/@members[ID='_NotAQueryOrAAddB_'] //@rootActivity/@members[ID='not__NotAQueryOrAAddB__']" selected="//@rootActivity/@members[ID='at0Every0']">
       <inputs selected="//@rootActivity/@members[ID='at0Every0']" value="//@attributes[ID='a']"/>
       <function xsi:type="function:FLogicalOperator" href="http://metaabm.org/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='operators']/@subs[ID='logicalOperators']/@functions[ID='not']"/>
     </members>
-    <members xsi:type="act:AEvaluate" label="At 0 Every 0: A Add B" ID="at0Every0AAddB" sources="//@rootActivity/@members[ID='setTo']" targets="//@rootActivity/@members[ID='at0Every0_NotAQueryAndAAddB_'] //@rootActivity/@members[ID='at0Every0_NotAQueryOrAAddB_'] //@rootActivity/@members[ID='not_At0Every0_NotAQueryOrAAddB__']" selected="//@rootActivity/@members[ID='at0Every0']">
+    <members xsi:type="act:AEvaluate" label="A Add B" ID="aAddB" sources="//@rootActivity/@members[ID='setTo']" targets="//@rootActivity/@members[ID='_NotAQueryAndAAddB_'] //@rootActivity/@members[ID='_NotAQueryOrAAddB_'] //@rootActivity/@members[ID='not__NotAQueryOrAAddB__']" selected="//@rootActivity/@members[ID='at0Every0']">
       <inputs selected="//@rootActivity/@members[ID='at0Every0']" value="//@attributes[ID='a']"/>
       <inputs selected="//@rootActivity/@members[ID='at0Every0']" value="//@attributes[ID='b']"/>
       <function xsi:type="function:FOperator" href="http://metaabm.org/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='operators']/@subs[ID='numericOperators']/@functions[ID='add']"/>
     </members>
-    <members xsi:type="act:AAll" label="At 0 Every 0 (Not A Query &amp; A Add B)" ID="at0Every0_NotAQueryAndAAddB_" sources="//@rootActivity/@members[ID='at0Every0NotAQuery'] //@rootActivity/@members[ID='at0Every0AAddB']" targets="//@rootActivity/@members[ID='at0Every0_At0Every0_NotAQueryAndAAddB_AndAt0Every0_NotAQueryOrAAddB__']" selected="//@rootActivity/@members[ID='at0Every0']"/>
-    <members xsi:type="act:AAny" label="At 0 Every 0 (Not A Query | A Add B)" ID="at0Every0_NotAQueryOrAAddB_" sources="//@rootActivity/@members[ID='at0Every0NotAQuery'] //@rootActivity/@members[ID='at0Every0AAddB']" targets="//@rootActivity/@members[ID='at0Every0_At0Every0_NotAQueryAndAAddB_AndAt0Every0_NotAQueryOrAAddB__']" selected="//@rootActivity/@members[ID='at0Every0']"/>
-    <members xsi:type="act:ANone" label="!(At 0 Every 0 (Not A Query | A Add B))" ID="not_At0Every0_NotAQueryOrAAddB__" sources="//@rootActivity/@members[ID='at0Every0NotAQuery'] //@rootActivity/@members[ID='at0Every0AAddB']" selected="//@rootActivity/@members[ID='at0Every0']"/>
-    <members xsi:type="act:AAll" label="At 0 Every 0 (At 0 Every 0 (Not A Query &amp; A Add B) &amp; At 0 Every 0 (Not A Query | A Add B))" ID="at0Every0_At0Every0_NotAQueryAndAAddB_AndAt0Every0_NotAQueryOrAAddB__" sources="//@rootActivity/@members[ID='at0Every0_NotAQueryAndAAddB_'] //@rootActivity/@members[ID='at0Every0_NotAQueryOrAAddB_']" selected="//@rootActivity/@members[ID='at0Every0']"/>
+    <members xsi:type="act:AAll" label="(Not A Query &amp; A Add B)" ID="_NotAQueryAndAAddB_" sources="//@rootActivity/@members[ID='notAQuery'] //@rootActivity/@members[ID='aAddB']" targets="//@rootActivity/@members[ID='__NotAQueryAndAAddB_And_NotAQueryOrAAddB__']" selected="//@rootActivity/@members[ID='at0Every0']"/>
+    <members xsi:type="act:AAny" label="(Not A Query | A Add B)" ID="_NotAQueryOrAAddB_" sources="//@rootActivity/@members[ID='notAQuery'] //@rootActivity/@members[ID='aAddB']" targets="//@rootActivity/@members[ID='__NotAQueryAndAAddB_And_NotAQueryOrAAddB__']" selected="//@rootActivity/@members[ID='at0Every0']"/>
+    <members xsi:type="act:ANone" label="!((Not A Query | A Add B))" ID="not__NotAQueryOrAAddB__" sources="//@rootActivity/@members[ID='notAQuery'] //@rootActivity/@members[ID='aAddB']" selected="//@rootActivity/@members[ID='at0Every0']"/>
+    <members xsi:type="act:AAll" label="((Not A Query &amp; A Add B) &amp; (Not A Query | A Add B))" ID="__NotAQueryAndAAddB_And_NotAQueryOrAAddB__" sources="//@rootActivity/@members[ID='_NotAQueryAndAAddB_'] //@rootActivity/@members[ID='_NotAQueryOrAAddB_']" selected="//@rootActivity/@members[ID='at0Every0']"/>
   </rootActivity>
   <implementation className="RootContext"/>
   <agents label="Root Context Agent" ID="rootContextAgent" pluralLabel="Root Context Agents">
-    <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups"/>
+    <rootActivity xsi:type="act:AGroup" label="Actions" ID="actions" pluralLabel="Actionss"/>
     <implementation className="RootContextAgent"/>
   </agents>
   <agents xsi:type="metaabm:SContext" label="Root Context Context" ID="rootContextContext" pluralLabel="Root Context Contexts">
-    <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups"/>
+    <rootActivity xsi:type="act:AGroup" label="Actions" ID="actions" pluralLabel="Actionss"/>
     <implementation className="RootContextContext"/>
   </agents>
 </metaabm:SContext>
