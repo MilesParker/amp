@@ -22,7 +22,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
-import org.apache.commons.lang.StringUtils;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
@@ -37,6 +36,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.CopyCommand;
 import org.eclipse.emf.edit.command.DragAndDropFeedback;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
@@ -53,6 +53,8 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import org.apache.commons.lang.StringUtils;
 import org.metaabm.IID;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SNamed;
@@ -307,40 +309,49 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
         return childrenFeatures;
     }
 
+    public static CompoundCommand createActDragCommand(EditingDomain domain, int eventID, AAct sourceAct,
+            final AAct targetAct) {
+        CompoundCommand cmd = new CompoundCommand() {
+            /**
+             * @return
+             * @see org.eclipse.emf.common.command.CompoundCommand#getAffectedObjects()
+             */
+            public Collection<?> getAffectedObjects() {
+                return Collections.singleton(targetAct);
+            }
+        };
+        if (eventID == DragAndDropFeedback.DROP_LINK) {
+            cmd.append(AddCommand.create(domain, sourceAct, MetaABMActPackage.Literals.AACT__TARGETS, targetAct));
+        } else if (eventID == DragAndDropFeedback.DROP_COPY) {
+            // TODO copy doesn't behave perfectly, updates sometimes lag
+            Command create = CopyCommand.create(domain, targetAct);
+            cmd.appendAndExecute(create);
+            AAct newAct = (AAct) ((List) create.getResult()).get(0);
+            cmd.appendAndExecute(AddCommand.create(domain, sourceAct, MetaABMActPackage.Literals.AACT__TARGETS, newAct));
+        } else if (eventID == DragAndDropFeedback.DROP_MOVE) {
+            cmd.append(AddCommand.create(domain, sourceAct, MetaABMActPackage.Literals.AACT__TARGETS, targetAct));
+            EList<AAct> sources = targetAct.getSources();
+            sources.remove(sourceAct);
+            for (AAct targetSource : sources) {
+                cmd.append(RemoveCommand.create(domain, targetSource, MetaABMActPackage.Literals.AACT__TARGETS,
+                                                targetAct));
+            }
+        }
+        return cmd;
+    }
+
     @Override
     protected Command createDragAndDropCommand(EditingDomain domain, Object owner, float location, int operations,
             int operation, Collection<?> collection) {
-        AAct source = (AAct) unwrap(owner);
-        List<AAct> allSources = new ArrayList<AAct>(source.getAllSources());
-        allSources.add(source);
-        if (Collections.disjoint(allSources, collection)) {
+        if (owner instanceof AAct) {
+            AAct source = (AAct) owner;
+            List<AAct> allSources = new ArrayList<AAct>(source.getAllSources());
+            allSources.add(source);
             CompoundCommand cmd = new CompoundCommand();
-            if (operation == DragAndDropFeedback.DROP_LINK) {
-                Collection<AAct> unwrapped = new ArrayList<AAct>();
-                for (Object object : collection) {
-                    AAct act = (AAct) unwrap(object);
-                    unwrapped.add(act);
-                }
-                cmd.append(super.createDragAndDropCommand(domain, owner, location, operations, operation, unwrapped));
-            } else if (operation == DragAndDropFeedback.DROP_COPY) {
-                Collection<AAct> unwrapped = new ArrayList<AAct>();
-                for (Object object : collection) {
-                    AAct act = (AAct) unwrap(object);
-                    unwrapped.add(act);
-                }
-                cmd.append(super.createDragAndDropCommand(domain, owner, location, operations, operation, unwrapped));
-            } else if (operation == DragAndDropFeedback.DROP_MOVE) {
-                Collection<AAct> targets = new ArrayList<AAct>();
-                for (Object object : collection) {
-                    AAct act = (AAct) unwrap(object);
-                    targets.add(act);
-                }
-                cmd.append(super.createDragAndDropCommand(domain, owner, location, operations, operation, targets));
-                for (AAct target : targets) {
-                    for (AAct lastSource : target.getSources()) {
-                        cmd.append(RemoveCommand.create(domain, lastSource,
-                                                        MetaABMActPackage.Literals.AACT__TARGETS, Collections.singleton(target)));
-                    }
+            for (Object object : collection) {
+                if (object instanceof AAct) {
+                    AAct target = (AAct) object;
+                    cmd.append(createActDragCommand(domain, operation, source, target));
                 }
             }
             return cmd;
@@ -651,20 +662,20 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
+        AAct act = (AAct) notification.getNotifier();
         switch (notification.getFeatureID(AAct.class)) {
             case MetaABMPackage.IID__LABEL:
             case MetaABMPackage.IID__ID:
                 // fireNotifyChanged(new ViewerNotification(notification,
                 // notification.getNotifier(), true, false));
-                AAct owner = (AAct) notification.getNotifier();
-                ASelect rootSelected = owner.getRootSelected();
+                ASelect rootSelected = act.getRootSelected();
                 if (rootSelected != null) { // should only be true for testing..
-                    for (AAct act : rootSelected.getAllTargets()) {
-                        if (act != owner) {
-                            fireNotifyChanged(new ViewerNotification(notification, act, false, true));
-                            if (act instanceof ASink) {
-                                for (AInput input : ((ASink) act).getInputs()) {
-                                    if (input.getValue() == owner) {
+                    for (AAct allTarget : rootSelected.getAllTargets()) {
+                        if (allTarget != act) {
+                            fireNotifyChanged(new ViewerNotification(notification, allTarget, false, true));
+                            if (allTarget instanceof ASink) {
+                                for (AInput input : ((ASink) allTarget).getInputs()) {
+                                    if (input.getValue() == act) {
                                         fireNotifyChanged(new ViewerNotification(notification, input, false, true));
                                     }
                                 }
@@ -681,13 +692,14 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
                 // return;
             case MetaABMActPackage.AACT__REFERENCE:
             case MetaABMActPackage.AACT__SELECTED:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                fireNotifyChanged(new ViewerNotification(notification, act, false, true));
                 return;
             case MetaABMActPackage.AACT__GROUP:
             case MetaABMActPackage.AACT__SOURCES:
             case MetaABMActPackage.AGROUP__MEMBERS:
             case MetaABMActPackage.AACT__TARGETS:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+                fireNotifyChanged(new ViewerNotification(notification, act.getRootSelected(), true, false));
+                fireNotifyChanged(new ViewerNotification(notification, act, true, true));
                 for (AAct parent : getParents(notification.getNotifier())) {
                     fireNotifyChanged(new ViewerNotification(notification, parent, true, false));
                 }
@@ -825,9 +837,7 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
         if (act instanceof ASink) {
             for (AInput input : ((ASink) act).getInputs()) {
                 if (!allSourceSelects.contains(input.getSelected()) && !processed.contains(input)) {
-                    cmd
-                    .append(SetCommand.create(domain, input, MetaABMActPackage.Literals.AINPUT__SELECTED,
-                                              newSelect));
+                    cmd.append(SetCommand.create(domain, input, MetaABMActPackage.Literals.AINPUT__SELECTED, newSelect));
                     processed.add(input);
                 }
             }
