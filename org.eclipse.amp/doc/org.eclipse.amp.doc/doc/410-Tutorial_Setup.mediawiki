@@ -1,0 +1,49 @@
+===Model Goals===
+
+Before beginning a modeling project it is important to have a clear idea of what is being modeled and how it should be modeled. We need to know a bit about where we are going before we start. For our target, we'll use a model described in a paper written by Railsback, Lytien and Grimm. They describe "Stupid Model", a model that could be used to provide a common standard to demonstrated features of different Agent-Based Modeling platforms. See [http://condor.depaul.edu/~slytinen/abm/StupidModelFormulation.pdf] for the complete specification. Here are the key specifications for the basic model.
+
+#The space is a two-dimensional grid of dimensions 100 x 100. The space is toroidal, meaning that if bugs move off one edge of the grid they appear on the opposite edge.
+#100 bug agents are created. They have one behavior: moving to a randomly chosen grid location within +/- 4 cells of their current location, in both the X and Y directions. If there already is a bug at the location (including the moving bug itself, bugs are not allowed to stay at their current location unless none of the neighborhood cells are vacant), then another new location is chosen. This action is executed once per time step.
+#The bugs are displayed on the space. Bugs are drawn as red circles. The display is updated at the end of each time step.
+
+==Model Implementation==
+
+===Setup===
+
+====Open Agent Modeling Perspective====
+
+A special Agent Modeling '''Perspective''' can be used to setup your '''Workspace''' for modeling. Depending on your how you installed the agent modeling tools, you can simply pick the perspective from the choices in the upper-right hand of your workbench:
+
+[[Image:images/edit_tutorial/SimpleTutorial0Perspective.png]]
+
+Or, if you can't see it there, you can access it by selecting the menu '''Open Perspective > Other... and then selecting the Agent Modeling perspective from the provided options:
+
+[[Image:images/edit_tutorial/SimpleTutorial0Perspective2.png]]
+
+====Create Project====
+
+Before doing anything else, we need a project -- a folder to organize our models within. Right-click in the Package Explorer and select '''New > Agent Modeling Escape Project'''.
+
+[[Image:images/edit_tutorial/SimpleTutorial1.png]]
+
+====Name project====
+
+We'll get a dialog allowing us to name the project. Let's call it something simple.
+
+[[Image:images/edit_tutorial/SimpleTutorial2.png]]
+
+====Create Model====
+
+We'll need a model as well. This is the container for all of the the agents and behaviors we'll be defining. Right-click on the project folder and choose '''New > Agent Model'''.
+
+[[Image:images/edit_tutorial/SimpleTutorial3CreateModel.png]]
+
+You'll see a model creation wizard from which you can name the model. Just give it the name "StupidModel.metaabm".
+
+[[Image:images/edit_tutorial/SimpleTutorial4CreateModel.png]]
+
+Click '''Next''' to see some other options. We don't need to change any of this:
+
+[[Image:images/edit_tutorial/SimpleTutorial5CreatePage2.png]]
+
+So just click the '''Finish''' button and we're ready to move on with the tutorial.

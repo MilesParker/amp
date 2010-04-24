@@ -1,13 +1,13 @@
-====Perspective====
+===Perspective===
 
 The Provides a custom layout menus and tools specific to working with agent models. Because the agent modeling process also often involves Java and Eclipse Plugin development we include easy access to many of those tools here as well.
 
-====Creating Projects and Models====
+===Creating Projects and Models===
 
 You can create projects and project components using the Popup menu. Just click in a blank space within the Package Explorer. Any installed project targets are displayed in this menu. For example, if you've installed the Simphony target, you'd see that displayed in this menu as well.
 
 [[Image:images/edit_tutorial/SimpleTutorial3CreateModel.png]]
 
-====Menus, Popups and Toolbar====
+===Menus, Popups and Toolbar===
 
 The popup menus and application menus provide access to various model features and are context sensitive.  Throughout these screenshots, we've customized the toolbar in order to only show the agent Modeling specific features.

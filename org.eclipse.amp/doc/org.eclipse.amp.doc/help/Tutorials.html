@@ -1,0 +1,72 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Tutorials</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="Agent Modeling Guide">
+<link rel="up" href="index.html" title="Agent Modeling Guide">
+<link rel="prev" href="Exploring.html" title="Exploring">
+<link rel="next" href="Model_Implementation.html" title="Model Implementation">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Tutorials</h1>
+<div class="chapter" title="Tutorials">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="Tutorials"></a>Tutorials</h2>
+</div>
+</div>
+</div>
+<div class="toc">
+<dl>
+<dt>
+<span class="section"><a href="Tutorials.html#Designing_a_Model">Designing a Model</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Model_Implementation.html">Model Implementation</a></span>
+</dt>
+</dl>
+</div>
+<div class="section" title="Designing a Model">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Designing_a_Model"></a>Designing a Model</h2>
+</div>
+</div>
+</div>
+<p>In this tutorial, we'll walk through the creation of a complete model. While the tutorial seems lengthy, that's because we've tried to be thorough in describing each step. As we demonstrate in an online video, the actual model can be created in just a couple of minutes.</p>
+<div class="section" title="Model Goals">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Model_Goals"></a>Model Goals</h3>
+</div>
+</div>
+</div>
+<p>Before beginning a modeling project it is important to have a clear idea of what is being modeled and how it should be modeled. We need to know a bit about where we are going before we start. For our target, we'll use a model described in a paper written by Railsback, Lytien and Grimm. They describe "Stupid Model", a model that could be used to provide a common standard to demonstrated features of different Agent-Based Modeling platforms. See 
+					<a class="ulink" href="http://condor.depaul.edu/~slytinen/abm/StupidModelFormulation.pdf" target="_new">http://condor.depaul.edu/~slytinen/abm/StupidModelFormulation.pdf</a> for the complete specification. Here are the key specifications for the basic model.
+				</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>The space is a two-dimensional grid of dimensions 100 x 100. The space is toroidal, meaning that if bugs move off one edge of the grid they appear on the opposite edge.</p>
+</li>
+<li class="listitem">
+<p>100 bug agents are created. They have one behavior: moving to a randomly chosen grid location within +/- 4 cells of their current location, in both the X and Y directions. If there already is a bug at the location (including the moving bug itself, bugs are not allowed to stay at their current location unless none of the neighborhood cells are vacant), then another new location is chosen. This action is executed once per time step.</p>
+</li>
+<li class="listitem">
+<p>The bugs are displayed on the space. Bugs are drawn as red circles. The display is updated at the end of each time step.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

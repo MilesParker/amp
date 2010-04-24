@@ -1,0 +1,80 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>The Agent Modeling Platform (AMP)</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="Agent Modeling Guide">
+<link rel="up" href="Introduction.html" title="Introduction">
+<link rel="prev" href="Credits.html" title="Credits">
+<link rel="next" href="Getting_Started.html" title="Getting Started">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">The Agent Modeling Platform (AMP)</h1>
+<div class="section" title="The Agent Modeling Platform (AMP)">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="The_Agent_Modeling_Platform_.28AMP.29"></a>The Agent Modeling Platform (AMP)</h2>
+</div>
+</div>
+</div>
+<p>The Eclipse Agent Modeling Project (Incubation) or "AMP" provides extensible frameworks and exemplary tools for representing, editing, generating,
+				executing and visualizing agent-based models (ABMs) and any other domain requiring spatial, behavioral and functional features. AMP has two main themes that complement but don't depend on one another, modeling of agent systems (AMF) and execution and exploration of those systems (AXF, AGF and Escape).</p>
+<p>The overall AMP architecture and project dependencies are summarized in the architectural diagram below:</p>
+<p>
+				
+</p>
+<div class="mediaobject">
+<img src="images/AMPArchitectureDiagram.jpg"></div>
+<p>
+			
+</p>
+<div class="section" title="Agent Modeling Framework (AMF)">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Agent_Modeling_Framework_.28AMF.29"></a>Agent Modeling Framework (AMF)</h3>
+</div>
+</div>
+</div>
+<p>AMF provides an ABM meta-model representation, editor, generator and development environment. The AMF Acore meta-model is similar to EMF Ecore and defined in Ecore, but provides high-level support for complex agents.AMF generates complete executable models for Escape, Ascape and Repast Simphony, as well as Java Skeletons and Interfaces, JUnit test cases and documentation and is easily extensible to support additional targets. For more on AMF, see the Modeler Guide.</p>
+</div>
+<div class="section" title="Agent Execution Framework (AXF)">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Agent_Execution_Framework_.28AXF.29"></a>Agent Execution Framework (AXF)</h3>
+</div>
+</div>
+</div>
+<p>The execution framework provides services and UI for model management, execution, and views. Arbitrary toolkits can easily integrate with Eclipse and AXF by implementing pluggable providers like engines, agents and view parts. AXF is not just for ABM -- anyone who needs support for executing, managing and visualizing collections of objects may find it useful. AXF user tools are covered extensively in the User Guide, and the forthcoming Platform Developers Guide will provide information about integrating AXF in your own tools.</p>
+</div>
+<div class="section" title="Agent Graphics Framework (AGF)">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Agent_Graphics_Framework_.28AGF.29"></a>Agent Graphics Framework (AGF)</h3>
+</div>
+</div>
+</div>
+<p>The graphics framework extends GEF, GEF3D, Zest, and the BIRT charting engine to support real-time visualization of and interaction with agent models. AGF currently provides support for 2D, 2 1/2 D. and graph structures, and will be extended to 3-D, GIS and others. As with other AMP components, the AGF design focus is to provide an extensible infrastructure so that platform adopters can easily create their own view and editor parts. AGF user tools are covered extensively in the User Guide, and the forthcoming Platform Developers Guide will provide information about integrating and extending AGF in your own tools.</p>
+</div>
+<div class="section" title="Escape">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Escape"></a>Escape</h3>
+</div>
+</div>
+</div>
+<p>Escape is an exemplar ABM toolset. It's based on Ascape, which has been in use for more than 10 years. The core API is very stable, and that should give users a way to explore the features of AMP without concerns about keeping in synch with the rapidly evolving AXF /AGF API. It allows modelers to code in Java and/or generate models with AMF and then execute those models within the same development environment. Escape is the primary target for most of the models in this guide. Those users interested in writing code directly to the Escape API can refer to the Programmer Guide.</p>
+</div>
+</div>
+</body>
+</html>

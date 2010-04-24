@@ -1,0 +1,197 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Building</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="Agent Modeling Guide">
+<link rel="up" href="User_Guide.html" title="User Guide">
+<link rel="prev" href="Modeling.html" title="Modeling">
+<link rel="next" href="Exploring.html" title="Exploring">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Building</h1>
+<div class="section" title="Building">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Building"></a>Building</h2>
+</div>
+</div>
+</div>
+<div class="section" title="Building Models">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Building_Models"></a>Building Models</h3>
+</div>
+</div>
+</div>
+<p>If you've used other development environments, you're probably used to a separate build step. For example, if you edit a set of Java files, you might invoke a compile command. Eclipse and the Agent Modeling Platform support automatic building. This means that in order to build your code, you simply save the model and the environment takes care of the rest. What gets built is defined by the project. For example, if you save a model that is contained within an Agent Modeling Escape Project, the following steps occur automatically:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>The Escape builder generates Java code for the Escape API, including support for specialized graphics and (if enabled) 3D visualization.</p>
+</li>
+<li class="listitem">
+<p>The Documentation builder generates custom html documentation for the model.</p>
+</li>
+<li class="listitem">
+<p>The Java builder takes the Java code generated above and compiles it.</p>
+</li>
+<li class="listitem">
+<p>The Manifest and Schema builders package the project for use as part of the Eclipse plugin environment.</p>
+</li>
+</ol>
+</div>
+<p>So what do you do if you want to generate code for a different target, such as Repast? Here, you simply create another project and drag the model into it. You can also edit the builders for a given project (see the Workbench Documentation) but you'll only want to do that if you're making permanent changes to the project itself.</p>
+</div>
+<div class="section" title="Generating Specialized Model Artifacts">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Generating_Specialized_Model_Artifacts"></a>Generating Specialized Model Artifacts</h3>
+</div>
+</div>
+</div>
+<p>You can also manually generate code for models. This is useful if you want to create code for a model in a non target project and don't want the automatic build capabilities. There are also specialized targets that can be generated manually that are bundled with the tools -- AMP plugin developers can easily add custom generation targets for this menu. To generate custom artifacts, right-click on a model and select 
+					<span class="bold"><strong>Generate</strong></span>.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/tools/GenerateMenu.png"></div>
+<p>
+				
+</p>
+<p>Targets include:</p>
+<div class="section" title="Platform Targets">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Platform_Targets"></a>Platform Targets</h4>
+</div>
+</div>
+</div>
+<p>Creates code for one of the installed targets, such as Ascape, Escape, and Simphony. (Again, these generators are unnecessary for projects that already have target specific builders configured.)</p>
+</div>
+<div class="section" title="Interfaces">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Interfaces"></a>Interfaces</h4>
+</div>
+</div>
+</div>
+<p>Creates a complete set of interfaces for the model classes. These can be very useful for development and integration in enterprise environments. Generated classes are placed in the src directory with "I" added to the name. For example, if you generate interfaces for a model with an "Individual" agent, this target will create an "IIndividual" interface that includes getters, setters and methods for all of the agent's attributes and actions.</p>
+</div>
+<div class="section" title="Skeleton">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Skeleton"></a>Skeleton</h4>
+</div>
+</div>
+</div>
+<p>Creates a base class for the model. This is essentially a complete implementation, but without the action implementations. Again, these classes can be useful when generating code for use in enterprise and other specialized environments.</p>
+</div>
+<div class="section" title="Test Cases">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Test_Cases"></a>Test Cases</h4>
+</div>
+</div>
+</div>
+<p>Generates base support (needing customization) test cases for use in JUnit tests.</p>
+</div>
+<div class="section" title="Text Documents">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Text_Documents"></a>Text Documents</h4>
+</div>
+</div>
+</div>
+<p>Creates simple text documentation for use in other documents.</p>
+</div>
+<div class="section" title="Generate Key Graphics">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Generate_Key_Graphics"></a>Generate Key Graphics</h4>
+</div>
+</div>
+</div>
+<p>This specialized target supports the creation of graphic keys for the model. To use this target:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>Generate the code.</p>
+</li>
+<li class="listitem">
+<p>Add a dependency to the Manifest for "org.eclipse.amp.amf.gen.extras".</p>
+</li>
+<li class="listitem">
+<p>In the srcutil directory find the Java source code for the calss {RootContext}GraphicsWriter. For example, for the Epidemic model, this would be srcutil/name.milesparker.epi/EpidemicGraphicsWriter.java.</p>
+</li>
+<li class="listitem">
+<p>Right-click, and select 
+								<span class="bold"><strong>Run As &gt; Java Application</strong></span>.
+							</p>
+</li>
+<li class="listitem">
+<p>Refresh the project by right-clicking on it and selecting 
+								<span class="bold"><strong>Refresh</strong></span>.
+							</p>
+</li>
+<li class="listitem">
+<p>The Doc directory will now contain a number of new files, including</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="a">
+<li class="listitem">
+<p>{RootContext}Key.png</p>
+</li>
+<li class="listitem">
+<p>{RootContext}GraphicsKey.html</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+<p>Both files contain graphic representations of the model using the definitions defined by the model styles, very useful artifacts for inclusion in papers and web pages describing your model. For example, here is the EpidemicKey.png:</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/tools/EpidemicKey.png"></div>
+<p>
+					
+</p>
+</div>
+<div class="section" title="Function Docs">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Function_Docs"></a>Function Docs</h4>
+</div>
+</div>
+</div>
+<p>Generates WikiText documentation for function libraries. We use it to create the function documentation in this guide!</p>
+</div>
+</div>
+</div>
+</body>
+</html>

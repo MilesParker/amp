@@ -5,12 +5,21 @@
 <link href="book.css" rel="stylesheet" type="text/css">
 <meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
 <link rel="home" href="index.html" title="Agent Modeling Guide">
-<link rel="up" href="Modeler.27s_Guide.html" title="Modeler's Guide">
-<link rel="prev" href="Modeler.27s_Guide.html" title="Modeler's Guide">
+<link rel="up" href="Modeler_Guide.html" title="Modeler Guide">
+<link rel="prev" href="Modeler_Guide.html" title="Modeler Guide">
 <link rel="next" href="Actions_2.html" title="Actions">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Structure</h1>
+<div class="section" title="Structure">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Structure"></a>Structure</h2>
+</div>
+</div>
+</div>
 <div class="section" title="Overview">
 <div class="titlepage">
 <div>
@@ -23,12 +32,12 @@
 <p>The basic structure of an agent-based model can be quite simple. While there are many subtle complexities  -- beyond the scope of this manual -- we can construct most models following some straightforward and elegant design principles. And in fact, one of the main goals of the Agent Modeling Framework is to provide a consistent framework that can support using those principles to support the creation of models that can be easily understood, shared, and that can be used interchangeably as components in other models.</p>
 <p>Unlike the approach of a traditional Object Oriented environment, the dominant organizing principal for agents within AMF follows a compositional hierarchical model, not an inheritance model. (Inheritance-like behavior will be supported in forthcoming versions of Acore, but in a more sophisticated, flexible and dynamic way than is supported by traditional programming languages such as Java.) Contexts -- also referred to as "Swarms" or "Scapes", are simply Agents that are capable of containing other agents. With this basic construct -- known as a Composition in design pattern language -- agents are able to contain other agents.</p>
 </div>
-<div class="section" title="Concepts">
+<div class="section" title="Details">
 <div class="titlepage">
 <div>
 <div>
 <h3 class="title">
-<a name="Concepts"></a>Concepts</h3>
+<a name="Details"></a>Details</h3>
 </div>
 </div>
 </div>
@@ -216,7 +225,7 @@
 </div>
 </div>
 <p>These can be anyone of the following: </p>
-<table id="N10145">
+<table id="N1014D">
 <tr>
 									
 <td>Boolean</td>
@@ -570,7 +579,7 @@
 <div>
 <div>
 <h5 class="title">
-<a name="Details"></a>Details</h5>
+<a name="Details_2"></a>Details</h5>
 </div>
 </div>
 </div>
@@ -595,6 +604,7 @@
 <p>Styles provide a mechanism for defining generic visualization behavior for Agents and so are also Actable. For example, an Agent might have an Action that says effectively "draw a red circle shaded red for the wealth of the agent".</p>
 </li>
 </ol>
+</div>
 </div>
 </div>
 </div>

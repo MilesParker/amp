@@ -1,9 +1,0 @@
-=Overview=
-
-The Eclipse Agent Modeling Project (AMP) provides extensible frameworks and exemplary tools for representing, editing, generating,
-executing and visualizing agent-based models (ABMs) and any other domain requiring spatial, behavioral and functional features. 
-
-This guide is divided into three main sections: a modelers guide for general users, a programmers guide for those wishing to develop models in or extensions of AMP, and a resources section.
-
-This manual is integrated with the Eclipse help system. In some sections of the manual you'll see links to related help topics and cheat sheets. Naturally, you'll have access to these resources only when you're using the Eclipse help system.
-

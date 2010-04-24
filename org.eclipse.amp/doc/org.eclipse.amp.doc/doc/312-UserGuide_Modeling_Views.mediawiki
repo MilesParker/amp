@@ -1,42 +1,42 @@
-====Views====
+===Views===
 
 By default the workbench includes a number of views. See the Workbench documentation for more details on how they can be customized accessed and used.
 
 [[Image:images/tools/Workbench.png]]
 
-=====Editor=====
+====Editor====
 
 This is not technically a view in itself. It is the major focus of the workbench and contains any edit models or other files such as Java source or parameters.
 
-=====Default Views=====
+====Default Views====
 
 The default modeling views are visible by default.
 
-======Package Explorer======
+=====Package Explorer=====
 
 Supports navigation within projects.
 
-======Properties======
+=====Properties=====
 
 The properties allows you to view and edit specific details for the currently selected object. For example, if you select a model context, you'll be able to edit its attributes here.
 
-======Outline======
+=====Outline=====
 
 The outline view supports easy navigation within the edited files. See the model editing sections for more on how the outline can be used to assist exploration of Agent Models.
 
-=====Diagnostic Views=====
+====Diagnostic Views====
 
 There are a number of views that can be used to explore issues that might come up during the modeling process. You can see them on the lower left-hand corner of the screenshot above. Click on one of the icons to view their contents.
 
-======Problems======
+=====Problems=====
 
 This view is one that you'll become very familiar with. It is used to display specific about problems with any of the artifacts (files) in your modeling project. If you see a red or yellow marker on a file, opening the view will present a list of the issues that are currently being reported. For a usage example, please see the Tutorial.
 
-======Console======
+=====Console=====
 
 This view displays text (console) output for appropriate processes. For example, if you launch an Ascape project, this will display any output that would go to the Java console.
 
-======Errors======
+=====Errors=====
 
 This is another view that you will find valuable in your day to day modeling activities. The error log lists everything important that happens during model execution. It's the first place to look if something mysterious goes wrong, and when you report problems it's always helpful to include anything that could be relevant in the log. Despite its name, the Errors view is not just for reporting errors -- it is also used to report progress on normal operations. For example, when models are automatically generated that is reported to the log, as we can see in the following example:
 

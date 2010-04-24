@@ -5,7 +5,7 @@ AMP has many potential facets and use cases.
 
 ===Setting up Eclipse===
 
-If you're reading this from the Eclipse help browser, you can ignore this section! Otherwise, if you aren't using a full download version of AMP, you'll need to [http://eclipse.org/amp/installing/ install it]. Once you've done that, select the '''Help > Help Contents''' menu, find the Agent Modeling Guide and open this overview page within that guide.
+If you're reading this from the Eclipse help browser, you've already done this! Otherwise, if you aren't using a full download version of AMP, you'll need to [http://eclipse.org/amp/installing/ install it]. Once you've done that, select the '''Help > Help Contents''' menu, find the Agent Modeling Guide and open this overview page within that guide.
 
 Some installations will also include a Welcome screen which will guide you through the same set of steps.
 

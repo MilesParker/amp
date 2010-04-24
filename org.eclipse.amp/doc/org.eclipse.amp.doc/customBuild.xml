@@ -230,17 +230,15 @@
 					publicId="docbook.xsl"
 					location="${docbook.dir}${file.separator}fo${file.separator}docbook.xsl"/>
 			</xmlcatalog>
+			<param name="graphicsize.extension" expression="1" />
+			<param name="use.extensions" expression="1" />
 			<param name="generate.toc" expression="book toc" />
 			<param name="show.comments" expression="0" />
 			<param name="header.rule" expression="1" />
 			<param name="admon.graphics.extension" expression=".gif"/>
 			<param name="admon.textlabel" expression="0"/>
 			<param name="admon.graphics" expression="1"/>
-			<param name="scale" expression="30"/>
-			<param name="width" expression="50%"/>
-			<param name="contentdepth" expression="50%"/>
-		    <param name="default.image.width" expression="400"/>
-				
+			<param name="default.image.width" expression="400px"/>
 		</xslt>
 
 		<docbook2pdf 

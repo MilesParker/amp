@@ -1,6 +1,6 @@
-===Agent Execution===
+==Exploring==
 
-====Launching a Model (AMF)====
+===Launching a Model (AMF)===
 
 
 When an AMF file is selected -- in any of the perspectives -- the pop-up menu looks like this:
@@ -19,25 +19,25 @@ One a model has been launched, the Agent Execution Perspective automatically bec
 
 The execution options are:
 
-=====Execute=====
+====Execute====
 
 Launches the model using default graphics, opening the Agent Execution perspective.
 
-=====Execute Headless=====
+====Execute Headless====
 
 Launches the model without graphics, opening the Agent Execution perspective.
 
-=====Execute Headless (Data)=====
+====Execute Headless (Data)====
 
 Launches the model with an observer that collects data into the AMF adata model representation.
 
-====Executing a Model (Java / 3D)====
+===Executing a Model (Java / 3D)===
 
 You can execute any Escape model directly from its Java file by right-clicking on it. This is used for models that have been written directly in Java, or that you have created or that have been automatically generated, such as the 3D versions of AMF models. In order for the model to launch correctly, it must have as a superclass the Escape "Scape" class. In the following screenshot, we've launched a 3D version of the Epidemic model. The 3D models are automatically generated for all .metaabm models.
 
 [[Image:images/execution/Epidemic3D.png]]
 
-====Controlling Model Execution====
+===Controlling Model Execution===
 
 Once a model has been launched, the toolbar buttons allow you to control model execution.
 
@@ -47,15 +47,15 @@ From right to left, you can start, restart, pause, step, stop and close a model.
 
 [[Image:images/execution/EpidemicModelComparison.png]]
 
-=====The Active Model=====
+====The Active Model====
 
 An important concept in the execution workbench is the "active model". The active model is the model that is controlled by the toolbar buttons. As discussed, the Escape environment supports more than one running model at any given time. The active model is the current "focused" or front-most model, there can be only one active model at any given time and whenever any models are running one of them will be active. To make a model become the active model, you simply select a view of that model or select the model in the model manager (see below). When a model is closed, another model is automatically activated.
 
-====Views====
+===Views===
 
 There are many views specific to the Agent Execution environment that will enable you to explore and control running models.
 
-=====Properties=====
+====Properties====
 
 If you want to find out more about an agent, show the properties view, and click on agent in the 2D view or any other views that support agent selection such as the tree view.
 
@@ -65,13 +65,13 @@ You can experiment with different parameters (settings) for models by then click
 
 [[Image:images/execution/EpidemicModelProperties.png]]
 
-=====Agent Navigator=====
+====Agent Navigator====
 
 The '''Agent Navigator''' allows you to select agents from a tree view. The agent selection is coordinated across views so that for example when you select an agent in the navigator it is also selected in the 2D view. In the following screenshot you can see an agent selected in both views as well as the properties editor.
 
 [[Image:images/execution/AgentNavigator.png]]
 
-=====Model Manager=====
+====Model Manager====
 
 The ''''Model Manager'''' allows you to examine and control the status of all running models. In the following screenshot, we've launched four separate models so that we can compare the typical model state at different periods.
 
@@ -81,18 +81,18 @@ The manager shows that two of the models are running and two are paused. By open
 
 You can make any model the current active model by clicking on its node in this view.
 
-======"About this Model"======
+====="About this Model"=====
 
 The ''''About this Model'''' view displays information about a (AMF or Java based) model if it has been provided by the developer. In order to appear in this dialog, create a file named <nowiki>"About[MyModel].html"</nowiki> where "MyModel" is the model's Scape Class Name (not the AMF model file name). The file should be placed in a "res" source folder in the model project directory in a parallel directory path to the root scape's Java class package. For example, an about file for a model defined by the scape "edu.brook.norms.Norms" should be placed at "res/edu/brook/norms/AboutNorms.html". The file should be an html fragment -- that is, without body and head tags -- and can include any valid html tags, including links.
 
 [[Image:images/execution/AboutView.png]]
 
 
-====Visualization====
+===Visualization===
 
 The Agent Modeling Environment is designed to support many kinds of 2D or 3D visualization. AMP includes the following views for generated models. The Escape API supports a number of additional visualization to support Ascape models that aren't shown here. Look at the example org.ascape.escape.models.examples and org.ascape.escape.models.brook for examples of those.
 
-=====2D Views=====
+====2D Views====
 
 The '''Graphic 2D''' view is the most common view way to work with an Agent Model and is automatically generated and displayed for executing models.
 
@@ -100,7 +100,7 @@ The '''Graphic 2D''' view is the most common view way to work with an Agent Mode
 
 There are a number of view widgets in the upper-right hand corner that you can use to modify the view. You can:
 
-======Scaling======
+=====Scaling=====
 
 #Enter or select a specific scale in the combo menu.
 #Select a button to have the model scale either:
@@ -111,13 +111,13 @@ There are a number of view widgets in the upper-right hand corner that you can u
 #Zoom In
 #Zoom Out
 
-=====Charts=====
+====Charts====
 
 A '''Chart''' view is automatically created and displayed for executing models. It can display aggregate values for any of the agent attributes you have set the "gather data" value to true for. Charts can be easily modified. While the built-in view is not meant to be the sole tool for Escape model data analysis, it provides an easy to use and powerful way to explore models interactively. The Chart view widgets allow you to modify the chart with the click of a button.
 
 [[Image:images/execution/EpidemicChartOptions.png]]
 
-======Chart Type======
+=====Chart Type=====
 
 Several chart types are supported: The line, area, bar and pie chart. Click on one of the icons to select that type.
 
@@ -126,11 +126,11 @@ Several chart types are supported: The line, area, bar and pie chart. Click on o
 [[Image:images/execution/BarChart.png|400px|Bar Chart]]
 [[Image:images/execution/PieChart.png|400px|Pie Chart]]
 
-======Chart Legend======
+=====Chart Legend=====
 
 Turn the legend on and off by selecting the "T" icon.
 
-======Chart Data======
+=====Chart Data=====
 
 To select the statistics to display, show the '''Chart Customizer''' view. When the customizer has been selected, select a chart to customize. The customizer presents the possible choices in a 2D format. On one axis are the attributes that have data being collected, and on the other are the measurements collected on those axes, i.e. Count, Minimum, Maximum, Variance, Standard Deviation, Sum and Average. To clear all selections, click the Gray "X" button.
 
@@ -139,4 +139,4 @@ To select the statistics to display, show the '''Chart Customizer''' view. When 
 There are a number of other things to play around with, such as zooming the agent view or selecting other chart series to display using the Chart Customizer, so just explore. You can always close an active model by clicking on the close toolbar button. Or if you can't access the models controls for some reason, you can open the progress view and close projects form there.
 
 
-====Executing Internal Targets==== 
+===Executing Internal Targets=== 

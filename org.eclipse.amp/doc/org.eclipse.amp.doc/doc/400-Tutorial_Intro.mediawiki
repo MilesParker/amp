@@ -1,0 +1,5 @@
+=Tutorials=
+
+==Designing a Model==
+
+In this tutorial, we'll walk through the creation of a complete model. While the tutorial seems lengthy, that's because we've tried to be thorough in describing each step. As we demonstrate in an online video, the actual model can be created in just a couple of minutes.

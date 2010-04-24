@@ -1,0 +1,5 @@
+=Introduction=
+
+In this manual we provide an in-depth understanding of what goes into an Agent Model, how you can use the Agent Modeling Framework and related tools to design one and present tutorials to get you started. But before going into details, let's take a quick overview at what agent-based modeling is is and how the Agent Modeling Framework can help you to develop models for ABM or other problem domains.
+
+We hope you enjoy using the tool, and we look forward to your comments and feedback and most of all participation!

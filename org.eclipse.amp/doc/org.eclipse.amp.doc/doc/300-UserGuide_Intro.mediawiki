@@ -1,8 +1,8 @@
-==Tools==
+=User Guide=
 
 In this section of the guide, we'll discuss specific aspects of the Agent Modeling tools and show you how to use them in your day to day agent development activities. We discuss only tools specific to Agent Modeling itself. For more general information about the tools, such as how to customize editors, views, and perspectives, see the '''Workbench User Guide'''.
 
-===Overview===
+==Overview==
 
 The Agent Modeling Platform provides two general modes or "perspectives" for working with Agent Models.
 
