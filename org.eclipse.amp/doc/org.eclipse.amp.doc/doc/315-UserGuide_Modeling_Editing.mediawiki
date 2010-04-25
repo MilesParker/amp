@@ -1,10 +1,10 @@
 ===Modeling Tree Editor===
 
-The Eclipse Agent Modeling Framework includes a full-featured model editor based on the Eclipse Modeling Framework's Edit tools. All aspects of an AMF model can be managed from within this tool. Note that the tree editor is only one of many ways of editing a model. Other editors of AMF models incude textual languages and custom editors that are part of commercial offerings.
+The Eclipse Agent Modeling Framework includes a full-featured model editor based on the Eclipse Modeling Framework's Edit tools. All aspects of an AMF model can be managed from within this tool. Note that the tree editor is only one of many ways of editing a model. Other editors of AMF models include textual languages and custom editors that are part of commercial offerings.
 
 ====Opening the Editor====
 
-To open a model in the editor, simply double-click on it. If the model doesn't open in the model editor (if for example it had been previously opened using another editor), you can always access the editor using '''Open With > Other...''' and selecting "MetaABM Editor". The editor has two pages, an Editor page that we'll focus on first and a "description" page that we'll dicuss at the end of this section.
+To open a model in the editor, simply double-click on it. If the model doesn't open in the model editor (if for example it had been previously opened using another editor), you can always access the editor using '''Open With > Other...''' and selecting "MetaABM Editor". The editor has two pages, an Editor page that we'll focus on first and a "description" page that we'll discuss at the end of this section.
 
 ====Editing Structure====
 
@@ -16,17 +16,17 @@ After opening a model, you can see the contents by clicking the Triangle symbol 
 
 [[Image:images/tools/Editor.png]]
 
+=====Creating Components=====
+
+You add nodes by right-clicking on a node, like so:
+
+[[Image:images/tools/EditorAdd.png]]
+
 =====Editing Components=====
 
 To edit components, select the node you want to modify. The '''Properties View''' will be updated with the agent details. Use the properties view to modify the values. In the screenshot below, we're editing the values for the City space.
 
 [[Image:images/tools/EditorEditing.png]]
-
-=====Adding Components=====
-
-You add nodes by right-clicking on a node, like so:
-
-[[Image:images/tools/EditorAdd.png]]
 
 =====Moving Components=====
 
@@ -36,7 +36,7 @@ You can often rearrange model components by dragging them from one place to anot
 
 =====Removing Components=====
 
-You can remove actions by deleting or cutting them using the popup menu. When you delete an entity, all of its children are deleted as well, except in some special cases (such as with actions) where other paths to that entitiy still exist.
+You can remove actions by deleting or cutting them using the popup menu. When you delete an entity, all of its children are deleted as well, except in some special cases (such as with actions) where other paths to that entity still exist.
 
 =====Copying Components=====
 
@@ -56,9 +56,15 @@ The Styles node is another group node, in this case representing a set of styles
 
 ====Editing Actions====
 
-Actions are a key and relatively complex aspect of the model editor. Because actions are actually related in a graph structure, a tree-based editor will not be able to represent a the underlying strucuture of action relationships directly. (This is actually no different from most development environments -- for example, Java code is edited in a text based editor, but the call structure represents a complex graph. Advance tools developed by AMP contributors do support more sophisticated methods for action browsing and we'll have simple versions of them available in future releases of the AMF edit tools.) Therefore, it's helpful to take time to understand how action relationships appear in the editor.
+Actions are a key and relatively complex aspect of the model editor. Because actions are actually related in a graph structure, a tree-based editor will not be able to represent a the underlying structure of action relationships directly. (This is actually no different from most development environments -- for example, Java code is edited in a text based editor, but the call structure represents a complex graph. Advance tools developed by AMP contributors do support more sophisticated methods for action browsing and we'll have simple versions of them available in future releases of the AMF edit tools.) Therefore, it's helpful to take time to understand how action relationships appear in the editor.
 
 Like attributes and styles, every agent has a single Actions nodes which contains its Root Action(s).
+
+=====Creating Actions=====
+
+You create actions as with any other component, by right-clicking on the source action and choosing the new action. The menu is organized by usage.
+
+[[Image:images/tools/EditorActionMenu.png]]
 
 =====Order=====
 
@@ -86,7 +92,7 @@ You cannot remove single sources from targets directly using the tree editor. In
 
 =====Removing Actions=====
 
-You can remove actions in the same way as with strucutral model components. Note that just as when you delete an agent, all of that agent's attributes, actions and styles are also deleted form the model, when you delete an Action, any of its targets will also be removed, unless there is some other source action path that connects it to the root action. And of course, any targets of such targets will be affected in the same way and so on. If you remove a node from igh in the action tree a lot of nodes could disappear at once! If you have actions that you want to retain as part of the flow, you should first make them targets of a new action before deleting their parent action.
+You can remove actions in the same way as with structural model components. Note that just as when you delete an agent, all of that agent's attributes, actions and styles are also deleted form the model, when you delete an Action, any of its targets will also be removed, unless there is some other source action path that connects it to the root action. And of course, any targets of such targets will be affected in the same way and so on. If you remove a node from high in the action tree a lot of nodes could disappear at once! If you have actions that you want to retain as part of the flow, you should first make them targets of a new action before deleting their parent action.
 
 =====Copying Actions=====
 
