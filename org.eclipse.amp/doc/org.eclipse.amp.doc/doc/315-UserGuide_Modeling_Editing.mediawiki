@@ -6,7 +6,7 @@ The Eclipse Agent Modeling Framework includes a full-featured model editor based
 
 To open a model in the editor, simply double-click on it. If the model doesn't open in the model editor (if for example it had been previously opened using another editor), you can always access the editor using '''Open With > Other...''' and selecting "MetaABM Editor". The editor has two pages, an Editor page that we'll focus on first and a "description" page that we'll discuss at the end of this section.
 
-====Editing Structure====
+====Structure====
 
 The model is composed of nodes representing specific model entities such as agents, actions and spaces. For details about any of these entities, see the Concepts section.
 
@@ -54,7 +54,7 @@ The Styles node is another group node, in this case representing a set of styles
 
 [[Image:images/tools/EditorStyles.png]]
 
-====Editing Actions====
+====Actions====
 
 Actions are a key and relatively complex aspect of the model editor. Because actions are actually related in a graph structure, a tree-based editor will not be able to represent a the underlying structure of action relationships directly. (This is actually no different from most development environments -- for example, Java code is edited in a text based editor, but the call structure represents a complex graph. Advance tools developed by AMP contributors do support more sophisticated methods for action browsing and we'll have simple versions of them available in future releases of the AMF edit tools.) Therefore, it's helpful to take time to understand how action relationships appear in the editor.
 
@@ -66,9 +66,13 @@ You create actions as with any other component, by right-clicking on the source 
 
 [[Image:images/tools/EditorActionMenu.png]]
 
+=====Editing Actions=====
+
+Actions and their inputs are edited just like any other model component. Click on the action or input you want to edit and then make changes to it in the properties editor.
+
 =====Order=====
 
-Generally, action sources will appear above their targets. In the case where there is only one source for a given target, and that target has no other sources, they will appear directly above one another. Its important to note however that ''the order of the nodes does not indicate a specific source and target relationship''. For example, in the case where there are multiple targets for a source, they will typically follow that source immediately. To make the relationships clear, every action lists its source actions as part of the action label. Agent selections also appear as part .
+Generally, action sources will appear above their targets. In the case where there is only one source for a given target, and that target has no other sources, they will appear directly above one another. Its important to note however that ''the order of the nodes does not indicate a specific source and target relationship''. For example, in the case where there are multiple targets for a source, they will typically follow that source immediately. To make the relationships clear, every action lists its source actions as part of the action label. Agent selections also appear as part of the label.
 
 [[Image:images/tools/ActionsExample.png]]
 
@@ -102,7 +106,7 @@ Copying actions works just as with other entities, and copies will become target
 
 The number of inputs is determined by the selected functions. (In rare cases where a function can take an arbitrary number of arguments you may need to create additional values or delete existing ones.) In the following example, we're picking the Symptom Infectious status for a query that will affect the potentially exposed agents. Note that is instead you wanted to compare another kind of value -- for example an Integer value -- you would need to change the first input listed before changing the second input so that you will be able to get the appropriate options for the second.
  
-[[Image:images/tools/ActionsExample.png]]
+[[Image:images/tools/Inputs.png]]
 
 
 =====Input Literals=====
