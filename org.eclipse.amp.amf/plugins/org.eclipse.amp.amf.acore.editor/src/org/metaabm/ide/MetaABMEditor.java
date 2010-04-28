@@ -707,7 +707,7 @@ IMenuListener, IViewerProvider, IGotoMarker {
                         // Try to select the affected objects.
                         //
                         Command mostRecentCommand = ((CommandStack) event.getSource()).getMostRecentCommand();
-                        if (mostRecentCommand != null) {
+                        if (mostRecentCommand != null && currentViewer != contentOutlineViewer) {
                             setSelectionToViewer(mostRecentCommand.getAffectedObjects());
                         }
                         if (propertySheetPage != null && !propertySheetPage.getControl().isDisposed()) {
