@@ -524,7 +524,7 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
                 || feature == MetaABMActPackage.Literals.ANETWORK__WITHIN) {
             SuggestLabelCommand suggestLabelCommand = null;
             if (!(owner instanceof ASink && (((ASink) owner).isMultiValue() || feature == MetaABMActPackage.Literals.ASINK__FUNCTION
-                    && value != null && ((FFunction) value).isMultiValue()))) {
+                && value instanceof FFunction && ((FFunction) value).isMultiValue()))) {
                 suggestLabelCommand = new SuggestLabelCommand(domain, (IID) owner);
             }
             Command createSetCommand = super.createSetCommand(domain, owner, feature, value, index);
