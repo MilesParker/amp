@@ -136,8 +136,8 @@ cached String fieldNameDim(SAttribute attr) :
 		default : attr.fieldNameAttr()
 	};
 	
-cached fieldExists(SAttribute named, SNDimensional owner) :
-	named.fieldNameDim() == named.fieldNameAttr();
+//cached fieldExists(SAttribute named, SNDimensional owner) :
+//	named.fieldNameDim() == named.fieldNameAttr();
 	
 cached fieldExists(SAttribute named, SNamed owner) :
 	true;
@@ -160,8 +160,8 @@ cached isScheduled(AAct action) :
 cached isScheduled(ASchedule schedule) :
 	true;
 	
-cached String fieldName(SAttribute named, SNDimensional owner) :
-	named.fieldNameDim();
+//cached String fieldName(SAttribute named, SNDimensional owner) :
+//	named.fieldNameDim();
 
 cached String fieldName(SAttribute named, SNamed owner) :
 	named.fieldNameAttr();
@@ -175,8 +175,8 @@ cached String fieldName(SAttribute named) :
 cached String fieldName(IID id) :
 	id.id();
 
-cached String paramName(SAttribute named, SNDimensional owner) :
-	named.fieldNameAttr();
+//cached String paramName(SAttribute named, SNDimensional owner) :
+//	named.fieldNameAttr();
 
 cached String paramName(SAttribute named, SNamed owner) :
 	named.fieldName();
