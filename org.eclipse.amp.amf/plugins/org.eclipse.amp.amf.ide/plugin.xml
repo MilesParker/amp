@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.7 2010/03/31 05:51:17 mparker Exp $
+ $Id: plugin.xml,v 1.8 2010/04/28 03:34:36 mparker Exp $
 -->
 
 <plugin>
@@ -69,6 +69,9 @@
             <viewShortcut
                   id="org.eclipse.ui.views.PropertySheet">
             </viewShortcut>
+            <perspectiveShortcut
+                  id="org.eclipse.ui.views.ContentOutline">
+            </perspectiveShortcut>
             <viewShortcut
                   id="org.eclipse.ui.views.ProblemView">
             </viewShortcut>
