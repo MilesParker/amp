@@ -154,7 +154,7 @@ cached String conditionParam(AAct act) :
 
 cached String findSpace(AAct act) :
     act.selector().space != null
-    	? (act.selector().space.metaType != SGrid
+    	? ((act.selector().space.metaType != SGrid && act.selector().space.metaType != SNetwork)
     		? act.selector().getterPath(act.selector().space, false) + ".getSpace()."
     		: "((org.ascape.model.space.Discrete)" + act.selector().getterPath(act.selector().space, false) + ".getSpace()).")
     	: "getScape().";

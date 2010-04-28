@@ -188,6 +188,16 @@
 	«EXPAND Setup FOREACH members-»
 «ENDDEFINE»
 
+«DEFINE SetDimension FOR SNDimensional»
+    «IF dimensionality == 1»
+    «fieldName()».setExtent(new «coordinateType()»(«getterName()»Length()));
+    «ELSEIF dimensionality == 2»
+    «fieldName()».setExtent(new «coordinateType()»(«getterName()»Width(), «getterName()»Height()));
+    «ELSEIF dimensionality == 3»
+    «fieldName()».setExtent(new «coordinateType()»(«getterName()»XExtent(), «getterName()»YExtent(), «getterName()»ZExtent()));
+    «ENDIF»
+«ENDDEFINE»
+
 «DEFINE CreateScape(int stage) FOR ACreateAgents-»
 	«IF stage == 0-»
 	«IF !agent.isHost()-»
@@ -198,8 +208,8 @@
 «DEFINE CreateScape(int stage) FOR ABuildSpace-»
 		«IF stage == 0-»
 	        «projection.fieldName()» = new Scape(new «projection.spaceClass()»());
-	        «projection.fieldName()».setExtent(new «projection.coordinateType()»(«projection.getterName()»Width(), «projection.getterName()»Height()));
 	        «projection.fieldName()».setName("«label»");
+	        «EXPAND SetDimension FOR (SNDimensional) projection»
 	        ((CollectionSpace) «projection.fieldName()».getSpace()).setPeriodic(«projection.periodic()»);
 	        «projection.fieldName()».setPrototypeAgent(new «agents.get(0).typeName()»());
 	        
@@ -217,7 +227,7 @@
 		«IF stage == 0-»
 	        «projection.fieldName()» = new Scape(new «projection.spaceClass()»());
 	        «projection.fieldName()».setPrototypeAgent(new «fillAgentType()»());
-	        «projection.fieldName()».setExtent(new «projection.coordinateType()»(«projection.getterName()»Dimensions()));
+	        «EXPAND SetDimension FOR (SNDimensional) projection»
 	        «projection.fieldName()».setName("«label»");
 	        «IF projection.periodic() != ""-»
 	        ((CollectionSpace) «projection.fieldName()».getSpace()).setPeriodic(«projection.periodic()»);
@@ -256,6 +266,10 @@
         «scape()».createScape();
         «ENDIF»
 		«ENDIF-»
+	«ELSE»
+		«IF stage == 2»
+		«EXPAND StatBuilder FOREACH attributes-»
+		«ENDIF»
 	«ENDIF»
 «ENDDEFINE»
 «DEFINE CreateScape(int stage) FOR AGroup-»
