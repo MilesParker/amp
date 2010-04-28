@@ -3,19 +3,16 @@
 ===Launching a Model (AMF)===
 
 
-When an AMF file is selected -- in any of the perspectives -- the pop-up menu looks like this:
-
-[[Image:images/tools/EditorMenu.png | left]]
-
-(In this case we've selected the "Execute Headless" option.) Note that the toolbar and Application menus are updated to reflect the file you've selected and can provide more convenient access to many of the functions. For example, when we click on a metaabm file in the package explorer, model execution buttons appear in the toolbar. An important note: the execution framework doesn't know whether your code exists in an Escape project or anohter target project. If you attempt to execute a .metaabm model in an Ascape project for example, you will get an error.
-
-[[Image:images/tools/EditorToolbar.png]]
-
-To launch a model, select one of the options.
+{| border="0"
+|-valign="top"
+|Launching AMF and Escape models is easy. When an AMF file is selected -- in any of the perspectives -- the toolbar and Application menus are updated to reflect the file you've selected and provide convenient access to other functions. For example, when we click on a metaabm file in the package explorer, model execution buttons appear in the toolbar. If you right-click on a file a pop-up menu appears like the one to the far right -- in this case we're selecting the "Execute Headless" option. To launch a model, just select one of the options. (Note that the execution framework doesn't know whether your code exists in an Escape project or another target project. If you attempt to execute a .metaabm model in an Ascape project for example, you will get an error.)
+|[[Image:images/tools/EditorToolbar.png]]
+|[[Image:images/tools/EditorMenu.png]]
+|}
 
 One a model has been launched, the Agent Execution Perspective automatically becomes active. The Provides a custom layout menus and tools specific to executing agent models.
 
-[[Image:images/execution/EpidemicModelRunning.png]]
+[[Image:images/execution/EpidemicExecNew.png]]
 
 The execution options are:
 

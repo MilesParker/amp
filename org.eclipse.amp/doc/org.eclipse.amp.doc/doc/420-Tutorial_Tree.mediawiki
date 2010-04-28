@@ -137,7 +137,7 @@ To make our agents move randomly every iteration, we will create a Rule. (For th
 
 The first part of the Bug Rule is exactly the same as the Initialize rule. Create a Selection Action. As before, we'll make the Select statement "Agent" property blank, as we want to move to a cell. As before, we want to make sure the Cell is free before we try to move in, so we'll select a "Spatial: Available" Query function.(By the way, to make scrolling through the list easier, you can type the first letters of the selection, in this case "SP".)
 
-But now, instead of moving <i>anywhere</i> we want to move nearby. So now, we create a ''parallel'' or "sibling" Query from the same Select root. Because this new Query Action is a child of the Select Action and not the "Space Available" Query we've just created, we'll right-click on the ''Select'' Action and choose '''Create Target > Select > Query'''. Like so:
+But now, instead of moving ''anywhere'' we want to move nearby. So now, we create a ''parallel'' or "sibling" Query from the same Select root. Because this new Query Action is a child of the Select Action and not the "Space Available" Query we've just created, we'll right-click on the ''Select'' Action and choose '''Create Target > Select > Query'''. Like so:
 
 [[Image:images/edit_tutorial/SimpleTutorial26CreateQuery2.png | right]]
 

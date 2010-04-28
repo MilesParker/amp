@@ -49,8 +49,8 @@
 			<para>Existing scientific models are very good at representing relatively simple systems, but generally speaking aren't very good at representing complex systems. The world is full of complex systems, and our misunderstanding of these systems has prevented us from addressing many of the key challenges facing the world, including the global financial crisis and climate change -- in fact once could argue that our misunderstanding of these systems has strongly contributed to these crises.</para>
 			<para>Agent-Based Models (ABMs) seek to represent important real-world dynamics by designing communities of software agents that mimic real entities. Rather than make simplifying assumptions about such systems and then representing them in equation form or as off the shelf algorithmic constructs, the ABM researcher aims to identify key agent state, interaction spaces, and behaviors. Agents are then "let loose" on our computers and we explore what happens next. The computational horsepower exists today to simulate large numbers (e.g. &gt;&gt;10) of interacting, adaptive and autonomous agents but often desktop computers are all we need to explore significant domains. ABMs have been designed to represent all kinds of important natural systems, at scales reaching from cellular mechanics to international trade and are being used to solve truly hard problems in government, business, and academia. ABMs are not a solution to every problem, but they can help us to appreciate and gain unique insight into many systems, and often they can help us to come up with better practical decisions than we might using classic approaches.</para>
 		</section>
-		<section id=".3DOther_Uses">
-			<title>=Other Uses</title>
+		<section id="Other_Uses">
+			<title>Other Uses</title>
 			<para>Many kinds of objects share characteristics of ABM agents -- after all, software agents are used in many other contexts. The Agent Modeling Framework meta-modeling support is potentially suitable (or extendible) for a number of approaches outside of ABM; for example business rules, object interactions, systems dynamics models and traditional discrete event models. Similarly, AMP execution and graphic support can be used for modeling natural systems but could also be used to manage other software agents -- for example independent reasoning tasks or dynamic visualization support.</para>
 		</section>
 		<section id="Credits">
@@ -442,50 +442,65 @@
 				<para>In this section, we'll describe how modelers can assemble actions into sets of behavior that accomplish complex tasks on interrelated agents and spaces over time.</para>
 				<section id="Kinds_of_Actions">
 					<title>Kinds of Actions</title>
-					<para>Before getting into the details of how each Actions work together, or the various kinds of Actions, it will be helpful to take a broad overview of how they all fit together. As discussed above, actions are strung together in a sequence or flow. They're always composed of two parts, though those parts can be assembled and intermixed in many different ways. First, we search for a collection of agents, and then we do something with that selection. We refer to these two parts as Selections and Commands. (For the technically minded, another useful way of looking at the Actions approach is as a Query Transformation language, as with SQL and Stored Procedures.  Except again, the results of the queries along with the transformations flow through from one query to the next.) Selections find the agents we want to do something with, and the commands do it. We need some way to start the whole chain of actions off, and so we have a kind of Selection called a Root Selection, or simply a Root. Secondly, we need some way to actually make the agents exist in the model in the first place, so we have a Create Agents action. Finally, we have special commands called builders that allow us to create the spaces that the agents will occupy. All of these are discussed in detail in the section that follows this one.</para>
-					<para>These are all summarized in the diagram below:</para>
-					<para>
-						<mediaobject>
-							<imageobject>
-								<imagedata fileref="images/actions/ActionsBlocks.png"/>
-							</imageobject>
-						</mediaobject> 
-					</para>
+					<informaltable>
+						<tr>
+							<td>Before getting into the details of how each Actions work together, or the various kinds of Actions, it will be helpful to take a broad overview of how they all fit together. As discussed above, actions are strung together in a sequence or flow. They're always composed of two parts, though those parts can be assembled and intermixed in many different ways. First, we search for a collection of agents, and then we do something with that selection. We refer to these two parts as Selections and Commands. (For the technically minded, another useful way of looking at the Actions approach is as a Query Transformation language, as with SQL and Stored Procedures.  Except again, the results of the queries along with the transformations flow through from one query to the next.) Selections find the agents we want to do something with, and the commands do it. We need some way to start the whole chain of actions off, and so we have a kind of Selection called a Root Selection, or simply a Root. Secondly, we need some way to actually make the agents exist in the model in the first place, so we have a Create Agents action. Finally, we have special commands called builders that allow us to create the spaces that the agents will occupy. The various actions are discussed in depth in the Details section.</td>
+							<td>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/actions/ActionsBlocks.png"/>
+									</imageobject>
+								</mediaobject> 
+							</td>
+						</tr>
+					</informaltable>
 				</section>
 				<section id="Flow">
 					<title>Flow</title>
 					<para>First, let's look at how actions define the basic path that agents take during a model run. As with any programming language, the path we take through the program specification is what determines our state when we get there. In a pure object oriented program, the path just defines the control flow -- what we are doing. The actual state of our model is defined within the object itself. If we call a method B from another method A, we'll be relying on method A to set the values that we need into the object state itself. In a purely functional program the path defines how we are going to deal with whatever has been explicitly passed in to a function that has been called, that is the function parameters. In fact, most languages such as Java combine aspects of both approaches.</para>
-					<para>In Actions, the path itself implicitly carries all of the context of prior execution with it. This means that we don't have to worry about storing context in the object -- as we would in an object-oriented language -- or passing the correct values from one method call to the next as we would in a functional language. Instead, Actions can use the implicit context of the path of flow to determine what the current state of execution is.</para>
-					<para>An important aspect of the Actions design is that loop structures are not allowed -- that is, flows are acyclic. An action can never have an ancestor target (that is targets, targets of targets, etc..) that has as one of its ancestors that same action. As you'll see, actions don't typically 
+					<para>In Actions, the path itself implicitly carries all of the context of prior execution with it. This means that we don't have to worry about storing context in the object -- as we would in an object-oriented language -- or passing the correct values from one method call to the next as we would in a functional language. Instead, Actions can use the implicit context of the path of flow to determine what the current state of execution is.
+						An important aspect of the Actions design is that loop structures are not allowed -- that is, flows are acyclic. An action can never have an ancestor target (that is targets, targets of targets, etc..) that has as one of its ancestors that same action. As you'll see, actions don't typically 
 						<emphasis role="italic">need</emphasis> loop structures. By far the most common use of loops in conventional programming langauges is to loop through collections of objects. As selections (see below) refer to the entire collection of agents, any actions on a selection apply to all members of that collection. Recursive structures are needed for some particular usages and will be supported in future releases, but not through an explicit looping construct.
 					</para>
-					<para>Again, behaviors in Actions are always defined by a set of 
-						<emphasis role="italic">selections</emphasis> and 
-						<emphasis role="italic">queries</emphasis>. In the following diagram, we can see the pattern.
-					</para>
-					<para>
-						<mediaobject>
-							<imageobject>
-								<imagedata fileref="images/actions/ActionsSequence.png"/>
-							</imageobject>
-						</mediaobject>
-					</para>
-					<para>First, we define a Root Selection for a Rule, Schedule or other triggering event. Then, we might add a series of Query and Logic Actions to define the specific agents that we are interested in. These are all part of the Selection. Next, we might define a series of Commands to determine what to do with those agents. Or, we could use the result of that selection to immediately define another selection, for example if we are searching for an agent that is near another agent. The next diagram depicts a simple example.</para>
-					<para>
-						<mediaobject>
-							<imageobject>
-								<imagedata fileref="images/actions/ActionsSimpleSequence.png"/>
-							</imageobject>
-						</mediaobject>
-					</para>
-					<para>Here, we create a rule, and then check the results of two queries. For any agents that meet those criteria, we'll evaluate some function based on their state, and then set some value on them. In the next example, we'll first create the rule, and then create a new selection with a set of criteria. Finally, we'll do a move based on those queries.</para>
-					<para>
-						<mediaobject>
-							<imageobject>
-								<imagedata fileref="images/actions/ActionsSimpleSequence2.png"/>
-							</imageobject>
-						</mediaobject>
-					</para>
+					<informaltable>
+						<tr>
+							<td>Again, behaviors in Actions are always defined by a set of 
+								<emphasis role="italic">selections</emphasis> and 
+								<emphasis role="italic">queries</emphasis>. In the diagram to the right, we can see the pattern. First, we define a Root Selection for a Rule, Schedule or other triggering event. Then, we might add a series of Query and Logic Actions to define the specific agents that we are interested in. These are all part of the Selection. Next, we might define a series of Commands to determine what to do with those agents. Or, we could use the result of that selection to immediately define another selection, for example if we are searching for an agent that is near another agent.
+							</td>
+							<td>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/actions/ActionsSequence.png"/>
+									</imageobject>
+								</mediaobject>
+							</td>
+						</tr>
+					</informaltable>
+					<informaltable>
+						<tr>
+							<td>The diagram to the right depicts a simple example. Here, we create a rule, and then check the results of two queries. For any agents that meet those criteria, we'll evaluate some function based on their state, and then set some value on them.</td>
+							<td>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/actions/ActionsSimpleSequence.png"/>
+									</imageobject>
+								</mediaobject>
+							</td>
+						</tr>
+					</informaltable>
+					<informaltable>
+						<tr>
+							<td>In this next example, we'll first create the rule, and then create a new selection with a set of criteria. Finally, we'll do a move based on those queries.</td>
+							<td>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/actions/ActionsSimpleSequence2.png"/>
+									</imageobject>
+								</mediaobject>
+							</td>
+						</tr>
+					</informaltable>
 					<para>In the following example, we've defined a set of actions and their relationships. We have a selection, a few queries and a couple of logic operators leading to a Set Action. We'll describe in detail below how Logic Actions are used in conjunction with other actions to assemble any kind of query structure needed. But for now, we'll focus on the control flow itself.</para>
 					<para>
 						<mediaobject>
@@ -522,23 +537,31 @@ if (query3.evaluate()) {
 				<section id="Selections">
 					<title>Selections</title>
 					<para>Selections are a key concept in Actions. Put simply, selections define what we are searching for and where. They are defined by a combination of Select, Query and Logic Actions. Each time we create a new Select Action, we define a new selection. Queries can be used to further refine selections either immediately after or later in the Action flow, as described in the next section. Logic Actions are used to combine and organize the Action flow defined by Query Actions. In order to understand how these three pieces work together, we need to understand the idea of selection boundaries.</para>
-					<para>A selection boundary determines the set of selection actions that are used to determine what agents to apply target actions to. For example, in the following diagram, we can see the extent of the boundary for a straightforward selection.</para>
-					<para>
-						<mediaobject>
-							<imageobject>
-								<imagedata fileref="images/actions/ActionsSelBoundarySimple.png"/>
-							</imageobject>
-						</mediaobject>
-					</para>
-					<para>Each time we create a new selection, we define a new set of boundaries.</para>
-					<para>
-						<mediaobject>
-							<imageobject>
-								<imagedata fileref="images/actions/ActionsSelBoundary2Parts.png"/>
-							</imageobject>
-						</mediaobject> 
-					</para>
-					<para>A very important aspect of boundaries is that they apply to a group of actions that begin with a Query Action, and not just such a group that begins with a Select Action. This is because Query Actions can be directly part of a selection definition, but they can also refine selections, as we'll see. So where does one selection boundary end and the next one begin? The simple rule is that the end of the boundary is defined for a given Action by the place where:</para>
+					<informaltable>
+						<tr>
+							<td>A selection boundary determines the set of selection actions that are used to determine what agents to apply target actions to. For example, in the following diagram, we can see the extent of the boundary for a straightforward selection.</td>
+							<td>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/actions/ActionsSelBoundarySimple.png"/>
+									</imageobject>
+								</mediaobject>
+							</td>
+						</tr>
+					</informaltable>
+					<informaltable>
+						<tr>
+							<td>Each time we create a new selection, we define a new set of boundaries. In the diagram to the right, Selection 1 and Selection 2 eaach start with a new Select Action. </td>
+							<td>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/actions/ActionsSelBoundary2Parts.png"/>
+									</imageobject>
+								</mediaobject> 
+							</td>
+						</tr>
+					</informaltable>
+					<para>But boundaries can be defined for a group of actions by a Query Actions as well. This is because Query Actions can be directly part of a selection definition, but they can also refine selections. We'll see how that works below. So where does one selection boundary end and the next one begin? The simple rule is that the end of the boundary is defined for a given Action by the place where:</para>
 					<orderedlist>
 						<listitem>
 							<para>A Query Action is not followed by a Logic Action, or</para>
@@ -547,14 +570,18 @@ if (query3.evaluate()) {
 							<para>A Logic Action is not followed by another Logic Action</para>
 						</listitem>
 					</orderedlist>
-					<para>In other words, as soon as a Logic Action occurs in a path leading to an Action, any following Query will define a new boundary, as we can see in the following example. </para>
-					<para>
-						<mediaobject>
-							<imageobject>
-								<imagedata fileref="images/actions/ActionsSelBoundary11A.png"/>
-							</imageobject>
-						</mediaobject>
-					</para>
+					<informaltable>
+						<tr>
+							<td>In other words, as soon as a Logic Action occurs in a path leading to an Action, any following Query will define a new boundary, as shown in the example to the right. </td>
+							<td>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/actions/ActionsSelBoundary11A.png"/>
+									</imageobject>
+								</mediaobject>
+							</td>
+						</tr>
+					</informaltable>
 					<para>Note that we refer to "Selection 1" and Selection 1A". This is because Selection 1A is a refinement of Selection 1 along its particular path of flow. When a query appears for the same selection but past a particular boundary, you can think of it as a sort of filter on the selection contents. We don't have a "Selection 2" here because any Actions that refer to "Selection 1" along the current path of flow will be acting on the selection defined by Selection 1 and Selection 1A.</para>
 					<para>These rules allow actions to be defined in the simplest possible way, but it is important to understand their implication as they result in behavior that can be different from what someone used to and imperative programming environment such as Java might expect. In a simple case the distinction might not matter. For example, if we are using a Query 1 to test whether an agent's attribute a == x and attribute b == y, we would get the same outcome if we placed intersected the queries as if we simply put them in sequence. Internally we would actually be searching for agents with a == x, and 
 						<emphasis role="italic">then</emphasis> taking those agents and choosing those agents with b==y, but the outcome would be the same. But consider a more sophisticated case, where we are searching for neighboring available cells.
@@ -572,52 +599,70 @@ if (query3.evaluate()) {
 				</section>
 				<section id="Weaving">
 					<title>Weaving</title>
-					<para>Now, let's put the concepts of Actions sequences and boundaries together to see how we can easily define complex interactions between multiple selections. When we define a Select, the state of its selection flows through and with any subsequent selections. So for example, if we have a Root Action rule, and then do a selection based on it, we'll have access to the agent from the original context as well as all of the subsequent selections. We can refer to any previous selection for any subsequent action. For example, instead of setting the value for the rule agent, we might instead set a value for an agent we've found in a target selection.</para>
-					<para>
-						<mediaobject>
-							<imageobject>
-								<imagedata fileref="images/actions/ActionsWeavingSetAnother.png"/>
-							</imageobject>
-						</mediaobject>
-					</para>
-					<para>Inputs to functions also use selections. (We'll discuss more details in the functions section.) In the following example, we're adding the wealth of the Selection 1 agent to the wealth of the Selection 2 agent and using that value to set some other value. (Here, perhaps we are modeling an agent in a winner takes all game, in which case we'd also add a Set Action on Selection 2 and set the second agent's wealth to 0.)</para>
-					<para>
-						<mediaobject>
-							<imageobject>
-								<imagedata fileref="images/actions/ActionsWeavingEvaluate.png"/>
-							</imageobject>
-						</mediaobject>
-					</para>
-					<para>But we can also use selections in defining Query Actions themselves. So in the following example, we select a neighbor agent and then compare the age of our Rule agent with the age of the Selection 2 agent. If and only if those ages are the same will we execute the target Set Action. This example also demonstrates why we refer to the data flow as weaving. Query Actions can be used to refine selections at any point in the data flow. Selections and their uses are interwoven throughout an action sequence.</para>
-					<para>
-						<mediaobject>
-							<imageobject>
-								<imagedata fileref="images/actions/ActionsWeaving1A.png"/>
-							</imageobject>
-						</mediaobject>
-					</para>
-					<para>Finally, we can put all of these concepts together by weaving selections together with flows. As we discussed in the flow section, if we use multiple paths in the Query, the agents that flow through from any prior Query can follow multiple paths at once. And as we discussed in the selection section, the selection and its boundaries determine what agents we will be working with at any given evaluation point in the flow. Now, consider the following example:</para>
-					<para>
-						<mediaobject>
-							<imageobject>
-								<imagedata fileref="images/actions/ActionsWeaving2.png"/>
-							</imageobject>
-						</mediaobject>
-					</para>
-					<para>Before going into further details we need to introduce one more important concept. As we'll see in the detailed explanation of each Action below, Transformation Actions such as Move or Connect take multiple selections. The first selection defines the set of agents that will be performing the action. In the case of a Move agent, this refers to the mover. The second selection, which for Move we call "destination", refers to the selection that will be receiving the action. In the case of movement this is the agent or location that the Rule agent will be moving to. If we follow the flows through, we can note two important outcomes of our model design -- a Rule agent might move twice if it meets the criteria for both the blue path and the red path and that it might move to a different location each time.</para>
+					<informaltable>
+						<tr>
+							<td>Now, let's put the concepts of Actions sequences and boundaries together to see how we can easily define complex interactions between multiple selections. When we define a Select, the state of its selection flows through and with any subsequent selections. So for example, if we have a Root Action rule, and then do a selection based on it, we'll have access to the agent from the original context as well as all of the subsequent selections. We can refer to any previous selection for any subsequent action. For example, instead of setting the value for the rule agent, we might instead set a value for an agent we've found in a target selection.</td>
+							<td>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/actions/ActionsWeavingSetAnother.png"/>
+									</imageobject>
+								</mediaobject>
+							</td>
+						</tr>
+					</informaltable>
+					<informaltable>
+						<tr>
+							<td>Inputs to functions also use selections. (We'll discuss more details in the functions section.) In the following example, we're adding the wealth of the Selection 1 agent to the wealth of the Selection 2 agent and using that value to set some other value. (Here, perhaps we are modeling an agent in a winner takes all game, in which case we'd also add a Set Action on Selection 2 and set the second agent's wealth to 0.)</td>
+							<td>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/actions/ActionsWeavingEvaluate.png"/>
+									</imageobject>
+								</mediaobject>
+							</td>
+						</tr>
+					</informaltable>
+					<informaltable>
+						<tr>
+							<td>But we can also use selections in defining Query Actions themselves. So in the following example, we select a neighbor agent and then compare the age of our Rule agent with the age of the Selection 2 agent. If and only if those ages are the same will we execute the target Set Action. This example also demonstrates why we refer to the data flow as weaving. Query Actions can be used to refine selections at any point in the data flow. Selections and their uses are interwoven throughout an action sequence.</td>
+							<td>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/actions/ActionsWeaving1A.png"/>
+									</imageobject>
+								</mediaobject>
+							</td>
+						</tr>
+					</informaltable>
+					<informaltable>
+						<tr>
+							<td>Finally, we can put all of these concepts together by weaving selections together with flows. As we discussed in the flow section, if we use multiple paths in the Query, the agents that flow through from any prior Query can follow multiple paths at once. And as we discussed in the selection section, the selection and its boundaries determine what agents we will be working with at any given evaluation point in the flow. Consider the example to the right. As we'll see in the detailed explanation of each Action below, Transformation Actions such as Move or Connect take multiple selections. The first selection defines the set of agents that will be performing the action. In the case of a Move agent, this refers to the mover. The second selection, which for Move we call "destination", refers to the selection that will be receiving the action. In the case of movement this is the agent or location that the Rule agent will be moving to. If we follow the flows through, we can note two important outcomes of our model design -- a Rule agent might move twice if it meets the criteria for both the blue path and the red path and that it might move to a different location each time.</td>
+							<td>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/actions/ActionsWeaving2.png"/>
+									</imageobject>
+								</mediaobject>
+							</td>
+						</tr>
+					</informaltable>
 				</section>
 			</section>
 			<section id="Details_3">
 				<title>Details</title>
-				<para>In this section, we'll dig into the specific role of each of the Actions. From the design discussion we hopefully have some sense of how these all fit together in general.
-					Let's look at the overall view again amd then dig into the details.</para>
-				<para>
-					<mediaobject>
-						<imageobject>
-							<imagedata fileref="images/actions/ActionsBlocks.png"/>
-						</imageobject>
-					</mediaobject> 
-				</para>
+				<informaltable>
+					<tr>
+						<td>In this section, we'll dig into the specific role of each of the Actions. From the design discussion we hopefully have some sense of how these all fit together in general. Again, the block diagram to the right provides an overview of how the various actions are related. You might want to take a look at the meta-class diagrams in the referernce section as well.</td>
+						<td>
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/actions/ActionsBlocks.png"/>
+								</imageobject>
+							</mediaobject> 
+						</td>
+					</tr>
+				</informaltable>
 				<section id="Selections_2">
 					<title>Selections</title>
 					<para>A selection defines a particular set of agents that we want to do something with. Selections are made up of the Select action itself, along with Query and Logic actions. When we refer to a selection in any target command, we are referring to the selection in the context of where we have defined the behavior.</para>
@@ -993,11 +1038,17 @@ if (query3.evaluate()) {
 								</para>
 							</listitem>
 							<listitem>
-								<para>The method interface has no support for code completion, syntax checking or other common Java development environment features. You can avoid code maintenance and even support targetting multiple APIs by using the following technique. From your method body, call a helper method in a seperate class. The referred class could use a static method call, or you could instantiate the class and call a method against it, passing in the agent class so that the helper class can reference the agent's state. For example, if you wanted to use some custom java code to import agents from a specialized input file, you could put the following code in the Method Action body for the root Context: <pre>(new org.me.SpecialFileLoader()).load(this);</pre>Then create a new source directory in your project called "src" (
-									<emphasis role="bold">New &gt; Source Folder...</emphasis>) and create the class for the specialized file loader including the following method: <pre>public void load(MyRootModel model) {...}</pre> This approach allows you to a) maintain the working code using the Java Development Environment, b) avoid changes to the Method Action within the model, and most importantly, c) allow other implementations of the code using multiple APIs. For example, if you need to create a specialized graphics routine, you could create seperate implementations for your Escape (Eclipse Draw 2D), Ascape (Java Swing), and Repast (Simphony API) and place them in the appropriate projects. As long as the different Java source files have the same names and signatures, they will all compile correctly and execute the appropriate behavior.
-								</para>
+								<para>The method interface has no support for code completion, syntax checking or other common Java development environment features. You can avoid code maintenance and even support targetting multiple APIs by using the following technique. From your method body, call a helper method in a seperate class. The referred class could use a static method call, or you could instantiate the class and call a method against it, passing in the agent class so that the helper class can reference the agent's state. For example, if you wanted to use some custom java code to import agents from a specialized input file, you could put the following code in the Method Action body for the root Context:</para>
 							</listitem>
 						</orderedlist>
+						<literallayout>(new org.me.SpecialFileLoader()).load(this);
+</literallayout>
+						<para>Then create a new source directory in your project called "src" (
+							<emphasis role="bold">New &gt; Source Folder...</emphasis>) and create the class for the specialized file loader including the following method:
+						</para>
+						<literallayout>public void load(MyRootModel model) {...}
+</literallayout>
+						<para>This approach allows you to a) maintain the working code using the Java Development Environment, b) avoid changes to the Method Action within the model, and most importantly, c) allow other implementations of the code using multiple APIs. For example, if you need to create a specialized graphics routine, you could create seperate implementations for your Escape (Eclipse Draw 2D), Ascape (Java Swing), and Repast (Simphony API) and place them in the appropriate projects. As long as the different Java source files have the same names and signatures, they will all compile correctly and execute the appropriate behavior.</para>
 						<section id="Selection_14">
 							<title>Selection</title>
 							<para>The selection determines what Agent class the code will be created within and the set of agents the method will be called upon.</para>
@@ -1981,15 +2032,15 @@ Outputs:
 			</section>
 			<section id="Modeling_Tree_Editor">
 				<title>Modeling Tree Editor</title>
-				<para>The Eclipse Agent Modeling Framework includes a full-featured model editor based on the Eclipse Modeling Framework's Edit tools. All aspects of an AMF model can be managed from within this tool. Note that the tree editor is only one of many ways of editing a model. Other editors of AMF models incude textual languages and custom editors that are part of commercial offerings.</para>
+				<para>The Eclipse Agent Modeling Framework includes a full-featured model editor based on the Eclipse Modeling Framework's Edit tools. All aspects of an AMF model can be managed from within this tool. Note that the tree editor is only one of many ways of editing a model. Other editors of AMF models include textual languages and custom editors that are part of commercial offerings.</para>
 				<section id="Opening_the_Editor">
 					<title>Opening the Editor</title>
 					<para>To open a model in the editor, simply double-click on it. If the model doesn't open in the model editor (if for example it had been previously opened using another editor), you can always access the editor using 
-						<emphasis role="bold">Open With &gt; Other...</emphasis> and selecting "MetaABM Editor". The editor has two pages, an Editor page that we'll focus on first and a "description" page that we'll dicuss at the end of this section.
+						<emphasis role="bold">Open With &gt; Other...</emphasis> and selecting "MetaABM Editor". The editor has two pages, an Editor page that we'll focus on first and a "description" page that we'll discuss at the end of this section.
 					</para>
 				</section>
-				<section id="Editing_Structure">
-					<title>Editing Structure</title>
+				<section id="Structure_2">
+					<title>Structure</title>
 					<para>The model is composed of nodes representing specific model entities such as agents, actions and spaces. For details about any of these entities, see the Concepts section.</para>
 					<section id="Opening_Components">
 						<title>Opening Components</title>
@@ -1998,6 +2049,17 @@ Outputs:
 							<mediaobject>
 								<imageobject>
 									<imagedata fileref="images/tools/Editor.png"/>
+								</imageobject>
+							</mediaobject>
+						</para>
+					</section>
+					<section id="Creating_Components">
+						<title>Creating Components</title>
+						<para>You add nodes by right-clicking on a node, like so:</para>
+						<para>
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/tools/EditorAdd.png"/>
 								</imageobject>
 							</mediaobject>
 						</para>
@@ -2015,17 +2077,6 @@ Outputs:
 							</mediaobject>
 						</para>
 					</section>
-					<section id="Adding_Components">
-						<title>Adding Components</title>
-						<para>You add nodes by right-clicking on a node, like so:</para>
-						<para>
-							<mediaobject>
-								<imageobject>
-									<imagedata fileref="images/tools/EditorAdd.png"/>
-								</imageobject>
-							</mediaobject>
-						</para>
-					</section>
 					<section id="Moving_Components">
 						<title>Moving Components</title>
 						<para>You can often rearrange model components by dragging them from one place to another. In the following example, we're creating a model of a regional epidemic by creating a City sub-context and moving the agent into it: </para>
@@ -2039,7 +2090,7 @@ Outputs:
 					</section>
 					<section id="Removing_Components">
 						<title>Removing Components</title>
-						<para>You can remove actions by deleting or cutting them using the popup menu. When you delete an entity, all of its children are deleted as well, except in some special cases (such as with actions) where other paths to that entitiy still exist.</para>
+						<para>You can remove actions by deleting or cutting them using the popup menu. When you delete an entity, all of its children are deleted as well, except in some special cases (such as with actions) where other paths to that entity still exist.</para>
 					</section>
 					<section id="Copying_Components">
 						<title>Copying Components</title>
@@ -2068,14 +2119,29 @@ Outputs:
 						</para>
 					</section>
 				</section>
-				<section id="Editing_Actions">
-					<title>Editing Actions</title>
-					<para>Actions are a key and relatively complex aspect of the model editor. Because actions are actually related in a graph structure, a tree-based editor will not be able to represent a the underlying strucuture of action relationships directly. (This is actually no different from most development environments -- for example, Java code is edited in a text based editor, but the call structure represents a complex graph. Advance tools developed by AMP contributors do support more sophisticated methods for action browsing and we'll have simple versions of them available in future releases of the AMF edit tools.) Therefore, it's helpful to take time to understand how action relationships appear in the editor.</para>
+				<section id="Actions_3">
+					<title>Actions</title>
+					<para>Actions are a key and relatively complex aspect of the model editor. Because actions are actually related in a graph structure, a tree-based editor will not be able to represent a the underlying structure of action relationships directly. (This is actually no different from most development environments -- for example, Java code is edited in a text based editor, but the call structure represents a complex graph. Advance tools developed by AMP contributors do support more sophisticated methods for action browsing and we'll have simple versions of them available in future releases of the AMF edit tools.) Therefore, it's helpful to take time to understand how action relationships appear in the editor.</para>
 					<para>Like attributes and styles, every agent has a single Actions nodes which contains its Root Action(s).</para>
+					<section id="Creating_Actions">
+						<title>Creating Actions</title>
+						<para>You create actions as with any other component, by right-clicking on the source action and choosing the new action. The menu is organized by usage.</para>
+						<para>
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/tools/EditorActionMenu.png"/>
+								</imageobject>
+							</mediaobject>
+						</para>
+					</section>
+					<section id="Editing_Actions">
+						<title>Editing Actions</title>
+						<para>Actions and their inputs are edited just like any other model component. Click on the action or input you want to edit and then make changes to it in the properties editor.</para>
+					</section>
 					<section id="Order">
 						<title>Order</title>
 						<para>Generally, action sources will appear above their targets. In the case where there is only one source for a given target, and that target has no other sources, they will appear directly above one another. Its important to note however that 
-							<emphasis role="italic">the order of the nodes does not indicate a specific source and target relationship</emphasis>. For example, in the case where there are multiple targets for a source, they will typically follow that source immediately. To make the relationships clear, every action lists its source actions as part of the action label. Agent selections also appear as part .
+							<emphasis role="italic">the order of the nodes does not indicate a specific source and target relationship</emphasis>. For example, in the case where there are multiple targets for a source, they will typically follow that source immediately. To make the relationships clear, every action lists its source actions as part of the action label. Agent selections also appear as part of the label.
 						</para>
 						<para>
 							<mediaobject>
@@ -2104,7 +2170,7 @@ Outputs:
 					</section>
 					<section id="Removing_Actions">
 						<title>Removing Actions</title>
-						<para>You can remove actions in the same way as with strucutral model components. Note that just as when you delete an agent, all of that agent's attributes, actions and styles are also deleted form the model, when you delete an Action, any of its targets will also be removed, unless there is some other source action path that connects it to the root action. And of course, any targets of such targets will be affected in the same way and so on. If you remove a node from igh in the action tree a lot of nodes could disappear at once! If you have actions that you want to retain as part of the flow, you should first make them targets of a new action before deleting their parent action.</para>
+						<para>You can remove actions in the same way as with structural model components. Note that just as when you delete an agent, all of that agent's attributes, actions and styles are also deleted form the model, when you delete an Action, any of its targets will also be removed, unless there is some other source action path that connects it to the root action. And of course, any targets of such targets will be affected in the same way and so on. If you remove a node from high in the action tree a lot of nodes could disappear at once! If you have actions that you want to retain as part of the flow, you should first make them targets of a new action before deleting their parent action.</para>
 					</section>
 					<section id="Copying_Actions">
 						<title>Copying Actions</title>
@@ -2116,7 +2182,7 @@ Outputs:
 						<para>
 							<mediaobject>
 								<imageobject>
-									<imagedata fileref="images/tools/ActionsExample.png"/>
+									<imagedata fileref="images/tools/Inputs.png"/>
 								</imageobject>
 							</mediaobject>
 						</para>
@@ -2239,28 +2305,30 @@ Outputs:
 			<title>Exploring</title>
 			<section id="Launching_a_Model_.28AMF.29">
 				<title>Launching a Model (AMF)</title>
-				<para>When an AMF file is selected -- in any of the perspectives -- the pop-up menu looks like this:</para>
-				<para>
-					<mediaobject>
-						<imageobject>
-							<imagedata fileref="images/tools/EditorMenu.png "/>
-						</imageobject>
-					</mediaobject>
-				</para>
-				<para>(In this case we've selected the "Execute Headless" option.) Note that the toolbar and Application menus are updated to reflect the file you've selected and can provide more convenient access to many of the functions. For example, when we click on a metaabm file in the package explorer, model execution buttons appear in the toolbar. An important note: the execution framework doesn't know whether your code exists in an Escape project or anohter target project. If you attempt to execute a .metaabm model in an Ascape project for example, you will get an error.</para>
-				<para>
-					<mediaobject>
-						<imageobject>
-							<imagedata fileref="images/tools/EditorToolbar.png"/>
-						</imageobject>
-					</mediaobject>
-				</para>
-				<para>To launch a model, select one of the options.</para>
+				<informaltable>
+					<tr>
+						<td>Launching AMF and Escape models is easy. When an AMF file is selected -- in any of the perspectives -- the toolbar and Application menus are updated to reflect the file you've selected and provide convenient access to other functions. For example, when we click on a metaabm file in the package explorer, model execution buttons appear in the toolbar. If you right-click on a file a pop-up menu appears like the one to the far right -- in this case we're selecting the "Execute Headless" option. To launch a model, just select one of the options. (Note that the execution framework doesn't know whether your code exists in an Escape project or another target project. If you attempt to execute a .metaabm model in an Ascape project for example, you will get an error.)</td>
+						<td>
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/tools/EditorToolbar.png"/>
+								</imageobject>
+							</mediaobject>
+						</td>
+						<td>
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/tools/EditorMenu.png"/>
+								</imageobject>
+							</mediaobject>
+						</td>
+					</tr>
+				</informaltable>
 				<para>One a model has been launched, the Agent Execution Perspective automatically becomes active. The Provides a custom layout menus and tools specific to executing agent models.</para>
 				<para>
 					<mediaobject>
 						<imageobject>
-							<imagedata fileref="images/execution/EpidemicModelRunning.png"/>
+							<imagedata fileref="images/execution/EpidemicExecNew.png"/>
 						</imageobject>
 					</mediaobject>
 				</para>
@@ -2598,7 +2666,7 @@ Outputs:
 					</para>
 				</section>
 			</section>
-			<section id="Structure_2">
+			<section id="Structure_3">
 				<title>Structure</title>
 				<section id="Bug_Agent">
 					<title>Bug Agent</title>
@@ -2717,7 +2785,7 @@ Outputs:
 					</section>
 				</section>
 			</section>
-			<section id="Actions_3">
+			<section id="Actions_4">
 				<title>Actions</title>
 				<section id="Create_Initialize_Rule">
 					<title>Create Initialize Rule</title>
@@ -2863,7 +2931,8 @@ Outputs:
 					<section>
 						<title>Create Select and Query Actions</title>
 						<para>The first part of the Bug Rule is exactly the same as the Initialize rule. Create a Selection Action. As before, we'll make the Select statement "Agent" property blank, as we want to move to a cell. As before, we want to make sure the Cell is free before we try to move in, so we'll select a "Spatial: Available" Query function.(By the way, to make scrolling through the list easier, you can type the first letters of the selection, in this case "SP".)</para>
-						<para>But now, instead of moving <i>anywhere</i> we want to move nearby. So now, we create a 
+						<para>But now, instead of moving 
+							<emphasis role="italic">anywhere</emphasis> we want to move nearby. So now, we create a 
 							<emphasis role="italic">parallel</emphasis> or "sibling" Query from the same Select root. Because this new Query Action is a child of the Select Action and not the "Space Available" Query we've just created, we'll right-click on the 
 							<emphasis role="italic">Select</emphasis> Action and choose 
 							<emphasis role="bold">Create Target &gt; Select &gt; Query</emphasis>. Like so:

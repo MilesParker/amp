@@ -1,7 +1,7 @@
 <toc topic="help/index.html" label="Agent Modeling Guide">
 <topic href="help/Introduction.html" label="Introduction">
 <topic href="help/Introduction.html#Agent-Based_Modeling" label="Agent-Based Modeling"></topic>
-<topic href="help/.3DOther_Uses.html" label="=Other Uses"></topic>
+<topic href="help/Other_Uses.html" label="Other Uses"></topic>
 <topic href="help/Credits.html" label="Credits"></topic>
 <topic href="help/The_Agent_Modeling_Platform_.28AMP.29.html" label="The Agent Modeling Platform (AMP)">
 <topic href="help/The_Agent_Modeling_Platform_.28AMP.29.html#Agent_Modeling_Framework_.28AMF.29" label="Agent Modeling Framework (AMF)"></topic>
@@ -206,7 +206,7 @@
 </topic>
 <topic href="help/Actions_2.html#Query_and_Evaluation_Inputs" label="Query and Evaluation Inputs">
 <topic href="help/Actions_2.html#Input_Literals" label="">
-<topic href="help/Actions_2.html#N105C3" label="Input Literals"></topic>
+<topic href="help/Actions_2.html#N1062F" label="Input Literals"></topic>
 </topic>
 </topic>
 </topic>
@@ -387,17 +387,19 @@
 </topic>
 <topic href="help/Modeling.html#Modeling_Tree_Editor" label="Modeling Tree Editor">
 <topic href="help/Modeling.html#Opening_the_Editor" label="Opening the Editor"></topic>
-<topic href="help/Modeling.html#Editing_Structure" label="Editing Structure">
+<topic href="help/Modeling.html#Structure_2" label="Structure">
 <topic href="help/Modeling.html#Opening_Components" label="Opening Components"></topic>
+<topic href="help/Modeling.html#Creating_Components" label="Creating Components"></topic>
 <topic href="help/Modeling.html#Editing_Components" label="Editing Components"></topic>
-<topic href="help/Modeling.html#Adding_Components" label="Adding Components"></topic>
 <topic href="help/Modeling.html#Moving_Components" label="Moving Components"></topic>
 <topic href="help/Modeling.html#Removing_Components" label="Removing Components"></topic>
 <topic href="help/Modeling.html#Copying_Components" label="Copying Components"></topic>
 <topic href="help/Modeling.html#Editing_Attributes" label="Editing Attributes"></topic>
 <topic href="help/Modeling.html#Editing_Styles" label="Editing Styles"></topic>
 </topic>
-<topic href="help/Modeling.html#Editing_Actions" label="Editing Actions">
+<topic href="help/Modeling.html#Actions_3" label="Actions">
+<topic href="help/Modeling.html#Creating_Actions" label="Creating Actions"></topic>
+<topic href="help/Modeling.html#Editing_Actions" label="Editing Actions"></topic>
 <topic href="help/Modeling.html#Order" label="Order"></topic>
 <topic href="help/Modeling.html#Initial_Order" label="Initial Order"></topic>
 <topic href="help/Modeling.html#Changing_Sources_and_Targets_.28Reordering.29" label="Changing Sources and Targets (Reordering)"></topic>
@@ -463,7 +465,7 @@
 <topic href="help/Model_Implementation.html#Name_project" label="Name project"></topic>
 <topic href="help/Model_Implementation.html#Create_Model" label="Create Model"></topic>
 </topic>
-<topic href="help/Model_Implementation.html#Structure_2" label="Structure">
+<topic href="help/Model_Implementation.html#Structure_3" label="Structure">
 <topic href="help/Model_Implementation.html#Bug_Agent" label="Bug Agent">
 <topic href="help/Model_Implementation.html#Create_New_Agent" label="Create New Agent"></topic>
 <topic href="help/Model_Implementation.html#Name_Agent" label="Name Agent"></topic>
@@ -475,7 +477,7 @@
 <topic href="help/Model_Implementation.html#The_Build_Grid_Action" label="The Build Grid Action"></topic>
 </topic>
 </topic>
-<topic href="help/Model_Implementation.html#Actions_3" label="Actions">
+<topic href="help/Model_Implementation.html#Actions_4" label="Actions">
 <topic href="help/Model_Implementation.html#Create_Initialize_Rule" label="Create Initialize Rule">
 <topic href="help/Model_Implementation.html#Create_Select_Action" label="Create Select Action"></topic>
 <topic href="help/Model_Implementation.html#Create_Query_Action" label="Create Query Action"></topic>
@@ -492,7 +494,7 @@
 </topic>
 <topic href="help/Model_Implementation.html#Actions_2_Movement_Rule" label="Actions 2 Movement Rule">
 <topic href="help/Model_Implementation.html#Create_Select_and_Query_Actions" label="">
-<topic href="help/Model_Implementation.html#N10F52" label="Create Select and Query Actions"></topic>
+<topic href="help/Model_Implementation.html#N10FD9" label="Create Select and Query Actions"></topic>
 <topic href="help/Model_Implementation.html#Model_Error_Handling" label="Model Error Handling"></topic>
 </topic>
 <topic href="help/Model_Implementation.html#Run_Final_Model" label="Run Final Model"></topic>
@@ -543,7 +545,7 @@
 <topic href="help/Resources.html" label="Resources">
 <topic href="help/Resources.html#Obtaining_Example_Models" label="Obtaining Example Models">
 <topic href="help/Resources.html#Import_from_CVS" label="">
-<topic href="help/Resources.html#N11126" label="Import from CVS"></topic>
+<topic href="help/Resources.html#N111AE" label="Import from CVS"></topic>
 </topic>
 </topic>
 <topic href="help/Websites.html" label="Websites"></topic>

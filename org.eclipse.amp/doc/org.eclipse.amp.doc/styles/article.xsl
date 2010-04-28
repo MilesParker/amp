@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <!--
-        $Id: article.xsl,v 1.1 2010/04/09 06:17:09 mparker Exp $
+        $Id: article.xsl,v 1.2 2010/04/28 17:51:40 mparker Exp $
         author: Chris Aniszczyk <zx@us.ibm.com>
         author: Lawrence Mandel <lmandel@ca.ibm.com>
 -->

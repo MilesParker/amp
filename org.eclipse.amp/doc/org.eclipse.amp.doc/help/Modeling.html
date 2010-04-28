@@ -188,7 +188,7 @@
 </div>
 </div>
 </div>
-<p>The Eclipse Agent Modeling Framework includes a full-featured model editor based on the Eclipse Modeling Framework's Edit tools. All aspects of an AMF model can be managed from within this tool. Note that the tree editor is only one of many ways of editing a model. Other editors of AMF models incude textual languages and custom editors that are part of commercial offerings.</p>
+<p>The Eclipse Agent Modeling Framework includes a full-featured model editor based on the Eclipse Modeling Framework's Edit tools. All aspects of an AMF model can be managed from within this tool. Note that the tree editor is only one of many ways of editing a model. Other editors of AMF models include textual languages and custom editors that are part of commercial offerings.</p>
 <div class="section" title="Opening the Editor">
 <div class="titlepage">
 <div>
@@ -199,15 +199,15 @@
 </div>
 </div>
 <p>To open a model in the editor, simply double-click on it. If the model doesn't open in the model editor (if for example it had been previously opened using another editor), you can always access the editor using 
-						<span class="bold"><strong>Open With &gt; Other...</strong></span> and selecting "MetaABM Editor". The editor has two pages, an Editor page that we'll focus on first and a "description" page that we'll dicuss at the end of this section.
+						<span class="bold"><strong>Open With &gt; Other...</strong></span> and selecting "MetaABM Editor". The editor has two pages, an Editor page that we'll focus on first and a "description" page that we'll discuss at the end of this section.
 					</p>
 </div>
-<div class="section" title="Editing Structure">
+<div class="section" title="Structure">
 <div class="titlepage">
 <div>
 <div>
 <h4 class="title">
-<a name="Editing_Structure"></a>Editing Structure</h4>
+<a name="Structure_2"></a>Structure</h4>
 </div>
 </div>
 </div>
@@ -231,6 +231,25 @@
 						
 </p>
 </div>
+<div class="section" title="Creating Components">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Creating_Components"></a>Creating Components</h5>
+</div>
+</div>
+</div>
+<p>You add nodes by right-clicking on a node, like so:</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/tools/EditorAdd.png"></div>
+<p>
+						
+</p>
+</div>
 <div class="section" title="Editing Components">
 <div class="titlepage">
 <div>
@@ -248,25 +267,6 @@
 </p>
 <div class="mediaobject">
 <img src="images/tools/EditorEditing.png"></div>
-<p>
-						
-</p>
-</div>
-<div class="section" title="Adding Components">
-<div class="titlepage">
-<div>
-<div>
-<h5 class="title">
-<a name="Adding_Components"></a>Adding Components</h5>
-</div>
-</div>
-</div>
-<p>You add nodes by right-clicking on a node, like so:</p>
-<p>
-							
-</p>
-<div class="mediaobject">
-<img src="images/tools/EditorAdd.png"></div>
 <p>
 						
 </p>
@@ -299,7 +299,7 @@
 </div>
 </div>
 </div>
-<p>You can remove actions by deleting or cutting them using the popup menu. When you delete an entity, all of its children are deleted as well, except in some special cases (such as with actions) where other paths to that entitiy still exist.</p>
+<p>You can remove actions by deleting or cutting them using the popup menu. When you delete an entity, all of its children are deleted as well, except in some special cases (such as with actions) where other paths to that entity still exist.</p>
 </div>
 <div class="section" title="Copying Components">
 <div class="titlepage">
@@ -351,17 +351,47 @@
 </p>
 </div>
 </div>
-<div class="section" title="Editing Actions">
+<div class="section" title="Actions">
 <div class="titlepage">
 <div>
 <div>
 <h4 class="title">
-<a name="Editing_Actions"></a>Editing Actions</h4>
+<a name="Actions_3"></a>Actions</h4>
 </div>
 </div>
 </div>
-<p>Actions are a key and relatively complex aspect of the model editor. Because actions are actually related in a graph structure, a tree-based editor will not be able to represent a the underlying strucuture of action relationships directly. (This is actually no different from most development environments -- for example, Java code is edited in a text based editor, but the call structure represents a complex graph. Advance tools developed by AMP contributors do support more sophisticated methods for action browsing and we'll have simple versions of them available in future releases of the AMF edit tools.) Therefore, it's helpful to take time to understand how action relationships appear in the editor.</p>
+<p>Actions are a key and relatively complex aspect of the model editor. Because actions are actually related in a graph structure, a tree-based editor will not be able to represent a the underlying structure of action relationships directly. (This is actually no different from most development environments -- for example, Java code is edited in a text based editor, but the call structure represents a complex graph. Advance tools developed by AMP contributors do support more sophisticated methods for action browsing and we'll have simple versions of them available in future releases of the AMF edit tools.) Therefore, it's helpful to take time to understand how action relationships appear in the editor.</p>
 <p>Like attributes and styles, every agent has a single Actions nodes which contains its Root Action(s).</p>
+<div class="section" title="Creating Actions">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Creating_Actions"></a>Creating Actions</h5>
+</div>
+</div>
+</div>
+<p>You create actions as with any other component, by right-clicking on the source action and choosing the new action. The menu is organized by usage.</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/tools/EditorActionMenu.png"></div>
+<p>
+						
+</p>
+</div>
+<div class="section" title="Editing Actions">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Editing_Actions"></a>Editing Actions</h5>
+</div>
+</div>
+</div>
+<p>Actions and their inputs are edited just like any other model component. Click on the action or input you want to edit and then make changes to it in the properties editor.</p>
+</div>
 <div class="section" title="Order">
 <div class="titlepage">
 <div>
@@ -372,7 +402,7 @@
 </div>
 </div>
 <p>Generally, action sources will appear above their targets. In the case where there is only one source for a given target, and that target has no other sources, they will appear directly above one another. Its important to note however that 
-							<span class="italic">the order of the nodes does not indicate a specific source and target relationship</span>. For example, in the case where there are multiple targets for a source, they will typically follow that source immediately. To make the relationships clear, every action lists its source actions as part of the action label. Agent selections also appear as part .
+							<span class="italic">the order of the nodes does not indicate a specific source and target relationship</span>. For example, in the case where there are multiple targets for a source, they will typically follow that source immediately. To make the relationships clear, every action lists its source actions as part of the action label. Agent selections also appear as part of the label.
 						</p>
 <p>
 							
@@ -437,7 +467,7 @@
 </div>
 </div>
 </div>
-<p>You can remove actions in the same way as with strucutral model components. Note that just as when you delete an agent, all of that agent's attributes, actions and styles are also deleted form the model, when you delete an Action, any of its targets will also be removed, unless there is some other source action path that connects it to the root action. And of course, any targets of such targets will be affected in the same way and so on. If you remove a node from igh in the action tree a lot of nodes could disappear at once! If you have actions that you want to retain as part of the flow, you should first make them targets of a new action before deleting their parent action.</p>
+<p>You can remove actions in the same way as with structural model components. Note that just as when you delete an agent, all of that agent's attributes, actions and styles are also deleted form the model, when you delete an Action, any of its targets will also be removed, unless there is some other source action path that connects it to the root action. And of course, any targets of such targets will be affected in the same way and so on. If you remove a node from high in the action tree a lot of nodes could disappear at once! If you have actions that you want to retain as part of the flow, you should first make them targets of a new action before deleting their parent action.</p>
 </div>
 <div class="section" title="Copying Actions">
 <div class="titlepage">
@@ -464,7 +494,7 @@
 							
 </p>
 <div class="mediaobject">
-<img src="images/tools/ActionsExample.png"></div>
+<img src="images/tools/Inputs.png"></div>
 <p>
 						
 </p>

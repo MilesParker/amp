@@ -8,10 +8,16 @@
 			<xsl:apply-templates select="@*|node()" />
 		</xsl:copy>
 	</xsl:template>
-	<xsl:template match="imageobject">
-		<xsl:element name="imagedata">
-			<xsl:apply-templates />
-			<xsl:attribute name="width">200</xsl:attribute>
-		</xsl:element>
+	<xsl:template match="informaltable">
+		<xsl:copy>
+			<xsl:attribute name="frame">none</xsl:attribute>
+			<xsl:apply-templates select="@*|node()"  />
+		</xsl:copy>	
+	</xsl:template>
+	<xsl:template match="imagedata">
+		<xsl:copy>
+			<xsl:apply-templates select="@*|node()"  />
+			<xsl:attribute name="scale">50</xsl:attribute>
+		</xsl:copy>	
 	</xsl:template>
 </xsl:stylesheet> 
