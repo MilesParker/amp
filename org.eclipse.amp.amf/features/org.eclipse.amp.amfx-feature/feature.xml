@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.amp.amfx"
       label="%featureName"
-      version="0.5.0.qualifier"
+      version="0.7.0.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.amp.amf.abase">
 
@@ -30,7 +30,7 @@
       <import plugin="org.eclipse.ui" version="3.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.runtime" version="3.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.resources" version="3.5.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.amp.amf.acore" version="0.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.acore" version="0.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.emf.common"/>
       <import plugin="org.antlr.runtime"/>
@@ -42,9 +42,9 @@
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.eclipse.ui.ide" version="3.5.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.amp.amf.abase.edit" version="0.5.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.amp.amf.abase" version="0.5.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.amp.amf.abase.ui" version="0.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.abase.edit" version="0.7.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.abase" version="0.7.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.abase.ui" version="0.7.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.editors" version="3.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.mwe.utils"/>
       <import plugin="org.eclipse.xtext.ecore" version="1.0.0" match="greaterOrEqual"/>
