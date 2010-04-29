@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-SymbolicName: org.eclipse.amp.agf.zest.ide;singleton:=true
-Bundle-Version: 0.5.0.qualifier
+Bundle-Version: 0.7.0.qualifier
 Bundle-Activator: org.eclipse.amp.agf.zest.ide.AMPZestPlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
