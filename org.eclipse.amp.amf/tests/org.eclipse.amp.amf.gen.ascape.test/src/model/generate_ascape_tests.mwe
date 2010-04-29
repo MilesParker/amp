@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<workflow>
+	<property name="outputPath" value="./" />
+	<property name="modelPath" value="TestSpatial.metaabm" />
+	<property name="modelFile" value="TestSpatial.metaabm" />
+    <property name="testing" value="true" />
+    <property name="fullStats" value="true" />
+    <property name="genStats" value="single" />
+    <property name="genComments" value="true" />
+    <property name="orgImports" value="true" />
+    <property name="format" value="true" />
+    <property name="buildProject" value="org.eclipse.amp.amf.gen.ascape.test"/>
+
+	<property name="runtimeProject" value="../org.eclipse.amp.amf.gen.ascape.test"/>
+	
+	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" platformUri="${runtimeProject}/..">
+  		<registerGeneratedEPackage value="org.metaabm.MetaABMPackage"/>
+  		<registerGeneratedEPackage value="org.metaabm.act.MetaABMActPackage"/>
+  		<registerGeneratedEPackage value="org.metaabm.function.MetaABMFunctionPackage"/>
+   	</bean>
+    	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" platformUri="${runtimeProject}/.."/>
+    
+	<cartridge file="model/generate_base.mwe">
+		<outputPath value="${outputPath}" />
+		<modelPath value="${modelPath}" />
+		<modelFile value="${modelFile}" />
+        <testing value="${testing}" />
+        <buildProject value="${buildProject}" />
+        <fullStats value="${fullStats}" />
+        <genComments value="${genComments}" />
+        <orgImports value="${orgImports}" />
+        <genStats value="${genStats}" />
+        <format value="${format}" />
+	</cartridge>
+
+	<component adviceTarget="javaGenerator"
+		id="reflectionAdvice" class="org.eclipse.xpand2.GeneratorAdvice">
+		<advice value="metaabm::ascape::tmpl::AscapeAspect" />
+	</component>
+</workflow>
