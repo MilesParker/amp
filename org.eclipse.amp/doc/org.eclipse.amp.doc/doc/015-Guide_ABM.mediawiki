@@ -19,6 +19,31 @@ Existing scientific models are very good at representing relatively simple syste
 
 Agent-Based Models (ABMs) seek to represent important real-world dynamics by designing communities of software agents that mimic real entities. Rather than make simplifying assumptions about such systems and then representing them in equation form or as off the shelf algorithmic constructs, the ABM researcher aims to identify key agent state, interaction spaces, and behaviors. Agents are then "let loose" on our computers and we explore what happens next. The computational horsepower exists today to simulate large numbers (e.g. >>10) of interacting, adaptive and autonomous agents but often desktop computers are all we need to explore significant domains. ABMs have been designed to represent all kinds of important natural systems, at scales reaching from cellular mechanics to international trade and are being used to solve truly hard problems in government, business, and academia. ABMs are not a solution to every problem, but they can help us to appreciate and gain unique insight into many systems, and often they can help us to come up with better practical decisions than we might using classic approaches.
 
-==Other Uses==
+==Other Domains==
 
 Many kinds of objects share characteristics of ABM agents -- after all, software agents are used in many other contexts. The Agent Modeling Framework meta-modeling support is potentially suitable (or extendible) for a number of approaches outside of ABM; for example business rules, object interactions, systems dynamics models and traditional discrete event models. Similarly, AMP execution and graphic support can be used for modeling natural systems but could also be used to manage other software agents -- for example independent reasoning tasks or dynamic visualization support.
+
+==The Agent Modeling Platform (AMP)==
+
+The Eclipse Agent Modeling Project (Incubation) or "AMP" provides the core support for both open source and commercial modeling tools. AMP in turn is built upon Elipse, the most powerful, well-supported and popular Integrated Development Platform (IDE) available anywhere.
+
+AMP provides extensible frameworks and exemplary tools for representing, editing, generating, executing and visualizing ABMs and any other domain requiring spatial, behavioral and functional features. AMP has two main themes that complement but don't depend on one another, modeling of agent systems (AMF) and execution and exploration of those systems (AXF, AGF and Escape).
+
+The overall AMP architecture and project dependencies are summarized in the architectural diagram below:
+
+[[Image:images/AMPArchitectureDiagram.jpg]]
+
+===Agent Modeling Framework (AMF)===
+
+AMF provides an ABM meta-model representation, editor, generator and development environment. The AMF Acore meta-model is similar to EMF Ecore and defined in Ecore, but provides high-level support for complex agents.AMF generates complete executable models for Escape, Ascape and Repast Simphony, as well as Java Skeletons and Interfaces, JUnit test cases and documentation and is easily extensible to support additional targets. For more on AMF, see the Modeler Guide.
+
+===Agent Execution Framework (AXF)===
+The execution framework provides services and UI for model management, execution, and views. Arbitrary toolkits can easily integrate with Eclipse and AXF by implementing pluggable providers like engines, agents and view parts. AXF is not just for ABM -- anyone who needs support for executing, managing and visualizing collections of objects may find it useful. AXF user tools are covered extensively in the User Guide, and the forthcoming Platform Developers Guide will provide information about integrating AXF in your own tools.
+
+===Agent Graphics Framework (AGF)===
+
+The graphics framework extends GEF, GEF3D, Zest, and the BIRT charting engine to support real-time visualization of and interaction with agent models. AGF currently provides support for 2D, 2 1/2 D. and graph structures, and will be extended to 3-D, GIS and others. As with other AMP components, the AGF design focus is to provide an extensible infrastructure so that platform adopters can easily create their own view and editor parts. AGF user tools are covered extensively in the User Guide, and the forthcoming Platform Developers Guide will provide information about integrating and extending AGF in your own tools.
+
+===Escape===
+
+Escape is an exemplar ABM toolset. It's based on Ascape, which has been in use for more than 10 years. The core API is very stable, and that should give users a way to explore the features of AMP without concerns about keeping in synch with the rapidly evolving AXF /AGF API. It allows modelers to code in Java and/or generate models with AMF and then execute those models within the same development environment. Escape is the primary target for most of the models in this guide. Those users interested in writing code directly to the Escape API can refer to the Programmer Guide.

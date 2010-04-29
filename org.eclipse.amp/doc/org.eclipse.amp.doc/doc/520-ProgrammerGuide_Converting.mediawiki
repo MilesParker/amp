@@ -1,17 +1,17 @@
 
-===Converting Existing Ascape models===
+==Converting Existing Ascape Models==
 
 There are only a few changes should have to make to existing Ascape models or to use existing Ascape documentation to develop Escape models.
 
-====Model====
+===Model===
 
 The core model is completely API compatible. No changes!
 
-====View====
+===View===
 
 Because Escape uses SWT and Ascape uses Swing, there are a few unavoidable incompatibilities. Most of these we avoid by using higher level APIs but here are the key changes that you're likely to have to make:
 
-=====Convert the low-level imports from AWT and Swing to SWT=====
+====Convert the low-level imports from AWT and Swing to SWT====
 The simplest way to accomplish this is to remove all of the imports and then organize imports. For example:
  java.awt.Color => org.eclipse.swt.graphics.Color
  java.awt.Graphics => org.eclipse.draw2d.Graphics
@@ -20,18 +20,18 @@ Then just do a global find for all of the imports and replace them with nothing.
  replace: [nothing]
 You don't have to replace these with the SWT equivalents, just click on the project, right-click and choose "Source:Organize Imports.."
 By the way, a great way to avoid having to select the right entries in optimize imports and to alert you when you have missed anything is to prevent the awt and swing classes from being used at all. Right-click on project, choose "Build Path:Configure Build Path", go to Libraries tab, open JRE System Library, choose "Access Rules", edit, and then add entries for java/awt/** and javax/swing/**. The code will regenerate and you'll have error markers for all of the stuff that won't work with Escape and Eclipse.
-=====Convert color features=====
+====Convert color features====
 You can't use AWT colors either so you'll need to replace any colors. AMP provides a convenience classes for Colors called ColorFeature and ColorFeatureConcrete. You can use these or any of the other ways to define SWT colors. For example:
  Color.lightGray => ColorFeature.LIGHT_GRAY
  new Color(Math.min(1.0f, (float) (redEnergy + orangeEnergy)), (float) orangeEnergy * .8f, (float) blueEnergy) => 
      ColorFeatureConcrete.create(Math.min(1.0f, (float) (redEnergy + orangeEnergy)), (float) orangeEnergy * .8f, (float) blueEnergy)
-=====Change agent color getters=====
+====Change agent color getters====
 If you've defined colors through overriding Agents as in most models, you'll need to change the method signature. You could just do a global replace for this one.
  public Color getColor( => public Object getPlatformColor(
-=====Get rid of image features=====
+====Get rid of image features====
 Escape doesn't support them. In practice they haven't been used a lot. At some point perhaps we'll have nice sprite support instead. :)
  public Image getImage() {**} => ""
-=====Modify usages of DrawFeatures=====
+====Modify usages of DrawFeatures====
 If you've created any of your own draw features, you'll need to change them slightly to accommodate the differences between the AWT and SWT / Draw2D APIs. This should be pretty straightforwrd. For example:
  g.setColor(...
  g.fillOval(..

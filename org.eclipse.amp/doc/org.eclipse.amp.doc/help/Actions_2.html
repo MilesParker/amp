@@ -66,7 +66,7 @@
 </div>
 </div>
 </div>
-<table id="N1029B">
+<table id="N102B3">
 <tr>
 							
 <td>Before getting into the details of how each Actions work together, or the various kinds of Actions, it will be helpful to take a broad overview of how they all fit together. As discussed above, actions are strung together in a sequence or flow. They're always composed of two parts, though those parts can be assembled and intermixed in many different ways. First, we search for a collection of agents, and then we do something with that selection. We refer to these two parts as Selections and Commands. (For the technically minded, another useful way of looking at the Actions approach is as a Query Transformation language, as with SQL and Stored Procedures.  Except again, the results of the queries along with the transformations flow through from one query to the next.) Selections find the agents we want to do something with, and the commands do it. We need some way to start the whole chain of actions off, and so we have a kind of Selection called a Root Selection, or simply a Root. Secondly, we need some way to actually make the agents exist in the model in the first place, so we have a Create Agents action. Finally, we have special commands called builders that allow us to create the spaces that the agents will occupy. The various actions are discussed in depth in the Details section.</td>
@@ -94,7 +94,7 @@
 						An important aspect of the Actions design is that loop structures are not allowed -- that is, flows are acyclic. An action can never have an ancestor target (that is targets, targets of targets, etc..) that has as one of its ancestors that same action. As you'll see, actions don't typically 
 						<span class="italic">need</span> loop structures. By far the most common use of loops in conventional programming langauges is to loop through collections of objects. As selections (see below) refer to the entire collection of agents, any actions on a selection apply to all members of that collection. Recursive structures are needed for some particular usages and will be supported in future releases, but not through an explicit looping construct.
 					</p>
-<table id="N102B9">
+<table id="N102D1">
 <tr>
 							
 <td>Again, behaviors in Actions are always defined by a set of 
@@ -110,7 +110,7 @@
 						
 </tr>
 </table>
-<table id="N102D3">
+<table id="N102EB">
 <tr>
 							
 <td>The diagram to the right depicts a simple example. Here, we create a rule, and then check the results of two queries. For any agents that meet those criteria, we'll evaluate some function based on their state, and then set some value on them.</td>
@@ -123,7 +123,7 @@
 						
 </tr>
 </table>
-<table id="N102E5">
+<table id="N102FD">
 <tr>
 							
 <td>In this next example, we'll first create the rule, and then create a new selection with a set of criteria. Finally, we'll do a move based on those queries.</td>
@@ -187,7 +187,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 </div>
 </div>
 <p>Selections are a key concept in Actions. Put simply, selections define what we are searching for and where. They are defined by a combination of Select, Query and Logic Actions. Each time we create a new Select Action, we define a new selection. Queries can be used to further refine selections either immediately after or later in the Action flow, as described in the next section. Logic Actions are used to combine and organize the Action flow defined by Query Actions. In order to understand how these three pieces work together, we need to understand the idea of selection boundaries.</p>
-<table id="N10321">
+<table id="N10339">
 <tr>
 							
 <td>A selection boundary determines the set of selection actions that are used to determine what agents to apply target actions to. For example, in the following diagram, we can see the extent of the boundary for a straightforward selection.</td>
@@ -200,7 +200,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </tr>
 </table>
-<table id="N10333">
+<table id="N1034B">
 <tr>
 							
 <td>Each time we create a new selection, we define a new set of boundaries. In the diagram to the right, Selection 1 and Selection 2 eaach start with a new Select Action. </td>
@@ -224,7 +224,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 </li>
 </ol>
 </div>
-<table id="N10350">
+<table id="N10368">
 <tr>
 							
 <td>In other words, as soon as a Logic Action occurs in a path leading to an Action, any following Query will define a new boundary, as shown in the example to the right. </td>
@@ -262,7 +262,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 </div>
 </div>
 </div>
-<table id="N1037B">
+<table id="N10393">
 <tr>
 							
 <td>Now, let's put the concepts of Actions sequences and boundaries together to see how we can easily define complex interactions between multiple selections. When we define a Select, the state of its selection flows through and with any subsequent selections. So for example, if we have a Root Action rule, and then do a selection based on it, we'll have access to the agent from the original context as well as all of the subsequent selections. We can refer to any previous selection for any subsequent action. For example, instead of setting the value for the rule agent, we might instead set a value for an agent we've found in a target selection.</td>
@@ -275,7 +275,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </tr>
 </table>
-<table id="N1038D">
+<table id="N103A5">
 <tr>
 							
 <td>Inputs to functions also use selections. (We'll discuss more details in the functions section.) In the following example, we're adding the wealth of the Selection 1 agent to the wealth of the Selection 2 agent and using that value to set some other value. (Here, perhaps we are modeling an agent in a winner takes all game, in which case we'd also add a Set Action on Selection 2 and set the second agent's wealth to 0.)</td>
@@ -288,7 +288,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </tr>
 </table>
-<table id="N1039F">
+<table id="N103B7">
 <tr>
 							
 <td>But we can also use selections in defining Query Actions themselves. So in the following example, we select a neighbor agent and then compare the age of our Rule agent with the age of the Selection 2 agent. If and only if those ages are the same will we execute the target Set Action. This example also demonstrates why we refer to the data flow as weaving. Query Actions can be used to refine selections at any point in the data flow. Selections and their uses are interwoven throughout an action sequence.</td>
@@ -301,7 +301,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 						
 </tr>
 </table>
-<table id="N103B1">
+<table id="N103C9">
 <tr>
 							
 <td>Finally, we can put all of these concepts together by weaving selections together with flows. As we discussed in the flow section, if we use multiple paths in the Query, the agents that flow through from any prior Query can follow multiple paths at once. And as we discussed in the selection section, the selection and its boundaries determine what agents we will be working with at any given evaluation point in the flow. Consider the example to the right. As we'll see in the detailed explanation of each Action below, Transformation Actions such as Move or Connect take multiple selections. The first selection defines the set of agents that will be performing the action. In the case of a Move agent, this refers to the mover. The second selection, which for Move we call "destination", refers to the selection that will be receiving the action. In the case of movement this is the agent or location that the Rule agent will be moving to. If we follow the flows through, we can note two important outcomes of our model design -- a Rule agent might move twice if it meets the criteria for both the blue path and the red path and that it might move to a different location each time.</td>
@@ -325,7 +325,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 </div>
 </div>
 </div>
-<table id="N103C7">
+<table id="N103DF">
 <tr>
 						
 <td>In this section, we'll dig into the specific role of each of the Actions. From the design discussion we hopefully have some sense of how these all fit together in general. Again, the block diagram to the right provides an overview of how the various actions are related. You might want to take a look at the meta-class diagrams in the referernce section as well.</td>
@@ -1381,7 +1381,7 @@ if&nbsp;(query3.evaluate())&nbsp;{<br>
 <div>
 <div>
 <h6 class="title">
-<a name="N1062F"></a>Input Literals</h6>
+<a name="N10647"></a>Input Literals</h6>
 </div>
 </div>
 </div>

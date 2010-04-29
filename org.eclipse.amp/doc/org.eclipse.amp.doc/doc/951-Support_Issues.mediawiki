@@ -1,0 +1,19 @@
+===General Support, Questions and Discussion===
+
+The [http://www.eclipse.org/forums/index.php?t=thread&frm_id=17&S=f4fa6cb31327772a3b626dc409db409b Agent Modeling Platform Newsgroup] is the place to discuss or get support for any of the Eclipse AMP tools. Don't hesitate to ask questions about model implementation or bring up more general topics for discussion.
+
+===View Existing Bugs and Feature Requests===
+
+If you have a problem or idea for improvement, there's a good chance that its already been discovered. To avoid duplication, please check the current bugs before filing a new bug report or feature request.
+
+[https://bugs.eclipse.org/bugs/buglist.cgi?query_format=advanced&short_desc_type=allwordssubstr&short_desc=&product=AMP&long_desc_type=allwordssubstr&long_desc=&bug_file_loc_type=allwordssubstr&bug_file_loc=&status_whiteboard_type=allwordssubstr&status_whiteboard=&keywords_type=allwords&keywords=&emailtype1=substring&email1=&emailtype2=substring&email2=&bugidtype=include&bug_id=&votes=&chfieldfrom=&chfieldto=Now&chfieldvalue=&cmdtype=doit&order=Reuse+same+sort+as+last+time&field0-0-0=noop&type0-0-0=noop&value0-0-0= Search Existing Bugs]
+
+===File a Bug===
+
+This may sound obvious, but if something doesn't work as it should, the only way that we're going to find out is if someone reports it. All AMP related bugs or feature requests should use the Eclipse Bugzilla.
+
+[https://bugs.eclipse.org/bugs/enter_bug.cgi?product=AMP&rep_platform=All&op_sys=All File a Bug or Feature Request]
+
+===Discuss AMP Development and Project===
+
+All discussion about software development, design and project management issues take place on the AMP dev-list. If you're interested in contributing to the AMP project, this is a good place to contact us. [https://dev.eclipse.org/mailman/listinfo/amp-dev].

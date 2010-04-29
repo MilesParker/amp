@@ -1,0 +1,108 @@
+=Installation Guide=
+
+==Tools==
+
+===Complete IDE===
+
+You may already have obtained a complete IDE bundled with AMP and other modeling tools. The project contributors offer open source and commercial versions of the AMP tools, which you can find at their sites. If so, you can mostly ignore this chapter unless you want to install an optional component like Repast.
+
+===Eclipse and the Agent Modeling Tools===
+
+You can find more detailed instructions [http://eclipse.org/amp/installing/ here], but here are the basic steps.
+
+#Install the latest version of Eclipse from [http://www.eclipse.org/downloads/ here]. AMP requires version 3.5.x (Gallieo) or higher. Version 3.6 (Hellos) which is currently a development (beta) release works well too. We recommend the "Classic" release at the bottom of the page as the other releases have a bunch of stuff you wont' need.
+#Add update sites for AMP and AMP dependencies. See the screenshot below and the [http://help.eclipse.org/galileo/topic/org.eclipse.platform.doc.user/tasks/tasks-124.htm Eclipse Documentation]. There are different versions of the update sites, depending on whether you want to use the most stable version of the toolset or the "latest and greatest". The update sites are listed below.
+#(Optional) If you install and AMP extensions, add Update Sites for them -- they're also listed below.
+#Select the features that you want to install.
+#Click the '''Next''' button, review the licenses, and then click '''Finish'''.
+
+Agent Modeling Platform update sites:
+ Milestones (recommended): http://download.eclipse.org/amp/updates/milestones
+ Interim (newer): http://download.eclipse.org/amp/updates/interim
+ Nightly (bleeding edge): http://download.eclipse.org/amp/updates/nightly
+
+Update sites for AMP Extensions
+ AGF 3D (recommended): http://lwjgl.org/update
+ AMF for Ascape (recommended for Java developers): http://ascape.sourceforge.net/eclipse
+ AMF for Repast (for people using Repast): http://mirror.anl.gov/pub/repastsimphony/site.xml (non P2)
+
+In the following screenshot, we've added the LWJGL site (not shown) as well as the Ascape site (not shown), but not the Repast site, and we're about to install the respective features. 
+
+[[Image:images/resources/AMPUpdateSite.png]]
+
+Once you've done that, select the '''Help > Help Contents''' menu, find the Agent Modeling Guide and open this overview page within that guide.
+
+===Extensions===
+
+====Ascape====
+
+For licensing and copyright reasons we can't provide all of the Ascape tools and manual on the Eclipse hosted Agent Modeling Project site. None of these tools are necessary to use AMP (the core Ascape support is an IP approved part of the AMP distribution) but they're highly recommended. The Ascape tools include:
+
+#An excellent Manual covering programming Java models in Ascape and Escape. (The API is the same.)
+#Support for creating Ascape Java projects and executing the Swing-based Java Applications. Swing deployed Ascape Java Applications can be as small as 10MB and can be deployed to the web.
+#Eclipse based IDE support for plain Java Ascape projects.
+
+The Ascape update site is at:
+
+ http://ascape.sourceforge.net/eclipse
+ 
+To install Ascape, use the update manager. Select '''Help > Install New Software..."''', add the Ascape update site, select the Ascape category and click the '''Finish''' button.
+
+[[Image:images/resources/AscapeUpdateSite.png]]
+
+====Repast====
+
+The Repast update site is at:
+
+ http://mirror.anl.gov/pub/repastsimphony/site.xml
+
+More information on downloading and installing repast can be found [http://repast.sourceforge.net/docs/development.html here]. Follow the instrucitons for "Configuration B".
+
+==Models==
+
+===Obtaining Example Models===
+
+There is a cheat-sheet available for obtaining the example models. If you would rather obtain them yourself, here is the CVS information:
+
+====Team Project Sets====
+
+You can use the following team project sets. See [http://help.eclipse.org/galileo/topic/org.eclipse.platform.doc.user/tasks/tasks-cvs-project-set.htm this document] for more information about using project sets.
+
+ http://eclipse.org/amp/project-sets/ascape.psf
+ http://eclipse.org/amp/project-sets/escapeAMFExamples.psf
+
+====From Version Control Systems====
+
+Import the CVS projects from the AMP project repository. For help, see [http://help.eclipse.org/help32/index.jsp?topic=/org.eclipse.platform.doc.user/reference/ref-40a.htm this page]. Here are the details for CVS Access:
+
+CVS Repository:
+
+ Connection type:	pserver
+ User:	anonymous
+ Password:	[none]
+ Host:	dev.eclipse.org
+ Path:	/cvsroot/modeling
+ Module:	/org.eclipse.amp
+
+AMF Escape Models:
+
+ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.escape 
+
+AMF Ascape and Repast Models:
+
+ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape 
+ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast 
+
+The Ascape example projects are available at the Sourceforge SVN server. You can get them at the following locations. See the [[http://www.eclipse.org/subversive/documentation/teamSupport/find_check_wiz.php Subversive User Guide]] for more information about using SVN. (You'll need to install Subversion if you don't already have it.)
+
+Escape Java Models:
+
+ https://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.models.brook
+ https://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.models.examples
+
+Ascape (Swing-based) Java Models:
+
+
+ https://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.examples
+ https://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.brook
+ 

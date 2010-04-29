@@ -1,0 +1,194 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Installation Guide</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="Agent Modeling Guide">
+<link rel="up" href="index.html" title="Agent Modeling Guide">
+<link rel="prev" href="Converting_Existing_Ascape_Models.html" title="Converting Existing Ascape Models">
+<link rel="next" href="Models.html" title="Models">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Installation Guide</h1>
+<div class="chapter" title="Installation Guide">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="Installation_Guide"></a>Installation Guide</h2>
+</div>
+</div>
+</div>
+<div class="toc">
+<dl>
+<dt>
+<span class="section"><a href="Installation_Guide.html#Tools">Tools</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Models.html">Models</a></span>
+</dt>
+</dl>
+</div>
+<div class="section" title="Tools">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Tools"></a>Tools</h2>
+</div>
+</div>
+</div>
+<div class="section" title="Complete IDE">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Complete_IDE"></a>Complete IDE</h3>
+</div>
+</div>
+</div>
+<p>You may already have obtained a complete IDE bundled with AMP and other modeling tools. The project contributors offer open source and commercial versions of the AMP tools, which you can find at their sites. If so, you can mostly ignore this chapter unless you want to install an optional component like Repast.</p>
+</div>
+<div class="section" title="Eclipse and the Agent Modeling Tools">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Eclipse_and_the_Agent_Modeling_Tools"></a>Eclipse and the Agent Modeling Tools</h3>
+</div>
+</div>
+</div>
+<p>You can find more detailed instructions 
+					<a class="ulink" href="http://eclipse.org/amp/installing/" target="_new">here</a>, but here are the basic steps.
+				</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>Install the latest version of Eclipse from 
+							<a class="ulink" href="http://www.eclipse.org/downloads/" target="_new">here</a>. AMP requires version 3.5.x (Gallieo) or higher. Version 3.6 (Hellos) which is currently a development (beta) release works well too. We recommend the "Classic" release at the bottom of the page as the other releases have a bunch of stuff you wont' need.
+						</p>
+</li>
+<li class="listitem">
+<p>Add update sites for AMP and AMP dependencies. See the screenshot below and the 
+							<a class="ulink" href="http://help.eclipse.org/galileo/topic/org.eclipse.platform.doc.user/tasks/tasks-124.htm" target="_new">Eclipse Documentation</a>. There are different versions of the update sites, depending on whether you want to use the most stable version of the toolset or the "latest and greatest". The update sites are listed below.
+						</p>
+</li>
+<li class="listitem">
+<p>(Optional) If you install and AMP extensions, add Update Sites for them -- they're also listed below.</p>
+</li>
+<li class="listitem">
+<p>Select the features that you want to install.</p>
+</li>
+<li class="listitem">
+<p>Click the 
+							<span class="bold"><strong>Next</strong></span> button, review the licenses, and then click 
+							<span class="bold"><strong>Finish</strong></span>.
+						</p>
+</li>
+</ol>
+</div>
+<p>Agent Modeling Platform update sites:</p>
+<div class="literallayout">
+<p>Milestones&nbsp;(recommended):&nbsp;http://download.eclipse.org/amp/updates/milestones<br>
+Interim&nbsp;(newer):&nbsp;http://download.eclipse.org/amp/updates/interim<br>
+Nightly&nbsp;(bleeding&nbsp;edge):&nbsp;http://download.eclipse.org/amp/updates/nightly<br>
+
+</p>
+</div>
+<p>Update sites for AMP Extensions</p>
+<div class="literallayout">
+<p>AGF&nbsp;3D&nbsp;(recommended):&nbsp;http://lwjgl.org/update<br>
+AMF&nbsp;for&nbsp;Ascape&nbsp;(recommended&nbsp;for&nbsp;Java&nbsp;developers):&nbsp;http://ascape.sourceforge.net/eclipse<br>
+AMF&nbsp;for&nbsp;Repast&nbsp;(for&nbsp;people&nbsp;using&nbsp;Repast):&nbsp;http://mirror.anl.gov/pub/repastsimphony/site.xml&nbsp;(non&nbsp;P2)<br>
+
+</p>
+</div>
+<p>In the following screenshot, we've added the LWJGL site (not shown) as well as the Ascape site (not shown), but not the Repast site, and we're about to install the respective features. </p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/resources/AMPUpdateSite.png"></div>
+<p>
+				
+</p>
+<p>Once you've done that, select the 
+					<span class="bold"><strong>Help &gt; Help Contents</strong></span> menu, find the Agent Modeling Guide and open this overview page within that guide.
+				</p>
+</div>
+<div class="section" title="Extensions">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Extensions"></a>Extensions</h3>
+</div>
+</div>
+</div>
+<div class="section" title="Ascape">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Ascape"></a>Ascape</h4>
+</div>
+</div>
+</div>
+<p>For licensing and copyright reasons we can't provide all of the Ascape tools and manual on the Eclipse hosted Agent Modeling Project site. None of these tools are necessary to use AMP (the core Ascape support is an IP approved part of the AMP distribution) but they're highly recommended. The Ascape tools include:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>An excellent Manual covering programming Java models in Ascape and Escape. (The API is the same.)</p>
+</li>
+<li class="listitem">
+<p>Support for creating Ascape Java projects and executing the Swing-based Java Applications. Swing deployed Ascape Java Applications can be as small as 10MB and can be deployed to the web.</p>
+</li>
+<li class="listitem">
+<p>Eclipse based IDE support for plain Java Ascape projects.</p>
+</li>
+</ol>
+</div>
+<p>The Ascape update site is at:</p>
+<div class="literallayout">
+<p>http://ascape.sourceforge.net/eclipse<br>
+
+</p>
+</div>
+<p>To install Ascape, use the update manager. Select 
+						<span class="bold"><strong>Help &gt; Install New Software..."</strong></span>, add the Ascape update site, select the Ascape category and click the 
+						<span class="bold"><strong>Finish</strong></span> button.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/resources/AscapeUpdateSite.png"></div>
+<p>
+					
+</p>
+</div>
+<div class="section" title="Repast">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Repast"></a>Repast</h4>
+</div>
+</div>
+</div>
+<p>The Repast update site is at:</p>
+<div class="literallayout">
+<p>http://mirror.anl.gov/pub/repastsimphony/site.xml<br>
+
+</p>
+</div>
+<p>More information on downloading and installing repast can be found 
+						<a class="ulink" href="http://repast.sourceforge.net/docs/development.html" target="_new">here</a>. Follow the instrucitons for "Configuration B".
+					</p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

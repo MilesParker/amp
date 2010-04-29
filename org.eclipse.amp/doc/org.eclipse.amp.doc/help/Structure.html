@@ -225,32 +225,42 @@
 </div>
 </div>
 <p>These can be anyone of the following: </p>
-<table id="N1014D">
-<tr>
-									
-<td>Boolean</td>
-									<td>A value that is simply true or false. Note that unless this value really is a simple binary value, you should consider using state instead. (See details below.) For example, rather than representing gender as a 'Female' boolean value, define a 'Gender' state with values 'Male' and "Female'. Generated artifacts and documentation will be much clearer, and you'll be able to easily modify the model later if for example you discover that there are more than two potential gender categories that are relevant to your model.</td>
-								
-</tr>
-<tr>
-									
-<td>Integer</td>
-									<td>A discrete whole number value, such as "100", "-1", "10029920". It's generally a good idea to represent any value that can never have a decimal value as an integer.</td>
-								
-</tr>
-<tr>
-									
-<td>Real</td>
-									<td>A continuous number value. While these are typically represented in software as floating point numbers, they can conceivably represent numbers at any arbitrary precision and in any scheme. Note that while technically speaking we should be representing irrational numbers, this is not currently supported for default values and users should simply use the closest decimal approximation.</td>
-								
-</tr>
-<tr>
-									
-<td>Symbol</td>
-									<td>A string representing some state. More precisely, a computationally arbitrary value with contextual meaning. This could be any kind of identifier. For example, you might use it to store some kind of input coding from data that is then converted into an object state. Or it could simply be an agent's name. But theoretically (though this is not currently supported) one could imagine a symbol using an idiogram, an icon or even a sound that identifies or represents the agent in question.</td>
-								
-</tr>
-</table>
+<div class="variablelist">
+<dl>
+<dt>
+<span class="term">
+										<span class="bold"><strong>Boolean</strong></span>
+									</span>
+</dt>
+<dd>
+<p>A value that is simply true or false. Note that unless this value really is a simple binary value, you should consider using state instead. (See details below.) For example, rather than representing gender as a 'Female' boolean value, define a 'Gender' state with values 'Male' and "Female'. Generated artifacts and documentation will be much clearer, and you'll be able to easily modify the model later if for example you discover that there are more than two potential gender categories that are relevant to your model.</p>
+</dd>
+<dt>
+<span class="term">
+										<span class="bold"><strong>Integer</strong></span>
+									</span>
+</dt>
+<dd>
+<p>A discrete whole number value, such as "100", "-1", "10029920". It's generally a good idea to represent any value that can never have a decimal value as an integer.</p>
+</dd>
+<dt>
+<span class="term">
+										<span class="bold"><strong>Real</strong></span>
+									</span>
+</dt>
+<dd>
+<p>A continuous number value. While these are typically represented in software as floating point numbers, they can conceivably represent numbers at any arbitrary precision and in any scheme. Note that while technically speaking we should be representing irrational numbers, this is not currently supported for default values and users should simply use the closest decimal approximation.</p>
+</dd>
+<dt>
+<span class="term">
+										<span class="bold"><strong>Symbol</strong></span>
+									</span>
+</dt>
+<dd>
+<p>A string representing some state. More precisely, a computationally arbitrary value with contextual meaning. This could be any kind of identifier. For example, you might use it to store some kind of input coding from data that is then converted into an object state. Or it could simply be an agent's name. But theoretically (though this is not currently supported) one could imagine a symbol using an idiogram, an icon or even a sound that identifies or represents the agent in question.</p>
+</dd>
+</dl>
+</div>
 <p>(Undefined and Numeric types should not be used within a well-defined model.)</p>
 </div>
 <div class="section" title="Default Value">
@@ -387,13 +397,17 @@
 <div class="variablelist">
 <dl>
 <dt>
-<span class="term">Periodic</span>
+<span class="term">
+										<span class="bold"><strong>Periodic</strong></span>
+									</span>
 </dt>
 <dd>
 <p>When encountering an edge, the agent will treat the space as wrapping around to the other side of the space. For example, if the agent at location {1,2} (0-based) within a Moore space (see grid discussion below) of size {10,10} is asked to find some other agent within distance 3, the agent look in the square defined between {8,9} and {4,5}. An agent asked to move beyond the confines of the space will simply stop when it reaches the edge. You can imagine this as taking a piece of graph paper and connecting the opposite edges. You can't actually do that with paper, but if you could you would have a toroidal (donut) shape in three dimensions defining the shape in two.</p>
 </dd>
 <dt>
-<span class="term">APeriodic</span>
+<span class="term">
+										<span class="bold"><strong>APeriodic</strong></span>
+									</span>
 </dt>
 <dd>
 <p>When encountering an edge, the agent treats it as the edge of the space. For example, if the agent at location {1,2} is asked to find some other agent within distance 3, the agent look between {0,0} and {4,5}. An agent asked to move beyond the confines of the space will simply stop when it reaches the edge.</p>
@@ -449,13 +463,17 @@
 <div class="variablelist">
 <dl>
 <dt>
-<span class="term">Euclidean</span>
+<span class="term">
+										<span class="bold"><strong>Euclidean</strong></span>
+									</span>
 </dt>
 <dd>
 <p>The distance between any two cells is taken to be the "real" distance. For example, if an agent was within a chess board, and we wanted to find all agents within distance three of it, we could determine that by taking a string of length 3, tacking it to the center of the source square, and including all cells whose centers we can reach with the other string end. Note that although Euclidean space may seem the most reasonable neighborhood configuration to choose, this really isn't the case. Euclidean space is continuous whereas grid space is discrete, and mapping the two to each other can create unexpected issues. Still, this is a good choice for models representing notional real spaces.</p>
 </dd>
 <dt>
-<span class="term">Moore</span>
+<span class="term">
+										<span class="bold"><strong>Moore</strong></span>
+									</span>
 </dt>
 <dd>
 <p>Here, the distance between any two cells is defined by the number of edge 
@@ -463,7 +481,9 @@
 										</p>
 </dd>
 <dt>
-<span class="term">Von-Neumann</span>
+<span class="term">
+										<span class="bold"><strong>Von-Neumann</strong></span>
+									</span>
 </dt>
 <dd>
 <p>Here, the distance between any two cells is defined by the number of edge adjacent cells crossed to get between them. This is the set of moves that a rook might make on a chess board -- if a rook could only move one square at a time. It is also often referred to as a Manhattan distance for the self-evident reason.</p>

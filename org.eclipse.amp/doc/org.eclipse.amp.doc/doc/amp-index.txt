@@ -1,8 +1,7 @@
 010-Guide_Intro.mediawiki
+012-QuickStart.mediawiki
 015-Guide_ABM.mediawiki
 020-Guide_Credits.mediawiki
-050-AMP_Overview.mediawiki
-060-GettingStarted.mediawiki
 100-ModelerGuide_Intro.mediawiki
 110-ModelerGuide_Structure.mediawiki
 120-ModelerGuide_Actions.mediawiki
@@ -20,6 +19,8 @@
 500-ProgrammerGuide_Escape.mediawiki
 510-ProgrammerGuide_AMFPojo.mediawiki
 520-ProgrammerGuide_Converting.mediawiki
-550-ProgrammerGuide_Running.mediawiki
+800-InstallationGuide.mediawiki
 900-Resources.mediawiki
 950-Support.mediawiki
+951-Support_Issues.mediawiki
+952-Support_Community.mediawiki

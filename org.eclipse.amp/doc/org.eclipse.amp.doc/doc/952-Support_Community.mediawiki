@@ -1,0 +1,13 @@
+==Other Contacts==
+
+===Professional Support===
+
+The AMP project developers -- among the most experienced developers of agent models and tools anywhere -- are naturally the best source for Agent Modeling development, support and training. Please feel free to contact the project lead or other project contributors directly to discuss professional support options.
+
+===Media and Private Communications===
+
+For project related but non-public communications such as media enquires or potential project sponsorship, please contact Miles Parker, the Eclipse AMP project lead, at amp_enquiry@metascapeabm.com. (Requests for support and other communications to this address will be ignored.)
+
+==Get Involved==
+
+If you find this tool valuable, please be aware that most of its development occurred through volunteer contributions from individuals and companies that have received no direct funding. You can support continual development efforts financially by purchasing related software tools from companies and organizations that help develop it, including funding for developer time in grant proposals. You can support the Eclipse platform in general by becoming a member organization of Eclipse. But the most important thing that you can contribute is your own time and enthusiasm, either through directly contributing to AMP or by promoting its use in blogs and other social media. For more detailed information about contributing to AMP, please see [http://wiki.eclipse.org/AMP/Getting_Involved our wiki].

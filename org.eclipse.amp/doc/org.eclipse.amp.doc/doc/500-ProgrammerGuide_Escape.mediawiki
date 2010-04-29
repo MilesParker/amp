@@ -8,24 +8,97 @@ Escape is a full-featured Agent-Based Modeling (ABM) integrated development envi
 
 A primary purpose of the Escape project -- apart from the obvious goal of providing a nice Eclipse hosted ABM toolkit -- is to provide an exemplar to demonstrate how any arbitrary agent modeling framework can be integrated within the AMP environment. A cool aspect of this is that AMP has no dependencies on Escape, but also that the underlying ABM modeling framework for Escape has no dependencies on AMP -- instead Escape simply provides the runtime glue between AMP and the ABM framework. The underlying ABM framework uses the Ascape API, an API that first began development more than ten years ago and that has not been modified at all in order for it to work within the AMP environment.
 
-==Getting Started==
+==Documentation==
 
-===Documentation and other Resources===
+In addition to this documentation, there are a number of other resources available related to Escape development. Because it's API is based on Ascape, a lot of resources developed for Ascape are equally applicable to Ascape. The Ascape documentation is bundled with some distributions of the AMP tools, but if you are using the Eclipse AMP download, you can access it online or install it from the Ascape update site.
 
-Because it's API is based on Ascape, Escape is one component of AMP that already has extensive documentation. There is complete Javadoc as well as a manual and other web resources. See the [http://ascape.sourceforge.net Ascape Website] to locate these resources. There is a [http://ascape.sourceforge.net/docs/TheAscapeManual5.pdf full manual] for Ascape available on that site. Or, you can install the Ascape Manual into the eclipse help system by adding the following update site and selecting the "Documentations and Source Code" feature.
+===Online===
 
-http://ascape.sourceforge.net/eclipse
+There is a complete [http://ascape.sourceforge.net/api/index.html Javadoc] as well as an [http://ascape.sourceforge.net/docs/TheAscapeManual5.pdf excellent manual] and other web resources. See the [http://ascape.sourceforge.net Ascape Website] for general information.
 
-===Installation===
+===Update Site===
 
-Escape is [http://eclipse.org/amp/installing/ installed] by default with the other model components. If you want to do 3D (really 2 1/2) visualizations, you will want AGF3D and the LWJGL dependency. You can build from source but in that case you'l need to launch a self-hosted runtime, so it's best to simply install from the update site if you're not actually doing AMP development.
+Or, you can install the Ascape Manual into the eclipse help system by adding the following update site and selecting the "Documentations and Source Code" feature. See the Installation Guide for more information.
+
+ http://ascape.sourceforge.net/eclipse
+
+==Installation==
+
+See the Installation Guide for Detailed Information -- that all applies to general Escape usage as well.
+
+Note that there are no dependendencies on AMF, and therefore EMF or any other modeling technologies to do Java development for Escape or for running generated models within Escape. The deployment environment can be quite light-weight. Simply install the AXF, AGF, and AMP Escape features. You can build from source but in that case you'l need to launch a self-hosted runtime, so it's best to simply install from the update site if you're not actually doing AMP development.
+
+Escape is [http://eclipse.org/amp/installing/ installed] by default with the other model components. If you want to do 3D (really 2 1/2) visualizations, you will want AGF3D and the LWJGL dependency.
+
+==Example Java Models==
+
+===Exploring Example ABM Models===
+
+The first thing most people will want to do in AMP is to play with the example models. You can explore AMF models as well as some really interesting classic ABM models.
+
+====Installing Models====
+
+See the Installation Guide to find out how to get the example models.
+
+=====AMF Models=====
+
+All AMF models produce pure Java code so they can be used like any other Escape Java model.
+
+ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.escape
+
+To understand the capabilities of AMF in producing other kinds of Java models, you might also want to try out running the same models automatically generated for Ascape or Repast. These are located at dev.eclipse.org in cvsroot/modeling:
+
+ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape
+ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
+
+=====Classic Escape / Ascape Java Models=====
+
+Many models have been created using Ascape over the years, including all of the classic models created at Brookings and some other cool models such as Craig Reynold's Boids and a pretty cool little traffic model, and they've all been converted to run in Escape. They're in Java but you can execute and explore them in exactly the same way as the Epidemic model above. All of the Ascape example models have been converted (a straightforward process) from their intial Ascape incarnations. For licensing reasons (they're BSD, not EPL) we can't host them directly on the Eclipse site.  You can get the projects in two ways:
+
+Once you've downloaded the projects, open up the src folder and navigate to the Java files for the actual models. For example, to run Conway's Life, you'll want src/edu.brook.life.ConwayLife. Right-click on the Java file and select "Execute". There are many models to explore! (It's not always obvious which Java files are for models, so you may have to poke around a bit. We need to put together a catalog here. Another nice opportunity for user contributions.)
+ 
+These are SVN projects in the sourceforge SVN. For help, see [[http://www.eclipse.org/subversive/documentation/teamSupport/find_check_wiz.php this page]].
+
+ http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.brook
+ http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.examples
+ 
+====Generating Models====
+
+And of course, you can always use the AMF tools to generate models and then customize them from there. See the following section on integrating AMF with Java for more on that. There are a number of models developed with AMF that can automatically generate example models to run in Escape. There are two ways to run the example models:
+
+=====Creating a New Escape Project=====
+
+The best option is to simply create a new Escape project and drag the models into it!
+
+#If you're not already there, open the Agent Modeling Perspective. Select Window > Open Perspective > Other.. and then Agent Modeling. (Or you can choose Window > Reset Perspective and the Agent Modeling perspective should appear in the Open Perspective list itself.)
+#Create the project where we'll place our model. Select File > New > Escape AMF Project. Give it a name like "escape.tutorial", then click Finish.
+#Finally grab the Epidemic.metaabm model at http://download.eclipse.org/amp/models/Epidemic.metaabm and drag it into the project. (Depending on your browser the file may load as text directly into your browser, in which case just right-click on the link and save it to a file.)
 
 ==Developing Models==
 
 The easiest way for Java developers to get started doing agent-based modeling in Eclipse is to begin to write programs using it. To develop new models, you can:
 
-# Create a new Escape project. The Escape projects are actually configured for AMF code generation so there are dependencies and builders in there that you don't need; you can remove all of the escape builders and any of the kitchen sink items. The "Create an Escape Java Model" cheat sheet will walk you through the process of creating a new Java based project and model.
-# Or for more experienced Eclipse users, you can simply to just create a new Plugin Project and add the necessary dependencies there. Have a look at the example escape project to see what you need. Note that you will likely need more dependencies then you need to simply build -- this is because the class loader uses the classes from the project path and so runtime classes have to be there as well. We may simply package an Eclipse runtime convenience plugin to gather these dependencies up a bit.
+===Cheatsheet===
 
-Then just create new Java classes for your root model scape and agents just as you would for an Ascape project.
+By far the simplest way to get started is with the cheatsheet. This walks you through the complete process of creating a Java based model. '''Help > Cheat Sheets...''' and then select "Create an Escape Java Model" from within the "Agent Modeling" category.
+
+===Steps===
+
+# Create a new Escape project. The Escape projects are actually configured for AMF code generation so there are dependencies and builders in there that you don't need; you can remove all of the escape builders and any of the kitchen sink items. The "Create an Escape Java Model" cheat sheet will walk you through the process of creating a new Java based project and model.
+# Or for more experienced Eclipse users, you can simply to just create a new Plug-in Project and add the necessary dependencies there. Have a look at the example escape project to see what you need. Note that you will likely need more dependencies then you need to simply build -- this is because the class loader uses the classes from the project path and so runtime classes have to be there as well. We may simply package an Eclipse runtime convenience plug-in to gather these dependencies up a bit. Then just create new Java classes for your root model scape and agents just as you would for an Ascape project.
+
+==Executing Models==
+
+See the User Guide Execution Section for information on launching and controling models.
+
+We have a complete cheat sheet supporting this tutorial. Simply go to '''Help > Cheat Sheets...''' and then select "Run an Example Model" from within the "Agent Modeling" category.
+
+===Tutorial===
+
+We've developer have a complete cheat sheet supporting this tutorial. Simply go to '''Help > Cheat Sheets...''' and then select "Run an Example Model" from within the "Agent Modeling" category.
+
+==Extending and Customizing AMP==
+
+This subject is beyond the scope of this Agent Modeling manual. A future Agent Modeling Platform Guide will discuss these issues in detail. For now, please keep an eye on the Wiki and committer blogs. And of course please ask questions on the AMP forum and developer mailing list. Letting us know you're interested in doing something is the best way to get it documented!
+
 

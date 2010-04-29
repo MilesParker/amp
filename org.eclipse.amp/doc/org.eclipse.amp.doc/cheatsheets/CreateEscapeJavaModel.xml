@@ -18,7 +18,7 @@ The Java editor will automatically open showing your new class.
    <item
          title="Copy the Coordination Game code.">
       <description>
-         To implement the model, we'll just copy the code from the Ascape manual.
+         To implement the model, we&apos;ll just copy the code from the Ascape manual. If you don&apos;t have the Ascape documentation installed you can find the code at: http://ascape.sourceforge.net/manual/Appendix.html#1.
       </description>
       <command
             required="false"

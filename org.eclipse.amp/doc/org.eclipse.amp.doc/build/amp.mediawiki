@@ -3,6 +3,46 @@
 In this manual we provide an in-depth understanding of what goes into an Agent Model, how you can use the Agent Modeling Framework and related tools to design one and present tutorials to get you started. But before going into details, let's take a quick overview at what agent-based modeling is is and how the Agent Modeling Framework can help you to develop models for ABM or other problem domains.
 
 We hope you enjoy using the tool, and we look forward to your comments and feedback and most of all participation!
+==Quick Start==
+
+If you're the kind of person who likes to jump right in, here are the basics.
+
+===Install===
+
+If you're using a complete IDE, or have already installed AMP from the Eclipse update sites, you can ignore this step. Otherwise, refer to the Installation Guide at the end of this manual.
+
+===Welcome!===
+
+When you first run the tools, you will see a welcome screen. If the screen isn't showing, select the '''Help > Welcome''' menu. Click on the "Overview", "Samples" or "Tutorials" buttons to begin your exploration.
+
+===Cheat!===
+
+The Agent Modeling tools come with a number of "Cheat Sheets" to help get you started. You can access them by selecting '''Help > Cheat Sheets...'''. Then under the "Agent Modeling" category, select a cheat sheet, such as "Load Sample Projects".
+
+===Follow the Tutorial===
+
+The tools also come with extensive tutorials. See the "Tutorials" section for more help on that.
+
+===Follow your Interest===
+
+AMP has many potential facets and use cases. Check out the following sections of the manual for more information about..
+
+====ABM Researchers====
+
+Run an example model using the "Run an Example Model" cheat sheet.
+
+====ABM Modelers====
+
+Create Agent-Based models using simple visual tools and deploy them to a number of popular ABM platforms, including Escape. Follow the tutorial section of the Modeler's guide.
+
+====ABM Java Developers====
+
+Write "Plain Old Java" models within a full-featured agent-based modeling framework. Read Programmers Guide and then try the "Create an Escape Java Model" cheat sheet.
+
+====Eclipse Plugin Developers====
+
+AXF and AGF provide a number of features based around Eclipse technologies such as GEF, GEF3D, BIRT Charts and Zest. For example, AGF supports dynamic visualization of objects in space, and AXF supports managed UI and headless execution for models of any kind. There isn't currently any general documentation for these features, but we encourage you to look at the APIs and at Escape's implementation of them. They're straightforward and can be useful for a variety of general science platform needs.
+
 ==Agent-Based Modeling==
 
 The primary focus of the Agent Modeling Platform tools is "Agent-Based Modeling" (ABM). ABM is an innovative technique used to explore complex phenomenon in many domains, including economics, social sciences, biomedicine, ecology and business operations. ABMs share characteristics with object models, but are:
@@ -24,22 +64,15 @@ Existing scientific models are very good at representing relatively simple syste
 
 Agent-Based Models (ABMs) seek to represent important real-world dynamics by designing communities of software agents that mimic real entities. Rather than make simplifying assumptions about such systems and then representing them in equation form or as off the shelf algorithmic constructs, the ABM researcher aims to identify key agent state, interaction spaces, and behaviors. Agents are then "let loose" on our computers and we explore what happens next. The computational horsepower exists today to simulate large numbers (e.g. >>10) of interacting, adaptive and autonomous agents but often desktop computers are all we need to explore significant domains. ABMs have been designed to represent all kinds of important natural systems, at scales reaching from cellular mechanics to international trade and are being used to solve truly hard problems in government, business, and academia. ABMs are not a solution to every problem, but they can help us to appreciate and gain unique insight into many systems, and often they can help us to come up with better practical decisions than we might using classic approaches.
 
-==Other Uses==
+==Other Domains==
 
 Many kinds of objects share characteristics of ABM agents -- after all, software agents are used in many other contexts. The Agent Modeling Framework meta-modeling support is potentially suitable (or extendible) for a number of approaches outside of ABM; for example business rules, object interactions, systems dynamics models and traditional discrete event models. Similarly, AMP execution and graphic support can be used for modeling natural systems but could also be used to manage other software agents -- for example independent reasoning tasks or dynamic visualization support.
-==Credits==
 
-Miles Parker is a consultant and software developer with over ten years of experience in the agent-based modeling field and twenty years developing object-oriented tools and frameworks and is the architect and project lead for the Eclipse Agent Modeling Platform (Incubation).
-
-Metascape, LLC is the primary contributor to AMP and provides Agent-Based Modeling tools, including sophisticated tools based on the AMF platform, and comprehensive consulting services. For more information on Metascape products and services visit http://metascapeabm.com.
-
-The AMF meta-model started life as [[http://www.agent2005.anl.gov/2006procpdf/Parker_Agent_2006.pdf|"score"]], a component of the Repast Simphony environment. Argonne National Labs supported the initial development in 2007 and agreed to contribute the relevant IP to the Eclipse project in 2009. It wasn't fully utilized within Simphony, and migrated from there to the MetaABM project supported by Metascape. The MetaABM project defined a complete editor, code-generation and model execution suite that formed the initial AMP AMF contribution. Metascape has sponsored the development of AMF from 2007 through the present.
-
-The AMP logo was inspired by the [[http://swarm.org Swarm logo]] with their kind permission.
 ==The Agent Modeling Platform (AMP)==
 
-The Eclipse Agent Modeling Project (Incubation) or "AMP" provides extensible frameworks and exemplary tools for representing, editing, generating,
-executing and visualizing agent-based models (ABMs) and any other domain requiring spatial, behavioral and functional features. AMP has two main themes that complement but don't depend on one another, modeling of agent systems (AMF) and execution and exploration of those systems (AXF, AGF and Escape).
+The Eclipse Agent Modeling Project (Incubation) or "AMP" provides the core support for both open source and commercial modeling tools. AMP in turn is built upon Elipse, the most powerful, well-supported and popular Integrated Development Platform (IDE) available anywhere.
+
+AMP provides extensible frameworks and exemplary tools for representing, editing, generating, executing and visualizing ABMs and any other domain requiring spatial, behavioral and functional features. AMP has two main themes that complement but don't depend on one another, modeling of agent systems (AMF) and execution and exploration of those systems (AXF, AGF and Escape).
 
 The overall AMP architecture and project dependencies are summarized in the architectural diagram below:
 
@@ -59,39 +92,15 @@ The graphics framework extends GEF, GEF3D, Zest, and the BIRT charting engine to
 ===Escape===
 
 Escape is an exemplar ABM toolset. It's based on Ascape, which has been in use for more than 10 years. The core API is very stable, and that should give users a way to explore the features of AMP without concerns about keeping in synch with the rapidly evolving AXF /AGF API. It allows modelers to code in Java and/or generate models with AMF and then execute those models within the same development environment. Escape is the primary target for most of the models in this guide. Those users interested in writing code directly to the Escape API can refer to the Programmer Guide.
+==Credits==
 
-==Getting Started==
+Miles Parker is a consultant and software developer with over ten years of experience in the agent-based modeling field and twenty years developing object-oriented tools and frameworks and is the architect and project lead for the Eclipse Agent Modeling Platform (Incubation).
 
-AMP has many potential facets and use cases.
+Metascape, LLC is the primary contributor to AMP and provides Agent-Based Modeling tools, including sophisticated tools based on the AMF platform, and comprehensive consulting services. For more information on Metascape products and services visit http://metascapeabm.com.
 
-===Setting up Eclipse===
+The AMF meta-model started life as [[http://www.agent2005.anl.gov/2006procpdf/Parker_Agent_2006.pdf|"score"]], a component of the Repast Simphony environment. Argonne National Labs supported the initial development in 2007 and agreed to contribute the relevant IP to the Eclipse project in 2009. It wasn't fully utilized within Simphony, and migrated from there to the MetaABM project supported by Metascape. The MetaABM project defined a complete editor, code-generation and model execution suite that formed the initial AMP AMF contribution. Metascape has sponsored the development of AMF from 2007 through the present.
 
-If you're reading this from the Eclipse help browser, you've already done this! Otherwise, if you aren't using a full download version of AMP, you'll need to [http://eclipse.org/amp/installing/ install it]. Once you've done that, select the '''Help > Help Contents''' menu, find the Agent Modeling Guide and open this overview page within that guide.
-
-Some installations will also include a Welcome screen which will guide you through the same set of steps.
-
-===Get the Example Projects===
-
-You can do that using a cheat sheet. Select '''Help > Cheat Sheets...''' and then under the "Agent Modeling" category, select "Load Sample Projects".
-
-Then check out the following sections of the manual for more information about..
-
-===ABM Researchers===
-
-Run an example model using the "Run an Example Model" cheat sheet.
-
-===ABM Modelers===
-
-Create Agent-Based models using simple visual tools and deploy them to a number of popular ABM platforms, including Escape. Follow the tutorial section of the Modeler's guide.
-
-===ABM Java Developers===
-
-Write "Plain Old Java" models within a full-featured agent-based modeling framework. Read Programmers Guide and then try the "Create an Escape Java Model" cheat sheet.
-
-===Eclipse Plugin Developers===
-
-AXF and AGF provide a number of features based around Eclipse technologies such as GEF, GEF3D, BIRT Charts and Zest. For example, AGF supports dynamic visualization of objects in space, and AXF supports managed UI and headless execution for models of any kind. There isn't currently any general documentation for these features, but we encourage you to look at the APIs and at Escape's implementation of them. They're straightforward and can be useful for a variety of general science platform needs.
-
+The AMP logo was inspired by the [[http://swarm.org Swarm logo]] with their kind permission.
 =Modeler Guide=
 
 ==Overview==
@@ -183,19 +192,14 @@ Attributes are single values that a given agent contains. For example, an agent 
 
 These can be anyone of the following: 
 
-{| cellpadding=="10" cellspacing=="0" border=="1"
-|Boolean
-|A value that is simply true or false. Note that unless this value really is a simple binary value, you should consider using state instead. (See details below.) For example, rather than representing gender as a 'Female' boolean value, define a 'Gender' state with values 'Male' and "Female'. Generated artifacts and documentation will be much clearer, and you'll be able to easily modify the model later if for example you discover that there are more than two potential gender categories that are relevant to your model.
-|-
-|Integer
-|A discrete whole number value, such as "100", "-1", "10029920". It's generally a good idea to represent any value that can never have a decimal value as an integer.
-|-
-|Real
-|A continuous number value. While these are typically represented in software as floating point numbers, they can conceivably represent numbers at any arbitrary precision and in any scheme. Note that while technically speaking we should be representing irrational numbers, this is not currently supported for default values and users should simply use the closest decimal approximation.
-|-
-|Symbol
-|A string representing some state. More precisely, a computationally arbitrary value with contextual meaning. This could be any kind of identifier. For example, you might use it to store some kind of input coding from data that is then converted into an object state. Or it could simply be an agent's name. But theoretically (though this is not currently supported) one could imagine a symbol using an idiogram, an icon or even a sound that identifies or represents the agent in question.
-|}
+;'''Boolean'''
+: A value that is simply true or false. Note that unless this value really is a simple binary value, you should consider using state instead. (See details below.) For example, rather than representing gender as a 'Female' boolean value, define a 'Gender' state with values 'Male' and "Female'. Generated artifacts and documentation will be much clearer, and you'll be able to easily modify the model later if for example you discover that there are more than two potential gender categories that are relevant to your model.
+;'''Integer'''
+: A discrete whole number value, such as "100", "-1", "10029920". It's generally a good idea to represent any value that can never have a decimal value as an integer.
+;'''Real'''
+:A continuous number value. While these are typically represented in software as floating point numbers, they can conceivably represent numbers at any arbitrary precision and in any scheme. Note that while technically speaking we should be representing irrational numbers, this is not currently supported for default values and users should simply use the closest decimal approximation.
+;'''Symbol'''
+:A string representing some state. More precisely, a computationally arbitrary value with contextual meaning. This could be any kind of identifier. For example, you might use it to store some kind of input coding from data that is then converted into an object state. Or it could simply be an agent's name. But theoretically (though this is not currently supported) one could imagine a symbol using an idiogram, an icon or even a sound that identifies or represents the agent in question.
 
 (Undefined and Numeric types should not be used within a well-defined model.)
 
@@ -250,9 +254,9 @@ In the modeling tools, we simply refer to this as a "Space" as it is represents 
 
 A value representing what happens to an agent when that agent is asked to move beyond its extent.
 
-;Periodic
+;'''Periodic'''
 : When encountering an edge, the agent will treat the space as wrapping around to the other side of the space. For example, if the agent at location {1,2} (0-based) within a Moore space (see grid discussion below) of size {10,10} is asked to find some other agent within distance 3, the agent look in the square defined between {8,9} and {4,5}. An agent asked to move beyond the confines of the space will simply stop when it reaches the edge. You can imagine this as taking a piece of graph paper and connecting the opposite edges. You can't actually do that with paper, but if you could you would have a toroidal (donut) shape in three dimensions defining the shape in two.
-;APeriodic
+;'''APeriodic'''
 : When encountering an edge, the agent treats it as the edge of the space. For example, if the agent at location {1,2} is asked to find some other agent within distance 3, the agent look between {0,0} and {4,5}. An agent asked to move beyond the confines of the space will simply stop when it reaches the edge.
 
 The "Strict" and "Bouncy" values are obsolete and should not be used.
@@ -275,11 +279,11 @@ Does the grid allow more than one agent to occupy it at a time? This value may b
 
 This value determines what constitutes a region within a particular distance from the agent. The value for this is often critical in obtaining particular behavior from a model, and shouldn't be overlooked. There are three possible values:
 
-;Euclidean
+;'''Euclidean'''
 : The distance between any two cells is taken to be the "real" distance. For example, if an agent was within a chess board, and we wanted to find all agents within distance three of it, we could determine that by taking a string of length 3, tacking it to the center of the source square, and including all cells whose centers we can reach with the other string end. Note that although Euclidean space may seem the most reasonable neighborhood configuration to choose, this really isn't the case. Euclidean space is continuous whereas grid space is discrete, and mapping the two to each other can create unexpected issues. Still, this is a good choice for models representing notional real spaces.
-;Moore
+;'''Moore'''
 :Here, the distance between any two cells is defined by the number of edge ''or'' corner adjacent cells crossed to get between them. To continue the chess board analogy, this is the set of moves that a king can make. Note that this does not map well to real space at all, as a cell at distance 1 in a moore space is at distance sqrt(2) in "real" space.
-;Von-Neumann
+;'''Von-Neumann'''
 : Here, the distance between any two cells is defined by the number of edge adjacent cells crossed to get between them. This is the set of moves that a rook might make on a chess board -- if a rook could only move one square at a time. It is also often referred to as a Manhattan distance for the self-evident reason.
  
 =====Network=====
@@ -1944,38 +1948,109 @@ Escape is a full-featured Agent-Based Modeling (ABM) integrated development envi
 
 A primary purpose of the Escape project -- apart from the obvious goal of providing a nice Eclipse hosted ABM toolkit -- is to provide an exemplar to demonstrate how any arbitrary agent modeling framework can be integrated within the AMP environment. A cool aspect of this is that AMP has no dependencies on Escape, but also that the underlying ABM modeling framework for Escape has no dependencies on AMP -- instead Escape simply provides the runtime glue between AMP and the ABM framework. The underlying ABM framework uses the Ascape API, an API that first began development more than ten years ago and that has not been modified at all in order for it to work within the AMP environment.
 
-==Getting Started==
+==Documentation==
 
-===Documentation and other Resources===
+In addition to this documentation, there are a number of other resources available related to Escape development. Because it's API is based on Ascape, a lot of resources developed for Ascape are equally applicable to Ascape. The Ascape documentation is bundled with some distributions of the AMP tools, but if you are using the Eclipse AMP download, you can access it online or install it from the Ascape update site.
 
-Because it's API is based on Ascape, Escape is one component of AMP that already has extensive documentation. There is complete Javadoc as well as a manual and other web resources. See the [http://ascape.sourceforge.net Ascape Website] to locate these resources. There is a [http://ascape.sourceforge.net/docs/TheAscapeManual5.pdf full manual] for Ascape available on that site. Or, you can install the Ascape Manual into the eclipse help system by adding the following update site and selecting the "Documentations and Source Code" feature.
+===Online===
 
-http://ascape.sourceforge.net/eclipse
+There is a complete [http://ascape.sourceforge.net/api/index.html Javadoc] as well as an [http://ascape.sourceforge.net/docs/TheAscapeManual5.pdf excellent manual] and other web resources. See the [http://ascape.sourceforge.net Ascape Website] for general information.
 
-===Installation===
+===Update Site===
 
-Escape is [http://eclipse.org/amp/installing/ installed] by default with the other model components. If you want to do 3D (really 2 1/2) visualizations, you will want AGF3D and the LWJGL dependency. You can build from source but in that case you'l need to launch a self-hosted runtime, so it's best to simply install from the update site if you're not actually doing AMP development.
+Or, you can install the Ascape Manual into the eclipse help system by adding the following update site and selecting the "Documentations and Source Code" feature. See the Installation Guide for more information.
+
+ http://ascape.sourceforge.net/eclipse
+
+==Installation==
+
+See the Installation Guide for Detailed Information -- that all applies to general Escape usage as well.
+
+Note that there are no dependendencies on AMF, and therefore EMF or any other modeling technologies to do Java development for Escape or for running generated models within Escape. The deployment environment can be quite light-weight. Simply install the AXF, AGF, and AMP Escape features. You can build from source but in that case you'l need to launch a self-hosted runtime, so it's best to simply install from the update site if you're not actually doing AMP development.
+
+Escape is [http://eclipse.org/amp/installing/ installed] by default with the other model components. If you want to do 3D (really 2 1/2) visualizations, you will want AGF3D and the LWJGL dependency.
+
+==Example Java Models==
+
+===Exploring Example ABM Models===
+
+The first thing most people will want to do in AMP is to play with the example models. You can explore AMF models as well as some really interesting classic ABM models.
+
+====Installing Models====
+
+See the Installation Guide to find out how to get the example models.
+
+=====AMF Models=====
+
+All AMF models produce pure Java code so they can be used like any other Escape Java model.
+
+ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.escape
+
+To understand the capabilities of AMF in producing other kinds of Java models, you might also want to try out running the same models automatically generated for Ascape or Repast. These are located at dev.eclipse.org in cvsroot/modeling:
+
+ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape
+ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
+
+=====Classic Escape / Ascape Java Models=====
+
+Many models have been created using Ascape over the years, including all of the classic models created at Brookings and some other cool models such as Craig Reynold's Boids and a pretty cool little traffic model, and they've all been converted to run in Escape. They're in Java but you can execute and explore them in exactly the same way as the Epidemic model above. All of the Ascape example models have been converted (a straightforward process) from their intial Ascape incarnations. For licensing reasons (they're BSD, not EPL) we can't host them directly on the Eclipse site.  You can get the projects in two ways:
+
+Once you've downloaded the projects, open up the src folder and navigate to the Java files for the actual models. For example, to run Conway's Life, you'll want src/edu.brook.life.ConwayLife. Right-click on the Java file and select "Execute". There are many models to explore! (It's not always obvious which Java files are for models, so you may have to poke around a bit. We need to put together a catalog here. Another nice opportunity for user contributions.)
+ 
+These are SVN projects in the sourceforge SVN. For help, see [[http://www.eclipse.org/subversive/documentation/teamSupport/find_check_wiz.php this page]].
+
+ http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.brook
+ http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.examples
+ 
+====Generating Models====
+
+And of course, you can always use the AMF tools to generate models and then customize them from there. See the following section on integrating AMF with Java for more on that. There are a number of models developed with AMF that can automatically generate example models to run in Escape. There are two ways to run the example models:
+
+=====Creating a New Escape Project=====
+
+The best option is to simply create a new Escape project and drag the models into it!
+
+#If you're not already there, open the Agent Modeling Perspective. Select Window > Open Perspective > Other.. and then Agent Modeling. (Or you can choose Window > Reset Perspective and the Agent Modeling perspective should appear in the Open Perspective list itself.)
+#Create the project where we'll place our model. Select File > New > Escape AMF Project. Give it a name like "escape.tutorial", then click Finish.
+#Finally grab the Epidemic.metaabm model at http://download.eclipse.org/amp/models/Epidemic.metaabm and drag it into the project. (Depending on your browser the file may load as text directly into your browser, in which case just right-click on the link and save it to a file.)
 
 ==Developing Models==
 
 The easiest way for Java developers to get started doing agent-based modeling in Eclipse is to begin to write programs using it. To develop new models, you can:
 
+===Cheatsheet===
+
+By far the simplest way to get started is with the cheatsheet. This walks you through the complete process of creating a Java based model. '''Help > Cheat Sheets...''' and then select "Create an Escape Java Model" from within the "Agent Modeling" category.
+
+===Steps===
+
 # Create a new Escape project. The Escape projects are actually configured for AMF code generation so there are dependencies and builders in there that you don't need; you can remove all of the escape builders and any of the kitchen sink items. The "Create an Escape Java Model" cheat sheet will walk you through the process of creating a new Java based project and model.
-# Or for more experienced Eclipse users, you can simply to just create a new Plugin Project and add the necessary dependencies there. Have a look at the example escape project to see what you need. Note that you will likely need more dependencies then you need to simply build -- this is because the class loader uses the classes from the project path and so runtime classes have to be there as well. We may simply package an Eclipse runtime convenience plugin to gather these dependencies up a bit.
+# Or for more experienced Eclipse users, you can simply to just create a new Plug-in Project and add the necessary dependencies there. Have a look at the example escape project to see what you need. Note that you will likely need more dependencies then you need to simply build -- this is because the class loader uses the classes from the project path and so runtime classes have to be there as well. We may simply package an Eclipse runtime convenience plug-in to gather these dependencies up a bit. Then just create new Java classes for your root model scape and agents just as you would for an Ascape project.
 
-Then just create new Java classes for your root model scape and agents just as you would for an Ascape project.
+==Executing Models==
 
-==More Information==
+See the User Guide Execution Section for information on launching and controling models.
 
-===Integrating Java and AMF Models===
+We have a complete cheat sheet supporting this tutorial. Simply go to '''Help > Cheat Sheets...''' and then select "Run an Example Model" from within the "Agent Modeling" category.
+
+===Tutorial===
+
+We've developer have a complete cheat sheet supporting this tutorial. Simply go to '''Help > Cheat Sheets...''' and then select "Run an Example Model" from within the "Agent Modeling" category.
+
+==Extending and Customizing AMP==
+
+This subject is beyond the scope of this Agent Modeling manual. A future Agent Modeling Platform Guide will discuss these issues in detail. For now, please keep an eye on the Wiki and committer blogs. And of course please ask questions on the AMP forum and developer mailing list. Letting us know you're interested in doing something is the best way to get it documented!
+
+
+==Integrating Java and AMF Models==
 
 If you're like many Java developers, you might find point-and-click interfaces a bit lame. Personally, I've changed my tune in this, and I now define all of my ABM models from the editor, saving Java for truly specialized tasks. But even without generation of agent behavior, Acore can be a really valuable tool, as the GIS example shows. The way to look at metaABM is as a way to compose your overall model and automate the tedious parts. Apart from Java generated code, the AMF meta-model maintains a number of very useful artifacts. For example, the Repast Simphony target maintains model.score and all of the model.rs component. Generally, AMF should save time and hassle while making your models far more transparent even if you never use the Actions component to define agent behavior.
 
-====Method Action====
+===Method Action===
 
 As explained in the action section, you can simply create a "Method" act with hand-written Java code. This option is nice because all code is contained within the AMF file. But it can be difficult to maintain large blocks of Java code as you aren't using a Java editor to edit the Java code itself. One way to get around this is to create your code in the generated Java method and then copy it into the Method action. Note one imporant issue here -- you'll generally have to fully qualify your Java references as you won't be able to change the imports statements directly. 
 
-====Protected Code Regions====
+===Protected Code Regions===
 
 You can mix and match Action behavior with Java and generated code with POJOs. One way to do this is through using protected regions. Select the agent you want to create protected methods for and then select "Generate Protected" from the "Mode" property. Now, create actions just as you have before, or use your existing ones. On code generation, open up the relevant java file and examine the methods that have been created. 
 
@@ -1985,25 +2060,25 @@ You can put whatever you want within the PROTECTED REGION comments and those cha
 
 [[Image:images/pojo/ProgrammingPojoGenerateCode.png]]
 
-====Implement Sub-classes====
+===Interface and Base Class Generation===
 
 Another approach which can be more robust is to generate the basic model stubs (like an abstract base class except that it isn't abstract) and then override your model with implementations. AMF provides support for generic skeletons and interfaces.
 
 [[Image:images/pojo/ProgrammingPojoGenerate.png]]
 
-===Converting Existing Ascape models===
+==Converting Existing Ascape Models==
 
 There are only a few changes should have to make to existing Ascape models or to use existing Ascape documentation to develop Escape models.
 
-====Model====
+===Model===
 
 The core model is completely API compatible. No changes!
 
-====View====
+===View===
 
 Because Escape uses SWT and Ascape uses Swing, there are a few unavoidable incompatibilities. Most of these we avoid by using higher level APIs but here are the key changes that you're likely to have to make:
 
-=====Convert the low-level imports from AWT and Swing to SWT=====
+====Convert the low-level imports from AWT and Swing to SWT====
 The simplest way to accomplish this is to remove all of the imports and then organize imports. For example:
  java.awt.Color => org.eclipse.swt.graphics.Color
  java.awt.Graphics => org.eclipse.draw2d.Graphics
@@ -2012,18 +2087,18 @@ Then just do a global find for all of the imports and replace them with nothing.
  replace: [nothing]
 You don't have to replace these with the SWT equivalents, just click on the project, right-click and choose "Source:Organize Imports.."
 By the way, a great way to avoid having to select the right entries in optimize imports and to alert you when you have missed anything is to prevent the awt and swing classes from being used at all. Right-click on project, choose "Build Path:Configure Build Path", go to Libraries tab, open JRE System Library, choose "Access Rules", edit, and then add entries for java/awt/** and javax/swing/**. The code will regenerate and you'll have error markers for all of the stuff that won't work with Escape and Eclipse.
-=====Convert color features=====
+====Convert color features====
 You can't use AWT colors either so you'll need to replace any colors. AMP provides a convenience classes for Colors called ColorFeature and ColorFeatureConcrete. You can use these or any of the other ways to define SWT colors. For example:
  Color.lightGray => ColorFeature.LIGHT_GRAY
  new Color(Math.min(1.0f, (float) (redEnergy + orangeEnergy)), (float) orangeEnergy * .8f, (float) blueEnergy) => 
      ColorFeatureConcrete.create(Math.min(1.0f, (float) (redEnergy + orangeEnergy)), (float) orangeEnergy * .8f, (float) blueEnergy)
-=====Change agent color getters=====
+====Change agent color getters====
 If you've defined colors through overriding Agents as in most models, you'll need to change the method signature. You could just do a global replace for this one.
  public Color getColor( => public Object getPlatformColor(
-=====Get rid of image features=====
+====Get rid of image features====
 Escape doesn't support them. In practice they haven't been used a lot. At some point perhaps we'll have nice sprite support instead. :)
  public Image getImage() {**} => ""
-=====Modify usages of DrawFeatures=====
+====Modify usages of DrawFeatures====
 If you've created any of your own draw features, you'll need to change them slightly to accommodate the differences between the AWT and SWT / Draw2D APIs. This should be pretty straightforwrd. For example:
  g.setColor(...
  g.fillOval(..
@@ -2036,77 +2111,115 @@ That's about it, though it's probable that we've missed something. Please post a
 ====Configuration====
 
 Instead of using Ant, Escape has really nice support for parameterizing and testing models. See [[Experimenting and Testing]] (todo). If you do want to work with ant you will need to install the plugins from the Sourceforge download site. (These have dependencies that I didn't want to bother with going through the Eclipse IP process to get in. If for some reason you think these should be part of core Escape let Miles know and I'll take care of it.) Ant has not been tested for Escape so it's not even clear it will work.
-==Running Agent Models==
+=Installation Guide=
 
+==Tools==
 
-===Exploring Example ABM Models===
+===Complete IDE===
 
-The first thing most people will want to do in AMP is to play with the example models. You can explore AMF models as well as some really interesting classic ABM models.
+You may already have obtained a complete IDE bundled with AMP and other modeling tools. The project contributors offer open source and commercial versions of the AMP tools, which you can find at their sites. If so, you can mostly ignore this chapter unless you want to install an optional component like Repast.
 
-====Downloading Models====
+===Eclipse and the Agent Modeling Tools===
 
-To obtain the models, simply launch the cheat sheet. Go to the '''Help > Cheat Sheets...''' menu and choose "Load Sample Projects".
+You can find more detailed instructions [http://eclipse.org/amp/installing/ here], but here are the basic steps.
 
-Or you can get them yourself from the following locations:
+#Install the latest version of Eclipse from [http://www.eclipse.org/downloads/ here]. AMP requires version 3.5.x (Gallieo) or higher. Version 3.6 (Hellos) which is currently a development (beta) release works well too. We recommend the "Classic" release at the bottom of the page as the other releases have a bunch of stuff you wont' need.
+#Add update sites for AMP and AMP dependencies. See the screenshot below and the [http://help.eclipse.org/galileo/topic/org.eclipse.platform.doc.user/tasks/tasks-124.htm Eclipse Documentation]. There are different versions of the update sites, depending on whether you want to use the most stable version of the toolset or the "latest and greatest". The update sites are listed below.
+#(Optional) If you install and AMP extensions, add Update Sites for them -- they're also listed below.
+#Select the features that you want to install.
+#Click the '''Next''' button, review the licenses, and then click '''Finish'''.
 
-=====AMF Models=====
+Agent Modeling Platform update sites:
+ Milestones (recommended): http://download.eclipse.org/amp/updates/milestones
+ Interim (newer): http://download.eclipse.org/amp/updates/interim
+ Nightly (bleeding edge): http://download.eclipse.org/amp/updates/nightly
 
- org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.escape
+Update sites for AMP Extensions
+ AGF 3D (recommended): http://lwjgl.org/update
+ AMF for Ascape (recommended for Java developers): http://ascape.sourceforge.net/eclipse
+ AMF for Repast (for people using Repast): http://mirror.anl.gov/pub/repastsimphony/site.xml (non P2)
 
-To understand the capabilities of AMF, you might also want to try out running the same models automatically generated for Ascape or Repast. These are located at dev.eclipse.org in cvsroot/modeling:
+In the following screenshot, we've added the LWJGL site (not shown) as well as the Ascape site (not shown), but not the Repast site, and we're about to install the respective features. 
 
- org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape
- org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
+[[Image:images/resources/AMPUpdateSite.png]]
 
-=====Escape / Ascape Java Models=====
+Once you've done that, select the '''Help > Help Contents''' menu, find the Agent Modeling Guide and open this overview page within that guide.
 
-These are SVN projects in the sourceforge SVN. For help, see [[http://www.eclipse.org/subversive/documentation/teamSupport/find_check_wiz.php this page]].
+===Extensions===
 
- http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.brook
- http://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.examples
+====Ascape====
+
+For licensing and copyright reasons we can't provide all of the Ascape tools and manual on the Eclipse hosted Agent Modeling Project site. None of these tools are necessary to use AMP (the core Ascape support is an IP approved part of the AMP distribution) but they're highly recommended. The Ascape tools include:
+
+#An excellent Manual covering programming Java models in Ascape and Escape. (The API is the same.)
+#Support for creating Ascape Java projects and executing the Swing-based Java Applications. Swing deployed Ascape Java Applications can be as small as 10MB and can be deployed to the web.
+#Eclipse based IDE support for plain Java Ascape projects.
+
+The Ascape update site is at:
+
+ http://ascape.sourceforge.net/eclipse
  
-====Generating Models====
+To install Ascape, use the update manager. Select '''Help > Install New Software..."''', add the Ascape update site, select the Ascape category and click the '''Finish''' button.
 
-There are a number of models developed with AMF that can automatically generate example models to run in Escape. There are two ways to run the example models:
+[[Image:images/resources/AscapeUpdateSite.png]]
 
-=====Creating a New Escape Project=====
+====Repast====
 
-The best option is to simply create a new Escape project and drag the models into it!
+The Repast update site is at:
 
-#If you're not already there, open the Agent Modeling Perspective. Select Window > Open Perspective > Other.. and then Agent Modeling. (Or you can choose Window > Reset Perspective and the Agent Modeling perspective should appear in the Open Perspective list itself.)
-#Next, let's create the project where we'll place our model. Select File > New > Escape AMF Project. Give it a name like "escape.tutorial", then click Finish.
-#Finally grab the Epidemic.metaabm model at http://download.eclipse.org/amp/models/Epidemic.metaabm and drag it into the project. (Depending on your browser the file may load as text directly into your browser, in which case just right-click on the link and save it to a file.)
+ http://mirror.anl.gov/pub/repastsimphony/site.xml
 
-===Tutorial===
+More information on downloading and installing repast can be found [http://repast.sourceforge.net/docs/development.html here]. Follow the instrucitons for "Configuration B".
 
-We've developer have a complete cheat sheet supporting this tutorial. Simply go to '''Help > Cheat Sheets...''' and then select "Run an Example Model" from within the "Agent Modeling" category.
+==Models==
 
-
-====Next Steps====
-
-To understand the capabilities of AMF, you might also want to try out running the same models automatically generated for Ascape or Repast.
-
- org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape
- org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast
-
-===Classic Java ABM Models===
-
-Many models have been created using Ascape over the years, including all of the classic models created at Brookings and some other cool models such as Craig Reynold's Boids and a pretty cool little traffic model, and they've all been converted to run in Escape. They're in Java but you can execute and explore them in exactly the same way as the Epidemic model above. All of the Ascape example models have been converted (a straightforward process) from their intial Ascape incarnations. For licensing reasons (they're BSD, not EPL) we can't host them directly on the Eclipse site.  You can get the projects in two ways:
-
-Once you've downloaded the projects, open up the src folder and navigate to the Java files for the actual models. For example, to run Conway's Life, you'll want src/edu.brook.life.ConwayLife. Right-click on the Java file and select "Execute". There are many models to explore! (It's not always obvious which Java files are for models, so you may have to poke around a bit. We need to put together a catalog here. Another nice opportunity for user contributions.)
-=Resources=
-
-==Obtaining Example Models==
+===Obtaining Example Models===
 
 There is a cheat-sheet available for obtaining the example models. If you would rather obtain them yourself, here is the CVS information:
 
-====Import from CVS====
-*Import the CVS projects from the AMP project repository. For help, see [http://help.eclipse.org/help32/index.jsp?topic=/org.eclipse.platform.doc.user/reference/ref-40a.htm this page]. For repository details, see [http://eclipse.org/amp/developers/repositoryDetails.php http://eclipse.org/amp/developers/repositoryDetails.php]. These are the example projects:
- org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape 
+====Team Project Sets====
+
+You can use the following team project sets. See [http://help.eclipse.org/galileo/topic/org.eclipse.platform.doc.user/tasks/tasks-cvs-project-set.htm this document] for more information about using project sets.
+
+ http://eclipse.org/amp/project-sets/ascape.psf
+ http://eclipse.org/amp/project-sets/escapeAMFExamples.psf
+
+====From Version Control Systems====
+
+Import the CVS projects from the AMP project repository. For help, see [http://help.eclipse.org/help32/index.jsp?topic=/org.eclipse.platform.doc.user/reference/ref-40a.htm this page]. Here are the details for CVS Access:
+
+CVS Repository:
+
+ Connection type:	pserver
+ User:	anonymous
+ Password:	[none]
+ Host:	dev.eclipse.org
+ Path:	/cvsroot/modeling
+ Module:	/org.eclipse.amp
+
+AMF Escape Models:
+
  org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.escape 
+
+AMF Ascape and Repast Models:
+
+ org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.ascape 
  org.eclipse.amp/org.eclipse.amp.amf/examples/org.eclipse.amp.amf.examples.repast 
-*Right-click on the models to execute them.
-*Play around with the model attribute settings and behavior (Acts).
+
+The Ascape example projects are available at the Sourceforge SVN server. You can get them at the following locations. See the [[http://www.eclipse.org/subversive/documentation/teamSupport/find_check_wiz.php Subversive User Guide]] for more information about using SVN. (You'll need to install Subversion if you don't already have it.)
+
+Escape Java Models:
+
+ https://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.models.brook
+ https://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.models.examples
+
+Ascape (Swing-based) Java Models:
+
+
+ https://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.examples
+ https://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.brook
+ 
+=Resources=
 
 ==Websites==
 
@@ -2127,10 +2240,9 @@ There is a cheat-sheet available for obtaining the example models. If you would 
 ==Issues==
 
 Eclipse and the AMP project have a mandate for open communication. Please note that unless you are a customer of an AMP project contributor we will not respond to direct requests for support. We ''will'' make every effort to support your use of AMP in the following ways:
-
 ===General Support, Questions and Discussion===
 
-The [http://www.eclipse.org/forums/index.php?t=thread&frm_id=17&S=f4fa6cb31327772a3b626dc409db409b Agent Modeling Platform Newsgroup] is the place to discuss or get support for any of the Eclipse AMP tools. 
+The [http://www.eclipse.org/forums/index.php?t=thread&frm_id=17&S=f4fa6cb31327772a3b626dc409db409b Agent Modeling Platform Newsgroup] is the place to discuss or get support for any of the Eclipse AMP tools. Don't hesitate to ask questions about model implementation or bring up more general topics for discussion.
 
 ===View Existing Bugs and Feature Requests===
 
@@ -2147,6 +2259,7 @@ This may sound obvious, but if something doesn't work as it should, the only way
 ===Discuss AMP Development and Project===
 
 All discussion about software development, design and project management issues take place on the AMP dev-list. If you're interested in contributing to the AMP project, this is a good place to contact us. [https://dev.eclipse.org/mailman/listinfo/amp-dev].
+==Other Contacts==
 
 ===Professional Support===
 
@@ -2156,12 +2269,6 @@ The AMP project developers -- among the most experienced developers of agent mod
 
 For project related but non-public communications such as media enquires or potential project sponsorship, please contact Miles Parker, the Eclipse AMP project lead, at amp_enquiry@metascapeabm.com. (Requests for support and other communications to this address will be ignored.)
 
-==Feedback==
-
-If you have ideas, comments or requests for information about the project please contact us at the .
-
 ==Get Involved==
 
 If you find this tool valuable, please be aware that most of its development occurred through volunteer contributions from individuals and companies that have received no direct funding. You can support continual development efforts financially by purchasing related software tools from companies and organizations that help develop it, including funding for developer time in grant proposals. You can support the Eclipse platform in general by becoming a member organization of Eclipse. But the most important thing that you can contribute is your own time and enthusiasm, either through directly contributing to AMP or by promoting its use in blogs and other social media. For more detailed information about contributing to AMP, please see [http://wiki.eclipse.org/AMP/Getting_Involved our wiki].
-
- 

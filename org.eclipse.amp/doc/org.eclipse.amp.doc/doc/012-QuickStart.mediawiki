@@ -1,0 +1,40 @@
+==Quick Start==
+
+If you're the kind of person who likes to jump right in, here are the basics.
+
+===Install===
+
+If you're using a complete IDE, or have already installed AMP from the Eclipse update sites, you can ignore this step. Otherwise, refer to the Installation Guide at the end of this manual.
+
+===Welcome!===
+
+When you first run the tools, you will see a welcome screen. If the screen isn't showing, select the '''Help > Welcome''' menu. Click on the "Overview", "Samples" or "Tutorials" buttons to begin your exploration.
+
+===Cheat!===
+
+The Agent Modeling tools come with a number of "Cheat Sheets" to help get you started. You can access them by selecting '''Help > Cheat Sheets...'''. Then under the "Agent Modeling" category, select a cheat sheet, such as "Load Sample Projects".
+
+===Follow the Tutorial===
+
+The tools also come with extensive tutorials. See the "Tutorials" section for more help on that.
+
+===Follow your Interest===
+
+AMP has many potential facets and use cases. Check out the following sections of the manual for more information about..
+
+====ABM Researchers====
+
+Run an example model using the "Run an Example Model" cheat sheet.
+
+====ABM Modelers====
+
+Create Agent-Based models using simple visual tools and deploy them to a number of popular ABM platforms, including Escape. Follow the tutorial section of the Modeler's guide.
+
+====ABM Java Developers====
+
+Write "Plain Old Java" models within a full-featured agent-based modeling framework. Read Programmers Guide and then try the "Create an Escape Java Model" cheat sheet.
+
+====Eclipse Plugin Developers====
+
+AXF and AGF provide a number of features based around Eclipse technologies such as GEF, GEF3D, BIRT Charts and Zest. For example, AGF supports dynamic visualization of objects in space, and AXF supports managed UI and headless execution for models of any kind. There isn't currently any general documentation for these features, but we encourage you to look at the APIs and at Escape's implementation of them. They're straightforward and can be useful for a variety of general science platform needs.
+

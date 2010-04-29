@@ -6,8 +6,8 @@
 <meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
 <link rel="home" href="index.html" title="Agent Modeling Guide">
 <link rel="up" href="Programer_Guide.html" title="Programer Guide">
-<link rel="prev" href="Getting_Started_2.html" title="Getting Started">
-<link rel="next" href="More_Information.html" title="More Information">
+<link rel="prev" href="Example_Java_Models.html" title="Example Java Models">
+<link rel="next" href="Executing_Models.html" title="Executing Models">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Developing Models</h1>
@@ -21,17 +21,39 @@
 </div>
 </div>
 <p>The easiest way for Java developers to get started doing agent-based modeling in Eclipse is to begin to write programs using it. To develop new models, you can:</p>
+<div class="section" title="Cheatsheet">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Cheatsheet"></a>Cheatsheet</h3>
+</div>
+</div>
+</div>
+<p>By far the simplest way to get started is with the cheatsheet. This walks you through the complete process of creating a Java based model. 
+					<span class="bold"><strong>Help &gt; Cheat Sheets...</strong></span> and then select "Create an Escape Java Model" from within the "Agent Modeling" category.
+				</p>
+</div>
+<div class="section" title="Steps">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Steps"></a>Steps</h3>
+</div>
+</div>
+</div>
 <div class="orderedlist">
 <ol class="orderedlist" type="1">
 <li class="listitem">
 <p>Create a new Escape project. The Escape projects are actually configured for AMF code generation so there are dependencies and builders in there that you don't need; you can remove all of the escape builders and any of the kitchen sink items. The "Create an Escape Java Model" cheat sheet will walk you through the process of creating a new Java based project and model.</p>
 </li>
 <li class="listitem">
-<p>Or for more experienced Eclipse users, you can simply to just create a new Plugin Project and add the necessary dependencies there. Have a look at the example escape project to see what you need. Note that you will likely need more dependencies then you need to simply build -- this is because the class loader uses the classes from the project path and so runtime classes have to be there as well. We may simply package an Eclipse runtime convenience plugin to gather these dependencies up a bit.</p>
+<p>Or for more experienced Eclipse users, you can simply to just create a new Plug-in Project and add the necessary dependencies there. Have a look at the example escape project to see what you need. Note that you will likely need more dependencies then you need to simply build -- this is because the class loader uses the classes from the project path and so runtime classes have to be there as well. We may simply package an Eclipse runtime convenience plug-in to gather these dependencies up a bit. Then just create new Java classes for your root model scape and agents just as you would for an Ascape project.</p>
 </li>
 </ol>
 </div>
-<p>Then just create new Java classes for your root model scape and agents just as you would for an Ascape project.</p>
+</div>
 </div>
 </body>
 </html>
