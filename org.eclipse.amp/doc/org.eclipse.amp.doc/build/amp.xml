@@ -10,11 +10,11 @@
 			<para>If you're the kind of person who likes to jump right in, here are the basics.</para>
 			<section id="Install">
 				<title>Install</title>
-				<para>If you're using a complete IDE, or have already installed AMP from the Eclipse update sites, you can ignore this step. Otherwise, refer to the Installation Guide at the end of this manual.</para>
+				<para>If you've already installed a complete Agent Modeling IDE, such as one offered by the project contributors, or you have already installed AMP from the Eclipse update sites, you can obviously ignore this step. Otherwise, refer to the Installation Guide at the end of this manual.</para>
 			</section>
 			<section id="Welcome.21">
 				<title>Welcome!</title>
-				<para>When you first run the tools, you will see a welcome screen. If the screen isn't showing, select the 
+				<para>When you first open the IDE (or you first install the tools form an update site), you will see a welcome screen. If the screen isn't showing, select the 
 					<emphasis role="bold">Help &gt; Welcome</emphasis> menu. Click on the "Overview", "Samples" or "Tutorials" buttons to begin your exploration.
 				</para>
 			</section>

@@ -247,6 +247,10 @@ th {
 	font-weight: bold
 }
 
+td {
+	vertical-align: top
+}
+
 xxtd{
 	border-top:2px solid black;
 }
