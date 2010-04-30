@@ -112,6 +112,16 @@ public class Epidemic extends Scape implements ModelFactoryProvider {
 
 	private int[] cityDimensions = new int[2];
 	/**
+	 * The horizontal extent of the space.
+	 */
+
+	private int cityWidth = 40;
+	/**
+	 * The vertical extent of the space.
+	 */
+
+	private int cityHeight = 100;
+	/**
 	 * 
 	 */
 
@@ -121,8 +131,6 @@ public class Epidemic extends Scape implements ModelFactoryProvider {
 	 */
 
 	public Epidemic() {
-		setCityWidth(40);
-		setCityHeight(100);
 	}
 
 	EditPartFactory factory;
@@ -187,8 +195,10 @@ public class Epidemic extends Scape implements ModelFactoryProvider {
 		individualScape.setSize(individualCount);
 		city = new Scape(new org.ascape.model.space.Array2DEuclidian());
 		city.setPrototypeAgent(new HostCell());
+
 		city.setExtent(new org.ascape.model.space.Coordinate2DDiscrete(
-				getCityDimensions()));
+				getCityWidth(), getCityHeight()));
+
 		city.setName("Build City");
 		((CollectionSpace) city.getSpace()).setPeriodic(false);
 		add(city);
@@ -682,7 +692,7 @@ public class Epidemic extends Scape implements ModelFactoryProvider {
 	 */
 
 	public int getCityWidth() {
-		return cityDimensions[0];
+		return cityWidth;
 	}
 
 	/**
@@ -692,7 +702,7 @@ public class Epidemic extends Scape implements ModelFactoryProvider {
 	 */
 
 	public void setCityWidth(int _cityWidth) {
-		cityDimensions[0] = _cityWidth;
+		cityWidth = _cityWidth;
 	}
 	/**
 	 * Gets the Height property for City.
@@ -700,7 +710,7 @@ public class Epidemic extends Scape implements ModelFactoryProvider {
 	 */
 
 	public int getCityHeight() {
-		return cityDimensions[1];
+		return cityHeight;
 	}
 
 	/**
@@ -710,7 +720,7 @@ public class Epidemic extends Scape implements ModelFactoryProvider {
 	 */
 
 	public void setCityHeight(int _cityHeight) {
-		cityDimensions[1] = _cityHeight;
+		cityHeight = _cityHeight;
 	}
 	/**
 	 * Gets the City property for Epidemic.

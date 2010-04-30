@@ -1,6 +1,5 @@
 "MyModel"
 model "|Epidemic.metaabm"
-incorporates ["EpidemicRegions.apar" ]
 "Epidemic" [
 "Individual Count" =10
 "Stop Period"=10

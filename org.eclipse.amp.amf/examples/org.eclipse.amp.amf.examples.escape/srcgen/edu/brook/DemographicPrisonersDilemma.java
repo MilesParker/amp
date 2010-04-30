@@ -115,6 +115,16 @@ public class DemographicPrisonersDilemma extends Scape
 
 	private int[] gameSpaceDimensions = new int[2];
 	/**
+	 * The horizontal extent of the space.
+	 */
+
+	private int gameSpaceWidth = 20;
+	/**
+	 * The vertical extent of the space.
+	 */
+
+	private int gameSpaceHeight = 20;
+	/**
 	 * 
 	 */
 
@@ -124,8 +134,6 @@ public class DemographicPrisonersDilemma extends Scape
 	 */
 
 	public DemographicPrisonersDilemma() {
-		setGameSpaceWidth(20);
-		setGameSpaceHeight(20);
 	}
 
 	EditPartFactory factory;
@@ -191,8 +199,10 @@ public class DemographicPrisonersDilemma extends Scape
 		playerScape.setSize(playerCount);
 		gameSpace = new Scape(new org.ascape.model.space.Array2DVonNeumann());
 		gameSpace.setPrototypeAgent(new PlayCell());
+
 		gameSpace.setExtent(new org.ascape.model.space.Coordinate2DDiscrete(
-				getGameSpaceDimensions()));
+				getGameSpaceWidth(), getGameSpaceHeight()));
+
 		gameSpace.setName("Build Grid");
 		((CollectionSpace) gameSpace.getSpace()).setPeriodic(true);
 		add(gameSpace);
@@ -672,7 +682,7 @@ public class DemographicPrisonersDilemma extends Scape
 	 */
 
 	public int getGameSpaceWidth() {
-		return gameSpaceDimensions[0];
+		return gameSpaceWidth;
 	}
 
 	/**
@@ -682,7 +692,7 @@ public class DemographicPrisonersDilemma extends Scape
 	 */
 
 	public void setGameSpaceWidth(int _gameSpaceWidth) {
-		gameSpaceDimensions[0] = _gameSpaceWidth;
+		gameSpaceWidth = _gameSpaceWidth;
 	}
 	/**
 	 * Gets the Height property for Game Space.
@@ -690,7 +700,7 @@ public class DemographicPrisonersDilemma extends Scape
 	 */
 
 	public int getGameSpaceHeight() {
-		return gameSpaceDimensions[1];
+		return gameSpaceHeight;
 	}
 
 	/**
@@ -700,7 +710,7 @@ public class DemographicPrisonersDilemma extends Scape
 	 */
 
 	public void setGameSpaceHeight(int _gameSpaceHeight) {
-		gameSpaceDimensions[1] = _gameSpaceHeight;
+		gameSpaceHeight = _gameSpaceHeight;
 	}
 	/**
 	 * Gets the Game Space property for Demographic Prisoner_s Dilemma.

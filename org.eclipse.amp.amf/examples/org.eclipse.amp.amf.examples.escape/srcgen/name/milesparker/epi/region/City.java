@@ -67,6 +67,16 @@ public class City extends Scape implements ModelFactoryProvider {
 
 	private int[] mapDimensions = new int[2];
 	/**
+	 * The horizontal extent of the space.
+	 */
+
+	private int mapWidth = 20;
+	/**
+	 * The vertical extent of the space.
+	 */
+
+	private int mapHeight = 50;
+	/**
 	 * 
 	 */
 
@@ -76,8 +86,6 @@ public class City extends Scape implements ModelFactoryProvider {
 	 */
 
 	public City() {
-		setMapWidth(20);
-		setMapHeight(50);
 	}
 
 	EditPartFactory factory;
@@ -147,8 +155,10 @@ public class City extends Scape implements ModelFactoryProvider {
 		individualScape.setSize(individualCount);
 		map = new Scape(new org.ascape.model.space.Array2DMoore());
 		map.setPrototypeAgent(new Place());
+
 		map.setExtent(new org.ascape.model.space.Coordinate2DDiscrete(
-				getMapDimensions()));
+				getMapWidth(), getMapHeight()));
+
 		map.setName("Build City");
 		((CollectionSpace) map.getSpace()).setPeriodic(false);
 		add(map);
@@ -464,7 +474,7 @@ public class City extends Scape implements ModelFactoryProvider {
 	 */
 
 	public int getMapWidth() {
-		return mapDimensions[0];
+		return mapWidth;
 	}
 
 	/**
@@ -474,7 +484,7 @@ public class City extends Scape implements ModelFactoryProvider {
 	 */
 
 	public void setMapWidth(int _mapWidth) {
-		mapDimensions[0] = _mapWidth;
+		mapWidth = _mapWidth;
 	}
 	/**
 	 * Gets the Height property for Map.
@@ -482,7 +492,7 @@ public class City extends Scape implements ModelFactoryProvider {
 	 */
 
 	public int getMapHeight() {
-		return mapDimensions[1];
+		return mapHeight;
 	}
 
 	/**
@@ -492,7 +502,7 @@ public class City extends Scape implements ModelFactoryProvider {
 	 */
 
 	public void setMapHeight(int _mapHeight) {
-		mapDimensions[1] = _mapHeight;
+		mapHeight = _mapHeight;
 	}
 	/**
 	 * Gets the Map property for City.

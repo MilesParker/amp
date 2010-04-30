@@ -63,6 +63,16 @@ public class StupidModel2 extends Scape implements ModelFactoryProvider {
 
 	private int[] grid2DDimensions = new int[2];
 	/**
+	 * The horizontal extent of the space.
+	 */
+
+	private int grid2DWidth = 100;
+	/**
+	 * The vertical extent of the space.
+	 */
+
+	private int grid2DHeight = 100;
+	/**
 	 * 
 	 */
 
@@ -72,8 +82,6 @@ public class StupidModel2 extends Scape implements ModelFactoryProvider {
 	 */
 
 	public StupidModel2() {
-		setGrid2DWidth(100);
-		setGrid2DHeight(100);
 	}
 
 	EditPartFactory factory;
@@ -138,8 +146,10 @@ public class StupidModel2 extends Scape implements ModelFactoryProvider {
 		bugScape.setSize(bugCount);
 		grid2D = new Scape(new org.ascape.model.space.Array2DMoore());
 		grid2D.setPrototypeAgent(new Habitat());
+
 		grid2D.setExtent(new org.ascape.model.space.Coordinate2DDiscrete(
-				getGrid2DDimensions()));
+				getGrid2DWidth(), getGrid2DHeight()));
+
 		grid2D.setName("Fill Grid");
 		((CollectionSpace) grid2D.getSpace()).setPeriodic(true);
 		add(grid2D);
@@ -363,7 +373,7 @@ public class StupidModel2 extends Scape implements ModelFactoryProvider {
 	 */
 
 	public int getGrid2DWidth() {
-		return grid2DDimensions[0];
+		return grid2DWidth;
 	}
 
 	/**
@@ -373,7 +383,7 @@ public class StupidModel2 extends Scape implements ModelFactoryProvider {
 	 */
 
 	public void setGrid2DWidth(int _grid2DWidth) {
-		grid2DDimensions[0] = _grid2DWidth;
+		grid2DWidth = _grid2DWidth;
 	}
 	/**
 	 * Gets the Height property for Grid 2D.
@@ -381,7 +391,7 @@ public class StupidModel2 extends Scape implements ModelFactoryProvider {
 	 */
 
 	public int getGrid2DHeight() {
-		return grid2DDimensions[1];
+		return grid2DHeight;
 	}
 
 	/**
@@ -391,7 +401,7 @@ public class StupidModel2 extends Scape implements ModelFactoryProvider {
 	 */
 
 	public void setGrid2DHeight(int _grid2DHeight) {
-		grid2DDimensions[1] = _grid2DHeight;
+		grid2DHeight = _grid2DHeight;
 	}
 	/**
 	 * Gets the Grid 2D property for Stupid Model 2.

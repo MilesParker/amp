@@ -118,6 +118,16 @@ public class Region extends Scape implements ModelFactoryProvider {
 
 	private int[] regionalMapDimensions = new int[2];
 	/**
+	 * The horizontal extent of the space.
+	 */
+
+	private int regionalMapWidth = 2;
+	/**
+	 * The vertical extent of the space.
+	 */
+
+	private int regionalMapHeight = 2;
+	/**
 	 * 
 	 */
 
@@ -127,8 +137,6 @@ public class Region extends Scape implements ModelFactoryProvider {
 	 */
 
 	public Region() {
-		setRegionalMapWidth(2);
-		setRegionalMapHeight(2);
 	}
 
 	EditPartFactory factory;
@@ -193,8 +201,10 @@ public class Region extends Scape implements ModelFactoryProvider {
 		cityScape.setSize(cityCount);
 		regionalMap = new Scape(new org.ascape.model.space.Array2DMoore());
 		regionalMap.setPrototypeAgent(new RegionalLocation());
+
 		regionalMap.setExtent(new org.ascape.model.space.Coordinate2DDiscrete(
-				getRegionalMapDimensions()));
+				getRegionalMapWidth(), getRegionalMapHeight()));
+
 		regionalMap.setName("Build Regional Map");
 		((CollectionSpace) regionalMap.getSpace()).setPeriodic(true);
 		add(regionalMap);
@@ -598,7 +608,7 @@ public class Region extends Scape implements ModelFactoryProvider {
 	 */
 
 	public int getRegionalMapWidth() {
-		return regionalMapDimensions[0];
+		return regionalMapWidth;
 	}
 
 	/**
@@ -608,7 +618,7 @@ public class Region extends Scape implements ModelFactoryProvider {
 	 */
 
 	public void setRegionalMapWidth(int _regionalMapWidth) {
-		regionalMapDimensions[0] = _regionalMapWidth;
+		regionalMapWidth = _regionalMapWidth;
 	}
 	/**
 	 * Gets the Height property for Regional Map.
@@ -616,7 +626,7 @@ public class Region extends Scape implements ModelFactoryProvider {
 	 */
 
 	public int getRegionalMapHeight() {
-		return regionalMapDimensions[1];
+		return regionalMapHeight;
 	}
 
 	/**
@@ -626,7 +636,7 @@ public class Region extends Scape implements ModelFactoryProvider {
 	 */
 
 	public void setRegionalMapHeight(int _regionalMapHeight) {
-		regionalMapDimensions[1] = _regionalMapHeight;
+		regionalMapHeight = _regionalMapHeight;
 	}
 	/**
 	 * Gets the Regional Map property for Region.
