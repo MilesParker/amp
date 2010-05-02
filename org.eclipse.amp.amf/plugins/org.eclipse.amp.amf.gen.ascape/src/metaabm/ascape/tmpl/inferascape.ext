@@ -96,7 +96,7 @@ cached String destTerm(ASelect sel) :
 		? sel.asHost().expl()
 		: (sel.space.metaType == SContinuousSpace
 			? "((Coordinate)" + sel.id() + ")"
-			: "((HostCell)" +sel.id()) + ")";
+			: "((HostCell)" +sel.id() + ")");
 
 cached String call(AMove act, List[AAct] path, Boolean inner) :
 		act.selected.asAgent().pre() + act.method(path, inner) + "(" + act.destination.destTerm() + ");";

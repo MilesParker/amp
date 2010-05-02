@@ -212,7 +212,11 @@
 	        «EXPAND SetDimension FOR (SNDimensional) projection»
 	        ((CollectionSpace) «projection.fieldName()».getSpace()).setPeriodic(«projection.periodic()»);
 	        «projection.fieldName()».setPrototypeAgent(new «agents.get(0).typeName()»());
-	        
+			«FOREACH agents AS spaceAgent»
+			«REM»NOTE: if agent belongs to more than one space Ascape cannot support that.«ENDREM»
+			«spaceAgent.scape()».setSpace(new org.ascape.model.space.SubContinuous2D());
+			«spaceAgent.scape()».setSuperScape(«projection.fieldName()»);
+			«ENDFOREACH»
 			add(«projection.fieldName()»);
 	  «ENDIF»
 «ENDDEFINE»
