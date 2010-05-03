@@ -1123,8 +1123,8 @@ rule__Constraint__AgentAssignment_2
 (
 { before(grammarAccess.getConstraintAccess().getAgentSAgentCrossReference_2_0()); }
 (
-{ before(grammarAccess.getConstraintAccess().getAgentSAgentSTRINGTerminalRuleCall_2_0_1()); }
-	RULE_STRING{ after(grammarAccess.getConstraintAccess().getAgentSAgentSTRINGTerminalRuleCall_2_0_1()); }
+{ before(grammarAccess.getConstraintAccess().getAgentSAgentIDTerminalRuleCall_2_0_1()); }
+	RULE_ID{ after(grammarAccess.getConstraintAccess().getAgentSAgentIDTerminalRuleCall_2_0_1()); }
 )
 { after(grammarAccess.getConstraintAccess().getAgentSAgentCrossReference_2_0()); }
 )
@@ -1142,8 +1142,8 @@ rule__Constraint__AttributeAssignment_4
 (
 { before(grammarAccess.getConstraintAccess().getAttributeSAttributeCrossReference_4_0()); }
 (
-{ before(grammarAccess.getConstraintAccess().getAttributeSAttributeSTRINGTerminalRuleCall_4_0_1()); }
-	RULE_STRING{ after(grammarAccess.getConstraintAccess().getAttributeSAttributeSTRINGTerminalRuleCall_4_0_1()); }
+{ before(grammarAccess.getConstraintAccess().getAttributeSAttributeIDTerminalRuleCall_4_0_1()); }
+	RULE_ID{ after(grammarAccess.getConstraintAccess().getAttributeSAttributeIDTerminalRuleCall_4_0_1()); }
 )
 { after(grammarAccess.getConstraintAccess().getAttributeSAttributeCrossReference_4_0()); }
 )
@@ -1161,8 +1161,8 @@ rule__Constraint__QualifierAssignment_5_1
 (
 { before(grammarAccess.getConstraintAccess().getQualifierSStateValueCrossReference_5_1_0()); }
 (
-{ before(grammarAccess.getConstraintAccess().getQualifierSStateValueSTRINGTerminalRuleCall_5_1_0_1()); }
-	RULE_STRING{ after(grammarAccess.getConstraintAccess().getQualifierSStateValueSTRINGTerminalRuleCall_5_1_0_1()); }
+{ before(grammarAccess.getConstraintAccess().getQualifierSStateValueIDTerminalRuleCall_5_1_0_1()); }
+	RULE_ID{ after(grammarAccess.getConstraintAccess().getQualifierSStateValueIDTerminalRuleCall_5_1_0_1()); }
 )
 { after(grammarAccess.getConstraintAccess().getQualifierSStateValueCrossReference_5_1_0()); }
 )
