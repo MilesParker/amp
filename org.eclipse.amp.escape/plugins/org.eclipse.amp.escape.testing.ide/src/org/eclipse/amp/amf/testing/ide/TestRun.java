@@ -18,12 +18,10 @@ package org.eclipse.amp.amf.testing.ide;
 
 import java.util.Date;
 
-import org.ascape.util.data.DataSeries;
 import org.eclipse.amp.amf.abase.IInterpreterProvider;
 import org.eclipse.amp.amf.abase.aBase.Value;
 import org.eclipse.amp.amf.parameters.AParInterpreter;
 import org.eclipse.amp.amf.parameters.aPar.AParFactory;
-import org.eclipse.amp.amf.parameters.aPar.AgentParameters;
 import org.eclipse.amp.amf.parameters.aPar.Parameter;
 import org.eclipse.amp.amf.testing.ATestInterpreter;
 import org.eclipse.amp.amf.testing.aTest.ATestFactory;
@@ -46,6 +44,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ui.statushandlers.StatusManager;
+
+import org.ascape.util.data.DataSeries;
 import org.metaabm.SAttributeType;
 import org.metaabm.SContext;
 
@@ -156,13 +156,11 @@ public class TestRun {
                         shallowCopy.setQualifier(constraint.getQualifier());
                         run.getConstraints().add(shallowCopy);
                     }
-                    for (AgentParameters agents : aPar.getAgents()) {
-                        for (Parameter param : agents.getParameters()) {
-                            Parameter shallowCopy = AParFactory.eINSTANCE.createParameter();
-                            shallowCopy.setAttribute(param.getAttribute());
-                            shallowCopy.setValue((Value) EcoreUtil.copy(param.getValue()));
-                            run.getParameters().add(shallowCopy);
-                        }
+                    for (Parameter param : aPar.getParameters()) {
+                        Parameter shallowCopy = AParFactory.eINSTANCE.createParameter();
+                        shallowCopy.setAttribute(param.getAttribute());
+                        shallowCopy.setValue((Value) EcoreUtil.copy(param.getValue()));
+                        run.getParameters().add(shallowCopy);
                     }
                     run.setTest(aTest);
                     run.setStarted(new Date());
