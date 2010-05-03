@@ -100,7 +100,7 @@ abstract public class AbstractFileWizard extends Wizard implements INewWizard {
             }
         };
         page.setFileName("MyParameters." + getFileExtension());
-        page.setTitle(fileTypeName + getFileExtension() + " " + fileTypeName);
+        page.setTitle("Create " + fileTypeName + " File");
         page.setDescription("This wizard creates a new file with *." + getFileExtension()
                             + " extension that can be opened by the " + fileTypeName + " editor.");
         addPage(page);
