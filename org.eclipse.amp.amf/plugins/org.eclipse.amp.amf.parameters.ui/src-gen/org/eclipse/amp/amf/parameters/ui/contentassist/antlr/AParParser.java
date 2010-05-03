@@ -41,14 +41,11 @@ public class AParParser extends AbstractContentAssistParser {
 					put(grammarAccess.getBOOLEANAccess().getAlternatives(), "rule__BOOLEAN__Alternatives");
 					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
 					put(grammarAccess.getModelAccess().getGroup_3(), "rule__Model__Group_3__0");
-					put(grammarAccess.getAgentParametersAccess().getGroup(), "rule__AgentParameters__Group__0");
 					put(grammarAccess.getParameterAccess().getGroup(), "rule__Parameter__Group__0");
 					put(grammarAccess.getModelAccess().getNameAssignment_0(), "rule__Model__NameAssignment_0");
 					put(grammarAccess.getModelAccess().getModelAssignment_2(), "rule__Model__ModelAssignment_2");
-					put(grammarAccess.getModelAccess().getIncorporatesAssignment_3_2(), "rule__Model__IncorporatesAssignment_3_2");
-					put(grammarAccess.getModelAccess().getAgentsAssignment_4(), "rule__Model__AgentsAssignment_4");
-					put(grammarAccess.getAgentParametersAccess().getAgentAssignment_0(), "rule__AgentParameters__AgentAssignment_0");
-					put(grammarAccess.getAgentParametersAccess().getParametersAssignment_2(), "rule__AgentParameters__ParametersAssignment_2");
+					put(grammarAccess.getModelAccess().getIncorporatesAssignment_3_1(), "rule__Model__IncorporatesAssignment_3_1");
+					put(grammarAccess.getModelAccess().getParametersAssignment_4(), "rule__Model__ParametersAssignment_4");
 					put(grammarAccess.getImportAccess().getImportURIAssignment(), "rule__Import__ImportURIAssignment");
 					put(grammarAccess.getIncorporatesAccess().getImportURIAssignment(), "rule__Incorporates__ImportURIAssignment");
 					put(grammarAccess.getParameterAccess().getAttributeAssignment_0(), "rule__Parameter__AttributeAssignment_0");
