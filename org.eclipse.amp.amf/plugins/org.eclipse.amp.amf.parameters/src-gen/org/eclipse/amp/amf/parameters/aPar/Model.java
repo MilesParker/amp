@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.amp.amf.parameters.aPar.Model#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.parameters.aPar.Model#getModel <em>Model</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.parameters.aPar.Model#getIncorporates <em>Incorporates</em>}</li>
- *   <li>{@link org.eclipse.amp.amf.parameters.aPar.Model#getAgents <em>Agents</em>}</li>
+ *   <li>{@link org.eclipse.amp.amf.parameters.aPar.Model#getParameters <em>Parameters</em>}</li>
  * </ul>
  * </p>
  *
@@ -99,19 +99,19 @@ public interface Model extends EObject
   EList<Incorporates> getIncorporates();
 
   /**
-     * Returns the value of the '<em><b>Agents</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.amp.amf.parameters.aPar.AgentParameters}.
+     * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.amp.amf.parameters.aPar.Parameter}.
      * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Agents</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-     * @return the value of the '<em>Agents</em>' containment reference list.
-     * @see org.eclipse.amp.amf.parameters.aPar.AParPackage#getModel_Agents()
+     * @return the value of the '<em>Parameters</em>' containment reference list.
+     * @see org.eclipse.amp.amf.parameters.aPar.AParPackage#getModel_Parameters()
      * @model containment="true"
      * @generated
      */
-  EList<AgentParameters> getAgents();
+  EList<Parameter> getParameters();
 
 } // Model

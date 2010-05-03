@@ -34,7 +34,6 @@ import org.eclipse.amp.amf.abase.aBase.BooleanValue;
 import org.eclipse.amp.amf.abase.aBase.IntValue;
 import org.eclipse.amp.amf.abase.aBase.RealValue;
 import org.eclipse.amp.amf.abase.aBase.StringValue;
-import org.eclipse.amp.amf.parameters.aPar.AgentParameters;
 import org.eclipse.amp.amf.parameters.aPar.Import;
 import org.eclipse.amp.amf.parameters.aPar.Incorporates;
 import org.eclipse.amp.amf.parameters.aPar.Model;
@@ -110,16 +109,14 @@ public class AParInterpreter implements ICached {
 
     List<Parameter> collect(Set<String> overridden) {
         List<Parameter> includeIncorporated = new ArrayList<Parameter>();
-        for (AgentParameters parameterSet : aparModel.getAgents()) {
-            for (Parameter parameter : parameterSet.getParameters()) {
-                String label = parameter.getAttribute().getLabel();
-                if (parameterSet.getAgent() != rootContext) {
-                    label = parameterSet.getAgent().getLabel() + " " + label;
-                }
-                if (!overridden.contains(label)) {
-                    includeIncorporated.add(parameter);
-                    overridden.add(label);
-                }
+        for (Parameter parameter : aparModel.getParameters()) {
+            String label = parameter.getAttribute().getLabel();
+            if (parameter.getAttribute().getOwner() != rootContext) {
+                label = parameter.getAttribute().getOwner().getLabel() + " " + label;
+            }
+            if (!overridden.contains(label)) {
+                includeIncorporated.add(parameter);
+                overridden.add(label);
             }
         }
         Incorporates[] reverseIncorporates = new Incorporates[aparModel.getIncorporates().size()];
@@ -298,16 +295,16 @@ public class AParInterpreter implements ICached {
             String platformString = fileURI + "/" + uri;
             return platformString;
         }
-        //        } else if (!uri.startsWith("platform")) {
-        //            // file relative
-        //            String projectURI = fileURI.trimSegments(fileURI.segmentCount() - 2).toPlatformString(true);
-        //            fileURI.
-        //            System.err.println("file " + fileURI);
-        //            System.err.println("folder " + folderURI);
-        //            System.err.println("uri " + uri);
-        //            System.err.println("res " + folderURI + "/" + uri);
-        //            return folderURI + "/" + uri;
-        //        }
+        // } else if (!uri.startsWith("platform")) {
+        // // file relative
+        // String projectURI = fileURI.trimSegments(fileURI.segmentCount() - 2).toPlatformString(true);
+        // fileURI.
+        // System.err.println("file " + fileURI);
+        // System.err.println("folder " + folderURI);
+        // System.err.println("uri " + uri);
+        // System.err.println("res " + folderURI + "/" + uri);
+        // return folderURI + "/" + uri;
+        // }
         return uri;
     }
 }

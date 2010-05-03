@@ -35,15 +35,6 @@ public interface AParFactory extends EFactory
   Model createModel();
 
   /**
-     * Returns a new object of class '<em>Agent Parameters</em>'.
-     * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-     * @return a new object of class '<em>Agent Parameters</em>'.
-     * @generated
-     */
-  AgentParameters createAgentParameters();
-
-  /**
      * Returns a new object of class '<em>Import</em>'.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

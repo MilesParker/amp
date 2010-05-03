@@ -20,24 +20,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.amp.amf.parameters.AParInterpreter;
-import org.eclipse.amp.amf.parameters.aPar.AgentParameters;
+import org.eclipse.amp.amf.parameters.aPar.Import;
 import org.eclipse.amp.amf.parameters.aPar.Model;
 import org.eclipse.amp.amf.parameters.aPar.Parameter;
-import org.eclipse.amp.amf.parameters.aPar.impl.ModelImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.scoping.impl.SimpleScope;
 
+import org.apache.commons.lang.StringUtils;
 import org.metaabm.MetaABMPackage;
-import org.metaabm.SAgent;
 import org.metaabm.SAttribute;
 import org.metaabm.SAttributed;
 import org.metaabm.SContext;
@@ -55,6 +53,14 @@ public class AParScopeProvider extends AbstractDeclarativeScopeProvider {
 
     List<IEObjectDescription> engineAttributes;
 
+    ResourceSet resourceSet;
+
+    SContext context;
+
+    private List<IEObjectDescription> stringElems = new ArrayList<IEObjectDescription>();
+
+    private List<IEObjectDescription> idElems = new ArrayList<IEObjectDescription>();
+
     /**
      * @param context
      * @param reference
@@ -70,82 +76,61 @@ public class AParScopeProvider extends AbstractDeclarativeScopeProvider {
         // getResourceSet(object);
         // super.getScope(object, reference);
         // }
-        if (object instanceof Parameter && reference.getEType() == MetaABMPackage.eINSTANCE.getSAttribute()) {
-            getResourceSet(object);
-            // if (attrScope == null) {
-            if (engineAttributes == null) {
-                engineAttributes = new ArrayList<IEObjectDescription>();
-                ResourceSet resourceSet = object.eResource().getResourceSet();
-                Resource found = resourceSet.getResource(URI.createURI("http://metaabm.org/Engine.metaabm"), true);
-                findAttributes((SContext) found.getContents().get(0), engineAttributes, "");
-            }
-            List<IEObjectDescription> allElems = new ArrayList<IEObjectDescription>();
-            Parameter parameter = (Parameter) object;
-            AgentParameters params = (AgentParameters) parameter.eContainer();
-            SAgent agent = getAgent(params);
-            if (agent != null) {
-                findAttributes(agent, allElems, "");
-            }
-            // IScope defaultScope = super.getScope(object, reference);
-            allElems.addAll(engineAttributes);
-            IScope attrScope = new SimpleScope(allElems);
-            return attrScope;
-        } else if (object instanceof AgentParameters && reference.getEType() == MetaABMPackage.eINSTANCE.getSAgent()) {
-            getResourceSet(object);
-            AgentParameters params = (AgentParameters) object;
-            SAgent context = getAgent(params);
-            List<IEObjectDescription> allElems = new ArrayList<IEObjectDescription>();
-            allElems.add(EObjectDescription.create(context.getLabel(), context));
-            IScope attrScope = new SimpleScope(allElems);
-            return attrScope;
-        } else if (object instanceof ModelImpl) {
-            getResourceSet(object);
+        if (object instanceof Import) {
+            getAttributes((Import) object);
+        } else if (object instanceof Parameter) {
+            getAttributes(((Model) ((Parameter) object).eContainer()).getModel());
+        }
+        if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAttribute()) {
+            return new SimpleScope(idElems);
         }
 
         return super.getScope(object, reference);
     }
 
-    protected SAgent getAgent(AgentParameters params) {
-        Model model = (Model) params.eContainer();
-        String modelURI = AParInterpreter.convertURI(model.getModel());
-        ResourceSet resourceSet = params.eResource().getResourceSet();
-        Resource modelResource = resourceSet.getResource(URI.createURI(modelURI), true);
-        SContext context = (SContext) modelResource.getContents().get(0);
-        return context;
-    }
-
-    protected ResourceSet getResourceSet(EObject object) {
-        ResourceSet resourceSet = object.eResource().getResourceSet();
-        resourceSet.getResource(URI.createURI("http://metaabm.org/Engine.metaabm"), true);
-        Model model = (Model) object.eResource().getContents().get(0);
-        String convertURI = AParInterpreter.convertURI(model.getModel());
-        URI aparURI = URI.createURI(convertURI, true);
-        if (aparURI.isPlatform()) {
-            if (URIConverter.INSTANCE.exists(aparURI, null)) {
-                Resource resource = resourceSet.getResource(aparURI, true);
-                resource.getContents().get(0);
+    protected void getAttributes(Import importModel) {
+        String modelURIName = AParInterpreter.convertURI(importModel);
+        URI modelURI = URI.createURI(modelURIName, true);
+        if (modelURI.isPlatform()) {
+            resourceSet = importModel.eContainer().eResource().getResourceSet();
+            Resource modelResource = resourceSet.getResource(modelURI, true);
+            SContext newContext = (SContext) modelResource.getContents().get(0);
+            if (newContext != context) {
+                // stringElems = new ArrayList<IEObjectDescription>();
+                idElems = new ArrayList<IEObjectDescription>();
+                Resource engineResource = resourceSet.getResource(URI.createURI("http://metaabm.org/Engine.metaabm"),
+                                                                  true);
+                SContext engine = (SContext) engineResource.getContents().get(0);
+                findAttributes(engine);
+                context = newContext;
+                findAttributes(context);
             }
         }
-        return resourceSet;
     }
 
-
-    protected void findAttributes(SAttributed attributed, List<IEObjectDescription> allElems, String qualifier) {
+    protected void findAttributes(SAttributed attributed) {
         for (SAttribute attr : attributed.getAttributes()) {
             // don't want to allow parameter entries that can't be changed..which is also why we don't get
             // core attributes.
             if (!attr.isImmutable()) {
-                addElem(attr, allElems, qualifier);
+                addElem(attributed, attr);
             }
         }
         if (attributed instanceof SContext) {
             for (SProjection proj : ((SContext) attributed).getProjections()) {
-                findAttributes(proj, allElems, proj.getLabel() + " ");
+                findAttributes(proj);
             }
         }
     }
 
-    private void addElem(SAttribute attr, List<IEObjectDescription> allElems, String qualifier) {
-        allElems.add(EObjectDescription.create(qualifier + attr.getLabel(), attr));
+    private void addElem(SAttributed parent, SAttribute attr) {
+        // String label = attr.getLabel();
+        String id = StringUtils.capitalize(attr.getID());
+        if (parent instanceof SProjection) {
+            // label = parent.getLabel() + " " + label;
+            id = StringUtils.capitalize(parent.getID()) + id;
+        }
+        // stringElems.add(EObjectDescription.create(label, attr));
+        idElems.add(EObjectDescription.create(id, attr));
     }
 }

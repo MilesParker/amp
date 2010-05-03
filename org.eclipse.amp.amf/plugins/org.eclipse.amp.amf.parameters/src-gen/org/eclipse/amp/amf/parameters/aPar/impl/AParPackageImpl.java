@@ -9,7 +9,6 @@ import org.eclipse.amp.amf.abase.aBase.ABasePackage;
 
 import org.eclipse.amp.amf.parameters.aPar.AParFactory;
 import org.eclipse.amp.amf.parameters.aPar.AParPackage;
-import org.eclipse.amp.amf.parameters.aPar.AgentParameters;
 import org.eclipse.amp.amf.parameters.aPar.Import;
 import org.eclipse.amp.amf.parameters.aPar.Incorporates;
 import org.eclipse.amp.amf.parameters.aPar.Model;
@@ -38,13 +37,6 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
      * @generated
      */
   private EClass modelEClass = null;
-
-  /**
-     * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-     * @generated
-     */
-  private EClass agentParametersEClass = null;
 
   /**
      * <!-- begin-user-doc -->
@@ -179,39 +171,9 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
    * <!-- end-user-doc -->
      * @generated
      */
-  public EReference getModel_Agents()
+  public EReference getModel_Parameters()
   {
         return (EReference)modelEClass.getEStructuralFeatures().get(3);
-    }
-
-  /**
-     * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-     * @generated
-     */
-  public EClass getAgentParameters()
-  {
-        return agentParametersEClass;
-    }
-
-  /**
-     * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-     * @generated
-     */
-  public EReference getAgentParameters_Agent()
-  {
-        return (EReference)agentParametersEClass.getEStructuralFeatures().get(0);
-    }
-
-  /**
-     * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-     * @generated
-     */
-  public EReference getAgentParameters_Parameters()
-  {
-        return (EReference)agentParametersEClass.getEStructuralFeatures().get(1);
     }
 
   /**
@@ -318,11 +280,7 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
         createEAttribute(modelEClass, MODEL__NAME);
         createEReference(modelEClass, MODEL__MODEL);
         createEReference(modelEClass, MODEL__INCORPORATES);
-        createEReference(modelEClass, MODEL__AGENTS);
-
-        agentParametersEClass = createEClass(AGENT_PARAMETERS);
-        createEReference(agentParametersEClass, AGENT_PARAMETERS__AGENT);
-        createEReference(agentParametersEClass, AGENT_PARAMETERS__PARAMETERS);
+        createEReference(modelEClass, MODEL__PARAMETERS);
 
         importEClass = createEClass(IMPORT);
         createEAttribute(importEClass, IMPORT__IMPORT_URI);
@@ -374,11 +332,7 @@ public class AParPackageImpl extends EPackageImpl implements AParPackage
         initEAttribute(getModel_Name(), ecorePackage.getEString(), "name", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getModel_Model(), this.getImport(), null, "model", null, 0, 1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getModel_Incorporates(), this.getIncorporates(), null, "incorporates", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getModel_Agents(), this.getAgentParameters(), null, "agents", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-        initEClass(agentParametersEClass, AgentParameters.class, "AgentParameters", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEReference(getAgentParameters_Agent(), theMetaABMPackage.getSAgent(), null, "agent", null, 0, 1, AgentParameters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEReference(getAgentParameters_Parameters(), this.getParameter(), null, "parameters", null, 0, -1, AgentParameters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEReference(getModel_Parameters(), this.getParameter(), null, "parameters", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(importEClass, Import.class, "Import", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEAttribute(getImport_ImportURI(), ecorePackage.getEString(), "importURI", null, 0, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -36,15 +36,14 @@ protected class ThisRootNode extends RootToken {
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
 			case 0: return new Model_Group(this, this, 0, inst);
-			case 1: return new AgentParameters_Group(this, this, 1, inst);
-			case 2: return new Import_ImportURIAssignment(this, this, 2, inst);
-			case 3: return new Incorporates_ImportURIAssignment(this, this, 3, inst);
-			case 4: return new Parameter_Group(this, this, 4, inst);
-			case 5: return new Value_Alternatives(this, this, 5, inst);
-			case 6: return new IntValue_ValueAssignment(this, this, 6, inst);
-			case 7: return new RealValue_ValueAssignment(this, this, 7, inst);
-			case 8: return new StringValue_ValueAssignment(this, this, 8, inst);
-			case 9: return new BooleanValue_ValueAssignment(this, this, 9, inst);
+			case 1: return new Import_ImportURIAssignment(this, this, 1, inst);
+			case 2: return new Incorporates_ImportURIAssignment(this, this, 2, inst);
+			case 3: return new Parameter_Group(this, this, 3, inst);
+			case 4: return new Value_Alternatives(this, this, 4, inst);
+			case 5: return new IntValue_ValueAssignment(this, this, 5, inst);
+			case 6: return new RealValue_ValueAssignment(this, this, 6, inst);
+			case 7: return new StringValue_ValueAssignment(this, this, 7, inst);
+			case 8: return new BooleanValue_ValueAssignment(this, this, 8, inst);
 			default: return null;
 		}	
 	}	
@@ -54,13 +53,13 @@ protected class ThisRootNode extends RootToken {
 /************ begin Rule Model ****************
  *
  * Model:
- *   name=STRING? "model" model=Import ("incorporates" "[" incorporates+=Incorporates* "]")
- *   ? agents+=AgentParameters*;
+ *   name=STRING? "model" model=Import ("incorporates" incorporates+=Incorporates)*
+ *   parameters+=Parameter*;
  *
  **/
 
-// name=STRING? "model" model=Import ("incorporates" "[" incorporates+=Incorporates* "]")
-// ? agents+=AgentParameters*
+// name=STRING? "model" model=Import ("incorporates" incorporates+=Incorporates)*
+// parameters+=Parameter*
 protected class Model_Group extends GroupToken {
 	
 	public Model_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -75,7 +74,7 @@ protected class Model_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new Model_AgentsAssignment_4(parent, this, 0, inst);
+			case 0: return new Model_ParametersAssignment_4(parent, this, 0, inst);
 			case 1: return new Model_Group_3(parent, this, 1, inst);
 			case 2: return new Model_ModelAssignment_2(parent, this, 2, inst);
 			default: return null;
@@ -190,7 +189,7 @@ protected class Model_ModelAssignment_2 extends AssignmentToken  {
 	}	
 }
 
-// ("incorporates" "[" incorporates+=Incorporates* "]")?
+// ("incorporates" incorporates+=Incorporates)*
 protected class Model_Group_3 extends GroupToken {
 	
 	public Model_Group_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -205,7 +204,7 @@ protected class Model_Group_3 extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new Model_RightSquareBracketKeyword_3_3(parent, this, 0, inst);
+			case 0: return new Model_IncorporatesAssignment_3_1(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -227,45 +226,24 @@ protected class Model_IncorporatesKeyword_3_0 extends KeywordToken  {
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new Model_ModelAssignment_2(parent, this, 0, inst);
+			case 0: return new Model_Group_3(parent, this, 0, inst);
+			case 1: return new Model_ModelAssignment_2(parent, this, 1, inst);
 			default: return null;
 		}	
 	}	
 		
 }
 
-// "["
-protected class Model_LeftSquareBracketKeyword_3_1 extends KeywordToken  {
+// incorporates+=Incorporates
+protected class Model_IncorporatesAssignment_3_1 extends AssignmentToken  {
 	
-	public Model_LeftSquareBracketKeyword_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getModelAccess().getLeftSquareBracketKeyword_3_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new Model_IncorporatesKeyword_3_0(parent, this, 0, inst);
-			default: return null;
-		}	
-	}	
-		
-}
-
-// incorporates+=Incorporates*
-protected class Model_IncorporatesAssignment_3_2 extends AssignmentToken  {
-	
-	public Model_IncorporatesAssignment_3_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Model_IncorporatesAssignment_3_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getModelAccess().getIncorporatesAssignment_3_2();
+		return grammarAccess.getModelAccess().getIncorporatesAssignment_3_1();
 	}
 
     @Override
@@ -284,7 +262,7 @@ protected class Model_IncorporatesAssignment_3_2 extends AssignmentToken  {
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getIncorporatesRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getModelAccess().getIncorporatesIncorporatesParserRuleCall_3_2_0(); 
+				element = grammarAccess.getModelAccess().getIncorporatesIncorporatesParserRuleCall_3_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -296,190 +274,23 @@ protected class Model_IncorporatesAssignment_3_2 extends AssignmentToken  {
 	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
 		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Model_IncorporatesAssignment_3_2(parent, next, actIndex, consumed);
-			case 1: return new Model_LeftSquareBracketKeyword_3_1(parent, next, actIndex, consumed);
+			case 0: return new Model_IncorporatesKeyword_3_0(parent, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
-// "]"
-protected class Model_RightSquareBracketKeyword_3_3 extends KeywordToken  {
-	
-	public Model_RightSquareBracketKeyword_3_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getModelAccess().getRightSquareBracketKeyword_3_3();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new Model_IncorporatesAssignment_3_2(parent, this, 0, inst);
-			default: return null;
-		}	
-	}	
-		
-}
-
-
-// agents+=AgentParameters*
-protected class Model_AgentsAssignment_4 extends AssignmentToken  {
-	
-	public Model_AgentsAssignment_4(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getModelAccess().getAgentsAssignment_4();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new AgentParameters_Group(this, this, 0, inst);
-			default: return null;
-		}	
-	}	
-		
-    @Override	
-	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("agents",false)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("agents");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
-			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getAgentParametersRule().getType().getClassifier())) {
-				type = AssignmentType.PRC;
-				element = grammarAccess.getModelAccess().getAgentsAgentParametersParserRuleCall_4_0(); 
-				consumed = obj;
-				return param;
-			}
-		}
-		return null;
-	}
-
-    @Override
-	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
-		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
-		switch(index) {
-			case 0: return new Model_AgentsAssignment_4(parent, next, actIndex, consumed);
-			case 1: return new Model_Group_3(parent, next, actIndex, consumed);
-			case 2: return new Model_ModelAssignment_2(parent, next, actIndex, consumed);
-			default: return null;
-		}	
-	}	
-}
-
-
-/************ end Rule Model ****************/
-
-
-/************ begin Rule AgentParameters ****************
- *
- * AgentParameters:
- *   agent=[SAgent|STRING] "[" parameters+=Parameter* "]";
- *
- **/
-
-// agent=[SAgent|STRING] "[" parameters+=Parameter* "]"
-protected class AgentParameters_Group extends GroupToken {
-	
-	public AgentParameters_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	@Override
-	public Group getGrammarElement() {
-		return grammarAccess.getAgentParametersAccess().getGroup();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new AgentParameters_RightSquareBracketKeyword_3(parent, this, 0, inst);
-			default: return null;
-		}	
-	}	
-		
-    @Override
-	public IInstanceDescription tryConsume() {
-		if(!current.isInstanceOf(grammarAccess.getAgentParametersRule().getType().getClassifier())) return null;
-		return tryConsumeVal();
-	}
-}
-
-// agent=[SAgent|STRING]
-protected class AgentParameters_AgentAssignment_0 extends AssignmentToken  {
-	
-	public AgentParameters_AgentAssignment_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getAgentParametersAccess().getAgentAssignment_0();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			default: return parent.createParentFollower(this, index, index, inst);
-		}	
-	}	
-		
-    @Override	
-	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("agent",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("agent");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
-			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getAgentParametersAccess().getAgentSAgentCrossReference_0_0().getType().getClassifier())) {
-				type = AssignmentType.CR;
-				element = grammarAccess.getAgentParametersAccess().getAgentSAgentCrossReference_0_0(); 
-				return obj;
-			}
-		}
-		return null;
-	}
-
-}
-
-// "["
-protected class AgentParameters_LeftSquareBracketKeyword_1 extends KeywordToken  {
-	
-	public AgentParameters_LeftSquareBracketKeyword_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getAgentParametersAccess().getLeftSquareBracketKeyword_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new AgentParameters_AgentAssignment_0(parent, this, 0, inst);
-			default: return null;
-		}	
-	}	
-		
-}
 
 // parameters+=Parameter*
-protected class AgentParameters_ParametersAssignment_2 extends AssignmentToken  {
+protected class Model_ParametersAssignment_4 extends AssignmentToken  {
 	
-	public AgentParameters_ParametersAssignment_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Model_ParametersAssignment_4(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getAgentParametersAccess().getParametersAssignment_2();
+		return grammarAccess.getModelAccess().getParametersAssignment_4();
 	}
 
     @Override
@@ -498,7 +309,7 @@ protected class AgentParameters_ParametersAssignment_2 extends AssignmentToken  
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getParameterRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getAgentParametersAccess().getParametersParameterParserRuleCall_2_0(); 
+				element = grammarAccess.getModelAccess().getParametersParameterParserRuleCall_4_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -510,38 +321,16 @@ protected class AgentParameters_ParametersAssignment_2 extends AssignmentToken  
 	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
 		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new AgentParameters_ParametersAssignment_2(parent, next, actIndex, consumed);
-			case 1: return new AgentParameters_LeftSquareBracketKeyword_1(parent, next, actIndex, consumed);
+			case 0: return new Model_ParametersAssignment_4(parent, next, actIndex, consumed);
+			case 1: return new Model_Group_3(parent, next, actIndex, consumed);
+			case 2: return new Model_ModelAssignment_2(parent, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
-// "]"
-protected class AgentParameters_RightSquareBracketKeyword_3 extends KeywordToken  {
-	
-	public AgentParameters_RightSquareBracketKeyword_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getAgentParametersAccess().getRightSquareBracketKeyword_3();
-	}
 
-    @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new AgentParameters_ParametersAssignment_2(parent, this, 0, inst);
-			case 1: return new AgentParameters_LeftSquareBracketKeyword_1(parent, this, 1, inst);
-			default: return null;
-		}	
-	}	
-		
-}
-
-
-/************ end Rule AgentParameters ****************/
+/************ end Rule Model ****************/
 
 
 /************ begin Rule Import ****************
@@ -643,11 +432,11 @@ protected class Incorporates_ImportURIAssignment extends AssignmentToken  {
 /************ begin Rule Parameter ****************
  *
  * Parameter:
- *   attribute=[SAttribute|STRING] "=" value=Value;
+ *   attribute=[SAttribute] "=" value=Value;
  *
  **/
 
-// attribute=[SAttribute|STRING] "=" value=Value
+// attribute=[SAttribute] "=" value=Value
 protected class Parameter_Group extends GroupToken {
 	
 	public Parameter_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -674,7 +463,7 @@ protected class Parameter_Group extends GroupToken {
 	}
 }
 
-// attribute=[SAttribute|STRING]
+// attribute=[SAttribute]
 protected class Parameter_AttributeAssignment_0 extends AssignmentToken  {
 	
 	public Parameter_AttributeAssignment_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {

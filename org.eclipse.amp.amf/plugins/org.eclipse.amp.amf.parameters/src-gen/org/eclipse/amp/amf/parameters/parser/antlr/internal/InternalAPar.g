@@ -146,16 +146,12 @@ ruleModel returns [EObject current=null]
     {
         createLeafNode(grammarAccess.getModelAccess().getIncorporatesKeyword_3_0(), null); 
     }
-	'[' 
-    {
-        createLeafNode(grammarAccess.getModelAccess().getLeftSquareBracketKeyword_3_1(), null); 
-    }
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getModelAccess().getIncorporatesIncorporatesParserRuleCall_3_2_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getModelAccess().getIncorporatesIncorporatesParserRuleCall_3_1_0(), currentNode); 
 	    }
-		lv_incorporates_5_0=ruleIncorporates		{
+		lv_incorporates_4_0=ruleIncorporates		{
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getModelRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
@@ -164,7 +160,7 @@ ruleModel returns [EObject current=null]
 	       		add(
 	       			$current, 
 	       			"incorporates",
-	        		lv_incorporates_5_0, 
+	        		lv_incorporates_4_0, 
 	        		"Incorporates", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {
@@ -174,16 +170,12 @@ ruleModel returns [EObject current=null]
 	    }
 
 )
-)*	']' 
-    {
-        createLeafNode(grammarAccess.getModelAccess().getRightSquareBracketKeyword_3_3(), null); 
-    }
-)?(
+))*(
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getModelAccess().getAgentsAgentParametersParserRuleCall_4_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getModelAccess().getParametersParameterParserRuleCall_4_0(), currentNode); 
 	    }
-		lv_agents_7_0=ruleAgentParameters		{
+		lv_parameters_5_0=ruleParameter		{
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getModelRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
@@ -191,73 +183,8 @@ ruleModel returns [EObject current=null]
 	        try {
 	       		add(
 	       			$current, 
-	       			"agents",
-	        		lv_agents_7_0, 
-	        		"AgentParameters", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
-	    }
-
-)
-)*)
-;
-
-
-
-
-
-// Entry rule entryRuleAgentParameters
-entryRuleAgentParameters returns [EObject current=null] 
-	:
-	{ currentNode = createCompositeNode(grammarAccess.getAgentParametersRule(), currentNode); }
-	 iv_ruleAgentParameters=ruleAgentParameters 
-	 { $current=$iv_ruleAgentParameters.current; } 
-	 EOF 
-;
-
-// Rule AgentParameters
-ruleAgentParameters returns [EObject current=null] 
-    @init { @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
-    }
-    @after { resetLookahead(); 
-    	lastConsumedNode = currentNode;
-    }:
-((
-(
-		{
-			if ($current==null) {
-	            $current = factory.create(grammarAccess.getAgentParametersRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
-	        }
-        }
-	RULE_STRING
-	{
-		createLeafNode(grammarAccess.getAgentParametersAccess().getAgentSAgentCrossReference_0_0(), "agent"); 
-	}
-
-)
-)	'[' 
-    {
-        createLeafNode(grammarAccess.getAgentParametersAccess().getLeftSquareBracketKeyword_1(), null); 
-    }
-(
-(
-		{ 
-	        currentNode=createCompositeNode(grammarAccess.getAgentParametersAccess().getParametersParameterParserRuleCall_2_0(), currentNode); 
-	    }
-		lv_parameters_2_0=ruleParameter		{
-	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getAgentParametersRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
-	        }
-	        try {
-	       		add(
-	       			$current, 
 	       			"parameters",
-	        		lv_parameters_2_0, 
+	        		lv_parameters_5_0, 
 	        		"Parameter", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {
@@ -267,11 +194,7 @@ ruleAgentParameters returns [EObject current=null]
 	    }
 
 )
-)*	']' 
-    {
-        createLeafNode(grammarAccess.getAgentParametersAccess().getRightSquareBracketKeyword_3(), null); 
-    }
-)
+)*)
 ;
 
 
@@ -396,7 +319,7 @@ ruleParameter returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
         }
-	RULE_STRING
+	RULE_ID
 	{
 		createLeafNode(grammarAccess.getParameterAccess().getAttributeSAttributeCrossReference_0_0(), "attribute"); 
 	}

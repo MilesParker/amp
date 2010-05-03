@@ -9,11 +9,6 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="incorporates" upperBound="-1"
         eType="#//Incorporates" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="agents" upperBound="-1"
-        eType="#//AgentParameters" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AgentParameters">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="agent" eType="ecore:EClass ../../../../../../../org.eclipse.amp.amf.acore/src/model/metaabm.ecore#//SAgent"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//Parameter" containment="true"/>
   </eClassifiers>

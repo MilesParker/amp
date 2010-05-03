@@ -13,11 +13,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute APar.ecore#//Model/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference APar.ecore#//Model/model"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference APar.ecore#//Model/incorporates"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference APar.ecore#//Model/agents"/>
-    </genClasses>
-    <genClasses ecoreClass="APar.ecore#//AgentParameters">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference APar.ecore#//AgentParameters/agent"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference APar.ecore#//AgentParameters/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference APar.ecore#//Model/parameters"/>
     </genClasses>
     <genClasses ecoreClass="APar.ecore#//Import">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute APar.ecore#//Import/importURI"/>
