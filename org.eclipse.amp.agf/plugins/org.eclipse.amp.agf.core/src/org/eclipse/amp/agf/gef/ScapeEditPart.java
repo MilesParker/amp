@@ -79,7 +79,10 @@ public class ScapeEditPart extends GenericEditPart implements PropertyChangeList
             f.setBounds(new Rectangle(new Point(0, 0), calculateDimension));
         } else {
             f = new FreeformLayer();
-            f.setBounds(getRootScapeEditPart().getFigure().getBounds());
+            ScapeEditPart rootScapeEditPart = getRootScapeEditPart();
+            if (rootScapeEditPart != this) {
+                f.setBounds(rootScapeEditPart.getFigure().getBounds());
+            }
         }
         f.setLayoutManager(new XYLayout());
         f.setOpaque(false);
