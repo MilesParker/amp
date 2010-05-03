@@ -135,16 +135,16 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftParenthesisKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cAgentAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final CrossReference cAgentSAgentCrossReference_2_0 = (CrossReference)cAgentAssignment_2.eContents().get(0);
-		private final RuleCall cAgentSAgentSTRINGTerminalRuleCall_2_0_1 = (RuleCall)cAgentSAgentCrossReference_2_0.eContents().get(1);
+		private final RuleCall cAgentSAgentIDTerminalRuleCall_2_0_1 = (RuleCall)cAgentSAgentCrossReference_2_0.eContents().get(1);
 		private final Keyword cFullStopKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cAttributeAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final CrossReference cAttributeSAttributeCrossReference_4_0 = (CrossReference)cAttributeAssignment_4.eContents().get(0);
-		private final RuleCall cAttributeSAttributeSTRINGTerminalRuleCall_4_0_1 = (RuleCall)cAttributeSAttributeCrossReference_4_0.eContents().get(1);
+		private final RuleCall cAttributeSAttributeIDTerminalRuleCall_4_0_1 = (RuleCall)cAttributeSAttributeCrossReference_4_0.eContents().get(1);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
 		private final Keyword cEqualsSignKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
 		private final Assignment cQualifierAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
 		private final CrossReference cQualifierSStateValueCrossReference_5_1_0 = (CrossReference)cQualifierAssignment_5_1.eContents().get(0);
-		private final RuleCall cQualifierSStateValueSTRINGTerminalRuleCall_5_1_0_1 = (RuleCall)cQualifierSStateValueCrossReference_5_1_0.eContents().get(1);
+		private final RuleCall cQualifierSStateValueIDTerminalRuleCall_5_1_0_1 = (RuleCall)cQualifierSStateValueCrossReference_5_1_0.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
 		private final Keyword cEqualsSignKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
@@ -157,12 +157,12 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_7_5 = (Keyword)cGroup_7.eContents().get(5);
 		
 		//Constraint:
-		//  measure=Measure "(" agent=[SAgent|STRING] "." attribute=[SAttribute|STRING] ("="
-		//  qualifier=[SStateValue|STRING])? ")" ("=" "[" minValue=Value "," maxValue=Value "]");
+		//  measure=Measure "(" agent=[SAgent] "." attribute=[SAttribute] ("=" qualifier=[
+		//  SStateValue])? ")" ("=" "[" minValue=Value "," maxValue=Value "]");
 		public ParserRule getRule() { return rule; }
 
-		//measure=Measure "(" agent=[SAgent|STRING] "." attribute=[SAttribute|STRING] ("="
-		//qualifier=[SStateValue|STRING])? ")" ("=" "[" minValue=Value "," maxValue=Value "]")
+		//measure=Measure "(" agent=[SAgent] "." attribute=[SAttribute] ("=" qualifier=[
+		//SStateValue])? ")" ("=" "[" minValue=Value "," maxValue=Value "]")
 		public Group getGroup() { return cGroup; }
 
 		//measure=Measure
@@ -174,41 +174,41 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 		//"("
 		public Keyword getLeftParenthesisKeyword_1() { return cLeftParenthesisKeyword_1; }
 
-		//agent=[SAgent|STRING]
+		//agent=[SAgent]
 		public Assignment getAgentAssignment_2() { return cAgentAssignment_2; }
 
-		//[SAgent|STRING]
+		//[SAgent]
 		public CrossReference getAgentSAgentCrossReference_2_0() { return cAgentSAgentCrossReference_2_0; }
 
-		//STRING
-		public RuleCall getAgentSAgentSTRINGTerminalRuleCall_2_0_1() { return cAgentSAgentSTRINGTerminalRuleCall_2_0_1; }
+		//ID
+		public RuleCall getAgentSAgentIDTerminalRuleCall_2_0_1() { return cAgentSAgentIDTerminalRuleCall_2_0_1; }
 
 		//"."
 		public Keyword getFullStopKeyword_3() { return cFullStopKeyword_3; }
 
-		//attribute=[SAttribute|STRING]
+		//attribute=[SAttribute]
 		public Assignment getAttributeAssignment_4() { return cAttributeAssignment_4; }
 
-		//[SAttribute|STRING]
+		//[SAttribute]
 		public CrossReference getAttributeSAttributeCrossReference_4_0() { return cAttributeSAttributeCrossReference_4_0; }
 
-		//STRING
-		public RuleCall getAttributeSAttributeSTRINGTerminalRuleCall_4_0_1() { return cAttributeSAttributeSTRINGTerminalRuleCall_4_0_1; }
+		//ID
+		public RuleCall getAttributeSAttributeIDTerminalRuleCall_4_0_1() { return cAttributeSAttributeIDTerminalRuleCall_4_0_1; }
 
-		//("=" qualifier=[SStateValue|STRING])?
+		//("=" qualifier=[SStateValue])?
 		public Group getGroup_5() { return cGroup_5; }
 
 		//"="
 		public Keyword getEqualsSignKeyword_5_0() { return cEqualsSignKeyword_5_0; }
 
-		//qualifier=[SStateValue|STRING]
+		//qualifier=[SStateValue]
 		public Assignment getQualifierAssignment_5_1() { return cQualifierAssignment_5_1; }
 
-		//[SStateValue|STRING]
+		//[SStateValue]
 		public CrossReference getQualifierSStateValueCrossReference_5_1_0() { return cQualifierSStateValueCrossReference_5_1_0; }
 
-		//STRING
-		public RuleCall getQualifierSStateValueSTRINGTerminalRuleCall_5_1_0_1() { return cQualifierSStateValueSTRINGTerminalRuleCall_5_1_0_1; }
+		//ID
+		public RuleCall getQualifierSStateValueIDTerminalRuleCall_5_1_0_1() { return cQualifierSStateValueIDTerminalRuleCall_5_1_0_1; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_6() { return cRightParenthesisKeyword_6; }
@@ -353,8 +353,8 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Constraint:
-	//  measure=Measure "(" agent=[SAgent|STRING] "." attribute=[SAttribute|STRING] ("="
-	//  qualifier=[SStateValue|STRING])? ")" ("=" "[" minValue=Value "," maxValue=Value "]");
+	//  measure=Measure "(" agent=[SAgent] "." attribute=[SAttribute] ("=" qualifier=[
+	//  SStateValue])? ")" ("=" "[" minValue=Value "," maxValue=Value "]");
 	public ConstraintElements getConstraintAccess() {
 		return (pConstraint != null) ? pConstraint : (pConstraint = new ConstraintElements());
 	}

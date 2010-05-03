@@ -23,6 +23,7 @@ import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.scoping.impl.SimpleScope;
 
+import org.apache.commons.lang.StringUtils;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAgent;
 import org.metaabm.SAttribute;
@@ -65,13 +66,14 @@ public class ATestScopeProvider extends AbstractDeclarativeScopeProvider {
                             EObject next = iter.next();
                             if (next instanceof SAgent) {
                                 SAgent sAgent = (SAgent) next;
-                                allElems.add(EObjectDescription.create(sAgent.getLabel(), sAgent));
+                                allElems.add(EObjectDescription.create(StringUtils.capitalize(sAgent.getID()),
+                                                                       sAgent));
                             }
                         }
                     }
                 } else if (reference.getEType() == MetaABMPackage.eINSTANCE.getSAttribute()) {
                     if (constraint.getAgent() != null) {
-                        findAttributes(constraint.getAgent(), allElems, "");
+                        findAttributes(constraint.getAgent(), allElems);
                     } else {
                         return IScope.NULLSCOPE;
                     }
@@ -79,7 +81,7 @@ public class ATestScopeProvider extends AbstractDeclarativeScopeProvider {
                     if (constraint.getAttribute() instanceof SState) {
                         SState state = (SState) constraint.getAttribute();
                         for (SStateValue value : state.getOptions()) {
-                            allElems.add(EObjectDescription.create(value.getLabel(), value));
+                            allElems.add(EObjectDescription.create(StringUtils.capitalize(value.getID()), value));
                         }
                     } else {
                         return IScope.NULLSCOPE;
@@ -109,22 +111,26 @@ public class ATestScopeProvider extends AbstractDeclarativeScopeProvider {
         return resourceSet;
     }
 
-    protected void findAttributes(SAttributed attributed, List<IEObjectDescription> allElems, String qualifier) {
+    protected void findAttributes(SAttributed attributed, List<IEObjectDescription> allElems) {
         for (SAttribute attr : attributed.getAttributes()) {
             // don't want to allow parameter entries that can't be changed..which is also why we don't get
             // core attributes.
             if (!attr.isImmutable()) {
-                addElem(attr, allElems, qualifier);
+                addElem(attributed, attr, allElems);
             }
         }
         if (attributed instanceof SContext) {
             for (SProjection proj : ((SContext) attributed).getProjections()) {
-                findAttributes(proj, allElems, proj.getLabel() + " ");
+                findAttributes(proj, allElems);
             }
         }
     }
 
-    private void addElem(SAttribute attr, List<IEObjectDescription> allElems, String qualifier) {
-        allElems.add(EObjectDescription.create(qualifier + attr.getLabel(), attr));
+    private void addElem(SAttributed parent, SAttribute attr, List<IEObjectDescription> allElems) {
+        String id = StringUtils.capitalize(attr.getID());
+        if (parent instanceof SProjection) {
+            id = StringUtils.capitalize(parent.getID() + id);
+        }
+        allElems.add(EObjectDescription.create(id, attr));
     }
 }

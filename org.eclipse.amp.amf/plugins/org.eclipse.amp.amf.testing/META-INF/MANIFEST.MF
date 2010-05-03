@@ -42,4 +42,5 @@ Export-Package: org.eclipse.amp.amf.testing,
  org.eclipse.amp.amf.testing.services,
  org.eclipse.amp.amf.testing.validation
 Bundle-Localization: plugin
-Import-Package: org.apache.log4j
+Import-Package: org.apache.commons.lang,
+ org.apache.log4j

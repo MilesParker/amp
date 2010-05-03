@@ -540,13 +540,13 @@ protected class TestMember_ImportURIAssignment extends AssignmentToken  {
 /************ begin Rule Constraint ****************
  *
  * Constraint:
- *   measure=Measure "(" agent=[SAgent|STRING] "." attribute=[SAttribute|STRING] ("="
- *   qualifier=[SStateValue|STRING])? ")" ("=" "[" minValue=Value "," maxValue=Value "]");
+ *   measure=Measure "(" agent=[SAgent] "." attribute=[SAttribute] ("=" qualifier=[
+ *   SStateValue])? ")" ("=" "[" minValue=Value "," maxValue=Value "]");
  *
  **/
 
-// measure=Measure "(" agent=[SAgent|STRING] "." attribute=[SAttribute|STRING] ("="
-// qualifier=[SStateValue|STRING])? ")" ("=" "[" minValue=Value "," maxValue=Value "]")
+// measure=Measure "(" agent=[SAgent] "." attribute=[SAttribute] ("=" qualifier=[
+// SStateValue])? ")" ("=" "[" minValue=Value "," maxValue=Value "]")
 protected class Constraint_Group extends GroupToken {
 	
 	public Constraint_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -628,7 +628,7 @@ protected class Constraint_LeftParenthesisKeyword_1 extends KeywordToken  {
 		
 }
 
-// agent=[SAgent|STRING]
+// agent=[SAgent]
 protected class Constraint_AgentAssignment_2 extends AssignmentToken  {
 	
 	public Constraint_AgentAssignment_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -687,7 +687,7 @@ protected class Constraint_FullStopKeyword_3 extends KeywordToken  {
 		
 }
 
-// attribute=[SAttribute|STRING]
+// attribute=[SAttribute]
 protected class Constraint_AttributeAssignment_4 extends AssignmentToken  {
 	
 	public Constraint_AttributeAssignment_4(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -724,7 +724,7 @@ protected class Constraint_AttributeAssignment_4 extends AssignmentToken  {
 
 }
 
-// ("=" qualifier=[SStateValue|STRING])?
+// ("=" qualifier=[SStateValue])?
 protected class Constraint_Group_5 extends GroupToken {
 	
 	public Constraint_Group_5(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -768,7 +768,7 @@ protected class Constraint_EqualsSignKeyword_5_0 extends KeywordToken  {
 		
 }
 
-// qualifier=[SStateValue|STRING]
+// qualifier=[SStateValue]
 protected class Constraint_QualifierAssignment_5_1 extends AssignmentToken  {
 	
 	public Constraint_QualifierAssignment_5_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {

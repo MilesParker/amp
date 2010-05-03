@@ -372,7 +372,7 @@ ruleConstraint returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
         }
-	RULE_STRING
+	RULE_ID
 	{
 		createLeafNode(grammarAccess.getConstraintAccess().getAgentSAgentCrossReference_2_0(), "agent"); 
 	}
@@ -390,7 +390,7 @@ ruleConstraint returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
         }
-	RULE_STRING
+	RULE_ID
 	{
 		createLeafNode(grammarAccess.getConstraintAccess().getAttributeSAttributeCrossReference_4_0(), "attribute"); 
 	}
@@ -408,7 +408,7 @@ ruleConstraint returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
         }
-	RULE_STRING
+	RULE_ID
 	{
 		createLeafNode(grammarAccess.getConstraintAccess().getQualifierSStateValueCrossReference_5_1_0(), "qualifier"); 
 	}

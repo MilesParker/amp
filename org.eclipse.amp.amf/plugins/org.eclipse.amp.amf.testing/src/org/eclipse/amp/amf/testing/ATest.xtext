@@ -18,7 +18,7 @@ TestMember :
 	importURI=STRING;
 
 Constraint :
-	measure=Measure "(" agent=[SAgent|STRING] "." attribute=[SAttribute|STRING] ("=" qualifier=[SStateValue|STRING])? ")" ("=" "[" minValue=Value "," maxValue=Value "]");
+	measure=Measure "(" agent=[SAgent|ID] "." attribute=[SAttribute|ID] ("=" qualifier=[SStateValue|ID])? ")" ("=" "[" minValue=Value "," maxValue=Value "]");
 
 enum Measure :
 	COUNT = "Count" | AVERAGE = "Average" | SUM = "Sum" | MINIMUM = "Minimum" | MAXIMUM = "Maximum";

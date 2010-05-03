@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class InternalATestLexer extends Lexer {
-    public static final int RULE_ID=8;
+    public static final int RULE_ID=6;
     public static final int RULE_ANY_OTHER=13;
     public static final int T29=29;
     public static final int T28=28;
@@ -29,7 +29,7 @@ public class InternalATestLexer extends Lexer {
     public static final int RULE_ML_COMMENT=10;
     public static final int RULE_STRING=4;
     public static final int RULE_INT=9;
-    public static final int RULE_REAL=7;
+    public static final int RULE_REAL=8;
     public static final int T14=14;
     public static final int RULE_WS=12;
     public static final int T15=15;
@@ -38,7 +38,7 @@ public class InternalATestLexer extends Lexer {
     public static final int T17=17;
     public static final int T18=18;
     public static final int T19=19;
-    public static final int RULE_INTEGER=6;
+    public static final int RULE_INTEGER=7;
     public InternalATestLexer() {;} 
     public InternalATestLexer(CharStream input) {
         super(input);
