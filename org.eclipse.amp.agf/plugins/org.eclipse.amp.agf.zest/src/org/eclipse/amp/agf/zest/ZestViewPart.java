@@ -7,34 +7,28 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
+ * Contributors:
  *   Metascape - Initial API and Implementation
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.agf.zest;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
+import org.eclipse.amp.agf.gef.AGFViewPart;
+import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.view.ModelViewPart;
+import org.eclipse.amp.axf.space.IGraphProvider;
+import org.eclipse.amp.axf.view.ModelInput;
 import org.eclipse.amp.axf.view.SWTAsyncModelListener;
-import org.eclipse.gef.EditPart;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelectionProvider;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.viewers.ViewerFilter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.ISelectionListener;
-import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.core.widgets.ZestStyles;
 import org.eclipse.zest.layouts.LayoutAlgorithm;
@@ -44,7 +38,7 @@ import org.eclipse.zest.layouts.algorithms.SpringLayoutAlgorithm;
 /**
  * The Class ZestViewPart.
  */
-public class ZestViewPart extends ModelViewPart {
+public class ZestViewPart extends AGFViewPart {
 
     private GraphViewer viewer;
     // private ZestSliderContribution gravitySlide;
@@ -66,44 +60,7 @@ public class ZestViewPart extends ModelViewPart {
         viewer.getControl().setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_WHITE));
         setLayoutAlgorithm(createSpringLayout());
         viewer.setNodeStyle(ZestStyles.NODES_NO_LAYOUT_RESIZE | ZestStyles.NODES_HIDE_TEXT);
-        getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(new ISelectionListener() {
-            public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-                if (selection instanceof IStructuredSelection) {
-                    List<Object> domainObjects = new ArrayList<Object>();
-                    Iterator iter = ((IStructuredSelection) selection).iterator();
-                    while (iter.hasNext()) {
-                        Object item = iter.next();
-                        if (item instanceof EditPart) {
-                            domainObjects.add(((EditPart) item).getModel());
-                        }
-                    }
-                    selection = new StructuredSelection(domainObjects);
-                    viewer.setSelection(selection);
-                }
-            }
-        });
         super.createPartControl(parent);
-        // TODO we need to put this functionality back
-        // createSelectionListener(viewer);
-
-        // provider.addSelectionChangedListener(new ISelectionChangedListener() {
-        // public void selectionChanged(SelectionChangedEvent event) {
-        // if (!event.getSelection().isEmpty() && event.getSelection() instanceof StructuredSelection) {
-        // StructuredSelection sel = (StructuredSelection) event.getSelection();
-        // propertySheetPage.selectionChanged(ZestViewPart.this,
-        // new StructuredSelection(sel
-        // .getFirstElement()));
-        // }
-        // }
-        // });
-        // viewer.getControl().addControlListener(new ControlListener() {
-        // public void controlMoved(ModelControl e) {
-        // }
-        //
-        // public void controlResized(ModelControl e) {
-        // viewer.applyLayout();
-        // }
-        // });
     }
 
     /**
@@ -122,22 +79,22 @@ public class ZestViewPart extends ModelViewPart {
         return springs;
     }
 
-    /**
-     * @param input
-     * @see org.eclipse.amp.axf.view.ModelViewPart#setInput(org.eclipse.ui.IEditorInput)
-     */
     public void setInput(IEditorInput input) {
         super.setInput(input);
-        if (input != null) {
-            ZestInput zestInput = (ZestInput) input;
-            viewer.setContentProvider(zestInput.getContent());
-            viewer.setLabelProvider(zestInput.getLabel());
-            viewer.setInput(zestInput.getModel());
-            viewer.setFilters(zestInput.getFilters());
-        } else {
-            viewer.setInput(null);
-            viewer.setFilters(new ViewerFilter[0]);
+        final ModelInput modelInput = (ModelInput) input;
+        setModel(modelInput.getModel());
+        if (getModel() != null) {
+            IGraphProvider graphProvider = (IGraphProvider) Platform.getAdapterManager()
+            .getAdapter(getModel(), IGraphProvider.class);
+            ICompositionProvider compProvider = (ICompositionProvider) Platform.getAdapterManager()
+            .getAdapter(getModel(), ICompositionProvider.class);
+            ZestContentProvider contentProvider = new ZestContentProvider(graphProvider, compProvider);
+            viewer.setContentProvider(contentProvider);
+            ILabelProvider labelProvider = (ILabelProvider) Platform.getAdapterManager()
+            .getAdapter(getModel(), ILabelProvider.class);
+            viewer.setLabelProvider(labelProvider);
         }
+        viewer.setInput(modelInput.getModel());
     }
 
     /**
@@ -315,12 +272,10 @@ public class ZestViewPart extends ModelViewPart {
     }
 
     /**
-     * 
-     * @see org.eclipse.amp.axf.view.ModelViewPart#dispose()
+     * @return
+     * @see org.eclipse.amp.agf.gef.AGFViewPart#getSelectionProvider()
      */
-    public void dispose() {
-        super.dispose();
-        // TODO Replace this funcitonality
-        // removeSelectionListener(viewer);
+    protected ISelectionProvider getSelectionProvider() {
+        return viewer;
     }
 }
