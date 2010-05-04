@@ -41,19 +41,17 @@ public class ScapeGraphEditPart extends ScapeEditPart {
     protected synchronized void refreshChildren() {
         Map adj = graphProvider.getAdjacencyMap(getModel());
         connections = new ArrayList<NetworkConnection>(adj.size());
-        //		if (sources == null) {
+        // if (sources == null) {
         sources = new HashMap<Object, List<NetworkConnection>>();
         targets = new HashMap<Object, List<NetworkConnection>>();
-        //		}
+        // }
         for (Object object : adj.entrySet()) {
             Map.Entry<Object, Object> entry = (Map.Entry<Object, Object>) object;
             Object source = entry.getKey();
-            List<NetworkConnection> sourceTargets = getConnectList(source,
-                                                                   sources);
+            List<NetworkConnection> sourceTargets = getConnectList(source, sources);
             sourceTargets.clear();
             for (Object target : graphProvider.getNeighborsFor(getModel(), source)) {
-                List<NetworkConnection> targetSources = getConnectList(
-target, targets);
+                List<NetworkConnection> targetSources = getConnectList(target, targets);
                 NetworkConnection connect = null;
                 for (NetworkConnection networkConnection : sourceTargets) {
                     if (networkConnection.target == target) {
