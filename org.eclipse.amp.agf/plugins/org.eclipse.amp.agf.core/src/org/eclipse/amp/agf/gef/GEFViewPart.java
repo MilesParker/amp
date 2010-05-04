@@ -47,28 +47,6 @@ public class GEFViewPart extends EditPartViewPart {
             }
         };
         toolBar.add(item);
-        // getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(new ISelectionListener() {
-        // public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-        // if (part != GEFViewPart.this && selection instanceof IStructuredSelection) {
-        // List<Object> domainObjects = new ArrayList<Object>();
-        // Iterator iter = ((IStructuredSelection) selection).iterator();
-        // while (iter.hasNext()) {
-        // Object item = iter.next();
-        // if (item instanceof EditPart) {
-        // domainObjects.add(item);
-        // // domainObjects.add(((EditPart) item).getModel());
-        // } else {
-        // Object o = viewer.getEditPartRegistry().get(item);
-        // if (o != null) {
-        // domainObjects.add(o);
-        // }
-        // }
-        // }
-        // selection = new StructuredSelection(domainObjects);
-        // viewer.setSelection(selection);
-        // }
-        // }
-        // });
     }
 
     public RootEditPart createRoot() {

@@ -18,11 +18,7 @@ package org.eclipse.amp.agf.gef;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.amp.agf.EditPartSelectionSynchronizer;
-import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
-import org.eclipse.amp.axf.ide.ModelViewManager;
 import org.eclipse.amp.axf.view.IModelPart;
-import org.eclipse.amp.axf.view.ModelViewPart;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.DefaultEditDomain;
@@ -35,36 +31,21 @@ import org.eclipse.gef.editparts.ScalableFreeformRootEditPart;
 import org.eclipse.gef.editparts.ScalableRootEditPart;
 import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gef.ui.parts.ScrollingGraphicalViewer;
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IWorkbenchPart;
 
-public abstract class EditPartViewPart extends ModelViewPart {
-
-    private final class PropertySelectionListener implements ISelectionChangedListener {
-        public void selectionChanged(SelectionChangedEvent event) {
-            if (!event.getSelection().isEmpty() && event.getSelection() instanceof StructuredSelection) {
-                StructuredSelection sel = (StructuredSelection) event.getSelection();
-                propertySheetPage.selectionChanged(EditPartViewPart.this, new StructuredSelection(sel
-                                                                                                  .getFirstElement()));
-            }
-        }
-    }
+public abstract class EditPartViewPart extends AGFViewPart {
 
     private DefaultEditDomain editDomain;
     protected EditPartViewer viewer;
     private EditPartListener rootListener;
     public static double[] ZOOM_LEVELS = { .125, .25, .5, .75, 1.0, 1.25, 1.5, 2.0, 2.5, 3, 4, 6, 8 };
     private ZoomManager zoomer;
-    private PropertySelectionListener selectionListener;
     private RootEditPart rootEditPart;
 
     public EditPartViewPart() {
@@ -77,30 +58,7 @@ public abstract class EditPartViewPart extends ModelViewPart {
         viewer = createViewer();
         viewer.createControl(parent);
         getEditDomain().addViewer(viewer);
-        new Thread() {
-            public void run() {
-                AXFWorkbenchPlugin default1 = AXFWorkbenchPlugin.getDefault();
-                while (default1 == null) {
-                    try {
-                        Thread.sleep(30);
-                    } catch (InterruptedException e) {
-                    }
-                    default1 = AXFWorkbenchPlugin.getDefault();
-                }
-                ModelViewManager manager = default1.getManager();
-                if (!(manager.getSelectionSynchronizer() instanceof EditPartSelectionSynchronizer)) {
-                    manager.setSelectionSynchronizer(new EditPartSelectionSynchronizer());
-                }
-                manager.getSelectionSynchronizer().addViewer(viewer);
-                getSite().setSelectionProvider(viewer);
-            };
-        }.start();
-    }
-
-    protected void createSelectionListener(ISelectionProvider provider) {
-        super.createSelectionListener(provider);
-        selectionListener = new PropertySelectionListener();
-        provider.addSelectionChangedListener(selectionListener);
+        createSelectionSynchronizer();
     }
 
     protected EditPartViewer createViewer() {
@@ -192,9 +150,6 @@ public abstract class EditPartViewPart extends ModelViewPart {
 
     @Override
     public Object getAdapter(Class type) {
-        if (type == ISelectionProvider.class) {
-            return getViewer();
-        }
         if (type == EditPartViewer.class) {
             return getViewer();
         }
@@ -222,20 +177,10 @@ public abstract class EditPartViewPart extends ModelViewPart {
     /**
      * Sets the EditDomain for this EditorPart.
      * 
-     * @param ed
-     *        the domain
+     * @param ed the domain
      */
     protected void setEditDomain(DefaultEditDomain ed) {
         this.editDomain = ed;
-    }
-
-    public void selectionChanged(IWorkbenchPart part, ISelection selection) {
-    }
-
-    public void dispose() {
-        super.dispose();
-        removeSelectionListener(viewer);
-        ((ISelectionProvider) viewer).removeSelectionChangedListener(selectionListener);
     }
 
     /**
@@ -261,6 +206,14 @@ public abstract class EditPartViewPart extends ModelViewPart {
      */
     public RootEditPart getRootEditPart() {
         return rootEditPart;
+    }
+
+    /**
+     * @return
+     * @see org.eclipse.amp.agf.gef.AGFViewPart#getSelectionProvider()
+     */
+    protected ISelectionProvider getSelectionProvider() {
+        return viewer;
     }
 
 }

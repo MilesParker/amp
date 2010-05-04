@@ -61,6 +61,17 @@ public class AgentEditPart extends GenericEditPart implements NodeEditPart {
         return anchor;
     }
 
+    /**
+     * 
+     * @see org.eclipse.amp.agf.gef.GenericEditPart#refresh()
+     */
+    public void refresh() {
+        super.refresh();
+        // TODO let's optimize this as it will now slow down every non-network implementation
+        refreshSourceConnections();
+        refreshTargetConnections();
+    }
+
     /*
      * (non-Javadoc)
      * @see

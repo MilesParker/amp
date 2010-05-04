@@ -109,6 +109,10 @@ public class ScapeEditPart extends GenericEditPart implements PropertyChangeList
                     ((GenericEditPart) child).refreshVisuals();
                 }
             }
+            if (this instanceof ScapeGraphEditPart) {
+                super.refreshSourceConnections();
+                super.refreshTargetConnections();
+            }
         }
     }
 
