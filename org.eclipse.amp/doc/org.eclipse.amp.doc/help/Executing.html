@@ -1,7 +1,7 @@
 <html>
 <head>
 <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Exploring</title>
+<title>Executing</title>
 <link href="book.css" rel="stylesheet" type="text/css">
 <meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
 <link rel="home" href="index.html" title="Agent Modeling Guide">
@@ -10,13 +10,13 @@
 <link rel="next" href="Tutorials.html" title="Tutorials">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Exploring</h1>
-<div class="section" title="Exploring">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Executing</h1>
+<div class="section" title="Executing">
 <div class="titlepage">
 <div>
 <div>
 <h2 class="title" style="clear: both">
-<a name="Exploring"></a>Exploring</h2>
+<a name="Executing"></a>Executing</h2>
 </div>
 </div>
 </div>
@@ -420,15 +420,119 @@
 </div>
 </div>
 </div>
-<div class="section" title="Executing Internal Targets">
+<div class="section" title="Launching Other Targets">
 <div class="titlepage">
 <div>
 <div>
 <h3 class="title">
-<a name="Executing_Internal_Targets"></a>Executing Internal Targets</h3>
+<a name="Launching_Other_Targets"></a>Launching Other Targets</h3>
 </div>
 </div>
 </div>
+<p>To execute applications for other targets such as Ascape or Simphony, just right-click on the metaabm model, select Run As.. and pick the target you want to launch. In the example below, we're launching Ascape from within an ..ascape project.</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/execution/LaunchAscape.png"></div>
+<p>
+				
+</p>
+<p>The external tool you've selected will then open into a separate Java application.</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/execution/AscapeRunning.png"></div>
+<p>
+				
+</p>
+<p>
+					
+<span class="italic">Note:</span> remember that the menu options are active regardless of whether the target is actually supported within a given project. If you attempt to Run (external targets) or Execute (internal targets) models from a project that does not support that target you will get an error! 
+				</p>
+</div>
+<div class="section" title="Model Parameterization">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Model_Parameterization"></a>Model Parameterization</h3>
+</div>
+</div>
+</div>
+<p>Escape provides full support for parameterization of models. This allows you to create many sets of parameters for a given model, allowing you to decouple model runtime settings from the model itself. (Support for parameter sweeps is forthcoming.) To create a new parameterization, right-click in the lcoation you want to create the parameter file, and select 
+					<span class="bold"><strong>New &gt; Parameters File</strong></span>.
+				</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/params/Create.png"></div>
+<p>
+				
+</p>
+<p>In the wizard that follows, give your parameter file a name:</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/params/Wizard.png"></div>
+<p>
+				
+</p>
+<p>The edit the file. See below for file syntax. The parameter editor has built-in support for code-completion, syntax high-lighting and other editor features.</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/params/Edit.png"></div>
+<p>
+				
+</p>
+<p>In the example below, we've created two separate parameter files for the epidemic model with different values for contact transmission probability.</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/params/Example.png"></div>
+<p>
+				
+</p>
+<p>As with other runnable files, you can launch a parameter file simply by selecting execute in the popup menu, application menu or toolbar.</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/params/Execute.png"></div>
+<p>
+				
+</p>
+</div>
+<div class="section" title="Model Testing">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Model_Testing"></a>Model Testing</h3>
+</div>
+</div>
+</div>
+<p>One of the most important and over-looked aspects of modeling is verification. Very loosely speaking, model 
+					<span class="italic">validation</span> is the process of determining whether a model matches up to the "real world". Model 
+					<span class="italic">verification</span> is the process of determining whether your model specification matches up to the model you've actually implemented. In other words, does the model do what you say it does?
+				</p>
+<p>To help you answer this important question, the modeling tools include unique support for an approach to validation and verification called "unit testing". A thorough discussion is far beyond the scope of this manual, but this guide should give you enough information to get testing your own models. Testing might seem tedious ut its actually a real time saver, because you can quickly run a set of tests to ensure that you a new model change hasn't broken existing functionality. This peace of mind is priceless, and once you start testing, you won't know how you lived without it!</p>
+<p>To create a new test, right-click at the location you want to put the test files. (Not shown.) Then we can edit the test file.</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/params/Execute.png"></div>
+<p>
+				
+</p>
+<p>It's helpful to keep them organized in sets of folders. If you select an entire folder, the framework will run </p>
 </div>
 </div>
 </body>

@@ -2336,8 +2336,8 @@ Outputs:
 				</section>
 			</section>
 		</section>
-		<section id="Exploring">
-			<title>Exploring</title>
+		<section id="Executing">
+			<title>Executing</title>
 			<section id="Launching_a_Model_.28AMF.29">
 				<title>Launching a Model (AMF)</title>
 				<informaltable>
@@ -2588,8 +2588,89 @@ Outputs:
 					</section>
 				</section>
 			</section>
-			<section id="Executing_Internal_Targets">
-				<title>Executing Internal Targets</title>
+			<section id="Launching_Other_Targets">
+				<title>Launching Other Targets</title>
+				<para>To execute applications for other targets such as Ascape or Simphony, just right-click on the metaabm model, select Run As.. and pick the target you want to launch. In the example below, we're launching Ascape from within an ..ascape project.</para>
+				<para>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/execution/LaunchAscape.png"/>
+						</imageobject>
+					</mediaobject>
+				</para>
+				<para>The external tool you've selected will then open into a separate Java application.</para>
+				<para>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/execution/AscapeRunning.png"/>
+						</imageobject>
+					</mediaobject>
+				</para>
+				<para>
+					<emphasis role="italic">Note:</emphasis> remember that the menu options are active regardless of whether the target is actually supported within a given project. If you attempt to Run (external targets) or Execute (internal targets) models from a project that does not support that target you will get an error! 
+				</para>
+			</section>
+			<section id="Model_Parameterization">
+				<title>Model Parameterization</title>
+				<para>Escape provides full support for parameterization of models. This allows you to create many sets of parameters for a given model, allowing you to decouple model runtime settings from the model itself. (Support for parameter sweeps is forthcoming.) To create a new parameterization, right-click in the lcoation you want to create the parameter file, and select 
+					<emphasis role="bold">New &gt; Parameters File</emphasis>.
+				</para>
+				<para>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/params/Create.png"/>
+						</imageobject>
+					</mediaobject>
+				</para>
+				<para>In the wizard that follows, give your parameter file a name:</para>
+				<para>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/params/Wizard.png"/>
+						</imageobject>
+					</mediaobject>
+				</para>
+				<para>The edit the file. See below for file syntax. The parameter editor has built-in support for code-completion, syntax high-lighting and other editor features.</para>
+				<para>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/params/Edit.png"/>
+						</imageobject>
+					</mediaobject>
+				</para>
+				<para>In the example below, we've created two separate parameter files for the epidemic model with different values for contact transmission probability.</para>
+				<para>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/params/Example.png"/>
+						</imageobject>
+					</mediaobject>
+				</para>
+				<para>As with other runnable files, you can launch a parameter file simply by selecting execute in the popup menu, application menu or toolbar.</para>
+				<para>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/params/Execute.png"/>
+						</imageobject>
+					</mediaobject>
+				</para>
+			</section>
+			<section id="Model_Testing">
+				<title>Model Testing</title>
+				<para>One of the most important and over-looked aspects of modeling is verification. Very loosely speaking, model 
+					<emphasis role="italic">validation</emphasis> is the process of determining whether a model matches up to the "real world". Model 
+					<emphasis role="italic">verification</emphasis> is the process of determining whether your model specification matches up to the model you've actually implemented. In other words, does the model do what you say it does?
+				</para>
+				<para>To help you answer this important question, the modeling tools include unique support for an approach to validation and verification called "unit testing". A thorough discussion is far beyond the scope of this manual, but this guide should give you enough information to get testing your own models. Testing might seem tedious ut its actually a real time saver, because you can quickly run a set of tests to ensure that you a new model change hasn't broken existing functionality. This peace of mind is priceless, and once you start testing, you won't know how you lived without it!</para>
+				<para>To create a new test, right-click at the location you want to put the test files. (Not shown.) Then we can edit the test file.</para>
+				<para>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/params/Execute.png"/>
+						</imageobject>
+					</mediaobject>
+				</para>
+				<para>It's helpful to keep them organized in sets of folders. If you select an entire folder, the framework will run </para>
 			</section>
 		</section>
 	</chapter>

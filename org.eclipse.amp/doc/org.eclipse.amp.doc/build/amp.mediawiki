@@ -1558,7 +1558,7 @@ Both files contain graphic representations of the model using the definitions de
 ====Function Docs====
 
 Generates WikiText documentation for function libraries. We use it to create the function documentation in this guide!
-==Exploring==
+==Executing==
 
 ===Launching a Model (AMF)===
 
@@ -1696,7 +1696,52 @@ To select the statistics to display, show the '''Chart Customizer''' view. When 
 There are a number of other things to play around with, such as zooming the agent view or selecting other chart series to display using the Chart Customizer, so just explore. You can always close an active model by clicking on the close toolbar button. Or if you can't access the models controls for some reason, you can open the progress view and close projects form there.
 
 
-===Executing Internal Targets=== 
+===Launching Other Targets=== 
+
+To execute applications for other targets such as Ascape or Simphony, just right-click on the metaabm model, select Run As.. and pick the target you want to launch. In the example below, we're launching Ascape from within an ..ascape project.
+
+[[Image:images/execution/LaunchAscape.png]]
+
+The external tool you've selected will then open into a separate Java application.
+
+[[Image:images/execution/AscapeRunning.png]]
+
+''Note:'' remember that the menu options are active regardless of whether the target is actually supported within a given project. If you attempt to Run (external targets) or Execute (internal targets) models from a project that does not support that target you will get an error! 
+
+===Model Parameterization===
+
+Escape provides full support for parameterization of models. This allows you to create many sets of parameters for a given model, allowing you to decouple model runtime settings from the model itself. (Support for parameter sweeps is forthcoming.) To create a new parameterization, right-click in the lcoation you want to create the parameter file, and select '''New > Parameters File'''.
+
+[[Image:images/params/Create.png]]
+
+In the wizard that follows, give your parameter file a name:
+
+[[Image:images/params/Wizard.png]]
+
+The edit the file. See below for file syntax. The parameter editor has built-in support for code-completion, syntax high-lighting and other editor features.
+
+[[Image:images/params/Edit.png]]
+
+In the example below, we've created two separate parameter files for the epidemic model with different values for contact transmission probability.
+
+[[Image:images/params/Example.png]]
+
+As with other runnable files, you can launch a parameter file simply by selecting execute in the popup menu, application menu or toolbar.
+
+[[Image:images/params/Execute.png]]
+
+===Model Testing===
+
+One of the most important and over-looked aspects of modeling is verification. Very loosely speaking, model ''validation'' is the process of determining whether a model matches up to the "real world". Model ''verification'' is the process of determining whether your model specification matches up to the model you've actually implemented. In other words, does the model do what you say it does?
+
+To help you answer this important question, the modeling tools include unique support for an approach to validation and verification called "unit testing". A thorough discussion is far beyond the scope of this manual, but this guide should give you enough information to get testing your own models. Testing might seem tedious ut its actually a real time saver, because you can quickly run a set of tests to ensure that you a new model change hasn't broken existing functionality. This peace of mind is priceless, and once you start testing, you won't know how you lived without it!
+
+To create a new test, right-click at the location you want to put the test files. (Not shown.) Then we can edit the test file.
+
+[[Image:images/params/Execute.png]]
+
+It's helpful to keep them organized in sets of folders. If you select an entire folder, the framework will run 
+
 =Tutorials=
 
 ==Designing a Model==
