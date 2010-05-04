@@ -44,27 +44,6 @@ public class GEF3DViewPart extends EditPartViewPart {
         ScenePreferenceDistributor scenePreferenceDistributor = new ScenePreferenceDistributor(get3DViewer()
                                                                                                .getLightweightSystem3D());
         scenePreferenceDistributor.start();
-        // get3DViewer().getLightweightSystem3D().getUpdateManager().addUpdateListener(new UpdateListener() {
-        // public void notifyValidating() {
-        // }
-        //
-        // public void notifyPainting(Rectangle damage, Map dirtyRegions) {
-        // getRootListener().endPainting();
-        // }
-        // });
-        // parent.addPaintListener(new PaintListener() {
-        //
-        // public void paintControl(PaintEvent e) {
-        // if (getRootListener() != null) {
-        // // getRootListener().endPainting();
-        // }
-        // }
-        // });
-
-        // if (viewer instanceof IScene) {
-        // sceneListener = new ScenePreferenceListener((IScene) viewer);
-        // sceneListener.start();
-        // }
     }
 
     protected EditPartViewer createViewer() {
