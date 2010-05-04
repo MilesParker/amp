@@ -15,7 +15,7 @@
  */
 package org.eclipse.amp.agf.zest.ide;
 
-import org.eclipse.amp.agf.zest.ZestViewPart;
+import org.eclipse.amp.agf.zest.GraphViewPart;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IViewActionDelegate;
@@ -28,14 +28,14 @@ import org.eclipse.zest.layouts.LayoutAlgorithm;
  */
 public abstract class ZestLayoutAction implements IViewActionDelegate {
 
-    protected ZestViewPart view;
+    protected GraphViewPart view;
 
     /**
      * @param view
      * @see org.eclipse.ui.IViewActionDelegate#init(org.eclipse.ui.IViewPart)
      */
     public void init(IViewPart view) {
-        this.view = (ZestViewPart) view;
+        this.view = (GraphViewPart) view;
     }
 
     /**

@@ -15,7 +15,7 @@
 */
 package org.eclipse.amp.agf.zest.ide;
 
-import org.eclipse.amp.agf.zest.ZestViewPart;
+import org.eclipse.amp.agf.zest.GraphViewPart;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -44,15 +44,15 @@ public class SpringLayoutModAction implements IViewActionDelegate {
 
     private boolean modified = false;
 
-    ZestViewPart zestPart;
+    GraphViewPart zestPart;
 
     /**
      * @param view
      * @see org.eclipse.ui.IViewActionDelegate#init(org.eclipse.ui.IViewPart)
      */
     public void init(IViewPart view) {
-        zestPart = (ZestViewPart) view;
-        algorithm = ((ZestViewPart) view).getSpringLayout();
+        zestPart = (GraphViewPart) view;
+        algorithm = ((GraphViewPart) view).getSpringLayout();
         gravity = zestPart.getGravity();
         strain = zestPart.getStrain();
         move = zestPart.getSpringMove();

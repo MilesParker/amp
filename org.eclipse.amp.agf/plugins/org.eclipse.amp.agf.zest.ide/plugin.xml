@@ -6,9 +6,9 @@
      <view
            allowMultiple="true"
            category="org.eclipse.amp.axf.views"
-           class="org.eclipse.amp.agf.zest.ZestViewPart"
+           class="org.eclipse.amp.agf.zest.GraphViewPart"
            icon="icons/etool16/graph.gif"
-           id="org.eclipse.amp.view.ZestView"
+           id="org.eclipse.amp.view.GraphView"
            name="Graph View"
            restorable="true">
      </view>
@@ -18,7 +18,7 @@
         point="org.eclipse.ui.viewActions">
      <viewContribution
            id="org.eclipse.amp.escape.view.graph"
-           targetID="org.eclipse.amp.view.ZestView">
+           targetID="org.eclipse.amp.view.GraphView">
         <action
               class="org.eclipse.amp.agf.zest.ide.SpringLayoutAction"
               icon="icons/etool16/layout_spring.gif"
