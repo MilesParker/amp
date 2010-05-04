@@ -16,7 +16,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface;visibility:=reexport,
  org.apache.commons.lang;resolution:=optional;visibility:=reexport,
  org.eclipse.amp.escape.ascape.agf3d;bundle-version="0.7.0";resolution:=optional;visibility:=reexport,
- org.apache.commons.collections;bundle-version="3.2.0";resolution:=optional;visibility:=reexport
+ org.apache.commons.collections;bundle-version="3.2.0";resolution:=optional;visibility:=reexport,
+ org.eclipse.amp.agf.zest;bundle-version="0.7.0";resolution:=optional
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
