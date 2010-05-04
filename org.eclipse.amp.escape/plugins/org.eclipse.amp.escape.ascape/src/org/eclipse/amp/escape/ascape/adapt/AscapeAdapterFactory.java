@@ -16,7 +16,11 @@
 package org.eclipse.amp.escape.ascape.adapt;
 
 import org.eclipse.amp.agf.gef.ModelFactoryProvider;
+import org.eclipse.amp.axf.core.ICompositionProvider;
+import org.eclipse.amp.axf.space.IGraphProvider;
+import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.core.runtime.IAdapterFactory;
+import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
@@ -36,8 +40,10 @@ public class AscapeAdapterFactory implements IAdapterFactory {
      * @see org.eclipse.core.runtime.IAdapterFactory#getAdapter(java.lang.Object, java.lang.Class)
      */
     public Object getAdapter(Object adaptableObject, Class adapterType) {
-        if (adapterType == ILabelProvider.class) {
-            return new AscapeProvider();
+        if (adapterType == ILabelProvider.class || adapterType == ILocationProvider.class
+                || adapterType == IGraphProvider.class || adapterType == ICompositionProvider.class
+                || adapterType == IColorProvider.class) {
+            return AscapeProvider.getDefault();
         }
         if (adapterType == IPropertySource.class) {
             return new BeanPropertySource(adaptableObject);

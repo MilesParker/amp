@@ -19,6 +19,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.eclipse.amp.axf.core.ICompositionProvider;
+import org.eclipse.amp.axf.space.IGraphProvider;
+import org.eclipse.amp.axf.space.ILocation;
+import org.eclipse.amp.axf.space.ILocation2D;
+import org.eclipse.amp.axf.space.ILocationProvider;
+import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
+import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModelListener;
+import org.eclipse.jface.viewers.IColorProvider;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
+
 import org.ascape.model.Agent;
 import org.ascape.model.AscapeObject;
 import org.ascape.model.CellOccupant;
@@ -33,18 +46,6 @@ import org.ascape.model.space.Graph;
 import org.ascape.model.space.Node;
 import org.ascape.model.space.Singleton;
 import org.ascape.model.space.Space;
-import org.eclipse.amp.axf.core.ICompositionProvider;
-import org.eclipse.amp.axf.space.IGraphProvider;
-import org.eclipse.amp.axf.space.ILocation;
-import org.eclipse.amp.axf.space.ILocation2D;
-import org.eclipse.amp.axf.space.ILocationProvider;
-import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
-import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModelListener;
-import org.eclipse.jface.viewers.IColorProvider;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Image;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -53,7 +54,7 @@ import org.eclipse.swt.graphics.Image;
 public class AscapeProvider implements ILocationProvider, IGraphProvider, ILabelProvider, ICompositionProvider,
 IColorProvider {
 
-    static AscapeProvider singleton;
+    private static AscapeProvider singleton;
 
     /**
      * @param element
@@ -243,6 +244,9 @@ IColorProvider {
     }
 
     public boolean isChildrenComposition(Object parent) {
+        if (parent instanceof ScapeWrapperModel) {
+            parent = ((ScapeWrapperModel) parent).getScape();
+        }
         return parent instanceof Scape && ((Scape) parent).getPrototypeAgent() instanceof Scape;
     }
 
