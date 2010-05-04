@@ -36,9 +36,9 @@ import org.eclipse.zest.layouts.algorithms.SpringLayoutAlgorithm;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ZestViewPart.
+ * The Class GraphViewPart.
  */
-public class ZestViewPart extends AGFViewPart {
+public class GraphViewPart extends AGFViewPart {
 
     private GraphViewer viewer;
     // private ZestSliderContribution gravitySlide;
@@ -92,7 +92,7 @@ public class ZestViewPart extends AGFViewPart {
             viewer.setContentProvider(contentProvider);
             ILabelProvider labelProvider = (ILabelProvider) Platform.getAdapterManager()
             .getAdapter(getModel(), ILabelProvider.class);
-            viewer.setLabelProvider(labelProvider);
+            viewer.setLabelProvider(new ZestStyleProvider(labelProvider));
         }
         viewer.setInput(modelInput.getModel());
     }
