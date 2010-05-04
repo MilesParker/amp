@@ -49,6 +49,7 @@ import org.ascape.util.vis.ColorFeature;
 import org.ascape.util.vis.ColorFeatureConcrete;
 import org.ascape.view.vis.ChartView;
 import org.ascape.view.vis.GEFView;
+import org.ascape.view.vis.GraphView;
 
 import org.eclipse.gef.EditPartFactory;
 import org.eclipse.amp.agf.gef.ModelFactoryProvider;
@@ -131,7 +132,12 @@ import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
 	«EXPAND BuildChartSelection FOREACH ((SContext) reference).agents-»
     addView(chart);
     «ENDIF»
+    «IF !((SContext) eContainer).projections.typeSelect(SGrid).isEmpty»
 	addView(new GEFView());
+	«ENDIF»;
+    «IF !((SContext) eContainer).projections.typeSelect(SNetwork).isEmpty»
+	addView(new GraphView());
+	«ENDIF»;
     «targetDef.proceed()-»
 «ENDAROUND»
 
