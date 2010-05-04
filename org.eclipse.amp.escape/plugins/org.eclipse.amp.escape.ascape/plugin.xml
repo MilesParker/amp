@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.5 2010/05/04 00:51:48 mparker Exp $
+ $Id: plugin.xml,v 1.6 2010/05/04 17:45:48 mparker Exp $
 -->
 
 <plugin>
@@ -27,7 +27,7 @@
         </adapter>
      </factory>
      <factory
-           adaptableType="org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel"
+           adaptableType="org.ascape.model.Agent"
            class="org.eclipse.amp.escape.ascape.adapt.AscapeAdapterFactory">
         <adapter
               type="org.eclipse.ui.views.properties.IPropertySource">
@@ -35,7 +35,10 @@
      </factory>
      <factory
            adaptableType="org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel"
-           class="org.eclipse.amp.escape.ascape.adapt.AscapeProvider">
+           class="org.eclipse.amp.escape.ascape.adapt.AscapeAdapterFactory">
+        <adapter
+              type="org.eclipse.ui.views.properties.IPropertySource">
+        </adapter>
         <adapter
               type="org.eclipse.jface.viewers.ILabelProvider">
         </adapter>

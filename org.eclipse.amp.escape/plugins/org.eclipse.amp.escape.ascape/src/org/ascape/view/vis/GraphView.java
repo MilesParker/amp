@@ -12,15 +12,15 @@ package org.ascape.view.vis;
 
 import org.eclipse.amp.escape.ascape.view.ModelScapeView;
 
-public class ZestView extends ModelScapeView {
+public class GraphView extends ModelScapeView {
 
     private static final long serialVersionUID = 1L;
 
-    public ZestView() {
-        super("org.eclipse.amp.view.ZestView", null, null);
+    public GraphView() {
+        super("org.eclipse.amp.view.GraphView", null, null);
     }
 
-    public ZestView(String name) {
-        super("org.eclipse.amp.view.ZestView", null, name);
+    public GraphView(String name) {
+        super("org.eclipse.amp.view.GraphView", null, name);
     }
 }
