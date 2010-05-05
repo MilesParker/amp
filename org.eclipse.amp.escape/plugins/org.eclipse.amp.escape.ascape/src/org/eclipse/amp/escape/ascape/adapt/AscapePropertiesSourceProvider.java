@@ -15,23 +15,24 @@
  */
 package org.eclipse.amp.escape.ascape.adapt;
 
-import org.ascape.model.Agent;
-import org.ascape.model.LocatedAgent;
-import org.ascape.model.Scape;
 import org.eclipse.amp.agf.EditPartSourceProvider;
 import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
 import org.eclipse.gef.EditPart;
+
+import org.ascape.model.Agent;
+import org.ascape.model.LocatedAgent;
+import org.ascape.model.Scape;
 
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class AscapePropertySourceProvider.
  */
-public class AscapePropertySourceProvider extends EditPartSourceProvider {
+public class AscapePropertiesSourceProvider extends EditPartSourceProvider {
 
     Class stopClass;
 
-    public AscapePropertySourceProvider(Object source) {
+    public AscapePropertiesSourceProvider(Object source) {
         super();
         stopClass = getStopClass(source);
     }
@@ -44,6 +45,8 @@ public class AscapePropertySourceProvider extends EditPartSourceProvider {
     public Object getSource(final EditPart editPart) {
         if (editPart.getModel() instanceof ScapeWrapperModel) {
             return ((ScapeWrapperModel) editPart.getModel()).getScape();
+        } else if (editPart.getModel() instanceof Scape) {
+            return editPart.getModel();
         }
         return super.getSource(editPart);
     }

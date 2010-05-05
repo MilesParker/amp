@@ -15,16 +15,16 @@
 */
 package org.eclipse.amp.escape.ascape.adapt;
 
-import org.eclipse.amp.agf.gef.ModelFactoryProvider;
+import org.eclipse.amp.agf.gef.IModelFactoryProvider;
 import org.eclipse.gef.EditPartFactory;
 
-public class AscapeModelFactoryProvider implements ModelFactoryProvider {
+public class AscapeModelFactoryProvider implements IModelFactoryProvider {
 
-    public EditPartFactory getEditPartFactory() {
+    public EditPartFactory getEditPartFactory(Object model) {
         return new AscapePartFactory();
     }
 
-    public EditPartFactory getEditPartTreeFactory() {
+    public EditPartFactory getEditPartTreeFactory(Object model) {
         return new AscapePartTreeFactory();
     }
 

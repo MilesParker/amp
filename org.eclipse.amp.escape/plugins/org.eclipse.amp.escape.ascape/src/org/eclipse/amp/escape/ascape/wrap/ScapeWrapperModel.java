@@ -20,11 +20,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.ascape.model.Scape;
-import org.eclipse.amp.agf.gef.ModelFactoryProvider;
+import org.eclipse.amp.agf.gef.IModelFactoryProvider;
 import org.eclipse.amp.axf.core.IEngine;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
-import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
 import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
@@ -32,13 +30,15 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gef.EditPartFactory;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 
+import org.ascape.model.Scape;
+
 
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class ScapeWrapperModel.
  */
-public class ScapeWrapperModel implements IModel, ModelFactoryProvider, IAdaptable {
+public class ScapeWrapperModel implements IModel, IModelFactoryProvider, IAdaptable {
 
     Scape scape;
 
@@ -86,20 +86,19 @@ public class ScapeWrapperModel implements IModel, ModelFactoryProvider, IAdaptab
     }
 
     /**
-     * Gets the root model.
-     * 
-     * @return the root model
-     */
-    public IObservationProvider getRootModel() {
-        return model;
-    }
-
-    /**
      * @return
      * @see org.eclipse.amp.axf.core.IModel#getEngine()
      */
     public IEngine getEngine() {
         return (IEngine) scape.getRunner();
+    }
+
+    /**
+     * @return
+     * @see org.eclipse.amp.axf.core.IModel#getRoot()
+     */
+    public Object getRoot() {
+        return getScape();
     }
 
     /**
@@ -183,12 +182,12 @@ public class ScapeWrapperModel implements IModel, ModelFactoryProvider, IAdaptab
 
     /**
      * @return
-     * @see org.eclipse.amp.agf.gef.ModelFactoryProvider#getEditPartFactory()
+     * @see org.eclipse.amp.agf.gef.IModelFactoryProvider#getEditPartFactory(Object)
      */
-    public EditPartFactory getEditPartFactory() {
+    public EditPartFactory getEditPartFactory(Object model) {
         if (factory == null) {
-            if (scape instanceof ModelFactoryProvider) {
-                factory = ((ModelFactoryProvider) scape).getEditPartFactory();
+            if (scape instanceof IModelFactoryProvider) {
+                factory = ((IModelFactoryProvider) scape).getEditPartFactory(scape);
             }
             if (factory == null) {
                 factory = new AscapePartFactory();
@@ -199,12 +198,12 @@ public class ScapeWrapperModel implements IModel, ModelFactoryProvider, IAdaptab
 
     /**
      * @return
-     * @see org.eclipse.amp.agf.gef.ModelFactoryProvider#getEditPartTreeFactory()
+     * @see org.eclipse.amp.agf.gef.IModelFactoryProvider#getEditPartTreeFactory(Object)
      */
-    public EditPartFactory getEditPartTreeFactory() {
+    public EditPartFactory getEditPartTreeFactory(Object model) {
         if (treeFactory == null) {
-            if (getScape() instanceof ModelFactoryProvider) {
-                treeFactory = ((ModelFactoryProvider) getScape()).getEditPartTreeFactory();
+            if (getScape() instanceof IModelFactoryProvider) {
+                treeFactory = ((IModelFactoryProvider) getScape()).getEditPartTreeFactory(scape);
             }
             if (treeFactory == null) {
                 treeFactory = new AscapePartTreeFactory();

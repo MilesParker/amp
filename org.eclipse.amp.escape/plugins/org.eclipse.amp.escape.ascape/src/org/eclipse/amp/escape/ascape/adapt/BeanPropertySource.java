@@ -178,10 +178,10 @@ public class BeanPropertySource implements IPropertySource, IPropertySource2, IP
                 createDescriptors(source.getClass(), Scape.class, null);
             }
             createDescriptors(Scape.class, null, "Model");
-        } else if (source instanceof HostCell) {
+        } else if (source instanceof HostCell && source.getClass() != HostCell.class) {
             createDescriptors(source.getClass(), HostCell.class, null);
             createDescriptors(HostCell.class, null, "Model");
-        } else if (source instanceof CellOccupant) {
+        } else if (source instanceof CellOccupant && source.getClass() != CellOccupant.class) {
             createDescriptors(source.getClass(), CellOccupant.class, null);
             createDescriptors(CellOccupant.class, null, "Model");
         } else {

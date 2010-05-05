@@ -27,7 +27,7 @@ import org.ascape.model.space.Singleton;
 /**
  * The Class AscapeTreeMemberProvider.
  */
-public class AscapeTreeMemberProvider extends AscapeProvider {
+public class AscapeTreeMemberProvider extends AscapeGraphicsProvider {
 
     /**
      * @param parent

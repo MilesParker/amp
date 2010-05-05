@@ -24,21 +24,12 @@ import org.eclipse.amp.axf.space.IGraphProvider;
 import org.eclipse.amp.axf.space.ILocation;
 import org.eclipse.amp.axf.space.ILocation2D;
 import org.eclipse.amp.axf.space.ILocationProvider;
-import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
-import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModelListener;
-import org.eclipse.jface.viewers.IColorProvider;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Image;
 
 import org.ascape.model.Agent;
-import org.ascape.model.AscapeObject;
 import org.ascape.model.CellOccupant;
 import org.ascape.model.HostCell;
 import org.ascape.model.LocatedAgent;
 import org.ascape.model.Scape;
-import org.ascape.model.event.ScapeListener;
 import org.ascape.model.space.Array2D;
 import org.ascape.model.space.Continuous2D;
 import org.ascape.model.space.Coordinate;
@@ -51,49 +42,9 @@ import org.ascape.model.space.Space;
 /**
  * The Class AscapeProvider.
  */
-public class AscapeProvider implements ILocationProvider, IGraphProvider, ILabelProvider, ICompositionProvider,
-IColorProvider {
+public class AscapeModelProvider implements ILocationProvider, IGraphProvider, ICompositionProvider {
 
-    private static AscapeProvider singleton;
-
-    /**
-     * @param element
-     * @return
-     * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
-     */
-    public String getText(Object element) {
-        String text = null;
-        if (element instanceof ScapeWrapperModel) {
-            text = getText(((ScapeWrapperModel) element).getScape());
-        }
-        if (element instanceof AscapeObject) {
-            text = ((AscapeObject) element).getName();
-        }
-        if (element instanceof ScapeListener) {
-            text = ((ScapeListener) element).getName();
-        }
-        if (element instanceof ScapeWrapperModelListener) {
-            text = getText(((ScapeWrapperModelListener) element).getWrapped());
-        }
-        // Text can't be null for some cases..
-        if (text == null) {
-            text = element.getClass().getSimpleName();
-        }
-        return text;
-    }
-
-    /**
-     * @param element
-     * @return
-     * @see org.eclipse.jface.viewers.ILabelProvider#getImage(java.lang.Object)
-     */
-    public Image getImage(Object element) {
-        return null;
-        // if (element instanceof ScapeWrapperModelListener) {
-        // return super.getImage(((ScapeWrapperModelListener) element).getWrapped());
-        // }
-        // throw new RuntimeException("Unexpected input for Scape Label Provider: " + element);
-    }
+    private static AscapeModelProvider singleton;
 
     /**
      * @param located
@@ -121,7 +72,7 @@ IColorProvider {
      * @see org.eclipse.amp.axf.space.ILocationProvider#getExtent(java.lang.Object)
      */
     public ILocation getExtent(Object located) {
-        Space spatialScape = getSpatialScape((Scape) getUnwrapped(located));
+        Space spatialScape = getSpatialScape((Scape) located);
         if (spatialScape != null) {
             return AscapeGEFUtils.adaptCoordinate(spatialScape.getExtent());
         }
@@ -197,7 +148,7 @@ IColorProvider {
      */
     @SuppressWarnings("unchecked")
     public List getList(Object parent) {
-        Scape scape = (Scape) getUnwrapped(parent);
+        Scape scape = (Scape) parent;
         if (scape.isRoot()) {
             List use = new ArrayList(scape);
             List hosts = new ArrayList();
@@ -235,91 +186,38 @@ IColorProvider {
      * @see org.eclipse.amp.axf.core.ICompositionProvider#isMutable(java.lang.Object)
      */
     public boolean isMutable(Object parent) {
-        Scape scape = (Scape) getUnwrapped(parent);
+        Scape scape = (Scape) parent;
         return scape.isMutable() || scape.getPeriod() < 1 && !scape.isRoot();
     }
 
     public Object getParent(Object member) {
-        return ((Agent) getUnwrapped(member)).getScape();
+        return ((Agent) member).getScape();
     }
 
     public boolean isChildrenComposition(Object parent) {
-        if (parent instanceof ScapeWrapperModel) {
-            parent = ((ScapeWrapperModel) parent).getScape();
-        }
         return parent instanceof Scape && ((Scape) parent).getPrototypeAgent() instanceof Scape;
     }
 
     /**
-     * @param listener
-     * @see org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.jface.viewers.ILabelProviderListener)
-     */
-    public void addListener(ILabelProviderListener listener) {
-    }
-
-    /**
-     * 
-     * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
-     */
-    public void dispose() {
-    }
-
-    /**
-     * @param element
-     * @param property
+     * @param member
      * @return
-     * @see org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(java.lang.Object, java.lang.String)
+     * @see org.eclipse.amp.axf.core.ICompositionProvider#getChildrenClass(java.lang.Object)
      */
-    public boolean isLabelProperty(Object element, String property) {
-        return false;
-    }
-
-    /**
-     * @param listener
-     * @see org.eclipse.jface.viewers.IBaseLabelProvider#removeListener(org.eclipse.jface.viewers.ILabelProviderListener)
-     */
-    public void removeListener(ILabelProviderListener listener) {
-    }
-
-    public Object getUnwrapped(Object object) {
-        if (object instanceof ScapeWrapperModel) {
-            return ((ScapeWrapperModel) object).getScape();
+    public Class getChildrenClass(Object member) {
+        Object object = member;
+        if (object instanceof Scape) {
+            Agent prototypeAgent = ((Scape) object).getPrototypeAgent();
+            if (prototypeAgent != null) {
+                return prototypeAgent.getClass();
+            }
         }
-        return object;
+        return Object.class;
     }
 
-    public static AscapeProvider getDefault() {
+    public static AscapeModelProvider getDefault() {
         if (singleton == null) {
-            singleton = new AscapeProvider();
+            singleton = new AscapeModelProvider();
         }
         return singleton;
-    }
-
-    /**
-     * @param element
-     * @return
-     * @see org.eclipse.jface.viewers.IColorProvider#getForeground(java.lang.Object)
-     */
-    public Color getForeground(Object element) {
-        if (element instanceof IColorProvider) {
-            return ((IColorProvider) element).getForeground(element);
-        } else if (element instanceof Agent) {
-            return (Color) ((Agent) element).getPlatformColor();
-        }
-        return null;
-    }
-
-    /**
-     * @param element
-     * @return
-     * @see org.eclipse.jface.viewers.IColorProvider#getBackground(java.lang.Object)
-     */
-    public Color getBackground(Object element) {
-        if (element instanceof IColorProvider) {
-            return ((IColorProvider) element).getBackground(element);
-        } else if (element instanceof Agent) {
-            return (Color) ((Agent) element).getPlatformColor();
-        }
-        return null;
     }
 }

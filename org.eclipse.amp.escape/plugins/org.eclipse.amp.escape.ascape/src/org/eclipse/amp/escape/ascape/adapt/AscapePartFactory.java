@@ -15,22 +15,21 @@
  */
 package org.eclipse.amp.escape.ascape.adapt;
 
+import org.eclipse.amp.agf.gef.AgentConnectionPart;
+import org.eclipse.amp.agf.gef.NetworkConnection;
+import org.eclipse.amp.agf.gef.ScapeEditPart;
+import org.eclipse.amp.agf.gef.ScapeGraphEditPart;
+import org.eclipse.amp.escape.ascape.gef.AscapeAgentEditPart;
+import org.eclipse.amp.escape.ascape.gef.HostCellEditPart;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.EditPartFactory;
+import org.eclipse.jface.viewers.IFilter;
+
 import org.ascape.model.Agent;
 import org.ascape.model.CellOccupant;
 import org.ascape.model.HostCell;
 import org.ascape.model.Scape;
 import org.ascape.model.space.Graph;
-import org.eclipse.amp.agf.gef.AgentConnectionPart;
-import org.eclipse.amp.agf.gef.NetworkConnection;
-import org.eclipse.amp.agf.gef.ScapeEditPart;
-import org.eclipse.amp.agf.gef.ScapeGraphEditPart;
-import org.eclipse.amp.axf.core.ICompositionProvider;
-import org.eclipse.amp.escape.ascape.gef.AscapeAgentEditPart;
-import org.eclipse.amp.escape.ascape.gef.HostCellEditPart;
-import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
-import org.eclipse.gef.EditPart;
-import org.eclipse.gef.EditPartFactory;
-import org.eclipse.jface.viewers.IFilter;
 
 
 // TODO: Auto-generated Javadoc
@@ -39,7 +38,9 @@ import org.eclipse.jface.viewers.IFilter;
  */
 public class AscapePartFactory implements EditPartFactory {
 
-    AscapeProvider ascapeProvider = new AscapeProvider();
+    AscapeModelProvider modelProvider = new AscapeModelProvider();
+
+    AscapeGraphicsProvider graphicsProvider = new AscapeGraphicsProvider();
 
     IFilter filter = null;
 
@@ -65,17 +66,13 @@ public class AscapePartFactory implements EditPartFactory {
      * @throws RuntimeException if no match was found (programming error)
      */
     protected EditPart getPartForElement(Object model) {
-        if (model instanceof ScapeWrapperModel) {
-            return getPartForElement(((ScapeWrapperModel) model).getScape());
-        }
         if (model instanceof Scape) {
             Scape scape = (Scape) model;
-            AscapeProvider memberProvider = (AscapeProvider) getMemberProvider(scape);
             if (scape.getSpace() instanceof Graph) {
-                return new ScapeGraphEditPart(memberProvider, memberProvider, memberProvider,
+                return new ScapeGraphEditPart(modelProvider, modelProvider, modelProvider,
                                               getFilter(scape));
             }
-            return new ScapeEditPart(memberProvider, memberProvider, memberProvider, getFilter(scape));
+            return new ScapeEditPart(modelProvider, modelProvider, modelProvider, getFilter(scape));
         } else if (model instanceof HostCell) {
             return new HostCellEditPart();
         } else if (model instanceof CellOccupant) {
@@ -89,10 +86,6 @@ public class AscapePartFactory implements EditPartFactory {
             // throw new RuntimeException("No part for the model: " + model
             // + (model != null ? "[" + model.getClass() + "]" : ""));
         }
-    }
-
-    protected ICompositionProvider getMemberProvider(Scape scape) {
-        return ascapeProvider;
     }
 
     public IFilter getFilter(Scape scape) {

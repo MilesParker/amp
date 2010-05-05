@@ -17,13 +17,11 @@ package org.eclipse.amp.escape.ascape.adapt;
 
 import org.eclipse.amp.agf.tree.AgentTreePart;
 import org.eclipse.amp.agf.tree.ScapeTreePart;
-import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
 
 import org.ascape.model.Agent;
 import org.ascape.model.Scape;
-
 
 // TODO: Auto-generated Javadoc
 /**
@@ -31,7 +29,9 @@ import org.ascape.model.Scape;
  */
 public class AscapePartTreeFactory implements EditPartFactory {
 
-    public AscapeProvider provider = new AscapeProvider();
+    public AscapeModelProvider modelProvider = new AscapeModelProvider();
+
+    public AscapeGraphicsProvider graphicsProvider = new AscapeGraphicsProvider();
 
     /**
      * @param context
@@ -42,11 +42,7 @@ public class AscapePartTreeFactory implements EditPartFactory {
     public EditPart createEditPart(EditPart context, Object model) {
         EditPart part = getPartForElement(model);
         if (part != null) {
-            if (model instanceof ScapeWrapperModel) {
-                part.setModel(((ScapeWrapperModel) model).getScape());
-            } else {
-                part.setModel(model);
-            }
+            part.setModel(model);
         }
         return part;
     }
@@ -61,13 +57,10 @@ public class AscapePartTreeFactory implements EditPartFactory {
      * @throws RuntimeException if no match was found (programming error)
      */
     protected EditPart getPartForElement(Object model) {
-        if (model instanceof ScapeWrapperModel) {
-            return getPartForElement(((ScapeWrapperModel) model).getScape());
-        }
         if (model instanceof Scape) {
-            return new ScapeTreePart(provider, provider);
+            return new ScapeTreePart(modelProvider, graphicsProvider);
         } else if (model instanceof Agent) {
-            return new AgentTreePart(provider);
+            return new AgentTreePart(graphicsProvider);
         } else {
             return null;
             // throw new RuntimeException("No part for the model: " + model

@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.6 2010/05/04 17:45:48 mparker Exp $
+ $Id: plugin.xml,v 1.7 2010/05/05 03:32:19 mparker Exp $
 -->
 
 <plugin>
@@ -14,37 +14,38 @@
         point="org.eclipse.core.runtime.adapters">
      <factory
            adaptableType="org.eclipse.amp.axf.ide.ModelViewManager"
-           class="org.eclipse.amp.escape.ascape.adapt.AscapeAdapterFactory">
+           class="org.eclipse.amp.escape.ascape.adapt.AscapePropertiesAdapterFactory">
         <adapter
               type="org.eclipse.jface.viewers.ILabelProvider">
         </adapter>
      </factory>
      <factory
            adaptableType="org.eclipse.amp.axf.view.ModelViewPart"
-           class="org.eclipse.amp.escape.ascape.adapt.AscapeAdapterFactory">
+           class="org.eclipse.amp.escape.ascape.adapt.AscapePropertiesAdapterFactory">
         <adapter
               type="org.eclipse.ui.views.properties.IPropertySourceProvider">
         </adapter>
      </factory>
      <factory
            adaptableType="org.ascape.model.Agent"
-           class="org.eclipse.amp.escape.ascape.adapt.AscapeAdapterFactory">
+           class="org.eclipse.amp.escape.ascape.adapt.AscapePropertiesAdapterFactory">
         <adapter
               type="org.eclipse.ui.views.properties.IPropertySource">
         </adapter>
      </factory>
      <factory
-           adaptableType="org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel"
-           class="org.eclipse.amp.escape.ascape.adapt.AscapeAdapterFactory">
-        <adapter
-              type="org.eclipse.ui.views.properties.IPropertySource">
-        </adapter>
+           adaptableType="org.ascape.model.Agent"
+           class="org.eclipse.amp.escape.ascape.adapt.AscapeGraphicsAdapterFactory">
         <adapter
               type="org.eclipse.jface.viewers.ILabelProvider">
         </adapter>
         <adapter
               type="org.eclipse.jface.viewers.IColorProvider">
         </adapter>
+     </factory>
+     <factory
+           adaptableType="org.ascape.model.Agent"
+           class="org.eclipse.amp.escape.ascape.adapt.AscapeModelAdapterFactory">
         <adapter
               type="org.eclipse.amp.axf.space.ILocationProvider">
         </adapter>
@@ -55,7 +56,7 @@
               type="org.eclipse.amp.axf.core.ICompositionProvider">
         </adapter>
      </factory>
-  </extension>
+     </extension>
 
   <extension
         point="org.eclipse.ui.views">
