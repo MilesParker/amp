@@ -298,11 +298,6 @@ public class ModelManagerViewPart extends ViewPart {
         assignManager();
         viewer.addSelectionChangedListener(new ISelectionChangedListener() {
             public void selectionChanged(SelectionChangedEvent event) {
-                // if (event.getSelection() instanceof StructuredSelection) {
-                // StructuredSelection sel = (StructuredSelection) event.getSelection();
-                // if (sel.getFirstElement() instanceof IModel) {
-                // }
-                // }
                 refreshViewer();
             }
         });
