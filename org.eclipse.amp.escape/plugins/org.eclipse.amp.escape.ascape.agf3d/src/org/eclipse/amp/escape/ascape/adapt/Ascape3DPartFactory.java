@@ -18,11 +18,6 @@ package org.eclipse.amp.escape.ascape.adapt;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.ascape.model.Agent;
-import org.ascape.model.CellOccupant;
-import org.ascape.model.HostCell;
-import org.ascape.model.Scape;
-import org.ascape.model.space.Graph;
 import org.eclipse.amp.agf3d.AgentEdit3DPart;
 import org.eclipse.amp.agf3d.IShape3DProvider;
 import org.eclipse.amp.agf3d.ScapeEdit3DPart;
@@ -35,9 +30,36 @@ import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
 import org.eclipse.gef.EditPart;
 import org.eclipse.jface.viewers.IColorProvider;
 
-
+import org.ascape.model.Agent;
+import org.ascape.model.CellOccupant;
+import org.ascape.model.HostCell;
+import org.ascape.model.Scape;
+import org.ascape.model.space.Graph;
 
 public class Ascape3DPartFactory extends AscapePartFactory {
+
+    /**
+     * 
+     * @author mparker
+     * 
+     */
+    static class Root3DProvider extends AscapeModelProvider {
+        @SuppressWarnings("unchecked")
+        public java.util.List getList(Object hasIterable) {
+            List list = new ArrayList(super.getList(hasIterable));
+            List newList = new ArrayList(super.getList(hasIterable));
+            for (Object object : list) {
+                if (!(((Scape) object).getSpace() instanceof Graph)) {
+                    newList.add(object);
+                }
+            }
+            return newList;
+        }
+    }
+
+    AscapeModelProvider baseProvider = new AscapeModelProvider();
+
+    AscapeModelProvider rootProvider = new Root3DProvider();
 
     protected EditPart getPartForElement(Object model) {
         if (model instanceof ScapeWrapperModel) {
@@ -45,7 +67,7 @@ public class Ascape3DPartFactory extends AscapePartFactory {
         }
         if (model instanceof Scape) {
             Scape scape = (Scape) model;
-            AscapeProvider memberProvider = (AscapeProvider) getMemberProvider(scape);
+            AscapeModelProvider memberProvider = (AscapeModelProvider) getMemberProvider(scape);
             if (scape.isRoot()) {
                 return new ScapeEditRoot3DPart(memberProvider, memberProvider, memberProvider, getFilter(scape));
             } else {
@@ -72,7 +94,7 @@ public class Ascape3DPartFactory extends AscapePartFactory {
     }
 
     public IColorProvider getColorProvider(Object object) {
-        return AscapeProvider.getDefault();
+        return AscapeGraphicsProvider.getDefault();
     }
 
     public IShape3DProvider getShapeProvider(Object object) {
@@ -80,24 +102,10 @@ public class Ascape3DPartFactory extends AscapePartFactory {
     }
 
     protected ICompositionProvider getMemberProvider(Scape scape) {
-        ICompositionProvider memberProvider = null;
         if (scape.isRoot()) {
-            memberProvider = new AscapeProvider() {
-                @SuppressWarnings("unchecked")
-                public java.util.List getList(Object hasIterable) {
-                    List list = new ArrayList(super.getList(hasIterable));
-                    List newList = new ArrayList(super.getList(hasIterable));
-                    for (Object object : list) {
-                        if (!(((Scape) object).getSpace() instanceof Graph)) {
-                            newList.add(object);
-                        }
-                    }
-                    return newList;
-                };
-            };
+            return rootProvider;
         } else {
-            memberProvider = new AscapeProvider();
+            return baseProvider;
         }
-        return memberProvider;
     }
 }

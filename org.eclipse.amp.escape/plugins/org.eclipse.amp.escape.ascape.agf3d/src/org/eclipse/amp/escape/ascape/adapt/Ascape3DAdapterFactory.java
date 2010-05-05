@@ -16,21 +16,27 @@
 package org.eclipse.amp.escape.ascape.adapt;
 
 import org.eclipse.amp.agf3d.I3DModelFactoryProvider;
-import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
+import org.eclipse.amp.agf3d.IShape3DProvider;
+import org.eclipse.amp.agf3d.Shapes3D;
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.gef.EditPartFactory;
+
+import org.ascape.model.Agent;
+import org.ascape.model.CellOccupant;
+import org.ascape.model.HostCell;
 
 // TODO: Auto-generated Javadoc
 /**
  * A factory for creating ScapeAdapter objects.
  */
 public class Ascape3DAdapterFactory implements IAdapterFactory {
-    private static final Class[] TYPES = { I3DModelFactoryProvider.class };
+    private static final Class[] TYPES = { I3DModelFactoryProvider.class, IShape3DProvider.class };
 
     Ascape3DPartFactory factory = new Ascape3DPartFactory();
+
     I3DModelFactoryProvider factoryProvider = new I3DModelFactoryProvider() {
 
-        public EditPartFactory getEditPart3DFactory() {
+        public EditPartFactory getEditPart3DFactory(Object model) {
             return factory;
         }
     };
@@ -43,11 +49,15 @@ public class Ascape3DAdapterFactory implements IAdapterFactory {
      */
     public Object getAdapter(Object adaptableObject, Class adapterType) {
         if (adapterType == I3DModelFactoryProvider.class) {
-            if (adaptableObject instanceof ScapeWrapperModel
-                    && ((ScapeWrapperModel) adaptableObject).getScape() instanceof I3DModelFactoryProvider) {
-                return ((ScapeWrapperModel) adaptableObject).getScape();
-            }
             return factoryProvider;
+        } else if (adapterType == IShape3DProvider.class) {
+            if (adaptableObject instanceof HostCell) {
+                return Shapes3D.TILE_SHAPE_PROVIDER;
+            } else if (adaptableObject instanceof CellOccupant) {
+                return Shapes3D.DISC_SHAPE_PROVIDER;
+            } else if (adaptableObject instanceof Agent) {
+                return Shapes3D.CUBE_SHAPE_PROVIDER;
+            }
         }
         return null;
     }

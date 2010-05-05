@@ -15,9 +15,11 @@
  */
 package org.eclipse.amp.escape.ascape.agf3d;
 
-import org.ascape.view.vis.GEFView;
 import org.eclipse.amp.agf.gef.ModelEditPartInput;
 import org.eclipse.amp.axf.view.ModelInput;
+import org.eclipse.jface.viewers.StructuredSelection;
+
+import org.ascape.view.vis.GEFView;
 
 public class GEF3DView extends GEFView {
 
@@ -28,7 +30,7 @@ public class GEF3DView extends GEFView {
     }
 
     public ModelInput createInput() {
-        ModelInput editorInput = new ModelEditPartInput(getModel(), null, null);
+        ModelInput editorInput = new ModelEditPartInput(getModel(), null, new StructuredSelection(getScape()));
         return editorInput;
     }
 }
