@@ -17,7 +17,6 @@ package org.eclipse.amp.escape.ascape.adapt;
 
 import java.util.Arrays;
 
-import org.eclipse.amp.agf.gef.IModelFactoryProvider;
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.space.IGraphProvider;
 import org.eclipse.amp.axf.space.ILocationProvider;
@@ -30,7 +29,8 @@ import org.eclipse.core.runtime.IAdapterFactory;
 public class AscapeModelAdapterFactory implements IAdapterFactory {
 
     public static final Class[] AGENT_PROVIDERS = { IGraphProvider.class,
-        ICompositionProvider.class, ILocationProvider.class };
+        ICompositionProvider.class,
+        ILocationProvider.class };
 
     /**
      * @param adaptableObject
@@ -41,9 +41,6 @@ public class AscapeModelAdapterFactory implements IAdapterFactory {
     public Object getAdapter(Object adaptableObject, Class adapterType) {
         if (Arrays.asList(AGENT_PROVIDERS).contains(adapterType)) {
             return AscapeModelProvider.getDefault();
-        }
-        if (adapterType == IModelFactoryProvider.class) {
-            return new AscapeModelFactoryProvider();
         }
         return null;
     }

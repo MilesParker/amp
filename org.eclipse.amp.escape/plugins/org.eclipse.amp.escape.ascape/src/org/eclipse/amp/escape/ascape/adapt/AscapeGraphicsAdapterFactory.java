@@ -17,8 +17,8 @@ package org.eclipse.amp.escape.ascape.adapt;
 
 import java.util.Arrays;
 
+import org.eclipse.amp.agf.GraphicsAdapterFactory;
 import org.eclipse.amp.agf.gef.IModelFactoryProvider;
-import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 
@@ -26,7 +26,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 /**
  * A factory for creating ScapeAdapter objects.
  */
-public class AscapeGraphicsAdapterFactory implements IAdapterFactory {
+public class AscapeGraphicsAdapterFactory extends GraphicsAdapterFactory {
 
     public static final Class[] AGF_PROVIDERS = { ILabelProvider.class, IColorProvider.class,
         IModelFactoryProvider.class };
@@ -38,11 +38,15 @@ public class AscapeGraphicsAdapterFactory implements IAdapterFactory {
      * @see org.eclipse.core.runtime.IAdapterFactory#getAdapter(java.lang.Object, java.lang.Class)
      */
     public Object getAdapter(Object adaptableObject, Class adapterType) {
-        if (Arrays.asList(AGF_PROVIDERS).contains(adapterType)) {
-            return AscapeGraphicsProvider.getDefault();
+        Object adapter = super.getAdapter(adaptableObject, adapterType);
+        if (adapter != null) {
+            return adapter;
         }
         if (adapterType == IModelFactoryProvider.class) {
             return new AscapeModelFactoryProvider();
+        }
+        if (Arrays.asList(AGF_PROVIDERS).contains(adapterType)) {
+            return AscapeGraphicsProvider.getDefault();
         }
         return null;
     }

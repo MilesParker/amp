@@ -20,17 +20,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.amp.agf.gef.IModelFactoryProvider;
+import org.ascape.model.Scape;
 import org.eclipse.amp.axf.core.IEngine;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
-import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.gef.EditPartFactory;
 import org.eclipse.jface.viewers.ILabelProviderListener;
-
-import org.ascape.model.Scape;
 
 
 
@@ -38,7 +33,7 @@ import org.ascape.model.Scape;
 /**
  * The Class ScapeWrapperModel.
  */
-public class ScapeWrapperModel implements IModel, IModelFactoryProvider, IAdaptable {
+public class ScapeWrapperModel implements IModel {
 
     Scape scape;
 
@@ -178,51 +173,6 @@ public class ScapeWrapperModel implements IModel, IModelFactoryProvider, IAdapta
      */
     public Scape getScape() {
         return scape;
-    }
-
-    /**
-     * @return
-     * @see org.eclipse.amp.agf.gef.IModelFactoryProvider#getEditPartFactory(Object)
-     */
-    public EditPartFactory getEditPartFactory(Object model) {
-        if (factory == null) {
-            if (scape instanceof IModelFactoryProvider) {
-                factory = ((IModelFactoryProvider) scape).getEditPartFactory(scape);
-            }
-            if (factory == null) {
-                factory = new AscapePartFactory();
-            }
-        }
-        return factory;
-    }
-
-    /**
-     * @return
-     * @see org.eclipse.amp.agf.gef.IModelFactoryProvider#getEditPartTreeFactory(Object)
-     */
-    public EditPartFactory getEditPartTreeFactory(Object model) {
-        if (treeFactory == null) {
-            if (getScape() instanceof IModelFactoryProvider) {
-                treeFactory = ((IModelFactoryProvider) getScape()).getEditPartTreeFactory(scape);
-            }
-            if (treeFactory == null) {
-                treeFactory = new AscapePartTreeFactory();
-            }
-        }
-        return treeFactory;
-    }
-
-
-    /**
-     * @param key
-     * @return
-     * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
-     */
-    public Object getAdapter(Class key) {
-        if (key == Scape.class) {
-            return scape;
-        }
-        return null;
     }
 
     /**

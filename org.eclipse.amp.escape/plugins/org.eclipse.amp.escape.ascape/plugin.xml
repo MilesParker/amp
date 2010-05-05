@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.7 2010/05/05 03:32:19 mparker Exp $
+ $Id: plugin.xml,v 1.8 2010/05/05 06:32:24 mparker Exp $
 -->
 
 <plugin>
@@ -14,7 +14,7 @@
         point="org.eclipse.core.runtime.adapters">
      <factory
            adaptableType="org.eclipse.amp.axf.ide.ModelViewManager"
-           class="org.eclipse.amp.escape.ascape.adapt.AscapePropertiesAdapterFactory">
+           class="org.eclipse.amp.escape.ascape.adapt.AscapeGraphicsAdapterFactory">
         <adapter
               type="org.eclipse.jface.viewers.ILabelProvider">
         </adapter>
@@ -41,6 +41,9 @@
         </adapter>
         <adapter
               type="org.eclipse.jface.viewers.IColorProvider">
+        </adapter>
+        <adapter
+              type="org.eclipse.amp.agf.gef.IModelFactoryProvider">
         </adapter>
      </factory>
      <factory
