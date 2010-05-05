@@ -102,21 +102,10 @@ public abstract class EditPartViewPart extends AGFViewPart {
         }
     }
 
-    protected IModelFactoryProvider getModelFactoryProvider(Object contents) {
-        if (contents instanceof IModelFactoryProvider) {
-            return (IModelFactoryProvider) contents;
-        } else {
-            IModelFactoryProvider provider = (IModelFactoryProvider) Platform.getAdapterManager()
-                    .getAdapter(contents, IModelFactoryProvider.class);
-            if (provider == null) {
-                throw new RuntimeException("No ModelFactoryProvider adapter defined for: " + getModel());
-            }
-            return provider;
-        }
-    }
-
     protected EditPartFactory createFactory(Object contents) {
-        return getModelFactoryProvider(contents).getEditPartFactory(contents);
+        IModelFactoryProvider provider = (IModelFactoryProvider) Platform.getAdapterManager()
+                .getAdapter(contents, IModelFactoryProvider.class);
+        return provider.getEditPartFactory(contents);
     }
 
     protected void createZoomer(RootEditPart rootEditPart) {

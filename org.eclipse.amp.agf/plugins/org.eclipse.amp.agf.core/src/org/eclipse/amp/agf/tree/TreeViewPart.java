@@ -23,6 +23,7 @@ import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
 import org.eclipse.amp.axf.ide.AbstractModelWorkbenchListener;
 import org.eclipse.amp.axf.ide.ModelViewManager;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
 import org.eclipse.gef.EditPartViewer;
@@ -38,6 +39,30 @@ import org.eclipse.swt.widgets.Display;
  * The Class TreeViewPart.
  */
 public class TreeViewPart extends EditPartViewPart {
+
+    private final class TreeUpdateListener extends AbstractLifecycleListener {
+        /**
+         * @param observed
+         * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeUpdate(org.eclipse.amp.axf.core.IObservationProvider)
+         */
+        public void observeUpdate(IObservationProvider observed) {
+            if (getViewer().getControl() != null) {
+                Display display = getViewer().getControl().getDisplay();
+                display.asyncExec(new Runnable() {
+                    public void run() {
+                        EditPart contents = getViewer().getRootEditPart().getContents();
+                        if (contents != null) {
+                            for (Object object : contents.getChildren()) {
+                                EditPart part = (EditPart) object;
+                                part.refresh();
+                            }
+                        }
+                    }
+                });
+            }
+            super.observeUpdate(observed);
+        }
+    }
 
     /**
      * @param parent
@@ -106,37 +131,19 @@ public class TreeViewPart extends EditPartViewPart {
         setModel(activeModel);
         if (getViewer().getControl() != null && !getViewer().getControl().isDisposed()) {
             if (activeModel != null) {
-                IModelFactoryProvider provider = getModelFactoryProvider(activeModel);
-                EditPartFactory editPartTreeFactory = provider.getEditPartTreeFactory(activeModel);
+                IModelFactoryProvider provider = (IModelFactoryProvider) Platform.getAdapterManager()
+                .getAdapter(activeModel.getRoot(), IModelFactoryProvider.class);
+                EditPartFactory editPartTreeFactory = provider.getEditPartTreeFactory(activeModel.getRoot());
                 getViewer().setEditPartFactory(editPartTreeFactory);
                 getViewer().getControl().getDisplay().asyncExec(new Runnable() {
                     public void run() {
                         getViewer().getControl().setBackground(
                                                                getViewer().getControl().getDisplay()
                                                                .getSystemColor(SWT.COLOR_WHITE));
-                        getViewer().setContents(activeModel);
+                        getViewer().setContents(activeModel.getRoot());
                     }
                 });
-                activeModel.addModelListener(new AbstractLifecycleListener() {
-                    /**
-                     * @param observed
-                     * @see org.eclipse.amp.axf.core.AbstractLifecycleListener#observeUpdate(org.eclipse.amp.axf.core.IObservationProvider)
-                     */
-                    public void observeUpdate(IObservationProvider observed) {
-                        if (getViewer().getControl() != null) {
-                            Display display = getViewer().getControl().getDisplay();
-                            display.asyncExec(new Runnable() {
-                                public void run() {
-                                    for (Object object : getViewer().getRootEditPart().getContents().getChildren()) {
-                                        EditPart part = (EditPart) object;
-                                        part.refresh();
-                                    }
-                                }
-                            });
-                        }
-                        super.observeUpdate(observed);
-                    }
-                });
+                activeModel.addModelListener(new TreeUpdateListener());
             } else {
                 getViewer().getControl().getDisplay().asyncExec(new Runnable() {
                     public void run() {

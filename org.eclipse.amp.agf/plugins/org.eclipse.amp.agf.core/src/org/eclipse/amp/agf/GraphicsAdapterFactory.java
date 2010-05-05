@@ -16,6 +16,7 @@
 
 package org.eclipse.amp.agf;
 
+import org.eclipse.amp.agf.gef.IModelFactoryProvider;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IAdapterFactory;
@@ -37,13 +38,13 @@ public class GraphicsAdapterFactory implements IAdapterFactory {
      * @see org.eclipse.core.runtime.IAdapterFactory#getAdapter(java.lang.Object, java.lang.Class)
      */
     public Object getAdapter(Object adaptableObject, Class adapterType) {
-        // Prevent circular recursion
-        if (adaptableObject instanceof IGraphicsAdapter && adapterType.isAssignableFrom(adaptableObject.getClass())) {
+        // Potential issue if someone implements the platform adapter..
+        if (adaptableObject.getClass().isAssignableFrom(adapterType)) {
             return adaptableObject;
         } else if (adaptableObject instanceof IModel) {
             return Platform.getAdapterManager().getAdapter(((IModel) adaptableObject).getRoot(), adapterType);
         } else if (adaptableObject instanceof IAdaptable) {
-            return ((IAdaptable) adaptableObject).getAdapter(IGraphicsAdapter.class);
+            return ((IAdaptable) adaptableObject).getAdapter(adapterType);
         }
         return null;
     }
@@ -53,6 +54,6 @@ public class GraphicsAdapterFactory implements IAdapterFactory {
      * @see org.eclipse.core.runtime.IAdapterFactory#getAdapterList()
      */
     public Class[] getAdapterList() {
-        return new Class[] { ILabelProvider.class, IColorProvider.class };
+        return new Class[] { ILabelProvider.class, IColorProvider.class, IModelFactoryProvider.class };
     }
 }
