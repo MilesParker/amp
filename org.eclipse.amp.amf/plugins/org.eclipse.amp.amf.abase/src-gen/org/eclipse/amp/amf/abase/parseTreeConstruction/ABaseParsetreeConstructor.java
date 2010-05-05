@@ -5,7 +5,7 @@ package org.eclipse.amp.amf.abase.parseTreeConstruction;
 
 import org.eclipse.emf.ecore.*;
 import org.eclipse.xtext.*;
-import org.eclipse.xtext.parsetree.reconstr.IInstanceDescription;
+import org.eclipse.xtext.parsetree.reconstr.IEObjectConsumer;
 import org.eclipse.xtext.parsetree.reconstr.impl.AbstractParseTreeConstructor;
 
 import org.eclipse.amp.amf.abase.services.ABaseGrammarAccess;
@@ -17,23 +17,18 @@ public class ABaseParsetreeConstructor extends AbstractParseTreeConstructor {
 	@Inject
 	private ABaseGrammarAccess grammarAccess;
 	
-	@Override	
-	public ABaseGrammarAccess getGrammarAccess() {
-		return grammarAccess;
-	}
-
 	@Override
-	protected AbstractToken getRootToken(IInstanceDescription inst) {
+	protected AbstractToken getRootToken(IEObjectConsumer inst) {
 		return new ThisRootNode(inst);	
 	}
 	
 protected class ThisRootNode extends RootToken {
-	public ThisRootNode(IInstanceDescription inst) {
+	public ThisRootNode(IEObjectConsumer inst) {
 		super(inst);
 	}
 	
 	@Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
 			case 0: return new Value_Alternatives(this, this, 0, inst);
 			case 1: return new IntValue_ValueAssignment(this, this, 1, inst);
@@ -56,8 +51,8 @@ protected class ThisRootNode extends RootToken {
 // IntValue|StringValue|RealValue|BooleanValue
 protected class Value_Alternatives extends AlternativesToken {
 
-	public Value_Alternatives(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
+	public Value_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
@@ -66,28 +61,33 @@ protected class Value_Alternatives extends AlternativesToken {
 	}
 
     @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Value_IntValueParserRuleCall_0(parent, this, 0, inst);
-			case 1: return new Value_StringValueParserRuleCall_1(parent, this, 1, inst);
-			case 2: return new Value_RealValueParserRuleCall_2(parent, this, 2, inst);
-			case 3: return new Value_BooleanValueParserRuleCall_3(parent, this, 3, inst);
+			case 0: return new Value_IntValueParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new Value_StringValueParserRuleCall_1(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new Value_RealValueParserRuleCall_2(lastRuleCallOrigin, this, 2, inst);
+			case 3: return new Value_BooleanValueParserRuleCall_3(lastRuleCallOrigin, this, 3, inst);
 			default: return null;
 		}	
-	}	
-		
-    @Override
-	public IInstanceDescription tryConsume() {
-		if(!current.isInstanceOf(grammarAccess.getValueRule().getType().getClassifier())) return null;
-		return tryConsumeVal();
 	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getBooleanValueRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getIntValueRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getRealValueRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getStringValueRule().getType().getClassifier())
+			return null;
+		return eObjectConsumer;
+	}
+
 }
 
 // IntValue
 protected class Value_IntValueParserRuleCall_0 extends RuleCallToken {
 	
-	public Value_IntValueParserRuleCall_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
+	public Value_IntValueParserRuleCall_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
@@ -96,24 +96,25 @@ protected class Value_IntValueParserRuleCall_0 extends RuleCallToken {
 	}
 
     @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
 			case 0: return new IntValue_ValueAssignment(this, this, 0, inst);
 			default: return null;
 		}	
-	}	
-		
+	}
+
     @Override
-	protected IInstanceDescription tryConsumeVal() {
-		if(checkForRecursion(IntValue_ValueAssignment.class, current)) return null;
-		if(!current.isInstanceOf(grammarAccess.getIntValueRule().getType().getClassifier())) return null;
-		return current;
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getIntValueRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(IntValue_ValueAssignment.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
 	}
 	
     @Override
-	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		switch(index) {
-			default: return parent.createParentFollower(next, actIndex , index, inst);
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
 		}	
 	}	
 }
@@ -121,8 +122,8 @@ protected class Value_IntValueParserRuleCall_0 extends RuleCallToken {
 // StringValue
 protected class Value_StringValueParserRuleCall_1 extends RuleCallToken {
 	
-	public Value_StringValueParserRuleCall_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
+	public Value_StringValueParserRuleCall_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
@@ -131,24 +132,25 @@ protected class Value_StringValueParserRuleCall_1 extends RuleCallToken {
 	}
 
     @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
 			case 0: return new StringValue_ValueAssignment(this, this, 0, inst);
 			default: return null;
 		}	
-	}	
-		
+	}
+
     @Override
-	protected IInstanceDescription tryConsumeVal() {
-		if(checkForRecursion(StringValue_ValueAssignment.class, current)) return null;
-		if(!current.isInstanceOf(grammarAccess.getStringValueRule().getType().getClassifier())) return null;
-		return current;
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getStringValueRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(StringValue_ValueAssignment.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
 	}
 	
     @Override
-	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		switch(index) {
-			default: return parent.createParentFollower(next, actIndex , index, inst);
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
 		}	
 	}	
 }
@@ -156,8 +158,8 @@ protected class Value_StringValueParserRuleCall_1 extends RuleCallToken {
 // RealValue
 protected class Value_RealValueParserRuleCall_2 extends RuleCallToken {
 	
-	public Value_RealValueParserRuleCall_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
+	public Value_RealValueParserRuleCall_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
@@ -166,24 +168,25 @@ protected class Value_RealValueParserRuleCall_2 extends RuleCallToken {
 	}
 
     @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
 			case 0: return new RealValue_ValueAssignment(this, this, 0, inst);
 			default: return null;
 		}	
-	}	
-		
+	}
+
     @Override
-	protected IInstanceDescription tryConsumeVal() {
-		if(checkForRecursion(RealValue_ValueAssignment.class, current)) return null;
-		if(!current.isInstanceOf(grammarAccess.getRealValueRule().getType().getClassifier())) return null;
-		return current;
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getRealValueRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(RealValue_ValueAssignment.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
 	}
 	
     @Override
-	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		switch(index) {
-			default: return parent.createParentFollower(next, actIndex , index, inst);
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
 		}	
 	}	
 }
@@ -191,8 +194,8 @@ protected class Value_RealValueParserRuleCall_2 extends RuleCallToken {
 // BooleanValue
 protected class Value_BooleanValueParserRuleCall_3 extends RuleCallToken {
 	
-	public Value_BooleanValueParserRuleCall_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
+	public Value_BooleanValueParserRuleCall_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
@@ -201,24 +204,25 @@ protected class Value_BooleanValueParserRuleCall_3 extends RuleCallToken {
 	}
 
     @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
 			case 0: return new BooleanValue_ValueAssignment(this, this, 0, inst);
 			default: return null;
 		}	
-	}	
-		
+	}
+
     @Override
-	protected IInstanceDescription tryConsumeVal() {
-		if(checkForRecursion(BooleanValue_ValueAssignment.class, current)) return null;
-		if(!current.isInstanceOf(grammarAccess.getBooleanValueRule().getType().getClassifier())) return null;
-		return current;
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getBooleanValueRule().getType().getClassifier())
+			return null;
+		if(checkForRecursion(BooleanValue_ValueAssignment.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
 	}
 	
     @Override
-	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		switch(index) {
-			default: return parent.createParentFollower(next, actIndex , index, inst);
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
 		}	
 	}	
 }
@@ -237,8 +241,8 @@ protected class Value_BooleanValueParserRuleCall_3 extends RuleCallToken {
 // value=INTEGER
 protected class IntValue_ValueAssignment extends AssignmentToken  {
 	
-	public IntValue_ValueAssignment(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
+	public IntValue_ValueAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
@@ -247,23 +251,20 @@ protected class IntValue_ValueAssignment extends AssignmentToken  {
 	}
 
     @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			default: return parent.createParentFollower(this, index, index, inst);
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
 		}	
-	}	
-		
-    @Override
-	public IInstanceDescription tryConsume() {
-		if(!current.isInstanceOf(grammarAccess.getIntValueRule().getType().getClassifier())) return null;
-		return tryConsumeVal();
 	}
+
     @Override	
-	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("value",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("value");
-		if(Boolean.TRUE.booleanValue()) { 
-			type = AssignmentType.LRC;
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getIntValueRule().getType().getClassifier())
+			return null;
+		if((value = eObjectConsumer.getConsumable("value",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0(), value, null)) {
+			type = AssignmentType.TERMINAL_RULE_CALL;
 			element = grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0();
 			return obj;
 		}
@@ -285,8 +286,8 @@ protected class IntValue_ValueAssignment extends AssignmentToken  {
 // value=REAL
 protected class RealValue_ValueAssignment extends AssignmentToken  {
 	
-	public RealValue_ValueAssignment(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
+	public RealValue_ValueAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
@@ -295,23 +296,20 @@ protected class RealValue_ValueAssignment extends AssignmentToken  {
 	}
 
     @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			default: return parent.createParentFollower(this, index, index, inst);
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
 		}	
-	}	
-		
-    @Override
-	public IInstanceDescription tryConsume() {
-		if(!current.isInstanceOf(grammarAccess.getRealValueRule().getType().getClassifier())) return null;
-		return tryConsumeVal();
 	}
+
     @Override	
-	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("value",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("value");
-		if(Boolean.TRUE.booleanValue()) { 
-			type = AssignmentType.LRC;
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getRealValueRule().getType().getClassifier())
+			return null;
+		if((value = eObjectConsumer.getConsumable("value",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getRealValueAccess().getValueREALTerminalRuleCall_0(), value, null)) {
+			type = AssignmentType.TERMINAL_RULE_CALL;
 			element = grammarAccess.getRealValueAccess().getValueREALTerminalRuleCall_0();
 			return obj;
 		}
@@ -333,8 +331,8 @@ protected class RealValue_ValueAssignment extends AssignmentToken  {
 // value=STRING
 protected class StringValue_ValueAssignment extends AssignmentToken  {
 	
-	public StringValue_ValueAssignment(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
+	public StringValue_ValueAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
@@ -343,23 +341,20 @@ protected class StringValue_ValueAssignment extends AssignmentToken  {
 	}
 
     @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			default: return parent.createParentFollower(this, index, index, inst);
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
 		}	
-	}	
-		
-    @Override
-	public IInstanceDescription tryConsume() {
-		if(!current.isInstanceOf(grammarAccess.getStringValueRule().getType().getClassifier())) return null;
-		return tryConsumeVal();
 	}
+
     @Override	
-	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("value",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("value");
-		if(Boolean.TRUE.booleanValue()) { 
-			type = AssignmentType.LRC;
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getStringValueRule().getType().getClassifier())
+			return null;
+		if((value = eObjectConsumer.getConsumable("value",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_0(), value, null)) {
+			type = AssignmentType.TERMINAL_RULE_CALL;
 			element = grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_0();
 			return obj;
 		}
@@ -381,8 +376,8 @@ protected class StringValue_ValueAssignment extends AssignmentToken  {
 // value=BOOLEAN
 protected class BooleanValue_ValueAssignment extends AssignmentToken  {
 	
-	public BooleanValue_ValueAssignment(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
+	public BooleanValue_ValueAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
@@ -391,23 +386,20 @@ protected class BooleanValue_ValueAssignment extends AssignmentToken  {
 	}
 
     @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			default: return parent.createParentFollower(this, index, index, inst);
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
 		}	
-	}	
-		
-    @Override
-	public IInstanceDescription tryConsume() {
-		if(!current.isInstanceOf(grammarAccess.getBooleanValueRule().getType().getClassifier())) return null;
-		return tryConsumeVal();
 	}
+
     @Override	
-	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("value",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("value");
-		if(Boolean.TRUE.booleanValue()) {  
-			type = AssignmentType.ERC;
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getBooleanValueRule().getType().getClassifier())
+			return null;
+		if((value = eObjectConsumer.getConsumable("value",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value");
+		if(enumLitSerializer.isValid(obj.getEObject(), grammarAccess.getBooleanValueAccess().getValueBOOLEANEnumRuleCall_0(), value, null)) { 
+			type = AssignmentType.ENUM_RULE_CALL;
 			element = grammarAccess.getBooleanValueAccess().getValueBOOLEANEnumRuleCall_0();
 			return obj;
 		}

@@ -10,6 +10,7 @@ import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
 
+@SuppressWarnings("all")
 public class InternalABaseLexer extends Lexer {
     public static final int RULE_ID=8;
     public static final int RULE_STRING=6;

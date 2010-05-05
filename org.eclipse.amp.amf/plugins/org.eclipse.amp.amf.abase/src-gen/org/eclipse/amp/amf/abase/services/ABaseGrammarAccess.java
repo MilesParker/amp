@@ -242,7 +242,8 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal DESC_STRING:
-	//  "«" ("\\" ("b" | "t" | "n" | "f" | "r" | "«" | "»" | "\\") | !("\\" | "«" | "»"))* "»";
+	//  "«" ("\\" ("b" | "t" | "n" | "f" | "r" | "«" | "»" | "\\") | !("\\" | "«" |
+	//  "»"))* "»";
 	public TerminalRule getDESC_STRINGRule() {
 		return (tDESC_STRING != null) ? tDESC_STRING : (tDESC_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DESC_STRING"));
 	} 
@@ -260,8 +261,9 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal STRING:
-	//  "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"" | "\'" ("\\" ("b" |
-	//  "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
+	//  "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""
+	//  ))* "\"" | "\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !(
+	//  "\\" | "\'"))* "\'";
 	public TerminalRule getSTRINGRule() {
 		return gaTerminals.getSTRINGRule();
 	} 

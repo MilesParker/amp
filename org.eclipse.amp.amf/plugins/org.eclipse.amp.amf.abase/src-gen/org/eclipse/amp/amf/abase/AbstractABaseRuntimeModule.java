@@ -78,17 +78,17 @@ public abstract class AbstractABaseRuntimeModule extends DefaultRuntimeModule {
 		return org.eclipse.amp.amf.abase.validation.ABaseJavaValidator.class;
 	}
 
-	// contributed by org.eclipse.xtext.generator.scoping.ImportURIScopingFragment
+	// contributed by org.eclipse.xtext.generator.scoping.AbstractScopingFragment
 	public Class<? extends org.eclipse.xtext.scoping.IScopeProvider> bindIScopeProvider() {
 		return org.eclipse.amp.amf.abase.scoping.ABaseScopeProvider.class;
 	}
 
-	// contributed by org.eclipse.xtext.generator.scoping.ImportURIScopingFragment
+	// contributed by org.eclipse.xtext.generator.scoping.AbstractScopingFragment
 	public void configureIScopeProviderDelegate(com.google.inject.Binder binder) {
 		binder.bind(org.eclipse.xtext.scoping.IScopeProvider.class).annotatedWith(com.google.inject.name.Names.named("org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider.delegate")).to(org.eclipse.xtext.scoping.impl.SimpleLocalScopeProvider.class);
 	}
 
-	// contributed by org.eclipse.xtext.generator.scoping.ImportURIScopingFragment
+	// contributed by org.eclipse.xtext.generator.scoping.AbstractScopingFragment
 	public Class<? extends org.eclipse.xtext.scoping.IGlobalScopeProvider> bindIGlobalScopeProvider() {
 		return org.eclipse.xtext.scoping.impl.ImportUriGlobalScopeProvider.class;
 	}

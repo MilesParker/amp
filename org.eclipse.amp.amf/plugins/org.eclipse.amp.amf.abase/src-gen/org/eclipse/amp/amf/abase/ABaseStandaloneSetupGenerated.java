@@ -1,3 +1,4 @@
+
 package org.eclipse.amp.amf.abase;
 
 import org.eclipse.emf.ecore.EPackage;
@@ -10,11 +11,7 @@ import com.google.inject.Injector;
 /**
  * Generated from StandaloneSetup.xpt!
  */
-public class ABaseStandaloneSetup implements ISetup {
-
-	public static void doSetup() {
-		new ABaseStandaloneSetup().createInjectorAndDoEMFRegistration();
-	}
+public class ABaseStandaloneSetupGenerated implements ISetup {
 
 	public Injector createInjectorAndDoEMFRegistration() {
 		org.eclipse.xtext.common.TerminalsStandaloneSetup.doSetup();
