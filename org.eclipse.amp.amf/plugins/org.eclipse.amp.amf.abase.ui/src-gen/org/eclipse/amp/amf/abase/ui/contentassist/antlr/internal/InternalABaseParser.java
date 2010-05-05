@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.AbstractInternalContentAssistParser;
+import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.DFA;
 import org.eclipse.amp.amf.abase.services.ABaseGrammarAccess;
 
 
@@ -19,6 +20,7 @@ import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
 
+@SuppressWarnings("all")
 public class InternalABaseParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INTEGER", "RULE_REAL", "RULE_STRING", "RULE_DESC_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'true'", "'false'"
@@ -65,11 +67,11 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start entryRuleValue
-    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:60:1: entryRuleValue : ruleValue EOF ;
+    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:61:1: entryRuleValue : ruleValue EOF ;
     public final void entryRuleValue() throws RecognitionException {
         try {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:61:1: ( ruleValue EOF )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:62:1: ruleValue EOF
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:62:1: ( ruleValue EOF )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:63:1: ruleValue EOF
             {
              before(grammarAccess.getValueRule()); 
             pushFollow(FOLLOW_ruleValue_in_entryRuleValue61);
@@ -94,21 +96,21 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start ruleValue
-    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:69:1: ruleValue : ( ( rule__Value__Alternatives ) ) ;
+    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:70:1: ruleValue : ( ( rule__Value__Alternatives ) ) ;
     public final void ruleValue() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:73:2: ( ( ( rule__Value__Alternatives ) ) )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:74:1: ( ( rule__Value__Alternatives ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:74:2: ( ( ( rule__Value__Alternatives ) ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:75:1: ( ( rule__Value__Alternatives ) )
             {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:74:1: ( ( rule__Value__Alternatives ) )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:75:1: ( rule__Value__Alternatives )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:75:1: ( ( rule__Value__Alternatives ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:76:1: ( rule__Value__Alternatives )
             {
              before(grammarAccess.getValueAccess().getAlternatives()); 
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:76:1: ( rule__Value__Alternatives )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:76:2: rule__Value__Alternatives
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:77:1: ( rule__Value__Alternatives )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:77:2: rule__Value__Alternatives
             {
             pushFollow(FOLLOW_rule__Value__Alternatives_in_ruleValue94);
             rule__Value__Alternatives();
@@ -140,11 +142,11 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start entryRuleIntValue
-    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:88:1: entryRuleIntValue : ruleIntValue EOF ;
+    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:89:1: entryRuleIntValue : ruleIntValue EOF ;
     public final void entryRuleIntValue() throws RecognitionException {
         try {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:89:1: ( ruleIntValue EOF )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:90:1: ruleIntValue EOF
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:90:1: ( ruleIntValue EOF )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:91:1: ruleIntValue EOF
             {
              before(grammarAccess.getIntValueRule()); 
             pushFollow(FOLLOW_ruleIntValue_in_entryRuleIntValue121);
@@ -169,21 +171,21 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start ruleIntValue
-    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:97:1: ruleIntValue : ( ( rule__IntValue__ValueAssignment ) ) ;
+    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:98:1: ruleIntValue : ( ( rule__IntValue__ValueAssignment ) ) ;
     public final void ruleIntValue() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:101:2: ( ( ( rule__IntValue__ValueAssignment ) ) )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:102:1: ( ( rule__IntValue__ValueAssignment ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:102:2: ( ( ( rule__IntValue__ValueAssignment ) ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:103:1: ( ( rule__IntValue__ValueAssignment ) )
             {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:102:1: ( ( rule__IntValue__ValueAssignment ) )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:103:1: ( rule__IntValue__ValueAssignment )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:103:1: ( ( rule__IntValue__ValueAssignment ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:104:1: ( rule__IntValue__ValueAssignment )
             {
              before(grammarAccess.getIntValueAccess().getValueAssignment()); 
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:104:1: ( rule__IntValue__ValueAssignment )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:104:2: rule__IntValue__ValueAssignment
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:105:1: ( rule__IntValue__ValueAssignment )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:105:2: rule__IntValue__ValueAssignment
             {
             pushFollow(FOLLOW_rule__IntValue__ValueAssignment_in_ruleIntValue154);
             rule__IntValue__ValueAssignment();
@@ -215,11 +217,11 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start entryRuleRealValue
-    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:116:1: entryRuleRealValue : ruleRealValue EOF ;
+    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:117:1: entryRuleRealValue : ruleRealValue EOF ;
     public final void entryRuleRealValue() throws RecognitionException {
         try {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:117:1: ( ruleRealValue EOF )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:118:1: ruleRealValue EOF
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:118:1: ( ruleRealValue EOF )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:119:1: ruleRealValue EOF
             {
              before(grammarAccess.getRealValueRule()); 
             pushFollow(FOLLOW_ruleRealValue_in_entryRuleRealValue181);
@@ -244,21 +246,21 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start ruleRealValue
-    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:125:1: ruleRealValue : ( ( rule__RealValue__ValueAssignment ) ) ;
+    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:126:1: ruleRealValue : ( ( rule__RealValue__ValueAssignment ) ) ;
     public final void ruleRealValue() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:129:2: ( ( ( rule__RealValue__ValueAssignment ) ) )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:130:1: ( ( rule__RealValue__ValueAssignment ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:130:2: ( ( ( rule__RealValue__ValueAssignment ) ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:131:1: ( ( rule__RealValue__ValueAssignment ) )
             {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:130:1: ( ( rule__RealValue__ValueAssignment ) )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:131:1: ( rule__RealValue__ValueAssignment )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:131:1: ( ( rule__RealValue__ValueAssignment ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:132:1: ( rule__RealValue__ValueAssignment )
             {
              before(grammarAccess.getRealValueAccess().getValueAssignment()); 
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:132:1: ( rule__RealValue__ValueAssignment )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:132:2: rule__RealValue__ValueAssignment
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:133:1: ( rule__RealValue__ValueAssignment )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:133:2: rule__RealValue__ValueAssignment
             {
             pushFollow(FOLLOW_rule__RealValue__ValueAssignment_in_ruleRealValue214);
             rule__RealValue__ValueAssignment();
@@ -290,11 +292,11 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start entryRuleStringValue
-    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:144:1: entryRuleStringValue : ruleStringValue EOF ;
+    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:145:1: entryRuleStringValue : ruleStringValue EOF ;
     public final void entryRuleStringValue() throws RecognitionException {
         try {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:145:1: ( ruleStringValue EOF )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:146:1: ruleStringValue EOF
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:146:1: ( ruleStringValue EOF )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:147:1: ruleStringValue EOF
             {
              before(grammarAccess.getStringValueRule()); 
             pushFollow(FOLLOW_ruleStringValue_in_entryRuleStringValue241);
@@ -319,21 +321,21 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start ruleStringValue
-    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:153:1: ruleStringValue : ( ( rule__StringValue__ValueAssignment ) ) ;
+    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:154:1: ruleStringValue : ( ( rule__StringValue__ValueAssignment ) ) ;
     public final void ruleStringValue() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:157:2: ( ( ( rule__StringValue__ValueAssignment ) ) )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:158:1: ( ( rule__StringValue__ValueAssignment ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:158:2: ( ( ( rule__StringValue__ValueAssignment ) ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:159:1: ( ( rule__StringValue__ValueAssignment ) )
             {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:158:1: ( ( rule__StringValue__ValueAssignment ) )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:159:1: ( rule__StringValue__ValueAssignment )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:159:1: ( ( rule__StringValue__ValueAssignment ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:160:1: ( rule__StringValue__ValueAssignment )
             {
              before(grammarAccess.getStringValueAccess().getValueAssignment()); 
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:160:1: ( rule__StringValue__ValueAssignment )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:160:2: rule__StringValue__ValueAssignment
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:161:1: ( rule__StringValue__ValueAssignment )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:161:2: rule__StringValue__ValueAssignment
             {
             pushFollow(FOLLOW_rule__StringValue__ValueAssignment_in_ruleStringValue274);
             rule__StringValue__ValueAssignment();
@@ -365,11 +367,11 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start entryRuleBooleanValue
-    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:172:1: entryRuleBooleanValue : ruleBooleanValue EOF ;
+    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:173:1: entryRuleBooleanValue : ruleBooleanValue EOF ;
     public final void entryRuleBooleanValue() throws RecognitionException {
         try {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:173:1: ( ruleBooleanValue EOF )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:174:1: ruleBooleanValue EOF
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:174:1: ( ruleBooleanValue EOF )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:175:1: ruleBooleanValue EOF
             {
              before(grammarAccess.getBooleanValueRule()); 
             pushFollow(FOLLOW_ruleBooleanValue_in_entryRuleBooleanValue301);
@@ -394,21 +396,21 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start ruleBooleanValue
-    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:181:1: ruleBooleanValue : ( ( rule__BooleanValue__ValueAssignment ) ) ;
+    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:182:1: ruleBooleanValue : ( ( rule__BooleanValue__ValueAssignment ) ) ;
     public final void ruleBooleanValue() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:185:2: ( ( ( rule__BooleanValue__ValueAssignment ) ) )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:186:1: ( ( rule__BooleanValue__ValueAssignment ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:186:2: ( ( ( rule__BooleanValue__ValueAssignment ) ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:187:1: ( ( rule__BooleanValue__ValueAssignment ) )
             {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:186:1: ( ( rule__BooleanValue__ValueAssignment ) )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:187:1: ( rule__BooleanValue__ValueAssignment )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:187:1: ( ( rule__BooleanValue__ValueAssignment ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:188:1: ( rule__BooleanValue__ValueAssignment )
             {
              before(grammarAccess.getBooleanValueAccess().getValueAssignment()); 
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:188:1: ( rule__BooleanValue__ValueAssignment )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:188:2: rule__BooleanValue__ValueAssignment
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:189:1: ( rule__BooleanValue__ValueAssignment )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:189:2: rule__BooleanValue__ValueAssignment
             {
             pushFollow(FOLLOW_rule__BooleanValue__ValueAssignment_in_ruleBooleanValue334);
             rule__BooleanValue__ValueAssignment();
@@ -440,21 +442,21 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start ruleBOOLEAN
-    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:201:1: ruleBOOLEAN : ( ( rule__BOOLEAN__Alternatives ) ) ;
+    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:202:1: ruleBOOLEAN : ( ( rule__BOOLEAN__Alternatives ) ) ;
     public final void ruleBOOLEAN() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:205:1: ( ( ( rule__BOOLEAN__Alternatives ) ) )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:206:1: ( ( rule__BOOLEAN__Alternatives ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:206:1: ( ( ( rule__BOOLEAN__Alternatives ) ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:207:1: ( ( rule__BOOLEAN__Alternatives ) )
             {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:206:1: ( ( rule__BOOLEAN__Alternatives ) )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:207:1: ( rule__BOOLEAN__Alternatives )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:207:1: ( ( rule__BOOLEAN__Alternatives ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:208:1: ( rule__BOOLEAN__Alternatives )
             {
              before(grammarAccess.getBOOLEANAccess().getAlternatives()); 
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:208:1: ( rule__BOOLEAN__Alternatives )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:208:2: rule__BOOLEAN__Alternatives
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:209:1: ( rule__BOOLEAN__Alternatives )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:209:2: rule__BOOLEAN__Alternatives
             {
             pushFollow(FOLLOW_rule__BOOLEAN__Alternatives_in_ruleBOOLEAN371);
             rule__BOOLEAN__Alternatives();
@@ -486,13 +488,13 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Value__Alternatives
-    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:219:1: rule__Value__Alternatives : ( ( ruleIntValue ) | ( ruleStringValue ) | ( ruleRealValue ) | ( ruleBooleanValue ) );
+    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:220:1: rule__Value__Alternatives : ( ( ruleIntValue ) | ( ruleStringValue ) | ( ruleRealValue ) | ( ruleBooleanValue ) );
     public final void rule__Value__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:223:1: ( ( ruleIntValue ) | ( ruleStringValue ) | ( ruleRealValue ) | ( ruleBooleanValue ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:224:1: ( ( ruleIntValue ) | ( ruleStringValue ) | ( ruleRealValue ) | ( ruleBooleanValue ) )
             int alt1=4;
             switch ( input.LA(1) ) {
             case RULE_INTEGER:
@@ -518,17 +520,17 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("219:1: rule__Value__Alternatives : ( ( ruleIntValue ) | ( ruleStringValue ) | ( ruleRealValue ) | ( ruleBooleanValue ) );", 1, 0, input);
+                    new NoViableAltException("220:1: rule__Value__Alternatives : ( ( ruleIntValue ) | ( ruleStringValue ) | ( ruleRealValue ) | ( ruleBooleanValue ) );", 1, 0, input);
 
                 throw nvae;
             }
 
             switch (alt1) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:224:1: ( ruleIntValue )
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:225:1: ( ruleIntValue )
                     {
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:224:1: ( ruleIntValue )
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:225:1: ruleIntValue
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:225:1: ( ruleIntValue )
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:226:1: ruleIntValue
                     {
                      before(grammarAccess.getValueAccess().getIntValueParserRuleCall_0()); 
                     pushFollow(FOLLOW_ruleIntValue_in_rule__Value__Alternatives406);
@@ -543,10 +545,10 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:230:6: ( ruleStringValue )
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:231:6: ( ruleStringValue )
                     {
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:230:6: ( ruleStringValue )
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:231:1: ruleStringValue
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:231:6: ( ruleStringValue )
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:232:1: ruleStringValue
                     {
                      before(grammarAccess.getValueAccess().getStringValueParserRuleCall_1()); 
                     pushFollow(FOLLOW_ruleStringValue_in_rule__Value__Alternatives423);
@@ -561,10 +563,10 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:236:6: ( ruleRealValue )
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:237:6: ( ruleRealValue )
                     {
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:236:6: ( ruleRealValue )
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:237:1: ruleRealValue
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:237:6: ( ruleRealValue )
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:238:1: ruleRealValue
                     {
                      before(grammarAccess.getValueAccess().getRealValueParserRuleCall_2()); 
                     pushFollow(FOLLOW_ruleRealValue_in_rule__Value__Alternatives440);
@@ -579,10 +581,10 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:242:6: ( ruleBooleanValue )
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:243:6: ( ruleBooleanValue )
                     {
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:242:6: ( ruleBooleanValue )
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:243:1: ruleBooleanValue
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:243:6: ( ruleBooleanValue )
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:244:1: ruleBooleanValue
                     {
                      before(grammarAccess.getValueAccess().getBooleanValueParserRuleCall_3()); 
                     pushFollow(FOLLOW_ruleBooleanValue_in_rule__Value__Alternatives457);
@@ -614,13 +616,13 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__BOOLEAN__Alternatives
-    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:253:1: rule__BOOLEAN__Alternatives : ( ( ( 'true' ) ) | ( ( 'false' ) ) );
+    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:254:1: rule__BOOLEAN__Alternatives : ( ( ( 'true' ) ) | ( ( 'false' ) ) );
     public final void rule__BOOLEAN__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:257:1: ( ( ( 'true' ) ) | ( ( 'false' ) ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:258:1: ( ( ( 'true' ) ) | ( ( 'false' ) ) )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -632,20 +634,20 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("253:1: rule__BOOLEAN__Alternatives : ( ( ( 'true' ) ) | ( ( 'false' ) ) );", 2, 0, input);
+                    new NoViableAltException("254:1: rule__BOOLEAN__Alternatives : ( ( ( 'true' ) ) | ( ( 'false' ) ) );", 2, 0, input);
 
                 throw nvae;
             }
             switch (alt2) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:258:1: ( ( 'true' ) )
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:259:1: ( ( 'true' ) )
                     {
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:258:1: ( ( 'true' ) )
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:259:1: ( 'true' )
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:259:1: ( ( 'true' ) )
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:260:1: ( 'true' )
                     {
                      before(grammarAccess.getBOOLEANAccess().getTRUEEnumLiteralDeclaration_0()); 
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:260:1: ( 'true' )
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:260:3: 'true'
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:261:1: ( 'true' )
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:261:3: 'true'
                     {
                     match(input,14,FOLLOW_14_in_rule__BOOLEAN__Alternatives490); 
 
@@ -659,14 +661,14 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:265:6: ( ( 'false' ) )
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:266:6: ( ( 'false' ) )
                     {
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:265:6: ( ( 'false' ) )
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:266:1: ( 'false' )
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:266:6: ( ( 'false' ) )
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:267:1: ( 'false' )
                     {
                      before(grammarAccess.getBOOLEANAccess().getFALSEEnumLiteralDeclaration_1()); 
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:267:1: ( 'false' )
-                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:267:3: 'false'
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:268:1: ( 'false' )
+                    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:268:3: 'false'
                     {
                     match(input,15,FOLLOW_15_in_rule__BOOLEAN__Alternatives511); 
 
@@ -697,17 +699,17 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__IntValue__ValueAssignment
-    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:280:1: rule__IntValue__ValueAssignment : ( RULE_INTEGER ) ;
+    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:281:1: rule__IntValue__ValueAssignment : ( RULE_INTEGER ) ;
     public final void rule__IntValue__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:284:1: ( ( RULE_INTEGER ) )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:285:1: ( RULE_INTEGER )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:285:1: ( ( RULE_INTEGER ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:286:1: ( RULE_INTEGER )
             {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:285:1: ( RULE_INTEGER )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:286:1: RULE_INTEGER
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:286:1: ( RULE_INTEGER )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:287:1: RULE_INTEGER
             {
              before(grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0()); 
             match(input,RULE_INTEGER,FOLLOW_RULE_INTEGER_in_rule__IntValue__ValueAssignment549); 
@@ -734,17 +736,17 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__RealValue__ValueAssignment
-    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:295:1: rule__RealValue__ValueAssignment : ( RULE_REAL ) ;
+    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:296:1: rule__RealValue__ValueAssignment : ( RULE_REAL ) ;
     public final void rule__RealValue__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:299:1: ( ( RULE_REAL ) )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:300:1: ( RULE_REAL )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:300:1: ( ( RULE_REAL ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:301:1: ( RULE_REAL )
             {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:300:1: ( RULE_REAL )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:301:1: RULE_REAL
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:301:1: ( RULE_REAL )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:302:1: RULE_REAL
             {
              before(grammarAccess.getRealValueAccess().getValueREALTerminalRuleCall_0()); 
             match(input,RULE_REAL,FOLLOW_RULE_REAL_in_rule__RealValue__ValueAssignment580); 
@@ -771,17 +773,17 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__StringValue__ValueAssignment
-    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:310:1: rule__StringValue__ValueAssignment : ( RULE_STRING ) ;
+    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:311:1: rule__StringValue__ValueAssignment : ( RULE_STRING ) ;
     public final void rule__StringValue__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:314:1: ( ( RULE_STRING ) )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:315:1: ( RULE_STRING )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:315:1: ( ( RULE_STRING ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:316:1: ( RULE_STRING )
             {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:315:1: ( RULE_STRING )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:316:1: RULE_STRING
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:316:1: ( RULE_STRING )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:317:1: RULE_STRING
             {
              before(grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_0()); 
             match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__StringValue__ValueAssignment611); 
@@ -808,17 +810,17 @@ public class InternalABaseParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__BooleanValue__ValueAssignment
-    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:325:1: rule__BooleanValue__ValueAssignment : ( ruleBOOLEAN ) ;
+    // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:326:1: rule__BooleanValue__ValueAssignment : ( ruleBOOLEAN ) ;
     public final void rule__BooleanValue__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:329:1: ( ( ruleBOOLEAN ) )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:330:1: ( ruleBOOLEAN )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:330:1: ( ( ruleBOOLEAN ) )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:331:1: ( ruleBOOLEAN )
             {
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:330:1: ( ruleBOOLEAN )
-            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:331:1: ruleBOOLEAN
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:331:1: ( ruleBOOLEAN )
+            // ../org.eclipse.amp.amf.abase.ui/src-gen/org/eclipse/amp/amf/abase/ui/contentassist/antlr/internal/InternalABase.g:332:1: ruleBOOLEAN
             {
              before(grammarAccess.getBooleanValueAccess().getValueBOOLEANEnumRuleCall_0()); 
             pushFollow(FOLLOW_ruleBOOLEAN_in_rule__BooleanValue__ValueAssignment642);
