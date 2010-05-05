@@ -7,33 +7,34 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
+ * Contributors:
  *   Metascape - Initial API and Implementation
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.axf.core;
 
 import org.eclipse.core.runtime.Plugin;
+
 import org.osgi.framework.BundleContext;
 
 // TODO: Auto-generated Javadoc
 /**
  * The activator class controls the plug-in life cycle.
  */
-public class ModelExecutionEnginePlugin extends Plugin {
+public class AXFPlugin extends Plugin {
 
     // The plug-in ID
     public static final String PLUGIN_ID = "org.eclipse.amp.axf.core";
 
     // The shared instance
-    private static ModelExecutionEnginePlugin plugin;
+    private static AXFPlugin plugin;
 
     /**
      * The constructor.
      */
-    public ModelExecutionEnginePlugin() {
+    public AXFPlugin() {
     }
 
     /*
@@ -69,8 +70,7 @@ public class ModelExecutionEnginePlugin extends Plugin {
      * 
      * @return the shared instance
      */
-    public static ModelExecutionEnginePlugin getDefault() {
+    public static AXFPlugin getDefault() {
         return plugin;
     }
-
 }

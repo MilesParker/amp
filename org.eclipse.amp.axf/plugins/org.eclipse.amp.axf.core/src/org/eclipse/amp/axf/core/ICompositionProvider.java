@@ -71,6 +71,15 @@ public interface ICompositionProvider {
     public boolean isChildrenComposition(Object member);
 
     /**
+     * Provides the most specific class that the composition is guaranteed to contain. For cases where no common base
+     * class exists, should simply return Object.class.
+     * 
+     * @param member
+     * @return
+     */
+    public Class getChildrenClass(Object member);
+
+    /**
      * Gets the list.
      * 
      * @param hasIterable the has iterable

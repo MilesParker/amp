@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.eclipse.amp.axf.core.IModel"
+            class="org.eclipse.amp.axf.core.ModelAdapterFactory">
+         <adapter
+               type="org.eclipse.amp.axf.space.IGraphProvider">
+         </adapter>
+         <adapter
+               type="org.eclipse.amp.axf.core.ICompositionProvider">
+         </adapter>
+         <adapter
+               type="org.eclipse.amp.axf.space.ILocationProvider">
+         </adapter>
+      </factory>
+   </extension>
+
+</plugin>

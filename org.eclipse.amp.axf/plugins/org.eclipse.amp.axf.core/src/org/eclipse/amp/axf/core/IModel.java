@@ -37,6 +37,13 @@ public interface IModel extends IObservationProvider, ILifecycleNotifier {
     IEngine getEngine();
 
     /**
+     * Returns the root object for the model, that is the modeled object itself.
+     * 
+     * @return
+     */
+    Object getRoot();
+
+    /**
      * Gets the name.
      * 
      * @return the name
