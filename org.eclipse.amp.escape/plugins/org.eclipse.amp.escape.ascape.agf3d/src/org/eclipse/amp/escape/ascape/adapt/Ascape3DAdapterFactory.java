@@ -15,15 +15,13 @@
  */
 package org.eclipse.amp.escape.ascape.adapt;
 
+import org.ascape.model.Agent;
+import org.ascape.model.CellOccupant;
+import org.ascape.model.HostCell;
 import org.eclipse.amp.agf3d.I3DModelFactoryProvider;
 import org.eclipse.amp.agf3d.IShape3DProvider;
 import org.eclipse.amp.agf3d.Shapes3D;
 import org.eclipse.core.runtime.IAdapterFactory;
-import org.eclipse.gef.EditPartFactory;
-
-import org.ascape.model.Agent;
-import org.ascape.model.CellOccupant;
-import org.ascape.model.HostCell;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -32,14 +30,7 @@ import org.ascape.model.HostCell;
 public class Ascape3DAdapterFactory implements IAdapterFactory {
     private static final Class[] TYPES = { I3DModelFactoryProvider.class, IShape3DProvider.class };
 
-    Ascape3DPartFactory factory = new Ascape3DPartFactory();
-
-    I3DModelFactoryProvider factoryProvider = new I3DModelFactoryProvider() {
-
-        public EditPartFactory getEditPart3DFactory(Object model) {
-            return factory;
-        }
-    };
+    public Ascape3DModelFactoryProvider factoryAdapater = new Ascape3DModelFactoryProvider();
 
     /**
      * @param adaptableObject
@@ -49,7 +40,7 @@ public class Ascape3DAdapterFactory implements IAdapterFactory {
      */
     public Object getAdapter(Object adaptableObject, Class adapterType) {
         if (adapterType == I3DModelFactoryProvider.class) {
-            return factoryProvider;
+            return factoryAdapater;
         } else if (adapterType == IShape3DProvider.class) {
             if (adaptableObject instanceof HostCell) {
                 return Shapes3D.TILE_SHAPE_PROVIDER;
