@@ -483,30 +483,30 @@ cached List[ASet] sets(AWatch watch) :
 cached List[AWatch] watches(ASet set) :
 	set.attribute.watchers();
 	
-List[ASet] setsStart(AWatch current, SAttribute attr) :
+cached List[ASet] setsStart(AWatch current, SAttribute attr) :
 	current.sets().select(e | e.attribute == attr);
 	
-List[AWatch] watchCycle(AWatch current, SAttribute attr, Collection chain) :
+cached List[AWatch] watchCycle(AWatch current, SAttribute attr, Collection chain) :
 	let cycle = current.setsStart(attr) :
 	cycle.isEmpty
 		? current.sets().flatten().collect(e | ((List[AWatch]) ((ASet) e).watches().flatten()).watchCycle(attr, {current}).flatten()).flatten()
 		: chain.add(current);
 	
-List[AWatch] watchCycle(AWatch current, SAttribute attr) :
+cached List[AWatch] watchCycle(AWatch current, SAttribute attr) :
 		watchCycle(current, attr, {});
 
-List[AAct] members(IAct iact) :
+cached List[AAct] members(IAct iact) :
 	{};
 
-List[AAct] members(AGroup group) :
+cached List[AAct] members(AGroup group) :
 	group.members;
 
-List[AAct] acts(SAgent agent) :
+cached List[AAct] acts(SAgent agent) :
 	agent.rootActivity.members();
 		
 //ABuildProjection builder(SProjection space) :
 //	space.owner.acts().typeSelect(ABuildProjection).select(a | a.projection == space);
 	
-ABuildGrid builder(SGrid space) :
+cached ABuildGrid builder(SGrid space) :
 	space.owner.acts().typeSelect(ABuildGrid).select(a | a.projection == space).first();
 	

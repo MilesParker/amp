@@ -246,32 +246,32 @@ cached String paramEntry(AInput input) :
 cached String methodParamList(IID source) :			
 	"";
 	
-String methodParamList(FFunction function) :			
+cached String methodParamList(FFunction function) :			
 	(function != null && function.inputPrototypes != null) ? function.inputPrototypes.collect(e | e.paramEntry()).toString(", ") : "";
 
-String paramDisplayName(SAttribute attr) :
+cached String paramDisplayName(SAttribute attr) :
 	attr.paramDisplayName(attr.owner);
 
-String paramDisplayName(SAttribute attr, SProjection proj) :
+cached String paramDisplayName(SAttribute attr, SProjection proj) :
 	proj.label + " " + attr.label;
 
-String paramDisplayName(SAttribute attr, SNamed named) :
+cached String paramDisplayName(SAttribute attr, SNamed named) :
 	attr.label;
 
-String paramid(SAttribute attr) :
+cached String paramid(SAttribute attr) :
 	attr.paramid(attr.owner);
 
-String paramid(SAttribute attr, SProjection proj) :
+cached String paramid(SAttribute attr, SProjection proj) :
 	attr.internalName().toFirstLower();
 
-String paramid(SAttribute attr, SNamed named) :
+cached String paramid(SAttribute attr, SNamed named) :
 	attr.ID;
 	
-String metaName(EObject obj) :
+cached String metaName(EObject obj) :
 	obj.metaType.toString().replaceAll("metaabm::","org.metaabm.").replaceAll("act::","act.").replaceAll("function::","function.");
 		
-String metaDesc(EObject obj) :
+cached String metaDesc(EObject obj) :
 	obj.metaType.toString().replaceAll("metaabm::act::A","").replaceAll("metaabm::function::F","").replaceAll("metaabm::S","").replaceAll("metaabm::I","");
 	
-String shapeName(SStyleShape style) :
+cached String shapeName(SStyleShape style) :
 	style.shape.toString().toLowerCase().toFirstUpper();
