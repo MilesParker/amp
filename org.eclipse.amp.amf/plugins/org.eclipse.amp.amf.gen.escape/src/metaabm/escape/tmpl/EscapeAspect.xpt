@@ -52,7 +52,7 @@ import org.ascape.view.vis.GEFView;
 import org.ascape.view.vis.GraphView;
 
 import org.eclipse.gef.EditPartFactory;
-import org.eclipse.amp.agf.gef.ModelFactoryProvider;
+import org.eclipse.amp.agf.gef.IModelFactoryProvider;
 import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
 import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
 «ENDAROUND»
@@ -61,7 +61,7 @@ import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
 «AROUND metaabm::tmpl::Java::ExtendType FOR SContext-»«typeName()-»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::ExtendType FOR SAgent-»Scape«ENDAROUND»
 
-«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-» extends Scape implements ModelFactoryProvider«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-» extends Scape implements IModelFactoryProvider«ENDAROUND»
 «AROUND metaabm::tmpl::Java::ClassInheiritance FOR SAgent-» extends «extendType()»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::ClassInheiritance FOR SStyle-» extends «(agent.isHost() ? "HostCell" : "Agent")»EditPart«ENDAROUND»
 
@@ -78,14 +78,14 @@ import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
     
     «EXPAND metaabm::ascape::tmpl::ScapeAspect::ScapeBody-»
     
-    public EditPartFactory getEditPartFactory() {
+    public EditPartFactory getEditPartFactory(Object object) {
     	if (factory == null) {
 	        factory = new «implementation.className»PartFactory();
     	}
         return factory;
     }
     
-    public EditPartFactory getEditPartTreeFactory() {
+    public EditPartFactory getEditPartTreeFactory(Object object) {
     	if (treeFactory == null) {
 	        treeFactory = new AscapePartTreeFactory();
     	}
@@ -132,12 +132,8 @@ import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
 	«EXPAND BuildChartSelection FOREACH ((SContext) reference).agents-»
     addView(chart);
     «ENDIF»
-    «IF !((SContext) eContainer).projections.typeSelect(SGrid).isEmpty»
 	addView(new GEFView());
-	«ENDIF»;
-    «IF !((SContext) eContainer).projections.typeSelect(SNetwork).isEmpty»
 	addView(new GraphView());
-	«ENDIF»;
     «targetDef.proceed()-»
 «ENDAROUND»
 

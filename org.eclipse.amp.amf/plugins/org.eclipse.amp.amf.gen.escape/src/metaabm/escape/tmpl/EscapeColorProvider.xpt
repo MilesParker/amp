@@ -90,7 +90,7 @@ public «EXPAND metaabm::tmpl::Java::ClassKeyword» «EXPAND metaabm::tmpl::Java::C
         addView(new GEF3DView());
     }
     
-    public EditPartFactory getEditPart3DFactory() {
+    public EditPartFactory getEditPart3DFactory(Object object) {
         return new Ascape3DPartFactory() {
             public IColorProvider getColorProvider(Object model) {
             	«EXPAND RecurseAgentProviders FOREACH agents»

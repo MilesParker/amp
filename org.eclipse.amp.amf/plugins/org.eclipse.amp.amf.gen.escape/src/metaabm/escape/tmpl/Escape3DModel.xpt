@@ -47,7 +47,7 @@ import org.eclipse.jface.viewers.IColorProvider;
 
 «AROUND metaabm::tmpl::Java::Body FOR SContext-»
 
-    public EditPartFactory getEditPart3DFactory() {
+    public EditPartFactory getEditPart3DFactory(Object object) {
         return new Ascape3DPartFactory() {
             public IColorProvider getColorProvider(Object model) {
             «EXPAND RecurseAgentProviders FOREACH agents»
