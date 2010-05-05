@@ -54,11 +54,13 @@ public abstract class EditPartViewPart extends AGFViewPart {
     }
 
     public void createPartControl(Composite parent) {
-        super.createPartControl(parent);
         viewer = createViewer();
         viewer.createControl(parent);
         getEditDomain().addViewer(viewer);
-        createSelectionSynchronizer();
+        if (viewer == null) {
+            throw new RuntimeException("Viewer is null for: " + this);
+        }
+        super.createPartControl(parent);
     }
 
     protected EditPartViewer createViewer() {
@@ -100,21 +102,21 @@ public abstract class EditPartViewPart extends AGFViewPart {
         }
     }
 
-    protected ModelFactoryProvider getModelFactoryProvider(Object contents) {
-        if (contents instanceof ModelFactoryProvider) {
-            return (ModelFactoryProvider) contents;
+    protected IModelFactoryProvider getModelFactoryProvider(Object contents) {
+        if (contents instanceof IModelFactoryProvider) {
+            return (IModelFactoryProvider) contents;
         } else {
-            ModelFactoryProvider provider = (ModelFactoryProvider) Platform.getAdapterManager()
-            .getAdapter(getModel(), ModelFactoryProvider.class);
+            IModelFactoryProvider provider = (IModelFactoryProvider) Platform.getAdapterManager()
+                    .getAdapter(contents, IModelFactoryProvider.class);
             if (provider == null) {
-                throw new RuntimeException("No I3DModelFactoryProvider adapter defined for: " + getModel());
+                throw new RuntimeException("No ModelFactoryProvider adapter defined for: " + getModel());
             }
             return provider;
         }
     }
 
     protected EditPartFactory createFactory(Object contents) {
-        return getModelFactoryProvider(contents).getEditPartFactory();
+        return getModelFactoryProvider(contents).getEditPartFactory(contents);
     }
 
     protected void createZoomer(RootEditPart rootEditPart) {

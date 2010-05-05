@@ -17,7 +17,7 @@ package org.eclipse.amp.agf.gef;
 
 import org.eclipse.gef.EditPartFactory;
 
-public interface ModelFactoryProvider {
-    EditPartFactory getEditPartFactory();
-    EditPartFactory getEditPartTreeFactory();
+public interface IModelFactoryProvider {
+    EditPartFactory getEditPartFactory(Object model);
+    EditPartFactory getEditPartTreeFactory(Object model);
 }

@@ -24,6 +24,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.swt.widgets.Composite;
 
 /**
  * 
@@ -48,6 +49,15 @@ public abstract class AGFViewPart extends ModelViewPart {
      */
     public AGFViewPart() {
         super();
+    }
+
+    /**
+     * @param parent
+     * @see org.eclipse.amp.axf.view.ModelViewPart#createPartControl(org.eclipse.swt.widgets.Composite)
+     */
+    public void createPartControl(Composite parent) {
+        super.createPartControl(parent);
+        createSelectionSynchronizer();
     }
 
     protected void createSelectionListener(ISelectionProvider provider) {

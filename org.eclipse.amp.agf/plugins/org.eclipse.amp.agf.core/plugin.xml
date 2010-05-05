@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.2 2010/01/13 17:38:49 mparker Exp $
+ $Id: plugin.xml,v 1.3 2010/05/05 03:32:41 mparker Exp $
 -->
 
 <plugin>
@@ -29,6 +29,19 @@
            name="Agent Navigator"
            restorable="true">
      </view>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.eclipse.amp.axf.core.IModel"
+            class="org.eclipse.amp.agf.GraphicsAdapterFactory">
+         <adapter
+               type="org.eclipse.jface.viewers.ILabelProvider">
+         </adapter>
+         <adapter
+               type="org.eclipse.jface.viewers.IColorProvider">
+         </adapter>
+      </factory>
    </extension>
 
 

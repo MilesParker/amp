@@ -16,7 +16,7 @@
 package org.eclipse.amp.agf.tree;
 
 import org.eclipse.amp.agf.gef.EditPartViewPart;
-import org.eclipse.amp.agf.gef.ModelFactoryProvider;
+import org.eclipse.amp.agf.gef.IModelFactoryProvider;
 import org.eclipse.amp.axf.core.AbstractLifecycleListener;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.core.IObservationProvider;
@@ -106,8 +106,8 @@ public class TreeViewPart extends EditPartViewPart {
         setModel(activeModel);
         if (getViewer().getControl() != null && !getViewer().getControl().isDisposed()) {
             if (activeModel != null) {
-                ModelFactoryProvider provider = getModelFactoryProvider(activeModel);
-                EditPartFactory editPartTreeFactory = provider.getEditPartTreeFactory();
+                IModelFactoryProvider provider = getModelFactoryProvider(activeModel);
+                EditPartFactory editPartTreeFactory = provider.getEditPartTreeFactory(activeModel);
                 getViewer().setEditPartFactory(editPartTreeFactory);
                 getViewer().getControl().getDisplay().asyncExec(new Runnable() {
                     public void run() {

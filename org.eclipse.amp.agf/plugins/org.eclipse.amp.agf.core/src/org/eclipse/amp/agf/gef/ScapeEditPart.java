@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.amp.axf.core.ICompositionProvider;
+import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.space.IGraphProvider;
 import org.eclipse.amp.axf.space.ILocation;
 import org.eclipse.amp.axf.space.ILocation2D;
@@ -191,7 +192,7 @@ public class ScapeEditPart extends GenericEditPart implements PropertyChangeList
     }
 
     public ScapeEditPart getRootScapeEditPart() {
-        if (memberProvider.getParent(getModel()) == null || !(getParent() instanceof ScapeEditPart)) {
+        if (memberProvider.getParent(getModel()) == null) {
             return this;
         }
         return ((ScapeEditPart) getParent()).getRootScapeEditPart();
@@ -306,5 +307,13 @@ public class ScapeEditPart extends GenericEditPart implements PropertyChangeList
 
     public IGraphProvider getGraphProvider() {
         return graphProvider;
+    }
+
+    public Object getModelRoot() {
+        Object model = getModel();
+        if (model instanceof IModel) {
+            return ((IModel) getModel()).getRoot();
+        }
+        return model;
     }
 }
