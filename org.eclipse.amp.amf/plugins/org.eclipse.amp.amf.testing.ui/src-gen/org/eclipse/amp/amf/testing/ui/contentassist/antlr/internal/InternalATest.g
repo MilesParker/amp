@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.AbstractInternalContentAssistParser;
+import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.DFA;
 import org.eclipse.amp.amf.testing.services.ATestGrammarAccess;
 
 }
@@ -479,13 +480,24 @@ rule__Model__Group__0
 		int stackSize = keepStackSize();
     }
 :
+	rule__Model__Group__0__Impl
+	rule__Model__Group__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Model__Group__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
 (
 { before(grammarAccess.getModelAccess().getNameAssignment_0()); }
 (rule__Model__NameAssignment_0)?
 { after(grammarAccess.getModelAccess().getNameAssignment_0()); }
 )
 
-	rule__Model__Group__1
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -497,13 +509,24 @@ rule__Model__Group__1
 		int stackSize = keepStackSize();
     }
 :
+	rule__Model__Group__1__Impl
+	rule__Model__Group__2
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Model__Group__1__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
 (
 { before(grammarAccess.getModelAccess().getDescriptionAssignment_1()); }
 (rule__Model__DescriptionAssignment_1)?
 { after(grammarAccess.getModelAccess().getDescriptionAssignment_1()); }
 )
 
-	rule__Model__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -511,6 +534,17 @@ finally {
 
 
 rule__Model__Group__2
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Model__Group__2__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Model__Group__2__Impl
     @init {
 		int stackSize = keepStackSize();
     }
@@ -538,13 +572,24 @@ rule__Model__Group_2_0__0
 		int stackSize = keepStackSize();
     }
 :
+	rule__Model__Group_2_0__0__Impl
+	rule__Model__Group_2_0__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Model__Group_2_0__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
 (
 { before(grammarAccess.getModelAccess().getGroup_2_0_0()); }
 (rule__Model__Group_2_0_0__0)?
 { after(grammarAccess.getModelAccess().getGroup_2_0_0()); }
 )
 
-	rule__Model__Group_2_0__1
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -552,6 +597,17 @@ finally {
 
 
 rule__Model__Group_2_0__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Model__Group_2_0__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Model__Group_2_0__1__Impl
     @init {
 		int stackSize = keepStackSize();
     }
@@ -584,6 +640,18 @@ rule__Model__Group_2_0_0__0
 		int stackSize = keepStackSize();
     }
 :
+	rule__Model__Group_2_0_0__0__Impl
+	rule__Model__Group_2_0_0__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Model__Group_2_0_0__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
 (
 { before(grammarAccess.getModelAccess().getTestsKeyword_2_0_0_0()); }
 
@@ -592,7 +660,6 @@ rule__Model__Group_2_0_0__0
 { after(grammarAccess.getModelAccess().getTestsKeyword_2_0_0_0()); }
 )
 
-	rule__Model__Group_2_0_0__1
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -600,6 +667,17 @@ finally {
 
 
 rule__Model__Group_2_0_0__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Model__Group_2_0_0__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Model__Group_2_0_0__1__Impl
     @init {
 		int stackSize = keepStackSize();
     }
@@ -625,6 +703,18 @@ rule__Model__Group_2_1__0
 		int stackSize = keepStackSize();
     }
 :
+	rule__Model__Group_2_1__0__Impl
+	rule__Model__Group_2_1__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Model__Group_2_1__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
 (
 { before(grammarAccess.getModelAccess().getContainsKeyword_2_1_0()); }
 
@@ -633,7 +723,6 @@ rule__Model__Group_2_1__0
 { after(grammarAccess.getModelAccess().getContainsKeyword_2_1_0()); }
 )
 
-	rule__Model__Group_2_1__1
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -641,6 +730,17 @@ finally {
 
 
 rule__Model__Group_2_1__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Model__Group_2_1__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Model__Group_2_1__1__Impl
     @init {
 		int stackSize = keepStackSize();
     }
@@ -666,13 +766,24 @@ rule__Constraint__Group__0
 		int stackSize = keepStackSize();
     }
 :
+	rule__Constraint__Group__0__Impl
+	rule__Constraint__Group__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Constraint__Group__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
 (
 { before(grammarAccess.getConstraintAccess().getMeasureAssignment_0()); }
 (rule__Constraint__MeasureAssignment_0)
 { after(grammarAccess.getConstraintAccess().getMeasureAssignment_0()); }
 )
 
-	rule__Constraint__Group__1
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -680,6 +791,18 @@ finally {
 
 
 rule__Constraint__Group__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Constraint__Group__1__Impl
+	rule__Constraint__Group__2
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Constraint__Group__1__Impl
     @init {
 		int stackSize = keepStackSize();
     }
@@ -692,7 +815,6 @@ rule__Constraint__Group__1
 { after(grammarAccess.getConstraintAccess().getLeftParenthesisKeyword_1()); }
 )
 
-	rule__Constraint__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -704,13 +826,24 @@ rule__Constraint__Group__2
 		int stackSize = keepStackSize();
     }
 :
+	rule__Constraint__Group__2__Impl
+	rule__Constraint__Group__3
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Constraint__Group__2__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
 (
 { before(grammarAccess.getConstraintAccess().getAgentAssignment_2()); }
 (rule__Constraint__AgentAssignment_2)
 { after(grammarAccess.getConstraintAccess().getAgentAssignment_2()); }
 )
 
-	rule__Constraint__Group__3
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -718,6 +851,18 @@ finally {
 
 
 rule__Constraint__Group__3
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Constraint__Group__3__Impl
+	rule__Constraint__Group__4
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Constraint__Group__3__Impl
     @init {
 		int stackSize = keepStackSize();
     }
@@ -730,7 +875,6 @@ rule__Constraint__Group__3
 { after(grammarAccess.getConstraintAccess().getFullStopKeyword_3()); }
 )
 
-	rule__Constraint__Group__4
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -742,13 +886,24 @@ rule__Constraint__Group__4
 		int stackSize = keepStackSize();
     }
 :
+	rule__Constraint__Group__4__Impl
+	rule__Constraint__Group__5
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Constraint__Group__4__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
 (
 { before(grammarAccess.getConstraintAccess().getAttributeAssignment_4()); }
 (rule__Constraint__AttributeAssignment_4)
 { after(grammarAccess.getConstraintAccess().getAttributeAssignment_4()); }
 )
 
-	rule__Constraint__Group__5
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -760,13 +915,24 @@ rule__Constraint__Group__5
 		int stackSize = keepStackSize();
     }
 :
+	rule__Constraint__Group__5__Impl
+	rule__Constraint__Group__6
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Constraint__Group__5__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
 (
 { before(grammarAccess.getConstraintAccess().getGroup_5()); }
 (rule__Constraint__Group_5__0)?
 { after(grammarAccess.getConstraintAccess().getGroup_5()); }
 )
 
-	rule__Constraint__Group__6
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -774,6 +940,18 @@ finally {
 
 
 rule__Constraint__Group__6
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Constraint__Group__6__Impl
+	rule__Constraint__Group__7
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Constraint__Group__6__Impl
     @init {
 		int stackSize = keepStackSize();
     }
@@ -786,7 +964,6 @@ rule__Constraint__Group__6
 { after(grammarAccess.getConstraintAccess().getRightParenthesisKeyword_6()); }
 )
 
-	rule__Constraint__Group__7
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -794,6 +971,17 @@ finally {
 
 
 rule__Constraint__Group__7
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Constraint__Group__7__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Constraint__Group__7__Impl
     @init {
 		int stackSize = keepStackSize();
     }
@@ -831,6 +1019,18 @@ rule__Constraint__Group_5__0
 		int stackSize = keepStackSize();
     }
 :
+	rule__Constraint__Group_5__0__Impl
+	rule__Constraint__Group_5__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Constraint__Group_5__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
 (
 { before(grammarAccess.getConstraintAccess().getEqualsSignKeyword_5_0()); }
 
@@ -839,7 +1039,6 @@ rule__Constraint__Group_5__0
 { after(grammarAccess.getConstraintAccess().getEqualsSignKeyword_5_0()); }
 )
 
-	rule__Constraint__Group_5__1
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -847,6 +1046,17 @@ finally {
 
 
 rule__Constraint__Group_5__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Constraint__Group_5__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Constraint__Group_5__1__Impl
     @init {
 		int stackSize = keepStackSize();
     }
@@ -872,6 +1082,18 @@ rule__Constraint__Group_7__0
 		int stackSize = keepStackSize();
     }
 :
+	rule__Constraint__Group_7__0__Impl
+	rule__Constraint__Group_7__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Constraint__Group_7__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
 (
 { before(grammarAccess.getConstraintAccess().getEqualsSignKeyword_7_0()); }
 
@@ -880,7 +1102,6 @@ rule__Constraint__Group_7__0
 { after(grammarAccess.getConstraintAccess().getEqualsSignKeyword_7_0()); }
 )
 
-	rule__Constraint__Group_7__1
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -888,6 +1109,18 @@ finally {
 
 
 rule__Constraint__Group_7__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Constraint__Group_7__1__Impl
+	rule__Constraint__Group_7__2
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Constraint__Group_7__1__Impl
     @init {
 		int stackSize = keepStackSize();
     }
@@ -900,7 +1133,6 @@ rule__Constraint__Group_7__1
 { after(grammarAccess.getConstraintAccess().getLeftSquareBracketKeyword_7_1()); }
 )
 
-	rule__Constraint__Group_7__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -912,13 +1144,24 @@ rule__Constraint__Group_7__2
 		int stackSize = keepStackSize();
     }
 :
+	rule__Constraint__Group_7__2__Impl
+	rule__Constraint__Group_7__3
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Constraint__Group_7__2__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
 (
 { before(grammarAccess.getConstraintAccess().getMinValueAssignment_7_2()); }
 (rule__Constraint__MinValueAssignment_7_2)
 { after(grammarAccess.getConstraintAccess().getMinValueAssignment_7_2()); }
 )
 
-	rule__Constraint__Group_7__3
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -926,6 +1169,18 @@ finally {
 
 
 rule__Constraint__Group_7__3
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Constraint__Group_7__3__Impl
+	rule__Constraint__Group_7__4
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Constraint__Group_7__3__Impl
     @init {
 		int stackSize = keepStackSize();
     }
@@ -938,7 +1193,6 @@ rule__Constraint__Group_7__3
 { after(grammarAccess.getConstraintAccess().getCommaKeyword_7_3()); }
 )
 
-	rule__Constraint__Group_7__4
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -950,13 +1204,24 @@ rule__Constraint__Group_7__4
 		int stackSize = keepStackSize();
     }
 :
+	rule__Constraint__Group_7__4__Impl
+	rule__Constraint__Group_7__5
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Constraint__Group_7__4__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
 (
 { before(grammarAccess.getConstraintAccess().getMaxValueAssignment_7_4()); }
 (rule__Constraint__MaxValueAssignment_7_4)
 { after(grammarAccess.getConstraintAccess().getMaxValueAssignment_7_4()); }
 )
 
-	rule__Constraint__Group_7__5
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -964,6 +1229,17 @@ finally {
 
 
 rule__Constraint__Group_7__5
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__Constraint__Group_7__5__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Constraint__Group_7__5__Impl
     @init {
 		int stackSize = keepStackSize();
     }
