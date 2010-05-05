@@ -33,8 +33,8 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cParametersParameterParserRuleCall_4_0 = (RuleCall)cParametersAssignment_4.eContents().get(0);
 		
 		//Model:
-		//  name=STRING? "model" model=Import ("incorporates" incorporates+=Incorporates)*
-		//  parameters+=Parameter*;
+		//  name=STRING? "model" model=Import ("incorporates" incorporates+=Incorporates)
+		//  * parameters+=Parameter*;
 		public ParserRule getRule() { return rule; }
 
 		//name=STRING? "model" model=Import ("incorporates" incorporates+=Incorporates)*
@@ -171,8 +171,8 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Model:
-	//  name=STRING? "model" model=Import ("incorporates" incorporates+=Incorporates)*
-	//  parameters+=Parameter*;
+	//  name=STRING? "model" model=Import ("incorporates" incorporates+=Incorporates)
+	//  * parameters+=Parameter*;
 	public ModelElements getModelAccess() {
 		return (pModel != null) ? pModel : (pModel = new ModelElements());
 	}
@@ -284,7 +284,8 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal DESC_STRING:
-	//  "«" ("\\" ("b" | "t" | "n" | "f" | "r" | "«" | "»" | "\\") | !("\\" | "«" | "»"))* "»";
+	//  "«" ("\\" ("b" | "t" | "n" | "f" | "r" | "«" | "»" | "\\") | !("\\" | "«" |
+	//  "»"))* "»";
 	public TerminalRule getDESC_STRINGRule() {
 		return gaABase.getDESC_STRINGRule();
 	} 
@@ -302,8 +303,9 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal STRING:
-	//  "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"" | "\'" ("\\" ("b" |
-	//  "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
+	//  "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""
+	//  ))* "\"" | "\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !(
+	//  "\\" | "\'"))* "\'";
 	public TerminalRule getSTRINGRule() {
 		return gaABase.getSTRINGRule();
 	} 
