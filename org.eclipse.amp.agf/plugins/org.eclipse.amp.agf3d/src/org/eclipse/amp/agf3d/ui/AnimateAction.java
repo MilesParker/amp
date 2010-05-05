@@ -43,12 +43,10 @@ public class AnimateAction implements IViewActionDelegate {
      * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
      */
     public void run(IAction action) {
-        ScapeEditRoot3DPart root = (ScapeEditRoot3DPart) view.getRootEditPart().getChildren().get(0);
-        int stepCount = root.getAnimationStepCount();
-        if (stepCount == ScapeEditRoot3DPart.DEFAULT_ANIMATION_STEP_COUNT) {
-            root.setAnimationStepCount(1);
+        if (view.getAnimationStepCount() == ScapeEditRoot3DPart.DEFAULT_ANIMATION_STEP_COUNT) {
+            view.setAnimationStepCount(1);
         } else {
-            root.setAnimationStepCount(ScapeEditRoot3DPart.DEFAULT_ANIMATION_STEP_COUNT);
+            view.setAnimationStepCount(ScapeEditRoot3DPart.DEFAULT_ANIMATION_STEP_COUNT);
         }
     }
 

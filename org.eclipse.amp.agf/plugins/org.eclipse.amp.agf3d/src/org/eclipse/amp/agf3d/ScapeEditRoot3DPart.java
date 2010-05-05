@@ -18,33 +18,24 @@ package org.eclipse.amp.agf3d;
 
 import java.util.List;
 
-import org.eclipse.amp.agf.gef.AgentEditPart;
+import org.eclipse.amp.agf.gef.GEFUtils;
+import org.eclipse.amp.agf.gef.ScapeEditPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
-import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.space.IGraphProvider;
+import org.eclipse.amp.axf.space.ILocation;
 import org.eclipse.amp.axf.space.ILocation2D;
 import org.eclipse.amp.axf.space.ILocationProvider;
-import org.eclipse.amp.axf.view.SWTAsyncModelListener;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.XYLayout;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.draw3d.Figure3D;
 import org.eclipse.draw3d.FigureSurface;
-import org.eclipse.draw3d.ISceneListener;
 import org.eclipse.draw3d.ISurface;
-import org.eclipse.draw3d.LightweightSystem3D;
-import org.eclipse.draw3d.RenderContext;
-import org.eclipse.draw3d.camera.ICamera;
-import org.eclipse.draw3d.geometry.IVector3f;
-import org.eclipse.draw3d.geometry.Math3DVector3f;
-import org.eclipse.draw3d.geometry.Vector3f;
-import org.eclipse.draw3d.geometry.Vector3fImpl;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gef3d.ui.parts.GraphicalViewer3D;
 import org.eclipse.jface.viewers.IFilter;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * 
@@ -53,50 +44,8 @@ import org.eclipse.swt.widgets.Display;
  */
 public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
 
-    public static Vector3fImpl UP_VECTOR = new Vector3fImpl(0, 0, -1);
 
-    private final class RenderUpdateListener extends SWTAsyncModelListener {
 
-        private boolean firstTime = true;
-
-        private RenderUpdateListener(String name) {
-            super(getRoot().getViewer().getControl(), name);
-        }
-
-        public synchronized void update(IModel model) {
-            beginPainting();
-            LightweightSystem3D lws = ((GraphicalViewer3D) getViewer()).getLightweightSystem3D();
-            while (lws.getUpdateManager3D().getCanvas() == null) {
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
-                }
-            }
-            if (firstTime) {
-                animateCamera = false;
-                moveCameraHelicopter();
-                animateCamera = true;
-                firstTime = false;
-            }
-            for (animationStep = 0; animationStep < animationStepCount; animationStep++) {
-                // getFigure().validate();
-                refresh();
-                ((GraphicalViewer3D) getRoot().getViewer()).getLightweightSystem3D().render(true);
-            }
-        }
-    }
-
-    int animationStep;
-
-    public static final int DEFAULT_ANIMATION_STEP_COUNT = 5;
-
-    int animationStepCount = DEFAULT_ANIMATION_STEP_COUNT;
-
-    boolean animateCamera = true;
-
-    boolean cancelCamera;
-
-    private RenderUpdateListener renderListener;
 
     public ScapeEditRoot3DPart(ICompositionProvider memberProvider, ILocationProvider locationProvider,
             IGraphProvider graphProvider, IFilter filter) {
@@ -125,49 +74,13 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
         return figure;
     }
 
-    /**
-     * 
-     * @see org.eclipse.amp.agf.gef.ScapeEditPart#addNotify()
-     */
-    public void addNotify() {
-        super.addNotify();
-        renderListener = new RenderUpdateListener("Update Root Figure");
-        renderListener.setWaitForUpdate(true);
-        ((IModel) getModel()).addModelListener(renderListener);
-        ((GraphicalViewer3D) getRoot().getViewer()).getLightweightSystem3D().addSceneListener(new ISceneListener() {
-
-            public void renderPassStarted(RenderContext renderContext) {
-            }
-
-            public void renderPassFinished(RenderContext renderContext) {
-                if (animationStep == animationStepCount) {
-                    renderListener.endPainting();
-                }
-            }
-
-            public void cameraChanged(ICamera iOldCamera, ICamera iNewCamera) {
-            }
-        });
-    }
-
-    public void deactivate() {
-        cancelCamera = true;
-        super.deactivate();
-        if (renderListener != null) {
-            ((IModel) getModel()).removeModelListener(renderListener);
+    // This is just a hack to prevent having to rearrange scape wrapper
+    public Dimension calculateDimension() {
+        ILocation extent = getLocationProvider().getExtent(getModelRoot());
+        if (extent instanceof ILocation2D) {
+            return GEFUtils.toScaledDimension((ILocation2D) extent);
         }
-    }
-
-    public void moveCameraHelicopter() {
-        moveCameraScaled(0.5f, 1.5f, -.2f, 0.5f, 0.5f, 0.0f);
-    }
-
-    public void moveCameraFirstPerson() {
-        moveCameraScaled(0.5f, 1.0f, -.01f, 0.5f, 0.5f, 0.0f);
-    }
-
-    public void moveCameraOverhead() {
-        moveCameraScaled(0.5f, 0.5f, -2.0f, 0.5f, 0.5f, 0.0f);
+        return null;
     }
 
     /**
@@ -187,115 +100,14 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
         super.addChild(child, index);
     }
 
-    private void moveCameraScaled(float locX, float locY, float locZ, float targetX, float targetY, float targetZ) {
-        ILocation2D extent = (ILocation2D) getLocationProvider().getExtent(getModel());
-        float ex = (float) (extent.getXDouble() * AgentEditPart.SCALE);
-        float ey = (float) (extent.getYDouble() * AgentEditPart.SCALE);
-        moveCamera(new Vector3fImpl(ex * locX, ey * locY, Math.min(ex, ey) * locZ), new Vector3fImpl(ex * targetX, ey
-                                                                                                     * targetY, Math.min(ex, ey)
-                                                                                                     * targetZ));
-    }
-
-    private void moveCamera(final IVector3f endPoint, final IVector3f endLookPoint) {
-        if (animateCamera) {
-            new Thread() {
-                public void run() {
-                    cancelCamera = true;
-                    moveCameraAnimate(endPoint, endLookPoint);
-                }
-            }.start();
-        } else {
-            final ICamera camera = getCamera();
-            camera.moveTo(endPoint.getX(), endPoint.getY(), endPoint.getZ());
-            camera.lookAt(endLookPoint, UP_VECTOR);
-        }
-    }
-
-    private void moveCameraAnimate(final IVector3f endPoint, final IVector3f endLookPoint) {
-        final ICamera camera = getCamera();
-        cancelCamera = false;
-        int moveCount = 50;
-        final Vector3f startPoint = new Vector3fImpl();
-        camera.getPosition(startPoint);
-        Vector3f addPoint = new Vector3fImpl();
-        calculateDelta(startPoint, endPoint, addPoint, moveCount);
-
-        if (!cancelCamera) {
-            for (int i = 0; i < moveCount - 1; i++) {
-                Math3DVector3f.add(startPoint, addPoint, startPoint);
-                moveToNow(startPoint);
-                if (cancelCamera) {
-                    return;
-                }
-            }
-            // moveToNow((Vector3f) endPoint);
-        }
-        final Vector3f currentLookPoint = new Vector3fImpl();
-        camera.getViewDirection(currentLookPoint);
-        Math3DVector3f.add(currentLookPoint, endPoint, currentLookPoint);
-        Vector3f addLookPoint = new Vector3fImpl();
-        calculateDelta(currentLookPoint, endLookPoint, addLookPoint, moveCount);
-        if (!cancelCamera) {
-            for (int i = 0; i < moveCount - 1; i++) {
-                Math3DVector3f.add(currentLookPoint, addLookPoint, currentLookPoint);
-                Display.getDefault().syncExec(new Runnable() {
-                    public void run() {
-                        camera.lookAt(currentLookPoint, UP_VECTOR);
-                    }
-                });
-                if (cancelCamera) {
-                    return;
-                }
-            }
-            // Display.getDefault().syncExec(new Runnable() {
-            // public void run() {
-            // // Take care of any small deltas
-            // // camera.lookAt(endLookPoint, upVector);
-            // }
-            // });
-        }
-    }
-
-    private void moveToNow(final Vector3f movePoint) {
-        Display.getDefault().syncExec(new Runnable() {
-            public void run() {
-                getCamera().moveTo(movePoint.getX(), movePoint.getY(), movePoint.getZ());
-            }
-        });
-    }
-
-    public ICamera getCamera() {
-        final ICamera camera = ((GraphicalViewer3D) getViewer()).getLightweightSystem3D().getCamera();
-        return camera;
-    }
-
-    public boolean isAnimateCamera() {
-        return animateCamera;
-    }
-
-    public void setAnimateCamera(boolean animateCamera) {
-        this.animateCamera = animateCamera;
-    }
 
     /**
-     * @return the animationStep
+     * @return
+     * @see org.eclipse.amp.agf.gef.ScapeEditPart#getRootScapeEditPart()
      */
-    public int getAnimationStep() {
-        return animationStep;
+    public ScapeEditPart getRootScapeEditPart() {
+        return this;
     }
 
-    /**
-     * @return the animationStepCount
-     */
-    public int getAnimationStepCount() {
-        return animationStepCount;
-    }
 
-    /**
-     * @param animationStepCount the animationStepCount to set
-     */
-    public void setAnimationStepCount(int animationStepCount) {
-        this.animationStepCount = animationStepCount;
-        animationStep = 0;
-    }
 }
