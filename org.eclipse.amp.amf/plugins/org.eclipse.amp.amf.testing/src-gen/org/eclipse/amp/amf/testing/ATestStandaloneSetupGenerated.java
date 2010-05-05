@@ -1,3 +1,4 @@
+
 package org.eclipse.amp.amf.testing;
 
 import org.eclipse.emf.ecore.EPackage;
@@ -10,11 +11,7 @@ import com.google.inject.Injector;
 /**
  * Generated from StandaloneSetup.xpt!
  */
-public class ATestStandaloneSetup implements ISetup {
-
-	public static void doSetup() {
-		new ATestStandaloneSetup().createInjectorAndDoEMFRegistration();
-	}
+public class ATestStandaloneSetupGenerated implements ISetup {
 
 	public Injector createInjectorAndDoEMFRegistration() {
 		org.eclipse.amp.amf.abase.ABaseStandaloneSetup.doSetup();

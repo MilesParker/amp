@@ -22,6 +22,7 @@ import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
 
+@SuppressWarnings("all")
 public class InternalATestParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_DESC_STRING", "RULE_ID", "RULE_INTEGER", "RULE_REAL", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'tests'", "'contains'", "'('", "'.'", "'='", "')'", "'['", "','", "']'", "'Count'", "'Average'", "'Sum'", "'Minimum'", "'Maximum'", "'true'", "'false'"
@@ -124,7 +125,7 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
         EObject lv_contains_6_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:92:6: ( ( ( (lv_name_0_0= RULE_STRING ) )? ( (lv_description_1_0= RULE_DESC_STRING ) )? ( ( ( 'tests' ( (lv_tests_3_0= ruleTests ) ) )? ( (lv_contraints_4_0= ruleConstraint ) )+ ) | ( 'contains' ( (lv_contains_6_0= ruleTestMember ) )* ) )? ) )
@@ -497,7 +498,7 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
 
         Token lv_importURI_0_0=null;
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:244:6: ( ( (lv_importURI_0_0= RULE_STRING ) ) )
@@ -597,7 +598,7 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
 
         Token lv_importURI_0_0=null;
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:291:6: ( ( (lv_importURI_0_0= RULE_STRING ) ) )
@@ -702,7 +703,7 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
         EObject lv_maxValue_12_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:338:6: ( ( ( (lv_measure_0_0= ruleMeasure ) ) '(' ( ( RULE_ID ) ) '.' ( ( RULE_ID ) ) ( '=' ( ( RULE_ID ) ) )? ')' ( '=' '[' ( (lv_minValue_10_0= ruleValue ) ) ',' ( (lv_maxValue_12_0= ruleValue ) ) ']' ) ) )
@@ -1011,7 +1012,7 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
         EObject this_BooleanValue_3 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:507:6: ( (this_IntValue_0= ruleIntValue | this_StringValue_1= ruleStringValue | this_RealValue_2= ruleRealValue | this_BooleanValue_3= ruleBooleanValue ) )
@@ -1181,7 +1182,7 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
 
         Token lv_value_0_0=null;
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:569:6: ( ( (lv_value_0_0= RULE_INTEGER ) ) )
@@ -1281,7 +1282,7 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
 
         Token lv_value_0_0=null;
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:616:6: ( ( (lv_value_0_0= RULE_REAL ) ) )
@@ -1381,7 +1382,7 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
 
         Token lv_value_0_0=null;
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:663:6: ( ( (lv_value_0_0= RULE_STRING ) ) )
@@ -1482,7 +1483,7 @@ public class InternalATestParser extends AbstractInternalAntlrParser {
         Enumerator lv_value_0_0 = null;
 
 
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
             // ../org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.g:710:6: ( ( (lv_value_0_0= ruleBOOLEAN ) ) )
