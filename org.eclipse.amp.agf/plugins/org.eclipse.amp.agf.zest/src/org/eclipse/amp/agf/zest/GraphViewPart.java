@@ -59,7 +59,7 @@ public class GraphViewPart extends AGFViewPart {
 
         viewer.getControl().setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_WHITE));
         setLayoutAlgorithm(createSpringLayout());
-        viewer.setNodeStyle(ZestStyles.NODES_NO_LAYOUT_RESIZE | ZestStyles.NODES_HIDE_TEXT);
+        viewer.setNodeStyle(ZestStyles.NODES_NO_LAYOUT_RESIZE);
         super.createPartControl(parent);
     }
 
