@@ -28,6 +28,9 @@ import org.eclipse.amp.escape.ascape.gef.HostCellEditPart;
 «AROUND metaabm::tmpl::Java::Imports FOR SAgent-»
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IAdapterFactory;
+
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.jface.viewers.IColorProvider;
 
@@ -50,20 +53,20 @@ import org.ascape.util.vis.ColorFeatureConcrete;
 import org.ascape.view.vis.ChartView;
 import org.ascape.view.vis.GEFView;
 import org.ascape.view.vis.GraphView;
-
-import org.eclipse.gef.EditPartFactory;
-import org.eclipse.amp.agf.gef.IModelFactoryProvider;
-import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
-import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ExtendType FOR SProjection-»Scape«ENDAROUND»
 «AROUND metaabm::tmpl::Java::ExtendType FOR SContext-»«typeName()-»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::ExtendType FOR SAgent-»Scape«ENDAROUND»
 
-«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-» extends Scape implements IModelFactoryProvider«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-» extends Scape implements IAdaptable«ENDAROUND»
 «AROUND metaabm::tmpl::Java::ClassInheiritance FOR SAgent-» extends «extendType()»«ENDAROUND»
-«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SStyle-» extends «(agent.isHost() ? "HostCell" : "Agent")»EditPart«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SStyle-» implements «(agent.isHost() ? "HostCell" : "Agent")»EditPart«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::Files FOR SAgent-»
+	«EXPAND metaabm::tmpl::Java::ClassFile-»
+    «EXPAND metaabm::tmpl::Java::ClassFile FOREACH attributes.typeSelect(SState)-»
+«ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::Body FOR SAgent-»
 	«targetDef.proceed()»
@@ -72,24 +75,17 @@ import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
 
 «AROUND metaabm::tmpl::Java::Body FOR SContext-»
     
-    EditPartFactory factory;
-    
-    EditPartFactory treeFactory;
-    
     «EXPAND metaabm::ascape::tmpl::ScapeAspect::ScapeBody-»
-    
-    public EditPartFactory getEditPartFactory(Object object) {
-    	if (factory == null) {
-	        factory = new «implementation.className»PartFactory();
-    	}
-        return factory;
-    }
-    
-    public EditPartFactory getEditPartTreeFactory(Object object) {
-    	if (treeFactory == null) {
-	        treeFactory = new AscapePartTreeFactory();
-    	}
-        return treeFactory;
+    /**
+     * @param adapter
+     * @return
+     * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
+     */
+    public Object getAdapter(Class adapter) {
+        if (adapter == IAdapterFactory.class) {
+        	return «typeName()»AdapterFactory.getDefault();
+        }
+        return null;
     }
 
     private Color getInferredChartColor(Object agent,
@@ -105,24 +101,6 @@ import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
     
     public static void main(String[] args) {
         (new NonGraphicRunner()).openInstance("«implementation.qualifiedName»");
-    }
-«ENDAROUND»
-
-«AROUND metaabm::tmpl::Java::Body FOR SStyle-»
-    «targetDef.proceed()»
-    Dimension notShown = new Dimension(0, 0);
-        
-    protected IFigure buildFigure(IFigure figure) {
-        Color color = null;
-        boolean createFigure = figure == null;
-        Shape markerFigure = null;
-        if (!createFigure) {
-	        ((Shape) figure).setFill(false);
-			((Shape) figure).setOutline(false);
-		}
-		«FOREACH ((AGroup) rootActivity).roots AS act»«agent.typeName()» «act.id()» = («agent.typeName()») getModel();«ENDFOREACH»
-        «EXPAND metaabm::tmpl::Java::ActionBody-»
-        return figure;
     }
 «ENDAROUND»
 
@@ -229,34 +207,6 @@ import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
 	«EXPAND StyleProvider»
 	«EXPAND RecurseAgentProviders FOREACH agents»
 «ENDDEFINE»
-
-«AROUND metaabm::tmpl::Java::Model FOR SContext-»
-    «targetDef.proceed()»
-    «IF generate()-»
-    «FILE javaFileLoc().replaceFirst(".java", "PartFactory.java")»
-    package «package()»;
-    
-    import org.ascape.model.HostCell;
-    import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
-    import org.eclipse.gef.EditPart;
-	import org.eclipse.amp.escape.ascape.gef.DefaultHostCellEditPart;
-    
-    
-    public class «typeName()»PartFactory extends AscapePartFactory {
-    
-        protected EditPart getPartForElement(Object model) {
-        	«EXPAND RecurseAgentProviders FOREACH agents»
-			«IF ((AGroup) rootActivity).members.typeSelect(ABuildGrid).size > 0 && !((AGroup) rootActivity).members.typeSelect(ABuildGrid).exists(e | ((ABuildGrid) e).fillAgent != null)»
-	        if (model instanceof HostCell) {
-	            return new DefaultHostCellEditPart();
-	        }
-			«ENDIF»
-            return super.getPartForElement(model);
-        }
-    }
-    «ENDFILE»
-    «ENDIF»
-«ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ExtendType FOR ASink-»
 	«IF function.color()-»Color

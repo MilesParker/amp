@@ -1,0 +1,90 @@
+«IMPORT emf»
+«IMPORT metaabm»
+«IMPORT metaabm::act»
+«IMPORT metaabm::function»
+
+«EXTENSION metaabm::tmpl::types»
+«EXTENSION metaabm::tmpl::names» 
+«EXTENSION metaabm::tmpl::infer»
+«EXTENSION metaabm::tmpl::util»
+«EXTENSION metaabm::tmpl::projections»
+«EXTENSION metaabm::ascape::tmpl::namesascape»
+«EXTENSION metaabm::ascape::tmpl::inferascape»
+
+«AROUND metaabm::tmpl::Java::Imports FOR SAgent-»
+import org.eclipse.core.runtime.IAdapterFactory;
+
+import org.ascape.model.Scape;
+
+import org.eclipse.amp.agf.gef.IFigureProvider;
+import org.eclipse.jface.viewers.IColorProvider;
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::Model FOR SContext-»
+	«EXPAND metaabm::tmpl::Java::ClassFile-»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::ClassFile FOR IID-»
+«IF generate()»
+    «FILE javaFileLoc().replaceFirst(".java", "AdapterFactory.java")-»
+    «EXPAND metaabm::tmpl::Java::ClassText»
+    «ENDFILE-»
+«ENDIF»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::ClassName FOR IID-»«typeName()»AdapterFactory«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-» implements IAdapterFactory«ENDAROUND»
+
+«DEFINE ProviderInstance(String providerType) FOR SAgent»
+    «IF styles.size > 0-»
+        if (agent instanceof Scape && ((Scape) agent).getPrototypeAgent().getClass() == «implementation.className».class) {
+            return «styles.get(0).implementation.qualifiedName»«providerType».getDefault();
+        }
+    «ENDIF-»
+«ENDDEFINE»
+«DEFINE RecurseAgentProviders(String providerType) FOR SAgent-»
+	«EXPAND ProviderInstance(providerType)-»
+«ENDDEFINE»
+«DEFINE RecurseAgentProviders(String providerType) FOR SContext-»
+	«EXPAND ProviderInstance(providerType)-»
+	«EXPAND RecurseAgentProviders(providerType) FOREACH agents-»
+«ENDDEFINE»
+«DEFINE RecurseAgentProviders(String providerType) FOR IID»«ENDDEFINE»
+
+«DEFINE ProviderType(String providerType) FOR IID-»
+    if (type == I«providerType».class) {
+    	«EXPAND RecurseAgentProviders(providerType)»
+    }
+«ENDDEFINE»
+
+«AROUND metaabm::tmpl::Java::ClassImplementation FOR IID-»
+
+    private static IAdapterFactory singleton;
+    
+	Class[] adapters = new Class[]{IFigureProvider.class, IColorProvider.class};
+
+    /**
+     * @param arg0
+     * @param arg1
+     * @return
+     * @see org.eclipse.core.runtime.IAdapterFactory#getAdapter(java.lang.Object, java.lang.Class)
+     */
+    public Object getAdapter(Object agent, Class type) {
+    	«EXPAND ProviderType("ColorProvider")»
+    	«EXPAND ProviderType("FigureProvider")»
+        return null;
+    }
+
+    /**
+     * @return
+     * @see org.eclipse.core.runtime.IAdapterFactory#getAdapterList()
+     */
+    public Class[] getAdapterList() {
+        return adapters;
+    }
+    
+    public static IAdapterFactory getDefault() {
+        return singleton;
+    }
+«ENDAROUND»

@@ -12,10 +12,7 @@
 «EXTENSION metaabm::ascape::tmpl::inferascape»
 
 «AROUND metaabm::tmpl::Java::Imports FOR SAgent-»
-import org.eclipse.amp.agf3d.I3DModelFactoryProvider;
-import org.eclipse.amp.escape.ascape.adapt.Ascape3DPartFactory;
 import org.eclipse.amp.escape.ascape.agf3d.GEF3DView;
-import org.eclipse.jface.viewers.IColorProvider;
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ClassFile FOR IID-»
@@ -30,29 +27,10 @@ import org.eclipse.jface.viewers.IColorProvider;
 
 «AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-»extends «typeName()»«ENDAROUND»
 
-«DEFINE ColorProvider FOR SAgent»
-    «IF styles.size > 0»
-        if (model instanceof «implementation.className») {
-            return new «styles.get(0).implementation.qualifiedName»ColorProvider();
-        }
-    «ENDIF-»
-«ENDDEFINE»
-«DEFINE RecurseAgentProviders FOR SAgent»
-	«EXPAND ColorProvider»
-«ENDDEFINE»
-«DEFINE RecurseAgentProviders FOR SContext»
-	«EXPAND ColorProvider»
-	«EXPAND RecurseAgentProviders FOREACH agents»
-«ENDDEFINE»
+«AROUND metaabm::tmpl::Java::ClassImplementation FOR IID-»
 
-«AROUND metaabm::tmpl::Java::Body FOR SContext-»
-
-    public EditPartFactory getEditPart3DFactory(Object object) {
-        return new Ascape3DPartFactory() {
-            public IColorProvider getColorProvider(Object model) {
-            «EXPAND RecurseAgentProviders FOREACH agents»
-            }
-        };
-    }
+	public void createGraphicViews() {
+		addView(new GEF3DView());
+	}
 «ENDAROUND»
 
