@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: MetaABMBuilder.java,v 1.1 2009/07/16 21:01:08 mparker Exp $
+ * </copyright> $Id: MetaABMBuilder.java,v 1.2 2010/05/06 04:29:25 mparker Exp $
  */
 package org.eclipse.amp.amf.gen.ide;
 
@@ -30,6 +30,11 @@ public class MetaABMBuilder extends AbstractMWEBuilder {
 
     public MetaABMBuilder(String taskDescription, String pluginName, String workflowPath, boolean createMarkers) {
         super(taskDescription, pluginName, workflowPath, "metaabm");
+        this.createMarkers = createMarkers;
+    }
+
+    public MetaABMBuilder(String taskDescription, String pluginName, String[] workflowPaths, boolean createMarkers) {
+        super(taskDescription, pluginName, workflowPaths, "metaabm");
         this.createMarkers = createMarkers;
     }
 

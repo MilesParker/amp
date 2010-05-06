@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: AbstractMWEBuilder.java,v 1.2 2009/11/16 05:53:50 mparker Exp $
+ * </copyright> $Id: AbstractMWEBuilder.java,v 1.3 2010/05/06 04:29:25 mparker Exp $
  */
 package org.eclipse.amp.amf.gen.ide;
 
@@ -48,7 +48,7 @@ import org.eclipse.ui.statushandlers.StatusManager;
 public abstract class AbstractMWEBuilder extends IncrementalProjectBuilder {
 
     String sourceExtension;
-    protected String workflowPath;
+    protected String[] workflowPaths;
     ExtendedResourceLoader resourceLoader;
     protected static MetaABMBuilder builder;
     private Map<String, String> genProps;
@@ -62,9 +62,13 @@ public abstract class AbstractMWEBuilder extends IncrementalProjectBuilder {
     private boolean reportErrors = true;
 
     public AbstractMWEBuilder(String taskDescription, String pluginName, String workflowPath, String sourceExtension) {
+        this(taskDescription, pluginName, new String[] { workflowPath }, sourceExtension);
+    }
+
+    public AbstractMWEBuilder(String taskDescription, String pluginName, String[] workflowPaths, String sourceExtension) {
         this.taskDescription = taskDescription;
         this.pluginName = pluginName;
-        this.workflowPath = workflowPath;
+        this.workflowPaths = workflowPaths;
         this.sourceExtension = sourceExtension;
         setGenProperties(new HashMap<String, String>());
         loadPlugins();
@@ -152,7 +156,10 @@ public abstract class AbstractMWEBuilder extends IncrementalProjectBuilder {
         slotContents.put("exceptionHandler", exceptionHandler);
         loadPropertiesFromPrefs();
 
-        boolean success = workflowRunner.run(workflowPath, workflowMonitor, getGenProperties(), slotContents);
+        boolean success = true;
+        for (String workflow : workflowPaths) {
+            success &= workflowRunner.run(workflow, workflowMonitor, getGenProperties(), slotContents);
+        }
         LogWorkflow.setSuccess(success);
         LogWorkflow.report(pluginName, fullTaskDescription, false);
         LogWorkflow.restoreLogFactory();
@@ -209,14 +216,6 @@ public abstract class AbstractMWEBuilder extends IncrementalProjectBuilder {
     protected void incrementalBuild(IResourceDelta delta, IProgressMonitor monitor) throws CoreException {
         // the visitor does the work.
         delta.accept(new BuilderDeltaVisitor());
-    }
-
-    public String getWorkflowPath() {
-        return workflowPath;
-    }
-
-    public void setWorkflowPath(String workflowPath) {
-        this.workflowPath = workflowPath;
     }
 
     public void setGenProperties(Map<String, String> genProps) {
