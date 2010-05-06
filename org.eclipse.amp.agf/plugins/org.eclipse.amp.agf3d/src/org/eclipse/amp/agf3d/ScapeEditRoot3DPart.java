@@ -21,7 +21,6 @@ import java.util.List;
 import org.eclipse.amp.agf.gef.GEFUtils;
 import org.eclipse.amp.agf.gef.ScapeEditPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
-import org.eclipse.amp.axf.space.IGraphProvider;
 import org.eclipse.amp.axf.space.ILocation;
 import org.eclipse.amp.axf.space.ILocation2D;
 import org.eclipse.amp.axf.space.ILocationProvider;
@@ -44,12 +43,8 @@ import org.eclipse.jface.viewers.IFilter;
  */
 public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
 
-
-
-
-    public ScapeEditRoot3DPart(ICompositionProvider memberProvider, ILocationProvider locationProvider,
-            IGraphProvider graphProvider, IFilter filter) {
-        super(memberProvider, locationProvider, graphProvider, filter);
+    public ScapeEditRoot3DPart(ICompositionProvider memberProvider, ILocationProvider locationProvider, IFilter filter) {
+        super(memberProvider, locationProvider, filter);
     }
 
     /**

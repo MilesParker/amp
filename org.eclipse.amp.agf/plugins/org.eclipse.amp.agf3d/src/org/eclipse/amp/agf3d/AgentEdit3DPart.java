@@ -16,6 +16,7 @@
 package org.eclipse.amp.agf3d;
 
 import org.eclipse.amp.agf.gef.AgentEditPart;
+import org.eclipse.amp.agf.gef.IFigureProvider;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw3d.Figure3D;
@@ -27,6 +28,7 @@ import org.eclipse.draw3d.geometry.IVector3f;
 import org.eclipse.draw3d.geometry.Vector3fImpl;
 import org.eclipse.draw3d.shapes.Shape;
 import org.eclipse.jface.viewers.IColorProvider;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.swt.graphics.Color;
 
 
@@ -73,22 +75,11 @@ public class AgentEdit3DPart extends AgentEditPart {
 
     IShape3DProvider shapeProvider;
 
-    IColorProvider colorProvider;
-
-    public AgentEdit3DPart(IShape3DProvider shapeProvider, IColorProvider colorProvider, boolean update) {
-        super();
-        this.colorProvider = colorProvider;
+    public AgentEdit3DPart(IShape3DProvider shapeProvider, IFigureProvider figureProvider,
+            IColorProvider colorProvider, ILabelProvider labelProvider, boolean update) {
+        super(figureProvider, colorProvider, labelProvider);
         this.shapeProvider = shapeProvider;
         this.update = update;
-    }
-
-    public AgentEdit3DPart(IShape3DProvider shapeProvider, IColorProvider colorProvider) {
-        this(shapeProvider, colorProvider, true);
-    }
-    /**
-     * 
-     */
-    public AgentEdit3DPart() {
     }
 
     @Override
@@ -100,12 +91,12 @@ public class AgentEdit3DPart extends AgentEditPart {
             size3d = new Vector3fImpl(size3d.getX(), size3d.getY(), -size3d.getZ());
             ((Figure3D) figure).getPosition3D().setSize3D(size3d);
         }
-        if (colorProvider != null) {
-            Color foreground = colorProvider.getForeground(getModel());
+        if (getColorProvider() != null) {
+            Color foreground = getColorProvider().getForeground(getModel());
             if (figure.getForegroundColor() != foreground) {
                 figure.setForegroundColor(foreground);
             }
-            Color background = colorProvider.getBackground(getModel());
+            Color background = getColorProvider().getBackground(getModel());
             if (figure.getBackgroundColor() != background) {
                 figure.setBackgroundColor(background);
             }

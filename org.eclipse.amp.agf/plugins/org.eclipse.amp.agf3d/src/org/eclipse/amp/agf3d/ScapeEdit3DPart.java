@@ -25,7 +25,6 @@ import org.eclipse.amp.agf.gef.GenericEditPart;
 import org.eclipse.amp.agf.gef.ScapeEditPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.space.IGraphProvider;
 import org.eclipse.amp.axf.space.ILocation2D;
 import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.draw2d.IFigure;
@@ -48,8 +47,8 @@ import org.eclipse.swt.graphics.Color;
 public class ScapeEdit3DPart extends ScapeEditPart {
 
     public ScapeEdit3DPart(ICompositionProvider memberProvider, ILocationProvider locationProvider,
-            IGraphProvider graphProvider, IFilter filter) {
-        super(memberProvider, locationProvider, graphProvider, filter);
+            IFilter filter) {
+        super(memberProvider, locationProvider, filter);
     }
 
     public static final int DEFAULT_ANIMATION_STEP_COUNT = 5;
