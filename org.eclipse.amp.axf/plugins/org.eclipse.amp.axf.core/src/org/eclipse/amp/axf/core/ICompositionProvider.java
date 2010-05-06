@@ -61,10 +61,20 @@ public interface ICompositionProvider {
     public boolean isMutable(Object hasIterable);
 
     /**
+     * Indicates whether this object is a composition, i.e. contains other members. If not, it will be assumed to be a
+     * model leaf.
+     * 
+     * @param parent the object to test for composition.
+     * 
+     * @return true if <i>any</i> children of the parent object's level are themselves compositions.
+     */
+    public boolean isComposition(Object member);
+
+    /**
      * Indicates whether children of the provided object are themselves capable of providing composition members. If
      * not, we can assume that they represent the leaves of the composition structure.
      * 
-     * @param parent the object for which we are testing chilren members.
+     * @param parent the object for which we are testing children members.
      * 
      * @return true if <i>any</i> children of the parent object's level are themselves compositions.
      */
