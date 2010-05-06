@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.8 2010/05/05 06:32:24 mparker Exp $
+ $Id: plugin.xml,v 1.9 2010/05/06 04:29:20 mparker Exp $
 -->
 
 <plugin>
@@ -43,7 +43,7 @@
               type="org.eclipse.jface.viewers.IColorProvider">
         </adapter>
         <adapter
-              type="org.eclipse.amp.agf.gef.IModelFactoryProvider">
+              type="org.eclipse.amp.agf.gef.IFigureProvider">
         </adapter>
      </factory>
      <factory

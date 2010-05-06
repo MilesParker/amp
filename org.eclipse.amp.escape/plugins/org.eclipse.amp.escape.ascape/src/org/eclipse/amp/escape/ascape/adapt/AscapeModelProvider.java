@@ -220,4 +220,13 @@ public class AscapeModelProvider implements ILocationProvider, IGraphProvider, I
         }
         return singleton;
     }
+
+    /**
+     * @param member
+     * @return
+     * @see org.eclipse.amp.axf.core.ICompositionProvider#isComposition(java.lang.Object)
+     */
+    public boolean isComposition(Object member) {
+        return member instanceof Scape;
+    }
 }
