@@ -80,4 +80,18 @@
         </menu>
      </viewContribution>
  </extension>
+ 
+  <extension
+        point="org.eclipse.ui.perspectiveExtensions">
+     <perspectiveExtension
+           targetID="org.eclipse.amp.axf.ExecutionPerspective">
+        <view
+              id="org.eclipse.amp.view.GraphView:*"
+              ratio=".5"
+              relationship="right"
+              relative="org.eclipse.ui.editorss"
+              visible="false">
+        </view>
+     </perspectiveExtension>
+  </extension>
 </plugin>
