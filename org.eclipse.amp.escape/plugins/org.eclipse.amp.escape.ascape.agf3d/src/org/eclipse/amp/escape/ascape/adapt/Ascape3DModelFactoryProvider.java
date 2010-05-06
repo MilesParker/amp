@@ -26,13 +26,13 @@ import org.eclipse.gef.EditPartFactory;
  */
 public class Ascape3DModelFactoryProvider implements I3DModelFactoryProvider {
 
-    Ascape3DPartFactory factory = new Ascape3DPartFactory();
+    // Ascape3DPartFactory factory = new Ascape3DPartFactory();
     /**
      * @param model
      * @return
      * @see org.eclipse.amp.agf3d.I3DModelFactoryProvider#getEditPart3DFactory(java.lang.Object)
      */
     public EditPartFactory getEditPart3DFactory(Object model) {
-        return factory;
+        return null;
     }
 }

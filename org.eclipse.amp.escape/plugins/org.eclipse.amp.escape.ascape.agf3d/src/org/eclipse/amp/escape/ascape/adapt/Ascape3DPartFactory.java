@@ -18,25 +18,21 @@ package org.eclipse.amp.escape.ascape.adapt;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.ascape.model.Scape;
+import org.ascape.model.space.Graph;
+import org.eclipse.amp.agf.gef.CompositionPartFactory;
 import org.eclipse.amp.agf3d.AgentEdit3DPart;
 import org.eclipse.amp.agf3d.IShape3DProvider;
 import org.eclipse.amp.agf3d.ScapeEdit3DPart;
 import org.eclipse.amp.agf3d.ScapeEditRoot3DPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
-import org.eclipse.amp.escape.ascape.agf3d.AscapeAgentEdit3DPart;
-import org.eclipse.amp.escape.ascape.agf3d.CellOccupantEdit3DPart;
-import org.eclipse.amp.escape.ascape.agf3d.HostCellEdit3DPart;
+import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.gef.EditPart;
 import org.eclipse.jface.viewers.IColorProvider;
 
-import org.ascape.model.Agent;
-import org.ascape.model.CellOccupant;
-import org.ascape.model.HostCell;
-import org.ascape.model.Scape;
-import org.ascape.model.space.Graph;
-
-public class Ascape3DPartFactory extends AscapePartFactory {
+public class Ascape3DPartFactory extends CompositionPartFactory {
 
     /**
      * 
@@ -61,6 +57,14 @@ public class Ascape3DPartFactory extends AscapePartFactory {
 
     AscapeModelProvider rootProvider = new Root3DProvider();
 
+    private ICompositionProvider shapeProvider;
+
+    public Ascape3DPartFactory(IModel model) {
+        super(model, null);
+        shapeProvider = (ICompositionProvider) Platform.getAdapterManager().getAdapter(model,
+                                                                                       ICompositionProvider.class);
+    }
+
     protected EditPart getPartForElement(Object model) {
         if (model instanceof ScapeWrapperModel) {
             return getPartForElement(((ScapeWrapperModel) model).getScape());
@@ -69,9 +73,9 @@ public class Ascape3DPartFactory extends AscapePartFactory {
             Scape scape = (Scape) model;
             AscapeModelProvider memberProvider = (AscapeModelProvider) getMemberProvider(scape);
             if (scape.isRoot()) {
-                return new ScapeEditRoot3DPart(memberProvider, memberProvider, memberProvider, getFilter(scape));
+                return new ScapeEditRoot3DPart(getCompositionProvider(), getLocationProvider(), null);
             } else {
-                return new ScapeEdit3DPart(memberProvider, memberProvider, memberProvider, getFilter(scape));
+                return new ScapeEdit3DPart(getCompositionProvider(), getLocationProvider(), null);
             }
         } else {
             IColorProvider colorProvider = getColorProvider(model);
@@ -79,18 +83,8 @@ public class Ascape3DPartFactory extends AscapePartFactory {
             if (shapeProvider != null) {
                 return new AgentEdit3DPart(shapeProvider, colorProvider, true);
             }
-            if (model instanceof HostCell) {
-                return new HostCellEdit3DPart(colorProvider);
-            } else if (model instanceof CellOccupant) {
-                return new CellOccupantEdit3DPart(colorProvider);
-            } else if (model instanceof Agent) {
-                return new AscapeAgentEdit3DPart(colorProvider);
-            } else {
-                return null;
-                // throw new RuntimeException("No part for the model: " + model
-                // + (model != null ? "[" + model.getClass() + "]" : ""));
-            }
         }
+        return null;
     }
 
     public IColorProvider getColorProvider(Object object) {
