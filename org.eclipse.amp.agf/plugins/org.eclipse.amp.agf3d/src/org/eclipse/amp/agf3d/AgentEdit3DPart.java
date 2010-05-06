@@ -16,7 +16,6 @@
 package org.eclipse.amp.agf3d;
 
 import org.eclipse.amp.agf.gef.AgentEditPart;
-import org.eclipse.amp.agf.gef.IFigureProvider;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw3d.Figure3D;
@@ -28,7 +27,6 @@ import org.eclipse.draw3d.geometry.IVector3f;
 import org.eclipse.draw3d.geometry.Vector3fImpl;
 import org.eclipse.draw3d.shapes.Shape;
 import org.eclipse.jface.viewers.IColorProvider;
-import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.swt.graphics.Color;
 
 
@@ -75,9 +73,9 @@ public class AgentEdit3DPart extends AgentEditPart {
 
     IShape3DProvider shapeProvider;
 
-    public AgentEdit3DPart(IShape3DProvider shapeProvider, IFigureProvider figureProvider,
-            IColorProvider colorProvider, ILabelProvider labelProvider, boolean update) {
-        super(figureProvider, colorProvider, labelProvider);
+    public AgentEdit3DPart(IShape3DProvider shapeProvider,
+            IColorProvider colorProvider, boolean update) {
+        super(null, colorProvider, null);
         this.shapeProvider = shapeProvider;
         this.update = update;
     }

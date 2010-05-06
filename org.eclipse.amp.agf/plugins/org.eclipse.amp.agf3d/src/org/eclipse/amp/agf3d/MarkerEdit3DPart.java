@@ -28,7 +28,7 @@ public class MarkerEdit3DPart extends AgentEdit3DPart {
 
     public MarkerEdit3DPart(IShape3DProvider shapeProvider, IFigureProvider figureProvider,
             IColorProvider colorProvider, ILabelProvider labelProvider, boolean update) {
-        super(Shapes3D.CUBE_SHAPE_PROVIDER, figureProvider, colorProvider, labelProvider, update);
+        super(Shapes3D.CUBE_SHAPE_PROVIDER, colorProvider, update);
     }
 
     protected IFigure createFigure() {
