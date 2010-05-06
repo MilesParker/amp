@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.13 2010/04/01 00:03:08 mparker Exp $
+ $Id: plugin.xml,v 1.14 2010/05/06 04:29:14 mparker Exp $
 -->
 
 <plugin>
@@ -491,7 +491,7 @@
              commandId="org.eclipse.amp.amf.gen.escape">
        </handler>
        <handler
-             class="org.eclipse.amp.escape.amf.ide.GenerateEscapeStyles3DHandler"
+             class="org.eclipse.amp.escape.amf.ide.GenerateEscape3DHandler"
              commandId="org.eclipse.amp.amf.gen.escape.3D">
        </handler>
     </extension>
@@ -514,21 +514,12 @@
        </builder>
     </extension> 
 	<extension
-          id="escapeBuilder2"
-          name="Escape MetaABM Style Builder"
-          point="org.eclipse.core.resources.builders">
-       <builder
-             hasNature="false">
-          <run class="org.eclipse.amp.escape.amf.ide.EscapeModelStyles2Builder"/>
-       </builder>
-    </extension> 
-	<extension
           id="escapeBuilder3D"
-          name="Escape MetaABM 3D Styles Builder"
+          name="Escape MetaABM 3D Builder"
           point="org.eclipse.core.resources.builders">
        <builder
              hasNature="false">
-          <run class="org.eclipse.amp.escape.amf.ide.EscapeModelStyles3DBuilder"/>
+          <run class="org.eclipse.amp.escape.amf.ide.EscapeModel3DBuilder"/>
        </builder>
     </extension> 
     <extension point="org.eclipse.ui.newWizards">

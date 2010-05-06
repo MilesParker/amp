@@ -24,11 +24,7 @@ public class GenerateEscapeHandler extends ResourceJobHandler {
     public void execute(IResource resource) {
         EscapeModelBuilder.getEscapeBuilderDefault().setCurrentMonitor(getMonitor());
         EscapeModelBuilder.getEscapeBuilderDefault().handleModifiedResource(resource);
-        EscapeModelStyles2Builder.getEscapeBuilderDefault().setCurrentMonitor(getMonitor());
-        EscapeModelStyles2Builder.getEscapeBuilderDefault().handleModifiedResource(resource);
-        EscapeModelStyles3DBuilder.getEscapeBuilderDefault().setCurrentMonitor(getMonitor());
-        EscapeModelStyles3DBuilder.getEscapeBuilderDefault().handleModifiedResource(resource);
-        // EscapeGraphicsBuilder.getEscapeBuilderDefault().setCurrentMonitor(getMonitor());
-        // EscapeGraphicsBuilder.getEscapeBuilderDefault().handleModifiedResource(resource);
+        EscapeModel3DBuilder.getEscapeBuilderDefault().setCurrentMonitor(getMonitor());
+        EscapeModel3DBuilder.getEscapeBuilderDefault().handleModifiedResource(resource);
     }
 }

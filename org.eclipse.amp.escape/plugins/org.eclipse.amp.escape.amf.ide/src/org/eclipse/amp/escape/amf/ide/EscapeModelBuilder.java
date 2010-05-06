@@ -12,11 +12,12 @@
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.escape.amf.ide;
 
 import org.eclipse.amp.amf.gen.ide.MetaABMBuilder;
 import org.eclipse.amp.escape.gen.EscapeGenActivator;
+
 import org.metaabm.gen.ascape.AscapeGenActivator;
 
 
@@ -27,7 +28,13 @@ public class EscapeModelBuilder extends MetaABMBuilder {
     private static MetaABMBuilder escapeBuilder;
 
     public EscapeModelBuilder() {
-        super("Generating Escape", "org.eclipse.amp.escape.gen", "model/generate_escape.mwe", true);
+        super("Generating Escape", "org.eclipse.amp.escape.gen", new String[] { "model/generate_escape.mwe",
+            "model/generate_escape_color.mwe", "model/generate_escape_figure.mwe",
+            "model/generate_escape_2Dgraphics.mwe", "model/generate_escape_adapter.mwe" }, true);
+    }
+
+    public EscapeModelBuilder(String workflow) {
+        super("Generating Escape", "org.eclipse.amp.escape.gen", workflow, true);
     }
 
     public void loadPlugins() {

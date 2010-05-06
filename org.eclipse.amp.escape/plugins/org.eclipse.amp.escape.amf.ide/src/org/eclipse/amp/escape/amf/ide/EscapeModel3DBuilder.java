@@ -17,17 +17,18 @@ package org.eclipse.amp.escape.amf.ide;
 
 import org.eclipse.amp.amf.gen.ide.MetaABMBuilder;
 import org.eclipse.amp.escape.gen.EscapeGenActivator;
+
 import org.metaabm.gen.ascape.AscapeGenActivator;
 
 
-public class EscapeModelStyles3DBuilder extends MetaABMBuilder {
+public class EscapeModel3DBuilder extends MetaABMBuilder {
 
     public final static String ESCAPE_BUILDER_3D_ID = "escapeBuilder3D";
 
     private static MetaABMBuilder escapeBuilder;
 
-    public EscapeModelStyles3DBuilder() {
-        super("Generating Escape 3D Styles", "org.eclipse.amp.escape.gen", "model/generate_escape_styles3D.mwe", true);
+    public EscapeModel3DBuilder() {
+        super("Generating Escape 3D Styles", "org.eclipse.amp.escape.gen", "model/generate_escape_3D.mwe", true);
     }
 
     public void loadPlugins() {
@@ -43,7 +44,7 @@ public class EscapeModelStyles3DBuilder extends MetaABMBuilder {
      */
     public static MetaABMBuilder getEscapeBuilderDefault() {
         if (escapeBuilder == null) {
-            escapeBuilder = new EscapeModelStyles3DBuilder();
+            escapeBuilder = new EscapeModel3DBuilder();
         }
         return escapeBuilder;
     }
