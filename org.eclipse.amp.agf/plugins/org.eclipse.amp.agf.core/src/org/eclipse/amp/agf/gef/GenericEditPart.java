@@ -20,8 +20,6 @@ import java.beans.PropertyChangeListener;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.ConnectionAnchor;
@@ -29,23 +27,17 @@ import org.eclipse.draw2d.Ellipse;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
-import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Insets;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gef.editpolicies.SelectionEditPolicy;
-import org.eclipse.ui.statushandlers.StatusManager;
 
 public abstract class GenericEditPart extends AbstractGraphicalEditPart implements PropertyChangeListener {
 
     public static final int SCALE = 20;
-    public static final Dimension SIZE_FULL = new Dimension(AgentEditPart.SCALE, AgentEditPart.SCALE);
-    public static final Dimension SIZE_INSET_1 = new Dimension(AgentEditPart.SCALE - 1, AgentEditPart.SCALE - 1);
     protected ConnectionAnchor anchor;
     public static final Border HIGHLIGHT_RECTANGLE = new MarginBorder(2) {
         @Override
@@ -90,10 +82,6 @@ public abstract class GenericEditPart extends AbstractGraphicalEditPart implemen
         }
     }
 
-    public GenericEditPart() {
-        super();
-    }
-
     /**
      * Construct the figure used to represent this agent. This method is intended to both create and update figures. If
      * a figure is passed in, this method should modify that figure as desired. If no figure is passed in, this method
@@ -103,27 +91,14 @@ public abstract class GenericEditPart extends AbstractGraphicalEditPart implemen
      * @return must return figure passed in if not null
      */
     protected IFigure buildFigure(IFigure figure) {
-        return figure != null ? figure : shapeRectangle();
+        return figure != null ? figure : Shapes.createRectangle();
     }
 
     protected IFigure createFigure() {
-        IFigure buildFigure = buildFigure(null);
-        if (buildFigure == null) {
-            if (!noFigureWarning.contains(getClass())) {
-                StatusManager
-                .getManager()
-                .handle(
-                        new Status(
-                                   IStatus.WARNING,
-                                   "org.eclipse.amp.escape.core",
-                                   "No figure created by: "
-                                   + getClass()
-                                   + ". This is normal if the style does not always produce a figure, but you may want to check the #buildFigure implementation."));
-                noFigureWarning.add(getClass());
-            }
-            buildFigure = shapeRectangle();
-        }
-        return buildFigure;
+        Shape figure = Shapes.createRectangle();
+        figure.setForegroundColor(ColorConstants.black);
+        figure.setBackgroundColor(ColorConstants.gray);
+        return figure;
     }
 
     protected void updateSelection() {
@@ -169,118 +144,6 @@ public abstract class GenericEditPart extends AbstractGraphicalEditPart implemen
         figure.setLineWidth(1);
     }
 
-    protected Shape shapeOval() {
-        Shape figure = new Ellipse() {
-            protected boolean useLocalCoordinates() {
-                return true;
-            }
-        };
-        setupShared(figure);
-        figure.setSize(SIZE_INSET_1);
-        return figure;
-    }
-
-    protected Shape shapeRoundedRect() {
-        Shape figure = new RoundedRectangle() {
-            protected boolean useLocalCoordinates() {
-                return true;
-            }
-        };
-        setupShared(figure);
-        figure.setSize(SIZE_FULL);
-        return figure;
-    }
-
-    protected Shape shapeRectangle() {
-        Shape figure = new RectangleFigure() {
-            protected boolean useLocalCoordinates() {
-                return true;
-            }
-        };
-        setupShared(figure);
-        figure.setSize(SIZE_FULL);
-        return figure;
-    }
-
-    protected Shape shapeMarker() {
-        Shape markerFigure;
-        if (figure != null && figure.getChildren().size() > 0) {
-            markerFigure = (Shape) figure.getChildren().get(0);
-        } else {
-            // This figure has only a marker
-            if (figure == null) {
-                setFigure(shapeRectangle());
-            }
-            markerFigure = new Ellipse();
-            markerFigure.setFill(false);
-            markerFigure.setOutline(false);
-            getFigure().add(markerFigure);
-            markerFigure.setLocation(new Point(0, 0));
-            markerFigure.setSize(new Dimension(AgentEditPart.SCALE / 4, AgentEditPart.SCALE / 4));
-        }
-        setupShared(markerFigure);
-        return markerFigure;
-    }
-
-    protected Shape shapeMarker2() {
-        Shape markerFigure;
-        if (figure != null && figure.getChildren().size() > 0) {
-            markerFigure = (Shape) figure.getChildren().get(0);
-        } else {
-            // This figure has only a marker
-            if (figure == null) {
-                setFigure(shapeRectangle());
-            }
-            markerFigure = new Ellipse();
-            markerFigure.setFill(false);
-            markerFigure.setOutline(false);
-            getFigure().add(markerFigure);
-            markerFigure.setLocation(new Point(0, AgentEditPart.SCALE / 2));
-            markerFigure.setSize(new Dimension(AgentEditPart.SCALE / 4, AgentEditPart.SCALE / 4));
-        }
-        setupShared(markerFigure);
-        return markerFigure;
-    }
-
-    protected Shape shapeMarker3() {
-        Shape markerFigure;
-        if (figure != null && figure.getChildren().size() > 0) {
-            markerFigure = (Shape) figure.getChildren().get(0);
-        } else {
-            // This figure has only a marker
-            if (figure == null) {
-                setFigure(shapeRectangle());
-            }
-            markerFigure = new Ellipse();
-            markerFigure.setFill(false);
-            markerFigure.setOutline(false);
-            getFigure().add(markerFigure);
-            markerFigure.setLocation(new Point(AgentEditPart.SCALE / 2, 0));
-            markerFigure.setSize(new Dimension(AgentEditPart.SCALE / 4, AgentEditPart.SCALE / 4));
-        }
-        setupShared(markerFigure);
-        return markerFigure;
-    }
-
-    protected Shape shapeMarker4() {
-        Shape markerFigure;
-        if (figure != null && figure.getChildren().size() > 0) {
-            markerFigure = (Shape) figure.getChildren().get(0);
-        } else {
-            // This figure has only a marker
-            if (figure == null) {
-                setFigure(shapeRectangle());
-            }
-            markerFigure = new Ellipse();
-            markerFigure.setFill(false);
-            markerFigure.setOutline(false);
-            getFigure().add(markerFigure);
-            markerFigure.setLocation(new Point(AgentEditPart.SCALE / 2, AgentEditPart.SCALE / 2));
-            markerFigure.setSize(new Dimension(AgentEditPart.SCALE / 4, AgentEditPart.SCALE / 4));
-        }
-        setupShared(markerFigure);
-        return markerFigure;
-    }
 
     protected void createEditPolicies() {
         installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new SelectionEditPolicy() {

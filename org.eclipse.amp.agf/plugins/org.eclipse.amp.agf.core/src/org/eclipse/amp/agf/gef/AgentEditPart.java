@@ -15,100 +15,66 @@
  */
 package org.eclipse.amp.agf.gef;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.jface.viewers.IColorProvider;
+import org.eclipse.jface.viewers.ILabelProvider;
 
-import org.eclipse.draw2d.ChopboxAnchor;
-import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.Ellipse;
-import org.eclipse.draw2d.EllipseAnchor;
-import org.eclipse.gef.ConnectionEditPart;
-import org.eclipse.gef.NodeEditPart;
-import org.eclipse.gef.Request;
+public class AgentEditPart extends AgentNodeEditPart {
 
-public class AgentEditPart extends GenericEditPart implements NodeEditPart {
+    ILabelProvider labelProvider;
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public List getModelSourceConnections() {
-        List<ScapeGraphEditPart> graphParts = ((ScapeEditPart) getParent()).getRootScapeEditPart().getGraphParts();
-        List<?> allGraphConnections = new ArrayList();
-        for (ScapeGraphEditPart scapeGraphEditPart : graphParts) {
-            allGraphConnections.addAll(scapeGraphEditPart.getModelSourceConnections(getModel()));
-        }
-        return allGraphConnections;
+    IFigureProvider figureProvider;
+
+    private IColorProvider colorProvider;
+
+    public AgentEditPart(IFigureProvider figureProvider, IColorProvider colorProvider, ILabelProvider labelProvider) {
+        super();
+        this.labelProvider = labelProvider;
+        this.figureProvider = figureProvider;
+        this.colorProvider = colorProvider;
     }
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public List getModelTargetConnections() {
-        List<ScapeGraphEditPart> graphParts = ((ScapeEditPart) getParent()).getRootScapeEditPart().getGraphParts();
-        List allGraphConnections = new ArrayList();
-        for (ScapeGraphEditPart scapeGraphEditPart : graphParts) {
-            allGraphConnections.addAll(scapeGraphEditPart.getModelTargetConnections(getModel()));
-        }
-        return allGraphConnections;
+    protected void updateColor(IFigure figure) {
+        figure.setForegroundColor(getColorProvider().getForeground(getModel()));
+        figure.setBackgroundColor(getColorProvider().getBackground(getModel()));
     }
 
-    protected ConnectionAnchor getConnectionAnchor() {
-        if (anchor == null) {
-            if (getFigure() instanceof Ellipse) {
-                anchor = new EllipseAnchor(getFigure());
-            } else {
-                anchor = new ChopboxAnchor(getFigure());
-            }
-        }
-        return anchor;
+    protected IFigure createFigure() {
+        Object agent = getModel();
+        figure = figureProvider.getFigure(agent);
+        updateColor(figure);
+        return figure;
     }
 
     /**
      * 
-     * @see org.eclipse.amp.agf.gef.GenericEditPart#refresh()
+     * @see org.eclipse.amp.agf.gef.GenericEditPart#refreshVisuals()
      */
-    public void refresh() {
-        super.refresh();
-        // TODO let's optimize this as it will now slow down every non-network implementation
-        refreshSourceConnections();
-        refreshTargetConnections();
+    protected void refreshVisuals() {
+        if (figureProvider.isFigureMutable(getModel())) {
+            setFigure(createFigure());
+        }
+        if (!figureProvider.isHandlingColor(getModel()) && figureProvider.isColorMutable(getModel())) {
+            updateColor(figure);
+        }
+        updateSelection();
     }
 
-    /*
-     * (non-Javadoc)
-     * @see
-     * org.eclipse.gef.NodeEditPart#getSourceConnectionAnchor(org.eclipse.gef
-     * .ConnectionEditPart)
-     */
-    public ConnectionAnchor getSourceConnectionAnchor(ConnectionEditPart connection) {
-        return getConnectionAnchor();
+    public IColorProvider getColorProvider() {
+        return colorProvider;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see
-     * org.eclipse.gef.NodeEditPart#getSourceConnectionAnchor(org.eclipse.gef
-     * .Request)
+    /**
+     * @return the figureProvider
      */
-    public ConnectionAnchor getSourceConnectionAnchor(Request request) {
-        return getConnectionAnchor();
+    public IFigureProvider getFigureProvider() {
+        return figureProvider;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see
-     * org.eclipse.gef.NodeEditPart#getTargetConnectionAnchor(org.eclipse.gef
-     * .ConnectionEditPart)
+    /**
+     * @return the labelProvider
      */
-    public ConnectionAnchor getTargetConnectionAnchor(ConnectionEditPart connection) {
-        return getConnectionAnchor();
-    }
-
-    /*
-     * (non-Javadoc)
-     * @see
-     * org.eclipse.gef.NodeEditPart#getTargetConnectionAnchor(org.eclipse.gef
-     * .Request)
-     */
-    public ConnectionAnchor getTargetConnectionAnchor(Request request) {
-        return getConnectionAnchor();
+    public ILabelProvider getLabelProvider() {
+        return labelProvider;
     }
 }

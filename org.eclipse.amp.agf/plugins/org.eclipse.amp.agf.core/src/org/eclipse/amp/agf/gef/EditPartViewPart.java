@@ -86,7 +86,7 @@ public abstract class EditPartViewPart extends AGFViewPart {
                 contents = getModel();
             }
             if (modelInput.getFactory() == null) {
-                viewer.setEditPartFactory(createFactory(contents));
+                viewer.setEditPartFactory(createFactory(getModel()));
             } else {
                 viewer.setEditPartFactory(modelInput.getFactory());
             }
@@ -104,7 +104,10 @@ public abstract class EditPartViewPart extends AGFViewPart {
 
     protected EditPartFactory createFactory(Object contents) {
         IModelFactoryProvider provider = (IModelFactoryProvider) Platform.getAdapterManager()
-                .getAdapter(contents, IModelFactoryProvider.class);
+        .getAdapter(contents, IModelFactoryProvider.class);
+        if (provider == null) {
+            throw new RuntimeException("No model factory provider defined for: " + contents);
+        }
         return provider.getEditPartFactory(contents);
     }
 

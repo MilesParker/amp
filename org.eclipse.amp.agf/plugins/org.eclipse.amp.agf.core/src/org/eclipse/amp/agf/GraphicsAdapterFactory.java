@@ -16,7 +16,10 @@
 
 package org.eclipse.amp.agf;
 
+import org.eclipse.amp.agf.gef.DefaultModelFactoryProvider;
+import org.eclipse.amp.agf.gef.IFigureProvider;
 import org.eclipse.amp.agf.gef.IModelFactoryProvider;
+import org.eclipse.amp.agf.gef.Shapes;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IAdapterFactory;
@@ -39,12 +42,29 @@ public class GraphicsAdapterFactory implements IAdapterFactory {
      */
     public Object getAdapter(Object adaptableObject, Class adapterType) {
         // Potential issue if someone implements the platform adapter..
-        if (adaptableObject.getClass().isAssignableFrom(adapterType)) {
+        if (adapterType.isAssignableFrom(adaptableObject.getClass())) {
             return adaptableObject;
-        } else if (adaptableObject instanceof IModel) {
+        }
+        if (adaptableObject instanceof IAdaptable) {
+            IAdapterFactory chainedFactory = (IAdapterFactory) ((IAdaptable) adaptableObject)
+            .getAdapter(IAdapterFactory.class);
+            if (chainedFactory != null) {
+                Object object = chainedFactory.getAdapter(adaptableObject, adapterType);
+                if (object != null) {
+                    return object;
+                }
+            }
+        }
+        if (adaptableObject instanceof IModel) {
+            if (adapterType == IModelFactoryProvider.class) {
+                return DefaultModelFactoryProvider.getDefault();
+            }
             return Platform.getAdapterManager().getAdapter(((IModel) adaptableObject).getRoot(), adapterType);
-        } else if (adaptableObject instanceof IAdaptable) {
-            return ((IAdaptable) adaptableObject).getAdapter(adapterType);
+        }
+        if (adapterType == IFigureProvider.class) {
+            return Shapes.RECTANGLE_SHAPE_PROVIDER;
+        } else if (adapterType == IColorProvider.class) {
+            return Shapes.DEFAULT_COLOR_PROVIDER;
         }
         return null;
     }

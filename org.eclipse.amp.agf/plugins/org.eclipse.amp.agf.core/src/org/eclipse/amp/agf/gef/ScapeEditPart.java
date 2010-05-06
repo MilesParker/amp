@@ -25,7 +25,6 @@ import java.util.Map;
 
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.space.IGraphProvider;
 import org.eclipse.amp.axf.space.ILocation;
 import org.eclipse.amp.axf.space.ILocation2D;
 import org.eclipse.amp.axf.space.ILocationProvider;
@@ -49,24 +48,16 @@ public class ScapeEditPart extends GenericEditPart implements PropertyChangeList
 
     ICompositionProvider memberProvider;
 
-    public void setGraphProvider(IGraphProvider graphProvider) {
-        this.graphProvider = graphProvider;
-    }
-
     ILocationProvider locationProvider;
-
-    IGraphProvider graphProvider;
 
     private IFilter filter;
 
     boolean updating;
 
-    public ScapeEditPart(ICompositionProvider memberProvider, ILocationProvider locationProvider,
-            IGraphProvider graphProvider, IFilter filter) {
+    public ScapeEditPart(ICompositionProvider memberProvider, ILocationProvider locationProvider, IFilter filter) {
         super();
         this.memberProvider = memberProvider;
         this.locationProvider = locationProvider;
-        this.graphProvider = graphProvider;
         this.setFilter(filter);
     }
 
@@ -88,10 +79,6 @@ public class ScapeEditPart extends GenericEditPart implements PropertyChangeList
         f.setLayoutManager(new XYLayout());
         f.setOpaque(false);
         return f;
-    }
-
-    public boolean isGraph() {
-        return graphProvider.isGraph(graphProvider);
     }
 
     // @Override
@@ -182,7 +169,7 @@ public class ScapeEditPart extends GenericEditPart implements PropertyChangeList
             for (Object editPart : getChildren()) {
                 if (editPart instanceof ScapeGraphEditPart) {
                     parts.add((ScapeGraphEditPart) editPart);
-                } else {
+                } else if (editPart instanceof ScapeEditPart) {
                     parts.addAll(((ScapeEditPart) editPart).getGraphParts());
                 }
             }
@@ -192,7 +179,7 @@ public class ScapeEditPart extends GenericEditPart implements PropertyChangeList
     }
 
     public ScapeEditPart getRootScapeEditPart() {
-        if (memberProvider.getParent(getModel()) == null) {
+        if (memberProvider.getParent(getModel()) == null || !(getParent() instanceof ScapeEditPart)) {
             return this;
         }
         return ((ScapeEditPart) getParent()).getRootScapeEditPart();
@@ -303,10 +290,6 @@ public class ScapeEditPart extends GenericEditPart implements PropertyChangeList
 
     public void setLocationProvider(ILocationProvider locationProvider) {
         this.locationProvider = locationProvider;
-    }
-
-    public IGraphProvider getGraphProvider() {
-        return graphProvider;
     }
 
     public Object getModelRoot() {

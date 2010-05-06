@@ -24,6 +24,7 @@ import java.util.Map;
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.space.IGraphProvider;
 import org.eclipse.amp.axf.space.ILocationProvider;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.viewers.IFilter;
 
 public class ScapeGraphEditPart extends ScapeEditPart {
@@ -31,10 +32,11 @@ public class ScapeGraphEditPart extends ScapeEditPart {
     List<NetworkConnection> connections;
     Map<Object, List<NetworkConnection>> targets;
     Map<Object, List<NetworkConnection>> sources;
+    private IGraphProvider graphProvider;
 
     public ScapeGraphEditPart(ICompositionProvider memberProvider, ILocationProvider locationProvider,
             IGraphProvider graphProvider, IFilter filter) {
-        super(memberProvider, locationProvider, graphProvider, filter);
+        super(memberProvider, locationProvider, filter);
     }
 
     @SuppressWarnings("unchecked")
@@ -67,6 +69,15 @@ public class ScapeGraphEditPart extends ScapeEditPart {
                 sourceTargets.add(connect);
             }
         }
+    }
+
+    /**
+     * @param model
+     * @see org.eclipse.gef.editparts.AbstractEditPart#setModel(java.lang.Object)
+     */
+    public void setModel(Object model) {
+        super.setModel(model);
+        graphProvider = (IGraphProvider) Platform.getAdapterManager().getAdapter(model, ICompositionProvider.class);
     }
 
     public List<NetworkConnection> getConnectList(Object source, Map<Object, List<NetworkConnection>> map) {
