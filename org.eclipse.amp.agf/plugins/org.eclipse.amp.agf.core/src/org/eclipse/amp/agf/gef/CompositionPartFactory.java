@@ -16,13 +16,11 @@
 
 package org.eclipse.amp.agf.gef;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.space.IGraphProvider;
 import org.eclipse.amp.axf.space.ILocationProvider;
+import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
@@ -39,32 +37,22 @@ public class CompositionPartFactory implements EditPartFactory {
     IModel model;
 
     ILocationProvider locationProvider;
-
     ICompositionProvider compositionProvider;
-
     IGraphProvider graphProvider;
 
-    Map<Object, IFigureProvider> figureProviders = new HashMap<Object, IFigureProvider>();
+    IAdapterFactory graphicsFactory;
 
-    Map<Object, ILabelProvider> labelProviders = new HashMap<Object, ILabelProvider>();
-
-    Map<Object, IColorProvider> colorProviders = new HashMap<Object, IColorProvider>();
-
-    IFigureProvider baseFigureProvider;
-    ILabelProvider baseLabelProvider;
-    IColorProvider baseColorProvider;
-
-    public CompositionPartFactory(IModel model) {
+    public CompositionPartFactory(IModel model, IAdapterFactory graphicsFactory) {
         super();
+        if (graphicsFactory == null) {
+            throw new RuntimeException("A graphics factory must be provided for: " + model);
+        }
         this.model = model;
+        this.graphicsFactory = graphicsFactory;
         compositionProvider = (ICompositionProvider) Platform.getAdapterManager()
         .getAdapter(model, ICompositionProvider.class);
         locationProvider = (ILocationProvider) Platform.getAdapterManager().getAdapter(model, ILocationProvider.class);
         graphProvider = (IGraphProvider) Platform.getAdapterManager().getAdapter(model, IGraphProvider.class);
-        baseFigureProvider = (IFigureProvider) Platform.getAdapterManager()
-        .getAdapter(model, org.eclipse.amp.agf.gef.IFigureProvider.class);
-        baseLabelProvider = (ILabelProvider) Platform.getAdapterManager().getAdapter(model, ILabelProvider.class);
-        baseColorProvider = (IColorProvider) Platform.getAdapterManager().getAdapter(model, IColorProvider.class);
     }
 
     /**
@@ -75,7 +63,9 @@ public class CompositionPartFactory implements EditPartFactory {
      */
     public EditPart createEditPart(EditPart context, Object model) {
         EditPart part = getPartForElement(model);
-        part.setModel(model);
+        if (part != null) {
+            part.setModel(model);
+        }
         return part;
     }
 
@@ -103,30 +93,24 @@ public class CompositionPartFactory implements EditPartFactory {
             return new AgentConnectionPart();
         }
         // TODO we need to generalize this so that all providers can be customized independently
-        IFigureProvider figureProvider = baseFigureProvider;
-        ILabelProvider labelProvider = baseLabelProvider;
-        IColorProvider colorProvider = baseColorProvider;
-        if (baseFigureProvider == null) {
-            // For performance and design reasons, we use providers form the scape, not the agent itself
-            Object parent = compositionProvider.getParent(model);
-            figureProvider = figureProviders.get(parent);
-            labelProvider = labelProviders.get(parent);
-            colorProvider = colorProviders.get(parent);
-            if (figureProvider == null) {
-                // We're going to assume that we need all of them
-                figureProvider = (IFigureProvider) Platform.getAdapterManager().getAdapter(parent,
-                                                                                           IFigureProvider.class);
-                figureProviders.put(parent, figureProvider);
-                labelProvider = (ILabelProvider) Platform.getAdapterManager().getAdapter(parent, ILabelProvider.class);
-                labelProviders.put(parent, labelProvider);
-                colorProvider = (IColorProvider) Platform.getAdapterManager().getAdapter(parent, IColorProvider.class);
-                colorProviders.put(parent, colorProvider);
-                if (figureProvider == null || labelProvider == null || colorProvider == null) {
-                    throw new RuntimeException("No providers found for: " + model);
-                }
-            }
-        }
-        if (figureProvider.getFigure(model) != null) {
+        // For performance and design reasons, we use providers form the scape, not the agent itself
+        IFigureProvider figureProvider = (IFigureProvider) graphicsFactory.getAdapter(model, IFigureProvider.class);
+        ILabelProvider labelProvider = (ILabelProvider) graphicsFactory.getAdapter(model, ILabelProvider.class);
+        IColorProvider colorProvider = (IColorProvider) graphicsFactory.getAdapter(model, IColorProvider.class);
+        // if (figureProvider == null) {
+        // // We're going to assume that we need all of them
+        // figureProvider = (IFigureProvider) Platform.getAdapterManager().getAdapter(parent, IFigureProvider.class);
+        // figureProviders.put(parent, figureProvider);
+        // labelProvider = (ILabelProvider) Platform.getAdapterManager().getAdapter(parent, ILabelProvider.class);
+        // labelProviders.put(parent, labelProvider);
+        // colorProvider = (IColorProvider) Platform.getAdapterManager().getAdapter(parent, IColorProvider.class);
+        // colorProviders.put(parent, colorProvider);
+        // if (figureProvider == null || labelProvider == null || colorProvider == null) {
+        // throw new RuntimeException("No providers found for: " + model);
+        // }
+        // }
+        // if (figureProvider.getFigure(model) != null) {
+        if (figureProvider != null) {
             return new AgentEditPart(figureProvider, colorProvider, labelProvider);
         }
         return null;
@@ -158,5 +142,9 @@ public class CompositionPartFactory implements EditPartFactory {
      */
     public void setGraphProvider(IGraphProvider graphProvider) {
         this.graphProvider = graphProvider;
+    }
+
+    public ILocationProvider getLocationProvider() {
+        return locationProvider;
     }
 }

@@ -17,6 +17,7 @@
 package org.eclipse.amp.agf.gef;
 
 import org.eclipse.amp.axf.core.IModel;
+import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.gef.EditPartFactory;
 
 /**
@@ -28,13 +29,23 @@ public class DefaultModelFactoryProvider implements IModelFactoryProvider {
 
     private static IModelFactoryProvider singleton;
 
+    private IAdapterFactory factory;
+
+    public DefaultModelFactoryProvider(IAdapterFactory factory) {
+        super();
+        this.factory = factory;
+        if (factory == null) {
+            throw new RuntimeException("A graphics factory must be provided for.");
+        }
+    }
+
     /**
      * @param model
      * @return
      * @see org.eclipse.amp.agf.gef.IModelFactoryProvider#getEditPartFactory(java.lang.Object)
      */
     public EditPartFactory getEditPartFactory(Object model) {
-        return new CompositionPartFactory((IModel) model);
+        return new CompositionPartFactory((IModel) model, factory);
     }
 
     /**
@@ -44,12 +55,5 @@ public class DefaultModelFactoryProvider implements IModelFactoryProvider {
      */
     public EditPartFactory getEditPartTreeFactory(Object model) {
         return new CompositionPartTreeFactory((IModel) model);
-    }
-
-    public static IModelFactoryProvider getDefault() {
-        if (singleton == null) {
-            singleton = new DefaultModelFactoryProvider();
-        }
-        return singleton;
     }
 }
