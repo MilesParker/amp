@@ -28,8 +28,8 @@ import org.eclipse.amp.escape.ascape.gef.HostCellEditPart;
 «AROUND metaabm::tmpl::Java::Imports FOR SAgent-»
 import java.util.List;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IAdapterFactory;
+import org.eclipse.amp.agf.IGraphicsAdapted;
 
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.jface.viewers.IColorProvider;
@@ -59,7 +59,7 @@ import org.ascape.view.vis.GraphView;
 «AROUND metaabm::tmpl::Java::ExtendType FOR SContext-»«typeName()-»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::ExtendType FOR SAgent-»Scape«ENDAROUND»
 
-«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-» extends Scape implements IAdaptable«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-» extends Scape implements IGraphicsAdapted«ENDAROUND»
 «AROUND metaabm::tmpl::Java::ClassInheiritance FOR SAgent-» extends «extendType()»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::ClassInheiritance FOR SStyle-» implements «(agent.isHost() ? "HostCell" : "Agent")»EditPart«ENDAROUND»
 
@@ -76,17 +76,10 @@ import org.ascape.view.vis.GraphView;
 «AROUND metaabm::tmpl::Java::Body FOR SContext-»
     
     «EXPAND metaabm::ascape::tmpl::ScapeAspect::ScapeBody-»
-    /**
-     * @param adapter
-     * @return
-     * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
-     */
-    public Object getAdapter(Class adapter) {
-        if (adapter == IAdapterFactory.class) {
-        	return «typeName()»AdapterFactory.getDefault();
-        }
-        return null;
-    }
+
+	public IAdapterFactory getGraphicsAdapter() {
+        return «typeName()»AdapterFactory.getDefault();
+	}
 
     private Color getInferredChartColor(Object agent,
         IColorProvider colorProvider) {

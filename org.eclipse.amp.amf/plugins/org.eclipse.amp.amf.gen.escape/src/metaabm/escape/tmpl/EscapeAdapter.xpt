@@ -38,7 +38,7 @@ import org.eclipse.jface.viewers.IColorProvider;
 
 «DEFINE ProviderInstance(String providerType) FOR SAgent»
     «IF styles.size > 0-»
-        if (agent instanceof Scape && ((Scape) agent).getPrototypeAgent().getClass() == «implementation.className».class) {
+        if (agent instanceof «implementation.className») {
             return «styles.get(0).implementation.qualifiedName»«providerType».getDefault();
         }
     «ENDIF-»
@@ -85,6 +85,9 @@ import org.eclipse.jface.viewers.IColorProvider;
     }
     
     public static IAdapterFactory getDefault() {
+        if (singleton == null) {
+            singleton = new «typeName()»AdapterFactory();
+        }
         return singleton;
     }
 «ENDAROUND»

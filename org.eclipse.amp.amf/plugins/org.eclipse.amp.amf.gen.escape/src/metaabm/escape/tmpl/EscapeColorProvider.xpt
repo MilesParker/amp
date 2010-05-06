@@ -104,6 +104,9 @@ import org.eclipse.jface.viewers.IColorProvider;
     }    
     
     public static IColorProvider getDefault() {
+        if (singleton == null) {
+            singleton = new «typeName()»ColorProvider();
+        }
         return singleton;
     }
 «ENDAROUND»

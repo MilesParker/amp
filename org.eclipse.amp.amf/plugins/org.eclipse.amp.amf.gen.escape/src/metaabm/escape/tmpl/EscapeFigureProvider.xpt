@@ -66,6 +66,9 @@ import org.eclipse.amp.agf.gef.Shapes;
     }
     
     public static IFigureProvider getDefault() {
+        if (singleton == null) {
+            singleton = new «typeName()»FigureProvider();
+        }
         return singleton;
     }
 «ENDAROUND»
