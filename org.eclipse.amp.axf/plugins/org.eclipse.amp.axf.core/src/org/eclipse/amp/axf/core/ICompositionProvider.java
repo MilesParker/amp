@@ -90,6 +90,17 @@ public interface ICompositionProvider {
     public Class getChildrenClass(Object member);
 
     /**
+     * Returns an exemplar object that characterizes the members of the composition. This is useful for constraining the
+     * composition beyond type to state. For example, a prototype may help consumers specialize on the case for
+     * Foo.class where foo.bar > 10. Consumers should handle the case where prototype object is null, falling back to
+     * specializing on child class.
+     * 
+     * @param member
+     * @return the prototype object. May be null.
+     */
+    public Object getChildrenPrototype(Object member);
+
+    /**
      * Gets the list.
      * 
      * @param hasIterable the has iterable
