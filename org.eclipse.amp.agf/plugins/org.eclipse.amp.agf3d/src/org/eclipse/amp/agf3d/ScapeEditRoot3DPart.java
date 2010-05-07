@@ -24,7 +24,6 @@ import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.space.ILocation;
 import org.eclipse.amp.axf.space.ILocation2D;
 import org.eclipse.amp.axf.space.ILocationProvider;
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.XYLayout;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -42,6 +41,12 @@ import org.eclipse.jface.viewers.IFilter;
  * 
  */
 public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
+
+    public static final int DEFAULT_ANIMATION_STEP_COUNT = 5;
+
+    private int animationStep;
+
+    private int animationStepCount = DEFAULT_ANIMATION_STEP_COUNT;
 
     public ScapeEditRoot3DPart(ICompositionProvider memberProvider, ILocationProvider locationProvider, IFilter filter) {
         super(memberProvider, locationProvider, filter);
@@ -65,7 +70,6 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
         figure.setLayoutManager(new XYLayout());
         Rectangle bounds = new Rectangle(new Point(0, 0), calculateDimension());
         figure.setBounds(bounds);
-        figure.setBackgroundColor(ColorConstants.black);
         return figure;
     }
 
@@ -95,7 +99,6 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
         super.addChild(child, index);
     }
 
-
     /**
      * @return
      * @see org.eclipse.amp.agf.gef.ScapeEditPart#getRootScapeEditPart()
@@ -104,5 +107,27 @@ public class ScapeEditRoot3DPart extends ScapeEdit3DPart {
         return this;
     }
 
+    /**
+     * @return the animationStep
+     */
+    public int getAnimationStep() {
+        return animationStep;
+    }
 
+    /**
+     * @return the animationStepCount
+     */
+    public int getAnimationStepCount() {
+        return animationStepCount;
+    }
+
+    public int setAnimationStep(int animationStep) {
+        this.animationStep = animationStep;
+        return animationStep;
+    }
+
+    public void setAnimationStepCount(int animationStepCount) {
+        this.animationStepCount = animationStepCount;
+        this.animationStep = 0;
+    }
 }

@@ -51,12 +51,6 @@ public class ScapeEdit3DPart extends ScapeEditPart {
         super(memberProvider, locationProvider, filter);
     }
 
-    public static final int DEFAULT_ANIMATION_STEP_COUNT = 5;
-
-    public int animationStep;
-
-    public int animationStepCount = DEFAULT_ANIMATION_STEP_COUNT;
-
     Map<Object, IVector3f> startPoints = new HashMap<Object, IVector3f>();
     Map<Object, Vector3f> addPoints = new HashMap<Object, Vector3f>();
     Map<Object, Vector3f> lastPoints = new HashMap<Object, Vector3f>();
@@ -145,22 +139,22 @@ public class ScapeEdit3DPart extends ScapeEditPart {
             endPoint = Math3DVector3f.add(endPoint, ((AgentEdit3DPart) editPart).getRelativeLocation3D(), endPoint);
             ScapeEditRoot3DPart root = (ScapeEditRoot3DPart) getRootScapeEditPart();
             Vector3f priorPeriodLocation = lastPoints.get(agent);
-            if (animationStepCount > 1) {
+            if (root.getAnimationStepCount() > 1) {
                 if (priorPeriodLocation != null) {
                     Vector3f difference = new Vector3fImpl();
                     difference = Math3DVector3f.sub(endPoint, priorPeriodLocation, difference);
                     difference = Math3DVector3f.abs(difference, difference);
                     Rectangle bounds = getFigure().getBounds();
-                    if (animationStepCount > 1 && getRootScapeEditPart().getModel() != null
+                    if (root.getAnimationStepCount() > 1 && getRootScapeEditPart().getModel() != null
                             && ((IModel) getRootScapeEditPart().getModel()).getPeriod() > 0
                             && difference.getX() < bounds.width * .7f && difference.getY() < bounds.height * .7f) {
                         IVector3f startPoint;
                         Vector3f addPoint;
-                        if (animationStep == 0) {
+                        if (root.getAnimationStep() == 0) {
                             startPoint = agentFigure.getPosition3D().getLocation3D();
                             startPoints.put(agent, startPoint);
                             addPoint = new Vector3fImpl();
-                            GEF3DViewPart.calculateDelta(startPoint, endPoint, addPoint, animationStepCount);
+                            GEF3DViewPart.calculateDelta(startPoint, endPoint, addPoint, root.getAnimationStepCount());
                             addPoints.put(agent, addPoint);
                             lastPoints.put(agent, new Vector3fImpl(startPoint.getX(), startPoint.getY(), startPoint
                                                                    .getZ()));
@@ -177,16 +171,16 @@ public class ScapeEdit3DPart extends ScapeEditPart {
                         setLayoutConstraint(editPart, editPart.getFigure(), endPoint);
                     }
                 } else {
-                    if (animationStep == 0) {
+                    if (root.getAnimationStep() == 0) {
                         setLayoutConstraint(editPart, editPart.getFigure(), endPoint);
                         // ((IFigure3D) figure).setAlpha(0);
                         // } else if (root.getAnimationStep() < root.getAnimationStepCount() - 1) {
                         // } else {
                         // ((IFigure3D) figure).setAlpha(255);
-                    } else if (animationStep >= animationStepCount - 1) {
+                    } else if (root.getAnimationStep() >= root.getAnimationStepCount() - 1) {
                         lastPoints.put(agent, endPoint);
                     } else {
-                        float f = (float) animationStep / (float) animationStepCount;
+                        float f = (float) root.getAnimationStep() / (float) root.getAnimationStepCount();
                         int scaledColor = (int) (f * 256f) - 1;
                         ((IFigure3D) figure).setForegroundColor(new Color(getViewer().getControl().getDisplay(),
                                                                           scaledColor, scaledColor, 255));

@@ -16,6 +16,9 @@
 
 package org.eclipse.amp.agf3d;
 
+import org.eclipse.core.runtime.IAdapterFactory;
+
+
 /**
  * A marker interface indicating that an object will serve as the provider for any model features, such as Composition
  * Providers, Label Providers, and so no. Of course, implementors may choose to delegate any of this functionality. A
@@ -34,6 +37,9 @@ package org.eclipse.amp.agf3d;
  * @author mparker
  * 
  */
-public interface IGraphics3DAdapter {
+public interface IGraphics3DAdapter extends IAdapterFactory {
 
+    public IShape3DProvider[] getShapes(Object object);
+
+    public IShape3DProvider[] getShapesForClass(Class object);
 }

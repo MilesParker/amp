@@ -15,6 +15,7 @@
  */
 package org.eclipse.amp.agf3d;
 
+import org.eclipse.amp.agf.IGraphicsAdapter;
 import org.eclipse.amp.agf.gef.AgentEditPart;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
@@ -26,11 +27,12 @@ import org.eclipse.draw3d.ShapeFigure3D;
 import org.eclipse.draw3d.geometry.IVector3f;
 import org.eclipse.draw3d.geometry.Vector3fImpl;
 import org.eclipse.draw3d.shapes.Shape;
-import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.swt.graphics.Color;
 
 
 public class AgentEdit3DPart extends AgentEditPart {
+
+    private IGraphics3DAdapter graphics3DAdapter;
 
     /**
      * 
@@ -73,11 +75,19 @@ public class AgentEdit3DPart extends AgentEditPart {
 
     IShape3DProvider shapeProvider;
 
-    public AgentEdit3DPart(IShape3DProvider shapeProvider,
-            IColorProvider colorProvider, boolean update) {
-        super(null, colorProvider, null);
-        this.shapeProvider = shapeProvider;
+    public AgentEdit3DPart(IGraphics3DAdapter graphics3DAdapter, IGraphicsAdapter graphicsAdapter, boolean update) {
+        super(graphicsAdapter);
+        this.graphics3DAdapter = graphics3DAdapter;
         this.update = update;
+    }
+
+    /**
+     * @param model
+     * @see org.eclipse.amp.agf.gef.AgentEditPart#setModel(java.lang.Object)
+     */
+    public void setModel(Object model) {
+        super.setModel(model);
+        shapeProvider = (IShape3DProvider) getGraphicsAdapter().getAdapter(model, IShape3DProvider.class);
     }
 
     @Override
@@ -120,5 +130,12 @@ public class AgentEdit3DPart extends AgentEditPart {
      */
     public IVector3f getRelativeLocation3D() {
         return shapeProvider.getRelativeLocation3D(getModel());
+    }
+
+    /**
+     * @return the shapeProvider
+     */
+    public IShape3DProvider getShapeProvider() {
+        return shapeProvider;
     }
 }

@@ -17,7 +17,7 @@ package org.eclipse.amp.agf3d;
 
 import org.eclipse.gef.EditPartFactory;
 
-public interface I3DModelFactoryProvider {
+public interface IModel3DFactoryProvider {
     EditPartFactory getEditPart3DFactory(Object model);
 
 }

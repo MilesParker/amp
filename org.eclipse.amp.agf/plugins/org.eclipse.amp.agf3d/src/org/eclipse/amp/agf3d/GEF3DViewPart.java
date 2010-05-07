@@ -60,8 +60,8 @@ public class GEF3DViewPart extends EditPartViewPart {
         }
 
         public void renderPassFinished(RenderContext renderContext) {
-            ScapeEdit3DPart editPart = (ScapeEdit3DPart) getEditPart();
-            if (renderListener != null && (editPart == null || editPart.animationStep == editPart.animationStepCount)) {
+            ScapeEdit3DPart editPart = (ScapeEditRoot3DPart) getEditPart();
+            if (renderListener != null && (editPart == null || getAnimationStep() == getAnimationStepCount())) {
                 renderListener.endPainting();
             }
         }
@@ -93,8 +93,9 @@ public class GEF3DViewPart extends EditPartViewPart {
                 animateCamera = true;
                 firstTime = false;
             }
-            ScapeEdit3DPart editPart = (ScapeEdit3DPart) getEditPart();
-            for (editPart.animationStep = 0; editPart.animationStep < editPart.animationStepCount; editPart.animationStep++) {
+            ScapeEditRoot3DPart editPart = (ScapeEditRoot3DPart) getEditPart();
+            for (editPart.setAnimationStep(0); editPart.getAnimationStep() < editPart.getAnimationStepCount(); editPart
+            .setAnimationStep(editPart.getAnimationStep() + 1)) {
                 // getFigure().validate();
                 getEditPart().refresh();
                 ((GraphicalViewer3D) getViewer()).getLightweightSystem3D().render(true);
@@ -155,9 +156,9 @@ public class GEF3DViewPart extends EditPartViewPart {
         getModel().addModelListener(renderListener);
     }
 
-    public I3DModelFactoryProvider getFactory3DProvider(Object contents) {
-        I3DModelFactoryProvider adapter = (I3DModelFactoryProvider) Platform.getAdapterManager()
-        .getAdapter(contents, I3DModelFactoryProvider.class);
+    public IModel3DFactoryProvider getFactory3DProvider(Object contents) {
+        IModel3DFactoryProvider adapter = (IModel3DFactoryProvider) Platform.getAdapterManager()
+        .getAdapter(contents, IModel3DFactoryProvider.class);
         if (adapter == null) {
             throw new RuntimeException("No I3DModelFactoryProvider adapter defined for: " + getModel());
         }
@@ -222,7 +223,7 @@ public class GEF3DViewPart extends EditPartViewPart {
     }
 
     private void moveCameraScaled(float locX, float locY, float locZ, float targetX, float targetY, float targetZ) {
-        ILocation2D extent = (ILocation2D) locationProvider.getExtent((getModel()).getRoot());
+        ILocation2D extent = (ILocation2D) locationProvider.getExtent(getModel().getRoot());
         float ex = (float) (extent.getXDouble() * AgentEditPart.SCALE);
         float ey = (float) (extent.getYDouble() * AgentEditPart.SCALE);
         moveCamera(new Vector3fImpl(ex * locX, ey * locY, Math.min(ex, ey) * locZ), new Vector3fImpl(ex * targetX, ey
@@ -314,25 +315,21 @@ public class GEF3DViewPart extends EditPartViewPart {
      * @return the animationStep
      */
     public int getAnimationStep() {
-        ScapeEdit3DPart editPart = (ScapeEdit3DPart) getEditPart();
-        return editPart.animationStep;
+        return ((ScapeEditRoot3DPart) getEditPart()).getAnimationStep();
     }
 
     /**
      * @return the animationStepCount
      */
     public int getAnimationStepCount() {
-        ScapeEdit3DPart editPart = (ScapeEdit3DPart) getEditPart();
-        return editPart.animationStepCount;
+        return ((ScapeEditRoot3DPart) getEditPart()).getAnimationStepCount();
     }
 
     /**
      * @param animationStepCount the animationStepCount to set
      */
     public void setAnimationStepCount(int animationStepCount) {
-        ScapeEdit3DPart editPart = (ScapeEdit3DPart) getEditPart();
-        editPart.animationStepCount = animationStepCount;
-        editPart.animationStep = 0;
+        ((ScapeEditRoot3DPart) getEditPart()).setAnimationStepCount(animationStepCount);
     }
 
     public CameraTool getCameraTool() {

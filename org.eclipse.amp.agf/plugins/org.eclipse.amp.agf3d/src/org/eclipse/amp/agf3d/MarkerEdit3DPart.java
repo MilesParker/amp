@@ -15,20 +15,27 @@
  */
 package org.eclipse.amp.agf3d;
 
-import org.eclipse.amp.agf.gef.IFigureProvider;
+import org.eclipse.amp.agf.IGraphicsAdapter;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw3d.IFigure3D;
 import org.eclipse.draw3d.shapes.CuboidFigureShape;
-import org.eclipse.jface.viewers.IColorProvider;
-import org.eclipse.jface.viewers.ILabelProvider;
 
 public class MarkerEdit3DPart extends AgentEdit3DPart {
 
     CuboidFigureShape[] markers = new CuboidFigureShape[4];
 
-    public MarkerEdit3DPart(IShape3DProvider shapeProvider, IFigureProvider figureProvider,
-            IColorProvider colorProvider, ILabelProvider labelProvider, boolean update) {
-        super(Shapes3D.CUBE_SHAPE_PROVIDER, colorProvider, update);
+    public MarkerEdit3DPart(IGraphics3DAdapter graphics3dAdapter, IGraphicsAdapter graphicsAdapter, boolean update,
+            CuboidFigureShape[] markers) {
+        super(graphics3dAdapter, graphicsAdapter, update);
+        this.markers = markers;
+    }
+
+    /**
+     * @return
+     * @see org.eclipse.amp.agf3d.AgentEdit3DPart#getShapeProvider()
+     */
+    public IShape3DProvider getShapeProvider() {
+        return Shapes3D.CUBE_SHAPE_PROVIDER;
     }
 
     protected IFigure createFigure() {

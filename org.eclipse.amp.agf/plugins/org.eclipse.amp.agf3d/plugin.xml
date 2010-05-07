@@ -73,19 +73,24 @@
          </action>
       </viewContribution>
    </extension>
-   
-   <extension
+      <extension
          point="org.eclipse.core.runtime.adapters">
       <factory
-            adaptableType="org.eclipse.amp.axf.core.IModel"
+            adaptableType="java.lang.Object"
             class="org.eclipse.amp.agf3d.Graphics3DAdapterFactory">
+         <adapter
+               type="org.eclipse.amp.agf3d.IModel3DFactoryProvider">
+         </adapter>
+         <adapter
+               type="org.eclipse.amp.agf3d.IGraphics3DAdapter">
+         </adapter>
+      </factory>
+      <factory
+            adaptableType="java.lang.Object"
+            class="org.eclipse.amp.agf3d.Graphics3DAdapter">
          <adapter
                type="org.eclipse.amp.agf3d.IShape3DProvider">
          </adapter>
-         <adapter
-               type="org.eclipse.amp.agf3d.I3DModelFactoryProvider">
-         </adapter>
       </factory>
    </extension>
-   
 </plugin>
