@@ -204,14 +204,26 @@ public class AscapeModelProvider implements ILocationProvider, IGraphProvider, I
      * @see org.eclipse.amp.axf.core.ICompositionProvider#getChildrenClass(java.lang.Object)
      */
     public Class getChildrenClass(Object member) {
-        Object object = member;
-        if (object instanceof Scape) {
-            Agent prototypeAgent = ((Scape) object).getPrototypeAgent();
+        Object childrenPrototype = getChildrenPrototype(member);
+        if (childrenPrototype == null) {
+            return Agent.class;
+        }
+        return childrenPrototype.getClass();
+    }
+
+    /**
+     * @param member
+     * @return
+     * @see org.eclipse.amp.axf.core.ICompositionProvider#getChildrenPrototype(java.lang.Object)
+     */
+    public Object getChildrenPrototype(Object member) {
+        if (member instanceof Scape) {
+            Agent prototypeAgent = ((Scape) member).getPrototypeAgent();
             if (prototypeAgent != null) {
-                return prototypeAgent.getClass();
+                return prototypeAgent;
             }
         }
-        return Object.class;
+        return null;
     }
 
     public static AscapeModelProvider getDefault() {

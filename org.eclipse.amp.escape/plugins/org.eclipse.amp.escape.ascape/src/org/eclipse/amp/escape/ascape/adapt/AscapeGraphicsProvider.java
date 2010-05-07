@@ -16,6 +16,7 @@
 package org.eclipse.amp.escape.ascape.adapt;
 
 import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModelListener;
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -119,7 +120,7 @@ public class AscapeGraphicsProvider implements ILabelProvider, IColorProvider {
         } else if (element instanceof Agent) {
             return (Color) ((Agent) element).getPlatformColor();
         }
-        return null;
+        return ColorConstants.cyan;
     }
 
     /**
@@ -133,6 +134,6 @@ public class AscapeGraphicsProvider implements ILabelProvider, IColorProvider {
         } else if (element instanceof Agent) {
             return (Color) ((Agent) element).getPlatformColor();
         }
-        return null;
+        return ColorConstants.orange;
     }
 }
