@@ -16,7 +16,6 @@
 
 package org.eclipse.amp.agf.gef;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Ellipse;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
@@ -25,8 +24,6 @@ import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.jface.viewers.IColorProvider;
-import org.eclipse.swt.graphics.Color;
 
 /**
  * 
@@ -60,17 +57,6 @@ public class Shapes {
         public IFigure getFigure(Object object) {
             return createRoundedRectangle();
         };
-    };
-
-    public static IColorProvider DEFAULT_COLOR_PROVIDER = new IColorProvider() {
-
-        public Color getForeground(Object element) {
-            return ColorConstants.black;
-        }
-
-        public Color getBackground(Object element) {
-            return ColorConstants.gray;
-        }
     };
 
     private static void setupShared(Shape figure) {

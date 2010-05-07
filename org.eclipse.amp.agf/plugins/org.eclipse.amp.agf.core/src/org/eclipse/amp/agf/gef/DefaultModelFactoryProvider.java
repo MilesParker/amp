@@ -16,8 +16,8 @@
 
 package org.eclipse.amp.agf.gef;
 
+import org.eclipse.amp.agf.IGraphicsAdapter;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.gef.EditPartFactory;
 
 /**
@@ -27,16 +27,11 @@ import org.eclipse.gef.EditPartFactory;
  */
 public class DefaultModelFactoryProvider implements IModelFactoryProvider {
 
-    private static IModelFactoryProvider singleton;
+    private IGraphicsAdapter factory;
 
-    private IAdapterFactory factory;
-
-    public DefaultModelFactoryProvider(IAdapterFactory factory) {
+    public DefaultModelFactoryProvider(IGraphicsAdapter factory) {
         super();
         this.factory = factory;
-        if (factory == null) {
-            throw new RuntimeException("A graphics factory must be provided for.");
-        }
     }
 
     /**
@@ -45,7 +40,7 @@ public class DefaultModelFactoryProvider implements IModelFactoryProvider {
      * @see org.eclipse.amp.agf.gef.IModelFactoryProvider#getEditPartFactory(java.lang.Object)
      */
     public EditPartFactory getEditPartFactory(Object model) {
-        return new CompositionPartFactory((IModel) model, factory);
+        return new ScapePartFactory((IModel) model, factory);
     }
 
     /**
@@ -54,6 +49,6 @@ public class DefaultModelFactoryProvider implements IModelFactoryProvider {
      * @see org.eclipse.amp.agf.gef.IModelFactoryProvider#getEditPartTreeFactory(java.lang.Object)
      */
     public EditPartFactory getEditPartTreeFactory(Object model) {
-        return new CompositionPartTreeFactory((IModel) model);
+        return new ScapePartTreeFactory((IModel) model);
     }
 }

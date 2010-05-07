@@ -16,23 +16,21 @@
 
 package org.eclipse.amp.agf.gef;
 
+import org.eclipse.amp.agf.IGraphicsAdapter;
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.space.IGraphProvider;
 import org.eclipse.amp.axf.space.ILocationProvider;
-import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
-import org.eclipse.jface.viewers.IColorProvider;
-import org.eclipse.jface.viewers.ILabelProvider;
 
 /**
  * 
  * @author mparker
  * 
  */
-public class CompositionPartFactory implements EditPartFactory {
+public class ScapePartFactory implements EditPartFactory {
 
     IModel model;
 
@@ -40,15 +38,15 @@ public class CompositionPartFactory implements EditPartFactory {
     ICompositionProvider compositionProvider;
     IGraphProvider graphProvider;
 
-    IAdapterFactory graphicsFactory;
+    IGraphicsAdapter graphicsAdapter;
 
-    public CompositionPartFactory(IModel model, IAdapterFactory graphicsFactory) {
+    public ScapePartFactory(IModel model, IGraphicsAdapter graphicsAdapter) {
         super();
-        if (graphicsFactory == null) {
+        if (graphicsAdapter == null) {
             throw new RuntimeException("A graphics factory must be provided for: " + model);
         }
         this.model = model;
-        this.graphicsFactory = graphicsFactory;
+        this.graphicsAdapter = graphicsAdapter;
         compositionProvider = (ICompositionProvider) Platform.getAdapterManager()
         .getAdapter(model, ICompositionProvider.class);
         locationProvider = (ILocationProvider) Platform.getAdapterManager().getAdapter(model, ILocationProvider.class);
@@ -80,40 +78,19 @@ public class CompositionPartFactory implements EditPartFactory {
      */
     protected EditPart getPartForElement(Object model) {
         if (compositionProvider.isComposition(model)) {
-            IFigureProvider figureProvider = (IFigureProvider) Platform.getAdapterManager()
-            .getAdapter(model, IFigureProvider.class);
-            if (figureProvider == null) {
-                return null;
+            // We use the default provider
+            IFigureProvider figure = (IFigureProvider) graphicsAdapter.getAdapter(compositionProvider
+                                                                                  .getChildrenPrototype(model), IFigureProvider.class);
+            if (figure != null) {
+                if (graphProvider.isGraph(model)) {
+                    return new ScapeGraphEditPart(compositionProvider, locationProvider, graphProvider, null);
+                }
+                return new ScapeEditPart(compositionProvider, locationProvider, null);
             }
-            if (graphProvider.isGraph(model)) {
-                return new ScapeGraphEditPart(compositionProvider, locationProvider, graphProvider, null);
-            }
-            return new ScapeEditPart(compositionProvider, locationProvider, null);
         } else if (model instanceof NetworkConnection) {
             return new AgentConnectionPart();
         }
-        // TODO we need to generalize this so that all providers can be customized independently
-        // For performance and design reasons, we use providers form the scape, not the agent itself
-        IFigureProvider figureProvider = (IFigureProvider) graphicsFactory.getAdapter(model, IFigureProvider.class);
-        ILabelProvider labelProvider = (ILabelProvider) graphicsFactory.getAdapter(model, ILabelProvider.class);
-        IColorProvider colorProvider = (IColorProvider) graphicsFactory.getAdapter(model, IColorProvider.class);
-        // if (figureProvider == null) {
-        // // We're going to assume that we need all of them
-        // figureProvider = (IFigureProvider) Platform.getAdapterManager().getAdapter(parent, IFigureProvider.class);
-        // figureProviders.put(parent, figureProvider);
-        // labelProvider = (ILabelProvider) Platform.getAdapterManager().getAdapter(parent, ILabelProvider.class);
-        // labelProviders.put(parent, labelProvider);
-        // colorProvider = (IColorProvider) Platform.getAdapterManager().getAdapter(parent, IColorProvider.class);
-        // colorProviders.put(parent, colorProvider);
-        // if (figureProvider == null || labelProvider == null || colorProvider == null) {
-        // throw new RuntimeException("No providers found for: " + model);
-        // }
-        // }
-        // if (figureProvider.getFigure(model) != null) {
-        if (figureProvider != null) {
-            return new AgentEditPart(figureProvider, colorProvider, labelProvider);
-        }
-        return null;
+        return new AgentEditPart(graphicsAdapter);
     }
 
     /**
@@ -146,5 +123,12 @@ public class CompositionPartFactory implements EditPartFactory {
 
     public ILocationProvider getLocationProvider() {
         return locationProvider;
+    }
+
+    /**
+     * @return the graphicsAdapter
+     */
+    public IGraphicsAdapter getGraphicsAdapter() {
+        return graphicsAdapter;
     }
 }

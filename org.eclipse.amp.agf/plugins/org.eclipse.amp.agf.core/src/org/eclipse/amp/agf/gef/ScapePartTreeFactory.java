@@ -28,7 +28,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 /**
  * A factory for creating ScapePartTree objects.
  */
-public class CompositionPartTreeFactory implements EditPartFactory {
+public class ScapePartTreeFactory implements EditPartFactory {
 
     IModel model;
 
@@ -36,7 +36,7 @@ public class CompositionPartTreeFactory implements EditPartFactory {
 
     public ILabelProvider labelProvider;
 
-    public CompositionPartTreeFactory(IModel model) {
+    public ScapePartTreeFactory(IModel model) {
         this.model = model;
         compositionProvider = (ICompositionProvider) Platform.getAdapterManager()
         .getAdapter(model, ICompositionProvider.class);

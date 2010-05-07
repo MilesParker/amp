@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.5 2010/05/06 16:24:54 mparker Exp $
+ $Id: plugin.xml,v 1.6 2010/05/07 01:18:17 mparker Exp $
 -->
 
 <plugin>
@@ -36,14 +36,15 @@
             adaptableType="java.lang.Object"
             class="org.eclipse.amp.agf.GraphicsAdapterFactory">
          <adapter
-               type="org.eclipse.jface.viewers.ILabelProvider">
-         </adapter>
-         <adapter
-               type="org.eclipse.jface.viewers.IColorProvider">
-         </adapter>
-         <adapter
                type="org.eclipse.amp.agf.gef.IModelFactoryProvider">
          </adapter>
+         <adapter
+               type="org.eclipse.amp.agf.IGraphicsAdapter">
+         </adapter>
+      </factory>
+      <factory
+            adaptableType="java.lang.Object"
+            class="org.eclipse.amp.agf.GraphicsAdapter">
          <adapter
                type="org.eclipse.amp.agf.gef.IFigureProvider">
          </adapter>

@@ -17,21 +17,16 @@
 package org.eclipse.amp.agf;
 
 import org.eclipse.amp.agf.gef.DefaultModelFactoryProvider;
-import org.eclipse.amp.agf.gef.IFigureProvider;
 import org.eclipse.amp.agf.gef.IModelFactoryProvider;
-import org.eclipse.amp.agf.gef.Shapes;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.jface.viewers.IColorProvider;
-import org.eclipse.jface.viewers.ILabelProvider;
 
 /**
  * 
  * @author mparker
  * 
  */
-public class GraphicsAdapterFactory implements IAdapterFactory {
+public class GraphicsAdapterFactory implements IGraphicsAdapterFactory {
 
     /**
      * @param adaptableObject
@@ -40,29 +35,24 @@ public class GraphicsAdapterFactory implements IAdapterFactory {
      * @see org.eclipse.core.runtime.IAdapterFactory#getAdapter(java.lang.Object, java.lang.Class)
      */
     public Object getAdapter(Object adaptableObject, Class adapterType) {
-        // Potential issue if someone implements the platform adapter..
-        if (adapterType.isAssignableFrom(adaptableObject.getClass())) {
-            return adaptableObject;
-        }
         if (adaptableObject instanceof IModel) {
             return Platform.getAdapterManager().getAdapter(((IModel) adaptableObject).getRoot(), adapterType);
         }
-        if (adaptableObject instanceof IGraphicsAdapted) {
-            if (adapterType == IModelFactoryProvider.class) {
-                IAdapterFactory factory = null;
-                if (adaptableObject instanceof IGraphicsAdapted) {
-                    factory = ((IGraphicsAdapted) adaptableObject).getGraphicsAdapter();
-                } else {
-                    factory = (IAdapterFactory) Platform.getAdapterManager().getAdapter(adaptableObject,
-                                                                                        IGraphicsAdapted.class);
-                }
+        if (adapterType == IGraphicsAdapter.class) {
+            return GraphicsAdapter.getDefault();
+        }
+        if (adapterType == IModelFactoryProvider.class) {
+            IGraphicsAdapter factory = null;
+            if (adaptableObject instanceof IGraphicsAdapted) {
+                factory = ((IGraphicsAdapted) adaptableObject).getGraphicsAdapter();
+            }
+            if (factory == null) {
+                factory = (IGraphicsAdapter) Platform.getAdapterManager().getAdapter(adaptableObject,
+                                                                                     IGraphicsAdapter.class);
+            }
+            if (factory != null) {
                 return new DefaultModelFactoryProvider(factory);
             }
-        }
-        if (adapterType == IFigureProvider.class) {
-            return Shapes.RECTANGLE_SHAPE_PROVIDER;
-        } else if (adapterType == IColorProvider.class) {
-            return Shapes.DEFAULT_COLOR_PROVIDER;
         }
         return null;
     }
@@ -72,7 +62,6 @@ public class GraphicsAdapterFactory implements IAdapterFactory {
      * @see org.eclipse.core.runtime.IAdapterFactory#getAdapterList()
      */
     public Class[] getAdapterList() {
-        return new Class[] { ILabelProvider.class, IColorProvider.class, IFigureProvider.class,
-            IModelFactoryProvider.class };
+        return new Class[] { IModelFactoryProvider.class, IGraphicsAdapter.class };
     }
 }

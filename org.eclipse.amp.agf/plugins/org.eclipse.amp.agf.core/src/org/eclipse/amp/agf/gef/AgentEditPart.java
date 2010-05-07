@@ -15,23 +15,37 @@
  */
 package org.eclipse.amp.agf.gef;
 
+import org.eclipse.amp.agf.IGraphicsAdapter;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 
 public class AgentEditPart extends AgentNodeEditPart {
 
+    private IGraphicsAdapter graphicsAdapter;
+
     ILabelProvider labelProvider;
 
     IFigureProvider figureProvider;
 
-    private IColorProvider colorProvider;
+    IColorProvider colorProvider;
 
-    public AgentEditPart(IFigureProvider figureProvider, IColorProvider colorProvider, ILabelProvider labelProvider) {
+    public AgentEditPart(IGraphicsAdapter graphicsAdapter) {
         super();
-        this.labelProvider = labelProvider;
-        this.figureProvider = figureProvider;
-        this.colorProvider = colorProvider;
+        this.graphicsAdapter = graphicsAdapter;
+    }
+
+    /**
+     * @param model
+     * @see org.eclipse.gef.editparts.AbstractEditPart#setModel(java.lang.Object)
+     */
+    public void setModel(Object model) {
+        super.setModel(model);
+        // figure provider may not be null, but the others may be. Generally label provider will be provided by an
+        // adapted object
+        figureProvider = (IFigureProvider) getGraphicsAdapter().getAdapter(model, IFigureProvider.class);
+        labelProvider = (ILabelProvider) getGraphicsAdapter().getAdapter(model, ILabelProvider.class);
+        colorProvider = (IColorProvider) getGraphicsAdapter().getAdapter(model, IColorProvider.class);
     }
 
     protected void updateColor(IFigure figure) {
@@ -76,5 +90,9 @@ public class AgentEditPart extends AgentNodeEditPart {
      */
     public ILabelProvider getLabelProvider() {
         return labelProvider;
+    }
+
+    public IGraphicsAdapter getGraphicsAdapter() {
+        return graphicsAdapter;
     }
 }
