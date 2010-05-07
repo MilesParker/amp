@@ -12,81 +12,100 @@
 «EXTENSION metaabm::ascape::tmpl::inferascape»
 
 «AROUND metaabm::tmpl::Java::Imports FOR SAgent-»
+import org.eclipse.amp.agf.IGraphicsAdapter;
+import org.eclipse.amp.agf.GraphicsAdapter;
+import org.eclipse.amp.agf.gef.IFigureProvider;
 import org.eclipse.core.runtime.IAdapterFactory;
-
-import org.ascape.model.Scape;
 
 import org.eclipse.amp.agf.gef.IFigureProvider;
 import org.eclipse.jface.viewers.IColorProvider;
-«ENDAROUND»
-
-«AROUND metaabm::tmpl::Java::Model FOR SContext-»
-	«EXPAND metaabm::tmpl::Java::ClassFile-»
+import org.eclipse.jface.viewers.ILabelProvider;
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ClassFile FOR IID-»
+«IF metaType == SContext»
 «IF generate()»
-    «FILE javaFileLoc().replaceFirst(".java", "AdapterFactory.java")-»
+    «FILE javaFileLoc().replaceFirst(".java", "GraphicsAdapter.java")-»
     «EXPAND metaabm::tmpl::Java::ClassText»
     «ENDFILE-»
 «ENDIF»
+«ENDIF»
 «ENDAROUND»
 
-«AROUND metaabm::tmpl::Java::ClassName FOR IID-»«typeName()»AdapterFactory«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassName FOR IID-»«typeName()»GraphicsAdapter«ENDAROUND»
 
-«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-» implements IAdapterFactory«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-» extends GraphicsAdapter«ENDAROUND»
+
+«AROUND ClassComments FOR IID-»
+ * «label» Adapter for Graphics. Override to specialize.
+«ENDAROUND»
 
 «DEFINE ProviderInstance(String providerType) FOR SAgent»
-    «IF styles.size > 0-»
-        if (agent instanceof «implementation.className») {
-            return «styles.get(0).implementation.qualifiedName»«providerType».getDefault();
-        }
-    «ENDIF-»
+	I«providerType»Provider[] «id()»«providerType»Providers = new I«providerType»Provider[]{«FOREACH styles AS style-»«style.typeName()»«providerType»Provider.getDefault()«ENDFOREACH»};
 «ENDDEFINE»
-«DEFINE RecurseAgentProviders(String providerType) FOR SAgent-»
+«DEFINE RecurseProviderInstance(String providerType) FOR SAgent-»
 	«EXPAND ProviderInstance(providerType)-»
 «ENDDEFINE»
-«DEFINE RecurseAgentProviders(String providerType) FOR SContext-»
+«DEFINE RecurseProviderInstance(String providerType) FOR SContext-»
 	«EXPAND ProviderInstance(providerType)-»
-	«EXPAND RecurseAgentProviders(providerType) FOREACH agents-»
+	«EXPAND RecurseProviderInstance(providerType) FOREACH agents-»
 «ENDDEFINE»
-«DEFINE RecurseAgentProviders(String providerType) FOR IID»«ENDDEFINE»
+«DEFINE RecurseProviderInstance(String providerType) FOR IID»«ENDDEFINE»
 
-«DEFINE ProviderType(String providerType) FOR IID-»
-    if (type == I«providerType».class) {
-    	«EXPAND RecurseAgentProviders(providerType)»
-    }
+«DEFINE ProviderMethod(String providerType) FOR SAgent»
+        if (type == «typeName()».class) {
+            return «id()»«providerType»Providers;
+        }
 «ENDDEFINE»
+«DEFINE RecurseProviderMethod(String providerType) FOR SAgent-»
+	«EXPAND ProviderMethod(providerType)-»
+«ENDDEFINE»
+«DEFINE RecurseProviderMethod(String providerType) FOR SContext-»
+	«EXPAND ProviderMethod(providerType)-»
+	«EXPAND RecurseProviderMethod(providerType) FOREACH agents-»
+«ENDDEFINE»
+«DEFINE RecurseProviderMethod(String providerType) FOR IID»«ENDDEFINE»
 
 «AROUND metaabm::tmpl::Java::ClassImplementation FOR IID-»
 
-    private static IAdapterFactory singleton;
+    private static IGraphicsAdapter singleton;
     
-	Class[] adapters = new Class[]{IFigureProvider.class, IColorProvider.class};
-
+	«EXPAND RecurseProviderInstance("Color")»
+    
+	«EXPAND RecurseProviderInstance("Figure")»
+ 
     /**
-     * @param arg0
-     * @param arg1
+     * @param type
      * @return
-     * @see org.eclipse.core.runtime.IAdapterFactory#getAdapter(java.lang.Object, java.lang.Class)
+     * @see org.eclipse.amp.agf.IGraphicsAdapter#getColorsForClass(java.lang.Class)
      */
-    public Object getAdapter(Object agent, Class type) {
-    	«EXPAND ProviderType("ColorProvider")»
-    	«EXPAND ProviderType("FigureProvider")»
+    public IColorProvider[] getColorsForClass(Class type) {
+    	«EXPAND RecurseProviderMethod("Color")»
         return null;
     }
 
     /**
+     * @param type
      * @return
-     * @see org.eclipse.core.runtime.IAdapterFactory#getAdapterList()
+     * @see org.eclipse.amp.agf.IGraphicsAdapter#getFiguresForClass(java.lang.Class)
      */
-    public Class[] getAdapterList() {
-        return adapters;
+    public IFigureProvider[] getFiguresForClass(Class type) {
+    	«EXPAND RecurseProviderMethod("Figure")»
+        return null;
+    }
+
+    /**
+     * @param type
+     * @return
+     * @see org.eclipse.amp.agf.IGraphicsAdapter#getLabelsForClass(java.lang.Class)
+     */
+    public ILabelProvider[] getLabelsForClass(Class type) {
+    	return null;
     }
     
-    public static IAdapterFactory getDefault() {
+    public static IGraphicsAdapter getDefault() {
         if (singleton == null) {
-            singleton = new «typeName()»AdapterFactory();
+            singleton = new «typeName()»GraphicsAdapter();
         }
         return singleton;
     }

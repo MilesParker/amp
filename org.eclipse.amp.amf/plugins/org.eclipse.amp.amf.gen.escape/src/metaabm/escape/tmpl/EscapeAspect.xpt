@@ -30,6 +30,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.amp.agf.IGraphicsAdapted;
+import org.eclipse.amp.agf.IGraphicsAdapter;
 
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.jface.viewers.IColorProvider;
@@ -77,8 +78,8 @@ import org.ascape.view.vis.GraphView;
     
     «EXPAND metaabm::ascape::tmpl::ScapeAspect::ScapeBody-»
 
-	public IAdapterFactory getGraphicsAdapter() {
-        return «typeName()»AdapterFactory.getDefault();
+	public IGraphicsAdapter getGraphicsAdapter() {
+        return «typeName()»GraphicsAdapter.getDefault();
 	}
 
     private Color getInferredChartColor(Object agent,
