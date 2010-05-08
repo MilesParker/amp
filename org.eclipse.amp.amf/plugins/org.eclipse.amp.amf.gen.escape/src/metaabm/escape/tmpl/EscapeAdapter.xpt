@@ -40,7 +40,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
  * «label» Adapter for Graphics. Override to specialize.
 «ENDAROUND»
 
-«DEFINE ProviderInstance(String providerType) FOR SAgent»
+«DEFINE ProviderInstance(String providerType) FOR SAgent-»
 	I«providerType»Provider[] «id()»«providerType»Providers = new I«providerType»Provider[]{«FOREACH styles AS style-»«style.typeName()»«providerType»Provider.getDefault()«ENDFOREACH»};
 «ENDDEFINE»
 «DEFINE RecurseProviderInstance(String providerType) FOR SAgent-»
@@ -50,9 +50,9 @@ import org.eclipse.jface.viewers.ILabelProvider;
 	«EXPAND ProviderInstance(providerType)-»
 	«EXPAND RecurseProviderInstance(providerType) FOREACH agents-»
 «ENDDEFINE»
-«DEFINE RecurseProviderInstance(String providerType) FOR IID»«ENDDEFINE»
+«DEFINE RecurseProviderInstance(String providerType) FOR IID-»«ENDDEFINE»
 
-«DEFINE ProviderMethod(String providerType) FOR SAgent»
+«DEFINE ProviderMethod(String providerType) FOR SAgent-»
         if (type == «typeName()».class) {
             return «id()»«providerType»Providers;
         }
@@ -64,7 +64,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 	«EXPAND ProviderMethod(providerType)-»
 	«EXPAND RecurseProviderMethod(providerType) FOREACH agents-»
 «ENDDEFINE»
-«DEFINE RecurseProviderMethod(String providerType) FOR IID»«ENDDEFINE»
+«DEFINE RecurseProviderMethod(String providerType) FOR IID-»«ENDDEFINE»
 
 «AROUND metaabm::tmpl::Java::ClassImplementation FOR IID-»
 
@@ -80,7 +80,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
      * @see org.eclipse.amp.agf.IGraphicsAdapter#getColorsForClass(java.lang.Class)
      */
     public IColorProvider[] getColorsForClass(Class type) {
-    	«EXPAND RecurseProviderMethod("Color")»
+    	«EXPAND RecurseProviderMethod("Color")-»
         return null;
     }
 
@@ -90,7 +90,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
      * @see org.eclipse.amp.agf.IGraphicsAdapter#getFiguresForClass(java.lang.Class)
      */
     public IFigureProvider[] getFiguresForClass(Class type) {
-    	«EXPAND RecurseProviderMethod("Figure")»
+    	«EXPAND RecurseProviderMethod("Figure")-»
         return null;
     }
 
