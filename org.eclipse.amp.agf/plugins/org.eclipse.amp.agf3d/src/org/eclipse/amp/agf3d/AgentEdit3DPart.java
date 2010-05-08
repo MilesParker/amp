@@ -112,6 +112,9 @@ public class AgentEdit3DPart extends AgentEditPart {
         return figure;
     }
 
+    protected void refreshVisuals() {
+    }
+    
     protected IFigure createFigure() {
         IFigure3D buildFigure = (IFigure3D) buildFigure(null);
         return buildFigure;

@@ -24,7 +24,6 @@ import java.util.Map;
 import org.eclipse.amp.agf.gef.GenericEditPart;
 import org.eclipse.amp.agf.gef.ScapeEditPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
-import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.space.ILocation2D;
 import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.draw2d.IFigure;
@@ -46,8 +45,7 @@ import org.eclipse.swt.graphics.Color;
 
 public class ScapeEdit3DPart extends ScapeEditPart {
 
-    public ScapeEdit3DPart(ICompositionProvider memberProvider, ILocationProvider locationProvider,
-            IFilter filter) {
+    public ScapeEdit3DPart(ICompositionProvider memberProvider, ILocationProvider locationProvider, IFilter filter) {
         super(memberProvider, locationProvider, filter);
     }
 
@@ -80,7 +78,9 @@ public class ScapeEdit3DPart extends ScapeEditPart {
                 while (children.hasNext()) {
                     f = (IFigure3D) children.next();
                     IVector3f location = (IVector3f) getConstraint(f);
-                    f.getPosition3D().setLocation3D(location);
+                    if (location != null) {
+                        f.getPosition3D().setLocation3D(location);
+                    }
                 }
             }
         }
@@ -146,7 +146,7 @@ public class ScapeEdit3DPart extends ScapeEditPart {
                     difference = Math3DVector3f.abs(difference, difference);
                     Rectangle bounds = getFigure().getBounds();
                     if (root.getAnimationStepCount() > 1 && getRootScapeEditPart().getModel() != null
-                            && ((IModel) getRootScapeEditPart().getModel()).getPeriod() > 0
+                            // && ((IModel) getRootScapeEditPart().getModel()).getPeriod() > 0
                             && difference.getX() < bounds.width * .7f && difference.getY() < bounds.height * .7f) {
                         IVector3f startPoint;
                         Vector3f addPoint;
@@ -194,6 +194,5 @@ public class ScapeEdit3DPart extends ScapeEditPart {
             }
         }
     }
-
 
 }

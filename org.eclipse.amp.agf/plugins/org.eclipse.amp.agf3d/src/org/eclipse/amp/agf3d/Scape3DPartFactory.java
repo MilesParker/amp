@@ -32,17 +32,17 @@ public class Scape3DPartFactory extends ScapePartFactory {
     protected EditPart getPartForElement(Object model) {
 
         if (getCompositionProvider().isComposition(model)) {
-            if (!getGraphProvider().isGraph(model)) {
-                IShape3DProvider shape = (IShape3DProvider) getGraphics3DAdapter()
-                        .getAdapter(getCompositionProvider().getChildrenPrototype(model), IShape3DProvider.class);
-                if (shape != null) {
-                    if (getCompositionProvider().getParent(model) == null) {
-                        return new ScapeEditRoot3DPart(getCompositionProvider(), getLocationProvider(), null);
-                    } else {
-                        return new ScapeEdit3DPart(getCompositionProvider(), getLocationProvider(), null);
-                    }
+            // if (!getGraphProvider().isGraph(model)) {
+            IShape3DProvider shape = (IShape3DProvider) getGraphics3DAdapter()
+            .getAdapter(getCompositionProvider().getChildrenPrototype(model), IShape3DProvider.class);
+            if (shape != null) {
+                if (getCompositionProvider().getParent(model) == null) {
+                    return new ScapeEditRoot3DPart(getCompositionProvider(), getLocationProvider(), null);
+                } else {
+                    return new ScapeEdit3DPart(getCompositionProvider(), getLocationProvider(), null);
                 }
             }
+            // }
         }
         return new AgentEdit3DPart(graphics3DAdapter, getGraphicsAdapter(), true);
     }
