@@ -19,6 +19,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.amp.axf.view.IModelPart;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.DefaultEditDomain;
@@ -85,13 +86,14 @@ public abstract class EditPartViewPart extends AGFViewPart {
             } else {
                 contents = getModel();
             }
-            if (modelInput.getFactory() == null) {
-                viewer.setEditPartFactory(createFactory(getModel()));
-            } else {
-                viewer.setEditPartFactory(modelInput.getFactory());
+            EditPartFactory factory = modelInput.getFactory();
+            if (factory == null) {
+                factory = createFactory(getModel());
             }
-            if (modelInput.getFactory() instanceof ISelectionProvider) {
-                ISelectionProvider provider = (ISelectionProvider) modelInput.getFactory();
+            Assert.isNotNull(factory, "Could not find factory for: " + this);
+            viewer.setEditPartFactory(factory);
+            if (factory instanceof ISelectionProvider) {
+                ISelectionProvider provider = (ISelectionProvider) factory;
                 if (provider != null) {
                     getViewSite().setSelectionProvider(provider);
                 }

@@ -133,7 +133,7 @@ public class TreeViewPart extends EditPartViewPart {
             if (activeModel != null) {
                 IModelFactoryProvider provider = (IModelFactoryProvider) Platform.getAdapterManager()
                 .getAdapter(activeModel.getRoot(), IModelFactoryProvider.class);
-                EditPartFactory editPartTreeFactory = provider.getEditPartTreeFactory(activeModel.getRoot());
+                EditPartFactory editPartTreeFactory = provider.getEditPartTreeFactory(activeModel);
                 getViewer().setEditPartFactory(editPartTreeFactory);
                 getViewer().getControl().getDisplay().asyncExec(new Runnable() {
                     public void run() {

@@ -17,9 +17,14 @@ package org.eclipse.amp.agf.tree;
 
 import java.util.List;
 
+import org.eclipse.amp.agf.GenericGraphicsProvider;
+import org.eclipse.amp.agf.IGraphicsAdapter;
 import org.eclipse.amp.axf.core.ICompositionProvider;
+import org.eclipse.amp.axf.space.IGraphProvider;
+import org.eclipse.amp.axf.space.ILocation2D;
+import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.gef.EditPart;
-import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.swt.graphics.Image;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -31,59 +36,40 @@ public class ScapeTreePart extends AgentTreePart {
 
     boolean firstRefresh = true;
 
-    ICompositionProvider memberProvider;
+    ILocationProvider locationProvider;
+    ICompositionProvider compositionProvider;
+    IGraphProvider graphProvider;
 
-    /**
-     * Instantiates a new scape tree part.
-     * 
-     * @param memberProvider the member provider
-     * @param labelProvider the label provider
-     */
-    public ScapeTreePart(ICompositionProvider memberProvider, ILabelProvider labelProvider) {
-        super(labelProvider);
-        this.memberProvider = memberProvider;
+    public ScapeTreePart(ICompositionProvider compositionProvider, ILocationProvider locationProvider,
+        IGraphProvider graphProvider, IGraphicsAdapter graphicsAdapter) {
+        super(graphicsAdapter);
+        this.locationProvider = locationProvider;
+        this.compositionProvider = compositionProvider;
+        this.graphProvider = graphProvider;
     }
 
-    /**
-     * Must not be called while scape is updating.
-     */
-    // protected void refreshChildren() {
-    // super.refreshChildren();
-    // if (firstRefresh) {
-    // int i = 0;
-    // for (Object agent : getScape().getSpace()) {
-    // EditPart editPart = createChild(agent);
-    // addChild(editPart, -1);
-    // }
-    // } else if (getScape().isMutable() || firstRefresh) {
-    // Map<Agent, EditPart> modelToEditPart = new HashMap<Agent, EditPart>();
-    //
-    // for (Object object : getChildren()) {
-    // EditPart editPart = (EditPart) object;
-    // modelToEditPart.put((Agent) editPart.getModel(), editPart);
-    // }
-    // for (Object agent : getScape().getSpace()) {
-    // EditPart editPart = modelToEditPart.remove(agent);
-    // if (editPart == null) {
-    // editPart = createChild(agent);
-    // addChild(editPart, -1);
-    // }
-    // }
-    // for (EditPart part : modelToEditPart.values()) {
-    // removeChild(part);
-    // }
-    // }
-    // }
-    // @Override
     public void refresh() {
         super.refresh();
         // performance improvement..we only need to do this once for Array2D
-        if (memberProvider.isMutable(getModel())) {
+        if (compositionProvider.isMutable(getModel())) {
             for (Object child : getChildren()) {
                 ((EditPart) child).refresh();
             }
             firstRefresh = false;
         }
+    }
+
+    protected Image getImage() {
+        if (compositionProvider.isChildrenComposition(getModel())) {
+            return GenericGraphicsProvider.SCAPE_IMAGE;
+        }
+        if (graphProvider.isGraph(getModel())) {
+            return GenericGraphicsProvider.GRAPH_IMAGE;
+        }
+        if (locationProvider.getExtent(getModel()) instanceof ILocation2D) {
+            return GenericGraphicsProvider.GRID_IMAGE;
+        }
+        return GenericGraphicsProvider.LIST_IMAGE;
     }
 
     /**
@@ -92,7 +78,7 @@ public class ScapeTreePart extends AgentTreePart {
      */
     @Override
     protected List getModelChildren() {
-        List use = memberProvider.getList(getModel());
+        List use = compositionProvider.getList(getModel());
         return use;
     }
 }

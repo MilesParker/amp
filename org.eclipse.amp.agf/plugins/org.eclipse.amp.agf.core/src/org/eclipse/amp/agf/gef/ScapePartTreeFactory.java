@@ -15,14 +15,17 @@
  */
 package org.eclipse.amp.agf.gef;
 
+import org.eclipse.amp.agf.IGraphicsAdapter;
 import org.eclipse.amp.agf.tree.AgentTreePart;
 import org.eclipse.amp.agf.tree.ScapeTreePart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.core.IModel;
+import org.eclipse.amp.axf.space.IGraphProvider;
+import org.eclipse.amp.axf.space.ILocationProvider;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
-import org.eclipse.jface.viewers.ILabelProvider;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -32,15 +35,21 @@ public class ScapePartTreeFactory implements EditPartFactory {
 
     IModel model;
 
-    public ICompositionProvider compositionProvider;
+    ILocationProvider locationProvider;
+    ICompositionProvider compositionProvider;
+    IGraphProvider graphProvider;
 
-    public ILabelProvider labelProvider;
+    IGraphicsAdapter graphicsAdapter;
 
-    public ScapePartTreeFactory(IModel model) {
+    public ScapePartTreeFactory(IModel model, IGraphicsAdapter graphicsAdapter) {
         this.model = model;
+        this.graphicsAdapter = graphicsAdapter;
         compositionProvider = (ICompositionProvider) Platform.getAdapterManager()
         .getAdapter(model, ICompositionProvider.class);
-        labelProvider = (ILabelProvider) Platform.getAdapterManager().getAdapter(model, ILabelProvider.class);
+        locationProvider = (ILocationProvider) Platform.getAdapterManager().getAdapter(model, ILocationProvider.class);
+        graphProvider = (IGraphProvider) Platform.getAdapterManager().getAdapter(model, IGraphProvider.class);
+        Assert.isNotNull(compositionProvider);
+        Assert.isNotNull(graphicsAdapter);
     }
 
     /**
@@ -51,9 +60,7 @@ public class ScapePartTreeFactory implements EditPartFactory {
      */
     public EditPart createEditPart(EditPart context, Object model) {
         EditPart part = getPartForElement(model);
-        if (part != null) {
-            part.setModel(model);
-        }
+        part.setModel(model);
         return part;
     }
 
@@ -67,9 +74,9 @@ public class ScapePartTreeFactory implements EditPartFactory {
      * @throws RuntimeException if no match was found (programming error)
      */
     protected EditPart getPartForElement(Object model) {
-        if (compositionProvider.isChildrenComposition(model)) {
-            return new ScapeTreePart(compositionProvider, labelProvider);
+        if (compositionProvider.isComposition(model)) {
+            return new ScapeTreePart(compositionProvider, locationProvider, graphProvider, graphicsAdapter);
         }
-        return new AgentTreePart(labelProvider);
+        return new AgentTreePart(graphicsAdapter);
     }
 }

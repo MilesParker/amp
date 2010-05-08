@@ -49,6 +49,6 @@ public class DefaultModelFactoryProvider implements IModelFactoryProvider {
      * @see org.eclipse.amp.agf.gef.IModelFactoryProvider#getEditPartTreeFactory(java.lang.Object)
      */
     public EditPartFactory getEditPartTreeFactory(Object model) {
-        return new ScapePartTreeFactory((IModel) model);
+        return new ScapePartTreeFactory((IModel) model, factory);
     }
 }

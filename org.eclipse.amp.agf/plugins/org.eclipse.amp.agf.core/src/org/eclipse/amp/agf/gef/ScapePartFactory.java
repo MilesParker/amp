@@ -61,9 +61,7 @@ public class ScapePartFactory implements EditPartFactory {
      */
     public EditPart createEditPart(EditPart context, Object model) {
         EditPart part = getPartForElement(model);
-        if (part != null) {
-            part.setModel(model);
-        }
+        part.setModel(model);
         return part;
     }
 

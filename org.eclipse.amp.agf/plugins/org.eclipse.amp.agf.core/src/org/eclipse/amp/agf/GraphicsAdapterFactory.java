@@ -39,17 +39,20 @@ public class GraphicsAdapterFactory implements IGraphicsAdapterFactory {
             return Platform.getAdapterManager().getAdapter(((IModel) adaptableObject).getRoot(), adapterType);
         }
         if (adapterType == IGraphicsAdapter.class) {
-            return GraphicsAdapter.getDefault();
-        }
-        if (adapterType == IModelFactoryProvider.class) {
             IGraphicsAdapter factory = null;
             if (adaptableObject instanceof IGraphicsAdapted) {
                 factory = ((IGraphicsAdapted) adaptableObject).getGraphicsAdapter();
             }
             if (factory == null) {
+                // TODO circular case
                 factory = (IGraphicsAdapter) Platform.getAdapterManager().getAdapter(adaptableObject,
                                                                                      IGraphicsAdapter.class);
             }
+            return factory;
+        }
+        if (adapterType == IModelFactoryProvider.class) {
+            IGraphicsAdapter factory = null;
+            factory = (IGraphicsAdapter) getAdapter(adaptableObject, IGraphicsAdapter.class);
             if (factory != null) {
                 return new DefaultModelFactoryProvider(factory);
             }

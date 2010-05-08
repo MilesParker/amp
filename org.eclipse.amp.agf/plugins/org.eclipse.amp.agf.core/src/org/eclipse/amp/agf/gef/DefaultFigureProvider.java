@@ -42,7 +42,7 @@ public class DefaultFigureProvider implements IFigureProvider {
      * @see org.eclipse.amp.agf.gef.IFigureProvider#isColorMutable(java.lang.Object)
      */
     public boolean isColorMutable(Object object) {
-        return false;
+        return true;
     }
 
     /**
