@@ -15,23 +15,20 @@
  */
 package org.eclipse.amp.escape.ascape.adapt;
 
-import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModelListener;
-import org.eclipse.draw2d.ColorConstants;
-import org.eclipse.jface.viewers.IColorProvider;
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Image;
-
 import org.ascape.model.Agent;
 import org.ascape.model.AscapeObject;
+import org.ascape.model.HostCell;
 import org.ascape.model.event.ScapeListener;
+import org.eclipse.amp.agf.GenericGraphicsProvider;
+import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModelListener;
+import org.eclipse.jface.viewers.IColorProvider;
+import org.eclipse.swt.graphics.Color;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class AscapeProvider.
  */
-public class AscapeGraphicsProvider implements ILabelProvider, IColorProvider {
+public class AscapeGraphicsProvider extends GenericGraphicsProvider {
 
     private static AscapeGraphicsProvider singleton;
 
@@ -42,71 +39,25 @@ public class AscapeGraphicsProvider implements ILabelProvider, IColorProvider {
      */
     public String getText(Object element) {
         String text = null;
+        if (element.getClass() == HostCell.class) {
+            return "Cell " + ((HostCell) element).getCoordinate();
+        }
         if (element instanceof AscapeObject) {
             text = ((AscapeObject) element).getName();
+            if (text != null) {
+                return text;
+            }
         }
         if (element instanceof ScapeListener) {
             text = ((ScapeListener) element).getName();
+            if (text != null) {
+                return text;
+            }
         }
         if (element instanceof ScapeWrapperModelListener) {
-            text = getText(((ScapeWrapperModelListener) element).getWrapped());
+            return getText(((ScapeWrapperModelListener) element).getWrapped());
         }
-        // Text can't be null for some cases..
-        if (text == null) {
-            text = element.getClass().getSimpleName();
-        }
-        return text;
-    }
-
-    /**
-     * @param element
-     * @return
-     * @see org.eclipse.jface.viewers.ILabelProvider#getImage(java.lang.Object)
-     */
-    public Image getImage(Object element) {
-        return null;
-        // if (element instanceof ScapeWrapperModelListener) {
-        // return super.getImage(((ScapeWrapperModelListener) element).getWrapped());
-        // }
-        // throw new RuntimeException("Unexpected input for Scape Label Provider: " + element);
-    }
-
-    /**
-     * @param listener
-     * @see org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.jface.viewers.ILabelProviderListener)
-     */
-    public void addListener(ILabelProviderListener listener) {
-    }
-
-    /**
-     * 
-     * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
-     */
-    public void dispose() {
-    }
-
-    /**
-     * @param element
-     * @param property
-     * @return
-     * @see org.eclipse.jface.viewers.IBaseLabelProvider#isLabelProperty(java.lang.Object, java.lang.String)
-     */
-    public boolean isLabelProperty(Object element, String property) {
-        return false;
-    }
-
-    /**
-     * @param listener
-     * @see org.eclipse.jface.viewers.IBaseLabelProvider#removeListener(org.eclipse.jface.viewers.ILabelProviderListener)
-     */
-    public void removeListener(ILabelProviderListener listener) {
-    }
-
-    public static AscapeGraphicsProvider getDefault() {
-        if (singleton == null) {
-            singleton = new AscapeGraphicsProvider();
-        }
-        return singleton;
+        return super.getText(element);
     }
 
     /**
@@ -120,7 +71,7 @@ public class AscapeGraphicsProvider implements ILabelProvider, IColorProvider {
         } else if (element instanceof Agent) {
             return (Color) ((Agent) element).getPlatformColor();
         }
-        return ColorConstants.cyan;
+        return null;
     }
 
     /**
@@ -134,6 +85,14 @@ public class AscapeGraphicsProvider implements ILabelProvider, IColorProvider {
         } else if (element instanceof Agent) {
             return (Color) ((Agent) element).getPlatformColor();
         }
-        return ColorConstants.orange;
+        return null;
     }
+
+    public static AscapeGraphicsProvider getDefault() {
+        if (singleton == null) {
+            singleton = new AscapeGraphicsProvider();
+        }
+        return singleton;
+    }
+
 }
