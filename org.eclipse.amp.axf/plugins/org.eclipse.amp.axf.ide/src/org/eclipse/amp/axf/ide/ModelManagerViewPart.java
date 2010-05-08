@@ -156,6 +156,9 @@ public class ModelManagerViewPart extends ViewPart {
                     return name;
                 }
             }
+            if (element instanceof IModel) {
+                return getText(((IModel) element).getRoot());
+            }
             return super.getText(element);
         }
 
