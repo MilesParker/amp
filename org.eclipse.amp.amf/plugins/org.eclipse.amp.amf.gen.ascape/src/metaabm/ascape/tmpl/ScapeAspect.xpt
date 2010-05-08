@@ -208,7 +208,7 @@
 «DEFINE CreateScape(int stage) FOR ABuildSpace-»
 		«IF stage == 0-»
 	        «projection.fieldName()» = new Scape(new «projection.spaceClass()»());
-	        «projection.fieldName()».setName("«label»");
+	        «projection.fieldName()».setName("«projection.pluralLabel»");
 	        «EXPAND SetDimension FOR (SNDimensional) projection»
 	        ((CollectionSpace) «projection.fieldName()».getSpace()).setPeriodic(«projection.periodic()»);
 	        «projection.fieldName()».setPrototypeAgent(new «agents.get(0).typeName()»());
@@ -223,7 +223,7 @@
 «DEFINE CreateScape(int stage) FOR ABuildNetwork-»
 		«IF stage == 0-»
         «projection.fieldName()» = new Scape(new «projection.spaceClass()»());
-        «projection.fieldName()».setName("«label»");
+        «projection.fieldName()».setName("«projection.pluralLabel»");
 		add(«projection.fieldName()»);
 		«ENDIF-»
 «ENDDEFINE»
@@ -232,7 +232,7 @@
 	        «projection.fieldName()» = new Scape(new «projection.spaceClass()»());
 	        «projection.fieldName()».setPrototypeAgent(new «fillAgentType()»());
 	        «EXPAND SetDimension FOR (SNDimensional) projection»
-	        «projection.fieldName()».setName("«label»");
+	        «projection.fieldName()».setName("«projection.pluralLabel»");
 	        «IF projection.periodic() != ""-»
 	        ((CollectionSpace) «projection.fieldName()».getSpace()).setPeriodic(«projection.periodic()»);
 	        «ENDIF-»
@@ -258,7 +258,7 @@
 		«IF stage == 0-»
 		«typeName()» «proto()» = create«typeName()»Prototype();
 		«scape()» = new Scape();
-		«scape()».setName("«label»");
+		«scape()».setName("«pluralLabel»");
 		«scape()».setPrototypeAgent(«proto()»);
         «scape()».setExecutionOrder(Scape.RULE_ORDER);
 		«ELSEIF stage == 1»
