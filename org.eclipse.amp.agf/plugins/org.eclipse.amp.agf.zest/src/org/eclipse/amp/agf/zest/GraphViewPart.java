@@ -15,6 +15,7 @@
  */
 package org.eclipse.amp.agf.zest;
 
+import org.eclipse.amp.agf.IGraphicsAdapter;
 import org.eclipse.amp.agf.gef.AGFViewPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
@@ -22,10 +23,12 @@ import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.space.IGraphProvider;
 import org.eclipse.amp.axf.view.ModelInput;
 import org.eclipse.amp.axf.view.SWTAsyncModelListener;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelectionProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
@@ -89,12 +92,21 @@ public class GraphViewPart extends AGFViewPart {
             ICompositionProvider compProvider = (ICompositionProvider) Platform.getAdapterManager()
             .getAdapter(getModel(), ICompositionProvider.class);
             ZestContentProvider contentProvider = new ZestContentProvider(graphProvider, compProvider);
+            Assert.isNotNull(graphProvider);
+            Assert.isNotNull(compProvider);
+            Assert.isNotNull(contentProvider);
             viewer.setContentProvider(contentProvider);
-            ILabelProvider labelProvider = (ILabelProvider) Platform.getAdapterManager()
-            .getAdapter(getModel(), ILabelProvider.class);
-            viewer.setLabelProvider(new ZestStyleProvider(labelProvider));
+            IGraphicsAdapter graphicsAdapter = (IGraphicsAdapter) Platform.getAdapterManager()
+                    .getAdapter(getModel().getRoot(), IGraphicsAdapter.class);
+            viewer.setLabelProvider(new ZestStyleProvider(getModel().getRoot(), compProvider, graphicsAdapter));
+            Object contents = null;
+            if (modelInput.getSelection() instanceof IStructuredSelection) {
+                contents = ((StructuredSelection) modelInput.getSelection()).getFirstElement();
+            } else {
+                contents = getModel();
+            }
+            viewer.setInput(contents);
         }
-        viewer.setInput(modelInput.getModel());
     }
 
     /**
