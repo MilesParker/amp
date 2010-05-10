@@ -79,6 +79,7 @@ public class GraphViewPart extends AGFViewPart {
         springs.setSpringStrain(strain);
         springs.setSpringLength(springLength);
         springs.setSpringMove(springMove);
+        springs.setSpringTimeout(1000);
         return springs;
     }
 
@@ -97,7 +98,7 @@ public class GraphViewPart extends AGFViewPart {
             Assert.isNotNull(contentProvider);
             viewer.setContentProvider(contentProvider);
             IGraphicsAdapter graphicsAdapter = (IGraphicsAdapter) Platform.getAdapterManager()
-                    .getAdapter(getModel().getRoot(), IGraphicsAdapter.class);
+            .getAdapter(getModel().getRoot(), IGraphicsAdapter.class);
             viewer.setLabelProvider(new ZestStyleProvider(getModel().getRoot(), compProvider, graphicsAdapter));
             Object contents = null;
             if (modelInput.getSelection() instanceof IStructuredSelection) {

@@ -3,7 +3,6 @@ package org.eclipse.amp.agf.zest;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.amp.agf.GenericGraphicsProvider;
 import org.eclipse.amp.agf.IGraphicsAdapter;
 import org.eclipse.amp.agf.gef.IFigureProvider;
 import org.eclipse.amp.axf.core.ICompositionProvider;
@@ -15,6 +14,7 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.zest.core.viewers.EntityConnectionData;
 import org.eclipse.zest.core.viewers.IConnectionStyleProvider;
 import org.eclipse.zest.core.viewers.IEntityStyleProvider;
 import org.eclipse.zest.core.widgets.ZestStyles;
@@ -76,11 +76,17 @@ IConnectionStyleProvider, org.eclipse.zest.core.viewers.IFigureProvider {
     }
 
     public Image getImage(Object element) {
-        return getLabelProvider(element).getImage(element);
+        if (!(element instanceof EntityConnectionData) && getFigureProvider(element) != null) {
+            return getLabelProvider(element).getImage(element);
+        }
+        return null;
     }
 
     public String getText(Object element) {
-        return getLabelProvider(element).getText(element);
+        if (!(element instanceof EntityConnectionData)) {
+            return getLabelProvider(element).getText(element);
+        }
+        return null;
     }
 
     public void addListener(ILabelProviderListener listener) {
@@ -151,7 +157,7 @@ IConnectionStyleProvider, org.eclipse.zest.core.viewers.IFigureProvider {
         return getFigureProvider(element).getFigure(element);
     }
 
-    private IFigureProvider getFigureProvider(Object object) {
+    protected IFigureProvider getFigureProvider(Object object) {
         // Object parent = compositionProvider.getParent(object);
         IFigureProvider figureProvider = figureFor.get(object);
         if (figureProvider == null) {
@@ -162,7 +168,7 @@ IConnectionStyleProvider, org.eclipse.zest.core.viewers.IFigureProvider {
         return figureProvider;
     }
 
-    private IColorProvider getColorProvider(Object object) {
+    protected IColorProvider getColorProvider(Object object) {
         // Object parent = compositionProvider.getParent(object);
         IColorProvider colorProvider = colorFor.get(object);
         if (colorProvider == null) {
@@ -173,14 +179,11 @@ IConnectionStyleProvider, org.eclipse.zest.core.viewers.IFigureProvider {
         return colorProvider;
     }
 
-    private ILabelProvider getLabelProvider(Object object) {
+    protected ILabelProvider getLabelProvider(Object object) {
         // Object parent = compositionProvider.getParent(object);
         ILabelProvider labelProvider = labelFor.get(object);
         if (labelProvider == null) {
             labelProvider = (ILabelProvider) graphicsAdapter.getAdapter(object, ILabelProvider.class);
-            if (labelProvider == null) {
-                labelProvider = GenericGraphicsProvider.getDefault();
-            }
             labelFor.put(object, labelProvider);
         }
         return labelProvider;
