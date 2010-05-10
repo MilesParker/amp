@@ -226,10 +226,19 @@ cached String descrText(SNamed named) :
 		: named.label + " value. (No description defined.)";
 
 cached String descrText(ABuild builder) :
-	"Build internal state for " + builder.reference.label + ".";
+	"Build the " + builder.reference.label + ".";
 
 cached String descrText(ACreateAgents agents) :
 	"Create " + agents.reference.pluralLabel + ".";
+
+cached String descrText(AInitialize rule) :
+	rule.label + " Initialization. Executed once at the beginning of each model run.";
+
+cached String descrText(ASchedule rule) :
+	rule.label + " Schedule. Executed every " + rule.interval + " period starting with period " + rule.start + ".";
+
+cached String descrText(ARule rule) :
+	rule.label + " Rule. Executed every period.";
 
 cached String descrText(AWatch rule) :
 	"Watch for changes in " + rule.attribute.label + ".";

@@ -128,21 +128,23 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 
 «DEFINE Field FOR IID-»
 	«IF fieldExists()-»
+
 	«IF genComments()-»
 	/**
 	 * «descrText()»
 	 */
-	 «ENDIF»
+	 «ENDIF-»
 	private «EXPAND Modifier-»«EXPAND ExtendType-» «fieldName()» = «defaultValue()»;
 	«ENDIF-»
 «ENDDEFINE» 
 
 «DEFINE Constructor FOR IID-»
 	«IF genComments()-»
+	
 	/**
 	 * Constructs a new «label».
 	 */
-	 «ENDIF»
+	 «ENDIF-»
 	 public «EXPAND ClassName»() {
 		«EXPAND ConstructorBody-»
 	 }
@@ -157,25 +159,26 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 «ENDDEFINE»
 
 «DEFINE Method FOR IID-»
+
 	«IF genComments()-»
 	 	«EXPAND MethodComment-»
-	 «ENDIF»
-	 «IF testing()»
+	 «ENDIF-»
+	 «IF testing()-»
 	 @org.junit.Test
-	 «ENDIF»
+	 «ENDIF-»
  	«EXPAND MethodImpl-»
 «ENDDEFINE»
 «DEFINE MethodComment FOR IID-»
 	/**
-	 * «descrText()».
+	 * «descrText()»
 	 */
 «ENDDEFINE»
 «DEFINE MethodImpl FOR IID-»
  	public «methodTypeName()» «methodName()»(«methodParamList()») {
  	«EXPAND ProtectedRegion(methodName())»
-    «IF impl().mode != SImplementationMode::GenerateEmpty» 
+    «IF impl().mode != SImplementationMode::GenerateEmpty-» 
  		«EXPAND ActionBody-» 
-    «ENDIF»
+    «ENDIF-»
 	}
 «ENDDEFINE»
 
@@ -262,12 +265,13 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 «ENDDEFINE»
 
 «DEFINE Accessor FOR IID-»
+
 	«IF genComments()-»
 	/**
 	 * Gets the «label» property for «parent().label».
 	 * @return «descrText()»
 	 */
-	 «ENDIF»
+	 «ENDIF-»
 	«EXPAND GetterMethod-»
 
 	«IF genComments()-»
@@ -276,7 +280,7 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 	 * «descrText()»
 	 * @param _«paramName()» the new «label» value
 	 */
-	«ENDIF»
+	«ENDIF-»
 	«EXPAND SetterMethod-»
 «ENDDEFINE» 
 
