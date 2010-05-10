@@ -98,12 +98,13 @@ import org.eclipse.amp.agf.gef.Shapes;
 «ENDDEFINE»
 
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AEvaluate-»
+//--ids  «path.ids()»
     «IF function.id().startsWith("shapeRectangle")-»
 	        figure = Shapes.createRectangle();
     «ELSEIF function.id().startsWith("shapeOval")-»
 	        figure = Shapes.createOval();
     «ELSEIF function.id().startsWith("shapeMarker")-»
-	        figure = Shapes.createMarker(0);
+	        figure = Shapes.getMarker(0);
     «ELSEIF function.id().startsWith("color") || function.id().startsWith("graphic")»
 	    «IF function.id().startsWith("color")-»
 	        color = «EXPAND metaabm::tmpl::Java::FunctionInnerBlock(path, inner)»;
