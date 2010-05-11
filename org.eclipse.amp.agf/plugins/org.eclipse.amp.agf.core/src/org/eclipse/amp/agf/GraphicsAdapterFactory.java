@@ -16,10 +16,7 @@
 
 package org.eclipse.amp.agf;
 
-import org.eclipse.amp.agf.gef.DefaultModelFactoryProvider;
-import org.eclipse.amp.agf.gef.IModelFactoryProvider;
-import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.IAdaptable;
 
 /**
  * 
@@ -35,27 +32,17 @@ public class GraphicsAdapterFactory implements IGraphicsAdapterFactory {
      * @see org.eclipse.core.runtime.IAdapterFactory#getAdapter(java.lang.Object, java.lang.Class)
      */
     public Object getAdapter(Object adaptableObject, Class adapterType) {
-        if (adaptableObject instanceof IModel) {
-            return Platform.getAdapterManager().getAdapter(((IModel) adaptableObject).getRoot(), adapterType);
-        }
         if (adapterType == IGraphicsAdapter.class) {
-            IGraphicsAdapter factory = null;
+            IGraphicsAdapter graphicsAdapter = null;
             if (adaptableObject instanceof IGraphicsAdapted) {
-                factory = ((IGraphicsAdapted) adaptableObject).getGraphicsAdapter();
+                graphicsAdapter = ((IGraphicsAdapted) adaptableObject).getGraphicsAdapter();
+            } else if (adaptableObject instanceof IAdaptable) {
+                graphicsAdapter = (IGraphicsAdapter) ((IAdaptable) adaptableObject).getAdapter(IGraphicsAdapter.class);
             }
-            if (factory == null) {
-                // TODO circular case
-                factory = (IGraphicsAdapter) Platform.getAdapterManager().getAdapter(adaptableObject,
-                                                                                     IGraphicsAdapter.class);
+            if (graphicsAdapter == null) {
+                return GraphicsAdapter.getDefault();
             }
-            return factory;
-        }
-        if (adapterType == IModelFactoryProvider.class) {
-            IGraphicsAdapter factory = null;
-            factory = (IGraphicsAdapter) getAdapter(adaptableObject, IGraphicsAdapter.class);
-            if (factory != null) {
-                return new DefaultModelFactoryProvider(factory);
-            }
+            return graphicsAdapter;
         }
         return null;
     }
@@ -65,6 +52,6 @@ public class GraphicsAdapterFactory implements IGraphicsAdapterFactory {
      * @see org.eclipse.core.runtime.IAdapterFactory#getAdapterList()
      */
     public Class[] getAdapterList() {
-        return new Class[] { IModelFactoryProvider.class, IGraphicsAdapter.class };
+        return new Class[] { IGraphicsAdapter.class };
     }
 }

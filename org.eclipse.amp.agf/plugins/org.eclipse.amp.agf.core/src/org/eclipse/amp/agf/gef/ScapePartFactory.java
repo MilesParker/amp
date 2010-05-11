@@ -21,6 +21,7 @@ import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.space.IGraphProvider;
 import org.eclipse.amp.axf.space.ILocationProvider;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartFactory;
@@ -42,15 +43,14 @@ public class ScapePartFactory implements EditPartFactory {
 
     public ScapePartFactory(IModel model, IGraphicsAdapter graphicsAdapter) {
         super();
-        if (graphicsAdapter == null) {
-            throw new RuntimeException("A graphics factory must be provided for: " + model);
-        }
         this.model = model;
         this.graphicsAdapter = graphicsAdapter;
         compositionProvider = (ICompositionProvider) Platform.getAdapterManager()
         .getAdapter(model, ICompositionProvider.class);
         locationProvider = (ILocationProvider) Platform.getAdapterManager().getAdapter(model, ILocationProvider.class);
         graphProvider = (IGraphProvider) Platform.getAdapterManager().getAdapter(model, IGraphProvider.class);
+        Assert.isNotNull(graphicsAdapter);
+        Assert.isNotNull(compositionProvider);
     }
 
     /**
