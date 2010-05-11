@@ -1,6 +1,0 @@
-"MyModel"
-model "|Epidemic.metaabm"
-"Epidemic" [
-"Individual Count" =10
-"Stop Period"=10
-]

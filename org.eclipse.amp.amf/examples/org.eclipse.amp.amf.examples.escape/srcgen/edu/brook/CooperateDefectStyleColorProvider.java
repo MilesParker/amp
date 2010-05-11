@@ -18,19 +18,20 @@ import org.eclipse.jface.viewers.IColorProvider;
 
 public class CooperateDefectStyleColorProvider implements IColorProvider {
 
+	private static IColorProvider singleton;
+
 	/**
-	 * Provides a foreground color for the given Player.
+	 * Provides a color for Player based on wether we want to fill or not.
 	 * 
 	 * @param object the agent
 	 * @return	the foreground color for the element, or <code>null</code> 
 	 *   to use the default foreground color
 	 */
-	public Color getForeground(Object object) {
-
-		//todo separate out this functionality
+	public Color getColor(Object object, boolean fill) {
 		Color color = null;
 		Color fillColor = null;
 		Color outlineColor = null;
+
 		Player rootActGroup = (Player) object;
 		Player playerRule = rootActGroup;
 
@@ -49,10 +50,29 @@ public class CooperateDefectStyleColorProvider implements IColorProvider {
 
 		}
 
-		if (outlineColor != null) {
-			return outlineColor;
-		} else if (fillColor != null) {
+		if (fill) {
 			return fillColor;
+		} else {
+			return outlineColor;
+		}
+	}
+
+	/**
+	 * Provides a foreground color for the given Player.
+	 * 
+	 * @param object the agent
+	 * @return	the foreground color for the element, or <code>null</code> 
+	 *   to use the default foreground color
+	 */
+	public Color getForeground(Object object) {
+		Color color = getColor(object, false);
+		if (color != null) {
+			return color;
+		}
+		//try to see if we have a fill color, if we do, we'll paint the whole agent that color.
+		color = getColor(object, true);
+		if (color != null) {
+			return color;
 		}
 		return ColorFeature.BLACK;
 	}
@@ -65,34 +85,18 @@ public class CooperateDefectStyleColorProvider implements IColorProvider {
 	 *   to use the default background color
 	 */
 	public Color getBackground(Object object) {
-
-		//todo separate out this functionality
-		Color color = null;
-		Color fillColor = null;
-		Color outlineColor = null;
-		Player rootActGroup = (Player) object;
-		Player playerRule = rootActGroup;
-
-		if (playerRule.isCooperate()) {
-
-			color = ColorConstants.blue;
-
-			fillColor = color;
-
+		Color color = getColor(object, true);
+		if (color != null) {
+			return color;
 		}
-		if (!(playerRule.isCooperate())) {
+		//if no fill color, just return white
+		return ColorFeature.WHITE;
+	}
 
-			color = ColorConstants.red;
-
-			fillColor = color;
-
+	public static IColorProvider getDefault() {
+		if (singleton == null) {
+			singleton = new CooperateDefectStyleColorProvider();
 		}
-
-		if (fillColor != null) {
-			return fillColor;
-		} else if (outlineColor != null) {
-			return outlineColor;
-		}
-		return ColorFeature.BLACK;
+		return singleton;
 	}
 }

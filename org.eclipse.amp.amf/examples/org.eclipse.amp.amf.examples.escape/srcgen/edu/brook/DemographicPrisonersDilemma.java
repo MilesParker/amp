@@ -2,6 +2,10 @@ package edu.brook;
 
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdapterFactory;
+import org.eclipse.amp.agf.IGraphicsAdapted;
+import org.eclipse.amp.agf.IGraphicsAdapter;
+
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.jface.viewers.IColorProvider;
 
@@ -23,11 +27,7 @@ import org.ascape.util.vis.ColorFeature;
 import org.ascape.util.vis.ColorFeatureConcrete;
 import org.ascape.view.vis.ChartView;
 import org.ascape.view.vis.GEFView;
-
-import org.eclipse.gef.EditPartFactory;
-import org.eclipse.amp.agf.gef.ModelFactoryProvider;
-import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
-import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
+import org.ascape.view.vis.GraphView;
 
 /**
  * Demographic Prisoner_s Dilemma Java Implementation.
@@ -37,108 +37,103 @@ import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
 
 public class DemographicPrisonersDilemma extends Scape
 		implements
-			ModelFactoryProvider {
+			IGraphicsAdapted {
 
 	/**
 	 * The number of players to create.
 	 */
-
 	private int playerCount = 100;
+
 	/**
 	 * 
 	 */
-
 	private int minimumWealth = 20;
+
 	/**
 	 * 
 	 */
-
 	private int maximumWealth = 100;
+
 	/**
 	 * 
 	 */
-
 	private int maximumAge = 100;
+
 	/**
 	 * The change in wealth for a player when playing cooperate against cooperate.
 	 */
-
 	private int payoffCC = 2;
+
 	/**
 	 * The change in wealth for a player when playing cooperate against defect.
 	 */
-
 	private int payoffCD = -6;
+
 	/**
 	 * The change in wealth for a player when playing defect against cooperate.
 	 */
-
 	private int payoffDC = 6;
+
 	/**
 	 * The change in wealth for a player when both players defect.
 	 */
-
 	private int payoffDD = -5;
+
 	/**
 	 * The wealth level at which an agent can fission.
 	 */
-
 	private int fissionWealth = 11;
+
 	/**
 	 * The wealth that is passed from parent to child.
 	 */
-
 	private int inheiritedWealth = 6;
+
 	/**
 	 * The wealth initially assigned to an agent at the beginning of model run.
 	 */
-
 	private int initialWealth = 6;
+
 	/**
 	 * The probabaility that a given agent will change strategies in a given period, expressed as a value from 0.0 to 1.0.
 	 */
-
 	private double mutationRate = .1;
+
 	/**
 	 * The number of periods before an agent will be removed from game when Die At Age rule is active.
 	 */
-
 	private int deathAge = 100;
+
 	/**
 	 * The actual age in years as determined by data set.
 	 */
-
 	private int birthAge = 0;
+
 	/**
 	 * The size of each dimension.
 	 */
-
 	private int[] gameSpaceDimensions = new int[2];
+
 	/**
 	 * The horizontal extent of the space.
 	 */
-
 	private int gameSpaceWidth = 20;
+
 	/**
 	 * The vertical extent of the space.
 	 */
-
 	private int gameSpaceHeight = 20;
+
 	/**
 	 * 
 	 */
-
 	private Scape gameSpace = null;
+
 	/**
 	 * Constructs a new Demographic Prisoner_s Dilemma.
 	 */
-
 	public DemographicPrisonersDilemma() {
 	}
-
-	EditPartFactory factory;
-
-	EditPartFactory treeFactory;
 
 	//todo, make this a useful value for evaluating compatibility of different versions of generated classes
 	private static final long serialVersionUID = 89989998L;
@@ -192,7 +187,7 @@ public class DemographicPrisonersDilemma extends Scape
 
 		Player playerProto = createPlayerPrototype();
 		playerScape = new Scape();
-		playerScape.setName("Player");
+		playerScape.setName("Players");
 		playerScape.setPrototypeAgent(playerProto);
 		playerScape.setExecutionOrder(Scape.RULE_ORDER);
 
@@ -203,7 +198,7 @@ public class DemographicPrisonersDilemma extends Scape
 		gameSpace.setExtent(new org.ascape.model.space.Coordinate2DDiscrete(
 				getGameSpaceWidth(), getGameSpaceHeight()));
 
-		gameSpace.setName("Build Grid");
+		gameSpace.setName("Game Spaces");
 		((CollectionSpace) gameSpace.getSpace()).setPeriodic(true);
 		add(gameSpace);
 
@@ -362,6 +357,7 @@ public class DemographicPrisonersDilemma extends Scape
 		addView(chart);
 
 		addView(new GEFView());
+		addView(new GraphView());
 	}
 
 	public void scapeSetup(ScapeEvent scapeEvent) {
@@ -377,18 +373,8 @@ public class DemographicPrisonersDilemma extends Scape
 		return playerScape;
 	}
 
-	public EditPartFactory getEditPartFactory() {
-		if (factory == null) {
-			factory = new DemographicPrisonersDilemmaPartFactory();
-		}
-		return factory;
-	}
-
-	public EditPartFactory getEditPartTreeFactory() {
-		if (treeFactory == null) {
-			treeFactory = new AscapePartTreeFactory();
-		}
-		return treeFactory;
+	public IGraphicsAdapter getGraphicsAdapter() {
+		return DemographicPrisonersDilemmaGraphicsAdapter.getDefault();
 	}
 
 	private Color getInferredChartColor(Object agent,
@@ -410,7 +396,6 @@ public class DemographicPrisonersDilemma extends Scape
 	 * Gets the Player Count property for Demographic Prisoner_s Dilemma.
 	 * @return The number of players to create.
 	 */
-
 	public int getPlayerCount() {
 		return playerCount;
 	}
@@ -420,15 +405,14 @@ public class DemographicPrisonersDilemma extends Scape
 	 * The number of players to create.
 	 * @param _playerCount the new Player Count value
 	 */
-
 	public void setPlayerCount(int _playerCount) {
 		playerCount = _playerCount;
 	}
+
 	/**
 	 * Gets the Minimum Wealth property for Demographic Prisoner_s Dilemma.
 	 * @return 
 	 */
-
 	public int getMinimumWealth() {
 		return minimumWealth;
 	}
@@ -438,15 +422,14 @@ public class DemographicPrisonersDilemma extends Scape
 	 * 
 	 * @param _minimumWealth the new Minimum Wealth value
 	 */
-
 	public void setMinimumWealth(int _minimumWealth) {
 		minimumWealth = _minimumWealth;
 	}
+
 	/**
 	 * Gets the Maximum Wealth property for Demographic Prisoner_s Dilemma.
 	 * @return 
 	 */
-
 	public int getMaximumWealth() {
 		return maximumWealth;
 	}
@@ -456,15 +439,14 @@ public class DemographicPrisonersDilemma extends Scape
 	 * 
 	 * @param _maximumWealth the new Maximum Wealth value
 	 */
-
 	public void setMaximumWealth(int _maximumWealth) {
 		maximumWealth = _maximumWealth;
 	}
+
 	/**
 	 * Gets the Maximum Age property for Demographic Prisoner_s Dilemma.
 	 * @return 
 	 */
-
 	public int getMaximumAge() {
 		return maximumAge;
 	}
@@ -474,15 +456,14 @@ public class DemographicPrisonersDilemma extends Scape
 	 * 
 	 * @param _maximumAge the new Maximum Age value
 	 */
-
 	public void setMaximumAge(int _maximumAge) {
 		maximumAge = _maximumAge;
 	}
+
 	/**
 	 * Gets the Payoff Cooperate Cooperate property for Demographic Prisoner_s Dilemma.
 	 * @return The change in wealth for a player when playing cooperate against cooperate.
 	 */
-
 	public int getPayoffCC() {
 		return payoffCC;
 	}
@@ -492,15 +473,14 @@ public class DemographicPrisonersDilemma extends Scape
 	 * The change in wealth for a player when playing cooperate against cooperate.
 	 * @param _payoffCC the new Payoff Cooperate Cooperate value
 	 */
-
 	public void setPayoffCC(int _payoffCC) {
 		payoffCC = _payoffCC;
 	}
+
 	/**
 	 * Gets the Payoff Cooperate Defect property for Demographic Prisoner_s Dilemma.
 	 * @return The change in wealth for a player when playing cooperate against defect.
 	 */
-
 	public int getPayoffCD() {
 		return payoffCD;
 	}
@@ -510,15 +490,14 @@ public class DemographicPrisonersDilemma extends Scape
 	 * The change in wealth for a player when playing cooperate against defect.
 	 * @param _payoffCD the new Payoff Cooperate Defect value
 	 */
-
 	public void setPayoffCD(int _payoffCD) {
 		payoffCD = _payoffCD;
 	}
+
 	/**
 	 * Gets the Payoff Defect Cooperate property for Demographic Prisoner_s Dilemma.
 	 * @return The change in wealth for a player when playing defect against cooperate.
 	 */
-
 	public int getPayoffDC() {
 		return payoffDC;
 	}
@@ -528,15 +507,14 @@ public class DemographicPrisonersDilemma extends Scape
 	 * The change in wealth for a player when playing defect against cooperate.
 	 * @param _payoffDC the new Payoff Defect Cooperate value
 	 */
-
 	public void setPayoffDC(int _payoffDC) {
 		payoffDC = _payoffDC;
 	}
+
 	/**
 	 * Gets the Payoff Defect Defect property for Demographic Prisoner_s Dilemma.
 	 * @return The change in wealth for a player when both players defect.
 	 */
-
 	public int getPayoffDD() {
 		return payoffDD;
 	}
@@ -546,15 +524,14 @@ public class DemographicPrisonersDilemma extends Scape
 	 * The change in wealth for a player when both players defect.
 	 * @param _payoffDD the new Payoff Defect Defect value
 	 */
-
 	public void setPayoffDD(int _payoffDD) {
 		payoffDD = _payoffDD;
 	}
+
 	/**
 	 * Gets the Fission Wealth property for Demographic Prisoner_s Dilemma.
 	 * @return The wealth level at which an agent can fission.
 	 */
-
 	public int getFissionWealth() {
 		return fissionWealth;
 	}
@@ -564,15 +541,14 @@ public class DemographicPrisonersDilemma extends Scape
 	 * The wealth level at which an agent can fission.
 	 * @param _fissionWealth the new Fission Wealth value
 	 */
-
 	public void setFissionWealth(int _fissionWealth) {
 		fissionWealth = _fissionWealth;
 	}
+
 	/**
 	 * Gets the Inheirited Wealth property for Demographic Prisoner_s Dilemma.
 	 * @return The wealth that is passed from parent to child.
 	 */
-
 	public int getInheiritedWealth() {
 		return inheiritedWealth;
 	}
@@ -582,15 +558,14 @@ public class DemographicPrisonersDilemma extends Scape
 	 * The wealth that is passed from parent to child.
 	 * @param _inheiritedWealth the new Inheirited Wealth value
 	 */
-
 	public void setInheiritedWealth(int _inheiritedWealth) {
 		inheiritedWealth = _inheiritedWealth;
 	}
+
 	/**
 	 * Gets the Initial Wealth property for Demographic Prisoner_s Dilemma.
 	 * @return The wealth initially assigned to an agent at the beginning of model run.
 	 */
-
 	public int getInitialWealth() {
 		return initialWealth;
 	}
@@ -600,15 +575,14 @@ public class DemographicPrisonersDilemma extends Scape
 	 * The wealth initially assigned to an agent at the beginning of model run.
 	 * @param _initialWealth the new Initial Wealth value
 	 */
-
 	public void setInitialWealth(int _initialWealth) {
 		initialWealth = _initialWealth;
 	}
+
 	/**
 	 * Gets the Mutation Rate property for Demographic Prisoner_s Dilemma.
 	 * @return The probabaility that a given agent will change strategies in a given period, expressed as a value from 0.0 to 1.0.
 	 */
-
 	public double getMutationRate() {
 		return mutationRate;
 	}
@@ -618,15 +592,14 @@ public class DemographicPrisonersDilemma extends Scape
 	 * The probabaility that a given agent will change strategies in a given period, expressed as a value from 0.0 to 1.0.
 	 * @param _mutationRate the new Mutation Rate value
 	 */
-
 	public void setMutationRate(double _mutationRate) {
 		mutationRate = _mutationRate;
 	}
+
 	/**
 	 * Gets the Death Age property for Demographic Prisoner_s Dilemma.
 	 * @return The number of periods before an agent will be removed from game when Die At Age rule is active.
 	 */
-
 	public int getDeathAge() {
 		return deathAge;
 	}
@@ -636,15 +609,14 @@ public class DemographicPrisonersDilemma extends Scape
 	 * The number of periods before an agent will be removed from game when Die At Age rule is active.
 	 * @param _deathAge the new Death Age value
 	 */
-
 	public void setDeathAge(int _deathAge) {
 		deathAge = _deathAge;
 	}
+
 	/**
 	 * Gets the Birth Age property for Demographic Prisoner_s Dilemma.
 	 * @return The actual age in years as determined by data set.
 	 */
-
 	public int getBirthAge() {
 		return birthAge;
 	}
@@ -654,15 +626,14 @@ public class DemographicPrisonersDilemma extends Scape
 	 * The actual age in years as determined by data set.
 	 * @param _birthAge the new Birth Age value
 	 */
-
 	public void setBirthAge(int _birthAge) {
 		birthAge = _birthAge;
 	}
+
 	/**
 	 * Gets the Dimensions property for Game Space.
 	 * @return The size of each dimension.
 	 */
-
 	public int[] getGameSpaceDimensions() {
 		return gameSpaceDimensions;
 	}
@@ -672,15 +643,14 @@ public class DemographicPrisonersDilemma extends Scape
 	 * The size of each dimension.
 	 * @param _gameSpaceDimensions the new Dimensions value
 	 */
-
 	public void setGameSpaceDimensions(int[] _gameSpaceDimensions) {
 		gameSpaceDimensions = _gameSpaceDimensions;
 	}
+
 	/**
 	 * Gets the Width property for Game Space.
 	 * @return The horizontal extent of the space.
 	 */
-
 	public int getGameSpaceWidth() {
 		return gameSpaceWidth;
 	}
@@ -690,15 +660,14 @@ public class DemographicPrisonersDilemma extends Scape
 	 * The horizontal extent of the space.
 	 * @param _gameSpaceWidth the new Width value
 	 */
-
 	public void setGameSpaceWidth(int _gameSpaceWidth) {
 		gameSpaceWidth = _gameSpaceWidth;
 	}
+
 	/**
 	 * Gets the Height property for Game Space.
 	 * @return The vertical extent of the space.
 	 */
-
 	public int getGameSpaceHeight() {
 		return gameSpaceHeight;
 	}
@@ -708,15 +677,14 @@ public class DemographicPrisonersDilemma extends Scape
 	 * The vertical extent of the space.
 	 * @param _gameSpaceHeight the new Height value
 	 */
-
 	public void setGameSpaceHeight(int _gameSpaceHeight) {
 		gameSpaceHeight = _gameSpaceHeight;
 	}
+
 	/**
 	 * Gets the Game Space property for Demographic Prisoner_s Dilemma.
 	 * @return 
 	 */
-
 	public Scape getGameSpace() {
 		return gameSpace;
 	}
@@ -726,7 +694,6 @@ public class DemographicPrisonersDilemma extends Scape
 	 * 
 	 * @param _gameSpace the new Game Space value
 	 */
-
 	public void setGameSpace(Scape _gameSpace) {
 		gameSpace = _gameSpace;
 	}

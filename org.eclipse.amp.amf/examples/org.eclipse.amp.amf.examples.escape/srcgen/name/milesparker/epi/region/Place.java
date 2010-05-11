@@ -2,6 +2,10 @@ package name.milesparker.epi.region;
 
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdapterFactory;
+import org.eclipse.amp.agf.IGraphicsAdapted;
+import org.eclipse.amp.agf.IGraphicsAdapter;
+
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.jface.viewers.IColorProvider;
 
@@ -23,11 +27,7 @@ import org.ascape.util.vis.ColorFeature;
 import org.ascape.util.vis.ColorFeatureConcrete;
 import org.ascape.view.vis.ChartView;
 import org.ascape.view.vis.GEFView;
-
-import org.eclipse.gef.EditPartFactory;
-import org.eclipse.amp.agf.gef.ModelFactoryProvider;
-import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
-import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
+import org.ascape.view.vis.GraphView;
 
 /**
  * Place Java Implementation.
@@ -40,7 +40,6 @@ public class Place extends HostCell {
 	/**
 	 * Constructs a new Place.
 	 */
-
 	public Place() {
 	}
 	//todo, make this a useful value for evaluating compatibility of different versions of generated classes

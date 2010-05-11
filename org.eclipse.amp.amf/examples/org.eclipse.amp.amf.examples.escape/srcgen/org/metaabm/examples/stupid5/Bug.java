@@ -2,6 +2,10 @@ package org.metaabm.examples.stupid5;
 
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdapterFactory;
+import org.eclipse.amp.agf.IGraphicsAdapted;
+import org.eclipse.amp.agf.IGraphicsAdapter;
+
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.jface.viewers.IColorProvider;
 
@@ -23,11 +27,7 @@ import org.ascape.util.vis.ColorFeature;
 import org.ascape.util.vis.ColorFeatureConcrete;
 import org.ascape.view.vis.ChartView;
 import org.ascape.view.vis.GEFView;
-
-import org.eclipse.gef.EditPartFactory;
-import org.eclipse.amp.agf.gef.ModelFactoryProvider;
-import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
-import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
+import org.ascape.view.vis.GraphView;
 
 /**
  * Bug Java Implementation.
@@ -40,22 +40,21 @@ public class Bug extends CellOccupant {
 	/**
 	 * 
 	 */
-
 	private double size = 0.0;
+
 	/**
 	 * 
 	 */
-
 	private double consumption = 0.0;
+
 	/**
 	 * 
 	 */
-
 	private double maxConsumption = 0.2;
+
 	/**
 	 * Constructs a new Bug.
 	 */
-
 	public Bug() {
 	}
 	//todo, make this a useful value for evaluating compatibility of different versions of generated classes
@@ -90,9 +89,8 @@ public class Bug extends CellOccupant {
 	}
 
 	/**
-	 * .
+	 * Initialize Initialization. Executed once at the beginning of each model run.
 	 */
-
 	public void intializeNonFramework() {
 
 		Habitat randomHabitat = (Habitat) ((org.ascape.model.space.Discrete) getStupidModel5()
@@ -107,12 +105,11 @@ public class Bug extends CellOccupant {
 			moveTo(randomHabitat);
 
 		}
-
 	}
-	/**
-	 * .
-	 */
 
+	/**
+	 * Random Movement Rule. Executed every period.
+	 */
 	public void randomMovement() {
 
 		Habitat nearbySpace = (Habitat) ((org.ascape.model.space.Discrete) getStupidModel5()
@@ -131,10 +128,10 @@ public class Bug extends CellOccupant {
 		}
 
 	}
-	/**
-	 * .
-	 */
 
+	/**
+	 * Grow Rule. Executed every period.
+	 */
 	public void grow() {
 
 		Habitat habitat = (Habitat) getHostCell();
@@ -146,10 +143,10 @@ public class Bug extends CellOccupant {
 		habitat.setFoodAvailability(availability - consumption);
 
 	}
-	/**
-	 * .
-	 */
 
+	/**
+	 * 
+	 */
 	public void consumeFood() {
 
 	}
@@ -158,7 +155,6 @@ public class Bug extends CellOccupant {
 	 * Gets the Size property for Bug.
 	 * @return 
 	 */
-
 	public double getSize() {
 		return size;
 	}
@@ -168,15 +164,14 @@ public class Bug extends CellOccupant {
 	 * 
 	 * @param _size the new Size value
 	 */
-
 	public void setSize(double _size) {
 		size = _size;
 	}
+
 	/**
 	 * Gets the Consumption property for Bug.
 	 * @return 
 	 */
-
 	public double getConsumption() {
 		return consumption;
 	}
@@ -186,15 +181,14 @@ public class Bug extends CellOccupant {
 	 * 
 	 * @param _consumption the new Consumption value
 	 */
-
 	public void setConsumption(double _consumption) {
 		consumption = _consumption;
 	}
+
 	/**
 	 * Gets the Max Consumption property for Bug.
 	 * @return 
 	 */
-
 	public double getMaxConsumption() {
 		return maxConsumption;
 	}
@@ -204,7 +198,6 @@ public class Bug extends CellOccupant {
 	 * 
 	 * @param _maxConsumption the new Max Consumption value
 	 */
-
 	public void setMaxConsumption(double _maxConsumption) {
 		maxConsumption = _maxConsumption;
 	}

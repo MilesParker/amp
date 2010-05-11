@@ -2,6 +2,10 @@ package org.metaabm.examples.stupid5;
 
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdapterFactory;
+import org.eclipse.amp.agf.IGraphicsAdapted;
+import org.eclipse.amp.agf.IGraphicsAdapter;
+
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.jface.viewers.IColorProvider;
 
@@ -23,11 +27,7 @@ import org.ascape.util.vis.ColorFeature;
 import org.ascape.util.vis.ColorFeatureConcrete;
 import org.ascape.view.vis.ChartView;
 import org.ascape.view.vis.GEFView;
-
-import org.eclipse.gef.EditPartFactory;
-import org.eclipse.amp.agf.gef.ModelFactoryProvider;
-import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
-import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
+import org.ascape.view.vis.GraphView;
 
 /**
  * Habitat Java Implementation.
@@ -40,17 +40,16 @@ public class Habitat extends HostCell {
 	/**
 	 * 
 	 */
-
 	private double foodAvailability = 0.0;
+
 	/**
 	 * 
 	 */
-
 	private double maximumFoodProductionRate = 0.5;
+
 	/**
 	 * Constructs a new Habitat.
 	 */
-
 	public Habitat() {
 	}
 	//todo, make this a useful value for evaluating compatibility of different versions of generated classes
@@ -85,9 +84,8 @@ public class Habitat extends HostCell {
 	}
 
 	/**
-	 * .
+	 * determindFoodProduction Rule. Executed every period.
 	 */
-
 	public void determindFoodProduction() {
 
 		double calculateFoodProductionRate = randomInRange(0,
@@ -95,14 +93,12 @@ public class Habitat extends HostCell {
 		double newFoodProductionValue = getFoodAvailability()
 				+ calculateFoodProductionRate;
 		setFoodAvailability(newFoodProductionValue);
-
 	}
 
 	/**
 	 * Gets the FoodAvailability property for Habitat.
 	 * @return 
 	 */
-
 	public double getFoodAvailability() {
 		return foodAvailability;
 	}
@@ -112,15 +108,14 @@ public class Habitat extends HostCell {
 	 * 
 	 * @param _foodAvailability the new FoodAvailability value
 	 */
-
 	public void setFoodAvailability(double _foodAvailability) {
 		foodAvailability = _foodAvailability;
 	}
+
 	/**
 	 * Gets the MaximumFoodProductionRate property for Habitat.
 	 * @return 
 	 */
-
 	public double getMaximumFoodProductionRate() {
 		return maximumFoodProductionRate;
 	}
@@ -130,7 +125,6 @@ public class Habitat extends HostCell {
 	 * 
 	 * @param _maximumFoodProductionRate the new MaximumFoodProductionRate value
 	 */
-
 	public void setMaximumFoodProductionRate(double _maximumFoodProductionRate) {
 		maximumFoodProductionRate = _maximumFoodProductionRate;
 	}

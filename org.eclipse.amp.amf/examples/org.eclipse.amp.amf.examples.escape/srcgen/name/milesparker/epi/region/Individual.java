@@ -2,6 +2,10 @@ package name.milesparker.epi.region;
 
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdapterFactory;
+import org.eclipse.amp.agf.IGraphicsAdapted;
+import org.eclipse.amp.agf.IGraphicsAdapter;
+
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.jface.viewers.IColorProvider;
 
@@ -23,11 +27,7 @@ import org.ascape.util.vis.ColorFeature;
 import org.ascape.util.vis.ColorFeatureConcrete;
 import org.ascape.view.vis.ChartView;
 import org.ascape.view.vis.GEFView;
-
-import org.eclipse.gef.EditPartFactory;
-import org.eclipse.amp.agf.gef.ModelFactoryProvider;
-import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
-import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
+import org.ascape.view.vis.GraphView;
 
 /**
  * Individual Java Implementation.
@@ -40,32 +40,31 @@ public class Individual extends CellOccupant {
 	/**
 	 * 
 	 */
-
 	private StatusEnum status = StatusEnum.susceptible;
+
 	/**
 	 * 
 	 */
-
 	private int exposureEndPeriod = 0;
+
 	/**
 	 * 
 	 */
-
 	private int asymptomaticEndPeriod = 0;
+
 	/**
 	 * 
 	 */
-
 	private int outcomePeriod = 0;
+
 	/**
 	 * 
 	 */
-
 	private double contactTransmissionProbability = 0.0;
+
 	/**
 	 * Constructs a new Individual.
 	 */
-
 	public Individual() {
 	}
 	//todo, make this a useful value for evaluating compatibility of different versions of generated classes
@@ -100,9 +99,8 @@ public class Individual extends CellOccupant {
 	}
 
 	/**
-	 * .
+	 * Initialize Location Initialization. Executed once at the beginning of each model run.
 	 */
-
 	public void initializeLocation() {
 
 		Place individual = (Place) ((org.ascape.model.space.Discrete) getCity()
@@ -117,12 +115,11 @@ public class Individual extends CellOccupant {
 			moveTo(individual);
 
 		}
-
 	}
-	/**
-	 * .
-	 */
 
+	/**
+	 * Movement Rule. Executed every period.
+	 */
 	public void movement() {
 
 		double movementDraw = getRandom().nextDouble();
@@ -151,10 +148,10 @@ public class Individual extends CellOccupant {
 		}
 
 	}
-	/**
-	 * .
-	 */
 
+	/**
+	 * Initialize State Initialization. Executed once at the beginning of each model run.
+	 */
 	public void initializeState() {
 
 		double individualTransmissionRate = randomInRange(getCity().getRegion()
@@ -193,9 +190,8 @@ public class Individual extends CellOccupant {
 	}
 
 	/**
-	 * .
+	 * Transmission Rule. Executed every period.
 	 */
-
 	public void transmission() {
 
 		if ((getStatus() == StatusEnum.symptomInfectious || getStatus() == StatusEnum.asymptomInfectious)) {
@@ -234,9 +230,8 @@ public class Individual extends CellOccupant {
 	}
 
 	/**
-	 * .
+	 * Progression Rule. Executed every period.
 	 */
-
 	public void progression() {
 
 		int progressionPeriod = getScape().getPeriod();
@@ -276,9 +271,8 @@ public class Individual extends CellOccupant {
 	}
 
 	/**
-	 * Watch for changes in Status..
+	 * Watch for changes in Status.
 	 */
-
 	public void exposure() {
 
 		if (getStatus() == StatusEnum.exposed) {
@@ -304,9 +298,8 @@ public class Individual extends CellOccupant {
 	}
 
 	/**
-	 * .
+	 * Migrate Rule. Executed every period.
 	 */
-
 	public void migrate() {
 
 		double migrateRandomUnit = getRandom().nextDouble();
@@ -351,7 +344,6 @@ public class Individual extends CellOccupant {
 	 * Gets the Status property for Individual.
 	 * @return 
 	 */
-
 	public StatusEnum getStatus() {
 		return status;
 	}
@@ -361,16 +353,15 @@ public class Individual extends CellOccupant {
 	 * 
 	 * @param _status the new Status value
 	 */
-
 	public void setStatus(StatusEnum _status) {
 		status = _status;
 		exposure();
 	}
+
 	/**
 	 * Gets the Exposure End Period property for Individual.
 	 * @return 
 	 */
-
 	public int getExposureEndPeriod() {
 		return exposureEndPeriod;
 	}
@@ -380,15 +371,14 @@ public class Individual extends CellOccupant {
 	 * 
 	 * @param _exposureEndPeriod the new Exposure End Period value
 	 */
-
 	public void setExposureEndPeriod(int _exposureEndPeriod) {
 		exposureEndPeriod = _exposureEndPeriod;
 	}
+
 	/**
 	 * Gets the Asymptomatic End Period property for Individual.
 	 * @return 
 	 */
-
 	public int getAsymptomaticEndPeriod() {
 		return asymptomaticEndPeriod;
 	}
@@ -398,15 +388,14 @@ public class Individual extends CellOccupant {
 	 * 
 	 * @param _asymptomaticEndPeriod the new Asymptomatic End Period value
 	 */
-
 	public void setAsymptomaticEndPeriod(int _asymptomaticEndPeriod) {
 		asymptomaticEndPeriod = _asymptomaticEndPeriod;
 	}
+
 	/**
 	 * Gets the Outcome Period property for Individual.
 	 * @return 
 	 */
-
 	public int getOutcomePeriod() {
 		return outcomePeriod;
 	}
@@ -416,15 +405,14 @@ public class Individual extends CellOccupant {
 	 * 
 	 * @param _outcomePeriod the new Outcome Period value
 	 */
-
 	public void setOutcomePeriod(int _outcomePeriod) {
 		outcomePeriod = _outcomePeriod;
 	}
+
 	/**
 	 * Gets the Contact Transmission Probability property for Individual.
 	 * @return 
 	 */
-
 	public double getContactTransmissionProbability() {
 		return contactTransmissionProbability;
 	}
@@ -434,7 +422,6 @@ public class Individual extends CellOccupant {
 	 * 
 	 * @param _contactTransmissionProbability the new Contact Transmission Probability value
 	 */
-
 	public void setContactTransmissionProbability(
 			double _contactTransmissionProbability) {
 		contactTransmissionProbability = _contactTransmissionProbability;

@@ -18,19 +18,20 @@ import org.eclipse.jface.viewers.IColorProvider;
 
 public class SimpleDrawColorProvider implements IColorProvider {
 
+	private static IColorProvider singleton;
+
 	/**
-	 * Provides a foreground color for the given Individual.
+	 * Provides a color for Individual based on wether we want to fill or not.
 	 * 
 	 * @param object the agent
 	 * @return	the foreground color for the element, or <code>null</code> 
 	 *   to use the default foreground color
 	 */
-	public Color getForeground(Object object) {
-
-		//todo separate out this functionality
+	public Color getColor(Object object, boolean fill) {
 		Color color = null;
 		Color fillColor = null;
 		Color outlineColor = null;
+
 		Individual definition = (Individual) object;
 		Individual individualRule = definition;
 
@@ -39,10 +40,29 @@ public class SimpleDrawColorProvider implements IColorProvider {
 
 		fillColor = color;
 
-		if (outlineColor != null) {
-			return outlineColor;
-		} else if (fillColor != null) {
+		if (fill) {
 			return fillColor;
+		} else {
+			return outlineColor;
+		}
+	}
+
+	/**
+	 * Provides a foreground color for the given Individual.
+	 * 
+	 * @param object the agent
+	 * @return	the foreground color for the element, or <code>null</code> 
+	 *   to use the default foreground color
+	 */
+	public Color getForeground(Object object) {
+		Color color = getColor(object, false);
+		if (color != null) {
+			return color;
+		}
+		//try to see if we have a fill color, if we do, we'll paint the whole agent that color.
+		color = getColor(object, true);
+		if (color != null) {
+			return color;
 		}
 		return ColorFeature.BLACK;
 	}
@@ -55,24 +75,18 @@ public class SimpleDrawColorProvider implements IColorProvider {
 	 *   to use the default background color
 	 */
 	public Color getBackground(Object object) {
-
-		//todo separate out this functionality
-		Color color = null;
-		Color fillColor = null;
-		Color outlineColor = null;
-		Individual definition = (Individual) object;
-		Individual individualRule = definition;
-
-		color = new Color(Display.getCurrent(), (int) (individualRule
-				.getWealth() * 255), (int) (1 * 255), (int) (1 * 255));
-
-		fillColor = color;
-
-		if (fillColor != null) {
-			return fillColor;
-		} else if (outlineColor != null) {
-			return outlineColor;
+		Color color = getColor(object, true);
+		if (color != null) {
+			return color;
 		}
-		return ColorFeature.BLACK;
+		//if no fill color, just return white
+		return ColorFeature.WHITE;
+	}
+
+	public static IColorProvider getDefault() {
+		if (singleton == null) {
+			singleton = new SimpleDrawColorProvider();
+		}
+		return singleton;
 	}
 }

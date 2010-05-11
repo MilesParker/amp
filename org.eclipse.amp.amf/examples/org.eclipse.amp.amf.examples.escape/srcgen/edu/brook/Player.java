@@ -2,6 +2,10 @@ package edu.brook;
 
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdapterFactory;
+import org.eclipse.amp.agf.IGraphicsAdapted;
+import org.eclipse.amp.agf.IGraphicsAdapter;
+
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.jface.viewers.IColorProvider;
 
@@ -23,11 +27,7 @@ import org.ascape.util.vis.ColorFeature;
 import org.ascape.util.vis.ColorFeatureConcrete;
 import org.ascape.view.vis.ChartView;
 import org.ascape.view.vis.GEFView;
-
-import org.eclipse.gef.EditPartFactory;
-import org.eclipse.amp.agf.gef.ModelFactoryProvider;
-import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
-import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
+import org.ascape.view.vis.GraphView;
 
 /**
  * Player Java Implementation.
@@ -40,22 +40,21 @@ public class Player extends CellOccupant {
 	/**
 	 * 
 	 */
-
 	private boolean cooperate = false;
+
 	/**
 	 * 
 	 */
-
 	private int age = 0;
+
 	/**
 	 * 
 	 */
-
 	private int wealth = 0;
+
 	/**
 	 * Constructs a new Player.
 	 */
-
 	public Player() {
 	}
 	//todo, make this a useful value for evaluating compatibility of different versions of generated classes
@@ -90,9 +89,8 @@ public class Player extends CellOccupant {
 	}
 
 	/**
-	 * .
+	 * Initialize Initialization. Executed once at the beginning of each model run.
 	 */
-
 	public void intializeNonFramework() {
 
 		setWealth(getDemographicPrisoner_sDilemma().getInitialWealth());
@@ -102,10 +100,10 @@ public class Player extends CellOccupant {
 		setAge(randomToMaxAge);
 		setCooperate(randomStrategy);
 	}
-	/**
-	 * .
-	 */
 
+	/**
+	 * Move To Random Location Initialization. Executed once at the beginning of each model run.
+	 */
 	public void moveToRandomLocation() {
 
 		PlayCell randomCell2 = (PlayCell) ((org.ascape.model.space.Discrete) getDemographicPrisoner_sDilemma()
@@ -120,13 +118,11 @@ public class Player extends CellOccupant {
 			moveTo(randomCell2);
 
 		}
-
 	}
 
 	/**
-	 * .
+	 * Random Walk Rule. Executed every period.
 	 */
-
 	public void randomWalk() {
 
 		PlayCell randomNeighbor = (PlayCell) ((org.ascape.model.space.Discrete) getDemographicPrisoner_sDilemma()
@@ -145,10 +141,10 @@ public class Player extends CellOccupant {
 		}
 
 	}
-	/**
-	 * .
-	 */
 
+	/**
+	 * Play Neighbor Rule. Executed every period.
+	 */
 	public void playNeighbor() {
 
 		Conditional otherPlayerCondition = new Conditional() {
@@ -220,21 +216,19 @@ public class Player extends CellOccupant {
 		}
 
 	}
-	/**
-	 * Increment the Age by One..
-	 */
 
+	/**
+	 * Update Age Rule. Executed every period.
+	 */
 	public void updateAge() {
 
 		int incrementAge = getAge() + 1;
 		setAge(incrementAge);
-
 	}
 
 	/**
-	 * .
+	 * Fission Rule Rule. Executed every period.
 	 */
-
 	public void fissionRule() {
 
 		if (getWealth() >= getDemographicPrisoner_sDilemma().getFissionWealth()) {
@@ -282,10 +276,10 @@ public class Player extends CellOccupant {
 		}
 
 	}
-	/**
-	 * .
-	 */
 
+	/**
+	 * Die At Age Rule. Executed every period.
+	 */
 	public void dieAtAge() {
 
 		if (getAge() > getDemographicPrisoner_sDilemma().getDeathAge()) {
@@ -294,10 +288,10 @@ public class Player extends CellOccupant {
 		}
 
 	}
-	/**
-	 * .
-	 */
 
+	/**
+	 * Die At Wealth 0 Rule. Executed every period.
+	 */
 	public void dieAtWealth0() {
 
 		if (getWealth() < 0) {
@@ -311,7 +305,6 @@ public class Player extends CellOccupant {
 	 * Gets the Cooperate property for Player.
 	 * @return 
 	 */
-
 	public boolean isCooperate() {
 		return cooperate;
 	}
@@ -321,15 +314,14 @@ public class Player extends CellOccupant {
 	 * 
 	 * @param _cooperate the new Cooperate value
 	 */
-
 	public void setCooperate(boolean _cooperate) {
 		cooperate = _cooperate;
 	}
+
 	/**
 	 * Gets the Age property for Player.
 	 * @return 
 	 */
-
 	public int getAge() {
 		return age;
 	}
@@ -339,15 +331,14 @@ public class Player extends CellOccupant {
 	 * 
 	 * @param _age the new Age value
 	 */
-
 	public void setAge(int _age) {
 		age = _age;
 	}
+
 	/**
 	 * Gets the Wealth property for Player.
 	 * @return 
 	 */
-
 	public int getWealth() {
 		return wealth;
 	}
@@ -357,7 +348,6 @@ public class Player extends CellOccupant {
 	 * 
 	 * @param _wealth the new Wealth value
 	 */
-
 	public void setWealth(int _wealth) {
 		wealth = _wealth;
 	}

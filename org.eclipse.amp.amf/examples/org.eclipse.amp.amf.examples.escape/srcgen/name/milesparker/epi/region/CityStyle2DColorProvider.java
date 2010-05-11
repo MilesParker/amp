@@ -18,19 +18,20 @@ import org.eclipse.jface.viewers.IColorProvider;
 
 public class CityStyle2DColorProvider implements IColorProvider {
 
+	private static IColorProvider singleton;
+
 	/**
-	 * Provides a foreground color for the given City.
+	 * Provides a color for City based on wether we want to fill or not.
 	 * 
 	 * @param object the agent
 	 * @return	the foreground color for the element, or <code>null</code> 
 	 *   to use the default foreground color
 	 */
-	public Color getForeground(Object object) {
-
-		//todo separate out this functionality
+	public Color getColor(Object object, boolean fill) {
 		Color color = null;
 		Color fillColor = null;
 		Color outlineColor = null;
+
 		City rootActGroup = (City) object;
 		City cityRule = rootActGroup;
 
@@ -56,10 +57,29 @@ public class CityStyle2DColorProvider implements IColorProvider {
 
 		}
 
-		if (outlineColor != null) {
-			return outlineColor;
-		} else if (fillColor != null) {
+		if (fill) {
 			return fillColor;
+		} else {
+			return outlineColor;
+		}
+	}
+
+	/**
+	 * Provides a foreground color for the given City.
+	 * 
+	 * @param object the agent
+	 * @return	the foreground color for the element, or <code>null</code> 
+	 *   to use the default foreground color
+	 */
+	public Color getForeground(Object object) {
+		Color color = getColor(object, false);
+		if (color != null) {
+			return color;
+		}
+		//try to see if we have a fill color, if we do, we'll paint the whole agent that color.
+		color = getColor(object, true);
+		if (color != null) {
+			return color;
 		}
 		return ColorFeature.BLACK;
 	}
@@ -72,41 +92,18 @@ public class CityStyle2DColorProvider implements IColorProvider {
 	 *   to use the default background color
 	 */
 	public Color getBackground(Object object) {
-
-		//todo separate out this functionality
-		Color color = null;
-		Color fillColor = null;
-		Color outlineColor = null;
-		City rootActGroup = (City) object;
-		City cityRule = rootActGroup;
-
-		if (cityRule.getCommunityInfectionStatus() == CommunityInfectionStatusEnum.infectionsObserved) {
-
-			color = ColorConstants.yellow;
-
-			fillColor = color;
-
+		Color color = getColor(object, true);
+		if (color != null) {
+			return color;
 		}
-		if (!(cityRule.getCommunityInfectionStatus() == CommunityInfectionStatusEnum.infectionsObserved)) {
+		//if no fill color, just return white
+		return ColorFeature.WHITE;
+	}
 
-			color = ColorConstants.blue;
-
-			fillColor = color;
-
+	public static IColorProvider getDefault() {
+		if (singleton == null) {
+			singleton = new CityStyle2DColorProvider();
 		}
-		if (cityRule.getCommunityInfectionStatus() == CommunityInfectionStatusEnum.originCity) {
-
-			color = ColorConstants.gray;
-
-			fillColor = color;
-
-		}
-
-		if (fillColor != null) {
-			return fillColor;
-		} else if (outlineColor != null) {
-			return outlineColor;
-		}
-		return ColorFeature.BLACK;
+		return singleton;
 	}
 }

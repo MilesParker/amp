@@ -2,6 +2,10 @@ package org.eclipse.amp.amf.examples.escape;
 
 import java.util.List;
 
+import org.eclipse.core.runtime.IAdapterFactory;
+import org.eclipse.amp.agf.IGraphicsAdapted;
+import org.eclipse.amp.agf.IGraphicsAdapter;
+
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.jface.viewers.IColorProvider;
 
@@ -23,11 +27,7 @@ import org.ascape.util.vis.ColorFeature;
 import org.ascape.util.vis.ColorFeatureConcrete;
 import org.ascape.view.vis.ChartView;
 import org.ascape.view.vis.GEFView;
-
-import org.eclipse.gef.EditPartFactory;
-import org.eclipse.amp.agf.gef.ModelFactoryProvider;
-import org.eclipse.amp.escape.ascape.adapt.AscapePartFactory;
-import org.eclipse.amp.escape.ascape.adapt.AscapePartTreeFactory;
+import org.ascape.view.vis.GraphView;
 
 /**
  * Individual Java Implementation.
@@ -40,22 +40,21 @@ public class Individual extends CellOccupant {
 	/**
 	 * 
 	 */
-
 	private int age = 0;
+
 	/**
 	 * 
 	 */
-
 	private int vision = 5;
+
 	/**
 	 * 
 	 */
-
 	private double wealth = 0.0;
+
 	/**
 	 * Constructs a new Individual.
 	 */
-
 	public Individual() {
 	}
 	//todo, make this a useful value for evaluating compatibility of different versions of generated classes
@@ -90,9 +89,8 @@ public class Individual extends CellOccupant {
 	}
 
 	/**
-	 * .
+	 * Find Partner Rule. Executed every period.
 	 */
-
 	public void findPartner() {
 
 		Conditional partnerCondition = new Conditional() {
@@ -139,10 +137,10 @@ public class Individual extends CellOccupant {
 		}
 
 	}
-	/**
-	 * .
-	 */
 
+	/**
+	 * Initial State Initialization. Executed once at the beginning of each model run.
+	 */
 	public void initialState() {
 
 		int initialStateRandomToLimit_MaximumAge_ = randomToLimit(getWikiExample()
@@ -153,9 +151,8 @@ public class Individual extends CellOccupant {
 	}
 
 	/**
-	 * .
+	 * Initial Movement Initialization. Executed once at the beginning of each model run.
 	 */
-
 	public void initialMovement() {
 
 		Block individual = (Block) ((org.ascape.model.space.Discrete) getWikiExample()
@@ -170,14 +167,12 @@ public class Individual extends CellOccupant {
 			moveTo(individual);
 
 		}
-
 	}
 
 	/**
 	 * Gets the Age property for Individual.
 	 * @return 
 	 */
-
 	public int getAge() {
 		return age;
 	}
@@ -187,15 +182,14 @@ public class Individual extends CellOccupant {
 	 * 
 	 * @param _age the new Age value
 	 */
-
 	public void setAge(int _age) {
 		age = _age;
 	}
+
 	/**
 	 * Gets the Vision property for Individual.
 	 * @return 
 	 */
-
 	public int getVision() {
 		return vision;
 	}
@@ -205,15 +199,14 @@ public class Individual extends CellOccupant {
 	 * 
 	 * @param _vision the new Vision value
 	 */
-
 	public void setVision(int _vision) {
 		vision = _vision;
 	}
+
 	/**
 	 * Gets the Wealth property for Individual.
 	 * @return 
 	 */
-
 	public double getWealth() {
 		return wealth;
 	}
@@ -223,7 +216,6 @@ public class Individual extends CellOccupant {
 	 * 
 	 * @param _wealth the new Wealth value
 	 */
-
 	public void setWealth(double _wealth) {
 		wealth = _wealth;
 	}
