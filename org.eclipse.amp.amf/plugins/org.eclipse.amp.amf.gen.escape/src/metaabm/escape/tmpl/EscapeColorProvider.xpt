@@ -139,11 +139,10 @@ import org.eclipse.jface.viewers.IColorProvider;
     «ELSEIF function.id().startsWith("shapeMarker")-»
     «ELSEIF function.id().startsWith("color") || function.id().startsWith("graphic")»
 	    «IF function.id().startsWith("color")-»
-	        color = «EXPAND metaabm::tmpl::Java::FunctionInnerBlock(path, inner)»;
-	    «ELSEIF function.id().startsWith("graphicFill")-»
-	    	fillColor = color;
-	    «ELSEIF function.id().startsWith("graphicOutline")-»
-	    	outlineColor = color;
+	    «ELSEIF function.id().startsWith("graphicFill") && lastEval(path, "shape").function.id() != "shapeMarker"-»
+	        fillColor = «EXPAND metaabm::tmpl::Java::FunctionInnerBlock(path, inner) FOR lastEval(path, "color")»;
+	    «ELSEIF function.id().startsWith("graphicOutline") && lastEval(path, "shape").function.id() != "shapeMarker"-»
+	        outlineColor = «EXPAND metaabm::tmpl::Java::FunctionInnerBlock(path, inner) FOR lastEval(path, "color")»;
 	    «ENDIF»
     «ELSE-»
     «targetDef.proceed()»

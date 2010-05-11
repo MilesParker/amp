@@ -73,11 +73,11 @@ import org.eclipse.amp.agf.gef.Shapes;
     }
 «ENDAROUND»
 
-«DEFINE MethodSetup FOR SStyle»
+«DEFINE MethodSetup FOR SStyle-»
 	IFigure figure = null;
 	Color color = null;
 	«agent.typeName()» «rootActivity.id()» = («agent.typeName()») object;
-	«FOREACH ((AGroup) rootActivity).roots AS act»«agent.typeName()» «act.id()» = «rootActivity.id()»;«ENDFOREACH»
+	«FOREACH ((AGroup) rootActivity).roots AS act»«agent.typeName()» «act.id()-» = «rootActivity.id()»;«ENDFOREACH-»
 	«EXPAND metaabm::tmpl::Java::ActionBody-»
 «ENDDEFINE»
 
@@ -98,24 +98,29 @@ import org.eclipse.amp.agf.gef.Shapes;
 «ENDDEFINE»
 
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AEvaluate-»
-//--ids  «path.ids()»
-    «IF function.id().startsWith("shapeRectangle")-»
-	        figure = Shapes.createRectangle();
-    «ELSEIF function.id().startsWith("shapeOval")-»
-	        figure = Shapes.createOval();
-    «ELSEIF function.id().startsWith("shapeMarker")-»
-	        figure = Shapes.getMarker(0);
-    «ELSEIF function.id().startsWith("color") || function.id().startsWith("graphic")»
-	    «IF function.id().startsWith("color")-»
-	        color = «EXPAND metaabm::tmpl::Java::FunctionInnerBlock(path, inner)»;
-	    «ELSEIF function.id().startsWith("graphicFill")-»
-	    	((Shape) figure).setFill(true);
-	    	figure.setBackgroundColor(color);
-	    «ELSEIF function.id().startsWith("graphicOutline")-»
-	    	((Shape) figure).setOutline(true);
-	    	figure.setForegroundColor(color);
-	    «ENDIF»
-    «ELSE-»
+    «IF function.id() == "graphicFill" || function.id() == "graphicOutline"-»
+    	«LET lastEval(path, "shape") AS shape-»
+    	«LET lastEval(path, "color") AS color-»
+		    «IF shape.function.id() == "shapeRectangle"-»
+        figure = Shapes.createRectangle();
+		    «ELSEIF shape.function.id() == "shapeOval"-»
+        figure = Shapes.createOval();
+		    «ELSEIF shape.function.id() == "shapeMarker"-»
+        IFigure markerFigure = Shapes.getMarkerShape(figure, 0);
+        	«ENDIF-»
+        color = «EXPAND metaabm::tmpl::Java::FunctionInnerBlock(path, inner) FOR color-»;
+		«LET lastEval(path, "shape").function.id() == "shapeMarker" ? "markerFigure" : "figure" AS figureName»        
+		    «IF function.id().startsWith("graphicFill")-»
+    	«figureName».setBackgroundColor(color);
+    	((Shape) «figureName»).setFill(true);
+		    «ELSEIF function.id().startsWith("graphicOutline")-»
+    	«figureName».setForegroundColor(color);
+    	((Shape) «figureName»).setOutline(true);
+		    «ENDIF-»
+		«ENDLET-»
+		«ENDLET-»
+		«ENDLET-»
+    «ELSEIF !function.id().startsWith("color") && !function.id().startsWith("shape")-»
     «targetDef.proceed()»
     «ENDIF-»
 «ENDAROUND»
