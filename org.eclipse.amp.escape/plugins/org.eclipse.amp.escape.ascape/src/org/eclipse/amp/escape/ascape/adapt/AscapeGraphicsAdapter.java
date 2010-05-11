@@ -16,6 +16,7 @@
 package org.eclipse.amp.escape.ascape.adapt;
 
 import org.eclipse.amp.agf.GraphicsAdapter;
+import org.eclipse.amp.agf.IGraphicsAdapter;
 import org.eclipse.amp.agf.gef.IFigureProvider;
 import org.eclipse.amp.agf.gef.Shapes;
 import org.eclipse.jface.viewers.IColorProvider;
@@ -28,7 +29,9 @@ import org.ascape.model.HostCell;
 /**
  * A factory for creating ScapeAdapter objects.
  */
-public class AscapeDefaultGraphicsAdapter extends GraphicsAdapter {
+public class AscapeGraphicsAdapter extends GraphicsAdapter {
+
+    private static IGraphicsAdapter singleton;
 
     private static final IColorProvider[] DEFAULT_COLOR_PROVIDERS = new IColorProvider[] { AscapeGraphicsProvider
         .getDefault() };
@@ -71,5 +74,12 @@ public class AscapeDefaultGraphicsAdapter extends GraphicsAdapter {
      */
     public ILabelProvider[] getLabelsForClass(Class type) {
         return DEFAULT_LABEL_PROVIDERS;
+    }
+
+    public static IGraphicsAdapter getDefault() {
+        if (singleton == null) {
+            singleton = new AscapeGraphicsAdapter();
+        }
+        return singleton;
     }
 }
