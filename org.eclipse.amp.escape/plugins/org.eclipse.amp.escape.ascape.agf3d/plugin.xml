@@ -11,6 +11,7 @@
               type="org.eclipse.amp.agf3d.IShape3DProvider">
         </adapter>
      </factory>
+     
   </extension>
 </plugin>
 
