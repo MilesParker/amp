@@ -175,7 +175,7 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 «ENDDEFINE»
 «DEFINE MethodImpl FOR IID-»
  	public «methodTypeName()» «methodName()»(«methodParamList()») {
- 	«EXPAND ProtectedRegion(methodName())»
+ 	«EXPAND ProtectedRegion(methodName())-»
     «IF impl().mode != SImplementationMode::GenerateEmpty-» 
  		«EXPAND ActionBody-» 
     «ENDIF-»
@@ -489,12 +489,14 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
         «IF queryFor()-»
         «EXPAND EndQueryBlock(path, inner)-»
         «ENDIF-»
-    «ENDIF-»«ENDDEFINE»
+    «ENDIF-»
+«ENDDEFINE»
 «DEFINE EndSerialBlock(List[AAct] path, Boolean inner) FOR AAct-»«ENDDEFINE»
 «DEFINE EndSerialBlock(List[AAct] path, Boolean inner) FOR AControl-»
 	«IF expressIf(path, inner)-»
     }
-    «ENDIF-»«ENDDEFINE»
+    «ENDIF-»
+«ENDDEFINE»
 
 «DEFINE InnerEvaluation (List[AAct] path, Boolean inner) FOR AAct-»
     «EXPAND Evaluation({selected}, false) FOREACH allSources.select(a | a.selected == selected)-»«ENDDEFINE»
@@ -555,13 +557,15 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
         «ELSEIF !function.id().startsWith("graphic")-»
             «EXPAND Evaluation(path, inner)-»
         «ENDIF-»
-    «ENDIF-»«ENDDEFINE»
+    «ENDIF-»
+«ENDDEFINE»
 «DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR AMethod-»
 	«IF SAgent.isInstance(eContainer) && !(testing() && (id().startsWith("test") || id().startsWith("assert")))-»
 		«methodName()»();
 	«ELSE-»
 		«body»
-	«ENDIF-»«ENDDEFINE»
+	«ENDIF-»
+«ENDDEFINE»
 «DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR ADie-»«ENDDEFINE»
 «DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR AMove-»«ENDDEFINE»
 «DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR ALeave-»«ENDDEFINE»
@@ -591,7 +595,9 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 		java.awt.Color.«function.id().replaceFirst("color","").toUpperCase()»
 	«ELSEIF function.libid() == "math"-»
 	   java.lang.Math.«function.id()»(«inputs.expression(path, inner).toString(", ")»)
-	«ELSE-»«bind(path, inner)»«ENDIF-»«ENDDEFINE»
+	«ELSE-»«bind(path, inner)»
+	«ENDIF-»
+«ENDDEFINE»
 
 «DEFINE Debug(List[AAct] path, Boolean inner) FOR AAct-»
 		//id, selfrom, dest, inner?:  «id()», «selfrom().id()», «dest().id()», «inner»

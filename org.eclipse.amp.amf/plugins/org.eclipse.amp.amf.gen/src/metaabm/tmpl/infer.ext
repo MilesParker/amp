@@ -510,3 +510,6 @@ cached List[AAct] acts(SAgent agent) :
 cached ABuildGrid builder(SGrid space) :
 	space.owner.acts().typeSelect(ABuildGrid).select(a | a.projection == space).first();
 	
+cached AEvaluate lastEval(List path, String start) :
+	((List) path.typeSelect(AEvaluate).select(e|e.function.id().startsWith(start))).last();
+	
