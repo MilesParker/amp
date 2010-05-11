@@ -77,10 +77,14 @@
          point="org.eclipse.core.runtime.adapters">
       <factory
             adaptableType="java.lang.Object"
-            class="org.eclipse.amp.agf3d.Graphics3DAdapterFactory">
+            class="org.eclipse.amp.agf3d.Model3DAdapterFactory">
          <adapter
                type="org.eclipse.amp.agf3d.IModel3DFactoryProvider">
          </adapter>
+      </factory>
+      <factory
+            adaptableType="java.lang.Object"
+            class="org.eclipse.amp.agf3d.Graphics3DAdapterFactory">
          <adapter
                type="org.eclipse.amp.agf3d.IGraphics3DAdapter">
          </adapter>

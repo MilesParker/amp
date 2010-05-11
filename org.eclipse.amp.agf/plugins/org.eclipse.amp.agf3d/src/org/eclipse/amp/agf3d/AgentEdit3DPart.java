@@ -17,59 +17,17 @@ package org.eclipse.amp.agf3d;
 
 import org.eclipse.amp.agf.IGraphicsAdapter;
 import org.eclipse.amp.agf.gef.AgentEditPart;
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw3d.Figure3D;
-import org.eclipse.draw3d.FigureSurface;
 import org.eclipse.draw3d.IFigure3D;
-import org.eclipse.draw3d.ISurface;
-import org.eclipse.draw3d.ShapeFigure3D;
 import org.eclipse.draw3d.geometry.IVector3f;
 import org.eclipse.draw3d.geometry.Vector3fImpl;
-import org.eclipse.draw3d.shapes.Shape;
 import org.eclipse.swt.graphics.Color;
 
 
 public class AgentEdit3DPart extends AgentEditPart {
 
     private IGraphics3DAdapter graphics3DAdapter;
-
-    /**
-     * 
-     * @author mparker
-     *
-     */
-    private final class FigureImplementation extends ShapeFigure3D {
-
-        private ISurface m_surface = new FigureSurface(this);
-
-        public FigureImplementation() {
-            setBackgroundColor(ColorConstants.white);
-            setAlpha(255);
-        }
-        @Override
-        public ISurface getSurface() {
-            return m_surface;
-        }
-        /**
-         * @see IFigure#revalidate()
-         */
-        public void revalidate() {
-            // if our state or position can change, we will always want to redraw, otherwise, we never do.
-            if (update) {
-                // invalidate();
-                // helper.revalidate();
-            }
-        }
-        /**
-         * @return
-         * @see org.eclipse.draw3d.ShapeFigure3D#createShape()
-         */
-        protected Shape createShape() {
-            Shape createShape = shapeProvider.getShape3D(getModel(), (IFigure3D) figure);
-            return createShape;
-        }
-    }
 
     boolean update = true;
 
@@ -87,14 +45,14 @@ public class AgentEdit3DPart extends AgentEditPart {
      */
     public void setModel(Object model) {
         super.setModel(model);
-        shapeProvider = (IShape3DProvider) getGraphicsAdapter().getAdapter(model, IShape3DProvider.class);
+        shapeProvider = (IShape3DProvider) getGraphics3DAdapter().getAdapter(model, IShape3DProvider.class);
     }
 
     @Override
     protected IFigure buildFigure(IFigure figure) {
         // todo we are ignoring case where shape could change..
         if (figure == null) {
-            figure = new FigureImplementation();
+            figure = new AgentFigure3D(this);
             IVector3f size3d = shapeProvider.getSize3D(getModel());
             size3d = new Vector3fImpl(size3d.getX(), size3d.getY(), -size3d.getZ());
             ((Figure3D) figure).getPosition3D().setSize3D(size3d);
@@ -113,8 +71,14 @@ public class AgentEdit3DPart extends AgentEditPart {
     }
 
     protected void refreshVisuals() {
+        if (getFigureProvider() == null || !getFigureProvider().isHandlingColor(getModel())
+                && getFigureProvider().isColorMutable(getModel())) {
+            updateColor(figure);
+        }
+        // TODO add selection support
+        // updateSelection();
     }
-    
+
     protected IFigure createFigure() {
         IFigure3D buildFigure = (IFigure3D) buildFigure(null);
         return buildFigure;
@@ -140,5 +104,12 @@ public class AgentEdit3DPart extends AgentEditPart {
      */
     public IShape3DProvider getShapeProvider() {
         return shapeProvider;
+    }
+
+    /**
+     * @return the graphics3DAdapter
+     */
+    public IGraphics3DAdapter getGraphics3DAdapter() {
+        return graphics3DAdapter;
     }
 }
