@@ -11,12 +11,12 @@
 «EXTENSION metaabm::ext::tmpl::inferext»
 
 «AROUND metaabm::tmpl::Java::ClassFile FOR IID-»
-	«IF !SState.isInstance(this)»
+	«IF !SState.isInstance(this)-»
     «FILE javaFileLoc().replaceFirst("srcgen", "srcutil").replaceFirst(".java", "GraphicsWriter.java")-»
     «EXPAND metaabm::tmpl::Java::ClassText»
     «ENDFILE-»
     «EXPAND HTMLFile»
-    «ENDIF»
+    «ENDIF-»
 «ENDAROUND»
 «AROUND metaabm::tmpl::Java::ClassFile FOR SStyle-»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::ClassInheiritance FOR SAgent-» extends org.eclipse.amp.amf.gen.key.GraphicsKeyWriter«ENDAROUND»
