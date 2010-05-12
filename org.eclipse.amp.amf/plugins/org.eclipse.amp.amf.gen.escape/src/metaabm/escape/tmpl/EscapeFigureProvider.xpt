@@ -11,6 +11,7 @@
 «EXTENSION metaabm::ascape::tmpl::namesascape»
 «EXTENSION metaabm::ascape::tmpl::inferascape»
 
+
 «AROUND metaabm::tmpl::Java::Imports FOR SStyle-»
 import org.ascape.util.vis.ColorFeature;
 import org.ascape.model.CellOccupant;
@@ -32,13 +33,13 @@ import org.eclipse.amp.agf.gef.Shapes;
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ClassFile FOR IID-»
-«IF generate()»
-	«IF SStyle.isInstance(this)»
+«IF generate()-»
+	«IF SStyle.isInstance(this)-»
     «FILE javaFileLoc().replaceFirst(".java", "FigureProvider.java")-»
     «EXPAND metaabm::tmpl::Java::ClassText»
     «ENDFILE-»
-    «ENDIF»
-«ENDIF»
+    «ENDIF-»
+«ENDIF-»
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ExtendType FOR ASink-»
@@ -59,11 +60,43 @@ import org.eclipse.amp.agf.gef.Shapes;
 «AROUND metaabm::tmpl::Java::Body FOR SStyle-»
 
     private static IFigureProvider singleton;
-                
+
+	«REM»«IF !((AGroup) rootActivity).members.typeSelect(AEvaluate).exists(a | a.function.id().startsWith("shapeMarker"))»«ENDREM»
     public IFigure getFigure(Object object) {
+		IFigure figure = null;
+		Color color = null;
 		«EXPAND MethodSetup-»
         return figure;
     }
+    «REM»«ELSE»
+    public IFigure buildFigure(Object object, IFigure figure) {
+		Color color = null;
+		«EXPAND MethodSetup-»
+        return figure;
+    }
+    
+    public IFigure getFigure(Object object) {
+        return buildFigure(object, null);
+    }
+    
+    /**
+     * Does nothing.
+     * 
+     * @param object
+     * @param figure
+     * @see org.eclipse.amp.agf.gef.IFigureProvider#updateFigure(java.lang.Object, org.eclipse.draw2d.IFigure)
+     */
+    public void updateFigure(Object object, IFigure figure) {
+        buildFigure(object, figure);
+    }
+    
+    /**
+     * True: The figure needs to be able to update itself because we are changing shape markers.
+     */
+    public boolean isFigureUpdateable(Object object) {
+        return true;
+    }
+    «ENDIF»«ENDREM»
     
     public static IFigureProvider getDefault() {
         if (singleton == null) {
@@ -74,8 +107,6 @@ import org.eclipse.amp.agf.gef.Shapes;
 «ENDAROUND»
 
 «DEFINE MethodSetup FOR SStyle-»
-	IFigure figure = null;
-	Color color = null;
 	«agent.typeName()» «rootActivity.id()» = («agent.typeName()») object;
 	«FOREACH ((AGroup) rootActivity).roots AS act»«agent.typeName()» «act.id()-» = «rootActivity.id()»;«ENDFOREACH-»
 	«EXPAND metaabm::tmpl::Java::ActionBody-»
@@ -101,15 +132,19 @@ import org.eclipse.amp.agf.gef.Shapes;
     «IF function.id() == "graphicFill" || function.id() == "graphicOutline"-»
     	«LET lastEval(path, "shape") AS shape-»
     	«LET lastEval(path, "color") AS color-»
-		    «IF shape.function.id() == "shapeRectangle"-»
-        figure = Shapes.createRectangle();
-		    «ELSEIF shape.function.id() == "shapeOval"-»
-        figure = Shapes.createOval();
-		    «ELSEIF shape.function.id() == "shapeMarker"-»
+		    «IF shape.function.id() == "shapeRectangle" && lastEval(path, "graphic") == null-»
+	    if (figure == null) {
+	        figure = Shapes.createRectangle();
+	    }
+		    «ELSEIF shape.function.id() == "shapeOval" && lastEval(path, "graphic") == null-»
+	    if (figure == null) {
+    	    figure = Shapes.createOval();
+	    }
+		    «ELSEIF shape.function.id().startsWith("shapeMarker")-»
         IFigure markerFigure = Shapes.getMarkerShape(figure, 0);
         	«ENDIF-»
         color = «EXPAND metaabm::tmpl::Java::FunctionInnerBlock(path, inner) FOR color-»;
-		«LET lastEval(path, "shape").function.id() == "shapeMarker" ? "markerFigure" : "figure" AS figureName»        
+		«LET lastEval(path, "shape").function.id().startsWith("shapeMarker") ? "markerFigure" : "figure" AS figureName»        
 		    «IF function.id().startsWith("graphicFill")-»
     	«figureName».setBackgroundColor(color);
     	((Shape) «figureName»).setFill(true);

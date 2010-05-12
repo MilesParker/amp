@@ -23,13 +23,13 @@ import org.eclipse.jface.viewers.ILabelProvider;
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ClassFile FOR IID-»
-«IF metaType == SContext»
-«IF generate()»
+«IF metaType == SContext-»
+«IF generate()-»
     «FILE javaFileLoc().replaceFirst(".java", "GraphicsAdapter.java")-»
     «EXPAND metaabm::tmpl::Java::ClassText»
     «ENDFILE-»
-«ENDIF»
-«ENDIF»
+«ENDIF-»
+«ENDIF-»
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ClassName FOR IID-»«typeName()»GraphicsAdapter«ENDAROUND»

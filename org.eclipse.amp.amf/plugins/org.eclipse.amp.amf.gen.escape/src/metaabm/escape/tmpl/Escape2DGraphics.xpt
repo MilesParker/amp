@@ -41,11 +41,11 @@ import org.ascape.util.Conditional;
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ClassFile FOR IID-»
-	«IF generate() && SStyle.isInstance(this)»
+	«IF generate() && SStyle.isInstance(this)-»
     «FILE javaFileLoc().replaceFirst(".java", "Graphics.java")-»
     «EXPAND metaabm::tmpl::Java::ClassText»
     «ENDFILE-»
-    «ENDIF»
+    «ENDIF-»
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ExtendType FOR ASink-»
@@ -116,7 +116,7 @@ import org.ascape.util.Conditional;
 			g.drawRectangle(0, 0, width, height);
 		}
     «ELSE-»
-	 	«IF selected == rootSelected || allTargets.typeSelect(ASet).collect(e | e.parameter).size > 0»
+	 	«IF selected == rootSelected || allTargets.typeSelect(ASet).collect(e | e.parameter).size > 0-»
 			«targetDef.proceed()»
 		«ENDIF-»
 	«ENDIF-»

@@ -99,11 +99,11 @@ import org.ascape.view.vis.GraphView;
 «ENDAROUND»
 
 «AROUND metaabm::ascape::tmpl::ScapeAspect::ViewBuilder FOR AGroup-»
-	«IF reference.parent == null»
+	«IF reference.parent == null-»
 	ChartView chart = new ChartView();
 	«EXPAND BuildChartSelection FOREACH ((SContext) reference).agents-»
     addView(chart);
-    «ENDIF»
+    «ENDIF-»
 	addView(new GEFView());
 	addView(new GraphView());
     «targetDef.proceed()-»
@@ -138,33 +138,6 @@ import org.ascape.view.vis.GraphView;
     «ENDIF-»
 «ENDDEFINE»
 
-«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AEvaluate-»
-    «IF function.id().startsWith("shapeMarker")»
-	    figure = «function.id()»();
-    «ELSEIF function.id().startsWith("shape")-»
-        if (createFigure) {
-		    figure = «function.id()»();
-        }
-    «ELSEIF function.id().startsWith("color") || function.id().startsWith("graphic")»
-        if (!createFigure) {
-	    «IF function.id().startsWith("color")-»
-	        color = «EXPAND metaabm::tmpl::Java::FunctionInnerBlock(path, inner)»;
-	    «ELSEIF function.id().startsWith("graphicFill")-»
-	        figure.setBackgroundColor(color);
-	        ((Shape) figure).setFill(true);
-	    «ELSEIF function.id().startsWith("graphicOutline")-»
-	        figure.setForegroundColor(color);
-	        ((Shape) figure).setOutline(true);
-	    «ENDIF»
-        «IF function.id().startsWith("graphic") && !path.typeSelect(ASink).select(e | ((ASink) e).function.id().startsWith("shapeMarker")).isEmpty»
-	        figure = getFigure();
-        «ENDIF»
-	    }
-    «ELSE-»
-    «targetDef.proceed()»
-    «ENDIF-»
-«ENDAROUND»
-
 «AROUND metaabm::tmpl::Java::FunctionInnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ASink-»
     «IF function.id() == "randomUnit"-»
         getRandom().nextDouble()
@@ -188,7 +161,7 @@ import org.ascape.view.vis.GraphView;
 «ENDAROUND»
 
 «DEFINE StyleProvider FOR SAgent»
-    «IF styles.size > 0»
+    «IF styles.size > 0-»
 	        if (model instanceof «implementation.className») {
 	            return new «styles.get(0).implementation.qualifiedName»();
 	        }
@@ -228,10 +201,10 @@ import org.ascape.view.vis.GraphView;
 	«EXPAND metaabm::ascape::tmpl::ScapeAspect::Conditional(path, inner)-»
 «ENDAROUND»
 
-«AROUND metaabm::tmpl::Java::BeginQueryBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AAct»
+«AROUND metaabm::tmpl::Java::BeginQueryBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
 	«EXPAND metaabm::ascape::tmpl::ScapeAspect::BeginQuery(path, inner)-»
 «ENDAROUND»
-«AROUND metaabm::tmpl::Java::EndQueryBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AAct»
+«AROUND metaabm::tmpl::Java::EndQueryBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
 	«EXPAND metaabm::ascape::tmpl::ScapeAspect::EndQuery(path, inner)-»
 «ENDAROUND»
 
@@ -245,8 +218,7 @@ import org.ascape.view.vis.GraphView;
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AMove-»
-	«EXPAND metaabm::ascape::tmpl::ScapeAspect::InnerBlockCall(path, inner)»
-«ENDAROUND»
+	«EXPAND metaabm::ascape::tmpl::ScapeAspect::InnerBlockCall(path, inner)-»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ACreateAgents-»
 	«call(path, inner)»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ADie-»
@@ -276,8 +248,6 @@ import org.ascape.view.vis.GraphView;
                 && coor.getXValue() >= bounds[1]
                 && coor.getYValue() <= bounds[2]
                 && coor.getXValue() <= bounds[3]);
-    «ELSE-»
-    	«targetDef.proceed()»
-	«ENDIF-»
+    «ELSE-»«targetDef.proceed()»«ENDIF-»
 «ENDAROUND»
 

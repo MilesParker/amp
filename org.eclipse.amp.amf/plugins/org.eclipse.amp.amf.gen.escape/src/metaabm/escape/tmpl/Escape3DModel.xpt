@@ -16,11 +16,11 @@ import org.eclipse.amp.escape.ascape.agf3d.GEF3DView;
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ClassFile FOR IID-»
-	«IF SContext.isInstance(this) && generate()»
+	«IF SContext.isInstance(this) && generate()-»
     «FILE javaFileLoc().replaceFirst(".java", "3D.java")-»
     «EXPAND metaabm::tmpl::Java::ClassText»
     «ENDFILE-»
-    «ENDIF»
+    «ENDIF-»
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ClassName FOR IID-»«typeName()»3D«ENDAROUND»

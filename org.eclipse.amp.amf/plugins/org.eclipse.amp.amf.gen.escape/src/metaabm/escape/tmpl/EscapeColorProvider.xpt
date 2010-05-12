@@ -28,11 +28,11 @@ import org.eclipse.jface.viewers.IColorProvider;
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ClassFile FOR IID-»
-«IF generate()»
+«IF generate()-»
     «FILE javaFileLoc().replaceFirst(".java", "ColorProvider.java")-»
     «EXPAND metaabm::tmpl::Java::ClassText»
     «ENDFILE-»
-«ENDIF»
+«ENDIF-»
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ExtendType FOR ASink-»
@@ -40,7 +40,7 @@ import org.eclipse.jface.viewers.IColorProvider;
 	«ELSE-»«typeName()»«ENDIF-»
 «ENDAROUND»
 
-«AROUND metaabm::tmpl::Java::ClassName FOR IID-»«typeName()»«IF SStyle.isInstance(this)»ColorProvider«ELSE»3D«ENDIF»«ENDAROUND»
+«AROUND metaabm::tmpl::Java::ClassName FOR IID-»«typeName()»«IF SStyle.isInstance(this)-»ColorProvider«ELSE»3D«ENDIF-»«ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ClassInheiritance FOR SStyle-» implements IColorProvider«ENDAROUND»
 
@@ -137,13 +137,13 @@ import org.eclipse.jface.viewers.IColorProvider;
     «IF function.id().startsWith("shapeRectangle")-»
     «ELSEIF function.id().startsWith("shapeOval")-»
     «ELSEIF function.id().startsWith("shapeMarker")-»
-    «ELSEIF function.id().startsWith("color") || function.id().startsWith("graphic")»
+    «ELSEIF function.id().startsWith("color") || function.id().startsWith("graphic")-»
 	    «IF function.id().startsWith("color")-»
-	    «ELSEIF function.id().startsWith("graphicFill") && lastEval(path, "shape").function.id() != "shapeMarker"-»
+	    «ELSEIF function.id().startsWith("graphicFill") && !lastEval(path, "shape").function.id().startsWith("shapeMarker")-»
 	        fillColor = «EXPAND metaabm::tmpl::Java::FunctionInnerBlock(path, inner) FOR lastEval(path, "color")»;
-	    «ELSEIF function.id().startsWith("graphicOutline") && lastEval(path, "shape").function.id() != "shapeMarker"-»
+	    «ELSEIF function.id().startsWith("graphicOutline") && !lastEval(path, "shape").function.id().startsWith("shapeMarker")-»
 	        outlineColor = «EXPAND metaabm::tmpl::Java::FunctionInnerBlock(path, inner) FOR lastEval(path, "color")»;
-	    «ENDIF»
+	    «ENDIF-»
     «ELSE-»
     «targetDef.proceed()»
     «ENDIF-»
