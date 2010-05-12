@@ -16,6 +16,7 @@
 
 package org.eclipse.amp.agf.gef;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.draw2d.Ellipse;
 import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.IFigure;
@@ -28,7 +29,7 @@ import org.eclipse.draw2d.geometry.Point;
 /**
  * 
  * @author mparker
- *
+ * 
  */
 public class Shapes {
 
@@ -98,19 +99,47 @@ public class Shapes {
         return figure;
     }
 
+    public static Point UPPER_LEFT = new Point(AgentEditPart.SCALE / 10, AgentEditPart.SCALE / 10);
+
+    public static Point UPPER_RIGHT = new Point(AgentEditPart.SCALE / 10 + AgentEditPart.SCALE / 2,
+                                                AgentEditPart.SCALE / 10);
+
+    public static Point LOWER_LEFT = new Point(AgentEditPart.SCALE / 10 ,
+                                               AgentEditPart.SCALE / 10+ AgentEditPart.SCALE / 2);
+
+    public static Point LOWER_RIGHT = new Point(AgentEditPart.SCALE / 10 + AgentEditPart.SCALE / 2,
+                                                AgentEditPart.SCALE / 10 + AgentEditPart.SCALE / 2);
+
+    public static Point getLocationFor(int i) {
+        switch (i) {
+            case 0:
+                return UPPER_LEFT;
+            case 1:
+                return UPPER_RIGHT;
+            case 2:
+                return LOWER_LEFT;
+            case 3:
+                return LOWER_RIGHT;
+        }
+        // let's not fail and simply allow a default case instead for overrun.
+        return UPPER_LEFT;
+    }
+
     public static Shape getMarkerShape(IFigure parent, int position) {
         Shape markerFigure;
-        if (parent != null && parent.getChildren().size() >= position) {
-            markerFigure = (Shape) parent.getChildren().get(position);
-        } else {
+        Assert.isNotNull(parent, "Marker parent cannot be null.");
+        for (int i = parent.getChildren().size(); i <= position; i++) {
             markerFigure = new Ellipse();
             markerFigure.setFill(false);
             markerFigure.setOutline(false);
             parent.add(markerFigure);
-            markerFigure.setLocation(new Point(0, 0));
-            markerFigure.setSize(new Dimension(AgentEditPart.SCALE / 4, AgentEditPart.SCALE / 4));
+            // markerFigure.setLocation(getLocationFor(i));
+            parent.setConstraint(markerFigure, getLocationFor(i));
+            markerFigure.setSize(new Dimension(AgentEditPart.SCALE / 3, AgentEditPart.SCALE / 3));
+            setupShared(markerFigure);
         }
-        setupShared(markerFigure);
+        markerFigure = (Shape) parent.getChildren().get(position);
+        Assert.isNotNull(markerFigure);
         return markerFigure;
     }
 

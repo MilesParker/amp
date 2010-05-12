@@ -119,13 +119,14 @@ public abstract class GenericEditPart extends AbstractGraphicalEditPart implemen
         }
     }
 
-    /**
-     * 
-     * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#refresh()
-     */
-    public void refresh() {
-        refreshVisuals();
-    }
+    // /**
+    // *
+    // * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#refresh()
+    // */
+    // public void refresh() {
+    // super.refresh();
+    // refreshVisuals();
+    // }
 
     protected void refreshVisuals() {
         setFigure(buildFigure(getFigure()));

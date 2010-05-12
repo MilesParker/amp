@@ -19,16 +19,36 @@ import org.eclipse.draw2d.IFigure;
 
 public interface IFigureProvider {
 
-    IFigure getFigure(Object object);
-
     /**
-     * Can the figure be modified based on object state. If this value is false, consumers are able to optimize by
-     * building figure once and only once for a given model instantiation.
+     * Return a figure representing the object. This figure will typically be a new instance created by the provider,
+     * but could also be a cached instance. In any case, the provider should make no assumptions about the current state
+     * of any figures.
      * 
      * @param object
      * @return
      */
-    boolean isFigureMutable(Object object);
+    IFigure getFigure(Object object);
+
+    /**
+     * Updates the figure based on the current state of the object. Implementors can do anything with the figure except
+     * dispose of it or remove it from its parent object.
+     * 
+     * @return
+     */
+    void updateFigure(Object object, IFigure figure);
+
+    /**
+     * Can the figure be modified based on object state? If this value is false, consumers are able to optimize by
+     * building figure once and only once for a given model instantiation. This value should only be true if you wish to
+     * add or remove members from the figure after initial creation.
+     * 
+     * If the entire figure should change on an update (an expensive operation) you can create a clear container figure
+     * and add the maintain the changeable figures within that.
+     * 
+     * @param object
+     * @return
+     */
+    boolean isFigureUpdateable(Object object);
 
     /**
      * Can the color of the figure be modified based on object state? If this value is false, consumers are able to

@@ -21,17 +21,30 @@ import org.eclipse.draw2d.IFigure;
 /**
  * 
  * @author mparker
- *
+ * 
  */
 public class DefaultFigureProvider implements IFigureProvider {
 
+    // TODO provide a default or mark this as abstract?
     /**
+     * Returns nothing. You must override this method to avoid a failure.
+     * 
      * @param object
      * @return
      * @see org.eclipse.amp.agf.gef.IFigureProvider#getFigure(java.lang.Object)
      */
     public IFigure getFigure(Object object) {
         return null;
+    }
+
+    /**
+     * Does nothing.
+     * 
+     * @param object
+     * @param figure
+     * @see org.eclipse.amp.agf.gef.IFigureProvider#updateFigure(java.lang.Object, org.eclipse.draw2d.IFigure)
+     */
+    public void updateFigure(Object object, IFigure figure) {
     }
 
     /**
@@ -46,13 +59,14 @@ public class DefaultFigureProvider implements IFigureProvider {
     }
 
     /**
-     * False by default. If you want to be able to change the figure color after creation you need to override.
+     * Does the figure itself change during model execution? This value should only be true if you wish to add or remove
+     * values from the figure after initial creation. False by default.
      * 
      * @param object
      * @return
-     * @see org.eclipse.amp.agf.gef.IFigureProvider#isFigureMutable(java.lang.Object)
+     * @see org.eclipse.amp.agf.gef.IFigureProvider#isFigureUpdateable(java.lang.Object)
      */
-    public boolean isFigureMutable(Object object) {
+    public boolean isFigureUpdateable(Object object) {
         return false;
     }
 

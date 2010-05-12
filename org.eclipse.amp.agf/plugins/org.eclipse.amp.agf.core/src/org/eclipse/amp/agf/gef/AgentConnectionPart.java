@@ -40,10 +40,6 @@ public class AgentConnectionPart extends AbstractConnectionEditPart {
 	@Override
 	protected IFigure createFigure() {
 		PolylineConnection connect = new PolylineConnection() {
-			@Override
-			public void revalidate() {
-				// getConnectionRouter().invalidate(this);
-			}
 		};
 		connect.setEnd(new Point(0, 0));
 		connect.setTargetDecoration(createDecoration());

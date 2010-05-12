@@ -80,7 +80,7 @@ public class ScapeGraphEditPart extends ScapeEditPart {
         graphProvider = (IGraphProvider) Platform.getAdapterManager().getAdapter(model, ICompositionProvider.class);
     }
 
-    public List<NetworkConnection> getConnectList(Object source, Map<Object, List<NetworkConnection>> map) {
+    public synchronized List<NetworkConnection> getConnectList(Object source, Map<Object, List<NetworkConnection>> map) {
         List<NetworkConnection> connects = map.get(source);
         if (connects == null) {
             connects = new ArrayList<NetworkConnection>();
@@ -90,7 +90,7 @@ public class ScapeGraphEditPart extends ScapeEditPart {
     }
 
     @Override
-    public List getModelChildren() {
+    public synchronized List getModelChildren() {
         return connections;
     }
 

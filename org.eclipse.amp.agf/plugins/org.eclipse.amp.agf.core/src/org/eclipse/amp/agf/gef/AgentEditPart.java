@@ -65,7 +65,7 @@ public class AgentEditPart extends AgentNodeEditPart {
      * @see org.eclipse.amp.agf.gef.GenericEditPart#refreshVisuals()
      */
     protected void refreshVisuals() {
-        if (figureProvider.isFigureMutable(getModel())) {
+        if (figureProvider.isFigureUpdateable(getModel())) {
             setFigure(createFigure());
         }
         if (!figureProvider.isHandlingColor(getModel()) && figureProvider.isColorMutable(getModel())) {

@@ -36,7 +36,7 @@ public class AgentNodeEditPart extends GenericEditPart implements NodeEditPart {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List getModelSourceConnections() {
+    public synchronized List getModelSourceConnections() {
         List<ScapeGraphEditPart> graphParts = ((ScapeEditPart) getParent()).getRootScapeEditPart().getGraphParts();
         List<?> allGraphConnections = new ArrayList();
         for (ScapeGraphEditPart scapeGraphEditPart : graphParts) {
@@ -47,7 +47,7 @@ public class AgentNodeEditPart extends GenericEditPart implements NodeEditPart {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List getModelTargetConnections() {
+    public synchronized List getModelTargetConnections() {
         List<ScapeGraphEditPart> graphParts = ((ScapeEditPart) getParent()).getRootScapeEditPart().getGraphParts();
         List allGraphConnections = new ArrayList();
         for (ScapeGraphEditPart scapeGraphEditPart : graphParts) {
@@ -67,16 +67,16 @@ public class AgentNodeEditPart extends GenericEditPart implements NodeEditPart {
         return anchor;
     }
 
-    /**
-     * 
-     * @see org.eclipse.amp.agf.gef.GenericEditPart#refresh()
-     */
-    public void refresh() {
-        super.refresh();
-        // TODO let's optimize this as it will now slow down every non-network implementation
-        refreshSourceConnections();
-        refreshTargetConnections();
-    }
+    // /**
+    // *
+    // * @see org.eclipse.amp.agf.gef.GenericEditPart#refresh()
+    // */
+    // public synchronized void refresh() {
+    // super.refresh();
+    // // TODO let's optimize this as it will now slow down every non-network implementation
+    // refreshSourceConnections();
+    // refreshTargetConnections();
+    // }
 
     /*
      * (non-Javadoc)
