@@ -99,7 +99,7 @@
 
 «DEFINE Model FOR SContext-»
 
-	«IF implementation.mode == SImplementationMode::Generate»
+	«IF implementation.mode == SImplementationMode::Generate-»
 	«FILE rsFileName() + "scenario.xml"-»
 <?xml version="1.0" encoding="UTF-8" ?>
 <Scenario>
@@ -236,7 +236,7 @@
       </entry>
 «ENDDEFINE»
 «DEFINE DataEntry (SAttribute secondAttr, String negate) FOR SAttribute-»
-	«IF gatherData»
+	«IF gatherData-»
 		«EXPAND DataEntry(secondAttr, negate, "Sum")»
 		«EXPAND DataEntry(secondAttr, negate, "Min")»
 		«EXPAND DataEntry(secondAttr, negate, "Max")»

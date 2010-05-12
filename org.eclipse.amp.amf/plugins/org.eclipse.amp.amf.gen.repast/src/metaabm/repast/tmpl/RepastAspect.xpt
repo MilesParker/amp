@@ -29,9 +29,9 @@
 
 «DEFINE MethodAnnotation FOR IID-»«ENDDEFINE»
 «DEFINE MethodAnnotation FOR SAttribute-»
-    «IF !suppressAccessor()»
+    «IF !suppressAccessor()-»
 	@repast.simphony.parameter.Parameter(displayName="«paramDisplayName()»", usageName="«paramid()»", defaultValue=«defaultValueQuoted()»)
-	«ENDIF»
+	«ENDIF-»
 «ENDDEFINE»
 
 «AROUND metaabm::tmpl::Java::GetterMethod FOR metaabm::IID»
@@ -85,10 +85,10 @@
 
 «AROUND metaabm::tmpl::Java::Body FOR SAgent»
 	«targetDef.proceed()»
-	«IF owner != null»
+	«IF owner != null-»
 	«EXPAND metaabm::tmpl::Java::Field FOR owner»
 	«EXPAND metaabm::tmpl::Java::Accessor FOR owner»
-	«ENDIF»
+	«ENDIF-»
 	public double randomInRange(double minValue,
 			double maxValue) {
 		return repast.simphony.random.RandomHelper.nextDoubleFromTo(minValue, maxValue);
@@ -148,19 +148,19 @@
 		for (int i = 0; i < «agentCount != null ? agentCount.bind(path, inner) : "1"»; i++) {
 			«id()» = new «agent.typeName()»();
 			context.add(«id()»);
-			«IF group.reference != agent»
+			«IF group.reference != agent-»
 		    «id()».«agent.owner.setterName()»(this);
 		    «ELSE»
 		    «id()».«agent.owner.setterName()»(«agent.owner.getterName()»());
-		    «ENDIF»
+		    «ENDIF-»
 		}
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AEvaluate»
-    «IF selected == rootSelected || allTargets.typeSelect(ASet).collect(e | e.parameter).size > 0»
+    «IF selected == rootSelected || allTargets.typeSelect(ASet).collect(e | e.parameter).size > 0-»
 	«targetDef.proceed()»
-	«ENDIF»
-	«IF function.id().startsWith("color")»
+	«ENDIF-»
+	«IF function.id().startsWith("color")-»
 		setPaint(«id()»);
 	«ELSEIF function.id().startsWith("shape")»
 		shape = «id()»;
@@ -168,10 +168,10 @@
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ActionBody FOR AAct-»
-	«IF allTargets.exists(e | e.expandSpatialBlock() || ATransform.isInstance(e))»
+	«IF allTargets.exists(e | e.expandSpatialBlock() || ATransform.isInstance(e))-»
     final repast.simphony.context.Context context = repast.simphony.util.ContextUtils.getContext(«!styleRule() ? "this" : reference.id()»);
     «FOREACH allTargets.collect(e | e.selfor().space).addAll(allTargets.collect(e | e.dest().space)).toSet() AS space»
-    «IF space != null»
+    «IF space != null-»
 	    final «EXPAND metaabm::tmpl::Java::ExtendType FOR space» «space.id()» = («EXPAND metaabm::tmpl::Java::ExtendType FOR space») context.getProjection("«space.label»");
     «ENDIF-»
     «ENDFOREACH»
@@ -185,13 +185,13 @@
     «ELSEIF function.id() == "randomIs"-»
         repast.simphony.random.RandomHelper.getUniform().nextBoolean()
 	«ELSEIF function.id() == "randomInRange"-»
-		«IF resultType() == SAttributeType::Integer»repast.simphony.random.RandomHelper.nextIntFromTo(«inputs.expression(path, inner).toString(", ")»)
+		«IF resultType() == SAttributeType::Integer»repast.simphony.random.RandomHelper.nextIntFromTo(«inputs.expression(path, inner).toString(", ")-»)
         «ELSE»repast.simphony.random.RandomHelper.nextDoubleFromTo(«inputs.expression(path, inner).toString(", ")»)
 		«ENDIF-»
     «ELSEIF function.id() == "uniformDistribution"-»
         repast.simphony.random.RandomHelper.nextDoubleFromTo(«inputs.expression(path, inner).toString(", ")»);
     «ELSEIF function.id() == "randomToLimit"-»
-		«IF resultType() == SAttributeType::Integer»repast.simphony.random.RandomHelper.nextIntFromTo(0, «inputs.expression(path, inner).toString(", ")»)
+		«IF resultType() == SAttributeType::Integer»repast.simphony.random.RandomHelper.nextIntFromTo(0, «inputs.expression(path, inner).toString(", ")-»)
         «ELSE»repast.simphony.random.RandomHelper.nextDoubleFromTo(0, «inputs.expression(path, inner).toString(", ")»)
 		«ENDIF-»
     «ELSEIF function.id() == "timeNow"-»
@@ -228,7 +228,7 @@
 «ENDAROUND»
 
 «DEFINE CustomQueryEval  (List[metaabm::act::AAct] path, ASelect sel) FOR AQuery-»
-	«IF !isSpatialControl()»
+	«IF !isSpatialControl()-»
 	«REM»We have to use dest here.«ENDREM»
 		if («dest().id()» instanceof «dest().typeName()») {
             «EXPAND metaabm::tmpl::Java::InnerEvaluation(path, false)-»
@@ -264,7 +264,7 @@
 «ENDDEFINE»
 
 «AROUND metaabm::tmpl::Java::ConditionBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
-	    «IF conditionFor()»
+	    «IF conditionFor()-»
 	        «EXPAND QueryFilterBegin(id() + "QueryCondition")»
             if (object instanceof «dest().typeName()») {
                 «selector().typeName()» «selector().id()» = («selector().typeName()») object;
@@ -283,10 +283,10 @@
 
 «AROUND metaabm::tmpl::Java::BeginQueryBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AAct»
     repast.simphony.query.Query<Object> «id()»Query = null;
-    «IF (hasControl("neighbor") || hasControl("within"))»
+    «IF (hasControl("neighbor") || hasControl("within"))-»
 	    «contingentQuery(hasControl("nearest"), "SpaceFrom")» = new «selfrom().space.queryClass()»(«dest().space.id()», «selector().selfrom().local(selfrom().id()).expl()», «queryParams(selfrom().space, path)»);
     «ENDIF-»
-    «IF hasControl("nearest")»
+    «IF hasControl("nearest")-»
         «contingentQuery(hasControl("neighbor") || hasControl("within"), "Nearest")» = new repast.simphony.query.Query<«Object»>() {
             public java.lang.Iterable<«Object»> query() {
                 return java.util.Collections.EMPTY_LIST;
@@ -318,15 +318,15 @@
                 return «id()»Mins;
             }
         };
-        «IF hasControl("neighbor") || hasControl("within")»
+        «IF hasControl("neighbor") || hasControl("within")-»
             «id()»Query = new repast.simphony.query.AndQuery<Object>(«id()»QuerySpaceFrom, «id()»QueryNearest);
         «ENDIF-»
     «ENDIF-»
-    «IF hasControl("available") || controlCompound().spatial().isEmpty»
+    «IF hasControl("available") || controlCompound().spatial().isEmpty-»
         «EXPAND QueryBegin(id() + "QueryAvailable")»
         return new repast.simphony.util.collections.FilteredIterator<Object>(context.iterator(), new org.apache.commons.collections15.Predicate() {
             public boolean evaluate(Object object) {
-                «IF !controlCompound().spatial().isEmpty»
+                «IF !controlCompound().spatial().isEmpty-»
                 repast.simphony.space.grid.GridPoint location = «dest().space.id()».getLocation(object);
                 if (location != null) {
                     java.util.Iterator locIter = «dest().space.id()».getObjectsAt(location.toIntArray(null)).iterator();
@@ -340,17 +340,17 @@
                 return false;
                 «ELSE»
                 return object instanceof «dest().typeName()»;
-                «ENDIF»
+                «ENDIF-»
             }
         });
         «EXPAND QueryEnd»
-        «IF hasControl("neighbor") || hasControl("within")»
+        «IF hasControl("neighbor") || hasControl("within")-»
             «id()»Query = new repast.simphony.query.AndQuery<Object>(«id()»Query, «id()»QueryAvailable);
         «ELSE»
             «id()»Query = «id()»QueryAvailable;
         «ENDIF-»
     «ENDIF-»
-    «IF !controlCompound().nonSpatial().typeSelect(AQuery).isEmpty && !controlCompound().spatial().isEmpty»
+    «IF !controlCompound().nonSpatial().typeSelect(AQuery).isEmpty && !controlCompound().spatial().isEmpty-»
         «id()»Query = new repast.simphony.query.AndQuery<Object>(«id()»Query, «id()»QueryCondition);
     «ELSEIF !hasControl("available") && !controlCompound().spatial().isEmpty»
         «EXPAND QueryFilterBegin(id() + "Query" + (controlCompound().spatial().size > 0 ? "AgentClass" : ""))»
@@ -358,7 +358,7 @@
         «EXPAND QueryFilterEnd»
         «id()»Query = new repast.simphony.query.AndQuery<Object>(«id()»Query, «id()»QueryAgentClass);
     «ENDIF-»
-    «IF metaType != ANone»
+    «IF metaType != ANone-»
     java.util.Iterator «id()»Iter = «id()»Query.query().iterator();
     if («id()»Iter.hasNext()) {
         java.util.List «id()»List = org.apache.commons.collections15.IteratorUtils.toList(«id()»Iter);
@@ -373,17 +373,17 @@
 «ENDAROUND»
 
 «DEFINE DimOpen (Integer level) FOR SNDimensional»
-	«IF level >= 0»
+	«IF level >= 0-»
 		«EXPAND DimOpen (level - 1)»
 	for (int d«level» = 0; d«level» < dims.getDimension(«level»); d«level»++) {
 	«ENDIF-»
 «ENDDEFINE»
 «DEFINE DimOpen (Integer level) FOR EObject»«ENDDEFINE»
 «DEFINE DimTerm (Integer level) FOR EObject»
-	«IF level >= 0-»«EXPAND DimTerm (level - 1)»«IF level > 0»,«ENDIF-»d«level»«ENDIF-»
+	«IF level >= 0-»«EXPAND DimTerm (level - 1)»«IF level > 0»,«ENDIF-»d«level-»«ENDIF-»
 «ENDDEFINE»
 «DEFINE Close (Integer level) FOR EObject»
-	«IF level >= 0-»«EXPAND Close (level - 1)»}«ENDIF-»
+	«IF level >= 0-»«EXPAND Close (level - 1)-»}«ENDIF-»
 «ENDDEFINE»
 
 «REM»Supress Getters for Arrays -- Reapst doesn't support«ENDREM»
@@ -397,7 +397,7 @@
         repast.simphony.space.grid.GridBuilderParameters params = new repast.simphony.space.grid.GridBuilderParameters(«((SNDimensional) projection).newBorder()», «id()»Adder, true, «projection.dimFieldName()»);
         «projection.fieldName()» = repast.simphony.context.space.grid.GridFactoryFinder.createGridFactory(null).createGrid("«projection.label»", context, params);
 
-	«IF fillAgent != null»
+	«IF fillAgent != null-»
 	    repast.simphony.space.grid.GridDimensions dims = «projection.id()».getDimensions();
 	    «LET ((SNDimensional) projection).dimensionality - 1 AS dimN»
 	    «EXPAND DimOpen (dimN) FOR projection»
@@ -452,7 +452,7 @@
 	java.awt.Shape shape = SHAPE_RECT;
 
 	public void updateValues(Object object) {
-		«IF !agent.isHost()»
+		«IF !agent.isHost()-»
 			setBounds(new java.awt.Rectangle(0, 0, 9, 9));
 		«ENDIF-»
     	«EXPAND DrawStyle FOR rootActivity-»
