@@ -13,11 +13,11 @@
 «EXTENSION metaabm::ascape::tmpl::inferascape»
 
 «DEFINE AgentBody FOR SAgent-»
-	«IF owner != null»
+	«IF owner != null-»
 	public «owner.typeName()» «owner.getterName()»() {
 		return («owner.typeName()») getScape().getScape();
 	}
-	«ENDIF»
+	«ENDIF-»
 	«IF parent != null && !((SContext) parent).projections.typeSelect(SNetwork).isEmpty-»
 	public java.util.List getNetwork() {
 		return ((Graph) «((SContext) parent).getterName()»().«((SContext) parent).projections.typeSelect(SNetwork).get(0).getterName()»().getSpace()).getNeighborsFor(this);
@@ -55,17 +55,17 @@
 	 */
 	public void createScape() {
 		super.createScape();
-		«IF parent != null»
+		«IF parent != null-»
 		vm_unique_id = next_vm_id;
 		setName("«label» " + vm_unique_id);
 		next_vm_id++;
 		«ELSE»
 		setName("«label»");
-		«ENDIF»
-		«IF parent != null»
+		«ENDIF-»
+		«IF parent != null-»
         setAutoCreate(false);
         setPrototypeAgent(new org.ascape.model.Scape());
-   		«ENDIF»
+   		«ENDIF-»
 		«IF (rootActivity != null)-»
 			«EXPAND CreateScape (0) FOREACH agents-»
 			«EXPAND CreateScape (0) FOR rootActivity-»
@@ -129,7 +129,6 @@
     «IF conditionForAscape()-»
         Conditional «selector().id()»Condition = new Conditional() {
             private static final long serialVersionUID = 6846144446402098985L;
-
             public boolean meetsCondition(Object «selector().id()»Cell) {
                 «IF findFromHost()-»
                     «selector().id()»Cell = «converted(selector().id() + "Cell")»;
@@ -188,14 +187,14 @@
 	«EXPAND Setup FOREACH members-»
 «ENDDEFINE»
 
-«DEFINE SetDimension FOR SNDimensional»
-    «IF dimensionality == 1»
+«DEFINE SetDimension FOR SNDimensional-»
+    «IF dimensionality == 1-»
     «fieldName()».setExtent(new «coordinateType()»(«getterName()»Length()));
-    «ELSEIF dimensionality == 2»
+    «ELSEIF dimensionality == 2-»
     «fieldName()».setExtent(new «coordinateType()»(«getterName()»Width(), «getterName()»Height()));
-    «ELSEIF dimensionality == 3»
+    «ELSEIF dimensionality == 3-»
     «fieldName()».setExtent(new «coordinateType()»(«getterName()»XExtent(), «getterName()»YExtent(), «getterName()»ZExtent()));
-    «ENDIF»
+    «ENDIF-»
 «ENDDEFINE»
 
 «DEFINE CreateScape(int stage) FOR ACreateAgents-»
@@ -218,8 +217,7 @@
 			«spaceAgent.scape()».setSuperScape(«projection.fieldName()»);
 			«ENDFOREACH»
 			add(«projection.fieldName()»);
-	  «ENDIF»
-«ENDDEFINE»
+	  «ENDIF-»«ENDDEFINE»
 «DEFINE CreateScape(int stage) FOR ABuildNetwork-»
 		«IF stage == 0-»
         «projection.fieldName()» = new Scape(new «projection.spaceClass()»());
@@ -237,13 +235,13 @@
 	        ((CollectionSpace) «projection.fieldName()».getSpace()).setPeriodic(«projection.periodic()»);
 	        «ENDIF-»
 			add(«projection.fieldName()»);
-			«IF fillAgent != null»
+			«IF fillAgent != null-»
 			org.ascape.model.Scape «fillAgent.fieldName()» = «projection.id()»;
-			«ENDIF»
-	        «IF fillAgent.metaType == SContext»
+			«ENDIF-»
+	        «IF fillAgent.metaType == SContext-»
 	        «projection.fieldName()».setAutoCreate(false);
 	        «projection.fieldName()».createScape();
-	        «ENDIF»
+	        «ENDIF-»
 		«ELSEIF stage == 1-»
 	        «FOREACH agents AS agent-»
 	        «agent.proto()».setHostScape(«projection.fieldName()»);
@@ -254,7 +252,7 @@
         «ENDIF-»
 «ENDDEFINE»
 «DEFINE CreateScape(int stage) FOR SAgent-»
-	«IF !isHost()»
+	«IF !isHost()-»
 		«IF stage == 0-»
 		«typeName()» «proto()» = create«typeName()»Prototype();
 		«scape()» = new Scape();
@@ -265,16 +263,16 @@
 		add(«scape()»);
 		«ELSEIF stage == 2»
 		«EXPAND StatBuilder-»
-        «IF metaType == SContext»
+        «IF metaType == SContext-»
         «scape()».setAutoCreate(false);
         «scape()».createScape();
-        «ENDIF»
+        «ENDIF-»
 		«ENDIF-»
 	«ELSE»
-		«IF stage == 2»
+		«IF stage == 2-»
 		«EXPAND StatBuilder FOREACH attributes-»
-		«ENDIF»
-	«ENDIF»
+		«ENDIF-»
+	«ENDIF-»
 «ENDDEFINE»
 «DEFINE CreateScape(int stage) FOR AGroup-»
 	«EXPAND CreateScape(stage) FOREACH members.orderBuild()-»
@@ -288,10 +286,10 @@
 «ENDDEFINE»
 
 «DEFINE StatBuilderInner(SAttribute outer) FOR SAttribute-»
-    «IF outer.sType == SAttributeType::Boolean»
+    «IF outer.sType == SAttributeType::Boolean-»
 		«EXPAND StatBuilderAdd (outer, "", "")-»
 		«EXPAND StatBuilderAdd (outer, "!", "Not")-»
-	«ENDIF»
+	«ENDIF-»
 «ENDDEFINE»
 
 «DEFINE StatBuilderInner(SState outer) FOR SAttribute-»
@@ -319,12 +317,12 @@
 
 «DEFINE StatBuilder FOR SAttribute-»
 	«IF gatherData-»
-	«IF numeric()»
+	«IF numeric()-»
 		«EXPAND StatBuilderAdd (this, "", "")-»
 	«ELSEIF boolean()»
 		«EXPAND StatBuilderAdd (this, "", "is")-»
 		«EXPAND StatBuilderAdd (this, "!", "is not")-»
-	«ENDIF»
+	«ENDIF-»
 	«ENDIF-»
 «ENDDEFINE»
 «DEFINE StatBuilder FOR SState-»
@@ -335,7 +333,7 @@
 	«ENDIF-»
 «ENDDEFINE»
 «DEFINE StatBuilder FOR SAgent-»
-	«IF genStats() != "none"»
+	«IF genStats() != "none"-»
         «scape()».addStatCollector(new org.ascape.util.data.StatCollectorCond(getName() + " Population") {
 				private static final long serialVersionUID = 684614444640209893L;
 				
@@ -343,7 +341,7 @@
                 public final boolean meetsCondition(Object object) {return true;}
         });
 		«EXPAND StatBuilder FOREACH attributes-»
-	«ENDIF»
+	«ENDIF-»
 «ENDDEFINE»
 
 «DEFINE ChildBuilder FOR ARule-»
@@ -376,13 +374,12 @@
 «ENDDEFINE»
 
 «DEFINE InnerBlockCall(List[metaabm::act::AAct] path, Boolean inner) FOR AMove-»
-	«IF destination.space.metaType == SGrid»
+	«IF destination.space.metaType == SGrid-»
 	if («selected.asAgent().pre()»getHostScape() != ((Agent) «destination.selid().expl()»).getScape()) {
 	    die();
 	    «selected.agent.owner.getterName()»().get«selected.agent.scape().toFirstUpper()»().add(«selected.asAgent().expl()»);
 	}
-	«ENDIF»
-	«call(path, inner)»
+	«ENDIF-»«call(path, inner)»
 «ENDDEFINE»
 
 «REM»«AROUND metaabm::tmpl::Java::Evaluation(*) FOR Object»«LET timesec() AS start»«targetDef.proceed()»//«timelapse(start)»«ENDLET»«ENDAROUND»«ENDREM»

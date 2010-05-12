@@ -125,11 +125,11 @@ import org.ascape.util.Conditional;
 	«style.typeName()» «style.id()» = new «style.typeName()»();
 	«FOREACH style.setterSpace() AS setter»
     «((List) setter).last()»;
-	«IF agent.isHost()»
+	«IF agent.isHost()-»
     «style.id()».draw(dummyGraphics, «agent.id()», 4, 4);
     «ELSE»
     «style.id()».draw(dummyGraphics, «agent.id()»Host, 4, 4);
-    «ENDIF»
+    «ENDIF-»
     {
     Color agentColor = dummyGraphics.getColor();
 	chart.addSeries("Count «agent.typeName()» «((List) setter).first()»", agentColor);
@@ -166,18 +166,18 @@ import org.ascape.util.Conditional;
 		«IF !((SContext) reference).projections.typeSelect(SNetwork).isEmpty-»
 		«projection.id()»View.setDrawNetwork(true);
 		«ENDIF-»
-		«IF fillAgent != null»
+		«IF fillAgent != null-»
         «EXPAND StyleBuilder (projection) FOREACH fillAgent.styles-»
-        «ENDIF»
+        «ENDIF-»
         «FOREACH agents AS buildAgent-»
         «EXPAND StyleBuilder (projection) FOREACH buildAgent.styles-»
         «ENDFOREACH-»
         «FOREACH agents AS buildAgent-»
         «EXPAND StyleSelector (projection) FOREACH buildAgent.styles-»
         «ENDFOREACH-»
-		«IF fillAgent != null»
+		«IF fillAgent != null-»
         «EXPAND StyleSelector (projection) FOREACH fillAgent.styles-»
-        «ENDIF»
+        «ENDIF-»
         «EXPAND StyleSelector (projection) FOR projection-»
 	«ENDIF-»
 «ENDAROUND»
@@ -201,7 +201,7 @@ import org.ascape.util.Conditional;
 	«ELSEIF function.id().startsWith("graphicOutline")-»
         ((Graphics2D) g).draw(shape);
     «ELSE-»
-	 	«IF selected == rootSelected || allTargets.typeSelect(ASet).collect(e | e.parameter).size > 0»
+	 	«IF selected == rootSelected || allTargets.typeSelect(ASet).collect(e | e.parameter).size > 0-»
 			«targetDef.proceed()»
 		«ENDIF-»
 	«ENDIF-»
