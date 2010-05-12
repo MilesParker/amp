@@ -4,17 +4,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.amp.agf.IGraphicsAdapter;
+import org.eclipse.amp.agf.gef.GenericEditPart;
 import org.eclipse.amp.agf.gef.IFigureProvider;
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.draw2d.Ellipse;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.zest.core.viewers.EntityConnectionData;
+import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.core.viewers.IConnectionStyleProvider;
 import org.eclipse.zest.core.viewers.IEntityStyleProvider;
 import org.eclipse.zest.core.widgets.ZestStyles;
@@ -22,22 +27,27 @@ import org.eclipse.zest.core.widgets.ZestStyles;
 public class ZestStyleProvider implements IEntityStyleProvider, ILabelProvider, IColorProvider,
 IConnectionStyleProvider, org.eclipse.zest.core.viewers.IFigureProvider {
 
-    public final static Color GREEN_COLOR = Display.getCurrent().getSystemColor(org.eclipse.swt.SWT.COLOR_GREEN);
-
-    public final static Color BLUE_COLOR = Display.getCurrent().getSystemColor(org.eclipse.swt.SWT.COLOR_BLUE);
+    public final static Color HIGHLIGHT_COLOR = Display.getCurrent().getSystemColor(org.eclipse.swt.SWT.COLOR_YELLOW);
 
     IGraphicsAdapter graphicsAdapter;
 
-    private Map<Object, IColorProvider> colorFor = new HashMap<Object, IColorProvider>();
-    private HashMap<Object, ILabelProvider> labelFor = new HashMap<Object, ILabelProvider>();
-    private HashMap<Object, IFigureProvider> figureFor = new HashMap<Object, IFigureProvider>();
+    private Map<Object, IColorProvider> colorProviderFor = new HashMap<Object, IColorProvider>();
+    private HashMap<Object, ILabelProvider> labelProviderFor = new HashMap<Object, ILabelProvider>();
+    private HashMap<Object, IFigureProvider> figureProviderFor = new HashMap<Object, IFigureProvider>();
 
-    private final ICompositionProvider compositionProvider;
+    private HashMap<Object, IFigure> figureFor = new HashMap<Object, IFigure>();
 
-    public ZestStyleProvider(Object input, ICompositionProvider compositionProvider, IGraphicsAdapter graphicsAdapter) {
+    private ICompositionProvider compositionProvider;
+
+    private GraphViewer viewer;
+
+    public ZestStyleProvider(GraphViewer viewer, Object object, ICompositionProvider compositionProvider,
+            IGraphicsAdapter graphicsAdapter) {
         super();
+        this.viewer = viewer;
         this.compositionProvider = compositionProvider;
         this.graphicsAdapter = graphicsAdapter;
+        // viewer.addSelectionChangedListener(new SelectionChangedEvent(viewer, null));
     }
 
     public boolean fisheyeNode(Object entity) {
@@ -53,7 +63,7 @@ IConnectionStyleProvider, org.eclipse.zest.core.viewers.IFigureProvider {
     }
 
     public Color getBorderHighlightColor(Object entity) {
-        return null;
+        return HIGHLIGHT_COLOR;
     }
 
     public int getBorderWidth(Object entity) {
@@ -64,8 +74,14 @@ IConnectionStyleProvider, org.eclipse.zest.core.viewers.IFigureProvider {
         return getForeground(entity);
     }
 
+    /**
+     * 
+     * @param entity
+     * @return
+     * @see org.eclipse.zest.core.viewers.IEntityStyleProvider#getNodeHighlightColor(java.lang.Object)
+     */
     public Color getNodeHighlightColor(Object entity) {
-        return null;
+        return HIGHLIGHT_COLOR;
     }
 
     public IFigure getTooltip(Object entity) {
@@ -141,7 +157,7 @@ IConnectionStyleProvider, org.eclipse.zest.core.viewers.IFigureProvider {
      * @see org.eclipse.zest.core.viewers.IConnectionStyleProvider#getHighlightColor(java.lang.Object)
      */
     public Color getHighlightColor(Object rel) {
-        return null;
+        return HIGHLIGHT_COLOR;
     }
 
     /**
@@ -154,15 +170,47 @@ IConnectionStyleProvider, org.eclipse.zest.core.viewers.IFigureProvider {
     }
 
     public IFigure getFigure(Object element) {
-        return getFigureProvider(element).getFigure(element);
+        IFigure figure = figureFor.get(element);
+        if (figure == null) {
+            figure = getFigureProvider(element).getFigure(element);
+            figureFor.put(element, figure);
+        }
+        if (isSelected(element)) {
+            highlightFigure(figure);
+        } else {
+            figure.setBorder(null);
+        }
+        return figure;
+    }
+
+    private boolean isSelected(Object element) {
+        if (viewer.getSelection() instanceof StructuredSelection) {
+            StructuredSelection ss = (StructuredSelection) viewer.getSelection();
+            for (Object sel : ss.toArray()) {
+                if (sel == element) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private void highlightFigure(IFigure figure) {
+        if (figure instanceof Ellipse) {
+            figure.setBorder(GenericEditPart.HIGHLIGHT_ELLIPSE);
+        } else if (figure instanceof RoundedRectangle) {
+            figure.setBorder(GenericEditPart.HIGHLIGHT_RECTANGLE);
+        } else {
+            figure.setBorder(GenericEditPart.HIGHLIGHT_RECTANGLE);
+        }
     }
 
     protected IFigureProvider getFigureProvider(Object object) {
         // Object parent = compositionProvider.getParent(object);
-        IFigureProvider figureProvider = figureFor.get(object);
+        IFigureProvider figureProvider = figureProviderFor.get(object);
         if (figureProvider == null) {
             figureProvider = (IFigureProvider) graphicsAdapter.getAdapter(object, IFigureProvider.class);
-            figureFor.put(object, figureProvider);
+            figureProviderFor.put(object, figureProvider);
             Assert.isNotNull(figureProvider);
         }
         return figureProvider;
@@ -170,10 +218,10 @@ IConnectionStyleProvider, org.eclipse.zest.core.viewers.IFigureProvider {
 
     protected IColorProvider getColorProvider(Object object) {
         // Object parent = compositionProvider.getParent(object);
-        IColorProvider colorProvider = colorFor.get(object);
+        IColorProvider colorProvider = colorProviderFor.get(object);
         if (colorProvider == null) {
             colorProvider = (IColorProvider) graphicsAdapter.getAdapter(object, IColorProvider.class);
-            colorFor.put(object, colorProvider);
+            colorProviderFor.put(object, colorProvider);
             Assert.isNotNull(colorProvider);
         }
         return colorProvider;
@@ -181,10 +229,10 @@ IConnectionStyleProvider, org.eclipse.zest.core.viewers.IFigureProvider {
 
     protected ILabelProvider getLabelProvider(Object object) {
         // Object parent = compositionProvider.getParent(object);
-        ILabelProvider labelProvider = labelFor.get(object);
+        ILabelProvider labelProvider = labelProviderFor.get(object);
         if (labelProvider == null) {
             labelProvider = (ILabelProvider) graphicsAdapter.getAdapter(object, ILabelProvider.class);
-            labelFor.put(object, labelProvider);
+            labelProviderFor.put(object, labelProvider);
         }
         return labelProvider;
     }

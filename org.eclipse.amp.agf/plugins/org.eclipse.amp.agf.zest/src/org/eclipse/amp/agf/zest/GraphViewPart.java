@@ -35,6 +35,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.core.widgets.ZestStyles;
 import org.eclipse.zest.layouts.LayoutAlgorithm;
+import org.eclipse.zest.layouts.algorithms.RadialLayoutAlgorithm;
 import org.eclipse.zest.layouts.algorithms.SpringLayoutAlgorithm;
 
 // TODO: Auto-generated Javadoc
@@ -61,7 +62,7 @@ public class GraphViewPart extends AGFViewPart {
         viewer = new GraphViewer(parent, ZestStyles.NONE);
 
         viewer.getControl().setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_WHITE));
-        setLayoutAlgorithm(createSpringLayout());
+        setLayoutAlgorithm(new RadialLayoutAlgorithm());
         viewer.setNodeStyle(ZestStyles.NODES_NO_LAYOUT_RESIZE);
         super.createPartControl(parent);
     }
@@ -99,7 +100,8 @@ public class GraphViewPart extends AGFViewPart {
             viewer.setContentProvider(contentProvider);
             IGraphicsAdapter graphicsAdapter = (IGraphicsAdapter) Platform.getAdapterManager()
             .getAdapter(getModel().getRoot(), IGraphicsAdapter.class);
-            viewer.setLabelProvider(new ZestStyleProvider(getModel().getRoot(), compProvider, graphicsAdapter));
+            viewer.setLabelProvider(new ZestStyleProvider(getViewer(), getModel().getRoot(), compProvider,
+                graphicsAdapter));
             Object contents = null;
             if (modelInput.getSelection() instanceof IStructuredSelection) {
                 contents = ((StructuredSelection) modelInput.getSelection()).getFirstElement();
