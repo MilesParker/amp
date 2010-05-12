@@ -39,10 +39,10 @@
 		<H5>«function.label»</H5>
 		<i>«function.descrText()»</i><BR/>
 	«ENDFOREACH»
-	«IF !subs.isEmpty»
+	«IF !subs.isEmpty-»
 		<H4>Members</H4>
 		«EXPAND LibraryTable FOREACH subs»
-	«ENDIF»
+	«ENDIF-»
 «ENDDEFINE»
 
 «DEFINE LibraryTable FOR IArtifact-»

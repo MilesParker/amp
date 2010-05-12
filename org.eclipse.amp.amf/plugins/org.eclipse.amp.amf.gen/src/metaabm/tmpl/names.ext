@@ -218,7 +218,10 @@ cached String getterName(AInput input) :
 	input.value.getterName();
        
 cached String descrText(IID id) :
-	id.metaType.toString() + " " + id.label;
+	id.label + ".";
+       
+cached String descrText(AEvaluate id) :
+	"Calculate " + id.label + ".";
        
 cached String descrText(SNamed named) :
 	!(named.description  == "[none]")

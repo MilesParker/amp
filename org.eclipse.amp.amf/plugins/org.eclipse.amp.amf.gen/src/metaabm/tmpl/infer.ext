@@ -509,7 +509,25 @@ cached List[AAct] acts(SAgent agent) :
 	
 cached ABuildGrid builder(SGrid space) :
 	space.owner.acts().typeSelect(ABuildGrid).select(a | a.projection == space).first();
+
+cached List[String] evals(List path, String start) :
+	((List) path.typeSelect(AEvaluate).select(e|e.function.id().startsWith(start)));
 	
 cached AEvaluate lastEval(List path, String start) :
-	((List) path.typeSelect(AEvaluate).select(e|e.function.id().startsWith(start))).last();
+	evals(path, start).last();
+	
+cached AEvaluate lastEvalPrev(List path, String start) :
+	evals(path, start).size > 1
+		? evals(path, start).get(evals(path, start).size - 2)
+		: "";
+
+cached String markerNumber(FFunction func) :
+	func.id().endsWith("Marker")
+		? "0"
+		: (func.id().endsWith("2")
+			? "1"
+			: "2");
+			
+		
+	
 	
