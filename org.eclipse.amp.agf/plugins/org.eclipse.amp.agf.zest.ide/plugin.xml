@@ -25,7 +25,7 @@
               id="org.eclipse.amp.view.graph.spring"
               label="Spring Layout"
               menubarPath="additions"
-              state="true"
+              state="false"
               style="radio"
               toolbarPath="layoutgroup"
               tooltip="Layout nodes using spring connections.">
@@ -46,7 +46,7 @@
               id="org.eclipse.amp.view.graph.Radial"
               label="Radial Layout"
               menubarPath="additions"
-              state="false"
+              state="true"
               style="radio"
               toolbarPath="layoutgroup"
               tooltip="Layout nodes using radial tree.">
