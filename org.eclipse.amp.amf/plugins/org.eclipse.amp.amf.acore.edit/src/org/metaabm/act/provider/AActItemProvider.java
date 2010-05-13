@@ -326,7 +326,9 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
             Command create = CopyCommand.create(domain, targetAct);
             cmd.appendAndExecute(create);
             AAct newAct = (AAct) ((List) create.getResult()).get(0);
-            cmd.appendAndExecute(AddCommand.create(domain, sourceAct, MetaABMActPackage.Literals.AACT__TARGETS, newAct));
+            cmd
+            .appendAndExecute(AddCommand.create(domain, sourceAct, MetaABMActPackage.Literals.AACT__TARGETS,
+                                                newAct));
         } else if (eventID == DragAndDropFeedback.DROP_MOVE) {
             cmd.append(AddCommand.create(domain, sourceAct, MetaABMActPackage.Literals.AACT__TARGETS, targetAct));
             EList<AAct> sources = targetAct.getSources();
@@ -662,12 +664,13 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
         AAct act = (AAct) notification.getNotifier();
+        ASelect root = act.getRootSelected();
         switch (notification.getFeatureID(AAct.class)) {
             case MetaABMPackage.IID__LABEL:
             case MetaABMPackage.IID__ID:
                 // fireNotifyChanged(new ViewerNotification(notification,
                 // notification.getNotifier(), true, false));
-                ASelect rootSelected = act.getRootSelected();
+                ASelect rootSelected = root;
                 if (rootSelected != null) { // should only be true for testing..
                     for (AAct allTarget : rootSelected.getAllTargets()) {
                         if (allTarget != act) {
@@ -697,10 +700,9 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
             case MetaABMActPackage.AACT__SOURCES:
             case MetaABMActPackage.AGROUP__MEMBERS:
             case MetaABMActPackage.AACT__TARGETS:
-                fireNotifyChanged(new ViewerNotification(notification, act.getRootSelected(), true, false));
-                fireNotifyChanged(new ViewerNotification(notification, act, true, true));
-                for (AAct parent : getParents(notification.getNotifier())) {
-                    fireNotifyChanged(new ViewerNotification(notification, parent, true, false));
+                if (root != null) {
+                    fireNotifyChanged(new ViewerNotification(notification, root, true, false));
+                    fireNotifyChanged(new ViewerNotification(notification, root.getAllTargets(), false, true));
                 }
                 return;
         }
@@ -753,7 +755,7 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
         // return false;
         // }
         return object instanceof ARoot && ((AAct) object).getTargets().size() > 0 || object instanceof AGroup
-            && ((AGroup) object).getMembers().size() > 0;
+        && ((AGroup) object).getMembers().size() > 0;
         // return super.hasChildren(object, false);
     }
 
@@ -836,7 +838,9 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
         if (act instanceof ASink) {
             for (AInput input : ((ASink) act).getInputs()) {
                 if (!allSourceSelects.contains(input.getSelected()) && !processed.contains(input)) {
-                    cmd.append(SetCommand.create(domain, input, MetaABMActPackage.Literals.AINPUT__SELECTED, newSelect));
+                    cmd
+                    .append(SetCommand.create(domain, input, MetaABMActPackage.Literals.AINPUT__SELECTED,
+                                              newSelect));
                     processed.add(input);
                 }
             }
