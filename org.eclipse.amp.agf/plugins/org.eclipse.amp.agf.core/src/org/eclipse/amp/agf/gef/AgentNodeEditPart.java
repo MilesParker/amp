@@ -17,6 +17,8 @@
 package org.eclipse.amp.agf.gef;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 import org.eclipse.draw2d.ChopboxAnchor;
@@ -37,23 +39,25 @@ public class AgentNodeEditPart extends GenericEditPart implements NodeEditPart {
     @SuppressWarnings("unchecked")
     @Override
     public synchronized List getModelSourceConnections() {
-        List<ScapeGraphEditPart> graphParts = ((ScapeEditPart) getParent()).getRootScapeEditPart().getGraphParts();
-        List<?> allGraphConnections = new ArrayList();
+        Collection<ScapeGraphEditPart> graphParts = ((ScapeEditPart) getParent()).getRootScapeEditPart()
+        .getGraphParts();
+        Collection<?> allGraphConnections = new HashSet();
         for (ScapeGraphEditPart scapeGraphEditPart : graphParts) {
             allGraphConnections.addAll(scapeGraphEditPart.getModelSourceConnections(getModel()));
         }
-        return allGraphConnections;
+        return new ArrayList(allGraphConnections);
     }
 
     @SuppressWarnings("unchecked")
     @Override
     public synchronized List getModelTargetConnections() {
-        List<ScapeGraphEditPart> graphParts = ((ScapeEditPart) getParent()).getRootScapeEditPart().getGraphParts();
-        List allGraphConnections = new ArrayList();
+        Collection<ScapeGraphEditPart> graphParts = ((ScapeEditPart) getParent()).getRootScapeEditPart()
+                .getGraphParts();
+        Collection allGraphConnections = new HashSet();
         for (ScapeGraphEditPart scapeGraphEditPart : graphParts) {
             allGraphConnections.addAll(scapeGraphEditPart.getModelTargetConnections(getModel()));
         }
-        return allGraphConnections;
+        return new ArrayList(allGraphConnections);
     }
 
     protected ConnectionAnchor getConnectionAnchor() {
