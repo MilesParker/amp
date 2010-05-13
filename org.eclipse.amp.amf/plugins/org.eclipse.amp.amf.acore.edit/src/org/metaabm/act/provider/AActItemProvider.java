@@ -22,6 +22,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.UnexecutableCommand;
@@ -53,8 +54,6 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
-import org.apache.commons.lang.StringUtils;
 import org.metaabm.IID;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SNamed;
@@ -302,9 +301,9 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             childrenFeatures = new ArrayList<EStructuralFeature>();
-            if (object instanceof ARoot) {
-                childrenFeatures.add(MetaABMActPackage.Literals.AACT__TARGETS);
-            }
+            // if (object instanceof ARoot) {
+            childrenFeatures.add(MetaABMActPackage.Literals.AACT__TARGETS);
+            // }
         }
         return childrenFeatures;
     }
@@ -524,7 +523,7 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
                 || feature == MetaABMActPackage.Literals.ANETWORK__WITHIN) {
             SuggestLabelCommand suggestLabelCommand = null;
             if (!(owner instanceof ASink && (((ASink) owner).isMultiValue() || feature == MetaABMActPackage.Literals.ASINK__FUNCTION
-                && value instanceof FFunction && ((FFunction) value).isMultiValue()))) {
+                    && value instanceof FFunction && ((FFunction) value).isMultiValue()))) {
                 suggestLabelCommand = new SuggestLabelCommand(domain, (IID) owner);
             }
             Command createSetCommand = super.createSetCommand(domain, owner, feature, value, index);
@@ -754,7 +753,7 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
         // return false;
         // }
         return object instanceof ARoot && ((AAct) object).getTargets().size() > 0 || object instanceof AGroup
-        && ((AGroup) object).getMembers().size() > 0;
+            && ((AGroup) object).getMembers().size() > 0;
         // return super.hasChildren(object, false);
     }
 

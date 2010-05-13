@@ -443,7 +443,7 @@ ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     }
 
     public boolean hasChildren(Object object) {
-        return ((ASink) object).getInputs().size() > 0;
+        return ((ASink) object).getInputs().size() > 0 || super.hasChildren(object);
     }
 
     // public String suggestID(IID object) {
