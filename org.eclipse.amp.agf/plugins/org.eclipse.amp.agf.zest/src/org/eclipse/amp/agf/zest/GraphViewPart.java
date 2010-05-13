@@ -49,9 +49,9 @@ public class GraphViewPart extends AGFViewPart {
     private SpringLayoutAlgorithm springs;
     IAction springCustomizer;
 
-    double gravity = 0.5;
-    double strain = 0.5;
-    double springLength = 0.5;
+    double gravity = 0.02;
+    double strain = 0.03;
+    double springLength = 0.8;
     double springMove = 0.5;
 
     /**
@@ -101,7 +101,7 @@ public class GraphViewPart extends AGFViewPart {
             IGraphicsAdapter graphicsAdapter = (IGraphicsAdapter) Platform.getAdapterManager()
             .getAdapter(getModel().getRoot(), IGraphicsAdapter.class);
             viewer.setLabelProvider(new ZestStyleProvider(getViewer(), getModel().getRoot(), compProvider,
-                graphicsAdapter));
+                                                          graphicsAdapter));
             Object contents = null;
             if (modelInput.getSelection() instanceof IStructuredSelection) {
                 contents = ((StructuredSelection) modelInput.getSelection()).getFirstElement();
