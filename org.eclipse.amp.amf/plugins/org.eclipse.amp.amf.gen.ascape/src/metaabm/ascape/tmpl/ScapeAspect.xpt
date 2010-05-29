@@ -148,24 +148,32 @@
         };
     «ENDIF-»«ENDDEFINE»    	
 
-«DEFINE BeginQuery (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
-    «IF !convert()-»
-    «selector().typeName()» «selector().id()» = («selector().typeName()») «findStatement(path)»;
-    «ELSE-»
-    «selector().typeName()» «selector().id()» = null;
-    Location «selector().id()»Location = «findStatement(path)»;
+«DEFINE BeginQuerySingle (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
+    «IF convert()-»
+    Location «selector().id()»Location = «findAgentStatement(path)»;
     if («selector().id()»Location != null) {
-        «selector().id()» = («selector().typeName()») «converted(selector().id() + "Location")»;
-    }
+        «selector().typeName()» «selector().id()» = («selector().typeName()») «converted(selector().id() + "Location")»;
+    «ELSE»
+    «selector().typeName()» «selector().id()» = («selector().typeName()») «findAgentStatement(path)»;
     «ENDIF-»
     if («selector().id()» «metaType != ANone ? "!=" : "=="» null) {
     «IF expression(path, inner) != "" && hasControl("here") && !selector().isRoot()-»
         if («expression(path, inner)») {
     «ENDIF-»
 «ENDDEFINE»
+
+«DEFINE BeginQuery (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
+    «IF findIsList()-»
+    List «selector().id()»List = «findStatement(path)»;
+    for(Object next«selector().id().toFirstUpper()» : «selector().id()»List) {
+    «ENDIF-»
+	«EXPAND BeginQuerySingle(path, inner)»
+«ENDDEFINE»
 «DEFINE EndQuery (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
-    «IF expression(path, inner) != "" && hasControl("here") && !selector().isRoot()-»}
-    «ENDIF-»}
+    «IF findIsList()-»}«ENDIF-»
+    «IF convert()-»}«ENDIF-»
+    «IF expression(path, inner) != "" && hasControl("here") && !selector().isRoot()-»}«ENDIF-»
+    }
 «ENDDEFINE»
 
 «DEFINE BeginSerial(List[AAct] path, Boolean inner) FOR AControl-»

@@ -188,6 +188,9 @@ cached String includeSelfTerm(AAct act) :
 cached String distanceTerm(AAct act, List[AAct] path) :
     act.allTerms() ? act.actDistance(path) : "";
 
+cached boolean findIsList(AAct act) :
+	 act.hasControl("all");
+
 cached String findParams(AAct act, List[AAct] path) :
     {act.locationTerm(), act.conditionParam(), act.includeSelfTerm(), act.distanceTerm(path)}.select(e | e.length > 0).toString(", ");
 
@@ -195,7 +198,7 @@ cached String nearestTerm(AAct act) :
     act.hasControl("nearest") ? "Nearest" : "";
 
 cached String randomTerm(AAct act) :
-    !(act.hasControl("nearest")) ? "Random" : "";
+    !(act.hasControl("nearest") || act.hasControl("all")) ? "Random" : "";
 
 cached String availableTerm(AAct act) :
     act.hasControl("available") ? "Available" : "";
@@ -219,6 +222,11 @@ cached String findStatement(AAct act, List[AAct] path) :
     !act.selector().isRoot() && !act.hasControl("here") && !(act.hasControl("toward") && act.controlCompound().spatial().size == 1)
         ? act.findSpace() + act.findMethod() + "(" + act.findParams(path) + ")"
         : act.selector().selected.selid().expl();
+
+cached String findAgentStatement(AAct act, List[AAct] path) :
+    !act.findIsList()
+    	? act.findStatement(path)
+    	: "(" + (act.convert() ? "Location" : act.selector().typeName()) + ") next" + act.selector().id().toFirstUpper();
 
 cached Collection[AAct] hereQueries(AAct act) :
 	((Collection[AAct]) act.selector().targets.intersect(act.allSources)).controlFunction("here");
