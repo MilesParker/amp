@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/structure" label="Infon Model" ID="infonModel" pluralLabel="Infon Models">
+  <attributes label="Infon Count" ID="infonCount" pluralLabel="Infon Counts" description="The number of infons to create." sType="INTEGER" defaultValue="100"/>
+  <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
+    <members xsi:type="act:ABuild" label="Build Infon Model" ID="buildInfonModel" targets="//@rootActivity/@members[ID='createInfons'] //@rootActivity/@members[ID='buildSpace2D']" selected="//@rootActivity/@members[ID='buildInfonModel']" agent="/" pluralLabel="Build Infon Models"/>
+    <members xsi:type="act:ACreateAgents" label="Create Infons" ID="createInfons" sources="//@rootActivity/@members[ID='buildInfonModel']" selected="//@rootActivity/@members[ID='buildInfonModel']" agent="//@agents[ID='infon']" agentCount="//@attributes[ID='infonCount']"/>
+    <members xsi:type="act:ABuildSpace" label="Build Space 2D" ID="buildSpace2D" sources="//@rootActivity/@members[ID='buildInfonModel']" selected="//@rootActivity/@members[ID='buildInfonModel']" pluralLabel="Build Space 2Ds" agents="//@agents[ID='infon']" projection="//@projections[ID='space2D']"/>
+  </rootActivity>
+  <implementation package="name.milesparker.infon" className="InfonModel" basePath=""/>
+  <agents label="Infon" ID="infon" pluralLabel="Infons">
+    <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
+      <members xsi:type="act:AInitialize" label="Initialize" ID="initialize" targets="//@agents[ID='infon']/@rootActivity/@members[ID='infon']" selected="//@agents[ID='infon']/@rootActivity/@members[ID='initialize']" agent="//@agents[ID='infon']" pluralLabel="Initializes"/>
+      <members xsi:type="act:ASelect" label="Infon" ID="infon" sources="//@agents[ID='infon']/@rootActivity/@members[ID='initialize']" targets="//@agents[ID='infon']/@rootActivity/@members[ID='moveInfon']" selected="//@agents[ID='infon']/@rootActivity/@members[ID='initialize']" space="//@projections[ID='space2D']"/>
+      <members xsi:type="act:AMove" label="Move Infon" ID="moveInfon" sources="//@agents[ID='infon']/@rootActivity/@members[ID='infon']" selected="//@agents[ID='infon']/@rootActivity/@members[ID='initialize']" destination="//@agents[ID='infon']/@rootActivity/@members[ID='infon']"/>
+      <members xsi:type="act:ARule" label="Infon Rule" ID="infonRule" targets="//@agents[ID='infon']/@rootActivity/@members[ID='infonCopy']" selected="//@agents[ID='infon']/@rootActivity/@members[ID='infonRule']" agent="//@agents[ID='infon']" space="//@projections[ID='space2D']" pluralLabel="Infon Rules"/>
+      <members xsi:type="act:ASelect" label="Infon Copy" ID="infonCopy" sources="//@agents[ID='infon']/@rootActivity/@members[ID='infonRule']" targets="//@agents[ID='infon']/@rootActivity/@members[ID='nearestQuery']" selected="//@agents[ID='infon']/@rootActivity/@members[ID='infonRule']" agent="//@agents[ID='infon']" space="//@projections[ID='space2D']"/>
+      <members xsi:type="act:AQuery" label="Nearest () Query" ID="nearestQuery" sources="//@agents[ID='infon']/@rootActivity/@members[ID='infonCopy']" targets="//@agents[ID='infon']/@rootActivity/@members[ID='_NearestQueryAndWithin_Unit_Query_']" selected="//@agents[ID='infon']/@rootActivity/@members[ID='infonCopy']">
+        <function xsi:type="function:FGenericLogical" href="http://metaabm.org/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='spatial']/@functions[ID='nearest']"/>
+      </members>
+      <members xsi:type="act:AAll" label="(Nearest () Query &amp; Within(Unit) Query)" ID="_NearestQueryAndWithin_Unit_Query_" sources="//@agents[ID='infon']/@rootActivity/@members[ID='nearestQuery']" targets="//@agents[ID='infon']/@rootActivity/@members[ID='moveInfonCopy']" selected="//@agents[ID='infon']/@rootActivity/@members[ID='infonCopy']"/>
+      <members xsi:type="act:AMove" label="Move Infon Copy" ID="moveInfonCopy" sources="//@agents[ID='infon']/@rootActivity/@members[ID='_NearestQueryAndWithin_Unit_Query_']" selected="//@agents[ID='infon']/@rootActivity/@members[ID='infonRule']" destination="//@agents[ID='infon']/@rootActivity/@members[ID='infonCopy']"/>
+    </rootActivity>
+    <implementation className="Infon"/>
+    <styles xsi:type="metaabm:SStyle2D" label="Infon Basic Style" ID="infonBasicStyle" pluralLabel="Infon Basic Styles">
+      <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
+        <members xsi:type="act:ARule" label="Basic Style Rule" ID="basicStyleRule" targets="//@agents[ID='infon']/@styles[ID='infonBasicStyle']/@rootActivity/@members[ID='basicStyleRuleColorBlue']" selected="//@agents[ID='infon']/@styles[ID='infonBasicStyle']/@rootActivity/@members[ID='basicStyleRule']" agent="//@agents[ID='infon']" space="//@projections[ID='space2D']" pluralLabel="Basic Style Rules"/>
+        <members xsi:type="act:AEvaluate" label="Basic Style Rule: Color Blue()" ID="basicStyleRuleColorBlue" sources="//@agents[ID='infon']/@styles[ID='infonBasicStyle']/@rootActivity/@members[ID='basicStyleRule']" targets="//@agents[ID='infon']/@styles[ID='infonBasicStyle']/@rootActivity/@members[ID='basicStyleRuleShapeOval']" selected="//@agents[ID='infon']/@styles[ID='infonBasicStyle']/@rootActivity/@members[ID='basicStyleRule']">
+          <function xsi:type="function:FGenericFunction" href="http://metaabm.org/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='graphic']/@functions[ID='colorBlue']"/>
+        </members>
+        <members xsi:type="act:AEvaluate" label="Basic Style Rule: Shape Oval()" ID="basicStyleRuleShapeOval" sources="//@agents[ID='infon']/@styles[ID='infonBasicStyle']/@rootActivity/@members[ID='basicStyleRuleColorBlue']" targets="//@agents[ID='infon']/@styles[ID='infonBasicStyle']/@rootActivity/@members[ID='basicStyleRuleGraphicFill']" selected="//@agents[ID='infon']/@styles[ID='infonBasicStyle']/@rootActivity/@members[ID='basicStyleRule']">
+          <function xsi:type="function:FGenericFunction" href="http://metaabm.org/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='graphic']/@functions[ID='shapeOval']"/>
+        </members>
+        <members xsi:type="act:AEvaluate" label="Basic Style Rule: Graphic Fill()" ID="basicStyleRuleGraphicFill" sources="//@agents[ID='infon']/@styles[ID='infonBasicStyle']/@rootActivity/@members[ID='basicStyleRuleShapeOval']" selected="//@agents[ID='infon']/@styles[ID='infonBasicStyle']/@rootActivity/@members[ID='basicStyleRule']">
+          <function xsi:type="function:FGenericFunction" href="http://metaabm.org/core_library.metaabm#//@library[ID='coreFunctions']/@subs[ID='graphic']/@functions[ID='graphicFill']"/>
+        </members>
+      </rootActivity>
+      <implementation className="InfonBasicStyle"/>
+    </styles>
+  </agents>
+  <projections xsi:type="metaabm:SContinuousSpace" label="Space 2D" ID="space2D" pluralLabel="Space 2Ds" dimensionality="2">
+    <attributes xsi:type="metaabm:SAttributeArray" label="Dimensions" ID="dimensions" pluralLabel="Dimensionss" description="The size of each dimension." sType="INTEGER" size="2"/>
+    <attributes label="Width" ID="width" pluralLabel="Widths" description="The horizontal extent of the space." sType="INTEGER" defaultValue="100" units=""/>
+    <attributes label="Height" ID="height" pluralLabel="Heights" description="The vertical extent of the space." sType="INTEGER" defaultValue="100" units=""/>
+  </projections>
+</metaabm:SContext>

@@ -34,6 +34,8 @@ import org.eclipse.swt.graphics.Color;
  */
 public class EpidemicTilesAdapter extends EpidemicGraphicsAdapter {
 
+    private static final IColorProvider[] INDIVIDUAL_COLOR_PROVIDERS = new IColorProvider[] { IndividualStyle2DColorProvider.getDefault() };
+
     public static IGraphicsAdapter singleton = new EpidemicTilesAdapter();
 
     public static final IColorProvider TILE_COLOR_PROVIDER = new IColorProvider() {
@@ -76,6 +78,9 @@ public class EpidemicTilesAdapter extends EpidemicGraphicsAdapter {
     public IColorProvider[] getColors(Object object) {
         if (object instanceof HostCell) {
             return TILE_COLOR_PROVIDERS;
+        }
+        if (object instanceof Individual) {
+            return INDIVIDUAL_COLOR_PROVIDERS;
         }
         return super.getColors(object);
     };
