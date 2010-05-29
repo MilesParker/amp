@@ -104,8 +104,12 @@
         <outputPrototypes label="Distance Between Agents" ID="distance" sType="REAL"/>
       </functions>
       <functions xsi:type="function:FGenericLogical" label="Away" ID="away" pluralLabel="Aways" description="Represents a location that is on the path that will take the source agent (that is, the selection's selection's agent) the farthest distance from the agent(s) represented by the search. This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction away from some location or agent."/>
-      <functions xsi:type="function:FGenericLogical" label="Minimize" ID="minimize" pluralLabel="Minimizes" description="This function is not currently supported."/>
-      <functions xsi:type="function:FGenericLogical" label="Maximize" ID="maximize" pluralLabel="Maximizes" description="This function is not currently supported."/>
+      <functions xsi:type="function:FGenericLogical" label="Minimize" ID="minimize" pluralLabel="Minimizes" description="This function is not currently supported.">
+        <inputPrototypes label="Minimum Value" ID="minimumValue" sType="NUMERIC" pluralLabel="Minimum Values" description="The value we will minimize for."/>
+      </functions>
+      <functions xsi:type="function:FGenericLogical" label="Maximize" ID="maximize" pluralLabel="Maximizes" description="This function is not currently supported.">
+        <inputPrototypes label="Minimum Value" ID="minimumValue" sType="NUMERIC" pluralLabel="Minimum Values" description="The value we will maximize for."/>
+      </functions>
       <functions xsi:type="function:FGenericLogical" label="Location 2D" ID="location2D" pluralLabel="Location 2Ds" description="Represents the location of the current agent for use in subsequent selections.">
         <inputPrototypes label="X" ID="x" sType="REAL" pluralLabel="Xs"/>
         <inputPrototypes label="Y" ID="y" sType="REAL" pluralLabel="Ys"/>
@@ -114,6 +118,7 @@
         <outputPrototypes label="X" ID="x" sType="REAL" pluralLabel="Xs"/>
         <outputPrototypes label="Y" ID="y" sType="REAL" pluralLabel="Ys"/>
       </functions>
+      <functions xsi:type="function:FGenericLogical" label="All" ID="all" pluralLabel="Alls" description="Causes all agents that meet the other query terms to be included in a selection. Without this query term, a single random agent is picked out of all agents matching the query terms."/>
     </subs>
     <subs label="Random" ID="random" pluralLabel="Randoms">
       <functions xsi:type="function:FGenericFunction" label="Random In Range" ID="randomInRange" pluralLabel="Random In Ranges" description="A pseudo-random value within that numeric range specified as drawn from a uniform distribution. The minimum values are inclusive. The maximum values are inclusive for integer inputs and exclusive for Real inputs.">
