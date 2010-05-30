@@ -23,6 +23,54 @@
 		return ((Graph) «((SContext) parent).getterName()»().«((SContext) parent).projections.typeSelect(SNetwork).get(0).getterName()»().getSpace()).getNeighborsFor(this);
 	}
 	«ENDIF-»
+	«FOREACH ((AGroup) rootActivity).roots AS root-»
+	«IF root.metaType == ADiffuse»
+	private double «root.id()»Temp;
+	
+	public static final Rule «root.id().toUpperCase()»_RULE = new ExecuteThenUpdate("«root.label»") {
+			private static final long serialVersionUID = 6846144446402098983L;
+		    /**
+		     * Calculate and store diffusion value to neighbors.
+		     * 
+		     * @param agent
+		     *            the playing agent
+		     */
+		    public void execute(Agent agent) {
+		    	«typeName()» «id()» = («typeName()») agent;
+		        double valueSum = 0.0f;
+		        List neighbors = ((Cell) agent).findNeighbors();
+				for (Object neighbor : neighbors) {
+			    	«typeName()» «id()»Neighbor = («typeName()») neighbor;
+		            valueSum += «id()»Neighbor.get«((ADiffuse) root).diffused.id().toFirstUpper()»();
+		        }
+		        valueSum -= neighbors.size() * «id()».get«((ADiffuse) root).diffused.id().toFirstUpper()»();
+		        valueSum /= neighbors.size();
+		        «IF ((ADiffuse) root).diffusionRate != null-»
+		        valueSum = «id()».get«((ADiffuse) root).diffused.id().toFirstUpper()»() + valueSum * «id()».«root.getterPath(((ADiffuse) root).diffusionRate, false)»;
+		        «ELSE-»
+		        valueSum = «id()».get«((ADiffuse) root).diffused.id().toFirstUpper()»() + valueSum;
+		        «ENDIF-»
+		        «IF ((ADiffuse) root).evaporationRate != null-»
+		        valueSum *= 1.0f - «id()».«root.getterPath(((ADiffuse) root).evaporationRate, false)»;
+		        «ELSE-»
+		        valueSum *= 1.0f;
+		        «ENDIF-»
+		        «id()».«root.id()»Temp = valueSum;
+		    }
+		    /**
+		     * Update diffusion value. Occurs only when all diffusion has been
+		     * calculated.
+		     * 
+		     * @param agent
+		     *            the agent
+		     */
+		    public void update(Agent agent) {
+		    	«typeName()» «id()» = («typeName()») agent;
+		        «id()».set«((ADiffuse) root).diffused.id().toFirstUpper()»(«id()».«root.id()»Temp);
+		    }
+        };
+	«ENDIF-»
+	«ENDFOREACH-»
 «ENDDEFINE»
 
 «DEFINE ScapeBody FOR SContext-»
@@ -236,6 +284,7 @@
 «DEFINE CreateScape(int stage) FOR ABuildGrid-»
 		«IF stage == 0-»
 	        «projection.fieldName()» = new Scape(new «projection.spaceClass()»());
+	        «projection.fieldName()».setExecutionOrder(Scape.RULE_ORDER);
 	        «projection.fieldName()».setPrototypeAgent(new «fillAgentType()»());
 	        «EXPAND SetDimension FOR (SNDimensional) projection»
 	        «projection.fieldName()».setName("«projection.pluralLabel»");
@@ -360,6 +409,10 @@
 			}
 		});
 «ENDDEFINE»
+«DEFINE ChildBuilder FOR ADiffuse-»
+        «reference.scape()».addRule(«agent.typeName()».«label.toUpperCase()»_RULE);
+«ENDDEFINE»
+
 «DEFINE ChildBuilder FOR AInitialize-»
 		«REM»Initialize is automatically invoked by default from framework«ENDREM»
 		«reference.scape()».addInitialRule(new Rule("«label»") {

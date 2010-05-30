@@ -39,12 +39,14 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 
 import org.ascape.model.Agent;
+import org.ascape.model.Cell;
 import org.ascape.model.CellOccupant;
 import org.ascape.model.HostCell;
 import org.ascape.model.LocatedAgent;
 import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.rule.Rule;
+import org.ascape.model.rule.ExecuteThenUpdate;
 import org.ascape.model.space.CollectionSpace;
 import org.ascape.model.space.Coordinate;
 import org.ascape.model.space.Coordinate2DDiscrete;
