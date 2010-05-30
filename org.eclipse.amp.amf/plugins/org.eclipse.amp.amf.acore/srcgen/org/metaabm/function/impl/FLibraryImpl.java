@@ -40,168 +40,171 @@ import org.metaabm.impl.SNamedImpl;
  * @generated
  */
 public class FLibraryImpl extends SNamedImpl implements FLibrary {
-    /**
-     * The cached value of the '{@link #getFunctions() <em>Functions</em>}' containment reference list.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see #getFunctions()
-     * @generated
-     * @ordered
-     */
-    protected EList<FFunction> functions;
+	/**
+	 * The cached value of the '{@link #getFunctions() <em>Functions</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getFunctions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<FFunction> functions;
 
-    /**
-     * The cached value of the '{@link #getSubs() <em>Subs</em>}' containment reference list.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see #getSubs()
-     * @generated
-     * @ordered
-     */
-    protected EList<FLibrary> subs;
+	/**
+	 * The cached value of the '{@link #getSubs() <em>Subs</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getSubs()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<FLibrary> subs;
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected FLibraryImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FLibraryImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return MetaABMFunctionPackage.Literals.FLIBRARY;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return MetaABMFunctionPackage.Literals.FLIBRARY;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public EList<FFunction> getFunctions() {
-        if (functions == null) {
-            functions = new EObjectContainmentEList<FFunction>(FFunction.class, this,
-                MetaABMFunctionPackage.FLIBRARY__FUNCTIONS);
-        }
-        return functions;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<FFunction> getFunctions() {
+		if (functions == null) {
+			functions = new EObjectContainmentEList<FFunction>(FFunction.class,
+					this, MetaABMFunctionPackage.FLIBRARY__FUNCTIONS);
+		}
+		return functions;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public EList<FLibrary> getSubs() {
-        if (subs == null) {
-            subs = new EObjectContainmentEList<FLibrary>(FLibrary.class, this, MetaABMFunctionPackage.FLIBRARY__SUBS);
-        }
-        return subs;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<FLibrary> getSubs() {
+		if (subs == null) {
+			subs = new EObjectContainmentEList<FLibrary>(FLibrary.class, this,
+					MetaABMFunctionPackage.FLIBRARY__SUBS);
+		}
+		return subs;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case MetaABMFunctionPackage.FLIBRARY__FUNCTIONS:
-                return ((InternalEList<?>) getFunctions()).basicRemove(otherEnd, msgs);
-            case MetaABMFunctionPackage.FLIBRARY__SUBS:
-                return ((InternalEList<?>) getSubs()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case MetaABMFunctionPackage.FLIBRARY__FUNCTIONS:
+			return ((InternalEList<?>) getFunctions()).basicRemove(otherEnd,
+					msgs);
+		case MetaABMFunctionPackage.FLIBRARY__SUBS:
+			return ((InternalEList<?>) getSubs()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case MetaABMFunctionPackage.FLIBRARY__FUNCTIONS:
-                return getFunctions();
-            case MetaABMFunctionPackage.FLIBRARY__SUBS:
-                return getSubs();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case MetaABMFunctionPackage.FLIBRARY__FUNCTIONS:
+			return getFunctions();
+		case MetaABMFunctionPackage.FLIBRARY__SUBS:
+			return getSubs();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case MetaABMFunctionPackage.FLIBRARY__FUNCTIONS:
-                getFunctions().clear();
-                getFunctions().addAll((Collection<? extends FFunction>) newValue);
-                return;
-            case MetaABMFunctionPackage.FLIBRARY__SUBS:
-                getSubs().clear();
-                getSubs().addAll((Collection<? extends FLibrary>) newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case MetaABMFunctionPackage.FLIBRARY__FUNCTIONS:
+			getFunctions().clear();
+			getFunctions().addAll((Collection<? extends FFunction>) newValue);
+			return;
+		case MetaABMFunctionPackage.FLIBRARY__SUBS:
+			getSubs().clear();
+			getSubs().addAll((Collection<? extends FLibrary>) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-            case MetaABMFunctionPackage.FLIBRARY__FUNCTIONS:
-                getFunctions().clear();
-                return;
-            case MetaABMFunctionPackage.FLIBRARY__SUBS:
-                getSubs().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case MetaABMFunctionPackage.FLIBRARY__FUNCTIONS:
+			getFunctions().clear();
+			return;
+		case MetaABMFunctionPackage.FLIBRARY__SUBS:
+			getSubs().clear();
+			return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case MetaABMFunctionPackage.FLIBRARY__FUNCTIONS:
-                return functions != null && !functions.isEmpty();
-            case MetaABMFunctionPackage.FLIBRARY__SUBS:
-                return subs != null && !subs.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case MetaABMFunctionPackage.FLIBRARY__FUNCTIONS:
+			return functions != null && !functions.isEmpty();
+		case MetaABMFunctionPackage.FLIBRARY__SUBS:
+			return subs != null && !subs.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
-    /**
-     * Returns the function with the supplied <i>usage</i> name.
-     */
-    public FFunction findFunction(String id) {
-        for (FFunction func : getFunctions()) {
-            if (func.getID().equals(id)) {
-                return func;
-            }
-        }
-        return null;
-    }
+	/**
+	 * Returns the function with the supplied <i>usage</i> name.
+	 */
+	public FFunction findFunction(String id) {
+		for (FFunction func : getFunctions()) {
+			if (func.getID().equals(id)) {
+				return func;
+			}
+		}
+		return null;
+	}
 
-    /**
-     * Returns the sub library with the supplied <i>usage</i> name.
-     */
-    public FLibrary findSub(String id) {
-        for (FLibrary lib : getSubs()) {
-            if (lib.getID().equals(id)) {
-                return lib;
-            }
-        }
-        return null;
-    }
+	/**
+	 * Returns the sub library with the supplied <i>usage</i> name.
+	 */
+	public FLibrary findSub(String id) {
+		for (FLibrary lib : getSubs()) {
+			if (lib.getID().equals(id)) {
+				return lib;
+			}
+		}
+		return null;
+	}
 
 } // FLibraryImpl

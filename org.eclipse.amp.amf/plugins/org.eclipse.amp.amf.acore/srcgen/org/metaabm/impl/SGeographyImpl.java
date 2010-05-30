@@ -27,21 +27,21 @@ import org.metaabm.SGeography;
  * @generated
  */
 public class SGeographyImpl extends SProjectionImpl implements SGeography {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected SGeographyImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SGeographyImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return MetaABMPackage.Literals.SGEOGRAPHY;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return MetaABMPackage.Literals.SGEOGRAPHY;
+	}
 
 } // SGeographyImpl

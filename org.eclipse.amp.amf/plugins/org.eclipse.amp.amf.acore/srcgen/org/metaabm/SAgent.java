@@ -29,50 +29,50 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface SAgent extends SActable, SImplemented {
-    /**
-     * Returns the value of the '<em><b>Styles</b></em>' containment reference list.
-     * The list contents are of type {@link org.metaabm.SStyle}.
-     * It is bidirectional and its opposite is '{@link org.metaabm.SStyle#getAgent <em>Agent</em>}'.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Styles</em>' containment reference list isn't
-     * clear, there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Styles</em>' containment reference list.
-     * @see org.metaabm.MetaABMPackage#getSAgent_Styles()
-     * @see org.metaabm.SStyle#getAgent
-     * @model opposite="agent" containment="true" keys="ID"
-     * @generated
-     */
-    EList<SStyle> getStyles();
+	/**
+	 * Returns the value of the '<em><b>Styles</b></em>' containment reference list.
+	 * The list contents are of type {@link org.metaabm.SStyle}.
+	 * It is bidirectional and its opposite is '{@link org.metaabm.SStyle#getAgent <em>Agent</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Styles</em>' containment reference list isn't
+	 * clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Styles</em>' containment reference list.
+	 * @see org.metaabm.MetaABMPackage#getSAgent_Styles()
+	 * @see org.metaabm.SStyle#getAgent
+	 * @model opposite="agent" containment="true" keys="ID"
+	 * @generated
+	 */
+	EList<SStyle> getStyles();
 
-    /**
-     * Returns the value of the '<em><b>Owner</b></em>' container reference. It
-     * is bidirectional and its opposite is '
-     * {@link org.metaabm.SContext#getAgents <em>Agents</em>}'. <!--
-     * begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Owner</em>' container reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * 
-     * @return the value of the '<em>Owner</em>' container reference.
-     * @see #setOwner(SContext)
-     * @see org.metaabm.MetaABMPackage#getSAgent_Owner()
-     * @see org.metaabm.SContext#getAgents
-     * @model opposite="agents" transient="false"
-     * @generated
-     */
-    SContext getOwner();
+	/**
+	 * Returns the value of the '<em><b>Owner</b></em>' container reference. It
+	 * is bidirectional and its opposite is '
+	 * {@link org.metaabm.SContext#getAgents <em>Agents</em>}'. <!--
+	 * begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Owner</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Owner</em>' container reference.
+	 * @see #setOwner(SContext)
+	 * @see org.metaabm.MetaABMPackage#getSAgent_Owner()
+	 * @see org.metaabm.SContext#getAgents
+	 * @model opposite="agents" transient="false"
+	 * @generated
+	 */
+	SContext getOwner();
 
-    /**
-     * Sets the value of the '{@link org.metaabm.SAgent#getOwner <em>Owner</em>}' container reference.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @param value the new value of the '<em>Owner</em>' container reference.
-     * @see #getOwner()
-     * @generated
-     */
-    void setOwner(SContext value);
+	/**
+	 * Sets the value of the '{@link org.metaabm.SAgent#getOwner <em>Owner</em>}' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Owner</em>' container reference.
+	 * @see #getOwner()
+	 * @generated
+	 */
+	void setOwner(SContext value);
 } // SAgent

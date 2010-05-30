@@ -161,6 +161,16 @@
     <nested inputs="metaabm.ecore#//act/AReplace" outputs="MetaABMActXML.xsd#//AReplace;XSDComplexTypeDefinition=40"/>
     <nested inputs="metaabm.ecore#//act/AReplace" outputs="MetaABMActXML.xsd#//AReplace;XSDElementDeclaration=30"/>
     <nested inputs="metaabm.ecore#//act/ACommand" outputs="MetaABMActXML.xsd#//ACommand;XSDComplexTypeDefinition=41"/>
+    <nested inputs="metaabm.ecore#//act/ACause" outputs="MetaABMActXML.xsd#//ACause;XSDComplexTypeDefinition=42"/>
+    <nested inputs="metaabm.ecore#//act/ACause" outputs="MetaABMActXML.xsd#//ACause;XSDElementDeclaration=31"/>
+    <nested inputs="metaabm.ecore#//act/ADiffuse" outputs="MetaABMActXML.xsd#//ADiffuse;XSDComplexTypeDefinition=43">
+      <nested inputs="metaabm.ecore#//act/ADiffuse/diffused" outputs="MetaABMActXML.xsd#//ADiffuse;XSDComplexTypeDefinition=43/XSDAttributeUse"/>
+      <nested inputs="metaabm.ecore#//act/ADiffuse/diffusionRate" outputs="MetaABMActXML.xsd#//ADiffuse;XSDComplexTypeDefinition=43/XSDAttributeUse=1"/>
+      <nested inputs="metaabm.ecore#//act/ADiffuse/evaporationRate" outputs="MetaABMActXML.xsd#//ADiffuse;XSDComplexTypeDefinition=43/XSDAttributeUse=2"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//act/ADiffuse" outputs="MetaABMActXML.xsd#//ADiffuse;XSDElementDeclaration=32"/>
+    <nested inputs="metaabm.ecore#//act/APerform" outputs="MetaABMActXML.xsd#//APerform;XSDComplexTypeDefinition=44"/>
+    <nested inputs="metaabm.ecore#//act/APerform" outputs="MetaABMActXML.xsd#//APerform;XSDElementDeclaration=33"/>
   </nested>
   <nested inputs="metaabm.ecore#//SNamed/pluralLabel" outputs="MetaABMActXML.xsd#//AGroup;XSDComplexTypeDefinition=7/XSDAttributeUse"/>
   <nested inputs="metaabm.ecore#//SNamed/description" outputs="MetaABMActXML.xsd#//AGroup;XSDComplexTypeDefinition=7/XSDAttributeUse=1"/>

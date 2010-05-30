@@ -33,122 +33,125 @@ import org.metaabm.act.MetaABMActPackage;
  * @generated
  */
 public class ABuildGridImpl extends ABuildSpaceImpl implements ABuildGrid {
-    /**
-     * The cached value of the '{@link #getFillAgent() <em>Fill Agent</em>}' reference.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see #getFillAgent()
-     * @generated
-     * @ordered
-     */
-    protected SAgent fillAgent;
+	/**
+	 * The cached value of the '{@link #getFillAgent() <em>Fill Agent</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getFillAgent()
+	 * @generated
+	 * @ordered
+	 */
+	protected SAgent fillAgent;
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected ABuildGridImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ABuildGridImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return MetaABMActPackage.Literals.ABUILD_GRID;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return MetaABMActPackage.Literals.ABUILD_GRID;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public SAgent getFillAgent() {
-        if (fillAgent != null && fillAgent.eIsProxy()) {
-            InternalEObject oldFillAgent = (InternalEObject) fillAgent;
-            fillAgent = (SAgent) eResolveProxy(oldFillAgent);
-            if (fillAgent != oldFillAgent) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-                        MetaABMActPackage.ABUILD_GRID__FILL_AGENT, oldFillAgent, fillAgent));
-            }
-        }
-        return fillAgent;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SAgent getFillAgent() {
+		if (fillAgent != null && fillAgent.eIsProxy()) {
+			InternalEObject oldFillAgent = (InternalEObject) fillAgent;
+			fillAgent = (SAgent) eResolveProxy(oldFillAgent);
+			if (fillAgent != oldFillAgent) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							MetaABMActPackage.ABUILD_GRID__FILL_AGENT,
+							oldFillAgent, fillAgent));
+			}
+		}
+		return fillAgent;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public SAgent basicGetFillAgent() {
-        return fillAgent;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SAgent basicGetFillAgent() {
+		return fillAgent;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public void setFillAgent(SAgent newFillAgent) {
-        SAgent oldFillAgent = fillAgent;
-        fillAgent = newFillAgent;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MetaABMActPackage.ABUILD_GRID__FILL_AGENT,
-                oldFillAgent, fillAgent));
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFillAgent(SAgent newFillAgent) {
+		SAgent oldFillAgent = fillAgent;
+		fillAgent = newFillAgent;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					MetaABMActPackage.ABUILD_GRID__FILL_AGENT, oldFillAgent,
+					fillAgent));
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case MetaABMActPackage.ABUILD_GRID__FILL_AGENT:
-                if (resolve) return getFillAgent();
-                return basicGetFillAgent();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case MetaABMActPackage.ABUILD_GRID__FILL_AGENT:
+			if (resolve)
+				return getFillAgent();
+			return basicGetFillAgent();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case MetaABMActPackage.ABUILD_GRID__FILL_AGENT:
-                setFillAgent((SAgent) newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case MetaABMActPackage.ABUILD_GRID__FILL_AGENT:
+			setFillAgent((SAgent) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-            case MetaABMActPackage.ABUILD_GRID__FILL_AGENT:
-                setFillAgent((SAgent) null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case MetaABMActPackage.ABUILD_GRID__FILL_AGENT:
+			setFillAgent((SAgent) null);
+			return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case MetaABMActPackage.ABUILD_GRID__FILL_AGENT:
-                return fillAgent != null;
-        }
-        return super.eIsSet(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case MetaABMActPackage.ABUILD_GRID__FILL_AGENT:
+			return fillAgent != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } // ABuildGridImpl

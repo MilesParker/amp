@@ -34,122 +34,125 @@ import org.metaabm.act.MetaABMActPackage;
  * @generated
  */
 public class ACreateAgentsImpl extends ASelectImpl implements ACreateAgents {
-    /**
-     * The cached value of the '{@link #getAgentCount() <em>Agent Count</em>}' reference.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see #getAgentCount()
-     * @generated
-     * @ordered
-     */
-    protected IValue agentCount;
+	/**
+	 * The cached value of the '{@link #getAgentCount() <em>Agent Count</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getAgentCount()
+	 * @generated
+	 * @ordered
+	 */
+	protected IValue agentCount;
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected ACreateAgentsImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ACreateAgentsImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return MetaABMActPackage.Literals.ACREATE_AGENTS;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return MetaABMActPackage.Literals.ACREATE_AGENTS;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public IValue getAgentCount() {
-        if (agentCount != null && agentCount.eIsProxy()) {
-            InternalEObject oldAgentCount = (InternalEObject) agentCount;
-            agentCount = (IValue) eResolveProxy(oldAgentCount);
-            if (agentCount != oldAgentCount) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-                        MetaABMActPackage.ACREATE_AGENTS__AGENT_COUNT, oldAgentCount, agentCount));
-            }
-        }
-        return agentCount;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IValue getAgentCount() {
+		if (agentCount != null && agentCount.eIsProxy()) {
+			InternalEObject oldAgentCount = (InternalEObject) agentCount;
+			agentCount = (IValue) eResolveProxy(oldAgentCount);
+			if (agentCount != oldAgentCount) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							MetaABMActPackage.ACREATE_AGENTS__AGENT_COUNT,
+							oldAgentCount, agentCount));
+			}
+		}
+		return agentCount;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public IValue basicGetAgentCount() {
-        return agentCount;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IValue basicGetAgentCount() {
+		return agentCount;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public void setAgentCount(IValue newAgentCount) {
-        IValue oldAgentCount = agentCount;
-        agentCount = newAgentCount;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MetaABMActPackage.ACREATE_AGENTS__AGENT_COUNT,
-                oldAgentCount, agentCount));
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAgentCount(IValue newAgentCount) {
+		IValue oldAgentCount = agentCount;
+		agentCount = newAgentCount;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					MetaABMActPackage.ACREATE_AGENTS__AGENT_COUNT,
+					oldAgentCount, agentCount));
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case MetaABMActPackage.ACREATE_AGENTS__AGENT_COUNT:
-                if (resolve) return getAgentCount();
-                return basicGetAgentCount();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case MetaABMActPackage.ACREATE_AGENTS__AGENT_COUNT:
+			if (resolve)
+				return getAgentCount();
+			return basicGetAgentCount();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case MetaABMActPackage.ACREATE_AGENTS__AGENT_COUNT:
-                setAgentCount((IValue) newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case MetaABMActPackage.ACREATE_AGENTS__AGENT_COUNT:
+			setAgentCount((IValue) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-            case MetaABMActPackage.ACREATE_AGENTS__AGENT_COUNT:
-                setAgentCount((IValue) null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case MetaABMActPackage.ACREATE_AGENTS__AGENT_COUNT:
+			setAgentCount((IValue) null);
+			return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case MetaABMActPackage.ACREATE_AGENTS__AGENT_COUNT:
-                return agentCount != null;
-        }
-        return super.eIsSet(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case MetaABMActPackage.ACREATE_AGENTS__AGENT_COUNT:
+			return agentCount != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } // ACreateAgentsImpl

@@ -28,61 +28,61 @@ package org.metaabm;
  * @generated
  */
 public interface SNDimensional extends SProjection {
-    /**
-     * Returns the value of the '<em><b>Dimensionality</b></em>' attribute.
-     * The default value is <code>"0"</code>.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Dimensionality</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Dimensionality</em>' attribute.
-     * @see #setDimensionality(int)
-     * @see org.metaabm.MetaABMPackage#getSNDimensional_Dimensionality()
-     * @model default="0"
-     * @generated
-     */
-    int getDimensionality();
+	/**
+	 * Returns the value of the '<em><b>Dimensionality</b></em>' attribute.
+	 * The default value is <code>"0"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Dimensionality</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Dimensionality</em>' attribute.
+	 * @see #setDimensionality(int)
+	 * @see org.metaabm.MetaABMPackage#getSNDimensional_Dimensionality()
+	 * @model default="0"
+	 * @generated
+	 */
+	int getDimensionality();
 
-    /**
-     * Sets the value of the '{@link org.metaabm.SNDimensional#getDimensionality <em>Dimensionality</em>}' attribute.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @param value the new value of the '<em>Dimensionality</em>' attribute.
-     * @see #getDimensionality()
-     * @generated
-     */
-    void setDimensionality(int value);
+	/**
+	 * Sets the value of the '{@link org.metaabm.SNDimensional#getDimensionality <em>Dimensionality</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @param value the new value of the '<em>Dimensionality</em>' attribute.
+	 * @see #getDimensionality()
+	 * @generated
+	 */
+	void setDimensionality(int value);
 
-    /**
-     * Returns the value of the '<em><b>Border Rule</b></em>' attribute.
-     * The default value is <code>"STICKY"</code>.
-     * The literals are from the enumeration {@link org.metaabm.SBorderRule}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Border Rule</em>' attribute isn't clear, there
-     * really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Border Rule</em>' attribute.
-     * @see org.metaabm.SBorderRule
-     * @see #setBorderRule(SBorderRule)
-     * @see org.metaabm.MetaABMPackage#getSNDimensional_BorderRule()
-     * @model default="STICKY"
-     * @generated
-     */
-    SBorderRule getBorderRule();
+	/**
+	 * Returns the value of the '<em><b>Border Rule</b></em>' attribute.
+	 * The default value is <code>"STICKY"</code>.
+	 * The literals are from the enumeration {@link org.metaabm.SBorderRule}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Border Rule</em>' attribute isn't clear, there
+	 * really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Border Rule</em>' attribute.
+	 * @see org.metaabm.SBorderRule
+	 * @see #setBorderRule(SBorderRule)
+	 * @see org.metaabm.MetaABMPackage#getSNDimensional_BorderRule()
+	 * @model default="STICKY"
+	 * @generated
+	 */
+	SBorderRule getBorderRule();
 
-    /**
-     * Sets the value of the '{@link org.metaabm.SNDimensional#getBorderRule <em>Border Rule</em>}' attribute.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @param value the new value of the '<em>Border Rule</em>' attribute.
-     * @see org.metaabm.SBorderRule
-     * @see #getBorderRule()
-     * @generated
-     */
-    void setBorderRule(SBorderRule value);
+	/**
+	 * Sets the value of the '{@link org.metaabm.SNDimensional#getBorderRule <em>Border Rule</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @param value the new value of the '<em>Border Rule</em>' attribute.
+	 * @see org.metaabm.SBorderRule
+	 * @see #getBorderRule()
+	 * @generated
+	 */
+	void setBorderRule(SBorderRule value);
 
 } // SNDimensional

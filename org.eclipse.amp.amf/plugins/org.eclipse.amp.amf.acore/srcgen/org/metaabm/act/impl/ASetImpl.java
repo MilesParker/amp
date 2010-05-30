@@ -33,126 +33,128 @@ import org.metaabm.act.MetaABMActPackage;
  * @generated
  */
 public class ASetImpl extends AAccessorImpl implements ASet {
-    /**
-     * The cached value of the '{@link #getParameter() <em>Parameter</em>}' reference.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see #getParameter()
-     * @generated
-     * @ordered
-     */
-    protected IValue parameter;
+	/**
+	 * The cached value of the '{@link #getParameter() <em>Parameter</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getParameter()
+	 * @generated
+	 * @ordered
+	 */
+	protected IValue parameter;
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected ASetImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ASetImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return MetaABMActPackage.Literals.ASET;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return MetaABMActPackage.Literals.ASET;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public IValue getParameter() {
-        if (parameter != null && parameter.eIsProxy()) {
-            InternalEObject oldParameter = (InternalEObject) parameter;
-            parameter = (IValue) eResolveProxy(oldParameter);
-            if (parameter != oldParameter) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetaABMActPackage.ASET__PARAMETER,
-                        oldParameter, parameter));
-            }
-        }
-        return parameter;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IValue getParameter() {
+		if (parameter != null && parameter.eIsProxy()) {
+			InternalEObject oldParameter = (InternalEObject) parameter;
+			parameter = (IValue) eResolveProxy(oldParameter);
+			if (parameter != oldParameter) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+							MetaABMActPackage.ASET__PARAMETER, oldParameter,
+							parameter));
+			}
+		}
+		return parameter;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public IValue basicGetParameter() {
-        return parameter;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IValue basicGetParameter() {
+		return parameter;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public void setParameter(IValue newParameter) {
-        IValue oldParameter = parameter;
-        parameter = newParameter;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MetaABMActPackage.ASET__PARAMETER, oldParameter,
-                parameter));
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setParameter(IValue newParameter) {
+		IValue oldParameter = parameter;
+		parameter = newParameter;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					MetaABMActPackage.ASET__PARAMETER, oldParameter, parameter));
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case MetaABMActPackage.ASET__PARAMETER:
-                if (resolve) return getParameter();
-                return basicGetParameter();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case MetaABMActPackage.ASET__PARAMETER:
+			if (resolve)
+				return getParameter();
+			return basicGetParameter();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case MetaABMActPackage.ASET__PARAMETER:
-                setParameter((IValue) newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case MetaABMActPackage.ASET__PARAMETER:
+			setParameter((IValue) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-            case MetaABMActPackage.ASET__PARAMETER:
-                setParameter((IValue) null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case MetaABMActPackage.ASET__PARAMETER:
+			setParameter((IValue) null);
+			return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case MetaABMActPackage.ASET__PARAMETER:
-                return parameter != null;
-        }
-        return super.eIsSet(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case MetaABMActPackage.ASET__PARAMETER:
+			return parameter != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
-    @Override
-    public boolean references(IValue value) {
-        return attribute == value || parameter == value;
-    }
+	@Override
+	public boolean references(IValue value) {
+		return attribute == value || parameter == value;
+	}
 } // ASetImpl

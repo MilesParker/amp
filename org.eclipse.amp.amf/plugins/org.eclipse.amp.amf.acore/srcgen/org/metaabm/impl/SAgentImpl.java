@@ -47,327 +47,351 @@ import org.metaabm.SStyle;
  * @generated
  */
 public class SAgentImpl extends SActableImpl implements SAgent {
-    /**
-     * The cached value of the '{@link #getImplementation() <em>Implementation</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getImplementation()
-     * @generated
-     * @ordered
-     */
-    protected SImplementation implementation;
+	/**
+	 * The cached value of the '{@link #getImplementation() <em>Implementation</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getImplementation()
+	 * @generated
+	 * @ordered
+	 */
+	protected SImplementation implementation;
 
-    /**
-     * The cached value of the '{@link #getStyles() <em>Styles</em>}' containment reference list.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see #getStyles()
-     * @generated
-     * @ordered
-     */
-    protected EList<SStyle> styles;
+	/**
+	 * The cached value of the '{@link #getStyles() <em>Styles</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getStyles()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SStyle> styles;
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected SAgentImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SAgentImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return MetaABMPackage.Literals.SAGENT;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return MetaABMPackage.Literals.SAGENT;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public SImplementation getImplementation() {
-        return implementation;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SImplementation getImplementation() {
+		return implementation;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetImplementation(SImplementation newImplementation, NotificationChain msgs) {
-        SImplementation oldImplementation = implementation;
-        implementation = newImplementation;
-        if (eNotificationRequired()) {
-            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-                MetaABMPackage.SAGENT__IMPLEMENTATION, oldImplementation, newImplementation);
-            if (msgs == null)
-                msgs = notification;
-            else
-                msgs.add(notification);
-        }
-        return msgs;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetImplementation(
+			SImplementation newImplementation, NotificationChain msgs) {
+		SImplementation oldImplementation = implementation;
+		implementation = newImplementation;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this,
+					Notification.SET, MetaABMPackage.SAGENT__IMPLEMENTATION,
+					oldImplementation, newImplementation);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public void setImplementation(SImplementation newImplementation) {
-        if (newImplementation != implementation) {
-            NotificationChain msgs = null;
-            if (implementation != null)
-                msgs = ((InternalEObject) implementation).eInverseRemove(this, MetaABMPackage.SIMPLEMENTATION__TARGET,
-                                                                         SImplementation.class, msgs);
-            if (newImplementation != null)
-                msgs = ((InternalEObject) newImplementation).eInverseAdd(this, MetaABMPackage.SIMPLEMENTATION__TARGET,
-                                                                         SImplementation.class, msgs);
-            msgs = basicSetImplementation(newImplementation, msgs);
-            if (msgs != null) msgs.dispatch();
-        } else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SAGENT__IMPLEMENTATION,
-                newImplementation, newImplementation));
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setImplementation(SImplementation newImplementation) {
+		if (newImplementation != implementation) {
+			NotificationChain msgs = null;
+			if (implementation != null)
+				msgs = ((InternalEObject) implementation).eInverseRemove(this,
+						MetaABMPackage.SIMPLEMENTATION__TARGET,
+						SImplementation.class, msgs);
+			if (newImplementation != null)
+				msgs = ((InternalEObject) newImplementation).eInverseAdd(this,
+						MetaABMPackage.SIMPLEMENTATION__TARGET,
+						SImplementation.class, msgs);
+			msgs = basicSetImplementation(newImplementation, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					MetaABMPackage.SAGENT__IMPLEMENTATION, newImplementation,
+					newImplementation));
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public EList<SStyle> getStyles() {
-        if (styles == null) {
-            styles = new EObjectContainmentWithInverseEList<SStyle>(SStyle.class, this, MetaABMPackage.SAGENT__STYLES,
-                MetaABMPackage.SSTYLE__AGENT);
-        }
-        return styles;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<SStyle> getStyles() {
+		if (styles == null) {
+			styles = new EObjectContainmentWithInverseEList<SStyle>(
+					SStyle.class, this, MetaABMPackage.SAGENT__STYLES,
+					MetaABMPackage.SSTYLE__AGENT);
+		}
+		return styles;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public SContext getOwner() {
-        if (eContainerFeatureID() != MetaABMPackage.SAGENT__OWNER) return null;
-        return (SContext) eContainer();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SContext getOwner() {
+		if (eContainerFeatureID() != MetaABMPackage.SAGENT__OWNER)
+			return null;
+		return (SContext) eContainer();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetOwner(SContext newOwner, NotificationChain msgs) {
-        msgs = eBasicSetContainer((InternalEObject) newOwner, MetaABMPackage.SAGENT__OWNER, msgs);
-        return msgs;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetOwner(SContext newOwner,
+			NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newOwner,
+				MetaABMPackage.SAGENT__OWNER, msgs);
+		return msgs;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public void setOwner(SContext newOwner) {
-        if (newOwner != eInternalContainer()
-            || (eContainerFeatureID() != MetaABMPackage.SAGENT__OWNER && newOwner != null)) {
-            if (EcoreUtil.isAncestor(this, newOwner))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
-            NotificationChain msgs = null;
-            if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
-            if (newOwner != null)
-                msgs = ((InternalEObject) newOwner).eInverseAdd(this, MetaABMPackage.SCONTEXT__AGENTS, SContext.class,
-                                                                msgs);
-            msgs = basicSetOwner(newOwner, msgs);
-            if (msgs != null) msgs.dispatch();
-        } else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SAGENT__OWNER, newOwner, newOwner));
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOwner(SContext newOwner) {
+		if (newOwner != eInternalContainer()
+				|| (eContainerFeatureID() != MetaABMPackage.SAGENT__OWNER && newOwner != null)) {
+			if (EcoreUtil.isAncestor(this, newOwner))
+				throw new IllegalArgumentException(
+						"Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newOwner != null)
+				msgs = ((InternalEObject) newOwner).eInverseAdd(this,
+						MetaABMPackage.SCONTEXT__AGENTS, SContext.class, msgs);
+			msgs = basicSetOwner(newOwner, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					MetaABMPackage.SAGENT__OWNER, newOwner, newOwner));
+	}
 
-    public SAgent getParent() {
-        if (eContainerFeatureID != MetaABMPackage.SAGENT__OWNER) return null;
-        return (SContext) eContainer();
-    }
+	public SAgent getParent() {
+		if (eContainerFeatureID != MetaABMPackage.SAGENT__OWNER)
+			return null;
+		return (SContext) eContainer();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     */
-    public SImplemented basicGetParent() {
-        return getOwner();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 */
+	public SImplemented basicGetParent() {
+		return getOwner();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case MetaABMPackage.SAGENT__IMPLEMENTATION:
-                if (implementation != null)
-                    msgs = ((InternalEObject) implementation).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-                        - MetaABMPackage.SAGENT__IMPLEMENTATION, null, msgs);
-                return basicSetImplementation((SImplementation) otherEnd, msgs);
-            case MetaABMPackage.SAGENT__STYLES:
-                return ((InternalEList<InternalEObject>) (InternalEList<?>) getStyles()).basicAdd(otherEnd, msgs);
-            case MetaABMPackage.SAGENT__OWNER:
-                if (eInternalContainer() != null) msgs = eBasicRemoveFromContainer(msgs);
-                return basicSetOwner((SContext) otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case MetaABMPackage.SAGENT__IMPLEMENTATION:
+			if (implementation != null)
+				msgs = ((InternalEObject) implementation).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE
+								- MetaABMPackage.SAGENT__IMPLEMENTATION, null,
+						msgs);
+			return basicSetImplementation((SImplementation) otherEnd, msgs);
+		case MetaABMPackage.SAGENT__STYLES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getStyles())
+					.basicAdd(otherEnd, msgs);
+		case MetaABMPackage.SAGENT__OWNER:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetOwner((SContext) otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case MetaABMPackage.SAGENT__IMPLEMENTATION:
-                return basicSetImplementation(null, msgs);
-            case MetaABMPackage.SAGENT__STYLES:
-                return ((InternalEList<?>) getStyles()).basicRemove(otherEnd, msgs);
-            case MetaABMPackage.SAGENT__OWNER:
-                return basicSetOwner(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd,
+			int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case MetaABMPackage.SAGENT__IMPLEMENTATION:
+			return basicSetImplementation(null, msgs);
+		case MetaABMPackage.SAGENT__STYLES:
+			return ((InternalEList<?>) getStyles()).basicRemove(otherEnd, msgs);
+		case MetaABMPackage.SAGENT__OWNER:
+			return basicSetOwner(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID()) {
-            case MetaABMPackage.SAGENT__OWNER:
-                return eInternalContainer().eInverseRemove(this, MetaABMPackage.SCONTEXT__AGENTS, SContext.class, msgs);
-        }
-        return super.eBasicRemoveFromContainerFeature(msgs);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(
+			NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+		case MetaABMPackage.SAGENT__OWNER:
+			return eInternalContainer().eInverseRemove(this,
+					MetaABMPackage.SCONTEXT__AGENTS, SContext.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case MetaABMPackage.SAGENT__IMPLEMENTATION:
-                return getImplementation();
-            case MetaABMPackage.SAGENT__PARENT:
-                if (resolve) return getParent();
-                return basicGetParent();
-            case MetaABMPackage.SAGENT__STYLES:
-                return getStyles();
-            case MetaABMPackage.SAGENT__OWNER:
-                return getOwner();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case MetaABMPackage.SAGENT__IMPLEMENTATION:
+			return getImplementation();
+		case MetaABMPackage.SAGENT__PARENT:
+			if (resolve)
+				return getParent();
+			return basicGetParent();
+		case MetaABMPackage.SAGENT__STYLES:
+			return getStyles();
+		case MetaABMPackage.SAGENT__OWNER:
+			return getOwner();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case MetaABMPackage.SAGENT__IMPLEMENTATION:
-                setImplementation((SImplementation) newValue);
-                return;
-            case MetaABMPackage.SAGENT__STYLES:
-                getStyles().clear();
-                getStyles().addAll((Collection<? extends SStyle>) newValue);
-                return;
-            case MetaABMPackage.SAGENT__OWNER:
-                setOwner((SContext) newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case MetaABMPackage.SAGENT__IMPLEMENTATION:
+			setImplementation((SImplementation) newValue);
+			return;
+		case MetaABMPackage.SAGENT__STYLES:
+			getStyles().clear();
+			getStyles().addAll((Collection<? extends SStyle>) newValue);
+			return;
+		case MetaABMPackage.SAGENT__OWNER:
+			setOwner((SContext) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-            case MetaABMPackage.SAGENT__IMPLEMENTATION:
-                setImplementation((SImplementation) null);
-                return;
-            case MetaABMPackage.SAGENT__STYLES:
-                getStyles().clear();
-                return;
-            case MetaABMPackage.SAGENT__OWNER:
-                setOwner((SContext) null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case MetaABMPackage.SAGENT__IMPLEMENTATION:
+			setImplementation((SImplementation) null);
+			return;
+		case MetaABMPackage.SAGENT__STYLES:
+			getStyles().clear();
+			return;
+		case MetaABMPackage.SAGENT__OWNER:
+			setOwner((SContext) null);
+			return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case MetaABMPackage.SAGENT__IMPLEMENTATION:
-                return implementation != null;
-            case MetaABMPackage.SAGENT__PARENT:
-                return basicGetParent() != null;
-            case MetaABMPackage.SAGENT__STYLES:
-                return styles != null && !styles.isEmpty();
-            case MetaABMPackage.SAGENT__OWNER:
-                return getOwner() != null;
-        }
-        return super.eIsSet(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case MetaABMPackage.SAGENT__IMPLEMENTATION:
+			return implementation != null;
+		case MetaABMPackage.SAGENT__PARENT:
+			return basicGetParent() != null;
+		case MetaABMPackage.SAGENT__STYLES:
+			return styles != null && !styles.isEmpty();
+		case MetaABMPackage.SAGENT__OWNER:
+			return getOwner() != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == SImplemented.class) {
-            switch (derivedFeatureID) {
-                case MetaABMPackage.SAGENT__IMPLEMENTATION:
-                    return MetaABMPackage.SIMPLEMENTED__IMPLEMENTATION;
-                case MetaABMPackage.SAGENT__PARENT:
-                    return MetaABMPackage.SIMPLEMENTED__PARENT;
-                default:
-                    return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == SImplemented.class) {
+			switch (derivedFeatureID) {
+			case MetaABMPackage.SAGENT__IMPLEMENTATION:
+				return MetaABMPackage.SIMPLEMENTED__IMPLEMENTATION;
+			case MetaABMPackage.SAGENT__PARENT:
+				return MetaABMPackage.SIMPLEMENTED__PARENT;
+			default:
+				return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == SImplemented.class) {
-            switch (baseFeatureID) {
-                case MetaABMPackage.SIMPLEMENTED__IMPLEMENTATION:
-                    return MetaABMPackage.SAGENT__IMPLEMENTATION;
-                case MetaABMPackage.SIMPLEMENTED__PARENT:
-                    return MetaABMPackage.SAGENT__PARENT;
-                default:
-                    return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == SImplemented.class) {
+			switch (baseFeatureID) {
+			case MetaABMPackage.SIMPLEMENTED__IMPLEMENTATION:
+				return MetaABMPackage.SAGENT__IMPLEMENTATION;
+			case MetaABMPackage.SIMPLEMENTED__PARENT:
+				return MetaABMPackage.SAGENT__PARENT;
+			default:
+				return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
 
-    public boolean isReachable(IValue value) {
-        if (super.isReachable(value)) {
-            return true;
-        } else if (getOwner() != null) {
-            return getOwner().isReachable(value);
-        }
-        return false;
-    }
+	public boolean isReachable(IValue value) {
+		if (super.isReachable(value)) {
+			return true;
+		} else if (getOwner() != null) {
+			return getOwner().isReachable(value);
+		}
+		return false;
+	}
 } // SAgentImpl

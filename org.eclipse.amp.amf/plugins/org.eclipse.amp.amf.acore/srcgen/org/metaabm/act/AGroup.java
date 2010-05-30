@@ -31,41 +31,41 @@ import org.metaabm.SNamed;
  * @generated
  */
 public interface AGroup extends AAct, SNamed {
-    /**
-     * Returns the value of the '<em><b>Roots</b></em>' reference list.
-     * The list contents are of type {@link org.metaabm.act.AAct}.
-     * <!-- begin-user-doc
-     * -->
-     * <p>
-     * If the meaning of the '<em>Roots</em>' reference list isn't clear, there
-     * really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Roots</em>' reference list.
-     * @see org.metaabm.act.MetaABMActPackage#getAGroup_Roots()
-     * @model transient="true" changeable="false" volatile="true" derived="true"
-     * @generated
-     */
-    EList<AAct> getRoots();
+	/**
+	 * Returns the value of the '<em><b>Roots</b></em>' reference list.
+	 * The list contents are of type {@link org.metaabm.act.AAct}.
+	 * <!-- begin-user-doc
+	 * -->
+	 * <p>
+	 * If the meaning of the '<em>Roots</em>' reference list isn't clear, there
+	 * really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Roots</em>' reference list.
+	 * @see org.metaabm.act.MetaABMActPackage#getAGroup_Roots()
+	 * @model transient="true" changeable="false" volatile="true" derived="true"
+	 * @generated
+	 */
+	EList<AAct> getRoots();
 
-    /**
-     * Returns the value of the '<em><b>Members</b></em>' containment reference list.
-     * The list contents are of type {@link org.metaabm.act.AAct}.
-     * It is bidirectional and its opposite is '{@link org.metaabm.act.AAct#getGroup <em>Group</em>}'.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Members</em>' containment reference list isn't
-     * clear, there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Members</em>' containment reference list.
-     * @see org.metaabm.act.MetaABMActPackage#getAGroup_Members()
-     * @see org.metaabm.act.AAct#getGroup
-     * @model opposite="group" containment="true" keys="ID"
-     * @generated
-     */
-    EList<AAct> getMembers();
+	/**
+	 * Returns the value of the '<em><b>Members</b></em>' containment reference list.
+	 * The list contents are of type {@link org.metaabm.act.AAct}.
+	 * It is bidirectional and its opposite is '{@link org.metaabm.act.AAct#getGroup <em>Group</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Members</em>' containment reference list isn't
+	 * clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Members</em>' containment reference list.
+	 * @see org.metaabm.act.MetaABMActPackage#getAGroup_Members()
+	 * @see org.metaabm.act.AAct#getGroup
+	 * @model opposite="group" containment="true" keys="ID"
+	 * @generated
+	 */
+	EList<AAct> getMembers();
 
-    AAct findMember(String id);
+	AAct findMember(String id);
 
 } // AGroup

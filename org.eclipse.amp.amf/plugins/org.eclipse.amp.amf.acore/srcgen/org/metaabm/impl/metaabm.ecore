@@ -385,5 +385,13 @@
     <eClassifiers xsi:type="ecore:EClass" name="ADisconnect" eSuperTypes="#//act/ANetwork"/>
     <eClassifiers xsi:type="ecore:EClass" name="AReplace" eSuperTypes="#//act/AConnect"/>
     <eClassifiers xsi:type="ecore:EClass" name="ACommand" abstract="true" eSuperTypes="#//act/AAct"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ACause" eSuperTypes="#//act/ACommand"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ADiffuse" eSuperTypes="#//act/ARoot">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="diffused" lowerBound="1"
+          eType="#//SAttribute"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="diffusionRate" eType="#//SAttribute"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="evaporationRate" eType="#//SAttribute"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="APerform" eSuperTypes="#//act/ARoot"/>
   </eSubpackages>
 </ecore:EPackage>

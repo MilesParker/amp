@@ -30,30 +30,30 @@ import org.metaabm.IValue;
  */
 public interface ACreateAgents extends ASelect {
 
-    /**
-     * Returns the value of the '<em><b>Agent Count</b></em>' reference. <!--
-     * begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Agent Count</em>' reference isn't clear, there
-     * really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * 
-     * @return the value of the '<em>Agent Count</em>' reference.
-     * @see #setAgentCount(IValue)
-     * @see org.metaabm.act.MetaABMActPackage#getACreateAgents_AgentCount()
-     * @model ordered="false"
-     * @generated
-     */
-    IValue getAgentCount();
+	/**
+	 * Returns the value of the '<em><b>Agent Count</b></em>' reference. <!--
+	 * begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Agent Count</em>' reference isn't clear, there
+	 * really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Agent Count</em>' reference.
+	 * @see #setAgentCount(IValue)
+	 * @see org.metaabm.act.MetaABMActPackage#getACreateAgents_AgentCount()
+	 * @model ordered="false"
+	 * @generated
+	 */
+	IValue getAgentCount();
 
-    /**
-     * Sets the value of the '{@link org.metaabm.act.ACreateAgents#getAgentCount <em>Agent Count</em>}' reference.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @param value the new value of the '<em>Agent Count</em>' reference.
-     * @see #getAgentCount()
-     * @generated
-     */
-    void setAgentCount(IValue value);
+	/**
+	 * Sets the value of the '{@link org.metaabm.act.ACreateAgents#getAgentCount <em>Agent Count</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Agent Count</em>' reference.
+	 * @see #getAgentCount()
+	 * @generated
+	 */
+	void setAgentCount(IValue value);
 
 } // ACreateAgents

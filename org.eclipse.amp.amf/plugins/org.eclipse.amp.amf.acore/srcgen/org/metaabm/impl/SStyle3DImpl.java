@@ -28,25 +28,25 @@ import org.metaabm.SStyle3D;
  * @generated
  */
 public class SStyle3DImpl extends SStyleImpl implements SStyle3D {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected SStyle3DImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SStyle3DImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return MetaABMPackage.Literals.SSTYLE3_D;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return MetaABMPackage.Literals.SSTYLE3_D;
+	}
 
-    public SAgent getParent() {
-        return getAgent();
-    }
+	public SAgent getParent() {
+		return getAgent();
+	}
 
 } // SStyle3DImpl

@@ -29,31 +29,31 @@ import org.metaabm.SAgent;
  * @generated
  */
 public interface ABuildGrid extends ABuildSpace {
-    /**
-     * Returns the value of the '<em><b>Fill Agent</b></em>' reference. <!--
-     * begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Fill Agent</em>' reference isn't clear, there
-     * really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * 
-     * @return the value of the '<em>Fill Agent</em>' reference.
-     * @see #setFillAgent(SAgent)
-     * @see org.metaabm.act.MetaABMActPackage#getABuildGrid_FillAgent()
-     * @model
-     * @generated
-     */
-    SAgent getFillAgent();
+	/**
+	 * Returns the value of the '<em><b>Fill Agent</b></em>' reference. <!--
+	 * begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Fill Agent</em>' reference isn't clear, there
+	 * really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Fill Agent</em>' reference.
+	 * @see #setFillAgent(SAgent)
+	 * @see org.metaabm.act.MetaABMActPackage#getABuildGrid_FillAgent()
+	 * @model
+	 * @generated
+	 */
+	SAgent getFillAgent();
 
-    /**
-     * Sets the value of the '{@link org.metaabm.act.ABuildGrid#getFillAgent <em>Fill Agent</em>}' reference.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @param value the new value of the '<em>Fill Agent</em>' reference.
-     * @see #getFillAgent()
-     * @generated
-     */
-    void setFillAgent(SAgent value);
+	/**
+	 * Sets the value of the '{@link org.metaabm.act.ABuildGrid#getFillAgent <em>Fill Agent</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @param value the new value of the '<em>Fill Agent</em>' reference.
+	 * @see #getFillAgent()
+	 * @generated
+	 */
+	void setFillAgent(SAgent value);
 
 } // ABuildGrid

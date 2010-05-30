@@ -367,4 +367,26 @@
       <xsd:extension base="act:AAct"/>
     </xsd:complexContent>
   </xsd:complexType>
+  <xsd:complexType name="ACause">
+    <xsd:complexContent>
+      <xsd:extension base="act:ACommand"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ACause" type="act:ACause"/>
+  <xsd:complexType name="ADiffuse">
+    <xsd:complexContent>
+      <xsd:extension base="act:ARoot">
+        <xsd:attribute name="diffused" type="xsd:string"/>
+        <xsd:attribute name="diffusionRate" type="xsd:string"/>
+        <xsd:attribute name="evaporationRate" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ADiffuse" type="act:ADiffuse"/>
+  <xsd:complexType name="APerform">
+    <xsd:complexContent>
+      <xsd:extension base="act:ARoot"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="APerform" type="act:APerform"/>
 </xsd:schema>

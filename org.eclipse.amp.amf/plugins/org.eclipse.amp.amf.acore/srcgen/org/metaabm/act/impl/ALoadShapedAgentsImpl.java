@@ -12,7 +12,7 @@
  *   Argonne National Laboratory - Initial development (pre-contribution)
  *   Metascape - Subsequent development and maintenance
  *
- * </copyright> $Id: ALoadShapedAgentsImpl.java,v 1.1 2009/07/16 19:56:55 mparker Exp $
+ * </copyright> $Id: ALoadShapedAgentsImpl.java,v 1.2 2010/05/30 00:48:15 mparker Exp $
  */
 package org.metaabm.act.impl;
 
@@ -32,163 +32,166 @@ import org.metaabm.act.MetaABMActPackage;
  * </ul> </p>
  * @generated
  */
-public class ALoadShapedAgentsImpl extends ALoadAgentsImpl implements ALoadShapedAgents {
-    /**
-     * The default value of the '{@link #getShape() <em>Shape</em>}' attribute.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see #getShape()
-     * @generated
-     * @ordered
-     */
-    protected static final SShapeType SHAPE_EDEFAULT = SShapeType.POINT;
+public class ALoadShapedAgentsImpl extends ALoadAgentsImpl implements
+		ALoadShapedAgents {
+	/**
+	 * The default value of the '{@link #getShape() <em>Shape</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getShape()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final SShapeType SHAPE_EDEFAULT = SShapeType.POINT;
 
-    /**
-     * The cached value of the '{@link #getShape() <em>Shape</em>}' attribute.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see #getShape()
-     * @generated
-     * @ordered
-     */
-    protected SShapeType shape = SHAPE_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getShape() <em>Shape</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getShape()
+	 * @generated
+	 * @ordered
+	 */
+	protected SShapeType shape = SHAPE_EDEFAULT;
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected ALoadShapedAgentsImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ALoadShapedAgentsImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return MetaABMActPackage.Literals.ALOAD_SHAPED_AGENTS;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return MetaABMActPackage.Literals.ALOAD_SHAPED_AGENTS;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public SShapeType getShape() {
-        return shape;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SShapeType getShape() {
+		return shape;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public void setShape(SShapeType newShape) {
-        SShapeType oldShape = shape;
-        shape = newShape == null ? SHAPE_EDEFAULT : newShape;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MetaABMActPackage.ALOAD_SHAPED_AGENTS__SHAPE,
-                oldShape, shape));
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setShape(SShapeType newShape) {
+		SShapeType oldShape = shape;
+		shape = newShape == null ? SHAPE_EDEFAULT : newShape;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+					MetaABMActPackage.ALOAD_SHAPED_AGENTS__SHAPE, oldShape,
+					shape));
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case MetaABMActPackage.ALOAD_SHAPED_AGENTS__SHAPE:
-                return getShape();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+		case MetaABMActPackage.ALOAD_SHAPED_AGENTS__SHAPE:
+			return getShape();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case MetaABMActPackage.ALOAD_SHAPED_AGENTS__SHAPE:
-                setShape((SShapeType) newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+		case MetaABMActPackage.ALOAD_SHAPED_AGENTS__SHAPE:
+			setShape((SShapeType) newValue);
+			return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-            case MetaABMActPackage.ALOAD_SHAPED_AGENTS__SHAPE:
-                setShape(SHAPE_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+		case MetaABMActPackage.ALOAD_SHAPED_AGENTS__SHAPE:
+			setShape(SHAPE_EDEFAULT);
+			return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case MetaABMActPackage.ALOAD_SHAPED_AGENTS__SHAPE:
-                return shape != SHAPE_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+		case MetaABMActPackage.ALOAD_SHAPED_AGENTS__SHAPE:
+			return shape != SHAPE_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-        if (baseClass == AShaped.class) {
-            switch (derivedFeatureID) {
-                case MetaABMActPackage.ALOAD_SHAPED_AGENTS__SHAPE:
-                    return MetaABMActPackage.ASHAPED__SHAPE;
-                default:
-                    return -1;
-            }
-        }
-        return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == AShaped.class) {
+			switch (derivedFeatureID) {
+			case MetaABMActPackage.ALOAD_SHAPED_AGENTS__SHAPE:
+				return MetaABMActPackage.ASHAPED__SHAPE;
+			default:
+				return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-        if (baseClass == AShaped.class) {
-            switch (baseFeatureID) {
-                case MetaABMActPackage.ASHAPED__SHAPE:
-                    return MetaABMActPackage.ALOAD_SHAPED_AGENTS__SHAPE;
-                default:
-                    return -1;
-            }
-        }
-        return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == AShaped.class) {
+			switch (baseFeatureID) {
+			case MetaABMActPackage.ASHAPED__SHAPE:
+				return MetaABMActPackage.ALOAD_SHAPED_AGENTS__SHAPE;
+			default:
+				return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (shape: ");
-        result.append(shape);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (shape: ");
+		result.append(shape);
+		result.append(')');
+		return result.toString();
+	}
 
 } // ALoadShapedAgentsImpl

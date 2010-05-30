@@ -29,24 +29,24 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface SAttributed extends SNamed {
-    /**
-     * Returns the value of the '<em><b>Attributes</b></em>' containment
-     * reference list. The list contents are of type
-     * {@link org.metaabm.SAttribute}. It is bidirectional and its opposite is '
-     * {@link org.metaabm.SAttribute#getOwner <em>Owner</em>}'. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @return the value of the '<em>Attributes</em>' containment reference
-     *         list.
-     * @see org.metaabm.MetaABMPackage#getSAttributed_Attributes()
-     * @see org.metaabm.SAttribute#getOwner
-     * @model opposite="owner" containment="true" keys="ID" ordered="false"
-     * @generated
-     */
-    EList<SAttribute> getAttributes();
+	/**
+	 * Returns the value of the '<em><b>Attributes</b></em>' containment
+	 * reference list. The list contents are of type
+	 * {@link org.metaabm.SAttribute}. It is bidirectional and its opposite is '
+	 * {@link org.metaabm.SAttribute#getOwner <em>Owner</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Attributes</em>' containment reference
+	 *         list.
+	 * @see org.metaabm.MetaABMPackage#getSAttributed_Attributes()
+	 * @see org.metaabm.SAttribute#getOwner
+	 * @model opposite="owner" containment="true" keys="ID" ordered="false"
+	 * @generated
+	 */
+	EList<SAttribute> getAttributes();
 
-    SAttribute findAttribute(String id);
+	SAttribute findAttribute(String id);
 
-    boolean isReachable(IValue value);
+	boolean isReachable(IValue value);
 
 } // SAttributed

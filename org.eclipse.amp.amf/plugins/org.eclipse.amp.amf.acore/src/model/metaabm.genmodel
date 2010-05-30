@@ -12,7 +12,7 @@
     booleanFlagsField="" importerID="org.eclipse.emf.importer.ecore" suppressUnsettable="true"
     complianceLevel="5.0" copyrightFields="false" providerRootExtendsClass="MetaABMItemProvider"
     editPluginID="org.eclipse.amp.amf.acore.edit" editorPluginID="org.eclipse.amp.amf.acore.editor"
-    optimizedHasChildren="true" tableProviders="true" colorProviders="true">
+    optimizedHasChildren="true" tableProviders="true" colorProviders="true" runtimeVersion="2.5">
   <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
     <genAnnotations source="selectedPackages">
       <details key="http://metaabm.org/structure" value="metaabm.xsd"/>
@@ -420,6 +420,9 @@
       <genClasses ecoreClass="metaabm.ecore#//act/ADisconnect"/>
       <genClasses ecoreClass="metaabm.ecore#//act/AReplace"/>
       <genClasses ecoreClass="metaabm.ecore#//act/ACommand"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/ACause"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/ADiffuse"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/APerform"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

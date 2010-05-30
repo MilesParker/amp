@@ -28,31 +28,31 @@ import org.metaabm.IValue;
  * @generated
  */
 public interface ALiteral extends IValue {
-    /**
-     * Returns the value of the '<em><b>Value Literal</b></em>' attribute. <!--
-     * begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Value Literal</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * 
-     * @return the value of the '<em>Value Literal</em>' attribute.
-     * @see #setValueLiteral(String)
-     * @see org.metaabm.act.MetaABMActPackage#getALiteral_ValueLiteral()
-     * @model required="true"
-     * @generated
-     */
-    String getValueLiteral();
+	/**
+	 * Returns the value of the '<em><b>Value Literal</b></em>' attribute. <!--
+	 * begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Value Literal</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Value Literal</em>' attribute.
+	 * @see #setValueLiteral(String)
+	 * @see org.metaabm.act.MetaABMActPackage#getALiteral_ValueLiteral()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getValueLiteral();
 
-    /**
-     * Sets the value of the '{@link org.metaabm.act.ALiteral#getValueLiteral <em>Value Literal</em>}' attribute.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @param value the new value of the '<em>Value Literal</em>' attribute.
-     * @see #getValueLiteral()
-     * @generated
-     */
-    void setValueLiteral(String value);
+	/**
+	 * Sets the value of the '{@link org.metaabm.act.ALiteral#getValueLiteral <em>Value Literal</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @param value the new value of the '<em>Value Literal</em>' attribute.
+	 * @see #getValueLiteral()
+	 * @generated
+	 */
+	void setValueLiteral(String value);
 
 } // ALiteral

@@ -39,163 +39,165 @@ import org.metaabm.function.MetaABMFunctionPackage;
  * end-user-doc -->
  * @generated
  */
-public class MetaABMFunctionFactoryImpl extends EFactoryImpl implements MetaABMFunctionFactory {
-    /**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    public static MetaABMFunctionFactory init() {
-        try {
-            MetaABMFunctionFactory theMetaABMFunctionFactory = (MetaABMFunctionFactory) EPackage.Registry.INSTANCE
-                    .getEFactory("http://metaabm.org/function");
-            if (theMetaABMFunctionFactory != null) {
-                return theMetaABMFunctionFactory;
-            }
-        } catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new MetaABMFunctionFactoryImpl();
-    }
+public class MetaABMFunctionFactoryImpl extends EFactoryImpl implements
+		MetaABMFunctionFactory {
+	/**
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	public static MetaABMFunctionFactory init() {
+		try {
+			MetaABMFunctionFactory theMetaABMFunctionFactory = (MetaABMFunctionFactory) EPackage.Registry.INSTANCE
+					.getEFactory("http://metaabm.org/function");
+			if (theMetaABMFunctionFactory != null) {
+				return theMetaABMFunctionFactory;
+			}
+		} catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new MetaABMFunctionFactoryImpl();
+	}
 
-    /**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    public MetaABMFunctionFactoryImpl() {
-        super();
-    }
+	/**
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	public MetaABMFunctionFactoryImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-            case MetaABMFunctionPackage.FARGUMENT_PROTOTYPE:
-                return createFArgumentPrototype();
-            case MetaABMFunctionPackage.FARGUMENT_ARRAY_PROTOTYPE:
-                return createFArgumentArrayPrototype();
-            case MetaABMFunctionPackage.FOPERATOR:
-                return createFOperator();
-            case MetaABMFunctionPackage.FLOGICAL_OPERATOR:
-                return createFLogicalOperator();
-            case MetaABMFunctionPackage.FGENERIC_FUNCTION:
-                return createFGenericFunction();
-            case MetaABMFunctionPackage.FGENERIC_LOGICAL:
-                return createFGenericLogical();
-            case MetaABMFunctionPackage.FLIBRARY:
-                return createFLibrary();
-            case MetaABMFunctionPackage.FIMPLEMENTED_LIBRARY:
-                return createFImplementedLibrary();
-            case MetaABMFunctionPackage.FMULTI_ARGUMENT_PROTOTYPE:
-                return createFMultiArgumentPrototype();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-        }
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EObject create(EClass eClass) {
+		switch (eClass.getClassifierID()) {
+		case MetaABMFunctionPackage.FARGUMENT_PROTOTYPE:
+			return createFArgumentPrototype();
+		case MetaABMFunctionPackage.FARGUMENT_ARRAY_PROTOTYPE:
+			return createFArgumentArrayPrototype();
+		case MetaABMFunctionPackage.FOPERATOR:
+			return createFOperator();
+		case MetaABMFunctionPackage.FLOGICAL_OPERATOR:
+			return createFLogicalOperator();
+		case MetaABMFunctionPackage.FGENERIC_FUNCTION:
+			return createFGenericFunction();
+		case MetaABMFunctionPackage.FGENERIC_LOGICAL:
+			return createFGenericLogical();
+		case MetaABMFunctionPackage.FLIBRARY:
+			return createFLibrary();
+		case MetaABMFunctionPackage.FIMPLEMENTED_LIBRARY:
+			return createFImplementedLibrary();
+		case MetaABMFunctionPackage.FMULTI_ARGUMENT_PROTOTYPE:
+			return createFMultiArgumentPrototype();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName()
+					+ "' is not a valid classifier");
+		}
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public FArgumentPrototype createFArgumentPrototype() {
-        FArgumentPrototypeImpl fArgumentPrototype = new FArgumentPrototypeImpl();
-        return fArgumentPrototype;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FArgumentPrototype createFArgumentPrototype() {
+		FArgumentPrototypeImpl fArgumentPrototype = new FArgumentPrototypeImpl();
+		return fArgumentPrototype;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public FArgumentArrayPrototype createFArgumentArrayPrototype() {
-        FArgumentArrayPrototypeImpl fArgumentArrayPrototype = new FArgumentArrayPrototypeImpl();
-        return fArgumentArrayPrototype;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FArgumentArrayPrototype createFArgumentArrayPrototype() {
+		FArgumentArrayPrototypeImpl fArgumentArrayPrototype = new FArgumentArrayPrototypeImpl();
+		return fArgumentArrayPrototype;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public FOperator createFOperator() {
-        FOperatorImpl fOperator = new FOperatorImpl();
-        return fOperator;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FOperator createFOperator() {
+		FOperatorImpl fOperator = new FOperatorImpl();
+		return fOperator;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public FLogicalOperator createFLogicalOperator() {
-        FLogicalOperatorImpl fLogicalOperator = new FLogicalOperatorImpl();
-        return fLogicalOperator;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FLogicalOperator createFLogicalOperator() {
+		FLogicalOperatorImpl fLogicalOperator = new FLogicalOperatorImpl();
+		return fLogicalOperator;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public FGenericFunction createFGenericFunction() {
-        FGenericFunctionImpl fGenericFunction = new FGenericFunctionImpl();
-        return fGenericFunction;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FGenericFunction createFGenericFunction() {
+		FGenericFunctionImpl fGenericFunction = new FGenericFunctionImpl();
+		return fGenericFunction;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public FGenericLogical createFGenericLogical() {
-        FGenericLogicalImpl fGenericLogical = new FGenericLogicalImpl();
-        return fGenericLogical;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FGenericLogical createFGenericLogical() {
+		FGenericLogicalImpl fGenericLogical = new FGenericLogicalImpl();
+		return fGenericLogical;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public FLibrary createFLibrary() {
-        FLibraryImpl fLibrary = new FLibraryImpl();
-        return fLibrary;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FLibrary createFLibrary() {
+		FLibraryImpl fLibrary = new FLibraryImpl();
+		return fLibrary;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public FImplementedLibrary createFImplementedLibrary() {
-        FImplementedLibraryImpl fImplementedLibrary = new FImplementedLibraryImpl();
-        return fImplementedLibrary;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FImplementedLibrary createFImplementedLibrary() {
+		FImplementedLibraryImpl fImplementedLibrary = new FImplementedLibraryImpl();
+		return fImplementedLibrary;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public FMultiArgumentPrototype createFMultiArgumentPrototype() {
-        FMultiArgumentPrototypeImpl fMultiArgumentPrototype = new FMultiArgumentPrototypeImpl();
-        return fMultiArgumentPrototype;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public FMultiArgumentPrototype createFMultiArgumentPrototype() {
+		FMultiArgumentPrototypeImpl fMultiArgumentPrototype = new FMultiArgumentPrototypeImpl();
+		return fMultiArgumentPrototype;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public MetaABMFunctionPackage getMetaABMFunctionPackage() {
-        return (MetaABMFunctionPackage) getEPackage();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MetaABMFunctionPackage getMetaABMFunctionPackage() {
+		return (MetaABMFunctionPackage) getEPackage();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
-    @Deprecated
-    public static MetaABMFunctionPackage getPackage() {
-        return MetaABMFunctionPackage.eINSTANCE;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @deprecated
+	 * @generated
+	 */
+	@Deprecated
+	public static MetaABMFunctionPackage getPackage() {
+		return MetaABMFunctionPackage.eINSTANCE;
+	}
 
 } // MetaABMFunctionFactoryImpl
