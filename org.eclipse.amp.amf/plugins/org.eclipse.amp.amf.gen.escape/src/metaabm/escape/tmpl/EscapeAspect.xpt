@@ -51,6 +51,8 @@ import org.ascape.model.space.Graph;
 import org.ascape.model.space.Location;
 import org.ascape.runtime.NonGraphicRunner;
 import org.ascape.util.Conditional;
+import org.ascape.util.data.DataPoint;
+import org.ascape.util.data.DataPointConcrete;
 import org.ascape.util.vis.ColorFeature;
 import org.ascape.util.vis.ColorFeatureConcrete;
 import org.ascape.view.vis.ChartView;
@@ -238,6 +240,27 @@ import org.ascape.view.vis.GraphView;
 «AROUND metaabm::tmpl::Java::MethodPotential (metaabm::act::AAct within) FOR FFunction-»
 	«IF (id() == "withinBoundaries") || (id() == "distance")-»
 		«EXPAND metaabm::tmpl::Java::Method-»
+	«ELSE-»
+		«targetDef.proceed()»
+	«ENDIF-»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::MethodPotential (metaabm::act::AAct within) FOR AQuery-»
+	«IF (function.id() == "minimize") || (function.id() == "maximize")-»
+    /**
+     * A data point used within a search to find the «selected.agent» with the .«function.id()»d «inputs.value.get(0).label» value.
+     */
+    public final static DataPoint «dataPoint()» = new DataPointConcrete("«function.id().toFirstUpper()» «inputs.value.get(0).id()»") {
+        /**
+         * 
+         */
+        private static final long serialVersionUID = 3755810443335739012L;
+
+        public double getValue(Object o) {
+            «EXPAND metaabm::tmpl::Java::InnerEvaluation(allSources.select(e|e.selected == this.selected), false)-»
+            return ((«selected.agent.typeName()») o).«inputs.value.get(0).getterName()»();
+        }
+    };
 	«ELSE-»
 		«targetDef.proceed()»
 	«ENDIF-»
