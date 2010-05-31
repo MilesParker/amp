@@ -149,9 +149,6 @@ cached Boolean conditionForAscape(ASelect act) :
 cached Boolean conditionForAscape(AAct act) :
     false;
 
-cached String conditionParam(AAct act) :
-	act.conditionForAscape() ? act.selector().selid() + "Condition" : ((act.hasControl("available") && act.hasControl("within")) ? "null" : "");
-
 cached String findSpace(AAct act) :
     act.selector().space != null
     	? ((act.selector().space.metaType != SGrid && act.selector().space.metaType != SNetwork)
@@ -160,7 +157,7 @@ cached String findSpace(AAct act) :
     	: "getScape().";
  
 cached Boolean allTerms(AAct act) :
-    (act.hasControl("nearest") || act.hasControl("within"));
+    act.hasControl("nearest") || act.hasControl("within") || act.hasControl("minimize")|| act.hasControl("maximize");
 
 cached Boolean hasParent(SAgent child, SAgent candidate) :
 	child.parent == candidate || child.parent != null && ((SAgent) child.parent).hasParent(candidate);
@@ -172,48 +169,77 @@ cached String locationAgent(AAct act) :
 			: act.selector().selected.selid())
 	    : act.selector().agent.getterName() + "()";
 
-cached String locationTerm(AAct act) :
-    (act.hasControl("includeSelf") || act.hasControl("neighbor") || act.allTerms()) ? act.locationAgent().expl() : "";
+cached String dataPoint(ASink sink) :
+	sink.function.id().toUpperCase() + "_" + sink.inputs.value.get(0).id().toUpperCase();
 
-cached Boolean conditionTerm(AAct act, AAct last) :
-    act.conditionForAscape() 
-        ? act.selector().selid() + "Condition"
-        : (act.allTerms() ? "null" : "");
+cached String locationTerm(AAct act) :
+    (act.hasControl("includeSelf") || act.hasControl("neighbor") || act.allTerms()) 
+    	? act.locationAgent().expl() + 
+    		(act.hasControl("minimize") || act.hasControl("maximize")
+    		? ".getCoordinate()"
+    		:"")
+    	: "";
+
+cached String conditionTerm(AAct act) :
+	act.conditionForAscape() 
+		? act.selector().selid() + "Condition" 
+		: ((act.hasControl("minimize") || act.hasControl("maximize") || act.hasControl("available") && act.hasControl("within")) 
+			? "null" 
+			: "");
 
 cached String includeSelfTerm(AAct act) :
     act.hasControl("includeSelf") 
         ? "true"
-        : (act.allTerms() ? "false" : "");
+        : (act.allTerms() 
+        	? "false"
+        	: "");
 
 cached String distanceTerm(AAct act, List[AAct] path) :
-    act.allTerms() ? act.actDistance(path) : "";
+    act.allTerms() 
+    	? act.actDistance(path)
+    	: "";
 
+cached String dataPointTerm(AAct act) :
+    act.hasControl("maximize") || act.hasControl("maximize")
+    	? act.minOrMax().dataPoint()
+    	: "";
+    	
 cached boolean findIsList(AAct act) :
 	 act.hasControl("all");
 
-cached String findParams(AAct act, List[AAct] path) :
-    {act.locationTerm(), act.conditionParam(), act.includeSelfTerm(), act.distanceTerm(path)}.select(e | e.length > 0).toString(", ");
+cached AQuery minOrMax(AAct act) :
+	act.hasControl("maximize")
+		? act.controlFunction("maximize")
+		: (act.hasControl("minimize")
+			? act.controlFunction("minimize")
+			: "");
 
+cached String findParams(AAct act, List[AAct] path) :
+	{act.locationTerm(), act.dataPointTerm(), act.conditionTerm(), act.includeSelfTerm(), act.distanceTerm(path)}.select(e | e.length > 0).toString(", ");
+		
 cached String nearestTerm(AAct act) :
     act.hasControl("nearest") ? "Nearest" : "";
 
 cached String randomTerm(AAct act) :
-    !(act.hasControl("nearest") || act.hasControl("all")) ? "Random" : "";
+    !(act.hasControl("nearest") || act.hasControl("all") || act.hasControl("maximize") || act.hasControl("minimize")) ? "Random" : "";
 
 cached String availableTerm(AAct act) :
     act.hasControl("available") ? "Available" : "";
+
+cached String functionTerm(AAct act) :
+    act.hasControl("minimize") ? "Minimum" : (act.hasControl("maximize") ? "Maximum" : "");
     
 cached String withinTerm(AAct act) :
-    act.hasControl("within") && !act.hasControl("nearest") && !act.hasControl("available") ? "Within" : "";
+    act.hasControl("minimize") || act.hasControl("maximize") || act.hasControl("within") && !act.hasControl("nearest") && !act.hasControl("available") ? "Within" : "";
 
 cached String neighborTerm(AAct act) :
-    act.hasControl("neighbor") ? "Neighbor" : "";
+    act.hasControl("neighbor") && !(act.hasControl("minimize") || act.hasControl("maximize")) ? "Neighbor" : "";
 
 cached String continuousTerm(AAct act) :
     act.selector().space.metaType == SContinuousSpace ? "Coordinate" : "";
 
 cached String findMethod(AAct act) :
-    "find" + act.nearestTerm() + act.randomTerm() + act.availableTerm() + act.withinTerm() + act.neighborTerm() + act.continuousTerm();
+    "find" + act.nearestTerm() + act.randomTerm() + act.functionTerm() + act.availableTerm() + act.withinTerm() + act.neighborTerm() + act.continuousTerm();
 
 //        : (act.hasControl("here") 
 //        	? "(" + act.selector().selected.asHost().expl() + "==" + act.rootSelected.asHost().expl() + " ? " + act.selector().selected.selid().expl() + " : null);"
@@ -245,6 +271,13 @@ cached Boolean statCond(SState outer) :
 
 cached String statCondTerm(SAttribute typed) :
 	statCond(typed) ? "Cond" : "CSAMM";
+	
+cached String functionTerm(FFunction f) :
+	f.id() == "maximize"
+		? "maximum"
+		: (f.id() == "minimize"
+			? "minimum"
+			: "error");
 
 cached String statLabel(SAttribute inner, SAttribute outer, String desc) :
 	(inner.parent().parent().parent() != null ? "getName() + \" " : "\"") + inner.parent().label + " " + desc.spaceTrail() + (outer != inner ? outer.label.spaceTrail() : "") + inner.label + "\"";
