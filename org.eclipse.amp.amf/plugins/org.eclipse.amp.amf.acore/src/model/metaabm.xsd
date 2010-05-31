@@ -96,7 +96,7 @@
   <xsd:complexType ecore:implements="metaabm:IValue metaabm:ITyped" name="SAttribute">
     <xsd:complexContent>
       <xsd:extension base="metaabm:SNamed">
-        <xsd:attribute ecore:opposite="attributes" ecore:reference="metaabm:SAttributed" name="owner" type="xsd:anyURI" use="required"/>
+        <xsd:attribute ecore:keys="ID" ecore:opposite="attributes" ecore:reference="metaabm:SAttributed" name="owner" type="xsd:anyURI" use="required"/>
         <xsd:attribute ecore:unsettable="false" name="gatherData" type="ecore:EBoolean"/>
         <xsd:attribute name="defaultValue" type="ecore:EString"/>
         <xsd:attribute name="units" type="ecore:EString"/>

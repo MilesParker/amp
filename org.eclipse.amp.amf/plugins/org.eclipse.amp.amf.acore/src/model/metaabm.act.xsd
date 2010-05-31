@@ -45,6 +45,9 @@
   <xsd:element ecore:ignore="true" name="ADisconnect" type="act:ADisconnect"/>
   <xsd:element ecore:ignore="true" name="AReplace" type="act:AReplace"/>
   <xsd:element ecore:ignore="true" name="ACommand" type="act:ACommand"/>
+  <xsd:element ecore:ignore="true" name="ACause" type="act:ACause"/>
+  <xsd:element ecore:ignore="true" name="ADiffuse" type="act:ADiffuse"/>
+  <xsd:element ecore:ignore="true" name="APerform" type="act:APerform"/>
   <xsd:complexType name="AInput">
     <xsd:sequence>
       <xsd:element ecore:resolveProxies="true" minOccurs="0" name="literal" type="act:ALiteral"/>
@@ -390,6 +393,25 @@
   <xsd:complexType abstract="true" name="ACommand">
     <xsd:complexContent>
       <xsd:extension base="act:AAct"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ACause">
+    <xsd:complexContent>
+      <xsd:extension base="act:ACommand"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="ADiffuse">
+    <xsd:complexContent>
+      <xsd:extension base="act:ARoot">
+        <xsd:attribute ecore:reference="metaabm:SAttribute" name="diffused" type="xsd:anyURI" use="required"/>
+        <xsd:attribute ecore:reference="metaabm:SAttribute" name="diffusionRate" type="xsd:anyURI"/>
+        <xsd:attribute ecore:reference="metaabm:SAttribute" name="evaporationRate" type="xsd:anyURI"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="APerform">
+    <xsd:complexContent>
+      <xsd:extension base="act:ARoot"/>
     </xsd:complexContent>
   </xsd:complexType>
 </xsd:schema>

@@ -2,8 +2,8 @@
 <metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/structure" label="Functions" ID="functions" pluralLabel="Functions">
   <attributes label="True" ID="true" pluralLabel="Truth" defaultValue="true" immutable="true"/>
   <attributes label="False" ID="false" pluralLabel="Falses" description="" defaultValue="false" immutable="true"/>
-  <attributes label="Zero" ID="zero" pluralLabel="Zeros" description="The value 0." sType="INTEGER" defaultValue="0" units="" immutable="true"/>
-  <attributes label="Unit" ID="unit" pluralLabel="Units" description="The unit value, e.g. 1." sType="INTEGER" defaultValue="1" immutable="true"/>
+  <attributes label="Zero" ID="zero" pluralLabel="Zeros" description="The value 0." defaultValue="0" units="" immutable="true"/>
+  <attributes label="Unit" ID="unit" pluralLabel="Units" description="The unit value, e.g. 1." defaultValue="1" immutable="true"/>
   <attributes label="Path" ID="path" pluralLabel="Paths" sType="UNDEFINED"/>
   <attributes label="Self" ID="self" pluralLabel="Selfs" sType="UNDEFINED"/>
   <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Acts"/>
@@ -105,10 +105,10 @@
       </functions>
       <functions xsi:type="function:FGenericLogical" label="Away" ID="away" pluralLabel="Aways" description="Represents a location that is on the path that will take the source agent (that is, the selection's selection's agent) the farthest distance from the agent(s) represented by the search. This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction away from some location or agent."/>
       <functions xsi:type="function:FGenericLogical" label="Minimize" ID="minimize" pluralLabel="Minimizes" description="This function is not currently supported.">
-        <inputPrototypes label="Minimum Value" ID="minimumValue" sType="NUMERIC" pluralLabel="Minimum Values" description="The value we will minimize for."/>
+        <inputPrototypes label="Minimum Value" ID="minimumValue" sType="REAL" pluralLabel="Minimum Values" description="The value we will minimize for."/>
       </functions>
       <functions xsi:type="function:FGenericLogical" label="Maximize" ID="maximize" pluralLabel="Maximizes" description="This function is not currently supported.">
-        <inputPrototypes label="Minimum Value" ID="minimumValue" sType="NUMERIC" pluralLabel="Minimum Values" description="The value we will maximize for."/>
+        <inputPrototypes label="Minimum Value" ID="minimumValue" sType="REAL" pluralLabel="Minimum Values" description="The value we will maximize for."/>
       </functions>
       <functions xsi:type="function:FGenericLogical" label="Location 2D" ID="location2D" pluralLabel="Location 2Ds" description="Represents the location of the current agent for use in subsequent selections.">
         <inputPrototypes label="X" ID="x" sType="REAL" pluralLabel="Xs"/>
@@ -136,7 +136,7 @@
       <functions xsi:type="function:FGenericLogical" label="Random Boolean" ID="randomIs" pluralLabel="Random Booleans" description="A value that is randomly true or false, i.e. a fair coin toss."/>
       <functions xsi:type="function:FGenericFunction" label="Random Weighted" ID="randomWeighted" pluralLabel="Random Weighteds" description="An indexed value weighted against a probability distribution. The total probability must sum to 1.0. For example, an input of {.1,.2,.7} under a uniform distribution would would have 10% probability of producing &quot;0&quot; , 20%  for &quot;1&quot; and 70% for &quot;2&quot;. This function can then be used with Item to return a biased result from another list.">
         <inputPrototypes xsi:type="function:FArgumentArrayPrototype" label="Weights" ID="weights" sType="REAL" pluralLabel="Weightss" description="A list of values that will determine the resulting weighted index." size="-1"/>
-        <outputPrototypes label="Result" ID="result" sType="INTEGER" pluralLabel="Results" description="A resulting indexed value bounded by 0 and the length of the input list - 1."/>
+        <outputPrototypes label="Result" ID="result" pluralLabel="Results" description="A resulting indexed value bounded by 0 and the length of the input list - 1."/>
       </functions>
       <functions xsi:type="function:FGenericFunction" label="Random Member" ID="randomMember" pluralLabel="Random Members" description="Represents a random value drawn from the set of Real values specified.">
         <inputPrototypes xsi:type="function:FArgumentArrayPrototype" label="List" ID="list" sType="REAL" pluralLabel="Lists" description="Returns a random member of the supplied list of numbers." size="-1"/>
@@ -151,7 +151,7 @@
       <functions xsi:type="function:FGenericFunction" label="Shape Oval" ID="shapeOval" pluralLabel="Shape Ovals" description="Draw a generic oval."/>
       <functions xsi:type="function:FGenericFunction" label="Shape Rectangle" ID="shapeRectangle" pluralLabel="Shape Rectangles" description="Draws a rectangular shape."/>
       <functions xsi:type="function:FGenericFunction" label="Shape Inset" ID="shapeInset" pluralLabel="Shape Insets" description="Shrinks the current shape by the input amount. (The overall scale is currently unspecified, but in most implementations should be 20.)">
-        <inputPrototypes label="Value" ID="value" sType="INTEGER" pluralLabel="Values" description="Number of nominal pixels to inset."/>
+        <inputPrototypes label="Value" ID="value" pluralLabel="Values" description="Number of nominal pixels to inset."/>
       </functions>
       <functions xsi:type="function:FGenericFunction" label="Shape Marker" ID="shapeMarker" pluralLabel="Shape Markers" description="Draw a marker, that is a graphical indicator that can be used to add an additional que about the object state. For example, in a two-dimensional graphics representation this might be a small shape drawn inset at the corner of the larger shape. "/>
       <functions xsi:type="function:FGenericFunction" label="Shape Marker 2" ID="shapeMarker2" pluralLabel="Shape Marker 2s" description="Represents a marker placed in a different location from the other shape markers."/>
@@ -175,7 +175,7 @@
     </subs>
     <subs label="Time" ID="time" pluralLabel="Times">
       <functions xsi:type="function:FGenericFunction" label="Now" ID="timeNow" pluralLabel="Nows" description="The current simulation period, that is the number of iterations that the model has gone through, or in the case of models with callibrarted time, the number of iterations added to the model's nominal start time.">
-        <outputPrototypes label="Period" ID="period" sType="INTEGER" pluralLabel="Periods" description="The current period."/>
+        <outputPrototypes label="Period" ID="period" pluralLabel="Periods" description="The current period."/>
       </functions>
     </subs>
     <subs label="Math" ID="math" pluralLabel="Maths">
@@ -309,12 +309,12 @@
     <subs label="List" ID="list" pluralLabel="Lists">
       <functions xsi:type="function:FGenericFunction" label="Item" ID="item" pluralLabel="Items" description="Returns the item at the specified index from the list of items provided. Those items will typically be input primitives such as Integer or Real values.">
         <inputPrototypes xsi:type="function:FArgumentArrayPrototype" label="List" ID="list" sType="UNDEFINED" pluralLabel="Lists" size="-1"/>
-        <inputPrototypes label="Index" ID="index" sType="INTEGER" pluralLabel="Indexs"/>
+        <inputPrototypes label="Index" ID="index" pluralLabel="Indexs"/>
         <outputPrototypes label="Member" ID="member" sType="UNDEFINED" pluralLabel="Members"/>
       </functions>
       <functions xsi:type="function:FGenericFunction" label="Length" ID="length" pluralLabel="Lengths" description="The number of items in the provided list of items.">
         <inputPrototypes xsi:type="function:FArgumentArrayPrototype" label="List" ID="list" sType="UNDEFINED" pluralLabel="Lists" size="-1"/>
-        <outputPrototypes label="Value" ID="value" sType="INTEGER" pluralLabel="Values"/>
+        <outputPrototypes label="Value" ID="value" pluralLabel="Values"/>
       </functions>
     </subs>
     <subs label="Distribution" ID="distribution" pluralLabel="Distributions">
