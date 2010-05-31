@@ -180,6 +180,13 @@ cached String locationTerm(AAct act) :
     		:"")
     	: "";
 
+cached String conditionParam(AAct act) :
+	act.conditionForAscape() 
+		? act.selector().selid() + "Condition"
+		: ((act.hasControl("available") && act.hasControl("within"))
+			? "null" 
+			: "");
+
 cached String conditionTerm(AAct act) :
 	act.conditionForAscape() 
 		? act.selector().selid() + "Condition" 
