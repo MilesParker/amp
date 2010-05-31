@@ -43,7 +43,11 @@ public abstract class ZestLayoutAction implements IViewActionDelegate {
      * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
      */
     public void run(IAction action) {
-        view.setLayoutAlgorithm(createLayout());
+        view.getViewSite().getShell().getDisplay().asyncExec(new Runnable() {
+            public void run() {
+                view.setLayoutAlgorithm(createLayout());
+            }
+        });
     }
 
     /**
