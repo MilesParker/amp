@@ -210,6 +210,7 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 	«EXPAND Method-»
 	«ENDIF-»
 «ENDDEFINE»
+«DEFINE MethodPotential (AAct within) FOR AQuery-»«ENDDEFINE»
 
 «DEFINE Methods FOR IID-»«ENDDEFINE»
 «DEFINE Methods FOR SAgent-»
