@@ -48,805 +48,880 @@ import org.metaabm.act.util.MetaABMActAdapterFactory;
  * end-user-doc -->
  * @generated
  */
-public class MetaABMActItemProviderAdapterFactory extends MetaABMActAdapterFactory implements
-        ComposeableAdapterFactory, IChangeNotifier, IDisposable {
-    /**
-     * This keeps track of the root adapter factory that delegates to this adapter factory.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected ComposedAdapterFactory parentAdapterFactory;
-
-    /**
-     * This is used to implement
-     * {@link org.eclipse.emf.edit.provider.IChangeNotifier}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    protected IChangeNotifier changeNotifier = new ChangeNotifier();
-
-    /**
-     * This keeps track of all the item providers created, so that they can be {@link #dispose disposed}.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected Disposable disposable = new Disposable();
-
-    /**
-     * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    protected Collection<Object> supportedTypes = new ArrayList<Object>();
-
-    /**
-     * This constructs an instance. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
-     * 
-     * @generated
-     */
-    public MetaABMActItemProviderAdapterFactory() {
-        supportedTypes.add(IEditingDomainItemProvider.class);
-        supportedTypes.add(IStructuredItemContentProvider.class);
-        supportedTypes.add(ITreeItemContentProvider.class);
-        supportedTypes.add(IItemLabelProvider.class);
-        supportedTypes.add(IItemPropertySource.class);
-        supportedTypes.add(ITableItemLabelProvider.class);
-        supportedTypes.add(ITableItemColorProvider.class);
-        supportedTypes.add(IItemColorProvider.class);
-    }
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.AInput}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createAInputAdapter() {
-        return new AInputItemProvider(this);
-    }
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.ALiteral}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createALiteralAdapter() {
-        return new ALiteralItemProvider(this);
-    }
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.AMultiValue}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createAMultiValueAdapter() {
-        return new AMultiValueItemProvider(this);
-    }
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.AGroup}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createAGroupAdapter() {
-        return new AGroupItemProvider(this);
-    }
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.ASchedule}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createAScheduleAdapter() {
-        return new AScheduleItemProvider(this);
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.ARule} instances.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    protected ARuleItemProvider aRuleItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.ARule}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createARuleAdapter() {
-        if (aRuleItemProvider == null) {
-            aRuleItemProvider = new ARuleItemProvider(this);
-        }
-
-        return aRuleItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.ABuild} instances.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    protected ABuildItemProvider aBuildItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.ABuild}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createABuildAdapter() {
-        if (aBuildItemProvider == null) {
-            aBuildItemProvider = new ABuildItemProvider(this);
-        }
-
-        return aBuildItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.AInitialize} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected AInitializeItemProvider aInitializeItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.AInitialize}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createAInitializeAdapter() {
-        if (aInitializeItemProvider == null) {
-            aInitializeItemProvider = new AInitializeItemProvider(this);
-        }
-
-        return aInitializeItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.AMethod} instances.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    protected AMethodItemProvider aMethodItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.AMethod}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createAMethodAdapter() {
-        if (aMethodItemProvider == null) {
-            aMethodItemProvider = new AMethodItemProvider(this);
-        }
-
-        return aMethodItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.AAny} instances.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    protected AAnyItemProvider aAnyItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.AAny}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createAAnyAdapter() {
-        if (aAnyItemProvider == null) {
-            aAnyItemProvider = new AAnyItemProvider(this);
-        }
-
-        return aAnyItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.AAll} instances.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    protected AAllItemProvider aAllItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.AAll}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createAAllAdapter() {
-        if (aAllItemProvider == null) {
-            aAllItemProvider = new AAllItemProvider(this);
-        }
-
-        return aAllItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.ANone} instances.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    protected ANoneItemProvider aNoneItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.ANone}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createANoneAdapter() {
-        if (aNoneItemProvider == null) {
-            aNoneItemProvider = new ANoneItemProvider(this);
-        }
-
-        return aNoneItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.AQuery} instances.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    protected AQueryItemProvider aQueryItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.AQuery}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createAQueryAdapter() {
-        if (aQueryItemProvider == null) {
-            aQueryItemProvider = new AQueryItemProvider(this);
-        }
-
-        return aQueryItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.AEvaluate} instances.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    protected AEvaluateItemProvider aEvaluateItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.AEvaluate}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createAEvaluateAdapter() {
-        if (aEvaluateItemProvider == null) {
-            aEvaluateItemProvider = new AEvaluateItemProvider(this);
-        }
-
-        return aEvaluateItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.AWatch} instances.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    protected AWatchItemProvider aWatchItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.AWatch}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createAWatchAdapter() {
-        if (aWatchItemProvider == null) {
-            aWatchItemProvider = new AWatchItemProvider(this);
-        }
-
-        return aWatchItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.ASet} instances.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    protected ASetItemProvider aSetItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.ASet}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createASetAdapter() {
-        if (aSetItemProvider == null) {
-            aSetItemProvider = new ASetItemProvider(this);
-        }
-
-        return aSetItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.ACreateAgents} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ACreateAgentsItemProvider aCreateAgentsItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.ACreateAgents}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createACreateAgentsAdapter() {
-        if (aCreateAgentsItemProvider == null) {
-            aCreateAgentsItemProvider = new ACreateAgentsItemProvider(this);
-        }
-
-        return aCreateAgentsItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.ABuildNetwork} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ABuildNetworkItemProvider aBuildNetworkItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.ABuildNetwork}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createABuildNetworkAdapter() {
-        if (aBuildNetworkItemProvider == null) {
-            aBuildNetworkItemProvider = new ABuildNetworkItemProvider(this);
-        }
-
-        return aBuildNetworkItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.ABuildSpace} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ABuildSpaceItemProvider aBuildSpaceItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.ABuildSpace}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createABuildSpaceAdapter() {
-        if (aBuildSpaceItemProvider == null) {
-            aBuildSpaceItemProvider = new ABuildSpaceItemProvider(this);
-        }
-
-        return aBuildSpaceItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.ABuildGeography} instances.
-     * <!-- begin-user-doc
-     * --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected ABuildGeographyItemProvider aBuildGeographyItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.ABuildGeography}.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createABuildGeographyAdapter() {
-        if (aBuildGeographyItemProvider == null) {
-            aBuildGeographyItemProvider = new ABuildGeographyItemProvider(this);
-        }
-
-        return aBuildGeographyItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.ABuildGrid} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ABuildGridItemProvider aBuildGridItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.ABuildGrid}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createABuildGridAdapter() {
-        if (aBuildGridItemProvider == null) {
-            aBuildGridItemProvider = new ABuildGridItemProvider(this);
-        }
-
-        return aBuildGridItemProvider;
-    }
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.ASelect}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createASelectAdapter() {
-        return new ASelectItemProvider(this);
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.AMove} instances.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    protected AMoveItemProvider aMoveItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.AMove}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createAMoveAdapter() {
-        if (aMoveItemProvider == null) {
-            aMoveItemProvider = new AMoveItemProvider(this);
-        }
-
-        return aMoveItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.ALeave} instances.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    protected ALeaveItemProvider aLeaveItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.ALeave}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createALeaveAdapter() {
-        if (aLeaveItemProvider == null) {
-            aLeaveItemProvider = new ALeaveItemProvider(this);
-        }
-
-        return aLeaveItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.ADie} instances.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    protected ADieItemProvider aDieItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.ADie}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createADieAdapter() {
-        if (aDieItemProvider == null) {
-            aDieItemProvider = new ADieItemProvider(this);
-        }
-
-        return aDieItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.AConnect} instances.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    protected AConnectItemProvider aConnectItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.AConnect}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createAConnectAdapter() {
-        if (aConnectItemProvider == null) {
-            aConnectItemProvider = new AConnectItemProvider(this);
-        }
-
-        return aConnectItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.ADisconnect} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ADisconnectItemProvider aDisconnectItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.ADisconnect}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createADisconnectAdapter() {
-        if (aDisconnectItemProvider == null) {
-            aDisconnectItemProvider = new ADisconnectItemProvider(this);
-        }
-
-        return aDisconnectItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.AReplace} instances.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    protected AReplaceItemProvider aReplaceItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.AReplace}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createAReplaceAdapter() {
-        if (aReplaceItemProvider == null) {
-            aReplaceItemProvider = new AReplaceItemProvider(this);
-        }
-
-        return aReplaceItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.ALoadShapedAgents} instances.
-     * <!-- begin-user-doc
-     * --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected ALoadShapedAgentsItemProvider aLoadShapedAgentsItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.ALoadShapedAgents}.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createALoadShapedAgentsAdapter() {
-        if (aLoadShapedAgentsItemProvider == null) {
-            aLoadShapedAgentsItemProvider = new ALoadShapedAgentsItemProvider(this);
-        }
-
-        return aLoadShapedAgentsItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all
-     * {@link org.metaabm.act.ACreateShapedAgents} instances. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    protected ACreateShapedAgentsItemProvider aCreateShapedAgentsItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.ACreateShapedAgents}.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createACreateShapedAgentsAdapter() {
-        if (aCreateShapedAgentsItemProvider == null) {
-            aCreateShapedAgentsItemProvider = new ACreateShapedAgentsItemProvider(this);
-        }
-
-        return aCreateShapedAgentsItemProvider;
-    }
-
-    /**
-     * This keeps track of the one adapter used for all {@link org.metaabm.act.ALoadAgents} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ALoadAgentsItemProvider aLoadAgentsItemProvider;
-
-    /**
-     * This creates an adapter for a {@link org.metaabm.act.ALoadAgents}. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    @Override
-    public Adapter createALoadAgentsAdapter() {
-        if (aLoadAgentsItemProvider == null) {
-            aLoadAgentsItemProvider = new ALoadAgentsItemProvider(this);
-        }
-
-        return aLoadAgentsItemProvider;
-    }
-
-    /**
-     * This returns the root adapter factory that contains this factory. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    public ComposeableAdapterFactory getRootAdapterFactory() {
-        return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
-    }
-
-    /**
-     * This sets the composed adapter factory that contains this factory. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
-        this.parentAdapterFactory = parentAdapterFactory;
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean isFactoryForType(Object type) {
-        return supportedTypes.contains(type) || super.isFactoryForType(type);
-    }
-
-    /**
-     * This implementation substitutes the factory itself as the key for the adapter.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter adapt(Notifier notifier, Object type) {
-        return super.adapt(notifier, this);
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object adapt(Object object, Object type) {
-        if (isFactoryForType(type)) {
-            Object adapter = super.adapt(object, type);
-            if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
-                return adapter;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * Associates an adapter with a notifier via the base implementation, then records it to ensure it will be disposed.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected void associate(Adapter adapter, Notifier target) {
-        super.associate(adapter, target);
-        if (adapter != null) {
-            disposable.add(adapter);
-        }
-    }
-
-    /**
-     * This adds a listener.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public void addListener(INotifyChangedListener notifyChangedListener) {
-        changeNotifier.addListener(notifyChangedListener);
-    }
-
-    /**
-     * This removes a listener.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public void removeListener(INotifyChangedListener notifyChangedListener) {
-        changeNotifier.removeListener(notifyChangedListener);
-    }
-
-    /**
-     * This delegates to {@link #changeNotifier} and to
-     * {@link #parentAdapterFactory}. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
-     * 
-     * @generated
-     */
-    public void fireNotifyChanged(Notification notification) {
-        changeNotifier.fireNotifyChanged(notification);
-
-        if (parentAdapterFactory != null) {
-            parentAdapterFactory.fireNotifyChanged(notification);
-        }
-    }
-
-    /**
-     * This disposes all of the item providers created by this factory. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    public void dispose() {
-        disposable.dispose();
-    }
+public class MetaABMActItemProviderAdapterFactory extends
+		MetaABMActAdapterFactory implements ComposeableAdapterFactory,
+		IChangeNotifier, IDisposable {
+	/**
+	 * This keeps track of the root adapter factory that delegates to this adapter factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ComposedAdapterFactory parentAdapterFactory;
+
+	/**
+	 * This is used to implement
+	 * {@link org.eclipse.emf.edit.provider.IChangeNotifier}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected IChangeNotifier changeNotifier = new ChangeNotifier();
+
+	/**
+	 * This keeps track of all the item providers created, so that they can be {@link #dispose disposed}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected Disposable disposable = new Disposable();
+
+	/**
+	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	protected Collection<Object> supportedTypes = new ArrayList<Object>();
+
+	/**
+	 * This constructs an instance. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 */
+	public MetaABMActItemProviderAdapterFactory() {
+		supportedTypes.add(IEditingDomainItemProvider.class);
+		supportedTypes.add(IStructuredItemContentProvider.class);
+		supportedTypes.add(ITreeItemContentProvider.class);
+		supportedTypes.add(IItemLabelProvider.class);
+		supportedTypes.add(IItemPropertySource.class);
+		supportedTypes.add(ITableItemLabelProvider.class);
+		supportedTypes.add(ITableItemColorProvider.class);
+		supportedTypes.add(IItemColorProvider.class);
+	}
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.AInput}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createAInputAdapter() {
+		return new AInputItemProvider(this);
+	}
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ALiteral}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createALiteralAdapter() {
+		return new ALiteralItemProvider(this);
+	}
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.AMultiValue}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createAMultiValueAdapter() {
+		return new AMultiValueItemProvider(this);
+	}
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.AGroup}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createAGroupAdapter() {
+		return new AGroupItemProvider(this);
+	}
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ASchedule}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createAScheduleAdapter() {
+		return new AScheduleItemProvider(this);
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.ARule} instances.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	protected ARuleItemProvider aRuleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ARule}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createARuleAdapter() {
+		if (aRuleItemProvider == null) {
+			aRuleItemProvider = new ARuleItemProvider(this);
+		}
+
+		return aRuleItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.ABuild} instances.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	protected ABuildItemProvider aBuildItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ABuild}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createABuildAdapter() {
+		if (aBuildItemProvider == null) {
+			aBuildItemProvider = new ABuildItemProvider(this);
+		}
+
+		return aBuildItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.AInitialize} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AInitializeItemProvider aInitializeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.AInitialize}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createAInitializeAdapter() {
+		if (aInitializeItemProvider == null) {
+			aInitializeItemProvider = new AInitializeItemProvider(this);
+		}
+
+		return aInitializeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.AMethod} instances.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	protected AMethodItemProvider aMethodItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.AMethod}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createAMethodAdapter() {
+		if (aMethodItemProvider == null) {
+			aMethodItemProvider = new AMethodItemProvider(this);
+		}
+
+		return aMethodItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.AAny} instances.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	protected AAnyItemProvider aAnyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.AAny}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createAAnyAdapter() {
+		if (aAnyItemProvider == null) {
+			aAnyItemProvider = new AAnyItemProvider(this);
+		}
+
+		return aAnyItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.AAll} instances.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	protected AAllItemProvider aAllItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.AAll}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createAAllAdapter() {
+		if (aAllItemProvider == null) {
+			aAllItemProvider = new AAllItemProvider(this);
+		}
+
+		return aAllItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.ANone} instances.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	protected ANoneItemProvider aNoneItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ANone}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createANoneAdapter() {
+		if (aNoneItemProvider == null) {
+			aNoneItemProvider = new ANoneItemProvider(this);
+		}
+
+		return aNoneItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.AQuery} instances.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	protected AQueryItemProvider aQueryItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.AQuery}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createAQueryAdapter() {
+		if (aQueryItemProvider == null) {
+			aQueryItemProvider = new AQueryItemProvider(this);
+		}
+
+		return aQueryItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.AEvaluate} instances.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	protected AEvaluateItemProvider aEvaluateItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.AEvaluate}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createAEvaluateAdapter() {
+		if (aEvaluateItemProvider == null) {
+			aEvaluateItemProvider = new AEvaluateItemProvider(this);
+		}
+
+		return aEvaluateItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.AWatch} instances.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	protected AWatchItemProvider aWatchItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.AWatch}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createAWatchAdapter() {
+		if (aWatchItemProvider == null) {
+			aWatchItemProvider = new AWatchItemProvider(this);
+		}
+
+		return aWatchItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.ASet} instances.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	protected ASetItemProvider aSetItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ASet}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createASetAdapter() {
+		if (aSetItemProvider == null) {
+			aSetItemProvider = new ASetItemProvider(this);
+		}
+
+		return aSetItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.ACreateAgents} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ACreateAgentsItemProvider aCreateAgentsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ACreateAgents}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createACreateAgentsAdapter() {
+		if (aCreateAgentsItemProvider == null) {
+			aCreateAgentsItemProvider = new ACreateAgentsItemProvider(this);
+		}
+
+		return aCreateAgentsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.ABuildNetwork} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ABuildNetworkItemProvider aBuildNetworkItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ABuildNetwork}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createABuildNetworkAdapter() {
+		if (aBuildNetworkItemProvider == null) {
+			aBuildNetworkItemProvider = new ABuildNetworkItemProvider(this);
+		}
+
+		return aBuildNetworkItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.ABuildSpace} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ABuildSpaceItemProvider aBuildSpaceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ABuildSpace}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createABuildSpaceAdapter() {
+		if (aBuildSpaceItemProvider == null) {
+			aBuildSpaceItemProvider = new ABuildSpaceItemProvider(this);
+		}
+
+		return aBuildSpaceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.ABuildGeography} instances.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ABuildGeographyItemProvider aBuildGeographyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ABuildGeography}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createABuildGeographyAdapter() {
+		if (aBuildGeographyItemProvider == null) {
+			aBuildGeographyItemProvider = new ABuildGeographyItemProvider(this);
+		}
+
+		return aBuildGeographyItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.ABuildGrid} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ABuildGridItemProvider aBuildGridItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ABuildGrid}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createABuildGridAdapter() {
+		if (aBuildGridItemProvider == null) {
+			aBuildGridItemProvider = new ABuildGridItemProvider(this);
+		}
+
+		return aBuildGridItemProvider;
+	}
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ASelect}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createASelectAdapter() {
+		return new ASelectItemProvider(this);
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.AMove} instances.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	protected AMoveItemProvider aMoveItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.AMove}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createAMoveAdapter() {
+		if (aMoveItemProvider == null) {
+			aMoveItemProvider = new AMoveItemProvider(this);
+		}
+
+		return aMoveItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.ALeave} instances.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	protected ALeaveItemProvider aLeaveItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ALeave}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createALeaveAdapter() {
+		if (aLeaveItemProvider == null) {
+			aLeaveItemProvider = new ALeaveItemProvider(this);
+		}
+
+		return aLeaveItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.ADie} instances.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	protected ADieItemProvider aDieItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ADie}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createADieAdapter() {
+		if (aDieItemProvider == null) {
+			aDieItemProvider = new ADieItemProvider(this);
+		}
+
+		return aDieItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.AConnect} instances.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	protected AConnectItemProvider aConnectItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.AConnect}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createAConnectAdapter() {
+		if (aConnectItemProvider == null) {
+			aConnectItemProvider = new AConnectItemProvider(this);
+		}
+
+		return aConnectItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.ADisconnect} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ADisconnectItemProvider aDisconnectItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ADisconnect}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createADisconnectAdapter() {
+		if (aDisconnectItemProvider == null) {
+			aDisconnectItemProvider = new ADisconnectItemProvider(this);
+		}
+
+		return aDisconnectItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.AReplace} instances.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	protected AReplaceItemProvider aReplaceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.AReplace}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createAReplaceAdapter() {
+		if (aReplaceItemProvider == null) {
+			aReplaceItemProvider = new AReplaceItemProvider(this);
+		}
+
+		return aReplaceItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.ACause} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ACauseItemProvider aCauseItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ACause}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createACauseAdapter() {
+		if (aCauseItemProvider == null) {
+			aCauseItemProvider = new ACauseItemProvider(this);
+		}
+
+		return aCauseItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.ADiffuse} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ADiffuseItemProvider aDiffuseItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ADiffuse}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createADiffuseAdapter() {
+		if (aDiffuseItemProvider == null) {
+			aDiffuseItemProvider = new ADiffuseItemProvider(this);
+		}
+
+		return aDiffuseItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.APerform} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected APerformItemProvider aPerformItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.APerform}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAPerformAdapter() {
+		if (aPerformItemProvider == null) {
+			aPerformItemProvider = new APerformItemProvider(this);
+		}
+
+		return aPerformItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.ALoadShapedAgents} instances.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ALoadShapedAgentsItemProvider aLoadShapedAgentsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ALoadShapedAgents}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createALoadShapedAgentsAdapter() {
+		if (aLoadShapedAgentsItemProvider == null) {
+			aLoadShapedAgentsItemProvider = new ALoadShapedAgentsItemProvider(
+					this);
+		}
+
+		return aLoadShapedAgentsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all
+	 * {@link org.metaabm.act.ACreateShapedAgents} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected ACreateShapedAgentsItemProvider aCreateShapedAgentsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ACreateShapedAgents}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createACreateShapedAgentsAdapter() {
+		if (aCreateShapedAgentsItemProvider == null) {
+			aCreateShapedAgentsItemProvider = new ACreateShapedAgentsItemProvider(
+					this);
+		}
+
+		return aCreateShapedAgentsItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.metaabm.act.ALoadAgents} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ALoadAgentsItemProvider aLoadAgentsItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.metaabm.act.ALoadAgents}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createALoadAgentsAdapter() {
+		if (aLoadAgentsItemProvider == null) {
+			aLoadAgentsItemProvider = new ALoadAgentsItemProvider(this);
+		}
+
+		return aLoadAgentsItemProvider;
+	}
+
+	/**
+	 * This returns the root adapter factory that contains this factory. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public ComposeableAdapterFactory getRootAdapterFactory() {
+		return parentAdapterFactory == null ? this : parentAdapterFactory
+				.getRootAdapterFactory();
+	}
+
+	/**
+	 * This sets the composed adapter factory that contains this factory. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setParentAdapterFactory(
+			ComposedAdapterFactory parentAdapterFactory) {
+		this.parentAdapterFactory = parentAdapterFactory;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isFactoryForType(Object type) {
+		return supportedTypes.contains(type) || super.isFactoryForType(type);
+	}
+
+	/**
+	 * This implementation substitutes the factory itself as the key for the adapter.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter adapt(Notifier notifier, Object type) {
+		return super.adapt(notifier, this);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object adapt(Object object, Object type) {
+		if (isFactoryForType(type)) {
+			Object adapter = super.adapt(object, type);
+			if (!(type instanceof Class<?>)
+					|| (((Class<?>) type).isInstance(adapter))) {
+				return adapter;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Associates an adapter with a notifier via the base implementation, then records it to ensure it will be disposed.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void associate(Adapter adapter, Notifier target) {
+		super.associate(adapter, target);
+		if (adapter != null) {
+			disposable.add(adapter);
+		}
+	}
+
+	/**
+	 * This adds a listener.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void addListener(INotifyChangedListener notifyChangedListener) {
+		changeNotifier.addListener(notifyChangedListener);
+	}
+
+	/**
+	 * This removes a listener.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void removeListener(INotifyChangedListener notifyChangedListener) {
+		changeNotifier.removeListener(notifyChangedListener);
+	}
+
+	/**
+	 * This delegates to {@link #changeNotifier} and to
+	 * {@link #parentAdapterFactory}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 */
+	public void fireNotifyChanged(Notification notification) {
+		changeNotifier.fireNotifyChanged(notification);
+
+		if (parentAdapterFactory != null) {
+			parentAdapterFactory.fireNotifyChanged(notification);
+		}
+	}
+
+	/**
+	 * This disposes all of the item providers created by this factory. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void dispose() {
+		disposable.dispose();
+	}
 
 }
