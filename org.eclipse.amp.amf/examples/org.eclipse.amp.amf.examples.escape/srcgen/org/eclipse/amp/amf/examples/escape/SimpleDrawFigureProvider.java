@@ -31,9 +31,8 @@ public class SimpleDrawFigureProvider extends DefaultFigureProvider {
 		if (figure == null) {
 			figure = Shapes.createOval();
 		}
-		color = new Color(Display.getCurrent(),
-				(int) (individualRule.getWealth() * 255), (int) (1 * 255),
-				(int) (1 * 255));
+		color = new Color(Display.getCurrent(), (int) (individualRule
+				.getWealth() * 255), (int) (1 * 255), (int) (1 * 255));
 
 		figure.setBackgroundColor(color);
 		((Shape) figure).setFill(true);

@@ -10,12 +10,14 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.jface.viewers.IColorProvider;
 
 import org.ascape.model.Agent;
+import org.ascape.model.Cell;
 import org.ascape.model.CellOccupant;
 import org.ascape.model.HostCell;
 import org.ascape.model.LocatedAgent;
 import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.rule.Rule;
+import org.ascape.model.rule.ExecuteThenUpdate;
 import org.ascape.model.space.CollectionSpace;
 import org.ascape.model.space.Coordinate;
 import org.ascape.model.space.Coordinate2DDiscrete;
@@ -23,6 +25,8 @@ import org.ascape.model.space.Graph;
 import org.ascape.model.space.Location;
 import org.ascape.runtime.NonGraphicRunner;
 import org.ascape.util.Conditional;
+import org.ascape.util.data.DataPoint;
+import org.ascape.util.data.DataPointConcrete;
 import org.ascape.util.vis.ColorFeature;
 import org.ascape.util.vis.ColorFeatureConcrete;
 import org.ascape.view.vis.ChartView;
@@ -133,6 +137,7 @@ public class StupidModel3 extends Scape implements IGraphicsAdapted {
 
 		bugScape.setSize(bugCount);
 		grid2D = new Scape(new org.ascape.model.space.Array2DMoore());
+		grid2D.setExecutionOrder(Scape.RULE_ORDER);
 		grid2D.setPrototypeAgent(new Habitat());
 		grid2D.setExtent(new org.ascape.model.space.Coordinate2DDiscrete(
 				getGrid2DWidth(), getGrid2DHeight()));
@@ -247,8 +252,8 @@ public class StupidModel3 extends Scape implements IGraphicsAdapted {
 			IColorProvider colorProvider) {
 		Color color = colorProvider.getForeground(agent);
 		if (color == ColorFeature.BLACK) {
-			color = ColorFeatureConcrete.createHSB(
-					(float) java.lang.Math.random() * 360f, 1.0f, 0.8f);
+			color = ColorFeatureConcrete.createHSB((float) java.lang.Math
+					.random() * 360f, 1.0f, 0.8f);
 		}
 		return color;
 	}

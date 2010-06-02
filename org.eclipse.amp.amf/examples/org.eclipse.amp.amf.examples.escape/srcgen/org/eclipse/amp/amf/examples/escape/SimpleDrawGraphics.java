@@ -30,10 +30,9 @@ public class SimpleDrawGraphics extends DrawFeature {
 		if (definitionCell.getOccupant() instanceof Individual) {
 			Individual definition = (Individual) definitionCell.getOccupant();
 			Individual individualRule = definition;
-			Color individualRuleColorRGB_WealthUnitUnit_ = new Color(
-					Display.getCurrent(),
-					(int) (individualRule.getWealth() * 255), (int) (1 * 255),
-					(int) (1 * 255));
+			Color individualRuleColorRGB_WealthUnitUnit_ = new Color(Display
+					.getCurrent(), (int) (individualRule.getWealth() * 255),
+					(int) (1 * 255), (int) (1 * 255));
 			g.setForegroundColor(individualRuleColorRGB_WealthUnitUnit_);
 			g.setBackgroundColor(individualRuleColorRGB_WealthUnitUnit_);
 			shape = shape.oval;

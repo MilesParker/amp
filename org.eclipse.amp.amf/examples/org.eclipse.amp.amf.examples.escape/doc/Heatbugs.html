@@ -101,7 +101,7 @@
 			<div id="wrap">
     			<div id="header">
     				<H1>Heatbugs</H1>
-					<P>Heatbugs Model (Not yet implemented).</P>
+					<P></P>
     			</div>
     			<div id="sidebarfake">
     				<H1>   </H1>
@@ -112,7 +112,7 @@
     					<li><a href="#behaviorlink">Behaviors</a></li>
     					<li><a href="#agentslink">Agents</a>
     					<ul>
-    					<li><a href="#heatbuglink">Heatbug</a></li>
+    					<li><a href="#heatBuglink">Heat Bug</a></li>
     					<li><a href="#heatCelllink">Heat Cell</a></li>
     					</ul></li>
     					<li><a href="#projlink">Projections</a></li>
@@ -121,42 +121,81 @@
     			<div id="main">
     					<div id="agent">
 
-
     					<h3><a name="parlink">Parameters</a></h3>
 		<table CELLPADDING="10px" rules="groups">
 			<thead align="left"><tr><th>Name</th><th>Type</th><th>Default Value</th></tr></thead>
-					<tbody ><tr><td>Heatbug Count</td>
+					<tbody ><tr><td>Heat Bug Count</td>
 						<td>Integer</td>
-						<td>50</td></tr>
-					<tr><td colspan="3"><i>The number of heatbugs to create.</i></td></tr></tbody>
+						<td>100</td></tr>
+					<tr><td colspan="3"><i>The number of heat bugs to create.</i></td></tr></tbody>
+					<tbody ><tr><td>Diffusion Rate</td>
+						<td>Real</td>
+						<td>1.0</td></tr>
+					<tr><td colspan="3"><i></i></td></tr></tbody>
+					<tbody ><tr><td>Evaporation Rate</td>
+						<td>Real</td>
+						<td>.01</td></tr>
+					<tr><td colspan="3"><i></i></td></tr></tbody>
+					<tbody ><tr><td>Ideal Temperature Draw Minimum</td>
+						<td>Real</td>
+						<td>135</td></tr>
+					<tr><td colspan="3"><i></i></td></tr></tbody>
+					<tbody ><tr><td>Ideal Temperature Draw Maximum</td>
+						<td>Real</td>
+						<td>240</td></tr>
+					<tr><td colspan="3"><i></i></td></tr></tbody>
+					<tbody ><tr><td>Output Heat Draw Minimum</td>
+						<td>Real</td>
+						<td>23</td></tr>
+					<tr><td colspan="3"><i></i></td></tr></tbody>
+					<tbody ><tr><td>Output Heat Draw Maximum</td>
+						<td>Real</td>
+						<td>76</td></tr>
+					<tr><td colspan="3"><i></i></td></tr></tbody>
+					<tbody ><tr><td>Maximum Heat</td>
+						<td>Integer</td>
+						<td>340</td></tr>
+					<tr><td colspan="3"><i></i></td></tr></tbody>
 		</table>
     					<h3><a name="behaviorlink">Behaviors</a></h3>
 		<table CELLPADDING="10px">
 			<thead align="left"><tr><th>Act</th><th>Description</th></tr></thead>
 					<tr>
 						<td><i>Build Heatbugs</i></td>
-						<td>Build internal state for Heatbugs.</td>
+						<td>Build the Heatbugs.</td>
 					</tr>
 		</table>
 						</div>
     					<div id="agents">
     					<h1><a name="agentslink">Agents</a></h1>
 								<div id="agent">
-									<H2><a name="heatbuglink"/>Heatbug</a></H2>
+									<H2><a name="heatBuglink"/>Heat Bug</a></H2>
 									<H3>Attributes</H3>
 		<table CELLPADDING="10px" rules="groups">
 			<thead align="left"><tr><th>Name</th><th>Type</th><th>Default Value</th></tr></thead>
+					<tbody ><tr><td>Ideal Temperature</td>
+						<td>Real</td>
+						<td></td></tr>
+					<tr><td colspan="3"><i></i></td></tr></tbody>
+					<tbody ><tr><td>Output Heat</td>
+						<td>Real</td>
+						<td></td></tr>
+					<tr><td colspan="3"><i></i></td></tr></tbody>
 		</table>
 									<H3>Behaviors</H3>
 		<table CELLPADDING="10px">
 			<thead align="left"><tr><th>Act</th><th>Description</th></tr></thead>
 					<tr>
 						<td><i>Initialize</i></td>
-						<td></td>
+						<td>Initialize Initialization. Executed once at the beginning of each model run.</td>
 					</tr>
 					<tr>
-						<td><i>Heatbug Rule</i></td>
-						<td></td>
+						<td><i>Seek Heat Rule</i></td>
+						<td>Seek Heat Rule Rule. Executed every period.</td>
+					</tr>
+					<tr>
+						<td><i>Initialize State</i></td>
+						<td>Initialize State Initialization. Executed once at the beginning of each model run.</td>
 					</tr>
 		</table>
 								</div>
@@ -167,15 +206,19 @@
 			<thead align="left"><tr><th>Name</th><th>Type</th><th>Default Value</th></tr></thead>
 					<tbody ><tr><td>Heat</td>
 						<td>Real</td>
-						<td>0.5</td></tr>
+						<td></td></tr>
 					<tr><td colspan="3"><i></i></td></tr></tbody>
 		</table>
 									<H3>Behaviors</H3>
 		<table CELLPADDING="10px">
 			<thead align="left"><tr><th>Act</th><th>Description</th></tr></thead>
 					<tr>
-						<td><i>Initialize Heat</i></td>
-						<td></td>
+						<td><i>Diffuse</i></td>
+						<td>Diffuse.</td>
+					</tr>
+					<tr>
+						<td><i>Watch Heat</i></td>
+						<td>Watch for changes in Heat.</td>
 					</tr>
 		</table>
 								</div>
@@ -185,7 +228,7 @@
 		<table CELLPADDING="10px">
 			<thead align="left"><tr><th>Name</th><th>Description</th><th>Type</th></tr></thead>
 					<tr>
-						<td><i>Grid 2D</i></td>
+						<td><i>Heat Grid</i></td>
 						<td></td>
 						<td>2-Dimensional Grid</td>
 					</tr>

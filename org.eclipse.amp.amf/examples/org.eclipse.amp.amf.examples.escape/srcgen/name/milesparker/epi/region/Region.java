@@ -10,12 +10,14 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.jface.viewers.IColorProvider;
 
 import org.ascape.model.Agent;
+import org.ascape.model.Cell;
 import org.ascape.model.CellOccupant;
 import org.ascape.model.HostCell;
 import org.ascape.model.LocatedAgent;
 import org.ascape.model.Scape;
 import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.rule.Rule;
+import org.ascape.model.rule.ExecuteThenUpdate;
 import org.ascape.model.space.CollectionSpace;
 import org.ascape.model.space.Coordinate;
 import org.ascape.model.space.Coordinate2DDiscrete;
@@ -23,6 +25,8 @@ import org.ascape.model.space.Graph;
 import org.ascape.model.space.Location;
 import org.ascape.runtime.NonGraphicRunner;
 import org.ascape.util.Conditional;
+import org.ascape.util.data.DataPoint;
+import org.ascape.util.data.DataPointConcrete;
 import org.ascape.util.vis.ColorFeature;
 import org.ascape.util.vis.ColorFeatureConcrete;
 import org.ascape.view.vis.ChartView;
@@ -193,6 +197,7 @@ public class Region extends Scape implements IGraphicsAdapted {
 
 		cityScape.setSize(cityCount);
 		regionalMap = new Scape(new org.ascape.model.space.Array2DMoore());
+		regionalMap.setExecutionOrder(Scape.RULE_ORDER);
 		regionalMap.setPrototypeAgent(new RegionalLocation());
 		regionalMap.setExtent(new org.ascape.model.space.Coordinate2DDiscrete(
 				getRegionalMapWidth(), getRegionalMapHeight()));
@@ -279,8 +284,8 @@ public class Region extends Scape implements IGraphicsAdapted {
 			IColorProvider colorProvider) {
 		Color color = colorProvider.getForeground(agent);
 		if (color == ColorFeature.BLACK) {
-			color = ColorFeatureConcrete.createHSB(
-					(float) java.lang.Math.random() * 360f, 1.0f, 0.8f);
+			color = ColorFeatureConcrete.createHSB((float) java.lang.Math
+					.random() * 360f, 1.0f, 0.8f);
 		}
 		return color;
 	}

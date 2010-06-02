@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/structure" label="Region" ID="region" pluralLabel="Regions">
-  <attributes label="City Count" ID="cityCount" pluralLabel="City Counts" description="The number of citys to create." sType="INTEGER" defaultValue="4"/>
+  <attributes label="City Count" ID="cityCount" pluralLabel="City Counts" description="The number of citys to create." defaultValue="4"/>
   <attributes label="Initial Infection Probability" ID="initialInfectionProbability" pluralLabel="Initial Infection Probabilitys" description="The probability that any given individual will be infected at the beginning of the model run. For example, if this value is .15, and their are 100 individuals in the model, roughly 15 of those individuals will be infected at time 0." sType="REAL" defaultValue=".05"/>
   <attributes label="Min Contact Transmission Probability" ID="minContactTransmissionProbability" pluralLabel="Min Contact Transmission Probabilitys" description="The probability that proximity to a single neighbor for a single period will result in transmission of infection." sType="REAL" defaultValue=".08"/>
   <attributes label="Max Contact Transmission Probability" ID="maxContactTransmissionProbability" pluralLabel="Max Contact Transmission Probabilitys" description="The probability that proximity to a single neighbor for a single period will result in transmission of infection." sType="REAL" defaultValue=".16"/>
   <attributes label="Case Mortality Rate" ID="caseMortalityRate" pluralLabel="Case Mortality Rates" description="The probability that death will occur for a given individual as a result of infection." sType="REAL" defaultValue=".05"/>
-  <attributes label="Min Period Exposure" ID="minPeriodExposure" pluralLabel="Min Period Exposures" description="Minimum time from initial exposure to infectious asymptomatic or symptomatic state. 0 or greater." sType="INTEGER" defaultValue="12"/>
-  <attributes label="Max Period Exposure" ID="maxPeriodExposure" pluralLabel="Max Period Exposures" description="Maximum time from initial exposure to infectious asymptomatic or symptomatic state. 0 or greater." sType="INTEGER" defaultValue="48"/>
-  <attributes label="Min Period Asymptom Infection" ID="minPeriodAsymptomInfection" pluralLabel="Min Period Asymptom Infections" description="Maximum time spent infected without showing symptoms. 0 or greater." sType="INTEGER" defaultValue="24"/>
-  <attributes label="Max Period Asymptom Infection" ID="maxPeriodAsymptomInfection" pluralLabel="Max Period Asymptom Infections" description="Maximum time spent infected without showing symptoms. May be zero!" sType="INTEGER" defaultValue="96"/>
-  <attributes label="Min Period Symptom Infection" ID="minPeriodSymptomInfection" pluralLabel="Min Period Symptom Infections" description="Minimum time spent infected with obvious symptoms. 0 or greater." sType="INTEGER" defaultValue="24"/>
-  <attributes label="Max Period Symptom Infection" ID="maxPeriodSymptomInfection" pluralLabel="Max Period Symptom Infections" description="Maximum time spent infected with obvious symptoms. 1 or greater." sType="INTEGER" defaultValue="168"/>
+  <attributes label="Min Period Exposure" ID="minPeriodExposure" pluralLabel="Min Period Exposures" description="Minimum time from initial exposure to infectious asymptomatic or symptomatic state. 0 or greater." defaultValue="12"/>
+  <attributes label="Max Period Exposure" ID="maxPeriodExposure" pluralLabel="Max Period Exposures" description="Maximum time from initial exposure to infectious asymptomatic or symptomatic state. 0 or greater." defaultValue="48"/>
+  <attributes label="Min Period Asymptom Infection" ID="minPeriodAsymptomInfection" pluralLabel="Min Period Asymptom Infections" description="Maximum time spent infected without showing symptoms. 0 or greater." defaultValue="24"/>
+  <attributes label="Max Period Asymptom Infection" ID="maxPeriodAsymptomInfection" pluralLabel="Max Period Asymptom Infections" description="Maximum time spent infected without showing symptoms. May be zero!" defaultValue="96"/>
+  <attributes label="Min Period Symptom Infection" ID="minPeriodSymptomInfection" pluralLabel="Min Period Symptom Infections" description="Minimum time spent infected with obvious symptoms. 0 or greater." defaultValue="24"/>
+  <attributes label="Max Period Symptom Infection" ID="maxPeriodSymptomInfection" pluralLabel="Max Period Symptom Infections" description="Maximum time spent infected with obvious symptoms. 1 or greater." defaultValue="168"/>
   <attributes label="Movement Probability" ID="movementProbability" pluralLabel="Movement Probabilitys" description="The liklihood that an agent will move within a given period." sType="REAL" defaultValue=".5"/>
   <attributes label="Migration Probability" ID="migrationProbability" pluralLabel="Migration Probabilitys" sType="REAL" defaultValue="0.1"/>
-  <attributes label="Regional Location Count" ID="regionalLocationCount" pluralLabel="Regional Location Counts" description="The number of regional locations to create." sType="INTEGER"/>
-  <attributes label="Initial City Assigned" ID="initialCityAssigned" pluralLabel="Initial City Assigneds" defaultValue="false"/>
+  <attributes label="Regional Location Count" ID="regionalLocationCount" pluralLabel="Regional Location Counts" description="The number of regional locations to create."/>
+  <attributes label="Initial City Assigned" ID="initialCityAssigned" pluralLabel="Initial City Assigneds" sType="BOOLEAN" defaultValue="false"/>
   <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
     <members xsi:type="act:ABuild" label="Build Region" ID="buildRegion" targets="//@rootActivity/@members[ID='buildRegionalMap'] //@rootActivity/@members[ID='createAgents']" selected="//@rootActivity/@members[ID='buildRegion']" agent="/" pluralLabel="Build Regions"/>
     <members xsi:type="act:ABuildGrid" label="Build Regional Map" ID="buildRegionalMap" sources="//@rootActivity/@members[ID='buildRegion']" selected="//@rootActivity/@members[ID='buildRegion']" pluralLabel="Build Regional Maps" agents="//@agents[ID='city']" projection="//@projections[ID='regionalMap']" fillAgent="//@agents[ID='regionalLocation']"/>
@@ -22,9 +22,9 @@
   </rootActivity>
   <implementation package="name.milesparker.epi.region" className="Region" basePath=""/>
   <agents xsi:type="metaabm:SContext" label="City" ID="city" pluralLabel="Citys" description="A simple model of epidemic dynamics. We define individual agents with different disease states. The progression of disease moves from succeptible to exposed to infectious (either symptomatic or asymptomatic) to some outcome state. Agents can transmit infection to their immediate neighbors.&#xA;&#xA;For some background on the general approach, see Joshua M. Epstein. &quot;Generative Social Science&quot;. 2006. Princeton. &#xA;&#xA;Copyright 2009, Miles Parker. Released under Eclipse Public License. All uses should be attributed.">
-    <attributes label="Individual Count" ID="individualCount" pluralLabel="Individual Counts" description="The number of individuals to create." sType="INTEGER" defaultValue="300"/>
-    <attributes label="Periods per Day" ID="periodsperDay" pluralLabel="Periods per Days" sType="INTEGER" defaultValue="24"/>
-    <attributes label="Location Count" ID="locationCount" pluralLabel="Location Counts" description="The number of locations to create." sType="INTEGER"/>
+    <attributes label="Individual Count" ID="individualCount" pluralLabel="Individual Counts" description="The number of individuals to create." defaultValue="300"/>
+    <attributes label="Periods per Day" ID="periodsperDay" pluralLabel="Periods per Days" defaultValue="24"/>
+    <attributes label="Location Count" ID="locationCount" pluralLabel="Location Counts" description="The number of locations to create."/>
     <attributes xsi:type="metaabm:SState" label="Community Infection Status" ID="communityInfectionStatus" pluralLabel="Community Infection Statuss" sType="SYMBOL" defaultValue="No Infections" defaultOption="//@agents[ID='city']/@attributes[ID='communityInfectionStatus']/@options.2">
       <options label="Origin City" ID="originCity" pluralLabel="Origin Citys"/>
       <options label="Infections Observed" ID="infectionsObserved" pluralLabel="Infections Observeds"/>
@@ -83,9 +83,9 @@
         <options label="Recovered" ID="recovered" pluralLabel="Recovereds"/>
         <options label="Dead" ID="dead" pluralLabel="Deads"/>
       </attributes>
-      <attributes label="Exposure End Period" ID="exposureEndPeriod" pluralLabel="Exposure Days" sType="INTEGER" gatherData="true"/>
-      <attributes label="Asymptomatic End Period" ID="asymptomaticEndPeriod" pluralLabel="Asymptomatic End Periods" sType="INTEGER"/>
-      <attributes label="Outcome Period" ID="outcomePeriod" pluralLabel="Outcome Periods" sType="INTEGER"/>
+      <attributes label="Exposure End Period" ID="exposureEndPeriod" pluralLabel="Exposure Days" gatherData="true"/>
+      <attributes label="Asymptomatic End Period" ID="asymptomaticEndPeriod" pluralLabel="Asymptomatic End Periods"/>
+      <attributes label="Outcome Period" ID="outcomePeriod" pluralLabel="Outcome Periods"/>
       <attributes label="Contact Transmission Probability" ID="contactTransmissionProbability" pluralLabel="Contact Transmission Probabilites" sType="REAL" gatherData="true"/>
       <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
         <members xsi:type="act:AInitialize" label="Initialize Location" ID="initializeLocation" targets="//@agents[ID='city']/@agents[ID='individual']/@rootActivity/@members[ID='individual']" selected="//@agents[ID='city']/@agents[ID='individual']/@rootActivity/@members[ID='initializeLocation']" agent="//@agents[ID='city']/@agents[ID='individual']" space="//@agents[ID='city']/@projections[ID='map']" pluralLabel="Initialize Locations"/>
@@ -357,9 +357,9 @@
       <implementation className="Place"/>
     </agents>
     <projections xsi:type="metaabm:SGrid" label="Map" ID="map" pluralLabel="Maps" dimensionality="2" borderRule="STRICT" neighborhood="MOORE">
-      <attributes xsi:type="metaabm:SAttributeArray" label="Dimensions" ID="dimensions" pluralLabel="Dimensionss" description="The size of each dimension." sType="INTEGER" size="2"/>
-      <attributes label="Width" ID="width" pluralLabel="Widths" description="The horizontal extent of the space." sType="INTEGER" defaultValue="20"/>
-      <attributes label="Height" ID="height" pluralLabel="Heights" description="The vertical extent of the space." sType="INTEGER" defaultValue="50"/>
+      <attributes xsi:type="metaabm:SAttributeArray" label="Dimensions" ID="dimensions" pluralLabel="Dimensionss" description="The size of each dimension." size="2"/>
+      <attributes label="Width" ID="width" pluralLabel="Widths" description="The horizontal extent of the space." defaultValue="20"/>
+      <attributes label="Height" ID="height" pluralLabel="Heights" description="The vertical extent of the space." defaultValue="50"/>
     </projections>
   </agents>
   <agents label="Regional Location" ID="regionalLocation" pluralLabel="Regional Locations">
@@ -367,8 +367,8 @@
     <implementation className="RegionalLocation"/>
   </agents>
   <projections xsi:type="metaabm:SGrid" label="Regional Map" ID="regionalMap" pluralLabel="Regional Maps" dimensionality="2" borderRule="PERIODIC" neighborhood="MOORE">
-    <attributes xsi:type="metaabm:SAttributeArray" label="Dimensions" ID="dimensions" pluralLabel="Dimensionss" description="The size of each dimension." sType="INTEGER" size="2"/>
-    <attributes label="Width" ID="width" pluralLabel="Widths" description="The horizontal extent of the space." sType="INTEGER" defaultValue="2"/>
-    <attributes label="Height" ID="height" pluralLabel="Heights" description="The vertical extent of the space." sType="INTEGER" defaultValue="2"/>
+    <attributes xsi:type="metaabm:SAttributeArray" label="Dimensions" ID="dimensions" pluralLabel="Dimensionss" description="The size of each dimension." size="2"/>
+    <attributes label="Width" ID="width" pluralLabel="Widths" description="The horizontal extent of the space." defaultValue="2"/>
+    <attributes label="Height" ID="height" pluralLabel="Heights" description="The vertical extent of the space." defaultValue="2"/>
   </projections>
 </metaabm:SContext>

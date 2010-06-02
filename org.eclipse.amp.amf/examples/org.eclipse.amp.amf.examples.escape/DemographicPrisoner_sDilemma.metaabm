@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/structure" label="Demographic Prisoner_s Dilemma" ID="demographicPrisoner_sDilemma" pluralLabel="Demographic Prisoner_s Dilemmas">
-  <attributes label="Player Count" ID="playerCount" pluralLabel="Player Counts" description="The number of players to create." sType="INTEGER" defaultValue="100"/>
-  <attributes label="Minimum Wealth" ID="minimumWealth" pluralLabel="Minimum Wealths" sType="INTEGER" defaultValue="20"/>
-  <attributes label="Maximum Wealth" ID="maximumWealth" pluralLabel="Maximum Wealths" sType="INTEGER" defaultValue="100"/>
-  <attributes label="Maximum Age" ID="maximumAge" pluralLabel="Maximum Ages" sType="INTEGER" defaultValue="100"/>
-  <attributes label="Payoff Cooperate Cooperate" ID="payoffCC" pluralLabel="Payoff Cooperate Cooperates" description="The change in wealth for a player when playing cooperate against cooperate." sType="INTEGER" defaultValue="2"/>
-  <attributes label="Payoff Cooperate Defect" ID="payoffCD" pluralLabel="Payoff Cooperate Defects" description="The change in wealth for a player when playing cooperate against defect." sType="INTEGER" defaultValue="-6"/>
-  <attributes label="Payoff Defect Cooperate" ID="payoffDC" pluralLabel="Payoff Defect Cooperates" description="The change in wealth for a player when playing defect against cooperate." sType="INTEGER" defaultValue="6"/>
-  <attributes label="Payoff Defect Defect" ID="payoffDD" pluralLabel="Payoff Defect Defects" description="The change in wealth for a player when both players defect." sType="INTEGER" defaultValue="-5"/>
-  <attributes label="Fission Wealth" ID="fissionWealth" pluralLabel="Fission Wealths" description="The wealth level at which an agent can fission." sType="INTEGER" defaultValue="11"/>
-  <attributes label="Inheirited Wealth" ID="inheiritedWealth" pluralLabel="Inheirited Wealths" description="The wealth that is passed from parent to child." sType="INTEGER" defaultValue="6"/>
-  <attributes label="Initial Wealth" ID="initialWealth" pluralLabel="Initial Wealths" description="The wealth initially assigned to an agent at the beginning of model run." sType="INTEGER" defaultValue="6"/>
+  <attributes label="Player Count" ID="playerCount" pluralLabel="Player Counts" description="The number of players to create." defaultValue="100"/>
+  <attributes label="Minimum Wealth" ID="minimumWealth" pluralLabel="Minimum Wealths" defaultValue="20"/>
+  <attributes label="Maximum Wealth" ID="maximumWealth" pluralLabel="Maximum Wealths" defaultValue="100"/>
+  <attributes label="Maximum Age" ID="maximumAge" pluralLabel="Maximum Ages" defaultValue="100"/>
+  <attributes label="Payoff Cooperate Cooperate" ID="payoffCC" pluralLabel="Payoff Cooperate Cooperates" description="The change in wealth for a player when playing cooperate against cooperate." defaultValue="2"/>
+  <attributes label="Payoff Cooperate Defect" ID="payoffCD" pluralLabel="Payoff Cooperate Defects" description="The change in wealth for a player when playing cooperate against defect." defaultValue="-6"/>
+  <attributes label="Payoff Defect Cooperate" ID="payoffDC" pluralLabel="Payoff Defect Cooperates" description="The change in wealth for a player when playing defect against cooperate." defaultValue="6"/>
+  <attributes label="Payoff Defect Defect" ID="payoffDD" pluralLabel="Payoff Defect Defects" description="The change in wealth for a player when both players defect." defaultValue="-5"/>
+  <attributes label="Fission Wealth" ID="fissionWealth" pluralLabel="Fission Wealths" description="The wealth level at which an agent can fission." defaultValue="11"/>
+  <attributes label="Inheirited Wealth" ID="inheiritedWealth" pluralLabel="Inheirited Wealths" description="The wealth that is passed from parent to child." defaultValue="6"/>
+  <attributes label="Initial Wealth" ID="initialWealth" pluralLabel="Initial Wealths" description="The wealth initially assigned to an agent at the beginning of model run." defaultValue="6"/>
   <attributes label="Mutation Rate" ID="mutationRate" pluralLabel="Mutation Rates" description="The probabaility that a given agent will change strategies in a given period, expressed as a value from 0.0 to 1.0." sType="REAL" defaultValue=".1"/>
-  <attributes label="Death Age" ID="deathAge" pluralLabel="Death Ages" description="The number of periods before an agent will be removed from game when Die At Age rule is active." sType="INTEGER" defaultValue="100"/>
-  <attributes label="Birth Age" ID="birthAge" pluralLabel="Birth Ages" description="The actual age in years as determined by data set." sType="INTEGER" units="Years"/>
+  <attributes label="Death Age" ID="deathAge" pluralLabel="Death Ages" description="The number of periods before an agent will be removed from game when Die At Age rule is active." defaultValue="100"/>
+  <attributes label="Birth Age" ID="birthAge" pluralLabel="Birth Ages" description="The actual age in years as determined by data set." units="Years"/>
   <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Acts">
     <members xsi:type="act:ABuild" label="Build Demographic Prisonner's Dillema" ID="buildDemographicPrisonnersDillema" targets="//@rootActivity/@members[ID='createPlayers'] //@rootActivity/@members[ID='buildGrid']" selected="//@rootActivity/@members[ID='buildDemographicPrisonnersDillema']" agent="/" pluralLabel="Build Demographic Prisonner's Dillemas"/>
     <members xsi:type="act:ACreateAgents" label="Create Players" ID="createPlayers" sources="//@rootActivity/@members[ID='buildDemographicPrisonnersDillema']" selected="//@rootActivity/@members[ID='buildDemographicPrisonnersDillema']" agent="//@agents[ID='player']" agentCount="//@attributes[ID='playerCount']"/>
@@ -21,9 +21,9 @@
   </rootActivity>
   <implementation package="edu.brook" className="DemographicPrisonersDilemma" basePath=""/>
   <agents label="Player" ID="player" pluralLabel="Players">
-    <attributes label="Cooperate" ID="cooperate" pluralLabel="Cooperates" gatherData="true"/>
-    <attributes label="Age" ID="age" pluralLabel="Ages" sType="INTEGER" gatherData="true"/>
-    <attributes label="Wealth" ID="wealth" pluralLabel="Wealths" sType="INTEGER" gatherData="true"/>
+    <attributes label="Cooperate" ID="cooperate" pluralLabel="Cooperates" sType="BOOLEAN" gatherData="true"/>
+    <attributes label="Age" ID="age" pluralLabel="Ages" gatherData="true"/>
+    <attributes label="Wealth" ID="wealth" pluralLabel="Wealths" gatherData="true"/>
     <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Acts">
       <members xsi:type="act:AInitialize" label="Initialize" ID="initialize" targets="//@agents[ID='player']/@rootActivity/@members[ID='randomToMaxAge'] //@agents[ID='player']/@rootActivity/@members[ID='randomStrategy'] //@agents[ID='player']/@rootActivity/@members[ID='setWealthToInitialWealth']" selected="//@agents[ID='player']/@rootActivity/@members[ID='initialize']" agent="//@agents[ID='player']" space="//@projections[ID='gameSpace']" pluralLabel="Initializes"/>
       <members xsi:type="act:AInitialize" label="Move To Random Location" ID="moveToRandomLocation" targets="//@agents[ID='player']/@rootActivity/@members[ID='randomCell2']" selected="//@agents[ID='player']/@rootActivity/@members[ID='moveToRandomLocation']" agent="//@agents[ID='player']" space="//@projections[ID='gameSpace']" pluralLabel="Move To Random Locations"/>
@@ -230,8 +230,8 @@
     </styles>
   </agents>
   <projections xsi:type="metaabm:SGrid" label="Game Space" ID="gameSpace" pluralLabel="Game Spaces" dimensionality="2" borderRule="PERIODIC" neighborhood="VON_NEUMANN">
-    <attributes xsi:type="metaabm:SAttributeArray" label="Dimensions" ID="dimensions" pluralLabel="Dimensionss" description="The size of each dimension." sType="INTEGER" size="2"/>
-    <attributes label="Width" ID="width" pluralLabel="Widths" description="The horizontal extent of the space." sType="INTEGER" defaultValue="20"/>
-    <attributes label="Height" ID="height" pluralLabel="Heights" description="The vertical extent of the space." sType="INTEGER" defaultValue="20"/>
+    <attributes xsi:type="metaabm:SAttributeArray" label="Dimensions" ID="dimensions" pluralLabel="Dimensionss" description="The size of each dimension." size="2"/>
+    <attributes label="Width" ID="width" pluralLabel="Widths" description="The horizontal extent of the space." defaultValue="20"/>
+    <attributes label="Height" ID="height" pluralLabel="Heights" description="The vertical extent of the space." defaultValue="20"/>
   </projections>
 </metaabm:SContext>
