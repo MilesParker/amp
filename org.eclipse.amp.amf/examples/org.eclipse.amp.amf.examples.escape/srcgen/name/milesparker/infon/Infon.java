@@ -82,7 +82,7 @@ public class Infon extends CellOccupant {
 	public void intializeNonFramework() {
 
 		Object infon = (Object) getInfonModel().getSpace2D().getSpace()
-				.findRandomCoordinate();
+				.findRandom();
 		if (infon != null) {
 
 			moveTo(((Coordinate) infon));
@@ -106,8 +106,7 @@ public class Infon extends CellOccupant {
 		};
 
 		Infon infonCopy = (Infon) getInfonModel().getSpace2D().getSpace()
-				.findNearestCoordinate(this, infonCopyCondition, false,
-						Double.MAX_VALUE);
+				.findNearest(this, infonCopyCondition, false, Double.MAX_VALUE);
 		if (infonCopy != null) {
 
 			moveTo(((org.ascape.model.CellOccupant) infonCopy).getHostCell());
