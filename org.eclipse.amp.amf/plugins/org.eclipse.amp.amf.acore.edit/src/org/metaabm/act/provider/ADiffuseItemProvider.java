@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+
 import org.metaabm.IID;
 import org.metaabm.SAttribute;
 import org.metaabm.SAttributeType;
@@ -73,7 +74,7 @@ public class ADiffuseItemProvider extends ASelectItemProvider implements
 			Collection<SAttribute> applicable) {
 		for (SAttribute attr : potential) {
 			if (!attr.isImmutable()
-					&& SAttributeType.REAL_ACCEPTS.contains(attr.getSType())) {
+					&& SAttributeType.NUMERIC_ACCEPTS.contains(attr.getSType())) {
 				applicable.add(attr);
 			}
 		}
