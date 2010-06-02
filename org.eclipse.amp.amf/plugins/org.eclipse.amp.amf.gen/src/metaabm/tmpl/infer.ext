@@ -87,18 +87,36 @@ cached Boolean firstSelection(ASelect sel) :
 cached String accessPathInner(IID value, SImplemented owner, Boolean inner) :
 	inner ? "((" + owner.implementation.className + ")" + owner.innerValue().id() + ")." : "";
 
+cached Boolean ancestor(Void parent, SAgent child) : 
+	false;
+
+cached Boolean ancestor(SAgent parent, SAgent child) : 
+	false;
+
+cached Boolean ancestor(SContext parent, SAgent child) : 
+	parent != null && child.owner != null  && parent != child && parent == child.owner || ancestor(parent, child.owner);
+	
 cached String accessPath(SAgent from, SAgent to) : 
-	from != to && to.parent != null ? to.parent.getterName() + "()." + accessPath(from, to.parent()): "";
+	from != to && to.parent != null && ancestor(from, to) 
+		? to.parent.getterName() + "()." + accessPath(from, to.parent())
+		: "";
 
 cached String accessPathContext(AAct act, IID value, Boolean inner) :
-	act.selector().selected.firstSelection() || act.selector().firstSelection() ? accessPath(value.destAgent(), act.reference) : act.selector().selected.selid().pre();
+	act.selector().selected.firstSelection() || act.selector().firstSelection() 
+		? accessPath(value.destAgent(), act.reference) 
+		: act.selector().selected.selid().pre();
 
 //needs lot's of refactoring..too many special cases
 cached String accessPathContext(AAct act, SProjection value, Boolean inner) :
-	act.selector().selected.firstSelection() ? accessPath(value.owner, act.selector().reference) : act.selector().selected.selid().pre() + (act.selector().selected.agent != value.owner ? accessPath(value.owner, act.selector().agent) : "");		
+	act.selector().selected.firstSelection()
+		? accessPath(value.owner, act.selector().reference) 
+		: act.selector().selected.selid().pre() + 
+			(act.selector().selected.agent != value.owner 
+			? accessPath(value.owner, act.selector().agent) 
+			: "");		
 	
 cached String accessPathSelected(AAct act, EObject value, Boolean inner) :
-	(SAttribute.isInstance(value.valueSource()) && ((!inner && (value.dest() != null && value.dest().agent != null && !value.dest().firstSelection())) || (inner && value.dest() != act))
+	((SAttribute.isInstance(value.valueSource()))  && ((!inner && (value.dest() != null && value.dest().agent != null && !value.dest().firstSelection())) || (inner && value.dest() != act))
 	   ? value.dest().id()
 	   : "");
         
@@ -331,7 +349,7 @@ cached List[AControl] controlCompound(AAct act) :
 //Set of source controls wth no further source controls
 cached Boolean controlTerminal(AAct act) :
     act.targets.intersect(act.controlCompound()).isEmpty;
-
+    
 cached Boolean hasControl(AAct act, String id) :
     act.controlCompound().queries().exists(e | e.function.id() == id);
 

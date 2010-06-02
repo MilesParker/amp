@@ -247,7 +247,7 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 		«LET ((AMultiValue) inputs.get(0).value) AS multi0-»
 		«FOREACH inputs.withoutFirst() AS input-»
 		«IF multi0.values.isEmpty-»
-		double «input.value.id()» = «input.getterName()»();
+		double «input.value.id()» = «input.paramBase()»();
 		«ELSE-»
 		double «input.value.id()» = 0.0;
 		«EXPAND MultiBlock((List[SState]) multi0.values, {}) FOR input-»
