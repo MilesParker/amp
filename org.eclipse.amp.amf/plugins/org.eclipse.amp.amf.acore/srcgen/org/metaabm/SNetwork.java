@@ -49,7 +49,8 @@ public interface SNetwork extends SProjection {
 	 * <em>Directed</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param value the new value of the '<em>Directed</em>' attribute.
+	 * @param value
+	 *            the new value of the '<em>Directed</em>' attribute.
 	 * @see #isDirected()
 	 * @generated
 	 */

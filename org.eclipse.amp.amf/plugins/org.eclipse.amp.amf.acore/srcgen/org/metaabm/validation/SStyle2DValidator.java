@@ -24,6 +24,6 @@ package org.metaabm.validation;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface SStyle2DValidator {
-    boolean validate();
+	boolean validate();
 
 }

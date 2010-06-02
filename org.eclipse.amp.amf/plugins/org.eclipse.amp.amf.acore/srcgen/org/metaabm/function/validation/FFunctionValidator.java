@@ -28,10 +28,10 @@ import org.metaabm.function.FArgumentPrototype;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface FFunctionValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateAvailableTypes(EList<SAttributeType> value);
+	boolean validateAvailableTypes(EList<SAttributeType> value);
 
-    boolean validateInputPrototypes(EList<FArgumentPrototype> value);
+	boolean validateInputPrototypes(EList<FArgumentPrototype> value);
 
 }

@@ -1057,11 +1057,9 @@ public interface MetaABMFunctionPackage extends EPackage {
 	int FMULTI_ARGUMENT_PROTOTYPE_FEATURE_COUNT = FARGUMENT_PROTOTYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * Returns the meta object for class '
-	 * {@link org.metaabm.function.FArgumentPrototype
-	 * <em>FArgument Prototype</em>}'. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
+	 * Returns the meta object for class '{@link org.metaabm.function.FArgumentPrototype <em>FArgument Prototype</em>}'.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @return the meta object for class '<em>FArgument Prototype</em>'.
 	 * @see org.metaabm.function.FArgumentPrototype
 	 * @generated

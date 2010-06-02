@@ -72,7 +72,8 @@ public interface ASink extends AAct, IValue {
 	 * <em>Function</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param value the new value of the '<em>Function</em>' reference.
+	 * @param value
+	 *            the new value of the '<em>Function</em>' reference.
 	 * @see #getFunction()
 	 * @generated
 	 */

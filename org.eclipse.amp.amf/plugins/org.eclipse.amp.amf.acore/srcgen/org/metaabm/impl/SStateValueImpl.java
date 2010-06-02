@@ -111,7 +111,8 @@ public class SStateValueImpl extends SNamedImpl implements SStateValue {
 		return false;
 	}
 
-	// public void agentAccessors(SAgent parent, Collection<EObject> searchObjects) {
+	// public void agentAccessors(SAgent parent, Collection<EObject>
+	// searchObjects) {
 	// if (parent != null && parent.getRootActivity() != null) {
 	// // searchObjects.add(parent.getRootActivity());
 	// for (Object object : parent.getRootActivity().eContents()) {
@@ -142,10 +143,14 @@ public class SStateValueImpl extends SNamedImpl implements SStateValue {
 	 * @generated NOT
 	 */
 	public EList<SAttributeType> getAvailableTypes() {
-		// TODO: implement this method to return the 'Available Types' attribute list
+		// TODO: implement this method to return the 'Available Types' attribute
+		// list
 		// Ensure that you remove @generated or mark it @generated NOT
-		// The list is expected to implement org.eclipse.emf.ecore.util.InternalEList and org.eclipse.emf.ecore.EStructuralFeature.Setting
-		// so it's likely that an appropriate subclass of org.eclipse.emf.ecore.util.EcoreEList should be used.
+		// The list is expected to implement
+		// org.eclipse.emf.ecore.util.InternalEList and
+		// org.eclipse.emf.ecore.EStructuralFeature.Setting
+		// so it's likely that an appropriate subclass of
+		// org.eclipse.emf.ecore.util.EcoreEList should be used.
 		return SAttributeType.EMPTY_TYPES;
 	}
 

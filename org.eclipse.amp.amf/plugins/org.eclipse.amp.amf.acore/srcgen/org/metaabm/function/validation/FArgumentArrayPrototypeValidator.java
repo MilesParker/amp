@@ -25,6 +25,6 @@ package org.metaabm.function.validation;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface FArgumentArrayPrototypeValidator {
-    boolean validate();
+	boolean validate();
 
 }

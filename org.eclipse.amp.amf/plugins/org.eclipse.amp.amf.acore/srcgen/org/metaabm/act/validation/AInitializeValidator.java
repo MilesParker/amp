@@ -24,6 +24,6 @@ package org.metaabm.act.validation;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface AInitializeValidator {
-    boolean validate();
+	boolean validate();
 
 }

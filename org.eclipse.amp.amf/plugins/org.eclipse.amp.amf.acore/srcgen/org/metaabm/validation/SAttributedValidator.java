@@ -27,7 +27,7 @@ import org.metaabm.SAttribute;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface SAttributedValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateAttributes(EList<SAttribute> value);
+	boolean validateAttributes(EList<SAttribute> value);
 }

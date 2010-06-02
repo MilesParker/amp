@@ -468,8 +468,7 @@ public class MetaABMActFactoryImpl extends EFactoryImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ACause createACause() {
@@ -478,8 +477,7 @@ public class MetaABMActFactoryImpl extends EFactoryImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ADiffuse createADiffuse() {
@@ -488,8 +486,7 @@ public class MetaABMActFactoryImpl extends EFactoryImpl implements
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public APerform createAPerform() {

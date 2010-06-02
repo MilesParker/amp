@@ -26,7 +26,7 @@ import org.metaabm.SAttributeType;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface ITypedValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateSType(SAttributeType value);
+	boolean validateSType(SAttributeType value);
 }

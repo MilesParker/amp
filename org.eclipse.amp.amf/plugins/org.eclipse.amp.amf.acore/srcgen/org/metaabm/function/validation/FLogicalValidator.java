@@ -24,6 +24,6 @@ package org.metaabm.function.validation;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface FLogicalValidator {
-    boolean validate();
+	boolean validate();
 
 }

@@ -26,7 +26,7 @@ import org.metaabm.IValue;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface ASetValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateParameter(IValue value);
+	boolean validateParameter(IValue value);
 }

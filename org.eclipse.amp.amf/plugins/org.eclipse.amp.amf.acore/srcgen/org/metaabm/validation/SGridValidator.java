@@ -26,9 +26,9 @@ import org.metaabm.SNeighborhoodType;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface SGridValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateMultiOccupant(boolean value);
+	boolean validateMultiOccupant(boolean value);
 
-    boolean validateNeighborhood(SNeighborhoodType value);
+	boolean validateNeighborhood(SNeighborhoodType value);
 }

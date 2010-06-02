@@ -27,9 +27,9 @@ import org.metaabm.SImplemented;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface SImplementedValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateImplementation(SImplementation value);
+	boolean validateImplementation(SImplementation value);
 
-    boolean validateParent(SImplemented value);
+	boolean validateParent(SImplemented value);
 }

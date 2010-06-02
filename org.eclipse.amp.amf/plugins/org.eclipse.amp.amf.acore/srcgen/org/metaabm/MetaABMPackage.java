@@ -2722,7 +2722,7 @@ public interface MetaABMPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference list '
-	 * {@link org.metaabm.SAgent#getStyles <em>Styles</em>}'. <!--
+	 * {@link org.metaabm.SAgent#getStyles <em>Styles</em>} '. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the containment reference list '

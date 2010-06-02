@@ -24,6 +24,6 @@ package org.metaabm.validation;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface SValueLayerValidator {
-    boolean validate();
+	boolean validate();
 
 }

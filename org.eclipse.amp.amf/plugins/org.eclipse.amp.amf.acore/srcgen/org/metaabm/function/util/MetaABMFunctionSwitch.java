@@ -457,7 +457,8 @@ public class MetaABMFunctionSwitch<T> {
 	 * returning a non-null result will terminate the switch. <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param object the target of the switch.
+	 * @param object
+	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '
 	 *         <em>IID</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)

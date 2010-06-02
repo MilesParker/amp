@@ -29,11 +29,11 @@ import org.metaabm.SProjection;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface ABuildProjectionValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateAgents(EList<SAgent> value);
+	boolean validateAgents(EList<SAgent> value);
 
-    boolean validateProjection(SProjection value);
+	boolean validateProjection(SProjection value);
 
-    boolean validateAttributes(EList<SAttribute> value);
+	boolean validateAttributes(EList<SAttribute> value);
 }

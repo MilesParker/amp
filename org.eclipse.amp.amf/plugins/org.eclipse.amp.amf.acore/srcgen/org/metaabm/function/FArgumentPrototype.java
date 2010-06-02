@@ -114,7 +114,8 @@ public interface FArgumentPrototype extends ITyped, SNamed {
 	 * <em>Optional</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param value the new value of the '<em>Optional</em>' attribute.
+	 * @param value
+	 *            the new value of the '<em>Optional</em>' attribute.
 	 * @see #isOptional()
 	 * @generated
 	 */

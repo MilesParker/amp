@@ -24,7 +24,7 @@ package org.metaabm.validation;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface SNetworkValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateDirected(boolean value);
+	boolean validateDirected(boolean value);
 }

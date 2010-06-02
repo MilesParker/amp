@@ -52,7 +52,8 @@ public interface AAccessor extends AAct {
 	 * <em>Attribute</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param value the new value of the '<em>Attribute</em>' reference.
+	 * @param value
+	 *            the new value of the '<em>Attribute</em>' reference.
 	 * @see #getAttribute()
 	 * @generated
 	 */

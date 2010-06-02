@@ -34,40 +34,41 @@ import org.metaabm.function.FLogical;
  * @generated
  */
 public interface ATest extends AAct, ASink {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    String copyright = "";
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	String copyright = "";
 
-    /**
-     * Returns the value of the '<em><b>Condition</b></em>' containment
-     * reference. <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Condition</em>' containment reference isn't
-     * clear, there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * 
-     * @return the value of the '<em>Condition</em>' containment reference.
-     * @see #setCondition(FLogical)
-     * @see org.metaabm.act.MetaABMActPackage#getATest_Condition()
-     * @model containment="true" required="true"
-     * @generated
-     */
-    FLogical getFunction();
+	/**
+	 * Returns the value of the '<em><b>Condition</b></em>' containment
+	 * reference. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Condition</em>' containment reference isn't
+	 * clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Condition</em>' containment reference.
+	 * @see #setCondition(FLogical)
+	 * @see org.metaabm.act.MetaABMActPackage#getATest_Condition()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	FLogical getFunction();
 
-    /**
-     * Sets the value of the '{@link org.metaabm.act.ATest#getFunction
-     * <em>Condition</em>}' containment reference. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * 
-     * @param value the new value of the '<em>Condition</em>' containment
-     *            reference.
-     * @see #getFunction()
-     * @generated
-     */
-    void setCondition(FLogical value);
+	/**
+	 * Sets the value of the '{@link org.metaabm.act.ATest#getFunction
+	 * <em>Condition</em>}' containment reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Condition</em>' containment
+	 *            reference.
+	 * @see #getFunction()
+	 * @generated
+	 */
+	void setCondition(FLogical value);
 
 } // ATest

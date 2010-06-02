@@ -24,7 +24,7 @@ package org.metaabm.validation;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface ITypedArrayValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateSize(int value);
+	boolean validateSize(int value);
 }

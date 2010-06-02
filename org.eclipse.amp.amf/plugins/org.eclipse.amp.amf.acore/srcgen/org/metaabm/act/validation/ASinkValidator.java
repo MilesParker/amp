@@ -28,9 +28,9 @@ import org.metaabm.function.FFunction;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface ASinkValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateInputs(EList<AInput> value);
+	boolean validateInputs(EList<AInput> value);
 
-    boolean validateFunction(FFunction value);
+	boolean validateFunction(FFunction value);
 }

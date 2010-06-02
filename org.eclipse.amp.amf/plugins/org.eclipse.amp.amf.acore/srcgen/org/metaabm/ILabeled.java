@@ -34,28 +34,28 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface ILabeled extends EObject {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    String copyright = "";
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	String copyright = "";
 
-    /**
-     * Returns the value of the '<em><b>Label</b></em>' attribute. The default
-     * value is <code>""</code>. <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Label</em>' attribute isn't clear, there
-     * really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * 
-     * @return the value of the '<em>Label</em>' attribute.
-     * @see org.metaabmPackage#getILabeled_Label()
-     * @model default="" unique="false" transient="true" changeable="false"
-     *        volatile="true" derived="true"
-     * @generated
-     */
-    String getLabel();
+	/**
+	 * Returns the value of the '<em><b>Label</b></em>' attribute. The default
+	 * value is <code>""</code>. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Label</em>' attribute isn't clear, there
+	 * really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Label</em>' attribute.
+	 * @see org.metaabmPackage#getILabeled_Label()
+	 * @model default="" unique="false" transient="true" changeable="false"
+	 *        volatile="true" derived="true"
+	 * @generated
+	 */
+	String getLabel();
 
 } // ILabeled

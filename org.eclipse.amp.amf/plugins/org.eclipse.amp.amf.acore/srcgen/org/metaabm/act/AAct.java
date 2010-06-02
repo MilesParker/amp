@@ -149,7 +149,8 @@ public interface AAct extends IID, IAct {
 	 * <em>Selected</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param value the new value of the '<em>Selected</em>' reference.
+	 * @param value
+	 *            the new value of the '<em>Selected</em>' reference.
 	 * @see #getSelected()
 	 * @generated
 	 */

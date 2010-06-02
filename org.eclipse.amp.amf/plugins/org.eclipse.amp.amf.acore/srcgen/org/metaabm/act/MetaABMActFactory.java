@@ -271,8 +271,8 @@ public interface MetaABMActFactory extends EFactory {
 
 	/**
 	 * Returns a new object of class '<em>ADiffuse</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>ADiffuse</em>'.
 	 * @generated
 	 */
@@ -280,8 +280,8 @@ public interface MetaABMActFactory extends EFactory {
 
 	/**
 	 * Returns a new object of class '<em>APerform</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @return a new object of class '<em>APerform</em>'.
 	 * @generated
 	 */

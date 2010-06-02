@@ -26,7 +26,7 @@ import org.metaabm.IAct;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface SActableValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateRootActivity(IAct value);
+	boolean validateRootActivity(IAct value);
 }

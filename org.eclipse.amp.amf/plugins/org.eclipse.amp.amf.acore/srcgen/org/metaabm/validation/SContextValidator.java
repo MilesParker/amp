@@ -31,17 +31,17 @@ import org.metaabm.SValueLayer;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface SContextValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateAgents(EList<SAgent> value);
+	boolean validateAgents(EList<SAgent> value);
 
-    boolean validateProjections(EList<SProjection> value);
+	boolean validateProjections(EList<SProjection> value);
 
-    boolean validateValueLayers(EList<SValueLayer> value);
+	boolean validateValueLayers(EList<SValueLayer> value);
 
-    boolean validateLibrary(EList<IArtifact> value);
+	boolean validateLibrary(EList<IArtifact> value);
 
-    boolean validateAllAgents(EList<SAgent> value);
+	boolean validateAllAgents(EList<SAgent> value);
 
-    boolean validateAllContexts(EList<SContext> value);
+	boolean validateAllContexts(EList<SContext> value);
 }

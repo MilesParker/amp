@@ -17,5 +17,5 @@ package org.metaabm.util;
 import org.metaabm.SImplementation;
 
 public interface Derivable {
-    String baseValue(SImplementation object);
+	String baseValue(SImplementation object);
 }

@@ -26,7 +26,7 @@ import org.metaabm.IValue;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface ACreateAgentsValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateAgentCount(IValue value);
+	boolean validateAgentCount(IValue value);
 }

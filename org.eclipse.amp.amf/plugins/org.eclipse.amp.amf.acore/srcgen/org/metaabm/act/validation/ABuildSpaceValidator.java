@@ -26,7 +26,7 @@ import org.metaabm.act.ABuildSpaceTypes;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface ABuildSpaceValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateSpaceType(ABuildSpaceTypes value);
+	boolean validateSpaceType(ABuildSpaceTypes value);
 }

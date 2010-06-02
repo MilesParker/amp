@@ -25,11 +25,11 @@ package org.metaabm.function;
  * @generated
  */
 public interface FLiteral extends FFunction {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    String copyright = "";
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	String copyright = "";
 
 } // FLiteral

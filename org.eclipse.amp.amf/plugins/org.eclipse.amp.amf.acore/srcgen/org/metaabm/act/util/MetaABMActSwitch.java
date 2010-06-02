@@ -912,7 +912,8 @@ public class MetaABMActSwitch<T> {
 	 * returning a non-null result will terminate the switch. <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param object the target of the switch.
+	 * @param object
+	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '
 	 *         <em>AAct</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -1068,7 +1069,8 @@ public class MetaABMActSwitch<T> {
 	 * returning a non-null result will terminate the switch. <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param object the target of the switch.
+	 * @param object
+	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '
 	 *         <em>AAny</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -1084,7 +1086,8 @@ public class MetaABMActSwitch<T> {
 	 * returning a non-null result will terminate the switch. <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param object the target of the switch.
+	 * @param object
+	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '
 	 *         <em>AAll</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -1170,7 +1173,8 @@ public class MetaABMActSwitch<T> {
 	 * returning a non-null result will terminate the switch. <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param object the target of the switch.
+	 * @param object
+	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '
 	 *         <em>ASet</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -1326,7 +1330,8 @@ public class MetaABMActSwitch<T> {
 	 * returning a non-null result will terminate the switch. <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param object the target of the switch.
+	 * @param object
+	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '
 	 *         <em>ADie</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -1408,10 +1413,9 @@ public class MetaABMActSwitch<T> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>ACause</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> This implementation returns
+	 * null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>ACause</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -1423,10 +1427,9 @@ public class MetaABMActSwitch<T> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>ADiffuse</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> This implementation returns
+	 * null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>ADiffuse</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -1438,10 +1441,9 @@ public class MetaABMActSwitch<T> {
 
 	/**
 	 * Returns the result of interpreting the object as an instance of '<em>APerform</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> This implementation returns
+	 * null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>APerform</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -1513,7 +1515,8 @@ public class MetaABMActSwitch<T> {
 	 * returning a non-null result will terminate the switch. <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param object the target of the switch.
+	 * @param object
+	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '
 	 *         <em>IID</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
@@ -1543,7 +1546,8 @@ public class MetaABMActSwitch<T> {
 	 * returning a non-null result will terminate the switch. <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param object the target of the switch.
+	 * @param object
+	 *            the target of the switch.
 	 * @return the result of interpreting the object as an instance of '
 	 *         <em>IAct</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)

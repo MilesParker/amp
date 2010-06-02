@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.metaabm.IValue;
 import org.metaabm.SAgent;
 import org.metaabm.act.AAct;
@@ -239,7 +240,8 @@ public abstract class AActImpl extends IIDImpl implements AAct {
 				((AActImpl) source).computeAllSources(priorSources);
 				priorSources.add(source);
 			} else {
-				// this is actually invalid case, but we want to provide a list including self so that tools can
+				// this is actually invalid case, but we want to provide a list
+				// including self so that tools can
 				// evaluate it
 			}
 		}
@@ -264,7 +266,8 @@ public abstract class AActImpl extends IIDImpl implements AAct {
 			if (target != this) {
 				allTargets.addAll(((AActImpl) target).computeAllTargets());
 			} else {
-				// this is actually invalid case, but we want to provide a list including self so that tools can
+				// this is actually invalid case, but we want to provide a list
+				// including self so that tools can
 				// evaluate it
 				allTargets.add(this);
 			}
@@ -486,9 +489,10 @@ public abstract class AActImpl extends IIDImpl implements AAct {
 	}
 
 	public boolean isReachable(IValue value) {
-		return isTargetOf(value) || getSelected() != null
+		boolean b = isTargetOf(value) || getSelected() != null
 				&& getSelected() != this && getSelected().isReachable(value)
 				|| value != null && value.eResource() != this.eResource();
+		return b;
 	}
 
 	public boolean references(IValue value) {

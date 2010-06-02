@@ -33,35 +33,36 @@ package org.metaabm;
  * @generated
  */
 public interface IAttributeClient extends IID {
-    /**
-     * Returns the value of the '<em><b>Attribute</b></em>' reference. It is
-     * bidirectional and its opposite is '
-     * {@link org.metaabm.SAttribute#getAccessors <em>Accessors</em>}'. <!--
-     * begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Attribute</em>' reference isn't clear, there
-     * really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * 
-     * @return the value of the '<em>Attribute</em>' reference.
-     * @see #setAttribute(SAttribute)
-     * @see org.metaabmPackage#getIAttributeClient_Attribute()
-     * @see org.metaabm.SAttribute#getAccessors
-     * @model opposite="accessors" required="true" ordered="false"
-     * @generated
-     */
-    SAttribute getAttribute();
+	/**
+	 * Returns the value of the '<em><b>Attribute</b></em>' reference. It is
+	 * bidirectional and its opposite is '
+	 * {@link org.metaabm.SAttribute#getAccessors <em>Accessors</em>}'. <!--
+	 * begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Attribute</em>' reference isn't clear, there
+	 * really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Attribute</em>' reference.
+	 * @see #setAttribute(SAttribute)
+	 * @see org.metaabmPackage#getIAttributeClient_Attribute()
+	 * @see org.metaabm.SAttribute#getAccessors
+	 * @model opposite="accessors" required="true" ordered="false"
+	 * @generated
+	 */
+	SAttribute getAttribute();
 
-    /**
-     * Sets the value of the '{@link org.metaabm.IAttributeClient#getAttribute
-     * <em>Attribute</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
-     * 
-     * @param value the new value of the '<em>Attribute</em>' reference.
-     * @see #getAttribute()
-     * @generated
-     */
-    void setAttribute(SAttribute value);
+	/**
+	 * Sets the value of the '{@link org.metaabm.IAttributeClient#getAttribute
+	 * <em>Attribute</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Attribute</em>' reference.
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	void setAttribute(SAttribute value);
 
 } // IAttributeClient

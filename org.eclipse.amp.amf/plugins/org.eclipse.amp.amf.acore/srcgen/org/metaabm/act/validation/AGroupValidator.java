@@ -27,9 +27,9 @@ import org.metaabm.act.AAct;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface AGroupValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateRoots(EList<AAct> value);
+	boolean validateRoots(EList<AAct> value);
 
-    boolean validateMembers(EList<AAct> value);
+	boolean validateMembers(EList<AAct> value);
 }

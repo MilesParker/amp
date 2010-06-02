@@ -27,7 +27,7 @@ import org.metaabm.SAttributeType;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface FGenericValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateInputTypes(EList<SAttributeType> value);
+	boolean validateInputTypes(EList<SAttributeType> value);
 }

@@ -27,13 +27,13 @@ import org.metaabm.SStateValue;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface SStateValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateOptions(EList<SStateValue> value);
+	boolean validateOptions(EList<SStateValue> value);
 
-    boolean validateDefaultOption(SStateValue value);
+	boolean validateDefaultOption(SStateValue value);
 
-    boolean validateChoices(EList<SStateValue> value);
+	boolean validateChoices(EList<SStateValue> value);
 
-    boolean validateDefault(SStateValue value);
+	boolean validateDefault(SStateValue value);
 }

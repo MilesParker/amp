@@ -28,11 +28,11 @@ import org.metaabm.function.FGenericFunction;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface FArgumentPrototypeValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateInputFunction(FFunction value);
+	boolean validateInputFunction(FFunction value);
 
-    boolean validateOutputFunction(FGenericFunction value);
+	boolean validateOutputFunction(FGenericFunction value);
 
-    boolean validateOptional(boolean value);
+	boolean validateOptional(boolean value);
 }

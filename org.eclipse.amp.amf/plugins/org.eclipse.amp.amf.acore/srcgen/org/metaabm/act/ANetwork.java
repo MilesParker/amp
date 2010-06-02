@@ -50,7 +50,8 @@ public interface ANetwork extends ATransform {
 	 * <em>Within</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param value the new value of the '<em>Within</em>' reference.
+	 * @param value
+	 *            the new value of the '<em>Within</em>' reference.
 	 * @see #getWithin()
 	 * @generated
 	 */

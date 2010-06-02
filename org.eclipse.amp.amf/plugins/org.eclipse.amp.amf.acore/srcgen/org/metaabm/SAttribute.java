@@ -163,7 +163,8 @@ public interface SAttribute extends SNamed, IValue, ITyped {
 	 * <em>Immutable</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param value the new value of the '<em>Immutable</em>' attribute.
+	 * @param value
+	 *            the new value of the '<em>Immutable</em>' attribute.
 	 * @see #isImmutable()
 	 * @generated
 	 */

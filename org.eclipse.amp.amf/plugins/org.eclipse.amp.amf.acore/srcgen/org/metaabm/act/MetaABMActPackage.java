@@ -5461,8 +5461,7 @@ public interface MetaABMActPackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link org.metaabm.act.impl.ACauseImpl <em>ACause</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.metaabm.act.impl.ACauseImpl
 	 * @see org.metaabm.act.impl.MetaABMActPackageImpl#getACause()
 	 * @generated
@@ -5470,99 +5469,99 @@ public interface MetaABMActPackage extends EPackage {
 	int ACAUSE = 42;
 
 	/**
-	 * The feature id for the '<em><b>Label</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Label</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACAUSE__LABEL = ACOMMAND__LABEL;
 
 	/**
-	 * The feature id for the '<em><b>ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>ID</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACAUSE__ID = ACOMMAND__ID;
 
 	/**
-	 * The feature id for the '<em><b>Sources</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Sources</b></em>' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACAUSE__SOURCES = ACOMMAND__SOURCES;
 
 	/**
-	 * The feature id for the '<em><b>Targets</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Targets</b></em>' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACAUSE__TARGETS = ACOMMAND__TARGETS;
 
 	/**
-	 * The feature id for the '<em><b>Reference</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Reference</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACAUSE__REFERENCE = ACOMMAND__REFERENCE;
 
 	/**
-	 * The feature id for the '<em><b>Group</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Group</b></em>' container reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACAUSE__GROUP = ACOMMAND__GROUP;
 
 	/**
-	 * The feature id for the '<em><b>Selected</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Selected</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACAUSE__SELECTED = ACOMMAND__SELECTED;
 
 	/**
-	 * The feature id for the '<em><b>All Sources</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>All Sources</b></em>' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACAUSE__ALL_SOURCES = ACOMMAND__ALL_SOURCES;
 
 	/**
-	 * The feature id for the '<em><b>All Targets</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>All Targets</b></em>' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACAUSE__ALL_TARGETS = ACOMMAND__ALL_TARGETS;
 
 	/**
-	 * The feature id for the '<em><b>Root Selected</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Root Selected</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ACAUSE__ROOT_SELECTED = ACOMMAND__ROOT_SELECTED;
 
 	/**
-	 * The number of structural features of the '<em>ACause</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The number of structural features of the '<em>ACause</em>' class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -5570,8 +5569,7 @@ public interface MetaABMActPackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link org.metaabm.act.impl.ADiffuseImpl <em>ADiffuse</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.metaabm.act.impl.ADiffuseImpl
 	 * @see org.metaabm.act.impl.MetaABMActPackageImpl#getADiffuse()
 	 * @generated
@@ -5579,153 +5577,153 @@ public interface MetaABMActPackage extends EPackage {
 	int ADIFFUSE = 43;
 
 	/**
-	 * The feature id for the '<em><b>Label</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Label</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ADIFFUSE__LABEL = AROOT__LABEL;
 
 	/**
-	 * The feature id for the '<em><b>ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>ID</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ADIFFUSE__ID = AROOT__ID;
 
 	/**
-	 * The feature id for the '<em><b>Sources</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Sources</b></em>' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ADIFFUSE__SOURCES = AROOT__SOURCES;
 
 	/**
-	 * The feature id for the '<em><b>Targets</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Targets</b></em>' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ADIFFUSE__TARGETS = AROOT__TARGETS;
 
 	/**
-	 * The feature id for the '<em><b>Reference</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Reference</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ADIFFUSE__REFERENCE = AROOT__REFERENCE;
 
 	/**
-	 * The feature id for the '<em><b>Group</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Group</b></em>' container reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ADIFFUSE__GROUP = AROOT__GROUP;
 
 	/**
-	 * The feature id for the '<em><b>Selected</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Selected</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ADIFFUSE__SELECTED = AROOT__SELECTED;
 
 	/**
-	 * The feature id for the '<em><b>All Sources</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>All Sources</b></em>' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ADIFFUSE__ALL_SOURCES = AROOT__ALL_SOURCES;
 
 	/**
-	 * The feature id for the '<em><b>All Targets</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>All Targets</b></em>' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ADIFFUSE__ALL_TARGETS = AROOT__ALL_TARGETS;
 
 	/**
-	 * The feature id for the '<em><b>Root Selected</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Root Selected</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ADIFFUSE__ROOT_SELECTED = AROOT__ROOT_SELECTED;
 
 	/**
-	 * The feature id for the '<em><b>Agent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Agent</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ADIFFUSE__AGENT = AROOT__AGENT;
 
 	/**
-	 * The feature id for the '<em><b>Space</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Space</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ADIFFUSE__SPACE = AROOT__SPACE;
 
 	/**
-	 * The feature id for the '<em><b>For</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>For</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ADIFFUSE__FOR = AROOT__FOR;
 
 	/**
-	 * The feature id for the '<em><b>Diffused</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Diffused</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ADIFFUSE__DIFFUSED = AROOT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Diffusion Rate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Diffusion Rate</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ADIFFUSE__DIFFUSION_RATE = AROOT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Evaporation Rate</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Evaporation Rate</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ADIFFUSE__EVAPORATION_RATE = AROOT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>ADiffuse</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The number of structural features of the '<em>ADiffuse</em>' class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -5733,8 +5731,7 @@ public interface MetaABMActPackage extends EPackage {
 
 	/**
 	 * The meta object id for the '{@link org.metaabm.act.impl.APerformImpl <em>APerform</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.metaabm.act.impl.APerformImpl
 	 * @see org.metaabm.act.impl.MetaABMActPackageImpl#getAPerform()
 	 * @generated
@@ -5742,126 +5739,126 @@ public interface MetaABMActPackage extends EPackage {
 	int APERFORM = 44;
 
 	/**
-	 * The feature id for the '<em><b>Label</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Label</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int APERFORM__LABEL = AROOT__LABEL;
 
 	/**
-	 * The feature id for the '<em><b>ID</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>ID</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int APERFORM__ID = AROOT__ID;
 
 	/**
-	 * The feature id for the '<em><b>Sources</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Sources</b></em>' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int APERFORM__SOURCES = AROOT__SOURCES;
 
 	/**
-	 * The feature id for the '<em><b>Targets</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Targets</b></em>' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int APERFORM__TARGETS = AROOT__TARGETS;
 
 	/**
-	 * The feature id for the '<em><b>Reference</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Reference</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int APERFORM__REFERENCE = AROOT__REFERENCE;
 
 	/**
-	 * The feature id for the '<em><b>Group</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Group</b></em>' container reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int APERFORM__GROUP = AROOT__GROUP;
 
 	/**
-	 * The feature id for the '<em><b>Selected</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Selected</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int APERFORM__SELECTED = AROOT__SELECTED;
 
 	/**
-	 * The feature id for the '<em><b>All Sources</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>All Sources</b></em>' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int APERFORM__ALL_SOURCES = AROOT__ALL_SOURCES;
 
 	/**
-	 * The feature id for the '<em><b>All Targets</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>All Targets</b></em>' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int APERFORM__ALL_TARGETS = AROOT__ALL_TARGETS;
 
 	/**
-	 * The feature id for the '<em><b>Root Selected</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Root Selected</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int APERFORM__ROOT_SELECTED = AROOT__ROOT_SELECTED;
 
 	/**
-	 * The feature id for the '<em><b>Agent</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Agent</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int APERFORM__AGENT = AROOT__AGENT;
 
 	/**
-	 * The feature id for the '<em><b>Space</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Space</b></em>' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int APERFORM__SPACE = AROOT__SPACE;
 
 	/**
-	 * The feature id for the '<em><b>For</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The feature id for the '<em><b>For</b></em>' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int APERFORM__FOR = AROOT__FOR;
 
 	/**
-	 * The number of structural features of the '<em>APerform</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The number of structural features of the '<em>APerform</em>' class. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -5969,7 +5966,7 @@ public interface MetaABMActPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the reference list '
-	 * {@link org.metaabm.act.AAct#getAllSources <em>All Sources</em>}'. <!--
+	 * {@link org.metaabm.act.AAct#getAllSources <em>All Sources</em>} '. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference list '<em>All Sources</em>'.
@@ -5981,7 +5978,7 @@ public interface MetaABMActPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the reference list '
-	 * {@link org.metaabm.act.AAct#getAllTargets <em>All Targets</em>}'. <!--
+	 * {@link org.metaabm.act.AAct#getAllTargets <em>All Targets</em>} '. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference list '<em>All Targets</em>'.
@@ -6598,8 +6595,7 @@ public interface MetaABMActPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link org.metaabm.act.ACause <em>ACause</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>ACause</em>'.
 	 * @see org.metaabm.act.ACause
 	 * @generated
@@ -6608,8 +6604,7 @@ public interface MetaABMActPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link org.metaabm.act.ADiffuse <em>ADiffuse</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>ADiffuse</em>'.
 	 * @see org.metaabm.act.ADiffuse
 	 * @generated
@@ -6617,9 +6612,10 @@ public interface MetaABMActPackage extends EPackage {
 	EClass getADiffuse();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.metaabm.act.ADiffuse#getDiffused <em>Diffused</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the meta object for the reference '
+	 * {@link org.metaabm.act.ADiffuse#getDiffused <em>Diffused</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @return the meta object for the reference '<em>Diffused</em>'.
 	 * @see org.metaabm.act.ADiffuse#getDiffused()
 	 * @see #getADiffuse()
@@ -6629,8 +6625,7 @@ public interface MetaABMActPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the reference '{@link org.metaabm.act.ADiffuse#getDiffusionRate <em>Diffusion Rate</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Diffusion Rate</em>'.
 	 * @see org.metaabm.act.ADiffuse#getDiffusionRate()
 	 * @see #getADiffuse()
@@ -6639,9 +6634,11 @@ public interface MetaABMActPackage extends EPackage {
 	EReference getADiffuse_DiffusionRate();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.metaabm.act.ADiffuse#getEvaporationRate <em>Evaporation Rate</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Returns the meta object for the reference '
+	 * {@link org.metaabm.act.ADiffuse#getEvaporationRate
+	 * <em>Evaporation Rate</em>}'. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
 	 * @return the meta object for the reference '<em>Evaporation Rate</em>'.
 	 * @see org.metaabm.act.ADiffuse#getEvaporationRate()
 	 * @see #getADiffuse()
@@ -6651,8 +6648,7 @@ public interface MetaABMActPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for class '{@link org.metaabm.act.APerform <em>APerform</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>APerform</em>'.
 	 * @see org.metaabm.act.APerform
 	 * @generated
@@ -7455,9 +7451,10 @@ public interface MetaABMActPackage extends EPackage {
 		EClass ACOMMAND = eINSTANCE.getACommand();
 
 		/**
-		 * The meta object literal for the '{@link org.metaabm.act.impl.ACauseImpl <em>ACause</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * The meta object literal for the '
+		 * {@link org.metaabm.act.impl.ACauseImpl <em>ACause</em>}' class. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @see org.metaabm.act.impl.ACauseImpl
 		 * @see org.metaabm.act.impl.MetaABMActPackageImpl#getACause()
 		 * @generated
@@ -7466,8 +7463,7 @@ public interface MetaABMActPackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '{@link org.metaabm.act.impl.ADiffuseImpl <em>ADiffuse</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.metaabm.act.impl.ADiffuseImpl
 		 * @see org.metaabm.act.impl.MetaABMActPackageImpl#getADiffuse()
 		 * @generated
@@ -7476,16 +7472,14 @@ public interface MetaABMActPackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '<em><b>Diffused</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ADIFFUSE__DIFFUSED = eINSTANCE.getADiffuse_Diffused();
 
 		/**
 		 * The meta object literal for the '<em><b>Diffusion Rate</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ADIFFUSE__DIFFUSION_RATE = eINSTANCE
@@ -7493,8 +7487,7 @@ public interface MetaABMActPackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '<em><b>Evaporation Rate</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ADIFFUSE__EVAPORATION_RATE = eINSTANCE
@@ -7502,8 +7495,7 @@ public interface MetaABMActPackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '{@link org.metaabm.act.impl.APerformImpl <em>APerform</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.metaabm.act.impl.APerformImpl
 		 * @see org.metaabm.act.impl.MetaABMActPackageImpl#getAPerform()
 		 * @generated

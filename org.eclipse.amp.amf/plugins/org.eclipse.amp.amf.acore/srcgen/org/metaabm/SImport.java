@@ -12,7 +12,7 @@
  *   Argonne National Laboratory - Initial development (pre-contribution)
  *   Metascape - Subsequent development and maintenance
  *
- * </copyright> $Id: SImport.java,v 1.1 2009/07/16 19:56:58 mparker Exp $
+ * </copyright> $Id: SImport.java,v 1.2 2010/06/02 01:19:00 mparker Exp $
  */
 package org.metaabm;
 
@@ -26,30 +26,32 @@ package org.metaabm;
  * @generated
  */
 public interface SImport extends IArtifact {
-    /**
-     * Returns the value of the '<em><b>Model</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Model</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Model</em>' attribute.
-     * @see #setModel(String)
-     * @see org.metaabm.MetaABMPackage#getSImport_Model()
-     * @model required="true"
-     * @generated
-     */
-    String getModel();
+	/**
+	 * Returns the value of the '<em><b>Model</b></em>' attribute. <!--
+	 * begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Model</em>' attribute isn't clear, there
+	 * really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Model</em>' attribute.
+	 * @see #setModel(String)
+	 * @see org.metaabm.MetaABMPackage#getSImport_Model()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getModel();
 
-    /**
-     * Sets the value of the '{@link org.metaabm.SImport#getModel <em>Model</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Model</em>' attribute.
-     * @see #getModel()
-     * @generated
-     */
-    void setModel(String value);
+	/**
+	 * Sets the value of the '{@link org.metaabm.SImport#getModel
+	 * <em>Model</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Model</em>' attribute.
+	 * @see #getModel()
+	 * @generated
+	 */
+	void setModel(String value);
 
 } // SImport

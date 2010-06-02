@@ -759,7 +759,7 @@ public class MetaABMActAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '
-	 * {@link org.metaabm.act.ABuildGeography <em>ABuild Geography</em>}'. <!--
+	 * {@link org.metaabm.act.ABuildGeography <em>ABuild Geography</em>} '. <!--
 	 * begin-user-doc --> This default implementation returns null so that we
 	 * can easily ignore cases; it's useful to ignore a case when inheritance
 	 * will catch all the cases anyway. <!-- end-user-doc -->
@@ -932,9 +932,9 @@ public class MetaABMActAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * Creates a new adapter for an object of class '{@link org.metaabm.act.ACause <em>ACause</em>}'.
 	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * This default implementation returns null so that we can easily ignore
+	 * cases; it's useful to ignore a case when inheritance will catch all the
+	 * cases anyway. <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.metaabm.act.ACause
 	 * @generated
@@ -945,10 +945,10 @@ public class MetaABMActAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.metaabm.act.ADiffuse <em>ADiffuse</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> This default implementation returns null so that we can easily ignore
+	 * cases; it's useful to ignore a case when inheritance will catch all the
+	 * cases anyway. <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.metaabm.act.ADiffuse
 	 * @generated
@@ -959,10 +959,10 @@ public class MetaABMActAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.metaabm.act.APerform <em>APerform</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> This default implementation returns null so that we can easily ignore
+	 * cases; it's useful to ignore a case when inheritance will catch all the
+	 * cases anyway. <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see org.metaabm.act.APerform
 	 * @generated

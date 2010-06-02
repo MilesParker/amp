@@ -42,7 +42,7 @@ public interface SContext extends SAgent {
 	 * Returns the value of the '<em><b>Projections</b></em>' containment
 	 * reference list. The list contents are of type
 	 * {@link org.metaabm.SProjection}. It is bidirectional and its opposite is
-	 * '{@link org.metaabm.SProjection#getOwner <em>Owner</em>}'. <!--
+	 * ' {@link org.metaabm.SProjection#getOwner <em>Owner</em>}'. <!--
 	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Projections</em>' containment reference list

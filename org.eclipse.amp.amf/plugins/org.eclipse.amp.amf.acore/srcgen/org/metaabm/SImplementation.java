@@ -67,7 +67,8 @@ public interface SImplementation extends EObject {
 	 * <em>Package</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param value the new value of the '<em>Package</em>' attribute.
+	 * @param value
+	 *            the new value of the '<em>Package</em>' attribute.
 	 * @see #getPackage()
 	 * @generated
 	 */
@@ -124,7 +125,8 @@ public interface SImplementation extends EObject {
 	 * <em>Base Path</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param value the new value of the '<em>Base Path</em>' attribute.
+	 * @param value
+	 *            the new value of the '<em>Base Path</em>' attribute.
 	 * @see #getBasePath()
 	 * @generated
 	 */
@@ -277,7 +279,8 @@ public interface SImplementation extends EObject {
 	 * <em>Src Dir</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param value the new value of the '<em>Src Dir</em>' attribute.
+	 * @param value
+	 *            the new value of the '<em>Src Dir</em>' attribute.
 	 * @see #getSrcDir()
 	 * @generated
 	 */
@@ -305,7 +308,8 @@ public interface SImplementation extends EObject {
 	 * <em>Bin Dir</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param value the new value of the '<em>Bin Dir</em>' attribute.
+	 * @param value
+	 *            the new value of the '<em>Bin Dir</em>' attribute.
 	 * @see #getBinDir()
 	 * @generated
 	 */

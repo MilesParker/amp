@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+
 import org.metaabm.IValue;
 import org.metaabm.SState;
 import org.metaabm.act.AInput;
@@ -420,7 +421,7 @@ public class AInputImpl extends EObjectImpl implements AInput {
 			}
 		}
 		for (IValue candidate : suggestValues) {
-			if (isPotentialValue(candidate)) {
+			if (candidate != null && isPotentialValue(candidate)) {
 				potential.add(candidate);
 			}
 		}

@@ -24,13 +24,13 @@ package org.metaabm.act.validation;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface AScheduleValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateStart(int value);
+	boolean validateStart(int value);
 
-    boolean validateInterval(int value);
+	boolean validateInterval(int value);
 
-    boolean validatePriority(int value);
+	boolean validatePriority(int value);
 
-    boolean validatePick(int value);
+	boolean validatePick(int value);
 }

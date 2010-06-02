@@ -75,7 +75,8 @@ public interface ASchedule extends ARoot, SNamed {
 	 * <em>Interval</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param value the new value of the '<em>Interval</em>' attribute.
+	 * @param value
+	 *            the new value of the '<em>Interval</em>' attribute.
 	 * @see #getInterval()
 	 * @generated
 	 */
@@ -100,7 +101,8 @@ public interface ASchedule extends ARoot, SNamed {
 	 * <em>Priority</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param value the new value of the '<em>Priority</em>' attribute.
+	 * @param value
+	 *            the new value of the '<em>Priority</em>' attribute.
 	 * @see #getPriority()
 	 * @generated
 	 */

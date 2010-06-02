@@ -30,21 +30,21 @@ import org.metaabm.act.ASelect;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface AActValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateSources(EList<AAct> value);
+	boolean validateSources(EList<AAct> value);
 
-    boolean validateTargets(EList<AAct> value);
+	boolean validateTargets(EList<AAct> value);
 
-    boolean validateReference(SAgent value);
+	boolean validateReference(SAgent value);
 
-    boolean validateGroup(AGroup value);
+	boolean validateGroup(AGroup value);
 
-    boolean validateSelected(ASelect value);
+	boolean validateSelected(ASelect value);
 
-    boolean validateAllSources(EList<AAct> value);
+	boolean validateAllSources(EList<AAct> value);
 
-    boolean validateAllTargets(EList<AAct> value);
+	boolean validateAllTargets(EList<AAct> value);
 
-    boolean validateRootSelected(ASelect value);
+	boolean validateRootSelected(ASelect value);
 }

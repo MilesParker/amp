@@ -24,6 +24,6 @@ package org.metaabm.validation;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface SGeographyValidator {
-    boolean validate();
+	boolean validate();
 
 }

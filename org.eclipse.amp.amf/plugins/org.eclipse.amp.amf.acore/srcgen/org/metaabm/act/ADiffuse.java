@@ -9,9 +9,8 @@ package org.metaabm.act;
 import org.metaabm.SAttribute;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>ADiffuse</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '
+ * <em><b>ADiffuse</b></em>'. <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -29,13 +28,14 @@ import org.metaabm.SAttribute;
 public interface ADiffuse extends ARoot {
 
 	/**
-	 * Returns the value of the '<em><b>Diffused</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Diffused</b></em>' reference. <!--
+	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Diffused</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Diffused</em>' reference isn't clear, there
+	 * really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Diffused</em>' reference.
 	 * @see #setDiffused(SAttribute)
 	 * @see org.metaabm.act.MetaABMActPackage#getADiffuse_Diffused()
@@ -45,23 +45,26 @@ public interface ADiffuse extends ARoot {
 	SAttribute getDiffused();
 
 	/**
-	 * Sets the value of the '{@link org.metaabm.act.ADiffuse#getDiffused <em>Diffused</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Diffused</em>' reference.
+	 * Sets the value of the '{@link org.metaabm.act.ADiffuse#getDiffused
+	 * <em>Diffused</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Diffused</em>' reference.
 	 * @see #getDiffused()
 	 * @generated
 	 */
 	void setDiffused(SAttribute value);
 
 	/**
-	 * Returns the value of the '<em><b>Diffusion Rate</b></em>' reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Diffusion Rate</b></em>' reference. <!--
+	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Diffusion Rate</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Diffusion Rate</em>' reference.
 	 * @see #setDiffusionRate(SAttribute)
 	 * @see org.metaabm.act.MetaABMActPackage#getADiffuse_DiffusionRate()
@@ -72,8 +75,8 @@ public interface ADiffuse extends ARoot {
 
 	/**
 	 * Sets the value of the '{@link org.metaabm.act.ADiffuse#getDiffusionRate <em>Diffusion Rate</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @param value the new value of the '<em>Diffusion Rate</em>' reference.
 	 * @see #getDiffusionRate()
 	 * @generated
@@ -98,8 +101,8 @@ public interface ADiffuse extends ARoot {
 
 	/**
 	 * Sets the value of the '{@link org.metaabm.act.ADiffuse#getEvaporationRate <em>Evaporation Rate</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @param value the new value of the '<em>Evaporation Rate</em>' reference.
 	 * @see #getEvaporationRate()
 	 * @generated

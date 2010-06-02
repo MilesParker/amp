@@ -24,7 +24,7 @@ package org.metaabm.act.validation;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface ALiteralValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateValueLiteral(String value);
+	boolean validateValueLiteral(String value);
 }

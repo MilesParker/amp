@@ -37,98 +37,99 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Node extends TID {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    String copyright = "";
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	String copyright = "";
 
-    /**
-     * Returns the value of the '<em><b>Source</b></em>' reference list. The
-     * list contents are of type {@link org.metaabm.Node}. It is bidirectional
-     * and its opposite is '{@link org.metaabm.Node#getTarget <em>Target</em>}'.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Source</em>' reference list isn't clear, there
-     * really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * 
-     * @return the value of the '<em>Source</em>' reference list.
-     * @see org.metaabmPackage#getNode_Source()
-     * @see org.metaabm.Node#getTarget
-     * @model type="org.metaabm.Node" opposite="target"
-     * @generated
-     */
-    EList<Node> getSource();
+	/**
+	 * Returns the value of the '<em><b>Source</b></em>' reference list. The
+	 * list contents are of type {@link org.metaabm.Node}. It is bidirectional
+	 * and its opposite is '{@link org.metaabm.Node#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Source</em>' reference list isn't clear, there
+	 * really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Source</em>' reference list.
+	 * @see org.metaabmPackage#getNode_Source()
+	 * @see org.metaabm.Node#getTarget
+	 * @model type="org.metaabm.Node" opposite="target"
+	 * @generated
+	 */
+	EList<Node> getSource();
 
-    /**
-     * Returns the value of the '<em><b>Target</b></em>' reference list. The
-     * list contents are of type {@link org.metaabm.Node}. It is bidirectional
-     * and its opposite is '{@link org.metaabm.Node#getSource <em>Source</em>}'.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Target</em>' reference list isn't clear, there
-     * really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * 
-     * @return the value of the '<em>Target</em>' reference list.
-     * @see org.metaabmPackage#getNode_Target()
-     * @see org.metaabm.Node#getSource
-     * @model type="org.metaabm.Node" opposite="source"
-     * @generated
-     */
-    EList<Node> getTarget();
+	/**
+	 * Returns the value of the '<em><b>Target</b></em>' reference list. The
+	 * list contents are of type {@link org.metaabm.Node}. It is bidirectional
+	 * and its opposite is '{@link org.metaabm.Node#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Target</em>' reference list isn't clear, there
+	 * really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Target</em>' reference list.
+	 * @see org.metaabmPackage#getNode_Target()
+	 * @see org.metaabm.Node#getSource
+	 * @model type="org.metaabm.Node" opposite="source"
+	 * @generated
+	 */
+	EList<Node> getTarget();
 
-    /**
-     * Returns the value of the '<em><b>Children</b></em>' containment reference
-     * list. The list contents are of type {@link org.metaabm.Node}. It is
-     * bidirectional and its opposite is '{@link org.metaabm.Node#getParent
-     * <em>Parent</em>}'. <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Children</em>' containment reference list
-     * isn't clear, there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * 
-     * @return the value of the '<em>Children</em>' containment reference list.
-     * @see org.metaabmPackage#getNode_Children()
-     * @see org.metaabm.Node#getParent
-     * @model type="org.metaabm.Node" opposite="parent" containment="true"
-     * @generated
-     */
-    EList<Node> getChildren();
+	/**
+	 * Returns the value of the '<em><b>Children</b></em>' containment reference
+	 * list. The list contents are of type {@link org.metaabm.Node}. It is
+	 * bidirectional and its opposite is '{@link org.metaabm.Node#getParent
+	 * <em>Parent</em>}'. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Children</em>' containment reference list
+	 * isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Children</em>' containment reference list.
+	 * @see org.metaabmPackage#getNode_Children()
+	 * @see org.metaabm.Node#getParent
+	 * @model type="org.metaabm.Node" opposite="parent" containment="true"
+	 * @generated
+	 */
+	EList<Node> getChildren();
 
-    /**
-     * Returns the value of the '<em><b>Parent</b></em>' container reference. It
-     * is bidirectional and its opposite is '
-     * {@link org.metaabm.Node#getChildren <em>Children</em>}'. <!--
-     * begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Parent</em>' container reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * 
-     * @return the value of the '<em>Parent</em>' container reference.
-     * @see #setParent(Node)
-     * @see org.metaabmPackage#getNode_Parent()
-     * @see org.metaabm.Node#getChildren
-     * @model opposite="children"
-     * @generated
-     */
-    Node getParent();
+	/**
+	 * Returns the value of the '<em><b>Parent</b></em>' container reference. It
+	 * is bidirectional and its opposite is '
+	 * {@link org.metaabm.Node#getChildren <em>Children</em>}'. <!--
+	 * begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Parent</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Parent</em>' container reference.
+	 * @see #setParent(Node)
+	 * @see org.metaabmPackage#getNode_Parent()
+	 * @see org.metaabm.Node#getChildren
+	 * @model opposite="children"
+	 * @generated
+	 */
+	Node getParent();
 
-    /**
-     * Sets the value of the '{@link org.metaabm.Node#getParent <em>Parent</em>}
-     * ' container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @param value the new value of the '<em>Parent</em>' container reference.
-     * @see #getParent()
-     * @generated
-     */
-    void setParent(Node value);
+	/**
+	 * Sets the value of the '{@link org.metaabm.Node#getParent <em>Parent</em>}
+	 * ' container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Parent</em>' container reference.
+	 * @see #getParent()
+	 * @generated
+	 */
+	void setParent(Node value);
 
 } // Node

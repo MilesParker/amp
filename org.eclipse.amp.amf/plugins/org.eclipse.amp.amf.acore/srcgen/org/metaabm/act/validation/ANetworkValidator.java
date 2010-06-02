@@ -26,7 +26,7 @@ import org.metaabm.SNetwork;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface ANetworkValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateWithin(SNetwork value);
+	boolean validateWithin(SNetwork value);
 }

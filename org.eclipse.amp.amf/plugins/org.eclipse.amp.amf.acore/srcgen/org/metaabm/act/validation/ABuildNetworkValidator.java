@@ -26,7 +26,7 @@ import org.metaabm.act.ABuildNetworkTypes;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface ABuildNetworkValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateNetworkType(ABuildNetworkTypes value);
+	boolean validateNetworkType(ABuildNetworkTypes value);
 }

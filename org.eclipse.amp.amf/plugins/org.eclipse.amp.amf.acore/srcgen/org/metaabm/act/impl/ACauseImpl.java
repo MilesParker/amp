@@ -12,9 +12,8 @@ import org.metaabm.act.ACause;
 import org.metaabm.act.MetaABMActPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>ACause</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>ACause</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  *
@@ -22,8 +21,7 @@ import org.metaabm.act.MetaABMActPackage;
  */
 public class ACauseImpl extends ACommandImpl implements ACause {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ACauseImpl() {
@@ -31,8 +29,7 @@ public class ACauseImpl extends ACommandImpl implements ACause {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -40,4 +37,4 @@ public class ACauseImpl extends ACommandImpl implements ACause {
 		return MetaABMActPackage.Literals.ACAUSE;
 	}
 
-} //ACauseImpl
+} // ACauseImpl

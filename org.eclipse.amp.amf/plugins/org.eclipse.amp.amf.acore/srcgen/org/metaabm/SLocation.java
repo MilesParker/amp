@@ -33,32 +33,33 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface SLocation extends EObject {
-    /**
-     * Returns the value of the '<em><b>Projection</b></em>' reference. <!--
-     * begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Projection</em>' reference isn't clear, there
-     * really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * 
-     * @return the value of the '<em>Projection</em>' reference.
-     * @see #setProjection(SProjection)
-     * @see org.metaabm.MetaABMPackage#getSLocation_Projection()
-     * @model resolveProxies="false"
-     * @generated
-     */
-    SProjection getProjection();
+	/**
+	 * Returns the value of the '<em><b>Projection</b></em>' reference. <!--
+	 * begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Projection</em>' reference isn't clear, there
+	 * really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Projection</em>' reference.
+	 * @see #setProjection(SProjection)
+	 * @see org.metaabm.MetaABMPackage#getSLocation_Projection()
+	 * @model resolveProxies="false"
+	 * @generated
+	 */
+	SProjection getProjection();
 
-    /**
-     * Sets the value of the '{@link org.metaabm.SLocation#getProjection
-     * <em>Projection</em>}' reference. <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * 
-     * @param value the new value of the '<em>Projection</em>' reference.
-     * @see #getProjection()
-     * @generated
-     */
-    void setProjection(SProjection value);
+	/**
+	 * Sets the value of the '{@link org.metaabm.SLocation#getProjection
+	 * <em>Projection</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>Projection</em>' reference.
+	 * @see #getProjection()
+	 * @generated
+	 */
+	void setProjection(SProjection value);
 
 } // SLocation

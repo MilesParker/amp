@@ -28,9 +28,9 @@ import org.metaabm.SAttributeType;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface IValueValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateAccessors(EList<EObject> value);
+	boolean validateAccessors(EList<EObject> value);
 
-    boolean validateAvailableTypes(EList<SAttributeType> value);
+	boolean validateAvailableTypes(EList<SAttributeType> value);
 }

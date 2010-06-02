@@ -34,38 +34,39 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface TID extends EObject {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    String copyright = "";
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	String copyright = "";
 
-    /**
-     * Returns the value of the '<em><b>ID</b></em>' attribute. The default
-     * value is <code>""</code>. <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>ID</em>' attribute isn't clear, there really
-     * should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * 
-     * @return the value of the '<em>ID</em>' attribute.
-     * @see #setID(String)
-     * @see org.metaabmPackage#getTID_ID()
-     * @model default=""
-     * @generated
-     */
-    String getID();
+	/**
+	 * Returns the value of the '<em><b>ID</b></em>' attribute. The default
+	 * value is <code>""</code>. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>ID</em>' attribute isn't clear, there really
+	 * should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>ID</em>' attribute.
+	 * @see #setID(String)
+	 * @see org.metaabmPackage#getTID_ID()
+	 * @model default=""
+	 * @generated
+	 */
+	String getID();
 
-    /**
-     * Sets the value of the '{@link org.metaabm.TID#getID <em>ID</em>}'
-     * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @param value the new value of the '<em>ID</em>' attribute.
-     * @see #getID()
-     * @generated
-     */
-    void setID(String value);
+	/**
+	 * Sets the value of the '{@link org.metaabm.TID#getID <em>ID</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *            the new value of the '<em>ID</em>' attribute.
+	 * @see #getID()
+	 * @generated
+	 */
+	void setID(String value);
 
 } // TID

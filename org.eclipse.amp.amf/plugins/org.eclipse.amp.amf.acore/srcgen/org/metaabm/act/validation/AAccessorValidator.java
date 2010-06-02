@@ -26,7 +26,7 @@ import org.metaabm.SAttribute;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface AAccessorValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateAttribute(SAttribute value);
+	boolean validateAttribute(SAttribute value);
 }

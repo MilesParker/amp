@@ -24,9 +24,9 @@ package org.metaabm.validation;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface IIDValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateLabel(String value);
+	boolean validateLabel(String value);
 
-    boolean validateID(String value);
+	boolean validateID(String value);
 }

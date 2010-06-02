@@ -12,9 +12,8 @@ import org.metaabm.act.APerform;
 import org.metaabm.act.MetaABMActPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>APerform</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>APerform</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  *
@@ -22,8 +21,7 @@ import org.metaabm.act.MetaABMActPackage;
  */
 public class APerformImpl extends ASelectImpl implements APerform {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected APerformImpl() {
@@ -31,8 +29,7 @@ public class APerformImpl extends ASelectImpl implements APerform {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -40,4 +37,4 @@ public class APerformImpl extends ASelectImpl implements APerform {
 		return MetaABMActPackage.Literals.APERFORM;
 	}
 
-} //APerformImpl
+} // APerformImpl

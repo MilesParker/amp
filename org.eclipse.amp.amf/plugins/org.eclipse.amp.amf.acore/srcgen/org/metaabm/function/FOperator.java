@@ -52,7 +52,8 @@ public interface FOperator extends FFunction, SNamed {
 	 * <em>Symbol</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param value the new value of the '<em>Symbol</em>' attribute.
+	 * @param value
+	 *            the new value of the '<em>Symbol</em>' attribute.
 	 * @see #getSymbol()
 	 * @generated
 	 */

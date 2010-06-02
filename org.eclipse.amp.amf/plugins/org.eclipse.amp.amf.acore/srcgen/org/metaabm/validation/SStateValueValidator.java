@@ -26,7 +26,7 @@ import org.metaabm.SState;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface SStateValueValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateSet(SState value);
+	boolean validateSet(SState value);
 }

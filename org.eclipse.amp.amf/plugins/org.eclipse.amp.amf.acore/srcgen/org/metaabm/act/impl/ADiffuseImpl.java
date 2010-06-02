@@ -16,9 +16,8 @@ import org.metaabm.act.ADiffuse;
 import org.metaabm.act.MetaABMActPackage;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>ADiffuse</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '
+ * <em><b>ADiffuse</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
@@ -33,8 +32,7 @@ import org.metaabm.act.MetaABMActPackage;
 public class ADiffuseImpl extends ASelectImpl implements ADiffuse {
 	/**
 	 * The cached value of the '{@link #getDiffused() <em>Diffused</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getDiffused()
 	 * @generated
 	 * @ordered
@@ -42,8 +40,8 @@ public class ADiffuseImpl extends ASelectImpl implements ADiffuse {
 	protected SAttribute diffused;
 	/**
 	 * The cached value of the '{@link #getDiffusionRate() <em>Diffusion Rate</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getDiffusionRate()
 	 * @generated
 	 * @ordered
@@ -51,8 +49,8 @@ public class ADiffuseImpl extends ASelectImpl implements ADiffuse {
 	protected SAttribute diffusionRate;
 	/**
 	 * The cached value of the '{@link #getEvaporationRate() <em>Evaporation Rate</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getEvaporationRate()
 	 * @generated
 	 * @ordered
@@ -60,8 +58,7 @@ public class ADiffuseImpl extends ASelectImpl implements ADiffuse {
 	protected SAttribute evaporationRate;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected ADiffuseImpl() {
@@ -69,8 +66,7 @@ public class ADiffuseImpl extends ASelectImpl implements ADiffuse {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -79,8 +75,7 @@ public class ADiffuseImpl extends ASelectImpl implements ADiffuse {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public SAttribute getDiffused() {
@@ -98,8 +93,7 @@ public class ADiffuseImpl extends ASelectImpl implements ADiffuse {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public SAttribute basicGetDiffused() {
@@ -107,8 +101,7 @@ public class ADiffuseImpl extends ASelectImpl implements ADiffuse {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setDiffused(SAttribute newDiffused) {
@@ -120,8 +113,7 @@ public class ADiffuseImpl extends ASelectImpl implements ADiffuse {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public SAttribute getDiffusionRate() {
@@ -139,8 +131,7 @@ public class ADiffuseImpl extends ASelectImpl implements ADiffuse {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public SAttribute basicGetDiffusionRate() {
@@ -148,8 +139,7 @@ public class ADiffuseImpl extends ASelectImpl implements ADiffuse {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setDiffusionRate(SAttribute newDiffusionRate) {
@@ -162,8 +152,7 @@ public class ADiffuseImpl extends ASelectImpl implements ADiffuse {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public SAttribute getEvaporationRate() {
@@ -181,8 +170,7 @@ public class ADiffuseImpl extends ASelectImpl implements ADiffuse {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public SAttribute basicGetEvaporationRate() {
@@ -190,8 +178,7 @@ public class ADiffuseImpl extends ASelectImpl implements ADiffuse {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setEvaporationRate(SAttribute newEvaporationRate) {
@@ -204,8 +191,7 @@ public class ADiffuseImpl extends ASelectImpl implements ADiffuse {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -228,8 +214,7 @@ public class ADiffuseImpl extends ASelectImpl implements ADiffuse {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -249,8 +234,7 @@ public class ADiffuseImpl extends ASelectImpl implements ADiffuse {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -270,8 +254,7 @@ public class ADiffuseImpl extends ASelectImpl implements ADiffuse {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -287,4 +270,4 @@ public class ADiffuseImpl extends ASelectImpl implements ADiffuse {
 		return super.eIsSet(featureID);
 	}
 
-} //ADiffuseImpl
+} // ADiffuseImpl

@@ -28,9 +28,9 @@ import org.metaabm.SStyle;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface SAgentValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateStyles(EList<SStyle> value);
+	boolean validateStyles(EList<SStyle> value);
 
-    boolean validateOwner(SContext value);
+	boolean validateOwner(SContext value);
 }

@@ -26,7 +26,7 @@ import org.metaabm.SAgent;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface ABuildGridValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateFillAgent(SAgent value);
+	boolean validateFillAgent(SAgent value);
 }

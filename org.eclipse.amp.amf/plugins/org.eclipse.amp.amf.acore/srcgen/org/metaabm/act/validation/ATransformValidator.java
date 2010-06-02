@@ -26,7 +26,7 @@ import org.metaabm.act.ASelect;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface ATransformValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateDestination(ASelect value);
+	boolean validateDestination(ASelect value);
 }

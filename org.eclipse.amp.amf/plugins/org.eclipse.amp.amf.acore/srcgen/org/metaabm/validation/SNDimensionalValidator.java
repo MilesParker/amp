@@ -26,9 +26,9 @@ import org.metaabm.SBorderRule;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface SNDimensionalValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateDimensionality(int value);
+	boolean validateDimensionality(int value);
 
-    boolean validateBorderRule(SBorderRule value);
+	boolean validateBorderRule(SBorderRule value);
 }

@@ -24,7 +24,7 @@ package org.metaabm.function.validation;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface FLiteralValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateValue(String value);
+	boolean validateValue(String value);
 }

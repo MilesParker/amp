@@ -24,6 +24,6 @@ package org.metaabm.validation;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface SAttributeArrayValidator {
-    boolean validate();
+	boolean validate();
 
 }

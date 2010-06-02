@@ -20,6 +20,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.metaabm.IValue;
 import org.metaabm.SAgent;
 import org.metaabm.SProjection;
@@ -281,7 +282,7 @@ public class ASelectImpl extends AActImpl implements ASelect {
 	}
 
 	public boolean isReachable(IValue value) {
-		return super.isReachable(value)
-				|| ((getAgent() != null) && getAgent().isReachable(value));
+		return super.isReachable(value) || getAgent() != null
+				&& getAgent().isReachable(value);
 	}
 } // ASelectImpl

@@ -26,15 +26,15 @@ import org.metaabm.SAttributed;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface SAttributeValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateOwner(SAttributed value);
+	boolean validateOwner(SAttributed value);
 
-    boolean validateGatherData(boolean value);
+	boolean validateGatherData(boolean value);
 
-    boolean validateDefaultValue(String value);
+	boolean validateDefaultValue(String value);
 
-    boolean validateUnits(String value);
+	boolean validateUnits(String value);
 
-    boolean validateImmutable(boolean value);
+	boolean validateImmutable(boolean value);
 }

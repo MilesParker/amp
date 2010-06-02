@@ -24,9 +24,9 @@ package org.metaabm.validation;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface SNamedValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validatePluralLabel(String value);
+	boolean validatePluralLabel(String value);
 
-    boolean validateDescription(String value);
+	boolean validateDescription(String value);
 }

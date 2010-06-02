@@ -78,7 +78,8 @@ public interface AMethod extends AAct, SNamed {
 	 * <em>Generate</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param value the new value of the '<em>Generate</em>' attribute.
+	 * @param value
+	 *            the new value of the '<em>Generate</em>' attribute.
 	 * @see #isGenerate()
 	 * @generated
 	 */

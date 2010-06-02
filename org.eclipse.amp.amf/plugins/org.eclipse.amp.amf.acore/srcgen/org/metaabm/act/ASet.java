@@ -51,7 +51,8 @@ public interface ASet extends AAccessor, ACommand {
 	 * <em>Parameter</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
-	 * @param value the new value of the '<em>Parameter</em>' reference.
+	 * @param value
+	 *            the new value of the '<em>Parameter</em>' reference.
 	 * @see #getParameter()
 	 * @generated
 	 */

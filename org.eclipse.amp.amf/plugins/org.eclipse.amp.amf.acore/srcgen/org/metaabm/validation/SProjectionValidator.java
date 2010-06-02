@@ -26,7 +26,7 @@ import org.metaabm.SContext;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface SProjectionValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateOwner(SContext value);
+	boolean validateOwner(SContext value);
 }

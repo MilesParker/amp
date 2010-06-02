@@ -24,10 +24,10 @@ package org.metaabm.function.validation;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface FOperatorValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateSymbol(String value);
+	boolean validateSymbol(String value);
 
-    boolean validateArity(int value);
+	boolean validateArity(int value);
 
 }

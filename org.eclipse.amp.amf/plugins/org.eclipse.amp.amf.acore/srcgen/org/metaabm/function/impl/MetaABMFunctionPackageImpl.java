@@ -138,7 +138,8 @@ public class MetaABMFunctionPackageImpl extends EPackageImpl implements
 	 * 
 	 * <p>This method is used to initialize {@link MetaABMFunctionPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #eNS_URI
 	 * @generated
 	 */

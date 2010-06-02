@@ -29,13 +29,13 @@ import org.metaabm.act.ASink;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface AInputValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateSink(ASink value);
+	boolean validateSink(ASink value);
 
-    boolean validateSelected(ASelect value);
+	boolean validateSelected(ASelect value);
 
-    boolean validateLiteral(ALiteral value);
+	boolean validateLiteral(ALiteral value);
 
-    boolean validateValue(IValue value);
+	boolean validateValue(IValue value);
 }

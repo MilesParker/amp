@@ -27,33 +27,33 @@ import org.metaabm.SImplemented;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface SImplementationValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validatePackage(String value);
+	boolean validatePackage(String value);
 
-    boolean validateClassName(String value);
+	boolean validateClassName(String value);
 
-    boolean validateBasePath(String value);
+	boolean validateBasePath(String value);
 
-    boolean validateMode(SImplementationMode value);
+	boolean validateMode(SImplementationMode value);
 
-    boolean validateTarget(SImplemented value);
+	boolean validateTarget(SImplemented value);
 
-    boolean validateQualifiedName(String value);
+	boolean validateQualifiedName(String value);
 
-    boolean validateDerivedPath(String value);
+	boolean validateDerivedPath(String value);
 
-    boolean validateDerivedPackage(String value);
+	boolean validateDerivedPackage(String value);
 
-    boolean validateJavaFileLoc(String value);
+	boolean validateJavaFileLoc(String value);
 
-    boolean validateSrcDir(String value);
+	boolean validateSrcDir(String value);
 
-    boolean validateBinDir(String value);
+	boolean validateBinDir(String value);
 
-    boolean validateClassFileLoc(String value);
+	boolean validateClassFileLoc(String value);
 
-    boolean validateDerivedBinDir(String value);
+	boolean validateDerivedBinDir(String value);
 
-    boolean validateDerivedSrcDir(String value);
+	boolean validateDerivedSrcDir(String value);
 }

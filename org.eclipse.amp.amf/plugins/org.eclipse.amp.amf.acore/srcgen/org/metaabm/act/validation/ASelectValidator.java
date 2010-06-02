@@ -28,11 +28,11 @@ import org.metaabm.act.ASelectTypes;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface ASelectValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateAgent(SAgent value);
+	boolean validateAgent(SAgent value);
 
-    boolean validateSpace(SProjection value);
+	boolean validateSpace(SProjection value);
 
-    boolean validateFor(ASelectTypes value);
+	boolean validateFor(ASelectTypes value);
 }

@@ -28,9 +28,9 @@ import org.metaabm.function.FLibrary;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface FLibraryValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateFunctions(EList<FFunction> value);
+	boolean validateFunctions(EList<FFunction> value);
 
-    boolean validateSubs(EList<FLibrary> value);
+	boolean validateSubs(EList<FLibrary> value);
 }

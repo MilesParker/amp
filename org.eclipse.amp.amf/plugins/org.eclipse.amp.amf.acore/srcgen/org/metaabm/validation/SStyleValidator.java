@@ -26,7 +26,7 @@ import org.metaabm.SAgent;
  * -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface SStyleValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateAgent(SAgent value);
+	boolean validateAgent(SAgent value);
 }

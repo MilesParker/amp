@@ -24,9 +24,9 @@ package org.metaabm.act.validation;
  * with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
  */
 public interface AMethodValidator {
-    boolean validate();
+	boolean validate();
 
-    boolean validateBody(String value);
+	boolean validateBody(String value);
 
-    boolean validateGenerate(boolean value);
+	boolean validateGenerate(boolean value);
 }
