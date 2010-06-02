@@ -435,7 +435,7 @@
 «ENDDEFINE»
 
 «DEFINE InnerBlockCall(List[metaabm::act::AAct] path, Boolean inner) FOR AMove-»
-	«IF destination.space.metaType == SGrid && destination.agent.isHost()-»
+	«IF destination.space.metaType == SGrid && (destination.agent == null || destination.agent.isHost())-»
 	if («selected.asAgent().pre()»getHostScape() != ((Agent) «destination.selid().expl()»).getScape()) {
 	    die();
 	    «selected.agent.owner.getterName()»().get«selected.agent.scape().toFirstUpper()»().add(«selected.asAgent().expl()»);

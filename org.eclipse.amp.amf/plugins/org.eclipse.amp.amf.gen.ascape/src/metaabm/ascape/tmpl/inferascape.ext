@@ -157,7 +157,7 @@ cached String findSpace(AAct act) :
     	: "getScape().";
  
 cached Boolean allTerms(AAct act) :
-    act.hasControl("nearest") || act.hasControl("within") || act.hasControl("minimize")|| act.hasControl("maximize");
+    act.hasControl("nearest") || act.hasControl("within") || act.hasMinMax();
 
 cached Boolean hasParent(SAgent child, SAgent candidate) :
 	child.parent == candidate || child.parent != null && ((SAgent) child.parent).hasParent(candidate);
@@ -175,17 +175,19 @@ cached String dataPoint(ASink sink) :
 cached String locationTerm(AAct act) :
     (act.hasControl("includeSelf") || act.hasControl("neighbor") || act.allTerms()) 
     	? act.locationAgent().expl() + 
-    		(act.hasControl("minimize") || act.hasControl("maximize")
+    		(act.hasMinMax()
     		? ".getCoordinate()"
     		:"")
     	: "";
 
 cached String conditionTerm(AAct act) :
-	act.conditionForAscape() 
-		? act.selector().selid() + "Condition" 
-		: ((act.hasControl("minimize") || act.hasControl("maximize") || act.hasControl("available") && act.hasControl("within")) 
+	!act.hasMinMax()
+	? (act.conditionForAscape() 
+		? act.selector().selid() + "Condition"
+		: ((act.hasMinMax() || act.hasControl("available") && act.hasControl("within")) 
 			? "null" 
-			: "");
+			: ""))
+	: "HostCell.IS_AVAILABLE";
 
 cached String includeSelfTerm(AAct act) :
     act.hasControl("includeSelf") 
@@ -200,7 +202,7 @@ cached String distanceTerm(AAct act, List[AAct] path) :
     	: "";
 
 cached String dataPointTerm(AAct act) :
-    act.hasControl("maximize") || act.hasControl("maximize")
+    act.hasMinMax()
     	? act.minOrMax().dataPoint()
     	: "";
     	
@@ -220,26 +222,32 @@ cached String findParams(AAct act, List[AAct] path) :
 cached String nearestTerm(AAct act) :
     act.hasControl("nearest") ? "Nearest" : "";
 
+cached Boolean hasMinMax(AAct act) :
+    act.hasControl("minimize") || act.hasControl("maximize");
+
 cached String randomTerm(AAct act) :
-    !(act.hasControl("nearest") || act.hasControl("all") || act.hasControl("maximize") || act.hasControl("minimize")) ? "Random" : "";
+    !(act.hasControl("nearest") || act.hasControl("all") || act.hasMinMax()) ? "Random" : "";
 
 cached String availableTerm(AAct act) :
-    act.hasControl("available") ? "Available" : "";
+    act.hasControl("available") && !act.hasMinMax() ? "Available" : "";
 
 cached String functionTerm(AAct act) :
     act.hasControl("minimize") ? "Minimum" : (act.hasControl("maximize") ? "Maximum" : "");
-    
+	
+cached String functionName(FFunction f) :
+	f.id() == "maximize" ? "maximum" : (f.id() == "minimize" ? "minimum" : "error");
+		
 cached String withinTerm(AAct act) :
-    act.hasControl("minimize") || act.hasControl("maximize") || act.hasControl("within") && !act.hasControl("nearest") && !act.hasControl("available") ? "Within" : "";
+    act.hasMinMax() || act.hasControl("within") && !act.hasControl("nearest") && !act.hasControl("available") ? "Within" : "";
 
 cached String neighborTerm(AAct act) :
-    act.hasControl("neighbor") && !(act.hasControl("minimize") || act.hasControl("maximize")) ? "Neighbor" : "";
+    act.hasControl("neighbor") && !act.hasMinMax() ? "Neighbor" : "";
 
 cached String continuousTerm(AAct act) :
     act.selector().space.metaType == SContinuousSpace ? "Coordinate" : "";
 
 cached String findMethod(AAct act) :
-    "find" + act.nearestTerm() + act.randomTerm() + act.functionTerm() + act.availableTerm() + act.withinTerm() + act.neighborTerm() + act.continuousTerm();
+    "find" + act.nearestTerm() + act.randomTerm() + act.functionTerm() + act.availableTerm() + act.withinTerm() + act.neighborTerm();
 
 //        : (act.hasControl("here") 
 //        	? "(" + act.selector().selected.asHost().expl() + "==" + act.rootSelected.asHost().expl() + " ? " + act.selector().selected.selid().expl() + " : null);"
@@ -271,13 +279,6 @@ cached Boolean statCond(SState outer) :
 
 cached String statCondTerm(SAttribute typed) :
 	statCond(typed) ? "Cond" : "CSAMM";
-	
-cached String functionTerm(FFunction f) :
-	f.id() == "maximize"
-		? "maximum"
-		: (f.id() == "minimize"
-			? "minimum"
-			: "error");
 
 cached String statLabel(SAttribute inner, SAttribute outer, String desc) :
 	(inner.parent().parent().parent() != null ? "getName() + \" " : "\"") + inner.parent().label + " " + desc.spaceTrail() + (outer != inner ? outer.label.spaceTrail() : "") + inner.label + "\"";
