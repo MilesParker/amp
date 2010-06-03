@@ -23,50 +23,54 @@ import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
 import org.eclipse.amp.escape.ide.EscapeIDEPlugin;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IProgressMonitor;
-
 import org.metaabm.SContext;
 import org.metaabm.SImplementation;
 import org.metaabm.xsd.MetaABMPersist;
 
 public class ExecuteAMFHandler extends ExecuteHandler {
 
-    protected IResource modelResource;
-    private SContext model;
+	protected IResource modelResource;
+	private SContext model;
 
-    public ExecuteAMFHandler() {
-        super(false);
-    }
+	public ExecuteAMFHandler() {
+		super(false);
+	}
 
-    public ExecuteAMFHandler(boolean headless) {
-        super(headless);
-    }
+	public ExecuteAMFHandler(boolean headless) {
+		super(headless);
+	}
 
-    protected void executeOpen(EclipseEscapeRunner eclipseRunner, Object executed, IProgressMonitor monitor) {
-        if (executed instanceof IResource) {
-            modelResource = (IResource) executed;
-            File file = modelResource.getLocation().toFile();
-            if (modelResource.getFileExtension().equals("metaabm")) {
-                try {
-                    model = MetaABMPersist.create(file).load();
-                    SImplementation impl = model.getImplementation();
-                    final String modelClassName = impl.getQualifiedName();
-                    eclipseRunner.open(modelResource, modelClassName, model.getLabel());
-                } catch (IOException e) {
-                    EscapeIDEPlugin.warn("Couldn't load model.", e);
-                }
-            }
-        }
-    }
+	protected void executeOpen(EclipseEscapeRunner eclipseRunner, Object executed, IProgressMonitor monitor) {
+		if (executed instanceof IResource) {
+			modelResource = (IResource) executed;
+			File file = modelResource.getLocation().toFile();
+			if (modelResource.getFileExtension().equals("metaabm")) {
+				try {
+					model = MetaABMPersist.create(file).load();
+					SImplementation impl = model.getImplementation();
+					final String modelClassName = getModelClass(impl);
+					eclipseRunner.open(modelResource, modelClassName, model.getLabel());
+				} catch (IOException e) {
+					EscapeIDEPlugin.warn("Couldn't load model.", e);
+				}
+			}
+		}
+	}
 
-    protected boolean handleSelect(Object sel) {
-        return sel instanceof IResource && ((IResource) sel).getFileExtension() != null
-        && ((IResource) sel).getFileExtension().equals("metaabm");
-    }
+	protected String getModelClass(SImplementation impl) {
+		final String modelClassName = impl.getQualifiedName();
+		return modelClassName;
+	}
 
-    /**
-     * @return the model
-     */
-    public SContext getModel() {
-        return model;
-    }
+	protected boolean handleSelect(Object sel) {
+		return sel instanceof IResource && ((IResource) sel).getFileExtension() != null
+		&& ((IResource) sel).getFileExtension().equals("metaabm");
+	}
+
+	/**
+	 * @return the model
+	 */
+	public SContext getModel() {
+		return model;
+	}
 }

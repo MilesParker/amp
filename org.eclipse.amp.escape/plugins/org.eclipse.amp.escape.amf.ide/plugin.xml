@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.14 2010/05/06 04:29:14 mparker Exp $
+ $Id: plugin.xml,v 1.15 2010/06/03 17:04:40 mparker Exp $
 -->
 
 <plugin>
@@ -69,6 +69,11 @@
        </command>
        <command
              categoryId="org.eclipse.amp.axf.ui"
+             id="org.eclipse.amp.escape.runtime.executeAMF3D"
+             name="Execute 3D">
+       </command>
+       <command
+             categoryId="org.eclipse.amp.axf.ui"
              id="org.eclipse.amp.escape.runtime.executeAMFHeadless"
              name="Execute Headless">
        </command>
@@ -127,6 +132,14 @@
 			<command commandId="org.eclipse.amp.escape.runtime.executeAMF"
 				icon="icons/etool16/execute.gif" label="Execute" style="push"
 				tooltip="Execute Escape AMF model.">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="org.eclipse.amp.escape.amf.allowexecute">
+					</reference>
+				</visibleWhen>
+			</command>
+			<command commandId="org.eclipse.amp.escape.runtime.executeAMF3D"
+				icon="icons/etool16/execute.gif" label="Execute 3D" style="push"
+				tooltip="Execute Escape AMF model with 3D visualization.">
 				<visibleWhen checkEnabled="false">
 					<reference definitionId="org.eclipse.amp.escape.amf.allowexecute">
 					</reference>
@@ -207,6 +220,15 @@
 				</visibleWhen>
 			</command>
 			<command
+         commandId="org.eclipse.amp.escape.runtime.executeAMF3D"
+         icon="icons/etool16/execute.gif"
+         label="Execute 3D"
+         style="push"
+         tooltip="Execute Escape AMF model with 3D visualization.">
+				<visibleWhen checkEnabled="true">
+				</visibleWhen>
+			</command>
+			<command
          commandId="org.eclipse.amp.escape.runtime.executeAMFHeadless"
          icon="icons/etool16/execute_headless.gif"
          label="Execute Headless"
@@ -270,6 +292,14 @@
 			<command commandId="org.eclipse.amp.escape.runtime.executeAMF"
 				icon="icons/etool16/execute.gif" label="Execute" style="push"
 				tooltip="Execute Escape AMF model.">
+				<visibleWhen checkEnabled="false">
+					<reference definitionId="org.eclipse.amp.escape.amf.allowexecute">
+					</reference>
+				</visibleWhen>
+			</command>
+			<command commandId="org.eclipse.amp.escape.runtime.executeAMF3D"
+				icon="icons/etool16/execute.gif" label="Execute 3D" style="push"
+				tooltip="Execute Escape AMF model with 3D visualization.">
 				<visibleWhen checkEnabled="false">
 					<reference definitionId="org.eclipse.amp.escape.amf.allowexecute">
 					</reference>
@@ -396,6 +426,20 @@
        <handler
              class="org.eclipse.amp.escape.amf.ide.ExecuteAMFHandler"
              commandId="org.eclipse.amp.escape.runtime.executeAMF">
+          <activeWhen>
+          <reference
+                definitionId="org.eclipse.amp.escape.amf.allowexecute">
+          </reference>
+          </activeWhen>
+          <enabledWhen>
+          <reference
+                definitionId="org.eclipse.amp.escape.amf.allowexecute">
+          </reference>
+          </enabledWhen>
+       </handler>
+       <handler
+             class="org.eclipse.amp.escape.amf.ide.ExecuteAMF3DHandler"
+             commandId="org.eclipse.amp.escape.runtime.executeAMF3D">
           <activeWhen>
           <reference
                 definitionId="org.eclipse.amp.escape.amf.allowexecute">
