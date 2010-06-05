@@ -65,18 +65,4 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <update label="AMP Update Site" url="http://eclipse.org/amp/updates/release"/>
    </url>
 
-   <plugin
-         id="org.eclipse.amp.amf.examples.ascape"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.amp.amf.examples.repast"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
 </feature>
