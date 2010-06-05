@@ -7,7 +7,7 @@ Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.amp.amf.testing.ares.provider.AresEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.amp.amf.testing.aTest.provider,
  org.eclipse.amp.amf.testing.ares.provider
 Require-Bundle: org.eclipse.core.runtime,
