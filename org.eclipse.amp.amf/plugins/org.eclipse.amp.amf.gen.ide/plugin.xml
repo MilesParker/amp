@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.5 2010/04/01 00:03:01 mparker Exp $
+ $Id: plugin.xml,v 1.6 2010/06/06 18:37:47 mparker Exp $
 -->
 
 <plugin>
@@ -175,9 +175,9 @@
     <extension
           point="org.eclipse.ui.preferencePages">
        <page
-             class="org.eclipse.amp.amf.gen.ide.prefs.MetaABMGenPreferencePage"
+             class="org.eclipse.amp.amf.gen.ide.prefs.AMPPreferencePage"
              id="org.eclipse.amp.amf.ide.preferences.MetaABMGenPreferencePage"
-             name="MetaABM">
+             name="Agent Modeling">
        </page>
     </extension>
     <extension

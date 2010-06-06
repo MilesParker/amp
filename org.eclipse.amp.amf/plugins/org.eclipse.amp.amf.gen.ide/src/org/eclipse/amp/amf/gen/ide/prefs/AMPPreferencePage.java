@@ -32,12 +32,12 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  * preferences can be accessed directly via the preference store.
  */
 
-public class MetaABMGenPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
+public class AMPPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
-    public MetaABMGenPreferencePage() {
+    public AMPPreferencePage() {
         super(GRID);
         setPreferenceStore(GenIDEPlugin.getPlugin().getPreferenceStore());
-        setDescription("Customize metaABM code generation.");
+        setDescription("Customize Agent Modeling Platform and Framework Code Generation.");
     }
 
     /**
