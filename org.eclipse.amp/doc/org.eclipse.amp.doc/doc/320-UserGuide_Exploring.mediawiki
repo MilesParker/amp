@@ -180,5 +180,5 @@ To create a new test, right-click at the location you want to put the test files
 
 [[Image:images/params/Execute.png]]
 
-It's helpful to keep them organized in sets of folders. If you select an entire folder, the framework will run 
+It's helpful to keep them organized in sets of folders. If you select an entire folder, the framework will run all of the tests in the folder.
 

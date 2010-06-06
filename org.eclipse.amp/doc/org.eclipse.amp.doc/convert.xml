@@ -1,4 +1,4 @@
-<project default="generate-help" name="Generate Docs from Wiki">
+<project default="javadoc" name="Generate Docs from Wiki">
 	<property name="dir.eclipse" value="/Developer/eclipse/plugins" />
 	<property name="dir.repos" value="/Volumes/Resources/Developer/repos" />
 	<property name="dir.repos.eclipse" value="${dir.repos}/eclipse" />
@@ -7,24 +7,6 @@
 		path to wikitext standalone package
 	-->
 
-	<path id="wikitext.classpath">
-		<fileset dir="${dir.eclipse}">
-			<include name="org.eclipse.mylyn.wikitext.*core*.jar" />
-		</fileset>
-	</path>
-
-	<taskdef classpathref="wikitext.classpath"
-		resource="org/eclipse/mylyn/wikitext/core/util/anttask/tasks.properties" />
-
-	<target name="generate-help" description="Generate Eclipse help from textile source">
-		<wikitext-to-eclipse-help markupLanguage="MediaWiki"
-			formatOutput="true" prependImagePrefix="image" navigationImages="true"
-			helpPrefix="wiki" overwrite="true">
-			<fileset dir="${basedir}/wiki">
-				<include name="*.mediawiki" />
-			</fileset>
-		</wikitext-to-eclipse-help>
-	</target>
 
 	<property name="vendor" value="Eclipse.org" />
 	<property name="specification.version" value="0.7.0" />
@@ -37,9 +19,6 @@
 	<property name="dest.javadoc" value="docs/javadoc" />
 
 	<property name="jdk.style" value="1.5" />
-
-
-
 
 	<target name="javadoc">
 
@@ -147,7 +126,7 @@
 			noindex="false" nonavbar="false" notree="false" source="1.5"
 			splitindex="true" use="true" version="true"
 
-			bottom="Copyright (C) 2007-2009 Metascape, LLC, 2009 Miles Parker, 2006-2007 Argonne National Labs, and Contributors"
+			bottom="Copyright (C) 2007-2010 Metascape, LLC, 2009 Miles Parker, 2006-2007 Argonne National Labs, and Contributors"
 			windowtitle="${ant.project.name} ${specification.version} API"
 
 			classpath="${dir.eclipse}">
