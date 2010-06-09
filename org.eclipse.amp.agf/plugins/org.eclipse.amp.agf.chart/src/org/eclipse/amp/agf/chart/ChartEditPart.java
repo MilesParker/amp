@@ -334,7 +334,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
     public void refresh() {
         new Thread() {
             public void run() {
-                regenerateChart(false);
+                regenerateChart(true);
             };
         }.run();
     }
