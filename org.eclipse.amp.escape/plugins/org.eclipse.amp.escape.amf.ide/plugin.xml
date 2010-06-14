@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.15 2010/06/03 17:04:40 mparker Exp $
+ $Id: plugin.xml,v 1.16 2010/06/14 23:39:31 mparker Exp $
 -->
 
 <plugin>
@@ -394,14 +394,15 @@
                variable="selection">
             <iterate
                   ifEmpty="false">
-       <or>
           <adapt
                 type="org.eclipse.core.resources.IResource">
+       <or>
              <test
                    property="org.eclipse.core.resources.name"
                    value="*.metaabm">
              </test>
-          </adapt></or>
+		</or>
+          </adapt>
             </iterate>
          </with>
             </or>
