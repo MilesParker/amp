@@ -35,7 +35,7 @@
 	 }
 «ENDAROUND»
 «AROUND metaabm::tmpl::Java::ActivityPotentialMethod (AAct within) FOR AMethod-»«ENDAROUND»
-«AROUND metaabm::tmpl::Java::SetterClient FOR Object-»«ENDAROUND»
+«AROUND metaabm::tmpl::Java::SetterSideEffect FOR Object-»«ENDAROUND»
 
 «DEFINE DrawAgentStyle FOR SAgent»
     «FOREACH styles AS style»
