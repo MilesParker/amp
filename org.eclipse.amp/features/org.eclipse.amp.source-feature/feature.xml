@@ -55,10 +55,6 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.amp.amf.target.repast.source"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.amp.amfx.source"
          version="0.0.0"/>
 
