@@ -27,21 +27,21 @@ import org.metaabm.act.MetaABMActPackage;
  * @generated
  */
 public class AAllImpl extends AActImpl implements AAll {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AAllImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    protected AAllImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return MetaABMActPackage.Literals.AALL;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return MetaABMActPackage.Literals.AALL;
+    }
 
 } // AAllImpl

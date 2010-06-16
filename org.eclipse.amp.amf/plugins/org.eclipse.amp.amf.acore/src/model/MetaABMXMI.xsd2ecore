@@ -71,7 +71,8 @@
       <nested inputs="metaabm.ecore#//SAttribute/defaultValue" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDAttributeUse=2"/>
       <nested inputs="metaabm.ecore#//SAttribute/units" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDAttributeUse=3"/>
       <nested inputs="metaabm.ecore#//SAttribute/immutable" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDAttributeUse=4"/>
-      <nested inputs="metaabm.ecore#//SAttribute/owner" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDAttributeUse=5"/>
+      <nested inputs="metaabm.ecore#//SAttribute/derived" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDAttributeUse=5"/>
+      <nested inputs="metaabm.ecore#//SAttribute/owner" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDAttributeUse=6"/>
       <nested inputs="metaabm.ecore#//SAttribute/owner" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDParticle/XSDModelGroup/XSDParticle"/>
     </nested>
     <nested inputs="metaabm.ecore#//ITyped/sType" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDAttributeUse"/>

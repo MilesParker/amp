@@ -31,129 +31,128 @@ import org.metaabm.SNetwork;
  * @generated
  */
 public class SNetworkImpl extends SProjectionImpl implements SNetwork {
-	/**
-	 * The default value of the '{@link #isDirected() <em>Directed</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #isDirected()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean DIRECTED_EDEFAULT = false;
+    /**
+     * The default value of the '{@link #isDirected() <em>Directed</em>}' attribute.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @see #isDirected()
+     * @generated
+     * @ordered
+     */
+    protected static final boolean DIRECTED_EDEFAULT = false;
 
-	/**
-	 * The cached value of the '{@link #isDirected() <em>Directed</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #isDirected()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean directed = DIRECTED_EDEFAULT;
+    /**
+     * The cached value of the '{@link #isDirected() <em>Directed</em>}' attribute.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @see #isDirected()
+     * @generated
+     * @ordered
+     */
+    protected boolean directed = DIRECTED_EDEFAULT;
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SNetworkImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    protected SNetworkImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return MetaABMPackage.Literals.SNETWORK;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return MetaABMPackage.Literals.SNETWORK;
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isDirected() {
-		return directed;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean isDirected() {
+        return directed;
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDirected(boolean newDirected) {
-		boolean oldDirected = directed;
-		directed = newDirected;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					MetaABMPackage.SNETWORK__DIRECTED, oldDirected, directed));
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    public void setDirected(boolean newDirected) {
+        boolean oldDirected = directed;
+        directed = newDirected;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, MetaABMPackage.SNETWORK__DIRECTED, oldDirected,
+                directed));
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case MetaABMPackage.SNETWORK__DIRECTED:
-			return isDirected();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case MetaABMPackage.SNETWORK__DIRECTED:
+                return isDirected();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case MetaABMPackage.SNETWORK__DIRECTED:
-			setDirected((Boolean) newValue);
-			return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case MetaABMPackage.SNETWORK__DIRECTED:
+                setDirected((Boolean) newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-		case MetaABMPackage.SNETWORK__DIRECTED:
-			setDirected(DIRECTED_EDEFAULT);
-			return;
-		}
-		super.eUnset(featureID);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case MetaABMPackage.SNETWORK__DIRECTED:
+                setDirected(DIRECTED_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case MetaABMPackage.SNETWORK__DIRECTED:
-			return directed != DIRECTED_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case MetaABMPackage.SNETWORK__DIRECTED:
+                return directed != DIRECTED_EDEFAULT;
+        }
+        return super.eIsSet(featureID);
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString() {
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (directed: ");
-		result.append(directed);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (directed: ");
+        result.append(directed);
+        result.append(')');
+        return result.toString();
+    }
 
 } // SNetworkImpl

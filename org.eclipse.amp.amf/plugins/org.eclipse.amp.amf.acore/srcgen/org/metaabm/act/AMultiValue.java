@@ -29,21 +29,21 @@ import org.metaabm.IValue;
  * @generated
  */
 public interface AMultiValue extends ALiteral {
-	/**
-	 * Returns the value of the '<em><b>Values</b></em>' reference list.
-	 * The list contents are of type {@link org.metaabm.IValue}.
-	 * <!-- begin-user-doc
-	 * -->
-	 * <p>
-	 * If the meaning of the '<em>Values</em>' reference list isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Values</em>' reference list.
-	 * @see org.metaabm.act.MetaABMActPackage#getAMultiValue_Values()
-	 * @model
-	 * @generated
-	 */
-	EList<IValue> getValues();
+    /**
+     * Returns the value of the '<em><b>Values</b></em>' reference list.
+     * The list contents are of type {@link org.metaabm.IValue}.
+     * <!-- begin-user-doc
+     * -->
+     * <p>
+     * If the meaning of the '<em>Values</em>' reference list isn't clear, there
+     * really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Values</em>' reference list.
+     * @see org.metaabm.act.MetaABMActPackage#getAMultiValue_Values()
+     * @model
+     * @generated
+     */
+    EList<IValue> getValues();
 
 } // AMultiValue

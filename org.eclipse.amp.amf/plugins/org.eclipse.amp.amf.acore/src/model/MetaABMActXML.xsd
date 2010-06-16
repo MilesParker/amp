@@ -369,7 +369,9 @@
   </xsd:complexType>
   <xsd:complexType name="ACause">
     <xsd:complexContent>
-      <xsd:extension base="act:ACommand"/>
+      <xsd:extension base="act:ACommand">
+        <xsd:attribute name="result" type="xsd:string"/>
+      </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:element name="ACause" type="act:ACause"/>
@@ -389,4 +391,14 @@
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:element name="APerform" type="act:APerform"/>
+  <xsd:complexType name="ADerive">
+    <xsd:complexContent>
+      <xsd:extension base="act:AAccessor">
+        <xsd:attribute name="for" type="act:ASelectTypes" use="required"/>
+        <xsd:attribute name="agent" type="xsd:string"/>
+        <xsd:attribute name="space" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="ADerive" type="act:ADerive"/>
 </xsd:schema>

@@ -28,59 +28,59 @@ package org.metaabm;
  * @generated
  */
 public interface SNamed extends IID {
-	/**
-	 * Returns the value of the '<em><b>Plural Label</b></em>' attribute. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Plural Label</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Plural Label</em>' attribute.
-	 * @see #setPluralLabel(String)
-	 * @see org.metaabm.MetaABMPackage#getSNamed_PluralLabel()
-	 * @model
-	 * @generated
-	 */
-	String getPluralLabel();
+    /**
+     * Returns the value of the '<em><b>Plural Label</b></em>' attribute. <!--
+     * begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Plural Label</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * 
+     * @return the value of the '<em>Plural Label</em>' attribute.
+     * @see #setPluralLabel(String)
+     * @see org.metaabm.MetaABMPackage#getSNamed_PluralLabel()
+     * @model
+     * @generated
+     */
+    String getPluralLabel();
 
-	/**
-	 * Sets the value of the '{@link org.metaabm.SNamed#getPluralLabel <em>Plural Label</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @param value the new value of the '<em>Plural Label</em>' attribute.
-	 * @see #getPluralLabel()
-	 * @generated
-	 */
-	void setPluralLabel(String value);
+    /**
+     * Sets the value of the '{@link org.metaabm.SNamed#getPluralLabel <em>Plural Label</em>}' attribute.
+     * <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     * @param value the new value of the '<em>Plural Label</em>' attribute.
+     * @see #getPluralLabel()
+     * @generated
+     */
+    void setPluralLabel(String value);
 
-	/**
-	 * Returns the value of the '<em><b>Description</b></em>' attribute. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Description</em>' attribute isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Description</em>' attribute.
-	 * @see #setDescription(String)
-	 * @see org.metaabm.MetaABMPackage#getSNamed_Description()
-	 * @model
-	 * @generated
-	 */
-	String getDescription();
+    /**
+     * Returns the value of the '<em><b>Description</b></em>' attribute. <!--
+     * begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Description</em>' attribute isn't clear, there
+     * really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * 
+     * @return the value of the '<em>Description</em>' attribute.
+     * @see #setDescription(String)
+     * @see org.metaabm.MetaABMPackage#getSNamed_Description()
+     * @model
+     * @generated
+     */
+    String getDescription();
 
-	/**
-	 * Sets the value of the '{@link org.metaabm.SNamed#getDescription <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @param value the new value of the '<em>Description</em>' attribute.
-	 * @see #getDescription()
-	 * @generated
-	 */
-	void setDescription(String value);
+    /**
+     * Sets the value of the '{@link org.metaabm.SNamed#getDescription <em>Description</em>}' attribute.
+     * <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     * @param value the new value of the '<em>Description</em>' attribute.
+     * @see #getDescription()
+     * @generated
+     */
+    void setDescription(String value);
 
-	boolean references(IValue value);
+    boolean references(IValue value);
 } // SNamed

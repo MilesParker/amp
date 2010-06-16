@@ -25,7 +25,6 @@ import org.metaabm.ITypedArray;
  * @model
  * @generated
  */
-public interface FArgumentArrayPrototype extends FArgumentPrototype,
-		ITypedArray {
+public interface FArgumentArrayPrototype extends FArgumentPrototype, ITypedArray {
 
 } // FArgumentArrayPrototype

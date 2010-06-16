@@ -33,125 +33,122 @@ import org.metaabm.act.MetaABMActPackage;
  * @generated
  */
 public abstract class ATransformImpl extends ACommandImpl implements ATransform {
-	/**
-	 * The cached value of the '{@link #getDestination() <em>Destination</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getDestination()
-	 * @generated
-	 * @ordered
-	 */
-	protected ASelect destination;
+    /**
+     * The cached value of the '{@link #getDestination() <em>Destination</em>}' reference.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @see #getDestination()
+     * @generated
+     * @ordered
+     */
+    protected ASelect destination;
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ATransformImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    protected ATransformImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return MetaABMActPackage.Literals.ATRANSFORM;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return MetaABMActPackage.Literals.ATRANSFORM;
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ASelect getDestination() {
-		if (destination != null && destination.eIsProxy()) {
-			InternalEObject oldDestination = (InternalEObject) destination;
-			destination = (ASelect) eResolveProxy(oldDestination);
-			if (destination != oldDestination) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-							MetaABMActPackage.ATRANSFORM__DESTINATION,
-							oldDestination, destination));
-			}
-		}
-		return destination;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    public ASelect getDestination() {
+        if (destination != null && destination.eIsProxy()) {
+            InternalEObject oldDestination = (InternalEObject) destination;
+            destination = (ASelect) eResolveProxy(oldDestination);
+            if (destination != oldDestination) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+                        MetaABMActPackage.ATRANSFORM__DESTINATION, oldDestination, destination));
+            }
+        }
+        return destination;
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ASelect basicGetDestination() {
-		return destination;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    public ASelect basicGetDestination() {
+        return destination;
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setDestination(ASelect newDestination) {
-		ASelect oldDestination = destination;
-		destination = newDestination;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					MetaABMActPackage.ATRANSFORM__DESTINATION, oldDestination,
-					destination));
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    public void setDestination(ASelect newDestination) {
+        ASelect oldDestination = destination;
+        destination = newDestination;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, MetaABMActPackage.ATRANSFORM__DESTINATION,
+                oldDestination, destination));
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case MetaABMActPackage.ATRANSFORM__DESTINATION:
-			if (resolve)
-				return getDestination();
-			return basicGetDestination();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case MetaABMActPackage.ATRANSFORM__DESTINATION:
+                if (resolve) return getDestination();
+                return basicGetDestination();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case MetaABMActPackage.ATRANSFORM__DESTINATION:
-			setDestination((ASelect) newValue);
-			return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case MetaABMActPackage.ATRANSFORM__DESTINATION:
+                setDestination((ASelect) newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-		case MetaABMActPackage.ATRANSFORM__DESTINATION:
-			setDestination((ASelect) null);
-			return;
-		}
-		super.eUnset(featureID);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case MetaABMActPackage.ATRANSFORM__DESTINATION:
+                setDestination((ASelect) null);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case MetaABMActPackage.ATRANSFORM__DESTINATION:
-			return destination != null;
-		}
-		return super.eIsSet(featureID);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case MetaABMActPackage.ATRANSFORM__DESTINATION:
+                return destination != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } // ATransformImpl

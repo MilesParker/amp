@@ -26,33 +26,33 @@ package org.metaabm;
  * @generated
  */
 public interface ITyped extends IID {
-	/**
-	 * Returns the value of the '<em><b>SType</b></em>' attribute.
-	 * The default value is <code>"INTEGER"</code>.
-	 * The literals are from the enumeration {@link org.metaabm.SAttributeType}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>SType</em>' attribute isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>SType</em>' attribute.
-	 * @see org.metaabm.SAttributeType
-	 * @see #setSType(SAttributeType)
-	 * @see org.metaabm.MetaABMPackage#getITyped_SType()
-	 * @model default="INTEGER" required="true"
-	 * @generated
-	 */
-	SAttributeType getSType();
+    /**
+     * Returns the value of the '<em><b>SType</b></em>' attribute.
+     * The default value is <code>"INTEGER"</code>.
+     * The literals are from the enumeration {@link org.metaabm.SAttributeType}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>SType</em>' attribute isn't clear, there
+     * really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>SType</em>' attribute.
+     * @see org.metaabm.SAttributeType
+     * @see #setSType(SAttributeType)
+     * @see org.metaabm.MetaABMPackage#getITyped_SType()
+     * @model default="INTEGER" required="true"
+     * @generated
+     */
+    SAttributeType getSType();
 
-	/**
-	 * Sets the value of the '{@link org.metaabm.ITyped#getSType <em>SType</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>SType</em>' attribute.
-	 * @see org.metaabm.SAttributeType
-	 * @see #getSType()
-	 * @generated
-	 */
-	void setSType(SAttributeType value);
+    /**
+     * Sets the value of the '{@link org.metaabm.ITyped#getSType <em>SType</em>}' attribute.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @param value the new value of the '<em>SType</em>' attribute.
+     * @see org.metaabm.SAttributeType
+     * @see #getSType()
+     * @generated
+     */
+    void setSType(SAttributeType value);
 
 } // ITyped

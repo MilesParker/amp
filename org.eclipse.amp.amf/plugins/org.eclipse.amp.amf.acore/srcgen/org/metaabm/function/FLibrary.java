@@ -32,46 +32,46 @@ import org.metaabm.SNamed;
  * @generated
  */
 public interface FLibrary extends SNamed, IArtifact {
-	/**
-	 * Returns the value of the '<em><b>Functions</b></em>' containment reference list.
-	 * The list contents are of type {@link org.metaabm.function.FFunction}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Functions</em>' containment reference list
-	 * isn't clear, there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Functions</em>' containment reference list.
-	 * @see org.metaabm.function.MetaABMFunctionPackage#getFLibrary_Functions()
-	 * @model containment="true" keys="ID"
-	 * @generated
-	 */
-	EList<FFunction> getFunctions();
+    /**
+     * Returns the value of the '<em><b>Functions</b></em>' containment reference list.
+     * The list contents are of type {@link org.metaabm.function.FFunction}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Functions</em>' containment reference list
+     * isn't clear, there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Functions</em>' containment reference list.
+     * @see org.metaabm.function.MetaABMFunctionPackage#getFLibrary_Functions()
+     * @model containment="true" keys="ID"
+     * @generated
+     */
+    EList<FFunction> getFunctions();
 
-	/**
-	 * Returns the value of the '<em><b>Subs</b></em>' containment reference list.
-	 * The list contents are of type {@link org.metaabm.function.FLibrary}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Subs</em>' reference list isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Subs</em>' containment reference list.
-	 * @see org.metaabm.function.MetaABMFunctionPackage#getFLibrary_Subs()
-	 * @model containment="true" keys="ID"
-	 * @generated
-	 */
-	EList<FLibrary> getSubs();
+    /**
+     * Returns the value of the '<em><b>Subs</b></em>' containment reference list.
+     * The list contents are of type {@link org.metaabm.function.FLibrary}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Subs</em>' reference list isn't clear, there
+     * really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Subs</em>' containment reference list.
+     * @see org.metaabm.function.MetaABMFunctionPackage#getFLibrary_Subs()
+     * @model containment="true" keys="ID"
+     * @generated
+     */
+    EList<FLibrary> getSubs();
 
-	/**
-	 * Returns the sub library with the supplied <i>usage</i> name.
-	 */
-	public FFunction findFunction(String id);
+    /**
+     * Returns the sub library with the supplied <i>usage</i> name.
+     */
+    public FFunction findFunction(String id);
 
-	/**
-	 * Returns the sub library with the supplied <i>usage</i> name.
-	 */
-	public FLibrary findSub(String id);
+    /**
+     * Returns the sub library with the supplied <i>usage</i> name.
+     */
+    public FLibrary findSub(String id);
 
 } // FLibrary

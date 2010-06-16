@@ -36,65 +36,65 @@ import org.metaabm.SProjection;
  * @generated
  */
 public interface ABuildProjection extends AAct, SNamed {
-	/**
-	 * Returns the value of the '<em><b>Agents</b></em>' reference list.
-	 * The list contents are of type {@link org.metaabm.SAgent}.
-	 * <!-- begin-user-doc
-	 * -->
-	 * <p>
-	 * If the meaning of the '<em>Agents</em>' reference list isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Agents</em>' reference list.
-	 * @see org.metaabm.act.MetaABMActPackage#getABuildProjection_Agents()
-	 * @model
-	 * @generated
-	 */
-	EList<SAgent> getAgents();
+    /**
+     * Returns the value of the '<em><b>Agents</b></em>' reference list.
+     * The list contents are of type {@link org.metaabm.SAgent}.
+     * <!-- begin-user-doc
+     * -->
+     * <p>
+     * If the meaning of the '<em>Agents</em>' reference list isn't clear, there
+     * really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Agents</em>' reference list.
+     * @see org.metaabm.act.MetaABMActPackage#getABuildProjection_Agents()
+     * @model
+     * @generated
+     */
+    EList<SAgent> getAgents();
 
-	/**
-	 * Returns the value of the '<em><b>Projection</b></em>' reference. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Projection</em>' reference isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Projection</em>' reference.
-	 * @see #setProjection(SProjection)
-	 * @see org.metaabm.act.MetaABMActPackage#getABuildProjection_Projection()
-	 * @model required="true"
-	 * @generated
-	 */
-	SProjection getProjection();
+    /**
+     * Returns the value of the '<em><b>Projection</b></em>' reference. <!--
+     * begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Projection</em>' reference isn't clear, there
+     * really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * 
+     * @return the value of the '<em>Projection</em>' reference.
+     * @see #setProjection(SProjection)
+     * @see org.metaabm.act.MetaABMActPackage#getABuildProjection_Projection()
+     * @model required="true"
+     * @generated
+     */
+    SProjection getProjection();
 
-	/**
-	 * Sets the value of the '{@link org.metaabm.act.ABuildProjection#getProjection <em>Projection</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @param value the new value of the '<em>Projection</em>' reference.
-	 * @see #getProjection()
-	 * @generated
-	 */
-	void setProjection(SProjection value);
+    /**
+     * Sets the value of the '{@link org.metaabm.act.ABuildProjection#getProjection <em>Projection</em>}' reference.
+     * <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     * @param value the new value of the '<em>Projection</em>' reference.
+     * @see #getProjection()
+     * @generated
+     */
+    void setProjection(SProjection value);
 
-	/**
-	 * Returns the value of the '<em><b>Attributes</b></em>' reference list. The
-	 * list contents are of type {@link org.metaabm.SAttribute}. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Attributes</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Attributes</em>' reference list.
-	 * @see org.metaabm.act.MetaABMActPackage#getABuildProjection_Attributes()
-	 * @model
-	 * @generated
-	 */
-	EList<SAttribute> getAttributes();
+    /**
+     * Returns the value of the '<em><b>Attributes</b></em>' reference list. The
+     * list contents are of type {@link org.metaabm.SAttribute}. <!--
+     * begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Attributes</em>' reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * 
+     * @return the value of the '<em>Attributes</em>' reference list.
+     * @see org.metaabm.act.MetaABMActPackage#getABuildProjection_Attributes()
+     * @model
+     * @generated
+     */
+    EList<SAttribute> getAttributes();
 
 } // ABuildProjection

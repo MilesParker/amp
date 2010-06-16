@@ -50,6 +50,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="units" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="immutable" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="derived" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SAttributeArray" eSuperTypes="#//SAttribute #//ITypedArray"/>
   <eClassifiers xsi:type="ecore:EEnum" name="SAttributeType">
@@ -385,7 +387,10 @@
     <eClassifiers xsi:type="ecore:EClass" name="ADisconnect" eSuperTypes="#//act/ANetwork"/>
     <eClassifiers xsi:type="ecore:EClass" name="AReplace" eSuperTypes="#//act/AConnect"/>
     <eClassifiers xsi:type="ecore:EClass" name="ACommand" abstract="true" eSuperTypes="#//act/AAct"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ACause" eSuperTypes="#//act/ACommand"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ACause" eSuperTypes="#//act/ACommand">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="result" lowerBound="1"
+          eType="#//act/ARoot"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ADiffuse" eSuperTypes="#//act/ARoot">
       <eStructuralFeatures xsi:type="ecore:EReference" name="diffused" lowerBound="1"
           eType="#//SAttribute"/>
@@ -393,5 +398,6 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="evaporationRate" eType="#//SAttribute"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="APerform" eSuperTypes="#//act/ARoot"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ADerive" eSuperTypes="#//act/AAccessor #//act/ARoot"/>
   </eSubpackages>
 </ecore:EPackage>

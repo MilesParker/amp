@@ -12,7 +12,7 @@
  *   Argonne National Laboratory - Initial development (pre-contribution)
  *   Metascape - Subsequent development and maintenance
  *
- * </copyright> $Id: ABuildGeographyImpl.java,v 1.2 2010/05/30 00:48:14 mparker Exp $
+ * </copyright> $Id: ABuildGeographyImpl.java,v 1.3 2010/06/16 18:01:15 mparker Exp $
  */
 package org.metaabm.act.impl;
 
@@ -25,23 +25,22 @@ import org.metaabm.act.MetaABMActPackage;
  * Geography</b></em>'. <!-- end-user-doc --> <p> </p>
  * @generated
  */
-public class ABuildGeographyImpl extends ABuildProjectionImpl implements
-		ABuildGeography {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ABuildGeographyImpl() {
-		super();
-	}
+public class ABuildGeographyImpl extends ABuildProjectionImpl implements ABuildGeography {
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    protected ABuildGeographyImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return MetaABMActPackage.Literals.ABUILD_GEOGRAPHY;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return MetaABMActPackage.Literals.ABUILD_GEOGRAPHY;
+    }
 
 } // ABuildGeographyImpl

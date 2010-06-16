@@ -32,105 +32,105 @@ import org.metaabm.SNamed;
  * @generated
  */
 public interface ASchedule extends ARoot, SNamed {
-	/**
-	 * Returns the value of the '<em><b>Start</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc --> <!-- begin-model-doc --> The
-	 * first iteration in which to execute the activity. <!-- end-model-doc -->
-	 * 
-	 * @return the value of the '<em>Start</em>' attribute.
-	 * @see #setStart(int)
-	 * @see org.metaabm.act.MetaABMActPackage#getASchedule_Start()
-	 * @model
-	 * @generated
-	 */
-	int getStart();
+    /**
+     * Returns the value of the '<em><b>Start</b></em>' attribute. <!--
+     * begin-user-doc --> <!-- end-user-doc --> <!-- begin-model-doc --> The
+     * first iteration in which to execute the activity. <!-- end-model-doc -->
+     * 
+     * @return the value of the '<em>Start</em>' attribute.
+     * @see #setStart(int)
+     * @see org.metaabm.act.MetaABMActPackage#getASchedule_Start()
+     * @model
+     * @generated
+     */
+    int getStart();
 
-	/**
-	 * Sets the value of the '{@link org.metaabm.act.ASchedule#getStart <em>Start</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Start</em>' attribute.
-	 * @see #getStart()
-	 * @generated
-	 */
-	void setStart(int value);
+    /**
+     * Sets the value of the '{@link org.metaabm.act.ASchedule#getStart <em>Start</em>}' attribute.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @param value the new value of the '<em>Start</em>' attribute.
+     * @see #getStart()
+     * @generated
+     */
+    void setStart(int value);
 
-	/**
-	 * Returns the value of the '<em><b>Interval</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc --> <!-- begin-model-doc -->
-	 * Specifies the interval. If > 0, then the method is scheduled to repeat at
-	 * the specified interval. Otherwise, method is scheduled for one time
-	 * execution. Default is 0 meaning by default the method will only execute
-	 * once. <!-- end-model-doc -->
-	 * 
-	 * @return the value of the '<em>Interval</em>' attribute.
-	 * @see #setInterval(int)
-	 * @see org.metaabm.act.MetaABMActPackage#getASchedule_Interval()
-	 * @model
-	 * @generated
-	 */
-	int getInterval();
+    /**
+     * Returns the value of the '<em><b>Interval</b></em>' attribute. <!--
+     * begin-user-doc --> <!-- end-user-doc --> <!-- begin-model-doc -->
+     * Specifies the interval. If > 0, then the method is scheduled to repeat at
+     * the specified interval. Otherwise, method is scheduled for one time
+     * execution. Default is 0 meaning by default the method will only execute
+     * once. <!-- end-model-doc -->
+     * 
+     * @return the value of the '<em>Interval</em>' attribute.
+     * @see #setInterval(int)
+     * @see org.metaabm.act.MetaABMActPackage#getASchedule_Interval()
+     * @model
+     * @generated
+     */
+    int getInterval();
 
-	/**
-	 * Sets the value of the '{@link org.metaabm.act.ASchedule#getInterval
-	 * <em>Interval</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Interval</em>' attribute.
-	 * @see #getInterval()
-	 * @generated
-	 */
-	void setInterval(int value);
+    /**
+     * Sets the value of the '{@link org.metaabm.act.ASchedule#getInterval
+     * <em>Interval</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+     * -->
+     * 
+     * @param value
+     *            the new value of the '<em>Interval</em>' attribute.
+     * @see #getInterval()
+     * @generated
+     */
+    void setInterval(int value);
 
-	/**
-	 * Returns the value of the '<em><b>Priority</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc --> <!-- begin-model-doc -->
-	 * Priority w/r to other actions scheduled for the same tick. Default is
-	 * [currently unspecified]. <!-- end-model-doc -->
-	 * 
-	 * @return the value of the '<em>Priority</em>' attribute.
-	 * @see #setPriority(int)
-	 * @see org.metaabm.act.MetaABMActPackage#getASchedule_Priority()
-	 * @model
-	 * @generated
-	 */
-	int getPriority();
+    /**
+     * Returns the value of the '<em><b>Priority</b></em>' attribute. <!--
+     * begin-user-doc --> <!-- end-user-doc --> <!-- begin-model-doc -->
+     * Priority w/r to other actions scheduled for the same tick. Default is
+     * [currently unspecified]. <!-- end-model-doc -->
+     * 
+     * @return the value of the '<em>Priority</em>' attribute.
+     * @see #setPriority(int)
+     * @see org.metaabm.act.MetaABMActPackage#getASchedule_Priority()
+     * @model
+     * @generated
+     */
+    int getPriority();
 
-	/**
-	 * Sets the value of the '{@link org.metaabm.act.ASchedule#getPriority
-	 * <em>Priority</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Priority</em>' attribute.
-	 * @see #getPriority()
-	 * @generated
-	 */
-	void setPriority(int value);
+    /**
+     * Sets the value of the '{@link org.metaabm.act.ASchedule#getPriority
+     * <em>Priority</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+     * -->
+     * 
+     * @param value
+     *            the new value of the '<em>Priority</em>' attribute.
+     * @see #getPriority()
+     * @generated
+     */
+    void setPriority(int value);
 
-	/**
-	 * Returns the value of the '<em><b>Pick</b></em>' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc --> <!-- begin-model-doc --> How
-	 * many ticks the action can execute in the background while the tick count
-	 * progresses. Default is no duration [-1] meaning the method must finish
-	 * execution before the next scheduled action can execute. <!--
-	 * end-model-doc -->
-	 * 
-	 * @return the value of the '<em>Pick</em>' attribute.
-	 * @see #setPick(int)
-	 * @see org.metaabm.act.MetaABMActPackage#getASchedule_Pick()
-	 * @model
-	 * @generated
-	 */
-	int getPick();
+    /**
+     * Returns the value of the '<em><b>Pick</b></em>' attribute. <!--
+     * begin-user-doc --> <!-- end-user-doc --> <!-- begin-model-doc --> How
+     * many ticks the action can execute in the background while the tick count
+     * progresses. Default is no duration [-1] meaning the method must finish
+     * execution before the next scheduled action can execute. <!--
+     * end-model-doc -->
+     * 
+     * @return the value of the '<em>Pick</em>' attribute.
+     * @see #setPick(int)
+     * @see org.metaabm.act.MetaABMActPackage#getASchedule_Pick()
+     * @model
+     * @generated
+     */
+    int getPick();
 
-	/**
-	 * Sets the value of the '{@link org.metaabm.act.ASchedule#getPick <em>Pick</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Pick</em>' attribute.
-	 * @see #getPick()
-	 * @generated
-	 */
-	void setPick(int value);
+    /**
+     * Sets the value of the '{@link org.metaabm.act.ASchedule#getPick <em>Pick</em>}' attribute.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @param value the new value of the '<em>Pick</em>' attribute.
+     * @see #getPick()
+     * @generated
+     */
+    void setPick(int value);
 
 } // ASchedule

@@ -27,21 +27,21 @@ import org.metaabm.SValueLayer;
  * @generated
  */
 public class SValueLayerImpl extends SNamedImpl implements SValueLayer {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SValueLayerImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    protected SValueLayerImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return MetaABMPackage.Literals.SVALUE_LAYER;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return MetaABMPackage.Literals.SVALUE_LAYER;
+    }
 
 } // SValueLayerImpl

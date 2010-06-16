@@ -27,33 +27,33 @@ package org.metaabm.act;
  * @generated
  */
 public interface ABuildSpace extends ABuildProjection {
-	/**
-	 * Returns the value of the '<em><b>Space Type</b></em>' attribute.
-	 * The literals are from the enumeration {@link org.metaabm.act.ABuildSpaceTypes}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Space Type</em>' attribute isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Space Type</em>' attribute.
-	 * @see org.metaabm.act.ABuildSpaceTypes
-	 * @see #setSpaceType(ABuildSpaceTypes)
-	 * @see org.metaabm.act.MetaABMActPackage#getABuildSpace_SpaceType()
-	 * @model required="true"
-	 * @generated
-	 */
-	ABuildSpaceTypes getSpaceType();
+    /**
+     * Returns the value of the '<em><b>Space Type</b></em>' attribute.
+     * The literals are from the enumeration {@link org.metaabm.act.ABuildSpaceTypes}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Space Type</em>' attribute isn't clear, there
+     * really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Space Type</em>' attribute.
+     * @see org.metaabm.act.ABuildSpaceTypes
+     * @see #setSpaceType(ABuildSpaceTypes)
+     * @see org.metaabm.act.MetaABMActPackage#getABuildSpace_SpaceType()
+     * @model required="true"
+     * @generated
+     */
+    ABuildSpaceTypes getSpaceType();
 
-	/**
-	 * Sets the value of the '{@link org.metaabm.act.ABuildSpace#getSpaceType <em>Space Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @param value the new value of the '<em>Space Type</em>' attribute.
-	 * @see org.metaabm.act.ABuildSpaceTypes
-	 * @see #getSpaceType()
-	 * @generated
-	 */
-	void setSpaceType(ABuildSpaceTypes value);
+    /**
+     * Sets the value of the '{@link org.metaabm.act.ABuildSpace#getSpaceType <em>Space Type</em>}' attribute.
+     * <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     * @param value the new value of the '<em>Space Type</em>' attribute.
+     * @see org.metaabm.act.ABuildSpaceTypes
+     * @see #getSpaceType()
+     * @generated
+     */
+    void setSpaceType(ABuildSpaceTypes value);
 
 } // ABuildSpace

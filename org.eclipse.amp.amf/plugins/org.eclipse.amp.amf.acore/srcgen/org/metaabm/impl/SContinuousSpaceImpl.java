@@ -26,23 +26,22 @@ import org.metaabm.SContinuousSpace;
  * @author Miles Parker <!-- end-user-doc --> <p> </p>
  * @generated
  */
-public class SContinuousSpaceImpl extends SNDimensionalImpl implements
-		SContinuousSpace {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SContinuousSpaceImpl() {
-		super();
-	}
+public class SContinuousSpaceImpl extends SNDimensionalImpl implements SContinuousSpace {
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    protected SContinuousSpaceImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return MetaABMPackage.Literals.SCONTINUOUS_SPACE;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return MetaABMPackage.Literals.SCONTINUOUS_SPACE;
+    }
 
 } // SContinuousSpaceImpl

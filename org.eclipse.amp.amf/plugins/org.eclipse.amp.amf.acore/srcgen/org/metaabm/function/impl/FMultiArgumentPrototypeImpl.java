@@ -25,23 +25,22 @@ import org.metaabm.function.MetaABMFunctionPackage;
  * Argument Prototype</b></em>'. <!-- end-user-doc --> <p> </p>
  * @generated
  */
-public class FMultiArgumentPrototypeImpl extends FArgumentPrototypeImpl
-		implements FMultiArgumentPrototype {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FMultiArgumentPrototypeImpl() {
-		super();
-	}
+public class FMultiArgumentPrototypeImpl extends FArgumentPrototypeImpl implements FMultiArgumentPrototype {
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    protected FMultiArgumentPrototypeImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return MetaABMFunctionPackage.Literals.FMULTI_ARGUMENT_PROTOTYPE;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return MetaABMFunctionPackage.Literals.FMULTI_ARGUMENT_PROTOTYPE;
+    }
 
 } // FMultiArgumentPrototypeImpl

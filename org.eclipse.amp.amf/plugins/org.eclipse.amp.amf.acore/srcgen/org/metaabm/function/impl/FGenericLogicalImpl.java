@@ -28,31 +28,30 @@ import org.metaabm.function.MetaABMFunctionPackage;
  * @author Miles Parker <!-- end-user-doc --> <p> </p>
  * @generated
  */
-public class FGenericLogicalImpl extends FGenericImpl implements
-		FGenericLogical {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected FGenericLogicalImpl() {
-		super();
-	}
+public class FGenericLogicalImpl extends FGenericImpl implements FGenericLogical {
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    protected FGenericLogicalImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return MetaABMFunctionPackage.Literals.FGENERIC_LOGICAL;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return MetaABMFunctionPackage.Literals.FGENERIC_LOGICAL;
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	public EList<SAttributeType> getAvailableTypes() {
-		return SAttributeType.BOOLEAN_ACCEPTS;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    public EList<SAttributeType> getAvailableTypes() {
+        return SAttributeType.BOOLEAN_ACCEPTS;
+    }
 } // FGenericLogicalImpl

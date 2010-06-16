@@ -27,33 +27,33 @@ package org.metaabm;
  * @generated
  */
 public interface SStyle extends SActable, SImplemented {
-	/**
-	 * Returns the value of the '<em><b>Agent</b></em>' container reference. It
-	 * is bidirectional and its opposite is '
-	 * {@link org.metaabm.SAgent#getStyles <em>Styles</em>}'. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Agent</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Agent</em>' container reference.
-	 * @see #setAgent(SAgent)
-	 * @see org.metaabm.MetaABMPackage#getSStyle_Agent()
-	 * @see org.metaabm.SAgent#getStyles
-	 * @model opposite="styles" required="true" transient="false"
-	 * @generated
-	 */
-	SAgent getAgent();
+    /**
+     * Returns the value of the '<em><b>Agent</b></em>' container reference. It
+     * is bidirectional and its opposite is '
+     * {@link org.metaabm.SAgent#getStyles <em>Styles</em>}'. <!--
+     * begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Agent</em>' container reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * 
+     * @return the value of the '<em>Agent</em>' container reference.
+     * @see #setAgent(SAgent)
+     * @see org.metaabm.MetaABMPackage#getSStyle_Agent()
+     * @see org.metaabm.SAgent#getStyles
+     * @model opposite="styles" required="true" transient="false"
+     * @generated
+     */
+    SAgent getAgent();
 
-	/**
-	 * Sets the value of the '{@link org.metaabm.SStyle#getAgent <em>Agent</em>}' container reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Agent</em>' container reference.
-	 * @see #getAgent()
-	 * @generated
-	 */
-	void setAgent(SAgent value);
+    /**
+     * Sets the value of the '{@link org.metaabm.SStyle#getAgent <em>Agent</em>}' container reference.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @param value the new value of the '<em>Agent</em>' container reference.
+     * @see #getAgent()
+     * @generated
+     */
+    void setAgent(SAgent value);
 
 } // SStyle

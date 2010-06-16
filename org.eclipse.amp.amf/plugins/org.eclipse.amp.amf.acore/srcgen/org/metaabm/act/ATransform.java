@@ -27,31 +27,31 @@ package org.metaabm.act;
  */
 public interface ATransform extends ACommand {
 
-	/**
-	 * Returns the value of the '<em><b>Destination</b></em>' reference. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Destination</em>' reference isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Destination</em>' reference.
-	 * @see #setDestination(ASelect)
-	 * @see org.metaabm.act.MetaABMActPackage#getATransform_Destination()
-	 * @model required="true"
-	 * @generated
-	 */
-	ASelect getDestination();
+    /**
+     * Returns the value of the '<em><b>Destination</b></em>' reference. <!--
+     * begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Destination</em>' reference isn't clear, there
+     * really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * 
+     * @return the value of the '<em>Destination</em>' reference.
+     * @see #setDestination(ASelect)
+     * @see org.metaabm.act.MetaABMActPackage#getATransform_Destination()
+     * @model required="true"
+     * @generated
+     */
+    ASelect getDestination();
 
-	/**
-	 * Sets the value of the '{@link org.metaabm.act.ATransform#getDestination <em>Destination</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @param value the new value of the '<em>Destination</em>' reference.
-	 * @see #getDestination()
-	 * @generated
-	 */
-	void setDestination(ASelect value);
+    /**
+     * Sets the value of the '{@link org.metaabm.act.ATransform#getDestination <em>Destination</em>}' reference.
+     * <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     * @param value the new value of the '<em>Destination</em>' reference.
+     * @see #getDestination()
+     * @generated
+     */
+    void setDestination(ASelect value);
 
 } // ATransform

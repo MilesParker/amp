@@ -28,33 +28,33 @@ import org.metaabm.SNetwork;
  * @generated
  */
 public interface ANetwork extends ATransform {
-	/**
-	 * Returns the value of the '<em><b>Within</b></em>' reference. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Within</em>' reference isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Within</em>' reference.
-	 * @see #setWithin(SNetwork)
-	 * @see org.metaabm.act.MetaABMActPackage#getANetwork_Within()
-	 * @model required="true"
-	 * @generated
-	 */
-	SNetwork getWithin();
+    /**
+     * Returns the value of the '<em><b>Within</b></em>' reference. <!--
+     * begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Within</em>' reference isn't clear, there
+     * really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * 
+     * @return the value of the '<em>Within</em>' reference.
+     * @see #setWithin(SNetwork)
+     * @see org.metaabm.act.MetaABMActPackage#getANetwork_Within()
+     * @model required="true"
+     * @generated
+     */
+    SNetwork getWithin();
 
-	/**
-	 * Sets the value of the '{@link org.metaabm.act.ANetwork#getWithin
-	 * <em>Within</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Within</em>' reference.
-	 * @see #getWithin()
-	 * @generated
-	 */
-	void setWithin(SNetwork value);
+    /**
+     * Sets the value of the '{@link org.metaabm.act.ANetwork#getWithin
+     * <em>Within</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
+     * -->
+     * 
+     * @param value
+     *            the new value of the '<em>Within</em>' reference.
+     * @see #getWithin()
+     * @generated
+     */
+    void setWithin(SNetwork value);
 
 } // ANetwork

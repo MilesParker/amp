@@ -26,21 +26,21 @@ import org.metaabm.act.MetaABMActPackage;
  * @generated
  */
 public class ALeaveImpl extends ATransformImpl implements ALeave {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ALeaveImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    protected ALeaveImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return MetaABMActPackage.Literals.ALEAVE;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return MetaABMActPackage.Literals.ALEAVE;
+    }
 
 } // ALeaveImpl

@@ -26,21 +26,21 @@ import org.metaabm.act.MetaABMActPackage;
  * @generated
  */
 public class AReplaceImpl extends AConnectImpl implements AReplace {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AReplaceImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    protected AReplaceImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return MetaABMActPackage.Literals.AREPLACE;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return MetaABMActPackage.Literals.AREPLACE;
+    }
 
 } // AReplaceImpl

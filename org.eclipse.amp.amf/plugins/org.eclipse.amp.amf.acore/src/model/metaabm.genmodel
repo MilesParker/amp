@@ -102,6 +102,7 @@
       <genFeatures createChild="false" propertyCategory="Values" ecoreFeature="ecore:EAttribute metaabm.ecore#//SAttribute/defaultValue"/>
       <genFeatures createChild="false" propertyCategory="Values" ecoreFeature="ecore:EAttribute metaabm.ecore#//SAttribute/units"/>
       <genFeatures createChild="false" propertyCategory="Values" ecoreFeature="ecore:EAttribute metaabm.ecore#//SAttribute/immutable"/>
+      <genFeatures createChild="false" propertyCategory="Values" ecoreFeature="ecore:EAttribute metaabm.ecore#//SAttribute/derived"/>
     </genClasses>
     <genClasses ecoreClass="metaabm.ecore#//SAttributeArray"/>
     <genClasses ecoreClass="metaabm.ecore#//SState">
@@ -401,7 +402,7 @@
             ecoreFeature="ecore:EReference metaabm.ecore#//act/ASelect/agent"/>
         <genFeatures createChild="false" propertyCategory="Act" propertySortChoices="true"
             ecoreFeature="ecore:EReference metaabm.ecore#//act/ASelect/space"/>
-        <genFeatures createChild="false" propertyCategory="Act" ecoreFeature="ecore:EAttribute metaabm.ecore#//act/ASelect/for"/>
+        <genFeatures property="None" createChild="false" propertyCategory="Act" ecoreFeature="ecore:EAttribute metaabm.ecore#//act/ASelect/for"/>
       </genClasses>
       <genClasses ecoreClass="metaabm.ecore#//act/AMove"/>
       <genClasses ecoreClass="metaabm.ecore#//act/ATransform">
@@ -420,9 +421,20 @@
       <genClasses ecoreClass="metaabm.ecore#//act/ADisconnect"/>
       <genClasses ecoreClass="metaabm.ecore#//act/AReplace"/>
       <genClasses ecoreClass="metaabm.ecore#//act/ACommand"/>
-      <genClasses ecoreClass="metaabm.ecore#//act/ACause"/>
-      <genClasses ecoreClass="metaabm.ecore#//act/ADiffuse"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/ACause">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/ACause/result"/>
+      </genClasses>
+      <genClasses ecoreClass="metaabm.ecore#//act/ADiffuse">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/ADiffuse/diffused"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/ADiffuse/diffusionRate"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference metaabm.ecore#//act/ADiffuse/evaporationRate"/>
+      </genClasses>
       <genClasses ecoreClass="metaabm.ecore#//act/APerform"/>
+      <genClasses ecoreClass="metaabm.ecore#//act/ADerive"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

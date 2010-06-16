@@ -27,33 +27,33 @@ import org.metaabm.act.MetaABMActPackage;
  * @generated
  */
 public class AEvaluateImpl extends ASinkImpl implements AEvaluate {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AEvaluateImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    protected AEvaluateImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return MetaABMActPackage.Literals.AEVALUATE;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return MetaABMActPackage.Literals.AEVALUATE;
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	public String getLabel() {
-		return super.getLabel();
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    public String getLabel() {
+        return super.getLabel();
+    }
 
-	public String toString() {
-		return getLabel();
-	}
+    public String toString() {
+        return getLabel();
+    }
 } // AEvaluateImpl

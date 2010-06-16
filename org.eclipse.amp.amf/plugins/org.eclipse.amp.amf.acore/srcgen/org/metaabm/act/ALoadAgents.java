@@ -12,7 +12,7 @@
  *   Argonne National Laboratory - Initial development (pre-contribution)
  *   Metascape - Subsequent development and maintenance
  *
- * </copyright> $Id: ALoadAgents.java,v 1.2 2010/05/30 00:48:13 mparker Exp $
+ * </copyright> $Id: ALoadAgents.java,v 1.3 2010/06/16 18:01:15 mparker Exp $
  */
 package org.metaabm.act;
 
@@ -26,31 +26,31 @@ package org.metaabm.act;
  * @generated
  */
 public interface ALoadAgents extends ACreateAgents {
-	/**
-	 * Returns the value of the '<em><b>Source URL</b></em>' attribute. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Source URL</em>' attribute isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Source URL</em>' attribute.
-	 * @see #setSourceURL(String)
-	 * @see org.metaabm.act.MetaABMActPackage#getALoadAgents_SourceURL()
-	 * @model required="true"
-	 * @generated
-	 */
-	String getSourceURL();
+    /**
+     * Returns the value of the '<em><b>Source URL</b></em>' attribute. <!--
+     * begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Source URL</em>' attribute isn't clear, there
+     * really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * 
+     * @return the value of the '<em>Source URL</em>' attribute.
+     * @see #setSourceURL(String)
+     * @see org.metaabm.act.MetaABMActPackage#getALoadAgents_SourceURL()
+     * @model required="true"
+     * @generated
+     */
+    String getSourceURL();
 
-	/**
-	 * Sets the value of the '{@link org.metaabm.act.ALoadAgents#getSourceURL <em>Source URL</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @param value the new value of the '<em>Source URL</em>' attribute.
-	 * @see #getSourceURL()
-	 * @generated
-	 */
-	void setSourceURL(String value);
+    /**
+     * Sets the value of the '{@link org.metaabm.act.ALoadAgents#getSourceURL <em>Source URL</em>}' attribute.
+     * <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     * @param value the new value of the '<em>Source URL</em>' attribute.
+     * @see #getSourceURL()
+     * @generated
+     */
+    void setSourceURL(String value);
 
 } // ALoadAgents

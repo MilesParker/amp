@@ -29,32 +29,32 @@ import org.metaabm.SStyle2D;
  * @generated
  */
 public class SStyle2DImpl extends SStyleImpl implements SStyle2D {
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SStyle2DImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    protected SStyle2DImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return MetaABMPackage.Literals.SSTYLE2_D;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return MetaABMPackage.Literals.SSTYLE2_D;
+    }
 
-	public SAgent getParent() {
-		return getAgent();
-	}
+    public SAgent getParent() {
+        return getAgent();
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 */
-	public SImplemented basicGetParent() {
-		return getParent();
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     */
+    public SImplemented basicGetParent() {
+        return getParent();
+    }
 
 } // SStyle2DImpl

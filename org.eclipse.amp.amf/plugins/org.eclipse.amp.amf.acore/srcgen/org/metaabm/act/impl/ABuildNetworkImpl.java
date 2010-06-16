@@ -32,133 +32,129 @@ import org.metaabm.act.MetaABMActPackage;
  * Type</em>}</li> </ul> </p>
  * @generated
  */
-public class ABuildNetworkImpl extends ABuildProjectionImpl implements
-		ABuildNetwork {
-	/**
-	 * The default value of the '{@link #getNetworkType() <em>Network Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getNetworkType()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final ABuildNetworkTypes NETWORK_TYPE_EDEFAULT = ABuildNetworkTypes.BARABASI;
+public class ABuildNetworkImpl extends ABuildProjectionImpl implements ABuildNetwork {
+    /**
+     * The default value of the '{@link #getNetworkType() <em>Network Type</em>}' attribute.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @see #getNetworkType()
+     * @generated
+     * @ordered
+     */
+    protected static final ABuildNetworkTypes NETWORK_TYPE_EDEFAULT = ABuildNetworkTypes.BARABASI;
 
-	/**
-	 * The cached value of the '{@link #getNetworkType() <em>Network Type</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getNetworkType()
-	 * @generated
-	 * @ordered
-	 */
-	protected ABuildNetworkTypes networkType = NETWORK_TYPE_EDEFAULT;
+    /**
+     * The cached value of the '{@link #getNetworkType() <em>Network Type</em>}' attribute.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @see #getNetworkType()
+     * @generated
+     * @ordered
+     */
+    protected ABuildNetworkTypes networkType = NETWORK_TYPE_EDEFAULT;
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ABuildNetworkImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    protected ABuildNetworkImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return MetaABMActPackage.Literals.ABUILD_NETWORK;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return MetaABMActPackage.Literals.ABUILD_NETWORK;
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ABuildNetworkTypes getNetworkType() {
-		return networkType;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    public ABuildNetworkTypes getNetworkType() {
+        return networkType;
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setNetworkType(ABuildNetworkTypes newNetworkType) {
-		ABuildNetworkTypes oldNetworkType = networkType;
-		networkType = newNetworkType == null ? NETWORK_TYPE_EDEFAULT
-				: newNetworkType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET,
-					MetaABMActPackage.ABUILD_NETWORK__NETWORK_TYPE,
-					oldNetworkType, networkType));
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    public void setNetworkType(ABuildNetworkTypes newNetworkType) {
+        ABuildNetworkTypes oldNetworkType = networkType;
+        networkType = newNetworkType == null ? NETWORK_TYPE_EDEFAULT : newNetworkType;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, MetaABMActPackage.ABUILD_NETWORK__NETWORK_TYPE,
+                oldNetworkType, networkType));
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case MetaABMActPackage.ABUILD_NETWORK__NETWORK_TYPE:
-			return getNetworkType();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case MetaABMActPackage.ABUILD_NETWORK__NETWORK_TYPE:
+                return getNetworkType();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case MetaABMActPackage.ABUILD_NETWORK__NETWORK_TYPE:
-			setNetworkType((ABuildNetworkTypes) newValue);
-			return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case MetaABMActPackage.ABUILD_NETWORK__NETWORK_TYPE:
+                setNetworkType((ABuildNetworkTypes) newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-		case MetaABMActPackage.ABUILD_NETWORK__NETWORK_TYPE:
-			setNetworkType(NETWORK_TYPE_EDEFAULT);
-			return;
-		}
-		super.eUnset(featureID);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case MetaABMActPackage.ABUILD_NETWORK__NETWORK_TYPE:
+                setNetworkType(NETWORK_TYPE_EDEFAULT);
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case MetaABMActPackage.ABUILD_NETWORK__NETWORK_TYPE:
-			return networkType != NETWORK_TYPE_EDEFAULT;
-		}
-		return super.eIsSet(featureID);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case MetaABMActPackage.ABUILD_NETWORK__NETWORK_TYPE:
+                return networkType != NETWORK_TYPE_EDEFAULT;
+        }
+        return super.eIsSet(featureID);
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString() {
+        if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (networkType: ");
-		result.append(networkType);
-		result.append(')');
-		return result.toString();
-	}
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (networkType: ");
+        result.append(networkType);
+        result.append(')');
+        return result.toString();
+    }
 
 } // ABuildNetworkImpl

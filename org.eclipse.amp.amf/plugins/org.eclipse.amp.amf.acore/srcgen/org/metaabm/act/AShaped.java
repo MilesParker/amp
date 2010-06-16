@@ -12,7 +12,7 @@
  *   Argonne National Laboratory - Initial development (pre-contribution)
  *   Metascape - Subsequent development and maintenance
  *
- * </copyright> $Id: AShaped.java,v 1.2 2010/05/30 00:48:13 mparker Exp $
+ * </copyright> $Id: AShaped.java,v 1.3 2010/06/16 18:01:15 mparker Exp $
  */
 package org.metaabm.act;
 
@@ -29,33 +29,33 @@ import org.metaabm.SShapeType;
  * @generated
  */
 public interface AShaped extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Shape</b></em>' attribute.
-	 * The default value is <code>"POINT"</code>.
-	 * The literals are from the enumeration {@link org.metaabm.SShapeType}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Shape</em>' attribute isn't clear, there
-	 * really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Shape</em>' attribute.
-	 * @see org.metaabm.SShapeType
-	 * @see #setShape(SShapeType)
-	 * @see org.metaabm.act.MetaABMActPackage#getAShaped_Shape()
-	 * @model default="POINT" required="true"
-	 * @generated
-	 */
-	SShapeType getShape();
+    /**
+     * Returns the value of the '<em><b>Shape</b></em>' attribute.
+     * The default value is <code>"POINT"</code>.
+     * The literals are from the enumeration {@link org.metaabm.SShapeType}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Shape</em>' attribute isn't clear, there
+     * really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Shape</em>' attribute.
+     * @see org.metaabm.SShapeType
+     * @see #setShape(SShapeType)
+     * @see org.metaabm.act.MetaABMActPackage#getAShaped_Shape()
+     * @model default="POINT" required="true"
+     * @generated
+     */
+    SShapeType getShape();
 
-	/**
-	 * Sets the value of the '{@link org.metaabm.act.AShaped#getShape <em>Shape</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Shape</em>' attribute.
-	 * @see org.metaabm.SShapeType
-	 * @see #getShape()
-	 * @generated
-	 */
-	void setShape(SShapeType value);
+    /**
+     * Sets the value of the '{@link org.metaabm.act.AShaped#getShape <em>Shape</em>}' attribute.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @param value the new value of the '<em>Shape</em>' attribute.
+     * @see org.metaabm.SShapeType
+     * @see #getShape()
+     * @generated
+     */
+    void setShape(SShapeType value);
 
 } // AShaped

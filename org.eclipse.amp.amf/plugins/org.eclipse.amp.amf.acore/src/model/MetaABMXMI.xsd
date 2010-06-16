@@ -126,6 +126,7 @@
         <xsd:attribute name="defaultValue" type="xsd:string"/>
         <xsd:attribute name="units" type="xsd:string"/>
         <xsd:attribute name="immutable" type="xsd:boolean" use="required"/>
+        <xsd:attribute name="derived" type="xsd:boolean" use="required"/>
         <xsd:attribute name="owner" type="xsd:string"/>
       </xsd:extension>
     </xsd:complexContent>

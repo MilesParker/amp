@@ -38,150 +38,144 @@ import org.metaabm.SAttributed;
  * @generated
  */
 public abstract class SAttributedImpl extends SNamedImpl implements SAttributed {
-	/**
-	 * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getAttributes()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<SAttribute> attributes;
+    /**
+     * The cached value of the '{@link #getAttributes() <em>Attributes</em>}' containment reference list.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @see #getAttributes()
+     * @generated
+     * @ordered
+     */
+    protected EList<SAttribute> attributes;
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected SAttributedImpl() {
-		super();
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    protected SAttributedImpl() {
+        super();
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EClass eStaticClass() {
-		return MetaABMPackage.Literals.SATTRIBUTED;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return MetaABMPackage.Literals.SATTRIBUTED;
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<SAttribute> getAttributes() {
-		if (attributes == null) {
-			attributes = new EObjectContainmentWithInverseEList<SAttribute>(
-					SAttribute.class, this,
-					MetaABMPackage.SATTRIBUTED__ATTRIBUTES,
-					MetaABMPackage.SATTRIBUTE__OWNER);
-		}
-		return attributes;
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<SAttribute> getAttributes() {
+        if (attributes == null) {
+            attributes = new EObjectContainmentWithInverseEList<SAttribute>(SAttribute.class, this,
+                MetaABMPackage.SATTRIBUTED__ATTRIBUTES, MetaABMPackage.SATTRIBUTE__OWNER);
+        }
+        return attributes;
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public NotificationChain eInverseAdd(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case MetaABMPackage.SATTRIBUTED__ATTRIBUTES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAttributes())
-					.basicAdd(otherEnd, msgs);
-		}
-		return super.eInverseAdd(otherEnd, featureID, msgs);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case MetaABMPackage.SATTRIBUTED__ATTRIBUTES:
+                return ((InternalEList<InternalEObject>) (InternalEList<?>) getAttributes()).basicAdd(otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd,
-			int featureID, NotificationChain msgs) {
-		switch (featureID) {
-		case MetaABMPackage.SATTRIBUTED__ATTRIBUTES:
-			return ((InternalEList<?>) getAttributes()).basicRemove(otherEnd,
-					msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+            case MetaABMPackage.SATTRIBUTED__ATTRIBUTES:
+                return ((InternalEList<?>) getAttributes()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
-		case MetaABMPackage.SATTRIBUTED__ATTRIBUTES:
-			return getAttributes();
-		}
-		return super.eGet(featureID, resolve, coreType);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+            case MetaABMPackage.SATTRIBUTED__ATTRIBUTES:
+                return getAttributes();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
-		case MetaABMPackage.SATTRIBUTED__ATTRIBUTES:
-			getAttributes().clear();
-			getAttributes().addAll((Collection<? extends SAttribute>) newValue);
-			return;
-		}
-		super.eSet(featureID, newValue);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+            case MetaABMPackage.SATTRIBUTED__ATTRIBUTES:
+                getAttributes().clear();
+                getAttributes().addAll((Collection<? extends SAttribute>) newValue);
+                return;
+        }
+        super.eSet(featureID, newValue);
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public void eUnset(int featureID) {
-		switch (featureID) {
-		case MetaABMPackage.SATTRIBUTED__ATTRIBUTES:
-			getAttributes().clear();
-			return;
-		}
-		super.eUnset(featureID);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+            case MetaABMPackage.SATTRIBUTED__ATTRIBUTES:
+                getAttributes().clear();
+                return;
+        }
+        super.eUnset(featureID);
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public boolean eIsSet(int featureID) {
-		switch (featureID) {
-		case MetaABMPackage.SATTRIBUTED__ATTRIBUTES:
-			return attributes != null && !attributes.isEmpty();
-		}
-		return super.eIsSet(featureID);
-	}
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+            case MetaABMPackage.SATTRIBUTED__ATTRIBUTES:
+                return attributes != null && !attributes.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
-	/**
-	 * Returns the attribute with the supplied <i>usage</i> name.
-	 */
-	public SAttribute findAttribute(String id) {
-		for (SAttribute attr : getAttributes()) {
-			if (attr.getID().equals(id)) {
-				return attr;
-			}
-		}
-		return null;
-	}
+    /**
+     * Returns the attribute with the supplied <i>usage</i> name.
+     */
+    public SAttribute findAttribute(String id) {
+        for (SAttribute attr : getAttributes()) {
+            if (attr.getID().equals(id)) {
+                return attr;
+            }
+        }
+        return null;
+    }
 
-	public boolean isReachable(IValue value) {
-		if (getAttributes().contains(value)) {
-			return true;
-		}
-		return false;
-	}
+    public boolean isReachable(IValue value) {
+        if (getAttributes().contains(value)) {
+            return true;
+        }
+        return false;
+    }
 
 } // SAttributedImpl
