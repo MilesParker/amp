@@ -53,165 +53,150 @@ import org.metaabm.commands.SuggestLabelCommand;
  * object. <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
-public class SImplementedItemProvider extends IIDItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-		ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
-	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SImplementedItemProvider(AdapterFactory adapterFactory) {
-		super(adapterFactory);
-	}
+public class SImplementedItemProvider extends IIDItemProvider implements IEditingDomainItemProvider,
+        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+    /**
+     * This constructs an instance from a factory and a notifier.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    public SImplementedItemProvider(AdapterFactory adapterFactory) {
+        super(adapterFactory);
+    }
 
-	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+    /**
+     * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+        if (itemPropertyDescriptors == null) {
+            super.getPropertyDescriptors(object);
 
-			addParentPropertyDescriptor(object);
-			addImplementationAsProperties((SImplemented) object, this);
-		}
-		return itemPropertyDescriptors;
-	}
+            addParentPropertyDescriptor(object);
+            addImplementationAsProperties((SImplemented) object, this);
+        }
+        return itemPropertyDescriptors;
+    }
 
-	public static void addImplementationAsProperties(SImplemented implemented,
-			ItemProviderAdapter adapter) {
-		SImplementation implementation = implemented.getImplementation();
-		SImplementationItemProvider implProv = (SImplementationItemProvider) adapter
-				.getAdapterFactory().adapt(implementation,
-						IItemLabelProvider.class);
-		List<?> implDesc = implProv.getPropertyDescriptors(implementation);
-		final String feature = adapter
-				.getString("_UI_SImplemented_implementation_feature");
-		for (Object name : implDesc) {
-			ItemPropertyDescriptor desc = (ItemPropertyDescriptor) name;
-			adapter.getPropertyDescriptors(implementation).add(
-					new ItemPropertyDescriptorDecorator(implementation, desc) {
-						public String getCategory(Object thisObject) {
-							return feature;
-						}
+    public static void addImplementationAsProperties(SImplemented implemented, ItemProviderAdapter adapter) {
+        SImplementation implementation = implemented.getImplementation();
+        SImplementationItemProvider implProv = (SImplementationItemProvider) adapter.getAdapterFactory()
+                .adapt(implementation, IItemLabelProvider.class);
+        List<?> implDesc = implProv.getPropertyDescriptors(implementation);
+        final String feature = adapter.getString("_UI_SImplemented_implementation_feature");
+        for (Object name : implDesc) {
+            ItemPropertyDescriptor desc = (ItemPropertyDescriptor) name;
+            adapter.getPropertyDescriptors(implementation)
+                    .add(new ItemPropertyDescriptorDecorator(implementation, desc) {
+                        public String getCategory(Object thisObject) {
+                            return feature;
+                        }
 
-						public String getId(Object thisObject) {
-							return feature + getDisplayName(thisObject);
-						}
-					});
-		}
-	}
+                        public String getId(Object thisObject) {
+                            return feature + getDisplayName(thisObject);
+                        }
+                    });
+        }
+    }
 
-	/**
-	 * This adds a property descriptor for the Parent feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addParentPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(),
-				getResourceLocator(),
-				getString("_UI_SImplemented_parent_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_SImplemented_parent_feature",
-						"_UI_SImplemented_type"),
-				MetaABMPackage.Literals.SIMPLEMENTED__PARENT, false, false,
-				false, null, getString("_UI_RelationsPropertyCategory"),
-				new String[] { "org.eclipse.ui.views.properties.expert" }));
-	}
+    /**
+     * This adds a property descriptor for the Parent feature.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addParentPropertyDescriptor(Object object) {
+        itemPropertyDescriptors
+                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                                  getResourceLocator(),
+                                                  getString("_UI_SImplemented_parent_feature"),
+                                                  getString("_UI_PropertyDescriptor_description",
+                                                            "_UI_SImplemented_parent_feature", "_UI_SImplemented_type"),
+                                                  MetaABMPackage.Literals.SIMPLEMENTED__PARENT, false, false, false,
+                                                  null, getString("_UI_RelationsPropertyCategory"),
+                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
+    }
 
-	/**
-	 * This returns SImplemented.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object,
-				getResourceLocator().getImage("full/obj16/SImplemented"));
-	}
+    /**
+     * This returns SImplemented.gif.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object getImage(Object object) {
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/SImplemented"));
+    }
 
-	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String getText(Object object) {
-		String label = ((SImplemented) object).getID();
-		return label == null || label.length() == 0 ? getString("_UI_SImplemented_type")
-				: getString("_UI_SImplemented_type") + " " + label;
-	}
+    /**
+     * This returns the label text for the adapted class.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String getText(Object object) {
+        String label = ((SImplemented) object).getID();
+        return label == null || label.length() == 0 ? getString("_UI_SImplemented_type")
+            : getString("_UI_SImplemented_type") + " " + label;
+    }
 
-	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+    /**
+     * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+     * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+     * -->
+     * 
+     * @generated
+     */
+    @Override
+    public void notifyChanged(Notification notification) {
+        updateChildren(notification);
 
-		switch (notification.getFeatureID(SImplemented.class)) {
-		case MetaABMPackage.SIMPLEMENTED__IMPLEMENTATION:
-			fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), false, true));
-			return;
-		}
-		super.notifyChanged(notification);
-	}
+        switch (notification.getFeatureID(SImplemented.class)) {
+            case MetaABMPackage.SIMPLEMENTED__IMPLEMENTATION:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+                return;
+        }
+        super.notifyChanged(notification);
+    }
 
-	protected Command createSetCommand(EditingDomain domain, EObject owner,
-			EStructuralFeature feature, Object value, int index) {
-		if (feature == MetaABMPackage.Literals.SIMPLEMENTED__IMPLEMENTATION
-				&& value instanceof IID) {
-			CompoundCommand cmd = new CompoundCommand("Add Implementation to "
-					+ ((IID) owner).getLabel());
-			cmd.append(super.createSetCommand(domain, owner, feature, value,
-					index));
-			@SuppressWarnings(value = { "unused" })
-			Object adapt = adapterFactory.adapt(value,
-					IEditingDomainItemProvider.class);
-			cmd.append(new SuggestLabelCommand(domain, (IID) value));
-			return cmd;
-		} else if (feature == MetaABMPackage.Literals.IID__LABEL) {
-			return SetLabelCommand.create(domain, owner, feature, value, index);
-		} else {
-			return super.createSetCommand(domain, owner, feature, value, index);
-		}
-	}
+    protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value,
+            int index) {
+        if (feature == MetaABMPackage.Literals.SIMPLEMENTED__IMPLEMENTATION && value instanceof IID) {
+            CompoundCommand cmd = new CompoundCommand("Add Implementation to " + ((IID) owner).getLabel());
+            cmd.append(super.createSetCommand(domain, owner, feature, value, index));
+            @SuppressWarnings(value = { "unused" })
+            Object adapt = adapterFactory.adapt(value, IEditingDomainItemProvider.class);
+            cmd.append(new SuggestLabelCommand(domain, (IID) value));
+            return cmd;
+        } else if (feature == MetaABMPackage.Literals.IID__LABEL) {
+            return SetLabelCommand.create(domain, owner, feature, value, index);
+        } else {
+            return super.createSetCommand(domain, owner, feature, value, index);
+        }
+    }
 
-	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
-		super.collectNewChildDescriptors(newChildDescriptors, object);
+    /**
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+     * that can be created under this object.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+        super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				MetaABMPackage.Literals.SIMPLEMENTED__IMPLEMENTATION,
-				MetaABMFactory.eINSTANCE.createSImplementation()));
-	}
+        newChildDescriptors.add(createChildParameter(MetaABMPackage.Literals.SIMPLEMENTED__IMPLEMENTATION,
+                                                     MetaABMFactory.eINSTANCE.createSImplementation()));
+    }
 
-	public String suggestLabel(IID object) {
-		SImplemented implemented = (SImplemented) object;
-		String label = getString("_UI_" + implemented.eClass().getName()
-				+ "_type");
-		return label;
-	}
+    public String suggestLabel(IID object) {
+        SImplemented implemented = (SImplemented) object;
+        String label = getString("_UI_" + implemented.eClass().getName() + "_type");
+        return label;
+    }
 
-	public String suggestID(IID object) {
-		return "";
-	}
+    public String suggestID(IID object) {
+        return "";
+    }
 
 }

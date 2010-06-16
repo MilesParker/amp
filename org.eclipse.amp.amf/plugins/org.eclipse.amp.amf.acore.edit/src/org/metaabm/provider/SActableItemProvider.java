@@ -48,128 +48,120 @@ import org.metaabm.act.AGroup;
  * <!-- begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
-public class SActableItemProvider extends SAttributedItemProvider implements
-		IEditingDomainItemProvider, IStructuredItemContentProvider,
-		ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-		ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
-	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SActableItemProvider(AdapterFactory adapterFactory) {
-		super(adapterFactory);
-	}
+public class SActableItemProvider extends SAttributedItemProvider implements IEditingDomainItemProvider,
+        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+    /**
+     * This constructs an instance from a factory and a notifier.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    public SActableItemProvider(AdapterFactory adapterFactory) {
+        super(adapterFactory);
+    }
 
-	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
-			super.getPropertyDescriptors(object);
+    /**
+     * This returns the property descriptors for the adapted class.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+        if (itemPropertyDescriptors == null) {
+            super.getPropertyDescriptors(object);
 
-		}
-		return itemPropertyDescriptors;
-	}
+        }
+        return itemPropertyDescriptors;
+    }
 
-	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(
-			Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(MetaABMPackage.Literals.SACTABLE__ROOT_ACTIVITY);
-		}
-		return childrenFeatures;
-	}
+    /**
+     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+     * <!-- begin-user-doc --> <!--
+     * end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+        if (childrenFeatures == null) {
+            super.getChildrenFeatures(object);
+            childrenFeatures.add(MetaABMPackage.Literals.SACTABLE__ROOT_ACTIVITY);
+        }
+        return childrenFeatures;
+    }
 
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EStructuralFeature getChildFeature(Object object, Object child) {
+        // Check the type of the specified child object and return the proper feature to use for
+        // adding (see {@link AddCommand}) it as a child.
 
-		return super.getChildFeature(object, child);
-	}
+        return super.getChildFeature(object, child);
+    }
 
-	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	@Override
-	public String getText(Object object) {
-		return super.getText(object);
-	}
+    /**
+     * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    public String getText(Object object) {
+        return super.getText(object);
+    }
 
-	/**
-	 * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-	 * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public void notifyChanged(Notification notification) {
-		updateChildren(notification);
+    /**
+     * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
+     * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
+     * -->
+     * 
+     * @generated
+     */
+    @Override
+    public void notifyChanged(Notification notification) {
+        updateChildren(notification);
 
-		switch (notification.getFeatureID(SActable.class)) {
-		case MetaABMPackage.SACTABLE__ROOT_ACTIVITY:
-			fireNotifyChanged(new ViewerNotification(notification,
-					notification.getNotifier(), true, false));
-			return;
-		}
-		super.notifyChanged(notification);
-	}
+        switch (notification.getFeatureID(SActable.class)) {
+            case MetaABMPackage.SACTABLE__ROOT_ACTIVITY:
+                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+                return;
+        }
+        super.notifyChanged(notification);
+    }
 
-	/**
-	 * This adds to the collection of {@link org.eclipse.emf.edit.command.CommandParameter}s describing all of the
-	 * children that can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 * @override
-	 */
-	protected void collectNewChildDescriptors(
-			Collection<Object> newChildDescriptors, Object object) {
-	}
+    /**
+     * This adds to the collection of {@link org.eclipse.emf.edit.command.CommandParameter}s describing all of the
+     * children that can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     * @override
+     */
+    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+    }
 
-	protected Command createSetCommand(EditingDomain domain, EObject owner,
-			EStructuralFeature feature, Object value, int index) {
-		if (feature == MetaABMPackage.Literals.SACTABLE__ROOT_ACTIVITY) {
-			CompoundCommand cmd = new CompoundCommand();
-			cmd.append(super.createSetCommand(domain, owner, feature, value,
-					index));
-			if (value instanceof AGroup) {
-				cmd.append(SetCommand.create(domain, value,
-						MetaABMPackage.Literals.IID__LABEL, "Actions"));
-			}
-			return cmd;
-		}
-		return super.createSetCommand(domain, owner, feature, value, index);
-	}
+    protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value,
+            int index) {
+        if (feature == MetaABMPackage.Literals.SACTABLE__ROOT_ACTIVITY) {
+            CompoundCommand cmd = new CompoundCommand();
+            cmd.append(super.createSetCommand(domain, owner, feature, value, index));
+            if (value instanceof AGroup) {
+                cmd.append(SetCommand.create(domain, value, MetaABMPackage.Literals.IID__LABEL, "Actions"));
+            }
+            return cmd;
+        }
+        return super.createSetCommand(domain, owner, feature, value, index);
+    }
 
-	protected Command createRemoveCommand(EditingDomain domain, EObject owner,
-			EStructuralFeature feature, Collection<?> collection) {
-		if (feature == MetaABMPackage.Literals.SACTABLE__ROOT_ACTIVITY) {
-			return UnexecutableCommand.INSTANCE;
-		} else {
-			return super
-					.createRemoveCommand(domain, owner, feature, collection);
-		}
-	}
+    protected Command createRemoveCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
+            Collection<?> collection) {
+        if (feature == MetaABMPackage.Literals.SACTABLE__ROOT_ACTIVITY) {
+            return UnexecutableCommand.INSTANCE;
+        } else {
+            return super.createRemoveCommand(domain, owner, feature, collection);
+        }
+    }
 
 }
