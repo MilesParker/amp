@@ -111,6 +111,9 @@ context AMove ERROR "Destination not specified for " + usageLabel():
       
 context AMove WARNING "Destination for " + usageLabel() + " is the same as selection, do you really want to apply the selection into itself?": 
    selected != destination;
+     
+context SAttribute ERROR "An attribute cannot be both derived and immutable: " + usageLabel():
+    derived == false || immutable == false;
       
 //context AMove ERROR "Destination " + destination.usageLabel() + " for " + usageLabel() + " is not a cell. (The destination agent is " + destination.agent.usageLabel() + " and the fill agent for the destination is " + ((SGrid) destination.space).builder().fillAgent.usageLabel() + ".)": 
 //   destination.space.metaType != SGrid || ((SGrid) destination.space).builder().fillAgent == null || ((SGrid) destination.space).builder().fillAgent == destination.agent || !destination.controlFunctions({"toward"}).isEmpty;

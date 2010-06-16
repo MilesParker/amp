@@ -173,6 +173,16 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 	 * «descrText()»
 	 */
 «ENDDEFINE»
+«DEFINE MethodImpl FOR ADerive-»
+	public «attribute.typeName()» «attribute.getterName()»() {
+	 	«EXPAND ProtectedRegion(methodName())-»
+	    «IF impl().mode != SImplementationMode::GenerateEmpty-» 
+	 		«EXPAND ActionBody-» 
+	    «ENDIF-»
+		return «attribute.defaultValue()»;
+	}
+	
+«ENDDEFINE»
 «DEFINE MethodImpl FOR IID-»
  	public «methodTypeName()» «methodName()»(«methodParamList()») {
  	«EXPAND ProtectedRegion(methodName())-»
@@ -266,16 +276,29 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 	«EXPAND ActionBody FOREACH ((AGroup) rootActivity).roots-»
 «ENDDEFINE»
 
-«DEFINE Accessor FOR IID-»
+«DEFINE SetterSideEffect FOR IID-»«ENDDEFINE»
+«DEFINE SetterSideEffect FOR SAttribute-»
+	«EXPAND AccessorClients FOREACH watchers()-»
+«ENDDEFINE»
 
-	«IF genComments()-»
-	/**
-	 * Gets the «label» property for «parent().label».
-	 * @return «descrText()»
-	 */
-	 «ENDIF-»
-	«EXPAND GetterMethod-»
+«DEFINE SetterPotential FOR IID-»
+«EXPAND Setter-»
+«ENDDEFINE»
 
+«DEFINE SetterPotential FOR SAttribute-»
+«IF !immutable && !derived-»
+«EXPAND Setter-»
+«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE SetterMethod FOR IID-»
+	public «EXPAND Modifier»void «setterName()»(«EXPAND ExtendType-» _«paramName()-») {
+		«fieldName()» = _«paramName()»;
+		«EXPAND SetterSideEffect-»
+	}
+«ENDDEFINE»
+
+«DEFINE Setter FOR IID-»
 	«IF genComments()-»
 	/**
 	 * Sets the «label» property for «parent().label».
@@ -284,7 +307,17 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 	 */
 	«ENDIF-»
 	«EXPAND SetterMethod-»
-«ENDDEFINE» 
+«ENDDEFINE»
+
+«DEFINE GetterPotential FOR IID-»
+«EXPAND Getter-»
+«ENDDEFINE»
+
+«DEFINE GetterPotential FOR SAttribute-»
+«IF !derived-»
+«EXPAND Getter-»
+«ENDIF-»
+«ENDDEFINE»
 
 «DEFINE GetterMethod FOR IID-»
 	public «EXPAND Modifier»«EXPAND ExtendType» «getterName()»() {
@@ -292,22 +325,27 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 	}
 «ENDDEFINE»
 
+«DEFINE Getter FOR IID-»
+	«IF genComments()-»
+	/**
+	 * Gets the «label» property for «parent().label».
+	 * @return «descrText()»
+	 */
+	 «ENDIF-»
+	«EXPAND GetterMethod-»
+«ENDDEFINE»
+
+«DEFINE Accessor FOR IID-»
+«EXPAND GetterPotential-»
+
+«EXPAND SetterPotential-»
+
+«ENDDEFINE» 
+
 «DEFINE AccessorClients FOR EObject-»
 «ENDDEFINE»
 «DEFINE AccessorClients FOR AWatch-»
 		«id()»();
-«ENDDEFINE»
-
-«DEFINE SetterClient FOR IID-»«ENDDEFINE»
-«DEFINE SetterClient FOR SAttribute-»
-	«EXPAND AccessorClients FOREACH watchers()-»
-«ENDDEFINE»
-
-«DEFINE SetterMethod FOR IID-»
-	public «EXPAND Modifier»void «setterName()»(«EXPAND ExtendType-» _«paramName()-») {
-		«fieldName()» = _«paramName()»;
-		«EXPAND SetterClient-»
-	}
 «ENDDEFINE»
 
 «DEFINE Fields FOR AGroup-»
@@ -517,7 +555,12 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 «selected.selid().pre() + setterPath(attribute)»(«parameter.bind(path, inner)»);«ENDDEFINE»
 «DEFINE Evaluation (List[AAct] path, Boolean inner) FOR AAct-»«ENDDEFINE»
 «DEFINE Evaluation (List[AAct] path, Boolean inner) FOR AEvaluate-»
-«EXPAND ExtendType-» «varName()» = «EXPAND FunctionInnerBlock(path, inner)-»;«ENDDEFINE»
+«IF rootSelected.metaType != ADerive || !targets.isEmpty-»
+«EXPAND ExtendType-» «varName()» = «EXPAND FunctionInnerBlock(path, inner)-»;
+«ELSE-»
+return «EXPAND FunctionInnerBlock(path, inner)-»;
+«ENDIF-»
+«ENDDEFINE»
 
 «DEFINE MultiBlock (List[SState] states, List[SStateValue] currentOptions) FOR AInput-»
 	«IF sink.function.id().toLowerCase().contains("cross")-»	
@@ -554,6 +597,9 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 	«ELSE-»
 		«body»
 	«ENDIF-»«ENDDEFINE»
+«DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR ACause-»
+		«selected.selid().pre() + result.methodName()»();
+«ENDDEFINE»
 «DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR ADie-»«ENDDEFINE»
 «DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR AMove-»«ENDDEFINE»
 «DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR ALeave-»«ENDDEFINE»
