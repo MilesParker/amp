@@ -74,7 +74,7 @@ import org.ascape.view.vis.GraphView;
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::Body FOR SAgent-»
-	«targetDef.proceed()»
+	«targetDef.proceed()-»
 	«EXPAND metaabm::ascape::tmpl::ScapeAspect::AgentBody-»
 «ENDAROUND»
 
@@ -160,7 +160,7 @@ import org.ascape.view.vis.GraphView;
     «ELSEIF function.id().startsWith("color")-»
         ColorConstants.«function.id().replaceFirst("color","").toFirstLower()»
 	«ELSE-»
-		«targetDef.proceed()»
+		«targetDef.proceed()-»
 	«ENDIF-»
 «ENDAROUND»
 
@@ -191,7 +191,7 @@ import org.ascape.view.vis.GraphView;
 «ENDDEFINE»
 
 «AROUND metaabm::tmpl::Java::OtherAccessors FOR SAgent-»
-	«targetDef.proceed()»
+	«targetDef.proceed()-»
     «EXPAND metaabm::ascape::tmpl::ScapeAspect::NameAccessor-»
 «ENDAROUND»
 
@@ -214,11 +214,11 @@ import org.ascape.view.vis.GraphView;
 
 «AROUND metaabm::tmpl::Java::BeginSerialBlock(List[AAct] path, Boolean inner) FOR AControl-»
 	«EXPAND metaabm::ascape::tmpl::ScapeAspect::BeginSerial(path, inner)-»
-    «targetDef.proceed()»
+    «targetDef.proceed()-»
 «ENDAROUND»
 «AROUND metaabm::tmpl::Java::EndSerialBlock(List[AAct] path, Boolean inner) FOR AControl-»
 	«EXPAND metaabm::ascape::tmpl::ScapeAspect::EndSerial(path, inner)-»
-    «targetDef.proceed()»
+    «targetDef.proceed()-»
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AMove-»
@@ -241,7 +241,7 @@ import org.ascape.view.vis.GraphView;
 	«IF (id() == "withinBoundaries") || (id() == "distance")-»
 		«EXPAND metaabm::tmpl::Java::Method-»
 	«ELSE-»
-		«targetDef.proceed()»
+		«targetDef.proceed()-»
 	«ENDIF-»
 «ENDAROUND»
 
@@ -262,7 +262,7 @@ import org.ascape.view.vis.GraphView;
         }
     };
 	«ELSE-»
-		«targetDef.proceed()»
+		«targetDef.proceed()-»
 	«ENDIF-»
 «ENDAROUND»
 

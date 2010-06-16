@@ -52,7 +52,7 @@ import org.eclipse.amp.agf.gef.Shapes;
 «AROUND metaabm::tmpl::Java::ClassInheiritance FOR SStyle-» extends DefaultFigureProvider«ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ActivityPotentialMethod (AAct within) FOR SContext-»«ENDAROUND»
-«AROUND metaabm::tmpl::Java::SetterClient FOR SContext-»«ENDAROUND»
+«AROUND metaabm::tmpl::Java::SetterSideEffect FOR SContext-»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::OtherAccessors FOR SContext-»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::OtherFields FOR SContext-»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::Constructor FOR SContext-»«ENDAROUND»
