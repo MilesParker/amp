@@ -201,7 +201,7 @@
     Location «selector().id()»Location = «findAgentStatement(path)»;
     if («selector().id()»Location != null) {
         «selector().typeName()» «selector().id()» = («selector().typeName()») «converted(selector().id() + "Location")»;
-    «ELSE»
+    «ELSE-»
     «selector().typeName()» «selector().id()» = («selector().typeName()») «findAgentStatement(path)»;
     «ENDIF-»
     if («selector().id()» «metaType != ANone ? "!=" : "=="» null) {
@@ -215,7 +215,7 @@
     List «selector().id()»List = «findStatement(path)»;
     for(Object next«selector().id().toFirstUpper()» : «selector().id()»List) {
     «ENDIF-»
-	«EXPAND BeginQuerySingle(path, inner)»
+	«EXPAND BeginQuerySingle(path, inner)-»
 «ENDDEFINE»
 «DEFINE EndQuery (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
     «IF findIsList()-»}«ENDIF-»
