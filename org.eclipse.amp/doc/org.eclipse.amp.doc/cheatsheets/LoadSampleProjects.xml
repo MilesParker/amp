@@ -3,50 +3,27 @@
       title="Loading Example Projects">
    <intro
          href="/org.eclipse.ui. cheatsheets.doc/tasks/tcheatst.htm">
-      <description>
-         Before we do anything else, let&apos;s import some example projects into our workspace so that we can explore some pre-built models! We&apos;ll do that by using Team Project Sets (they define a set of resources in a software repository) to import the projects we need.
+            <description>
+Before we do anything else, let&apos;s import some example projects into our workspace so that we can explore some pre-built models! If you&apos;ve installed the complete development environment you&apos;ll see that it includes an &quot;Examples&quot; directory. If you&apos;ve installed from an update site, please use the &quot;Loading Example Projects from Version Control&quot; cheatsheet instead.ples&quot; directory. If you&apos;ve installed from an update site, please use the &quot;Loading Example Project from Version Control&quot; cheatsheet instead.
       </description>
    </intro>
    <item
-         skip="true"
-         title="Get Ascape Examples Team Project Set File">
-      <description>
-         Using your web browser, download the following file to any location on your hard drive: http://eclipse.org/amp/project-sets/ascape.psf. &lt;i&gt;Note that the Ascape projects we will be importing are not part of the Eclipse project itself. They are hosted seperatly on the ascape sourceforge site.&lt;/i&gt;
-      </description>
-      <command
-            required="true"
-            serialization="org.eclipse.ui.browser.openBrowser(url=http://eclipse.org/amp/project-sets/ascape.psf)"/>
-   </item>
-   <item
          href="/org.eclipse.platform.doc.user/tasks/tasks-9f.htm"
-         skip="true"
-         title="Import Ascape Project Set">
+         skip="false"
+         title="Import Projects">
       <description>
-         We&apos;ll use the team project set wizard to import the example from the AMP website. Open the wizard, browse to the location you just downloaded the file to, and click Finish. The examples will be loaded from the Ascape SourceForge server into your workspace.
-      </description>
-      <command
-            required="true"
-            serialization="org.eclipse.ui.file.import(importWizardId=org.eclipse.team.ui.ProjectSetImportWizard)"/>
-   </item>
-   <item
-         skip="true"
-         title="Get AMF Examples Team Project Set File">
-      <description>
-         We can also get the AMF examples. Using your web browser, download the following file to any location on your hard drive: http://eclipse.org/amp/project-sets/escapeAMFExamples.psf.
+         Right-click in the Package Explorer. Select &quot;Import..&quot; and then open the &quot;General&quot; folder and choose &quot;Existing Projects into Workspace&quot;. Select &quot;Next&quot; and then click the &quot;Browse&quot; button next to &quot;Select Root Directory&quot;. Find the ExampleProject folder in your installation directory and select it. The projects that you want will be automatically selected, so you just need to click finish and the projects will be imported.
       </description>
       <command
             required="false"
-            serialization="org.eclipse.ui.browser.openBrowser(url=http://eclipse.org/amp/project-sets/escapeAMFExamples.psf)"/>
+            serialization="org.eclipse.ui.file.import(importWizardId=org.eclipse.ui.wizards.import.ExternalProject)"/>
    </item>
    <item
          href="/org.eclipse.platform.doc.user/tasks/tasks-9f.htm"
-         skip="true"
-         title="Import AMF Project Set">
+         skip="false"
+         title="That&apos;s it">
       <description>
-         We&apos;ll use the team project set wizaard to import the example from the AMP website. Open the wizard, browse to the location you just downloaded the file to, and click Finish. The examples will be loaded from the Eclipse CVS server into your workspace. (If you get a message about repository locations, just click OK.)
+         If everything went correctly you should see a number of projects in the package explorer! (The projects included will be different depending on the version of the agent tools tht you have installed.)
       </description>
-      <command
-            required="false"
-            serialization="org.eclipse.ui.file.import(importWizardId=org.eclipse.team.ui.ProjectSetImportWizard)"/>
    </item>
 </cheatsheet>
