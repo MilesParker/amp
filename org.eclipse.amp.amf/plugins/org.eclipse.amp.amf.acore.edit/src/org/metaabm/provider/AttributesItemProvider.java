@@ -14,17 +14,26 @@
  */
 package org.metaabm.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.metaabm.MetaABMFactory;
 import org.metaabm.MetaABMPackage;
+import org.metaabm.SAgent;
 import org.metaabm.SAttribute;
 import org.metaabm.SAttributed;
+import org.metaabm.act.AAct;
+import org.metaabm.act.ADerive;
+import org.metaabm.act.AGroup;
 
 public class AttributesItemProvider extends TransientGroupedItemProvider {
 
@@ -65,8 +74,33 @@ public class AttributesItemProvider extends TransientGroupedItemProvider {
         }
     }
 
-
-
+    protected Command createRemoveCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
+            Collection<?> collection) {
+        if (feature == MetaABMPackage.Literals.SATTRIBUTED__ATTRIBUTES) {
+            Collection<AAct> derived = new ArrayList<AAct>();
+            for (Object object : collection) {
+                SAttribute attr = (SAttribute) object;
+                if (attr.isDerived()) {
+                    SAgent agent = (SAgent) attr.getOwner();
+                    AGroup root = (AGroup) agent.getRootActivity();
+                    for (AAct act : root.getMembers()) {
+                        if (act instanceof ADerive && ((ADerive) act).getAttribute() == attr) {
+                            derived.add(act);
+                        }
+                    }
+                }
+            }
+            if (!derived.isEmpty()) {
+                CompoundCommand cmd = new CompoundCommand();
+                cmd.append(super.createRemoveCommand(domain, owner, feature, collection));
+                for (AAct derive : derived) {
+                    cmd.append(RemoveCommand.create(domain, derive));
+                }
+                return cmd;
+            }
+        }
+        return super.createRemoveCommand(domain, owner, feature, collection);
+    }
 
     // protected Command createRemoveCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
     // Collection<?> collection) {

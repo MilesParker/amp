@@ -26,6 +26,9 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -39,13 +42,17 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.metaabm.IID;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAgent;
 import org.metaabm.SAttribute;
+import org.metaabm.act.AAct;
+import org.metaabm.act.ADerive;
+import org.metaabm.act.AGroup;
 import org.metaabm.act.AInput;
 import org.metaabm.act.ASink;
+import org.metaabm.act.MetaABMActFactory;
+import org.metaabm.act.MetaABMActPackage;
 import org.metaabm.commands.SuggestLabelCommand;
 
 /*
@@ -54,11 +61,11 @@ import org.metaabm.commands.SuggestLabelCommand;
  * @generated
  */
 public class SAttributeItemProvider extends SNamedItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
+ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
-     * This constructs an instance from a factory and a notifier.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     public SAttributeItemProvider(AdapterFactory adapterFactory) {
@@ -66,8 +73,8 @@ public class SAttributeItemProvider extends SNamedItemProvider implements IEditi
     }
 
     /**
-     * This returns the property descriptors for the adapted class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -88,18 +95,18 @@ public class SAttributeItemProvider extends SNamedItemProvider implements IEditi
     }
 
     /**
-     * This adds a property descriptor for the SType feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the SType feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addSTypePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                                         .getRootAdapterFactory(),
+                                                                 .getRootAdapterFactory(),
                                                                  getResourceLocator(),
                                                                  getString("_UI_ITyped_sType_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_ITyped_sType_feature",
-                                                                           "_UI_ITyped_type"),
+                                                                 "_UI_ITyped_type"),
                                                                  MetaABMPackage.Literals.ITYPED__STYPE, true, false,
                                                                  false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
                                                                  null, null));
@@ -110,7 +117,7 @@ public class SAttributeItemProvider extends SNamedItemProvider implements IEditi
 
         if (parent instanceof SAgent) {
             SAgentItemProvider parentItemProvider = (SAgentItemProvider) adapterFactory
-                    .adapt(parent, IEditingDomainItemProvider.class);
+            .adapt(parent, IEditingDomainItemProvider.class);
 
             return parentItemProvider != null ? parentItemProvider.getAttributes() : null;
         } else {
@@ -119,52 +126,52 @@ public class SAttributeItemProvider extends SNamedItemProvider implements IEditi
     }
 
     /**
-     * This adds a property descriptor for the Owner feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the Owner feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addOwnerPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(),
-                                                  getString("_UI_SAttribute_owner_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_SAttribute_owner_feature", "_UI_SAttribute_type"),
-                                                  MetaABMPackage.Literals.SATTRIBUTE__OWNER, false, false, false, null,
-                                                  getString("_UI_RelationsPropertyCategory"),
-                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(),
+                                          getString("_UI_SAttribute_owner_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_SAttribute_owner_feature", "_UI_SAttribute_type"),
+                                                    MetaABMPackage.Literals.SATTRIBUTE__OWNER, false, false, false, null,
+                                                    getString("_UI_RelationsPropertyCategory"),
+                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     /**
-     * This adds a property descriptor for the Available Types feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the Available Types feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addAvailableTypesPropertyDescriptor(Object object) {
         itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(),
-                                                  getString("_UI_IValue_availableTypes_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_IValue_availableTypes_feature", "_UI_IValue_type"),
-                                                  MetaABMPackage.Literals.IVALUE__AVAILABLE_TYPES, true, false, false,
-                                                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
+        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+                                          getResourceLocator(),
+                                          getString("_UI_IValue_availableTypes_feature"),
+                                          getString("_UI_PropertyDescriptor_description",
+                                                    "_UI_IValue_availableTypes_feature", "_UI_IValue_type"),
+                                                    MetaABMPackage.Literals.IVALUE__AVAILABLE_TYPES, true, false, false,
+                                                    ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
+                                                    new String[] { "org.eclipse.ui.views.properties.expert" }));
     }
 
     /**
-     * This adds a property descriptor for the Gather Data feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the Gather Data feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addGatherDataPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                                         .getRootAdapterFactory(),
+                                                                 .getRootAdapterFactory(),
                                                                  getResourceLocator(),
                                                                  getString("_UI_SAttribute_gatherData_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SAttribute_gatherData_feature",
-                                                                           "_UI_SAttribute_type"),
+                                                                 "_UI_SAttribute_type"),
                                                                  MetaABMPackage.Literals.SATTRIBUTE__GATHER_DATA, true,
                                                                  false, false,
                                                                  ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
@@ -172,18 +179,18 @@ public class SAttributeItemProvider extends SNamedItemProvider implements IEditi
     }
 
     /**
-     * This adds a property descriptor for the Default Value feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the Default Value feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addDefaultValuePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                                         .getRootAdapterFactory(),
+                                                                 .getRootAdapterFactory(),
                                                                  getResourceLocator(),
                                                                  getString("_UI_SAttribute_defaultValue_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SAttribute_defaultValue_feature",
-                                                                           "_UI_SAttribute_type"),
+                                                                 "_UI_SAttribute_type"),
                                                                  MetaABMPackage.Literals.SATTRIBUTE__DEFAULT_VALUE,
                                                                  true, false, false,
                                                                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
@@ -191,18 +198,18 @@ public class SAttributeItemProvider extends SNamedItemProvider implements IEditi
     }
 
     /**
-     * This adds a property descriptor for the Units feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the Units feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addUnitsPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                                         .getRootAdapterFactory(),
+                                                                 .getRootAdapterFactory(),
                                                                  getResourceLocator(),
                                                                  getString("_UI_SAttribute_units_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SAttribute_units_feature",
-                                                                           "_UI_SAttribute_type"),
+                                                                 "_UI_SAttribute_type"),
                                                                  MetaABMPackage.Literals.SATTRIBUTE__UNITS, true,
                                                                  false, false,
                                                                  ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
@@ -210,18 +217,18 @@ public class SAttributeItemProvider extends SNamedItemProvider implements IEditi
     }
 
     /**
-     * This adds a property descriptor for the Immutable feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds a property descriptor for the Immutable feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addImmutablePropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                                         .getRootAdapterFactory(),
+                                                                 .getRootAdapterFactory(),
                                                                  getResourceLocator(),
                                                                  getString("_UI_SAttribute_immutable_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SAttribute_immutable_feature",
-                                                                           "_UI_SAttribute_type"),
+                                                                 "_UI_SAttribute_type"),
                                                                  MetaABMPackage.Literals.SATTRIBUTE__IMMUTABLE, true,
                                                                  false, false,
                                                                  ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
@@ -229,19 +236,18 @@ public class SAttributeItemProvider extends SNamedItemProvider implements IEditi
     }
 
     /**
-     * This adds a property descriptor for the Derived feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * This adds a property descriptor for the Derived feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected void addDerivedPropertyDescriptor(Object object) {
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-                                                                         .getRootAdapterFactory(),
+                                                                 .getRootAdapterFactory(),
                                                                  getResourceLocator(),
                                                                  getString("_UI_SAttribute_derived_feature"),
                                                                  getString("_UI_PropertyDescriptor_description",
                                                                            "_UI_SAttribute_derived_feature",
-                                                                           "_UI_SAttribute_type"),
+                                                                 "_UI_SAttribute_type"),
                                                                  MetaABMPackage.Literals.SATTRIBUTE__DERIVED, true,
                                                                  false, false,
                                                                  ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
@@ -305,6 +311,7 @@ public class SAttributeItemProvider extends SNamedItemProvider implements IEditi
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -316,8 +323,8 @@ public class SAttributeItemProvider extends SNamedItemProvider implements IEditi
     }
 
     /**
-     * This returns SAttribute.gif.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This returns SAttribute.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -369,8 +376,8 @@ public class SAttributeItemProvider extends SNamedItemProvider implements IEditi
 
     protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value,
             int index) {
+        SAttribute attr = (SAttribute) owner;
         if (feature == MetaABMPackage.Literals.IID__LABEL || feature == MetaABMPackage.Literals.IID__ID) {
-            SAttribute attr = (SAttribute) owner;
             CompoundCommand cmd = new CompoundCommand("Set to " + value);
             cmd.append(super.createSetCommand(domain, owner, feature, value, index));
             for (Object accessor : attr.getAccessors()) {
@@ -384,15 +391,38 @@ public class SAttributeItemProvider extends SNamedItemProvider implements IEditi
                 }
             }
             return cmd;
-        } else {
-            return super.createSetCommand(domain, owner, feature, value, index);
+        } else if (feature == MetaABMPackage.Literals.SATTRIBUTE__DERIVED) {
+            if (value instanceof Boolean) {
+                CompoundCommand cmd = new CompoundCommand();
+                Boolean b = (Boolean) value;
+                SAgent agent = (SAgent) attr.getOwner();
+                AGroup root = (AGroup) agent.getRootActivity();
+                if (b.booleanValue()) {
+                    ADerive derive = MetaABMActFactory.eINSTANCE.createADerive();
+                    cmd.append(super.createSetCommand(domain, owner, feature, value, index));
+                    cmd.append(AddCommand.create(domain, root, MetaABMActPackage.Literals.AGROUP__MEMBERS, derive));
+                    cmd.append(SetCommand.create(domain, derive, MetaABMActPackage.Literals.AACCESSOR__ATTRIBUTE, attr));
+                    cmd.append(SetCommand.create(domain, derive, MetaABMPackage.Literals.IID__LABEL,
+                                                 "Derive " + attr.getLabel()));
+                } else {
+                    cmd.append(super.createSetCommand(domain, owner, feature, value, index));
+                    for (AAct act : root.getMembers()) {
+                        if (act instanceof ADerive && ((ADerive) act).getAttribute() == attr) {
+                            cmd.append(RemoveCommand.create(domain, root, MetaABMActPackage.Literals.AGROUP__MEMBERS,
+                                                            act));
+                        }
+                    }
+                }
+                return cmd;
+            }
         }
+        return super.createSetCommand(domain, owner, feature, value, index);
     }
 
     /**
-     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-     * that can be created under this object.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+     * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
