@@ -104,6 +104,10 @@
 					<pathelement location="${fop.dir}${fs}lib${fs}xmlgraphics-commons-1.3.1.jar" />
 					<pathelement location="${jai.dir}${fs}lib${fs}jai_core.jar" />
 					<pathelement location="${jai.dir}${fs}lib${fs}jai_codec.jar" />
+					<pathelement location="lib/serializer.jar" />
+					<pathelement location="lib/xalan.jar" />
+					<pathelement location="lib/xercesImpl.jar" />
+					<pathelement location="lib/xml-apis.jar" />
 				</classpath>
 			</taskdef>
 			<fop format="application/pdf" fofile="@{source}" outfile="@{target}" messagelevel="info" />
@@ -221,7 +225,8 @@
 			<param name="admon.graphics" expression="1" />
 			<param name="scale" expression="10" />
 		</xslt>
-
+<echo>${build.dir}${fs}${document.name}.fo 
+	${website.doc.dir}${fs}${document.name}.pdf</echo>
 		<docbook2pdf source="${build.dir}${fs}${document.name}.fo" target="${website.doc.dir}${fs}${document.name}.pdf" />
 
 		<!-- Remove the resulting formatting object. This object isn't necessary in the

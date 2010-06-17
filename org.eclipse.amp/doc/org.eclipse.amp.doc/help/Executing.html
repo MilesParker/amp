@@ -29,7 +29,7 @@
 </div>
 </div>
 </div>
-<table id="N10CDB">
+<table id="N10D1D">
 <tr>
 						
 <td>Launching AMF and Escape models is easy. When an AMF file is selected -- in any of the perspectives -- the toolbar and Application menus are updated to reflect the file you've selected and provide convenient access to other functions. For example, when we click on a metaabm file in the package explorer, model execution buttons appear in the toolbar. If you right-click on a file a pop-up menu appears like the one to the far right -- in this case we're selecting the "Execute Headless" option. To launch a model, just select one of the options. (Note that the execution framework doesn't know whether your code exists in an Escape project or another target project. If you attempt to execute a .metaabm model in an Ascape project for example, you will get an error.)</td>
@@ -461,7 +461,7 @@
 </div>
 </div>
 </div>
-<p>Escape provides full support for parameterization of models. This allows you to create many sets of parameters for a given model, allowing you to decouple model runtime settings from the model itself. (Support for parameter sweeps is forthcoming.) To create a new parameterization, right-click in the lcoation you want to create the parameter file, and select 
+<p>Escape provides full support for parameterization of models. This allows you to create many sets of parameters for a given model, allowing you to decouple model runtime settings from the model itself. (Support for parameter sweeps is forthcoming.) To create a new parameterization, right-click in the location you want to create the parameter file, and select 
 					<span class="bold"><strong>New &gt; Parameters File</strong></span>.
 				</p>
 <p>
@@ -508,6 +508,54 @@
 <p>
 				
 </p>
+<div class="section" title="Syntax">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Syntax"></a>Syntax</h4>
+</div>
+</div>
+</div>
+<p>Parameter files are quite simple. Every parameter file specifies the "model" that will be executed.The "incorporates" keyword supports including parameter values from other files. File locations are relative to the location of the parameter file, but it is usually more flexible to refer to model files relative to their project location. You can do that by inserting a "|" character at the beginning of the file name.</p>
+<p>Attribute values are specified by the attribute ID (with the first character in upper-case) followed by "=" and the desired value.</p>
+</div>
+<div class="section" title="Example">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Example_5"></a>Example</h4>
+</div>
+</div>
+</div>
+<p>We can create a base parameters file called "EpiBase.apar".</p>
+<div class="literallayout">
+<p>model&nbsp;"|Epidemic.metaabm"<br>
+StopPeriod=500<br>
+
+</p>
+</div>
+<p>This means that we expect the Epidemic.metaabm model to be at the root of the project, and we want the model to stop at period 500. Then -- in this overly simple example -- we could create two other files, EpiHighTransmission.apar:</p>
+<div class="literallayout">
+<p>model&nbsp;"|Epidemic.metaabm"<br>
+incorporates&nbsp;"EpiBase.apar"<br>
+MinContactTransmissionProbability=0.05<br>
+MaxContactTransmissionProbability=0.2<br>
+
+</p>
+</div>
+<p>and EpiLowTransmission.apar:</p>
+<div class="literallayout">
+<p>model&nbsp;"|Epidemic.metaabm"<br>
+incorporates&nbsp;"EpiBase.apar"<br>
+MinContactTransmissionProbability=0.0<br>
+MaxContactTransmissionProbability=0.15<br>
+
+</p>
+</div>
+<p>Both of which reference the base set of parameters we've just defined and add run specific variables. Note that the incorporates reference is a parameter file relative reference so that we can easily move the set of parameter files to any location we want. With these two files defined we can click on both of them at once, select the Execute button and immediately compare the two values. (Not shown.)</p>
+</div>
 </div>
 <div class="section" title="Model Testing">
 <div class="titlepage">
@@ -523,16 +571,63 @@
 					<span class="italic">verification</span> is the process of determining whether your model specification matches up to the model you've actually implemented. In other words, does the model do what you say it does?
 				</p>
 <p>To help you answer this important question, the modeling tools include unique support for an approach to validation and verification called "unit testing". A thorough discussion is far beyond the scope of this manual, but this guide should give you enough information to get testing your own models. Testing might seem tedious ut its actually a real time saver, because you can quickly run a set of tests to ensure that you a new model change hasn't broken existing functionality. This peace of mind is priceless, and once you start testing, you won't know how you lived without it!</p>
-<p>To create a new test, right-click at the location you want to put the test files. (Not shown.) Then we can edit the test file.</p>
+<p>To create a new test, right-click at the location you want to put the test files. (Not shown.) Then we can edit the test file using the syntax shown below. It's helpful to keep them organized in sets of folders. To execute a test or set of tests, simply select the test files and click "Test Once" or "Test 5 times" to run a set of identical tests. The latter is useful for stochastic tests in which tests may create significantly different results for the same random seeds. (We'll provide more options in a future release.) If you select an entire folder, the framework will run all of the tests in the folder. This process is very similar to that for parameter files, so we won't show it here.</p>
+<p>Once a test is complete, an "ares" file is created in the "test-results" folder. To see how your tests faired, open the .ares file. For the example test file below, we should see something like this:</p>
 <p>
 					
 </p>
 <div class="mediaobject">
-<img src="images/params/Execute.png"></div>
+<img src="images/params/TestResults.png"></div>
 <p>
 				
 </p>
-<p>It's helpful to keep them organized in sets of folders. If you select an entire folder, the framework will run </p>
+<p>Notice that we can view the expected values and where our results actually fall.</p>
+<div class="section" title="Syntax">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Syntax_2"></a>Syntax</h4>
+</div>
+</div>
+</div>
+<p>Test files are also pretty simple. It's a good idea to provide a description of the test so you can understand why you created it and what feature you're testing. Just put quote characters around your description. Then, use the "tests" keyword to specify what parameter file you'll be using. Again you can use file or project relative references. You don not specify a model here -- that's defined by the parameter file. You can use the "contains" keyword just like the incorporates keyword for parameter files, to specify a set of test constraints that you want to include with the new tests you've defined. This is useful for including a series of "sanity checks" with other tests. Then you specify the test constraints themselves. This uses the following form:</p>
+<div class="literallayout">
+<p>{Measure}({TestedAttribute})&nbsp;=&nbsp;[{MinimumConstraint},&nbsp;{MaximumConstraint}]<br>
+
+</p>
+</div>
+<p>The measures available are Average, Minimum, Maximum Count and Sum. In order for an attribute to be tested the "gather data" value must be set for that attribute. All Measures are not appropriate for all attribute types. Booleans, Symbols and States should only use the Count measure as they represent discrete values that can either meet some condition or not.</p>
+<p>The tested attributes are qualified by their model agent definition. The constraint definition is inclusive, as implied by the square brackets. Future implementations are expected to provide richer expressions and constraints but a very wide range of cases are supported by this construct, especially when combined with derived attributes. Tested Attributes are again specified by the attribute ID (with the first character in upper-case) followed by "=" and the desired value.</p>
+</div>
+<div class="section" title="Example">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Example_6"></a>Example</h4>
+</div>
+</div>
+</div>
+<p>In the following simple example we want to make sure that an epidemic can't occur without disease transmission taking place. Here we're just looking to make sure that we have some very basic logic right. (This might be almost too simple for a real-world design, depending on how rigorous we want to be.) Note that some individuals are infected at the beginning of the model run so we need to account for that in our expected results. So first we have defined the EpiZeroTransmission.apar file like the other transmission rate parameterizations above except with these settings:</p>
+<div class="literallayout">
+<p>MinContactTransmissionProbability=0.0<br>
+MaxContactTransmissionProbability=0.0<br>
+
+</p>
+</div>
+<p>Then we define our ZeroTransmission.atest file:</p>
+<div class="literallayout">
+<p>"Test&nbsp;that&nbsp;no&nbsp;disease&nbsp;transmission&nbsp;occurs&nbsp;with&nbsp;contact&nbsp;transmission&nbsp;set&nbsp;to&nbsp;0."<br>
+tests&nbsp;"|params/EpiZeroTransmission.apar"<br>
+Count(Individual.Status=Dead)&nbsp;=&nbsp;[0,5]<br>
+Count(Individual.Status=Exposed)&nbsp;=&nbsp;[0,10]<br>
+Count(Individual.Status=SymptomInfectious)=[0,0]<br>
+
+</p>
+</div>
+<p>Here we have a nice description, a reference to the parameterization we want to use, and then the set of constraints we will apply to them. After running this test, a test result file like the one above will be created and placed in our "test-results" directory.</p>
+</div>
 </div>
 </div>
 </body>

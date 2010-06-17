@@ -95,6 +95,10 @@ Here you can specify whether executing models should collect aggregate values fo
 
 This value indicates whether you expect the model value to change. If you know that it won't or shouldn't, this value should be true.
 
+======Derived======
+
+A derived attribute is one whose value is detemrined solely based on other agent attributes. A derived value is always associated with a Derive root action which is created automatically by the editor. See the documentation on the Derive action for more details. An attribute cannot be both derived and immutable.
+
 ======Units======
 
 Specifies what the attribute is actually measuring. For example, if you're defining an attribute for "Wealth" in the context of a model of the world economy, you might specify "USD". If you're defining "Age", you might specify "Years", for "Mass" "Kg". Like description, this value is often overlooked, but can be critically important to allowing yourself and others to understand and correctly calibrate a model. Note that this will also allow you to simplify variable names -- instead of using "Age in Years", you can simply specify "Age" and the appropriate unit. It may be obvious to you that your model is concerned with age in years, but a user who needs to specify a different granularity will be grateful for more clarity.

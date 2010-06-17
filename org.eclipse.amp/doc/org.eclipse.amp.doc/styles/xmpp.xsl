@@ -47,7 +47,7 @@
 					<xsl:value-of select="//releaseinfo" />
 				</xsl:when>
 				<xsl:otherwise>
-					AMP 0.8.0
+					AMP 0.7.0
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:variable>

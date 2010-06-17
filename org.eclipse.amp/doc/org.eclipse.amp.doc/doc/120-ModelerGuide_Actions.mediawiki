@@ -25,7 +25,7 @@ In this section, we'll describe how modelers can assemble actions into sets of b
 
 {| border="0"
 |-valign="top"
-|Before getting into the details of how each Actions work together, or the various kinds of Actions, it will be helpful to take a broad overview of how they all fit together. As discussed above, actions are strung together in a sequence or flow. They're always composed of two parts, though those parts can be assembled and intermixed in many different ways. First, we search for a collection of agents, and then we do something with that selection. We refer to these two parts as Selections and Commands. (For the technically minded, another useful way of looking at the Actions approach is as a Query Transformation language, as with SQL and Stored Procedures.  Except again, the results of the queries along with the transformations flow through from one query to the next.) Selections find the agents we want to do something with, and the commands do it. We need some way to start the whole chain of actions off, and so we have a kind of Selection called a Root Selection, or simply a Root. Secondly, we need some way to actually make the agents exist in the model in the first place, so we have a Create Agents action. Finally, we have special commands called builders that allow us to create the spaces that the agents will occupy. The various actions are discussed in depth in the Details section.
+|Before getting into the details of how each Actions work together, or the various kinds of Actions, it will be helpful to take a broad overview of how they all fit together. As discussed above, actions are strung together in a sequence or flow. They're always composed of two parts, though those parts can be assembled and intermixed in many different ways. First, we search for a collection of agents, and then we do something with that selection. We refer to these two parts as Selections and Commands. (For the technically minded, another useful way of looking at the Actions approach is as a Query Transformation language, as with SQL and Stored Procedures.  Except again, the results of the queries along with the transformations flow through from one query to the next.) Selections find the agents we want to do something with, and the commands do it. We need some way to start the whole chain of actions off, and so we have a kind of Selection called a Root Selection, or simply a Root. Secondly, we need some way to actually make the agents exist in the model in the first place, so we have a Create Agents action. Finally, we have special commands called builders that allow us to create the spaces that the agents will occupy. The various actions are discussed in depth in the Details section. The diagram at the right depicts how actions relate to one another -- it does not include some actions that have been added more recently.
 |[[Image:images/actions/ActionsBlocks.png]] 
 |}
 
@@ -144,7 +144,7 @@ In the first case, we execute a search for all agents that meet the two criteria
 
 {| border="0"
 |-valign="top"
-|In this section, we'll dig into the specific role of each of the Actions. From the design discussion we hopefully have some sense of how these all fit together in general. Again, the block diagram to the right provides an overview of how the various actions are related. You might want to take a look at the meta-class diagrams in the referernce section as well.
+|In this section, we'll dig into the specific role of each of the Actions. From the design discussion we hopefully have some sense of how these all fit together in general. Again, the block diagram to the right provides an overview of how the various actions are related, but it is missing some of the more recent actions such as Diffusion, Perform, Derive and Cause. You might want to take a look at the meta-class diagrams in the reference section as well.
 |[[Image:images/actions/ActionsBlocks.png]] 
 |}
 
@@ -154,7 +154,7 @@ A selection defines a particular set of agents that we want to do something with
 
 =====Select=====
 
-As we discussed above, when we refer to a Select, we're actually referring to the selection as a whole leading up to the current action. The Select Action itself is used to define what we are searching for (Agent), where we are searching for it (Space), and from whose perspective we are doing it (Selection). Create Actions are a sepecial kind of Select Action that are used to create agents. See the decription in the Builders section below for more information.
+As we discussed above, when we refer to a Select, we're actually referring to the selection as a whole leading up to the current action. The Select Action itself is used to define what we are searching for (Agent), where we are searching for it (Space), and from whose perspective we are doing it (Selection). Create Actions are a special kind of Select Action that are used to create agents. See the description in the Builders section below for more information.
 
 ======Selection======
 
@@ -206,7 +206,7 @@ A union contains all agents that match any of its source actions. This shares si
 
 A difference contains all agents that do not match any of its source actions. This essentially equivalent to a logical NOT statement, and has similarities to the Java else statement. Like the Union Action, difference implies that a given agent will only appear once in any subsequent targets. No agents that reach a Difference Action will flow through to the next action(s), and all agents (that meet the definition of the Select Action) that cannot reach that action will.
 
-====Roots====
+====Root Actions====
 
 Root actions are a special case of a selection. These represent behaviors that are defined for all members of agents; these are the highest granularity of an agent's behavior, such as "Find Partners" or "Eat" or "Reproduce". When you want to create a new set of Actions, you have the following choices.
 
@@ -244,11 +244,41 @@ Controls how many agents to execute the schedule against. While this value will 
 
 =====Watch=====
 
-A Watch action is executed any time the watched value is set for any agent. Note that the Action will be triggerred even if the state is simply set back to the value that it already has. It is important to be careful about creating Watches that might set the values of other Watch actions which might in turn trigger this watch. To clarify, if a modeler creates a Watch A for attribute a, and creates a target Set for it for attribute b, and Watch B is watching attribute b, then if Watch B has a target Set for attribute A, a circular execution could occur. This would cause the model to get stuck in its current iteration. To help model developers avoid this case, a warning will be provided if such a set of circular watch dependencies is created.
+A Watch is executed any time the watched value is set for any agent. Note that the Action will be triggerred even if the state is simply set back to the value that it already has. It is important to be careful about creating Watches that might set the values of other Watch actions which might in turn trigger this watch. To clarify, if a modeler creates a Watch A for attribute a, and creates a target Set for it for attribute b, and Watch B is watching attribute b, then if Watch B has a target Set for attribute A, a circular execution could occur. This would cause the model to get stuck in its current iteration. To help model developers avoid this case, a warning will be provided if such a set of circular watch dependencies is created.
 
 ======Attribute======
 
 The attribute that will be monitored for change.
+
+=====Derive=====
+
+A Derive action is a unique kind of root that is used to determine that value of a derived attribute. There can be one and only one Derive action for each such attribute. One of the benefits of a derived action is that unlike a standard attribute, it only needs to be calculated when the value is actually needed and its inputs have also been changes -- allowing signifcant performance optimizations to be made. Derived actions can also make model behavior much more clear. Derive actions are especially useful for calculating dependent measures for model agents. These in turn can be used directly in charting and data output tools -- leaving no need to configure your chart view calculations seperatly. Developers need not worry about overhead and should feel free to create as many derived attributes as might be neccessary. The "gather data" value of the derived attribute can always be set to false to prevent data collection overhead when they aren't needed.
+
+The derived value will always simply be the value of the last evaluation in a particular flow. You can mix queries and even selections on seperate agents into a derived value. The only restriction is that the type of the last Evaluate actions(s) must match the type of the value. If there is no path leading to an Evalutate action for a particular agent state, the attributes default value will be used.
+
+======Attribute======
+
+The attribute that will be derived.
+
+=====Diffuse=====
+
+The diffuse action provides high level support for the common behavior of diffusing some value across some lattice space. For example, heat may spread over time from one grid cell to the next. (There are actually significant issues involved in implementing this through lower level actions.) To specify that a value should diffuse through a space you simply need to provide the following values. This action does not need and shouldn't include target actions. The "Heatbugs" model in the org.eclipse.amp.amf.examples.escape project provides a good example for how diffusion can be easily implemented into any grid model.
+
+======Diffused======
+
+The attribute whose value is to be diffused.
+
+======Diiffusion Rate=======
+
+The rate at which any given cell's attribute value is transferred to surrounding cells.
+
+======Evaporation Rate======
+
+An optional rate by which each cells value is reduced for each period. This is useful for a model where agents are creating energy within the environment.
+
+=====Perform=====
+
+A Perform root action simply defines a set of actions that have no independent trigger. The only way Perform actions can occur is if a Cause action specifes one as a result. Performs then are similar to sub-calls or helper methods within a traditonal procedural or OO language, and can be very helpful in organizing and simlplifying code. Note that whenever you use a Perform instead of directly specifying a set of targets you lose the context of the selection. You couldn't use a Perform to directly trigger a move as the selection source for the move would not be available.
 
 ====Builders====
 
@@ -385,7 +415,7 @@ The Set Action assigns some value to another value.
 
 ======Selection======
 
-Here the selection refers to the agent that we want to change. This does not have to be the immediatily preceeding selection but can be any accessible selection.
+Here the selection refers to the agent that we want to change. This does not have to be the immediatly preceeding selection but can be any accessible selection.
 
 ======Attribute======
 
@@ -395,6 +425,17 @@ The attribute to modify. It must be a member of this action's agent or of that a
 
 The value to assign to the attribute. Here, we can use either another agent attribute, or the results of a source evaluation. 
 
+=====Cause=====
+
+A Cause Action "causes" some Root Action to occur upon the specified selection. This action can be extremely useful for organizing model behavior and preventing the need for creating duplicate action definitions.
+
+Cause actions also support recursive functionality and "WHILE" behavior. These can be used to mimic loop strucutres. For example, you might want an agent to execute some behavior as long as that agent has energy remaining. To accomplish this, you could create a query for "energy > 0" and then create a Cause target with the root action as its results.
+
+Note that you should be cautious and thoughtful when using the Cause action. Remember that selections represent sets of agents and thus get rid of the need for collection loop strucutures -- such as Java "for each" -- common in traditional programming languages. You should be able to do almost anything that might require a loop strucutre using the selection mechanism itself. Also, just as with a traditional language, you should be careful about defining cause actions that trigger their own root actions or that cause other actions to in turn trigger the orginal root action. You can easily end up defining infinite loops in this way. (In the current implementation this will eventually trigger a stack overflow error as cause invocations are recursive, but future implementations will be able to infer target language loop strcutures to prevent stack depth issues.)
+
+======Result======
+
+The root aciton that should be trigerred for every memeber of the current selection. This is typically a Perform action but it can be any kind of root action except for "Derived". (Which doesn't make any sense to do.)
 
 =====Move=====
 
@@ -429,7 +470,7 @@ Causes the agent to cease to exist within the model as a whole.
 
 The selection determines what space the agent to remove.
 
-=======Destination======
+======Destination======
 
 The destination is irrelevant in this case and will probably be removed.
 

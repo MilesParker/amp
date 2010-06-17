@@ -277,6 +277,10 @@
 							<title>Immutable</title>
 							<para>This value indicates whether you expect the model value to change. If you know that it won't or shouldn't, this value should be true.</para>
 						</section>
+						<section id="Derived">
+							<title>Derived</title>
+							<para>A derived attribute is one whose value is detemrined solely based on other agent attributes. A derived value is always associated with a Derive root action which is created automatically by the editor. See the documentation on the Derive action for more details. An attribute cannot be both derived and immutable.</para>
+						</section>
 						<section id="Units">
 							<title>Units</title>
 							<para>Specifies what the attribute is actually measuring. For example, if you're defining an attribute for "Wealth" in the context of a model of the world economy, you might specify "USD". If you're defining "Age", you might specify "Years", for "Mass" "Kg". Like description, this value is often overlooked, but can be critically important to allowing yourself and others to understand and correctly calibrate a model. Note that this will also allow you to simplify variable names -- instead of using "Age in Years", you can simply specify "Age" and the appropriate unit. It may be obvious to you that your model is concerned with age in years, but a user who needs to specify a different granularity will be grateful for more clarity.</para>
@@ -478,7 +482,7 @@
 					<title>Kinds of Actions</title>
 					<informaltable frame="none">
 						<tr>
-							<td rowspan="1" colspan="1">Before getting into the details of how each Actions work together, or the various kinds of Actions, it will be helpful to take a broad overview of how they all fit together. As discussed above, actions are strung together in a sequence or flow. They're always composed of two parts, though those parts can be assembled and intermixed in many different ways. First, we search for a collection of agents, and then we do something with that selection. We refer to these two parts as Selections and Commands. (For the technically minded, another useful way of looking at the Actions approach is as a Query Transformation language, as with SQL and Stored Procedures.  Except again, the results of the queries along with the transformations flow through from one query to the next.) Selections find the agents we want to do something with, and the commands do it. We need some way to start the whole chain of actions off, and so we have a kind of Selection called a Root Selection, or simply a Root. Secondly, we need some way to actually make the agents exist in the model in the first place, so we have a Create Agents action. Finally, we have special commands called builders that allow us to create the spaces that the agents will occupy. The various actions are discussed in depth in the Details section.</td>
+							<td rowspan="1" colspan="1">Before getting into the details of how each Actions work together, or the various kinds of Actions, it will be helpful to take a broad overview of how they all fit together. As discussed above, actions are strung together in a sequence or flow. They're always composed of two parts, though those parts can be assembled and intermixed in many different ways. First, we search for a collection of agents, and then we do something with that selection. We refer to these two parts as Selections and Commands. (For the technically minded, another useful way of looking at the Actions approach is as a Query Transformation language, as with SQL and Stored Procedures.  Except again, the results of the queries along with the transformations flow through from one query to the next.) Selections find the agents we want to do something with, and the commands do it. We need some way to start the whole chain of actions off, and so we have a kind of Selection called a Root Selection, or simply a Root. Secondly, we need some way to actually make the agents exist in the model in the first place, so we have a Create Agents action. Finally, we have special commands called builders that allow us to create the spaces that the agents will occupy. The various actions are discussed in depth in the Details section. The diagram at the right depicts how actions relate to one another -- it does not include some actions that have been added more recently.</td>
 							<td rowspan="1" colspan="1">
 								<mediaobject>
 									<imageobject>
@@ -687,7 +691,7 @@ if (query3.evaluate()) {
 				<title>Details</title>
 				<informaltable frame="none">
 					<tr>
-						<td rowspan="1" colspan="1">In this section, we'll dig into the specific role of each of the Actions. From the design discussion we hopefully have some sense of how these all fit together in general. Again, the block diagram to the right provides an overview of how the various actions are related. You might want to take a look at the meta-class diagrams in the referernce section as well.</td>
+						<td rowspan="1" colspan="1">In this section, we'll dig into the specific role of each of the Actions. From the design discussion we hopefully have some sense of how these all fit together in general. Again, the block diagram to the right provides an overview of how the various actions are related, but it is missing some of the more recent actions such as Diffusion, Perform, Derive and Cause. You might want to take a look at the meta-class diagrams in the reference section as well.</td>
 						<td rowspan="1" colspan="1">
 							<mediaobject>
 								<imageobject>
@@ -702,7 +706,7 @@ if (query3.evaluate()) {
 					<para>A selection defines a particular set of agents that we want to do something with. Selections are made up of the Select action itself, along with Query and Logic actions. When we refer to a selection in any target command, we are referring to the selection in the context of where we have defined the behavior.</para>
 					<section id="Select">
 						<title>Select</title>
-						<para>As we discussed above, when we refer to a Select, we're actually referring to the selection as a whole leading up to the current action. The Select Action itself is used to define what we are searching for (Agent), where we are searching for it (Space), and from whose perspective we are doing it (Selection). Create Actions are a sepecial kind of Select Action that are used to create agents. See the decription in the Builders section below for more information.</para>
+						<para>As we discussed above, when we refer to a Select, we're actually referring to the selection as a whole leading up to the current action. The Select Action itself is used to define what we are searching for (Agent), where we are searching for it (Space), and from whose perspective we are doing it (Selection). Create Actions are a special kind of Select Action that are used to create agents. See the description in the Builders section below for more information.</para>
 						<section id="Selection">
 							<title>Selection</title>
 							<para>The selection that we are searching "from". This seems to be the concept that new users have the most difficulty with, but it is key to understanding how Actions works. Just as with any other Action -- a Move command for example -- a selection needs to know what set of agents that it is working with. For example, if we want to define a selection B that finds the cells neighboring a rule B's agent, we would set selection B's selection to A.</para>
@@ -754,8 +758,8 @@ if (query3.evaluate()) {
 						<para>A difference contains all agents that do not match any of its source actions. This essentially equivalent to a logical NOT statement, and has similarities to the Java else statement. Like the Union Action, difference implies that a given agent will only appear once in any subsequent targets. No agents that reach a Difference Action will flow through to the next action(s), and all agents (that meet the definition of the Select Action) that cannot reach that action will.</para>
 					</section>
 				</section>
-				<section id="Roots">
-					<title>Roots</title>
+				<section id="Root_Actions">
+					<title>Root Actions</title>
 					<para>Root actions are a special case of a selection. These represent behaviors that are defined for all members of agents; these are the highest granularity of an agent's behavior, such as "Find Partners" or "Eat" or "Reproduce". When you want to create a new set of Actions, you have the following choices.</para>
 					<section id="Build">
 						<title>Build</title>
@@ -791,11 +795,40 @@ if (query3.evaluate()) {
 					</section>
 					<section id="Watch">
 						<title>Watch</title>
-						<para>A Watch action is executed any time the watched value is set for any agent. Note that the Action will be triggerred even if the state is simply set back to the value that it already has. It is important to be careful about creating Watches that might set the values of other Watch actions which might in turn trigger this watch. To clarify, if a modeler creates a Watch A for attribute a, and creates a target Set for it for attribute b, and Watch B is watching attribute b, then if Watch B has a target Set for attribute A, a circular execution could occur. This would cause the model to get stuck in its current iteration. To help model developers avoid this case, a warning will be provided if such a set of circular watch dependencies is created.</para>
+						<para>A Watch is executed any time the watched value is set for any agent. Note that the Action will be triggerred even if the state is simply set back to the value that it already has. It is important to be careful about creating Watches that might set the values of other Watch actions which might in turn trigger this watch. To clarify, if a modeler creates a Watch A for attribute a, and creates a target Set for it for attribute b, and Watch B is watching attribute b, then if Watch B has a target Set for attribute A, a circular execution could occur. This would cause the model to get stuck in its current iteration. To help model developers avoid this case, a warning will be provided if such a set of circular watch dependencies is created.</para>
 						<section id="Attribute">
 							<title>Attribute</title>
 							<para>The attribute that will be monitored for change.</para>
 						</section>
+					</section>
+					<section id="Derive">
+						<title>Derive</title>
+						<para>A Derive action is a unique kind of root that is used to determine that value of a derived attribute. There can be one and only one Derive action for each such attribute. One of the benefits of a derived action is that unlike a standard attribute, it only needs to be calculated when the value is actually needed and its inputs have also been changes -- allowing signifcant performance optimizations to be made. Derived actions can also make model behavior much more clear. Derive actions are especially useful for calculating dependent measures for model agents. These in turn can be used directly in charting and data output tools -- leaving no need to configure your chart view calculations seperatly. Developers need not worry about overhead and should feel free to create as many derived attributes as might be neccessary. The "gather data" value of the derived attribute can always be set to false to prevent data collection overhead when they aren't needed.</para>
+						<para>The derived value will always simply be the value of the last evaluation in a particular flow. You can mix queries and even selections on seperate agents into a derived value. The only restriction is that the type of the last Evaluate actions(s) must match the type of the value. If there is no path leading to an Evalutate action for a particular agent state, the attributes default value will be used.</para>
+						<section id="Attribute_2">
+							<title>Attribute</title>
+							<para>The attribute that will be derived.</para>
+						</section>
+					</section>
+					<section id="Diffuse">
+						<title>Diffuse</title>
+						<para>The diffuse action provides high level support for the common behavior of diffusing some value across some lattice space. For example, heat may spread over time from one grid cell to the next. (There are actually significant issues involved in implementing this through lower level actions.) To specify that a value should diffuse through a space you simply need to provide the following values. This action does not need and shouldn't include target actions. The "Heatbugs" model in the org.eclipse.amp.amf.examples.escape project provides a good example for how diffusion can be easily implemented into any grid model.</para>
+						<section id="Diffused">
+							<title>Diffused</title>
+							<para>The attribute whose value is to be diffused.</para>
+						</section>
+						<section id="Diiffusion_Rate.3D">
+							<title>Diiffusion Rate=</title>
+							<para>The rate at which any given cell's attribute value is transferred to surrounding cells.</para>
+						</section>
+						<section id="Evaporation_Rate">
+							<title>Evaporation Rate</title>
+							<para>An optional rate by which each cells value is reduced for each period. This is useful for a model where agents are creating energy within the environment.</para>
+						</section>
+					</section>
+					<section id="Perform">
+						<title>Perform</title>
+						<para>A Perform root action simply defines a set of actions that have no independent trigger. The only way Perform actions can occur is if a Cause action specifes one as a result. Performs then are similar to sub-calls or helper methods within a traditonal procedural or OO language, and can be very helpful in organizing and simlplifying code. Note that whenever you use a Perform instead of directly specifying a set of targets you lose the context of the selection. You couldn't use a Perform to directly trigger a move as the selection source for the move would not be available.</para>
 					</section>
 				</section>
 				<section id="Builders">
@@ -947,15 +980,25 @@ if (query3.evaluate()) {
 						<para>The Set Action assigns some value to another value.</para>
 						<section id="Selection_7">
 							<title>Selection</title>
-							<para>Here the selection refers to the agent that we want to change. This does not have to be the immediatily preceeding selection but can be any accessible selection.</para>
+							<para>Here the selection refers to the agent that we want to change. This does not have to be the immediatly preceeding selection but can be any accessible selection.</para>
 						</section>
-						<section id="Attribute_2">
+						<section id="Attribute_3">
 							<title>Attribute</title>
 							<para>The attribute to modify. It must be a member of this action's agent or of that agent's parent context.</para>
 						</section>
 						<section id="Parameter">
 							<title>Parameter</title>
 							<para>The value to assign to the attribute. Here, we can use either another agent attribute, or the results of a source evaluation. </para>
+						</section>
+					</section>
+					<section id="Cause">
+						<title>Cause</title>
+						<para>A Cause Action "causes" some Root Action to occur upon the specified selection. This action can be extremely useful for organizing model behavior and preventing the need for creating duplicate action definitions.</para>
+						<para>Cause actions also support recursive functionality and "WHILE" behavior. These can be used to mimic loop strucutres. For example, you might want an agent to execute some behavior as long as that agent has energy remaining. To accomplish this, you could create a query for "energy &gt; 0" and then create a Cause target with the root action as its results.</para>
+						<para>Note that you should be cautious and thoughtful when using the Cause action. Remember that selections represent sets of agents and thus get rid of the need for collection loop strucutures -- such as Java "for each" -- common in traditional programming languages. You should be able to do almost anything that might require a loop strucutre using the selection mechanism itself. Also, just as with a traditional language, you should be careful about defining cause actions that trigger their own root actions or that cause other actions to in turn trigger the orginal root action. You can easily end up defining infinite loops in this way. (In the current implementation this will eventually trigger a stack overflow error as cause invocations are recursive, but future implementations will be able to infer target language loop strcutures to prevent stack depth issues.)</para>
+						<section id="Result">
+							<title>Result</title>
+							<para>The root aciton that should be trigerred for every memeber of the current selection. This is typically a Perform action but it can be any kind of root action except for "Derived". (Which doesn't make any sense to do.)</para>
 						</section>
 					</section>
 					<section id="Move">
@@ -989,8 +1032,8 @@ if (query3.evaluate()) {
 							<title>Selection</title>
 							<para>The selection determines what space the agent to remove.</para>
 						</section>
-						<section id=".3DDestination">
-							<title>=Destination</title>
+						<section id="Destination_3">
+							<title>Destination</title>
 							<para>The destination is irrelevant in this case and will probably be removed.</para>
 						</section>
 					</section>
@@ -1001,7 +1044,7 @@ if (query3.evaluate()) {
 							<title>Selection</title>
 							<para>The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.</para>
 						</section>
-						<section id=".3DDestination_2">
+						<section id=".3DDestination">
 							<title>=Destination</title>
 							<para>The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.</para>
 						</section>
@@ -1021,7 +1064,7 @@ if (query3.evaluate()) {
 							<title>Selection</title>
 							<para>The selection determines one side of the agent relationship that will be disconnected.</para>
 						</section>
-						<section id="Destination_3">
+						<section id="Destination_4">
 							<title>Destination</title>
 							<para>The selection determines one other side of the agent relationship that will be disconnected.</para>
 						</section>
@@ -1037,7 +1080,7 @@ if (query3.evaluate()) {
 							<title>Selection</title>
 							<para>The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.</para>
 						</section>
-						<section id="Destination_4">
+						<section id="Destination_5">
 							<title>Destination</title>
 							<para>The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.</para>
 						</section>
@@ -2611,7 +2654,7 @@ Outputs:
 			</section>
 			<section id="Model_Parameterization">
 				<title>Model Parameterization</title>
-				<para>Escape provides full support for parameterization of models. This allows you to create many sets of parameters for a given model, allowing you to decouple model runtime settings from the model itself. (Support for parameter sweeps is forthcoming.) To create a new parameterization, right-click in the lcoation you want to create the parameter file, and select 
+				<para>Escape provides full support for parameterization of models. This allows you to create many sets of parameters for a given model, allowing you to decouple model runtime settings from the model itself. (Support for parameter sweeps is forthcoming.) To create a new parameterization, right-click in the location you want to create the parameter file, and select 
 					<emphasis role="bold">New &gt; Parameters File</emphasis>.
 				</para>
 				<para>
@@ -2653,6 +2696,31 @@ Outputs:
 						</imageobject>
 					</mediaobject>
 				</para>
+				<section id="Syntax">
+					<title>Syntax</title>
+					<para>Parameter files are quite simple. Every parameter file specifies the "model" that will be executed.The "incorporates" keyword supports including parameter values from other files. File locations are relative to the location of the parameter file, but it is usually more flexible to refer to model files relative to their project location. You can do that by inserting a "|" character at the beginning of the file name.</para>
+					<para>Attribute values are specified by the attribute ID (with the first character in upper-case) followed by "=" and the desired value.</para>
+				</section>
+				<section id="Example_5">
+					<title>Example</title>
+					<para>We can create a base parameters file called "EpiBase.apar".</para>
+					<literallayout format="linespecific" class="normal">model "|Epidemic.metaabm"
+StopPeriod=500
+</literallayout>
+					<para>This means that we expect the Epidemic.metaabm model to be at the root of the project, and we want the model to stop at period 500. Then -- in this overly simple example -- we could create two other files, EpiHighTransmission.apar:</para>
+					<literallayout format="linespecific" class="normal">model "|Epidemic.metaabm"
+incorporates "EpiBase.apar"
+MinContactTransmissionProbability=0.05
+MaxContactTransmissionProbability=0.2
+</literallayout>
+					<para>and EpiLowTransmission.apar:</para>
+					<literallayout format="linespecific" class="normal">model "|Epidemic.metaabm"
+incorporates "EpiBase.apar"
+MinContactTransmissionProbability=0.0
+MaxContactTransmissionProbability=0.15
+</literallayout>
+					<para>Both of which reference the base set of parameters we've just defined and add run specific variables. Note that the incorporates reference is a parameter file relative reference so that we can easily move the set of parameter files to any location we want. With these two files defined we can click on both of them at once, select the Execute button and immediately compare the two values. (Not shown.)</para>
+				</section>
 			</section>
 			<section id="Model_Testing">
 				<title>Model Testing</title>
@@ -2661,15 +2729,39 @@ Outputs:
 					<emphasis role="italic">verification</emphasis> is the process of determining whether your model specification matches up to the model you've actually implemented. In other words, does the model do what you say it does?
 				</para>
 				<para>To help you answer this important question, the modeling tools include unique support for an approach to validation and verification called "unit testing". A thorough discussion is far beyond the scope of this manual, but this guide should give you enough information to get testing your own models. Testing might seem tedious ut its actually a real time saver, because you can quickly run a set of tests to ensure that you a new model change hasn't broken existing functionality. This peace of mind is priceless, and once you start testing, you won't know how you lived without it!</para>
-				<para>To create a new test, right-click at the location you want to put the test files. (Not shown.) Then we can edit the test file.</para>
+				<para>To create a new test, right-click at the location you want to put the test files. (Not shown.) Then we can edit the test file using the syntax shown below. It's helpful to keep them organized in sets of folders. To execute a test or set of tests, simply select the test files and click "Test Once" or "Test 5 times" to run a set of identical tests. The latter is useful for stochastic tests in which tests may create significantly different results for the same random seeds. (We'll provide more options in a future release.) If you select an entire folder, the framework will run all of the tests in the folder. This process is very similar to that for parameter files, so we won't show it here.</para>
+				<para>Once a test is complete, an "ares" file is created in the "test-results" folder. To see how your tests faired, open the .ares file. For the example test file below, we should see something like this:</para>
 				<para>
 					<mediaobject>
 						<imageobject>
-							<imagedata fileref="images/params/Execute.png" scale="50"/>
+							<imagedata fileref="images/params/TestResults.png" scale="50"/>
 						</imageobject>
 					</mediaobject>
 				</para>
-				<para>It's helpful to keep them organized in sets of folders. If you select an entire folder, the framework will run </para>
+				<para>Notice that we can view the expected values and where our results actually fall.</para>
+				<section id="Syntax_2">
+					<title>Syntax</title>
+					<para>Test files are also pretty simple. It's a good idea to provide a description of the test so you can understand why you created it and what feature you're testing. Just put quote characters around your description. Then, use the "tests" keyword to specify what parameter file you'll be using. Again you can use file or project relative references. You don not specify a model here -- that's defined by the parameter file. You can use the "contains" keyword just like the incorporates keyword for parameter files, to specify a set of test constraints that you want to include with the new tests you've defined. This is useful for including a series of "sanity checks" with other tests. Then you specify the test constraints themselves. This uses the following form:</para>
+					<literallayout format="linespecific" class="normal">{Measure}({TestedAttribute}) = [{MinimumConstraint}, {MaximumConstraint}]
+</literallayout>
+					<para>The measures available are Average, Minimum, Maximum Count and Sum. In order for an attribute to be tested the "gather data" value must be set for that attribute. All Measures are not appropriate for all attribute types. Booleans, Symbols and States should only use the Count measure as they represent discrete values that can either meet some condition or not.</para>
+					<para>The tested attributes are qualified by their model agent definition. The constraint definition is inclusive, as implied by the square brackets. Future implementations are expected to provide richer expressions and constraints but a very wide range of cases are supported by this construct, especially when combined with derived attributes. Tested Attributes are again specified by the attribute ID (with the first character in upper-case) followed by "=" and the desired value.</para>
+				</section>
+				<section id="Example_6">
+					<title>Example</title>
+					<para>In the following simple example we want to make sure that an epidemic can't occur without disease transmission taking place. Here we're just looking to make sure that we have some very basic logic right. (This might be almost too simple for a real-world design, depending on how rigorous we want to be.) Note that some individuals are infected at the beginning of the model run so we need to account for that in our expected results. So first we have defined the EpiZeroTransmission.apar file like the other transmission rate parameterizations above except with these settings:</para>
+					<literallayout format="linespecific" class="normal">MinContactTransmissionProbability=0.0
+MaxContactTransmissionProbability=0.0
+</literallayout>
+					<para>Then we define our ZeroTransmission.atest file:</para>
+					<literallayout format="linespecific" class="normal">"Test that no disease transmission occurs with contact transmission set to 0."
+tests "|params/EpiZeroTransmission.apar"
+Count(Individual.Status=Dead) = [0,5]
+Count(Individual.Status=Exposed) = [0,10]
+Count(Individual.Status=SymptomInfectious)=[0,0]
+</literallayout>
+					<para>Here we have a nice description, a reference to the parameterization we want to use, and then the set of constraints we will apply to them. After running this test, a test result file like the one above will be created and placed in our "test-results" directory.</para>
+				</section>
 			</section>
 		</section>
 	</chapter>
