@@ -115,6 +115,12 @@ context AMove WARNING "Destination for " + usageLabel() + " is the same as selec
 context SAttribute ERROR "An attribute cannot be both derived and immutable: " + usageLabel():
     derived == false || immutable == false;
       
+context ASet ERROR "Cannot set a derived value: " + usageLabel():
+	attribute == null || attribute.derived == false;
+      
+context ASet ERROR "Cannot set an immutable value: " + usageLabel():
+	attribute == null || attribute.immutable == false;
+      
 //context AMove ERROR "Destination " + destination.usageLabel() + " for " + usageLabel() + " is not a cell. (The destination agent is " + destination.agent.usageLabel() + " and the fill agent for the destination is " + ((SGrid) destination.space).builder().fillAgent.usageLabel() + ".)": 
 //   destination.space.metaType != SGrid || ((SGrid) destination.space).builder().fillAgent == null || ((SGrid) destination.space).builder().fillAgent == destination.agent || !destination.controlFunctions({"toward"}).isEmpty;
      
