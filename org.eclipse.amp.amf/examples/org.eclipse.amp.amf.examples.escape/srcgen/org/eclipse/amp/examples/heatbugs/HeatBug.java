@@ -51,6 +51,11 @@ public class HeatBug extends CellOccupant {
 	private double outputHeat = 0.0;
 
 	/**
+	 * 
+	 */
+	private double unhappiness = 0.0;
+
+	/**
 	 * Constructs a new Heat Bug.
 	 */
 	public HeatBug() {
@@ -90,17 +95,14 @@ public class HeatBug extends CellOccupant {
 	 * Initialize Initialization. Executed once at the beginning of each model run.
 	 */
 	public void intializeNonFramework() {
-
 		HeatCell heatBug = (HeatCell) ((org.ascape.model.space.Discrete) getHeatbugs()
 				.getHeatGrid().getSpace()).findRandomAvailable();
 		if (heatBug != null) {
-
 			if (getHostScape() != ((Agent) heatBug).getScape()) {
 				die();
 				getHeatbugs().getHeatBugScape().add(this);
 			}
 			moveTo(heatBug);
-
 		}
 	}
 
@@ -113,52 +115,42 @@ public class HeatBug extends CellOccupant {
 			HeatCell currentLocation = (HeatCell) ((org.ascape.model.CellOccupant) currentLocationLocation)
 					.getHostCell();
 			if (currentLocation != null) {
-
 				double heatAddOutputHeat = currentLocation.getHeat()
 						+ getOutputHeat();
 				if (currentLocation.getHeat() < getIdealTemperature()) {
-
 					HeatCell idealHeat = (HeatCell) ((org.ascape.model.space.Discrete) currentLocation
 							.getHeatbugs().getHeatGrid().getSpace())
 							.findMaximumWithin(currentLocation.getCoordinate(),
 									MAXIMIZE_HEAT, HostCell.IS_AVAILABLE, true,
 									1);
 					if (idealHeat != null) {
-
 						if (getHostScape() != ((Agent) idealHeat).getScape()) {
 							die();
 							getHeatbugs().getHeatBugScape().add(this);
 						}
 						moveTo(idealHeat);
-
 					}
-
 				}
 				if (!(currentLocation.getHeat() < getIdealTemperature())) {
-
 					HeatCell idealCool = (HeatCell) ((org.ascape.model.space.Discrete) currentLocation
 							.getHeatbugs().getHeatGrid().getSpace())
 							.findMinimumWithin(currentLocation.getCoordinate(),
 									MINIMIZE_HEAT, HostCell.IS_AVAILABLE, true,
 									1);
 					if (idealCool != null) {
-
 						if (getHostScape() != ((Agent) idealCool).getScape()) {
 							die();
 							getHeatbugs().getHeatBugScape().add(this);
 						}
 						moveTo(idealCool);
-
 					}
-
 				}
 				currentLocation.setHeat(heatAddOutputHeat);
 			}
 		}
 	}
-
 	/**
-	 * A data point used within a search to find the org.metaabm.impl.SAgentImpl@2118f1d9 (label: Heat Cell, ID: heatCell) (pluralLabel: Heat Cells, description: null) with the .maximized Heat value.
+	 * A data point used within a search to find the org.metaabm.impl.SAgentImpl@68c57103 (label: Heat Cell, ID: heatCell) (pluralLabel: Heat Cells, description: null) with the .maximized Heat value.
 	 */
 	public final static DataPoint MAXIMIZE_HEAT = new DataPointConcrete(
 			"Maximize heat") {
@@ -202,9 +194,8 @@ public class HeatBug extends CellOccupant {
 		double outputHeatDrawMaximum = getHeatbugs().getOutputHeatDrawMaximum();
 		return randomInRange(outputHeatDrawMinimum, outputHeatDrawMaximum);
 	}
-
 	/**
-	 * A data point used within a search to find the org.metaabm.impl.SAgentImpl@2118f1d9 (label: Heat Cell, ID: heatCell) (pluralLabel: Heat Cells, description: null) with the .minimized Heat value.
+	 * A data point used within a search to find the org.metaabm.impl.SAgentImpl@68c57103 (label: Heat Cell, ID: heatCell) (pluralLabel: Heat Cells, description: null) with the .minimized Heat value.
 	 */
 	public final static DataPoint MINIMIZE_HEAT = new DataPointConcrete(
 			"Minimize heat") {
@@ -217,6 +208,23 @@ public class HeatBug extends CellOccupant {
 			return ((HeatCell) o).getHeat();
 		}
 	};
+
+	/**
+	 * Derive Unhappiness.
+	 */
+	public double getUnhappiness() {
+		Location currentHeatCellLocation = this;
+		if (currentHeatCellLocation != null) {
+			HeatCell currentHeatCell = (HeatCell) ((org.ascape.model.CellOccupant) currentHeatCellLocation)
+					.getHostCell();
+			if (currentHeatCell != null) {
+				double heatSubtractIdealTemperatureQuery = currentHeatCell
+						.getHeat() - getIdealTemperature();
+				return java.lang.Math.abs(heatSubtractIdealTemperatureQuery);
+			}
+		}
+		return 0.0;
+	}
 
 	/**
 	 * Gets the Ideal Temperature property for Heat Bug.

@@ -335,12 +335,14 @@ public class DemographicPrisonersDilemma extends Scape
 		IColorProvider cooperateDefectStyleColorProvider = new CooperateDefectStyleColorProvider();
 
 		player.setCooperate(true);
-		chart.addSeries("Count Player is Cooperate", getInferredChartColor(
-				player, cooperateDefectStyleColorProvider));
+		chart.addSeries(
+				"Count Player is Cooperate",
+				getInferredChartColor(player, cooperateDefectStyleColorProvider));
 
 		player.setCooperate(false);
-		chart.addSeries("Count Player is not Cooperate", getInferredChartColor(
-				player, cooperateDefectStyleColorProvider));
+		chart.addSeries(
+				"Count Player is not Cooperate",
+				getInferredChartColor(player, cooperateDefectStyleColorProvider));
 
 		final DemographicPrisonersDilemma playCellScape = new DemographicPrisonersDilemma();
 		playCellScape.setRunner(new NonGraphicRunner());
@@ -380,8 +382,8 @@ public class DemographicPrisonersDilemma extends Scape
 			IColorProvider colorProvider) {
 		Color color = colorProvider.getForeground(agent);
 		if (color == ColorFeature.BLACK) {
-			color = ColorFeatureConcrete.createHSB((float) java.lang.Math
-					.random() * 360f, 1.0f, 0.8f);
+			color = ColorFeatureConcrete.createHSB(
+					(float) java.lang.Math.random() * 360f, 1.0f, 0.8f);
 		}
 		return color;
 	}
@@ -390,7 +392,6 @@ public class DemographicPrisonersDilemma extends Scape
 		(new NonGraphicRunner())
 				.openInstance("edu.brook.DemographicPrisonersDilemma");
 	}
-
 	/**
 	 * Gets the Player Count property for Demographic Prisoner_s Dilemma.
 	 * @return The number of players to create.

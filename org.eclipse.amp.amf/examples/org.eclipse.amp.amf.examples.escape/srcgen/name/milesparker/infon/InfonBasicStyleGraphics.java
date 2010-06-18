@@ -31,6 +31,7 @@ public class InfonBasicStyleGraphics extends DrawFeature {
 			Infon rootActGroup = (Infon) rootActGroupCell.getOccupant();
 			Infon basicStyleRule = rootActGroup;
 			Color basicStyleRuleColorBlue = ColorConstants.blue;
+
 			g.setForegroundColor(basicStyleRuleColorBlue);
 			g.setBackgroundColor(basicStyleRuleColorBlue);
 			shape = shape.oval;

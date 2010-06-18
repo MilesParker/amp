@@ -75,7 +75,6 @@ public class Block extends HostCell {
 	public WikiExample getWikiExample() {
 		return (WikiExample) getScape().getScape();
 	}
-
 	public String getName() {
 		if (name == null) {
 			return "Block " + getUID();

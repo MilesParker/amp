@@ -30,6 +30,7 @@ public class HeatCellStyle2DFigureProvider extends DefaultFigureProvider {
 		HeatCell heatCellRule = actions;
 		double heatDivideHeatDivideMaximumHeat = heatCellRule.getHeat()
 				/ heatCellRule.getHeatbugs().getMaximumHeat();
+
 		if (figure == null) {
 			figure = Shapes.createRectangle();
 		}

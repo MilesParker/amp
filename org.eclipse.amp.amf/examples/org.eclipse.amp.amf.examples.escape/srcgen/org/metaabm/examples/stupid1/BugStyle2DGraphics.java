@@ -31,6 +31,7 @@ public class BugStyle2DGraphics extends DrawFeature {
 			Bug rootActGroup = (Bug) rootActGroupCell.getOccupant();
 			Bug bugRule = rootActGroup;
 			Color bugRuleColorRed = ColorConstants.red;
+
 			g.setForegroundColor(bugRuleColorRed);
 			g.setBackgroundColor(bugRuleColorRed);
 			shape = shape.oval;

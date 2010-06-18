@@ -35,6 +35,7 @@ public class HeatCellStyle2DColorProvider implements IColorProvider {
 		HeatCell heatCellRule = actions;
 		double heatDivideHeatDivideMaximumHeat = heatCellRule.getHeat()
 				/ heatCellRule.getHeatbugs().getMaximumHeat();
+
 		fillColor = new Color(Display.getCurrent(),
 				(int) (heatDivideHeatDivideMaximumHeat * 255), (int) (0 * 255),
 				(int) (0 * 255));

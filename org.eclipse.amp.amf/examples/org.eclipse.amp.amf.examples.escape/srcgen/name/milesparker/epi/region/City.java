@@ -325,8 +325,8 @@ public class City extends Scape implements IGraphicsAdapted {
 			IColorProvider colorProvider) {
 		Color color = colorProvider.getForeground(agent);
 		if (color == ColorFeature.BLACK) {
-			color = ColorFeatureConcrete.createHSB((float) java.lang.Math
-					.random() * 360f, 1.0f, 0.8f);
+			color = ColorFeatureConcrete.createHSB(
+					(float) java.lang.Math.random() * 360f, 1.0f, 0.8f);
 		}
 		return color;
 	}
@@ -335,7 +335,6 @@ public class City extends Scape implements IGraphicsAdapted {
 		(new NonGraphicRunner())
 				.openInstance("name.milesparker.epi.region.City");
 	}
-
 	public Region getRegion() {
 		return (Region) getScape().getScape();
 	}
@@ -344,20 +343,16 @@ public class City extends Scape implements IGraphicsAdapted {
 	 * Setup Location Initialization. Executed once at the beginning of each model run.
 	 */
 	public void setupLocation() {
-
 		RegionalLocation cityLocation = (RegionalLocation) ((org.ascape.model.space.Discrete) getRegion()
 				.getRegionalMap().getSpace()).findRandomAvailable();
 		if (cityLocation != null) {
-
 			if (getHostScape() != ((Agent) cityLocation).getScape()) {
 				die();
 				getRegion().getCityScape().add(this);
 			}
 			moveTo(cityLocation);
-
 		}
 	}
-
 	/**
 	 * Gets the Individual Count property for City.
 	 * @return The number of individuals to create.

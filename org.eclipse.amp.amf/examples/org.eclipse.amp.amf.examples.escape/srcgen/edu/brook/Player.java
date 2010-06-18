@@ -107,17 +107,14 @@ public class Player extends CellOccupant {
 	 * Move To Random Location Initialization. Executed once at the beginning of each model run.
 	 */
 	public void moveToRandomLocation() {
-
 		PlayCell randomCell2 = (PlayCell) ((org.ascape.model.space.Discrete) getDemographicPrisoner_sDilemma()
 				.getGameSpace().getSpace()).findRandomAvailable();
 		if (randomCell2 != null) {
-
 			if (getHostScape() != ((Agent) randomCell2).getScape()) {
 				die();
 				getDemographicPrisoner_sDilemma().getPlayerScape().add(this);
 			}
 			moveTo(randomCell2);
-
 		}
 	}
 
@@ -125,21 +122,17 @@ public class Player extends CellOccupant {
 	 * Random Walk Rule. Executed every period.
 	 */
 	public void randomWalk() {
-
 		PlayCell randomNeighbor = (PlayCell) ((org.ascape.model.space.Discrete) getDemographicPrisoner_sDilemma()
 				.getGameSpace().getSpace())
 				.findRandomAvailableNeighbor(((org.ascape.model.CellOccupant) this)
 						.getHostCell());
 		if (randomNeighbor != null) {
-
 			if (getHostScape() != ((Agent) randomNeighbor).getScape()) {
 				die();
 				getDemographicPrisoner_sDilemma().getPlayerScape().add(this);
 			}
 			moveTo(randomNeighbor);
-
 		}
-
 	}
 
 	/**
@@ -156,12 +149,10 @@ public class Player extends CellOccupant {
 				}
 			}
 		};
-
 		Player otherPlayer = (Player) ((org.ascape.model.space.Discrete) getDemographicPrisoner_sDilemma()
 				.getGameSpace().getSpace()).findRandomNeighbor(this,
 				otherPlayerCondition);
 		if (otherPlayer != null) {
-
 			if ((otherPlayer.isCooperate() && isCooperate())) {
 				int valueWealthAddPayoffCooperateCooperate = getWealth()
 						+ getDemographicPrisoner_sDilemma().getPayoffCC();
@@ -183,7 +174,6 @@ public class Player extends CellOccupant {
 				setWealth(valueWealthAddPayoffDefectCooperate);
 				otherPlayer.setWealth(valueWealthAddPayoffCooperateDefectCopy);
 			}
-
 			if ((!otherPlayer.isCooperate() && isCooperate())) {
 				int valueWealthAddPayoffCooperateDefect = getWealth()
 						+ getDemographicPrisoner_sDilemma().getPayoffCD();
@@ -204,9 +194,7 @@ public class Player extends CellOccupant {
 				setWealth(valueWealthAddPayoffDefectDefect);
 				otherPlayer.setWealth(valueWealthAddPayoffDefectDefectCopy);
 			}
-
 		}
-
 	}
 
 	/**
@@ -222,13 +210,11 @@ public class Player extends CellOccupant {
 	 */
 	public void fissionRule() {
 		if (getWealth() >= getDemographicPrisoner_sDilemma().getFissionWealth()) {
-
 			PlayCell birthLocation = (PlayCell) ((org.ascape.model.space.Discrete) getDemographicPrisoner_sDilemma()
 					.getGameSpace().getSpace())
 					.findRandomAvailableNeighbor(((org.ascape.model.CellOccupant) this)
 							.getHostCell());
 			if (birthLocation != null) {
-
 				Player createAgents = (Player) getDemographicPrisoner_sDilemma()
 						.getPlayerScape().getSpace().newLocation(false);
 				if (createAgents.getHostScape() != ((Agent) birthLocation)
@@ -255,7 +241,6 @@ public class Player extends CellOccupant {
 				}
 				setWealth(wealthChildWealth);
 			}
-
 		}
 	}
 
@@ -276,7 +261,6 @@ public class Player extends CellOccupant {
 			die();
 		}
 	}
-
 	/**
 	 * Gets the Cooperate property for Player.
 	 * @return 

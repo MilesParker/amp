@@ -75,7 +75,6 @@ public class RegionalLocation extends HostCell {
 	public Region getRegion() {
 		return (Region) getScape().getScape();
 	}
-
 	public String getName() {
 		if (name == null) {
 			return "Regional Location " + getUID();

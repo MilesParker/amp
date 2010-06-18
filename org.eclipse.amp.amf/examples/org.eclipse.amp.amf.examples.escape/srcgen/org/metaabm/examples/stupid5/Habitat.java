@@ -96,7 +96,6 @@ public class Habitat extends HostCell {
 				+ calculateFoodProductionRate;
 		setFoodAvailability(newFoodProductionValue);
 	}
-
 	/**
 	 * Gets the FoodAvailability property for Habitat.
 	 * @return 

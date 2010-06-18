@@ -29,6 +29,7 @@ public class HabitatStyle2DGraphics extends DrawFeature {
 		Habitat rootActGroup = (Habitat) object;
 		Habitat habitatRule = rootActGroup;
 		Color habitatRuleColorGreen = ColorConstants.green;
+
 		g.setForegroundColor(habitatRuleColorGreen);
 		g.setBackgroundColor(habitatRuleColorGreen);
 		shape = shape.rectangle;

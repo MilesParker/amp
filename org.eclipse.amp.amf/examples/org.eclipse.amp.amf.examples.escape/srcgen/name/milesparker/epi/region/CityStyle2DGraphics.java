@@ -32,6 +32,7 @@ public class CityStyle2DGraphics extends DrawFeature {
 			City cityRule = rootActGroup;
 			if (cityRule.getCommunityInfectionStatus() == CommunityInfectionStatusEnum.infectionsObserved) {
 				Color cityRuleColorYellow = ColorConstants.yellow;
+
 				g.setForegroundColor(cityRuleColorYellow);
 				g.setBackgroundColor(cityRuleColorYellow);
 				shape = shape.oval;
@@ -47,6 +48,7 @@ public class CityStyle2DGraphics extends DrawFeature {
 			}
 			if (!(cityRule.getCommunityInfectionStatus() == CommunityInfectionStatusEnum.infectionsObserved)) {
 				Color cityRuleColorBlue = ColorConstants.blue;
+
 				g.setForegroundColor(cityRuleColorBlue);
 				g.setBackgroundColor(cityRuleColorBlue);
 				shape = shape.oval;
@@ -62,6 +64,7 @@ public class CityStyle2DGraphics extends DrawFeature {
 			}
 			if (cityRule.getCommunityInfectionStatus() == CommunityInfectionStatusEnum.originCity) {
 				Color cityRuleColorGray = ColorConstants.gray;
+
 				g.setForegroundColor(cityRuleColorGray);
 				g.setBackgroundColor(cityRuleColorGray);
 				shape = shape.oval;

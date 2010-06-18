@@ -127,7 +127,6 @@ public class HeatCell extends HostCell {
 			setHeat(getHeatbugs().getMaximumHeat());
 		}
 	}
-
 	/**
 	 * Gets the Heat property for Heat Cell.
 	 * @return 

@@ -85,17 +85,14 @@ public class Bug extends CellOccupant {
 	 * Initialize Initialization. Executed once at the beginning of each model run.
 	 */
 	public void intializeNonFramework() {
-
 		Habitat randomHabitat = (Habitat) ((org.ascape.model.space.Discrete) getStupidModel2()
 				.getGrid2D().getSpace()).findRandomAvailable();
 		if (randomHabitat != null) {
-
 			if (getHostScape() != ((Agent) randomHabitat).getScape()) {
 				die();
 				getStupidModel2().getBugScape().add(this);
 			}
 			moveTo(randomHabitat);
-
 		}
 	}
 
@@ -103,21 +100,17 @@ public class Bug extends CellOccupant {
 	 * Random Movement Rule. Executed every period.
 	 */
 	public void randomMovement() {
-
 		Habitat nearbySpace = (Habitat) ((org.ascape.model.space.Discrete) getStupidModel2()
 				.getGrid2D().getSpace()).findRandomAvailable(
 				((org.ascape.model.CellOccupant) this).getHostCell(), null,
 				false, getStupidModel2().getBugVision());
 		if (nearbySpace != null) {
-
 			if (getHostScape() != ((Agent) nearbySpace).getScape()) {
 				die();
 				getStupidModel2().getBugScape().add(this);
 			}
 			moveTo(nearbySpace);
-
 		}
-
 	}
 
 	/**
@@ -127,7 +120,6 @@ public class Bug extends CellOccupant {
 		int growIncrementSize = getSize() + 1;
 		setSize(growIncrementSize);
 	}
-
 	/**
 	 * Gets the Size property for Bug.
 	 * @return 

@@ -284,8 +284,8 @@ public class Region extends Scape implements IGraphicsAdapted {
 			IColorProvider colorProvider) {
 		Color color = colorProvider.getForeground(agent);
 		if (color == ColorFeature.BLACK) {
-			color = ColorFeatureConcrete.createHSB((float) java.lang.Math
-					.random() * 360f, 1.0f, 0.8f);
+			color = ColorFeatureConcrete.createHSB(
+					(float) java.lang.Math.random() * 360f, 1.0f, 0.8f);
 		}
 		return color;
 	}
@@ -294,7 +294,6 @@ public class Region extends Scape implements IGraphicsAdapted {
 		(new NonGraphicRunner())
 				.openInstance("name.milesparker.epi.region.Region");
 	}
-
 	/**
 	 * Gets the City Count property for Region.
 	 * @return The number of citys to create.

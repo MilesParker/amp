@@ -33,6 +33,7 @@ public class IndividualStyle2DGraphics extends DrawFeature {
 			Individual individualRule = rootActGroup;
 			if (individualRule.getStatus() == StatusEnum.susceptible) {
 				Color colorBlue = ColorConstants.blue;
+
 				g.setForegroundColor(colorBlue);
 				g.setBackgroundColor(colorBlue);
 				shape = shape.oval;
@@ -48,6 +49,7 @@ public class IndividualStyle2DGraphics extends DrawFeature {
 			}
 			if (individualRule.getStatus() == StatusEnum.exposed) {
 				Color colorYellow = ColorConstants.yellow;
+
 				g.setForegroundColor(colorYellow);
 				g.setBackgroundColor(colorYellow);
 				shape = shape.oval;
@@ -63,6 +65,7 @@ public class IndividualStyle2DGraphics extends DrawFeature {
 			}
 			if (individualRule.getStatus() == StatusEnum.asymptomInfectious) {
 				Color colorOrange = ColorConstants.orange;
+
 				g.setForegroundColor(colorOrange);
 				g.setBackgroundColor(colorOrange);
 				shape = shape.oval;
@@ -78,6 +81,7 @@ public class IndividualStyle2DGraphics extends DrawFeature {
 			}
 			if (individualRule.getStatus() == StatusEnum.recovered) {
 				Color colorGreen = ColorConstants.green;
+
 				g.setForegroundColor(colorGreen);
 				g.setBackgroundColor(colorGreen);
 				shape = shape.oval;
@@ -93,6 +97,7 @@ public class IndividualStyle2DGraphics extends DrawFeature {
 			}
 			if (individualRule.getStatus() == StatusEnum.dead) {
 				Color colorBlack = ColorConstants.black;
+
 				g.setForegroundColor(colorBlack);
 				g.setBackgroundColor(colorBlack);
 				shape = shape.oval;
@@ -108,6 +113,7 @@ public class IndividualStyle2DGraphics extends DrawFeature {
 			}
 			if (individualRule.getStatus() == StatusEnum.symptomInfectious) {
 				Color colorRed = ColorConstants.red;
+
 				g.setForegroundColor(colorRed);
 				g.setBackgroundColor(colorRed);
 				shape = shape.oval;

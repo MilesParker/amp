@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/structure" label="Epidemic" ID="epidemic" pluralLabel="Epidemics" description="A simple model of epidemic dynamics. We define individual agents with different disease states. The progression of disease moves from succeptible to exposed to infectious (either symptomatic or asymptomatic) to some outcome state. Agents can transmit infection to their immediate neighbors.&#xA;&#xA;For some background on the general approach, see Joshua M. Epstein. &quot;Generative Social Science&quot;. 2006. Princeton. &#xA;&#xA;Copyright 2009, Miles Parker. Released under Eclipse Public License. All uses should be attributed.">
-  <attributes label="Individual Count" ID="individualCount" pluralLabel="Individual Counts" description="The number of individuals to create." sType="INTEGER" defaultValue="1500"/>
+  <attributes label="Individual Count" ID="individualCount" pluralLabel="Individual Counts" description="The number of individuals to create." defaultValue="1500"/>
   <attributes label="Initial Infection Probability" ID="initialInfectionProbability" pluralLabel="Initial Infection Probabilitys" description="The probability that any given individual will be infected at the beginning of the model run. For example, if this value is .15, and their are 100 individuals in the model, roughly 15 of those individuals will be infected at time 0." sType="REAL" defaultValue=".05"/>
   <attributes label="Min Contact Transmission Probability" ID="minContactTransmissionProbability" pluralLabel="Min Contact Transmission Probabilitys" description="The minimum probability that proximity to a single neighbor for a single period will result in transmission of infection. At the start of each model run, each individual is assigned a contact transmission probability between the minimum and maximum value. For example, if this value was .08 and the maximum value was 0.12 a given individual could have any value between those two, but the average transmission probability would be around .1. If minium and maximum values are the same, then all individuals will have the same chance of passing along infection to a given neighbor. This value must be between 0.0 and 1.0 and less than or equal to Max Contact transmission Probability." sType="REAL" defaultValue=".08"/>
   <attributes label="Max Contact Transmission Probability" ID="maxContactTransmissionProbability" pluralLabel="Max Contact Transmission Probabilitys" description="The maximum probability that proximity to a single neighbor for a single period will result in transmission of infection. See Min Contact Probability for more information. Must be a value between 0.0 and 1.0 and greater or equal to Min Contact Transmission Probability." sType="REAL" defaultValue=".16"/>
   <attributes label="Case Mortality Rate" ID="caseMortalityRate" pluralLabel="Case Mortality Rates" description="The current probability that death will occur for a given individual as a result of infection. Some number between 0.0 and 1.0." sType="REAL" defaultValue=".05"/>
-  <attributes label="Periods per Day" ID="periodsperDay" pluralLabel="Periods per Days" sType="INTEGER" defaultValue="24"/>
-  <attributes label="Min Period Exposure" ID="minPeriodExposure" pluralLabel="Min Period Exposures" description="The minimum amount of time from initial exposure to infectious asymptomatic or symptomatic state. 0 or greater." sType="INTEGER" defaultValue="24"/>
-  <attributes label="Max Period Exposure" ID="maxPeriodExposure" pluralLabel="Max Period Exposures" description="Maximum time from initial exposure to infectious asymptomatic or symptomatic state. 0 or greater." sType="INTEGER" defaultValue="72"/>
-  <attributes label="Min Period Asymptom Infection" ID="minPeriodAsymptomInfection" pluralLabel="Min Period Asymptom Infections" description="Maximum time spent infected without showing symptoms. 0 or greater." sType="INTEGER" defaultValue="24"/>
-  <attributes label="Max Period Asymptom Infection" ID="maxPeriodAsymptomInfection" pluralLabel="Max Period Asymptom Infections" description="Maximum time spent infected without showing symptoms. May be zero!" sType="INTEGER" defaultValue="96"/>
-  <attributes label="Min Period Symptom Infection" ID="minPeriodSymptomInfection" pluralLabel="Min Period Symptom Infections" description="Minimum time spent infected with obvious symptoms. 0 or greater." sType="INTEGER" defaultValue="24"/>
-  <attributes label="Max Period Symptom Infection" ID="maxPeriodSymptomInfection" pluralLabel="Max Period Symptom Infections" description="Maximum time spent infected with obvious symptoms. 1 or greater." sType="INTEGER" defaultValue="168"/>
+  <attributes label="Periods per Day" ID="periodsperDay" pluralLabel="Periods per Days" defaultValue="24"/>
+  <attributes label="Min Period Exposure" ID="minPeriodExposure" pluralLabel="Min Period Exposures" description="The minimum amount of time from initial exposure to infectious asymptomatic or symptomatic state. 0 or greater." defaultValue="24"/>
+  <attributes label="Max Period Exposure" ID="maxPeriodExposure" pluralLabel="Max Period Exposures" description="Maximum time from initial exposure to infectious asymptomatic or symptomatic state. 0 or greater." defaultValue="72"/>
+  <attributes label="Min Period Asymptom Infection" ID="minPeriodAsymptomInfection" pluralLabel="Min Period Asymptom Infections" description="Maximum time spent infected without showing symptoms. 0 or greater." defaultValue="24"/>
+  <attributes label="Max Period Asymptom Infection" ID="maxPeriodAsymptomInfection" pluralLabel="Max Period Asymptom Infections" description="Maximum time spent infected without showing symptoms. May be zero!" defaultValue="96"/>
+  <attributes label="Min Period Symptom Infection" ID="minPeriodSymptomInfection" pluralLabel="Min Period Symptom Infections" description="Minimum time spent infected with obvious symptoms. 0 or greater." defaultValue="24"/>
+  <attributes label="Max Period Symptom Infection" ID="maxPeriodSymptomInfection" pluralLabel="Max Period Symptom Infections" description="Maximum time spent infected with obvious symptoms. 1 or greater." defaultValue="168"/>
   <attributes label="Movement Probability" ID="movementProbability" pluralLabel="Movement Probabilitys" description="The chance that an agent will move within a given period. May be any value between 0.0 and 1.0." sType="REAL" defaultValue=".5"/>
   <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
     <members xsi:type="act:ABuild" label="Build Epidemic" ID="buildEpidemic" targets="//@rootActivity/@members[ID='createIndividuals'] //@rootActivity/@members[ID='buildCity']" selected="//@rootActivity/@members[ID='buildEpidemic']" agent="/" pluralLabel="Build Epidemics"/>
@@ -28,9 +28,9 @@
       <options label="Recovered" ID="recovered" pluralLabel="Recovereds"/>
       <options label="Dead" ID="dead" pluralLabel="Deads"/>
     </attributes>
-    <attributes label="Exposure End Period" ID="exposureEndPeriod" pluralLabel="Exposure Days" sType="INTEGER" gatherData="true"/>
-    <attributes label="Asymptomatic End Period" ID="asymptomaticEndPeriod" pluralLabel="Asymptomatic End Periods" sType="INTEGER"/>
-    <attributes label="Outcome Period" ID="outcomePeriod" pluralLabel="Outcome Periods" sType="INTEGER"/>
+    <attributes label="Exposure End Period" ID="exposureEndPeriod" pluralLabel="Exposure Days" gatherData="true"/>
+    <attributes label="Asymptomatic End Period" ID="asymptomaticEndPeriod" pluralLabel="Asymptomatic End Periods"/>
+    <attributes label="Outcome Period" ID="outcomePeriod" pluralLabel="Outcome Periods"/>
     <attributes label="Contact Transmission Probability" ID="contactTransmissionProbability" pluralLabel="Contact Transmission Probabilites" sType="REAL" gatherData="true"/>
     <rootActivity xsi:type="act:AGroup" label="Root Act Group" ID="rootActGroup" pluralLabel="Root Act Groups">
       <members xsi:type="act:AInitialize" label="Initialize Location" ID="initializeLocation" targets="//@agents[ID='individual']/@rootActivity/@members[ID='cityLocation']" selected="//@agents[ID='individual']/@rootActivity/@members[ID='initializeLocation']" agent="//@agents[ID='individual']" space="//@projections[ID='city']" pluralLabel="Initialize Locations"/>
@@ -266,8 +266,8 @@
     </styles>
   </agents>
   <projections xsi:type="metaabm:SGrid" label="City" ID="city" pluralLabel="Citys" dimensionality="2" borderRule="STRICT">
-    <attributes xsi:type="metaabm:SAttributeArray" label="Dimensions" ID="dimensions" pluralLabel="Dimensionss" description="The size of each dimension." sType="INTEGER" size="2"/>
-    <attributes label="Width" ID="width" pluralLabel="Widths" description="The horizontal extent of the space." sType="INTEGER" defaultValue="40"/>
-    <attributes label="Height" ID="height" pluralLabel="Heights" description="The vertical extent of the space." sType="INTEGER" defaultValue="100"/>
+    <attributes xsi:type="metaabm:SAttributeArray" label="Dimensions" ID="dimensions" pluralLabel="Dimensionss" description="The size of each dimension." size="2"/>
+    <attributes label="Width" ID="width" pluralLabel="Widths" description="The horizontal extent of the space." defaultValue="40"/>
+    <attributes label="Height" ID="height" pluralLabel="Heights" description="The vertical extent of the space." defaultValue="100"/>
   </projections>
 </metaabm:SContext>

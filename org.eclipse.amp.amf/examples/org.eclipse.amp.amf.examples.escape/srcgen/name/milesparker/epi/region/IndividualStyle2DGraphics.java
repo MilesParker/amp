@@ -33,6 +33,7 @@ public class IndividualStyle2DGraphics extends DrawFeature {
 			Individual individualRule = rootActGroup;
 			if (individualRule.getStatus() == StatusEnum.susceptible) {
 				Color individualRuleColorBlue = ColorConstants.blue;
+
 				g.setForegroundColor(individualRuleColorBlue);
 				g.setBackgroundColor(individualRuleColorBlue);
 				shape = shape.oval;
@@ -48,6 +49,7 @@ public class IndividualStyle2DGraphics extends DrawFeature {
 			}
 			if (individualRule.getStatus() == StatusEnum.exposed) {
 				Color individualRuleColorYellow = ColorConstants.yellow;
+
 				g.setForegroundColor(individualRuleColorYellow);
 				g.setBackgroundColor(individualRuleColorYellow);
 				shape = shape.oval;
@@ -63,6 +65,7 @@ public class IndividualStyle2DGraphics extends DrawFeature {
 			}
 			if (individualRule.getStatus() == StatusEnum.asymptomInfectious) {
 				Color individualRuleColorOrange = ColorConstants.orange;
+
 				g.setForegroundColor(individualRuleColorOrange);
 				g.setBackgroundColor(individualRuleColorOrange);
 				shape = shape.oval;
@@ -78,6 +81,7 @@ public class IndividualStyle2DGraphics extends DrawFeature {
 			}
 			if (individualRule.getStatus() == StatusEnum.recovered) {
 				Color individualRuleColorGreen = ColorConstants.green;
+
 				g.setForegroundColor(individualRuleColorGreen);
 				g.setBackgroundColor(individualRuleColorGreen);
 				shape = shape.oval;
@@ -93,6 +97,7 @@ public class IndividualStyle2DGraphics extends DrawFeature {
 			}
 			if (individualRule.getStatus() == StatusEnum.dead) {
 				Color individualRuleColorBlack = ColorConstants.black;
+
 				g.setForegroundColor(individualRuleColorBlack);
 				g.setBackgroundColor(individualRuleColorBlack);
 				shape = shape.oval;
@@ -108,6 +113,7 @@ public class IndividualStyle2DGraphics extends DrawFeature {
 			}
 			if (individualRule.getStatus() == StatusEnum.symptomInfectious) {
 				Color individualRuleColorRed = ColorConstants.red;
+
 				g.setForegroundColor(individualRuleColorRed);
 				g.setBackgroundColor(individualRuleColorRed);
 				shape = shape.oval;

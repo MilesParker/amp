@@ -215,8 +215,8 @@ public class InfonModel extends Scape implements IGraphicsAdapted {
 			IColorProvider colorProvider) {
 		Color color = colorProvider.getForeground(agent);
 		if (color == ColorFeature.BLACK) {
-			color = ColorFeatureConcrete.createHSB((float) java.lang.Math
-					.random() * 360f, 1.0f, 0.8f);
+			color = ColorFeatureConcrete.createHSB(
+					(float) java.lang.Math.random() * 360f, 1.0f, 0.8f);
 		}
 		return color;
 	}
@@ -225,7 +225,6 @@ public class InfonModel extends Scape implements IGraphicsAdapted {
 		(new NonGraphicRunner())
 				.openInstance("name.milesparker.infon.InfonModel");
 	}
-
 	/**
 	 * Gets the Infon Count property for Infon Model.
 	 * @return The number of infons to create.

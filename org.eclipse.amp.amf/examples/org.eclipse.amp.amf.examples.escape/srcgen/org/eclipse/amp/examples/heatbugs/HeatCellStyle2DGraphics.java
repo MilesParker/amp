@@ -30,10 +30,12 @@ public class HeatCellStyle2DGraphics extends DrawFeature {
 		HeatCell heatCellRule = actions;
 		double heatDivideHeatDivideMaximumHeat = heatCellRule.getHeat()
 				/ heatCellRule.getHeatbugs().getMaximumHeat();
+
 		Color colorRGB_HeatDivideHeatDivideMaximumHeatZeroZero_ = new Color(
 				Display.getCurrent(),
 				(int) (heatDivideHeatDivideMaximumHeat * 255), (int) (0 * 255),
 				(int) (0 * 255));
+
 		g.setForegroundColor(colorRGB_HeatDivideHeatDivideMaximumHeatZeroZero_);
 		g.setBackgroundColor(colorRGB_HeatDivideHeatDivideMaximumHeatZeroZero_);
 		shape = shape.rectangle;

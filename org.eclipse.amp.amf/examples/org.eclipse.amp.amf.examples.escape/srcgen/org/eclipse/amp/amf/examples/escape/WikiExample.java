@@ -240,8 +240,8 @@ public class WikiExample extends Scape implements IGraphicsAdapted {
 			IColorProvider colorProvider) {
 		Color color = colorProvider.getForeground(agent);
 		if (color == ColorFeature.BLACK) {
-			color = ColorFeatureConcrete.createHSB((float) java.lang.Math
-					.random() * 360f, 1.0f, 0.8f);
+			color = ColorFeatureConcrete.createHSB(
+					(float) java.lang.Math.random() * 360f, 1.0f, 0.8f);
 		}
 		return color;
 	}
@@ -250,7 +250,6 @@ public class WikiExample extends Scape implements IGraphicsAdapted {
 		(new NonGraphicRunner())
 				.openInstance("org.eclipse.amp.amf.examples.escape.WikiExample");
 	}
-
 	/**
 	 * Gets the Individual Count property for WikiExample.
 	 * @return The number of individuals to create.

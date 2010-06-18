@@ -352,33 +352,40 @@ public class Epidemic extends Scape implements IGraphicsAdapted {
 		IColorProvider individualStyle2DColorProvider = new IndividualStyle2DColorProvider();
 
 		individual.setStatus(StatusEnum.susceptible);
-		chart.addSeries("Count Individual Susceptible Status",
+		chart.addSeries(
+				"Count Individual Susceptible Status",
 				getInferredChartColor(individual,
 						individualStyle2DColorProvider));
 
 		individual.setStatus(StatusEnum.exposed);
-		chart.addSeries("Count Individual Exposed Status",
+		chart.addSeries(
+				"Count Individual Exposed Status",
 				getInferredChartColor(individual,
 						individualStyle2DColorProvider));
 
 		individual.setStatus(StatusEnum.asymptomInfectious);
-		chart.addSeries("Count Individual Asymptom Infectious Status",
+		chart.addSeries(
+				"Count Individual Asymptom Infectious Status",
 				getInferredChartColor(individual,
 						individualStyle2DColorProvider));
 
 		individual.setStatus(StatusEnum.symptomInfectious);
-		chart.addSeries("Count Individual Symptom Infectious Status",
+		chart.addSeries(
+				"Count Individual Symptom Infectious Status",
 				getInferredChartColor(individual,
 						individualStyle2DColorProvider));
 
 		individual.setStatus(StatusEnum.recovered);
-		chart.addSeries("Count Individual Recovered Status",
+		chart.addSeries(
+				"Count Individual Recovered Status",
 				getInferredChartColor(individual,
 						individualStyle2DColorProvider));
 
 		individual.setStatus(StatusEnum.dead);
-		chart.addSeries("Count Individual Dead Status", getInferredChartColor(
-				individual, individualStyle2DColorProvider));
+		chart.addSeries(
+				"Count Individual Dead Status",
+				getInferredChartColor(individual,
+						individualStyle2DColorProvider));
 		addView(chart);
 		addView(new GEFView());
 		addView(new GraphView());
@@ -405,8 +412,8 @@ public class Epidemic extends Scape implements IGraphicsAdapted {
 			IColorProvider colorProvider) {
 		Color color = colorProvider.getForeground(agent);
 		if (color == ColorFeature.BLACK) {
-			color = ColorFeatureConcrete.createHSB((float) java.lang.Math
-					.random() * 360f, 1.0f, 0.8f);
+			color = ColorFeatureConcrete.createHSB(
+					(float) java.lang.Math.random() * 360f, 1.0f, 0.8f);
 		}
 		return color;
 	}
@@ -414,7 +421,6 @@ public class Epidemic extends Scape implements IGraphicsAdapted {
 	public static void main(String[] args) {
 		(new NonGraphicRunner()).openInstance("name.milesparker.epi.Epidemic");
 	}
-
 	/**
 	 * Gets the Individual Count property for Epidemic.
 	 * @return The number of individuals to create.

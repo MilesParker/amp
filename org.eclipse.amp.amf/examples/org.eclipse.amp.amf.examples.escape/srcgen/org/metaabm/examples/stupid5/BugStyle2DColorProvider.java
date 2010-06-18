@@ -34,10 +34,13 @@ public class BugStyle2DColorProvider implements IColorProvider {
 		Bug rootActGroup = (Bug) object;
 		Bug bugRule = rootActGroup;
 		double bugSizeRatio = bugRule.getSize() / 10.0;
+
 		double bugSizeUnit = java.lang.Math.min(bugSizeRatio, 1.0)
 
 		;
+
 		double invertBugSize = 1 - bugSizeUnit;
+
 		fillColor = new Color(Display.getCurrent(), (int) (1.0 * 255),
 				(int) (invertBugSize * 255), (int) (invertBugSize * 255));
 		if (fill) {

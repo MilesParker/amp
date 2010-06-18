@@ -31,17 +31,19 @@ public class BugStyle2DGraphics extends DrawFeature {
 			Bug rootActGroup = (Bug) rootActGroupCell.getOccupant();
 			Bug bugRule = rootActGroup;
 			double bugSizeRatio = bugRule.getSize() / 10.0;
+
 			double bugSizeUnit = java.lang.Math.min(bugSizeRatio, 1.0)
 
 			;
+
 			double invertBugSize = 1 - bugSizeUnit;
+
 			Color bugRuleColorRGB_BugRuleMinimum_BugSizeRatioLiteral1pt0_Literal1pt0Literal1pt0_ = new Color(
 					Display.getCurrent(), (int) (1.0 * 255),
 					(int) (invertBugSize * 255), (int) (invertBugSize * 255));
-			g
-					.setForegroundColor(bugRuleColorRGB_BugRuleMinimum_BugSizeRatioLiteral1pt0_Literal1pt0Literal1pt0_);
-			g
-					.setBackgroundColor(bugRuleColorRGB_BugRuleMinimum_BugSizeRatioLiteral1pt0_Literal1pt0Literal1pt0_);
+
+			g.setForegroundColor(bugRuleColorRGB_BugRuleMinimum_BugSizeRatioLiteral1pt0_Literal1pt0Literal1pt0_);
+			g.setBackgroundColor(bugRuleColorRGB_BugRuleMinimum_BugSizeRatioLiteral1pt0_Literal1pt0Literal1pt0_);
 			shape = shape.oval;
 			if (shape == Shapes.oval) {
 				g.fillOval(0, 0, width, height);

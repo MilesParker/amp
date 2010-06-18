@@ -75,7 +75,6 @@ public class Place extends HostCell {
 	public City getCity() {
 		return (City) getScape().getScape();
 	}
-
 	public String getName() {
 		if (name == null) {
 			return "Place " + getUID();

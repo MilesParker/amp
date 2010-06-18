@@ -181,6 +181,14 @@ public class Heatbugs extends Scape implements IGraphicsAdapted {
 						return true;
 					}
 				});
+		heatBugScape
+				.addStatCollector(new org.ascape.util.data.StatCollectorCSAMM(
+						"Heat Bug Unhappiness") {
+					private static final long serialVersionUID = 6846144446402098985L;
+					public final double getValue(Object heatBug) {
+						return ((HeatBug) heatBug).getUnhappiness();
+					}
+				});
 
 		heatBugScape.addInitialRule(new Rule("Initialize") {
 			private static final long serialVersionUID = 6846144446402098982L;
@@ -270,8 +278,8 @@ public class Heatbugs extends Scape implements IGraphicsAdapted {
 			IColorProvider colorProvider) {
 		Color color = colorProvider.getForeground(agent);
 		if (color == ColorFeature.BLACK) {
-			color = ColorFeatureConcrete.createHSB((float) java.lang.Math
-					.random() * 360f, 1.0f, 0.8f);
+			color = ColorFeatureConcrete.createHSB(
+					(float) java.lang.Math.random() * 360f, 1.0f, 0.8f);
 		}
 		return color;
 	}
@@ -280,7 +288,6 @@ public class Heatbugs extends Scape implements IGraphicsAdapted {
 		(new NonGraphicRunner())
 				.openInstance("org.eclipse.amp.examples.heatbugs.Heatbugs");
 	}
-
 	/**
 	 * Gets the Heat Bug Count property for Heatbugs.
 	 * @return The number of heat bugs to create.

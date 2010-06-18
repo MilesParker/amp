@@ -29,10 +29,13 @@ public class BugStyle2DFigureProvider extends DefaultFigureProvider {
 		Bug rootActGroup = (Bug) object;
 		Bug bugRule = rootActGroup;
 		double bugSizeRatio = bugRule.getSize() / 10.0;
+
 		double bugSizeUnit = java.lang.Math.min(bugSizeRatio, 1.0)
 
 		;
+
 		double invertBugSize = 1 - bugSizeUnit;
+
 		if (figure == null) {
 			figure = Shapes.createOval();
 		}

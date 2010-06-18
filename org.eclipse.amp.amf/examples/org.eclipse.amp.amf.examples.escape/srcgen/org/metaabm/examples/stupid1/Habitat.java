@@ -75,7 +75,6 @@ public class Habitat extends HostCell {
 	public StupidModel1 getStupidModel1() {
 		return (StupidModel1) getScape().getScape();
 	}
-
 	public String getName() {
 		if (name == null) {
 			return "Habitat " + getUID();

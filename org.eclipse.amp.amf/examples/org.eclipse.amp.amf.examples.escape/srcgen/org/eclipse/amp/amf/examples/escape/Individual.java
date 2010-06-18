@@ -95,7 +95,6 @@ public class Individual extends CellOccupant {
 	 * Find Partner Rule. Executed every period.
 	 */
 	public void findPartner() {
-
 		Conditional partnerCondition = new Conditional() {
 			private static final long serialVersionUID = 6846144446402098985L;
 			public boolean meetsCondition(Object partnerCell) {
@@ -117,24 +116,19 @@ public class Individual extends CellOccupant {
 			Individual partner = (Individual) ((org.ascape.model.HostCell) partnerLocation)
 					.getOccupant();
 			if (partner != null) {
-
 				Block partnerNeighbor = (Block) ((org.ascape.model.space.Discrete) partner
 						.getWikiExample().getCity().getSpace())
 						.findRandomAvailableNeighbor(((org.ascape.model.CellOccupant) partner)
 								.getHostCell());
 				if (partnerNeighbor != null) {
-
 					if (getHostScape() != ((Agent) partnerNeighbor).getScape()) {
 						die();
 						getWikiExample().getIndividualScape().add(this);
 					}
 					moveTo(partnerNeighbor);
-
 				}
-
 			}
 		}
-
 	}
 
 	/**
@@ -152,20 +146,16 @@ public class Individual extends CellOccupant {
 	 * Initial Movement Initialization. Executed once at the beginning of each model run.
 	 */
 	public void initialMovement() {
-
 		Block individual = (Block) ((org.ascape.model.space.Discrete) getWikiExample()
 				.getCity().getSpace()).findRandomAvailable();
 		if (individual != null) {
-
 			if (getHostScape() != ((Agent) individual).getScape()) {
 				die();
 				getWikiExample().getIndividualScape().add(this);
 			}
 			moveTo(individual);
-
 		}
 	}
-
 	/**
 	 * Gets the Age property for Individual.
 	 * @return 

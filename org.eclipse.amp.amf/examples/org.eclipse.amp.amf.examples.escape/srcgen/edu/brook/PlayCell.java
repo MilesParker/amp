@@ -75,7 +75,6 @@ public class PlayCell extends HostCell {
 	public DemographicPrisonersDilemma getDemographicPrisoner_sDilemma() {
 		return (DemographicPrisonersDilemma) getScape().getScape();
 	}
-
 	public String getName() {
 		if (name == null) {
 			return "Play Cell " + getUID();

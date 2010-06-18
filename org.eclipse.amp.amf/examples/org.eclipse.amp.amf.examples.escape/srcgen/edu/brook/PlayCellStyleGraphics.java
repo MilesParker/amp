@@ -29,6 +29,7 @@ public class PlayCellStyleGraphics extends DrawFeature {
 		PlayCell rootActGroup = (PlayCell) object;
 		PlayCell playCellRule = rootActGroup;
 		Color playCellRuleColorGreen = ColorConstants.green;
+
 		g.setForegroundColor(playCellRuleColorGreen);
 		g.setBackgroundColor(playCellRuleColorGreen);
 		shape = shape.rectangle;

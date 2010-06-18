@@ -31,6 +31,7 @@ public class HeatBugStyle2DGraphics extends DrawFeature {
 			HeatBug actions = (HeatBug) actionsCell.getOccupant();
 			HeatBug heatBugRule = actions;
 			Color colorGreen = ColorConstants.green;
+
 			g.setForegroundColor(colorGreen);
 			g.setBackgroundColor(colorGreen);
 			shape = shape.oval;

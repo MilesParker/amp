@@ -105,17 +105,14 @@ public class Individual extends CellOccupant {
 	 * Initialize Location Initialization. Executed once at the beginning of each model run.
 	 */
 	public void initializeLocation() {
-
 		Place individual = (Place) ((org.ascape.model.space.Discrete) getCity()
 				.getMap().getSpace()).findRandomAvailable();
 		if (individual != null) {
-
 			if (getHostScape() != ((Agent) individual).getScape()) {
 				die();
 				getCity().getIndividualScape().add(this);
 			}
 			moveTo(individual);
-
 		}
 	}
 
@@ -124,29 +121,23 @@ public class Individual extends CellOccupant {
 	 */
 	public void movement() {
 		double movementDraw = getRandom().nextDouble();
-
 		if ((getStatus() != StatusEnum.dead
 				&& movementDraw < getCity().getRegion()
 						.getMovementProbability()
 				&& getStatus() != StatusEnum.symptomInfectious && movementDraw < getCity()
 				.getRegion().getMovementProbability())) {
-
 			Place neighboringLocation = (Place) ((org.ascape.model.space.Discrete) getCity()
 					.getMap().getSpace())
 					.findRandomAvailableNeighbor(((org.ascape.model.CellOccupant) this)
 							.getHostCell());
 			if (neighboringLocation != null) {
-
 				if (getHostScape() != ((Agent) neighboringLocation).getScape()) {
 					die();
 					getCity().getIndividualScape().add(this);
 				}
 				moveTo(neighboringLocation);
-
 			}
-
 		}
-
 	}
 
 	/**
@@ -182,7 +173,6 @@ public class Individual extends CellOccupant {
 	 * Transmission Rule. Executed every period.
 	 */
 	public void transmission() {
-
 		if ((getStatus() == StatusEnum.symptomInfectious || getStatus() == StatusEnum.asymptomInfectious)) {
 			Conditional vulnerableCondition = new Conditional() {
 				private static final long serialVersionUID = 6846144446402098985L;
@@ -194,12 +184,10 @@ public class Individual extends CellOccupant {
 					}
 				}
 			};
-
 			Individual vulnerable = (Individual) ((org.ascape.model.space.Discrete) getCity()
 					.getMap().getSpace()).findRandomNeighbor(this,
 					vulnerableCondition);
 			if (vulnerable != null) {
-
 				if (vulnerable.getStatus() == StatusEnum.susceptible) {
 					double transmissionDraw = getRandom().nextDouble();
 					if (transmissionDraw < vulnerable
@@ -207,10 +195,8 @@ public class Individual extends CellOccupant {
 						vulnerable.setStatus(StatusEnum.exposed);
 					}
 				}
-
 			}
 		}
-
 	}
 
 	/**
@@ -221,7 +207,6 @@ public class Individual extends CellOccupant {
 		if ((getExposureEndPeriod() != getAsymptomaticEndPeriod() && progressionPeriod == getExposureEndPeriod())) {
 			setStatus(StatusEnum.asymptomInfectious);
 		}
-
 		if (progressionPeriod == getOutcomePeriod()) {
 			double mortalityDraw = getRandom().nextDouble();
 			if (mortalityDraw < getCity().getRegion().getCaseMortalityRate()) {
@@ -231,17 +216,14 @@ public class Individual extends CellOccupant {
 				setStatus(StatusEnum.recovered);
 			}
 		}
-
 		if ((progressionPeriod == getExposureEndPeriod() && getExposureEndPeriod() == getAsymptomaticEndPeriod())) {
 			setStatus(StatusEnum.symptomInfectious);
 		}
-
 		if ((progressionPeriod == getAsymptomaticEndPeriod() && getExposureEndPeriod() != getAsymptomaticEndPeriod())) {
 			setStatus(StatusEnum.symptomInfectious);
 			getCity().setCommunityInfectionStatus(
 					CommunityInfectionStatusEnum.infectionsObserved);
 		}
-
 	}
 
 	/**
@@ -284,28 +266,22 @@ public class Individual extends CellOccupant {
 					}
 				}
 			};
-
 			City neighboringCity = (City) ((org.ascape.model.space.Discrete) getCity()
 					.getRegion().getRegionalMap().getSpace())
 					.findRandomNeighbor(getCity(), neighboringCityCondition);
 			if (neighboringCity != null) {
-
 				Place newLocation = (Place) ((org.ascape.model.space.Discrete) neighboringCity
 						.getMap().getSpace()).findRandomAvailable();
 				if (newLocation != null) {
-
 					if (getHostScape() != ((Agent) newLocation).getScape()) {
 						die();
 						getCity().getIndividualScape().add(this);
 					}
 					moveTo(newLocation);
-
 				}
-
 			}
 		}
 	}
-
 	/**
 	 * Gets the Status property for Individual.
 	 * @return 

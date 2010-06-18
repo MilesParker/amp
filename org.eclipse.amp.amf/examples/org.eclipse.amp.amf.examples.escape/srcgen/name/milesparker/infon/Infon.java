@@ -80,11 +80,9 @@ public class Infon extends CellOccupant {
 	 * Initialize Initialization. Executed once at the beginning of each model run.
 	 */
 	public void intializeNonFramework() {
-
 		Object infon = (Object) getInfonModel().getSpace2D().getSpace()
 				.findRandom();
 		if (infon != null) {
-
 			moveTo(((Coordinate) infon));
 		}
 	}
@@ -93,7 +91,6 @@ public class Infon extends CellOccupant {
 	 * Infon Rule Rule. Executed every period.
 	 */
 	public void infonRule() {
-
 		Conditional infonCopyCondition = new Conditional() {
 			private static final long serialVersionUID = 6846144446402098985L;
 			public boolean meetsCondition(Object infonCopyCell) {
@@ -104,17 +101,12 @@ public class Infon extends CellOccupant {
 				}
 			}
 		};
-
 		Infon infonCopy = (Infon) getInfonModel().getSpace2D().getSpace()
 				.findNearest(this, infonCopyCondition, false, Double.MAX_VALUE);
 		if (infonCopy != null) {
-
 			moveTo(((org.ascape.model.CellOccupant) infonCopy).getHostCell());
-
 		}
-
 	}
-
 	public String getName() {
 		if (name == null) {
 			return "Infon " + getUID();

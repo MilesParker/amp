@@ -33,8 +33,9 @@ public class SimpleDrawColorProvider implements IColorProvider {
 
 		Individual definition = (Individual) object;
 		Individual individualRule = definition;
-		fillColor = new Color(Display.getCurrent(), (int) (individualRule
-				.getWealth() * 255), (int) (1 * 255), (int) (1 * 255));
+		fillColor = new Color(Display.getCurrent(),
+				(int) (individualRule.getWealth() * 255), (int) (1 * 255),
+				(int) (1 * 255));
 		if (fill) {
 			return fillColor;
 		} else {

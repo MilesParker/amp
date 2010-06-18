@@ -251,8 +251,8 @@ public class StupidModel2 extends Scape implements IGraphicsAdapted {
 			IColorProvider colorProvider) {
 		Color color = colorProvider.getForeground(agent);
 		if (color == ColorFeature.BLACK) {
-			color = ColorFeatureConcrete.createHSB((float) java.lang.Math
-					.random() * 360f, 1.0f, 0.8f);
+			color = ColorFeatureConcrete.createHSB(
+					(float) java.lang.Math.random() * 360f, 1.0f, 0.8f);
 		}
 		return color;
 	}
@@ -261,7 +261,6 @@ public class StupidModel2 extends Scape implements IGraphicsAdapted {
 		(new NonGraphicRunner())
 				.openInstance("org.metaabm.examples.stupid2.StupidModel2");
 	}
-
 	/**
 	 * Gets the Bug Count property for Stupid Model 2.
 	 * @return The number of bugs to create.

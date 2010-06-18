@@ -32,6 +32,7 @@ public class CooperateDefectStyleGraphics extends DrawFeature {
 			Player playerRule = rootActGroup;
 			if (playerRule.isCooperate()) {
 				Color playerRuleColorBlue = ColorConstants.blue;
+
 				g.setForegroundColor(playerRuleColorBlue);
 				g.setBackgroundColor(playerRuleColorBlue);
 				shape = shape.oval;
@@ -47,6 +48,7 @@ public class CooperateDefectStyleGraphics extends DrawFeature {
 			}
 			if (!(playerRule.isCooperate())) {
 				Color playerRuleColorRed = ColorConstants.red;
+
 				g.setForegroundColor(playerRuleColorRed);
 				g.setBackgroundColor(playerRuleColorRed);
 				shape = shape.oval;
