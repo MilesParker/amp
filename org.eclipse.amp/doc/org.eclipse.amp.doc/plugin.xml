@@ -42,6 +42,13 @@
       <cheatsheet
             category="org.eclipse.amp"
             composite="false"
+            contentFile="cheatsheets/LoadSampleProjectsVCS.xml"
+            id="org.eclipse.amp.escape.loadProjectsVCS"
+            name="Load Example Projects from Version Control System">
+      </cheatsheet>
+      <cheatsheet
+            category="org.eclipse.amp"
+            composite="false"
             contentFile="cheatsheets/CreateEscapeJavaModel.xml"
             id="org.eclipse.amp.escape.createJava"
             name="Create an Escape Java Model">
