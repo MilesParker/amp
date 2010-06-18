@@ -19,6 +19,7 @@ package org.eclipse.amp.amf.parameters.scoping;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.eclipse.amp.amf.parameters.AParInterpreter;
 import org.eclipse.amp.amf.parameters.aPar.Import;
 import org.eclipse.amp.amf.parameters.aPar.Model;
@@ -33,8 +34,6 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.scoping.impl.SimpleScope;
-
-import org.apache.commons.lang.StringUtils;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAttribute;
 import org.metaabm.SAttributed;
@@ -93,17 +92,24 @@ public class AParScopeProvider extends AbstractDeclarativeScopeProvider {
         URI modelURI = URI.createURI(modelURIName, true);
         if (modelURI.isPlatform()) {
             resourceSet = importModel.eContainer().eResource().getResourceSet();
-            Resource modelResource = resourceSet.getResource(modelURI, true);
-            SContext newContext = (SContext) modelResource.getContents().get(0);
-            if (newContext != context) {
-                // stringElems = new ArrayList<IEObjectDescription>();
-                idElems = new ArrayList<IEObjectDescription>();
-                Resource engineResource = resourceSet.getResource(URI.createURI("http://metaabm.org/Engine.metaabm"),
-                                                                  true);
-                SContext engine = (SContext) engineResource.getContents().get(0);
-                findAttributes(engine);
-                context = newContext;
-                findAttributes(context);
+            Resource resource = null;
+            try {
+                resource = resourceSet.getResource(modelURI, true);
+            } catch (Exception e) {
+                resource = resourceSet.getResource(modelURI, false);
+            }
+            if (resource != null && !resource.getContents().isEmpty()) {
+                SContext newContext = (SContext) resource.getContents().get(0);
+                if (newContext != context) {
+                    // stringElems = new ArrayList<IEObjectDescription>();
+                    idElems = new ArrayList<IEObjectDescription>();
+                    Resource engineResource = resourceSet.getResource(URI
+                                                                      .createURI("http://metaabm.org/Engine.metaabm"), true);
+                    SContext engine = (SContext) engineResource.getContents().get(0);
+                    findAttributes(engine);
+                    context = newContext;
+                    findAttributes(context);
+                }
             }
         }
     }
