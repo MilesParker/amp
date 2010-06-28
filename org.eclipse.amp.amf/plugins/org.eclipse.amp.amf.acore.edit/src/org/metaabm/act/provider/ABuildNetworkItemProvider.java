@@ -66,28 +66,8 @@ public class ABuildNetworkItemProvider extends ABuildProjectionItemProvider impl
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addNetworkTypePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Network Type feature. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    protected void addNetworkTypePropertyDescriptor(Object object) {
-        itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(),
-                                                  getString("_UI_ABuildNetwork_networkType_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_ABuildNetwork_networkType_feature",
-                                                            "_UI_ABuildNetwork_type"),
-                                                  MetaABMActPackage.Literals.ABUILD_NETWORK__NETWORK_TYPE, true, false,
-                                                  false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                                                  getString("_UI_ActPropertyCategory"), null));
     }
 
     /**
