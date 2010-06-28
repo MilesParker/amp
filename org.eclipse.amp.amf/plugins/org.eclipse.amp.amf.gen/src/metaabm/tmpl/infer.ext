@@ -278,10 +278,10 @@ cached List[AAct] expansionOrder(List[AAct] candidates) :
 cached Boolean expandSpatialBlock(AAct act) : false;
 
 cached Boolean expandSpatialBlock(AControl act) :
-    (act.controlCompound().spatial().size > 0 && act.controlCompound().expansionOrder().first() == act) || act.selected.space == null;
+    !act.selectionCompound().isEmpty && act.controlCompound().expansionOrder().first() == act;
 
 cached Boolean expandSpatialBlock(ASelect act) :
-    act.space != null && act.controlCompound().spatial().isEmpty && act.inSelection().spatial().isEmpty && act.allTargets.typeSelect(ACommand).exists(a | (a.selected == act) || (a.dest() == act));
+    !act.targets.typeSelect(AControl).exists(e | e.selected == act) && act.allTargets.typeSelect(ACommand).exists(a | (a.selected == act) || (a.dest() == act));
 
 cached Boolean expandSpatialBlock(ACreateAgents act) :
     false;
@@ -339,6 +339,12 @@ cached List[AControl] controlSources(AControl act) :
 cached List[AControl] controlSources(AQuery act) :
 	{act};
 
+//Set of all joint controls including source
+cached List[AControl] selectionCompound(AControl act) :
+	act.selected.space != null
+		? act.controlCompound().spatial()
+		: act.controlCompound();
+		
 //Set of all joint controls including source
 cached List[AControl] controlCompound(AControl act) :
 	act.controlLeafs().controlSources().flatten().toSet().toList();
@@ -419,11 +425,16 @@ cached String expressionIn(IValue value, List[AAct] path, Boolean inner) :
 cached String expressionIn(AEvaluate value, List[AAct] path, Boolean inner) :
 	value.id();
 
+cached String accessPathInput(AInput input) :
+	input.selected == input.sink.rootSelected || input.value.metaType == AEvaluate || input.value.metaType == SStateValue
+		? ""
+		: input.selected.id();
+
 cached String expression(AInput input, List[AAct] path, Boolean inner) :
 	input.value == null
 		? path.typeSelect(ASink).remove(input.sink).toList().last().id()
 		: (input.value.id() != "self" 
-			? path.last().accessPathSelected(input, inner).pre() + input.value.expressionIn(path, inner) 
+			? input.accessPathInput().pre() + input.value.expressionIn(path, inner) 
 			: input.selected.selid().expl());
 
 cached String expression(ALiteral value, List[AAct] path, Boolean inner) :

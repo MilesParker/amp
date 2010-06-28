@@ -179,7 +179,9 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 	    «IF impl().mode != SImplementationMode::GenerateEmpty-» 
 	 		«EXPAND ActionBody-» 
 	    «ENDIF-»
-		return «attribute.defaultValue()»;
+	    «IF !allTargets.typeSelect(AQuery).isEmpty-»
+	    return «attribute.defaultValue()»;
+	    «ENDIF-»
 	}
 	
 «ENDDEFINE»

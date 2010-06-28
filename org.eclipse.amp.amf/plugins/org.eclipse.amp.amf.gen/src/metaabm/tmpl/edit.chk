@@ -70,8 +70,8 @@ context AAccessor ERROR "Attribute not specified for " + usageLabel() :
 context ABuildProjection ERROR "Space not specified for " + usageLabel(): 
    projection != null;
 
-context ASelect WARNING "Space not specified for " + usageLabel() + "; assuming that search is across all agents of type": 
-   space != null || ARoot.isInstance(this) || ACreateAgents.isInstance(this) || ABuildProjection.isInstance(this);
+//context ASelect WARNING "Space not specified for " + usageLabel() + "; assuming that search is across all agents of type": 
+//   space != null || ARoot.isInstance(this) || ACreateAgents.isInstance(this) || ABuildProjection.isInstance(this);
    
 context ASelect ERROR "Agent not specified for " + usageLabel(): 
    	agent != null || space.metaType == SContinuousSpace || space.metaType == SGrid;
