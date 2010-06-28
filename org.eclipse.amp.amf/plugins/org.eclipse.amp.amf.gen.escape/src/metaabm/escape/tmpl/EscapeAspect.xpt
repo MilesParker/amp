@@ -108,8 +108,12 @@ import org.ascape.view.vis.GraphView;
 	«EXPAND BuildChartSelection FOREACH ((SContext) reference).agents-»
     addView(chart);
     «ENDIF-»
+    «IF reference.metaType == SContext && !((SContext) reference).projections.typeSelect(SNDimensional).isEmpty-»
 	addView(new GEFView());
+	«ENDIF-»
+    «IF reference.metaType == SContext && !((SContext) reference).projections.typeSelect(SNetwork).isEmpty-»
 	addView(new GraphView());
+	«ENDIF-»
     «targetDef.proceed()-»
 «ENDAROUND»
 
