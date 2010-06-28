@@ -191,7 +191,6 @@ public class InfonModel extends Scape implements IGraphicsAdapted {
 		IColorProvider infonBasicStyleColorProvider = new InfonBasicStyleColorProvider();
 		addView(chart);
 		addView(new GEFView());
-		addView(new GraphView());
 	}
 
 	public void scapeSetup(ScapeEvent scapeEvent) {

@@ -254,7 +254,6 @@ public class Heatbugs extends Scape implements IGraphicsAdapted {
 		IColorProvider heatCellStyle2DColorProvider = new HeatCellStyle2DColorProvider();
 		addView(chart);
 		addView(new GEFView());
-		addView(new GraphView());
 	}
 
 	public void scapeSetup(ScapeEvent scapeEvent) {

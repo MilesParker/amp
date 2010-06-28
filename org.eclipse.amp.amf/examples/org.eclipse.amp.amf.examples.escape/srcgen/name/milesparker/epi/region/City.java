@@ -301,7 +301,6 @@ public class City extends Scape implements IGraphicsAdapted {
 	public void createGraphicViews() {
 		super.createGraphicViews();
 		addView(new GEFView());
-		addView(new GraphView());
 	}
 
 	public void scapeSetup(ScapeEvent scapeEvent) {

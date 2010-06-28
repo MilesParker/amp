@@ -228,15 +228,15 @@ public class Player extends CellOccupant {
 						.getInheiritedWealth());
 				double valueRandomUnit = getRandom().nextDouble();
 				int wealthChildWealth = getWealth()
-						- getDemographicPrisoner_sDilemma()
+						- createAgents.getDemographicPrisoner_sDilemma()
 								.getInheiritedWealth();
-				if (valueRandomUnit < getDemographicPrisoner_sDilemma()
-						.getMutationRate()) {
+				if (valueRandomUnit < createAgents
+						.getDemographicPrisoner_sDilemma().getMutationRate()) {
 					boolean valueRandomBoolean = getRandom().nextBoolean();
 					createAgents.setCooperate(valueRandomBoolean);
 				}
-				if (!(valueRandomUnit < getDemographicPrisoner_sDilemma()
-						.getMutationRate())) {
+				if (!(valueRandomUnit < createAgents
+						.getDemographicPrisoner_sDilemma().getMutationRate())) {
 					createAgents.setCooperate(isCooperate());
 				}
 				setWealth(wealthChildWealth);

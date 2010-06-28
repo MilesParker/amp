@@ -358,7 +358,6 @@ public class DemographicPrisonersDilemma extends Scape
 		IColorProvider playCellStyle2DColorProvider = new PlayCellStyleColorProvider();
 		addView(chart);
 		addView(new GEFView());
-		addView(new GraphView());
 	}
 
 	public void scapeSetup(ScapeEvent scapeEvent) {

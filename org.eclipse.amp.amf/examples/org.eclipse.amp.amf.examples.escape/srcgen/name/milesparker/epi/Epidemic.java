@@ -388,7 +388,6 @@ public class Epidemic extends Scape implements IGraphicsAdapted {
 						individualStyle2DColorProvider));
 		addView(chart);
 		addView(new GEFView());
-		addView(new GraphView());
 	}
 
 	public void scapeSetup(ScapeEvent scapeEvent) {

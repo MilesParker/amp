@@ -260,7 +260,6 @@ public class Region extends Scape implements IGraphicsAdapted {
 
 		addView(chart);
 		addView(new GEFView());
-		addView(new GraphView());
 	}
 
 	public void scapeSetup(ScapeEvent scapeEvent) {

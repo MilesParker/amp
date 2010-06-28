@@ -216,7 +216,6 @@ public class StupidModel1 extends Scape implements IGraphicsAdapted {
 		IColorProvider habitatStyle2DColorProvider = new HabitatStyle2DColorProvider();
 		addView(chart);
 		addView(new GEFView());
-		addView(new GraphView());
 	}
 
 	public void scapeSetup(ScapeEvent scapeEvent) {
