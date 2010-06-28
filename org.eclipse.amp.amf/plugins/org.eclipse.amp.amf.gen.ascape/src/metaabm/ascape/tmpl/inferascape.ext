@@ -67,7 +67,7 @@ cached String converted(AAct act, String wrapped) :
     act.selector().space.isHost() ? act.convertedAgent(act.convertedHost(wrapped)) : wrapped;
 
 cached String actMover(AAct act) :
-	act.selfrom().selid().pre();
+	act.selfrom().selid();
  
 cached String method(AAct act, List[AAct] path, Boolean inner) :
     act.id();
@@ -154,7 +154,9 @@ cached String findSpace(AAct act) :
     	? ((act.selector().space.metaType != SGrid && act.selector().space.metaType != SNetwork)
     		? act.selector().getterPath(act.selector().space, false) + ".getSpace()."
     		: "((org.ascape.model.space.Discrete)" + act.selector().getterPath(act.selector().space, false) + ".getSpace()).")
-    	: "getScape().";
+    	: (act.selector().agent == act.reference
+    		? "getScape()."
+    		: act.selector().agent.owner.getterName() + "().get" + act.selector().agent.scape().toFirstUpper() + "().");
  
 cached Boolean allTerms(AAct act) :
     act.hasControl("nearest") || act.hasControl("within") || act.hasMinMax();
@@ -184,10 +186,14 @@ cached String conditionTerm(AAct act) :
 	!act.hasMinMax()
 	? (act.conditionForAscape() 
 		? act.selector().selid() + "Condition"
-		: ((act.hasMinMax() || act.hasControl("available") && act.hasControl("within")) 
+		: (act.hasControl("available") && act.hasControl("within") 
 			? "null" 
 			: ""))
-	: "HostCell.IS_AVAILABLE";
+	: (act.conditionForAscape()
+		? act.selector().selid() + "Condition"
+		: (act.hasControl("available") 
+			? "HostCell.IS_AVAILABLE" 
+			: "null"));
 
 cached String includeSelfTerm(AAct act) :
     act.hasControl("includeSelf") 
