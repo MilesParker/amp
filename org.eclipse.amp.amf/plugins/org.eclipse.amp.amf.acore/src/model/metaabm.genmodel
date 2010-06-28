@@ -387,7 +387,7 @@
             ecoreFeature="ecore:EReference metaabm.ecore#//act/ABuildProjection/attributes"/>
       </genClasses>
       <genClasses ecoreClass="metaabm.ecore#//act/ABuildNetwork">
-        <genFeatures createChild="false" propertyCategory="Act" ecoreFeature="ecore:EAttribute metaabm.ecore#//act/ABuildNetwork/networkType"/>
+        <genFeatures property="None" createChild="false" propertyCategory="Act" ecoreFeature="ecore:EAttribute metaabm.ecore#//act/ABuildNetwork/networkType"/>
       </genClasses>
       <genClasses ecoreClass="metaabm.ecore#//act/ABuildSpace">
         <genFeatures createChild="false" propertyCategory="Act" ecoreFeature="ecore:EAttribute metaabm.ecore#//act/ABuildSpace/spaceType"/>
