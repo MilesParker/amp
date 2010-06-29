@@ -17,6 +17,7 @@ package org.eclipse.amp.amf.acore.edit.commands.test;
 
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.edit.command.AddCommand;
+import org.metaabm.MetaABMFactory;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SAgent;
 import org.metaabm.SStyle;
@@ -27,20 +28,20 @@ public class SetStyleAgent extends CommandTransformer {
     }
 
     public Command getCommand() {
-        return AddCommand.create(getDomain(), model.getAgents().get(0), MetaABMPackage.Literals.SAGENT__STYLES, model
-                        .getStyles().get(0));
+        return AddCommand.create(getDomain(), model.getAgents().get(0), MetaABMPackage.Literals.SAGENT__STYLES,
+                                 MetaABMFactory.eINSTANCE.createSStyle2D());
     }
 
     public void preCondition() {
     }
 
     public void postCondition() {
-        CommandTest.assertEquals(model.getStyles().size(), 0);
+        CommandTest.assertEquals(model.getStyles().size(), 1);
         SAgent agent = model.getAgents().get(0);
-        SStyle agentStyle = agent.getStyles().get(0);
+        SStyle agentStyle = agent.getStyles().get(1);
         CommandTest.assertSame(agentStyle.getAgent(), agent);
-        CommandTest.assertTrue(agent.getStyles().size() == 1);
-        CommandTest.assertEquals(agentStyle.getLabel(), "Root Context Agent Style 2D");
-        CommandTest.assertEquals(agentStyle.getID(), "rootContextAgentStyle2D");
+        CommandTest.assertTrue(agent.getStyles().size() == 2);
+        CommandTest.assertEquals(agentStyle.getLabel(), "Root Context Agent Style 2D Copy");
+        CommandTest.assertEquals(agentStyle.getID(), "rootContextAgentStyle2DCopy");
     }
 }

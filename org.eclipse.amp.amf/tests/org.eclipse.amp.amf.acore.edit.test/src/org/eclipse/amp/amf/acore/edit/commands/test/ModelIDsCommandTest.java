@@ -34,7 +34,7 @@ public class ModelIDsCommandTest extends CommandTest {
         cmds.add(new CommandTransformer() {
             public Command getCommand() {
                 return AddCommand.create(getDomain(), model, MetaABMPackage.Literals.SATTRIBUTED__ATTRIBUTES,
-                                MetaABMFactory.eINSTANCE.createSAttribute());
+                                         MetaABMFactory.eINSTANCE.createSAttribute());
             }
         });
         cmds.add(new SetLabel("Attribute", "Test Attribute") {
@@ -213,7 +213,7 @@ public class ModelIDsCommandTest extends CommandTest {
         cmds.add(new CommandTransformer() {
             public Command getCommand() {
                 return AddCommand.create(getDomain(), model, MetaABMPackage.Literals.SATTRIBUTED__ATTRIBUTES,
-                                MetaABMFactory.eINSTANCE.createSAttribute());
+                                         MetaABMFactory.eINSTANCE.createSAttribute());
             }
 
             public void preCondition() {
@@ -228,7 +228,7 @@ public class ModelIDsCommandTest extends CommandTest {
         cmds.add(new CommandTransformer() {
             public Command getCommand() {
                 return AddCommand.create(getDomain(), model, MetaABMPackage.Literals.SATTRIBUTED__ATTRIBUTES,
-                                MetaABMFactory.eINSTANCE.createSAttribute());
+                                         MetaABMFactory.eINSTANCE.createSAttribute());
             }
 
             public void preCondition() {
@@ -322,7 +322,7 @@ public class ModelIDsCommandTest extends CommandTest {
                 assertEquals(model.getAgents().get(0).getStyles().get(0).getLabel(), "My Style");
             }
         });
-        cmds.add(new SetLabel("My Style", "Test Agent 2 Style 2D") {
+        cmds.add(new SetLabel("My Style", "Test Agent 2 Style 2D Copy") {
             public IID getIID() {
                 return model.getAgents().get(0).getStyles().get(0);
             }
