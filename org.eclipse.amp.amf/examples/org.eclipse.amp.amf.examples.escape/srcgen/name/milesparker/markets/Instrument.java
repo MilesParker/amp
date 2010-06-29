@@ -1,4 +1,4 @@
-package swarmfest.fincrisis;
+package name.milesparker.markets;
 
 import java.util.List;
 
@@ -48,7 +48,7 @@ public class Instrument extends CellOccupant {
 	/**
 	 * 
 	 */
-	private StatusEnum status = StatusEnum.offerred;
+	private StatusEnum status = StatusEnum.ask;
 
 	/**
 	 * 

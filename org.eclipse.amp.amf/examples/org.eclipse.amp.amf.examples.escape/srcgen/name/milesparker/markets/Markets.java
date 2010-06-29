@@ -1,4 +1,4 @@
-package swarmfest.fincrisis;
+package name.milesparker.markets;
 
 import java.util.List;
 
@@ -301,10 +301,10 @@ public class Markets extends Scape implements IGraphicsAdapted {
 				});
 		instrumentScape
 				.addStatCollector(new org.ascape.util.data.StatCollectorCond(
-						"Instrument Offerred Status") {
+						"Instrument Ask Status") {
 					private static final long serialVersionUID = 6846144446402098985L;
 					public final boolean meetsCondition(Object instrument) {
-						return StatusEnum.offerred == ((Instrument) instrument)
+						return StatusEnum.ask == ((Instrument) instrument)
 								.getStatus();
 					}
 				});
@@ -340,39 +340,39 @@ public class Markets extends Scape implements IGraphicsAdapted {
 		traderScape.addInitialRule(new Rule("Initialize") {
 			private static final long serialVersionUID = 6846144446402098982L;
 			public void execute(Agent a) {
-				((swarmfest.fincrisis.Trader) a).intializeNonFramework();
+				((name.milesparker.markets.Trader) a).intializeNonFramework();
 			}
 		});
-		traderScape.addRule(new Rule("Offer") {
+		traderScape.addRule(new Rule("Ask") {
 			private static final long serialVersionUID = 6846144446402098981L;
 			public void execute(Agent a) {
-				((swarmfest.fincrisis.Trader) a).offer();
+				((name.milesparker.markets.Trader) a).ask();
 			}
 		});
 		traderScape.addRule(new Rule("Buy") {
 			private static final long serialVersionUID = 6846144446402098981L;
 			public void execute(Agent a) {
-				((swarmfest.fincrisis.Trader) a).buy();
+				((name.milesparker.markets.Trader) a).buy();
 			}
 		});
 
 		firmScape.addInitialRule(new Rule("Initialize") {
 			private static final long serialVersionUID = 6846144446402098982L;
 			public void execute(Agent a) {
-				((swarmfest.fincrisis.Firm) a).intializeNonFramework();
+				((name.milesparker.markets.Firm) a).intializeNonFramework();
 			}
 		});
 		firmScape.addRule(new Rule("Modify Earnings") {
 			private static final long serialVersionUID = 6846144446402098981L;
 			public void execute(Agent a) {
-				((swarmfest.fincrisis.Firm) a).modifyEarnings();
+				((name.milesparker.markets.Firm) a).modifyEarnings();
 			}
 		});
 
 		firmScape.addInitialRule(new Rule("Offer Shares") {
 			private static final long serialVersionUID = 6846144446402098982L;
 			public void execute(Agent a) {
-				((swarmfest.fincrisis.Firm) a).offerShares();
+				((name.milesparker.markets.Firm) a).offerShares();
 			}
 		});
 
@@ -439,9 +439,9 @@ public class Markets extends Scape implements IGraphicsAdapted {
 
 		IColorProvider instrumentStyle2DColorProvider = new InstrumentStyle2DColorProvider();
 
-		instrument.setStatus(StatusEnum.offerred);
+		instrument.setStatus(StatusEnum.ask);
 		chart.addSeries(
-				"Count Instrument Offerred Status",
+				"Count Instrument Ask Status",
 				getInferredChartColor(instrument,
 						instrumentStyle2DColorProvider));
 
@@ -495,7 +495,8 @@ public class Markets extends Scape implements IGraphicsAdapted {
 	}
 
 	public static void main(String[] args) {
-		(new NonGraphicRunner()).openInstance("swarmfest.fincrisis.Markets");
+		(new NonGraphicRunner())
+				.openInstance("name.milesparker.markets.Markets");
 	}
 	/**
 	 * Gets the Trader Count property for Markets.

@@ -1,4 +1,4 @@
-package swarmfest.fincrisis;
+package name.milesparker.markets;
 
 import org.eclipse.amp.escape.ascape.agf3d.GEF3DView;
 

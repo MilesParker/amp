@@ -1,4 +1,4 @@
-package swarmfest.fincrisis;
+package name.milesparker.markets;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
@@ -46,7 +46,7 @@ public class InstrumentStyle2DGraphics extends DrawFeature {
 					g.fillRectangle(0, 0, width, height);
 				}
 			}
-			if (instrumentRule.getStatus() == StatusEnum.offerred) {
+			if (instrumentRule.getStatus() == StatusEnum.ask) {
 				Color colorBlack = ColorConstants.black;
 
 				g.setForegroundColor(colorBlack);

@@ -1,4 +1,4 @@
-package swarmfest.fincrisis;
+package name.milesparker.markets;
 
 import org.ascape.util.vis.ColorFeature;
 import org.ascape.model.CellOccupant;

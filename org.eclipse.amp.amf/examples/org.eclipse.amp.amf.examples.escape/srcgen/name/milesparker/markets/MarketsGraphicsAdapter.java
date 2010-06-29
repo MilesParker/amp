@@ -1,4 +1,4 @@
-package swarmfest.fincrisis;
+package name.milesparker.markets;
 
 import org.eclipse.amp.agf.IGraphicsAdapter;
 import org.eclipse.amp.agf.GraphicsAdapter;

@@ -1,4 +1,4 @@
-package swarmfest.fincrisis;
+package name.milesparker.markets;
 
 import org.ascape.util.vis.ColorFeature;
 import org.ascape.model.CellOccupant;
@@ -36,7 +36,7 @@ public class InstrumentStyle2DColorProvider implements IColorProvider {
 		if (instrumentRule.getStatus() == StatusEnum.held) {
 			fillColor = ColorConstants.gray;
 		}
-		if (instrumentRule.getStatus() == StatusEnum.offerred) {
+		if (instrumentRule.getStatus() == StatusEnum.ask) {
 			fillColor = ColorConstants.black;
 		}
 		if (fill) {

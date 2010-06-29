@@ -1,4 +1,4 @@
-package swarmfest.fincrisis;
+package name.milesparker.markets;
 
 import java.util.List;
 
@@ -107,9 +107,9 @@ public class Trader extends CellOccupant {
 	}
 
 	/**
-	 * Offer Rule. Executed every period.
+	 * Ask Rule. Executed every period.
 	 */
-	public void offer() {
+	public void ask() {
 		Conditional sellingCondition = new Conditional() {
 			private static final long serialVersionUID = 6846144446402098985L;
 			public boolean meetsCondition(Object sellingCell) {
@@ -143,7 +143,7 @@ public class Trader extends CellOccupant {
 				double newSharePrice = sharePriceAdjustment
 						* instrumentFirm.getLastPrice();
 				selling.setOfferPrice(newSharePrice);
-				selling.setStatus(StatusEnum.offerred);
+				selling.setStatus(StatusEnum.ask);
 			}
 		}
 	}
@@ -157,7 +157,7 @@ public class Trader extends CellOccupant {
 			public boolean meetsCondition(Object boughtInstrumentCell) {
 				if (boughtInstrumentCell instanceof Instrument) {
 					Instrument boughtInstrument = (Instrument) boughtInstrumentCell;
-					return (boughtInstrument.getStatus() == StatusEnum.offerred && boughtInstrument
+					return (boughtInstrument.getStatus() == StatusEnum.ask && boughtInstrument
 							.getTotalPrice() <= getFunds());
 				} else {
 					return false;
@@ -165,12 +165,10 @@ public class Trader extends CellOccupant {
 			}
 		};
 		Instrument boughtInstrument = (Instrument) getMarkets()
-				.getInstrumentScape().findMinimumWithin(this.getCoordinate(),
-						MINIMIZE_OFFERPRICE, boughtInstrumentCondition, false,
-						Double.MAX_VALUE);
+				.getInstrumentScape().findRandom(boughtInstrumentCondition);
 		if (boughtInstrument != null) {
 			if (getFunds() >= boughtInstrument.getTotalPrice()
-					&& (boughtInstrument.getStatus() == StatusEnum.offerred && boughtInstrument
+					&& (boughtInstrument.getStatus() == StatusEnum.ask && boughtInstrument
 							.getTotalPrice() <= getFunds())) {
 				boughtInstrument.setStatus(StatusEnum.held);
 				double fundsSubtractTotalPrice = getFunds()
@@ -251,20 +249,6 @@ public class Trader extends CellOccupant {
 		return randomInRange(initialTraderFundsMinimum,
 				initialTraderFundsMaximum);
 	}
-	/**
-	 * A data point used within a search to find the org.metaabm.impl.SAgentImpl@66a140fe (label: Instrument, ID: instrument) (pluralLabel: Instruments, description: null) with the .minimized Offer Price value.
-	 */
-	public final static DataPoint MINIMIZE_OFFERPRICE = new DataPointConcrete(
-			"Minimize offerPrice") {
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 3755810443335739012L;
-
-		public double getValue(Object o) {
-			return ((Instrument) o).getOfferPrice();
-		}
-	};
 	/**
 	 * Gets the Strategy property for Trader.
 	 * @return 
