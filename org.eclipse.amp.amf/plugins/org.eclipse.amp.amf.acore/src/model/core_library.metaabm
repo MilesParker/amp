@@ -10,7 +10,7 @@
   <implementation package="score.core.functions" className="Functions" basePath=""/>
   <library xsi:type="function:FLibrary" label="Core Functions" ID="coreFunctions" pluralLabel="Core Functionss">
     <subs label="Operators" ID="operators" pluralLabel="Operators">
-      <subs label="Logical Operators" ID="logicalOperators" pluralLabel="">
+      <subs label="Logical Operators" ID="logicalOperators" pluralLabel="" description="Logical operators allow comparison between values. They are typically used in Query terms but may be used in Evaluate actions as well.">
         <functions xsi:type="function:FLogicalOperator" label="Not" ID="not" pluralLabel="" symbol="!">
           <inputPrototypes label="Argument 0" ID="arg0" pluralLabel="Argument 0s" description=""/>
         </functions>
@@ -48,7 +48,7 @@
           <inputPrototypes label="Argument 1" ID="argument1" sType="UNDEFINED" pluralLabel="Argument 1s"/>
         </functions>
       </subs>
-      <subs label="Numeric Operators" ID="numericOperators" pluralLabel="">
+      <subs label="Numeric Operators" ID="numericOperators" pluralLabel="" description="Numeric operators support all of the basic operators used in evaluations.">
         <functions xsi:type="function:FOperator" label="Negative Value" ID="neg" pluralLabel="Negative Values" symbol="-">
           <inputPrototypes label="Argument 0" ID="arg0" sType="NUMERIC" pluralLabel="Argument 0s" description=""/>
         </functions>
@@ -84,10 +84,12 @@
         </functions>
         <functions xsi:type="function:FOperator" label="Unit Value" ID="unit" pluralLabel="Unit Values" description="The value of one common unit, e.g. 1." symbol="1"/>
         <functions xsi:type="function:FOperator" label="Zero Value" ID="zero" pluralLabel="Zero Values" description="The value of no units, e.g. zero." symbol="0"/>
-        <functions xsi:type="function:FOperator" label="Original Value" ID="original" pluralLabel="Original Values" description="The original value, e.g. the value for the value client at time 0." symbol="o"/>
+        <functions xsi:type="function:FOperator" label="Original Value" ID="original" pluralLabel="Original Values" description="The original value, e.g. the value for the value client at time 0." symbol="0">
+          <inputPrototypes sType="NUMERIC" description="Simply return the value itself. This is useful for some limited cases where atrrbitues cannot be used directly."/>
+        </functions>
       </subs>
     </subs>
-    <subs label="Spatial" ID="spatial" pluralLabel="Spatials">
+    <subs label="Spatial" ID="spatial" pluralLabel="Spatials" description="Spatial functions provide the core functionality for Agent Models. Spatial functions are polymorphic, which basically means that they don't care what space they are operating on as long as that space is suitable for them. Spatial functions are designed to collaborate with one another. For example, by intersecting the &quot;Neighbor&quot;, &quot;Available&quot; and &quot;Toward&quot; functions, we can design a rule that causes the agent to move to the next neighboring cell that get's it closer to some target agent. See the function details for more information.">
       <functions xsi:type="function:FGenericLogical" label="Nearest " ID="nearest" pluralLabel="Nearests" description="Represents the nearest agents (including gird cells) or locations to this agent. If more than one agent or location is the same distance away they will all be considered. Note that while this function is defined for the selection of an agent, the result of this function is defined by the context within which it is used. If the selection specifies another agent within a space, this function will represent the nearest agent in that space. If the selection specifies a Cell within a grid space, this function will represent that cell."/>
       <functions xsi:type="function:FGenericLogical" label="Toward" ID="toward" pluralLabel="Towards" description="Represents a location that is on the shortest path to a particular agent or location from the source agent (that is, the selection's selection's agent). This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction towards some objective."/>
       <functions xsi:type="function:FGenericLogical" label="Within" ID="within" pluralLabel="Withins" description="Represents a limit to the distance of a spatial search. When used in combination with other spatial functions such as &quot;nearest&quot; requires that all agents or locations must be within the distance specified by the input value.">
@@ -104,10 +106,10 @@
         <outputPrototypes label="Distance Between Agents" ID="distance" sType="REAL"/>
       </functions>
       <functions xsi:type="function:FGenericLogical" label="Away" ID="away" pluralLabel="Aways" description="Represents a location that is on the path that will take the source agent (that is, the selection's selection's agent) the farthest distance from the agent(s) represented by the search. This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction away from some location or agent."/>
-      <functions xsi:type="function:FGenericLogical" label="Minimize" ID="minimize" pluralLabel="Minimizes" description="This function is not currently supported.">
+      <functions xsi:type="function:FGenericLogical" label="Minimize" ID="minimize" pluralLabel="Minimizes" description="Finds the agent with the lowest value for the specified input. For example, if we created a Select for HeatCell, created a Minimize Query Term with Heat as the input Query Term, created Neighbor and Available Query Terms and set an Intersect as the target for all of those Queries, the result would be the the neighboring available cell with the lowest heat level.">
         <inputPrototypes label="Minimum Value" ID="minimumValue" sType="REAL" pluralLabel="Minimum Values" description="The value we will minimize for."/>
       </functions>
-      <functions xsi:type="function:FGenericLogical" label="Maximize" ID="maximize" pluralLabel="Maximizes" description="This function is not currently supported.">
+      <functions xsi:type="function:FGenericLogical" label="Maximize" ID="maximize" pluralLabel="Maximizes" description="Finds the agent with the highest value for the specified input. For example, if we created a Select for HeatCell, created a Maximize Query Term with Heat as the input Query Term, created Neighbor and Available Query Terms and set an Intersect as the target for all of those Queries, the result would be the the neighboring available cell with the highest heat level.">
         <inputPrototypes label="Minimum Value" ID="minimumValue" sType="REAL" pluralLabel="Minimum Values" description="The value we will maximize for."/>
       </functions>
       <functions xsi:type="function:FGenericLogical" label="Location 2D" ID="location2D" pluralLabel="Location 2Ds" description="Represents the location of the current agent for use in subsequent selections.">
@@ -120,7 +122,7 @@
       </functions>
       <functions xsi:type="function:FGenericLogical" label="All" ID="all" pluralLabel="Alls" description="Causes all agents that meet the other query terms to be included in a selection. Without this query term, a single random agent is picked out of all agents matching the query terms."/>
     </subs>
-    <subs label="Random" ID="random" pluralLabel="Randoms">
+    <subs label="Random" ID="random" pluralLabel="Randoms" description="Random functions are especially significant for agent models. Of particular interest are the weighted membership and random state and boolean value functions. You should be familiar with these functions so that you don't have to create more complex Action flows to accomplish the same thing.&#xA;&#xA;Note that we only have support for uniform distributions as of this release. We're working on a collaborative design for evaluations that allow easy mixing and matching of random functions and distributions.">
       <functions xsi:type="function:FGenericFunction" label="Random In Range" ID="randomInRange" pluralLabel="Random In Ranges" description="A pseudo-random value within that numeric range specified as drawn from a uniform distribution. The minimum values are inclusive. The maximum values are inclusive for integer inputs and exclusive for Real inputs.">
         <inputPrototypes label="Minimum Value" ID="min" sType="NUMERIC" pluralLabel="Minimum Values" description="The minimum value (inclusive)."/>
         <inputPrototypes label="Maximum Value" ID="max" sType="NUMERIC" pluralLabel="Maximum Values" description="The maximum value (inclusive)."/>
@@ -147,7 +149,7 @@
         <outputPrototypes label="Selected Strategy" ID="selectedStrategy" pluralLabel="Selected Strategys" description="The resulting option. "/>
       </functions>
     </subs>
-    <subs label="Graphic" ID="graphic" pluralLabel="Graphics">
+    <subs label="Graphic" ID="graphic" pluralLabel="Graphics" description="Graphic functions are combined within Style Evaluate Actions to determine how to draw an agent within a visualization. One nice aspect of this approach is that the same style definition can be used in multiple places without changing any code. For example, the same style could be used to draw an agent on a two-dimensional grid within Escape, a three-dimensional shape within Escape, a Java Swing based visualization in Ascape, and an XML configured visualizaiton in Repast Simphony.&#xA;&#xA;To define a graphic style for an agent, design a flow in which you create Evaluate Actions for color and shape, and then create an Evaluate Action with the graphic fill or outline function as a target of these.">
       <functions xsi:type="function:FGenericFunction" label="Shape Oval" ID="shapeOval" pluralLabel="Shape Ovals" description="Draw a generic oval."/>
       <functions xsi:type="function:FGenericFunction" label="Shape Rectangle" ID="shapeRectangle" pluralLabel="Shape Rectangles" description="Draws a rectangular shape."/>
       <functions xsi:type="function:FGenericFunction" label="Shape Inset" ID="shapeInset" pluralLabel="Shape Insets" description="Shrinks the current shape by the input amount. (The overall scale is currently unspecified, but in most implementations should be 20.)">
@@ -173,12 +175,12 @@
       <functions xsi:type="function:FGenericFunction" label="Graphic Outline" ID="graphicOutline" pluralLabel="Graphic Outlines" description="Draws an outline of the last evaluated shape, using the last specified color or the default color (usually black) if none has been specified."/>
       <functions xsi:type="function:FGenericFunction" label="Graphic Fill" ID="graphicFill" pluralLabel="Graphic Fills" description="Fills the last evaluated shape with the last specified color or the default color (usually black) if none has been specified."/>
     </subs>
-    <subs label="Time" ID="time" pluralLabel="Times">
+    <subs label="Time" ID="time" pluralLabel="Times" description="Time functions return values related to model execution time. ">
       <functions xsi:type="function:FGenericFunction" label="Now" ID="timeNow" pluralLabel="Nows" description="The current simulation period, that is the number of iterations that the model has gone through, or in the case of models with callibrarted time, the number of iterations added to the model's nominal start time.">
         <outputPrototypes label="Period" ID="period" pluralLabel="Periods" description="The current period."/>
       </functions>
     </subs>
-    <subs label="Math" ID="math" pluralLabel="Maths">
+    <subs label="Math" ID="math" pluralLabel="Maths" description="The math functions use the extremely well specified and tested routines form the Java Math library. (Because of copyright restrictions, we aren't able to include the exact definitions here. Click on the links to get more details on each function.)">
       <functions xsi:type="function:FGenericFunction" label="Sine" ID="sin" pluralLabel="Sines" description="">
         <inputPrototypes label="A" ID="a" sType="REAL" pluralLabel="As" description=""/>
         <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
@@ -306,7 +308,7 @@
         <outputPrototypes label="Result" ID="result" sType="REAL" pluralLabel="Results" description=""/>
       </functions>
     </subs>
-    <subs label="List" ID="list" pluralLabel="Lists">
+    <subs label="List" ID="list" pluralLabel="Lists" description="List functions are used for working with arrays and other functions that have lists as output.">
       <functions xsi:type="function:FGenericFunction" label="Item" ID="item" pluralLabel="Items" description="Returns the item at the specified index from the list of items provided. Those items will typically be input primitives such as Integer or Real values.">
         <inputPrototypes xsi:type="function:FArgumentArrayPrototype" label="List" ID="list" sType="UNDEFINED" pluralLabel="Lists" size="-1"/>
         <inputPrototypes label="Index" ID="index" pluralLabel="Indexs"/>
@@ -317,7 +319,7 @@
         <outputPrototypes label="Value" ID="value" pluralLabel="Values"/>
       </functions>
     </subs>
-    <subs label="Distribution" ID="distribution" pluralLabel="Distributions">
+    <subs label="Distribution" ID="distribution" pluralLabel="Distributions" description="One of the most common tasks in the Agent Modeling process is the creation of agents with particular states drawn from a distribution. For example, you might want to create a number of agents with wealth randomly distributed between some minimum and maximum values. The distribution functions greatly ease the process of setting up those initializations and their associated parameters.">
       <functions xsi:type="function:FGenericFunction" label="Uniform Cross Distribution" ID="uniformCrossDistribution" pluralLabel="Uniform Cross Distributions" description="A random number taken from a distribution of values as defined by a cross of all values. (See Cross Distribution.) This funciton then returns a value drawn from the minimum and maximum values as determined by the current agent state. In the cross distribution, each of the values is treated independently so that an input attribute is created for every potential combination of states.">
         <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="States" ID="states" sType="UNDEFINED" pluralLabel="Statess" description="The list of states to factor into the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments."/>
         <inputPrototypes xsi:type="function:FMultiArgumentPrototype" label="Minimum" ID="minimum" sType="REAL" pluralLabel="Minimums" description="The set of attributes that will determine the minimum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited."/>
