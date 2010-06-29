@@ -1,0 +1,300 @@
+====Logical Operators====
+Logical operators allow comparison between values. They are typically used in Query terms but may be used in Evaluate actions as well.
+=====Not=====
+The result of the expression !X.
+=====Equal=====
+The result of the expression X==Y.
+=====Identical=====
+The result of the expression X==Y.
+=====Greater=====
+The result of the expression X>Y.
+=====Lesser=====
+The result of the expression X<Y.
+=====Greater or Equal=====
+The result of the expression X>=Y.
+=====Lesser or Equal=====
+The result of the expression X<=Y.
+=====True=====
+The result of the expression true.
+=====False=====
+The result of the expression false.
+=====Identity=====
+The result of the expression X.
+=====Different=====
+The result of the expression X!=Y.
+====Numeric Operators====
+Numeric operators support all of the basic operators used in evaluations.
+=====Negative Value=====
+The result of the expression -X.
+=====Add=====
+The result of the expression X+Y.
+=====Subtract=====
+The result of the expression X-Y.
+=====Multiply=====
+The result of the expression X*Y.
+=====Divide=====
+The result of the expression X/Y.
+=====Power=====
+The result of the expression X^Y.
+=====Modulo=====
+The result of the expression X%Y.
+=====Increment=====
+The result of the expression ++X.
+=====Decrement=====
+The result of the expression --X.
+=====Unit Value=====
+The result of the expression 1.
+=====Zero Value=====
+The result of the expression 0.
+=====Original Value=====
+The result of the expression o.
+====Spatial====
+Spatial functions provide the core functionality for Agent Models. Spatial functions are polymorphic, which basically means that they don't care what space they are operating on as long as that space is suitable for them. Spatial functions are designed to collaborate with one another. For example, by intersecting the "Neighbor", "Available" and "Toward" functions, we can design a rule that causes the agent to move to the next neighboring cell that get's it closer to some target agent. See the function details for more information.
+=====Nearest =====
+Represents the nearest agents (including gird cells) or locations to this agent. If more than one agent or location is the same distance away they will all be considered. Note that while this function is defined for the selection of an agent, the result of this function is defined by the context within which it is used. If the selection specifies another agent within a space, this function will represent the nearest agent in that space. If the selection specifies a Cell within a grid space, this function will represent that cell.
+=====Toward=====
+Represents a location that is on the shortest path to a particular agent or location from the source agent (that is, the selection's selection's agent). This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction towards some objective.
+=====Within=====
+Represents a limit to the distance of a spatial search. When used in combination with other spatial functions such as "nearest" requires that all agents or locations must be within the distance specified by the input value.
+ Inputs:
+ [Numeral] 
+=====Neighbor=====
+Represents any agents that are nearest neighbors to the agent, that is nominally of distance 1. This function is only relevant in discrete spaces -- grids and networks -- where there are immediate neighboring cells as defined by the geometry of the selection's space.
+=====Include Self=====
+Specifies whether the agent that we are searching from -- that is, the agent of the selection for this Query Action's selection -- is included in the results of the search.
+=====Within 2D Boundary=====
+Represents agents or locations that exist within the boundary specified by the inputs.
+ Inputs:
+ [Numeral] 
+=====Here=====
+Represents the location of the searching agent. For example, if a selection is defined for an agent cell, and that selection's selection's agent is an occupant of a cell, the cell that the agent is occupying will be used. 
+=====Available=====
+Represents cells which are not currently occupied. This function is only relevant for grids which are not multi-occupant.
+=====Distance=====
+The distance between the source agent and an agent represented by this selection. If more than one agent is represented by the other functions in the selection, this function will the distance to an arbitrary (randomly selected) agent as defined by those other functions.
+ Outputs:
+ [Real] 
+=====Away=====
+Represents a location that is on the path that will take the source agent (that is, the selection's selection's agent) the farthest distance from the agent(s) represented by the search. This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction away from some location or agent.
+=====Minimize=====
+Finds the agent with the lowest value for the specified input. For example, if we created a Select for HeatCell, created a Minimize Query Term with Heat as the input Query Term, created Neighbor and Available Query Terms and set an Intersect as the target for all of those Queries, the result would be the the neighboring available cell with the lowest heat level.
+ Inputs:
+ [Real] The value we will minimize for.
+=====Maximize=====
+Finds the agent with the highest value for the specified input. For example, if we created a Select for HeatCell, created a Maximize Query Term with Heat as the input Query Term, created Neighbor and Available Query Terms and set an Intersect as the target for all of those Queries, the result would be the the neighboring available cell with the highest heat level.
+ Inputs:
+ [Real] The value we will maximize for.
+=====Location 2D=====
+Represents the location of the current agent for use in subsequent selections.
+ Inputs:
+ [Real] 
+ [Real] 
+=====Boundary 2D=====
+Represents a two-dimensional boundary within a space. (Not currently relevant for any general usages.)
+ Outputs:
+ [Real] 
+ [Real] 
+=====All=====
+Causes all agents that meet the other query terms to be included in a selection. Without this query term, a single random agent is picked out of all agents matching the query terms.
+====Random====
+Random functions are especially significant for agent models. Of particular interest are the weighted membership and random state and boolean value functions. You should be familiar with these functions so that you don't have to create more complex Action flows to accomplish the same thing.
+
+Note that we only have support for uniform distributions as of this release. We're working on a collaborative design for evaluations that allow easy mixing and matching of random functions and distributions.
+=====Random In Range=====
+A pseudo-random value within that numeric range specified as drawn from a uniform distribution. The minimum values are inclusive. The maximum values are inclusive for integer inputs and exclusive for Real inputs.
+ Inputs:
+ [Numeral] The minimum value (inclusive).
+ [Numeral] The maximum value (inclusive).
+ Outputs:
+ [Numeral] The random number.
+=====Random To Limit=====
+A pseudo-random value between zero and the value specified by the (non-zero) input and drawn from a uniform range. That value is inclusive for Integers and exclusive for Reals. (Note that as with the random in range function in the context of real numbers the distinction between an exclusive and inclusive limit is essentially meaningless.)
+ Inputs:
+ [Numeral] The maximum value (inclusive).
+ Outputs:
+ [Numeral] The result.
+=====Random Unit=====
+A pseudo-random Real value between 0 and 1 drawn from a uniform distribution. (The distinction between inclusive and exclusive range is essentially meaningless in this context and we can assume that the result will never be greater or equal to 1.)
+ Outputs:
+ [Real] 
+=====Random Boolean=====
+A value that is randomly true or false, i.e. a fair coin toss.
+=====Random Weighted=====
+An indexed value weighted against a probability distribution. The total probability must sum to 1.0. For example, an input of {.1,.2,.7} under a uniform distribution would would have 10% probability of producing "0" , 20%  for "1" and 70% for "2". This function can then be used with Item to return a biased result from another list.
+ Inputs:
+ [Real] A list of values that will determine the resulting weighted index.
+ Outputs:
+ [Integer] A resulting indexed value bounded by 0 and the length of the input list - 1.
+=====Random Member=====
+Represents a random value drawn from the set of Real values specified.
+ Inputs:
+ [Real] Returns a random member of the supplied list of numbers.
+ Outputs:
+ [Generic] The value of the item at a random index.
+=====Random State=====
+A random specified value (option) from the specified state.
+ Inputs:
+ [Generic] The state to select items from. All items are included.
+ Outputs:
+ [Integer] The resulting option. 
+====Graphic====
+Graphic functions are combined within Style Evaluate Actions to determine how to draw an agent within a visualization. One nice aspect of this approach is that the same style definition can be used in multiple places without changing any code. For example, the same style could be used to draw an agent on a two-dimensional grid within Escape, a three-dimensional shape within Escape, a Java Swing based visualization in Ascape, and an XML configured visualizaiton in Repast Simphony.
+
+To define a graphic style for an agent, design a flow in which you create Evaluate Actions for color and shape, and then create an Evaluate Action with the graphic fill or outline function as a target of these.
+=====Shape Oval=====
+Draw a generic oval.
+=====Shape Rectangle=====
+Draws a rectangular shape.
+=====Shape Inset=====
+Shrinks the current shape by the input amount. (The overall scale is currently unspecified, but in most implementations should be 20.)
+ Inputs:
+ [Integer] Number of nominal pixels to inset.
+=====Shape Marker=====
+Draw a marker, that is a graphical indicator that can be used to add an additional que about the object state. For example, in a two-dimensional graphics representation this might be a small shape drawn inset at the corner of the larger shape. 
+=====Shape Marker 2=====
+Represents a marker placed in a different location from the other shape markers.
+=====Shape Marker 3=====
+Represents a marker placed in a different location from the other shape markers.
+=====Color RGB=====
+A color specified by the three inputs for Red, Green and Blue color components. Those inputs are expected to be in the range 0..1.
+ Inputs:
+ [Real] A value from 0.0 to 1.0.
+ [Real] A value from 0.0 to 1.0.
+ [Real] A value from 0.0 to 1.0.
+=====Color Red=====
+The color red.
+=====Color Yellow=====
+The color yellow.
+=====Color Blue=====
+The color blue.
+=====Color Orange=====
+The color orange.
+=====Color Green=====
+The color green.
+=====Color Purple=====
+The color purple.
+=====Color Black=====
+The color black.
+=====Color White=====
+The color white.
+=====Color Gray=====
+The color gray.
+=====Graphic Outline=====
+Draws an outline of the last evaluated shape, using the last specified color or the default color (usually black) if none has been specified.
+=====Graphic Fill=====
+Fills the last evaluated shape with the last specified color or the default color (usually black) if none has been specified.
+====Time====
+Time functions return values related to model execution time. 
+=====Now=====
+The current simulation period, that is the number of iterations that the model has gone through, or in the case of models with callibrarted time, the number of iterations added to the model's nominal start time.
+ Outputs:
+ [Integer] The current period.
+====Math====
+The math functions use the extremely well specified and tested routines form the Java Math library. (Because of copyright restrictions, we aren't able to include the exact definitions here. Click on the links to get more details on each function.)
+=====Sine=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sin(double)]
+=====Cosine=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cos(double)]
+=====Tangent=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tan(double)]
+=====Arc Sine=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#asin(double)]
+=====Arc Cosine=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#acos(double)]
+=====Arc Tangent=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan(double)]
+=====Convert Degree to Radians=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toRadians(double)]
+=====Convert Radians to Degrees=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toDegrees(double)]
+=====Exp=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#exp(double)]
+=====Log=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log(double)]
+=====Log b10=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log10(double)]
+=====Square Root=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#squareRoot(double)]
+=====Cube Root=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cbrt(double)]
+=====Remainder=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#iEEEremainder(double,%20double)]
+=====Ceiling=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ceil(double)]
+=====Floor=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#floor(double)]
+=====Rount=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#rint(double)]
+=====Arc Tangent Rectangular=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan2(double,%20double)]
+=====Power=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#pow(double,%20double)]
+=====Absolute Value=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#abs(double)]
+=====Maximum=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#max(double,%20double)]
+=====Minimum=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#min(double,%20double)]
+=====ULP=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ulp(double)]
+=====Sign=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#signum(double)]
+=====Hyperbolic Sine=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sinh(double)]
+=====Hyperbolic Cosine=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cosh(double)]
+=====Hyperbolic Tan=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tanh(double)]
+=====Hypotuneuse=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#hypotuneuse(double,%20double)]
+=====Expm1=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#expm1(double)]
+=====Log1p=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log1p(double)]
+====List====
+List functions are used for working with arrays and other functions that have lists as output.
+=====Item=====
+Returns the item at the specified index from the list of items provided. Those items will typically be input primitives such as Integer or Real values.
+ Inputs:
+ [Generic] 
+ [Integer] 
+ Outputs:
+ [Generic] 
+=====Length=====
+The number of items in the provided list of items.
+ Inputs:
+ [Generic] 
+ Outputs:
+ [Integer] 
+====Distribution====
+One of the most common tasks in the Agent Modeling process is the creation of agents with particular states drawn from a distribution. For example, you might want to create a number of agents with wealth randomly distributed between some minimum and maximum values. The distribution functions greatly ease the process of setting up those initializations and their associated parameters.
+=====Uniform Cross Distribution=====
+A random number taken from a distribution of values as defined by a cross of all values. (See Cross Distribution.) This funciton then returns a value drawn from the minimum and maximum values as determined by the current agent state. In the cross distribution, each of the values is treated independently so that an input attribute is created for every potential combination of states.
+ Inputs:
+ [Generic] The list of states to factor into the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
+ [Real] The set of attributes that will determine the minimum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
+ [Real] The set of attributes that will determine the maximum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
+ Outputs:
+ [Real] The resulting random number based on the current agent state and the input parameters.
+=====Uniform Additive Distribution=====
+A random number taken from a distribution of values in which each of the minimum and maximum values are added to determine a total minimum and maximum value. (See Additive Distribution.) In the additive distribution, each of the values is treated as dependent on the others so that an input attribute is only created for each seperate state.
+ Inputs:
+ [Generic] The list of states to factor into the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
+ [Real] The set of attributes that will determine the minimum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
+ [Real] The set of attributes that will determine the maximum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
+ Outputs:
+ [Real] The resulting random number based on the current agent state and the input parameters.
+=====Cross Distribution=====
+A value taken from a set of (auto-generated) attributes based on the value of each state included. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create separate input attributes for AI, AII, BI and BII. Then for an agent with States A and II this function would return the value specified by the AII input attribute.
+ Inputs:
+ [Generic] The list of states to factor into the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
+ [Real] The set of attributes that when multiplied against each other will determine the value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
+ Outputs:
+ [Real] The resulting value based on the current agent state and the input parameters.
+=====Additive Distribution=====
+A value taken from a set of (auto-generated) attributes based on the combined values of the states provided. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create input attributes for A, B, I and II. Those values would then be added together, so that for an Agent with state A and II this function would return A + II.
+ Inputs:
+ [Generic] The states to include in the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
+ [Real] The set of attributes that when combined with each other determine the value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
+ Outputs:
+ [Real] The resulting value based on the current agent state and the input parameters.

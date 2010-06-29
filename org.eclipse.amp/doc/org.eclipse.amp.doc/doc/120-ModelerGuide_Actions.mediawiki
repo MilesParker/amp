@@ -571,6 +571,27 @@ Query and Evaluation Actions are both "Sinks" which means that they are capable 
 
 Inputs can take literal values; that is values that you specify simply by entering them directly into the query. In general it is useful to think of literals as similar to local variables in a conventional programming language, whereas attributes are analogous to member variables. (And this is how they are represented in the generated Java code.) As with local variables in model code, literals are not recommended for any values that can change model behavior. The value cannot be easily accessed or changed by other model users. For greater transparency, you should instead create an Attribute with an appropriate default value, setting the "immutable" value to true. Still, literals can be useful for values that are special cases related to the evaluation or query, such as an input code, and for quickly prototyping functionality.
 
+===Reference===
+
+====Diagrams====
+
+The following diagram may be helpful to readers familiar with UML and Meta-modeling:
+
+=====Meta-Classes=====
+
+[[Image:images/actions/ActionsDiagram.png|800px]]
+
+=====Details=====
+
+In the diagram above, all meta-objects except for Input, Literal, and the enumerators (lists of options) are Actions. Blue meta-classes are concrete (you can create and use them directly). Red meta-classes are key collaborations.
+#An Act is anything that might happen during the execution of an Agent-Based Model.
+#All Actions have as their root-most source action a Root. These are added first to any agent behavior and act as triggers for all target behavior. For example, a Watch will execute any time the watched attribute is modified. (As the diagrams do not refer to elements outside of the current package, we cannot see here that Accessor includes a reference to some Attribute, but it does. To see these kinds of relationships you will want to refer to the metaabm.ecore file itself.)#Actions are targets and sources of one another, but an Act can never have itself as a source. (That is, Actions are acyclic, but branches can re-converge. When we refer to an Act source or target, we typically mean to include all ancestors or descendants, not just the immediately connected Act.)
+#All Actions (except for root Actions) reference a Select, referred to as the "selected" relation. An ASelect represents the model aspects that the Act is working within; that is, the spatial, temporal and type (agent) "world" that is currently being selected.
+#Commands trigger some model state change (Set) or spatial transformation (Transform).
+#Controls determine whether target Actions are executed and against what agents. They are in some sense query terms and include Query actions and Logic Actions.
+#Transforms also specify a "destination" Select. This represents aspects that the selected agent(s) will transform to. For example, a Move may use a Rule to select all SugarAgents (type) in the SugarGrid (space) every period (time) and move them to a destination of a neighboring SugarCell (type) in the SugarGrid (space, with time implicit).
+#Sinks are Actions which use some Function (see next section) to interpret state in the form of Inputs. Inputs can come from selected agent attributes, other Actions, or literal values.
+
 ===Example===
 
 In this section, we'll look at an example that should make clear how the basic Actions approach works in a model. Say we want to define a behavior like:
@@ -610,24 +631,3 @@ And here is how this works in detail:
 #Finally, we move to the location we've found. All that's required at this point is to specify:
 ##The movement selection, or those agents that are moving, which in this case is the original agent we're executing the rule for, and
 ##The destination, which is the cell that we've found. Note that the framework infers from the space definition that the Block agent is capable of hosting the Individual.
-
-===Reference===
-
-====Diagrams====
-
-The following diagram may be helpful to readers familiar with UML and Meta-modeling:
-
-=====Meta-Classes=====
-
-[[Image:images/actions/ActionsDiagram.png|800px]]
-
-=====Details=====
-
-In the diagram above, all meta-objects except for Input, Literal, and the enumerators (lists of options) are Actions. Blue meta-classes are concrete (you can create and use them directly). Red meta-classes are key collaborations.
-#An Act is anything that might happen during the execution of an Agent-Based Model.
-#All Actions have as their root-most source action a Root. These are added first to any agent behavior and act as triggers for all target behavior. For example, a Watch will execute any time the watched attribute is modified. (As the diagrams do not refer to elements outside of the current package, we cannot see here that Accessor includes a reference to some Attribute, but it does. To see these kinds of relationships you will want to refer to the metaabm.ecore file itself.)#Actions are targets and sources of one another, but an Act can never have itself as a source. (That is, Actions are acyclic, but branches can re-converge. When we refer to an Act source or target, we typically mean to include all ancestors or descendants, not just the immediately connected Act.)
-#All Actions (except for root Actions) reference a Select, referred to as the "selected" relation. An ASelect represents the model aspects that the Act is working within; that is, the spatial, temporal and type (agent) "world" that is currently being selected.
-#Commands trigger some model state change (Set) or spatial transformation (Transform).
-#Controls determine whether target Actions are executed and against what agents. They are in some sense query terms and include Query actions and Logic Actions.
-#Transforms also specify a "destination" Select. This represents aspects that the selected agent(s) will transform to. For example, a Move may use a Rule to select all SugarAgents (type) in the SugarGrid (space) every period (time) and move them to a destination of a neighboring SugarCell (type) in the SugarGrid (space, with time implicit).
-#Sinks are Actions which use some Function (see next section) to interpret state in the form of Inputs. Inputs can come from selected agent attributes, other Actions, or literal values.

@@ -1,0 +1,44 @@
+===Examples===
+
+====Spatial====
+
+For examples of how spatial functions can be used within action flows to provide agents with complex movement behaviors, see the Modelers Guide actions examples. In the following example from that section, we define an action that causes a partner agent to move to an available neighboring space.
+
+[[Image:images/actions/ActionsExampleNew.png|800px]]
+
+====Graphic====
+
+In the following action flow for the epidemic style, we've create Query Actions to determine each agent's current state, picked a color based on that, and then used a shared target to select a shape for the agent style and fill it:
+
+[[Image:images/functions/GraphicsFunctionExampleDesign.png]]
+
+After saving the model we can execute the two and three dimensional visualizations. Note something really nice -- even the charts have used the colors we've defined!
+
+[[Image:images/functions/GraphicsFunctionExampleRun.png]]
+
+====Distribution====
+
+In the following example, we walk through the process of using a distribution functions, demonstrating how we can easily modify the Epidemic model so that instead of simply setting an initial exposed population, we can define factors that take together will determine an individuals initial exposure state. We simply:
+
+# Create an Evaluate Action called "Initial Status". 
+# Set the function to "Cross Distribution"
+# Opened the "Multiple Value" node in the editor, and clicked the "Multiple Values" item within it.
+# Selected the "Status" attribute.
+
+[[Image:images/functions/DistributionDesignChoice.png]] 
+
+The appropriate attributes are automatically added to the model, as you can see below.
+
+[[Image:images/functions/DistributionDesign.png]] 
+
+In order to assign these values to the agent, we'd simply need to assign the results of this Evaluate Action to the agent.
+
+===Reference===
+
+====Diagrams====
+
+The following diagram may be helpful to readers familiar with UML and Meta-modeling:
+
+=====Meta-Classes=====
+
+[[Image:images/functions/FunctionsDiagram.png]]

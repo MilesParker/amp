@@ -1,0 +1,25 @@
+==Functions==
+
+===Overview===
+
+Functions are relatively simple in terms of model design, but we need to understand how particular functions work in order to develop models. Functions are divided in two ways. By type:
+
+#Operators are simple calculations sharing the same type.
+#Functions that can represent any general function that takes some well-defined input(s) and returns some well-defined output(s).
+
+And by usage:
+
+#Generics can return any value and are used in Evaluate actions.
+#Logicals return some boolean result and are used by Query actions to decide whether target Actions apply to a particular selection, and by Evaluate actions just as with any other functions. Input types should be defined as generally as possible.
+
+These overlap, so we have operators, logical operators, functions and logical functions. Functions are also divided into categories. We'll go through each of these in depth below.
+
+The most important thing to point out about functions is that - as we've seen with other Acore concepts -- they provide richer sets of functionality than traditional approaches. Many functions are designed to collaborate with one another as we'll see when looking at Spatial and Graphical functions. Functions can also trigger the creation of related model artifacts as we'll see with the Distribution functions.
+
+A technical note: conceptually, functions can return multi-values, but that is not currently implemented in the reference targets because of limitations of the target language Java.
+
+===Details===
+
+====General Functions====
+
+Naturally, the Modeling tools provide general functions for performing calculations, comparisons and more complex mathematical expressions. The function library can be easily extended, and we'll be adding additional capabilities over time. As always, we welcome feedback and we'd like to hear what functions you need that aren't covered here.

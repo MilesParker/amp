@@ -5,7 +5,9 @@
 100-ModelerGuide_Intro.mediawiki
 110-ModelerGuide_Structure.mediawiki
 120-ModelerGuide_Actions.mediawiki
-130-ModelerGuide_Functions.mediawiki
+130-ModelerGuide_Functions_Intro.mediawiki
+131-ModelerGuide_Functions_Gen.mediawiki
+132-ModelerGuide_Functions_Examples.mediawiki
 300-UserGuide_Intro.mediawiki
 310-UserGuide_Modeling.mediawiki
 311-UserGuide_Modeling_General.mediawiki
