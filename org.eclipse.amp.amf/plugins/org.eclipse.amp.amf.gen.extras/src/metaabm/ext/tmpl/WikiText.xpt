@@ -59,6 +59,7 @@ See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#«id()»(«
 	«IF !subs.isEmpty-»
 		«FOREACH subs AS sub-»
 ====«sub.label»====
+«sub.description»
 			«EXPAND LibraryTable FOR sub-»
 		«ENDFOREACH-»
 	«ENDIF-»
