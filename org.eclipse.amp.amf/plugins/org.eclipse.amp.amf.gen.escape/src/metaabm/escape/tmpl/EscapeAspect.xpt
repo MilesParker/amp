@@ -205,42 +205,6 @@ import org.ascape.view.vis.GraphView;
 	«ENDIF-»
 «ENDAROUND»
 
-«AROUND metaabm::tmpl::Java::ConditionBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
-	«EXPAND metaabm::ascape::tmpl::ScapeAspect::Conditional(path, inner)-»
-«ENDAROUND»
-
-«AROUND metaabm::tmpl::Java::BeginQueryBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
-	«EXPAND metaabm::ascape::tmpl::ScapeAspect::BeginQuery(path, inner)-»
-«ENDAROUND»
-«AROUND metaabm::tmpl::Java::EndQueryBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
-	«EXPAND metaabm::ascape::tmpl::ScapeAspect::EndQuery(path, inner)-»
-«ENDAROUND»
-
-«AROUND metaabm::tmpl::Java::BeginSerialBlock(List[AAct] path, Boolean inner) FOR AControl-»
-	«EXPAND metaabm::ascape::tmpl::ScapeAspect::BeginSerial(path, inner)-»
-    «targetDef.proceed()-»
-«ENDAROUND»
-«AROUND metaabm::tmpl::Java::EndSerialBlock(List[AAct] path, Boolean inner) FOR AControl-»
-	«EXPAND metaabm::ascape::tmpl::ScapeAspect::EndSerial(path, inner)-»
-    «targetDef.proceed()-»
-«ENDAROUND»
-
-«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AMove-»
-	«EXPAND metaabm::ascape::tmpl::ScapeAspect::InnerBlockCall(path, inner)-»«ENDAROUND»
-«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ACreateAgents-»
-	«call(path, inner)»«ENDAROUND»
-«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ADie-»
-	«call(path, inner)»«ENDAROUND»
-«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ALeave-»
-	«call(path, inner)»«ENDAROUND»
-
-«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AReplace-»
-	«call(path, inner)»«ENDAROUND»
-«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AConnect-»
-	«call(path, inner)»«ENDAROUND»
-«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ADisconnect»
-	«call(path, inner)»«ENDAROUND»
-
 «AROUND metaabm::tmpl::Java::MethodPotential (metaabm::act::AAct within) FOR FFunction-»
 	«IF (id() == "withinBoundaries") || (id() == "distance")-»
 		«EXPAND metaabm::tmpl::Java::Method-»
@@ -280,3 +244,38 @@ import org.ascape.view.vis.GraphView;
     «ELSE-»«targetDef.proceed()»«ENDIF-»
 «ENDAROUND»
 
+«AROUND metaabm::tmpl::Java::ConditionBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
+	«EXPAND metaabm::ascape::tmpl::ScapeAspect::Conditional(path, inner)-»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::BeginQueryBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
+	«EXPAND metaabm::ascape::tmpl::ScapeAspect::BeginQuery(path, inner)-»
+«ENDAROUND»
+«AROUND metaabm::tmpl::Java::EndQueryBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
+	«EXPAND metaabm::ascape::tmpl::ScapeAspect::EndQuery(path, inner)-»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::BeginSerialBlock(List[AAct] path, Boolean inner) FOR AControl-»
+	«EXPAND metaabm::ascape::tmpl::ScapeAspect::BeginSerial(path, inner)-»
+    «targetDef.proceed()-»
+«ENDAROUND»
+«AROUND metaabm::tmpl::Java::EndSerialBlock(List[AAct] path, Boolean inner) FOR AControl-»
+	«EXPAND metaabm::ascape::tmpl::ScapeAspect::EndSerial(path, inner)-»
+    «targetDef.proceed()-»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AMove-»
+	«EXPAND metaabm::ascape::tmpl::ScapeAspect::InnerBlockCall(path, inner)-»«ENDAROUND»
+«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ACreateAgents-»
+	«call(path, inner)»«ENDAROUND»
+«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ADie-»
+	«call(path, inner)»«ENDAROUND»
+«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ALeave-»
+	«call(path, inner)»«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AReplace-»
+	«call(path, inner)»«ENDAROUND»
+«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR AConnect-»
+	«call(path, inner)»«ENDAROUND»
+«AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ADisconnect»
+	«call(path, inner)»«ENDAROUND»
