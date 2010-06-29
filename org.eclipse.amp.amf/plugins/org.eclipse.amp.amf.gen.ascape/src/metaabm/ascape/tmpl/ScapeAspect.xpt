@@ -2,7 +2,6 @@
 «IMPORT metaabm»
 «IMPORT metaabm::act»
 «IMPORT metaabm::function»
-«IMPORT metaabm::tmpl::Java»
 
 «EXTENSION metaabm::tmpl::types»
 «EXTENSION metaabm::tmpl::names» 
@@ -442,5 +441,5 @@
 	}
 	«ENDIF-»«call(path, inner)»
 «ENDDEFINE»
-
+	
 «REM»«AROUND metaabm::tmpl::Java::Evaluation(*) FOR Object»«LET timesec() AS start»«targetDef.proceed()»//«timelapse(start)»«ENDLET»«ENDAROUND»«ENDREM»
