@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <introContent>
-	<extensionContent id="org.eclipse.amp.developer.samples"
+	<extensionContent id="com.metascape.amp.samples"
 		style="css/basic.css" name="AMP Samples" path="samples/@">
-     <group label="Agent Modeling" id="amp-samples" style-id="content-group">
+     <group id="amp-samples" style-id="content-group">
 			<link label="Import Example Models" url="http://org.eclipse.ui.intro/showStandby?partId=org.eclipse.platform.cheatsheet&amp;input=org.eclipse.amp.escape.loadProjects"
-				id="import-examples-cheatsheet" style-id="content-link">
-				<text>Import some example models for Escape exploration using a cheatsheet.</text>
-			</link>
-			<link label="Other Examples" url="http://org.eclipse.ui.intro/showHelpTopic?id=/org.eclipse.amp.doc/help/Models.html"
-				id="import-examples-help" style-id="content-link">
-				<text>Information about obtaining example models.</text>
+				id="import-projects" style-id="content-link">
+				<text>Import example models for exploration.</text>
 			</link>
 		</group>
 	</extensionContent>

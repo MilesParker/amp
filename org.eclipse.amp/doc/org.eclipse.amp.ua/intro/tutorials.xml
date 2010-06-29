@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <introContent>
-	<extensionContent id="org.eclipse.amp.tutorials"
+	<extensionContent id="com.metascape.amp.tutorials"
 		style="css/basic.css" name="AMP Tutorials" path="tutorials/@">
-     <group label="Agent Modeling" id="amp-tutorials" style-id="content-group">
-			<link label="Run a Model" url="http://org.eclipse.ui.intro/showStandby?partId=org.eclipse.platform.cheatsheet&amp;input=org.eclipse.amp.escape.runExample"
+     <group id="amp-tutorials" style-id="content-group">
+			<link label="Load and Run an AMF Model" url="http://org.eclipse.ui.intro/showStandby?partId=org.eclipse.platform.cheatsheet&amp;input=org.eclipse.amp.escape.runExample"
 				id="run-model" style-id="content-link">
-				<text>Use a cheatsheet to run an example model and take a guided tour of all of the Escape model execution features</text>
+				<text>Load and Agent Modeling Framework model and take a guided tour of all of the model execution features.</text>
 			</link>
-			<link label="Create an AMF Model"
-				url="http://org.eclipse.ui.intro/showHelpTopic?id=/org.eclipse.amp.doc/help/Tutorials.html"
-				id="create-model" style-id="content-link">
-				<text>Follow a complete tutorial demonstrating how to create a Model using the Agent Modeling Framework editor</text>
-			</link>
-			<link label="Develop a Java Model" url="http://org.eclipse.ui.intro/showStandby?partId=org.eclipse.platform.cheatsheet&amp;input=org.eclipse.amp.escape.escapeJava"
+			<link label="Develop and Run a Java Model" url="http://org.eclipse.ui.intro/showStandby?partId=org.eclipse.platform.cheatsheet&amp;input=org.eclipse.amp.escape.escapeJava"
 				id="create-java-model" style-id="content-link">
-				<text>Use a cheatsheet to create a Java-based model in Escape and run it</text>
+				<text>Create a Java-based model in Escape and run it.</text>
 			</link>
 		</group>
 		</extensionContent>
