@@ -12,7 +12,7 @@
  *   Argonne National Laboratory - Initial development (pre-contribution)
  *   Metascape - Subsequent development and maintenance
  *
- * </copyright> $Id: AddAgentsCommand.java,v 1.3 2010/06/28 17:23:58 mparker Exp $
+ * </copyright> $Id: AddAgentsCommand.java,v 1.4 2010/06/29 19:47:22 mparker Exp $
  */
 package org.metaabm.commands;
 
@@ -71,18 +71,20 @@ public class AddAgentsCommand extends AddCommand {
         FFunction shapeOval = null;
         FFunction graphicFill = null;
         ResourceSet resourceSet = owner.eResource().getResourceSet();
-        for (Resource res : resourceSet.getResources()) {
-            SContext context = (SContext) res.getContents().get(0);
-            if (context.getLibrary().size() > 0) {
-                FLibrary library = (FLibrary) context.getLibrary().get(0);
-                for (TreeIterator<?> children = library.eAllContents(); children.hasNext();) {
-                    EObject child = (EObject) children.next();
-                    if (child instanceof FFunction && ((FFunction) child).getID().equals("colorBlue")) {
-                        colorBlue = (FFunction) child;
-                    } else if (child instanceof FFunction && ((FFunction) child).getID().equals("shapeOval")) {
-                        shapeOval = (FFunction) child;
-                    } else if (child instanceof FFunction && ((FFunction) child).getID().equals("graphicFill")) {
-                        graphicFill = (FFunction) child;
+        if (resourceSet != null) {
+            for (Resource res : resourceSet.getResources()) {
+                SContext context = (SContext) res.getContents().get(0);
+                if (context.getLibrary().size() > 0) {
+                    FLibrary library = (FLibrary) context.getLibrary().get(0);
+                    for (TreeIterator<?> children = library.eAllContents(); children.hasNext();) {
+                        EObject child = (EObject) children.next();
+                        if (child instanceof FFunction && ((FFunction) child).getID().equals("colorBlue")) {
+                            colorBlue = (FFunction) child;
+                        } else if (child instanceof FFunction && ((FFunction) child).getID().equals("shapeOval")) {
+                            shapeOval = (FFunction) child;
+                        } else if (child instanceof FFunction && ((FFunction) child).getID().equals("graphicFill")) {
+                            graphicFill = (FFunction) child;
+                        }
                     }
                 }
             }
@@ -101,29 +103,31 @@ public class AddAgentsCommand extends AddCommand {
             command.appendAndExecute(SetCommand.create(domain, styleRule, MetaABMPackage.Literals.IID__LABEL,
                                                        "Default " + agent.getLabel() + " Style"));
 
-            AEvaluate evalColor = MetaABMActFactory.eINSTANCE.createAEvaluate();
-            command.appendAndExecute(AddCommand.create(domain, styleRule, MetaABMActPackage.Literals.AACT__TARGETS,
-                                                       evalColor));
-            command.appendAndExecute(SetCommand.create(domain, evalColor, MetaABMPackage.Literals.IID__LABEL,
-                                                       "Default " + agent.getLabel() + " Color"));
-            command.appendAndExecute(SetCommand.create(domain, evalColor, MetaABMActPackage.Literals.ASINK__FUNCTION,
-                                                       colorBlue));
+            if (colorBlue != null) {
+                AEvaluate evalColor = MetaABMActFactory.eINSTANCE.createAEvaluate();
+                command.appendAndExecute(AddCommand.create(domain, styleRule, MetaABMActPackage.Literals.AACT__TARGETS,
+                                                           evalColor));
+                command.appendAndExecute(SetCommand.create(domain, evalColor, MetaABMPackage.Literals.IID__LABEL,
+                                                           "Default " + agent.getLabel() + " Color"));
+                command.appendAndExecute(SetCommand.create(domain, evalColor,
+                                                           MetaABMActPackage.Literals.ASINK__FUNCTION, colorBlue));
 
-            AEvaluate evalShape = MetaABMActFactory.eINSTANCE.createAEvaluate();
-            command.appendAndExecute(AddCommand.create(domain, evalColor, MetaABMActPackage.Literals.AACT__TARGETS,
-                                                       evalShape));
-            command.appendAndExecute(SetCommand.create(domain, evalShape, MetaABMPackage.Literals.IID__LABEL,
-                                                       "Default " + agent.getLabel() + " Shape"));
-            command.appendAndExecute(SetCommand.create(domain, evalShape, MetaABMActPackage.Literals.ASINK__FUNCTION,
-                                                       shapeOval));
+                AEvaluate evalShape = MetaABMActFactory.eINSTANCE.createAEvaluate();
+                command.appendAndExecute(AddCommand.create(domain, evalColor, MetaABMActPackage.Literals.AACT__TARGETS,
+                                                           evalShape));
+                command.appendAndExecute(SetCommand.create(domain, evalShape, MetaABMPackage.Literals.IID__LABEL,
+                                                           "Default " + agent.getLabel() + " Shape"));
+                command.appendAndExecute(SetCommand.create(domain, evalShape,
+                                                           MetaABMActPackage.Literals.ASINK__FUNCTION, shapeOval));
 
-            AEvaluate evalFill = MetaABMActFactory.eINSTANCE.createAEvaluate();
-            command.appendAndExecute(AddCommand.create(domain, evalShape, MetaABMActPackage.Literals.AACT__TARGETS,
-                                                       evalFill));
-            command.appendAndExecute(SetCommand.create(domain, evalFill, MetaABMPackage.Literals.IID__LABEL, "Default "
-                                                       + agent.getLabel() + " Paint"));
-            command.appendAndExecute(SetCommand.create(domain, evalFill, MetaABMActPackage.Literals.ASINK__FUNCTION,
-                                                       graphicFill));
+                AEvaluate evalFill = MetaABMActFactory.eINSTANCE.createAEvaluate();
+                command.appendAndExecute(AddCommand.create(domain, evalShape, MetaABMActPackage.Literals.AACT__TARGETS,
+                                                           evalFill));
+                command.appendAndExecute(SetCommand.create(domain, evalFill, MetaABMPackage.Literals.IID__LABEL,
+                                                           "Default " + agent.getLabel() + " Paint"));
+                command.appendAndExecute(SetCommand.create(domain, evalFill,
+                                                           MetaABMActPackage.Literals.ASINK__FUNCTION, graphicFill));
+            }
         }
     }
 
