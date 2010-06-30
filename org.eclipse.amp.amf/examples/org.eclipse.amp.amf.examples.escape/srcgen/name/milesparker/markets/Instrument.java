@@ -61,6 +61,11 @@ public class Instrument extends CellOccupant {
 	private double totalPrice = 0.0;
 
 	/**
+	 * 
+	 */
+	private double firmPriceEarningsRatio = 0.0;
+
+	/**
 	 * Constructs a new Instrument.
 	 */
 	public Instrument() {
@@ -105,6 +110,28 @@ public class Instrument extends CellOccupant {
 	 */
 	public double getTotalPrice() {
 		return getOfferPrice() * getShares();
+	}
+
+	/**
+	 * Derive Firm Price Earnings Ratio.
+	 */
+	public double getFirmPriceEarningsRatio() {
+		Conditional offerredFirmCondition = new Conditional() {
+			private static final long serialVersionUID = 6846144446402098985L;
+			public boolean meetsCondition(Object offerredFirmCell) {
+				if (offerredFirmCell instanceof Firm) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
+		Firm offerredFirm = (Firm) ((org.ascape.model.space.Discrete) getMarkets()
+				.getFirmInstruments().getSpace()).findRandomNeighbor(this,
+				offerredFirmCondition);
+		if (offerredFirm != null) {
+		}
+		return 0.0;
 	}
 
 	/**

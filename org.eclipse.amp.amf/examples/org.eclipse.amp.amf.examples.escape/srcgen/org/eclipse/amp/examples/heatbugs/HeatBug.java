@@ -150,7 +150,7 @@ public class HeatBug extends CellOccupant {
 		}
 	}
 	/**
-	 * A data point used within a search to find the org.metaabm.impl.SAgentImpl@35cc31e1 (label: Heat Cell, ID: heatCell) (pluralLabel: Heat Cells, description: null) with the .maximized Heat value.
+	 * A data point used within a search to find the org.metaabm.impl.SAgentImpl@6e8f17c5 (label: Heat Cell, ID: heatCell) (pluralLabel: Heat Cells, description: null) with the .maximized Heat value.
 	 */
 	public final static DataPoint MAXIMIZE_HEAT = new DataPointConcrete(
 			"Maximize heat") {
@@ -195,7 +195,7 @@ public class HeatBug extends CellOccupant {
 		return randomInRange(outputHeatDrawMinimum, outputHeatDrawMaximum);
 	}
 	/**
-	 * A data point used within a search to find the org.metaabm.impl.SAgentImpl@35cc31e1 (label: Heat Cell, ID: heatCell) (pluralLabel: Heat Cells, description: null) with the .minimized Heat value.
+	 * A data point used within a search to find the org.metaabm.impl.SAgentImpl@6e8f17c5 (label: Heat Cell, ID: heatCell) (pluralLabel: Heat Cells, description: null) with the .minimized Heat value.
 	 */
 	public final static DataPoint MINIMIZE_HEAT = new DataPointConcrete(
 			"Minimize heat") {

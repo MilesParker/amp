@@ -17,7 +17,7 @@
 		<H4>Members</H4>
 		
 	<H3>Logical Operators</H3>
-	<i></i><BR/>
+	<i>Logical operators allow comparison between values. They are typically used in Query terms but may be used in Evaluate actions as well.</i><BR/>
 	
 		<H5>Not</H5>
 		<i></i><BR/>
@@ -54,7 +54,7 @@
 	
 
 	<H3>Numeric Operators</H3>
-	<i></i><BR/>
+	<i>Numeric operators support all of the basic operators used in evaluations.</i><BR/>
 	
 		<H5>Negative Value</H5>
 		<i></i><BR/>
@@ -95,7 +95,7 @@
 
 
 	<H3>Spatial</H3>
-	<i></i><BR/>
+	<i>Spatial functions provide the core functionality for Agent Models. Spatial functions are polymorphic, which basically means that they don't care what space they are operating on as long as that space is suitable for them. Spatial functions are designed to collaborate with one another. For example, by intersecting the "Neighbor", "Available" and "Toward" functions, we can design a rule that causes the agent to move to the next neighboring cell that get's it closer to some target agent. See the function details for more information.</i><BR/>
 	
 		<H5>Nearest </H5>
 		<i>Represents the nearest agents (including gird cells) or locations to this agent. If more than one agent or location is the same distance away they will all be considered. Note that while this function is defined for the selection of an agent, the result of this function is defined by the context within which it is used. If the selection specifies another agent within a space, this function will represent the nearest agent in that space. If the selection specifies a Cell within a grid space, this function will represent that cell.</i><BR/>
@@ -128,10 +128,10 @@
 		<i>Represents a location that is on the path that will take the source agent (that is, the selection's selection's agent) the farthest distance from the agent(s) represented by the search. This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction away from some location or agent.</i><BR/>
 	
 		<H5>Minimize</H5>
-		<i>This function is not currently supported.</i><BR/>
+		<i>Finds the agent with the lowest value for the specified input. For example, if we created a Select for HeatCell, created a Minimize Query Term with Heat as the input Query Term, created Neighbor and Available Query Terms and set an Intersect as the target for all of those Queries, the result would be the the neighboring available cell with the lowest heat level.</i><BR/>
 	
 		<H5>Maximize</H5>
-		<i>This function is not currently supported.</i><BR/>
+		<i>Finds the agent with the highest value for the specified input. For example, if we created a Select for HeatCell, created a Maximize Query Term with Heat as the input Query Term, created Neighbor and Available Query Terms and set an Intersect as the target for all of those Queries, the result would be the the neighboring available cell with the highest heat level.</i><BR/>
 	
 		<H5>Location 2D</H5>
 		<i>Represents the location of the current agent for use in subsequent selections.</i><BR/>
@@ -144,7 +144,9 @@
 	
 
 	<H3>Random</H3>
-	<i></i><BR/>
+	<i>Random functions are especially significant for agent models. Of particular interest are the weighted membership and random state and boolean value functions. You should be familiar with these functions so that you don't have to create more complex Action flows to accomplish the same thing.
+
+Note that we only have support for uniform distributions as of this release. We're working on a collaborative design for evaluations that allow easy mixing and matching of random functions and distributions.</i><BR/>
 	
 		<H5>Random In Range</H5>
 		<i>A pseudo-random value within that numeric range specified as drawn from a uniform distribution. The minimum values are inclusive. The maximum values are inclusive for integer inputs and exclusive for Real inputs.</i><BR/>
@@ -169,7 +171,9 @@
 	
 
 	<H3>Graphic</H3>
-	<i></i><BR/>
+	<i>Graphic functions are combined within Style Evaluate Actions to determine how to draw an agent within a visualization. One nice aspect of this approach is that the same style definition can be used in multiple places without changing any code. For example, the same style could be used to draw an agent on a two-dimensional grid within Escape, a three-dimensional shape within Escape, a Java Swing based visualization in Ascape, and an XML configured visualizaiton in Repast Simphony.
+
+To define a graphic style for an agent, design a flow in which you create Evaluate Actions for color and shape, and then create an Evaluate Action with the graphic fill or outline function as a target of these.</i><BR/>
 	
 		<H5>Shape Oval</H5>
 		<i>Draw a generic oval.</i><BR/>
@@ -227,14 +231,14 @@
 	
 
 	<H3>Time</H3>
-	<i></i><BR/>
+	<i>Time functions return values related to model execution time. </i><BR/>
 	
 		<H5>Now</H5>
 		<i>The current simulation period, that is the number of iterations that the model has gone through, or in the case of models with callibrarted time, the number of iterations added to the model's nominal start time.</i><BR/>
 	
 
 	<H3>Math</H3>
-	<i></i><BR/>
+	<i>The math functions use the extremely well specified and tested routines form the Java Math library. (Because of copyright restrictions, we aren't able to include the exact definitions here. Click on the links to get more details on each function.)</i><BR/>
 	
 		<H5>Sine</H5>
 		<i></i><BR/>
@@ -328,7 +332,7 @@
 	
 
 	<H3>List</H3>
-	<i></i><BR/>
+	<i>List functions are used for working with arrays and other functions that have lists as output.</i><BR/>
 	
 		<H5>Item</H5>
 		<i>Returns the item at the specified index from the list of items provided. Those items will typically be input primitives such as Integer or Real values.</i><BR/>
@@ -338,7 +342,7 @@
 	
 
 	<H3>Distribution</H3>
-	<i></i><BR/>
+	<i>One of the most common tasks in the Agent Modeling process is the creation of agents with particular states drawn from a distribution. For example, you might want to create a number of agents with wealth randomly distributed between some minimum and maximum values. The distribution functions greatly ease the process of setting up those initializations and their associated parameters.</i><BR/>
 	
 		<H5>Uniform Cross Distribution</H5>
 		<i>A random number taken from a distribution of values as defined by a cross of all values. (See Cross Distribution.) This funciton then returns a value drawn from the minimum and maximum values as determined by the current agent state. In the cross distribution, each of the values is treated independently so that an input attribute is created for every potential combination of states.</i><BR/>

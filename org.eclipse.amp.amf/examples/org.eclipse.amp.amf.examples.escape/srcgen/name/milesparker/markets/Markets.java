@@ -98,12 +98,12 @@ public class Markets extends Scape implements IGraphicsAdapted {
 	/**
 	 * 
 	 */
-	private double initialTraderFundsMinimum = 10000;
+	private double initialTraderFundsMinimum = 50000;
 
 	/**
 	 * 
 	 */
-	private double initialTraderFundsMaximum = 100000;
+	private double initialTraderFundsMaximum = 50000;
 
 	/**
 	 * 
@@ -119,6 +119,11 @@ public class Markets extends Scape implements IGraphicsAdapted {
 	 * 
 	 */
 	private Scape firmInstruments = null;
+
+	/**
+	 * 
+	 */
+	private Scape targetBuyFirms = null;
 
 	/**
 	 * Constructs a new Markets.
@@ -213,6 +218,9 @@ public class Markets extends Scape implements IGraphicsAdapted {
 		firmInstruments = new Scape(new org.ascape.model.space.Graph());
 		firmInstruments.setName("FirmInstrumentss");
 		add(firmInstruments);
+		targetBuyFirms = new Scape(new org.ascape.model.space.Graph());
+		targetBuyFirms.setName("Target Buy Firmss");
+		add(targetBuyFirms);
 
 		add(traderScape);
 
@@ -320,6 +328,16 @@ public class Markets extends Scape implements IGraphicsAdapted {
 				});
 
 		instrumentScape
+				.addStatCollector(new org.ascape.util.data.StatCollectorCond(
+						"Instrument Bid Status") {
+					private static final long serialVersionUID = 6846144446402098985L;
+					public final boolean meetsCondition(Object instrument) {
+						return StatusEnum.bid == ((Instrument) instrument)
+								.getStatus();
+					}
+				});
+
+		instrumentScape
 				.addStatCollector(new org.ascape.util.data.StatCollectorCSAMM(
 						"Instrument Offer Price") {
 					private static final long serialVersionUID = 6846144446402098985L;
@@ -355,6 +373,12 @@ public class Markets extends Scape implements IGraphicsAdapted {
 				((name.milesparker.markets.Trader) a).buy();
 			}
 		});
+		traderScape.addRule(new Rule("Execute") {
+			private static final long serialVersionUID = 6846144446402098981L;
+			public void execute(Agent a) {
+				((name.milesparker.markets.Trader) a).execute();
+			}
+		});
 
 		firmScape.addInitialRule(new Rule("Initialize") {
 			private static final long serialVersionUID = 6846144446402098982L;
@@ -373,6 +397,12 @@ public class Markets extends Scape implements IGraphicsAdapted {
 			private static final long serialVersionUID = 6846144446402098982L;
 			public void execute(Agent a) {
 				((name.milesparker.markets.Firm) a).offerShares();
+			}
+		});
+		firmScape.addRule(new Rule("Clear Offers") {
+			private static final long serialVersionUID = 6846144446402098981L;
+			public void execute(Agent a) {
+				((name.milesparker.markets.Firm) a).clearOffers();
 			}
 		});
 
@@ -448,6 +478,12 @@ public class Markets extends Scape implements IGraphicsAdapted {
 		instrument.setStatus(StatusEnum.held);
 		chart.addSeries(
 				"Count Instrument Held Status",
+				getInferredChartColor(instrument,
+						instrumentStyle2DColorProvider));
+
+		instrument.setStatus(StatusEnum.bid);
+		chart.addSeries(
+				"Count Instrument Bid Status",
 				getInferredChartColor(instrument,
 						instrumentStyle2DColorProvider));
 		addView(chart);
@@ -772,6 +808,23 @@ public class Markets extends Scape implements IGraphicsAdapted {
 	 */
 	public void setFirmInstruments(Scape _firmInstruments) {
 		firmInstruments = _firmInstruments;
+	}
+
+	/**
+	 * Gets the Target Buy Firms property for Markets.
+	 * @return 
+	 */
+	public Scape getTargetBuyFirms() {
+		return targetBuyFirms;
+	}
+
+	/**
+	 * Sets the Target Buy Firms property for Markets.
+	 * 
+	 * @param _targetBuyFirms the new Target Buy Firms value
+	 */
+	public void setTargetBuyFirms(Scape _targetBuyFirms) {
+		targetBuyFirms = _targetBuyFirms;
 	}
 
 	public String getName() {

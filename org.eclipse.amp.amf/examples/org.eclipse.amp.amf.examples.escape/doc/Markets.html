@@ -171,11 +171,11 @@
 					<tr><td colspan="3"><i></i></td></tr></tbody>
 					<tbody ><tr><td>Initial Trader Funds Minimum</td>
 						<td>Real</td>
-						<td>10000</td></tr>
+						<td>50000</td></tr>
 					<tr><td colspan="3"><i></i></td></tr></tbody>
 					<tbody ><tr><td>Initial Trader Funds Maximum</td>
 						<td>Real</td>
-						<td>100000</td></tr>
+						<td>50000</td></tr>
 					<tr><td colspan="3"><i></i></td></tr></tbody>
 					<tbody ><tr><td>Firm Shares Count</td>
 						<td>Integer</td>
@@ -226,6 +226,10 @@
 						<td><i>Buy</i></td>
 						<td>Buy Rule. Executed every period.</td>
 					</tr>
+					<tr>
+						<td><i>Execute</i></td>
+						<td>Execute Rule. Executed every period.</td>
+					</tr>
 		</table>
 								</div>
 								<div id="agent">
@@ -249,6 +253,10 @@
 						<td>Integer</td>
 						<td>50000</td></tr>
 					<tr><td colspan="3"><i></i></td></tr></tbody>
+					<tbody ><tr><td>Price Earnings Ratio</td>
+						<td>Real</td>
+						<td></td></tr>
+					<tr><td colspan="3"><i></i></td></tr></tbody>
 		</table>
 									<H3>Behaviors</H3>
 		<table CELLPADDING="10px">
@@ -264,6 +272,14 @@
 					<tr>
 						<td><i>Offer Shares</i></td>
 						<td>Offer Shares Initialization. Executed once at the beginning of each model run.</td>
+					</tr>
+					<tr>
+						<td><i>Derive Price Earnings Ratio</i></td>
+						<td>Derive Price Earnings Ratio.</td>
+					</tr>
+					<tr>
+						<td><i>Clear Offers</i></td>
+						<td>Clear Offers Rule. Executed every period.</td>
 					</tr>
 		</table>
 								</div>
@@ -288,6 +304,10 @@
 						<td>Real</td>
 						<td></td></tr>
 					<tr><td colspan="3"><i></i></td></tr></tbody>
+					<tbody ><tr><td>Firm Price Earnings Ratio</td>
+						<td>Real</td>
+						<td></td></tr>
+					<tr><td colspan="3"><i></i></td></tr></tbody>
 		</table>
 									<H3>Behaviors</H3>
 		<table CELLPADDING="10px">
@@ -295,6 +315,10 @@
 					<tr>
 						<td><i>Derive Total Price</i></td>
 						<td>Derive Total Price.</td>
+					</tr>
+					<tr>
+						<td><i>Derive Firm Price Earnings Ratio</i></td>
+						<td>Derive Firm Price Earnings Ratio.</td>
 					</tr>
 		</table>
 								</div>
@@ -310,6 +334,11 @@
 					</tr>
 					<tr>
 						<td><i>FirmInstruments</i></td>
+						<td></td>
+						<td>Network</td>
+					</tr>
+					<tr>
+						<td><i>Target Buy Firms</i></td>
 						<td></td>
 						<td>Network</td>
 					</tr>

@@ -43,10 +43,10 @@
 				<H5>Initial Firm Price Maximum  (double, default: 30.0)</H5>
 				<i></i><BR/>
 		
-				<H5>Initial Trader Funds Minimum  (double, default: 10000)</H5>
+				<H5>Initial Trader Funds Minimum  (double, default: 50000)</H5>
 				<i></i><BR/>
 		
-				<H5>Initial Trader Funds Maximum  (double, default: 100000)</H5>
+				<H5>Initial Trader Funds Maximum  (double, default: 50000)</H5>
 				<i></i><BR/>
 		
 				<H5>Firm Shares Count  (int, default: 10000)</H5>
@@ -82,6 +82,9 @@
 				<H5>Buy</H5>
 				<i>Buy Rule. Executed every period.</i><BR/>
 		
+				<H5>Execute</H5>
+				<i>Execute Rule. Executed every period.</i><BR/>
+		
 
 						
 							<H3>Firm</H3>
@@ -101,6 +104,9 @@
 				<H5>Shares Internal  (int, default: 50000)</H5>
 				<i></i><BR/>
 		
+				<H5>Price Earnings Ratio  (double, default: )</H5>
+				<i></i><BR/>
+		
 
 							<H4>Behaviors</H4>
 							
@@ -113,6 +119,12 @@
 		
 				<H5>Offer Shares</H5>
 				<i>Offer Shares Initialization. Executed once at the beginning of each model run.</i><BR/>
+		
+				<H5>Derive Price Earnings Ratio</H5>
+				<i>Derive Price Earnings Ratio.</i><BR/>
+		
+				<H5>Clear Offers</H5>
+				<i>Clear Offers Rule. Executed every period.</i><BR/>
 		
 
 						
@@ -133,12 +145,18 @@
 				<H5>Total Price  (double, default: )</H5>
 				<i></i><BR/>
 		
+				<H5>Firm Price Earnings Ratio  (double, default: )</H5>
+				<i></i><BR/>
+		
 
 							<H4>Behaviors</H4>
 							
 		
 				<H5>Derive Total Price</H5>
 				<i>Derive Total Price.</i><BR/>
+		
+				<H5>Derive Firm Price Earnings Ratio</H5>
+				<i>Derive Firm Price Earnings Ratio.</i><BR/>
 		
 
 						
@@ -150,6 +168,9 @@
 				<i></i><BR/>
 		
 				<H5>FirmInstruments  (Network)</H5>
+				<i></i><BR/>
+		
+				<H5>Target Buy Firms  (Network)</H5>
 				<i></i><BR/>
 		
 

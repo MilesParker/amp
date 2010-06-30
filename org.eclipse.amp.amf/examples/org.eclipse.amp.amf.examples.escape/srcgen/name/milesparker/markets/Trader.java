@@ -152,77 +152,13 @@ public class Trader extends CellOccupant {
 	 * Buy Rule. Executed every period.
 	 */
 	public void buy() {
-		Conditional boughtInstrumentCondition = new Conditional() {
-			private static final long serialVersionUID = 6846144446402098985L;
-			public boolean meetsCondition(Object boughtInstrumentCell) {
-				if (boughtInstrumentCell instanceof Instrument) {
-					Instrument boughtInstrument = (Instrument) boughtInstrumentCell;
-					return (boughtInstrument.getStatus() == StatusEnum.ask && boughtInstrument
-							.getTotalPrice() <= getFunds());
-				} else {
-					return false;
-				}
-			}
-		};
-		Instrument boughtInstrument = (Instrument) getMarkets()
-				.getInstrumentScape().findRandom(boughtInstrumentCondition);
-		if (boughtInstrument != null) {
-			if (getFunds() >= boughtInstrument.getTotalPrice()
-					&& (boughtInstrument.getStatus() == StatusEnum.ask && boughtInstrument
-							.getTotalPrice() <= getFunds())) {
-				boughtInstrument.setStatus(StatusEnum.held);
-				double fundsSubtractTotalPrice = getFunds()
-						- boughtInstrument.getTotalPrice();
-				setFunds(fundsSubtractTotalPrice);
-				Conditional offeredFirmCondition = new Conditional() {
-					private static final long serialVersionUID = 6846144446402098985L;
-					public boolean meetsCondition(Object offeredFirmCell) {
-						if (offeredFirmCell instanceof Firm) {
-							return true;
-						} else {
-							return false;
-						}
-					}
-				};
-				Firm offeredFirm = (Firm) ((org.ascape.model.space.Discrete) boughtInstrument
-						.getMarkets().getFirmInstruments().getSpace())
-						.findRandomNeighbor(boughtInstrument,
-								offeredFirmCondition);
-				if (offeredFirm != null) {
-					double offerPriceAddZero = boughtInstrument.getOfferPrice() + 0;
-					offeredFirm.setLastPrice(offerPriceAddZero);
-					Conditional sellerCondition = new Conditional() {
-						private static final long serialVersionUID = 6846144446402098985L;
-						public boolean meetsCondition(Object sellerCell) {
-							if (sellerCell instanceof Trader) {
-								return true;
-							} else {
-								return false;
-							}
-						}
-					};
-					Trader seller = (Trader) ((org.ascape.model.space.Discrete) boughtInstrument
-							.getMarkets().getInstrumentHolders().getSpace())
-							.findRandomNeighbor(boughtInstrument,
-									sellerCondition);
-					if (seller != null) {
-						double fundsAddTotalPrice = seller.getFunds()
-								+ boughtInstrument.getTotalPrice();
-						seller.setFunds(fundsAddTotalPrice);
-						((org.ascape.model.space.Graph) getMarkets()
-								.getInstrumentHolders().getSpace())
-								.clearNeighbors(boughtInstrument);
-						((org.ascape.model.space.Graph) getMarkets()
-								.getInstrumentHolders().getSpace())
-								.addNeighborSafe(this, boughtInstrument, false);
-						int incrementCount = getInstrumentCount() + 1;
-						setInstrumentCount(incrementCount);
-						int decrementSellerCount = seller.getInstrumentCount() - 1;
-						seller.setInstrumentCount(decrementSellerCount);
-						buy();
-					}
-				}
-			}
+
+		((org.ascape.model.space.Graph) getMarkets().getTargetBuyFirms()
+				.getSpace()).clearNeighbors(this);
+		Firm offeredFirm = (Firm) getMarkets().getFirmScape().findRandom();
+		if (offeredFirm != null) {
+			((org.ascape.model.space.Graph) getMarkets().getTargetBuyFirms()
+					.getSpace()).addNeighborSafe(this, offeredFirm, false);
 		}
 	}
 
@@ -248,6 +184,78 @@ public class Trader extends CellOccupant {
 				.getInitialTraderFundsMaximum();
 		return randomInRange(initialTraderFundsMinimum,
 				initialTraderFundsMaximum);
+	}
+
+	/**
+	 * Execute Rule. Executed every period.
+	 */
+	public void execute() {
+		Conditional firmCondition = new Conditional() {
+			private static final long serialVersionUID = 6846144446402098985L;
+			public boolean meetsCondition(Object firmCell) {
+				if (firmCell instanceof Firm) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
+		Firm firm = (Firm) ((org.ascape.model.space.Discrete) getMarkets()
+				.getTargetBuyFirms().getSpace()).findRandomNeighbor(this,
+				firmCondition);
+		if (firm != null) {
+			Conditional boughtInstrumentCondition = new Conditional() {
+				private static final long serialVersionUID = 6846144446402098985L;
+				public boolean meetsCondition(Object boughtInstrumentCell) {
+					if (boughtInstrumentCell instanceof Instrument) {
+						Instrument boughtInstrument = (Instrument) boughtInstrumentCell;
+						return (boughtInstrument.getStatus() == StatusEnum.ask && boughtInstrument
+								.getTotalPrice() <= getFunds());
+					} else {
+						return false;
+					}
+				}
+			};
+			Instrument boughtInstrument = (Instrument) ((org.ascape.model.space.Discrete) firm
+					.getMarkets().getFirmInstruments().getSpace())
+					.findRandomNeighbor(firm, boughtInstrumentCondition);
+			if (boughtInstrument != null) {
+				boughtInstrument.setStatus(StatusEnum.held);
+				double fundsSubtractTotalPrice = getFunds()
+						- boughtInstrument.getTotalPrice();
+				setFunds(fundsSubtractTotalPrice);
+				double offerPriceAddZero = boughtInstrument.getOfferPrice() + 0;
+				firm.setLastPrice(offerPriceAddZero);
+				Conditional sellerCondition = new Conditional() {
+					private static final long serialVersionUID = 6846144446402098985L;
+					public boolean meetsCondition(Object sellerCell) {
+						if (sellerCell instanceof Trader) {
+							return true;
+						} else {
+							return false;
+						}
+					}
+				};
+				Trader seller = (Trader) ((org.ascape.model.space.Discrete) getMarkets()
+						.getInstrumentHolders().getSpace()).findRandomNeighbor(
+						boughtInstrument, sellerCondition);
+				if (seller != null) {
+					double fundsAddTotalPrice = seller.getFunds()
+							+ boughtInstrument.getTotalPrice();
+					seller.setFunds(fundsAddTotalPrice);
+					((org.ascape.model.space.Graph) getMarkets()
+							.getInstrumentHolders().getSpace())
+							.clearNeighbors(seller);
+					((org.ascape.model.space.Graph) getMarkets()
+							.getInstrumentHolders().getSpace())
+							.addNeighborSafe(this, boughtInstrument, false);
+					int incrementCount = getInstrumentCount() + 1;
+					setInstrumentCount(incrementCount);
+					int decrementSellerCount = seller.getInstrumentCount() - 1;
+					seller.setInstrumentCount(decrementSellerCount);
+				}
+			}
+		}
 	}
 	/**
 	 * Gets the Strategy property for Trader.

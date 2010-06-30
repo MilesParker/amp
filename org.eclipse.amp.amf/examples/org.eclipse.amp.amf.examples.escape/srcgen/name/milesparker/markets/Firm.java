@@ -61,6 +61,11 @@ public class Firm extends CellOccupant {
 	private int sharesInternal = 50000;
 
 	/**
+	 * 
+	 */
+	private double priceEarningsRatio = 0.0;
+
+	/**
 	 * Constructs a new Firm.
 	 */
 	public Firm() {
@@ -183,6 +188,37 @@ public class Firm extends CellOccupant {
 		double initialFirmPriceMaximum = getMarkets()
 				.getInitialFirmPriceMaximum();
 		return randomInRange(initialFirmPriceMinimum, initialFirmPriceMaximum);
+	}
+
+	/**
+	 * Derive Price Earnings Ratio.
+	 */
+	public double getPriceEarningsRatio() {
+		return getLastPrice() / getLastEarnings();
+	}
+
+	/**
+	 * Clear Offers Rule. Executed every period.
+	 */
+	public void clearOffers() {
+		Conditional firmCondition = new Conditional() {
+			private static final long serialVersionUID = 6846144446402098985L;
+			public boolean meetsCondition(Object firmCell) {
+				if (firmCell instanceof Instrument) {
+					Instrument firm = (Instrument) firmCell;
+					return (firm.getStatus() == StatusEnum.ask);
+				} else {
+					return false;
+				}
+			}
+		};
+		List firmList = getMarkets().getInstrumentScape().find(firmCondition);
+		for (Object nextFirm : firmList) {
+			Instrument firm = (Instrument) (Instrument) nextFirm;
+			if (firm != null) {
+				firm.setStatus(StatusEnum.held);
+			}
+		}
 	}
 	/**
 	 * Gets the Shares Outstanding property for Firm.
