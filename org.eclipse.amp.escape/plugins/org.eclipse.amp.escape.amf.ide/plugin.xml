@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.16 2010/06/14 23:39:31 mparker Exp $
+ $Id: plugin.xml,v 1.17 2010/07/01 01:40:06 mparker Exp $
 -->
 
 <plugin>
@@ -174,7 +174,7 @@
          icon="icons/etool16/execute_headless_emf.gif"
          label="Execute Headless"
          style="push"
-         tooltip="Execute Escape AMF model without views.">
+         tooltip="Execute Escape AMF model with data collection.">
       <visibleWhen
             checkEnabled="false">
          <reference
@@ -187,7 +187,7 @@
          icon="icons/etool16/execute_headless_emf.gif"
          label="Execute Headless"
          style="push"
-         tooltip="Execute Escape AMF model without views.">
+         tooltip="Execute Escape AMF model with data collection.">
       <visibleWhen
             checkEnabled="false">
          <reference
@@ -200,7 +200,7 @@
          icon="icons/etool16/execute_headless_emf.gif"
          label="Execute Headless"
          style="push"
-         tooltip="Execute Escape AMF model without views.">
+         tooltip="Execute Escape AMF model with data collection.">
       <visibleWhen
             checkEnabled="false">
          <reference
@@ -262,7 +262,7 @@
          icon="icons/etool16/execute_headless_emf.gif"
          label="Execute Headless"
          style="push"
-         tooltip="Execute parameter model with AMF Data output.">
+         tooltip="Execute parameter model with with data collection.">
       <visibleWhen
             checkEnabled="true">
       </visibleWhen>
@@ -272,7 +272,7 @@
          icon="icons/etool16/execute_headless_emf.gif"
          label="Execute Headless"
          style="push"
-         tooltip="Execute AMF model with AMF Data output.">
+         tooltip="Execute AMF model with with data collection.">
       <visibleWhen
             checkEnabled="true">
       </visibleWhen>
@@ -282,7 +282,7 @@
          icon="icons/etool16/execute_headless_emf.gif"
          label="Execute Headless"
          style="push"
-         tooltip="Execute Java (Escape) model with AMF Data output.">
+         tooltip="Execute Java (Escape) model with data collection.">
       <visibleWhen
             checkEnabled="true">
       </visibleWhen>
@@ -334,7 +334,7 @@
          icon="icons/etool16/execute_headless_emf.gif"
          label="Execute Headless"
          style="push"
-         tooltip="Execute Escape model from parameters without views.">
+         tooltip="Execute Escape model from parameters with data collection.">
       <visibleWhen
             checkEnabled="false">
          <reference
@@ -347,7 +347,7 @@
          icon="icons/etool16/execute_headless_emf.gif"
          label="Execute Headless"
          style="push"
-         tooltip="Execute Escape model from parameters without views.">
+         tooltip="Execute Escape model from parameters with data collection.">
       <visibleWhen
             checkEnabled="false">
          <reference
@@ -360,7 +360,7 @@
          icon="icons/etool16/execute_headless_emf.gif"
          label="Execute Headless"
          style="push"
-         tooltip="Execute Escape model from parameters without views.">
+         tooltip="Execute Escape model from parameters with data collection.">
       <visibleWhen
             checkEnabled="false">
          <reference
