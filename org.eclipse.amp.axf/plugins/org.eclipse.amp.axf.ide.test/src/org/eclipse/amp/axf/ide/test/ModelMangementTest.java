@@ -37,7 +37,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
-import org.eclipse.swtbot.eclipse.finder.matchers.WidgetMatcherFactory;
 import org.eclipse.swtbot.eclipse.finder.widgets.SWTBotView;
 import org.eclipse.swtbot.swt.finder.exceptions.WidgetNotFoundException;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotMenu;
@@ -398,11 +397,13 @@ public class ModelMangementTest extends TestCase {
     }
 
     private List<SWTBotView> gefViews() {
-        return bot.views(WidgetMatcherFactory.withPartName("Demographic Prisoner_s Dilemma Graphic View"));
+        return null;
+        // return bot.views(WidgetMatcherFactory.withPartName("Demographic Prisoner_s Dilemma Graphic View"));
     }
 
     private List<SWTBotView> chartViews() {
-        return bot.views(WidgetMatcherFactory.withPartName("Demographic Prisoner_s Dilemma Chart View"));
+        return null;
+        // return bot.views(WidgetMatcherFactory.withPartName("Demographic Prisoner_s Dilemma Chart View"));
     }
 
     private SWTBotMenu control() {
