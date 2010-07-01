@@ -249,7 +249,7 @@ import org.ascape.util.Conditional;
 «AROUND metaabm::tmpl::Java::MethodPotential (metaabm::act::AAct within) FOR AQuery-»
 	«IF (function.id() == "minimize") || (function.id() == "maximize")-»
     /**
-     * A data point used within a search to find the «selected.agent» with the .«function.id()»d «inputs.value.get(0).label» value.
+     * A data point used within a search to find the «selected.agent.label» with the «function.id()»d «inputs.value.get(0).label» value.
      */
     public final static DataPoint «dataPoint()» = new DataPointConcrete("«function.id().toFirstUpper()» «inputs.value.get(0).id()»") {
         /**
