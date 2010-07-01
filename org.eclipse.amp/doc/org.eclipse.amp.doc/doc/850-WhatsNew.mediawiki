@@ -68,7 +68,7 @@ The first official release of AMP includes many new or expanded features in addi
 {| style="border-top: 1px solid #aaa; width: 100%" cellpadding="20"
 |-valign="top"
 | '''Parameter Management Support'''
-| AMP now has full support for editing and launching of parameter files, including code completion. There is also support for creation of tests and analysis of test results. Finally, data can now be generated to a common EMD based (adata) data format.
+| AMP now has full support for editing and launching of parameter files, including code completion and all of the other editor niceties.
 |-valign="top"
 | &nbsp;
 | [[Image:images/params/Edit.png]]
