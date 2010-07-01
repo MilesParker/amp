@@ -18,6 +18,14 @@ package org.eclipse.amp.escape.ide;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.ascape.AscapeRuntimePlugin;
+import org.ascape.model.Agent;
+import org.ascape.model.Scape;
+import org.ascape.model.event.ControlEvent;
+import org.ascape.model.event.ScapeEvent;
+import org.ascape.model.event.ScapeListener;
+import org.ascape.model.rule.PropogateScapeOnly;
+import org.ascape.runtime.NonGraphicRunner;
 import org.eclipse.amp.axf.core.IEngine;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
 import org.eclipse.amp.axf.core.IModel;
@@ -35,20 +43,10 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.emf.common.ui.EclipseUIPlugin;
 import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
 import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.statushandlers.StatusManager;
-
-import org.ascape.AscapeRuntimePlugin;
-import org.ascape.model.Agent;
-import org.ascape.model.Scape;
-import org.ascape.model.event.ControlEvent;
-import org.ascape.model.event.ScapeEvent;
-import org.ascape.model.event.ScapeListener;
-import org.ascape.model.rule.PropogateScapeOnly;
-import org.ascape.runtime.NonGraphicRunner;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -112,8 +110,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
         this.project = projectResource.getProject();
         setStartOnOpen(false);
         setAutoRestart(false);
-        final MessageConsole eclipseConsole = new MessageConsole("Run " + modelName, EclipseUIPlugin
-                                                                 .imageDescriptorFromPlugin(project.getName(), "icons/obj16/Escape.gif"));
+        final MessageConsole eclipseConsole = new MessageConsole("Run " + modelName, null);
         getEnvironment().getConsole().setIMessageStream(new MessageAdapter(eclipseConsole));
         IConsole[] consules = { eclipseConsole };
         ConsolePlugin.getDefault().getConsoleManager().addConsoles(consules);
