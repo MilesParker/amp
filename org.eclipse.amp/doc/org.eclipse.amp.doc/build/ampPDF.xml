@@ -1151,6 +1151,50 @@ if (query3.evaluate()) {
 					</section>
 				</section>
 			</section>
+			<section id="Reference_2">
+				<title>Reference</title>
+				<section id="Diagrams_2">
+					<title>Diagrams</title>
+					<para>The following diagram may be helpful to readers familiar with UML and Meta-modeling:</para>
+					<section id="Meta-Classes_2">
+						<title>Meta-Classes</title>
+						<para>
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/actions/ActionsDiagram.png" scale="50"/>
+								</imageobject>
+							</mediaobject>
+						</para>
+					</section>
+					<section id="Details_4">
+						<title>Details</title>
+						<para>In the diagram above, all meta-objects except for Input, Literal, and the enumerators (lists of options) are Actions. Blue meta-classes are concrete (you can create and use them directly). Red meta-classes are key collaborations.</para>
+						<orderedlist inheritnum="ignore" continuation="restarts">
+							<listitem>
+								<para>An Act is anything that might happen during the execution of an Agent-Based Model.</para>
+							</listitem>
+							<listitem>
+								<para>All Actions have as their root-most source action a Root. These are added first to any agent behavior and act as triggers for all target behavior. For example, a Watch will execute any time the watched attribute is modified. (As the diagrams do not refer to elements outside of the current package, we cannot see here that Accessor includes a reference to some Attribute, but it does. To see these kinds of relationships you will want to refer to the metaabm.ecore file itself.)#Actions are targets and sources of one another, but an Act can never have itself as a source. (That is, Actions are acyclic, but branches can re-converge. When we refer to an Act source or target, we typically mean to include all ancestors or descendants, not just the immediately connected Act.)</para>
+							</listitem>
+							<listitem>
+								<para>All Actions (except for root Actions) reference a Select, referred to as the "selected" relation. An ASelect represents the model aspects that the Act is working within; that is, the spatial, temporal and type (agent) "world" that is currently being selected.</para>
+							</listitem>
+							<listitem>
+								<para>Commands trigger some model state change (Set) or spatial transformation (Transform).</para>
+							</listitem>
+							<listitem>
+								<para>Controls determine whether target Actions are executed and against what agents. They are in some sense query terms and include Query actions and Logic Actions.</para>
+							</listitem>
+							<listitem>
+								<para>Transforms also specify a "destination" Select. This represents aspects that the selected agent(s) will transform to. For example, a Move may use a Rule to select all SugarAgents (type) in the SugarGrid (space) every period (time) and move them to a destination of a neighboring SugarCell (type) in the SugarGrid (space, with time implicit).</para>
+							</listitem>
+							<listitem>
+								<para>Sinks are Actions which use some Function (see next section) to interpret state in the form of Inputs. Inputs can come from selected agent attributes, other Actions, or literal values.</para>
+							</listitem>
+						</orderedlist>
+					</section>
+				</section>
+			</section>
 			<section id="Example">
 				<title>Example</title>
 				<para>In this section, we'll look at an example that should make clear how the basic Actions approach works in a model. Say we want to define a behavior like:</para>
@@ -1247,50 +1291,6 @@ if (query3.evaluate()) {
 					</listitem>
 				</orderedlist>
 			</section>
-			<section id="Reference_2">
-				<title>Reference</title>
-				<section id="Diagrams_2">
-					<title>Diagrams</title>
-					<para>The following diagram may be helpful to readers familiar with UML and Meta-modeling:</para>
-					<section id="Meta-Classes_2">
-						<title>Meta-Classes</title>
-						<para>
-							<mediaobject>
-								<imageobject>
-									<imagedata fileref="images/actions/ActionsDiagram.png" scale="50"/>
-								</imageobject>
-							</mediaobject>
-						</para>
-					</section>
-					<section id="Details_4">
-						<title>Details</title>
-						<para>In the diagram above, all meta-objects except for Input, Literal, and the enumerators (lists of options) are Actions. Blue meta-classes are concrete (you can create and use them directly). Red meta-classes are key collaborations.</para>
-						<orderedlist inheritnum="ignore" continuation="restarts">
-							<listitem>
-								<para>An Act is anything that might happen during the execution of an Agent-Based Model.</para>
-							</listitem>
-							<listitem>
-								<para>All Actions have as their root-most source action a Root. These are added first to any agent behavior and act as triggers for all target behavior. For example, a Watch will execute any time the watched attribute is modified. (As the diagrams do not refer to elements outside of the current package, we cannot see here that Accessor includes a reference to some Attribute, but it does. To see these kinds of relationships you will want to refer to the metaabm.ecore file itself.)#Actions are targets and sources of one another, but an Act can never have itself as a source. (That is, Actions are acyclic, but branches can re-converge. When we refer to an Act source or target, we typically mean to include all ancestors or descendants, not just the immediately connected Act.)</para>
-							</listitem>
-							<listitem>
-								<para>All Actions (except for root Actions) reference a Select, referred to as the "selected" relation. An ASelect represents the model aspects that the Act is working within; that is, the spatial, temporal and type (agent) "world" that is currently being selected.</para>
-							</listitem>
-							<listitem>
-								<para>Commands trigger some model state change (Set) or spatial transformation (Transform).</para>
-							</listitem>
-							<listitem>
-								<para>Controls determine whether target Actions are executed and against what agents. They are in some sense query terms and include Query actions and Logic Actions.</para>
-							</listitem>
-							<listitem>
-								<para>Transforms also specify a "destination" Select. This represents aspects that the selected agent(s) will transform to. For example, a Move may use a Rule to select all SugarAgents (type) in the SugarGrid (space) every period (time) and move them to a destination of a neighboring SugarCell (type) in the SugarGrid (space, with time implicit).</para>
-							</listitem>
-							<listitem>
-								<para>Sinks are Actions which use some Function (see next section) to interpret state in the form of Inputs. Inputs can come from selected agent attributes, other Actions, or literal values.</para>
-							</listitem>
-						</orderedlist>
-					</section>
-				</section>
-			</section>
 		</section>
 		<section id="Functions">
 			<title>Functions</title>
@@ -1323,681 +1323,671 @@ if (query3.evaluate()) {
 				<section id="General_Functions">
 					<title>General Functions</title>
 					<para>Naturally, the Modeling tools provide general functions for performing calculations, comparisons and more complex mathematical expressions. The function library can be easily extended, and we'll be adding additional capabilities over time. As always, we welcome feedback and we'd like to hear what functions you need that aren't covered here.</para>
-					<section id="Logical_Operators">
-						<title>Logical Operators</title>
-						<section id="Not">
-							<title>Not</title>
-							<para>The result of the expression !X.</para>
-						</section>
-						<section id="Equal">
-							<title>Equal</title>
-							<para>The result of the expression X==Y.</para>
-						</section>
-						<section id="Identical">
-							<title>Identical</title>
-							<para>The result of the expression X==Y.</para>
-						</section>
-						<section id="Greater">
-							<title>Greater</title>
-							<para>The result of the expression X&gt;Y.</para>
-						</section>
-						<section id="Lesser">
-							<title>Lesser</title>
-							<para>The result of the expression X&lt;Y.</para>
-						</section>
-						<section id="Greater_or_Equal">
-							<title>Greater or Equal</title>
-							<para>The result of the expression X&gt;=Y.</para>
-						</section>
-						<section id="Lesser_or_Equal">
-							<title>Lesser or Equal</title>
-							<para>The result of the expression X&lt;=Y.</para>
-						</section>
-						<section id="True">
-							<title>True</title>
-							<para>The result of the expression true.</para>
-						</section>
-						<section id="False">
-							<title>False</title>
-							<para>The result of the expression false.</para>
-						</section>
-						<section id="Identity">
-							<title>Identity</title>
-							<para>The result of the expression X.</para>
-						</section>
-						<section id="Different">
-							<title>Different</title>
-							<para>The result of the expression X!=Y.</para>
-						</section>
+				</section>
+				<section id="Logical_Operators">
+					<title>Logical Operators</title>
+					<para>Logical operators allow comparison between values. They are typically used in Query terms but may be used in Evaluate actions as well.</para>
+					<section id="Not">
+						<title>Not</title>
+						<para>The result of the expression !X.</para>
 					</section>
-					<section id="Numeric_Operators">
-						<title>Numeric Operators</title>
-						<section id="Negative_Value">
-							<title>Negative Value</title>
-							<para>The result of the expression -X.</para>
-						</section>
-						<section id="Add">
-							<title>Add</title>
-							<para>The result of the expression X+Y.</para>
-						</section>
-						<section id="Subtract">
-							<title>Subtract</title>
-							<para>The result of the expression X-Y.</para>
-						</section>
-						<section id="Multiply">
-							<title>Multiply</title>
-							<para>The result of the expression X*Y.</para>
-						</section>
-						<section id="Divide">
-							<title>Divide</title>
-							<para>The result of the expression X/Y.</para>
-						</section>
-						<section id="Power">
-							<title>Power</title>
-							<para>The result of the expression X^Y.</para>
-						</section>
-						<section id="Modulo">
-							<title>Modulo</title>
-							<para>The result of the expression X%Y.</para>
-						</section>
-						<section id="Increment">
-							<title>Increment</title>
-							<para>The result of the expression ++X.</para>
-						</section>
-						<section id="Decrement">
-							<title>Decrement</title>
-							<para>The result of the expression --X.</para>
-						</section>
-						<section id="Unit_Value">
-							<title>Unit Value</title>
-							<para>The result of the expression 1.</para>
-						</section>
-						<section id="Zero_Value">
-							<title>Zero Value</title>
-							<para>The result of the expression 0.</para>
-						</section>
-						<section id="Original_Value">
-							<title>Original Value</title>
-							<para>The result of the expression o.</para>
-						</section>
+					<section id="Equal">
+						<title>Equal</title>
+						<para>The result of the expression X==Y.</para>
 					</section>
-					<section id="Math">
-						<title>Math</title>
-						<para>The math functions use the extremely well specified and tested routines form the Java Math library. (Because of copyright restrictions, we aren't able to include the exact definitions here. Click on the links to get more details on each function.)</para>
-						<section id="Sine">
-							<title>Sine</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sin(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sin(double)</ulink>
-							</para>
-						</section>
-						<section id="Cosine">
-							<title>Cosine</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cos(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cos(double)</ulink>
-							</para>
-						</section>
-						<section id="Tangent">
-							<title>Tangent</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tan(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tan(double)</ulink>
-							</para>
-						</section>
-						<section id="Arc_Sine">
-							<title>Arc Sine</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#asin(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#asin(double)</ulink>
-							</para>
-						</section>
-						<section id="Arc_Cosine">
-							<title>Arc Cosine</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#acos(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#acos(double)</ulink>
-							</para>
-						</section>
-						<section id="Arc_Tangent">
-							<title>Arc Tangent</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan(double)</ulink>
-							</para>
-						</section>
-						<section id="Convert_Degree_to_Radians">
-							<title>Convert Degree to Radians</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toRadians(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toRadians(double)</ulink>
-							</para>
-						</section>
-						<section id="Convert_Radians_to_Degrees">
-							<title>Convert Radians to Degrees</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toDegrees(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toDegrees(double)</ulink>
-							</para>
-						</section>
-						<section id="Exp">
-							<title>Exp</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#exp(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#exp(double)</ulink>
-							</para>
-						</section>
-						<section id="Log">
-							<title>Log</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log(double)</ulink>
-							</para>
-						</section>
-						<section id="Log_b10">
-							<title>Log b10</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log10(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log10(double)</ulink>
-							</para>
-						</section>
-						<section id="Square_Root">
-							<title>Square Root</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#squareRoot(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#squareRoot(double)</ulink>
-							</para>
-						</section>
-						<section id="Cube_Root">
-							<title>Cube Root</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cbrt(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cbrt(double)</ulink>
-							</para>
-						</section>
-						<section id="Remainder">
-							<title>Remainder</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#iEEEremainder(double,%20double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#iEEEremainder(double,%20double)</ulink>
-							</para>
-						</section>
-						<section id="Ceiling">
-							<title>Ceiling</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ceil(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ceil(double)</ulink>
-							</para>
-						</section>
-						<section id="Floor">
-							<title>Floor</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#floor(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#floor(double)</ulink>
-							</para>
-						</section>
-						<section id="Rount">
-							<title>Rount</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#rint(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#rint(double)</ulink>
-							</para>
-						</section>
-						<section id="Arc_Tangent_Rectangular">
-							<title>Arc Tangent Rectangular</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan2(double,%20double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan2(double,%20double)</ulink>
-							</para>
-						</section>
-						<section id="Power_2">
-							<title>Power</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#pow(double,%20double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#pow(double,%20double)</ulink>
-							</para>
-						</section>
-						<section id="Absolute_Value">
-							<title>Absolute Value</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#abs(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#abs(double)</ulink>
-							</para>
-						</section>
-						<section id="Maximum">
-							<title>Maximum</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#max(double,%20double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#max(double,%20double)</ulink>
-							</para>
-						</section>
-						<section id="Minimum">
-							<title>Minimum</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#min(double,%20double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#min(double,%20double)</ulink>
-							</para>
-						</section>
-						<section id="ULP">
-							<title>ULP</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ulp(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ulp(double)</ulink>
-							</para>
-						</section>
-						<section id="Sign">
-							<title>Sign</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#signum(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#signum(double)</ulink>
-							</para>
-						</section>
-						<section id="Hyperbolic_Sine">
-							<title>Hyperbolic Sine</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sinh(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sinh(double)</ulink>
-							</para>
-						</section>
-						<section id="Hyperbolic_Cosine">
-							<title>Hyperbolic Cosine</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cosh(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cosh(double)</ulink>
-							</para>
-						</section>
-						<section id="Hyperbolic_Tan">
-							<title>Hyperbolic Tan</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tanh(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tanh(double)</ulink>
-							</para>
-						</section>
-						<section id="Hypotuneuse">
-							<title>Hypotuneuse</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#hypotuneuse(double,%20double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#hypotuneuse(double,%20double)</ulink>
-							</para>
-						</section>
-						<section id="Expm1">
-							<title>Expm1</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#expm1(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#expm1(double)</ulink>
-							</para>
-						</section>
-						<section id="Log1p">
-							<title>Log1p</title>
-							<para>See JavaDoc: 
-								<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log1p(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log1p(double)</ulink>
-							</para>
-						</section>
+					<section id="Identical">
+						<title>Identical</title>
+						<para>The result of the expression X==Y.</para>
+					</section>
+					<section id="Greater">
+						<title>Greater</title>
+						<para>The result of the expression X&gt;Y.</para>
+					</section>
+					<section id="Lesser">
+						<title>Lesser</title>
+						<para>The result of the expression X&lt;Y.</para>
+					</section>
+					<section id="Greater_or_Equal">
+						<title>Greater or Equal</title>
+						<para>The result of the expression X&gt;=Y.</para>
+					</section>
+					<section id="Lesser_or_Equal">
+						<title>Lesser or Equal</title>
+						<para>The result of the expression X&lt;=Y.</para>
+					</section>
+					<section id="True">
+						<title>True</title>
+						<para>The result of the expression true.</para>
+					</section>
+					<section id="False">
+						<title>False</title>
+						<para>The result of the expression false.</para>
+					</section>
+					<section id="Identity">
+						<title>Identity</title>
+						<para>The result of the expression X.</para>
+					</section>
+					<section id="Different">
+						<title>Different</title>
+						<para>The result of the expression X!=Y.</para>
+					</section>
+				</section>
+				<section id="Numeric_Operators">
+					<title>Numeric Operators</title>
+					<para>Numeric operators support all of the basic operators used in evaluations.</para>
+					<section id="Negative_Value">
+						<title>Negative Value</title>
+						<para>The result of the expression -X.</para>
+					</section>
+					<section id="Add">
+						<title>Add</title>
+						<para>The result of the expression X+Y.</para>
+					</section>
+					<section id="Subtract">
+						<title>Subtract</title>
+						<para>The result of the expression X-Y.</para>
+					</section>
+					<section id="Multiply">
+						<title>Multiply</title>
+						<para>The result of the expression X*Y.</para>
+					</section>
+					<section id="Divide">
+						<title>Divide</title>
+						<para>The result of the expression X/Y.</para>
+					</section>
+					<section id="Power">
+						<title>Power</title>
+						<para>The result of the expression X^Y.</para>
+					</section>
+					<section id="Modulo">
+						<title>Modulo</title>
+						<para>The result of the expression X%Y.</para>
+					</section>
+					<section id="Increment">
+						<title>Increment</title>
+						<para>The result of the expression ++X.</para>
+					</section>
+					<section id="Decrement">
+						<title>Decrement</title>
+						<para>The result of the expression --X.</para>
+					</section>
+					<section id="Unit_Value">
+						<title>Unit Value</title>
+						<para>The result of the expression 1.</para>
+					</section>
+					<section id="Zero_Value">
+						<title>Zero Value</title>
+						<para>The result of the expression 0.</para>
+					</section>
+					<section id="Original_Value">
+						<title>Original Value</title>
+						<para>The result of the expression o.</para>
+					</section>
+				</section>
+				<section id="Spatial">
+					<title>Spatial</title>
+					<para>Spatial functions provide the core functionality for Agent Models. Spatial functions are polymorphic, which basically means that they don't care what space they are operating on as long as that space is suitable for them. Spatial functions are designed to collaborate with one another. For example, by intersecting the "Neighbor", "Available" and "Toward" functions, we can design a rule that causes the agent to move to the next neighboring cell that get's it closer to some target agent. See the function details for more information.</para>
+					<section id="Nearest">
+						<title>Nearest</title>
+						<para>Represents the nearest agents (including gird cells) or locations to this agent. If more than one agent or location is the same distance away they will all be considered. Note that while this function is defined for the selection of an agent, the result of this function is defined by the context within which it is used. If the selection specifies another agent within a space, this function will represent the nearest agent in that space. If the selection specifies a Cell within a grid space, this function will represent that cell.</para>
+					</section>
+					<section id="Toward">
+						<title>Toward</title>
+						<para>Represents a location that is on the shortest path to a particular agent or location from the source agent (that is, the selection's selection's agent). This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction towards some objective.</para>
+					</section>
+					<section id="Within_4">
+						<title>Within</title>
+						<para>Represents a limit to the distance of a spatial search. When used in combination with other spatial functions such as "nearest" requires that all agents or locations must be within the distance specified by the input value.</para>
+						<literallayout format="linespecific" class="normal">Inputs:
+[Numeral] 
+</literallayout>
+					</section>
+					<section id="Neighbor">
+						<title>Neighbor</title>
+						<para>Represents any agents that are nearest neighbors to the agent, that is nominally of distance 1. This function is only relevant in discrete spaces -- grids and networks -- where there are immediate neighboring cells as defined by the geometry of the selection's space.</para>
+					</section>
+					<section id="Include_Self">
+						<title>Include Self</title>
+						<para>Specifies whether the agent that we are searching from -- that is, the agent of the selection for this Query Action's selection -- is included in the results of the search.</para>
+					</section>
+					<section id="Within_2D_Boundary">
+						<title>Within 2D Boundary</title>
+						<para>Represents agents or locations that exist within the boundary specified by the inputs.</para>
+						<literallayout format="linespecific" class="normal">Inputs:
+[Numeral] 
+</literallayout>
+					</section>
+					<section id="Here">
+						<title>Here</title>
+						<para>Represents the location of the searching agent. For example, if a selection is defined for an agent cell, and that selection's selection's agent is an occupant of a cell, the cell that the agent is occupying will be used. </para>
+					</section>
+					<section id="Available">
+						<title>Available</title>
+						<para>Represents cells which are not currently occupied. This function is only relevant for grids which are not multi-occupant.</para>
+					</section>
+					<section id="Distance">
+						<title>Distance</title>
+						<para>The distance between the source agent and an agent represented by this selection. If more than one agent is represented by the other functions in the selection, this function will the distance to an arbitrary (randomly selected) agent as defined by those other functions.</para>
+						<literallayout format="linespecific" class="normal">Outputs:
+[Real] 
+</literallayout>
+					</section>
+					<section id="Away">
+						<title>Away</title>
+						<para>Represents a location that is on the path that will take the source agent (that is, the selection's selection's agent) the farthest distance from the agent(s) represented by the search. This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction away from some location or agent.</para>
+					</section>
+					<section id="Minimize">
+						<title>Minimize</title>
+						<para>Finds the agent with the lowest value for the specified input. For example, if we created a Select for HeatCell, created a Minimize Query Term with Heat as the input Query Term, created Neighbor and Available Query Terms and set an Intersect as the target for all of those Queries, the result would be the the neighboring available cell with the lowest heat level.</para>
+						<literallayout format="linespecific" class="normal">Inputs:
+[Real] The value we will minimize for.
+</literallayout>
+					</section>
+					<section id="Maximize">
+						<title>Maximize</title>
+						<para>Finds the agent with the highest value for the specified input. For example, if we created a Select for HeatCell, created a Maximize Query Term with Heat as the input Query Term, created Neighbor and Available Query Terms and set an Intersect as the target for all of those Queries, the result would be the the neighboring available cell with the highest heat level.</para>
+						<literallayout format="linespecific" class="normal">Inputs:
+[Real] The value we will maximize for.
+</literallayout>
+					</section>
+					<section id="Location_2D">
+						<title>Location 2D</title>
+						<para>Represents the location of the current agent for use in subsequent selections.</para>
+						<literallayout format="linespecific" class="normal">Inputs:
+[Real] 
+[Real] 
+</literallayout>
+					</section>
+					<section id="Boundary_2D">
+						<title>Boundary 2D</title>
+						<para>Represents a two-dimensional boundary within a space. (Not currently relevant for any general usages.)</para>
+						<literallayout format="linespecific" class="normal">Outputs:
+[Real] 
+[Real] 
+</literallayout>
+					</section>
+					<section id="All">
+						<title>All</title>
+						<para>Causes all agents that meet the other query terms to be included in a selection. Without this query term, a single random agent is picked out of all agents matching the query terms.</para>
 					</section>
 				</section>
 				<section id="Random">
 					<title>Random</title>
-					<section id="Design">
-						<title>Design</title>
-						<para>Random functions are especially significant for agent models. Of particular interest are the weighted membership and random state and boolean value functions. You should be familiar with these functions so that you don't have to create more complex Action flows to accomplish the same thing.</para>
-						<para>Note that we only have support for uniform distributions as of this release. We're working on a collaborative design for evaluations that allow easy mixing and matching of random functions and distributions.</para>
-					</section>
-					<section id="Details_6">
-						<title>Details</title>
-						<section id="Random_In_Range">
-							<title>Random In Range</title>
-							<para>A pseudo-random value within that numeric range specified as drawn from a uniform distribution. The minimum values are inclusive. The maximum values are inclusive for integer inputs and exclusive for Real inputs.</para>
-							<literallayout format="linespecific" class="normal">Inputs:
+					<para>Random functions are especially significant for agent models. Of particular interest are the weighted membership and random state and boolean value functions. You should be familiar with these functions so that you don't have to create more complex Action flows to accomplish the same thing.</para>
+					<para>Note that we only have support for uniform distributions as of this release. We're working on a collaborative design for evaluations that allow easy mixing and matching of random functions and distributions.</para>
+					<section id="Random_In_Range">
+						<title>Random In Range</title>
+						<para>A pseudo-random value within that numeric range specified as drawn from a uniform distribution. The minimum values are inclusive. The maximum values are inclusive for integer inputs and exclusive for Real inputs.</para>
+						<literallayout format="linespecific" class="normal">Inputs:
 [Numeral] The minimum value (inclusive).
 [Numeral] The maximum value (inclusive).
 Outputs:
 [Numeral] The random number.
 </literallayout>
-						</section>
-						<section id="Random_To_Limit">
-							<title>Random To Limit</title>
-							<para>A pseudo-random value between zero and the value specified by the (non-zero) input and drawn from a uniform range. That value is inclusive for Integers and exclusive for Reals. (Note that as with the random in range function in the context of real numbers the distinction between an exclusive and inclusive limit is essentially meaningless.)</para>
-							<literallayout format="linespecific" class="normal">Inputs:
+					</section>
+					<section id="Random_To_Limit">
+						<title>Random To Limit</title>
+						<para>A pseudo-random value between zero and the value specified by the (non-zero) input and drawn from a uniform range. That value is inclusive for Integers and exclusive for Reals. (Note that as with the random in range function in the context of real numbers the distinction between an exclusive and inclusive limit is essentially meaningless.)</para>
+						<literallayout format="linespecific" class="normal">Inputs:
 [Numeral] The maximum value (inclusive).
 Outputs:
 [Numeral] The result.
 </literallayout>
-						</section>
-						<section id="Random_Unit">
-							<title>Random Unit</title>
-							<para>A pseudo-random Real value between 0 and 1 drawn from a uniform distribution. (The distinction between inclusive and exclusive range is essentially meaningless in this context and we can assume that the result will never be greater or equal to 1.)</para>
-							<literallayout format="linespecific" class="normal">Outputs:
+					</section>
+					<section id="Random_Unit">
+						<title>Random Unit</title>
+						<para>A pseudo-random Real value between 0 and 1 drawn from a uniform distribution. (The distinction between inclusive and exclusive range is essentially meaningless in this context and we can assume that the result will never be greater or equal to 1.)</para>
+						<literallayout format="linespecific" class="normal">Outputs:
 [Real] 
 </literallayout>
-						</section>
-						<section id="Random_Boolean">
-							<title>Random Boolean</title>
-							<para>A value that is randomly true or false, i.e. a fair coin toss.</para>
-						</section>
-						<section id="Random_Weighted">
-							<title>Random Weighted</title>
-							<para>An indexed value weighted against a probability distribution. The total probability must sum to 1.0. For example, an input of {.1,.2,.7} under a uniform distribution would would have 10% probability of producing "0" , 20%  for "1" and 70% for "2". This function can then be used with Item to return a biased result from another list.</para>
-							<literallayout format="linespecific" class="normal">Inputs:
+					</section>
+					<section id="Random_Boolean">
+						<title>Random Boolean</title>
+						<para>A value that is randomly true or false, i.e. a fair coin toss.</para>
+					</section>
+					<section id="Random_Weighted">
+						<title>Random Weighted</title>
+						<para>An indexed value weighted against a probability distribution. The total probability must sum to 1.0. For example, an input of {.1,.2,.7} under a uniform distribution would would have 10% probability of producing "0" , 20%  for "1" and 70% for "2". This function can then be used with Item to return a biased result from another list.</para>
+						<literallayout format="linespecific" class="normal">Inputs:
 [Real] A list of values that will determine the resulting weighted index.
 Outputs:
 [Integer] A resulting indexed value bounded by 0 and the length of the input list - 1.
 </literallayout>
-						</section>
-						<section id="Random_Member">
-							<title>Random Member</title>
-							<para>Represents a random value drawn from the set of Real values specified.</para>
-							<literallayout format="linespecific" class="normal">Inputs:
+					</section>
+					<section id="Random_Member">
+						<title>Random Member</title>
+						<para>Represents a random value drawn from the set of Real values specified.</para>
+						<literallayout format="linespecific" class="normal">Inputs:
 [Real] Returns a random member of the supplied list of numbers.
 Outputs:
 [Generic] The value of the item at a random index.
 </literallayout>
-						</section>
-						<section id="Random_State">
-							<title>Random State</title>
-							<para>A random specified value (option) from the specified state.</para>
-							<literallayout format="linespecific" class="normal">Inputs:
+					</section>
+					<section id="Random_State">
+						<title>Random State</title>
+						<para>A random specified value (option) from the specified state.</para>
+						<literallayout format="linespecific" class="normal">Inputs:
 [Generic] The state to select items from. All items are included.
 Outputs:
-[Boolean] The resulting option. 
+[Integer] The resulting option. 
 </literallayout>
-						</section>
 					</section>
 				</section>
-				<section id="Space_3">
-					<title>Space</title>
-					<section id="Design_2">
-						<title>Design</title>
-						<para>Spatial functions provide the core functionality for Agent Models. Spatial functions are polymorphic, which basically means that they don't care what space they are operating on as long as that space is suitable for them. Spatial functions are designed to collaborate with one another. For example, by intersecting the "Neighbor", "Available" and "Toward" functions, we can design a rule that causes the agent to move to the next neighboring cell that get's it closer to some target agent. See the function details for more information.</para>
+				<section id="Graphic">
+					<title>Graphic</title>
+					<para>Graphic functions are combined within Style Evaluate Actions to determine how to draw an agent within a visualization. One nice aspect of this approach is that the same style definition can be used in multiple places without changing any code. For example, the same style could be used to draw an agent on a two-dimensional grid within Escape, a three-dimensional shape within Escape, a Java Swing based visualization in Ascape, and an XML configured visualizaiton in Repast Simphony.</para>
+					<para>To define a graphic style for an agent, design a flow in which you create Evaluate Actions for color and shape, and then create an Evaluate Action with the graphic fill or outline function as a target of these.</para>
+					<section id="Shape_Oval">
+						<title>Shape Oval</title>
+						<para>Draw a generic oval.</para>
 					</section>
-					<section id="Details_7">
-						<title>Details</title>
-						<section id="Nearest">
-							<title>Nearest</title>
-							<para>Represents the nearest agents (including gird cells) or locations to this agent. If more than one agent or location is the same distance away they will all be considered. Note that while this function is defined for the selection of an agent, the result of this function is defined by the context within which it is used. If the selection specifies another agent within a space, this function will represent the nearest agent in that space. If the selection specifies a Cell within a grid space, this function will represent that cell.</para>
-						</section>
-						<section id="Toward">
-							<title>Toward</title>
-							<para>Represents a location that is on the shortest path to a particular agent or location from the source agent (that is, the selection's selection's agent). This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction towards some objective.</para>
-						</section>
-						<section id="Within_4">
-							<title>Within</title>
-							<para>Represents a limit to the distance of a spatial search. When used in combination with other spatial functions such as "nearest" requires that all agents or locations must be within the distance specified by the input value.</para>
-							<literallayout format="linespecific" class="normal">Inputs:
-[Numeral] 
-</literallayout>
-						</section>
-						<section id="Neighbor">
-							<title>Neighbor</title>
-							<para>Represents any agents that are nearest neighbors to the agent, that is nominally of distance 1. This function is only relevant in discrete spaces -- grids and networks -- where there are immediate neighboring cells as defined by the geometry of the selection's space.</para>
-						</section>
-						<section id="Include_Self">
-							<title>Include Self</title>
-							<para>Specifies whether the agent that we are searching from -- that is, the agent of the selection for this Query Action's selection -- is included in the results of the search.</para>
-						</section>
-						<section id="Within_2D_Boundary">
-							<title>Within 2D Boundary</title>
-							<para>Represents agents or locations that exist within the boundary specified by the inputs.</para>
-							<literallayout format="linespecific" class="normal">Inputs:
-[Numeral] 
-</literallayout>
-						</section>
-						<section id="Here">
-							<title>Here</title>
-							<para>Represents the location of the searching agent. For example, if a selection is defined for an agent cell, and that selection's selection's agent is an occupant of a cell, the cell that the agent is occupying will be used. </para>
-						</section>
-						<section id="Available">
-							<title>Available</title>
-							<para>Represents cells which are not currently occupied. This function is only relevant for grids which are not multi-occupant.</para>
-						</section>
-						<section id="Distance">
-							<title>Distance</title>
-							<para>The distance between the source agent and an agent represented by this selection. If more than one agent is represented by the other functions in the selection, this function will the distance to an arbitrary (randomly selected) agent as defined by those other functions.</para>
-							<literallayout format="linespecific" class="normal">Outputs:
-[Real] 
-</literallayout>
-						</section>
-						<section id="Away">
-							<title>Away</title>
-							<para>Represents a location that is on the path that will take the source agent (that is, the selection's selection's agent) the farthest distance from the agent(s) represented by the search. This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction away from some location or agent.</para>
-						</section>
-						<section id="Minimize">
-							<title>Minimize</title>
-							<para>This function is not currently supported.</para>
-						</section>
-						<section id="Maximize">
-							<title>Maximize</title>
-							<para>This function is not currently supported.</para>
-						</section>
-						<section id="Location_2D">
-							<title>Location 2D</title>
-							<para>Represents the location of the current agent for use in subsequent selections.</para>
-							<literallayout format="linespecific" class="normal">Inputs:
-[Real] 
-[Real] 
-</literallayout>
-						</section>
-						<section id="Boundary_2D">
-							<title>Boundary 2D</title>
-							<para>Represents a two-dimensional boundary within a space. (Not currently relevant for any general usages.)</para>
-							<literallayout format="linespecific" class="normal">Outputs:
-[Real] 
-[Real] 
-</literallayout>
-						</section>
+					<section id="Shape_Rectangle">
+						<title>Shape Rectangle</title>
+						<para>Draws a rectangular shape.</para>
 					</section>
-					<section id="Example_2">
-						<title>Example</title>
-						<para>For examples of how spatial functions can be used within action flows to provide agents with complex movement behaviors, see the Modelers Guide actions examples. In the following example from that section, we define an action that causes a partner agent to move to an available neighboring space.</para>
-						<para>
-							<mediaobject>
-								<imageobject>
-									<imagedata fileref="images/actions/ActionsExampleNew.png" scale="50"/>
-								</imageobject>
-							</mediaobject>
-						</para>
+					<section id="Shape_Inset">
+						<title>Shape Inset</title>
+						<para>Shrinks the current shape by the input amount. (The overall scale is currently unspecified, but in most implementations should be 20.)</para>
+						<literallayout format="linespecific" class="normal">Inputs:
+[Integer] Number of nominal pixels to inset.
+</literallayout>
+					</section>
+					<section id="Shape_Marker">
+						<title>Shape Marker</title>
+						<para>Draw a marker, that is a graphical indicator that can be used to add an additional que about the object state. For example, in a two-dimensional graphics representation this might be a small shape drawn inset at the corner of the larger shape. </para>
+					</section>
+					<section id="Shape_Marker_2">
+						<title>Shape Marker 2</title>
+						<para>Represents a marker placed in a different location from the other shape markers.</para>
+					</section>
+					<section id="Shape_Marker_3">
+						<title>Shape Marker 3</title>
+						<para>Represents a marker placed in a different location from the other shape markers.</para>
+					</section>
+					<section id="Color_RGB">
+						<title>Color RGB</title>
+						<para>A color specified by the three inputs for Red, Green and Blue color components. Those inputs are expected to be in the range 0..1.</para>
+						<literallayout format="linespecific" class="normal">Inputs:
+[Real] A value from 0.0 to 1.0.
+[Real] A value from 0.0 to 1.0.
+[Real] A value from 0.0 to 1.0.
+</literallayout>
+					</section>
+					<section id="Color_Red">
+						<title>Color Red</title>
+						<para>The color red.</para>
+					</section>
+					<section id="Color_Yellow">
+						<title>Color Yellow</title>
+						<para>The color yellow.</para>
+					</section>
+					<section id="Color_Blue">
+						<title>Color Blue</title>
+						<para>The color blue.</para>
+					</section>
+					<section id="Color_Orange">
+						<title>Color Orange</title>
+						<para>The color orange.</para>
+					</section>
+					<section id="Color_Green">
+						<title>Color Green</title>
+						<para>The color green.</para>
+					</section>
+					<section id="Color_Purple">
+						<title>Color Purple</title>
+						<para>The color purple.</para>
+					</section>
+					<section id="Color_Black">
+						<title>Color Black</title>
+						<para>The color black.</para>
+					</section>
+					<section id="Color_White">
+						<title>Color White</title>
+						<para>The color white.</para>
+					</section>
+					<section id="Color_Gray">
+						<title>Color Gray</title>
+						<para>The color gray.</para>
+					</section>
+					<section id="Graphic_Outline">
+						<title>Graphic Outline</title>
+						<para>Draws an outline of the last evaluated shape, using the last specified color or the default color (usually black) if none has been specified.</para>
+					</section>
+					<section id="Graphic_Fill">
+						<title>Graphic Fill</title>
+						<para>Fills the last evaluated shape with the last specified color or the default color (usually black) if none has been specified.</para>
 					</section>
 				</section>
 				<section id="Time">
 					<title>Time</title>
-					<section id="Details_8">
-						<title>Details</title>
-						<section id="Now">
-							<title>Now</title>
-							<para>The current simulation period, that is the number of iterations that the model has gone through, or in the case of models with callibrarted time, the number of iterations added to the model's nominal start time.</para>
-							<literallayout format="linespecific" class="normal">Outputs:
+					<para>Time functions return values related to model execution time. </para>
+					<section id="Now">
+						<title>Now</title>
+						<para>The current simulation period, that is the number of iterations that the model has gone through, or in the case of models with callibrarted time, the number of iterations added to the model's nominal start time.</para>
+						<literallayout format="linespecific" class="normal">Outputs:
 [Integer] The current period.
 </literallayout>
-						</section>
 					</section>
 				</section>
-				<section id="Graphics">
-					<title>Graphics</title>
-					<section id="Design_3">
-						<title>Design</title>
-						<para>Graphic functions are combined within Style Evaluate Actions to determine how to draw an agent within a visualization. One nice aspect of this approach is that the same style definition can be used in multiple places without changing any code. For example, the same style could be used to draw an agent on a two-dimensional grid within Escape, a three-dimensional shape within Escape, a Java Swing based visualization in Ascape, and an XML configured visualizaiton in Repast Simphony.</para>
-						<para>To define a graphic style for an agent, design a flow in which you create Evaluate Actions for color and shape, and then create an Evaluate Action with the graphic fill or outline function as a target of these.</para>
-					</section>
-					<section id="Details_9">
-						<title>Details</title>
-						<section id="Shape_Oval">
-							<title>Shape Oval</title>
-							<para>Draw a generic oval.</para>
-						</section>
-						<section id="Shape_Rectangle">
-							<title>Shape Rectangle</title>
-							<para>Draws a rectangular shape.</para>
-						</section>
-						<section id="Shape_Inset">
-							<title>Shape Inset</title>
-							<para>Shrinks the current shape by the input amount. (The overall scale is currently unspecified, but in most implementations should be 20.)</para>
-							<literallayout format="linespecific" class="normal">Inputs:
-[Integer] Number of nominal pixels to inset.
-</literallayout>
-						</section>
-						<section id="Shape_Marker">
-							<title>Shape Marker</title>
-							<para>Draw a marker, that is a graphical indicator that can be used to add an additional cue about the object state. For example, in a two-dimensional graphics representation this might be a small shape drawn inset at the corner of the larger shape. </para>
-						</section>
-						<section id="Shape_Marker_2">
-							<title>Shape Marker 2</title>
-							<para>Represents a marker placed in a different location from the other shape markers.</para>
-						</section>
-						<section id="Shape_Marker_3">
-							<title>Shape Marker 3</title>
-							<para>Represents a marker placed in a different location from the other shape markers.</para>
-						</section>
-						<section id="Color_RGB">
-							<title>Color RGB</title>
-							<para>A color specified by the three inputs for Red, Green and Blue color components. Those inputs are expected to be in the range 0..1.</para>
-							<literallayout format="linespecific" class="normal">Inputs:
-[Real] A value from 0.0 to 1.0.
-[Real] A value from 0.0 to 1.0.
-[Real] A value from 0.0 to 1.0.
-</literallayout>
-						</section>
-						<section id="Color_Red">
-							<title>Color Red</title>
-							<para>The color red.</para>
-						</section>
-						<section id="Color_Yellow">
-							<title>Color Yellow</title>
-							<para>The color yellow.</para>
-						</section>
-						<section id="Color_Blue">
-							<title>Color Blue</title>
-							<para>The color blue.</para>
-						</section>
-						<section id="Color_Orange">
-							<title>Color Orange</title>
-							<para>The color orange.</para>
-						</section>
-						<section id="Color_Green">
-							<title>Color Green</title>
-							<para>The color green.</para>
-						</section>
-						<section id="Color_Purple">
-							<title>Color Purple</title>
-							<para>The color purple.</para>
-						</section>
-						<section id="Color_Black">
-							<title>Color Black</title>
-							<para>The color black.</para>
-						</section>
-						<section id="Color_White">
-							<title>Color White</title>
-							<para>The color white.</para>
-						</section>
-						<section id="Color_Gray">
-							<title>Color Gray</title>
-							<para>The color gray.</para>
-						</section>
-						<section id="Graphic_Outline">
-							<title>Graphic Outline</title>
-							<para>Draws an outline of the last evaluated shape, using the last specified color or the default color (usually black) if none has been specified.</para>
-						</section>
-						<section id="Graphic_Fill">
-							<title>Graphic Fill</title>
-							<para>Fills the last evaluated shape with the last specified color or the default color (usually black) if none has been specified.</para>
-						</section>
-					</section>
-					<section id="Example_3">
-						<title>Example</title>
-						<para>In the following action flow for the epidemic style, we've create Query Actions to determine each agent's current state, picked a color based on that, and then used a shared target to select a shape for the agent style and fill it:</para>
-						<para>
-							<mediaobject>
-								<imageobject>
-									<imagedata fileref="images/functions/GraphicsFunctionExampleDesign.png" scale="50"/>
-								</imageobject>
-							</mediaobject>
+				<section id="Math">
+					<title>Math</title>
+					<para>The math functions use the extremely well specified and tested routines form the Java Math library. (Because of copyright restrictions, we aren't able to include the exact definitions here. Click on the links to get more details on each function.)</para>
+					<section id="Sine">
+						<title>Sine</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sin(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sin(double)</ulink>
 						</para>
-						<para>After saving the model we can execute the two and three dimensional visualizations. Note something really nice -- even the charts have used the colors we've defined!</para>
-						<para>
-							<mediaobject>
-								<imageobject>
-									<imagedata fileref="images/functions/GraphicsFunctionExampleRun.png" scale="50"/>
-								</imageobject>
-							</mediaobject>
+					</section>
+					<section id="Cosine">
+						<title>Cosine</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cos(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cos(double)</ulink>
+						</para>
+					</section>
+					<section id="Tangent">
+						<title>Tangent</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tan(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tan(double)</ulink>
+						</para>
+					</section>
+					<section id="Arc_Sine">
+						<title>Arc Sine</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#asin(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#asin(double)</ulink>
+						</para>
+					</section>
+					<section id="Arc_Cosine">
+						<title>Arc Cosine</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#acos(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#acos(double)</ulink>
+						</para>
+					</section>
+					<section id="Arc_Tangent">
+						<title>Arc Tangent</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan(double)</ulink>
+						</para>
+					</section>
+					<section id="Convert_Degree_to_Radians">
+						<title>Convert Degree to Radians</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toRadians(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toRadians(double)</ulink>
+						</para>
+					</section>
+					<section id="Convert_Radians_to_Degrees">
+						<title>Convert Radians to Degrees</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toDegrees(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toDegrees(double)</ulink>
+						</para>
+					</section>
+					<section id="Exp">
+						<title>Exp</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#exp(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#exp(double)</ulink>
+						</para>
+					</section>
+					<section id="Log">
+						<title>Log</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log(double)</ulink>
+						</para>
+					</section>
+					<section id="Log_b10">
+						<title>Log b10</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log10(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log10(double)</ulink>
+						</para>
+					</section>
+					<section id="Square_Root">
+						<title>Square Root</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#squareRoot(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#squareRoot(double)</ulink>
+						</para>
+					</section>
+					<section id="Cube_Root">
+						<title>Cube Root</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cbrt(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cbrt(double)</ulink>
+						</para>
+					</section>
+					<section id="Remainder">
+						<title>Remainder</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#iEEEremainder(double,%20double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#iEEEremainder(double,%20double)</ulink>
+						</para>
+					</section>
+					<section id="Ceiling">
+						<title>Ceiling</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ceil(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ceil(double)</ulink>
+						</para>
+					</section>
+					<section id="Floor">
+						<title>Floor</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#floor(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#floor(double)</ulink>
+						</para>
+					</section>
+					<section id="Rount">
+						<title>Rount</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#rint(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#rint(double)</ulink>
+						</para>
+					</section>
+					<section id="Arc_Tangent_Rectangular">
+						<title>Arc Tangent Rectangular</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan2(double,%20double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan2(double,%20double)</ulink>
+						</para>
+					</section>
+					<section id="Power_2">
+						<title>Power</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#pow(double,%20double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#pow(double,%20double)</ulink>
+						</para>
+					</section>
+					<section id="Absolute_Value">
+						<title>Absolute Value</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#abs(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#abs(double)</ulink>
+						</para>
+					</section>
+					<section id="Maximum">
+						<title>Maximum</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#max(double,%20double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#max(double,%20double)</ulink>
+						</para>
+					</section>
+					<section id="Minimum">
+						<title>Minimum</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#min(double,%20double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#min(double,%20double)</ulink>
+						</para>
+					</section>
+					<section id="ULP">
+						<title>ULP</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ulp(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ulp(double)</ulink>
+						</para>
+					</section>
+					<section id="Sign">
+						<title>Sign</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#signum(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#signum(double)</ulink>
+						</para>
+					</section>
+					<section id="Hyperbolic_Sine">
+						<title>Hyperbolic Sine</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sinh(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sinh(double)</ulink>
+						</para>
+					</section>
+					<section id="Hyperbolic_Cosine">
+						<title>Hyperbolic Cosine</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cosh(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cosh(double)</ulink>
+						</para>
+					</section>
+					<section id="Hyperbolic_Tan">
+						<title>Hyperbolic Tan</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tanh(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tanh(double)</ulink>
+						</para>
+					</section>
+					<section id="Hypotuneuse">
+						<title>Hypotuneuse</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#hypotuneuse(double,%20double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#hypotuneuse(double,%20double)</ulink>
+						</para>
+					</section>
+					<section id="Expm1">
+						<title>Expm1</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#expm1(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#expm1(double)</ulink>
+						</para>
+					</section>
+					<section id="Log1p">
+						<title>Log1p</title>
+						<para>See JavaDoc: 
+							<ulink url="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log1p(double)">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log1p(double)</ulink>
 						</para>
 					</section>
 				</section>
-				<section id="Lists">
-					<title>Lists</title>
-					<section id="Details_10">
-						<title>Details</title>
-						<section id="Item">
-							<title>Item</title>
-							<para>Returns the item at the specified index from the list of items provided. Those items will typically be input primitives such as Integer or Real values.</para>
-							<literallayout format="linespecific" class="normal">Inputs:
+				<section id="List">
+					<title>List</title>
+					<para>List functions are used for working with arrays and other functions that have lists as output.</para>
+					<section id="Item">
+						<title>Item</title>
+						<para>Returns the item at the specified index from the list of items provided. Those items will typically be input primitives such as Integer or Real values.</para>
+						<literallayout format="linespecific" class="normal">Inputs:
 [Generic] 
 [Integer] 
 Outputs:
 [Generic] 
 </literallayout>
-						</section>
-						<section id="Length">
-							<title>Length</title>
-							<para>The number of items in the provided list of items.</para>
-							<literallayout format="linespecific" class="normal">Inputs:
+					</section>
+					<section id="Length">
+						<title>Length</title>
+						<para>The number of items in the provided list of items.</para>
+						<literallayout format="linespecific" class="normal">Inputs:
 [Generic] 
 Outputs:
 [Integer] 
 </literallayout>
-						</section>
 					</section>
 				</section>
-				<section id="Attribute_Distributions">
-					<title>Attribute Distributions</title>
+				<section id="Distribution">
+					<title>Distribution</title>
 					<para>One of the most common tasks in the Agent Modeling process is the creation of agents with particular states drawn from a distribution. For example, you might want to create a number of agents with wealth randomly distributed between some minimum and maximum values. The distribution functions greatly ease the process of setting up those initializations and their associated parameters.</para>
-					<section id="Distribution">
-						<title>Distribution</title>
-						<section id="Uniform_Cross_Distribution">
-							<title>Uniform Cross Distribution</title>
-							<para>A random number taken from a distribution of values as defined by a cross of all values. (See Cross Distribution.) This funciton then returns a value drawn from the minimum and maximum values as determined by the current agent state. In the cross distribution, each of the values is treated independently so that an input attribute is created for every potential combination of states.</para>
-							<literallayout format="linespecific" class="normal">Inputs:
+					<section id="Uniform_Cross_Distribution">
+						<title>Uniform Cross Distribution</title>
+						<para>A random number taken from a distribution of values as defined by a cross of all values. (See Cross Distribution.) This funciton then returns a value drawn from the minimum and maximum values as determined by the current agent state. In the cross distribution, each of the values is treated independently so that an input attribute is created for every potential combination of states.</para>
+						<literallayout format="linespecific" class="normal">Inputs:
 [Generic] The list of states to factor into the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
 [Real] The set of attributes that will determine the minimum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
 [Real] The set of attributes that will determine the maximum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
 Outputs:
 [Real] The resulting random number based on the current agent state and the input parameters.
 </literallayout>
-						</section>
-						<section id="Uniform_Additive_Distribution">
-							<title>Uniform Additive Distribution</title>
-							<para>A random number taken from a distribution of values in which each of the minimum and maximum values are added to determine a total minimum and maximum value. (See Additive Distribution.) In the additive distribution, each of the values is treated as dependent on the others so that an input attribute is only created for each seperate state.</para>
-							<literallayout format="linespecific" class="normal">Inputs:
+					</section>
+					<section id="Uniform_Additive_Distribution">
+						<title>Uniform Additive Distribution</title>
+						<para>A random number taken from a distribution of values in which each of the minimum and maximum values are added to determine a total minimum and maximum value. (See Additive Distribution.) In the additive distribution, each of the values is treated as dependent on the others so that an input attribute is only created for each seperate state.</para>
+						<literallayout format="linespecific" class="normal">Inputs:
 [Generic] The list of states to factor into the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
 [Real] The set of attributes that will determine the minimum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
 [Real] The set of attributes that will determine the maximum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
 Outputs:
 [Real] The resulting random number based on the current agent state and the input parameters.
 </literallayout>
-						</section>
-						<section id="Cross_Distribution">
-							<title>Cross Distribution</title>
-							<para>A value taken from a set of (auto-generated) attributes based on the value of each state included. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create separate input attributes for AI, AII, BI and BII. Then for an agent with States A and II this function would return the value specified by the AII input attribute.</para>
-							<literallayout format="linespecific" class="normal">Inputs:
+					</section>
+					<section id="Cross_Distribution">
+						<title>Cross Distribution</title>
+						<para>A value taken from a set of (auto-generated) attributes based on the value of each state included. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create separate input attributes for AI, AII, BI and BII. Then for an agent with States A and II this function would return the value specified by the AII input attribute.</para>
+						<literallayout format="linespecific" class="normal">Inputs:
 [Generic] The list of states to factor into the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
 [Real] The set of attributes that when multiplied against each other will determine the value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
 Outputs:
 [Real] The resulting value based on the current agent state and the input parameters.
 </literallayout>
-						</section>
-						<section id="Additive_Distribution">
-							<title>Additive Distribution</title>
-							<para>A value taken from a set of (auto-generated) attributes based on the combined values of the states provided. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create input attributes for A, B, I and II. Those values would then be added together, so that for an Agent with state A and II this function would return A + II.</para>
-							<literallayout format="linespecific" class="normal">Inputs:
+					</section>
+					<section id="Additive_Distribution">
+						<title>Additive Distribution</title>
+						<para>A value taken from a set of (auto-generated) attributes based on the combined values of the states provided. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create input attributes for A, B, I and II. Those values would then be added together, so that for an Agent with state A and II this function would return A + II.</para>
+						<literallayout format="linespecific" class="normal">Inputs:
 [Generic] The states to include in the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
 [Real] The set of attributes that when combined with each other determine the value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
 Outputs:
 [Real] The resulting value based on the current agent state and the input parameters.
 </literallayout>
-						</section>
 					</section>
-					<section id="Example_4">
-						<title>Example</title>
-						<para>In the following example, we walk through the process of using a distribution functions, demonstrating how we can easily modify the Epidemic model so that instead of simply setting an initial exposed population, we can define factors that take together will determine an individuals initial exposure state. We simply:</para>
-						<orderedlist inheritnum="ignore" continuation="restarts">
-							<listitem>
-								<para>Create an Evaluate Action called "Initial Status". </para>
-							</listitem>
-							<listitem>
-								<para>Set the function to "Cross Distribution"</para>
-							</listitem>
-							<listitem>
-								<para>Opened the "Multiple Value" node in the editor, and clicked the "Multiple Values" item within it.</para>
-							</listitem>
-							<listitem>
-								<para>Selected the "Status" attribute.</para>
-							</listitem>
-						</orderedlist>
-						<para>
-							<mediaobject>
-								<imageobject>
-									<imagedata fileref="images/functions/DistributionDesignChoice.png" scale="50"/>
-								</imageobject>
-							</mediaobject> 
-						</para>
-						<para>The appropriate attributes are automatically added to the model, as you can see below.</para>
-						<para>
-							<mediaobject>
-								<imageobject>
-									<imagedata fileref="images/functions/DistributionDesign.png" scale="50"/>
-								</imageobject>
-							</mediaobject> 
-						</para>
-						<para>In order to assign these values to the agent, we'd simply need to assign the results of this Evaluate Action to the agent.</para>
-					</section>
+				</section>
+			</section>
+			<section id="Examples">
+				<title>Examples</title>
+				<section id="Spatial_2">
+					<title>Spatial</title>
+					<para>For examples of how spatial functions can be used within action flows to provide agents with complex movement behaviors, see the Modelers Guide actions examples. In the following example from that section, we define an action that causes a partner agent to move to an available neighboring space.</para>
+					<para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/actions/ActionsExampleNew.png" scale="50"/>
+							</imageobject>
+						</mediaobject>
+					</para>
+				</section>
+				<section id="Graphic_2">
+					<title>Graphic</title>
+					<para>In the following action flow for the epidemic style, we've create Query Actions to determine each agent's current state, picked a color based on that, and then used a shared target to select a shape for the agent style and fill it:</para>
+					<para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/functions/GraphicsFunctionExampleDesign.png" scale="50"/>
+							</imageobject>
+						</mediaobject>
+					</para>
+					<para>After saving the model we can execute the two and three dimensional visualizations. Note something really nice -- even the charts have used the colors we've defined!</para>
+					<para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/functions/GraphicsFunctionExampleRun.png" scale="50"/>
+							</imageobject>
+						</mediaobject>
+					</para>
+				</section>
+				<section id="Distribution_2">
+					<title>Distribution</title>
+					<para>In the following example, we walk through the process of using a distribution functions, demonstrating how we can easily modify the Epidemic model so that instead of simply setting an initial exposed population, we can define factors that take together will determine an individuals initial exposure state. We simply:</para>
+					<orderedlist inheritnum="ignore" continuation="restarts">
+						<listitem>
+							<para>Create an Evaluate Action called "Initial Status". </para>
+						</listitem>
+						<listitem>
+							<para>Set the function to "Cross Distribution"</para>
+						</listitem>
+						<listitem>
+							<para>Opened the "Multiple Value" node in the editor, and clicked the "Multiple Values" item within it.</para>
+						</listitem>
+						<listitem>
+							<para>Selected the "Status" attribute.</para>
+						</listitem>
+					</orderedlist>
+					<para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/functions/DistributionDesignChoice.png" scale="50"/>
+							</imageobject>
+						</mediaobject> 
+					</para>
+					<para>The appropriate attributes are automatically added to the model, as you can see below.</para>
+					<para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/functions/DistributionDesign.png" scale="50"/>
+							</imageobject>
+						</mediaobject> 
+					</para>
+					<para>In order to assign these values to the agent, we'd simply need to assign the results of this Evaluate Action to the agent.</para>
 				</section>
 			</section>
 			<section id="Reference_3">
@@ -2384,7 +2374,7 @@ Outputs:
 				<title>Launching a Model (AMF)</title>
 				<informaltable frame="none">
 					<tr>
-						<td rowspan="1" colspan="1">Launching AMF and Escape models is easy. When an AMF file is selected -- in any of the perspectives -- the toolbar and Application menus are updated to reflect the file you've selected and provide convenient access to other functions. For example, when we click on a metaabm file in the package explorer, model execution buttons appear in the toolbar. If you right-click on a file a pop-up menu appears like the one to the far right -- in this case we're selecting the "Execute Headless" option. To launch a model, just select one of the options. (Note that the execution framework doesn't know whether your code exists in an Escape project or another target project. If you attempt to execute a .metaabm model in an Ascape project for example, you will get an error.)</td>
+						<td rowspan="1" colspan="1">Launching AMF and Escape models is easy. When an AMF file is selected -- in any of the perspectives -- the toolbar and Application menus are updated to reflect the file you've selected and provide convenient access to other functions. For example, when we click on a metaabm file in the package explorer, model execution buttons appear in the toolbar.</td>
 						<td rowspan="1" colspan="1">
 							<mediaobject>
 								<imageobject>
@@ -2392,6 +2382,9 @@ Outputs:
 								</imageobject>
 							</mediaobject>
 						</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1">If you right-click on a file a pop-up menu appears like the one to the far right -- in this case we're selecting the "Execute Headless" option. To launch a model, just select one of the options. (Note that the execution framework doesn't know whether your code exists in an Escape project or another target project. If you attempt to execute a .metaabm model in an Ascape project for example, you will get an error.)</td>
 						<td rowspan="1" colspan="1">
 							<mediaobject>
 								<imageobject>
@@ -2425,7 +2418,7 @@ Outputs:
 			</section>
 			<section id="Executing_a_Model_.28Java_.2F_3D.29">
 				<title>Executing a Model (Java / 3D)</title>
-				<para>You can execute any Escape model directly from its Java file by right-clicking on it. This is used for models that have been written directly in Java, or that you have created or that have been automatically generated, such as the 3D versions of AMF models. In order for the model to launch correctly, it must have as a superclass the Escape "Scape" class. In the following screenshot, we've launched a 3D version of the Epidemic model. The 3D models are automatically generated for all .metaabm models.</para>
+				<para>You can execute any Escape model directly from its Java file by right-clicking on it. This is used for models that have been written directly in Java, or that you have created or that have been automatically generated, such as the 3D versions of AMF models. In order for the model to launch correctly, it must have as a superclass the Escape "Scape" class. In the following screenshot, we've launched a 3D version of the Epidemic model. The 3D models are automatically generated for all .metaabm models. You can also launch a model into 3D by clicking on the model file and clicking the second (Execute Model with 3D) execute button.</para>
 				<para>
 					<mediaobject>
 						<imageobject>
@@ -2434,24 +2427,52 @@ Outputs:
 					</mediaobject>
 				</para>
 			</section>
-			<section id="Controlling_Model_Execution">
-				<title>Controlling Model Execution</title>
+			<section id="Controlling_Models">
+				<title>Controlling Models</title>
 				<para>Once a model has been launched, the toolbar buttons allow you to control model execution.</para>
 				<para>
 					<mediaobject>
 						<imageobject>
-							<imagedata fileref="images/execution/EpidemicModelControls.png" scale="50"/>
+							<imagedata fileref="images/execution/ExecControl.png" scale="50"/>
 						</imageobject>
 					</mediaobject>
 				</para>
-				<para>From right to left, you can start, restart, pause, step, stop and close a model. You can even run multiple models and control them independently. You can also move views around, close them and so on as with any other Eclipse views. Here we're running two separate models for comparison.</para>
-				<para>
-					<mediaobject>
-						<imageobject>
-							<imagedata fileref="images/execution/EpidemicModelComparison.png" scale="50"/>
-						</imageobject>
-					</mediaobject>
-				</para>
+				<section id="Model_Execution_Controls">
+					<section>
+						<title>Model Execution Controls</title>
+						<para>From right to left, you can start, restart, pause, step, stop and close a model. You can even run multiple models and control them independently. You can also move views around, close them and so on as with any other Eclipse views. Here we're running two separate models for comparison.</para>
+						<para>
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/execution/EpidemicModelComparison.png" scale="50"/>
+								</imageobject>
+							</mediaobject>
+						</para>
+					</section>
+					<section id="Speed_Slider">
+						<title>Speed Slider</title>
+						<para>A special feature of the modeling tools is the "Speed Slider". This allows you to dynamically "speed up" and "slow down" the model execution. You can see where you've set the current speed in the status bar in the lower left hand corner of the environment.</para>
+						<para>Actually, you're not controlling the speed of model 
+							<emphasis role="italic">execution</emphasis> at all. Agent models are almost always constrained not by the time of model execution -- a typical model can execute many thousands of iterations a second -- but by the time it takes to draw visualizations. By updating the views less frequently we allow the model to run at full speed until the next visualization period. This gives the illusion that we're speeding up the model. When we slow the model down, we're inserting a wait period between each model iteration.
+						</para>
+						<para>To increase model execution speed, move the slider to the right. Here we're only updating the model every 56 iterations.</para>
+						<para>
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/execution/SliderRight.png" scale="50"/>
+								</imageobject>
+							</mediaobject>
+						</para>
+						<para>To decrease speed, move the slider to the left. Here, we're pausing between each iteration for 1.65 seconds.</para>
+						<para>
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/execution/SliderLeft.png" scale="50"/>
+								</imageobject>
+							</mediaobject>
+						</para>
+					</section>
+				</section>
 				<section id="The_Active_Model">
 					<title>The Active Model</title>
 					<para>An important concept in the execution workbench is the "active model". The active model is the model that is controlled by the toolbar buttons. As discussed, the Escape environment supports more than one running model at any given time. The active model is the current "focused" or front-most model, there can be only one active model at any given time and whenever any models are running one of them will be active. To make a model become the active model, you simply select a view of that model or select the model in the model manager (see below). When a model is closed, another model is automatically activated.</para>
@@ -2569,6 +2590,132 @@ Outputs:
 						</orderedlist>
 					</section>
 				</section>
+				<section id="3D_Views">
+					<title>3D Views</title>
+					<para>The 3D views provide a three-dimensional representation of a running model. Currently they support 2D models only, which makes them 2 1/2 D views.</para>
+					<para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/execution/View3D.png" scale="50"/>
+							</imageobject>
+						</mediaobject>
+					</para>
+					<para>You can navigate and customize the model with the following controls:</para>
+					<para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/execution/View3DMenuBar.png" scale="50"/>
+							</imageobject>
+						</mediaobject>
+					</para>
+					<para>From left to right, they are:</para>
+					<section id="Animation">
+						<title>Animation</title>
+						<para>Turns on and off the interpolated (smooth) movement of agents from one cell to another. This is a unique feature of AMP and provides a very nice visualization, but it does slow down model execution. For very large models, you can switch it off -- visualization will be "jerky" but much quicker.</para>
+					</section>
+					<section id="Perspectives">
+						<title>Perspectives</title>
+						<para>The three perspectives are used to control the camera location -- in other words the perspective from which the movie is being made. Note that if the camera is currently moving to a given perspective and you select a new perspective the camera may become confused! It is best to wait until the camera comes to a stop before choosing a different perspective. You can speed up camera movement by pausing the model temporarily.</para>
+						<section id="First_Person">
+							<title>First Person</title>
+							<para>Moves the point of view to ground level, as if the observer were in the space itself.</para>
+						</section>
+						<section id="Overhead">
+							<title>Overhead</title>
+							<para>Moves the point of view to overhead, giving a similar view as you have with the 2D view. Note that in many cases the 3D view is actually faster than the 2D view, so this is a good way to observe any kind of 2D model.</para>
+						</section>
+						<section id="Helicopter">
+							<title>Helicopter</title>
+							<para>Moves the point to an oblique perspective. This is useful for getting an overall sense of model behavior.</para>
+						</section>
+					</section>
+				</section>
+				<section id="Graph_Views">
+					<title>Graph Views</title>
+					<para>Graph views allow you to undestand the network relationships between various agents in the model. By default, a graph is creaed for all relationships, but you can customize that behavior programmatically. Graphs are also super-imposed on 2D models, as we can see in the following example running the EpidemicContact model.</para>
+					<para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/execution/ViewGraph.png" scale="50"/>
+							</imageobject>
+						</mediaobject>
+					</para>
+					<para>Note that complex models can take a long time to visualize and we'll be looking for opportuntites to optimize performance further in the future. If you think the visualization is stuck it is likely that it is simply calculating the next visualization step -- wait a bit before canceling the model or closing it.</para>
+					<para>Graph views can be customized with the following controls:</para>
+					<para>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/execution/View3DMenuBar.png" scale="50"/>
+							</imageobject>
+						</mediaobject>
+					</para>
+					<para>From left to right, they are:</para>
+					<section id="Layout">
+						<title>Layout</title>
+						<para>The layout buttons control how the nodes are placed within the graph. You can swithc between layout dynamically to gain insight into network relationships.</para>
+						<informaltable frame="none">
+							<tr>
+								<td rowspan="1" colspan="1">
+									<mediaobject>
+										<imageobject>
+											<imagedata fileref="images/execution/ViewGraphDown.png" scale="50"/>
+										</imageobject>
+									</mediaobject>
+								</td>
+								<td rowspan="1" colspan="1">
+									<mediaobject>
+										<imageobject>
+											<imagedata fileref="images/execution/ViewGraphRight.png" scale="50"/>
+										</imageobject>
+									</mediaobject>
+								</td>
+							</tr>
+							<tr>
+								<td rowspan="1" colspan="1">
+									<emphasis role="bold">Tree (Down):</emphasis> Places the graph nodes into a downward oriented tree formation. You'll find that the tree views are more effecient at visualizing, and can be very ood at representing models with an inherent hierarchical structure such as kinship diagrams, but don't always give the best insight into the model for complex network relations.
+								</td>
+								<td rowspan="1" colspan="1">
+									<emphasis role="bold">Tree (Right):</emphasis> The same tree layout oriented from the root-most nodes rightward.
+								</td>
+							</tr>
+							<tr>
+								<td rowspan="1" colspan="1">
+									<mediaobject>
+										<imageobject>
+											<imagedata fileref="images/execution/ViewGraphRadial.png" scale="50"/>
+										</imageobject>
+									</mediaobject>
+								</td>
+								<td rowspan="1" colspan="1">
+									<mediaobject>
+										<imageobject>
+											<imagedata fileref="images/execution/ViewGraphSpring.png" scale="50"/>
+										</imageobject>
+									</mediaobject>
+								</td>
+							</tr>
+							<tr>
+								<td rowspan="1" colspan="1">
+									<emphasis role="bold">Radial:</emphasis> Places the nodes in a radial layout with the root-most nodes at the center. This is a great way to represent semi-hierarchical models with complex structure, but is a little slower than the tree layouts.
+								</td>
+								<td rowspan="1" colspan="1">
+									<emphasis role="bold">Spring:</emphasis> This layout uses a spring and strain approach that allows nodes to find their own location within the visualization. It can provide beautiful and insightful diagrams, but it is also slower than the other layouts. For more complex models it often works well to use the radial layout and then switch to the Spring layout when examining relationships in depth.
+								</td>
+							</tr>
+						</informaltable>
+					</section>
+					<section id="Spring_Layout_Customization">
+						<title>Spring Layout Customization</title>
+						<para>You can customize how the Spring by clicking on the customization button. This allows you to change a number of values that determine how nodes are layed out. While the default settings work well with many graph structures it can be helpful (and fun) to play with different settings to get the best visualization.
+							|
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/execution/ViewGraphSpringDialog.png" scale="50"/>
+								</imageobject>
+							</mediaobject>
+						</para>
+					</section>
+				</section>
 				<section id="Charts">
 					<title>Charts</title>
 					<para>A 
@@ -2584,31 +2731,56 @@ Outputs:
 					<section id="Chart_Type">
 						<title>Chart Type</title>
 						<para>Several chart types are supported: The line, area, bar and pie chart. Click on one of the icons to select that type.</para>
-						<para>
-							<mediaobject>
-								<imageobject>
-									<imagedata fileref="images/execution/LineChart.png" scale="50"/>
-								</imageobject>
-							</mediaobject>
-
-							<mediaobject>
-								<imageobject>
-									<imagedata fileref="images/execution/AreaChart.png" scale="50"/>
-								</imageobject>
-							</mediaobject>
-
-							<mediaobject>
-								<imageobject>
-									<imagedata fileref="images/execution/BarChart.png" scale="50"/>
-								</imageobject>
-							</mediaobject>
-
-							<mediaobject>
-								<imageobject>
-									<imagedata fileref="images/execution/PieChart.png" scale="50"/>
-								</imageobject>
-							</mediaobject>
-						</para>
+						<informaltable frame="none">
+							<tr>
+								<td rowspan="1" colspan="1">
+									<mediaobject>
+										<imageobject>
+											<imagedata fileref="images/execution/LineChart.png" scale="50"/>
+										</imageobject>
+									</mediaobject>
+								</td>
+								<td rowspan="1" colspan="1">
+									<mediaobject>
+										<imageobject>
+											<imagedata fileref="images/execution/AreaChart.png" scale="50"/>
+										</imageobject>
+									</mediaobject>
+								</td>
+							</tr>
+							<tr>
+								<td rowspan="1" colspan="1">
+									<emphasis role="bold">Line</emphasis>
+								</td>
+								<td rowspan="1" colspan="1">
+									<emphasis role="bold">Area</emphasis>
+								</td>
+							</tr>
+							<tr>
+								<td rowspan="1" colspan="1">
+									<mediaobject>
+										<imageobject>
+											<imagedata fileref="images/execution/BarChart.png" scale="50"/>
+										</imageobject>
+									</mediaobject>
+								</td>
+								<td rowspan="1" colspan="1">
+									<mediaobject>
+										<imageobject>
+											<imagedata fileref="images/execution/PieChart.png" scale="50"/>
+										</imageobject>
+									</mediaobject>
+								</td>
+							</tr>
+							<tr>
+								<td rowspan="1" colspan="1">
+									<emphasis role="bold">Bar</emphasis>
+								</td>
+								<td rowspan="1" colspan="1">
+									<emphasis role="bold">Pie</emphasis>
+								</td>
+							</tr>
+						</informaltable>
 					</section>
 					<section id="Chart_Legend">
 						<title>Chart Legend</title>
@@ -2701,7 +2873,7 @@ Outputs:
 					<para>Parameter files are quite simple. Every parameter file specifies the "model" that will be executed.The "incorporates" keyword supports including parameter values from other files. File locations are relative to the location of the parameter file, but it is usually more flexible to refer to model files relative to their project location. You can do that by inserting a "|" character at the beginning of the file name.</para>
 					<para>Attribute values are specified by the attribute ID (with the first character in upper-case) followed by "=" and the desired value.</para>
 				</section>
-				<section id="Example_5">
+				<section id="Example_2">
 					<title>Example</title>
 					<para>We can create a base parameters file called "EpiBase.apar".</para>
 					<literallayout format="linespecific" class="normal">model "|Epidemic.metaabm"
@@ -2747,7 +2919,7 @@ MaxContactTransmissionProbability=0.15
 					<para>The measures available are Average, Minimum, Maximum Count and Sum. In order for an attribute to be tested the "gather data" value must be set for that attribute. All Measures are not appropriate for all attribute types. Booleans, Symbols and States should only use the Count measure as they represent discrete values that can either meet some condition or not.</para>
 					<para>The tested attributes are qualified by their model agent definition. The constraint definition is inclusive, as implied by the square brackets. Future implementations are expected to provide richer expressions and constraints but a very wide range of cases are supported by this construct, especially when combined with derived attributes. Tested Attributes are again specified by the attribute ID (with the first character in upper-case) followed by "=" and the desired value.</para>
 				</section>
-				<section id="Example_6">
+				<section id="Example_3">
 					<title>Example</title>
 					<para>In the following simple example we want to make sure that an epidemic can't occur without disease transmission taking place. Here we're just looking to make sure that we have some very basic logic right. (This might be almost too simple for a real-world design, depending on how rigorous we want to be.) Note that some individuals are infected at the beginning of the model run so we need to account for that in our expected results. So first we have defined the EpiZeroTransmission.apar file like the other transmission rate parameterizations above except with these settings:</para>
 					<literallayout format="linespecific" class="normal">MinContactTransmissionProbability=0.0
@@ -2761,6 +2933,21 @@ Count(Individual.Status=Exposed) = [0,10]
 Count(Individual.Status=SymptomInfectious)=[0,0]
 </literallayout>
 					<para>Here we have a nice description, a reference to the parameterization we want to use, and then the set of constraints we will apply to them. After running this test, a test result file like the one above will be created and placed in our "test-results" directory.</para>
+				</section>
+				<section id="Model_Data">
+					<title>Model Data</title>
+					<informaltable frame="none">
+						<tr>
+							<td rowspan="1" colspan="1">As discussed above, you can collect data for any model by selecting it or a paramters file and clicking the "Execute Model with data collection" button. If you use a parameters file setting the StopPeriod parameter will cause the model to stop executing and save the model at the specified time. Or you can stop the model manually. The model data will be collected into an "adata" file and stored in the "output" directory in your project. A new run entry will be created for each execution of a model. We are currently developing tools for exporting this data to various file formats as well as providing more seemless integration to sophisticated Eclipse hosted charting and report tools. You can use BIRT to interact with the data set using an XML schema data source and there is also an Ecore driver available. Model data can also be produced by writing custom views for data output. See the Ascape programmer guide for more information on how to do that.</td>
+							<td rowspan="1" colspan="1">
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/data/Editor.png" scale="50"/>
+									</imageobject>
+								</mediaobject>
+							</td>
+						</tr>
+					</informaltable>
 				</section>
 			</section>
 		</section>
@@ -3620,6 +3807,250 @@ https://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.models.examples
 https://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.brook
 </literallayout>
 				</section>
+			</section>
+		</section>
+	</chapter>
+	<chapter id="New_and_Noteworthy">
+		<title>New and Noteworthy</title>
+		<section id="Release_0.8.0">
+			<title>Release 0.8.0</title>
+			<para>The first official release of AMP includes many new or expanded features in addition to overall quality and usability improvements. The highlights are listed below.</para>
+			<section id="Model_Visualization">
+				<title>Model Visualization</title>
+				<informaltable frame="none">
+					<tr>
+						<td rowspan="1" colspan="1">
+							<emphasis role="bold">Graph Visualization</emphasis>
+						</td>
+						<td rowspan="1" colspan="1">Built in support for visualization and generation (as always with AMF, no code to write!) of graph models.</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1"> </td>
+						<td rowspan="1" colspan="1">
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/execution/ViewGraph.png" scale="50"/>
+								</imageobject>
+							</mediaobject>
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1">
+							<emphasis role="bold">3D View Improvements</emphasis>
+						</td>
+						<td rowspan="1" colspan="1">2 1/2 visualizations now support interpolated positions for agents. You can't see that here, but it means that the agents move smoothly through space, even if they are on a fixed grid. You can turn that feature on and off and you can change perspective easily.</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1"> </td>
+						<td rowspan="1" colspan="1">
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/execution/View3D.png" scale="50"/>
+								</imageobject>
+							</mediaobject>
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1">
+							<emphasis role="bold">API Improvements</emphasis>
+						</td>
+						<td rowspan="1" colspan="1">There have been significant changes to the APIs. As always, we've followed common Eclipse and EMF idioms, which means that to customize model visualization you typically only need to implement figure, shape or color providers and then adapt them to your model. And of course all of your existing models will generate code for the new APIs.</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1">
+							<emphasis role="bold">More Legacy Views</emphasis>
+						</td>
+						<td rowspan="1" colspan="1">In addition, we've supported all existing Ascape views (not all of these are supported through AMF generated code..yet!).</td>
+					</tr>
+				</informaltable>
+			</section>
+			<section id="Modeling_Framework">
+				<title>Modeling Framework</title>
+				<informaltable frame="none">
+					<tr>
+						<td rowspan="1" colspan="1">
+							<emphasis role="bold">New Actions</emphasis>
+						</td>
+						<td rowspan="1" colspan="1">Some key new Actions have just been introduced. These provide support for recursion (Cause and Perform), minimization and maximization queries, diffusion (Diffuse) and derived (Derive) values and give the framework a much more general purpose flavor while preserving model generality. You should be able to build many more kinds of models without resorting to custom coding. See the Modeler's guide Actions section for the details.</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1">
+							<emphasis role="bold">Improved Model Representation and Generation</emphasis>
+						</td>
+						<td rowspan="1" colspan="1">There have been many improvements to how models can be designed and the code that is generated from those designs. As just one example, you can now search for agents within a model without having to specify an explicit space. As with model editing improvements, many of these changes have been driven by user input. If there is something you'd like to be able to do with AMF but can't, let us know by filing a feature request or posting to the newsgroup.</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1">
+							<emphasis role="bold">Multiscale Support</emphasis>
+						</td>
+						<td rowspan="1" colspan="1">Support for modeling across scales has been greatly improved. For the Escape target it is very easy to define models with enclosing hierarchies. For example in the EpidemicRegion model, we've defined Regions which contain Cities which contain Individuals.</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1"> </td>
+						<td rowspan="1" colspan="1">
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/examples/EpidemicRegional.png" scale="50"/>
+								</imageobject>
+							</mediaobject>
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1"> </td>
+						<td rowspan="1" colspan="1">When the model is executed, views are automatically created for each member Scape (context) and data is collected for each level of scale.</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1"> </td>
+						<td rowspan="1" colspan="1">
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/examples/EpidemicRegionalRun.png" scale="50"/>
+								</imageobject>
+							</mediaobject>
+						</td>
+					</tr>
+				</informaltable>
+			</section>
+			<section id="Model_Editing">
+				<title>Model Editing</title>
+				<informaltable frame="none">
+					<tr>
+						<td rowspan="1" colspan="1">
+							<emphasis role="bold">Overall Usability</emphasis>
+						</td>
+						<td rowspan="1" colspan="1">Significant effort has gone into improving the overall user interface for editing models. User feedback has been enormously helpful here -- please keep letting us know what works and what doesn't! In addition to the obvious changes, a lot of work has been done under the covers to provide a more seamless model building experience. We've fixed some glitches, but we've also added a number of things to help simplify and automate the model building process. As an example, when you create an agent, a style is automatically created along with default color, shape and paint actions.</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1">
+							<emphasis role="bold">New Icons</emphasis>
+						</td>
+						<td rowspan="1" colspan="1">Most of the existing icons have been replaced or custom designed (which has incidentally required a lot of documentation to be recreated) to provide a better and more consistent user interface.</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1">
+							<emphasis role="bold">Action Lists</emphasis>
+						</td>
+						<td rowspan="1" colspan="1">Actions are now displayed in lists, not in a tree structure. As the actual Actions are graph structures, the tree structure never matched well with this representation. Taking a simpler approach has made the action definition process much more transparent.</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1"> </td>
+						<td rowspan="1" colspan="1">
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/tools/ActionsExample.png" scale="50"/>
+								</imageobject>
+							</mediaobject>
+						</td>
+					</tr>
+				</informaltable>
+			</section>
+			<section id="Modeling_Tools">
+				<title>Modeling Tools</title>
+				<informaltable frame="none">
+					<tr>
+						<td rowspan="1" colspan="1">
+							<emphasis role="bold">Parameter Management Support</emphasis>
+						</td>
+						<td rowspan="1" colspan="1">AMP now has full support for editing and launching of parameter files, including code completion. There is also support for creation of tests and analysis of test results. Finally, data can now be generated to a common EMD based (adata) data format.</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1"> </td>
+						<td rowspan="1" colspan="1">
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/params/Edit.png" scale="50"/>
+								</imageobject>
+							</mediaobject>
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1">
+							<emphasis role="bold">Test-Driven Modeling and Simulation</emphasis>
+						</td>
+						<td rowspan="1" colspan="1">Tests can now easily be defined and analyzed.</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1"> </td>
+						<td rowspan="1" colspan="1">
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/params/TestResults.png" scale="50"/>
+								</imageobject>
+							</mediaobject>
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1">
+							<emphasis role="bold">Automated Data Export</emphasis>
+						</td>
+						<td rowspan="1" colspan="1">Data can now be easily generated to a common EMF based (adata) data format.</td>
+					</tr>
+				</informaltable>
+			</section>
+			<section id="User_Experience">
+				<title>User Experience</title>
+				<informaltable frame="none">
+					<tr>
+						<td rowspan="1" colspan="1">
+							<emphasis role="bold">Overall</emphasis>
+						</td>
+						<td rowspan="1" colspan="1">Last but certainly not least, a lot of effort has gone into making it easier to get into AMP as well as to understand how to work with its more powerful features. Eclipse supports a number of sophisticated User Assistance features, and we've taken advantage of most of them.</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1">
+							<emphasis role="bold">Documentation</emphasis>
+						</td>
+						<td rowspan="1" colspan="1">Over a 100 pages of documentation, plus another 100 pages of Ascape documentation converted to Eclipse Help and PDF.</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1">
+							<emphasis role="bold">Welcome and Intro</emphasis>
+						</td>
+						<td rowspan="1" colspan="1">When starting AMP you'll be met by a custom welcome screen providing an easy path into Agent Modeling on Eclipse.</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1"> </td>
+						<td rowspan="1" colspan="1">
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/users/WelcomeScreen.png" scale="50"/>
+								</imageobject>
+							</mediaobject>
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1">
+							<emphasis role="bold">Cheat Sheets</emphasis>
+						</td>
+						<td rowspan="1" colspan="1">Helpful guides walk you through initial steps.</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1"> </td>
+						<td rowspan="1" colspan="1">
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/users/CheatSheets.png" scale="50"/>
+								</imageobject>
+							</mediaobject>
+						</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1">
+							<emphasis role="bold">Integrated Models</emphasis>
+						</td>
+						<td rowspan="1" colspan="1">You can run example Ascape models directly from the documentation!</td>
+					</tr>
+					<tr>
+						<td rowspan="1" colspan="1"> </td>
+						<td rowspan="1" colspan="1">
+							<mediaobject>
+								<imageobject>
+									<imagedata fileref="images/users/IntegratedModels.png" scale="50"/>
+								</imageobject>
+							</mediaobject>
+						</td>
+					</tr>
+				</informaltable>
 			</section>
 		</section>
 	</chapter>

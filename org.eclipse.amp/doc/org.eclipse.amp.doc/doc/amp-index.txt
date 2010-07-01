@@ -22,6 +22,7 @@
 510-ProgrammerGuide_AMFPojo.mediawiki
 520-ProgrammerGuide_Converting.mediawiki
 800-InstallationGuide.mediawiki
+850-WhatsNew.mediawiki
 900-Resources.mediawiki
 950-Support.mediawiki
 951-Support_Issues.mediawiki

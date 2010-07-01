@@ -227,18 +227,18 @@
 </topic>
 </topic>
 </topic>
-<topic href="help/Actions_2.html#Example" label="Example"></topic>
 <topic href="help/Actions_2.html#Reference_2" label="Reference">
 <topic href="help/Actions_2.html#Diagrams_2" label="Diagrams">
 <topic href="help/Actions_2.html#Meta-Classes_2" label="Meta-Classes"></topic>
 <topic href="help/Actions_2.html#Details_4" label="Details"></topic>
 </topic>
 </topic>
+<topic href="help/Actions_2.html#Example" label="Example"></topic>
 </topic>
 <topic href="help/Functions.html" label="Functions">
 <topic href="help/Functions.html#Overview_4" label="Overview"></topic>
 <topic href="help/Functions.html#Details_5" label="Details">
-<topic href="help/Functions.html#General_Functions" label="General Functions">
+<topic href="help/Functions.html#General_Functions" label="General Functions"></topic>
 <topic href="help/Functions.html#Logical_Operators" label="Logical Operators">
 <topic href="help/Functions.html#Not" label="Not"></topic>
 <topic href="help/Functions.html#Equal" label="Equal"></topic>
@@ -265,6 +265,55 @@
 <topic href="help/Functions.html#Unit_Value" label="Unit Value"></topic>
 <topic href="help/Functions.html#Zero_Value" label="Zero Value"></topic>
 <topic href="help/Functions.html#Original_Value" label="Original Value"></topic>
+</topic>
+<topic href="help/Functions.html#Spatial" label="Spatial">
+<topic href="help/Functions.html#Nearest" label="Nearest"></topic>
+<topic href="help/Functions.html#Toward" label="Toward"></topic>
+<topic href="help/Functions.html#Within_4" label="Within"></topic>
+<topic href="help/Functions.html#Neighbor" label="Neighbor"></topic>
+<topic href="help/Functions.html#Include_Self" label="Include Self"></topic>
+<topic href="help/Functions.html#Within_2D_Boundary" label="Within 2D Boundary"></topic>
+<topic href="help/Functions.html#Here" label="Here"></topic>
+<topic href="help/Functions.html#Available" label="Available"></topic>
+<topic href="help/Functions.html#Distance" label="Distance"></topic>
+<topic href="help/Functions.html#Away" label="Away"></topic>
+<topic href="help/Functions.html#Minimize" label="Minimize"></topic>
+<topic href="help/Functions.html#Maximize" label="Maximize"></topic>
+<topic href="help/Functions.html#Location_2D" label="Location 2D"></topic>
+<topic href="help/Functions.html#Boundary_2D" label="Boundary 2D"></topic>
+<topic href="help/Functions.html#All" label="All"></topic>
+</topic>
+<topic href="help/Functions.html#Random" label="Random">
+<topic href="help/Functions.html#Random_In_Range" label="Random In Range"></topic>
+<topic href="help/Functions.html#Random_To_Limit" label="Random To Limit"></topic>
+<topic href="help/Functions.html#Random_Unit" label="Random Unit"></topic>
+<topic href="help/Functions.html#Random_Boolean" label="Random Boolean"></topic>
+<topic href="help/Functions.html#Random_Weighted" label="Random Weighted"></topic>
+<topic href="help/Functions.html#Random_Member" label="Random Member"></topic>
+<topic href="help/Functions.html#Random_State" label="Random State"></topic>
+</topic>
+<topic href="help/Functions.html#Graphic" label="Graphic">
+<topic href="help/Functions.html#Shape_Oval" label="Shape Oval"></topic>
+<topic href="help/Functions.html#Shape_Rectangle" label="Shape Rectangle"></topic>
+<topic href="help/Functions.html#Shape_Inset" label="Shape Inset"></topic>
+<topic href="help/Functions.html#Shape_Marker" label="Shape Marker"></topic>
+<topic href="help/Functions.html#Shape_Marker_2" label="Shape Marker 2"></topic>
+<topic href="help/Functions.html#Shape_Marker_3" label="Shape Marker 3"></topic>
+<topic href="help/Functions.html#Color_RGB" label="Color RGB"></topic>
+<topic href="help/Functions.html#Color_Red" label="Color Red"></topic>
+<topic href="help/Functions.html#Color_Yellow" label="Color Yellow"></topic>
+<topic href="help/Functions.html#Color_Blue" label="Color Blue"></topic>
+<topic href="help/Functions.html#Color_Orange" label="Color Orange"></topic>
+<topic href="help/Functions.html#Color_Green" label="Color Green"></topic>
+<topic href="help/Functions.html#Color_Purple" label="Color Purple"></topic>
+<topic href="help/Functions.html#Color_Black" label="Color Black"></topic>
+<topic href="help/Functions.html#Color_White" label="Color White"></topic>
+<topic href="help/Functions.html#Color_Gray" label="Color Gray"></topic>
+<topic href="help/Functions.html#Graphic_Outline" label="Graphic Outline"></topic>
+<topic href="help/Functions.html#Graphic_Fill" label="Graphic Fill"></topic>
+</topic>
+<topic href="help/Functions.html#Time" label="Time">
+<topic href="help/Functions.html#Now" label="Now"></topic>
 </topic>
 <topic href="help/Functions.html#Math" label="Math">
 <topic href="help/Functions.html#Sine" label="Sine"></topic>
@@ -298,83 +347,21 @@
 <topic href="help/Functions.html#Expm1" label="Expm1"></topic>
 <topic href="help/Functions.html#Log1p" label="Log1p"></topic>
 </topic>
-</topic>
-<topic href="help/Functions.html#Random" label="Random">
-<topic href="help/Functions.html#Design" label="Design"></topic>
-<topic href="help/Functions.html#Details_6" label="Details">
-<topic href="help/Functions.html#Random_In_Range" label="Random In Range"></topic>
-<topic href="help/Functions.html#Random_To_Limit" label="Random To Limit"></topic>
-<topic href="help/Functions.html#Random_Unit" label="Random Unit"></topic>
-<topic href="help/Functions.html#Random_Boolean" label="Random Boolean"></topic>
-<topic href="help/Functions.html#Random_Weighted" label="Random Weighted"></topic>
-<topic href="help/Functions.html#Random_Member" label="Random Member"></topic>
-<topic href="help/Functions.html#Random_State" label="Random State"></topic>
-</topic>
-</topic>
-<topic href="help/Functions.html#Space_3" label="Space">
-<topic href="help/Functions.html#Design_2" label="Design"></topic>
-<topic href="help/Functions.html#Details_7" label="Details">
-<topic href="help/Functions.html#Nearest" label="Nearest"></topic>
-<topic href="help/Functions.html#Toward" label="Toward"></topic>
-<topic href="help/Functions.html#Within_4" label="Within"></topic>
-<topic href="help/Functions.html#Neighbor" label="Neighbor"></topic>
-<topic href="help/Functions.html#Include_Self" label="Include Self"></topic>
-<topic href="help/Functions.html#Within_2D_Boundary" label="Within 2D Boundary"></topic>
-<topic href="help/Functions.html#Here" label="Here"></topic>
-<topic href="help/Functions.html#Available" label="Available"></topic>
-<topic href="help/Functions.html#Distance" label="Distance"></topic>
-<topic href="help/Functions.html#Away" label="Away"></topic>
-<topic href="help/Functions.html#Minimize" label="Minimize"></topic>
-<topic href="help/Functions.html#Maximize" label="Maximize"></topic>
-<topic href="help/Functions.html#Location_2D" label="Location 2D"></topic>
-<topic href="help/Functions.html#Boundary_2D" label="Boundary 2D"></topic>
-</topic>
-<topic href="help/Functions.html#Example_2" label="Example"></topic>
-</topic>
-<topic href="help/Functions.html#Time" label="Time">
-<topic href="help/Functions.html#Details_8" label="Details">
-<topic href="help/Functions.html#Now" label="Now"></topic>
-</topic>
-</topic>
-<topic href="help/Functions.html#Graphics" label="Graphics">
-<topic href="help/Functions.html#Design_3" label="Design"></topic>
-<topic href="help/Functions.html#Details_9" label="Details">
-<topic href="help/Functions.html#Shape_Oval" label="Shape Oval"></topic>
-<topic href="help/Functions.html#Shape_Rectangle" label="Shape Rectangle"></topic>
-<topic href="help/Functions.html#Shape_Inset" label="Shape Inset"></topic>
-<topic href="help/Functions.html#Shape_Marker" label="Shape Marker"></topic>
-<topic href="help/Functions.html#Shape_Marker_2" label="Shape Marker 2"></topic>
-<topic href="help/Functions.html#Shape_Marker_3" label="Shape Marker 3"></topic>
-<topic href="help/Functions.html#Color_RGB" label="Color RGB"></topic>
-<topic href="help/Functions.html#Color_Red" label="Color Red"></topic>
-<topic href="help/Functions.html#Color_Yellow" label="Color Yellow"></topic>
-<topic href="help/Functions.html#Color_Blue" label="Color Blue"></topic>
-<topic href="help/Functions.html#Color_Orange" label="Color Orange"></topic>
-<topic href="help/Functions.html#Color_Green" label="Color Green"></topic>
-<topic href="help/Functions.html#Color_Purple" label="Color Purple"></topic>
-<topic href="help/Functions.html#Color_Black" label="Color Black"></topic>
-<topic href="help/Functions.html#Color_White" label="Color White"></topic>
-<topic href="help/Functions.html#Color_Gray" label="Color Gray"></topic>
-<topic href="help/Functions.html#Graphic_Outline" label="Graphic Outline"></topic>
-<topic href="help/Functions.html#Graphic_Fill" label="Graphic Fill"></topic>
-</topic>
-<topic href="help/Functions.html#Example_3" label="Example"></topic>
-</topic>
-<topic href="help/Functions.html#Lists" label="Lists">
-<topic href="help/Functions.html#Details_10" label="Details">
+<topic href="help/Functions.html#List" label="List">
 <topic href="help/Functions.html#Item" label="Item"></topic>
 <topic href="help/Functions.html#Length" label="Length"></topic>
 </topic>
-</topic>
-<topic href="help/Functions.html#Attribute_Distributions" label="Attribute Distributions">
 <topic href="help/Functions.html#Distribution" label="Distribution">
 <topic href="help/Functions.html#Uniform_Cross_Distribution" label="Uniform Cross Distribution"></topic>
 <topic href="help/Functions.html#Uniform_Additive_Distribution" label="Uniform Additive Distribution"></topic>
 <topic href="help/Functions.html#Cross_Distribution" label="Cross Distribution"></topic>
 <topic href="help/Functions.html#Additive_Distribution" label="Additive Distribution"></topic>
 </topic>
-<topic href="help/Functions.html#Example_4" label="Example"></topic>
 </topic>
+<topic href="help/Functions.html#Examples" label="Examples">
+<topic href="help/Functions.html#Spatial_2" label="Spatial"></topic>
+<topic href="help/Functions.html#Graphic_2" label="Graphic"></topic>
+<topic href="help/Functions.html#Distribution_2" label="Distribution"></topic>
 </topic>
 <topic href="help/Functions.html#Reference_3" label="Reference">
 <topic href="help/Functions.html#Diagrams_3" label="Diagrams">
@@ -448,7 +435,11 @@
 <topic href="help/Executing.html#Execute_Headless_.28Data.29" label="Execute Headless (Data)"></topic>
 </topic>
 <topic href="help/Executing.html#Executing_a_Model_.28Java_.2F_3D.29" label="Executing a Model (Java / 3D)"></topic>
-<topic href="help/Executing.html#Controlling_Model_Execution" label="Controlling Model Execution">
+<topic href="help/Executing.html#Controlling_Models" label="Controlling Models">
+<topic href="help/Executing.html#Model_Execution_Controls" label="">
+<topic href="help/Executing.html#N10D6F" label="Model Execution Controls"></topic>
+<topic href="help/Executing.html#Speed_Slider" label="Speed Slider"></topic>
+</topic>
 <topic href="help/Executing.html#The_Active_Model" label="The Active Model"></topic>
 </topic>
 <topic href="help/Executing.html#Views_2" label="Views">
@@ -462,6 +453,18 @@
 <topic href="help/Executing.html#2D_Views" label="2D Views">
 <topic href="help/Executing.html#Scaling" label="Scaling"></topic>
 </topic>
+<topic href="help/Executing.html#3D_Views" label="3D Views">
+<topic href="help/Executing.html#Animation" label="Animation"></topic>
+<topic href="help/Executing.html#Perspectives" label="Perspectives">
+<topic href="help/Executing.html#First_Person" label="First Person"></topic>
+<topic href="help/Executing.html#Overhead" label="Overhead"></topic>
+<topic href="help/Executing.html#Helicopter" label="Helicopter"></topic>
+</topic>
+</topic>
+<topic href="help/Executing.html#Graph_Views" label="Graph Views">
+<topic href="help/Executing.html#Layout" label="Layout"></topic>
+<topic href="help/Executing.html#Spring_Layout_Customization" label="Spring Layout Customization"></topic>
+</topic>
 <topic href="help/Executing.html#Charts" label="Charts">
 <topic href="help/Executing.html#Chart_Type" label="Chart Type"></topic>
 <topic href="help/Executing.html#Chart_Legend" label="Chart Legend"></topic>
@@ -471,11 +474,12 @@
 <topic href="help/Executing.html#Launching_Other_Targets" label="Launching Other Targets"></topic>
 <topic href="help/Executing.html#Model_Parameterization" label="Model Parameterization">
 <topic href="help/Executing.html#Syntax" label="Syntax"></topic>
-<topic href="help/Executing.html#Example_5" label="Example"></topic>
+<topic href="help/Executing.html#Example_2" label="Example"></topic>
 </topic>
 <topic href="help/Executing.html#Model_Testing" label="Model Testing">
 <topic href="help/Executing.html#Syntax_2" label="Syntax"></topic>
-<topic href="help/Executing.html#Example_6" label="Example"></topic>
+<topic href="help/Executing.html#Example_3" label="Example"></topic>
+<topic href="help/Executing.html#Model_Data" label="Model Data"></topic>
 </topic>
 </topic>
 </topic>
@@ -519,7 +523,7 @@
 </topic>
 <topic href="help/Model_Implementation.html#Actions_2_Movement_Rule" label="Actions 2 Movement Rule">
 <topic href="help/Model_Implementation.html#Create_Select_and_Query_Actions" label="">
-<topic href="help/Model_Implementation.html#N110DD" label="Create Select and Query Actions"></topic>
+<topic href="help/Model_Implementation.html#N11208" label="Create Select and Query Actions"></topic>
 <topic href="help/Model_Implementation.html#Model_Error_Handling" label="Model Error Handling"></topic>
 </topic>
 <topic href="help/Model_Implementation.html#Run_Final_Model" label="Run Final Model"></topic>
@@ -583,6 +587,15 @@
 <topic href="help/Models.html#Team_Project_Sets" label="Team Project Sets"></topic>
 <topic href="help/Models.html#From_Version_Control_Systems" label="From Version Control Systems"></topic>
 </topic>
+</topic>
+</topic>
+<topic href="help/New_and_Noteworthy.html" label="New and Noteworthy">
+<topic href="help/New_and_Noteworthy.html#Release_0.8.0" label="Release 0.8.0">
+<topic href="help/New_and_Noteworthy.html#Model_Visualization" label="Model Visualization"></topic>
+<topic href="help/New_and_Noteworthy.html#Modeling_Framework" label="Modeling Framework"></topic>
+<topic href="help/New_and_Noteworthy.html#Model_Editing" label="Model Editing"></topic>
+<topic href="help/New_and_Noteworthy.html#Modeling_Tools" label="Modeling Tools"></topic>
+<topic href="help/New_and_Noteworthy.html#User_Experience" label="User Experience"></topic>
 </topic>
 </topic>
 <topic href="help/Resources.html" label="Resources">

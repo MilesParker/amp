@@ -1,0 +1,363 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>New and Noteworthy</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="Agent Modeling Guide">
+<link rel="up" href="index.html" title="Agent Modeling Guide">
+<link rel="prev" href="Models.html" title="Models">
+<link rel="next" href="Resources.html" title="Resources">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">New and Noteworthy</h1>
+<div class="chapter" title="New and Noteworthy">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="New_and_Noteworthy"></a>New and Noteworthy</h2>
+</div>
+</div>
+</div>
+<div class="toc">
+<dl>
+<dt>
+<span class="section"><a href="New_and_Noteworthy.html#Release_0.8.0">Release 0.8.0</a></span>
+</dt>
+</dl>
+</div>
+<div class="section" title="Release 0.8.0">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Release_0.8.0"></a>Release 0.8.0</h2>
+</div>
+</div>
+</div>
+<p>The first official release of AMP includes many new or expanded features in addition to overall quality and usability improvements. The highlights are listed below.</p>
+<div class="section" title="Model Visualization">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Model_Visualization"></a>Model Visualization</h3>
+</div>
+</div>
+</div>
+<table id="N114CD">
+<tr>
+						
+<td>
+							<span class="bold"><strong>Graph Visualization</strong></span>
+						</td>
+						<td>Built in support for visualization and generation (as always with AMF, no code to write!) of graph models.</td>
+					
+</tr>
+<tr>
+						
+<td>&nbsp;</td>
+						<td>
+							
+<div class="mediaobject">
+<img src="images/execution/ViewGraph.png"></div>
+						
+</td>
+					
+</tr>
+<tr>
+						
+<td>
+							<span class="bold"><strong>3D View Improvements</strong></span>
+						</td>
+						<td>2 1/2 visualizations now support interpolated positions for agents. You can't see that here, but it means that the agents move smoothly through space, even if they are on a fixed grid. You can turn that feature on and off and you can change perspective easily.</td>
+					
+</tr>
+<tr>
+						
+<td>&nbsp;</td>
+						<td>
+							
+<div class="mediaobject">
+<img src="images/execution/View3D.png"></div>
+						
+</td>
+					
+</tr>
+<tr>
+						
+<td>
+							<span class="bold"><strong>API Improvements</strong></span>
+						</td>
+						<td>There have been significant changes to the APIs. As always, we've followed common Eclipse and EMF idioms, which means that to customize model visualization you typically only need to implement figure, shape or color providers and then adapt them to your model. And of course all of your existing models will generate code for the new APIs.</td>
+					
+</tr>
+<tr>
+						
+<td>
+							<span class="bold"><strong>More Legacy Views</strong></span>
+						</td>
+						<td>In addition, we've supported all existing Ascape views (not all of these are supported through AMF generated code..yet!).</td>
+					
+</tr>
+</table>
+</div>
+<div class="section" title="Modeling Framework">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Modeling_Framework"></a>Modeling Framework</h3>
+</div>
+</div>
+</div>
+<table id="N11534">
+<tr>
+						
+<td>
+							<span class="bold"><strong>New Actions</strong></span>
+						</td>
+						<td>Some key new Actions have just been introduced. These provide support for recursion (Cause and Perform), minimization and maximization queries, diffusion (Diffuse) and derived (Derive) values and give the framework a much more general purpose flavor while preserving model generality. You should be able to build many more kinds of models without resorting to custom coding. See the Modeler's guide Actions section for the details.</td>
+					
+</tr>
+<tr>
+						
+<td>
+							<span class="bold"><strong>Improved Model Representation and Generation</strong></span>
+						</td>
+						<td>There have been many improvements to how models can be designed and the code that is generated from those designs. As just one example, you can now search for agents within a model without having to specify an explicit space. As with model editing improvements, many of these changes have been driven by user input. If there is something you'd like to be able to do with AMF but can't, let us know by filing a feature request or posting to the newsgroup.</td>
+					
+</tr>
+<tr>
+						
+<td>
+							<span class="bold"><strong>Multiscale Support</strong></span>
+						</td>
+						<td>Support for modeling across scales has been greatly improved. For the Escape target it is very easy to define models with enclosing hierarchies. For example in the EpidemicRegion model, we've defined Regions which contain Cities which contain Individuals.</td>
+					
+</tr>
+<tr>
+						
+<td>&nbsp;</td>
+						<td>
+							
+<div class="mediaobject">
+<img src="images/examples/EpidemicRegional.png"></div>
+						
+</td>
+					
+</tr>
+<tr>
+						
+<td>&nbsp;</td>
+						<td>When the model is executed, views are automatically created for each member Scape (context) and data is collected for each level of scale.</td>
+					
+</tr>
+<tr>
+						
+<td>&nbsp;</td>
+						<td>
+							
+<div class="mediaobject">
+<img src="images/examples/EpidemicRegionalRun.png"></div>
+						
+</td>
+					
+</tr>
+</table>
+</div>
+<div class="section" title="Model Editing">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Model_Editing"></a>Model Editing</h3>
+</div>
+</div>
+</div>
+<table id="N11597">
+<tr>
+						
+<td>
+							<span class="bold"><strong>Overall Usability</strong></span>
+						</td>
+						<td>Significant effort has gone into improving the overall user interface for editing models. User feedback has been enormously helpful here -- please keep letting us know what works and what doesn't! In addition to the obvious changes, a lot of work has been done under the covers to provide a more seamless model building experience. We've fixed some glitches, but we've also added a number of things to help simplify and automate the model building process. As an example, when you create an agent, a style is automatically created along with default color, shape and paint actions.</td>
+					
+</tr>
+<tr>
+						
+<td>
+							<span class="bold"><strong>New Icons</strong></span>
+						</td>
+						<td>Most of the existing icons have been replaced or custom designed (which has incidentally required a lot of documentation to be recreated) to provide a better and more consistent user interface.</td>
+					
+</tr>
+<tr>
+						
+<td>
+							<span class="bold"><strong>Action Lists</strong></span>
+						</td>
+						<td>Actions are now displayed in lists, not in a tree structure. As the actual Actions are graph structures, the tree structure never matched well with this representation. Taking a simpler approach has made the action definition process much more transparent.</td>
+					
+</tr>
+<tr>
+						
+<td>&nbsp;</td>
+						<td>
+							
+<div class="mediaobject">
+<img src="images/tools/ActionsExample.png"></div>
+						
+</td>
+					
+</tr>
+</table>
+</div>
+<div class="section" title="Modeling Tools">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Modeling_Tools"></a>Modeling Tools</h3>
+</div>
+</div>
+</div>
+<table id="N115DD">
+<tr>
+						
+<td>
+							<span class="bold"><strong>Parameter Management Support</strong></span>
+						</td>
+						<td>AMP now has full support for editing and launching of parameter files, including code completion. There is also support for creation of tests and analysis of test results. Finally, data can now be generated to a common EMD based (adata) data format.</td>
+					
+</tr>
+<tr>
+						
+<td>&nbsp;</td>
+						<td>
+							
+<div class="mediaobject">
+<img src="images/params/Edit.png"></div>
+						
+</td>
+					
+</tr>
+<tr>
+						
+<td>
+							<span class="bold"><strong>Test-Driven Modeling and Simulation</strong></span>
+						</td>
+						<td>Tests can now easily be defined and analyzed.</td>
+					
+</tr>
+<tr>
+						
+<td>&nbsp;</td>
+						<td>
+							
+<div class="mediaobject">
+<img src="images/params/TestResults.png"></div>
+						
+</td>
+					
+</tr>
+<tr>
+						
+<td>
+							<span class="bold"><strong>Automated Data Export</strong></span>
+						</td>
+						<td>Data can now be easily generated to a common EMF based (adata) data format.</td>
+					
+</tr>
+</table>
+</div>
+<div class="section" title="User Experience">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="User_Experience"></a>User Experience</h3>
+</div>
+</div>
+</div>
+<table id="N11634">
+<tr>
+						
+<td>
+							<span class="bold"><strong>Overall</strong></span>
+						</td>
+						<td>Last but certainly not least, a lot of effort has gone into making it easier to get into AMP as well as to understand how to work with its more powerful features. Eclipse supports a number of sophisticated User Assistance features, and we've taken advantage of most of them.</td>
+					
+</tr>
+<tr>
+						
+<td>
+							<span class="bold"><strong>Documentation</strong></span>
+						</td>
+						<td>Over a 100 pages of documentation, plus another 100 pages of Ascape documentation converted to Eclipse Help and PDF.</td>
+					
+</tr>
+<tr>
+						
+<td>
+							<span class="bold"><strong>Welcome and Intro</strong></span>
+						</td>
+						<td>When starting AMP you'll be met by a custom welcome screen providing an easy path into Agent Modeling on Eclipse.</td>
+					
+</tr>
+<tr>
+						
+<td>&nbsp;</td>
+						<td>
+							
+<div class="mediaobject">
+<img src="images/users/WelcomeScreen.png"></div>
+						
+</td>
+					
+</tr>
+<tr>
+						
+<td>
+							<span class="bold"><strong>Cheat Sheets</strong></span>
+						</td>
+						<td>Helpful guides walk you through initial steps.</td>
+					
+</tr>
+<tr>
+						
+<td>&nbsp;</td>
+						<td>
+							
+<div class="mediaobject">
+<img src="images/users/CheatSheets.png"></div>
+						
+</td>
+					
+</tr>
+<tr>
+						
+<td>
+							<span class="bold"><strong>Integrated Models</strong></span>
+						</td>
+						<td>You can run example Ascape models directly from the documentation!</td>
+					
+</tr>
+<tr>
+						
+<td>&nbsp;</td>
+						<td>
+							
+<div class="mediaobject">
+<img src="images/users/IntegratedModels.png"></div>
+						
+</td>
+					
+</tr>
+</table>
+</div>
+</div>
+</div>
+</body>
+</html>

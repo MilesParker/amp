@@ -905,6 +905,27 @@ Query and Evaluation Actions are both "Sinks" which means that they are capable 
 
 Inputs can take literal values; that is values that you specify simply by entering them directly into the query. In general it is useful to think of literals as similar to local variables in a conventional programming language, whereas attributes are analogous to member variables. (And this is how they are represented in the generated Java code.) As with local variables in model code, literals are not recommended for any values that can change model behavior. The value cannot be easily accessed or changed by other model users. For greater transparency, you should instead create an Attribute with an appropriate default value, setting the "immutable" value to true. Still, literals can be useful for values that are special cases related to the evaluation or query, such as an input code, and for quickly prototyping functionality.
 
+===Reference===
+
+====Diagrams====
+
+The following diagram may be helpful to readers familiar with UML and Meta-modeling:
+
+=====Meta-Classes=====
+
+[[Image:images/actions/ActionsDiagram.png|800px]]
+
+=====Details=====
+
+In the diagram above, all meta-objects except for Input, Literal, and the enumerators (lists of options) are Actions. Blue meta-classes are concrete (you can create and use them directly). Red meta-classes are key collaborations.
+#An Act is anything that might happen during the execution of an Agent-Based Model.
+#All Actions have as their root-most source action a Root. These are added first to any agent behavior and act as triggers for all target behavior. For example, a Watch will execute any time the watched attribute is modified. (As the diagrams do not refer to elements outside of the current package, we cannot see here that Accessor includes a reference to some Attribute, but it does. To see these kinds of relationships you will want to refer to the metaabm.ecore file itself.)#Actions are targets and sources of one another, but an Act can never have itself as a source. (That is, Actions are acyclic, but branches can re-converge. When we refer to an Act source or target, we typically mean to include all ancestors or descendants, not just the immediately connected Act.)
+#All Actions (except for root Actions) reference a Select, referred to as the "selected" relation. An ASelect represents the model aspects that the Act is working within; that is, the spatial, temporal and type (agent) "world" that is currently being selected.
+#Commands trigger some model state change (Set) or spatial transformation (Transform).
+#Controls determine whether target Actions are executed and against what agents. They are in some sense query terms and include Query actions and Logic Actions.
+#Transforms also specify a "destination" Select. This represents aspects that the selected agent(s) will transform to. For example, a Move may use a Rule to select all SugarAgents (type) in the SugarGrid (space) every period (time) and move them to a destination of a neighboring SugarCell (type) in the SugarGrid (space, with time implicit).
+#Sinks are Actions which use some Function (see next section) to interpret state in the form of Inputs. Inputs can come from selected agent attributes, other Actions, or literal values.
+
 ===Example===
 
 In this section, we'll look at an example that should make clear how the basic Actions approach works in a model. Say we want to define a behavior like:
@@ -944,27 +965,6 @@ And here is how this works in detail:
 #Finally, we move to the location we've found. All that's required at this point is to specify:
 ##The movement selection, or those agents that are moving, which in this case is the original agent we're executing the rule for, and
 ##The destination, which is the cell that we've found. Note that the framework infers from the space definition that the Block agent is capable of hosting the Individual.
-
-===Reference===
-
-====Diagrams====
-
-The following diagram may be helpful to readers familiar with UML and Meta-modeling:
-
-=====Meta-Classes=====
-
-[[Image:images/actions/ActionsDiagram.png|800px]]
-
-=====Details=====
-
-In the diagram above, all meta-objects except for Input, Literal, and the enumerators (lists of options) are Actions. Blue meta-classes are concrete (you can create and use them directly). Red meta-classes are key collaborations.
-#An Act is anything that might happen during the execution of an Agent-Based Model.
-#All Actions have as their root-most source action a Root. These are added first to any agent behavior and act as triggers for all target behavior. For example, a Watch will execute any time the watched attribute is modified. (As the diagrams do not refer to elements outside of the current package, we cannot see here that Accessor includes a reference to some Attribute, but it does. To see these kinds of relationships you will want to refer to the metaabm.ecore file itself.)#Actions are targets and sources of one another, but an Act can never have itself as a source. (That is, Actions are acyclic, but branches can re-converge. When we refer to an Act source or target, we typically mean to include all ancestors or descendants, not just the immediately connected Act.)
-#All Actions (except for root Actions) reference a Select, referred to as the "selected" relation. An ASelect represents the model aspects that the Act is working within; that is, the spatial, temporal and type (agent) "world" that is currently being selected.
-#Commands trigger some model state change (Set) or spatial transformation (Transform).
-#Controls determine whether target Actions are executed and against what agents. They are in some sense query terms and include Query actions and Logic Actions.
-#Transforms also specify a "destination" Select. This represents aspects that the selected agent(s) will transform to. For example, a Move may use a Rule to select all SugarAgents (type) in the SugarGrid (space) every period (time) and move them to a destination of a neighboring SugarCell (type) in the SugarGrid (space, with time implicit).
-#Sinks are Actions which use some Function (see next section) to interpret state in the form of Inputs. Inputs can come from selected agent attributes, other Actions, or literal values.
 ==Functions==
 
 ===Overview===
@@ -990,286 +990,315 @@ A technical note: conceptually, functions can return multi-values, but that is n
 ====General Functions====
 
 Naturally, the Modeling tools provide general functions for performing calculations, comparisons and more complex mathematical expressions. The function library can be easily extended, and we'll be adding additional capabilities over time. As always, we welcome feedback and we'd like to hear what functions you need that aren't covered here.
-
-=====Logical Operators=====
-======Not======
+====Logical Operators====
+Logical operators allow comparison between values. They are typically used in Query terms but may be used in Evaluate actions as well.
+=====Not=====
 The result of the expression !X.
-======Equal======
+=====Equal=====
 The result of the expression X==Y.
-======Identical======
+=====Identical=====
 The result of the expression X==Y.
-======Greater======
+=====Greater=====
 The result of the expression X>Y.
-======Lesser======
+=====Lesser=====
 The result of the expression X<Y.
-======Greater or Equal======
+=====Greater or Equal=====
 The result of the expression X>=Y.
-======Lesser or Equal======
+=====Lesser or Equal=====
 The result of the expression X<=Y.
-======True======
+=====True=====
 The result of the expression true.
-======False======
+=====False=====
 The result of the expression false.
-======Identity======
+=====Identity=====
 The result of the expression X.
-======Different======
+=====Different=====
 The result of the expression X!=Y.
-=====Numeric Operators=====
-======Negative Value======
+====Numeric Operators====
+Numeric operators support all of the basic operators used in evaluations.
+=====Negative Value=====
 The result of the expression -X.
-======Add======
+=====Add=====
 The result of the expression X+Y.
-======Subtract======
+=====Subtract=====
 The result of the expression X-Y.
-======Multiply======
+=====Multiply=====
 The result of the expression X*Y.
-======Divide======
+=====Divide=====
 The result of the expression X/Y.
-======Power======
+=====Power=====
 The result of the expression X^Y.
-======Modulo======
+=====Modulo=====
 The result of the expression X%Y.
-======Increment======
+=====Increment=====
 The result of the expression ++X.
-======Decrement======
+=====Decrement=====
 The result of the expression --X.
-======Unit Value======
+=====Unit Value=====
 The result of the expression 1.
-======Zero Value======
+=====Zero Value=====
 The result of the expression 0.
-======Original Value======
+=====Original Value=====
 The result of the expression o.
-
-=====Math=====
-
-The math functions use the extremely well specified and tested routines form the Java Math library. (Because of copyright restrictions, we aren't able to include the exact definitions here. Click on the links to get more details on each function.)
-
-======Sine======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sin(double)]
-======Cosine======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cos(double)]
-======Tangent======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tan(double)]
-======Arc Sine======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#asin(double)]
-======Arc Cosine======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#acos(double)]
-======Arc Tangent======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan(double)]
-======Convert Degree to Radians======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toRadians(double)]
-======Convert Radians to Degrees======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toDegrees(double)]
-======Exp======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#exp(double)]
-======Log======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log(double)]
-======Log b10======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log10(double)]
-======Square Root======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#squareRoot(double)]
-======Cube Root======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cbrt(double)]
-======Remainder======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#iEEEremainder(double,%20double)]
-======Ceiling======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ceil(double)]
-======Floor======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#floor(double)]
-======Rount======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#rint(double)]
-======Arc Tangent Rectangular======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan2(double,%20double)]
-======Power======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#pow(double,%20double)]
-======Absolute Value======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#abs(double)]
-======Maximum======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#max(double,%20double)]
-======Minimum======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#min(double,%20double)]
-======ULP======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ulp(double)]
-======Sign======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#signum(double)]
-======Hyperbolic Sine======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sinh(double)]
-======Hyperbolic Cosine======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cosh(double)]
-======Hyperbolic Tan======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tanh(double)]
-======Hypotuneuse======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#hypotuneuse(double,%20double)]
-======Expm1======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#expm1(double)]
-======Log1p======
-See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log1p(double)]
-
+====Spatial====
+Spatial functions provide the core functionality for Agent Models. Spatial functions are polymorphic, which basically means that they don't care what space they are operating on as long as that space is suitable for them. Spatial functions are designed to collaborate with one another. For example, by intersecting the "Neighbor", "Available" and "Toward" functions, we can design a rule that causes the agent to move to the next neighboring cell that get's it closer to some target agent. See the function details for more information.
+=====Nearest =====
+Represents the nearest agents (including gird cells) or locations to this agent. If more than one agent or location is the same distance away they will all be considered. Note that while this function is defined for the selection of an agent, the result of this function is defined by the context within which it is used. If the selection specifies another agent within a space, this function will represent the nearest agent in that space. If the selection specifies a Cell within a grid space, this function will represent that cell.
+=====Toward=====
+Represents a location that is on the shortest path to a particular agent or location from the source agent (that is, the selection's selection's agent). This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction towards some objective.
+=====Within=====
+Represents a limit to the distance of a spatial search. When used in combination with other spatial functions such as "nearest" requires that all agents or locations must be within the distance specified by the input value.
+ Inputs:
+ [Numeral] 
+=====Neighbor=====
+Represents any agents that are nearest neighbors to the agent, that is nominally of distance 1. This function is only relevant in discrete spaces -- grids and networks -- where there are immediate neighboring cells as defined by the geometry of the selection's space.
+=====Include Self=====
+Specifies whether the agent that we are searching from -- that is, the agent of the selection for this Query Action's selection -- is included in the results of the search.
+=====Within 2D Boundary=====
+Represents agents or locations that exist within the boundary specified by the inputs.
+ Inputs:
+ [Numeral] 
+=====Here=====
+Represents the location of the searching agent. For example, if a selection is defined for an agent cell, and that selection's selection's agent is an occupant of a cell, the cell that the agent is occupying will be used. 
+=====Available=====
+Represents cells which are not currently occupied. This function is only relevant for grids which are not multi-occupant.
+=====Distance=====
+The distance between the source agent and an agent represented by this selection. If more than one agent is represented by the other functions in the selection, this function will the distance to an arbitrary (randomly selected) agent as defined by those other functions.
+ Outputs:
+ [Real] 
+=====Away=====
+Represents a location that is on the path that will take the source agent (that is, the selection's selection's agent) the farthest distance from the agent(s) represented by the search. This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction away from some location or agent.
+=====Minimize=====
+Finds the agent with the lowest value for the specified input. For example, if we created a Select for HeatCell, created a Minimize Query Term with Heat as the input Query Term, created Neighbor and Available Query Terms and set an Intersect as the target for all of those Queries, the result would be the the neighboring available cell with the lowest heat level.
+ Inputs:
+ [Real] The value we will minimize for.
+=====Maximize=====
+Finds the agent with the highest value for the specified input. For example, if we created a Select for HeatCell, created a Maximize Query Term with Heat as the input Query Term, created Neighbor and Available Query Terms and set an Intersect as the target for all of those Queries, the result would be the the neighboring available cell with the highest heat level.
+ Inputs:
+ [Real] The value we will maximize for.
+=====Location 2D=====
+Represents the location of the current agent for use in subsequent selections.
+ Inputs:
+ [Real] 
+ [Real] 
+=====Boundary 2D=====
+Represents a two-dimensional boundary within a space. (Not currently relevant for any general usages.)
+ Outputs:
+ [Real] 
+ [Real] 
+=====All=====
+Causes all agents that meet the other query terms to be included in a selection. Without this query term, a single random agent is picked out of all agents matching the query terms.
 ====Random====
-
-=====Design=====
-
 Random functions are especially significant for agent models. Of particular interest are the weighted membership and random state and boolean value functions. You should be familiar with these functions so that you don't have to create more complex Action flows to accomplish the same thing.
 
 Note that we only have support for uniform distributions as of this release. We're working on a collaborative design for evaluations that allow easy mixing and matching of random functions and distributions.
-
-=====Details=====
-
-======Random In Range======
+=====Random In Range=====
 A pseudo-random value within that numeric range specified as drawn from a uniform distribution. The minimum values are inclusive. The maximum values are inclusive for integer inputs and exclusive for Real inputs.
  Inputs:
  [Numeral] The minimum value (inclusive).
  [Numeral] The maximum value (inclusive).
  Outputs:
  [Numeral] The random number.
-======Random To Limit======
+=====Random To Limit=====
 A pseudo-random value between zero and the value specified by the (non-zero) input and drawn from a uniform range. That value is inclusive for Integers and exclusive for Reals. (Note that as with the random in range function in the context of real numbers the distinction between an exclusive and inclusive limit is essentially meaningless.)
  Inputs:
  [Numeral] The maximum value (inclusive).
  Outputs:
  [Numeral] The result.
-======Random Unit======
+=====Random Unit=====
 A pseudo-random Real value between 0 and 1 drawn from a uniform distribution. (The distinction between inclusive and exclusive range is essentially meaningless in this context and we can assume that the result will never be greater or equal to 1.)
  Outputs:
  [Real] 
-======Random Boolean======
+=====Random Boolean=====
 A value that is randomly true or false, i.e. a fair coin toss.
-======Random Weighted======
+=====Random Weighted=====
 An indexed value weighted against a probability distribution. The total probability must sum to 1.0. For example, an input of {.1,.2,.7} under a uniform distribution would would have 10% probability of producing "0" , 20%  for "1" and 70% for "2". This function can then be used with Item to return a biased result from another list.
  Inputs:
  [Real] A list of values that will determine the resulting weighted index.
  Outputs:
  [Integer] A resulting indexed value bounded by 0 and the length of the input list - 1.
-======Random Member======
+=====Random Member=====
 Represents a random value drawn from the set of Real values specified.
  Inputs:
  [Real] Returns a random member of the supplied list of numbers.
  Outputs:
  [Generic] The value of the item at a random index.
-======Random State======
+=====Random State=====
 A random specified value (option) from the specified state.
  Inputs:
  [Generic] The state to select items from. All items are included.
  Outputs:
- [Boolean] The resulting option. 
- 
-====Space====
-
-=====Design=====
-
-Spatial functions provide the core functionality for Agent Models. Spatial functions are polymorphic, which basically means that they don't care what space they are operating on as long as that space is suitable for them. Spatial functions are designed to collaborate with one another. For example, by intersecting the "Neighbor", "Available" and "Toward" functions, we can design a rule that causes the agent to move to the next neighboring cell that get's it closer to some target agent. See the function details for more information.
-
-=====Details=====
-
-======Nearest ======
-Represents the nearest agents (including gird cells) or locations to this agent. If more than one agent or location is the same distance away they will all be considered. Note that while this function is defined for the selection of an agent, the result of this function is defined by the context within which it is used. If the selection specifies another agent within a space, this function will represent the nearest agent in that space. If the selection specifies a Cell within a grid space, this function will represent that cell.
-======Toward======
-Represents a location that is on the shortest path to a particular agent or location from the source agent (that is, the selection's selection's agent). This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction towards some objective.
-======Within======
-Represents a limit to the distance of a spatial search. When used in combination with other spatial functions such as "nearest" requires that all agents or locations must be within the distance specified by the input value.
- Inputs:
- [Numeral] 
-======Neighbor======
-Represents any agents that are nearest neighbors to the agent, that is nominally of distance 1. This function is only relevant in discrete spaces -- grids and networks -- where there are immediate neighboring cells as defined by the geometry of the selection's space.
-======Include Self======
-Specifies whether the agent that we are searching from -- that is, the agent of the selection for this Query Action's selection -- is included in the results of the search.
-======Within 2D Boundary======
-Represents agents or locations that exist within the boundary specified by the inputs.
- Inputs:
- [Numeral] 
-======Here======
-Represents the location of the searching agent. For example, if a selection is defined for an agent cell, and that selection's selection's agent is an occupant of a cell, the cell that the agent is occupying will be used. 
-======Available======
-Represents cells which are not currently occupied. This function is only relevant for grids which are not multi-occupant.
-======Distance======
-The distance between the source agent and an agent represented by this selection. If more than one agent is represented by the other functions in the selection, this function will the distance to an arbitrary (randomly selected) agent as defined by those other functions.
- Outputs:
- [Real] 
-======Away======
-Represents a location that is on the path that will take the source agent (that is, the selection's selection's agent) the farthest distance from the agent(s) represented by the search. This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction away from some location or agent.
-======Minimize======
-This function is not currently supported.
-======Maximize======
-This function is not currently supported.
-======Location 2D======
-Represents the location of the current agent for use in subsequent selections.
- Inputs:
- [Real] 
- [Real] 
-======Boundary 2D======
-Represents a two-dimensional boundary within a space. (Not currently relevant for any general usages.)
- Outputs:
- [Real] 
- [Real] 
-
-=====Example=====
-
-For examples of how spatial functions can be used within action flows to provide agents with complex movement behaviors, see the Modelers Guide actions examples. In the following example from that section, we define an action that causes a partner agent to move to an available neighboring space.
-
-[[Image:images/actions/ActionsExampleNew.png|800px]]
-
-====Time====
-=====Details=====
-
-======Now======
-The current simulation period, that is the number of iterations that the model has gone through, or in the case of models with callibrarted time, the number of iterations added to the model's nominal start time.
- Outputs:
- [Integer] The current period.
- 
-====Graphics====
-
-=====Design=====
-
+ [Integer] The resulting option. 
+====Graphic====
 Graphic functions are combined within Style Evaluate Actions to determine how to draw an agent within a visualization. One nice aspect of this approach is that the same style definition can be used in multiple places without changing any code. For example, the same style could be used to draw an agent on a two-dimensional grid within Escape, a three-dimensional shape within Escape, a Java Swing based visualization in Ascape, and an XML configured visualizaiton in Repast Simphony.
 
 To define a graphic style for an agent, design a flow in which you create Evaluate Actions for color and shape, and then create an Evaluate Action with the graphic fill or outline function as a target of these.
-
-=====Details=====
-
-======Shape Oval======
+=====Shape Oval=====
 Draw a generic oval.
-======Shape Rectangle======
+=====Shape Rectangle=====
 Draws a rectangular shape.
-======Shape Inset======
+=====Shape Inset=====
 Shrinks the current shape by the input amount. (The overall scale is currently unspecified, but in most implementations should be 20.)
  Inputs:
  [Integer] Number of nominal pixels to inset.
-======Shape Marker======
-Draw a marker, that is a graphical indicator that can be used to add an additional cue about the object state. For example, in a two-dimensional graphics representation this might be a small shape drawn inset at the corner of the larger shape. 
-======Shape Marker 2======
+=====Shape Marker=====
+Draw a marker, that is a graphical indicator that can be used to add an additional que about the object state. For example, in a two-dimensional graphics representation this might be a small shape drawn inset at the corner of the larger shape. 
+=====Shape Marker 2=====
 Represents a marker placed in a different location from the other shape markers.
-======Shape Marker 3======
+=====Shape Marker 3=====
 Represents a marker placed in a different location from the other shape markers.
-======Color RGB======
+=====Color RGB=====
 A color specified by the three inputs for Red, Green and Blue color components. Those inputs are expected to be in the range 0..1.
  Inputs:
  [Real] A value from 0.0 to 1.0.
  [Real] A value from 0.0 to 1.0.
  [Real] A value from 0.0 to 1.0.
-======Color Red======
+=====Color Red=====
 The color red.
-======Color Yellow======
+=====Color Yellow=====
 The color yellow.
-======Color Blue======
+=====Color Blue=====
 The color blue.
-======Color Orange======
+=====Color Orange=====
 The color orange.
-======Color Green======
+=====Color Green=====
 The color green.
-======Color Purple======
+=====Color Purple=====
 The color purple.
-======Color Black======
+=====Color Black=====
 The color black.
-======Color White======
+=====Color White=====
 The color white.
-======Color Gray======
+=====Color Gray=====
 The color gray.
-======Graphic Outline======
+=====Graphic Outline=====
 Draws an outline of the last evaluated shape, using the last specified color or the default color (usually black) if none has been specified.
-======Graphic Fill======
+=====Graphic Fill=====
 Fills the last evaluated shape with the last specified color or the default color (usually black) if none has been specified.
+====Time====
+Time functions return values related to model execution time. 
+=====Now=====
+The current simulation period, that is the number of iterations that the model has gone through, or in the case of models with callibrarted time, the number of iterations added to the model's nominal start time.
+ Outputs:
+ [Integer] The current period.
+====Math====
+The math functions use the extremely well specified and tested routines form the Java Math library. (Because of copyright restrictions, we aren't able to include the exact definitions here. Click on the links to get more details on each function.)
+=====Sine=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sin(double)]
+=====Cosine=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cos(double)]
+=====Tangent=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tan(double)]
+=====Arc Sine=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#asin(double)]
+=====Arc Cosine=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#acos(double)]
+=====Arc Tangent=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan(double)]
+=====Convert Degree to Radians=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toRadians(double)]
+=====Convert Radians to Degrees=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toDegrees(double)]
+=====Exp=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#exp(double)]
+=====Log=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log(double)]
+=====Log b10=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log10(double)]
+=====Square Root=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#squareRoot(double)]
+=====Cube Root=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cbrt(double)]
+=====Remainder=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#iEEEremainder(double,%20double)]
+=====Ceiling=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ceil(double)]
+=====Floor=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#floor(double)]
+=====Rount=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#rint(double)]
+=====Arc Tangent Rectangular=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan2(double,%20double)]
+=====Power=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#pow(double,%20double)]
+=====Absolute Value=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#abs(double)]
+=====Maximum=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#max(double,%20double)]
+=====Minimum=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#min(double,%20double)]
+=====ULP=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ulp(double)]
+=====Sign=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#signum(double)]
+=====Hyperbolic Sine=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sinh(double)]
+=====Hyperbolic Cosine=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cosh(double)]
+=====Hyperbolic Tan=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tanh(double)]
+=====Hypotuneuse=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#hypotuneuse(double,%20double)]
+=====Expm1=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#expm1(double)]
+=====Log1p=====
+See JavaDoc: [http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log1p(double)]
+====List====
+List functions are used for working with arrays and other functions that have lists as output.
+=====Item=====
+Returns the item at the specified index from the list of items provided. Those items will typically be input primitives such as Integer or Real values.
+ Inputs:
+ [Generic] 
+ [Integer] 
+ Outputs:
+ [Generic] 
+=====Length=====
+The number of items in the provided list of items.
+ Inputs:
+ [Generic] 
+ Outputs:
+ [Integer] 
+====Distribution====
+One of the most common tasks in the Agent Modeling process is the creation of agents with particular states drawn from a distribution. For example, you might want to create a number of agents with wealth randomly distributed between some minimum and maximum values. The distribution functions greatly ease the process of setting up those initializations and their associated parameters.
+=====Uniform Cross Distribution=====
+A random number taken from a distribution of values as defined by a cross of all values. (See Cross Distribution.) This funciton then returns a value drawn from the minimum and maximum values as determined by the current agent state. In the cross distribution, each of the values is treated independently so that an input attribute is created for every potential combination of states.
+ Inputs:
+ [Generic] The list of states to factor into the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
+ [Real] The set of attributes that will determine the minimum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
+ [Real] The set of attributes that will determine the maximum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
+ Outputs:
+ [Real] The resulting random number based on the current agent state and the input parameters.
+=====Uniform Additive Distribution=====
+A random number taken from a distribution of values in which each of the minimum and maximum values are added to determine a total minimum and maximum value. (See Additive Distribution.) In the additive distribution, each of the values is treated as dependent on the others so that an input attribute is only created for each seperate state.
+ Inputs:
+ [Generic] The list of states to factor into the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
+ [Real] The set of attributes that will determine the minimum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
+ [Real] The set of attributes that will determine the maximum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
+ Outputs:
+ [Real] The resulting random number based on the current agent state and the input parameters.
+=====Cross Distribution=====
+A value taken from a set of (auto-generated) attributes based on the value of each state included. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create separate input attributes for AI, AII, BI and BII. Then for an agent with States A and II this function would return the value specified by the AII input attribute.
+ Inputs:
+ [Generic] The list of states to factor into the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
+ [Real] The set of attributes that when multiplied against each other will determine the value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
+ Outputs:
+ [Real] The resulting value based on the current agent state and the input parameters.
+=====Additive Distribution=====
+A value taken from a set of (auto-generated) attributes based on the combined values of the states provided. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create input attributes for A, B, I and II. Those values would then be added together, so that for an Agent with state A and II this function would return A + II.
+ Inputs:
+ [Generic] The states to include in the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
+ [Real] The set of attributes that when combined with each other determine the value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
+ Outputs:
+ [Real] The resulting value based on the current agent state and the input parameters.
+===Examples===
 
-=====Example=====
+====Spatial====
+
+For examples of how spatial functions can be used within action flows to provide agents with complex movement behaviors, see the Modelers Guide actions examples. In the following example from that section, we define an action that causes a partner agent to move to an available neighboring space.
+
+[[Image:images/actions/ActionsExampleNew.png|800px]]
+
+====Graphic====
 
 In the following action flow for the epidemic style, we've create Query Actions to determine each agent's current state, picked a color based on that, and then used a shared target to select a shape for the agent style and fill it:
 
@@ -1279,61 +1308,7 @@ After saving the model we can execute the two and three dimensional visualizatio
 
 [[Image:images/functions/GraphicsFunctionExampleRun.png]]
 
-====Lists====
-
-=====Details=====
-
-======Item======
-Returns the item at the specified index from the list of items provided. Those items will typically be input primitives such as Integer or Real values.
- Inputs:
- [Generic] 
- [Integer] 
- Outputs:
- [Generic] 
-======Length======
-The number of items in the provided list of items.
- Inputs:
- [Generic] 
- Outputs:
- [Integer] 
- 
-====Attribute Distributions====
-
-One of the most common tasks in the Agent Modeling process is the creation of agents with particular states drawn from a distribution. For example, you might want to create a number of agents with wealth randomly distributed between some minimum and maximum values. The distribution functions greatly ease the process of setting up those initializations and their associated parameters.
-
-=====Distribution=====
-======Uniform Cross Distribution======
-A random number taken from a distribution of values as defined by a cross of all values. (See Cross Distribution.) This funciton then returns a value drawn from the minimum and maximum values as determined by the current agent state. In the cross distribution, each of the values is treated independently so that an input attribute is created for every potential combination of states.
- Inputs:
- [Generic] The list of states to factor into the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
- [Real] The set of attributes that will determine the minimum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
- [Real] The set of attributes that will determine the maximum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
- Outputs:
- [Real] The resulting random number based on the current agent state and the input parameters.
-======Uniform Additive Distribution======
-A random number taken from a distribution of values in which each of the minimum and maximum values are added to determine a total minimum and maximum value. (See Additive Distribution.) In the additive distribution, each of the values is treated as dependent on the others so that an input attribute is only created for each seperate state.
- Inputs:
- [Generic] The list of states to factor into the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
- [Real] The set of attributes that will determine the minimum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
- [Real] The set of attributes that will determine the maximum value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
- Outputs:
- [Real] The resulting random number based on the current agent state and the input parameters.
-======Cross Distribution======
-A value taken from a set of (auto-generated) attributes based on the value of each state included. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create separate input attributes for AI, AII, BI and BII. Then for an agent with States A and II this function would return the value specified by the AII input attribute.
- Inputs:
- [Generic] The list of states to factor into the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
- [Real] The set of attributes that when multiplied against each other will determine the value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
- Outputs:
- [Real] The resulting value based on the current agent state and the input parameters.
-======Additive Distribution======
-A value taken from a set of (auto-generated) attributes based on the combined values of the states provided. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create input attributes for A, B, I and II. Those values would then be added together, so that for an Agent with state A and II this function would return A + II.
- Inputs:
- [Generic] The states to include in the distribution. This is a multi-argument, which means that you can specify any number of attributes as arguments.
- [Real] The set of attributes that when combined with each other determine the value of the function result based on the current state of the agent. Note that this list is automatically created and maintained. These values don't need to be and should not be manually edited.
- Outputs:
- [Real] The resulting value based on the current agent state and the input parameters.
-	
-=====Example=====
+====Distribution====
 
 In the following example, we walk through the process of using a distribution functions, demonstrating how we can easily modify the Epidemic model so that instead of simply setting an initial exposed population, we can define factors that take together will determine an individuals initial exposure state. We simply:
 
@@ -1608,10 +1583,12 @@ Generates WikiText documentation for function libraries. We use it to create the
 ===Launching a Model (AMF)===
 
 
-{| border="0"
+{| border="0" cellpadding="10"
 |-valign="top"
-|Launching AMF and Escape models is easy. When an AMF file is selected -- in any of the perspectives -- the toolbar and Application menus are updated to reflect the file you've selected and provide convenient access to other functions. For example, when we click on a metaabm file in the package explorer, model execution buttons appear in the toolbar. If you right-click on a file a pop-up menu appears like the one to the far right -- in this case we're selecting the "Execute Headless" option. To launch a model, just select one of the options. (Note that the execution framework doesn't know whether your code exists in an Escape project or another target project. If you attempt to execute a .metaabm model in an Ascape project for example, you will get an error.)
+|Launching AMF and Escape models is easy. When an AMF file is selected -- in any of the perspectives -- the toolbar and Application menus are updated to reflect the file you've selected and provide convenient access to other functions. For example, when we click on a metaabm file in the package explorer, model execution buttons appear in the toolbar.
 |[[Image:images/tools/EditorToolbar.png]]
+|-valign="top"
+|If you right-click on a file a pop-up menu appears like the one to the far right -- in this case we're selecting the "Execute Headless" option. To launch a model, just select one of the options. (Note that the execution framework doesn't know whether your code exists in an Escape project or another target project. If you attempt to execute a .metaabm model in an Ascape project for example, you will get an error.)
 |[[Image:images/tools/EditorMenu.png]]
 |}
 
@@ -1635,19 +1612,37 @@ Launches the model with an observer that collects data into the AMF adata model 
 
 ===Executing a Model (Java / 3D)===
 
-You can execute any Escape model directly from its Java file by right-clicking on it. This is used for models that have been written directly in Java, or that you have created or that have been automatically generated, such as the 3D versions of AMF models. In order for the model to launch correctly, it must have as a superclass the Escape "Scape" class. In the following screenshot, we've launched a 3D version of the Epidemic model. The 3D models are automatically generated for all .metaabm models.
+You can execute any Escape model directly from its Java file by right-clicking on it. This is used for models that have been written directly in Java, or that you have created or that have been automatically generated, such as the 3D versions of AMF models. In order for the model to launch correctly, it must have as a superclass the Escape "Scape" class. In the following screenshot, we've launched a 3D version of the Epidemic model. The 3D models are automatically generated for all .metaabm models. You can also launch a model into 3D by clicking on the model file and clicking the second (Execute Model with 3D) execute button.
 
 [[Image:images/execution/Epidemic3D.png]]
 
-===Controlling Model Execution===
+===Controlling Models===
 
 Once a model has been launched, the toolbar buttons allow you to control model execution.
 
-[[Image:images/execution/EpidemicModelControls.png]]
+[[Image:images/execution/ExecControl.png]]
+
+=====Model Execution Controls=====
 
 From right to left, you can start, restart, pause, step, stop and close a model. You can even run multiple models and control them independently. You can also move views around, close them and so on as with any other Eclipse views. Here we're running two separate models for comparison.
 
 [[Image:images/execution/EpidemicModelComparison.png]]
+
+=====Speed Slider=====
+
+A special feature of the modeling tools is the "Speed Slider". This allows you to dynamically "speed up" and "slow down" the model execution. You can see where you've set the current speed in the status bar in the lower left hand corner of the environment.
+
+Actually, you're not controlling the speed of model ''execution'' at all. Agent models are almost always constrained not by the time of model execution -- a typical model can execute many thousands of iterations a second -- but by the time it takes to draw visualizations. By updating the views less frequently we allow the model to run at full speed until the next visualization period. This gives the illusion that we're speeding up the model. When we slow the model down, we're inserting a wait period between each model iteration.
+
+To increase model execution speed, move the slider to the right. Here we're only updating the model every 56 iterations.
+
+[[Image:images/execution/SliderRight.png]]
+
+To decrease speed, move the slider to the left. Here, we're pausing between each iteration for 1.65 seconds.
+
+[[Image:images/execution/SliderLeft.png]]
+
+
 
 ====The Active Model====
 
@@ -1713,6 +1708,75 @@ There are a number of view widgets in the upper-right hand corner that you can u
 #Zoom In
 #Zoom Out
 
+====3D Views====
+
+The 3D views provide a three-dimensional representation of a running model. Currently they support 2D models only, which makes them 2 1/2 D views.
+
+[[Image:images/execution/View3D.png]]
+
+You can navigate and customize the model with the following controls:
+
+[[Image:images/execution/View3DMenuBar.png]]
+
+From left to right, they are:
+
+=====Animation=====
+
+Turns on and off the interpolated (smooth) movement of agents from one cell to another. This is a unique feature of AMP and provides a very nice visualization, but it does slow down model execution. For very large models, you can switch it off -- visualization will be "jerky" but much quicker.
+
+=====Perspectives=====
+
+The three perspectives are used to control the camera location -- in other words the perspective from which the movie is being made. Note that if the camera is currently moving to a given perspective and you select a new perspective the camera may become confused! It is best to wait until the camera comes to a stop before choosing a different perspective. You can speed up camera movement by pausing the model temporarily.
+
+======First Person======
+
+Moves the point of view to ground level, as if the observer were in the space itself.
+
+======Overhead======
+
+Moves the point of view to overhead, giving a similar view as you have with the 2D view. Note that in many cases the 3D view is actually faster than the 2D view, so this is a good way to observe any kind of 2D model.
+
+======Helicopter======
+
+Moves the point to an oblique perspective. This is useful for getting an overall sense of model behavior.
+
+====Graph Views====
+
+Graph views allow you to undestand the network relationships between various agents in the model. By default, a graph is creaed for all relationships, but you can customize that behavior programmatically. Graphs are also super-imposed on 2D models, as we can see in the following example running the EpidemicContact model.
+
+[[Image:images/execution/ViewGraph.png]]
+
+Note that complex models can take a long time to visualize and we'll be looking for opportuntites to optimize performance further in the future. If you think the visualization is stuck it is likely that it is simply calculating the next visualization step -- wait a bit before canceling the model or closing it.
+
+Graph views can be customized with the following controls:
+
+[[Image:images/execution/View3DMenuBar.png]]
+
+From left to right, they are:
+
+=====Layout=====
+
+The layout buttons control how the nodes are placed within the graph. You can swithc between layout dynamically to gain insight into network relationships.
+
+{| cellpadding="5"
+|[[Image:images/execution/ViewGraphDown.png]]
+|[[Image:images/execution/ViewGraphRight.png]]
+|-valign="top"
+|'''Tree (Down):''' Places the graph nodes into a downward oriented tree formation. You'll find that the tree views are more effecient at visualizing, and can be very ood at representing models with an inherent hierarchical structure such as kinship diagrams, but don't always give the best insight into the model for complex network relations.
+|'''Tree (Right):''' The same tree layout oriented from the root-most nodes rightward.
+|-valign="top"
+|[[Image:images/execution/ViewGraphRadial.png]]
+|[[Image:images/execution/ViewGraphSpring.png]]
+|-valign="top" cellpadding="0"
+|'''Radial:''' Places the nodes in a radial layout with the root-most nodes at the center. This is a great way to represent semi-hierarchical models with complex structure, but is a little slower than the tree layouts.
+|'''Spring:''' This layout uses a spring and strain approach that allows nodes to find their own location within the visualization. It can provide beautiful and insightful diagrams, but it is also slower than the other layouts. For more complex models it often works well to use the radial layout and then switch to the Spring layout when examining relationships in depth.
+|}
+
+=====Spring Layout Customization=====
+
+You can customize how the Spring by clicking on the customization button. This allows you to change a number of values that determine how nodes are layed out. While the default settings work well with many graph structures it can be helpful (and fun) to play with different settings to get the best visualization.
+|[[Image:images/execution/ViewGraphSpringDialog.png]]
+
 ====Charts====
 
 A '''Chart''' view is automatically created and displayed for executing models. It can display aggregate values for any of the agent attributes you have set the "gather data" value to true for. Charts can be easily modified. While the built-in view is not meant to be the sole tool for Escape model data analysis, it provides an easy to use and powerful way to explore models interactively. The Chart view widgets allow you to modify the chart with the click of a button.
@@ -1723,10 +1787,19 @@ A '''Chart''' view is automatically created and displayed for executing models. 
 
 Several chart types are supported: The line, area, bar and pie chart. Click on one of the icons to select that type.
 
-[[Image:images/execution/LineChart.png|400px|Line Chart]]
-[[Image:images/execution/AreaChart.png|400px|Area Chart]]
-[[Image:images/execution/BarChart.png|400px|Bar Chart]]
-[[Image:images/execution/PieChart.png|400px|Pie Chart]]
+{| cellpadding="5"
+|[[Image:images/execution/LineChart.png]]
+|[[Image:images/execution/AreaChart.png]]
+|-
+|'''Line'''
+|'''Area'''
+|-
+|[[Image:images/execution/BarChart.png]]
+|[[Image:images/execution/PieChart.png]]
+|-
+|'''Bar'''
+|'''Pie'''
+|}
 
 =====Chart Legend=====
 
@@ -1845,6 +1918,15 @@ Then we define our ZeroTransmission.atest file:
  Count(Individual.Status=SymptomInfectious)=[0,0]
  
 Here we have a nice description, a reference to the parameterization we want to use, and then the set of constraints we will apply to them. After running this test, a test result file like the one above will be created and placed in our "test-results" directory.
+
+
+====Model Data====
+
+{|
+|-valign="top"
+|As discussed above, you can collect data for any model by selecting it or a paramters file and clicking the "Execute Model with data collection" button. If you use a parameters file setting the StopPeriod parameter will cause the model to stop executing and save the model at the specified time. Or you can stop the model manually. The model data will be collected into an "adata" file and stored in the "output" directory in your project. A new run entry will be created for each execution of a model. We are currently developing tools for exporting this data to various file formats as well as providing more seemless integration to sophisticated Eclipse hosted charting and report tools. You can use BIRT to interact with the data set using an XML schema data source and there is also an Ecore driver available. Model data can also be produced by writing custom views for data output. See the Ascape programmer guide for more information on how to do that.
+|[[Image:images/data/Editor.png]]
+|}
 =Tutorials=
 
 ==Designing a Model==
@@ -2367,6 +2449,118 @@ Ascape (Swing-based) Java Models:
  https://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.examples
  https://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.brook
  
+=New and Noteworthy=
+
+==Release 0.8.0==
+
+The first official release of AMP includes many new or expanded features in addition to overall quality and usability improvements. The highlights are listed below.
+
+===Model Visualization===
+{| style="border-top: 1px solid #aaa; width: 100%" cellpadding="20"
+|-valign="top"
+| '''Graph Visualization'''
+| Built in support for visualization and generation (as always with AMF, no code to write!) of graph models.
+|-valign="top"
+| &nbsp;
+| [[Image:images/execution/ViewGraph.png]]
+|-valign="top"
+| '''3D View Improvements'''
+| 2 1/2 visualizations now support interpolated positions for agents. You can't see that here, but it means that the agents move smoothly through space, even if they are on a fixed grid. You can turn that feature on and off and you can change perspective easily.
+|-valign="top"
+| &nbsp;
+| [[Image:images/execution/View3D.png]]
+|-valign="top"
+| '''API Improvements'''
+| There have been significant changes to the APIs. As always, we've followed common Eclipse and EMF idioms, which means that to customize model visualization you typically only need to implement figure, shape or color providers and then adapt them to your model. And of course all of your existing models will generate code for the new APIs.
+|- valign="top" style="border-width:1px 0 1px 1px;"
+| '''More Legacy Views'''
+| In addition, we've supported all existing Ascape views (not all of these are supported through AMF generated code..yet!).
+|}
+
+===Modeling Framework===
+{| style="border-top: 1px solid #aaa; width: 100%" cellpadding="20"
+|-valign="top"
+| '''New Actions'''
+| Some key new Actions have just been introduced. These provide support for recursion (Cause and Perform), minimization and maximization queries, diffusion (Diffuse) and derived (Derive) values and give the framework a much more general purpose flavor while preserving model generality. You should be able to build many more kinds of models without resorting to custom coding. See the Modeler's guide Actions section for the details.
+|-valign="top"
+| '''Improved Model Representation and Generation'''
+| There have been many improvements to how models can be designed and the code that is generated from those designs. As just one example, you can now search for agents within a model without having to specify an explicit space. As with model editing improvements, many of these changes have been driven by user input. If there is something you'd like to be able to do with AMF but can't, let us know by filing a feature request or posting to the newsgroup.
+|-valign="top"
+| '''Multiscale Support'''
+| Support for modeling across scales has been greatly improved. For the Escape target it is very easy to define models with enclosing hierarchies. For example in the EpidemicRegion model, we've defined Regions which contain Cities which contain Individuals.
+|-valign="top"
+| &nbsp;
+| [[Image:images/examples/EpidemicRegional.png]]
+|-valign="top"
+| &nbsp;
+| When the model is executed, views are automatically created for each member Scape (context) and data is collected for each level of scale.
+|-valign="top"
+| &nbsp;
+| [[Image:images/examples/EpidemicRegionalRun.png]]
+|}
+
+===Model Editing===
+{| style="border-top: 1px solid #aaa; width: 100%" cellpadding="20"
+|-valign="top"
+| '''Overall Usability'''
+| Significant effort has gone into improving the overall user interface for editing models. User feedback has been enormously helpful here -- please keep letting us know what works and what doesn't! In addition to the obvious changes, a lot of work has been done under the covers to provide a more seamless model building experience. We've fixed some glitches, but we've also added a number of things to help simplify and automate the model building process. As an example, when you create an agent, a style is automatically created along with default color, shape and paint actions.
+|-valign="top"
+| '''New Icons'''
+| Most of the existing icons have been replaced or custom designed (which has incidentally required a lot of documentation to be recreated) to provide a better and more consistent user interface.
+|-valign="top"
+| '''Action Lists'''
+| Actions are now displayed in lists, not in a tree structure. As the actual Actions are graph structures, the tree structure never matched well with this representation. Taking a simpler approach has made the action definition process much more transparent.
+|-valign="top"
+| &nbsp;
+|[[Image:images/tools/ActionsExample.png]]
+|}
+
+===Modeling Tools===
+{| style="border-top: 1px solid #aaa; width: 100%" cellpadding="20"
+|-valign="top"
+| '''Parameter Management Support'''
+| AMP now has full support for editing and launching of parameter files, including code completion. There is also support for creation of tests and analysis of test results. Finally, data can now be generated to a common EMD based (adata) data format.
+|-valign="top"
+| &nbsp;
+| [[Image:images/params/Edit.png]]
+|-valign="top"
+| '''Test-Driven Modeling and Simulation'''
+| Tests can now easily be defined and analyzed.
+|-valign="top"
+| &nbsp;
+| [[Image:images/params/TestResults.png]]
+|-valign="top"
+| '''Automated Data Export'''
+|Data can now be easily generated to a common EMF based (adata) data format.
+|}
+
+===User Experience===
+{| style="border-top: 1px solid #aaa; width: 100%" cellpadding="20"
+|-valign="top"
+| '''Overall'''
+| Last but certainly not least, a lot of effort has gone into making it easier to get into AMP as well as to understand how to work with its more powerful features. Eclipse supports a number of sophisticated User Assistance features, and we've taken advantage of most of them.
+|- valign="top" style="border-width:1px 0 1px 1px;"
+| '''Documentation'''
+| Over a 100 pages of documentation, plus another 100 pages of Ascape documentation converted to Eclipse Help and PDF.
+|-valign="top"
+| '''Welcome and Intro'''
+| When starting AMP you'll be met by a custom welcome screen providing an easy path into Agent Modeling on Eclipse.
+|-valign="top"
+| &nbsp;
+| [[Image:images/users/WelcomeScreen.png]]
+|-valign="top"
+| '''Cheat Sheets'''
+| Helpful guides walk you through initial steps.
+|-valign="top"
+| &nbsp;
+| [[Image:images/users/CheatSheets.png]]
+|-valign="top"
+| '''Integrated Models'''
+| You can run example Ascape models directly from the documentation!
+|-valign="top"
+| &nbsp;
+| [[Image:images/users/IntegratedModels.png]]
+|}
 =Resources=
 
 ==Websites==

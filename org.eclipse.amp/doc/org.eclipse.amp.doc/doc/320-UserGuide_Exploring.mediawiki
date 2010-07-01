@@ -3,10 +3,12 @@
 ===Launching a Model (AMF)===
 
 
-{| border="0"
+{| border="0" cellpadding="10"
 |-valign="top"
-|Launching AMF and Escape models is easy. When an AMF file is selected -- in any of the perspectives -- the toolbar and Application menus are updated to reflect the file you've selected and provide convenient access to other functions. For example, when we click on a metaabm file in the package explorer, model execution buttons appear in the toolbar. If you right-click on a file a pop-up menu appears like the one to the far right -- in this case we're selecting the "Execute Headless" option. To launch a model, just select one of the options. (Note that the execution framework doesn't know whether your code exists in an Escape project or another target project. If you attempt to execute a .metaabm model in an Ascape project for example, you will get an error.)
+|Launching AMF and Escape models is easy. When an AMF file is selected -- in any of the perspectives -- the toolbar and Application menus are updated to reflect the file you've selected and provide convenient access to other functions. For example, when we click on a metaabm file in the package explorer, model execution buttons appear in the toolbar.
 |[[Image:images/tools/EditorToolbar.png]]
+|-valign="top"
+|If you right-click on a file a pop-up menu appears like the one to the far right -- in this case we're selecting the "Execute Headless" option. To launch a model, just select one of the options. (Note that the execution framework doesn't know whether your code exists in an Escape project or another target project. If you attempt to execute a .metaabm model in an Ascape project for example, you will get an error.)
 |[[Image:images/tools/EditorMenu.png]]
 |}
 
@@ -30,19 +32,37 @@ Launches the model with an observer that collects data into the AMF adata model 
 
 ===Executing a Model (Java / 3D)===
 
-You can execute any Escape model directly from its Java file by right-clicking on it. This is used for models that have been written directly in Java, or that you have created or that have been automatically generated, such as the 3D versions of AMF models. In order for the model to launch correctly, it must have as a superclass the Escape "Scape" class. In the following screenshot, we've launched a 3D version of the Epidemic model. The 3D models are automatically generated for all .metaabm models.
+You can execute any Escape model directly from its Java file by right-clicking on it. This is used for models that have been written directly in Java, or that you have created or that have been automatically generated, such as the 3D versions of AMF models. In order for the model to launch correctly, it must have as a superclass the Escape "Scape" class. In the following screenshot, we've launched a 3D version of the Epidemic model. The 3D models are automatically generated for all .metaabm models. You can also launch a model into 3D by clicking on the model file and clicking the second (Execute Model with 3D) execute button.
 
 [[Image:images/execution/Epidemic3D.png]]
 
-===Controlling Model Execution===
+===Controlling Models===
 
 Once a model has been launched, the toolbar buttons allow you to control model execution.
 
-[[Image:images/execution/EpidemicModelControls.png]]
+[[Image:images/execution/ExecControl.png]]
+
+=====Model Execution Controls=====
 
 From right to left, you can start, restart, pause, step, stop and close a model. You can even run multiple models and control them independently. You can also move views around, close them and so on as with any other Eclipse views. Here we're running two separate models for comparison.
 
 [[Image:images/execution/EpidemicModelComparison.png]]
+
+=====Speed Slider=====
+
+A special feature of the modeling tools is the "Speed Slider". This allows you to dynamically "speed up" and "slow down" the model execution. You can see where you've set the current speed in the status bar in the lower left hand corner of the environment.
+
+Actually, you're not controlling the speed of model ''execution'' at all. Agent models are almost always constrained not by the time of model execution -- a typical model can execute many thousands of iterations a second -- but by the time it takes to draw visualizations. By updating the views less frequently we allow the model to run at full speed until the next visualization period. This gives the illusion that we're speeding up the model. When we slow the model down, we're inserting a wait period between each model iteration.
+
+To increase model execution speed, move the slider to the right. Here we're only updating the model every 56 iterations.
+
+[[Image:images/execution/SliderRight.png]]
+
+To decrease speed, move the slider to the left. Here, we're pausing between each iteration for 1.65 seconds.
+
+[[Image:images/execution/SliderLeft.png]]
+
+
 
 ====The Active Model====
 
@@ -108,6 +128,75 @@ There are a number of view widgets in the upper-right hand corner that you can u
 #Zoom In
 #Zoom Out
 
+====3D Views====
+
+The 3D views provide a three-dimensional representation of a running model. Currently they support 2D models only, which makes them 2 1/2 D views.
+
+[[Image:images/execution/View3D.png]]
+
+You can navigate and customize the model with the following controls:
+
+[[Image:images/execution/View3DMenuBar.png]]
+
+From left to right, they are:
+
+=====Animation=====
+
+Turns on and off the interpolated (smooth) movement of agents from one cell to another. This is a unique feature of AMP and provides a very nice visualization, but it does slow down model execution. For very large models, you can switch it off -- visualization will be "jerky" but much quicker.
+
+=====Perspectives=====
+
+The three perspectives are used to control the camera location -- in other words the perspective from which the movie is being made. Note that if the camera is currently moving to a given perspective and you select a new perspective the camera may become confused! It is best to wait until the camera comes to a stop before choosing a different perspective. You can speed up camera movement by pausing the model temporarily.
+
+======First Person======
+
+Moves the point of view to ground level, as if the observer were in the space itself.
+
+======Overhead======
+
+Moves the point of view to overhead, giving a similar view as you have with the 2D view. Note that in many cases the 3D view is actually faster than the 2D view, so this is a good way to observe any kind of 2D model.
+
+======Helicopter======
+
+Moves the point to an oblique perspective. This is useful for getting an overall sense of model behavior.
+
+====Graph Views====
+
+Graph views allow you to undestand the network relationships between various agents in the model. By default, a graph is creaed for all relationships, but you can customize that behavior programmatically. Graphs are also super-imposed on 2D models, as we can see in the following example running the EpidemicContact model.
+
+[[Image:images/execution/ViewGraph.png]]
+
+Note that complex models can take a long time to visualize and we'll be looking for opportuntites to optimize performance further in the future. If you think the visualization is stuck it is likely that it is simply calculating the next visualization step -- wait a bit before canceling the model or closing it.
+
+Graph views can be customized with the following controls:
+
+[[Image:images/execution/View3DMenuBar.png]]
+
+From left to right, they are:
+
+=====Layout=====
+
+The layout buttons control how the nodes are placed within the graph. You can swithc between layout dynamically to gain insight into network relationships.
+
+{| cellpadding="5"
+|[[Image:images/execution/ViewGraphDown.png]]
+|[[Image:images/execution/ViewGraphRight.png]]
+|-valign="top"
+|'''Tree (Down):''' Places the graph nodes into a downward oriented tree formation. You'll find that the tree views are more effecient at visualizing, and can be very ood at representing models with an inherent hierarchical structure such as kinship diagrams, but don't always give the best insight into the model for complex network relations.
+|'''Tree (Right):''' The same tree layout oriented from the root-most nodes rightward.
+|-valign="top"
+|[[Image:images/execution/ViewGraphRadial.png]]
+|[[Image:images/execution/ViewGraphSpring.png]]
+|-valign="top" cellpadding="0"
+|'''Radial:''' Places the nodes in a radial layout with the root-most nodes at the center. This is a great way to represent semi-hierarchical models with complex structure, but is a little slower than the tree layouts.
+|'''Spring:''' This layout uses a spring and strain approach that allows nodes to find their own location within the visualization. It can provide beautiful and insightful diagrams, but it is also slower than the other layouts. For more complex models it often works well to use the radial layout and then switch to the Spring layout when examining relationships in depth.
+|}
+
+=====Spring Layout Customization=====
+
+You can customize how the Spring by clicking on the customization button. This allows you to change a number of values that determine how nodes are layed out. While the default settings work well with many graph structures it can be helpful (and fun) to play with different settings to get the best visualization.
+|[[Image:images/execution/ViewGraphSpringDialog.png]]
+
 ====Charts====
 
 A '''Chart''' view is automatically created and displayed for executing models. It can display aggregate values for any of the agent attributes you have set the "gather data" value to true for. Charts can be easily modified. While the built-in view is not meant to be the sole tool for Escape model data analysis, it provides an easy to use and powerful way to explore models interactively. The Chart view widgets allow you to modify the chart with the click of a button.
@@ -118,10 +207,19 @@ A '''Chart''' view is automatically created and displayed for executing models. 
 
 Several chart types are supported: The line, area, bar and pie chart. Click on one of the icons to select that type.
 
-[[Image:images/execution/LineChart.png|400px|Line Chart]]
-[[Image:images/execution/AreaChart.png|400px|Area Chart]]
-[[Image:images/execution/BarChart.png|400px|Bar Chart]]
-[[Image:images/execution/PieChart.png|400px|Pie Chart]]
+{| cellpadding="5"
+|[[Image:images/execution/LineChart.png]]
+|[[Image:images/execution/AreaChart.png]]
+|-
+|'''Line'''
+|'''Area'''
+|-
+|[[Image:images/execution/BarChart.png]]
+|[[Image:images/execution/PieChart.png]]
+|-
+|'''Bar'''
+|'''Pie'''
+|}
 
 =====Chart Legend=====
 
@@ -240,3 +338,12 @@ Then we define our ZeroTransmission.atest file:
  Count(Individual.Status=SymptomInfectious)=[0,0]
  
 Here we have a nice description, a reference to the parameterization we want to use, and then the set of constraints we will apply to them. After running this test, a test result file like the one above will be created and placed in our "test-results" directory.
+
+
+====Model Data====
+
+{|
+|-valign="top"
+|As discussed above, you can collect data for any model by selecting it or a paramters file and clicking the "Execute Model with data collection" button. If you use a parameters file setting the StopPeriod parameter will cause the model to stop executing and save the model at the specified time. Or you can stop the model manually. The model data will be collected into an "adata" file and stored in the "output" directory in your project. A new run entry will be created for each execution of a model. We are currently developing tools for exporting this data to various file formats as well as providing more seemless integration to sophisticated Eclipse hosted charting and report tools. You can use BIRT to interact with the data set using an XML schema data source and there is also an Ecore driver available. Model data can also be produced by writing custom views for data output. See the Ascape programmer guide for more information on how to do that.
+|[[Image:images/data/Editor.png]]
+|}
