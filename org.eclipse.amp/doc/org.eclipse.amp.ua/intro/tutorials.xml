@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <introContent>
-	<extensionContent id="com.metascape.amp.tutorials"
+	<extensionContent id="org.eclipse.amp.tutorials"
 		style="css/basic.css" name="AMP Tutorials" path="tutorials/@">
      <group id="amp-tutorials" style-id="content-group">
 			<link label="Load and Run an AMF Model" url="http://org.eclipse.ui.intro/showStandby?partId=org.eclipse.platform.cheatsheet&amp;input=org.eclipse.amp.escape.runExample"

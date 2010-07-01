@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <introContent>
-	<extensionContent id="com.metascape.amp.overview"
+	<extensionContent id="org.eclipse.overview"
 		style="css/basic.css" name="AMP Overview" path="overview/@">
 		<group id="amp-overview" style-id="content-group">
 			<link label="Introducing AMP"

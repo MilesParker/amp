@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <introContent>
-	<extensionContent id="com.metascape.amp.samples"
+	<extensionContent id="org.eclipse.amp.samples"
 		style="css/basic.css" name="AMP Samples" path="samples/@">
      <group id="amp-samples" style-id="content-group">
 			<link label="Import Example Models" url="http://org.eclipse.ui.intro/showStandby?partId=org.eclipse.platform.cheatsheet&amp;input=org.eclipse.amp.escape.loadProjects"
