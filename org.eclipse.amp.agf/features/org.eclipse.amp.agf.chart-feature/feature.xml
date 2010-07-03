@@ -4,6 +4,7 @@
       label="AMP AGF Chart (Incubation)"
       version="0.8.0.qualifier"
       provider-name="%providerName"
+      plugin="org.eclipse.amp.agf.chart"
       image="eclipse_update_120.jpg">
 
    <description url="http://eclipse.org/amp">
