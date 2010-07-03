@@ -26,12 +26,9 @@
       <import plugin="org.eclipse.emf.ecore"/>
       <import plugin="org.eclipse.emf.ecore.xmi"/>
       <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.emf.edit"/>
-      <import plugin="org.eclipse.emf.edit.ui"/>
       <import plugin="org.apache.commons.collections"/>
+      <import plugin="org.eclipse.emf.edit"/>
       <import plugin="org.apache.commons.lang"/>
-      <import plugin="org.eclipse.jdt.core"/>
-      <import plugin="org.eclipse.emf.codegen"/>
    </requires>
 
    <plugin
@@ -43,13 +40,6 @@
 
    <plugin
          id="org.eclipse.amp.amf.acore.edit"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.emf.java"
          download-size="0"
          install-size="0"
          version="0.0.0"
