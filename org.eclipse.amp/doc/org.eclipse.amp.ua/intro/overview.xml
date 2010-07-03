@@ -16,7 +16,7 @@
 			<link label="More on Agent-Based Modeling"
 				url="http://org.eclipse.ui.intro/showHelpTopic?id=/org.ascape.doc/Content/manual/Section1.html"
 				id="ascape-manual" style-id="content-link">
-				<text>Get an in-depth understanding of Agent-Based Modeling and how to develop Java-based models in Ascape and Escape.</text>
+				<text>Get an in-depth understanding of Agent-Based Modeling and how to develop Java-based models in Ascape and Escape. (Requires installation of Ascape Documentation from http://ascape.sourceforge.net/eclipse.)</text>
 			</link>
 		</group>
 	</extensionContent>
