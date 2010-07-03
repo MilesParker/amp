@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.amp.doc.all"
+      id="org.eclipse.amp.source"
       label="%featureName"
       version="0.8.0.qualifier"
       provider-name="%providerName"
-      plugin="org.eclipse.amp.doc.all">
+      plugin="org.eclipse.amp.source">
 
    <description url="http://eclipse.org/amp">
       %description
