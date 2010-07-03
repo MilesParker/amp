@@ -22,10 +22,6 @@
       <discovery label="LWJGL Support for GEF3D" url="http://lwjgl.org/update"/>
    </url>
 
-   <includes
-         id="org.lwjgl"
-         version="0.0.0"/>
-
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
