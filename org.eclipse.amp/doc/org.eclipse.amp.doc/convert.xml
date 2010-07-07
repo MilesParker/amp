@@ -115,7 +115,7 @@
 				path="../../../org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.ide/src" />
 			<pathelement
 				path="../../../org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.testing.ide/src" />
-			<pathelement path="../../../plugins/org.eclipse.amp.source/src" />
+			<pathelement path="../../../plugins/org.eclipse.amp.doc.all/src" />
 
 		</path>
 		<mkdir dir="${build.javadoc}/src" />
