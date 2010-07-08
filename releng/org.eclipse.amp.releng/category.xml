@@ -39,7 +39,7 @@
    <feature url="features/org.eclipse.amp.agf3d_${org.eclipse.amp.agf3d.version}.jar" id="org.eclipse.amp.agf3d" version="${org.eclipse.amp.agf3d.version}">
       <category name="Agent Modeling Extensions"/>
    </feature>
-   <feature url="features/org.eclipse.amp.source_${org.eclipse.amp.all.version}.jar" id="org.eclipse.amp.source" version="${org.eclipse.amp.source.version}">
+   <feature url="features/org.eclipse.amp.doc.all_${org.eclipse.amp.all.version}.jar" id="org.eclipse.amp.doc.all" version="${org.eclipse.amp.doc.all.version}">
       <category name="Agent Modeling"/>
    </feature>
    <category-def name="Agent Modeling" label="Agent Modeling">
