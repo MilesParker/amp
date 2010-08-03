@@ -3,7 +3,8 @@
       id="org.eclipse.amp.agf3d"
       label="%featureName"
       version="0.8.0.qualifier"
-      provider-name="%providerName">
+      provider-name="%providerName"
+      plugin="org.eclipse.amp.agf3d">
 
    <description url="http://eclipse.org/amp">
       %description
