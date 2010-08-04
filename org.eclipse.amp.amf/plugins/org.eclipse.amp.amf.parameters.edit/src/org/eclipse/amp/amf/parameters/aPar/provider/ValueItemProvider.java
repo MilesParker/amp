@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ValueItemProvider.java,v 1.4 2009/09/10 20:26:19 mparker Exp $
+ * $Id: ValueItemProvider.java,v 1.5 2010/08/04 01:54:50 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 

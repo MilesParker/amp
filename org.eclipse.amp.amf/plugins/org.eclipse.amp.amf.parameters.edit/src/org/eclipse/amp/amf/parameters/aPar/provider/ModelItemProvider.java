@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ModelItemProvider.java,v 1.9 2010/05/03 20:44:06 mparker Exp $
+ * $Id: ModelItemProvider.java,v 1.10 2010/08/04 01:54:50 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.provider;
 
