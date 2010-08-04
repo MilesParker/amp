@@ -59,7 +59,7 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.amp.source"
+         id="org.eclipse.amp.doc.all"
          version="0.0.0"/>
 
    <requires>
