@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DataItemProviderAdapterFactory.java,v 1.1 2010/02/13 04:00:12 mparker Exp $
+ * $Id: DataItemProviderAdapterFactory.java,v 1.2 2010/08/04 01:54:04 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.provider;
 

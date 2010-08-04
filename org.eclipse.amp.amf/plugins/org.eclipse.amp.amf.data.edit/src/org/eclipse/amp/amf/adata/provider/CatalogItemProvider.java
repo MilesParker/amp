@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CatalogItemProvider.java,v 1.2 2010/03/24 04:09:28 mparker Exp $
+ * $Id: CatalogItemProvider.java,v 1.3 2010/08/04 01:54:04 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.provider;
 
