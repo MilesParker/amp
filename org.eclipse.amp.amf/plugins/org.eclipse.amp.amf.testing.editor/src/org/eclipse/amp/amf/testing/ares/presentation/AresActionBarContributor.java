@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresActionBarContributor.java,v 1.3 2009/09/24 03:26:07 mparker Exp $
+ * $Id: AresActionBarContributor.java,v 1.4 2010/08/04 01:55:08 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.presentation;
 

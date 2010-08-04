@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresModelWizard.java,v 1.2 2009/08/01 02:24:38 mparker Exp $
+ * $Id: AresModelWizard.java,v 1.3 2010/08/04 01:55:08 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.presentation;
 

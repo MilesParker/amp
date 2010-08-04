@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ATestModelWizard.java,v 1.3 2010/04/02 03:12:04 mparker Exp $
+ * $Id: ATestModelWizard.java,v 1.4 2010/08/04 01:55:08 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.aTest.presentation;
 
