@@ -32,9 +32,7 @@
       <import plugin="org.eclipse.amp.axf.core"/>
       <import plugin="org.eclipse.amp.axf.views"/>
       <import plugin="org.eclipse.amp.agf.core"/>
-      <import plugin="org.eclipse.birt.chart.device.extension"/>
-      <import plugin="org.eclipse.birt.chart.engine.extension"/>
-      <import plugin="org.eclipse.birt.chart.ui.extension"/>
+      <import plugin="com.ibm.icu" version="4.0.1" match="greaterOrEqual"/>
    </requires>
 
    <plugin
