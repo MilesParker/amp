@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RunItemProvider.java,v 1.6 2009/09/24 03:26:01 mparker Exp $
+ * $Id: RunItemProvider.java,v 1.7 2010/08/04 01:54:39 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.provider;
 

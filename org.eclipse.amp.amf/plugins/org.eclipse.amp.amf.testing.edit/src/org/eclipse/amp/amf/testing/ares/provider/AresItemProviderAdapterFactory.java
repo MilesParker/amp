@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresItemProviderAdapterFactory.java,v 1.4 2009/09/17 02:50:25 mparker Exp $
+ * $Id: AresItemProviderAdapterFactory.java,v 1.5 2010/08/04 01:54:39 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.provider;
 

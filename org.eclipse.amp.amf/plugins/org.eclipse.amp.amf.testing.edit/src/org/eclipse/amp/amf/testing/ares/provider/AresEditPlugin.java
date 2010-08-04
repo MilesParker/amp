@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresEditPlugin.java,v 1.2 2009/08/03 17:15:48 mparker Exp $
+ * $Id: AresEditPlugin.java,v 1.3 2010/08/04 01:54:39 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.provider;
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ConstraintItemProvider.java,v 1.7 2010/04/02 03:11:55 mparker Exp $
+ * $Id: ConstraintItemProvider.java,v 1.8 2010/08/04 01:54:39 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.aTest.provider;
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ConstraintTestItemProvider.java,v 1.2 2009/09/19 01:22:52 mparker Exp $
+ * $Id: ConstraintTestItemProvider.java,v 1.3 2010/08/04 01:54:39 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.provider;
 

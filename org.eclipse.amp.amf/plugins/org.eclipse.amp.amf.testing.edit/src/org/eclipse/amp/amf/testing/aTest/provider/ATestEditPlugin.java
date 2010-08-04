@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ATestEditPlugin.java,v 1.3 2009/09/22 02:05:18 mparker Exp $
+ * $Id: ATestEditPlugin.java,v 1.4 2010/08/04 01:54:40 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.aTest.provider;
 

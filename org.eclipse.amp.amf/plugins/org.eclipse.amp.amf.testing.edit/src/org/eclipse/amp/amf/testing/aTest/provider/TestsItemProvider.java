@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TestsItemProvider.java,v 1.2 2009/09/17 02:50:25 mparker Exp $
+ * $Id: TestsItemProvider.java,v 1.3 2010/08/04 01:54:40 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.aTest.provider;
 
