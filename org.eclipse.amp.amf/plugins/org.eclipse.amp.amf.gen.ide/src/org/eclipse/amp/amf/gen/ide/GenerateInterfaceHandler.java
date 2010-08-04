@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: GenerateInterfaceHandler.java,v 1.1 2009/07/16 21:01:08 mparker Exp $
+ * </copyright> $Id: GenerateInterfaceHandler.java,v 1.2 2010/08/04 01:54:01 mparker Exp $
  */
 package org.eclipse.amp.amf.gen.ide;
 

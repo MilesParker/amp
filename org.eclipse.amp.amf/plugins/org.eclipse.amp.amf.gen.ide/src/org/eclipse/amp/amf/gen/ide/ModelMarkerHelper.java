@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: ModelMarkerHelper.java,v 1.2 2010/03/23 18:28:25 mparker Exp $
+ * </copyright> $Id: ModelMarkerHelper.java,v 1.3 2010/08/04 01:54:01 mparker Exp $
  */
 package org.eclipse.amp.amf.gen.ide;
 import java.lang.reflect.InvocationTargetException;

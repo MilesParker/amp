@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: BasicProjectWizard.java,v 1.3 2009/09/23 06:03:53 mparker Exp $
+ * </copyright> $Id: BasicProjectWizard.java,v 1.4 2010/08/04 01:54:01 mparker Exp $
  */
 package org.eclipse.amp.amf.gen.ide;
 
