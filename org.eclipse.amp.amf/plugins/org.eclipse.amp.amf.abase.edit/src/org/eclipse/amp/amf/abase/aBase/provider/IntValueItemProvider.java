@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: IntValueItemProvider.java,v 1.1 2009/09/17 02:47:42 mparker Exp $
+ * $Id: IntValueItemProvider.java,v 1.2 2010/08/04 01:52:46 mparker Exp $
  */
 package org.eclipse.amp.amf.abase.aBase.provider;
 
