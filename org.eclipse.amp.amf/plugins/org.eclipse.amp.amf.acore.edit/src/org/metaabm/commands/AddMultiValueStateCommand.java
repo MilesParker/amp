@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: AddMultiValueStateCommand.java,v 1.2 2009/09/10 20:26:17 mparker Exp $
+ * </copyright> $Id: AddMultiValueStateCommand.java,v 1.3 2010/08/04 01:52:52 mparker Exp $
  */
 package org.metaabm.commands;
 

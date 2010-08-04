@@ -12,7 +12,7 @@
  *   Argonne National Laboratory - Initial development (pre-contribution)
  *   Metascape - Subsequent development and maintenance
  *
- * </copyright> $Id: SetGenerateCommand.java,v 1.2 2010/04/20 22:25:54 mparker Exp $
+ * </copyright> $Id: SetGenerateCommand.java,v 1.3 2010/08/04 01:52:52 mparker Exp $
  */
 package org.metaabm.commands;
 
