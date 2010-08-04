@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AParEditorPlugin.java,v 1.2 2009/11/06 21:26:20 mparker Exp $
+ * $Id: AParEditorPlugin.java,v 1.3 2010/08/04 01:55:00 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.presentation;
 

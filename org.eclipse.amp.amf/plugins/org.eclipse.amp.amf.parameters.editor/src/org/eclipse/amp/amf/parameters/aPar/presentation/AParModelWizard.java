@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AParModelWizard.java,v 1.3 2010/05/03 20:44:04 mparker Exp $
+ * $Id: AParModelWizard.java,v 1.4 2010/08/04 01:55:00 mparker Exp $
  */
 package org.eclipse.amp.amf.parameters.aPar.presentation;
 
