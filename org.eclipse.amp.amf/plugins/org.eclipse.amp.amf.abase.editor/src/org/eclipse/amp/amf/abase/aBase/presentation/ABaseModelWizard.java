@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ABaseModelWizard.java,v 1.1 2009/11/06 20:57:48 mparker Exp $
+ * $Id: ABaseModelWizard.java,v 1.2 2010/08/04 01:52:56 mparker Exp $
  */
 package org.eclipse.amp.amf.abase.aBase.presentation;
 
