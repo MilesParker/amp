@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: JavaAgentImporter.java,v 1.2 2009/09/08 21:27:32 mparker Exp $
+ * </copyright> $Id: JavaAgentImporter.java,v 1.3 2010/08/04 01:53:54 mparker Exp $
  */
 package org.metaabm.ide;
 

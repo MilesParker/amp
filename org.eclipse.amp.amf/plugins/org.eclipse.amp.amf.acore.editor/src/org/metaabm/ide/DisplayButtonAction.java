@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: DisplayButtonAction.java,v 1.1 2009/07/16 20:49:35 mparker Exp $
+ * </copyright> $Id: DisplayButtonAction.java,v 1.2 2010/08/04 01:53:54 mparker Exp $
  */
 package org.metaabm.ide;
 
