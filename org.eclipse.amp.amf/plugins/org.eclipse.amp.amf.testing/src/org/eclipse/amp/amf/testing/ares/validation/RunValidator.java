@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RunValidator.java,v 1.3 2009/09/24 03:26:03 mparker Exp $
+ * $Id: RunValidator.java,v 1.4 2010/08/04 01:54:47 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.validation;
 

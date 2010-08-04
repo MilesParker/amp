@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AresPackageImpl.java,v 1.4 2009/09/24 03:26:03 mparker Exp $
+ * $Id: AresPackageImpl.java,v 1.5 2010/08/04 01:54:47 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.impl;
 

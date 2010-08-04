@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Issue.java,v 1.2 2009/08/07 00:05:32 mparker Exp $
+ * $Id: Issue.java,v 1.3 2010/08/04 01:54:47 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares;
 

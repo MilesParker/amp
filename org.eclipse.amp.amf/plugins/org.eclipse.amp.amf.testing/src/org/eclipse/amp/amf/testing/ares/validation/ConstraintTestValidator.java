@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ConstraintTestValidator.java,v 1.1 2009/09/24 03:26:03 mparker Exp $
+ * $Id: ConstraintTestValidator.java,v 1.2 2010/08/04 01:54:47 mparker Exp $
  */
 package org.eclipse.amp.amf.testing.ares.validation;
 
