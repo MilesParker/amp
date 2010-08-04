@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DataPackageImpl.java,v 1.4 2010/03/25 03:01:44 mparker Exp $
+ * $Id: DataPackageImpl.java,v 1.5 2010/08/04 01:54:19 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.impl;
 

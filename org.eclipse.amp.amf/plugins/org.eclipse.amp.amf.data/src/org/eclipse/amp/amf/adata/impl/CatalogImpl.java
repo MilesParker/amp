@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CatalogImpl.java,v 1.2 2010/03/25 03:01:44 mparker Exp $
+ * $Id: CatalogImpl.java,v 1.3 2010/08/04 01:54:19 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.impl;
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DataPoint.java,v 1.2 2010/03/25 03:01:42 mparker Exp $
+ * $Id: DataPoint.java,v 1.3 2010/08/04 01:54:19 mparker Exp $
  */
 package org.eclipse.amp.amf.adata;
 

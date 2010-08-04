@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: DataAdapterFactory.java,v 1.1 2010/02/13 03:59:11 mparker Exp $
+ * $Id: DataAdapterFactory.java,v 1.2 2010/08/04 01:54:20 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.util;
 

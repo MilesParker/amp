@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ParameterImpl.java,v 1.2 2010/03/24 04:09:17 mparker Exp $
+ * $Id: ParameterImpl.java,v 1.3 2010/08/04 01:54:19 mparker Exp $
  */
 package org.eclipse.amp.amf.adata.impl;
 
