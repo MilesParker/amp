@@ -10,7 +10,7 @@
  * Contributors:
  *   Metascape - Development and maintenance
  *
- * </copyright> $Id: AgentModelingPerspectiveFactory.java,v 1.1 2009/07/16 21:04:29 mparker Exp $
+ * </copyright> $Id: AgentModelingPerspectiveFactory.java,v 1.2 2010/08/04 01:54:58 mparker Exp $
  */
 package org.eclipse.amp.amf.ide;
 
