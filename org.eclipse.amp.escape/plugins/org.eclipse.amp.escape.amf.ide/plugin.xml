@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.18 2010/08/04 02:06:00 mparker Exp $
+ $Id: plugin.xml,v 1.19 2010/08/04 18:16:45 mparker Exp $
 -->
 
 <plugin>
@@ -539,15 +539,6 @@
              class="org.eclipse.amp.escape.amf.ide.GenerateEscape3DHandler"
              commandId="org.eclipse.amp.amf.gen.escape.3D">
        </handler>
-    </extension>
-  <extension
-         point="org.eclipse.ui.bindings">
-      <key
-            commandId="org.eclipse.amp.amf.gen.escape"
-            contextId="org.eclipse.ui.contexts.window"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M1+SHIFT+B E">
-      </key>
     </extension>
 	<extension
           id="escapeBuilder"
