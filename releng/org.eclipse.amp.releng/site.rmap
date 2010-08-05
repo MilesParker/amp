@@ -101,24 +101,6 @@
 		</provider>
 	</searchPath>
 
-	<searchPath name="polarion">
-		<provider readerType="p2" componentTypes="osgi.bundle,eclipse.feature" mutable="false" source="true">
-			<uri format="http://www.polarion.org/projects/subversive/download/eclipse/2.0/update-site?importType=binary" />
-		</provider>
-	</searchPath>
-
-	<searchPath name="org.eclipse.team.svn">
-		<provider readerType="p2" componentTypes="osgi.bundle,eclipse.feature" mutable="false" source="true">
-			<uri format="http://download.eclipse.org/technology/subversive/0.7/update-site?importType=binary" />
-		</provider>
-	</searchPath>
-
-	<searchPath name="org.eclipse.platform">
-		<provider readerType="p2" componentTypes="osgi.bundle,eclipse.feature" mutable="false" source="false">
-			<uri format="http://download.eclipse.org/eclipse/updates/3.6?importType=binary" />
-		</provider>
-	</searchPath>
-
 	<searchPath name="org.eclipse.helios">
 		<provider readerType="p2" componentTypes="osgi.bundle,eclipse.feature" mutable="false" source="false">
 			<uri format="http://download.eclipse.org/releases/helios?importType=binary" />
@@ -139,7 +121,7 @@
 		</provider>
 	</searchPath>
 
-	<searchPath name="default">
+	<searchPath name="orbit">
 		<!-- Let's try orbit first and then maven. The componentTypes will discriminate and make it quick. -->
 		<provider readerType="p2" componentTypes="osgi.bundle" mutable="false" source="false">
 			<uri format="http://download.eclipse.org/tools/orbit/downloads/drops/R20100519200754/updateSite?importType=binary" />
@@ -166,13 +148,10 @@
 	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.gef3d(\..+)?" />
 	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.draw3d(\..+)?" />
 
-	<locator searchPathRef="polarion" pattern="^org\.polarion\.team(\..+)?" />
-	<locator searchPathRef="polarion" pattern="^org\.polarion\.eclipse\.team(\..+)?" />
-	<locator searchPathRef="org.eclipse.team.svn" pattern="^org\.eclipse\.team\.svn(\..+)?$" />
 	<locator searchPathRef="org.eclipse.helios" pattern="^org\.eclipse(\..+)?$"  failOnError="false"/>
 	<locator searchPathRef="org.eclipse.platform" pattern="^org\.eclipse(\..+)?$"  failOnError="false"/>
 	<locator searchPathRef="org.eclipse.platform" pattern="^org\.junit(\..+)?$" />
 	<locator searchPathRef="org.eclipse.platform" pattern="^org\.junit4(\..+)?$" />
 	<locator searchPathRef="repast" pattern="^repast(\..+)?$" />
-	<locator searchPathRef="default" pattern=".*" />
+	<locator searchPathRef="orbit" pattern=".*" />
 </rmap>
