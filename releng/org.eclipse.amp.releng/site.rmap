@@ -4,15 +4,15 @@
 	xmlns:pmp="http://www.eclipse.org/buckminster/PDEMapProvider-1.0">
 
 	<searchPath name="amp.releng.local">
-		<provider componentTypes="eclipse.feature" readerType="local" source="true">
-			<uri format="file:///releng/org.eclipse.amp.releng">
+		<provider componentTypes="eclipse.feature,buckminster" readerType="local" source="true">
+			<uri format="file:releng/org.eclipse.amp.releng">
 			</uri>
 		</provider>
 	</searchPath>
 		
 	<searchPath name="amp.features.local">
 		<provider componentTypes="eclipse.feature" readerType="local" source="true" mutable="false">
-            <uri format="file:///{0}/features/{1}-feature">
+            <uri format="file:{0}/features/{1}-feature">
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
 					<bc:match pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
@@ -28,7 +28,7 @@
 	
 	<searchPath name="amp.plugins.local">
 		<provider componentTypes="osgi.bundle" readerType="local" source="true" mutable="true">
-            <uri format="file:///{0}/plugins/{1}">
+            <uri format="file:{0}/plugins/{1}">
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
 					<bc:match pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
@@ -46,7 +46,7 @@
 	
 	<searchPath name="amp.doc.local">
 		<provider componentTypes="osgi.bundle" readerType="cvs" source="true">
-            <uri format="file:///org.eclipse.amp/doc/{0}">
+            <uri format="file:org.eclipse.amp/doc/{0}">
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
