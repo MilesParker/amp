@@ -11,7 +11,7 @@
 	</searchPath>
 		
 	<searchPath name="amp.features.local">
-		<provider componentTypes="eclipse.feature" readerType="cvs" source="true" mutable="false">
+		<provider componentTypes="eclipse.feature" readerType="local" source="true" mutable="false">
             <uri format="file:///org.eclipse.amp/{0}/features/{1}-feature">
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
