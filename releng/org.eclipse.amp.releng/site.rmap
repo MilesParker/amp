@@ -127,8 +127,8 @@
 		</provider>
 	</searchPath>
 	
-	<locator searchPathRef="amp.features.local" pattern="^org\.eclipse\.amp([\.\-].+)?" failOnError="false"  />
 	<locator searchPathRef="amp.releng.local" pattern="^org\.eclipse\.amp\.releng" failOnError="false" />
+	<locator searchPathRef="amp.features.local" pattern="^org\.eclipse\.amp([\.\-].+)?" failOnError="false"  />
 	<locator searchPathRef="amp.plugins.local" pattern="^org\.ascape\.core" failOnError="false"  />
 	<locator searchPathRef="amp.doc.local" pattern="^org\.eclipse\.amp\.doc" failOnError="false" />
 	<locator searchPathRef="amp.doc.local" pattern="^org\.eclipse\.amp\.ua" failOnError="false"  />
