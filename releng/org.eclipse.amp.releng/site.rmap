@@ -122,7 +122,6 @@
 	</searchPath>
 
 	<searchPath name="orbit">
-		<!-- Let's try orbit first and then maven. The componentTypes will discriminate and make it quick. -->
 		<provider readerType="p2" componentTypes="osgi.bundle" mutable="false" source="false">
 			<uri format="http://download.eclipse.org/tools/orbit/downloads/drops/R20100519200754/updateSite?importType=binary" />
 		</provider>
