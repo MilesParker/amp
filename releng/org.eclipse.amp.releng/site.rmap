@@ -3,50 +3,25 @@
 	xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:mp="http://www.eclipse.org/buckminster/MavenProvider-1.0"
 	xmlns:pmp="http://www.eclipse.org/buckminster/PDEMapProvider-1.0">
 
-	<searchPath name="amp.releng.local">
-		<provider componentTypes="eclipse.feature,buckminster" readerType="local" source="true">
-			<uri format="file:releng/org.eclipse.amp.releng">
+	<searchPath name="plugins.local">
+		<provider componentTypes="osgi.bundle" readerType="local" source="true">
+			<uri format="plugins/{0}">
+				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
 	</searchPath>
-		
-	<searchPath name="amp.features.local">
-		<provider componentTypes="eclipse.feature" readerType="local" source="true" mutable="false">
-            <uri format="file:{0}/features/{1}-feature">
-				<bc:replace>
-					<bc:propertyRef key="buckminster.component" />
-					<bc:match pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
-					<bc:match pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
-					<bc:match pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
-					<bc:match pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
-					<bc:match pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
-				</bc:replace>
+
+	<searchPath name="features.local">
+		<provider componentTypes="eclipse.feature" readerType="local" source="true">
+			<uri format="features/{0}">
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
 	</searchPath>
 	
-	<searchPath name="amp.plugins.local">
-		<provider componentTypes="osgi.bundle" readerType="local" source="true" mutable="true">
-            <uri format="file:{0}/plugins/{1}">
-				<bc:replace>
-					<bc:propertyRef key="buckminster.component" />
-					<bc:match pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
-					<bc:match pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
-					<bc:match pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
-					<bc:match pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
-					<bc:match pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
-					<bc:match pattern="org\.ascape.*" replacement="org.ascape" />
-					<bc:match pattern="org\.eclipse\.emf\.java" replacement="dependencies" />
-				</bc:replace>
-				<bc:propertyRef key="buckminster.component" />
-			</uri>
-		</provider>
-	</searchPath>
-	
-	<searchPath name="amp.doc.local">
-		<provider componentTypes="osgi.bundle" readerType="cvs" source="true">
-            <uri format="file:org.eclipse.amp/doc/{0}">
+	<searchPath name="releng.local">
+		<provider componentTypes="eclipse.feature" readerType="local" source="true">
+			<uri format="releng/{0}">
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
@@ -127,13 +102,10 @@
 		</provider>
 	</searchPath>
 	
-	<locator searchPathRef="amp.releng.local" pattern="^org\.eclipse\.amp\.releng" failOnError="false" />
-	<locator searchPathRef="amp.features.local" pattern="^org\.eclipse\.amp([\.\-].+)?" failOnError="false"  />
-	<locator searchPathRef="amp.plugins.local" pattern="^org\.ascape\.core" failOnError="false"  />
-	<locator searchPathRef="amp.doc.local" pattern="^org\.eclipse\.amp\.doc" failOnError="false" />
-	<locator searchPathRef="amp.doc.local" pattern="^org\.eclipse\.amp\.ua" failOnError="false"  />
-	<locator searchPathRef="amp.plugins.local" pattern="^org\.eclipse\.amp(\..+)?" failOnError="false" />
-	<locator searchPathRef="amp.plugins.local" pattern="^org\.eclipse\.emf\.java"  failOnError="false" />
+	<locator searchPathRef="plugins.local" pattern="^org\.(\..*)?" failOnError="false"/>
+	<locator searchPathRef="features.local" pattern="^org([\.].+)?" failOnError="false"/>
+	<locator searchPathRef="releng.local" pattern="^org([\.].+)\.releng?" failOnError="false"/>
+	<locator searchPathRef="releng.local" pattern="^org([\.].+)\.site?" failOnError="false"/>
 	
 	<locator searchPathRef="amp.releng" pattern="^org\.eclipse\.amp\.releng"/>
 	
