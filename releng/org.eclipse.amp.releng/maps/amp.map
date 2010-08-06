@@ -52,7 +52,7 @@ feature@org.eclipse.amp.amf.target.repast=HEAD,:pserver:anonymous:none@dev.eclip
 feature@org.eclipse.amp.amfx=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.amf/features/org.eclipse.amp.amfx-feature
 feature@org.eclipse.amp.axf=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.axf/features/org.eclipse.amp.axf-feature
 feature@org.eclipse.amp.escape=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp.escape/features/org.eclipse.amp.escape-feature
-feature@org.eclipse.amp.source=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp/features/org.eclipse.amp.source-feature
+feature@org.eclipse.amp.doc.all=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp/features/org.eclipse.amp.doc.all-feature
 
 !***PLUGINS
 plugin@org.eclipse.amp.all=HEAD,:pserver:anonymous:none@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.amp/org.eclipse.amp/plugins/org.eclipse.amp.all
