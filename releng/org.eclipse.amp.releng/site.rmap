@@ -112,10 +112,11 @@
 	
 	<locator searchPathRef="amp.releng" pattern="^org\.eclipse\.amp\.releng"/>
 	
-	<locator searchPathRef="amp.features" pattern="^org\.eclipse\.amp([\.\-].+)?" failOnError="false"  />
+	<locator searchPathRef="amp.features" pattern="^org\.eclipse\.amp([\.\-].+)?"/>
 	<locator searchPathRef="amp.plugins" pattern="^org\.ascape\.core" />
-	<locator searchPathRef="amp.doc" pattern="^org\.eclipse\.amp\.doc" failOnError="false" />
+	<locator searchPathRef="amp.doc" pattern="^org\.eclipse\.amp\.doc" />
 	<locator searchPathRef="amp.doc" pattern="^org\.eclipse\.amp\.ua" />
+	
 	<locator searchPathRef="amp.plugins" pattern="^org\.eclipse\.amp(\..+)?"/>
 	<locator searchPathRef="amp.plugins" pattern="^org\.eclipse\.emf\.java" />
 
