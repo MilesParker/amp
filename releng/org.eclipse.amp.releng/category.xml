@@ -3,6 +3,9 @@
    <description>
       Tools for Agent Modeling, Execution and Graphics.
    </description>
+   <feature url="features/org.eclipse.amp.all_0.8.0.qualifier.jar" id="org.eclipse.amp.all" version="0.8.0.qualifier">
+      <category name="Agent Modeling"/>
+   </feature>
    <feature url="features/org.eclipse.amp.agf.chart_0.8.0.qualifier.jar" id="org.eclipse.amp.agf.chart" version="0.8.0.qualifier">
       <category name="Agent Modeling"/>
    </feature>
