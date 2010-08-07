@@ -23,7 +23,7 @@
 	
 	<searchPath name="releng.local">
 		<provider componentTypes="eclipse.feature" readerType="local" source="true">
-			<uri format="file://{0}/{1}">
+			<uri format="file://{0}/features/{1}">
 				<bc:propertyRef key="workspace.root" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
@@ -114,11 +114,11 @@
 	
 	<locator searchPathRef="amp.features" pattern="^org\.eclipse\.amp([\.\-].+)?" failOnError="false"/>
 	<locator searchPathRef="amp.plugins" pattern="^org\.ascape\.core" />
+	<locator searchPathRef="amp.plugins" pattern="^org\.ascape\.ui\.amp"/>
+	<locator searchPathRef="amp.plugins" pattern="^org\.eclipse\.emf\.java" />
 	<locator searchPathRef="amp.doc" pattern="^org\.eclipse\.amp\.doc" />
 	<locator searchPathRef="amp.doc" pattern="^org\.eclipse\.amp\.ua" />
-	
 	<locator searchPathRef="amp.plugins" pattern="^org\.eclipse\.amp(\..+)?"/>
-	<locator searchPathRef="amp.plugins" pattern="^org\.eclipse\.emf\.java" />
 
 	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.gef3d(\..+)?" />
 	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.draw3d(\..+)?" />
