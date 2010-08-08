@@ -31,7 +31,7 @@
       <import plugin="org.eclipse.debug.ui"/>
       <import plugin="org.eclipse.jdt.launching"/>
       <import plugin="org.eclipse.jdt.debug.ui"/>
-      <import plugin="org.ascape.core" version="5.1.0" match="greaterOrEqual"/>
+      <import plugin="org.ascape.core"/>
       <import plugin="org.eclipse.jdt.core" version="3.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.amp.amf.ide" version="0.8.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.amp.amf.gen.ide" version="0.8.0" match="greaterOrEqual"/>
