@@ -42,7 +42,7 @@
    <feature url="features/org.eclipse.amp.agf3d_0.8.0.qualifier.jar" id="org.eclipse.amp.agf3d" version="0.8.0.qualifier">
       <category name="Agent Modeling Extensions"/>
    </feature>
-   <feature url="features/org.eclipse.amp.source_0.8.0.qualifier.jar" id="org.eclipse.amp.source" version="0.8.0.qualifier">
+   <feature url="features/org.eclipse.amp.doc.all_0.8.0.qualifier.jar" id="org.eclipse.amp.doc.all" version="0.8.0.qualifier">
       <category name="Agent Modeling"/>
    </feature>
    <category-def name="Agent Modeling" label="Agent Modeling">
