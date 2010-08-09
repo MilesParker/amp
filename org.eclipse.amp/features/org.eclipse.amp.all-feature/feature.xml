@@ -3,7 +3,8 @@
       id="org.eclipse.amp.all"
       label="%featureName"
       version="0.8.0.qualifier"
-      provider-name="%providerName">
+      provider-name="%providerName"
+      plugin="org.eclipse.amp.all">
 
    <description url="http://eclipse.org/amp">
       %description
