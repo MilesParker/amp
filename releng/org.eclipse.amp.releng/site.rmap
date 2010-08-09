@@ -105,11 +105,6 @@
 		</provider>
 	</searchPath>
 	
-	<locator searchPathRef="plugins.local" pattern="^org\.(\..*)?" failOnError="false"/>
-	<locator searchPathRef="features.local" pattern="^org([\.].+)?" failOnError="false"/>
-	<locator searchPathRef="releng.local" pattern="^org([\.].+)\.releng?" failOnError="false"/>
-	<locator searchPathRef="releng.local" pattern="^org([\.].+)\.site?" failOnError="false"/>
-	
 	<locator searchPathRef="amp.releng" pattern="^org\.eclipse\.amp\.releng"/>
 	
 	<locator searchPathRef="amp.features" pattern="^org\.eclipse\.amp([\.\-].+)?" failOnError="false"/>
