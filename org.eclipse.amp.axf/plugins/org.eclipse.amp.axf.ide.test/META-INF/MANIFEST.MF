@@ -18,6 +18,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.amp.agf.ide,
  org.eclipse.amp.escape.ide,
  org.eclipse.amp.escape.ascape,
- org.ascape.core;bundle-version="5.2.0"
+ org.ascape.core
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
