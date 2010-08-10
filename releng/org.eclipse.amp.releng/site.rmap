@@ -123,6 +123,7 @@
 	<locator searchPathRef="org.eclipse.helios" pattern="^org\.junit(\..+)?$" />
 	<locator searchPathRef="org.eclipse.helios" pattern="^org\.junit4(\..+)?$" />
 	<locator searchPathRef="org.eclipse.helios" pattern="^com(\..+)?$"  failOnError="false"/>
+	<locator searchPathRef="org.eclipse.helios" pattern="^org(\..+)?$"  failOnError="false"/>
 	<locator searchPathRef="repast" pattern="^repast(\..+)?$" />
 	<locator searchPathRef="orbit" pattern=".*" />
 </rmap>
