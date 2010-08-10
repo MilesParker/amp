@@ -123,7 +123,7 @@
 
 	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.gef3d(\..+)?" />
 	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.draw3d(\..+)?" />
-	<locator searchPathRef="lwjgl" pattern="^org\.lwljgl(\..+)?" />
+	<locator searchPathRef="lwjgl" pattern="^org\.lwljg(\..+)?" />
 
 	<locator searchPathRef="org.eclipse.helios" pattern="^org\.eclipse(\..+)?$"  failOnError="false"/>
 	<locator searchPathRef="org.eclipse.helios" pattern="^org\.eclipse(\..+)?$"  failOnError="false"/>
