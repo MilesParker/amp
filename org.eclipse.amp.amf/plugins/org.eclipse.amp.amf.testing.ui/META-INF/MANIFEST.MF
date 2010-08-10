@@ -29,4 +29,3 @@ Export-Package: org.eclipse.amp.amf.testing.ui,
  org.eclipse.amp.amf.testing.ui.quickfix
 Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
-Import-Package: org.apache.log4j

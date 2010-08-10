@@ -4,7 +4,8 @@
  */
 package org.eclipse.amp.amf.testing.ui.internal;
 
-import org.apache.log4j.Logger;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -13,9 +14,6 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.util.Modules;
-
-import java.util.Map;
-import java.util.HashMap;
 
 /**
  * Generated
@@ -40,7 +38,6 @@ public class ATestActivator extends AbstractUIPlugin {
 			));
 			
 		} catch (Exception e) {
-			Logger.getLogger(getClass()).error(e.getMessage(), e);
 			throw e;
 		}
 	}
