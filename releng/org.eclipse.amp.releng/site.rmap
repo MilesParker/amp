@@ -99,6 +99,12 @@
 		</provider>
 	</searchPath>
 
+	<searchPath name="lwjgl">
+		<provider readerType="p2" componentTypes="osgi.bundle,eclipse.feature" mutable="false" source="false">
+			<uri format="http://lwjgl.org/update" />
+		</provider>
+	</searchPath>
+	
 	<searchPath name="orbit">
 		<provider readerType="p2" componentTypes="osgi.bundle" mutable="false" source="false">
 			<uri format="http://download.eclipse.org/tools/orbit/downloads/drops/R20100519200754/updateSite?importType=binary" />
@@ -117,6 +123,7 @@
 
 	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.gef3d(\..+)?" />
 	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.draw3d(\..+)?" />
+	<locator searchPathRef="lwjgl" pattern="^org\.lwljgl(\..+)?" />
 
 	<locator searchPathRef="org.eclipse.helios" pattern="^org\.eclipse(\..+)?$"  failOnError="false"/>
 	<locator searchPathRef="org.eclipse.helios" pattern="^org\.eclipse(\..+)?$"  failOnError="false"/>
