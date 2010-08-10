@@ -2,14 +2,15 @@
 <rmap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.eclipse.org/buckminster/RMap-1.0"
 	xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:mp="http://www.eclipse.org/buckminster/MavenProvider-1.0"
 	xmlns:pmp="http://www.eclipse.org/buckminster/PDEMapProvider-1.0">
-	
+	<property key="checkout.location" value="${workspace.root}/" />
+	<property key="eclipse.download" value="http://download.eclipse.org" />
 	<searchPath name="amp.releng">
 		<provider componentTypes="eclipse.feature,buckminster" readerType="cvs" source="true">
 			<uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/releng/org.eclipse.amp.releng">
 			</uri>
 		</provider>
 	</searchPath>
-	
+
 	<searchPath name="amp.features">
 		<provider componentTypes="eclipse.feature" readerType="cvs" source="true" mutable="false">
 			<uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/{0}/features/{1}-feature">
@@ -25,7 +26,7 @@
 			</uri>
 		</provider>
 	</searchPath>
-	
+
 	<searchPath name="amp.plugins">
 		<provider componentTypes="osgi.bundle" readerType="cvs" source="true" mutable="true">
 			<uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/{0}/plugins/{1}">
@@ -43,7 +44,7 @@
 			</uri>
 		</provider>
 	</searchPath>
-	
+
 	<searchPath name="amp.doc">
 		<provider componentTypes="osgi.bundle" readerType="cvs" source="true">
 			<uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp/doc/{0}">
@@ -51,35 +52,35 @@
 			</uri>
 		</provider>
 	</searchPath>
-	
-  <searchPath name="orbit">
-    <provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <uri format="{0}/tools/orbit/downloads/drops/R20100519200754/repository">
-        <bc:propertyRef key="eclipse.download"/>
-      </uri>
-    </provider>
-  </searchPath>
-  
-  <searchPath name="platform">
-    <provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <uri format="{0}/eclipse/updates/3.6milestones">
-        <bc:propertyRef key="eclipse.download"/>
-      </uri>
-    </provider>
-  </searchPath>
+
+	<searchPath name="orbit">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/tools/orbit/downloads/drops/R20100519200754/repository">
+				<bc:propertyRef key="eclipse.download" />
+			</uri>
+		</provider>
+	</searchPath>
+
+	<searchPath name="platform">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/eclipse/updates/3.6milestones">
+				<bc:propertyRef key="eclipse.download" />
+			</uri>
+		</provider>
+	</searchPath>
 
 	<searchPath name="eclipse">
 		<provider readerType="p2" componentTypes="osgi.bundle,eclipse.feature" mutable="false" source="false">
 			<uri format="{0}/releases/helios?importType=binary" />
 		</provider>
 	</searchPath>
-			
+
 	<searchPath name="repast">
 		<provider readerType="url" componentTypes="osgi.bundle" mutable="false" source="false">
 			<uri format="http://mirror.anl.gov/pub/repastsimphony/plugins/repast.simphony.score_1.2.0.jar" />
 		</provider>
 	</searchPath>
-	
+
 	<searchPath name="gef3d">
 		<provider readerType="svn" componentTypes="osgi.bundle,eclipse.feature" mutable="true" source="true">
 			<uri format="http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d/trunk/{0}?moduleAfterTag&amp;moduleAfterBranch">
@@ -93,27 +94,27 @@
 			<uri format="http://lwjgl.org/update" />
 		</provider>
 	</searchPath>
-	
-	<locator searchPathRef="amp.releng" pattern="^org\.eclipse\.amp\.releng"/>
-	
-	<locator searchPathRef="amp.features" pattern="^org\.eclipse\.amp([\.\-].+)?" failOnError="false"/>
+
+	<locator searchPathRef="amp.releng" pattern="^org\.eclipse\.amp\.releng" />
+
+	<locator searchPathRef="amp.features" pattern="^org\.eclipse\.amp([\.\-].+)?" failOnError="false" />
 	<locator searchPathRef="amp.plugins" pattern="^org\.ascape\.core" />
-	<locator searchPathRef="amp.plugins" pattern="^org\.ascape\.ui\.amp"/>
+	<locator searchPathRef="amp.plugins" pattern="^org\.ascape\.ui\.amp" />
 	<locator searchPathRef="amp.plugins" pattern="^org\.eclipse\.emf\.java" />
 	<locator searchPathRef="amp.doc" pattern="^org\.eclipse\.amp\.doc" />
 	<locator searchPathRef="amp.doc" pattern="^org\.eclipse\.amp\.ua" />
-	<locator searchPathRef="amp.plugins" pattern="^org\.eclipse\.amp(\..+)?"/>
+	<locator searchPathRef="amp.plugins" pattern="^org\.eclipse\.amp(\..+)?" />
 
 	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.gef3d(\..+)?" />
 	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.draw3d(\..+)?" />
 	<locator searchPathRef="lwjgl" pattern="^org\.lwjgl(\..+)?" />
 
-	<locator searchPathRef="eclipse" pattern="^org\.eclipse(\..+)?$"  failOnError="false"/>
+	<locator searchPathRef="eclipse" pattern="^org\.eclipse(\..+)?$" failOnError="false" />
 	<locator searchPathRef="eclipse" pattern="^org\.junit(\..+)?$" />
 	<locator searchPathRef="eclipse" pattern="^org\.junit4(\..+)?$" />
-	<locator searchPathRef="eclipse" pattern="^com(\..+)?$"  failOnError="false"/>
-	<locator searchPathRef="eclipse" pattern="^org(\..+)?$"  failOnError="false"/>
-	<locator searchPathRef="platform" pattern="^org(\..+)?$"  failOnError="false"/>
-	<locator searchPathRef="repast" pattern=".*"  failOnError="false"/>
+	<locator searchPathRef="eclipse" pattern="^com(\..+)?$" failOnError="false" />
+	<locator searchPathRef="eclipse" pattern="^org(\..+)?$" failOnError="false" />
+	<locator searchPathRef="platform" pattern="^org(\..+)?$" failOnError="false" />
+	<locator searchPathRef="repast" pattern=".*" failOnError="false" />
 	<locator searchPathRef="orbit" pattern=".*" />
 </rmap>
