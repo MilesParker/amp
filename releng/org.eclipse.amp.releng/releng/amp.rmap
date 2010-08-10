@@ -51,10 +51,26 @@
 			</uri>
 		</provider>
 	</searchPath>
+	
+  <rm:searchPath name="orbit">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="{0}/tools/orbit/downloads/drops/R20100519200754/repository">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+  
+  <rm:searchPath name="platform">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="{0}/eclipse/updates/3.6milestones">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
 
-	<searchPath name="org.eclipse.helios">
+	<searchPath name="eclipse">
 		<provider readerType="p2" componentTypes="osgi.bundle,eclipse.feature" mutable="false" source="false">
-			<uri format="http://download.eclipse.org/releases/helios?importType=binary" />
+			<uri format="{0}/releases/helios?importType=binary" />
 		</provider>
 	</searchPath>
 			
@@ -78,12 +94,6 @@
 		</provider>
 	</searchPath>
 	
-	<searchPath name="orbit">
-		<provider readerType="p2" componentTypes="osgi.bundle" mutable="false" source="false">
-			<uri format="http://download.eclipse.org/tools/orbit/downloads/drops/R20100519200754/updateSite?importType=binary" />
-		</provider>
-	</searchPath>
-	
 	<locator searchPathRef="amp.releng" pattern="^org\.eclipse\.amp\.releng"/>
 	
 	<locator searchPathRef="amp.features" pattern="^org\.eclipse\.amp([\.\-].+)?" failOnError="false"/>
@@ -98,11 +108,12 @@
 	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.draw3d(\..+)?" />
 	<locator searchPathRef="lwjgl" pattern="^org\.lwjgl(\..+)?" />
 
-	<locator searchPathRef="org.eclipse.helios" pattern="^org\.eclipse(\..+)?$"  failOnError="false"/>
-	<locator searchPathRef="org.eclipse.helios" pattern="^org\.junit(\..+)?$" />
-	<locator searchPathRef="org.eclipse.helios" pattern="^org\.junit4(\..+)?$" />
-	<locator searchPathRef="org.eclipse.helios" pattern="^com(\..+)?$"  failOnError="false"/>
-	<locator searchPathRef="org.eclipse.helios" pattern="^org(\..+)?$"  failOnError="false"/>
-	<locator searchPathRef="repast" pattern="^repast(\..+)?$" />
+	<locator searchPathRef="eclipse" pattern="^org\.eclipse(\..+)?$"  failOnError="false"/>
+	<locator searchPathRef="eclipse" pattern="^org\.junit(\..+)?$" />
+	<locator searchPathRef="eclipse" pattern="^org\.junit4(\..+)?$" />
+	<locator searchPathRef="eclipse" pattern="^com(\..+)?$"  failOnError="false"/>
+	<locator searchPathRef="eclipse" pattern="^org(\..+)?$"  failOnError="false"/>
+	<locator searchPathRef="platform" pattern="^org(\..+)?$"  failOnError="false"/>
+	<locator searchPathRef="repast" pattern=".*"  failOnError="false"/>
 	<locator searchPathRef="orbit" pattern=".*" />
 </rmap>
