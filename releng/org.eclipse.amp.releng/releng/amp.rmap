@@ -71,7 +71,9 @@
 
 	<searchPath name="eclipse">
 		<provider readerType="p2" componentTypes="osgi.bundle,eclipse.feature" mutable="false" source="false">
-			<uri format="{0}/releases/helios?importType=binary" />
+			<uri format="{0}/releases/helios?importType=binary">
+				<bc:propertyRef key="eclipse.download" />
+			</uri>
 		</provider>
 	</searchPath>
 
