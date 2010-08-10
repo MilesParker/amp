@@ -78,8 +78,8 @@
 	</searchPath>
 
 	<searchPath name="repast">
-		<provider readerType="url" componentTypes="osgi.bundle" mutable="false" source="false">
-			<uri format="http://mirror.anl.gov/pub/repastsimphony/plugins/repast.simphony.score_1.2.0.jar" />
+		<provider readerType="svn" componentTypes="osgi.bundle" mutable="false" source="false">
+			<uri format="http://svn.metascapeabm.com/metaabm/repast.simphony.score" />
 		</provider>
 	</searchPath>
 
