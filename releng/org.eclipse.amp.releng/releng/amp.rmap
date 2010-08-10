@@ -117,6 +117,6 @@
 	<locator searchPathRef="eclipse" pattern="^com(\..+)?$" failOnError="false" />
 	<locator searchPathRef="eclipse" pattern="^org(\..+)?$" failOnError="false" />
 	<locator searchPathRef="platform" pattern="^org(\..+)?$" failOnError="false" />
-	<locator searchPathRef="repast" pattern=".*" failOnError="false" />
+	<locator searchPathRef="repast" pattern="repast\.simphony\.score"/>
 	<locator searchPathRef="orbit" pattern=".*" />
 </rmap>
