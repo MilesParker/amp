@@ -119,10 +119,10 @@
 	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.draw3d(\..+)?" />
 
 	<locator searchPathRef="org.eclipse.helios" pattern="^org\.eclipse(\..+)?$"  failOnError="false"/>
-	<locator searchPathRef="org.eclipse.platform" pattern="^org\.eclipse(\..+)?$"  failOnError="false"/>
-	<locator searchPathRef="org.eclipse.platform" pattern="^org\.junit(\..+)?$" />
-	<locator searchPathRef="org.eclipse.platform" pattern="^org\.junit4(\..+)?$" />
-	<locator searchPathRef="org.eclipse.platform" pattern="^com(\..+)?$"  failOnError="false"/>
+	<locator searchPathRef="org.eclipse.helios" pattern="^org\.eclipse(\..+)?$"  failOnError="false"/>
+	<locator searchPathRef="org.eclipse.helios" pattern="^org\.junit(\..+)?$" />
+	<locator searchPathRef="org.eclipse.helios" pattern="^org\.junit4(\..+)?$" />
+	<locator searchPathRef="org.eclipse.helios" pattern="^com(\..+)?$"  failOnError="false"/>
 	<locator searchPathRef="repast" pattern="^repast(\..+)?$" />
 	<locator searchPathRef="orbit" pattern=".*" />
 </rmap>
