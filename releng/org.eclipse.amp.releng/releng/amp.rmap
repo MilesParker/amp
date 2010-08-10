@@ -2,36 +2,9 @@
 <rmap xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.eclipse.org/buckminster/RMap-1.0"
 	xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:mp="http://www.eclipse.org/buckminster/MavenProvider-1.0"
 	xmlns:pmp="http://www.eclipse.org/buckminster/PDEMapProvider-1.0">
-
-	<searchPath name="plugins.local">
-		<provider componentTypes="osgi.bundle" readerType="local" source="true">
-			<uri format="file://{0}/plugins/{1}">
-				<bc:propertyRef key="workspace.root" />
-				<bc:propertyRef key="buckminster.component" />
-			</uri>
-		</provider>
-	</searchPath>
-
-	<searchPath name="features.local">
-		<provider componentTypes="eclipse.feature" readerType="local" source="true">
-			<uri format="file://{0}/features/{1}-feature">
-				<bc:propertyRef key="workspace.root" />
-				<bc:propertyRef key="buckminster.component" />
-			</uri>
-		</provider>
-	</searchPath>
-	
-	<searchPath name="releng.local">
-		<provider componentTypes="eclipse.feature" readerType="local" source="true">
-			<uri format="file://{0}/features/{1}">
-				<bc:propertyRef key="workspace.root" />
-				<bc:propertyRef key="buckminster.component" />
-			</uri>
-		</provider>
-	</searchPath>
 	
 	<searchPath name="amp.releng">
-		<provider componentTypes="eclipse.feature" readerType="cvs" source="true">
+		<provider componentTypes="eclipse.feature,buckminster" readerType="cvs" source="true">
 			<uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/releng/org.eclipse.amp.releng">
 			</uri>
 		</provider>
@@ -123,9 +96,8 @@
 
 	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.gef3d(\..+)?" />
 	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.draw3d(\..+)?" />
-	<locator searchPathRef="lwjgl" pattern="^org\.lwljg(\..+)?" />
+	<locator searchPathRef="lwjgl" pattern="^org\.lwjgl(\..+)?" />
 
-	<locator searchPathRef="org.eclipse.helios" pattern="^org\.eclipse(\..+)?$"  failOnError="false"/>
 	<locator searchPathRef="org.eclipse.helios" pattern="^org\.eclipse(\..+)?$"  failOnError="false"/>
 	<locator searchPathRef="org.eclipse.helios" pattern="^org\.junit(\..+)?$" />
 	<locator searchPathRef="org.eclipse.helios" pattern="^org\.junit4(\..+)?$" />
