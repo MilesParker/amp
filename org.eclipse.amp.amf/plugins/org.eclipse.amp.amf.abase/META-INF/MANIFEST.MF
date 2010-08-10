@@ -36,4 +36,3 @@ Export-Package: org.eclipse.amp.amf.abase,
  org.eclipse.amp.amf.abase.validation
 Bundle-ClassPath: .
 Bundle-Localization: plugin
-Import-Package: org.apache.log4j
