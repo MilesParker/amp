@@ -38,5 +38,4 @@ Export-Package: org.eclipse.amp.amf.parameters,
  org.eclipse.amp.amf.parameters.services,
  org.eclipse.amp.amf.parameters.validation
 Bundle-Localization: plugin
-Import-Package: org.apache.commons.lang,
- org.apache.log4j
+Import-Package: org.apache.commons.lang
