@@ -4,7 +4,8 @@
  */
 package org.eclipse.amp.amf.abase.ui.internal;
 
-import org.apache.log4j.Logger;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -14,60 +15,57 @@ import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.util.Modules;
 
-import java.util.Map;
-import java.util.HashMap;
-
 /**
  * Generated
  */
 public class ABaseActivator extends AbstractUIPlugin {
 
-	private Map<String,Injector> injectors = new HashMap<String,Injector>();
-	private static ABaseActivator INSTANCE;
+    private Map<String,Injector> injectors = new HashMap<String,Injector>();
+    private static ABaseActivator INSTANCE;
 
-	public Injector getInjector(String languageName) {
-		return injectors.get(languageName);
-	}
-	
-	@Override
-	public void start(BundleContext context) throws Exception {
-		super.start(context);
-		INSTANCE = this;
-		try {
-			
-			injectors.put("org.eclipse.amp.amf.abase.ABase", Guice.createInjector(
-				Modules.override(Modules.override(getRuntimeModule("org.eclipse.amp.amf.abase.ABase")).with(getUiModule("org.eclipse.amp.amf.abase.ABase"))).with(getSharedStateModule())
-			));
-			
-		} catch (Exception e) {
-			Logger.getLogger(getClass()).error(e.getMessage(), e);
-			throw e;
-		}
-	}
-	
-	public static ABaseActivator getInstance() {
-		return INSTANCE;
-	}
-	
-	protected Module getRuntimeModule(String grammar) {
-		
-		if ("org.eclipse.amp.amf.abase.ABase".equals(grammar)) {
-		  return new org.eclipse.amp.amf.abase.ABaseRuntimeModule();
-		}
-		
-		throw new IllegalArgumentException(grammar);
-	}
-	protected Module getUiModule(String grammar) {
-		
-		if ("org.eclipse.amp.amf.abase.ABase".equals(grammar)) {
-		  return new org.eclipse.amp.amf.abase.ui.ABaseUiModule(this);
-		}
-		
-		throw new IllegalArgumentException(grammar);
-	}
-	
-	protected Module getSharedStateModule() {
-		return new org.eclipse.xtext.ui.shared.SharedStateModule();
-	}
-	
+    public Injector getInjector(String languageName) {
+        return injectors.get(languageName);
+    }
+
+    @Override
+    public void start(BundleContext context) throws Exception {
+        super.start(context);
+        INSTANCE = this;
+        try {
+
+            injectors.put("org.eclipse.amp.amf.abase.ABase", Guice.createInjector(
+                                                                                  Modules.override(Modules.override(getRuntimeModule("org.eclipse.amp.amf.abase.ABase")).with(getUiModule("org.eclipse.amp.amf.abase.ABase"))).with(getSharedStateModule())
+            ));
+
+        } catch (Exception e) {
+            // Logger.getLogger(getClass()).error(e.getMessage(), e);
+            throw e;
+        }
+    }
+
+    public static ABaseActivator getInstance() {
+        return INSTANCE;
+    }
+
+    protected Module getRuntimeModule(String grammar) {
+
+        if ("org.eclipse.amp.amf.abase.ABase".equals(grammar)) {
+            return new org.eclipse.amp.amf.abase.ABaseRuntimeModule();
+        }
+
+        throw new IllegalArgumentException(grammar);
+    }
+    protected Module getUiModule(String grammar) {
+
+        if ("org.eclipse.amp.amf.abase.ABase".equals(grammar)) {
+            return new org.eclipse.amp.amf.abase.ui.ABaseUiModule(this);
+        }
+
+        throw new IllegalArgumentException(grammar);
+    }
+
+    protected Module getSharedStateModule() {
+        return new org.eclipse.xtext.ui.shared.SharedStateModule();
+    }
+
 }

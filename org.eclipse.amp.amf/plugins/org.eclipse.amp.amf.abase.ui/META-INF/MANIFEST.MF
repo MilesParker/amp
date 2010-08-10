@@ -17,7 +17,6 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Activator: org.eclipse.amp.amf.abase.ui.internal.ABaseActivator
 Bundle-ClassPath: .
 Bundle-Localization: plugin
-Import-Package: org.apache.log4j
 Export-Package: org.eclipse.amp.amf.abase.ui,
  org.eclipse.amp.amf.abase.ui.contentassist,
  org.eclipse.amp.amf.abase.ui.contentassist.antlr,
