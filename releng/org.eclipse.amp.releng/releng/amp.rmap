@@ -4,7 +4,8 @@
 	xmlns:pmp="http://www.eclipse.org/buckminster/PDEMapProvider-1.0">
 	<property key="checkout.location" value="${workspace.root}/" />
 	<property key="eclipse.download" value="http://download.eclipse.org" />
-
+	<property key="source.repository.location" value=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling" />
+	
 	<searchPath name="local.releng">
 		<provider componentTypes="buckminster" readerType="local" source="true" mutable="false">
 			<uri format="{0}{1}">
@@ -16,7 +17,8 @@
 
 	<searchPath name="amp.releng">
 		<provider componentTypes="buckminster" readerType="cvs" source="true">
-			<uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/releng/org.eclipse.amp.releng">
+			<uri format="{0},org.eclipse.amp/releng/org.eclipse.amp.releng">
+				<bc:propertyRef key="source.repository.location" />
 			</uri>
 		</provider>
 	</searchPath>
@@ -24,14 +26,16 @@
 	<searchPath name="amp.build">
 		<provider componentTypes="eclipse.feature" readerType="cvs" source="true" mutable="false">
 			<uri
-				format=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp/features/org.eclipse.amp.build">
+				format="{0},org.eclipse.amp/org.eclipse.amp/features/org.eclipse.amp.build">
+				<bc:propertyRef key="source.repository.location" />
 			</uri>
 		</provider>
 	</searchPath>
 
 	<searchPath name="amp.features">
 		<provider componentTypes="eclipse.feature" readerType="cvs" source="true" mutable="false">
-			<uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/{0}/features/{1}-feature">
+			<uri format="{0},org.eclipse.amp/{1}/features/{2}-feature">
+				<bc:propertyRef key="source.repository.location" />
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
 					<bc:match pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
@@ -47,7 +51,8 @@
 
 	<searchPath name="amp.plugins">
 		<provider componentTypes="osgi.bundle" readerType="cvs" source="true" mutable="true">
-			<uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/{0}/plugins/{1}">
+			<uri format="{0},org.eclipse.amp/{1}/plugins/{2}">
+				<bc:propertyRef key="source.repository.location" />
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
 					<bc:match pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
@@ -65,7 +70,8 @@
 
 	<searchPath name="amp.doc">
 		<provider componentTypes="osgi.bundle" readerType="cvs" source="true">
-			<uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp/doc/{0}">
+			<uri format="{0},org.eclipse.amp/org.eclipse.amp/doc/{1}">
+				<bc:propertyRef key="source.repository.location" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
@@ -115,8 +121,8 @@
 		</provider>
 	</searchPath>
 
-	<locator searchPathRef="amp.releng" pattern="org\.eclipse\.amp\.releng" failOnError="false"/>
-	<locator searchPathRef="local.releng" pattern="org\.eclipse\.amp\.releng"/>
+	<locator searchPathRef="local.releng" pattern="org\.eclipse\.amp\.releng" failOnError="false"/>
+	<locator searchPathRef="amp.releng" pattern="org\.eclipse\.amp\.releng"/>
 
 	<locator searchPathRef="amp.build" pattern="^org\.eclipse\.amp\.build" />
 
