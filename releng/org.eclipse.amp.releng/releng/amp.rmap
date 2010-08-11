@@ -6,8 +6,8 @@
 	<property key="eclipse.download" value="http://download.eclipse.org" />
 
 	<searchPath name="local.releng">
-		<provider componentTypes="buckminster" readerType="local" mutable="false">
-			<uri format="{0}org.eclipse.amp/releng/org.eclipse.amp.releng">
+		<provider componentTypes="buckminster" readerType="local" source="true" mutable="false">
+			<uri format="{0}{1}">
 				<bc:propertyRef key="checkout.location" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
@@ -115,9 +115,8 @@
 		</provider>
 	</searchPath>
 
-	<locator searchPathRef="local.releng" pattern="^org\.eclipse\.amp\.releng$" failOnError="false"/>
+	<locator searchPathRef="local.releng" pattern="^org\.eclipse\.amp\.releng$"/>
 
-	<locator searchPathRef="amp.releng" pattern="^org\.eclipse\.amp\.releng" />
 	<locator searchPathRef="amp.build" pattern="^org\.eclipse\.amp\.build" />
 
 	<locator searchPathRef="amp.features" pattern="^org\.eclipse\.amp([\.\-].+)?" failOnError="false" />
