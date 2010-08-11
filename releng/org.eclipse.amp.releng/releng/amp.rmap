@@ -115,7 +115,7 @@
 		</provider>
 	</searchPath>
 
-	<locator pattern="^org\.eclipse\.amp\.releng$" searchPathRef="local.releng" />
+	<locator searchPathRef="local.releng" pattern="^org\.eclipse\.amp\.releng$" failOnError="false"/>
 
 	<locator searchPathRef="amp.releng" pattern="^org\.eclipse\.amp\.releng" />
 	<locator searchPathRef="amp.build" pattern="^org\.eclipse\.amp\.build" />
