@@ -4,8 +4,9 @@
 	xmlns:pmp="http://www.eclipse.org/buckminster/PDEMapProvider-1.0">
 	<property key="checkout.location" value="${workspace.root}/" />
 	<property key="eclipse.download" value="http://download.eclipse.org" />
+	
 	<searchPath name="amp.releng">
-		<provider componentTypes="eclipse.feature,buckminster" readerType="cvs" source="true">
+		<provider componentTypes="buckminster" readerType="cvs" source="true">
 			<uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/releng/org.eclipse.amp.releng">
 			</uri>
 		</provider>
