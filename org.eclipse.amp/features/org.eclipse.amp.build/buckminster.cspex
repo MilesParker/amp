@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cs:cspecExtension xmlns:com="http://www.eclipse.org/buckminster/Common-1.0" xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
+
+	<cs:dependencies>
+		<!-- <cs:dependency name="org.eclipse.amp.releng" componentType="buckminster" />
+		 <cs:dependency name="org.eclipse.amp.tests" componentType="eclipse.feature" />
+		 -->
+	</cs:dependencies>
+
+	<cs:actions>
+		<cs:private name="site.tp" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="create.target.platform.metadata" />
+			</cs:actorProperties>
+			<cs:products alias="output" base="${buckminster.output}/site.tp/" />
+		</cs:private>
+
+		<cs:public name="package.amp-Update" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="package.site" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="package.name" value="amp-Update" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.output}/zips/" />
+		</cs:public>
+
+		<cs:public name="package.amp-SDK" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="package.ius" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="content.ius" value="org.eclipse.amp.sdk.feature.group" />
+				<cs:property key="prerequisite.ius" value="org.eclipse.amp.docs.source.feature.group" />
+				<cs:property key="target.platform.ius" value="com.google.inject,org.antlr.runtime,org.apache.log4j" />
+				<cs:property key="package.name" value="amp-SDK" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+				<cs:attribute name="site.tp" alias="target.platform.repository" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.output}/zips/" />
+		</cs:public>
+
+		<cs:public name="package.amp-Examples" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="package.ius" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="content.ius"
+					value="org.eclipse.amp.examples.feature.group,org.eclipse.amp.examples.source.feature.group" />
+				<cs:property key="prerequisite.ius" value="org.eclipse.amp.runtime.feature.group,org.eclipse.amp.ui.feature.group" />
+				<cs:property key="package.name" value="amp-Examples" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+				<cs:attribute name="site.tp" alias="target.platform.repository" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.output}/zips/" />
+		</cs:public>
+		
+		<cs:public name="package.amp-runtime" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="package.ius" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="content.ius"
+					value="org.eclipse.amp.runtime.feature.group" />
+				<cs:property key="prerequisite.ius" value="com.google.collect" />
+				<cs:property key="package.name" value="amp-runtime" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+				<cs:attribute name="site.tp" alias="target.platform.repository" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.output}/zips/" />
+		</cs:public>
+
+		<cs:public name="package.amp-sourcedoc" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="package.ius" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="content.ius" value="org.eclipse.amp.docs.feature.group" />
+				<cs:property key="prerequisite.ius" value="org.eclipse.amp.docs.source.feature.group" />
+				<cs:property key="package.name" value="amp-sourcedoc" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+				<cs:attribute name="site.tp" alias="target.platform.repository" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.output}/zips/" />
+		</cs:public>
+
+
+		<cs:public name="tag" actor="buckminster.tag">
+			<cs:actorProperties>
+				<cs:property key="tag" value="build_${build.id}" />
+				<cs:property key="exclude.0" value="^org\.eclipse\.test$" />
+				<cs:property key="exclude.1" value="^org\.eclipse\.ant\.optional\.junit$" />
+			</cs:actorProperties>
+		</cs:public>
+	</cs:actions>
+
+	<cs:groups>
+		<cs:public name="build">
+			<cs:attribute name="package.amp-Update" />
+<!-- 			<cs:attribute name="package.amp-SDK" />
+			<cs:attribute name="package.amp-Examples" />
+			<cs:attribute name="package.amp-runtime" />
+			<cs:attribute name="package.amp-sourcedoc" /> -->
+		</cs:public>
+	</cs:groups>
+</cs:cspecExtension>
