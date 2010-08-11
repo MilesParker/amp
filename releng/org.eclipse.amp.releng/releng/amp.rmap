@@ -8,7 +8,7 @@
 	
 	<searchPath name="local.releng">
 		<provider componentTypes="buckminster" readerType="local" source="true" mutable="false">
-			<uri format="{0}{1}">
+			<uri format="file:/${workspace.root}/org.eclipse.amp/releng/org.eclipse.amp.releng">
 				<bc:propertyRef key="checkout.location" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
