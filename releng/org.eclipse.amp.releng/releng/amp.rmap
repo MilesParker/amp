@@ -4,7 +4,16 @@
 	xmlns:pmp="http://www.eclipse.org/buckminster/PDEMapProvider-1.0">
 	<property key="checkout.location" value="${workspace.root}/" />
 	<property key="eclipse.download" value="http://download.eclipse.org" />
-	
+
+	<searchPath name="local.releng">
+		<provider componentTypes="buckminster" readerType="local" mutable="false">
+			<uri format="{0}{1}">
+				<bc:propertyRef key="checkout.location" />
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	</searchPath>
+
 	<searchPath name="amp.releng">
 		<provider componentTypes="buckminster" readerType="cvs" source="true">
 			<uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/releng/org.eclipse.amp.releng">
@@ -14,11 +23,12 @@
 
 	<searchPath name="amp.build">
 		<provider componentTypes="eclipse.feature" readerType="cvs" source="true" mutable="false">
-			<uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp/features/org.eclipse.amp.build">
+			<uri
+				format=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/org.eclipse.amp/features/org.eclipse.amp.build">
 			</uri>
 		</provider>
 	</searchPath>
-	
+
 	<searchPath name="amp.features">
 		<provider componentTypes="eclipse.feature" readerType="cvs" source="true" mutable="false">
 			<uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/{0}/features/{1}-feature">
@@ -105,6 +115,8 @@
 		</provider>
 	</searchPath>
 
+	<locator pattern="^org\.eclipse\.amp\.releng$" searchPathRef="local.releng" />
+
 	<locator searchPathRef="amp.releng" pattern="^org\.eclipse\.amp\.releng" />
 	<locator searchPathRef="amp.build" pattern="^org\.eclipse\.amp\.build" />
 
@@ -126,6 +138,6 @@
 	<locator searchPathRef="eclipse" pattern="^com(\..+)?$" failOnError="false" />
 	<locator searchPathRef="eclipse" pattern="^org(\..+)?$" failOnError="false" />
 	<locator searchPathRef="platform" pattern="^org(\..+)?$" failOnError="false" />
-	<locator searchPathRef="repast" pattern="repast\.simphony\.score"/>
+	<locator searchPathRef="repast" pattern="repast\.simphony\.score" />
 	<locator searchPathRef="orbit" pattern=".*" />
 </rmap>
