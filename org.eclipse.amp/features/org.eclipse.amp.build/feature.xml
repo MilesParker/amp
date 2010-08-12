@@ -25,4 +25,12 @@
          id="org.eclipse.amp.all"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.amp.amf.target.ascape"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.amp.amf.target.repast"
+         version="0.0.0"/>
+
 </feature>
