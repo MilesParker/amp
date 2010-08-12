@@ -3,7 +3,6 @@
 
 	<cs:dependencies>
 		<cs:dependency name="org.eclipse.amp.releng" componentType="buckminster" />
-		<cs:dependency name="org.eclipse.amp.build" componentType="eclipse.feature" />
 		<!--  <cs:dependency name="org.eclipse.amp.tests" componentType="eclipse.feature" />
 		 -->
 	</cs:dependencies>
