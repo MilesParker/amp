@@ -17,9 +17,9 @@ Require-Bundle:
  org.eclipse.amp.amf.acore,
  org.eclipse.amp.amf.gen,
  org.eclipse.amp.amf.gen.repast,
- org.eclipse.amp.amf.ide;bundle-version="0.8.0",
- org.eclipse.amp.amf.gen.ide;bundle-version="0.8.0",
- repast.simphony.score;bundle-version="1.2.0"
+ org.eclipse.amp.amf.ide,
+ org.eclipse.amp.amf.gen.ide,
+ repast.simphony.score
 Import-Package: org.apache.commons.lang
 Bundle-ClassPath: .
 Bundle-ActivationPolicy: lazy
