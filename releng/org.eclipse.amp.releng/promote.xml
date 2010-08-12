@@ -1,4 +1,4 @@
-<project default="run" name="org.eclipse.mwe.releng/promote.xml - Promote a build from build server to production server">
+<project default="run" name="org.eclipse.amp.releng/promote.xml - Promote a build from build server to production server">
 	<target name="run">
 		<!--
 			To use this script, you must have configured a promote.properties file.
