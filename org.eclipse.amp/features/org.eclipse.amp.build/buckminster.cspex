@@ -112,8 +112,8 @@
 	<cs:groups>
 		<cs:public name="build">
 			<cs:attribute name="package.amp-Update" />
-		<cs:attribute name="package.amp-Examples" />
-	<!--			<cs:attribute name="package.amp-runtime" />
+	<!--		<cs:attribute name="package.amp-Examples" />
+			<cs:attribute name="package.amp-runtime" />
  			<cs:attribute name="package.amp-SDK" />
 			<cs:attribute name="package.amp-sourcedoc" /> -->
 		</cs:public>
