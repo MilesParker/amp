@@ -26,11 +26,11 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.amp.amf.target.ascape"
+         id="org.eclipse.amp.test"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.amp.amf.target.repast"
+         id="org.eclipse.amp.examples.feature"
          version="0.0.0"/>
 
 </feature>
