@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.amp.all.feature"
-      label="AMP All-In-One SDK (Incubation)"
+      id="org.eclipse.amp.examples.feature"
+      label="AMP Examples (Builds)"
       version="0.2.0"
       provider-name="Eclipse Agent Modeling Platform">
 
@@ -64,5 +64,19 @@ This Agreement is governed by the laws of the State of New York and the intellec
    <url>
       <update label="AMP Update Site" url="http://eclipse.org/amp/updates/release"/>
    </url>
+
+   <plugin
+         id="org.eclipse.amp.amf.examples.ascape"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.amp.amf.examples.escape"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>
