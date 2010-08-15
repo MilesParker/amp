@@ -195,7 +195,7 @@ public class HeatBug extends CellOccupant {
 		return randomInRange(outputHeatDrawMinimum, outputHeatDrawMaximum);
 	}
 	/**
-	 * A data point used within a search to find the Heat Cell with the .minimize Heat value.
+	 * A data point used within a search to find the Heat Cell with the minimized Heat value.
 	 */
 	public final static DataPoint MINIMIZE_HEAT = new DataPointConcrete(
 			"Minimize heat") {
