@@ -11,7 +11,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 
 /**
  * Epidemic Java Implementation.
- * A simple model of epidemic dynamics. We define individual agents with different disease states. The progression of disease moves from succeptible to exposed to infectious (either symptomatic or asymptomatic) to some outcome state. Agents can transmit infection to their immediate neighbors.
+ * A simple model of epidemic dynamics. We define individual agents with different disease states. The progression of disease moves from succeptible to exposed to infectious (either symptomatic or asymptomatic) to some outcome state. Agents can transmit infection to their immediate neighbors. 
 
  For some background on the general approach, see Joshua M. Epstein. "Generative Social Science". 2006. Princeton. 
 

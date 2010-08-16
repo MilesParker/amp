@@ -16,6 +16,8 @@
 
 package name.milesparker.epi;
 
+import name.milesparker.epi.contact.Individual;
+
 import org.eclipse.amp.agf3d.IGraphics3DAdapter;
 import org.eclipse.amp.agf3d.IShape3DProvider;
 import org.eclipse.amp.agf3d.Shapes3D;

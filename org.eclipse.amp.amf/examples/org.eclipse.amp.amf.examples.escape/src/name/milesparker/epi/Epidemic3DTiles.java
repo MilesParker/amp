@@ -16,6 +16,8 @@
 
 package name.milesparker.epi;
 
+import name.milesparker.epi.contact.Epidemic3D;
+
 import org.eclipse.amp.agf.IGraphicsAdapter;
 import org.eclipse.amp.agf3d.IGraphics3DAdapted;
 import org.eclipse.amp.agf3d.IGraphics3DAdapter;
