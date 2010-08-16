@@ -137,17 +137,17 @@
 		</provider>
 	</searchPath>
 
+	<!-- NOTE: ***Not for inclusion in Eclipse provided builds. Only used for building tests and examples.***-->
+	<searchPath name="ascape.external">
+		<provider readerType="p2" componentTypes="osgi.bundle" mutable="false" source="false">
+			<uri format="http://ascape.sourceforge.net/eclipse" />
+		</provider>
+	</searchPath>
+
 	<!-- NOTE: ***Not for inclusion in Eclipse provided builds. Provides support for externally hosted plugin dependencies.***-->
 	<searchPath name="repast">
 		<provider readerType="url" componentTypes="osgi.bundle" mutable="false" source="false">
 			<uri format="http://mirror.anl.gov/pub/repastsimphony/plugins/repast.simphony.score_1.2.0.jar" />
-		</provider>
-	</searchPath>
-
-	<!-- NOTE: ***Not for inclusion in Eclipse provided builds. Only used for building tests and examples.***-->
-	<searchPath name="ascape.swing">
-		<provider readerType="url" componentTypes="osgi.bundle" mutable="false" source="false">
-			<uri format="https://sourceforge.net/projects/ascape/files/updates/release/plugins/org.ascape.ui.swing_5.6.0.201008061507.jar/download" />
 		</provider>
 	</searchPath>
 
@@ -193,7 +193,8 @@
 	
 	<!-- Note: Third party *NOT* Eclipse IP approved for providing. Make sure that these don't show up in any delivered builds. -->
 	<locator searchPathRef="lwjgl" pattern="^org\.lwjgl(\..+)?" />
-	<locator searchPathRef="ascape.swing" pattern="^org\.ascape\.ui\.swing" />
+	<locator searchPathRef="ascape.external" pattern="^org\.ascape\.ui\.swing" />
+	<locator searchPathRef="ascape.external" pattern="^org\.ascape\.common\.lib" />
 	<locator searchPathRef="repast" pattern="repast\.simphony\.score" />
 	
 	<locator searchPathRef="orbit" pattern=".*" />
