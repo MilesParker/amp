@@ -168,8 +168,8 @@
 	<locator searchPathRef="amp.plugins" pattern="^org\.eclipse\.emf\.java" />
 	<locator searchPathRef="amp.doc" pattern="^org\.eclipse\.amp\.doc" />
 	<locator searchPathRef="amp.doc" pattern="^org\.eclipse\.amp\.ua" />
-	<locator searchPathRef="amp.examples" pattern="^org\.eclipse\.amp(\..+)*\.examples(\..+)*?" />
-	<locator searchPathRef="amp.tests" pattern="^org\.eclipse\.amp(\..+)\.test?" />
+	<locator searchPathRef="amp.examples" pattern="^org\.eclipse\.amp(\..+)*\.examples(\..+)*$" />
+	<locator searchPathRef="amp.tests" pattern="^org\.eclipse\.amp(\..+)\.test$" />
 	<locator searchPathRef="amp.plugins" pattern="^org\.eclipse\.amp(\..+)?" />
 
 	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.gef3d(\..+)?" />
