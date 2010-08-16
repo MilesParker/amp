@@ -191,7 +191,7 @@
 	<locator searchPathRef="eclipse" pattern="^org(\..+)?$" failOnError="false" />
 	<locator searchPathRef="platform" pattern="^org(\..+)?$" failOnError="false" />
 	
-	<!-- Note: Third party -- *NOT* Eclipse IP approved for providing. Make sure that these don't show up in any delivered builds. -->
+	<!-- Note: Third party *NOT* Eclipse IP approved for providing. Make sure that these don't show up in any delivered builds. -->
 	<locator searchPathRef="lwjgl" pattern="^org\.lwjgl(\..+)?" />
 	<locator searchPathRef="ascape.swing" pattern="^org\.ascape\.ui\.swing" />
 	<locator searchPathRef="repast" pattern="repast\.simphony\.score" />
