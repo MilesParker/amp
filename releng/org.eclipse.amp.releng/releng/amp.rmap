@@ -195,6 +195,7 @@
 	<locator searchPathRef="lwjgl" pattern="^org\.lwjgl(\..+)?" />
 	<locator searchPathRef="ascape.external" pattern="^org\.ascape\.ui\.swing" />
 	<locator searchPathRef="ascape.external" pattern="^org\.ascape\.common\.lib" />
+	<locator searchPathRef="ascape.external" pattern="^org\.ascape\.core" />
 	<locator searchPathRef="repast" pattern="repast\.simphony\.score" />
 	
 	<locator searchPathRef="orbit" pattern=".*" />
