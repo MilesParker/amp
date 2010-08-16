@@ -67,6 +67,42 @@
 			</uri>
 		</provider>
 	</searchPath>
+	
+	<searchPath name="amp.examples">
+		<provider componentTypes="osgi.bundle" readerType="cvs" source="true" mutable="true">
+			<uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/{0}/examples/{1}">
+				<bc:replace>
+					<bc:propertyRef key="buckminster.component" />
+					<bc:match pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
+					<bc:match pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
+					<bc:match pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
+					<bc:match pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
+					<bc:match pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
+					<bc:match pattern="org\.ascape.*" replacement="org.ascape" />
+					<bc:match pattern="org\.eclipse\.emf\.java" replacement="dependencies" />
+				</bc:replace>
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	</searchPath>
+
+	<searchPath name="amp.tests">
+		<provider componentTypes="osgi.bundle" readerType="cvs" source="true" mutable="true">
+			<uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,org.eclipse.amp/{0}/tests/{1}">
+				<bc:replace>
+					<bc:propertyRef key="buckminster.component" />
+					<bc:match pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
+					<bc:match pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
+					<bc:match pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
+					<bc:match pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
+					<bc:match pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
+					<bc:match pattern="org\.ascape.*" replacement="org.ascape" />
+					<bc:match pattern="org\.eclipse\.emf\.java" replacement="dependencies" />
+				</bc:replace>
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	</searchPath>
 
 	<searchPath name="amp.doc">
 		<provider componentTypes="osgi.bundle" readerType="cvs" source="true">
@@ -128,10 +164,13 @@
 
 	<locator searchPathRef="amp.features" pattern="^org\.eclipse\.amp([\.\-].+)?" failOnError="false" />
 	<locator searchPathRef="amp.plugins" pattern="^org\.ascape\.core" />
+	<locator searchPathRef="amp.plugins" pattern="^org\.ascape\.core" />
 	<locator searchPathRef="amp.plugins" pattern="^org\.ascape\.ui\.amp" />
 	<locator searchPathRef="amp.plugins" pattern="^org\.eclipse\.emf\.java" />
 	<locator searchPathRef="amp.doc" pattern="^org\.eclipse\.amp\.doc" />
 	<locator searchPathRef="amp.doc" pattern="^org\.eclipse\.amp\.ua" />
+	<locator searchPathRef="amp.examples" pattern="^org\.eclipse\.amp\.(\..+)\.example?" />
+	<locator searchPathRef="amp.tests" pattern="^org\.eclipse\.amp\.(\..+)\.test?" />
 	<locator searchPathRef="amp.plugins" pattern="^org\.eclipse\.amp(\..+)?" />
 
 	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.gef3d(\..+)?" />
