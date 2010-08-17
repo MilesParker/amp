@@ -22,13 +22,6 @@
    </url>
 
    <plugin
-         id="org.eclipse.amp.amf.examples.ascape"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.eclipse.amp.amf.examples.escape"
          download-size="0"
          install-size="0"
