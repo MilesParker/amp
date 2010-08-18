@@ -43,10 +43,6 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.amp.amf.target.ascape.source"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.amp.amf.target.escape.source"
          version="0.0.0"/>
 
