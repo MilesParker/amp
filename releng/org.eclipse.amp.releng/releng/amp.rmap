@@ -145,7 +145,7 @@
 	<!-- NOTE: ***Not for inclusion in Eclipse provided builds. Provides support for externally hosted plugin dependencies.***-->
 	<searchPath name="lwjgl">
 		<provider readerType="url.zipped" componentTypes="osgi.bundle,eclipse.feature" mutable="false" source="false">
-			<uri format="http://metaabm.org/downloads/org.lwjgl_2.2.1.zip" />
+			<uri format="http://metaabm.org/downloads/lwjgl.zip" />
 		</provider>
 	</searchPath>
 	
