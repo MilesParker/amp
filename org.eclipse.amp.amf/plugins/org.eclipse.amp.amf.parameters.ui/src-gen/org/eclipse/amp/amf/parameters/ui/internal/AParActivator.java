@@ -20,51 +20,52 @@ import com.google.inject.util.Modules;
  */
 public class AParActivator extends AbstractUIPlugin {
 
-	private Map<String,Injector> injectors = new HashMap<String,Injector>();
-	private static AParActivator INSTANCE;
+    private Map<String,Injector> injectors = new HashMap<String,Injector>();
+    private static AParActivator INSTANCE;
 
-	public Injector getInjector(String languageName) {
-		return injectors.get(languageName);
-	}
-	
-	@Override
-	public void start(BundleContext context) throws Exception {
-		super.start(context);
-		INSTANCE = this;
-		try {
-			
-			injectors.put("org.eclipse.amp.amf.parameters.APar", Guice.createInjector(
-				Modules.override(Modules.override(getRuntimeModule("org.eclipse.amp.amf.parameters.APar")).with(getUiModule("org.eclipse.amp.amf.parameters.APar"))).with(getSharedStateModule())
-			));
-			
-		} catch (Exception e) {
-			throw e;
-		}
-	}
-	
-	public static AParActivator getInstance() {
-		return INSTANCE;
-	}
-	
-	protected Module getRuntimeModule(String grammar) {
-		
-		if ("org.eclipse.amp.amf.parameters.APar".equals(grammar)) {
-		  return new org.eclipse.amp.amf.parameters.AParRuntimeModule();
-		}
-		
-		throw new IllegalArgumentException(grammar);
-	}
-	protected Module getUiModule(String grammar) {
-		
-		if ("org.eclipse.amp.amf.parameters.APar".equals(grammar)) {
-		  return new org.eclipse.amp.amf.parameters.ui.AParUiModule(this);
-		}
-		
-		throw new IllegalArgumentException(grammar);
-	}
-	
-	protected Module getSharedStateModule() {
-		return new org.eclipse.xtext.ui.shared.SharedStateModule();
-	}
-	
+    public Injector getInjector(String languageName) {
+        return injectors.get(languageName);
+    }
+
+    @Override
+    public void start(BundleContext context) throws Exception {
+        super.start(context);
+        INSTANCE = this;
+        try {
+
+            injectors.put("org.eclipse.amp.amf.parameters.APar", Guice.createInjector(
+                                                                                      Modules.override(Modules.override(getRuntimeModule("org.eclipse.amp.amf.parameters.APar")).with(getUiModule("org.eclipse.amp.amf.parameters.APar"))).with(getSharedStateModule())
+            ));
+
+        } catch (Exception e) {
+            // Logger.getLogger(getClass()).error(e.getMessage(), e);
+            throw e;
+        }
+    }
+
+    public static AParActivator getInstance() {
+        return INSTANCE;
+    }
+
+    protected Module getRuntimeModule(String grammar) {
+
+        if ("org.eclipse.amp.amf.parameters.APar".equals(grammar)) {
+            return new org.eclipse.amp.amf.parameters.AParRuntimeModule();
+        }
+
+        throw new IllegalArgumentException(grammar);
+    }
+    protected Module getUiModule(String grammar) {
+
+        if ("org.eclipse.amp.amf.parameters.APar".equals(grammar)) {
+            return new org.eclipse.amp.amf.parameters.ui.AParUiModule(this);
+        }
+
+        throw new IllegalArgumentException(grammar);
+    }
+
+    protected Module getSharedStateModule() {
+        return new org.eclipse.xtext.ui.shared.SharedStateModule();
+    }
+
 }
