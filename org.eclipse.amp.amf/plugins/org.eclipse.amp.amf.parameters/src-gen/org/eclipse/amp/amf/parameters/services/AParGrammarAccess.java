@@ -33,12 +33,10 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cParametersParameterParserRuleCall_4_0 = (RuleCall)cParametersAssignment_4.eContents().get(0);
 		
 		//Model:
-		//  name=STRING? "model" model=Import ("incorporates" incorporates+=Incorporates)
-		//  * parameters+=Parameter*;
+		//	name=STRING? "model" model=Import ("incorporates" incorporates+=Incorporates)* parameters+=Parameter*;
 		public ParserRule getRule() { return rule; }
 
-		//name=STRING? "model" model=Import ("incorporates" incorporates+=Incorporates)*
-		//parameters+=Parameter*
+		//name=STRING? "model" model=Import ("incorporates" incorporates+=Incorporates)* parameters+=Parameter*
 		public Group getGroup() { return cGroup; }
 
 		//name=STRING?
@@ -81,7 +79,7 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cImportURISTRINGTerminalRuleCall_0 = (RuleCall)cImportURIAssignment.eContents().get(0);
 		
 		//Import:
-		//  importURI=STRING;
+		//	importURI=STRING;
 		public ParserRule getRule() { return rule; }
 
 		//importURI=STRING
@@ -97,7 +95,7 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cImportURISTRINGTerminalRuleCall_0 = (RuleCall)cImportURIAssignment.eContents().get(0);
 		
 		//Incorporates:
-		//  importURI=STRING;
+		//	importURI=STRING;
 		public ParserRule getRule() { return rule; }
 
 		//importURI=STRING
@@ -118,7 +116,7 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueValueParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
 		
 		//Parameter:
-		//  attribute=[SAttribute] "=" value=Value;
+		//	attribute=[SAttribute] "=" value=Value;
 		public ParserRule getRule() { return rule; }
 
 		//attribute=[SAttribute] "=" value=Value
@@ -171,8 +169,7 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Model:
-	//  name=STRING? "model" model=Import ("incorporates" incorporates+=Incorporates)
-	//  * parameters+=Parameter*;
+	//	name=STRING? "model" model=Import ("incorporates" incorporates+=Incorporates)* parameters+=Parameter*;
 	public ModelElements getModelAccess() {
 		return (pModel != null) ? pModel : (pModel = new ModelElements());
 	}
@@ -182,7 +179,7 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Import:
-	//  importURI=STRING;
+	//	importURI=STRING;
 	public ImportElements getImportAccess() {
 		return (pImport != null) ? pImport : (pImport = new ImportElements());
 	}
@@ -192,7 +189,7 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Incorporates:
-	//  importURI=STRING;
+	//	importURI=STRING;
 	public IncorporatesElements getIncorporatesAccess() {
 		return (pIncorporates != null) ? pIncorporates : (pIncorporates = new IncorporatesElements());
 	}
@@ -202,7 +199,7 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Parameter:
-	//  attribute=[SAttribute] "=" value=Value;
+	//	attribute=[SAttribute] "=" value=Value;
 	public ParameterElements getParameterAccess() {
 		return (pParameter != null) ? pParameter : (pParameter = new ParameterElements());
 	}
@@ -212,7 +209,7 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Value:
-	//  IntValue|StringValue|RealValue|BooleanValue;
+	//	IntValue | StringValue | RealValue | BooleanValue;
 	public ABaseGrammarAccess.ValueElements getValueAccess() {
 		return gaABase.getValueAccess();
 	}
@@ -222,7 +219,7 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IntValue:
-	//  value=INTEGER;
+	//	value=INTEGER;
 	public ABaseGrammarAccess.IntValueElements getIntValueAccess() {
 		return gaABase.getIntValueAccess();
 	}
@@ -232,7 +229,7 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RealValue:
-	//  value=REAL;
+	//	value=REAL;
 	public ABaseGrammarAccess.RealValueElements getRealValueAccess() {
 		return gaABase.getRealValueAccess();
 	}
@@ -242,7 +239,7 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StringValue:
-	//  value=STRING;
+	//	value=STRING;
 	public ABaseGrammarAccess.StringValueElements getStringValueAccess() {
 		return gaABase.getStringValueAccess();
 	}
@@ -252,7 +249,7 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BooleanValue:
-	//  value=BOOLEAN;
+	//	value=BOOLEAN;
 	public ABaseGrammarAccess.BooleanValueElements getBooleanValueAccess() {
 		return gaABase.getBooleanValueAccess();
 	}
@@ -262,7 +259,7 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum BOOLEAN:
-	//  TRUE="true" | FALSE="false";
+	//	TRUE="true" | FALSE="false";
 	public ABaseGrammarAccess.BOOLEANElements getBOOLEANAccess() {
 		return gaABase.getBOOLEANAccess();
 	}
@@ -272,64 +269,62 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal INTEGER:
-	//  "-"? "0".."9"+;
+	//	"-"? "0".."9"+;
 	public TerminalRule getINTEGERRule() {
 		return gaABase.getINTEGERRule();
 	} 
 
 	//terminal REAL:
-	//  "-"? "0".."9"* "." "0".."9"*;
+	//	"-"? "0".."9"* "." "0".."9"*;
 	public TerminalRule getREALRule() {
 		return gaABase.getREALRule();
 	} 
 
 	//terminal DESC_STRING:
-	//  "«" ("\\" ("b" | "t" | "n" | "f" | "r" | "«" | "»" | "\\") | !("\\" | "«" |
-	//  "»"))* "»";
+	//	"«" ("\\" ("b" | "t" | "n" | "f" | "r" | "«" | "»" | "\\") | !("\\" | "«" | "»"))* "»";
 	public TerminalRule getDESC_STRINGRule() {
 		return gaABase.getDESC_STRINGRule();
 	} 
 
 	//terminal ID:
-	//  "^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
+	//	"^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
 	public TerminalRule getIDRule() {
 		return gaABase.getIDRule();
 	} 
 
 	//terminal INT returns ecore::EInt:
-	//  "0".."9"+;
+	//	"0".."9"+;
 	public TerminalRule getINTRule() {
 		return gaABase.getINTRule();
 	} 
 
 	//terminal STRING:
-	//  "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""
-	//  ))* "\"" | "\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !(
-	//  "\\" | "\'"))* "\'";
+	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"" | "\'" ("\\" ("b" | "t" | "n" |
+	//	"f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
 	public TerminalRule getSTRINGRule() {
 		return gaABase.getSTRINGRule();
 	} 
 
 	//terminal ML_COMMENT:
-	//  "/ *"->"* /";
+	//	"/ *"->"* /";
 	public TerminalRule getML_COMMENTRule() {
 		return gaABase.getML_COMMENTRule();
 	} 
 
 	//terminal SL_COMMENT:
-	//  "//" !("\n" | "\r")* ("\r"? "\n")?;
+	//	"//" !("\n" | "\r")* ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {
 		return gaABase.getSL_COMMENTRule();
 	} 
 
 	//terminal WS:
-	//  (" " | "\t" | "\r" | "\n")+;
+	//	(" " | "\t" | "\r" | "\n")+;
 	public TerminalRule getWSRule() {
 		return gaABase.getWSRule();
 	} 
 
 	//terminal ANY_OTHER:
-	//  .;
+	//	.;
 	public TerminalRule getANY_OTHERRule() {
 		return gaABase.getANY_OTHERRule();
 	} 

@@ -12,6 +12,7 @@ import org.eclipse.amp.amf.parameters.services.AParGrammarAccess;
 
 import com.google.inject.Inject;
 
+@SuppressWarnings("all")
 public class AParParsetreeConstructor extends AbstractParseTreeConstructor {
 		
 	@Inject
@@ -48,13 +49,11 @@ protected class ThisRootNode extends RootToken {
 /************ begin Rule Model ****************
  *
  * Model:
- *   name=STRING? "model" model=Import ("incorporates" incorporates+=Incorporates)
- *   * parameters+=Parameter*;
+ * 	name=STRING? "model" model=Import ("incorporates" incorporates+=Incorporates)* parameters+=Parameter*;
  *
  **/
 
-// name=STRING? "model" model=Import ("incorporates" incorporates+=Incorporates)*
-// parameters+=Parameter*
+// name=STRING? "model" model=Import ("incorporates" incorporates+=Incorporates)* parameters+=Parameter*
 protected class Model_Group extends GroupToken {
 	
 	public Model_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -333,7 +332,7 @@ protected class Model_ParametersAssignment_4 extends AssignmentToken  {
 /************ begin Rule Import ****************
  *
  * Import:
- *   importURI=STRING;
+ * 	importURI=STRING;
  *
  **/
 
@@ -378,7 +377,7 @@ protected class Import_ImportURIAssignment extends AssignmentToken  {
 /************ begin Rule Incorporates ****************
  *
  * Incorporates:
- *   importURI=STRING;
+ * 	importURI=STRING;
  *
  **/
 
@@ -423,7 +422,7 @@ protected class Incorporates_ImportURIAssignment extends AssignmentToken  {
 /************ begin Rule Parameter ****************
  *
  * Parameter:
- *   attribute=[SAttribute] "=" value=Value;
+ * 	attribute=[SAttribute] "=" value=Value;
  *
  **/
 
@@ -567,11 +566,11 @@ protected class Parameter_ValueAssignment_2 extends AssignmentToken  {
 /************ begin Rule Value ****************
  *
  * Value:
- *   IntValue|StringValue|RealValue|BooleanValue;
+ * 	IntValue | StringValue | RealValue | BooleanValue;
  *
  **/
 
-// IntValue|StringValue|RealValue|BooleanValue
+// IntValue | StringValue | RealValue | BooleanValue
 protected class Value_Alternatives extends AlternativesToken {
 
 	public Value_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -757,7 +756,7 @@ protected class Value_BooleanValueParserRuleCall_3 extends RuleCallToken {
 /************ begin Rule IntValue ****************
  *
  * IntValue:
- *   value=INTEGER;
+ * 	value=INTEGER;
  *
  **/
 
@@ -802,7 +801,7 @@ protected class IntValue_ValueAssignment extends AssignmentToken  {
 /************ begin Rule RealValue ****************
  *
  * RealValue:
- *   value=REAL;
+ * 	value=REAL;
  *
  **/
 
@@ -847,7 +846,7 @@ protected class RealValue_ValueAssignment extends AssignmentToken  {
 /************ begin Rule StringValue ****************
  *
  * StringValue:
- *   value=STRING;
+ * 	value=STRING;
  *
  **/
 
@@ -892,7 +891,7 @@ protected class StringValue_ValueAssignment extends AssignmentToken  {
 /************ begin Rule BooleanValue ****************
  *
  * BooleanValue:
- *   value=BOOLEAN;
+ * 	value=BOOLEAN;
  *
  **/
 
