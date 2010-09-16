@@ -147,11 +147,11 @@
 		«agent.typeName()» «id()» = null;
 		for (int i = 0; i < «agentCount != null ? agentCount.bind(path, inner) : "1"»; i++) {
 			«id()» = new «agent.typeName()»();
-			context.add(«id()»);
 			«IF group.reference != agent-»
+			context.add(«id()»);
 		    «id()».«agent.owner.setterName()»(this);
 		    «ELSE»
-		    «id()».«agent.owner.setterName()»(«agent.owner.getterName()»());
+		    «id()».addSubContext(«id()»);
 		    «ENDIF-»
 		}
 «ENDAROUND»
