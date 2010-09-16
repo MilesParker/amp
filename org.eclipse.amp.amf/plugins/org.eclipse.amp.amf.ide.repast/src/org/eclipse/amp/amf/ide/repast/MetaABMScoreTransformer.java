@@ -37,7 +37,11 @@ public class MetaABMScoreTransformer {
         repast.score.SContext s = sf.createSContext();
         transform(s, m);
         for (org.metaabm.SAgent agent : m.getAgents()) {
-            s.getAgents().add(create(agent));
+            if (agent instanceof org.metaabm.SContext) {
+                s.getAgents().add(create((org.metaabm.SContext) agent));
+            } else {
+                s.getAgents().add(create(agent));
+            }
         }
         for (SAttribute attr : m.getAttributes()) {
             s.getAttributes().add(create(attr));
