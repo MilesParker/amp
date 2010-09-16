@@ -157,6 +157,14 @@
 		</provider>
 	</searchPath>
 
+	<searchPath name="gef3d-build">
+		<provider readerType="svn" componentTypes="osgi.bundle,eclipse.feature" mutable="true" source="true">
+			<uri format="file:///svnroot/technology/org.eclipse.gef3d/trunk/{0}?moduleAfterTag&amp;moduleAfterBranch">
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	</searchPath>
+
 	<locator searchPathRef="local.releng" pattern="org\.eclipse\.amp\.releng" failOnError="false"/>
 	<locator searchPathRef="amp.releng" pattern="org\.eclipse\.amp\.releng"/>
 
@@ -170,8 +178,10 @@
 	<locator searchPathRef="amp.tests" pattern="^org\.eclipse\.amp(\..+)\.test$" />
 	<locator searchPathRef="amp.plugins" pattern="^org\.eclipse\.amp(\..+)?" />
 
-	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.gef3d(\..+)?" />
-	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.draw3d(\..+)?" />
+	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.gef3d(\..+)?" failOnError="false"/>
+	<locator searchPathRef="gef3d-build" pattern="^org\.eclipse\.gef3d(\..+)?" />
+	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.draw3d(\..+)?" failOnError="false" />
+	<locator searchPathRef="gef3d-build" pattern="^org\.eclipse\.draw3d(\..+)?" />
 
 	<locator searchPathRef="eclipse" pattern="^org\.eclipse(\..+)?$" failOnError="false" />
 	<locator searchPathRef="eclipse" pattern="^org\.junit(\..+)?$" />
