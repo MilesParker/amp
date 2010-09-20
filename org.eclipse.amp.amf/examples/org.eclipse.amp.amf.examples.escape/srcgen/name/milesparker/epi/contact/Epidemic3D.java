@@ -14,7 +14,6 @@ import org.eclipse.amp.escape.ascape.agf3d.GEF3DView;
 public class Epidemic3D extends Epidemic {
 
 	public void createGraphicViews() {
-		super.createGraphicViews();
 		addView(new GEF3DView());
 	}
 }
