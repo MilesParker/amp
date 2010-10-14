@@ -16,8 +16,8 @@
 	</searchPath>
 
 	<searchPath name="amp.releng">
-		<provider componentTypes="buckminster" readerType="cvs" source="true">
-			<uri format="{0},org.eclipse.amp/org.eclipse.amp/releng/org.eclipse.amp.releng">
+		<provider componentTypes="buckminster" readerType="cvs" source="true" mutable="false">
+			<uri format="{0},org.eclipse.amp/releng/org.eclipse.amp.releng">
 				<bc:propertyRef key="source.repository.location" />
 			</uri>
 		</provider>
