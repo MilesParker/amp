@@ -36,7 +36,11 @@
 		${WORKSPACE}/build
 	-->
 	<property name="writableBuildRoot" value="/tmp/build" />
+	<property name="http_proxy" value="http://proxy.eclipse.org:9898" />
+	<property name="writableBuildRoot" value="/tmp/build" />
 
+	
+	
 	<!-- 
 		can be simple path, eg., 
 		${writableBuildRoot}/${buildType}${buildTimestamp} or longer, eg.,
