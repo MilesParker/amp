@@ -17,7 +17,7 @@
 
 	<searchPath name="amp.releng.git">
 		<provider componentTypes="osgi.bundle" readerType="git" resolutionFilter="">
-			<uri format="{0},org.eclipse.amp/releng/org.eclipse.amp.releng">
+			<uri format="{0},releng/org.eclipse.amp.releng">
 				<bc:propertyRef key="workspace.root" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
@@ -37,7 +37,7 @@
 
 	<searchPath name="amp.features.git">
 		<provider componentTypes="eclipse.feature" readerType="git" resolutionFilter="">
-			<uri format="{0},org.eclipse.amp/{1}/features/{2}-feature">
+			<uri format="{0},{1}/features/{2}-feature">
 				<bc:propertyRef key="workspace.root" />
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
@@ -74,7 +74,7 @@
 
 	<searchPath name="amp.plugins.git">
 		<provider componentTypes="osgi.bundle" readerType="git" resolutionFilter="">
-			<uri format="{0},org.eclipse.amp/{1}/plugins/{2}">
+			<uri format="{0},{1}/plugins/{2}">
 				<bc:propertyRef key="source.repository.location" />
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
