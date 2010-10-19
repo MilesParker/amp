@@ -18,7 +18,7 @@
 				<cs:property key="targets" value="copy.group"/>
 			</cs:actorProperties>
 			<cs:prerequisites alias="action.requirements">
-				<cs:attribute name="site.p2" component="org.eclipse.emf.cdo.site"/>
+				<cs:attribute name="site.p2" component="org.eclipse.amp.build"/>
 				<cs:attribute name="clear.site" contributor="false"/>
 			</cs:prerequisites>
 			<cs:products alias="action.output" base="${cdo.download.area}/updates/3.0/"/>
