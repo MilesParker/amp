@@ -2,7 +2,10 @@
 <cs:cspec xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0" name="org.eclipse.amp.releng"
 	componentType="buckminster" version="4.0.0.qualifier">
 	<cs:dependencies>
-		<cs:dependency name="org.eclipse.amp.build.feature" componentType="eclipse.feature"/>
+		<cs:dependency name="org.eclipse.amp.build" componentType="eclipse.feature"/>
+			</cs:dependencies>
+			<cs:actions>
+		
 		<cs:public name="clear.site" actor="ant" always="true">
 			<cs:actorProperties>
 				<cs:property key="buildFile" value="buckminster.ant"/>
@@ -29,7 +32,7 @@
 				<cs:property key="targets" value="copy.group"/>
 			</cs:actorProperties>
 			<cs:prerequisites alias="action.requirements">
-				<cs:attribute name="site.p2.zip" component="org.eclipse.emf.cdo.site"/>
+				<cs:attribute name="site.p2.zip" component="org.eclipse.amp.build"/>
 			</cs:prerequisites>
 			<cs:products alias="action.output" base="${cdo.download.area}/archives/3.0/"/>
 		</cs:public>
