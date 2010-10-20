@@ -182,9 +182,9 @@
 	<searchPath name="eclipse.swtbot">
 		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<uri format="{0}/technology/swtbot/helios/dev-build/update-site">
-				<propertyRef key="eclipse.downloads" />
+				<bc:propertyRef key="eclipse.downloads" />
 			</uri>
-		</rm:provider>
+		</provider>
 	</searchPath>
 
 	<!-- NOTE: ***Not for inclusion in Eclipse provided builds. Only used for building tests and examples.*** -->
