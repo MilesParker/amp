@@ -90,7 +90,7 @@
 			</uri>
 		</provider>
 	</searchPath>
-	
+
 	<searchPath name="amp.plugins">
 		<provider componentTypes="osgi.bundle" readerType="cvs" source="true" mutable="true">
 			<uri format="{0},org.eclipse.amp/{1}/plugins/{2}">
@@ -179,6 +179,14 @@
 		</provider>
 	</searchPath>
 
+	<searchPath name="eclipse.swtbot">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/technology/swtbot/helios/dev-build/update-site">
+				<propertyRef key="eclipse.downloads" />
+			</uri>
+		</rm:provider>
+	</searchPath>
+
 	<!-- NOTE: ***Not for inclusion in Eclipse provided builds. Only used for building tests and examples.*** -->
 	<searchPath name="ascape.external">
 		<provider readerType="p2" componentTypes="osgi.bundle" mutable="false" source="false">
@@ -234,6 +242,7 @@
 	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.draw3d(\..+)?" failOnError="false" />
 	<locator searchPathRef="gef3d-build" pattern="^org\.eclipse\.draw3d(\..+)?" />
 
+	<locator searchPathRef="eclipse.swtbot" pattern="^org\.eclipse\.swtbot(\..+)?$"/>
 	<locator searchPathRef="eclipse" pattern="^org\.eclipse(\..+)?$" failOnError="false" />
 	<locator searchPathRef="eclipse" pattern="^org\.junit(\..+)?$" />
 	<locator searchPathRef="eclipse" pattern="^org\.junit4(\..+)?$" />
