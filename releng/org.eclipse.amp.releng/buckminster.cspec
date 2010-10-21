@@ -13,7 +13,7 @@
 		<cs:dependency name="org.eclipse.zest" componentType="eclipse.feature"/>
 		<cs:dependency name="org.eclipse.emf.mwe.core" componentType="eclipse.feature"/>
 		<cs:dependency name="org.eclipse.emf.mwe2.runtime.sdk" componentType="eclipse.feature"/>
-		<cs:dependency name="org.eclipse.xtext" componentType="eclipse.feature"/>
+		<cs:dependency name="org.eclipse.xtend" componentType="eclipse.feature"/>
 		<cs:dependency name="org.eclipse.xpand" componentType="eclipse.feature"/>
 				
 		<cs:dependency name="org.eclipse.swtbot" componentType="eclipse.feature"/>
