@@ -25,6 +25,7 @@ import org.eclipse.amp.agf.gef.GenericEditPart;
 import org.eclipse.amp.agf.gef.ScapeEditPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.space.ILocation2D;
+import org.eclipse.amp.axf.space.ILocation3D;
 import org.eclipse.amp.axf.space.ILocationProvider;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.XYLayout;
@@ -134,8 +135,14 @@ public class ScapeEdit3DPart extends ScapeEditPart {
         Vector3f endPoint = null;
 
         if (location != null && editPart instanceof AgentEdit3DPart) {
-            endPoint = new Vector3fImpl((float) (GenericEditPart.SCALE * location.getXDouble()),
-                                        (float) (GenericEditPart.SCALE * location.getYDouble()), 0.0f);
+            float x = (float) (GenericEditPart.SCALE * location.getXDouble());
+            float y = (float) (GenericEditPart.SCALE * location.getYDouble());
+            float z = 0.0f;
+            if (location instanceof ILocation3D) {
+                z = (float) (GenericEditPart.SCALE * location.getYDouble());
+            }
+            endPoint = new Vector3fImpl(x,
+                                        y, z);
             endPoint = Math3DVector3f.add(endPoint, ((AgentEdit3DPart) editPart).getRelativeLocation3D(), endPoint);
             ScapeEditRoot3DPart root = (ScapeEditRoot3DPart) getRootScapeEditPart();
             Vector3f priorPeriodLocation = lastPoints.get(agent);
@@ -197,5 +204,4 @@ public class ScapeEdit3DPart extends ScapeEditPart {
             }
         }
     }
-
 }

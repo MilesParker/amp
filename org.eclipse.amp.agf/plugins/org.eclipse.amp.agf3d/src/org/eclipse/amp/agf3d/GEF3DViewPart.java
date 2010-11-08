@@ -17,6 +17,7 @@ package org.eclipse.amp.agf3d;
 
 import org.eclipse.amp.agf.gef.AgentEditPart;
 import org.eclipse.amp.agf.gef.EditPartViewPart;
+import org.eclipse.amp.agf.gef.ModelEditPartInput;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.space.ILocation2D;
@@ -53,7 +54,7 @@ public class GEF3DViewPart extends EditPartViewPart {
     /**
      * 
      * @author mparker
-     *
+     * 
      */
     private final class SceneListener implements ISceneListener {
         public void renderPassStarted(RenderContext renderContext) {
@@ -110,6 +111,9 @@ public class GEF3DViewPart extends EditPartViewPart {
     private CameraTool cameraTool;
 
     private RenderUpdateListener renderListener;
+
+    private Scape3DPartFactory factory3d;
+
     /**
      * The preference listener for this editor.
      */
@@ -130,6 +134,9 @@ public class GEF3DViewPart extends EditPartViewPart {
     }
 
     public EditPartFactory createFactory(Object contents) {
+        if (factory3d != null) {
+            return factory3d;
+        }
         return getFactory3DProvider(contents).getEditPart3DFactory(contents);
     }
 
@@ -139,8 +146,17 @@ public class GEF3DViewPart extends EditPartViewPart {
      */
     public void setInput(IEditorInput input) {
         super.setInput(input);
-        locationProvider = (ILocationProvider) Platform.getAdapterManager().getAdapter(getModel(),
-                                                                                       ILocationProvider.class);
+
+        final ModelEditPartInput modelInput = (ModelEditPartInput) input;
+        // setPartName(getName());
+        if (input != null && modelInput.getFactory() instanceof Scape3DPartFactory) {
+            factory3d = (Scape3DPartFactory) modelInput.getFactory();
+            locationProvider = factory3d.getLocationProvider();
+
+        } else {
+            locationProvider = (ILocationProvider) Platform.getAdapterManager().getAdapter(getModel(),
+                                                                                           ILocationProvider.class);
+        }
     }
 
     /**
@@ -335,5 +351,4 @@ public class GEF3DViewPart extends EditPartViewPart {
     public CameraTool getCameraTool() {
         return cameraTool;
     }
-
 }
