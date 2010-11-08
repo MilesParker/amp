@@ -390,7 +390,7 @@
 «ENDDEFINE»
 «DEFINE StatBuilder FOR SAgent-»
 	«IF genStats() != "none"-»
-        «scape()».addStatCollector(new org.ascape.util.data.StatCollectorCond(getName() + " Population") {
+        «scape()».addStatCollector(new org.ascape.util.data.StatCollectorCond(«scape()».getName() + " Population") {
 				private static final long serialVersionUID = 684614444640209893L;
 				
                 @SuppressWarnings("unused")
