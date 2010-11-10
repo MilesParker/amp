@@ -2,12 +2,12 @@
 <head>
 <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Model Implementation</title>
-<link href="book.css" rel="stylesheet" type="text/css">
-<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link href="book.css" type="text/css" rel="stylesheet">
+<meta content="DocBook XSL Stylesheets V1.76.0" name="generator">
 <link rel="home" href="index.html" title="Agent Modeling Guide">
-<link rel="up" href="Tutorials.html" title="Tutorials">
-<link rel="prev" href="Tutorials.html" title="Tutorials">
-<link rel="next" href="Programer_Guide.html" title="Programer Guide">
+<link rel="up" href="Tutorials.html" title="Chapter&nbsp;.&nbsp;Tutorials">
+<link rel="prev" href="Tutorials.html" title="Chapter&nbsp;.&nbsp;Tutorials">
+<link rel="next" href="Programer_Guide.html" title="Chapter&nbsp;.&nbsp;Programer Guide">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">Model Implementation</h1>
@@ -338,12 +338,12 @@
 </div>
 </div>
 </div>
-<div class="section" title="Actions">
+<div class="section" title="Actions Part I">
 <div class="titlepage">
 <div>
 <div>
 <h3 class="title">
-<a name="Actions_4"></a>Actions</h3>
+<a name="Actions_Part_I"></a>Actions Part I</h3>
 </div>
 </div>
 </div>
@@ -566,12 +566,12 @@
 </div>
 </div>
 </div>
-<div class="section" title="Actions 2 Movement Rule">
+<div class="section" title="Actions Part II">
 <div class="titlepage">
 <div>
 <div>
 <h3 class="title">
-<a name="Actions_2_Movement_Rule"></a>Actions 2 Movement Rule</h3>
+<a name="Actions_Part_II"></a>Actions Part II</h3>
 </div>
 </div>
 </div>
@@ -604,12 +604,12 @@
 </p>
 <p>Often, we would pick the "Spatial: Neighbor" function to take a random walk, but according to the specification, we actually want to move into some random Cell within distance four (4). So we will pick "Spatial: Within" from the list of functions.</p>
 </div>
-<div class="section" title="Model Error Handling">
+<div class="section" title="Fixing Model Errors">
 <div class="titlepage">
 <div>
 <div>
 <h5 class="title">
-<a name="Model_Error_Handling"></a>Model Error Handling</h5>
+<a name="Fixing_Model_Errors"></a>Fixing Model Errors</h5>
 </div>
 </div>
 </div>
@@ -625,7 +625,7 @@
 <p>
 						
 </p>
-<p>In addition to error markers, metaABM provides warnings designed to help you avoid common design mistakes. For example, a warning will be issued if you attempt to move an agent from its selection to the same selection; this is not strictly speaking an error, but it doesn't make much sense. You'll also recieve warning for default values that have not been specified. You might notice that the Demographic Prisonner's Dilemma model has warning markers, this is because we were happy with the '0' default values for the attributes and didn't provide any. (By the way, you might also notice a number of Java warnings. By default the Eclipse IDE is very conservative when it comes to warnings, and expects the usage of language constructs that we choose not to use. A full discussion of all of this is beyond the scope of the tutorial, but see the Eclipse documentation on problem views for more ideas about how to customize these views.)</p>
+<p>In addition to error markers, metaABM provides warnings designed to help you avoid common design mistakes. For example, a warning will be issued if you attempt to move an agent from its selection to the same selection; this is not strictly speaking an error, but it doesn't make much sense. You'll also receive a warning for default values that have not been specified. You might notice that the Demographic Prisonner's Dilemma model has warning markers, this is because we were happy with the '0' default values for the attributes and didn't provide any. (By the way, you might also notice a number of Java warnings. By default the Eclipse IDE is very conservative when it comes to warnings, and expects the usage of language constructs that we choose not to use. A full discussion of all of this is beyond the scope of the tutorial, but see the Eclipse documentation on problem views for more ideas about how to customize these views.)</p>
 <p>To fix this error we just need to assign a value for search distance. We 
 							<span class="bold"><strong>could</strong></span> simply create a literal for the Spatial: Within Query but that isn't really good practice. (Originally the Agent Modeling Framework didn't even support Literal values, but we added them for convenience.) Now, we will create our first Attribute. In this case, we want the Attribute to belong to the Stupid Model as it will be the same value for all Agents for now. So right-click on the Stupid Model context Attributes node and create a new one.
 						</p>
@@ -655,7 +655,20 @@
 <p>
 						
 </p>
-<p>Now, we need to combine the requirement that the cell be available with the requirement that it be within 4 cell's distance. To accomplish this, we'll add an Intersection Action. The Logical Actions, including "Intersection", "Union" and "None" define how Query Actions work together. So create an Intersection Actions as a target of the Spatial Available Query. (Not the Within Query).</p>
+</div>
+<div class="section" title="Create Intersection Action">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Create_Intersection_Action"></a>Create Intersection Action</h5>
+</div>
+</div>
+</div>
+<p>Now, we need to combine the requirement that the cell be available with the requirement that it be within 4 cell's distance. To accomplish this, we'll add an Intersection Action. The Logical Actions, including "Intersection", "Union" and "None" define how Query Actions work together. The Intersection Action needs to be a target of 
+							<span class="italic">both</span> the Available and Within targets. This means that the action has two sources. See the Modeler's Guide for more information about how action flow works.
+						</p>
+<p>Editing actions with multiple sources and targets is the most complex aspect of the model editor so you may need to work with this example a bit in order to get a feel for how it should work. First, we create the Intersection Action as a target of the Spatial Available Query. (Not the Within Query).</p>
 <p>
 							
 </p>
@@ -664,9 +677,7 @@
 <p>
 						
 </p>
-<p>The Intersection Action needs to be a target of 
-							<span class="italic">both</span> the Available and Within targets. To accomplish this, drag the Intersection Action over the Within Query. It's a bit hard to see this in a static image, but you simply need to click on the Intersection Action, move it so that it is over the Within target, and release the mouse.
-						</p>
+<p>Then we need to make the Intersection Action a target of the Within Query as well. To accomplish this, we drag the Intersection Action over the Within Query while holding down the ctrl-key. Depending on your environment, you may need to begin dragging before you click the control key -- otherwise, your initial control click will bring up the context menu. It's a bit hard to see this in a static image, but you simply need to click on the Intersection Action, begin dragging, hold down the ctrl key, move the mouse so that it is over the Within target, and release the mouse. It sounds more complicated then it is!</p>
 <p>
 							
 </p>
@@ -675,6 +686,16 @@
 <p>
 						
 </p>
+</div>
+<div class="section" title="Add Move Action">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Add_Move_Action"></a>Add Move Action</h5>
+</div>
+</div>
+</div>
 <p>Finally, add a Move target to the Intersection.</p>
 <p>
 							

@@ -4,6 +4,6 @@ Miles Parker is a consultant and software developer with over ten years of exper
 
 Metascape, LLC is the primary contributor to AMP and provides Agent-Based Modeling tools, including sophisticated tools based on the AMF platform, and comprehensive consulting services. For more information on Metascape products and services visit http://metascapeabm.com.
 
-The AMF meta-model started life as [[http://www.agent2005.anl.gov/2006procpdf/Parker_Agent_2006.pdf|"score"]], a component of the Repast Simphony environment. Argonne National Labs supported the initial development in 2007 and agreed to contribute the relevant IP to the Eclipse project in 2009. It wasn't fully utilized within Simphony, and migrated from there to the MetaABM project supported by Metascape. The MetaABM project defined a complete editor, code-generation and model execution suite that formed the initial AMP AMF contribution. Metascape has sponsored the development of AMF from 2007 through the present.
+The AMF meta-model started life in 2007 as [[http://www.agent2005.anl.gov/2006procpdf/Parker_Agent_2006.pdf|"score"]], a component of the Repast Simphony environment and was contributed under the EPL by Argonne National Labs. AMF was further developed by Metascape starting in 2007 as the MetaABM project, and it along with what becase AMP where was contributed by Metascape to Eclipse in 2009. Metascape continues to be the primary sponsor and contributor to the project.
 
-The AMP logo was inspired by the [[http://swarm.org Swarm logo]] with their kind permission.
+The AMP logo was inspired by the [[http://swarm.org Swarm logo]] and is used with their kind permission.

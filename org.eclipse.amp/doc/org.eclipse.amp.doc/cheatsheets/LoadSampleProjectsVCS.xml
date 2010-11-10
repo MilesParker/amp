@@ -11,7 +11,7 @@
          skip="true"
          title="Get Ascape Examples Team Project Set File">
       <description>
-         Using your web browser, download the following file to any location on your hard drive: http://eclipse.org/amp/project-sets/ascape.psf. &lt;i&gt;Note that the Ascape projects we will be importing are not part of the Eclipse project itself. They are hosted seperatly on the ascape sourceforge site.&lt;/i&gt;
+         Using your web browser, download the following file to any location on your hard drive: http://eclipse.org/amp/project-sets/ascape.psf. Note that the Ascape projects we will be importing are not part of the Eclipse project itself. They are hosted seperatly on the ascape sourceforge site.
       </description>
       <command
             required="true"
@@ -22,7 +22,7 @@
          skip="true"
          title="Import Ascape Project Set">
       <description>
-         We&apos;ll use the team project set wizard to import the example from the AMP website. Open the wizard, browse to the location you just downloaded the file to, and click Finish. The examples will be loaded from the Ascape SourceForge server into your workspace.
+         We&apos;ll use the team project set wizard to import the example from the AMP website. Open the wizard, browse to the location you just downloaded the file to, and click Finish. The examples will be loaded from the Ascape SourceForge server into your workspace. IMPORTANT: Please note that the version control system (SVN) cannot be bundled with all builds for IP reasons. If it hasn&apos;t been bundled you will recieve errors and a dialog prompting you to install the SVN connectors. Just follow the prompts and try again after restarting Eclipse.
       </description>
       <command
             required="true"

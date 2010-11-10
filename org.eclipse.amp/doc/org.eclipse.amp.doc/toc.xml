@@ -506,7 +506,7 @@
 <topic href="help/Model_Implementation.html#The_Build_Grid_Action" label="The Build Grid Action"></topic>
 </topic>
 </topic>
-<topic href="help/Model_Implementation.html#Actions_4" label="Actions">
+<topic href="help/Model_Implementation.html#Actions_Part_I" label="Actions Part I">
 <topic href="help/Model_Implementation.html#Create_Initialize_Rule" label="Create Initialize Rule">
 <topic href="help/Model_Implementation.html#Create_Select_Action" label="Create Select Action"></topic>
 <topic href="help/Model_Implementation.html#Create_Query_Action" label="Create Query Action"></topic>
@@ -521,10 +521,12 @@
 <topic href="help/Model_Implementation.html#Create_Evaluations" label="Create Evaluations"></topic>
 </topic>
 </topic>
-<topic href="help/Model_Implementation.html#Actions_2_Movement_Rule" label="Actions 2 Movement Rule">
+<topic href="help/Model_Implementation.html#Actions_Part_II" label="Actions Part II">
 <topic href="help/Model_Implementation.html#Create_Select_and_Query_Actions" label="">
 <topic href="help/Model_Implementation.html#N11208" label="Create Select and Query Actions"></topic>
-<topic href="help/Model_Implementation.html#Model_Error_Handling" label="Model Error Handling"></topic>
+<topic href="help/Model_Implementation.html#Fixing_Model_Errors" label="Fixing Model Errors"></topic>
+<topic href="help/Model_Implementation.html#Create_Intersection_Action" label="Create Intersection Action"></topic>
+<topic href="help/Model_Implementation.html#Add_Move_Action" label="Add Move Action"></topic>
 </topic>
 <topic href="help/Model_Implementation.html#Run_Final_Model" label="Run Final Model"></topic>
 </topic>

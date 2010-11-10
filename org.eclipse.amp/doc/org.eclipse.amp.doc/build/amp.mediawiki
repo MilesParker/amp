@@ -98,9 +98,9 @@ Miles Parker is a consultant and software developer with over ten years of exper
 
 Metascape, LLC is the primary contributor to AMP and provides Agent-Based Modeling tools, including sophisticated tools based on the AMF platform, and comprehensive consulting services. For more information on Metascape products and services visit http://metascapeabm.com.
 
-The AMF meta-model started life as [[http://www.agent2005.anl.gov/2006procpdf/Parker_Agent_2006.pdf|"score"]], a component of the Repast Simphony environment. Argonne National Labs supported the initial development in 2007 and agreed to contribute the relevant IP to the Eclipse project in 2009. It wasn't fully utilized within Simphony, and migrated from there to the MetaABM project supported by Metascape. The MetaABM project defined a complete editor, code-generation and model execution suite that formed the initial AMP AMF contribution. Metascape has sponsored the development of AMF from 2007 through the present.
+The AMF meta-model started life in 2007 as [[http://www.agent2005.anl.gov/2006procpdf/Parker_Agent_2006.pdf|"score"]], a component of the Repast Simphony environment and was contributed under the EPL by Argonne National Labs. AMF was further developed by Metascape starting in 2007 as the MetaABM project, and it along with what becase AMP where was contributed by Metascape to Eclipse in 2009. Metascape continues to be the primary sponsor and contributor to the project.
 
-The AMP logo was inspired by the [[http://swarm.org Swarm logo]] with their kind permission.
+The AMP logo was inspired by the [[http://swarm.org Swarm logo]] and is used with their kind permission.
 =Modeler Guide=
 
 ==Overview==
@@ -2039,7 +2039,7 @@ If you click on the '''...''' button next to the "Agents" property you'll see se
 
 [[Image:images/edit_tutorial/SimpleTutorial13BuildGridAgents.png]]
 
-===Actions===
+===Actions Part I===
 
 ====Create Initialize Rule====
 
@@ -2112,7 +2112,7 @@ We'll create two more evaluation targets. Right-click on the "Color Red" evaluat
 [[Image:images/edit_tutorial/SimpleTutorial25FinishStyle.png | right]]
 
 
-===Actions 2 Movement Rule===
+===Actions Part II===
 
 To make our agents move randomly every iteration, we will create a Rule. (For those familiar with Repast or other scheduling oriented AM platforms, a rule is just a schedule that gets activated each and every period for all agents.) At this point in the tutorial, we'll show screenshots only for aspects of the modeling process that haven't already been covered.
 
@@ -2126,13 +2126,13 @@ But now, instead of moving ''anywhere'' we want to move nearby. So now, we creat
 
 Often, we would pick the "Spatial: Neighbor" function to take a random walk, but according to the specification, we actually want to move into some random Cell within distance four (4). So we will pick "Spatial: Within" from the list of functions.
 
-=====Model Error Handling=====
+=====Fixing Model Errors=====
 
 Instead of specifying the actual distance now, let's see how the Agent Modeling Framework error checking capabilities can help us in model development. Save the model by selecting '''File > Save''' from the application menu. Notice that a red marker appears next to the StupidModel1.metaabm file. If you reveal the '''Problems View''' you'll see a list of current errors and warnings and if you open the errors node in that list, you'll see an item reporting that the input has no value. If you double-click on that item, you'll be taken to the input for the Within query and you'll be able to edit it.
 
 [[Image:images/edit_tutorial/SimpleTutorial27NoValue.png | right]]
     
-In addition to error markers, metaABM provides warnings designed to help you avoid common design mistakes. For example, a warning will be issued if you attempt to move an agent from its selection to the same selection; this is not strictly speaking an error, but it doesn't make much sense. You'll also recieve warning for default values that have not been specified. You might notice that the Demographic Prisonner's Dilemma model has warning markers, this is because we were happy with the '0' default values for the attributes and didn't provide any. (By the way, you might also notice a number of Java warnings. By default the Eclipse IDE is very conservative when it comes to warnings, and expects the usage of language constructs that we choose not to use. A full discussion of all of this is beyond the scope of the tutorial, but see the Eclipse documentation on problem views for more ideas about how to customize these views.)
+In addition to error markers, metaABM provides warnings designed to help you avoid common design mistakes. For example, a warning will be issued if you attempt to move an agent from its selection to the same selection; this is not strictly speaking an error, but it doesn't make much sense. You'll also receive a warning for default values that have not been specified. You might notice that the Demographic Prisonner's Dilemma model has warning markers, this is because we were happy with the '0' default values for the attributes and didn't provide any. (By the way, you might also notice a number of Java warnings. By default the Eclipse IDE is very conservative when it comes to warnings, and expects the usage of language constructs that we choose not to use. A full discussion of all of this is beyond the scope of the tutorial, but see the Eclipse documentation on problem views for more ideas about how to customize these views.)
 
 To fix this error we just need to assign a value for search distance. We '''could''' simply create a literal for the Spatial: Within Query but that isn't really good practice. (Originally the Agent Modeling Framework didn't even support Literal values, but we added them for convenience.) Now, we will create our first Attribute. In this case, we want the Attribute to belong to the Stupid Model as it will be the same value for all Agents for now. So right-click on the Stupid Model context Attributes node and create a new one.
 
@@ -2146,13 +2146,19 @@ Finally, we assign the Vision attribute to the "Input" node in our Spatial: With
 
 [[Image:images/edit_tutorial/SimpleTutorial30AttributeInput.png | right]]
 
-Now, we need to combine the requirement that the cell be available with the requirement that it be within 4 cell's distance. To accomplish this, we'll add an Intersection Action. The Logical Actions, including "Intersection", "Union" and "None" define how Query Actions work together. So create an Intersection Actions as a target of the Spatial Available Query. (Not the Within Query).
+=====Create Intersection Action=====
+
+Now, we need to combine the requirement that the cell be available with the requirement that it be within 4 cell's distance. To accomplish this, we'll add an Intersection Action. The Logical Actions, including "Intersection", "Union" and "None" define how Query Actions work together. The Intersection Action needs to be a target of ''both'' the Available and Within targets. This means that the action has two sources. See the Modeler's Guide for more information about how action flow works.
+
+Editing actions with multiple sources and targets is the most complex aspect of the model editor so you may need to work with this example a bit in order to get a feel for how it should work. First, we create the Intersection Action as a target of the Spatial Available Query. (Not the Within Query).
 
 [[Image:images/edit_tutorial/SimpleTutorial31Intersect.png | right]]
 
-The Intersection Action needs to be a target of ''both'' the Available and Within targets. To accomplish this, drag the Intersection Action over the Within Query. It's a bit hard to see this in a static image, but you simply need to click on the Intersection Action, move it so that it is over the Within target, and release the mouse.
+Then we need to make the Intersection Action a target of the Within Query as well. To accomplish this, we drag the Intersection Action over the Within Query while holding down the ctrl-key. Depending on your environment, you may need to begin dragging before you click the control key -- otherwise, your initial control click will bring up the context menu. It's a bit hard to see this in a static image, but you simply need to click on the Intersection Action, begin dragging, hold down the ctrl key, move the mouse so that it is over the Within target, and release the mouse. It sounds more complicated then it is!
 
 [[Image:images/edit_tutorial/SimpleTutorial32IntersectAdd.png | right]]
+
+=====Add Move Action=====
 
 Finally, add a Move target to the Intersection.
 
@@ -2519,7 +2525,7 @@ The first official release of AMP includes many new or expanded features in addi
 {| style="border-top: 1px solid #aaa; width: 100%" cellpadding="20"
 |-valign="top"
 | '''Parameter Management Support'''
-| AMP now has full support for editing and launching of parameter files, including code completion. There is also support for creation of tests and analysis of test results. Finally, data can now be generated to a common EMD based (adata) data format.
+| AMP now has full support for editing and launching of parameter files, including code completion and all of the other editor niceties.
 |-valign="top"
 | &nbsp;
 | [[Image:images/params/Edit.png]]

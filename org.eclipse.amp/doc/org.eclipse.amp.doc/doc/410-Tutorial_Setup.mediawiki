@@ -38,7 +38,7 @@ We'll need a model as well. This is the container for all of the the agents and 
 
 [[Image:images/edit_tutorial/SimpleTutorial3CreateModel.png]]
 
-You'll see a model creation wizard from which you can name the model. Just give it the name "StupidModel.metaabm".
+You'll see a model creation wizard from which you can name the model. Just give it the name "StupidModel1.metaabm".
 
 [[Image:images/edit_tutorial/SimpleTutorial4CreateModel.png]]
 
