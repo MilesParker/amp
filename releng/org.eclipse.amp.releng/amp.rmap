@@ -4,6 +4,7 @@
 	xmlns:pmp="http://www.eclipse.org/buckminster/PDEMapProvider-1.0">
 	<property key="checkout.location" value="${workspace.root}/" />
 	<property key="eclipse.download" value="http://download.eclipse.org" />
+	<property key="git.source.repository.location" value="git://git.eclipse.org/gitroot/amp/org.eclipse.amp.git" />
 
 	<searchPath name="local.releng">
 		<provider componentTypes="buckminster,eclipse.feature" readerType="local" source="true" mutable="false">
@@ -22,15 +23,6 @@
 			</uri>
 			<property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git" />
 			<property key="git.remote.name" value="org.eclipse.amp" />
-		</provider>
-	</searchPath>
-
-
-	<searchPath name="amp.releng">
-		<provider componentTypes="buckminster,eclipse.feature" readerType="cvs" source="true" mutable="false">
-			<uri format="{0},org.eclipse.amp/releng/org.eclipse.amp.releng">
-				<bc:propertyRef key="source.repository.location" />
-			</uri>
 		</provider>
 	</searchPath>
 
@@ -53,24 +45,6 @@
 		</provider>
 	</searchPath>
 
-
-	<searchPath name="amp.features">
-		<provider componentTypes="eclipse.feature" readerType="cvs" source="true" mutable="false">
-			<uri format="{0},org.eclipse.amp/{1}/features/{2}-feature">
-				<bc:propertyRef key="source.repository.location" />
-				<bc:replace>
-					<bc:propertyRef key="buckminster.component" />
-					<bc:match pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
-					<bc:match pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
-					<bc:match pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
-					<bc:match pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
-					<bc:match pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
-				</bc:replace>
-				<bc:propertyRef key="buckminster.component" />
-			</uri>
-		</provider>
-	</searchPath>
-
 	<searchPath name="amp.plugins.git">
 		<provider componentTypes="osgi.bundle" readerType="git" resolutionFilter="">
 			<uri format="{0},{1}/plugins/{2}">
@@ -90,22 +64,14 @@
 		</provider>
 	</searchPath>
 
-	<searchPath name="amp.plugins">
-		<provider componentTypes="osgi.bundle" readerType="cvs" source="true" mutable="true">
-			<uri format="{0},org.eclipse.amp/{1}/plugins/{2}">
-				<bc:propertyRef key="source.repository.location" />
-				<bc:replace>
-					<bc:propertyRef key="buckminster.component" />
-					<bc:match pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
-					<bc:match pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
-					<bc:match pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
-					<bc:match pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
-					<bc:match pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
-					<bc:match pattern="org\.ascape.*" replacement="org.ascape" />
-					<bc:match pattern="org\.eclipse\.emf\.java" replacement="dependencies" />
-				</bc:replace>
+	<searchPath name="amp.doc.git">
+		<provider componentTypes="osgi.bundle" readerType="git" resolutionFilter="">
+			<uri format="{0},org.eclipse.amp/doc/">
+				<bc:propertyRef key="workspace.root" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
+			<property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git" />
+			<property key="git.remote.name" value="org.eclipse.amp" />
 		</provider>
 	</searchPath>
 
@@ -140,15 +106,6 @@
 					<bc:match pattern="org\.ascape.*" replacement="org.ascape" />
 					<bc:match pattern="org\.eclipse\.emf\.java" replacement="dependencies" />
 				</bc:replace>
-				<bc:propertyRef key="buckminster.component" />
-			</uri>
-		</provider>
-	</searchPath>
-
-	<searchPath name="amp.doc">
-		<provider componentTypes="osgi.bundle" readerType="cvs" source="true">
-			<uri format="{0},org.eclipse.amp/org.eclipse.amp/doc/{1}">
-				<bc:propertyRef key="source.repository.location" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
 		</provider>
@@ -226,15 +183,15 @@
 	<locator searchPathRef="local.releng" pattern="org\.eclipse\.amp\.releng" failOnError="false" />
 	<locator searchPathRef="amp.releng" pattern="org\.eclipse\.amp\.releng" />
 
-	<locator searchPathRef="amp.features" pattern="^org\.eclipse\.amp([\.\-].+)?" failOnError="false" />
-	<locator searchPathRef="amp.plugins" pattern="^org\.ascape\.core" failOnError="false" />
-	<locator searchPathRef="amp.plugins" pattern="^org\.ascape\.ui\.amp" />
-	<locator searchPathRef="amp.plugins" pattern="^org\.eclipse\.emf\.java" />
-	<locator searchPathRef="amp.doc" pattern="^org\.eclipse\.amp\.doc" />
-	<locator searchPathRef="amp.doc" pattern="^org\.eclipse\.amp\.ua" />
-	<locator searchPathRef="amp.examples" pattern="^org\.eclipse\.amp(\..+)*\.examples(\..+)*$" />
-	<locator searchPathRef="amp.tests" pattern="^org\.eclipse\.amp(\..+)\.test$" />
-	<locator searchPathRef="amp.plugins" pattern="^org\.eclipse\.amp(\..+)?" />
+	<locator searchPathRef="amp.features.git" pattern="^org\.eclipse\.amp([\.\-].+)?" failOnError="false" />
+	<locator searchPathRef="amp.plugins.git" pattern="^org\.ascape\.core" failOnError="false" />
+	<locator searchPathRef="amp.plugins.git" pattern="^org\.ascape\.ui\.amp" />
+	<locator searchPathRef="amp.plugins.git" pattern="^org\.eclipse\.emf\.java" />
+	<locator searchPathRef="amp.doc.git" pattern="^org\.eclipse\.amp\.doc" />
+	<locator searchPathRef="amp.doc.git" pattern="^org\.eclipse\.amp\.ua" />
+	<locator searchPathRef="amp.examples.git" pattern="^org\.eclipse\.amp(\..+)*\.examples(\..+)*$" />
+	<locator searchPathRef="amp.tests.git" pattern="^org\.eclipse\.amp(\..+)\.test$" />
+	<locator searchPathRef="amp.plugins.git" pattern="^org\.eclipse\.amp(\..+)?" />
 
 	<locator searchPathRef="gef3d" pattern="^org\.eclipse\.gef3d(\..+)?" failOnError="false" />
 	<locator searchPathRef="gef3d-build" pattern="^org\.eclipse\.gef3d(\..+)?" />
