@@ -181,7 +181,7 @@
 	</searchPath>
 
 	<locator searchPathRef="local.releng" pattern="org\.eclipse\.amp\.releng" failOnError="false" />
-	<locator searchPathRef="amp.releng" pattern="org\.eclipse\.amp\.releng" />
+	<locator searchPathRef="amp.releng.git" pattern="org\.eclipse\.amp\.releng" />
 
 	<locator searchPathRef="amp.features.git" pattern="^org\.eclipse\.amp([\.\-].+)?" failOnError="false" />
 	<locator searchPathRef="amp.plugins.git" pattern="^org\.ascape\.core" failOnError="false" />
