@@ -4,7 +4,6 @@
 	xmlns:pmp="http://www.eclipse.org/buckminster/PDEMapProvider-1.0">
 	<property key="checkout.location" value="${workspace.root}/" />
 	<property key="eclipse.download" value="http://download.eclipse.org" />
-	<property key="source.repository.location" value=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling" />
 
 	<searchPath name="local.releng">
 		<provider componentTypes="buckminster,eclipse.feature" readerType="local" source="true" mutable="false">

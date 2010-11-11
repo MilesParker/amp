@@ -21,42 +21,12 @@
 		<cs:dependency name="org.eclipse.swtbot.eclipse.gef" componentType="eclipse.feature"/>
 	</cs:dependencies>
 	<cs:actions>
-
-		<cs:public name="clear.site" actor="ant" always="true">
-			<cs:actorProperties>
-				<cs:property key="buildFile" value="buckminster.ant" />
-				<cs:property key="targets" value="clear.directory" />
-			</cs:actorProperties>
-			<cs:properties>
-				<cs:property key="directory" value="${cdo.download.area}/updates/3.0/" />
-			</cs:properties>
-		</cs:public>
-		<cs:public name="promote.site" actor="ant">
-			<cs:actorProperties>
-				<cs:property key="buildFileId" value="buckminster.pdetasks" />
-				<cs:property key="targets" value="copy.group" />
-			</cs:actorProperties>
-			<cs:prerequisites alias="action.requirements">
-				<cs:attribute name="site.p2" component="org.eclipse.amp.build" />
-				<cs:attribute name="clear.site" contributor="false" />
-			</cs:prerequisites>
-			<cs:products alias="action.output" base="${cdo.download.area}/updates/3.0/" />
-		</cs:public>
-		<cs:public name="promote.site.to.archive" actor="ant">
-			<cs:actorProperties>
-				<cs:property key="buildFileId" value="buckminster.pdetasks" />
-				<cs:property key="targets" value="copy.group" />
-			</cs:actorProperties>
-			<cs:prerequisites alias="action.requirements">
-				<cs:attribute name="site.p2.zip" component="org.eclipse.amp.build" />
-			</cs:prerequisites>
-			<cs:products alias="action.output" base="${cdo.download.area}/archives/3.0/" />
-		</cs:public>
-	</cs:actions>
-	<cs:groups>
-		<cs:public name="promote">
-			<cs:attribute name="promote.site" />
-			<cs:attribute name="promote.site.to.archive" />
-		</cs:public>
-	</cs:groups>
+        <cs:public name="setup.promoter" actor="ant">
+            <cs:actorProperties>
+                <cs:property key="buildFile" value="promoter.ant"/>
+                <cs:property key="targets" value="-setup.promoter"/>
+            </cs:actorProperties>
+            <cs:products alias="output" base="${buckminster.output}/promoter/"/>
+        </cs:public>
+    </cs:actions>
 </cs:cspec>
