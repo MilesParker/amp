@@ -18,8 +18,9 @@
 
 	<searchPath name="amp.releng.git">
 		<provider componentTypes="buckminster,eclipse.feature" readerType="git" resolutionFilter="">
-			<uri format="{0},releng/org.eclipse.amp.releng">
-				<bc:propertyRef key="git.remote.uri" />
+			<uri format="{0}/org.eclipse.amp,releng/{1}">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
 			</uri>
 			<property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git" />
 			<property key="git.remote.name" value="org.eclipse.amp" />
