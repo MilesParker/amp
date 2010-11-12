@@ -18,7 +18,7 @@
 
 	<searchPath name="amp.releng.git">
 		<provider componentTypes="buckminster,eclipse.feature" readerType="git" resolutionFilter="">
-			<uri format="{0}/org.eclipse.amp,releng/{1}">
+			<uri format="{0},releng/{1}">
 				<bc:propertyRef key="workspace.root" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
