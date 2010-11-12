@@ -4,7 +4,8 @@
 	xmlns:pmp="http://www.eclipse.org/buckminster/PDEMapProvider-1.0">
 	<property key="checkout.location" value="${workspace.root}/" />
 	<property key="eclipse.download" value="http://download.eclipse.org" />
-	<property key="git.source.repository.location" value="git://git.eclipse.org/gitroot/amp/org.eclipse.amp.git" />
+	<property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git" />
+	<property key="git.remote.name" value="org.eclipse.amp" />
 
 	<searchPath name="local.releng">
 		<provider componentTypes="buckminster,eclipse.feature" readerType="local" source="true" mutable="false">
@@ -18,18 +19,15 @@
 	<searchPath name="amp.releng.git">
 		<provider componentTypes="buckminster,eclipse.feature" readerType="git" resolutionFilter="">
 			<uri format="{0},releng/org.eclipse.amp.releng">
-				<bc:propertyRef key="workspace.root" />
-				<bc:propertyRef key="buckminster.component" />
+				<bc:propertyRef key="git.remote.uri" />
 			</uri>
-			<property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git" />
-			<property key="git.remote.name" value="org.eclipse.amp" />
 		</provider>
 	</searchPath>
 
 	<searchPath name="amp.features.git">
 		<provider componentTypes="eclipse.feature" readerType="git" resolutionFilter="">
 			<uri format="{0},{1}/features/{2}-feature">
-				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="git.remote.uri" />
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
 					<bc:match pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
@@ -40,15 +38,13 @@
 				</bc:replace>
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
-			<property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git" />
-			<property key="git.remote.name" value="org.eclipse.amp" />
 		</provider>
 	</searchPath>
 
 	<searchPath name="amp.plugins.git">
 		<provider componentTypes="osgi.bundle" readerType="git" resolutionFilter="">
 			<uri format="{0},{1}/plugins/{2}">
-				<bc:propertyRef key="source.repository.location" />
+				<bc:propertyRef key="git.remote.uri" />
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
 					<bc:match pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
@@ -66,7 +62,8 @@
 
 	<searchPath name="amp.doc.git">
 		<provider componentTypes="osgi.bundle" readerType="git" resolutionFilter="">
-			<uri format="{0},org.eclipse.amp/doc/">
+			<uri format="{0},org.eclipse.amp/doc/{2}">
+				<bc:propertyRef key="git.remote.uri" />
 				<bc:propertyRef key="workspace.root" />
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
