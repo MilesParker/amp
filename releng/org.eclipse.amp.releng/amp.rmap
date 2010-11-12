@@ -4,7 +4,7 @@
 	xmlns:pmp="http://www.eclipse.org/buckminster/PDEMapProvider-1.0">
 	<property key="checkout.location" value="${workspace.root}/" />
 	<property key="eclipse.download" value="http://download.eclipse.org" />
-	<property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git" />
+	<property key="git.remote.uri" value="git://git.eclipse.org/gitroot/amp/org.eclipse.amp.git" />
 	<property key="git.remote.name" value="org.eclipse.amp" />
 
 	<searchPath name="local.releng">
