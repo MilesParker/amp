@@ -21,6 +21,8 @@
 			<uri format="{0},releng/org.eclipse.amp.releng">
 				<bc:propertyRef key="git.remote.uri" />
 			</uri>
+			<property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git" />
+			<property key="git.remote.name" value="org.eclipse.amp" />
 		</provider>
 	</searchPath>
 
@@ -38,6 +40,8 @@
 				</bc:replace>
 				<bc:propertyRef key="buckminster.component" />
 			</uri>
+			<property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git" />
+			<property key="git.remote.name" value="org.eclipse.amp" />
 		</provider>
 	</searchPath>
 
