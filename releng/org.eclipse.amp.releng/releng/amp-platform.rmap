@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
+  <rm:property key="checkout.location" value="${workspace.root}/"/>
+  <rm:property key="eclipse.download" value="http://download.eclipse.org"/>
+  <rm:locator pattern="^org\.eclipse\.swtbot(\..+)?$" searchPathRef="eclipse.swtbot"/>
+  <rm:locator pattern="^org\.eclipse(\..+)?$" searchPathRef="eclipse" failOnError="false"/>
+  <rm:locator pattern="^org\.junit(\..+)?$" searchPathRef="eclipse"/>
+  <rm:locator pattern="^org\.junit4(\..+)?$" searchPathRef="eclipse"/>
+  <rm:locator pattern="^com(\..+)?$" searchPathRef="eclipse" failOnError="false"/>
+  <rm:locator pattern="^org(\..+)?$" searchPathRef="eclipse" failOnError="false"/>
+  <rm:locator pattern="^org(\..+)?$" searchPathRef="platform" failOnError="false"/>
+  <rm:locator pattern="^org\.lwjgl(\..+)?" searchPathRef="lwjgl"/>
+  <rm:locator pattern="^org\.ascape\.ui\.swing" searchPathRef="ascape.external"/>
+  <rm:locator pattern="^org\.ascape\.common\.lib" searchPathRef="ascape.external"/>
+  <rm:locator pattern="^org\.ascape\.core" searchPathRef="ascape.external"/>
+  <rm:locator pattern="repast\.simphony\.score" searchPathRef="repast"/>
+  <rm:locator pattern=".*" searchPathRef="orbit"/>
+  <rm:searchPath name="orbit">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="{0}/tools/orbit/downloads/drops/R20100519200754/repository">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="platform">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="{0}/eclipse/updates/3.6milestones">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="eclipse">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+      <rm:uri format="{0}/releases/helios?importType=binary">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="eclipse.swtbot">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="{0}/technology/swtbot/helios/dev-build/update-site">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="ascape.external">
+    <rm:provider componentTypes="osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://ascape.sourceforge.net/eclipse"/>
+    </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="repast">
+    <rm:provider componentTypes="osgi.bundle" readerType="url" source="false" mutable="false">
+      <rm:uri format="http://mirror.anl.gov/pub/repastsimphony/plugins/repast.simphony.score_1.2.0.jar"/>
+    </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="lwjgl">
+    <rm:provider componentTypes="osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://lwjgl.org/update"/>
+    </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="gef3d">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="svn">
+      <rm:uri format="http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d/trunk/{0}?moduleAfterTag&amp;moduleAfterBranch">
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="gef3d-build">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="svn">
+      <rm:uri format="file:///svnroot/technology/org.eclipse.gef3d/trunk/{0}?moduleAfterTag&amp;moduleAfterBranch">
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+</rm:rmap>
