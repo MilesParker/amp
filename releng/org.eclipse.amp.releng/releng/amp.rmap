@@ -14,11 +14,13 @@
   <rm:locator pattern="^org\.eclipse\.gef3d(\..+)?" searchPathRef="gef3d-build"/>
   <rm:locator pattern="^org\.eclipse\.draw3d(\..+)?" searchPathRef="gef3d" failOnError="false"/>
   <rm:locator pattern="^org\.eclipse\.draw3d(\..+)?" searchPathRef="gef3d-build"/>
+  <rm:locator pattern="org\.eclipse\.amp\.releng$" searchPathRef="amp.releng"/>
+  <rm:locator pattern="org\.eclipse\.amp\.build.*" searchPathRef="amp.releng"/>
   <rm:searchPath name="amp.releng">
     <rm:provider componentTypes="buckminster,eclipse.feature" readerType="git" resolutionFilter="">
       <rm:property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git"/>
       <rm:property key="git.remote.name" value="org.eclipse.amp"/>
-      <rm:uri format="{0},org.eclipse.amp/releng/{1}">
+      <rm:uri format="{0},releng/{1}">
         <bc:propertyRef key="workspace.root"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
@@ -114,6 +116,16 @@
   <rm:searchPath name="gef3d-build">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="svn">
       <rm:uri format="file:///svnroot/technology/org.eclipse.gef3d/trunk/{0}?moduleAfterTag&amp;moduleAfterBranch">
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="amp.build">
+    <rm:provider componentTypes="buckminster,eclipse.feature" readerType="git" resolutionFilter="">
+      <rm:property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git"/>
+      <rm:property key="git.remote.name" value="org.eclipse.amp"/>
+      <rm:uri format="{0},org.eclipse.amp/releng/{1}">
+        <bc:propertyRef key="workspace.root"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
     </rm:provider>
