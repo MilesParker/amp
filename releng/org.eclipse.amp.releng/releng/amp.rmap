@@ -3,6 +3,7 @@
   <rm:property key="checkout.location" value="${workspace.root}/"/>
   <rm:property key="eclipse.download" value="http://download.eclipse.org"/>
   <rm:locator pattern="^org\.eclipse\.amp([\.\-].+)?" searchPathRef="amp.local" failOnError="false"/>
+  <rm:locator pattern="org\.eclipse\.amp\.build$" searchPathRef="amp.build.local"failOnError="false"/>
   <rm:locator pattern="org\.eclipse\.amp\.(?:releng|build)(?:\..+)?$" searchPathRef="amp.releng"/>
   <rm:locator pattern="^org\.eclipse\.amp([\.\-].+)?" searchPathRef="amp.features" failOnError="false"/>
   <rm:locator pattern="^org\.ascape\.core" searchPathRef="amp.plugins" failOnError="false"/>
@@ -42,13 +43,21 @@
 					<bc:match pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
 					<bc:match pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
 					<bc:match pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
-					<bc:match pattern="org\.eclipse\.amp\.build" replacement="org.eclipse.amp/releng" />
 					<bc:match pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
 				</bc:replace>
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
 		</rm:provider>
 	</rm:searchPath>
+  
+  <rm:searchPath name="amp.build.local">
+		<rm:provider componentTypes="eclipse.feature" readerType="local" mutable="false">
+			<rm:uri format="{0}/org.eclipse.amp/releng/{1}">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+		</rm:provider>
+  </rm:searchPath>
   
   <rm:searchPath name="amp.releng">
     <rm:provider componentTypes="buckminster,eclipse.feature" readerType="git" resolutionFilter="">
