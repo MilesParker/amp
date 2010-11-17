@@ -22,11 +22,11 @@
 	<rm:locator pattern="^org\.ascape\.core" searchPathRef="ascape" failOnError="false" />
 	<rm:locator pattern="^org\.ascape\.ui\.amp" searchPathRef="ascape" />
 	<!-- Note: Third party *NOT* Eclipse IP approved for providing. Make sure that these don't show up in any delivered builds. -->
-	<locator searchPathRef="lwjgl" pattern="^org\.lwjgl(\..+)?" />
-	<locator searchPathRef="ascape.external" pattern="^org\.ascape\.ui\.swing" />
-	<locator searchPathRef="ascape.external" pattern="^org\.ascape\.common\.lib" />
-	<locator searchPathRef="ascape.external" pattern="^org\.ascape\.core" />
-	<locator searchPathRef="repast" pattern="repast\.simphony\.score" />
+	<rm:locator searchPathRef="lwjgl" pattern="^org\.lwjgl(\..+)?" />
+	<rm:locator searchPathRef="ascape.external" pattern="^org\.ascape\.ui\.swing" />
+	<rm:locator searchPathRef="ascape.external" pattern="^org\.ascape\.common\.lib" />
+	<rm:locator searchPathRef="ascape.external" pattern="^org\.ascape\.core" />
+	<rm:locator searchPathRef="repast" pattern="repast\.simphony\.score" />
 
 	<rm:searchPath name="amp.build.local">
 		<rm:provider componentTypes="eclipse.feature" readerType="local" mutable="false">
