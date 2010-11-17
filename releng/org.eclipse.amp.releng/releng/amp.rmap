@@ -18,9 +18,9 @@
   <rm:locator pattern="org\.eclipse\.amp\.releng$" searchPathRef="amp.releng"/>
   <rm:locator pattern="org\.eclipse\.amp\.build.*" searchPathRef="amp.releng"/>
   
-	<searchPath name="amp.local">
-		<provider componentTypes="osgi.bundle" readerType="local" mutable="false">
-			<uri format="{0}/{1}/plugins/{1}">
+	<rm:searchPath name="amp.local">
+		<rm:provider componentTypes="osgi.bundle" readerType="local" mutable="false">
+			<rm:uri format="{0}/{1}/plugins/{1}">
 				<bc:propertyRef key="workspace.root" />
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
@@ -31,10 +31,10 @@
 					<bc:matches pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
 				</bc:replace>
 				<bc:propertyRef key="buckminster.component" />
-			</uri>
-		</provider>
-		<provider componentTypes="eclipse.feature" readerType="local" mutable="false">
-			<uri format="{0}/{1}/features/{1}-feature">
+			</rm:uri>
+		</rm:provider>
+		<rm:provider componentTypes="eclipse.feature" readerType="local" mutable="false">
+			<rm:uri format="{0}/{1}/features/{1}-feature">
 				<bc:propertyRef key="workspace.root" />
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
@@ -46,9 +46,9 @@
 					<bc:matches pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
 				</bc:replace>
 				<bc:propertyRef key="buckminster.component" />
-			</uri>
-		</provider>
-	</searchPath>
+			</rm:uri>
+		</rm:provider>
+	</rm:searchPath>
   
   <rm:searchPath name="amp.releng">
     <rm:provider componentTypes="buckminster,eclipse.feature" readerType="git" resolutionFilter="">
