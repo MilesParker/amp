@@ -156,12 +156,12 @@
   </rm:searchPath>
   <rm:searchPath name="amp.build">
     <rm:provider componentTypes="buckminster,eclipse.feature" readerType="git" resolutionFilter="">
-      <rm:property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git"/>
-      <rm:property key="git.remote.name" value="org.eclipse.amp"/>
       <rm:uri format="{0},org.eclipse.amp/releng/{1}">
         <bc:propertyRef key="workspace.root"/>
         <bc:propertyRef key="buckminster.component"/>
       </rm:uri>
+      <rm:property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git"/>
+      <rm:property key="git.remote.name" value="org.eclipse.amp"/>
     </rm:provider>
   </rm:searchPath>
 </rm:rmap>
