@@ -24,11 +24,11 @@
 				<bc:propertyRef key="workspace.root" />
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
-					<bc:matches pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
-					<bc:matches pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
-					<bc:matches pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
-					<bc:matches pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
-					<bc:matches pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
+					<bc:match pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
+					<bc:match pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
+					<bc:match pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
+					<bc:match pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
+					<bc:match pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
 				</bc:replace>
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
@@ -38,12 +38,12 @@
 				<bc:propertyRef key="workspace.root" />
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
-					<bc:matches pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
-					<bc:matches pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
-					<bc:matches pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
-					<bc:matches pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
-					<bc:matches pattern="org\.eclipse\.amp\.build" replacement="org.eclipse.amp/releng" />
-					<bc:matches pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
+					<bc:match pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
+					<bc:match pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
+					<bc:match pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
+					<bc:match pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
+					<bc:match pattern="org\.eclipse\.amp\.build" replacement="org.eclipse.amp/releng" />
+					<bc:match pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
 				</bc:replace>
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
@@ -66,11 +66,11 @@
 				<bc:propertyRef key="workspace.root" />
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
-					<bc:matches pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
-					<bc:matches pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
-					<bc:matches pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
-					<bc:matches pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
-					<bc:matches pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
+					<bc:match pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
+					<bc:match pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
+					<bc:match pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
+					<bc:match pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
+					<bc:match pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
 				</bc:replace>
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
@@ -84,11 +84,11 @@
 				<bc:propertyRef key="workspace.root" />
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
-					<bc:matches pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
-					<bc:matches pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
-					<bc:matches pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
-					<bc:matches pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
-					<bc:matches pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
+					<bc:match pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
+					<bc:match pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
+					<bc:match pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
+					<bc:match pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
+					<bc:match pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
 				</bc:replace>
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
@@ -112,13 +112,13 @@
         <bc:propertyRef key="buckminster.component"/>
         <bc:replace>
           <bc:propertyRef key="buckminster.component"/>
-          <bc:matches pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf"/>
-          <bc:matches pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf"/>
-          <bc:matches pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf"/>
-          <bc:matches pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape"/>
-          <bc:matches pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp"/>
-          <bc:matches pattern="org\.ascape.*" replacement="org.ascape"/>
-          <bc:matches pattern="org\.eclipse\.emf\.java" replacement="dependencies"/>
+          <bc:match pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf"/>
+          <bc:match pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf"/>
+          <bc:match pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf"/>
+          <bc:match pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape"/>
+          <bc:match pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp"/>
+          <bc:match pattern="org\.ascape.*" replacement="org.ascape"/>
+          <bc:match pattern="org\.eclipse\.emf\.java" replacement="dependencies"/>
         </bc:replace>
       </rm:uri>
     </rm:provider>
@@ -129,13 +129,13 @@
         <bc:propertyRef key="buckminster.component"/>
         <bc:replace>
           <bc:propertyRef key="buckminster.component"/>
-          <bc:matches pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf"/>
-          <bc:matches pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf"/>
-          <bc:matches pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf"/>
-          <bc:matches pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape"/>
-          <bc:matches pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp"/>
-          <bc:matches pattern="org\.ascape.*" replacement="org.ascape"/>
-          <bc:matches pattern="org\.eclipse\.emf\.java" replacement="dependencies"/>
+          <bc:match pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf"/>
+          <bc:match pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf"/>
+          <bc:match pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf"/>
+          <bc:match pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape"/>
+          <bc:match pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp"/>
+          <bc:match pattern="org\.ascape.*" replacement="org.ascape"/>
+          <bc:match pattern="org\.eclipse\.emf\.java" replacement="dependencies"/>
         </bc:replace>
       </rm:uri>
     </rm:provider>
