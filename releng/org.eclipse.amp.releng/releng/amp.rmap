@@ -2,6 +2,7 @@
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
   <rm:property key="checkout.location" value="${workspace.root}/"/>
   <rm:property key="eclipse.download" value="http://download.eclipse.org"/>
+  <rm:locator pattern="^org\.eclipse\.amp([\.\-].+)?" searchPathRef="amp.local" failOnError="false"/>
   <rm:locator pattern="org\.eclipse\.amp\.(?:releng|build)(?:\..+)?$" searchPathRef="amp.releng"/>
   <rm:locator pattern="^org\.eclipse\.amp([\.\-].+)?" searchPathRef="amp.features" failOnError="false"/>
   <rm:locator pattern="^org\.ascape\.core" searchPathRef="amp.plugins" failOnError="false"/>
@@ -16,6 +17,39 @@
   <rm:locator pattern="^org\.eclipse\.draw3d(\..+)?" searchPathRef="gef3d-build"/>
   <rm:locator pattern="org\.eclipse\.amp\.releng$" searchPathRef="amp.releng"/>
   <rm:locator pattern="org\.eclipse\.amp\.build.*" searchPathRef="amp.releng"/>
+  
+	<searchPath name="amp.local">
+		<provider componentTypes="osgi.bundle" readerType="local" mutable="false">
+			<uri format="{0}/{1}/plugins/{1}">
+				<bc:propertyRef key="workspace.root" />
+				<bc:replace>
+					<bc:propertyRef key="buckminster.component" />
+					<bc:matches pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
+					<bc:matches pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
+					<bc:matches pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
+					<bc:matches pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
+					<bc:matches pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
+				</bc:replace>
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+		<provider componentTypes="eclipse.feature" readerType="local" mutable="false">
+			<uri format="{0}/{1}/features/{1}-feature">
+				<bc:propertyRef key="workspace.root" />
+				<bc:replace>
+					<bc:propertyRef key="buckminster.component" />
+					<bc:matches pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
+					<bc:matches pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
+					<bc:matches pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
+					<bc:matches pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
+					<bc:matches pattern="org\.eclipse\.amp\.build" replacement="org.eclipse.amp/releng" />
+					<bc:matches pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
+				</bc:replace>
+				<bc:propertyRef key="buckminster.component" />
+			</uri>
+		</provider>
+	</searchPath>
+  
   <rm:searchPath name="amp.releng">
     <rm:provider componentTypes="buckminster,eclipse.feature" readerType="git" resolutionFilter="">
       <rm:uri format="{0},releng/{1}">
