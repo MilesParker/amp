@@ -52,7 +52,6 @@
 			<cs:properties>
 				<cs:property key="content.ius"
 					value="org.eclipse.amp.runtime.feature.group" />
-				<cs:property key="prerequisite.ius" value="com.google.collect" />
 				<cs:property key="package.name" value="amp-runtime" />
 			</cs:properties>
 			<cs:prerequisites>
@@ -110,9 +109,9 @@
 	<cs:groups>
 		<cs:public name="build">
 			<cs:attribute name="package.amp-Update" />
-	<!--		<cs:attribute name="package.amp-Examples" />
-			<cs:attribute name="package.amp-runtime" />
  			<cs:attribute name="package.amp-SDK" />
+			<cs:attribute name="package.amp-runtime" />
+	<!--		<cs:attribute name="package.amp-Examples" />
 			<cs:attribute name="package.amp-sourcedoc" /> -->
 		</cs:public>
 	</cs:groups>
