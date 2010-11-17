@@ -136,14 +136,14 @@
 	<rm:searchPath name="amp.dependencies">
 		<rm:provider componentTypes="osgi.bundle" readerType="local"
 			mutable="false">
-			<rm:uri format="{0}/org.eclipse.amp/dependencies/{1}">
+			<rm:uri format="{0}/dependencies/{1}">
 				<bc:propertyRef key="workspace.root" />
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
 		</rm:provider>
 		<rm:provider componentTypes="osgi.bundle" readerType="git"
 			resolutionFilter="">
-			<rm:uri format="{0},org.eclipse.amp/dependencies/{2}">
+			<rm:uri format="{0},dependencies/{1}">
 				<bc:propertyRef key="workspace.root" />
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
