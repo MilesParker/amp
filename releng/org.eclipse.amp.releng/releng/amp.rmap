@@ -3,7 +3,7 @@
   <rm:property key="checkout.location" value="${workspace.root}/"/>
   <rm:property key="eclipse.download" value="http://download.eclipse.org"/>
   <rm:locator pattern="^org\.eclipse\.amp([\.\-].+)?" searchPathRef="amp.local" failOnError="false"/>
-  <rm:locator pattern="org\.eclipse\.amp\.build$" searchPathRef="amp.build.local"failOnError="false"/>
+  <rm:locator pattern="org\.eclipse\.amp\.build$" searchPathRef="amp.build.local" failOnError="false"/>
   <rm:locator pattern="org\.eclipse\.amp\.(?:releng|build)(?:\..+)?$" searchPathRef="amp.releng"/>
   <rm:locator pattern="^org\.eclipse\.amp([\.\-].+)?" searchPathRef="amp.features" failOnError="false"/>
   <rm:locator pattern="^org\.ascape\.core" searchPathRef="amp.plugins" failOnError="false"/>
