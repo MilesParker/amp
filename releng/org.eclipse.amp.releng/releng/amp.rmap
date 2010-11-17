@@ -9,8 +9,6 @@
 	<rm:locator pattern="^org\.eclipse\.amp\.build$" searchPathRef="amp.build.local" failOnError="false" />
 	<rm:locator pattern="^org\.eclipse\.amp\.(?:releng|build)(?:\..+)?$" searchPathRef="amp.releng" />
 	<rm:locator pattern="^org\.eclipse\.amp([\.\-].+)?" searchPathRef="amp" failOnError="false" />
-	<rm:locator pattern="^org\.ascape\.core" searchPathRef="amp.dependencies" failOnError="false" />
-	<rm:locator pattern="^org\.ascape\.ui\.amp" searchPathRef="amp.dependencies" />
 	<rm:locator pattern="^org\.eclipse\.emf\.java" searchPathRef="amp.dependencies" />
 	<rm:locator pattern="^org\.eclipse\.amp\.doc" searchPathRef="amp.doc" />
 	<rm:locator pattern="^org\.eclipse\.amp\.ua" searchPathRef="amp.doc" />
@@ -21,6 +19,14 @@
 	<rm:locator pattern="^org\.eclipse\.draw3d(\..+)?" searchPathRef="gef3d-build" />
 	<rm:locator pattern="org\.eclipse\.amp\.releng$" searchPathRef="amp.releng" />
 	<rm:locator pattern="org\.eclipse\.amp\.build.*" searchPathRef="amp.releng" />
+	<rm:locator pattern="^org\.ascape\.core" searchPathRef="ascape" failOnError="false" />
+	<rm:locator pattern="^org\.ascape\.ui\.amp" searchPathRef="ascape" />
+	<!-- Note: Third party *NOT* Eclipse IP approved for providing. Make sure that these don't show up in any delivered builds. -->
+	<locator searchPathRef="lwjgl" pattern="^org\.lwjgl(\..+)?" />
+	<locator searchPathRef="ascape.external" pattern="^org\.ascape\.ui\.swing" />
+	<locator searchPathRef="ascape.external" pattern="^org\.ascape\.common\.lib" />
+	<locator searchPathRef="ascape.external" pattern="^org\.ascape\.core" />
+	<locator searchPathRef="repast" pattern="repast\.simphony\.score" />
 
 	<rm:searchPath name="amp.build.local">
 		<rm:provider componentTypes="eclipse.feature" readerType="local" mutable="false">
@@ -52,6 +58,7 @@
 					<bc:match pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
 					<bc:match pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
 					<bc:match pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
+					<bc:match pattern="org\.ascape.*" replacement="org.ascape" />
 					<bc:match pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
 				</bc:replace>
 				<bc:propertyRef key="buckminster.component" />
@@ -66,6 +73,7 @@
 					<bc:match pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
 					<bc:match pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
 					<bc:match pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
+					<bc:match pattern="org\.ascape.*" replacement="org.ascape" />
 					<bc:match pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
 				</bc:replace>
 				<bc:propertyRef key="buckminster.component" />
@@ -80,6 +88,7 @@
 					<bc:match pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
 					<bc:match pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
 					<bc:match pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
+					<bc:match pattern="org\.ascape.*" replacement="org.ascape" />
 					<bc:match pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
 				</bc:replace>
 				<bc:propertyRef key="buckminster.component" />
@@ -96,6 +105,7 @@
 					<bc:match pattern="org\.eclipse\.amp\.axf.*" replacement="org.eclipse.amp.axf" />
 					<bc:match pattern="org\.eclipse\.amp\.amf.*" replacement="org.eclipse.amp.amf" />
 					<bc:match pattern="org\.eclipse\.amp\.escape.*" replacement="org.eclipse.amp.escape" />
+					<bc:match pattern="org\.ascape.*" replacement="org.ascape" />
 					<bc:match pattern="org\.eclipse\.amp.*" replacement="org.eclipse.amp" />
 				</bc:replace>
 				<bc:propertyRef key="buckminster.component" />
@@ -220,4 +230,26 @@
 			<rm:property key="git.remote.name" value="org.eclipse.amp" />
 		</rm:provider>
 	</rm:searchPath>
+	
+	<!-- NOTE: ***Not for inclusion in Eclipse provided builds. Only used for building tests and examples.*** -->
+	<rm:searchPath name="ascape.external">
+		<rm:provider readerType="p2" componentTypes="osgi.bundle" mutable="false" source="false">
+			<rm:uri format="http://ascape.sourceforge.net/eclipse" />
+		</rm:provider>
+	</rm:searchPath>
+
+	<!-- NOTE: ***Not for inclusion in Eclipse provided builds. Provides support for externally hosted plugin dependencies.*** -->
+	<rm:searchPath name="repast">
+		<rm:provider readerType="url" componentTypes="osgi.bundle" mutable="false" source="false">
+			<rm:uri format="http://mirror.anl.gov/pub/repastsimphony/plugins/repast.simphony.score_1.2.0.jar" />
+		</rm:provider>
+	</rm:searchPath>
+
+	<!-- NOTE: ***Not for inclusion in Eclipse provided builds. Provides support for externally hosted plugin dependencies.*** -->
+	<rm:searchPath name="lwjgl">
+		<rm:provider readerType="p2" componentTypes="osgi.bundle" mutable="false" source="false">
+			<rm:uri format="http://lwjgl.org/update" />
+		</rm:provider>
+	</rm:searchPath>
+	
 </rm:rmap>
