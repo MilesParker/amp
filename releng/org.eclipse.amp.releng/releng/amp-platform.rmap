@@ -12,9 +12,8 @@
   <rm:locator pattern="^org\.ascape\.core" searchPathRef="ascape.external"/>
   <rm:locator pattern="repast\.simphony\.score" searchPathRef="repast"/>
   <rm:locator pattern="^org\.eclipse\.swtbot(\..+)?" searchPathRef="swtbot"/>
-  <rm:locator pattern="^org\.eclipse(\..+)?$" searchPathRef="helios"/>
-  <rm:locator pattern="^com(\..+)?$" searchPathRef="helios" failOnError="false"/>
-  <rm:locator pattern="^org(\..+)?$" searchPathRef="platform" failOnError="false"/>
+  <rm:locator searchPathRef="eclipse" failOnError="false"/>
+  <rm:locator searchPathRef="platform" failOnError="false"/>
   <rm:locator searchPathRef="orbit"/>
   <rm:searchPath name="local.releng">
     <rm:provider componentTypes="buckminster" readerType="local" mutable="false">
@@ -24,9 +23,11 @@
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
-  <rm:searchPath name="helios">
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <rm:uri format="http://download.eclipse.org/releases/helios/"/>
+  <rm:searchPath name="eclipse">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+      <rm:uri format="{0}/releases/helios?importType=binary">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="platform">
@@ -61,13 +62,6 @@
   <rm:searchPath name="orbit">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
       <rm:uri format="{0}/tools/orbit/downloads/drops/R20100519200754/repository">
-        <bc:propertyRef key="eclipse.download"/>
-      </rm:uri>
-    </rm:provider>
-  </rm:searchPath>
-  <rm:searchPath name="eclipse">
-    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/releases/helios?importType=binary">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
