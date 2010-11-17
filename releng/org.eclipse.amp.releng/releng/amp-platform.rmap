@@ -9,7 +9,7 @@
   <rm:locator pattern="^org\.ascape\.common\.lib" searchPathRef="ascape.external"/>
   <rm:locator pattern="^org\.ascape\.core" searchPathRef="ascape.external"/>
   <rm:locator pattern="repast\.simphony\.score" searchPathRef="repast"/>
-  <rm:locator pattern="^org\.eclipse\.swtbot(\..+)?"/>
+  <rm:locator pattern="^org\.eclipse\.swtbot(\..+)?" searchPathRef="swtbot"/>
   <rm:locator pattern="^org\.eclipse(\..+)?$" searchPathRef="helios"/>
   <rm:locator pattern="^org(\..+)?$" searchPathRef="platform" failOnError="false"/>
   <rm:locator searchPathRef="orbit"/>
