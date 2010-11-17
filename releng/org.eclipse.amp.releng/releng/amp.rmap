@@ -19,13 +19,11 @@
 	<rm:locator pattern="^org\.eclipse\.draw3d(\..+)?" searchPathRef="gef3d-build" />
 	<rm:locator pattern="org\.eclipse\.amp\.releng$" searchPathRef="amp.releng" />
 	<rm:locator pattern="org\.eclipse\.amp\.build.*" searchPathRef="amp.releng" />
-	<rm:locator pattern="^org\.ascape\.core" searchPathRef="ascape" failOnError="false" />
-	<rm:locator pattern="^org\.ascape\.ui\.amp" searchPathRef="ascape" />
+	<rm:locator pattern="^org\.ascape\.core" searchPathRef="amp"/>
+	<rm:locator pattern="^org\.ascape\.ui\.amp" searchPathRef="amp"/>
 	<!-- Note: Third party *NOT* Eclipse IP approved for providing. Make sure that these don't show up in any delivered builds. -->
 	<rm:locator searchPathRef="lwjgl" pattern="^org\.lwjgl(\..+)?" />
-	<rm:locator searchPathRef="ascape.external" pattern="^org\.ascape\.ui\.swing" />
-	<rm:locator searchPathRef="ascape.external" pattern="^org\.ascape\.common\.lib" />
-	<rm:locator searchPathRef="ascape.external" pattern="^org\.ascape\.core" />
+	<rm:locator searchPathRef="ascape.external" pattern="^org\.ascape\..*" />
 	<rm:locator searchPathRef="repast" pattern="repast\.simphony\.score" />
 
 	<rm:searchPath name="amp.build.local">
