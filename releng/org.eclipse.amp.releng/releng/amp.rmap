@@ -15,11 +15,11 @@
 		searchPathRef="amp.releng" />
 	<rm:locator pattern="^org\.eclipse\.amp([\.\-].+)?"
 		searchPathRef="amp" failOnError="false" />
-	<rm:locator pattern="^org\.ascape\.core" searchPathRef="amp"
+	<rm:locator pattern="^org\.ascape\.core" searchPathRef="amp.dependencies"
 		failOnError="false" />
-	<rm:locator pattern="^org\.ascape\.ui\.amp" searchPathRef="amp" />
+	<rm:locator pattern="^org\.ascape\.ui\.amp" searchPathRef="amp.dependencies" />
 	<rm:locator pattern="^org\.eclipse\.emf\.java"
-		searchPathRef="amp" />
+		searchPathRef="amp.dependencies" />
 	<rm:locator pattern="^org\.eclipse\.amp\.doc" searchPathRef="amp.doc" />
 	<rm:locator pattern="^org\.eclipse\.amp\.ua" searchPathRef="amp.doc" />
 	<rm:locator pattern="^org\.eclipse\.amp(\..+)?"
@@ -133,6 +133,26 @@
 		</rm:provider>
 	</rm:searchPath>
 
+	<rm:searchPath name="amp.dependencies">
+		<rm:provider componentTypes="osgi.bundle" readerType="local"
+			mutable="false">
+			<rm:uri format="{0}/org.eclipse.amp/dependencies/{1}">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+		</rm:provider>
+		<rm:provider componentTypes="osgi.bundle" readerType="git"
+			resolutionFilter="">
+			<rm:uri format="{0},org.eclipse.amp/dependencies/{2}">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri"
+				value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git" />
+			<rm:property key="git.remote.name" value="org.eclipse.amp" />
+		</rm:provider>
+	</rm:searchPath>
+	
 	<rm:searchPath name="amp.doc">
 		<rm:provider componentTypes="osgi.bundle" readerType="local"
 			mutable="false">
