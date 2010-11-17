@@ -11,6 +11,7 @@
   <rm:locator pattern="repast\.simphony\.score" searchPathRef="repast"/>
   <rm:locator pattern="^org\.eclipse\.swtbot(\..+)?" searchPathRef="swtbot"/>
   <rm:locator pattern="^org\.eclipse(\..+)?$" searchPathRef="helios"/>
+  <rm:locator pattern="^com(\..+)?$" searchPathRef="helios" failOnError="false"/>
   <rm:locator pattern="^org(\..+)?$" searchPathRef="platform" failOnError="false"/>
   <rm:locator searchPathRef="orbit"/>
   <rm:searchPath name="local.releng">
