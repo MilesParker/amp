@@ -43,24 +43,6 @@
 			</cs:prerequisites>
 			<cs:products alias="output" base="${buckminster.output}/zips/" />
 		</cs:public>
-
-		<cs:public name="package.amp-Examples" actor="ant">
-			<cs:actorProperties>
-				<cs:property key="buildFile" value="packaging.ant" />
-				<cs:property key="targets" value="package.ius" />
-			</cs:actorProperties>
-			<cs:properties>
-				<cs:property key="content.ius"
-					value="org.eclipse.amp.examples.feature.group,org.eclipse.amp.examples.feature.group" />
-				<cs:property key="prerequisite.ius" value="org.eclipse.amp.all.feature.group" />
-				<cs:property key="package.name" value="amp-Examples" />
-			</cs:properties>
-			<cs:prerequisites>
-				<cs:attribute name="site.p2" alias="repository" />
-				<cs:attribute name="site.tp" alias="target.platform.repository" />
-			</cs:prerequisites>
-			<cs:products alias="output" base="${buckminster.output}/zips/" />
-		</cs:public>
 		
 		<cs:public name="package.amp-runtime" actor="ant">
 			<cs:actorProperties>
@@ -72,6 +54,24 @@
 					value="org.eclipse.amp.runtime.feature.group" />
 				<cs:property key="prerequisite.ius" value="com.google.collect" />
 				<cs:property key="package.name" value="amp-runtime" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+				<cs:attribute name="site.tp" alias="target.platform.repository" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.output}/zips/" />
+		</cs:public>
+
+		<cs:public name="package.amp-Examples" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="package.ius" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="content.ius"
+					value="org.eclipse.amp.examples.feature.group,org.eclipse.amp.examples.feature.group" />
+				<cs:property key="prerequisite.ius" value="org.eclipse.amp.all.feature.group" />
+				<cs:property key="package.name" value="amp-Examples" />
 			</cs:properties>
 			<cs:prerequisites>
 				<cs:attribute name="site.p2" alias="repository" />
