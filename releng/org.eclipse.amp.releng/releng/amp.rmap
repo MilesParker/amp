@@ -20,7 +20,7 @@
   
 	<rm:searchPath name="amp.local">
 		<rm:provider componentTypes="osgi.bundle" readerType="local" mutable="false">
-			<rm:uri format="{0}/{1}/plugins/{1}">
+			<rm:uri format="{0}/{1}/plugins/{2}">
 				<bc:propertyRef key="workspace.root" />
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
@@ -34,7 +34,7 @@
 			</rm:uri>
 		</rm:provider>
 		<rm:provider componentTypes="eclipse.feature" readerType="local" mutable="false">
-			<rm:uri format="{0}/{1}/features/{1}-feature">
+			<rm:uri format="{0}/{1}/features/{2}-feature">
 				<bc:propertyRef key="workspace.root" />
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
