@@ -9,7 +9,7 @@
   <rm:locator pattern="^org\.ascape\.common\.lib" searchPathRef="ascape.external"/>
   <rm:locator pattern="^org\.ascape\.core" searchPathRef="ascape.external"/>
   <rm:locator pattern="repast\.simphony\.score" searchPathRef="repast"/>
-  <rm:locator pattern="^org\.eclipse\.swtbot(\..+)?" searchPathRef="swtbot"/>
+  <rm:locator pattern="^org\.eclipse\.swtbot(\..+)?"/>
   <rm:locator pattern="^org\.eclipse(\..+)?$" searchPathRef="helios"/>
   <rm:locator pattern="^org(\..+)?$" searchPathRef="platform" failOnError="false"/>
   <rm:locator searchPathRef="orbit"/>
@@ -23,10 +23,9 @@
   </rm:searchPath>
   <rm:searchPath name="helios">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <rm:uri format="http://download.eclipse.org/releases/helios/">        
-      </rm:uri>
+      <rm:uri format="http://download.eclipse.org/releases/helios/"/>
     </rm:provider>
-  </rm:searchPath>	
+  </rm:searchPath>
   <rm:searchPath name="platform">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
       <rm:uri format="{0}/eclipse/updates/3.6milestones">
@@ -55,7 +54,7 @@
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
-  <rm:searchPath name="eclipse.swtbot">
+  <rm:searchPath name="swtbot">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
       <rm:uri format="{0}/technology/swtbot/helios/dev-build/update-site">
         <bc:propertyRef key="eclipse.download"/>
