@@ -9,7 +9,9 @@
         <cs:dependency name="org.eclipse.swtbot.eclipse.gef" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.xpand" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.xtend" componentType="eclipse.feature"/>
-        <cs:dependency name="org.eclipse.xtext" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.xtext.ui" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.xtext.runtime" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.xtext.xtend" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.gef" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.zest" componentType="eclipse.feature"/>
         <cs:dependency name="org.junit" componentType="osgi.bundle"/>
