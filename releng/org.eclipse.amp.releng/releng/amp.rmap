@@ -28,7 +28,7 @@
 
 	<rm:searchPath name="amp.build.local">
 		<rm:provider componentTypes="eclipse.feature" readerType="local" mutable="false">
-			<rm:uri format="{0}/org.eclipse.amp/releng/{1}">
+			<rm:uri format="{0}/org.eclipse.amp/org.eclipse.amp/releng/{1}">
 				<bc:propertyRef key="workspace.root" />
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
@@ -48,7 +48,7 @@
 
 	<rm:searchPath name="amp">
 		<rm:provider componentTypes="osgi.bundle" readerType="local" mutable="false">
-			<rm:uri format="{0}/{1}/plugins/{2}">
+			<rm:uri format="{0}/org.eclipse.amp/{1}/plugins/{2}">
 				<bc:propertyRef key="workspace.root" />
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
@@ -63,7 +63,7 @@
 			</rm:uri>
 		</rm:provider>
 		<rm:provider componentTypes="eclipse.feature" readerType="local" mutable="false">
-			<rm:uri format="{0}/{1}/features/{2}-feature">
+			<rm:uri format="{0}/org.eclipse.amp/{1}/features/{2}-feature">
 				<bc:propertyRef key="workspace.root" />
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
@@ -115,7 +115,7 @@
 
 	<rm:searchPath name="amp.dependencies">
 		<rm:provider componentTypes="osgi.bundle" readerType="local" mutable="false">
-			<rm:uri format="{0}/dependencies/plugins/{1}">
+			<rm:uri format="{0}/org.eclipse.amp/dependencies/plugins/{1}">
 				<bc:propertyRef key="workspace.root" />
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
@@ -132,7 +132,7 @@
 
 	<rm:searchPath name="amp.doc">
 		<rm:provider componentTypes="osgi.bundle" readerType="local" mutable="false">
-			<rm:uri format="{0}/org.eclipse.amp/doc/{1}">
+			<rm:uri format="{0}/org.eclipse.amp/org.eclipse.amp/doc/{1}">
 				<bc:propertyRef key="workspace.root" />
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
@@ -149,7 +149,7 @@
 
 	<rm:searchPath name="amp.examples">
 		<rm:provider componentTypes="osgi.bundle" readerType="local" mutable="false">
-			<rm:uri format="{0}/{1}/examples/{2}">
+			<rm:uri format="{0}/org.eclipse.amp/{1}/examples/{2}">
 				<bc:propertyRef key="workspace.root" />
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
@@ -174,7 +174,7 @@
 
 	<rm:searchPath name="amp.tests">
 		<rm:provider componentTypes="osgi.bundle" readerType="local" mutable="false">
-			<rm:uri format="{0}/{1}/tests/{2}">
+			<rm:uri format="{0}/org.eclipse.amp/{1}/tests/{2}">
 				<bc:propertyRef key="workspace.root" />
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
