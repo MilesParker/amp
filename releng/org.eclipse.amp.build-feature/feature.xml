@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.amp.build"
+      label="Eclipse AMP Site"
+      version="0.8.0.qualifier"
+      provider-name="Eclipse Agent Modeling Project">
+
+   <description url="http://eclipse.org/amp">
+      %description
+   </description>
+
+   <copyright>
+      %copyright
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+
+   <url>
+      <update url="http://eclipse.org/amp/updates/release"/>
+      <discovery label="%modelingUpdateSiteName" url="http://www.eclipse.org/modeling/updates/"/>
+   </url>
+
+   <includes
+         id="org.eclipse.amp.all"
+         version="0.0.0"/>
+
+<!--   <includes
+         id="org.eclipse.amp.test"
+         version="0.0.0"/> -->
+
+</feature>
