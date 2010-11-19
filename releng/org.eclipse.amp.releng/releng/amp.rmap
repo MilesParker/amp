@@ -24,7 +24,7 @@
 	<rm:locator searchPathRef="repast" pattern="repast\.simphony\.score" />
 
 	<rm:searchPath name="amp.releng">
-		<rm:provider componentTypes="buckminster,eclipse.feature" readerType="local" mutable="false">
+		<rm:provider componentTypes="buckminster,eclipse.feature" readerType="local">
 			<rm:uri format="{0}/releng/{1}">
 				<bc:propertyRef key="checkout.location" />
 				<bc:replace>
