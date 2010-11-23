@@ -211,7 +211,7 @@
 		</rm:provider>
 		<rm:provider componentTypes="osgi.bundle" readerType="git" resolutionFilter="">
 			<rm:uri format="{0},{1}/tests/{2}">
-				<bc:propertyRef key="" />
+				<bc:propertyRef key="checkout.location" />
 				<bc:replace>
 					<bc:propertyRef key="buckminster.component" />
 					<bc:match pattern="org\.eclipse\.amp\.agf.*" replacement="org.eclipse.amp.agf" />
