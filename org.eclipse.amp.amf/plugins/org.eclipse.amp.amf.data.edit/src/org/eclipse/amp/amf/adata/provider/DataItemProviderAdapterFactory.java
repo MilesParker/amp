@@ -41,289 +41,289 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  */
 public class DataItemProviderAdapterFactory extends DataAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
     /**
-     * This keeps track of the root adapter factory that delegates to this adapter factory.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the root adapter factory that delegates to this adapter factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ComposedAdapterFactory parentAdapterFactory;
 
     /**
-     * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-     * <!-- begin-user-doc -->
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
     /**
-     * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
-     * <!-- begin-user-doc -->
+	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
     /**
-     * This constructs an instance.
-     * <!-- begin-user-doc -->
+	 * This constructs an instance.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public DataItemProviderAdapterFactory() {
-        supportedTypes.add(IEditingDomainItemProvider.class);
-        supportedTypes.add(IStructuredItemContentProvider.class);
-        supportedTypes.add(ITreeItemContentProvider.class);
-        supportedTypes.add(IItemLabelProvider.class);
-        supportedTypes.add(IItemPropertySource.class);
-        supportedTypes.add(ITableItemLabelProvider.class);
-        supportedTypes.add(ITableItemColorProvider.class);
-        supportedTypes.add(IItemColorProvider.class);
-    }
+		supportedTypes.add(IEditingDomainItemProvider.class);
+		supportedTypes.add(IStructuredItemContentProvider.class);
+		supportedTypes.add(ITreeItemContentProvider.class);
+		supportedTypes.add(IItemLabelProvider.class);
+		supportedTypes.add(IItemPropertySource.class);
+		supportedTypes.add(ITableItemLabelProvider.class);
+		supportedTypes.add(ITableItemColorProvider.class);
+		supportedTypes.add(IItemColorProvider.class);
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.adata.Run} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.adata.Run} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected RunItemProvider runItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.amp.amf.adata.Run}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.amp.amf.adata.Run}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter createRunAdapter() {
-        if (runItemProvider == null) {
-            runItemProvider = new RunItemProvider(this);
-        }
+		if (runItemProvider == null) {
+			runItemProvider = new RunItemProvider(this);
+		}
 
-        return runItemProvider;
-    }
+		return runItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.adata.Parameter} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.adata.Parameter} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ParameterItemProvider parameterItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.amp.amf.adata.Parameter}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.amp.amf.adata.Parameter}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter createParameterAdapter() {
-        if (parameterItemProvider == null) {
-            parameterItemProvider = new ParameterItemProvider(this);
-        }
+		if (parameterItemProvider == null) {
+			parameterItemProvider = new ParameterItemProvider(this);
+		}
 
-        return parameterItemProvider;
-    }
+		return parameterItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.adata.DataPoint} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.adata.DataPoint} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected DataPointItemProvider dataPointItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.amp.amf.adata.DataPoint}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.amp.amf.adata.DataPoint}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter createDataPointAdapter() {
-        if (dataPointItemProvider == null) {
-            dataPointItemProvider = new DataPointItemProvider(this);
-        }
+		if (dataPointItemProvider == null) {
+			dataPointItemProvider = new DataPointItemProvider(this);
+		}
 
-        return dataPointItemProvider;
-    }
+		return dataPointItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.adata.Catalog} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.adata.Catalog} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected CatalogItemProvider catalogItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.amp.amf.adata.Catalog}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.amp.amf.adata.Catalog}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter createCatalogAdapter() {
-        if (catalogItemProvider == null) {
-            catalogItemProvider = new CatalogItemProvider(this);
-        }
+		if (catalogItemProvider == null) {
+			catalogItemProvider = new CatalogItemProvider(this);
+		}
 
-        return catalogItemProvider;
-    }
+		return catalogItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.adata.Measurement} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.adata.Measurement} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected MeasurementItemProvider measurementItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.amp.amf.adata.Measurement}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.amp.amf.adata.Measurement}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter createMeasurementAdapter() {
-        if (measurementItemProvider == null) {
-            measurementItemProvider = new MeasurementItemProvider(this);
-        }
+		if (measurementItemProvider == null) {
+			measurementItemProvider = new MeasurementItemProvider(this);
+		}
 
-        return measurementItemProvider;
-    }
+		return measurementItemProvider;
+	}
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.adata.ParameterSet} instances.
-     * <!-- begin-user-doc -->
+	 * This keeps track of the one adapter used for all {@link org.eclipse.amp.amf.adata.ParameterSet} instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ParameterSetItemProvider parameterSetItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.amp.amf.adata.ParameterSet}.
-     * <!-- begin-user-doc -->
+	 * This creates an adapter for a {@link org.eclipse.amp.amf.adata.ParameterSet}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter createParameterSetAdapter() {
-        if (parameterSetItemProvider == null) {
-            parameterSetItemProvider = new ParameterSetItemProvider(this);
-        }
+		if (parameterSetItemProvider == null) {
+			parameterSetItemProvider = new ParameterSetItemProvider(this);
+		}
 
-        return parameterSetItemProvider;
-    }
+		return parameterSetItemProvider;
+	}
 
     /**
-     * This returns the root adapter factory that contains this factory.
-     * <!-- begin-user-doc -->
+	 * This returns the root adapter factory that contains this factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public ComposeableAdapterFactory getRootAdapterFactory() {
-        return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
-    }
+		return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+	}
 
     /**
-     * This sets the composed adapter factory that contains this factory.
-     * <!-- begin-user-doc -->
+	 * This sets the composed adapter factory that contains this factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
-        this.parentAdapterFactory = parentAdapterFactory;
-    }
+		this.parentAdapterFactory = parentAdapterFactory;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean isFactoryForType(Object type) {
-        return supportedTypes.contains(type) || super.isFactoryForType(type);
-    }
+		return supportedTypes.contains(type) || super.isFactoryForType(type);
+	}
 
     /**
-     * This implementation substitutes the factory itself as the key for the adapter.
-     * <!-- begin-user-doc -->
+	 * This implementation substitutes the factory itself as the key for the adapter.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Adapter adapt(Notifier notifier, Object type) {
-        return super.adapt(notifier, this);
-    }
+		return super.adapt(notifier, this);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object adapt(Object object, Object type) {
-        if (isFactoryForType(type)) {
-            Object adapter = super.adapt(object, type);
-            if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
-                return adapter;
-            }
-        }
+		if (isFactoryForType(type)) {
+			Object adapter = super.adapt(object, type);
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+				return adapter;
+			}
+		}
 
-        return null;
-    }
+		return null;
+	}
 
     /**
-     * This adds a listener.
-     * <!-- begin-user-doc -->
+	 * This adds a listener.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void addListener(INotifyChangedListener notifyChangedListener) {
-        changeNotifier.addListener(notifyChangedListener);
-    }
+		changeNotifier.addListener(notifyChangedListener);
+	}
 
     /**
-     * This removes a listener.
-     * <!-- begin-user-doc -->
+	 * This removes a listener.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void removeListener(INotifyChangedListener notifyChangedListener) {
-        changeNotifier.removeListener(notifyChangedListener);
-    }
+		changeNotifier.removeListener(notifyChangedListener);
+	}
 
     /**
-     * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-     * <!-- begin-user-doc -->
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void fireNotifyChanged(Notification notification) {
-        changeNotifier.fireNotifyChanged(notification);
+		changeNotifier.fireNotifyChanged(notification);
 
-        if (parentAdapterFactory != null) {
-            parentAdapterFactory.fireNotifyChanged(notification);
-        }
-    }
+		if (parentAdapterFactory != null) {
+			parentAdapterFactory.fireNotifyChanged(notification);
+		}
+	}
 
     /**
-     * This disposes all of the item providers created by this factory. 
-     * <!-- begin-user-doc -->
+	 * This disposes all of the item providers created by this factory. 
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void dispose() {
-        if (runItemProvider != null) runItemProvider.dispose();
-        if (parameterItemProvider != null) parameterItemProvider.dispose();
-        if (dataPointItemProvider != null) dataPointItemProvider.dispose();
-        if (catalogItemProvider != null) catalogItemProvider.dispose();
-        if (measurementItemProvider != null) measurementItemProvider.dispose();
-        if (parameterSetItemProvider != null) parameterSetItemProvider.dispose();
-    }
+		if (runItemProvider != null) runItemProvider.dispose();
+		if (parameterItemProvider != null) parameterItemProvider.dispose();
+		if (dataPointItemProvider != null) dataPointItemProvider.dispose();
+		if (catalogItemProvider != null) catalogItemProvider.dispose();
+		if (measurementItemProvider != null) measurementItemProvider.dispose();
+		if (parameterSetItemProvider != null) parameterSetItemProvider.dispose();
+	}
 
 }

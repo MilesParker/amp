@@ -28,19 +28,19 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Catalog extends EObject {
     /**
-     * Returns the value of the '<em><b>Runs</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.amp.amf.adata.Run}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Runs</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.amp.amf.adata.Run}.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Runs</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Runs</em>' containment reference list.
-     * @see org.eclipse.amp.amf.adata.DataPackage#getCatalog_Runs()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Runs</em>' containment reference list.
+	 * @see org.eclipse.amp.amf.adata.DataPackage#getCatalog_Runs()
+	 * @model containment="true"
+	 * @generated
+	 */
     EList<Run> getRuns();
 
 } // Catalog

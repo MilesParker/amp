@@ -6,23 +6,14 @@
  */
 package org.eclipse.amp.amf.adata.impl;
 
-import java.util.Collection;
-import org.eclipse.amp.amf.abase.aBase.Value;
-
 import org.eclipse.amp.amf.adata.DataPackage;
 import org.eclipse.amp.amf.adata.Parameter;
-
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+import org.eclipse.emf.ecore.impl.FlatEObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.metaabm.SAttribute;
 
 /**
@@ -40,252 +31,252 @@ import org.metaabm.SAttribute;
  *
  * @generated
  */
-public class ParameterImpl extends EObjectImpl implements Parameter {
+public class ParameterImpl extends FlatEObjectImpl implements Parameter {
     /**
-     * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getValue()
-     * @generated
-     * @ordered
-     */
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String VALUE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getValue()
-     * @generated
-     * @ordered
-     */
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
     protected String value = VALUE_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getAttribute()
-     * @generated
-     * @ordered
-     */
+	 * @see #getAttribute()
+	 * @generated
+	 * @ordered
+	 */
     protected SAttribute attribute;
 
     /**
-     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String NAME_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
     protected String name = NAME_EDEFAULT;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ParameterImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return DataPackage.Literals.PARAMETER;
-    }
+		return DataPackage.Literals.PARAMETER;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SAttribute getAttribute() {
-        if (attribute != null && attribute.eIsProxy()) {
-            InternalEObject oldAttribute = (InternalEObject)attribute;
-            attribute = (SAttribute)eResolveProxy(oldAttribute);
-            if (attribute != oldAttribute) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, DataPackage.PARAMETER__ATTRIBUTE, oldAttribute, attribute));
-            }
-        }
-        return attribute;
-    }
+		if (attribute != null && attribute.eIsProxy()) {
+			InternalEObject oldAttribute = (InternalEObject)attribute;
+			attribute = (SAttribute)eResolveProxy(oldAttribute);
+			if (attribute != oldAttribute) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DataPackage.PARAMETER__ATTRIBUTE, oldAttribute, attribute));
+			}
+		}
+		return attribute;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SAttribute basicGetAttribute() {
-        return attribute;
-    }
+		return attribute;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setAttribute(SAttribute newAttribute) {
-        SAttribute oldAttribute = attribute;
-        attribute = newAttribute;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.PARAMETER__ATTRIBUTE, oldAttribute, attribute));
-    }
+		SAttribute oldAttribute = attribute;
+		attribute = newAttribute;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.PARAMETER__ATTRIBUTE, oldAttribute, attribute));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getName() {
-        return name;
-    }
+		return name;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setName(String newName) {
-        String oldName = name;
-        name = newName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.PARAMETER__NAME, oldName, name));
-    }
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.PARAMETER__NAME, oldName, name));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getValue() {
-        return value;
-    }
+		return value;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setValue(String newValue) {
-        String oldValue = value;
-        value = newValue;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.PARAMETER__VALUE, oldValue, value));
-    }
+		String oldValue = value;
+		value = newValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.PARAMETER__VALUE, oldValue, value));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case DataPackage.PARAMETER__VALUE:
-                return getValue();
-            case DataPackage.PARAMETER__ATTRIBUTE:
-                if (resolve) return getAttribute();
-                return basicGetAttribute();
-            case DataPackage.PARAMETER__NAME:
-                return getName();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case DataPackage.PARAMETER__VALUE:
+				return getValue();
+			case DataPackage.PARAMETER__ATTRIBUTE:
+				if (resolve) return getAttribute();
+				return basicGetAttribute();
+			case DataPackage.PARAMETER__NAME:
+				return getName();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case DataPackage.PARAMETER__VALUE:
-                setValue((String)newValue);
-                return;
-            case DataPackage.PARAMETER__ATTRIBUTE:
-                setAttribute((SAttribute)newValue);
-                return;
-            case DataPackage.PARAMETER__NAME:
-                setName((String)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case DataPackage.PARAMETER__VALUE:
+				setValue((String)newValue);
+				return;
+			case DataPackage.PARAMETER__ATTRIBUTE:
+				setAttribute((SAttribute)newValue);
+				return;
+			case DataPackage.PARAMETER__NAME:
+				setName((String)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case DataPackage.PARAMETER__VALUE:
-                setValue(VALUE_EDEFAULT);
-                return;
-            case DataPackage.PARAMETER__ATTRIBUTE:
-                setAttribute((SAttribute)null);
-                return;
-            case DataPackage.PARAMETER__NAME:
-                setName(NAME_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case DataPackage.PARAMETER__VALUE:
+				setValue(VALUE_EDEFAULT);
+				return;
+			case DataPackage.PARAMETER__ATTRIBUTE:
+				setAttribute((SAttribute)null);
+				return;
+			case DataPackage.PARAMETER__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case DataPackage.PARAMETER__VALUE:
-                return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
-            case DataPackage.PARAMETER__ATTRIBUTE:
-                return attribute != null;
-            case DataPackage.PARAMETER__NAME:
-                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case DataPackage.PARAMETER__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+			case DataPackage.PARAMETER__ATTRIBUTE:
+				return attribute != null;
+			case DataPackage.PARAMETER__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (value: ");
-        result.append(value);
-        result.append(", name: ");
-        result.append(name);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (value: ");
+		result.append(value);
+		result.append(", name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
+	}
 
 } //ParameterImpl

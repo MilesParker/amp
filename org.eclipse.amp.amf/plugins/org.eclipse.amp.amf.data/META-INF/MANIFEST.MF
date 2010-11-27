@@ -12,6 +12,5 @@ Export-Package: org.eclipse.amp.amf.adata,
  org.eclipse.amp.amf.adata.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.amp.amf.abase;visibility:=reexport,
  org.eclipse.amp.amf.acore;visibility:=reexport
 Bundle-ActivationPolicy: lazy

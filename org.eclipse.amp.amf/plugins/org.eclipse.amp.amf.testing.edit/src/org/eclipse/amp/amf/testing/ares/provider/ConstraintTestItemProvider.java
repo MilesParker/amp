@@ -36,115 +36,115 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 public class ConstraintTestItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
     /**
-     * This constructs an instance from a factory and a notifier.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
     public ConstraintTestItemProvider(AdapterFactory adapterFactory) {
-        super(adapterFactory);
-    }
+		super(adapterFactory);
+	}
 
     /**
-     * This returns the property descriptors for the adapted class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
     @Override
     public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-        if (itemPropertyDescriptors == null) {
-            super.getPropertyDescriptors(object);
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-            addConstraintPropertyDescriptor(object);
-            addIssuePropertyDescriptor(object);
-            addActualValuePropertyDescriptor(object);
-            addFailurePropertyDescriptor(object);
-        }
-        return itemPropertyDescriptors;
-    }
+			addConstraintPropertyDescriptor(object);
+			addIssuePropertyDescriptor(object);
+			addActualValuePropertyDescriptor(object);
+			addFailurePropertyDescriptor(object);
+		}
+		return itemPropertyDescriptors;
+	}
 
     /**
-     * This adds a property descriptor for the Constraint feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
+	 * This adds a property descriptor for the Constraint feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
     protected void addConstraintPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_ConstraintTest_constraint_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ConstraintTest_constraint_feature", "_UI_ConstraintTest_type"),
-                 AresPackage.Literals.CONSTRAINT_TEST__CONSTRAINT,
-                 true,
-                 false,
-                 true,
-                 null,
-                 null,
-                 null));
-    }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConstraintTest_constraint_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConstraintTest_constraint_feature", "_UI_ConstraintTest_type"),
+				 AresPackage.Literals.CONSTRAINT_TEST__CONSTRAINT,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
 
     /**
-     * This adds a property descriptor for the Issue feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
+	 * This adds a property descriptor for the Issue feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
     protected void addIssuePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_ConstraintTest_issue_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ConstraintTest_issue_feature", "_UI_ConstraintTest_type"),
-                 AresPackage.Literals.CONSTRAINT_TEST__ISSUE,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-                 null,
-                 null));
-    }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConstraintTest_issue_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConstraintTest_issue_feature", "_UI_ConstraintTest_type"),
+				 AresPackage.Literals.CONSTRAINT_TEST__ISSUE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
     /**
-     * This adds a property descriptor for the Actual Value feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
+	 * This adds a property descriptor for the Actual Value feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
     protected void addActualValuePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_ConstraintTest_actualValue_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ConstraintTest_actualValue_feature", "_UI_ConstraintTest_type"),
-                 AresPackage.Literals.CONSTRAINT_TEST__ACTUAL_VALUE,
-                 true,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
-                 null,
-                 null));
-    }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConstraintTest_actualValue_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConstraintTest_actualValue_feature", "_UI_ConstraintTest_type"),
+				 AresPackage.Literals.CONSTRAINT_TEST__ACTUAL_VALUE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
     /**
-     * This adds a property descriptor for the Failure feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
+	 * This adds a property descriptor for the Failure feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
     protected void addFailurePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-            (createItemPropertyDescriptor
-                (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-                 getResourceLocator(),
-                 getString("_UI_ConstraintTest_failure_feature"),
-                 getString("_UI_PropertyDescriptor_description", "_UI_ConstraintTest_failure_feature", "_UI_ConstraintTest_type"),
-                 AresPackage.Literals.CONSTRAINT_TEST__FAILURE,
-                 false,
-                 false,
-                 false,
-                 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-                 null,
-                 null));
-    }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ConstraintTest_failure_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ConstraintTest_failure_feature", "_UI_ConstraintTest_type"),
+				 AresPackage.Literals.CONSTRAINT_TEST__FAILURE,
+				 false,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
     /**
      * This returns Failure.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -199,37 +199,37 @@ IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, II
      */
     @Override
     public void notifyChanged(Notification notification) {
-        updateChildren(notification);
+		updateChildren(notification);
 
-        switch (notification.getFeatureID(ConstraintTest.class)) {
-            case AresPackage.CONSTRAINT_TEST__ISSUE:
-            case AresPackage.CONSTRAINT_TEST__ACTUAL_VALUE:
-            case AresPackage.CONSTRAINT_TEST__FAILURE:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
-        }
-        super.notifyChanged(notification);
-    }
+		switch (notification.getFeatureID(ConstraintTest.class)) {
+			case AresPackage.CONSTRAINT_TEST__ISSUE:
+			case AresPackage.CONSTRAINT_TEST__ACTUAL_VALUE:
+			case AresPackage.CONSTRAINT_TEST__FAILURE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
+		super.notifyChanged(notification);
+	}
 
     /**
-     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-     * that can be created under this object.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-        super.collectNewChildDescriptors(newChildDescriptors, object);
-    }
+		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
 
     /**
-     * Return the resource locator for this item provider's resources.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
     @Override
     public ResourceLocator getResourceLocator() {
-        return AresEditPlugin.INSTANCE;
-    }
+		return AresEditPlugin.INSTANCE;
+	}
 
 }

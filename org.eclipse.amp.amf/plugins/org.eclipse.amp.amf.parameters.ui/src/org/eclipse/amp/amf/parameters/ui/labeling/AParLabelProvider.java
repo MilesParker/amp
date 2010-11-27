@@ -4,9 +4,12 @@
 package org.eclipse.amp.amf.parameters.ui.labeling;
 
 import org.eclipse.amp.amf.parameters.aPar.Parameter;
+import org.eclipse.amp.amf.parameters.aPar.SingleParameter;
+import org.eclipse.amp.amf.parameters.aPar.SweepLink;
+import org.eclipse.amp.amf.parameters.aPar.SweepParameter;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
-
 import org.metaabm.IID;
 
 import com.google.inject.Inject;
@@ -14,43 +17,77 @@ import com.google.inject.Inject;
 /**
  * Provides labels for a EObjects.
  * 
- * see http://www.eclipse.org/Xtext/documentation/latest/xtext.html#labelProvider
+ * see
+ * http://www.eclipse.org/Xtext/documentation/latest/xtext.html#labelProvider
  */
 public class AParLabelProvider extends DefaultEObjectLabelProvider {
 
-    @Inject
-    public AParLabelProvider(AdapterFactoryLabelProvider delegate) {
-        super(delegate);
-    }
-
-    String text(Parameter parameter) {
-        String text = "";
-        if (parameter.getAttribute() != null) {
-            text += parameter.getAttribute().getLabel();
-        } else {
-            text += "?";
-        }
-        if (parameter.getValue() != null) {
-            text += "=" + text(parameter.getValue());
-        }
-        return text;
-    }
-
-    Object image(Parameter parameter) {
-        if (parameter.getAttribute() instanceof IID) {
-            return parameter.getAttribute().eClass().getName();
-        }
-        return super.image(parameter);
-    }
-    /*
-	//Labels and icons can be computed like this:
-
-	String text(MyModel ele) {
-	  return "my "+ele.getName();
+	@Inject
+	public AParLabelProvider(AdapterFactoryLabelProvider delegate) {
+		super(delegate);
 	}
 
-    String image(MyModel ele) {
-      return "MyModel.gif";
-    }
-     */
+	String text(Parameter param) {
+		String text = "";
+		if (param instanceof SingleParameter) {
+			SingleParameter sp = (SingleParameter) param;
+			if (sp.getAttribute() != null) {
+				text += sp.getAttribute().getLabel();
+			} else {
+				text += "?";
+			}
+			if (sp.getValue() != null) {
+				text += "=" + text(sp.getValue());
+			}
+		} else if (param instanceof SweepParameter) {
+			SweepParameter sp = (SweepParameter) param;
+			if (sp.getAttribute() != null) {
+				text += sp.getAttribute().getLabel();
+			} else {
+				text += "?";
+			}
+			text += " [";
+			if (sp.getStartValue() != null) {
+				text += text(sp.getStartValue());
+			} else {
+				text += "?";
+			}
+			if (sp.getEndValue() != null) {
+				text += text(sp.getEndValue());
+			} else {
+				text += "?";
+			}
+			text += "]";
+		} else if (param instanceof SweepLink) {
+			text += "[";
+			int i = 0;
+			EList<Parameter> params = ((SweepLink) param).getParameters();
+			for (Parameter subParam : params) {
+				text += text(subParam);
+				if (i < params.size() - 1) {
+					text += ", ";
+				}
+			}
+			text += "]";
+		}
+		return text;
+	}
+
+	Object image(Parameter param) {
+		if (param instanceof SingleParameter) {
+			SingleParameter sp = (SingleParameter) param;
+			return sp.getAttribute().eClass().getName();
+		} else if (param instanceof SweepParameter) {
+			SweepParameter sp = (SweepParameter) param;
+			return sp.getAttribute().eClass().getName();
+		}
+		return super.image(param);
+	}
+	/*
+	 * //Labels and icons can be computed like this:
+	 * 
+	 * String text(MyModel ele) { return "my "+ele.getName(); }
+	 * 
+	 * String image(MyModel ele) { return "MyModel.gif"; }
+	 */
 }

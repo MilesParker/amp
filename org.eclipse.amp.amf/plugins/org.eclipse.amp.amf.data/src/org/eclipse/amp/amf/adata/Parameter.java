@@ -6,11 +6,7 @@
  */
 package org.eclipse.amp.amf.adata;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.amp.amf.abase.aBase.Value;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.metaabm.SAttribute;
 
 /**
@@ -33,81 +29,81 @@ import org.metaabm.SAttribute;
  */
 public interface Parameter extends EObject {
     /**
-     * Returns the value of the '<em><b>Attribute</b></em>' reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Attribute</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Attribute</em>' reference.
-     * @see #setAttribute(SAttribute)
-     * @see org.eclipse.amp.amf.adata.DataPackage#getParameter_Attribute()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Attribute</em>' reference.
+	 * @see #setAttribute(SAttribute)
+	 * @see org.eclipse.amp.amf.adata.DataPackage#getParameter_Attribute()
+	 * @model
+	 * @generated
+	 */
     SAttribute getAttribute();
 
     /**
-     * Sets the value of the '{@link org.eclipse.amp.amf.adata.Parameter#getAttribute <em>Attribute</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.amp.amf.adata.Parameter#getAttribute <em>Attribute</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Attribute</em>' reference.
-     * @see #getAttribute()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Attribute</em>' reference.
+	 * @see #getAttribute()
+	 * @generated
+	 */
     void setAttribute(SAttribute value);
 
     /**
-     * Returns the value of the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Name</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Name</em>' attribute.
-     * @see #setName(String)
-     * @see org.eclipse.amp.amf.adata.DataPackage#getParameter_Name()
-     * @model required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see org.eclipse.amp.amf.adata.DataPackage#getParameter_Name()
+	 * @model required="true"
+	 * @generated
+	 */
     String getName();
 
     /**
-     * Sets the value of the '{@link org.eclipse.amp.amf.adata.Parameter#getName <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.amp.amf.adata.Parameter#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Name</em>' attribute.
-     * @see #getName()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
     void setName(String value);
 
     /**
-     * Returns the value of the '<em><b>Value</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Value</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Value</em>' attribute.
-     * @see #setValue(String)
-     * @see org.eclipse.amp.amf.adata.DataPackage#getParameter_Value()
-     * @model required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Value</em>' attribute.
+	 * @see #setValue(String)
+	 * @see org.eclipse.amp.amf.adata.DataPackage#getParameter_Value()
+	 * @model required="true"
+	 * @generated
+	 */
     String getValue();
 
     /**
-     * Sets the value of the '{@link org.eclipse.amp.amf.adata.Parameter#getValue <em>Value</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.amp.amf.adata.Parameter#getValue <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Value</em>' attribute.
-     * @see #getValue()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Value</em>' attribute.
+	 * @see #getValue()
+	 * @generated
+	 */
     void setValue(String value);
 
 } // Parameter

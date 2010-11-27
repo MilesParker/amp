@@ -34,163 +34,163 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class ConstraintTestImpl extends EObjectImpl implements ConstraintTest {
     /**
-     * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getConstraint() <em>Constraint</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getConstraint()
-     * @generated
-     * @ordered
-     */
+	 * @see #getConstraint()
+	 * @generated
+	 * @ordered
+	 */
     protected Constraint constraint;
 
     /**
-     * The default value of the '{@link #getIssue() <em>Issue</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getIssue() <em>Issue</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getIssue()
-     * @generated
-     * @ordered
-     */
+	 * @see #getIssue()
+	 * @generated
+	 * @ordered
+	 */
     protected static final Issue ISSUE_EDEFAULT = Issue.BELOW_RANGE;
 
     /**
-     * The cached value of the '{@link #getIssue() <em>Issue</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getIssue() <em>Issue</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getIssue()
-     * @generated
-     * @ordered
-     */
+	 * @see #getIssue()
+	 * @generated
+	 * @ordered
+	 */
     protected Issue issue = ISSUE_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getActualValue() <em>Actual Value</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getActualValue() <em>Actual Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getActualValue()
-     * @generated
-     * @ordered
-     */
+	 * @see #getActualValue()
+	 * @generated
+	 * @ordered
+	 */
     protected static final double ACTUAL_VALUE_EDEFAULT = 0.0;
 
     /**
-     * The cached value of the '{@link #getActualValue() <em>Actual Value</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getActualValue() <em>Actual Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getActualValue()
-     * @generated
-     * @ordered
-     */
+	 * @see #getActualValue()
+	 * @generated
+	 * @ordered
+	 */
     protected double actualValue = ACTUAL_VALUE_EDEFAULT;
 
     /**
-     * The default value of the '{@link #isFailure() <em>Failure</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #isFailure() <em>Failure</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #isFailure()
-     * @generated
-     * @ordered
-     */
+	 * @see #isFailure()
+	 * @generated
+	 * @ordered
+	 */
     protected static final boolean FAILURE_EDEFAULT = false;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected ConstraintTestImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return AresPackage.Literals.CONSTRAINT_TEST;
-    }
+		return AresPackage.Literals.CONSTRAINT_TEST;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Constraint getConstraint() {
-        if (constraint != null && constraint.eIsProxy()) {
-            InternalEObject oldConstraint = (InternalEObject)constraint;
-            constraint = (Constraint)eResolveProxy(oldConstraint);
-            if (constraint != oldConstraint) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, AresPackage.CONSTRAINT_TEST__CONSTRAINT, oldConstraint, constraint));
-            }
-        }
-        return constraint;
-    }
+		if (constraint != null && constraint.eIsProxy()) {
+			InternalEObject oldConstraint = (InternalEObject)constraint;
+			constraint = (Constraint)eResolveProxy(oldConstraint);
+			if (constraint != oldConstraint) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, AresPackage.CONSTRAINT_TEST__CONSTRAINT, oldConstraint, constraint));
+			}
+		}
+		return constraint;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Constraint basicGetConstraint() {
-        return constraint;
-    }
+		return constraint;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setConstraint(Constraint newConstraint) {
-        Constraint oldConstraint = constraint;
-        constraint = newConstraint;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.CONSTRAINT_TEST__CONSTRAINT, oldConstraint, constraint));
-    }
+		Constraint oldConstraint = constraint;
+		constraint = newConstraint;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.CONSTRAINT_TEST__CONSTRAINT, oldConstraint, constraint));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Issue getIssue() {
-        return issue;
-    }
+		return issue;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setIssue(Issue newIssue) {
-        Issue oldIssue = issue;
-        issue = newIssue == null ? ISSUE_EDEFAULT : newIssue;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.CONSTRAINT_TEST__ISSUE, oldIssue, issue));
-    }
+		Issue oldIssue = issue;
+		issue = newIssue == null ? ISSUE_EDEFAULT : newIssue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.CONSTRAINT_TEST__ISSUE, oldIssue, issue));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public double getActualValue() {
-        return actualValue;
-    }
+		return actualValue;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setActualValue(double newActualValue) {
-        double oldActualValue = actualValue;
-        actualValue = newActualValue;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.CONSTRAINT_TEST__ACTUAL_VALUE, oldActualValue, actualValue));
-    }
+		double oldActualValue = actualValue;
+		actualValue = newActualValue;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.CONSTRAINT_TEST__ACTUAL_VALUE, oldActualValue, actualValue));
+	}
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -202,104 +202,104 @@ public class ConstraintTestImpl extends EObjectImpl implements ConstraintTest {
     }
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case AresPackage.CONSTRAINT_TEST__CONSTRAINT:
-                if (resolve) return getConstraint();
-                return basicGetConstraint();
-            case AresPackage.CONSTRAINT_TEST__ISSUE:
-                return getIssue();
-            case AresPackage.CONSTRAINT_TEST__ACTUAL_VALUE:
-                return getActualValue();
-            case AresPackage.CONSTRAINT_TEST__FAILURE:
-                return isFailure();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case AresPackage.CONSTRAINT_TEST__CONSTRAINT:
+				if (resolve) return getConstraint();
+				return basicGetConstraint();
+			case AresPackage.CONSTRAINT_TEST__ISSUE:
+				return getIssue();
+			case AresPackage.CONSTRAINT_TEST__ACTUAL_VALUE:
+				return getActualValue();
+			case AresPackage.CONSTRAINT_TEST__FAILURE:
+				return isFailure();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case AresPackage.CONSTRAINT_TEST__CONSTRAINT:
-                setConstraint((Constraint)newValue);
-                return;
-            case AresPackage.CONSTRAINT_TEST__ISSUE:
-                setIssue((Issue)newValue);
-                return;
-            case AresPackage.CONSTRAINT_TEST__ACTUAL_VALUE:
-                setActualValue((Double)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case AresPackage.CONSTRAINT_TEST__CONSTRAINT:
+				setConstraint((Constraint)newValue);
+				return;
+			case AresPackage.CONSTRAINT_TEST__ISSUE:
+				setIssue((Issue)newValue);
+				return;
+			case AresPackage.CONSTRAINT_TEST__ACTUAL_VALUE:
+				setActualValue((Double)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case AresPackage.CONSTRAINT_TEST__CONSTRAINT:
-                setConstraint((Constraint)null);
-                return;
-            case AresPackage.CONSTRAINT_TEST__ISSUE:
-                setIssue(ISSUE_EDEFAULT);
-                return;
-            case AresPackage.CONSTRAINT_TEST__ACTUAL_VALUE:
-                setActualValue(ACTUAL_VALUE_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case AresPackage.CONSTRAINT_TEST__CONSTRAINT:
+				setConstraint((Constraint)null);
+				return;
+			case AresPackage.CONSTRAINT_TEST__ISSUE:
+				setIssue(ISSUE_EDEFAULT);
+				return;
+			case AresPackage.CONSTRAINT_TEST__ACTUAL_VALUE:
+				setActualValue(ACTUAL_VALUE_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case AresPackage.CONSTRAINT_TEST__CONSTRAINT:
-                return constraint != null;
-            case AresPackage.CONSTRAINT_TEST__ISSUE:
-                return issue != ISSUE_EDEFAULT;
-            case AresPackage.CONSTRAINT_TEST__ACTUAL_VALUE:
-                return actualValue != ACTUAL_VALUE_EDEFAULT;
-            case AresPackage.CONSTRAINT_TEST__FAILURE:
-                return isFailure() != FAILURE_EDEFAULT;
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case AresPackage.CONSTRAINT_TEST__CONSTRAINT:
+				return constraint != null;
+			case AresPackage.CONSTRAINT_TEST__ISSUE:
+				return issue != ISSUE_EDEFAULT;
+			case AresPackage.CONSTRAINT_TEST__ACTUAL_VALUE:
+				return actualValue != ACTUAL_VALUE_EDEFAULT;
+			case AresPackage.CONSTRAINT_TEST__FAILURE:
+				return isFailure() != FAILURE_EDEFAULT;
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (issue: ");
-        result.append(issue);
-        result.append(", actualValue: ");
-        result.append(actualValue);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (issue: ");
+		result.append(issue);
+		result.append(", actualValue: ");
+		result.append(actualValue);
+		result.append(')');
+		return result.toString();
+	}
 
 } //ConstraintTestImpl

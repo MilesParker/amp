@@ -23,240 +23,240 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum Issue implements Enumerator {
     /**
-     * The '<em><b>Below Range</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Below Range</b></em>' literal object.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #BELOW_RANGE_VALUE
-     * @generated
-     * @ordered
-     */
+	 * @see #BELOW_RANGE_VALUE
+	 * @generated
+	 * @ordered
+	 */
     BELOW_RANGE(10, "BelowRange", "BELOW_RANGE"),
 
     /**
-     * The '<em><b>Above Range</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Above Range</b></em>' literal object.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #ABOVE_RANGE_VALUE
-     * @generated
-     * @ordered
-     */
+	 * @see #ABOVE_RANGE_VALUE
+	 * @generated
+	 * @ordered
+	 */
     ABOVE_RANGE(15, "AboveRange", "ABOVE_RANGE"), /**
-     * The '<em><b>None</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>None</b></em>' literal object.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #NONE_VALUE
-     * @generated
-     * @ordered
-     */
+	 * @see #NONE_VALUE
+	 * @generated
+	 * @ordered
+	 */
     NONE(1, "None", "NONE"), /**
-     * The '<em><b>Not Found</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Not Found</b></em>' literal object.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #NOT_FOUND_VALUE
-     * @generated
-     * @ordered
-     */
+	 * @see #NOT_FOUND_VALUE
+	 * @generated
+	 * @ordered
+	 */
     NOT_FOUND(-1, "NotFound", "NOT_FOUND");
 
     /**
-     * The '<em><b>Below Range</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Below Range</b></em>' literal value.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>Below Range</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @see #BELOW_RANGE
-     * @model name="BelowRange" literal="BELOW_RANGE"
-     * @generated
-     * @ordered
-     */
+	 * @see #BELOW_RANGE
+	 * @model name="BelowRange" literal="BELOW_RANGE"
+	 * @generated
+	 * @ordered
+	 */
     public static final int BELOW_RANGE_VALUE = 10;
 
     /**
-     * The '<em><b>Above Range</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Above Range</b></em>' literal value.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>Above Range</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @see #ABOVE_RANGE
-     * @model name="AboveRange" literal="ABOVE_RANGE"
-     * @generated
-     * @ordered
-     */
+	 * @see #ABOVE_RANGE
+	 * @model name="AboveRange" literal="ABOVE_RANGE"
+	 * @generated
+	 * @ordered
+	 */
     public static final int ABOVE_RANGE_VALUE = 15;
 
     /**
-     * The '<em><b>None</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>None</b></em>' literal value.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>None</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @see #NONE
-     * @model name="None" literal="NONE"
-     * @generated
-     * @ordered
-     */
+	 * @see #NONE
+	 * @model name="None" literal="NONE"
+	 * @generated
+	 * @ordered
+	 */
     public static final int NONE_VALUE = 1;
 
     /**
-     * The '<em><b>Not Found</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Not Found</b></em>' literal value.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>Not Found</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @see #NOT_FOUND
-     * @model name="NotFound" literal="NOT_FOUND"
-     * @generated
-     * @ordered
-     */
+	 * @see #NOT_FOUND
+	 * @model name="NotFound" literal="NOT_FOUND"
+	 * @generated
+	 * @ordered
+	 */
     public static final int NOT_FOUND_VALUE = -1;
 
     /**
-     * An array of all the '<em><b>Issue</b></em>' enumerators.
-     * <!-- begin-user-doc -->
+	 * An array of all the '<em><b>Issue</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private static final Issue[] VALUES_ARRAY =
         new Issue[] {
-            BELOW_RANGE,
-            ABOVE_RANGE,
-            NONE,
-            NOT_FOUND,
-        };
+			BELOW_RANGE,
+			ABOVE_RANGE,
+			NONE,
+			NOT_FOUND,
+		};
 
     /**
-     * A public read-only list of all the '<em><b>Issue</b></em>' enumerators.
-     * <!-- begin-user-doc -->
+	 * A public read-only list of all the '<em><b>Issue</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static final List<Issue> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
     /**
-     * Returns the '<em><b>Issue</b></em>' literal with the specified literal value.
-     * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Issue</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static Issue get(String literal) {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-            Issue result = VALUES_ARRAY[i];
-            if (result.toString().equals(literal)) {
-                return result;
-            }
-        }
-        return null;
-    }
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			Issue result = VALUES_ARRAY[i];
+			if (result.toString().equals(literal)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
     /**
-     * Returns the '<em><b>Issue</b></em>' literal with the specified name.
-     * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Issue</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static Issue getByName(String name) {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-            Issue result = VALUES_ARRAY[i];
-            if (result.getName().equals(name)) {
-                return result;
-            }
-        }
-        return null;
-    }
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			Issue result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
     /**
-     * Returns the '<em><b>Issue</b></em>' literal with the specified integer value.
-     * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Issue</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static Issue get(int value) {
-        switch (value) {
-            case BELOW_RANGE_VALUE: return BELOW_RANGE;
-            case ABOVE_RANGE_VALUE: return ABOVE_RANGE;
-            case NONE_VALUE: return NONE;
-            case NOT_FOUND_VALUE: return NOT_FOUND;
-        }
-        return null;
-    }
+		switch (value) {
+			case BELOW_RANGE_VALUE: return BELOW_RANGE;
+			case ABOVE_RANGE_VALUE: return ABOVE_RANGE;
+			case NONE_VALUE: return NONE;
+			case NOT_FOUND_VALUE: return NOT_FOUND;
+		}
+		return null;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private final int value;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private final String name;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private final String literal;
 
     /**
-     * Only this class can construct instances.
-     * <!-- begin-user-doc -->
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private Issue(int value, String name, String literal) {
-        this.value = value;
-        this.name = name;
-        this.literal = literal;
-    }
+		this.value = value;
+		this.name = name;
+		this.literal = literal;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public int getValue() {
-      return value;
-    }
+	  return value;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getName() {
-      return name;
-    }
+	  return name;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getLiteral() {
-      return literal;
-    }
+	  return literal;
+	}
 
     /**
-     * Returns the literal value of the enumerator, which is its string representation.
-     * <!-- begin-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        return literal;
-    }
+		return literal;
+	}
     
 } //Issue

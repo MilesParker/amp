@@ -12,4 +12,7 @@ RULE_ML_COMMENT=10
 '='=18
 'false'=15
 'model'=16
+'['=19
+','=20
 'incorporates'=17
+']'=21

@@ -23,242 +23,242 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum ResultType implements Enumerator {
     /**
-     * The '<em><b>Incomplete</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Incomplete</b></em>' literal object.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #INCOMPLETE_VALUE
-     * @generated
-     * @ordered
-     */
+	 * @see #INCOMPLETE_VALUE
+	 * @generated
+	 * @ordered
+	 */
     INCOMPLETE(1, "Incomplete", "INCOMPLETE"),
 
     /**
-     * The '<em><b>Success</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Success</b></em>' literal object.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #SUCCESS_VALUE
-     * @generated
-     * @ordered
-     */
+	 * @see #SUCCESS_VALUE
+	 * @generated
+	 * @ordered
+	 */
     SUCCESS(2, "Success", "SUCCESS"),
 
     /**
-     * The '<em><b>Failure</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Failure</b></em>' literal object.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #FAILURE_VALUE
-     * @generated
-     * @ordered
-     */
+	 * @see #FAILURE_VALUE
+	 * @generated
+	 * @ordered
+	 */
     FAILURE(3, "Failure", "FAILURE"), /**
-     * The '<em><b>Error</b></em>' literal object.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Error</b></em>' literal object.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #ERROR_VALUE
-     * @generated
-     * @ordered
-     */
+	 * @see #ERROR_VALUE
+	 * @generated
+	 * @ordered
+	 */
     ERROR(-1, "Error", "ERROR");
 
     /**
-     * The '<em><b>Incomplete</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Incomplete</b></em>' literal value.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>Incomplete</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @see #INCOMPLETE
-     * @model name="Incomplete" literal="INCOMPLETE"
-     * @generated
-     * @ordered
-     */
+	 * @see #INCOMPLETE
+	 * @model name="Incomplete" literal="INCOMPLETE"
+	 * @generated
+	 * @ordered
+	 */
     public static final int INCOMPLETE_VALUE = 1;
 
     /**
-     * The '<em><b>Success</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Success</b></em>' literal value.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>Success</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @see #SUCCESS
-     * @model name="Success" literal="SUCCESS"
-     * @generated
-     * @ordered
-     */
+	 * @see #SUCCESS
+	 * @model name="Success" literal="SUCCESS"
+	 * @generated
+	 * @ordered
+	 */
     public static final int SUCCESS_VALUE = 2;
 
     /**
-     * The '<em><b>Failure</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Failure</b></em>' literal value.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>Failure</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @see #FAILURE
-     * @model name="Failure" literal="FAILURE"
-     * @generated
-     * @ordered
-     */
+	 * @see #FAILURE
+	 * @model name="Failure" literal="FAILURE"
+	 * @generated
+	 * @ordered
+	 */
     public static final int FAILURE_VALUE = 3;
 
     /**
-     * The '<em><b>Error</b></em>' literal value.
-     * <!-- begin-user-doc -->
+	 * The '<em><b>Error</b></em>' literal value.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of '<em><b>Error</b></em>' literal object isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @see #ERROR
-     * @model name="Error" literal="ERROR"
-     * @generated
-     * @ordered
-     */
+	 * @see #ERROR
+	 * @model name="Error" literal="ERROR"
+	 * @generated
+	 * @ordered
+	 */
     public static final int ERROR_VALUE = -1;
 
     /**
-     * An array of all the '<em><b>Result Type</b></em>' enumerators.
-     * <!-- begin-user-doc -->
+	 * An array of all the '<em><b>Result Type</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private static final ResultType[] VALUES_ARRAY =
         new ResultType[] {
-            INCOMPLETE,
-            SUCCESS,
-            FAILURE,
-            ERROR,
-        };
+			INCOMPLETE,
+			SUCCESS,
+			FAILURE,
+			ERROR,
+		};
 
     /**
-     * A public read-only list of all the '<em><b>Result Type</b></em>' enumerators.
-     * <!-- begin-user-doc -->
+	 * A public read-only list of all the '<em><b>Result Type</b></em>' enumerators.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static final List<ResultType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
     /**
-     * Returns the '<em><b>Result Type</b></em>' literal with the specified literal value.
-     * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Result Type</b></em>' literal with the specified literal value.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static ResultType get(String literal) {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-            ResultType result = VALUES_ARRAY[i];
-            if (result.toString().equals(literal)) {
-                return result;
-            }
-        }
-        return null;
-    }
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			ResultType result = VALUES_ARRAY[i];
+			if (result.toString().equals(literal)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
     /**
-     * Returns the '<em><b>Result Type</b></em>' literal with the specified name.
-     * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Result Type</b></em>' literal with the specified name.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static ResultType getByName(String name) {
-        for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-            ResultType result = VALUES_ARRAY[i];
-            if (result.getName().equals(name)) {
-                return result;
-            }
-        }
-        return null;
-    }
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+			ResultType result = VALUES_ARRAY[i];
+			if (result.getName().equals(name)) {
+				return result;
+			}
+		}
+		return null;
+	}
 
     /**
-     * Returns the '<em><b>Result Type</b></em>' literal with the specified integer value.
-     * <!-- begin-user-doc -->
+	 * Returns the '<em><b>Result Type</b></em>' literal with the specified integer value.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static ResultType get(int value) {
-        switch (value) {
-            case INCOMPLETE_VALUE: return INCOMPLETE;
-            case SUCCESS_VALUE: return SUCCESS;
-            case FAILURE_VALUE: return FAILURE;
-            case ERROR_VALUE: return ERROR;
-        }
-        return null;
-    }
+		switch (value) {
+			case INCOMPLETE_VALUE: return INCOMPLETE;
+			case SUCCESS_VALUE: return SUCCESS;
+			case FAILURE_VALUE: return FAILURE;
+			case ERROR_VALUE: return ERROR;
+		}
+		return null;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private final int value;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private final String name;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private final String literal;
 
     /**
-     * Only this class can construct instances.
-     * <!-- begin-user-doc -->
+	 * Only this class can construct instances.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private ResultType(int value, String name, String literal) {
-        this.value = value;
-        this.name = name;
-        this.literal = literal;
-    }
+		this.value = value;
+		this.name = name;
+		this.literal = literal;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public int getValue() {
-      return value;
-    }
+	  return value;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getName() {
-      return name;
-    }
+	  return name;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getLiteral() {
-      return literal;
-    }
+	  return literal;
+	}
 
     /**
-     * Returns the literal value of the enumerator, which is its string representation.
-     * <!-- begin-user-doc -->
+	 * Returns the literal value of the enumerator, which is its string representation.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        return literal;
-    }
+		return literal;
+	}
     
 } //ResultType

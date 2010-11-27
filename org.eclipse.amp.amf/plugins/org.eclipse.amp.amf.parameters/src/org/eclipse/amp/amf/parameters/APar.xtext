@@ -19,4 +19,14 @@ Incorporates :
 	importURI=STRING;
 
 Parameter :
+	SingleParameter | SweepParameter | SweepLink;
+
+SingleParameter :
 	attribute=[SAttribute|ID] "=" value=Value;
+
+SweepParameter :
+	attribute=[SAttribute|ID] "[" startValue=Value "," endValue=Value "," increment=Value "]";
+
+SweepLink :
+	"[" (parameters+=Parameter)* "]";
+	

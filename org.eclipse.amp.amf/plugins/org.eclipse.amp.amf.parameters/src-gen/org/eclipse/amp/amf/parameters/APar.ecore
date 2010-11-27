@@ -18,9 +18,23 @@
   <eClassifiers xsi:type="ecore:EClass" name="Incorporates">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="importURI" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Parameter">
+  <eClassifiers xsi:type="ecore:EClass" name="Parameter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SingleParameter" eSuperTypes="#//Parameter">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="ecore:EClass ../../../../../../../org.eclipse.amp.amf.acore/src/model/metaabm.ecore#//SAttribute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass ../../../../../../../org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//Value"
         containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SweepParameter" eSuperTypes="#//Parameter">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="ecore:EClass ../../../../../../../org.eclipse.amp.amf.acore/src/model/metaabm.ecore#//SAttribute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startValue" eType="ecore:EClass ../../../../../../../org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//Value"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endValue" eType="ecore:EClass ../../../../../../../org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//Value"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="increment" eType="ecore:EClass ../../../../../../../org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//Value"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SweepLink" eSuperTypes="#//Parameter">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//Parameter" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

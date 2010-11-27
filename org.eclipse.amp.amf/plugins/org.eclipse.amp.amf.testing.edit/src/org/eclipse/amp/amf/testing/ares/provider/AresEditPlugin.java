@@ -6,6 +6,7 @@
  */
 package org.eclipse.amp.amf.testing.ares.provider;
 
+import org.eclipse.amp.amf.abase.aBase.provider.ABaseEditPlugin;
 import org.eclipse.amp.amf.parameters.aPar.provider.AParEditPlugin;
 import org.eclipse.amp.amf.testing.aTest.provider.ATestEditPlugin;
 import org.eclipse.emf.common.EMFPlugin;
@@ -20,79 +21,80 @@ import org.metaabm.provider.MetaABMEditPlugin;
  */
 public final class AresEditPlugin extends EMFPlugin {
     /**
-     * Keep track of the singleton.
-     * <!-- begin-user-doc -->
+	 * Keep track of the singleton.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static final AresEditPlugin INSTANCE = new AresEditPlugin();
 
     /**
-     * Keep track of the singleton.
-     * <!-- begin-user-doc -->
+	 * Keep track of the singleton.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     private static Implementation plugin;
 
     /**
-     * Create the instance.
-     * <!-- begin-user-doc -->
+	 * Create the instance.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public AresEditPlugin() {
-        super
-          (new ResourceLocator [] {
-             AParEditPlugin.INSTANCE,
-             ATestEditPlugin.INSTANCE,
-             MetaABMEditPlugin.INSTANCE,
-           });
-    }
+		super
+		  (new ResourceLocator [] {
+		     AParEditPlugin.INSTANCE,
+		     ATestEditPlugin.INSTANCE,
+		     MetaABMEditPlugin.INSTANCE,
+		     ABaseEditPlugin.INSTANCE,
+		   });
+	}
 
     /**
-     * Returns the singleton instance of the Eclipse plugin.
-     * <!-- begin-user-doc -->
+	 * Returns the singleton instance of the Eclipse plugin.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the singleton instance.
-     * @generated
-     */
+	 * @return the singleton instance.
+	 * @generated
+	 */
     @Override
     public ResourceLocator getPluginResourceLocator() {
-        return plugin;
-    }
+		return plugin;
+	}
 
     /**
-     * Returns the singleton instance of the Eclipse plugin.
-     * <!-- begin-user-doc -->
+	 * Returns the singleton instance of the Eclipse plugin.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the singleton instance.
-     * @generated
-     */
+	 * @return the singleton instance.
+	 * @generated
+	 */
     public static Implementation getPlugin() {
-        return plugin;
-    }
+		return plugin;
+	}
 
     /**
-     * The actual implementation of the Eclipse <b>Plugin</b>.
-     * <!-- begin-user-doc -->
+	 * The actual implementation of the Eclipse <b>Plugin</b>.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static class Implementation extends EclipsePlugin {
         /**
-         * Creates an instance.
-         * <!-- begin-user-doc -->
+		 * Creates an instance.
+		 * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @generated
-         */
+		 * @generated
+		 */
         public Implementation() {
-            super();
+			super();
 
-            // Remember the static instance.
-            //
-            plugin = this;
-        }
+			// Remember the static instance.
+			//
+			plugin = this;
+		}
     }
 
 }

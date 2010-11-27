@@ -43,6 +43,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.BinaryResourceImpl;
+import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ui.statushandlers.StatusManager;
 
@@ -64,225 +66,258 @@ import org.metaabm.SStateValue;
  */
 public class EMFDataOutputView extends DataView {
 
-    private static final long serialVersionUID = 1L;
-    private ResourceSet resourceSet;
+	private static final long serialVersionUID = 1L;
+	private ResourceSet resourceSet;
 
-    private Catalog catalog;
-    private Run currentRun;
+	private Catalog catalog;
+	private Run currentRun;
 
-    Map<DataSeries, Measurement> measureForSeries = new HashMap<DataSeries, Measurement>();
-    private URI dataFileURI;
-    private Resource dataResource;
+	Map<DataSeries, Measurement> measureForSeries = new HashMap<DataSeries, Measurement>();
+	private URI dataFileURI;
+	private Resource dataResource;
 
-    public final static IPath RESULTS_FOLDER = new Path("output");
-    private final SContext model;
+	public final static IPath RESULTS_FOLDER = new Path("output");
+	private final SContext model;
 
-    public EMFDataOutputView(IResource resource, SContext model) {
-        super();
-        this.model = model;
+	public EMFDataOutputView(IResource resource, SContext model) {
+		super();
+		this.model = model;
 
-        IProject project = resource.getProject();
-        IPath projectPath = RESULTS_FOLDER.append(
-                                                  resource.getProjectRelativePath().removeFirstSegments(1)
-                                                  .removeLastSegments(1)).append(
-                                                                                 getFileName(resource)
-                                                                                 + ".adata");
+		IProject project = resource.getProject();
+		IPath projectPath = RESULTS_FOLDER.append(
+				resource.getProjectRelativePath().removeFirstSegments(1)
+						.removeLastSegments(1)).append(
+				getFileName(resource) + ".adata");
 
-        dataFileURI = URI.createPlatformResourceURI(project.getName() + "/" + projectPath, true);
-    }
+		dataFileURI = URI.createPlatformResourceURI(project.getName() + "/"
+				+ projectPath, true);
+	}
 
-    private String getFileName(IResource resource) {
-        String name = ((IFile) resource).getProjectRelativePath().removeFileExtension().lastSegment();
-        // name += DateFormatUtils.format(System.currentTimeMillis(), "MM-dd-yy_HH-mm-S");
-        return name;
-    }
+	private String getFileName(IResource resource) {
+		String name = ((IFile) resource).getProjectRelativePath()
+				.removeFileExtension().lastSegment();
+		// name += DateFormatUtils.format(System.currentTimeMillis(),
+		// "MM-dd-yy_HH-mm-S");
+		return name;
+	}
 
-    /**
-     * @param scapeEvent
-     * @throws TooManyListenersException
-     * @see org.ascape.view.nonvis.DataView#scapeAdded(org.ascape.model.event.ScapeEvent)
-     */
-    public void scapeAdded(ScapeEvent scapeEvent) throws TooManyListenersException {
-        super.scapeAdded(scapeEvent);
-        getDataSelection().selectAll();
-        resourceSet = new ResourceSetImpl();
+	/**
+	 * @param scapeEvent
+	 * @throws TooManyListenersException
+	 * @see org.ascape.view.nonvis.DataView#scapeAdded(org.ascape.model.event.ScapeEvent)
+	 */
+	public void scapeAdded(ScapeEvent scapeEvent)
+			throws TooManyListenersException {
+		super.scapeAdded(scapeEvent);
+		getDataSelection().selectAll();
 
-        // resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
-        // resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
-        // resourceSet.getLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.FALSE);
-        boolean exists = resourceSet.getURIConverter().exists(dataFileURI, null);
-        if (exists) {
-            dataResource = resourceSet.getResource(dataFileURI, true);
-            catalog = (Catalog) dataResource.getContents().get(0);
-        } else {
-            dataResource = resourceSet.createResource(dataFileURI);
-            catalog = DataFactoryImpl.eINSTANCE.createCatalog();
-            dataResource.getContents().add(catalog);
-        }
+		Resource.Factory binResourceFactory = new Resource.Factory() {
+			public Resource createResource(URI uri) {
+				return new BinaryResourceImpl(uri);
+			}
 
-        saveResults();
-    }
+		};
+		resourceSet = new ResourceSetImpl();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap()
+				.put("adata", binResourceFactory);
+		// resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT,
+		// Boolean.TRUE);
+		// resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION,
+		// Boolean.TRUE);
+		// resourceSet.getLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS,
+		// Boolean.FALSE);
+		boolean exists = resourceSet.getURIConverter()
+				.exists(dataFileURI, null);
+		if (exists) {
+			dataResource = resourceSet.getResource(dataFileURI, true);
+			catalog = (Catalog) dataResource.getContents().get(0);
+		} else {
+			dataResource = resourceSet.createResource(dataFileURI);
+			catalog = DataFactoryImpl.eINSTANCE.createCatalog();
+			dataResource.getContents().add(catalog);
+		}
 
-    /**
-     * @param scapeEvent
-     * @see org.ascape.model.event.DefaultScapeListener#scapeStarted(org.ascape.model.event.ScapeEvent)
-     */
-    public void scapeStarted(ScapeEvent scapeEvent) {
-        currentRun = DataFactoryImpl.eINSTANCE.createRun();
-        currentRun.setStarted(new Date());
+		saveResults();
+	}
 
-        catalog.getRuns().add(currentRun);
+	/**
+	 * @param scapeEvent
+	 * @see org.ascape.model.event.DefaultScapeListener#scapeStarted(org.ascape.model.event.ScapeEvent)
+	 */
+	public void scapeStarted(ScapeEvent scapeEvent) {
+		currentRun = DataFactoryImpl.eINSTANCE.createRun();
+		currentRun.setStarted(new Date());
 
-        currentRun.setModel(model);
-        currentRun.setName(getScape().getName());
+		catalog.getRuns().add(currentRun);
 
-        ParameterSet createParameterSet = DataFactoryImpl.eINSTANCE.createParameterSet();
-        currentRun.getParameterSets().add(createParameterSet);
+		currentRun.setModel(model);
+		currentRun.setName(getScape().getName());
 
-        // addParameter(createParameterSet, "runCount", new Integer(1));
-        // addParameter(createParameterSet, "startPeriod", new Integer(scape.getStartPeriod()));
-        // addParameter(createParameterSet, "stopPeriod", new Integer(scape.getPeriod()));
-        // addParameter(createParameterSet, "randomSeed", new Long(scape.getRandomSeed()));
+		ParameterSet createParameterSet = DataFactoryImpl.eINSTANCE
+				.createParameterSet();
+		currentRun.getParameterSets().add(createParameterSet);
 
-        List accessors = scape.retrieveAllAccessorsOrdered();
-        for (Iterator propertyAccessorIt = accessors.iterator(); propertyAccessorIt.hasNext();) {
-            PropertyAccessor accessor = (PropertyAccessor) propertyAccessorIt.next();
-            addParameter(createParameterSet, accessor.getName(), accessor.getValue());
-        }
+		// addParameter(createParameterSet, "runCount", new Integer(1));
+		// addParameter(createParameterSet, "startPeriod", new
+		// Integer(scape.getStartPeriod()));
+		// addParameter(createParameterSet, "stopPeriod", new
+		// Integer(scape.getPeriod()));
+		// addParameter(createParameterSet, "randomSeed", new
+		// Long(scape.getRandomSeed()));
 
-        for (int i = 0; i < dataSelection.getSelectionSize(); i++) {
-            DataSeries selectedSeries = dataSelection.getSelectedSeries(i);
-            Measurement measure = DataFactoryImpl.eINSTANCE.createMeasurement();
-            String measureName = selectedSeries.getDataPoint().getName();
-            IValue valueForName = getValueForName(measureName);
-            measure.setValue(valueForName);
-            measure.setName(measureName);
+		List accessors = scape.retrieveAllAccessorsOrdered();
+		for (Iterator propertyAccessorIt = accessors.iterator(); propertyAccessorIt
+				.hasNext();) {
+			PropertyAccessor accessor = (PropertyAccessor) propertyAccessorIt
+					.next();
+			addParameter(createParameterSet, accessor.getName(),
+					accessor.getValue());
+		}
+		
+		measureForSeries = new HashMap<DataSeries, Measurement>();
+		for (int i = 0; i < dataSelection.getSelectionSize(); i++) {
+			DataSeries selectedSeries = dataSelection.getSelectedSeries(i);
+			Measurement measure = DataFactoryImpl.eINSTANCE.createMeasurement();
+			String measureName = selectedSeries.getDataPoint().getName();
+			IValue valueForName = getValueForName(measureName);
+			measure.setValue(valueForName);
+			measure.setName(measureName);
 
-            if (selectedSeries.getMeasureName() == "Count") {
-                measure.setType(ScaleType.COUNT);
-            } else if (selectedSeries.getMeasureName() == "Sum") {
-                measure.setType(ScaleType.SUM);
-            } else if (selectedSeries.getMeasureName() == "Average") {
-                measure.setType(ScaleType.AVERAGE);
-            } else if (selectedSeries.getMeasureName() == "Minimum") {
-                measure.setType(ScaleType.MINIMUM);
-            } else if (selectedSeries.getMeasureName() == "Maximum") {
-                measure.setType(ScaleType.MAXIMUM);
-            } else if (selectedSeries.getMeasureName() == "Standard Deviation") {
-                measure.setType(ScaleType.STANDARD_DEVIATION);
-            } else if (selectedSeries.getMeasureName() == "Variance") {
-                measure.setType(ScaleType.VARIANCE);
-            }
-            measureForSeries.put(selectedSeries, measure);
+			if (selectedSeries.getMeasureName() == "Count") {
+				measure.setType(ScaleType.COUNT);
+			} else if (selectedSeries.getMeasureName() == "Sum") {
+				measure.setType(ScaleType.SUM);
+			} else if (selectedSeries.getMeasureName() == "Average") {
+				measure.setType(ScaleType.AVERAGE);
+			} else if (selectedSeries.getMeasureName() == "Minimum") {
+				measure.setType(ScaleType.MINIMUM);
+			} else if (selectedSeries.getMeasureName() == "Maximum") {
+				measure.setType(ScaleType.MAXIMUM);
+			} else if (selectedSeries.getMeasureName() == "Standard Deviation") {
+				measure.setType(ScaleType.STANDARD_DEVIATION);
+			} else if (selectedSeries.getMeasureName() == "Variance") {
+				measure.setType(ScaleType.VARIANCE);
+			}
+			measureForSeries.put(selectedSeries, measure);
 
-            currentRun.getMeasurements().add(measure);
-        }
+			currentRun.getMeasurements().add(measure);
+		}
 
-        super.scapeStarted(scapeEvent);
-    }
+		super.scapeStarted(scapeEvent);
+	}
 
-    private IValue getValueForName(String attrName) {
-        String searchName = attrName.toLowerCase().replace(" ", "");
-        for (EObject object : model.getAllAgents()) {
-            SAgent agent = (SAgent) object;
-            for (SAttribute attribute : agent.getAttributes()) {
-                // TODO there is actually some low possibility of name clash here..
-                String matchName = attribute.getLabel();
-                if (attribute instanceof SState) {
-                    for (SStateValue value : ((SState) attribute).getOptions()) {
-                        String stateName = value.getLabel() + " " + matchName;
-                        if (agent.getOwner() != null) {
-                            stateName = agent.getLabel() + " " + stateName;
-                        }
-                        stateName = stateName.toLowerCase().replace(" ", "");
-                        if (stateName.equals(searchName)) {
-                            return value;
-                        }
-                    }
-                } else {
-                    if (agent.getOwner() != null) {
-                        matchName = agent.getLabel() + " " + matchName;
-                    }
-                    matchName = matchName.toLowerCase().replace(" ", "");
-                    if (matchName.equals(searchName)) {
-                        return attribute;
-                    }
-                }
-            }
-        }
-        StatusManager.getManager().handle(
-                                          new Status(Status.WARNING, "org.eclipse.amp.escape.amf.ide",
-                                                     "Couldn't find attribute for parameter name: " + attrName));
-        return null;
-    }
+	private IValue getValueForName(String attrName) {
+		String searchName = attrName.toLowerCase().replace(" ", "");
+		for (EObject object : model.getAllAgents()) {
+			SAgent agent = (SAgent) object;
+			for (SAttribute attribute : agent.getAttributes()) {
+				// TODO there is actually some low possibility of name clash
+				// here..
+				String matchName = attribute.getLabel();
+				if (attribute instanceof SState) {
+					for (SStateValue value : ((SState) attribute).getOptions()) {
+						String stateName = value.getLabel() + " " + matchName;
+						if (agent.getOwner() != null) {
+							stateName = agent.getLabel() + " " + stateName;
+						}
+						stateName = stateName.toLowerCase().replace(" ", "");
+						if (stateName.equals(searchName)) {
+							return value;
+						}
+					}
+				} else {
+					if (agent.getOwner() != null) {
+						matchName = agent.getLabel() + " " + matchName;
+					}
+					matchName = matchName.toLowerCase().replace(" ", "");
+					if (matchName.equals(searchName)) {
+						return attribute;
+					}
+				}
+			}
+		}
+		StatusManager.getManager().handle(
+				new Status(Status.WARNING, "org.eclipse.amp.escape.amf.ide",
+						"Couldn't find attribute for parameter name: "
+								+ attrName));
+		return null;
+	}
 
-    /**
-     * @param scapeEvent
-     * @see org.ascape.model.event.DefaultScapeListener#scapeIterated(org.ascape.model.event.ScapeEvent)
-     */
-    public void scapeIterated(ScapeEvent scapeEvent) {
-        super.scapeIterated(scapeEvent);
-        for (Object selected : dataSelection.getSelectedSeries()) {
-            DataSeries selectedSeries = (DataSeries) selected;
-            DataPoint dataPoint = DataFactoryImpl.eINSTANCE.createDataPoint();
-            Measurement measurement = measureForSeries.get(selectedSeries);
-            dataPoint.setMeasure(measurement);
-            dataPoint.setPeriod(getScape().getPeriod());
-            dataPoint.setRun(currentRun);
-            dataPoint.setValue(selectedSeries.getValue());
-            measurement.getEntries().add(dataPoint);
-        }
-    }
+	/**
+	 * @param scapeEvent
+	 * @see org.ascape.model.event.DefaultScapeListener#scapeIterated(org.ascape.model.event.ScapeEvent)
+	 */
+	public void scapeIterated(ScapeEvent scapeEvent) {
+		super.scapeIterated(scapeEvent);
+		for (Object selected : dataSelection.getSelectedSeries()) {
+			DataSeries selectedSeries = (DataSeries) selected;
+			DataPoint dataPoint = DataFactoryImpl.eINSTANCE.createDataPoint();
+			Measurement measurement = measureForSeries.get(selectedSeries);
+			//dataPoint.setMeasure(measurement);
+			dataPoint.setPeriod(getScape().getPeriod());
+			dataPoint.setMeasurement(measurement);
+			dataPoint.setValue(selectedSeries.getValue());
+			measurement.getEntries().add(dataPoint);
+		}
+	}
 
-    /**
-     * @param attrName
-     * @param integer
-     */
-    private void addParameter(ParameterSet set, String attrName, Object object) {
-        Parameter param = DataFactoryImpl.eINSTANCE.createParameter();
-        IValue valueForName = getValueForName(attrName);
-        if (valueForName instanceof SAttribute) {
-            param.setAttribute((SAttribute) valueForName);
-        }
-        param.setName(attrName);
-        // Object createFromString = null;
-        // // EcoreUtil.create(EcorePackage.Literals.EINTEGER_OBJECT);
-        // if (object instanceof Boolean) {
-        // createFromString = EcoreUtil.createFromString(EcorePackage.eINSTANCE.getEBoolean(), object
-        // .toString());
-        // } else if (object instanceof String) {
-        // createFromString = EcoreUtil.createFromString(EcorePackage.eINSTANCE.getEString(), object
-        // .toString());
-        // } else if (object instanceof Double) {
-        // createFromString = EcoreUtil.createFromString(EcorePackage.eINSTANCE.getEDouble(), object
-        // .toString());
-        // } else if (object instanceof Integer) {
-        // createFromString = EcoreUtil
-        // .createFromString(EcorePackage.eINSTANCE.getEInt(), object.toString());
-        // }
-        // if (createFromString != null) {
-        param.eSet(DataPackage.Literals.PARAMETER__VALUE, object.toString());
-        set.getMembers().add(param);
-        // }
-    }
+	/**
+	 * @param attrName
+	 * @param integer
+	 */
+	private void addParameter(ParameterSet set, String attrName, Object object) {
+		Parameter param = DataFactoryImpl.eINSTANCE.createParameter();
+		IValue valueForName = getValueForName(attrName);
+		if (valueForName instanceof SAttribute) {
+			param.setAttribute((SAttribute) valueForName);
+		}
+		param.setName(attrName);
+		// Object createFromString = null;
+		// // EcoreUtil.create(EcorePackage.Literals.EINTEGER_OBJECT);
+		// if (object instanceof Boolean) {
+		// createFromString =
+		// EcoreUtil.createFromString(EcorePackage.eINSTANCE.getEBoolean(),
+		// object
+		// .toString());
+		// } else if (object instanceof String) {
+		// createFromString =
+		// EcoreUtil.createFromString(EcorePackage.eINSTANCE.getEString(),
+		// object
+		// .toString());
+		// } else if (object instanceof Double) {
+		// createFromString =
+		// EcoreUtil.createFromString(EcorePackage.eINSTANCE.getEDouble(),
+		// object
+		// .toString());
+		// } else if (object instanceof Integer) {
+		// createFromString = EcoreUtil
+		// .createFromString(EcorePackage.eINSTANCE.getEInt(),
+		// object.toString());
+		// }
+		// if (createFromString != null) {
+		param.eSet(DataPackage.Literals.PARAMETER__VALUE, object.toString());
+		set.getMembers().add(param);
+		// }
+	}
 
-    /**
-     * @param scapeEvent
-     * @see org.ascape.model.event.DefaultScapeListener#scapeStopped(org.ascape.model.event.ScapeEvent)
-     */
-    public void scapeStopped(ScapeEvent scapeEvent) {
-        currentRun.setFinished(new Date());
-        // let's save results in case we get interrupted
-        saveResults();
-        super.scapeStopped(scapeEvent);
-    }
+	/**
+	 * @param scapeEvent
+	 * @see org.ascape.model.event.DefaultScapeListener#scapeStopped(org.ascape.model.event.ScapeEvent)
+	 */
+	public void scapeStopped(ScapeEvent scapeEvent) {
+		currentRun.setFinished(new Date());
+		// let's save results in case we get interrupted
+		saveResults();
+		super.scapeStopped(scapeEvent);
+	}
 
-    private synchronized void saveResults() {
-        Map<Object, Object> saveOptions = new HashMap<Object, Object>();
-        try {
-            dataResource.save(saveOptions);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
+	private synchronized void saveResults() {
+		Map<Object, Object> saveOptions = new HashMap<Object, Object>();
+		try {
+			saveOptions.put(BinaryResourceImpl.OPTION_SAVE_ONLY_IF_CHANGED, null);
+			dataResource.save(saveOptions);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

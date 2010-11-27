@@ -311,32 +311,84 @@ ruleParameter returns [EObject current=null]
     @after { resetLookahead(); 
     	lastConsumedNode = currentNode;
     }:
+(
+    { 
+        currentNode=createCompositeNode(grammarAccess.getParameterAccess().getSingleParameterParserRuleCall_0(), currentNode); 
+    }
+    this_SingleParameter_0=ruleSingleParameter
+    { 
+        $current = $this_SingleParameter_0.current; 
+        currentNode = currentNode.getParent();
+    }
+
+    |
+    { 
+        currentNode=createCompositeNode(grammarAccess.getParameterAccess().getSweepParameterParserRuleCall_1(), currentNode); 
+    }
+    this_SweepParameter_1=ruleSweepParameter
+    { 
+        $current = $this_SweepParameter_1.current; 
+        currentNode = currentNode.getParent();
+    }
+
+    |
+    { 
+        currentNode=createCompositeNode(grammarAccess.getParameterAccess().getSweepLinkParserRuleCall_2(), currentNode); 
+    }
+    this_SweepLink_2=ruleSweepLink
+    { 
+        $current = $this_SweepLink_2.current; 
+        currentNode = currentNode.getParent();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleSingleParameter
+entryRuleSingleParameter returns [EObject current=null] 
+	:
+	{ currentNode = createCompositeNode(grammarAccess.getSingleParameterRule(), currentNode); }
+	 iv_ruleSingleParameter=ruleSingleParameter 
+	 { $current=$iv_ruleSingleParameter.current; } 
+	 EOF 
+;
+
+// Rule SingleParameter
+ruleSingleParameter returns [EObject current=null] 
+    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
 ((
 (
 		{
 			if ($current==null) {
-	            $current = factory.create(grammarAccess.getParameterRule().getType().getClassifier());
+	            $current = factory.create(grammarAccess.getSingleParameterRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
         }
 	RULE_ID
 	{
-		createLeafNode(grammarAccess.getParameterAccess().getAttributeSAttributeCrossReference_0_0(), "attribute"); 
+		createLeafNode(grammarAccess.getSingleParameterAccess().getAttributeSAttributeCrossReference_0_0(), "attribute"); 
 	}
 
 )
 )	'=' 
     {
-        createLeafNode(grammarAccess.getParameterAccess().getEqualsSignKeyword_1(), null); 
+        createLeafNode(grammarAccess.getSingleParameterAccess().getEqualsSignKeyword_1(), null); 
     }
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getParameterAccess().getValueValueParserRuleCall_2_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getSingleParameterAccess().getValueValueParserRuleCall_2_0(), currentNode); 
 	    }
 		lv_value_2_0=ruleValue		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getParameterRule().getType().getClassifier());
+	            $current = factory.create(grammarAccess.getSingleParameterRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
 	        }
 	        try {
@@ -354,6 +406,186 @@ ruleParameter returns [EObject current=null]
 
 )
 ))
+;
+
+
+
+
+
+// Entry rule entryRuleSweepParameter
+entryRuleSweepParameter returns [EObject current=null] 
+	:
+	{ currentNode = createCompositeNode(grammarAccess.getSweepParameterRule(), currentNode); }
+	 iv_ruleSweepParameter=ruleSweepParameter 
+	 { $current=$iv_ruleSweepParameter.current; } 
+	 EOF 
+;
+
+// Rule SweepParameter
+ruleSweepParameter returns [EObject current=null] 
+    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
+((
+(
+		{
+			if ($current==null) {
+	            $current = factory.create(grammarAccess.getSweepParameterRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode, $current);
+	        }
+        }
+	RULE_ID
+	{
+		createLeafNode(grammarAccess.getSweepParameterAccess().getAttributeSAttributeCrossReference_0_0(), "attribute"); 
+	}
+
+)
+)	'[' 
+    {
+        createLeafNode(grammarAccess.getSweepParameterAccess().getLeftSquareBracketKeyword_1(), null); 
+    }
+(
+(
+		{ 
+	        currentNode=createCompositeNode(grammarAccess.getSweepParameterAccess().getStartValueValueParserRuleCall_2_0(), currentNode); 
+	    }
+		lv_startValue_2_0=ruleValue		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getSweepParameterRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        try {
+	       		set(
+	       			$current, 
+	       			"startValue",
+	        		lv_startValue_2_0, 
+	        		"Value", 
+	        		currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+
+)
+)	',' 
+    {
+        createLeafNode(grammarAccess.getSweepParameterAccess().getCommaKeyword_3(), null); 
+    }
+(
+(
+		{ 
+	        currentNode=createCompositeNode(grammarAccess.getSweepParameterAccess().getEndValueValueParserRuleCall_4_0(), currentNode); 
+	    }
+		lv_endValue_4_0=ruleValue		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getSweepParameterRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        try {
+	       		set(
+	       			$current, 
+	       			"endValue",
+	        		lv_endValue_4_0, 
+	        		"Value", 
+	        		currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+
+)
+)	',' 
+    {
+        createLeafNode(grammarAccess.getSweepParameterAccess().getCommaKeyword_5(), null); 
+    }
+(
+(
+		{ 
+	        currentNode=createCompositeNode(grammarAccess.getSweepParameterAccess().getIncrementValueParserRuleCall_6_0(), currentNode); 
+	    }
+		lv_increment_6_0=ruleValue		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getSweepParameterRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        try {
+	       		set(
+	       			$current, 
+	       			"increment",
+	        		lv_increment_6_0, 
+	        		"Value", 
+	        		currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+
+)
+)	']' 
+    {
+        createLeafNode(grammarAccess.getSweepParameterAccess().getRightSquareBracketKeyword_7(), null); 
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleSweepLink
+entryRuleSweepLink returns [EObject current=null] 
+	:
+	{ currentNode = createCompositeNode(grammarAccess.getSweepLinkRule(), currentNode); }
+	 iv_ruleSweepLink=ruleSweepLink 
+	 { $current=$iv_ruleSweepLink.current; } 
+	 EOF 
+;
+
+// Rule SweepLink
+ruleSweepLink returns [EObject current=null] 
+    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
+(	'[' 
+    {
+        createLeafNode(grammarAccess.getSweepLinkAccess().getLeftSquareBracketKeyword_0(), null); 
+    }
+(
+(
+		{ 
+	        currentNode=createCompositeNode(grammarAccess.getSweepLinkAccess().getParametersParameterParserRuleCall_1_0(), currentNode); 
+	    }
+		lv_parameters_1_0=ruleParameter		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getSweepLinkRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        try {
+	       		add(
+	       			$current, 
+	       			"parameters",
+	        		lv_parameters_1_0, 
+	        		"Parameter", 
+	        		currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+
+)
+)*	']' 
+    {
+        createLeafNode(grammarAccess.getSweepLinkAccess().getRightSquareBracketKeyword_2(), null); 
+    }
+)
 ;
 
 

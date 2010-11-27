@@ -18,74 +18,74 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface DataFactory extends EFactory {
     /**
-     * The singleton instance of the factory.
-     * <!-- begin-user-doc -->
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     DataFactory eINSTANCE = org.eclipse.amp.amf.adata.impl.DataFactoryImpl.init();
 
     /**
-     * Returns a new object of class '<em>Run</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Run</em>'.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Run</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Run</em>'.
+	 * @generated
+	 */
     Run createRun();
 
     /**
-     * Returns a new object of class '<em>Parameter</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Parameter</em>'.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Parameter</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Parameter</em>'.
+	 * @generated
+	 */
     Parameter createParameter();
 
     /**
-     * Returns a new object of class '<em>Point</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Point</em>'.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Point</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Point</em>'.
+	 * @generated
+	 */
     DataPoint createDataPoint();
 
     /**
-     * Returns a new object of class '<em>Catalog</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Catalog</em>'.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Catalog</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Catalog</em>'.
+	 * @generated
+	 */
     Catalog createCatalog();
 
     /**
-     * Returns a new object of class '<em>Measurement</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Measurement</em>'.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Measurement</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Measurement</em>'.
+	 * @generated
+	 */
     Measurement createMeasurement();
 
     /**
-     * Returns a new object of class '<em>Parameter Set</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Parameter Set</em>'.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Parameter Set</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Parameter Set</em>'.
+	 * @generated
+	 */
     ParameterSet createParameterSet();
 
     /**
-     * Returns the package supported by this factory.
-     * <!-- begin-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the package supported by this factory.
-     * @generated
-     */
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
     DataPackage getDataPackage();
 
 } //DataFactory

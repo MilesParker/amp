@@ -41,291 +41,291 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class RunSetImpl extends EObjectImpl implements RunSet {
     /**
-     * The default value of the '{@link #getResult() <em>Result</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getResult() <em>Result</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getResult()
-     * @generated
-     * @ordered
-     */
+	 * @see #getResult()
+	 * @generated
+	 * @ordered
+	 */
     protected static final ResultType RESULT_EDEFAULT = ResultType.INCOMPLETE;
 
     /**
-     * The cached value of the '{@link #getResult() <em>Result</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getResult() <em>Result</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getResult()
-     * @generated
-     * @ordered
-     */
+	 * @see #getResult()
+	 * @generated
+	 * @ordered
+	 */
     protected ResultType result = RESULT_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getStarted() <em>Started</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getStarted() <em>Started</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getStarted()
-     * @generated
-     * @ordered
-     */
+	 * @see #getStarted()
+	 * @generated
+	 * @ordered
+	 */
     protected static final Date STARTED_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getStarted() <em>Started</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getStarted() <em>Started</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getStarted()
-     * @generated
-     * @ordered
-     */
+	 * @see #getStarted()
+	 * @generated
+	 * @ordered
+	 */
     protected Date started = STARTED_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getFinished() <em>Finished</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getFinished() <em>Finished</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFinished()
-     * @generated
-     * @ordered
-     */
+	 * @see #getFinished()
+	 * @generated
+	 * @ordered
+	 */
     protected static final Date FINISHED_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getFinished() <em>Finished</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getFinished() <em>Finished</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFinished()
-     * @generated
-     * @ordered
-     */
+	 * @see #getFinished()
+	 * @generated
+	 * @ordered
+	 */
     protected Date finished = FINISHED_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getRuns() <em>Runs</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getRuns() <em>Runs</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getRuns()
-     * @generated
-     * @ordered
-     */
+	 * @see #getRuns()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Run> runs;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected RunSetImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return AresPackage.Literals.RUN_SET;
-    }
+		return AresPackage.Literals.RUN_SET;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public ResultType getResult() {
-        return result;
-    }
+		return result;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setResult(ResultType newResult) {
-        ResultType oldResult = result;
-        result = newResult == null ? RESULT_EDEFAULT : newResult;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.RUN_SET__RESULT, oldResult, result));
-    }
+		ResultType oldResult = result;
+		result = newResult == null ? RESULT_EDEFAULT : newResult;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.RUN_SET__RESULT, oldResult, result));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Date getStarted() {
-        return started;
-    }
+		return started;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setStarted(Date newStarted) {
-        Date oldStarted = started;
-        started = newStarted;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.RUN_SET__STARTED, oldStarted, started));
-    }
+		Date oldStarted = started;
+		started = newStarted;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.RUN_SET__STARTED, oldStarted, started));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Date getFinished() {
-        return finished;
-    }
+		return finished;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setFinished(Date newFinished) {
-        Date oldFinished = finished;
-        finished = newFinished;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.RUN_SET__FINISHED, oldFinished, finished));
-    }
+		Date oldFinished = finished;
+		finished = newFinished;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AresPackage.RUN_SET__FINISHED, oldFinished, finished));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Run> getRuns() {
-        if (runs == null) {
-            runs = new EObjectContainmentEList<Run>(Run.class, this, AresPackage.RUN_SET__RUNS);
-        }
-        return runs;
-    }
+		if (runs == null) {
+			runs = new EObjectContainmentEList<Run>(Run.class, this, AresPackage.RUN_SET__RUNS);
+		}
+		return runs;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case AresPackage.RUN_SET__RUNS:
-                return ((InternalEList<?>)getRuns()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case AresPackage.RUN_SET__RUNS:
+				return ((InternalEList<?>)getRuns()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case AresPackage.RUN_SET__RESULT:
-                return getResult();
-            case AresPackage.RUN_SET__STARTED:
-                return getStarted();
-            case AresPackage.RUN_SET__FINISHED:
-                return getFinished();
-            case AresPackage.RUN_SET__RUNS:
-                return getRuns();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case AresPackage.RUN_SET__RESULT:
+				return getResult();
+			case AresPackage.RUN_SET__STARTED:
+				return getStarted();
+			case AresPackage.RUN_SET__FINISHED:
+				return getFinished();
+			case AresPackage.RUN_SET__RUNS:
+				return getRuns();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case AresPackage.RUN_SET__RESULT:
-                setResult((ResultType)newValue);
-                return;
-            case AresPackage.RUN_SET__STARTED:
-                setStarted((Date)newValue);
-                return;
-            case AresPackage.RUN_SET__FINISHED:
-                setFinished((Date)newValue);
-                return;
-            case AresPackage.RUN_SET__RUNS:
-                getRuns().clear();
-                getRuns().addAll((Collection<? extends Run>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case AresPackage.RUN_SET__RESULT:
+				setResult((ResultType)newValue);
+				return;
+			case AresPackage.RUN_SET__STARTED:
+				setStarted((Date)newValue);
+				return;
+			case AresPackage.RUN_SET__FINISHED:
+				setFinished((Date)newValue);
+				return;
+			case AresPackage.RUN_SET__RUNS:
+				getRuns().clear();
+				getRuns().addAll((Collection<? extends Run>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case AresPackage.RUN_SET__RESULT:
-                setResult(RESULT_EDEFAULT);
-                return;
-            case AresPackage.RUN_SET__STARTED:
-                setStarted(STARTED_EDEFAULT);
-                return;
-            case AresPackage.RUN_SET__FINISHED:
-                setFinished(FINISHED_EDEFAULT);
-                return;
-            case AresPackage.RUN_SET__RUNS:
-                getRuns().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case AresPackage.RUN_SET__RESULT:
+				setResult(RESULT_EDEFAULT);
+				return;
+			case AresPackage.RUN_SET__STARTED:
+				setStarted(STARTED_EDEFAULT);
+				return;
+			case AresPackage.RUN_SET__FINISHED:
+				setFinished(FINISHED_EDEFAULT);
+				return;
+			case AresPackage.RUN_SET__RUNS:
+				getRuns().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case AresPackage.RUN_SET__RESULT:
-                return result != RESULT_EDEFAULT;
-            case AresPackage.RUN_SET__STARTED:
-                return STARTED_EDEFAULT == null ? started != null : !STARTED_EDEFAULT.equals(started);
-            case AresPackage.RUN_SET__FINISHED:
-                return FINISHED_EDEFAULT == null ? finished != null : !FINISHED_EDEFAULT.equals(finished);
-            case AresPackage.RUN_SET__RUNS:
-                return runs != null && !runs.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case AresPackage.RUN_SET__RESULT:
+				return result != RESULT_EDEFAULT;
+			case AresPackage.RUN_SET__STARTED:
+				return STARTED_EDEFAULT == null ? started != null : !STARTED_EDEFAULT.equals(started);
+			case AresPackage.RUN_SET__FINISHED:
+				return FINISHED_EDEFAULT == null ? finished != null : !FINISHED_EDEFAULT.equals(finished);
+			case AresPackage.RUN_SET__RUNS:
+				return runs != null && !runs.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (result: ");
-        result.append(result);
-        result.append(", started: ");
-        result.append(started);
-        result.append(", finished: ");
-        result.append(finished);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (result: ");
+		result.append(result);
+		result.append(", started: ");
+		result.append(started);
+		result.append(", finished: ");
+		result.append(finished);
+		result.append(')');
+		return result.toString();
+	}
 
 } //RunSetImpl

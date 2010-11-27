@@ -25,181 +25,181 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  */
 public class DataFactoryImpl extends EFactoryImpl implements DataFactory {
     /**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public static DataFactory init() {
-        try {
-            DataFactory theDataFactory = (DataFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/amp/amf/AData"); 
-            if (theDataFactory != null) {
-                return theDataFactory;
-            }
-        }
-        catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new DataFactoryImpl();
-    }
+		try {
+			DataFactory theDataFactory = (DataFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/amp/amf/AData"); 
+			if (theDataFactory != null) {
+				return theDataFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new DataFactoryImpl();
+	}
 
     /**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public DataFactoryImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-            case DataPackage.RUN: return createRun();
-            case DataPackage.PARAMETER: return createParameter();
-            case DataPackage.DATA_POINT: return createDataPoint();
-            case DataPackage.CATALOG: return createCatalog();
-            case DataPackage.MEASUREMENT: return createMeasurement();
-            case DataPackage.PARAMETER_SET: return createParameterSet();
-            default:
-                throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eClass.getClassifierID()) {
+			case DataPackage.RUN: return createRun();
+			case DataPackage.PARAMETER: return createParameter();
+			case DataPackage.DATA_POINT: return createDataPoint();
+			case DataPackage.CATALOG: return createCatalog();
+			case DataPackage.MEASUREMENT: return createMeasurement();
+			case DataPackage.PARAMETER_SET: return createParameterSet();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object createFromString(EDataType eDataType, String initialValue) {
-        switch (eDataType.getClassifierID()) {
-            case DataPackage.SCALE_TYPE:
-                return createScaleTypeFromString(eDataType, initialValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eDataType.getClassifierID()) {
+			case DataPackage.SCALE_TYPE:
+				return createScaleTypeFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String convertToString(EDataType eDataType, Object instanceValue) {
-        switch (eDataType.getClassifierID()) {
-            case DataPackage.SCALE_TYPE:
-                return convertScaleTypeToString(eDataType, instanceValue);
-            default:
-                throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
-        }
-    }
+		switch (eDataType.getClassifierID()) {
+			case DataPackage.SCALE_TYPE:
+				return convertScaleTypeToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Run createRun() {
-        RunImpl run = new RunImpl();
-        return run;
-    }
+		RunImpl run = new RunImpl();
+		return run;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Parameter createParameter() {
-        ParameterImpl parameter = new ParameterImpl();
-        return parameter;
-    }
+		ParameterImpl parameter = new ParameterImpl();
+		return parameter;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public DataPoint createDataPoint() {
-        DataPointImpl dataPoint = new DataPointImpl();
-        return dataPoint;
-    }
+		DataPointImpl dataPoint = new DataPointImpl();
+		return dataPoint;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Catalog createCatalog() {
-        CatalogImpl catalog = new CatalogImpl();
-        return catalog;
-    }
+		CatalogImpl catalog = new CatalogImpl();
+		return catalog;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Measurement createMeasurement() {
-        MeasurementImpl measurement = new MeasurementImpl();
-        return measurement;
-    }
+		MeasurementImpl measurement = new MeasurementImpl();
+		return measurement;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public ParameterSet createParameterSet() {
-        ParameterSetImpl parameterSet = new ParameterSetImpl();
-        return parameterSet;
-    }
+		ParameterSetImpl parameterSet = new ParameterSetImpl();
+		return parameterSet;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public ScaleType createScaleTypeFromString(EDataType eDataType, String initialValue) {
-        ScaleType result = ScaleType.get(initialValue);
-        if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-        return result;
-    }
+		ScaleType result = ScaleType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String convertScaleTypeToString(EDataType eDataType, Object instanceValue) {
-        return instanceValue == null ? null : instanceValue.toString();
-    }
+		return instanceValue == null ? null : instanceValue.toString();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public DataPackage getDataPackage() {
-        return (DataPackage)getEPackage();
-    }
+		return (DataPackage)getEPackage();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
+	 * @deprecated
+	 * @generated
+	 */
     @Deprecated
     public static DataPackage getPackage() {
-        return DataPackage.eINSTANCE;
-    }
+		return DataPackage.eINSTANCE;
+	}
 
 } //DataFactoryImpl

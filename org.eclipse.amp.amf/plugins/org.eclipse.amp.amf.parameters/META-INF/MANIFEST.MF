@@ -23,7 +23,8 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.amp.amf.acore,
  org.eclipse.amp.amf.abase,
  org.eclipse.xtext.util,
- org.eclipse.emf.mwe2.launch;resolution:=optional
+ org.eclipse.emf.mwe2.launch;resolution:=optional,
+ org.apache.log4j;bundle-version="1.2.15";resolution:=optional
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: .
 Export-Package: org.eclipse.amp.amf.parameters,
@@ -38,4 +39,5 @@ Export-Package: org.eclipse.amp.amf.parameters,
  org.eclipse.amp.amf.parameters.services,
  org.eclipse.amp.amf.parameters.validation
 Bundle-Localization: plugin
-Import-Package: org.apache.commons.lang
+Import-Package: org.apache.commons.lang,
+ org.apache.log4j

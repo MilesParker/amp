@@ -11,7 +11,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="result" eType="#//ResultType"
         defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
-        eType="ecore:EClass ../../../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//Parameter"
+        eType="ecore:EClass ../../../org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//SingleParameter"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
         eType="ecore:EClass ../../src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Constraint"

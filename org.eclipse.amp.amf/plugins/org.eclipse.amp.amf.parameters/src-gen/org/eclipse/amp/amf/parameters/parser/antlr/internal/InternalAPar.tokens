@@ -8,8 +8,11 @@ RULE_SL_COMMENT=11
 RULE_DESC_STRING=8
 RULE_INTEGER=6
 RULE_ML_COMMENT=10
-'true'=17
-'false'=18
+'true'=20
+'false'=21
 '='=16
 'model'=14
+'['=17
+','=18
 'incorporates'=15
+']'=19

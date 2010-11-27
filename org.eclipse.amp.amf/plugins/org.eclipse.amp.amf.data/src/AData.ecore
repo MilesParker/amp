@@ -7,15 +7,12 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="model" lowerBound="1" eType="ecore:EClass ../../org.eclipse.amp.amf.acore/src/model/metaabm.ecore#//SContext"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="started" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="finished" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="entries" ordered="false"
-        upperBound="-1" eType="#//DataPoint" transient="true" resolveProxies="false"
-        eOpposite="#//DataPoint/run"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" unique="false" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterSets" upperBound="-1"
         eType="#//ParameterSet" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="measurements" upperBound="-1"
-        eType="#//Measurement" containment="true"/>
+        eType="#//Measurement" containment="true" eOpposite="#//Measurement/run"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Parameter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -26,9 +23,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="period" ordered="false"
         unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="run" eType="#//Run" transient="true"
-        eOpposite="#//Run/entries"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="measure" eType="#//Measurement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="measurement" lowerBound="1"
+        eType="#//Measurement" eOpposite="#//Measurement/entries"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Catalog">
     <eStructuralFeatures xsi:type="ecore:EReference" name="runs" upperBound="-1" eType="#//Run"
@@ -40,7 +36,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass ../../org.eclipse.amp.amf.acore/src/model/metaabm.ecore#//IValue"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entries" ordered="false"
-        upperBound="-1" eType="#//DataPoint" containment="true" resolveProxies="false"/>
+        upperBound="-1" eType="#//DataPoint" containment="true" resolveProxies="false"
+        eOpposite="#//DataPoint/measurement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="run" lowerBound="1" eType="#//Run"
+        eOpposite="#//Run/measurements"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ScaleType">
     <eLiterals name="Individual" literal="INDIVIDUAL"/>

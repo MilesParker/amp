@@ -18,47 +18,47 @@ import org.eclipse.emf.ecore.EFactory;
  */
 public interface AresFactory extends EFactory {
     /**
-     * The singleton instance of the factory.
-     * <!-- begin-user-doc -->
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     AresFactory eINSTANCE = org.eclipse.amp.amf.testing.ares.impl.AresFactoryImpl.init();
 
     /**
-     * Returns a new object of class '<em>Run</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Run</em>'.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Run</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Run</em>'.
+	 * @generated
+	 */
     Run createRun();
 
     /**
-     * Returns a new object of class '<em>Constraint Test</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Constraint Test</em>'.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Constraint Test</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Constraint Test</em>'.
+	 * @generated
+	 */
     ConstraintTest createConstraintTest();
 
     /**
-     * Returns a new object of class '<em>Run Set</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>Run Set</em>'.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Run Set</em>'.
-     * @generated
-     */
+	 * @return a new object of class '<em>Run Set</em>'.
+	 * @generated
+	 */
     RunSet createRunSet();
 
     /**
-     * Returns the package supported by this factory.
-     * <!-- begin-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the package supported by this factory.
-     * @generated
-     */
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
     AresPackage getAresPackage();
 
 } //AresFactory

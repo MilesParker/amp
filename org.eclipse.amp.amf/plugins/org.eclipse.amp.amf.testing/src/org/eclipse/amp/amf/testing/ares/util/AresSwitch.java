@@ -31,145 +31,145 @@ import org.eclipse.emf.ecore.EObject;
  */
 public class AresSwitch<T> {
     /**
-     * The cached model package
-     * <!-- begin-user-doc -->
+	 * The cached model package
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected static AresPackage modelPackage;
 
     /**
-     * Creates an instance of the switch.
-     * <!-- begin-user-doc -->
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public AresSwitch() {
-        if (modelPackage == null) {
-            modelPackage = AresPackage.eINSTANCE;
-        }
-    }
+		if (modelPackage == null) {
+			modelPackage = AresPackage.eINSTANCE;
+		}
+	}
 
     /**
-     * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-     * <!-- begin-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the first non-null result returned by a <code>caseXXX</code> call.
-     * @generated
-     */
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @generated
+	 */
     public T doSwitch(EObject theEObject) {
-        return doSwitch(theEObject.eClass(), theEObject);
-    }
+		return doSwitch(theEObject.eClass(), theEObject);
+	}
 
     /**
-     * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-     * <!-- begin-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the first non-null result returned by a <code>caseXXX</code> call.
-     * @generated
-     */
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @generated
+	 */
     protected T doSwitch(EClass theEClass, EObject theEObject) {
-        if (theEClass.eContainer() == modelPackage) {
-            return doSwitch(theEClass.getClassifierID(), theEObject);
-        }
-        else {
-            List<EClass> eSuperTypes = theEClass.getESuperTypes();
-            return
-                eSuperTypes.isEmpty() ?
-                    defaultCase(theEObject) :
-                    doSwitch(eSuperTypes.get(0), theEObject);
-        }
-    }
+		if (theEClass.eContainer() == modelPackage) {
+			return doSwitch(theEClass.getClassifierID(), theEObject);
+		}
+		else {
+			List<EClass> eSuperTypes = theEClass.getESuperTypes();
+			return
+				eSuperTypes.isEmpty() ?
+					defaultCase(theEObject) :
+					doSwitch(eSuperTypes.get(0), theEObject);
+		}
+	}
 
     /**
-     * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-     * <!-- begin-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the first non-null result returned by a <code>caseXXX</code> call.
-     * @generated
-     */
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @generated
+	 */
     protected T doSwitch(int classifierID, EObject theEObject) {
-        switch (classifierID) {
-            case AresPackage.RUN: {
-                Run run = (Run)theEObject;
-                T result = caseRun(run);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case AresPackage.CONSTRAINT_TEST: {
-                ConstraintTest constraintTest = (ConstraintTest)theEObject;
-                T result = caseConstraintTest(constraintTest);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            case AresPackage.RUN_SET: {
-                RunSet runSet = (RunSet)theEObject;
-                T result = caseRunSet(runSet);
-                if (result == null) result = defaultCase(theEObject);
-                return result;
-            }
-            default: return defaultCase(theEObject);
-        }
-    }
+		switch (classifierID) {
+			case AresPackage.RUN: {
+				Run run = (Run)theEObject;
+				T result = caseRun(run);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AresPackage.CONSTRAINT_TEST: {
+				ConstraintTest constraintTest = (ConstraintTest)theEObject;
+				T result = caseConstraintTest(constraintTest);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AresPackage.RUN_SET: {
+				RunSet runSet = (RunSet)theEObject;
+				T result = caseRunSet(runSet);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
+		}
+	}
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Run</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Run</em>'.
+	 * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Run</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Run</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
     public T caseRun(Run object) {
-        return null;
-    }
+		return null;
+	}
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Constraint Test</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Constraint Test</em>'.
+	 * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Constraint Test</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Constraint Test</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
     public T caseConstraintTest(ConstraintTest object) {
-        return null;
-    }
+		return null;
+	}
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Run Set</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Run Set</em>'.
+	 * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Run Set</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Run Set</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
     public T caseRunSet(RunSet object) {
-        return null;
-    }
+		return null;
+	}
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
-     * <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch, but this is the last case anyway.
      * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject)
-     * @generated
-     */
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
+	 * @generated
+	 */
     public T defaultCase(EObject object) {
-        return null;
-    }
+		return null;
+	}
 
 } //AresSwitch

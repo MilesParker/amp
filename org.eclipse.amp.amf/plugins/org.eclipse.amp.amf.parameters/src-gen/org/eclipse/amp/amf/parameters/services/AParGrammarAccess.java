@@ -107,6 +107,30 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class ParameterElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Parameter");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cSingleParameterParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cSweepParameterParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cSweepLinkParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		
+		//Parameter:
+		//	SingleParameter | SweepParameter | SweepLink;
+		public ParserRule getRule() { return rule; }
+
+		//SingleParameter | SweepParameter | SweepLink
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//SingleParameter
+		public RuleCall getSingleParameterParserRuleCall_0() { return cSingleParameterParserRuleCall_0; }
+
+		//SweepParameter
+		public RuleCall getSweepParameterParserRuleCall_1() { return cSweepParameterParserRuleCall_1; }
+
+		//SweepLink
+		public RuleCall getSweepLinkParserRuleCall_2() { return cSweepLinkParserRuleCall_2; }
+	}
+
+	public class SingleParameterElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SingleParameter");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cAttributeAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final CrossReference cAttributeSAttributeCrossReference_0_0 = (CrossReference)cAttributeAssignment_0.eContents().get(0);
@@ -115,7 +139,7 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cValueValueParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
 		
-		//Parameter:
+		//SingleParameter:
 		//	attribute=[SAttribute] "=" value=Value;
 		public ParserRule getRule() { return rule; }
 
@@ -140,12 +164,107 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 		//Value
 		public RuleCall getValueValueParserRuleCall_2_0() { return cValueValueParserRuleCall_2_0; }
 	}
+
+	public class SweepParameterElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SweepParameter");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cAttributeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final CrossReference cAttributeSAttributeCrossReference_0_0 = (CrossReference)cAttributeAssignment_0.eContents().get(0);
+		private final RuleCall cAttributeSAttributeIDTerminalRuleCall_0_0_1 = (RuleCall)cAttributeSAttributeCrossReference_0_0.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cStartValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cStartValueValueParserRuleCall_2_0 = (RuleCall)cStartValueAssignment_2.eContents().get(0);
+		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cEndValueAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cEndValueValueParserRuleCall_4_0 = (RuleCall)cEndValueAssignment_4.eContents().get(0);
+		private final Keyword cCommaKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cIncrementAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cIncrementValueParserRuleCall_6_0 = (RuleCall)cIncrementAssignment_6.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		
+		//SweepParameter:
+		//	attribute=[SAttribute] "[" startValue=Value "," endValue=Value "," increment=Value "]";
+		public ParserRule getRule() { return rule; }
+
+		//attribute=[SAttribute] "[" startValue=Value "," endValue=Value "," increment=Value "]"
+		public Group getGroup() { return cGroup; }
+
+		//attribute=[SAttribute]
+		public Assignment getAttributeAssignment_0() { return cAttributeAssignment_0; }
+
+		//[SAttribute]
+		public CrossReference getAttributeSAttributeCrossReference_0_0() { return cAttributeSAttributeCrossReference_0_0; }
+
+		//ID
+		public RuleCall getAttributeSAttributeIDTerminalRuleCall_0_0_1() { return cAttributeSAttributeIDTerminalRuleCall_0_0_1; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
+
+		//startValue=Value
+		public Assignment getStartValueAssignment_2() { return cStartValueAssignment_2; }
+
+		//Value
+		public RuleCall getStartValueValueParserRuleCall_2_0() { return cStartValueValueParserRuleCall_2_0; }
+
+		//","
+		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
+
+		//endValue=Value
+		public Assignment getEndValueAssignment_4() { return cEndValueAssignment_4; }
+
+		//Value
+		public RuleCall getEndValueValueParserRuleCall_4_0() { return cEndValueValueParserRuleCall_4_0; }
+
+		//","
+		public Keyword getCommaKeyword_5() { return cCommaKeyword_5; }
+
+		//increment=Value
+		public Assignment getIncrementAssignment_6() { return cIncrementAssignment_6; }
+
+		//Value
+		public RuleCall getIncrementValueParserRuleCall_6_0() { return cIncrementValueParserRuleCall_6_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_7() { return cRightSquareBracketKeyword_7; }
+	}
+
+	public class SweepLinkElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SweepLink");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cParametersAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cParametersParameterParserRuleCall_1_0 = (RuleCall)cParametersAssignment_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		//SweepLink:
+		//	"[" parameters+=Parameter* "]";
+		public ParserRule getRule() { return rule; }
+
+		//"[" parameters+=Parameter* "]"
+		public Group getGroup() { return cGroup; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+
+		//parameters+=Parameter*
+		public Assignment getParametersAssignment_1() { return cParametersAssignment_1; }
+
+		//Parameter
+		public RuleCall getParametersParameterParserRuleCall_1_0() { return cParametersParameterParserRuleCall_1_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
+	}
 	
 	
 	private ModelElements pModel;
 	private ImportElements pImport;
 	private IncorporatesElements pIncorporates;
 	private ParameterElements pParameter;
+	private SingleParameterElements pSingleParameter;
+	private SweepParameterElements pSweepParameter;
+	private SweepLinkElements pSweepLink;
 	
 	private final GrammarProvider grammarProvider;
 
@@ -199,13 +318,43 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Parameter:
-	//	attribute=[SAttribute] "=" value=Value;
+	//	SingleParameter | SweepParameter | SweepLink;
 	public ParameterElements getParameterAccess() {
 		return (pParameter != null) ? pParameter : (pParameter = new ParameterElements());
 	}
 	
 	public ParserRule getParameterRule() {
 		return getParameterAccess().getRule();
+	}
+
+	//SingleParameter:
+	//	attribute=[SAttribute] "=" value=Value;
+	public SingleParameterElements getSingleParameterAccess() {
+		return (pSingleParameter != null) ? pSingleParameter : (pSingleParameter = new SingleParameterElements());
+	}
+	
+	public ParserRule getSingleParameterRule() {
+		return getSingleParameterAccess().getRule();
+	}
+
+	//SweepParameter:
+	//	attribute=[SAttribute] "[" startValue=Value "," endValue=Value "," increment=Value "]";
+	public SweepParameterElements getSweepParameterAccess() {
+		return (pSweepParameter != null) ? pSweepParameter : (pSweepParameter = new SweepParameterElements());
+	}
+	
+	public ParserRule getSweepParameterRule() {
+		return getSweepParameterAccess().getRule();
+	}
+
+	//SweepLink:
+	//	"[" parameters+=Parameter* "]";
+	public SweepLinkElements getSweepLinkAccess() {
+		return (pSweepLink != null) ? pSweepLink : (pSweepLink = new SweepLinkElements());
+	}
+	
+	public ParserRule getSweepLinkRule() {
+		return getSweepLinkAccess().getRule();
 	}
 
 	//Value:

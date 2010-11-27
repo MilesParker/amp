@@ -8,6 +8,7 @@ package org.eclipse.amp.amf.testing.ares;
 
 import java.util.Date;
 
+import org.eclipse.amp.amf.parameters.aPar.SingleParameter;
 import org.eclipse.amp.amf.parameters.aPar.Parameter;
 import org.eclipse.amp.amf.testing.aTest.Constraint;
 import org.eclipse.amp.amf.testing.aTest.Model;
@@ -41,211 +42,211 @@ import org.metaabm.SContext;
  */
 public interface Run extends EObject {
     /**
-     * Returns the value of the '<em><b>Model</b></em>' reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Model</b></em>' reference.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Model</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Model</em>' reference.
-     * @see #setModel(SContext)
-     * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Model()
-     * @model required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Model</em>' reference.
+	 * @see #setModel(SContext)
+	 * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Model()
+	 * @model required="true"
+	 * @generated
+	 */
     SContext getModel();
 
     /**
-     * Sets the value of the '{@link org.eclipse.amp.amf.testing.ares.Run#getModel <em>Model</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.amp.amf.testing.ares.Run#getModel <em>Model</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Model</em>' reference.
-     * @see #getModel()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Model</em>' reference.
+	 * @see #getModel()
+	 * @generated
+	 */
     void setModel(SContext value);
 
     /**
-     * Returns the value of the '<em><b>Test</b></em>' reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Test</b></em>' reference.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Test</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Test</em>' reference.
-     * @see #setTest(Model)
-     * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Test()
-     * @model required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Test</em>' reference.
+	 * @see #setTest(Model)
+	 * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Test()
+	 * @model required="true"
+	 * @generated
+	 */
     Model getTest();
 
     /**
-     * Sets the value of the '{@link org.eclipse.amp.amf.testing.ares.Run#getTest <em>Test</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.amp.amf.testing.ares.Run#getTest <em>Test</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Test</em>' reference.
-     * @see #getTest()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Test</em>' reference.
+	 * @see #getTest()
+	 * @generated
+	 */
     void setTest(Model value);
 
     /**
-     * Returns the value of the '<em><b>Parameterization</b></em>' reference.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Parameterization</b></em>' reference.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Parameterization</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Parameterization</em>' reference.
-     * @see #setParameterization(org.eclipse.amp.amf.parameters.aPar.Model)
-     * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Parameterization()
-     * @model required="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Parameterization</em>' reference.
+	 * @see #setParameterization(org.eclipse.amp.amf.parameters.aPar.Model)
+	 * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Parameterization()
+	 * @model required="true"
+	 * @generated
+	 */
     org.eclipse.amp.amf.parameters.aPar.Model getParameterization();
 
     /**
-     * Sets the value of the '{@link org.eclipse.amp.amf.testing.ares.Run#getParameterization <em>Parameterization</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.amp.amf.testing.ares.Run#getParameterization <em>Parameterization</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Parameterization</em>' reference.
-     * @see #getParameterization()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Parameterization</em>' reference.
+	 * @see #getParameterization()
+	 * @generated
+	 */
     void setParameterization(org.eclipse.amp.amf.parameters.aPar.Model value);
 
     /**
-     * Returns the value of the '<em><b>Result</b></em>' attribute.
-     * The default value is <code>""</code>.
-     * The literals are from the enumeration {@link org.eclipse.amp.amf.testing.ares.ResultType}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Result</b></em>' attribute.
+	 * The default value is <code>""</code>.
+	 * The literals are from the enumeration {@link org.eclipse.amp.amf.testing.ares.ResultType}.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Result</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Result</em>' attribute.
-     * @see org.eclipse.amp.amf.testing.ares.ResultType
-     * @see #setResult(ResultType)
-     * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Result()
-     * @model default=""
-     * @generated
-     */
+	 * @return the value of the '<em>Result</em>' attribute.
+	 * @see org.eclipse.amp.amf.testing.ares.ResultType
+	 * @see #setResult(ResultType)
+	 * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Result()
+	 * @model default=""
+	 * @generated
+	 */
     ResultType getResult();
 
     /**
-     * Sets the value of the '{@link org.eclipse.amp.amf.testing.ares.Run#getResult <em>Result</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.amp.amf.testing.ares.Run#getResult <em>Result</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Result</em>' attribute.
-     * @see org.eclipse.amp.amf.testing.ares.ResultType
-     * @see #getResult()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Result</em>' attribute.
+	 * @see org.eclipse.amp.amf.testing.ares.ResultType
+	 * @see #getResult()
+	 * @generated
+	 */
     void setResult(ResultType value);
 
     /**
-     * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.amp.amf.parameters.aPar.Parameter}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.amp.amf.parameters.aPar.SingleParameter}.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Parameters</em>' containment reference list.
-     * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Parameters()
-     * @model containment="true"
-     * @generated
-     */
-    EList<Parameter> getParameters();
+	 * @return the value of the '<em>Parameters</em>' containment reference list.
+	 * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Parameters()
+	 * @model containment="true"
+	 * @generated
+	 */
+    EList<SingleParameter> getParameters();
 
     /**
-     * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.amp.amf.testing.aTest.Constraint}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.amp.amf.testing.aTest.Constraint}.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Constraints</em>' reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Constraints</em>' containment reference list.
-     * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Constraints()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Constraints</em>' containment reference list.
+	 * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Constraints()
+	 * @model containment="true"
+	 * @generated
+	 */
     EList<Constraint> getConstraints();
 
     /**
-     * Returns the value of the '<em><b>Started</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Started</b></em>' attribute.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Started</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Started</em>' attribute.
-     * @see #setStarted(Date)
-     * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Started()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Started</em>' attribute.
+	 * @see #setStarted(Date)
+	 * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Started()
+	 * @model
+	 * @generated
+	 */
     Date getStarted();
 
     /**
-     * Sets the value of the '{@link org.eclipse.amp.amf.testing.ares.Run#getStarted <em>Started</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.amp.amf.testing.ares.Run#getStarted <em>Started</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Started</em>' attribute.
-     * @see #getStarted()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Started</em>' attribute.
+	 * @see #getStarted()
+	 * @generated
+	 */
     void setStarted(Date value);
 
     /**
-     * Returns the value of the '<em><b>Finished</b></em>' attribute.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Finished</b></em>' attribute.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Finished</em>' attribute isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Finished</em>' attribute.
-     * @see #setFinished(Date)
-     * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Finished()
-     * @model
-     * @generated
-     */
+	 * @return the value of the '<em>Finished</em>' attribute.
+	 * @see #setFinished(Date)
+	 * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Finished()
+	 * @model
+	 * @generated
+	 */
     Date getFinished();
 
     /**
-     * Sets the value of the '{@link org.eclipse.amp.amf.testing.ares.Run#getFinished <em>Finished</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * Sets the value of the '{@link org.eclipse.amp.amf.testing.ares.Run#getFinished <em>Finished</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Finished</em>' attribute.
-     * @see #getFinished()
-     * @generated
-     */
+	 * @param value the new value of the '<em>Finished</em>' attribute.
+	 * @see #getFinished()
+	 * @generated
+	 */
     void setFinished(Date value);
 
     /**
-     * Returns the value of the '<em><b>Results</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.amp.amf.testing.ares.ConstraintTest}.
-     * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Results</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.amp.amf.testing.ares.ConstraintTest}.
+	 * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Results</em>' containment reference list isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Results</em>' containment reference list.
-     * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Results()
-     * @model containment="true"
-     * @generated
-     */
+	 * @return the value of the '<em>Results</em>' containment reference list.
+	 * @see org.eclipse.amp.amf.testing.ares.AresPackage#getRun_Results()
+	 * @model containment="true"
+	 * @generated
+	 */
     EList<ConstraintTest> getResults();
 
 } // Run

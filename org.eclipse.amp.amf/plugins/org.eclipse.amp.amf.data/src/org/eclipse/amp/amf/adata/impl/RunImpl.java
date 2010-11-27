@@ -25,9 +25,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.FlatEObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.BasicInternalEList;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -43,7 +47,6 @@ import org.metaabm.SContext;
  *   <li>{@link org.eclipse.amp.amf.adata.impl.RunImpl#getModel <em>Model</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.adata.impl.RunImpl#getStarted <em>Started</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.adata.impl.RunImpl#getFinished <em>Finished</em>}</li>
- *   <li>{@link org.eclipse.amp.amf.adata.impl.RunImpl#getEntries <em>Entries</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.adata.impl.RunImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.adata.impl.RunImpl#getParameterSets <em>Parameter Sets</em>}</li>
  *   <li>{@link org.eclipse.amp.amf.adata.impl.RunImpl#getMeasurements <em>Measurements</em>}</li>
@@ -52,437 +55,402 @@ import org.metaabm.SContext;
  *
  * @generated
  */
-public class RunImpl extends EObjectImpl implements Run {
+public class RunImpl extends FlatEObjectImpl implements Run {
     /**
-     * The cached value of the '{@link #getModel() <em>Model</em>}' reference.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getModel() <em>Model</em>}' reference.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getModel()
-     * @generated
-     * @ordered
-     */
+	 * @see #getModel()
+	 * @generated
+	 * @ordered
+	 */
     protected SContext model;
 
     /**
-     * The default value of the '{@link #getStarted() <em>Started</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getStarted() <em>Started</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getStarted()
-     * @generated
-     * @ordered
-     */
+	 * @see #getStarted()
+	 * @generated
+	 * @ordered
+	 */
     protected static final Date STARTED_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getStarted() <em>Started</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getStarted() <em>Started</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getStarted()
-     * @generated
-     * @ordered
-     */
+	 * @see #getStarted()
+	 * @generated
+	 * @ordered
+	 */
     protected Date started = STARTED_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getFinished() <em>Finished</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getFinished() <em>Finished</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFinished()
-     * @generated
-     * @ordered
-     */
+	 * @see #getFinished()
+	 * @generated
+	 * @ordered
+	 */
     protected static final Date FINISHED_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getFinished() <em>Finished</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getFinished() <em>Finished</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getFinished()
-     * @generated
-     * @ordered
-     */
+	 * @see #getFinished()
+	 * @generated
+	 * @ordered
+	 */
     protected Date finished = FINISHED_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getEntries() <em>Entries</em>}' reference list.
-     * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getEntries()
-     * @generated
-     * @ordered
-     */
-    protected EList<DataPoint> entries;
-
-    /**
-     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
     protected static final String NAME_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
-     * @generated
-     * @ordered
-     */
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
     protected String name = NAME_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getParameterSets() <em>Parameter Sets</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getParameterSets() <em>Parameter Sets</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getParameterSets()
-     * @generated
-     * @ordered
-     */
+	 * @see #getParameterSets()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<ParameterSet> parameterSets;
 
     /**
-     * The cached value of the '{@link #getMeasurements() <em>Measurements</em>}' containment reference list.
-     * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getMeasurements() <em>Measurements</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getMeasurements()
-     * @generated
-     * @ordered
-     */
+	 * @see #getMeasurements()
+	 * @generated
+	 * @ordered
+	 */
     protected EList<Measurement> measurements;
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected RunImpl() {
-        super();
-    }
+		super();
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EClass eStaticClass() {
-        return DataPackage.Literals.RUN;
-    }
+		return DataPackage.Literals.RUN;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SContext getModel() {
-        if (model != null && model.eIsProxy()) {
-            InternalEObject oldModel = (InternalEObject)model;
-            model = (SContext)eResolveProxy(oldModel);
-            if (model != oldModel) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, DataPackage.RUN__MODEL, oldModel, model));
-            }
-        }
-        return model;
-    }
+		if (model != null && model.eIsProxy()) {
+			InternalEObject oldModel = (InternalEObject)model;
+			model = (SContext)eResolveProxy(oldModel);
+			if (model != oldModel) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, DataPackage.RUN__MODEL, oldModel, model));
+			}
+		}
+		return model;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public SContext basicGetModel() {
-        return model;
-    }
+		return model;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setModel(SContext newModel) {
-        SContext oldModel = model;
-        model = newModel;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.RUN__MODEL, oldModel, model));
-    }
+		SContext oldModel = model;
+		model = newModel;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.RUN__MODEL, oldModel, model));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Date getStarted() {
-        return started;
-    }
+		return started;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setStarted(Date newStarted) {
-        Date oldStarted = started;
-        started = newStarted;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.RUN__STARTED, oldStarted, started));
-    }
+		Date oldStarted = started;
+		started = newStarted;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.RUN__STARTED, oldStarted, started));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public Date getFinished() {
-        return finished;
-    }
+		return finished;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setFinished(Date newFinished) {
-        Date oldFinished = finished;
-        finished = newFinished;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.RUN__FINISHED, oldFinished, finished));
-    }
+		Date oldFinished = finished;
+		finished = newFinished;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.RUN__FINISHED, oldFinished, finished));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    public EList<DataPoint> getEntries() {
-        if (entries == null) {
-            entries = new EObjectWithInverseEList<DataPoint>(DataPoint.class, this, DataPackage.RUN__ENTRIES, DataPackage.DATA_POINT__RUN);
-        }
-        return entries;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public String getName() {
-        return name;
-    }
+		return name;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public void setName(String newName) {
-        String oldName = name;
-        name = newName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.RUN__NAME, oldName, name));
-    }
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, DataPackage.RUN__NAME, oldName, name));
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<ParameterSet> getParameterSets() {
-        if (parameterSets == null) {
-            parameterSets = new EObjectContainmentEList<ParameterSet>(ParameterSet.class, this, DataPackage.RUN__PARAMETER_SETS);
-        }
-        return parameterSets;
-    }
+		if (parameterSets == null) {
+			parameterSets = new EObjectContainmentEList<ParameterSet>(ParameterSet.class, this, DataPackage.RUN__PARAMETER_SETS);
+		}
+		return parameterSets;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public EList<Measurement> getMeasurements() {
-        if (measurements == null) {
-            measurements = new EObjectContainmentEList<Measurement>(Measurement.class, this, DataPackage.RUN__MEASUREMENTS);
-        }
-        return measurements;
-    }
+		if (measurements == null) {
+			measurements = new EObjectContainmentWithInverseEList<Measurement>(Measurement.class, this, DataPackage.RUN__MEASUREMENTS, DataPackage.MEASUREMENT__RUN);
+		}
+		return measurements;
+	}
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case DataPackage.RUN__ENTRIES:
-                return ((InternalEList<InternalEObject>)(InternalEList<?>)getEntries()).basicAdd(otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case DataPackage.RUN__MEASUREMENTS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getMeasurements()).basicAdd(otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
+				/**
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-            case DataPackage.RUN__ENTRIES:
-                return ((InternalEList<?>)getEntries()).basicRemove(otherEnd, msgs);
-            case DataPackage.RUN__PARAMETER_SETS:
-                return ((InternalEList<?>)getParameterSets()).basicRemove(otherEnd, msgs);
-            case DataPackage.RUN__MEASUREMENTS:
-                return ((InternalEList<?>)getMeasurements()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+		switch (featureID) {
+			case DataPackage.RUN__PARAMETER_SETS:
+				return ((InternalEList<?>)getParameterSets()).basicRemove(otherEnd, msgs);
+			case DataPackage.RUN__MEASUREMENTS:
+				return ((InternalEList<?>)getMeasurements()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case DataPackage.RUN__MODEL:
-                if (resolve) return getModel();
-                return basicGetModel();
-            case DataPackage.RUN__STARTED:
-                return getStarted();
-            case DataPackage.RUN__FINISHED:
-                return getFinished();
-            case DataPackage.RUN__ENTRIES:
-                return getEntries();
-            case DataPackage.RUN__NAME:
-                return getName();
-            case DataPackage.RUN__PARAMETER_SETS:
-                return getParameterSets();
-            case DataPackage.RUN__MEASUREMENTS:
-                return getMeasurements();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+		switch (featureID) {
+			case DataPackage.RUN__MODEL:
+				if (resolve) return getModel();
+				return basicGetModel();
+			case DataPackage.RUN__STARTED:
+				return getStarted();
+			case DataPackage.RUN__FINISHED:
+				return getFinished();
+			case DataPackage.RUN__NAME:
+				return getName();
+			case DataPackage.RUN__PARAMETER_SETS:
+				return getParameterSets();
+			case DataPackage.RUN__MEASUREMENTS:
+				return getMeasurements();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @SuppressWarnings("unchecked")
     @Override
     public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case DataPackage.RUN__MODEL:
-                setModel((SContext)newValue);
-                return;
-            case DataPackage.RUN__STARTED:
-                setStarted((Date)newValue);
-                return;
-            case DataPackage.RUN__FINISHED:
-                setFinished((Date)newValue);
-                return;
-            case DataPackage.RUN__ENTRIES:
-                getEntries().clear();
-                getEntries().addAll((Collection<? extends DataPoint>)newValue);
-                return;
-            case DataPackage.RUN__NAME:
-                setName((String)newValue);
-                return;
-            case DataPackage.RUN__PARAMETER_SETS:
-                getParameterSets().clear();
-                getParameterSets().addAll((Collection<? extends ParameterSet>)newValue);
-                return;
-            case DataPackage.RUN__MEASUREMENTS:
-                getMeasurements().clear();
-                getMeasurements().addAll((Collection<? extends Measurement>)newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+		switch (featureID) {
+			case DataPackage.RUN__MODEL:
+				setModel((SContext)newValue);
+				return;
+			case DataPackage.RUN__STARTED:
+				setStarted((Date)newValue);
+				return;
+			case DataPackage.RUN__FINISHED:
+				setFinished((Date)newValue);
+				return;
+			case DataPackage.RUN__NAME:
+				setName((String)newValue);
+				return;
+			case DataPackage.RUN__PARAMETER_SETS:
+				getParameterSets().clear();
+				getParameterSets().addAll((Collection<? extends ParameterSet>)newValue);
+				return;
+			case DataPackage.RUN__MEASUREMENTS:
+				getMeasurements().clear();
+				getMeasurements().addAll((Collection<? extends Measurement>)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void eUnset(int featureID) {
-        switch (featureID) {
-            case DataPackage.RUN__MODEL:
-                setModel((SContext)null);
-                return;
-            case DataPackage.RUN__STARTED:
-                setStarted(STARTED_EDEFAULT);
-                return;
-            case DataPackage.RUN__FINISHED:
-                setFinished(FINISHED_EDEFAULT);
-                return;
-            case DataPackage.RUN__ENTRIES:
-                getEntries().clear();
-                return;
-            case DataPackage.RUN__NAME:
-                setName(NAME_EDEFAULT);
-                return;
-            case DataPackage.RUN__PARAMETER_SETS:
-                getParameterSets().clear();
-                return;
-            case DataPackage.RUN__MEASUREMENTS:
-                getMeasurements().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+		switch (featureID) {
+			case DataPackage.RUN__MODEL:
+				setModel((SContext)null);
+				return;
+			case DataPackage.RUN__STARTED:
+				setStarted(STARTED_EDEFAULT);
+				return;
+			case DataPackage.RUN__FINISHED:
+				setFinished(FINISHED_EDEFAULT);
+				return;
+			case DataPackage.RUN__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case DataPackage.RUN__PARAMETER_SETS:
+				getParameterSets().clear();
+				return;
+			case DataPackage.RUN__MEASUREMENTS:
+				getMeasurements().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case DataPackage.RUN__MODEL:
-                return model != null;
-            case DataPackage.RUN__STARTED:
-                return STARTED_EDEFAULT == null ? started != null : !STARTED_EDEFAULT.equals(started);
-            case DataPackage.RUN__FINISHED:
-                return FINISHED_EDEFAULT == null ? finished != null : !FINISHED_EDEFAULT.equals(finished);
-            case DataPackage.RUN__ENTRIES:
-                return entries != null && !entries.isEmpty();
-            case DataPackage.RUN__NAME:
-                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-            case DataPackage.RUN__PARAMETER_SETS:
-                return parameterSets != null && !parameterSets.isEmpty();
-            case DataPackage.RUN__MEASUREMENTS:
-                return measurements != null && !measurements.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+		switch (featureID) {
+			case DataPackage.RUN__MODEL:
+				return model != null;
+			case DataPackage.RUN__STARTED:
+				return STARTED_EDEFAULT == null ? started != null : !STARTED_EDEFAULT.equals(started);
+			case DataPackage.RUN__FINISHED:
+				return FINISHED_EDEFAULT == null ? finished != null : !FINISHED_EDEFAULT.equals(finished);
+			case DataPackage.RUN__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case DataPackage.RUN__PARAMETER_SETS:
+				return parameterSets != null && !parameterSets.isEmpty();
+			case DataPackage.RUN__MEASUREMENTS:
+				return measurements != null && !measurements.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public String toString() {
-        if (eIsProxy()) return super.toString();
+		if (eIsProxy()) return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (started: ");
-        result.append(started);
-        result.append(", finished: ");
-        result.append(finished);
-        result.append(", name: ");
-        result.append(name);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (started: ");
+		result.append(started);
+		result.append(", finished: ");
+		result.append(finished);
+		result.append(", name: ");
+		result.append(name);
+		result.append(')');
+		return result.toString();
+	}
 
 } //RunImpl

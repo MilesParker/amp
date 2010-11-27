@@ -21,9 +21,19 @@
     <genClasses ecoreClass="APar.ecore#//Incorporates">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute APar.ecore#//Incorporates/importURI"/>
     </genClasses>
-    <genClasses ecoreClass="APar.ecore#//Parameter">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference APar.ecore#//Parameter/attribute"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference APar.ecore#//Parameter/value"/>
+    <genClasses ecoreClass="APar.ecore#//Parameter"/>
+    <genClasses ecoreClass="APar.ecore#//SingleParameter">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference APar.ecore#//SingleParameter/attribute"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference APar.ecore#//SingleParameter/value"/>
+    </genClasses>
+    <genClasses ecoreClass="APar.ecore#//SweepParameter">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference APar.ecore#//SweepParameter/attribute"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference APar.ecore#//SweepParameter/startValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference APar.ecore#//SweepParameter/endValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference APar.ecore#//SweepParameter/increment"/>
+    </genClasses>
+    <genClasses ecoreClass="APar.ecore#//SweepLink">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference APar.ecore#//SweepLink/parameters"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

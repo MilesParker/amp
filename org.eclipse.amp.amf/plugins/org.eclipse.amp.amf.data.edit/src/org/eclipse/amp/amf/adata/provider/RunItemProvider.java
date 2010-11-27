@@ -43,196 +43,173 @@ extends ItemProviderAdapter
 implements
 IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
     /**
-     * This constructs an instance from a factory and a notifier.
-     * <!-- begin-user-doc -->
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     public RunItemProvider(AdapterFactory adapterFactory) {
-        super(adapterFactory);
-    }
+		super(adapterFactory);
+	}
 
     /**
-     * This returns the property descriptors for the adapted class.
-     * <!-- begin-user-doc -->
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-        if (itemPropertyDescriptors == null) {
-            super.getPropertyDescriptors(object);
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-            addModelPropertyDescriptor(object);
-            addStartedPropertyDescriptor(object);
-            addFinishedPropertyDescriptor(object);
-            addEntriesPropertyDescriptor(object);
-            addNamePropertyDescriptor(object);
-        }
-        return itemPropertyDescriptors;
-    }
+			addModelPropertyDescriptor(object);
+			addStartedPropertyDescriptor(object);
+			addFinishedPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
+		}
+		return itemPropertyDescriptors;
+	}
 
     /**
-     * This adds a property descriptor for the Model feature.
-     * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Model feature.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected void addModelPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-        (createItemPropertyDescriptor
-         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-          getResourceLocator(),
-          getString("_UI_Run_model_feature"),
-          getString("_UI_PropertyDescriptor_description", "_UI_Run_model_feature", "_UI_Run_type"),
-          DataPackage.Literals.RUN__MODEL,
-          true,
-          false,
-          true,
-          null,
-          null,
-          null));
-    }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Run_model_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Run_model_feature", "_UI_Run_type"),
+				 DataPackage.Literals.RUN__MODEL,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
 
     /**
-     * This adds a property descriptor for the Started feature.
-     * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Started feature.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected void addStartedPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-        (createItemPropertyDescriptor
-         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-          getResourceLocator(),
-          getString("_UI_Run_started_feature"),
-          getString("_UI_PropertyDescriptor_description", "_UI_Run_started_feature", "_UI_Run_type"),
-          DataPackage.Literals.RUN__STARTED,
-          true,
-          false,
-          false,
-          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-          null,
-          null));
-    }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Run_started_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Run_started_feature", "_UI_Run_type"),
+				 DataPackage.Literals.RUN__STARTED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
     /**
-     * This adds a property descriptor for the Finished feature.
-     * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Finished feature.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected void addFinishedPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-        (createItemPropertyDescriptor
-         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-          getResourceLocator(),
-          getString("_UI_Run_finished_feature"),
-          getString("_UI_PropertyDescriptor_description", "_UI_Run_finished_feature", "_UI_Run_type"),
-          DataPackage.Literals.RUN__FINISHED,
-          true,
-          false,
-          false,
-          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-          null,
-          null));
-    }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Run_finished_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Run_finished_feature", "_UI_Run_type"),
+				 DataPackage.Literals.RUN__FINISHED,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
     /**
-     * This adds a property descriptor for the Entries feature.
-     * <!-- begin-user-doc -->
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addEntriesPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-        (createItemPropertyDescriptor
-         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-          getResourceLocator(),
-          getString("_UI_Run_entries_feature"),
-          getString("_UI_PropertyDescriptor_description", "_UI_Run_entries_feature", "_UI_Run_type"),
-          DataPackage.Literals.RUN__ENTRIES,
-          true,
-          false,
-          true,
-          null,
-          null,
-          null));
-    }
-
-    /**
-     * This adds a property descriptor for the Name feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     protected void addNamePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add
-        (createItemPropertyDescriptor
-         (((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-          getResourceLocator(),
-          getString("_UI_Run_name_feature"),
-          getString("_UI_PropertyDescriptor_description", "_UI_Run_name_feature", "_UI_Run_type"),
-          DataPackage.Literals.RUN__NAME,
-          true,
-          false,
-          false,
-          ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-          null,
-          null));
-    }
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Run_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Run_name_feature", "_UI_Run_type"),
+				 DataPackage.Literals.RUN__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
 
     /**
-     * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-     * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-     * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-     * <!-- begin-user-doc -->
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-        if (childrenFeatures == null) {
-            super.getChildrenFeatures(object);
-            childrenFeatures.add(DataPackage.Literals.RUN__PARAMETER_SETS);
-            childrenFeatures.add(DataPackage.Literals.RUN__MEASUREMENTS);
-        }
-        return childrenFeatures;
-    }
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(DataPackage.Literals.RUN__PARAMETER_SETS);
+			childrenFeatures.add(DataPackage.Literals.RUN__MEASUREMENTS);
+		}
+		return childrenFeatures;
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected EStructuralFeature getChildFeature(Object object, Object child) {
-        // Check the type of the specified child object and return the proper feature to use for
-        // adding (see {@link AddCommand}) it as a child.
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
 
-        return super.getChildFeature(object, child);
-    }
+		return super.getChildFeature(object, child);
+	}
 
     /**
-     * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public boolean hasChildren(Object object) {
-        return hasChildren(object, true);
-    }
+		return hasChildren(object, true);
+	}
 
     /**
-     * This returns Run.gif.
-     * <!-- begin-user-doc -->
+	 * This returns Run.gif.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/Run"));
-    }
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Run"));
+	}
 
     /**
      * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -248,61 +225,61 @@ IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProv
     }
 
     /**
-     * This handles model notifications by calling {@link #updateChildren} to update any cached
-     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-     * <!-- begin-user-doc -->
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public void notifyChanged(Notification notification) {
-        updateChildren(notification);
+		updateChildren(notification);
 
-        switch (notification.getFeatureID(Run.class)) {
-            case DataPackage.RUN__STARTED:
-            case DataPackage.RUN__FINISHED:
-            case DataPackage.RUN__NAME:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
-            case DataPackage.RUN__PARAMETER_SETS:
-            case DataPackage.RUN__MEASUREMENTS:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-                return;
-        }
-        super.notifyChanged(notification);
-    }
+		switch (notification.getFeatureID(Run.class)) {
+			case DataPackage.RUN__STARTED:
+			case DataPackage.RUN__FINISHED:
+			case DataPackage.RUN__NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case DataPackage.RUN__PARAMETER_SETS:
+			case DataPackage.RUN__MEASUREMENTS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
+		}
+		super.notifyChanged(notification);
+	}
 
     /**
-     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-     * that can be created under this object.
-     * <!-- begin-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-        super.collectNewChildDescriptors(newChildDescriptors, object);
+		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-        newChildDescriptors.add
-        (createChildParameter
-         (DataPackage.Literals.RUN__PARAMETER_SETS,
-          DataFactory.eINSTANCE.createParameterSet()));
+		newChildDescriptors.add
+			(createChildParameter
+				(DataPackage.Literals.RUN__PARAMETER_SETS,
+				 DataFactory.eINSTANCE.createParameterSet()));
 
-        newChildDescriptors.add
-        (createChildParameter
-         (DataPackage.Literals.RUN__MEASUREMENTS,
-          DataFactory.eINSTANCE.createMeasurement()));
-    }
+		newChildDescriptors.add
+			(createChildParameter
+				(DataPackage.Literals.RUN__MEASUREMENTS,
+				 DataFactory.eINSTANCE.createMeasurement()));
+	}
 
     /**
-     * Return the resource locator for this item provider's resources.
-     * <!-- begin-user-doc -->
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
-     */
+	 * @generated
+	 */
     @Override
     public ResourceLocator getResourceLocator() {
-        return ADataEditPlugin.INSTANCE;
-    }
+		return ADataEditPlugin.INSTANCE;
+	}
 
 }
