@@ -81,6 +81,8 @@ public class EMFDataOutputView extends DataView {
 
 	public EMFDataOutputView(IResource resource, SContext model) {
 		super();
+		assert (resource != null);
+		assert (model != null);
 		this.model = model;
 
 		IProject project = resource.getProject();
@@ -173,7 +175,7 @@ public class EMFDataOutputView extends DataView {
 			addParameter(createParameterSet, accessor.getName(),
 					accessor.getValue());
 		}
-		
+
 		measureForSeries = new HashMap<DataSeries, Measurement>();
 		for (int i = 0; i < dataSelection.getSelectionSize(); i++) {
 			DataSeries selectedSeries = dataSelection.getSelectedSeries(i);
@@ -253,7 +255,7 @@ public class EMFDataOutputView extends DataView {
 			DataSeries selectedSeries = (DataSeries) selected;
 			DataPoint dataPoint = DataFactoryImpl.eINSTANCE.createDataPoint();
 			Measurement measurement = measureForSeries.get(selectedSeries);
-			//dataPoint.setMeasure(measurement);
+			// dataPoint.setMeasure(measurement);
 			dataPoint.setPeriod(getScape().getPeriod());
 			dataPoint.setMeasurement(measurement);
 			dataPoint.setValue(selectedSeries.getValue());
@@ -310,11 +312,22 @@ public class EMFDataOutputView extends DataView {
 		saveResults();
 		super.scapeStopped(scapeEvent);
 	}
+	
+	@Override
+	public void scapeRemoved(ScapeEvent scapeEvent) {
+		// TODO Auto-generated method stub
+		super.scapeRemoved(scapeEvent);
+		if (dataResource != null) {
+			dataResource.unload();
+			resourceSet.getResources().remove(dataResource);
+		}
+	}
 
 	private synchronized void saveResults() {
 		Map<Object, Object> saveOptions = new HashMap<Object, Object>();
 		try {
-			saveOptions.put(BinaryResourceImpl.OPTION_SAVE_ONLY_IF_CHANGED, null);
+			saveOptions.put(BinaryResourceImpl.OPTION_SAVE_ONLY_IF_CHANGED,
+					null);
 			dataResource.save(saveOptions);
 		} catch (IOException e) {
 			throw new RuntimeException(e);

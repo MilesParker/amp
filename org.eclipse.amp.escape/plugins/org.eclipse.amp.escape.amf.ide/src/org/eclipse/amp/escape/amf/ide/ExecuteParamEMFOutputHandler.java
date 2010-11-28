@@ -16,7 +16,7 @@
 package org.eclipse.amp.escape.amf.ide;
 
 import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
-import org.eclipse.amp.escape.view.EMFDataOutputView;
+import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 
 import org.ascape.runtime.Runner;
 
@@ -32,29 +32,7 @@ public class ExecuteParamEMFOutputHandler extends ExecuteParameterHeadlessHandle
      */
     protected EclipseEscapeRunner createRunner() {
         Runner.setDisplayGraphics(!isHeadless());
-        EclipseEscapeRunner runner = new EclipseEscapeRunner() {
-            private static final long serialVersionUID = 1L;
-
-            /**
-             * 
-             * @see org.ascape.runtime.Runner#run()
-             */
-            public synchronized void run() {
-                getScape().addView(new EMFDataOutputView(modelResource, ExecuteParamEMFOutputHandler.this.getModel()));
-                super.run();
-            }
-
-            /**
-             * @param args
-             * @param block
-             * @see org.ascape.runtime.Runner#openImplementation(java.lang.String[], boolean)
-             */
-            public void openImplementation(String[] args, boolean block) {
-                getInterpreter().assignValues(new Object[] { getRootScape(), this }, null);
-                super.openImplementation(args, block);
-            }
-
-        };
+        EclipseEscapeRunner runner = new EclipseEMFOutputRunner(this.getModel(), modelResource, getInterpreter());
         runner.setCloseOnStop(true);
         runner.setAutoRestart(false);
         return runner;

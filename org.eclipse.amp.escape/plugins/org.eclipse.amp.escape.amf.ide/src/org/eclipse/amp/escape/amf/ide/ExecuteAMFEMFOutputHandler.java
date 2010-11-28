@@ -39,24 +39,7 @@ public class ExecuteAMFEMFOutputHandler extends ExecuteAMFHeadlessHandler {
      */
     protected EclipseEscapeRunner createRunner() {
         Runner.setDisplayGraphics(!isHeadless());
-        // if (modelResource.getFileExtension().equals("apar")) {
-        // // a bit awkward..
-        // setInterpreter((AParInterpreter) AParFactory.create(null).getInterpreter(modelResource));
-        // eclipseRunner.open(project, getInterpreter().getRootContext().getImplementation().getQualifiedName(),
-        // getInterpreter().getRunName(), getInterpreter().getArgs());
-        // }
-        EclipseEscapeRunner runner = new EclipseEscapeRunner() {
-            private static final long serialVersionUID = 1L;
-
-            /**
-             * 
-             * @see org.ascape.runtime.Runner#run()
-             */
-            public synchronized void run() {
-                getScape().addView(new EMFDataOutputView(modelResource, ExecuteAMFEMFOutputHandler.this.getModel()));
-                super.run();
-            }
-        };
+        EclipseEscapeRunner runner = new EclipseEMFOutputRunner(this.getModel(), modelResource, null);
         return runner;
     }
 }
