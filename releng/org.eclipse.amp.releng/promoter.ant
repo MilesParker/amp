@@ -164,7 +164,7 @@
 		<property name="packages.directory" location="${build.root}/archive/${packages.base}" />
 		<property name="testresults.directory" location="${build.root}/archive/${tests.base}" />
 
-		<property name="build.drop.directory" location="${downloads.area}/downloads/drops/${version}/${saved.build.id}" />
+		<property name="build.drop.directory" location="${downloads.area}/drops/${version}/${saved.build.id}" />
 		<available file="${build.drop.directory}" type="dir" property="alreadyPromoted" />
 		<antcall target="publish" inheritall="true" />
 		<antcall target="echo-status" inheritall="true" />
@@ -176,7 +176,7 @@
 
 		<echo>Remove existing nightly builds</echo>
 		<delete verbose="true">
-			<fileset dir="${downloads.area}/downloads/drops/${version}/">
+			<fileset dir="${downloads.area}/drops/${version}/">
 				<type type="dir" />
 				<filename name="N*" />
 			</fileset>
@@ -217,16 +217,16 @@
 		<buckminster.substitute value="${version}" pattern="^(\d+\.\d+)\.\d+.*$" replacement="$$1" property="base.version" />
 
 		<!-- setup composite.repository.base appropriate to the build type -->
-		<condition property="composite.repository.base" value="nightly/head">
+		<condition property="composite.repository.base" value="nightly">
 			<matches pattern="^N" string="${saved.build.id}" />
 		</condition>
-		<condition property="composite.repository.base" value="interim/head">
+		<condition property="composite.repository.base" value="interim">
 			<matches pattern="^I" string="${saved.build.id}" />
 		</condition>
-		<condition property="composite.repository.base" value="milestones/head/${saved.build.id}">
+		<condition property="composite.repository.base" value="milestones/${saved.build.id}">
 			<matches pattern="^[MS]" string="${saved.build.id}" />
 		</condition>
-		<condition property="composite.repository.base" value="releases/head/${base.version}">
+		<condition property="composite.repository.base" value="releases/${base.version}">
 			<matches pattern="^R" string="${saved.build.id}" />
 		</condition>
 
