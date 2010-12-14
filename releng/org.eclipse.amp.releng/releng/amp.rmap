@@ -242,14 +242,14 @@
 		</rm:provider>
 	</rm:searchPath>
 	<rm:searchPath name="gef3d">
-		<rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="svn">
+		<rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="svn" mutable="false">
 			<rm:uri format="http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d/trunk/{0}?moduleAfterTag&amp;moduleAfterBranch">
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
 		</rm:provider>
 	</rm:searchPath>
 	<rm:searchPath name="gef3d-build">
-		<rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="svn">
+		<rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="svn" mutable="false">
 			<rm:uri format="file:///svnroot/technology/org.eclipse.gef3d/trunk/{0}?moduleAfterTag&amp;moduleAfterBranch">
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
