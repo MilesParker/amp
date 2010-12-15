@@ -68,7 +68,7 @@
 			</cs:actorProperties>
 			<cs:properties>
 				<cs:property key="content.ius"
-					value="org.eclipse.amp.examples.feature.group,org.eclipse.amp.examples.feature.group" />
+					value="org.eclipse.amp.examples.feature.group" />
 				<cs:property key="prerequisite.ius" value="org.eclipse.amp.all.feature.group" />
 				<cs:property key="package.name" value="amp-Examples" />
 			</cs:properties>
@@ -110,8 +110,8 @@
 		<cs:public name="build">
 			<cs:attribute name="package.amp-Update" />
  			<cs:attribute name="package.amp-SDK" />
-			<cs:attribute name="package.amp-runtime" />
-	<!--		<cs:attribute name="package.amp-Examples" />
+	<!--			<cs:attribute name="package.amp-runtime" />
+		<cs:attribute name="package.amp-Examples" />
 			<cs:attribute name="package.amp-sourcedoc" /> -->
 		</cs:public>
 	</cs:groups>
