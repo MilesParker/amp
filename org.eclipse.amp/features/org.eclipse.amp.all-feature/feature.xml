@@ -44,10 +44,6 @@
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.amp.agf3d"
-         version="0.0.0"/>
-
-   <includes
          id="org.eclipse.amp.amf.target.escape"
          version="0.0.0"/>
 
