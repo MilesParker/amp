@@ -34,10 +34,10 @@
       <category name="Agent Modeling (Requiring Third Party Dependencies)"/>
    </feature>
    <feature url="features/org.eclipse.amp.amf.target.repast_0.8.1.qualifier.jar" id="org.eclipse.amp.amf.target.repast" version="0.8.1.qualifier">
-      <category name="Agent Modeling (Third Party Dependencies)"/>
+      <category name="Agent Modeling (Requiring Third Party Dependencies)"/>
    </feature>
    <feature url="features/org.eclipse.amp.agf3d_0.8.1.qualifier.jar" id="org.eclipse.amp.agf3d" version="0.8.1.qualifier">
-      <category name="Agent Modeling (Third Party Dependencies)"/>
+      <category name="Agent Modeling (Requiring Third Party Dependencies)"/>
    </feature>
    <feature url="features/org.eclipse.amp.doc.all_0.8.1.qualifier.jar" id="org.eclipse.amp.doc.all" version="0.8.1.qualifier">
       <category name="Agent Modeling"/>
