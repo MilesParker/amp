@@ -6,7 +6,7 @@
   <rm:property key="mwe.p2.repository" value="${eclipse.download}/modeling/emft/mwe/updates/nightly"/>
   <rm:property key="birt.repository" value="http://download.eclipse.org/birt/update-site/4.0-interim/"/>
   <rm:locator pattern="^org\.eclipse\.amp\.(releng|build)$" searchPathRef="local.releng"/>
-  <rm:locator pattern="^org\.eclipse\.birt(\..+)?$" searchPathRef="eclipse"/>
+  <rm:locator pattern="^org\.eclipse\.birt(\..+)?$" searchPathRef="birt"/>
   <rm:locator pattern="^org\.eclipse(\..+)?$" searchPathRef="eclipse" failOnError="false"/>
   <rm:locator pattern="^org\.lwjgl(\..+)?" searchPathRef="lwjgl"/>
   <rm:locator pattern="^org\.ascape\.ui\.swing" searchPathRef="ascape.external"/>
