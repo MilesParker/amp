@@ -82,7 +82,7 @@ This Agreement is governed by the laws of the State of New York and the intellec
       <import plugin="org.eclipse.amp.amf.gen.escape" version="0.2.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.amp.amf.gen.ide" version="0.2.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.amp.escape.ide"/>
-      <import plugin="org.eclipse.xtext" version="0.7.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xtext" match="greaterOrEqual"/>
       <import plugin="org.eclipse.amp.amf.parameters" version="0.2.0" match="greaterOrEqual"/>
    </requires>
 

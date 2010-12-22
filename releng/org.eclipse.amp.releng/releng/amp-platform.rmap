@@ -55,6 +55,13 @@
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
+  <rm:searchPath name="birt">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="http://download.eclipse.org/birt/update-site/4.0-interim/">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
   <rm:searchPath name="emf">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
       <rm:uri format="{0}/modeling/emf/emf/updates/2.6milestones">

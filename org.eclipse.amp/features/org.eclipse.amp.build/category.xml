@@ -3,43 +3,43 @@
    <description>
       Tools for Agent Modeling, Execution and Graphics.
    </description>
-   <feature url="features/org.eclipse.amp.agf.chart_0.8.0.qualifier.jar" id="org.eclipse.amp.agf.chart" version="0.8.0.qualifier">
+   <feature url="features/org.eclipse.amp.agf.chart_0.8.1.qualifier.jar" id="org.eclipse.amp.agf.chart" version="0.8.1.qualifier">
       <category name="Agent Modeling"/>
    </feature>
-   <feature url="features/org.eclipse.amp.agf.zest_0.8.0.qualifier.jar" id="org.eclipse.amp.agf.zest" version="0.8.0.qualifier">
+   <feature url="features/org.eclipse.amp.agf.zest_0.8.1.qualifier.jar" id="org.eclipse.amp.agf.zest" version="0.8.1.qualifier">
       <category name="Agent Modeling"/>
    </feature>
-   <feature url="features/org.eclipse.amp.agf_0.8.0.qualifier.jar" id="org.eclipse.amp.agf" version="0.8.0.qualifier">
+   <feature url="features/org.eclipse.amp.agf_0.8.1.qualifier.jar" id="org.eclipse.amp.agf" version="0.8.1.qualifier">
       <category name="Agent Modeling"/>
    </feature>
-   <feature url="features/org.eclipse.amp.amf.core_0.8.0.qualifier.jar" id="org.eclipse.amp.amf.core" version="0.8.0.qualifier">
+   <feature url="features/org.eclipse.amp.amf.core_0.8.1.qualifier.jar" id="org.eclipse.amp.amf.core" version="0.8.1.qualifier">
       <category name="Agent Modeling"/>
    </feature>
-   <feature url="features/org.eclipse.amp.amf.target.escape_0.8.0.qualifier.jar" id="org.eclipse.amp.amf.target.escape" version="0.8.0.qualifier">
+   <feature url="features/org.eclipse.amp.amf.target.escape_0.8.1.qualifier.jar" id="org.eclipse.amp.amf.target.escape" version="0.8.1.qualifier">
       <category name="Agent Modeling"/>
    </feature>
-   <feature url="features/org.eclipse.amp.amf_0.8.0.qualifier.jar" id="org.eclipse.amp.amf" version="0.8.0.qualifier">
+   <feature url="features/org.eclipse.amp.amf_0.8.1.qualifier.jar" id="org.eclipse.amp.amf" version="0.8.1.qualifier">
       <category name="Agent Modeling"/>
    </feature>
-   <feature url="features/org.eclipse.amp.amfx_0.8.0.qualifier.jar" id="org.eclipse.amp.amfx" version="0.8.0.qualifier">
+   <feature url="features/org.eclipse.amp.amfx_0.8.1.qualifier.jar" id="org.eclipse.amp.amfx" version="0.8.1.qualifier">
       <category name="Agent Modeling"/>
    </feature>
-   <feature url="features/org.eclipse.amp.axf_0.8.0.qualifier.jar" id="org.eclipse.amp.axf" version="0.8.0.qualifier">
+   <feature url="features/org.eclipse.amp.axf_0.8.1.qualifier.jar" id="org.eclipse.amp.axf" version="0.8.1.qualifier">
       <category name="Agent Modeling"/>
    </feature>
-   <feature url="features/org.eclipse.amp.escape_0.8.0.qualifier.jar" id="org.eclipse.amp.escape" version="0.8.0.qualifier">
+   <feature url="features/org.eclipse.amp.escape_0.8.1.qualifier.jar" id="org.eclipse.amp.escape" version="0.8.1.qualifier">
       <category name="Agent Modeling"/>
    </feature>
-   <feature url="features/org.eclipse.amp.amf.target.ascape_0.8.0.qualifier.jar" id="org.eclipse.amp.amf.target.ascape" version="0.8.0.qualifier">
+   <feature url="features/org.eclipse.amp.amf.target.ascape_0.8.1.qualifier.jar" id="org.eclipse.amp.amf.target.ascape" version="0.8.1.qualifier">
       <category name="Agent Modeling Extensions"/>
    </feature>
-   <feature url="features/org.eclipse.amp.amf.target.repast_0.8.0.qualifier.jar" id="org.eclipse.amp.amf.target.repast" version="0.8.0.qualifier">
+   <feature url="features/org.eclipse.amp.amf.target.repast_0.8.1.qualifier.jar" id="org.eclipse.amp.amf.target.repast" version="0.8.1.qualifier">
       <category name="Agent Modeling Extensions"/>
    </feature>
-   <feature url="features/org.eclipse.amp.agf3d_0.8.0.qualifier.jar" id="org.eclipse.amp.agf3d" version="0.8.0.qualifier">
+   <feature url="features/org.eclipse.amp.agf3d_0.8.1.qualifier.jar" id="org.eclipse.amp.agf3d" version="0.8.1.qualifier">
       <category name="Agent Modeling Extensions"/>
    </feature>
-   <feature url="features/org.eclipse.amp.doc.all_0.8.0.qualifier.jar" id="org.eclipse.amp.doc.all" version="0.8.0.qualifier">
+   <feature url="features/org.eclipse.amp.doc.all_0.8.1.qualifier.jar" id="org.eclipse.amp.doc.all" version="0.8.1.qualifier">
       <category name="Agent Modeling"/>
    </feature>
    <category-def name="Agent Modeling" label="Agent Modeling">

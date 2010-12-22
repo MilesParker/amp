@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.amp.amf.target.escape"
       label="%featureName"
-      version="0.8.0.qualifier"
+      version="0.8.1.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.amp.escape.amf.ide">
 
@@ -32,18 +32,18 @@
       <import plugin="org.eclipse.jdt.core" version="3.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.ecore" version="2.5.0" match="greaterOrEqual"/>
       <import plugin="org.ascape.core"/>
-      <import plugin="org.eclipse.amp.amf.acore.edit" version="0.8.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.amp.amf.acore.editor" version="0.8.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.amp.amf.gen.ide" version="0.8.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.acore.edit" version="0.8.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.acore.editor" version="0.8.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.gen.ide" version="0.8.1" match="greaterOrEqual"/>
       <import plugin="org.eclipse.amp.escape.ide"/>
-      <import plugin="org.eclipse.xtext" version="0.8.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.amp.amf.parameters" version="0.8.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.amp.amf.abase" version="0.8.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.amp.axf.core" version="0.8.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.amp.amf.testing" version="0.8.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.amp.escape.ide" version="0.8.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.amp.escape.ascape" version="0.8.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.amp.axf.ide" version="0.8.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.xtext" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.parameters" version="0.8.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.abase" version="0.8.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.axf.core" version="0.8.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.testing" version="0.8.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.escape.ide" version="0.8.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.escape.ascape" version="0.8.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.axf.ide" version="0.8.1" match="greaterOrEqual"/>
       <import plugin="org.eclipse.emf.ecore.xmi" version="2.5.0" match="greaterOrEqual"/>
       <import plugin="org.apache.commons.lang"/>
    </requires>
