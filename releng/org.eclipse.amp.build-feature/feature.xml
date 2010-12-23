@@ -29,12 +29,7 @@
    <includes
          id="org.eclipse.amp.test"
          version="0.0.0"/>
-<<<<<<< HEAD
-=======
-
-   <includes
+	<includes
          id="org.eclipse.amp.agf3d"
          version="0.0.0"/>
->>>>>>> recovered-2
-
 </feature>

@@ -18,11 +18,8 @@
 			<entry key="eclipse.home" value="${eclipse.home}" />
 			<entry key="build.id" value="${build.id}" />
 			<entry key="hudson.build.id" value="${hudson.build.id}" />
-<<<<<<< HEAD
-=======
 			<entry key="packages.base" value="amp.downloads" />
 			<entry key="downloads.area" value="/home/data/httpd/download.eclipse.org/amp" />
->>>>>>> recovered-2
 		</propertyfile>
 
 		<!-- diagnostics
