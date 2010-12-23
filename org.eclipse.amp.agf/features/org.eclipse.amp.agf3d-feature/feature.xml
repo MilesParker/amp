@@ -20,7 +20,7 @@
 
    <url>
       <update label="%AMPUpdateSiteName" url="http://eclipse.org/amp/updates/release"/>
-      <discovery label="LWJGL Support for GEF3D" url="http://lwjgl.org/update"/>
+      <!-- Removed update site reference per policy <discovery label="LWJGL Support for GEF3D" url="http://lwjgl.org/update"/> -->
    </url>
 
    <requires>
