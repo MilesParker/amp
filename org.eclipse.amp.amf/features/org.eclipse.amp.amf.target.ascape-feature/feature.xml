@@ -20,7 +20,7 @@
 
    <url>
       <update label="%AMPUpdateSiteName" url="http://eclipse.org/amp/updates/release"/>
-      <discovery label="Ascape Support" url="http://metascapeabm.com/updates/ascape"/>
+      <!-- Removed update site reference per policy <discovery label="Ascape Support" url="http://metascapeabm.com/updates/ascape"/> -->
    </url>
 
    <requires>
