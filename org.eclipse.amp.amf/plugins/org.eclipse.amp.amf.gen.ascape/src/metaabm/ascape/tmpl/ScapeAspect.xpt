@@ -113,6 +113,14 @@
         setAutoCreate(false);
         setPrototypeAgent(new org.ascape.model.Scape());
    		«ENDIF-»
+        «IF acts().exists(e| e.metaType == ARule || e.metaType == AInitialize)-»
+        //A manager scape provides rule execution for itself in the case where a Scape is the root scape.
+        if (isRoot()) {
+	        Scape managerScape = new Scape(new Singleton());
+    	    add(managerScape);
+			«EXPAND ChildBuilderProxy FOR (AGroup) rootActivity-»
+		}
+   		«ENDIF-»
 		«IF (rootActivity != null)-»
 			«EXPAND CreateScape (0) FOREACH agents-»
 			«EXPAND CreateScape (0) FOR rootActivity-»
@@ -127,9 +135,6 @@
 		«ENDIF-»
 		«EXPAND metaabm::tmpl::Java::Builder FOREACH projections-»
 		«EXPAND metaabm::tmpl::Java::Builder FOREACH agents-»
-		«IF rootActivity != null-»
-			«EXPAND metaabm::tmpl::Java::Builder FOR rootActivity-»
-		«ENDIF-»
 	}
 	
 	/**
@@ -239,7 +244,7 @@
 «ENDDEFINE»
 «DEFINE Setup FOR IAct-»«ENDDEFINE»
 «DEFINE Setup FOR AGroup-»
-	«EXPAND Setup FOREACH members-»
+	«EXPAND Setup FOREACH roots.typeSelect(ABuild).targets-»
 «ENDDEFINE»
 
 «DEFINE SetDimension FOR SNDimensional-»
@@ -331,7 +336,7 @@
 	«ENDIF-»
 «ENDDEFINE»
 «DEFINE CreateScape(int stage) FOR AGroup-»
-	«EXPAND CreateScape(stage) FOREACH members.orderBuild()-»
+	«EXPAND CreateScape(stage) FOREACH roots.typeSelect(ABuild).targets.orderBuild()-»
 «ENDDEFINE»
 «DEFINE CreateScape(int stage) FOR IAct-»«ENDDEFINE»
 
@@ -408,6 +413,14 @@
 			}
 		});
 «ENDDEFINE»
+«DEFINE ChildBuilderProxy FOR ARule-»
+		managerScape.addRule(new Rule("«label»") {
+			private static final long serialVersionUID = 6846144446402098981L;
+			public void execute(Agent a) {
+				((«this.typeName()») a.getScape()).«id()»();
+			}
+		});
+«ENDDEFINE»
 «DEFINE ChildBuilder FOR ADiffuse-»
         «reference.scape()».addRule(«agent.typeName()».«label.toUpperCase()»_RULE);
 «ENDDEFINE»
@@ -421,10 +434,22 @@
 			}
 		});
 «ENDDEFINE»
+«DEFINE ChildBuilderProxy FOR AInitialize-»
+		managerScape.addInitialRule(new Rule("«label»") {
+			private static final long serialVersionUID = 6846144446402098981L;
+			public void execute(Agent a) {
+				((«this.typeName()») a.getScape()).«id()»();
+			}
+		});
+«ENDDEFINE»
 «DEFINE ChildBuilder FOR AGroup-»
 	«EXPAND ChildBuilder FOREACH roots-»
 «ENDDEFINE»
 «DEFINE ChildBuilder FOR IAct-»«ENDDEFINE»
+«DEFINE ChildBuilderProxy FOR IAct-»«ENDDEFINE»
+«DEFINE ChildBuilderProxy FOR AGroup-»
+	«EXPAND ChildBuilderProxy FOREACH roots-»
+«ENDDEFINE»
 
 «DEFINE ViewBuilder FOR IAct-»«ENDDEFINE»
 «DEFINE ViewBuilder FOR AGroup-»

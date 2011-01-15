@@ -132,9 +132,11 @@ cached String accessPath(AAct act, IID value, Boolean inner) :
 	 act.accessPathStyle() + act.accessPathSelected(value, inner).pre() + act.accessPathInner(value.destAgent(), inner) + act.accessPathContext(value, inner);
 	
 cached String getterPath(IID source, IID value, Boolean inner) :
-	(value != null)
-	? source.accessPath(value, inner) + value.getterName() + "()"
-	: "**Bad Value From**" + source.label;
+	source != value
+		? ((value != null)
+			? source.accessPath(value, inner) + value.getterName() + "()"
+			: "[Null getter value; source: " + source.label + "]")
+		: "this";
 	
 cached String setterPath(IID source, IID attr) :
 	source.accessPath(attr, false) + attr.setterName();
@@ -529,7 +531,7 @@ cached List[AAct] members(IAct iact) :
 
 cached List[AAct] members(AGroup group) :
 	group.members;
-
+	
 cached List[AAct] acts(SAgent agent) :
 	agent.rootActivity.members();
 		
@@ -556,7 +558,3 @@ cached String markerNumber(FFunction func) :
 		: (func.id().endsWith("2")
 			? "1"
 			: "2");
-			
-		
-	
-	

@@ -49,6 +49,7 @@ import org.ascape.model.space.Coordinate;
 import org.ascape.model.space.Coordinate2DDiscrete;
 import org.ascape.model.space.Graph;
 import org.ascape.model.space.Location;
+import org.ascape.model.space.Singleton;
 import org.ascape.runtime.NonGraphicRunner;
 import org.ascape.util.Conditional;
 import org.ascape.util.data.DataPoint;
@@ -111,8 +112,10 @@ import org.ascape.view.vis.GraphView;
     «IF reference.metaType == SContext && !((SContext) reference).projections.typeSelect(SNDimensional).isEmpty-»
 	addView(new GEFView());
 	«ENDIF-»
-    «IF reference.metaType == SContext && !((SContext) reference).projections.typeSelect(SNetwork).isEmpty-»
-	addView(new GraphView());
+    «IF reference.metaType == SContext»
+    	«FOREACH members.allTargets.typeSelect(ABuildNetwork) AS graphBuilder-»
+			«graphBuilder.projection.fieldName()».addView(new GraphView());
+    	«ENDFOREACH-» 
 	«ENDIF-»
     «targetDef.proceed()-»
 «ENDAROUND»

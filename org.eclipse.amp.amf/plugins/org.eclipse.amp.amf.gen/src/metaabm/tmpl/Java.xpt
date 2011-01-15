@@ -516,10 +516,15 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 «DEFINE BeginBlock(List[AAct] path, Boolean inner) FOR AAct-»
     «IF expandSpatialBlock()-»
         «EXPAND ConditionBlock(path, inner)-»«IF queryFor()-»«EXPAND BeginQueryBlock(path, inner)-»«ENDIF-»
-    «ENDIF-»«ENDDEFINE»
+    «ENDIF-»
+«ENDDEFINE»
 «DEFINE BeginSerialBlock(List[AAct] path, Boolean inner) FOR AAct-»«ENDDEFINE»
 «DEFINE BeginSerialBlock(List[AAct] path, Boolean inner) FOR AControl-»
-    «IF expressIf(path, inner)-»if («expression(path, inner)») {«ENDIF-»«ENDDEFINE»
+    «IF expressIf(path, inner)-»if («expression(path, inner)») {«ENDIF-»
+«ENDDEFINE»
+«DEFINE BeginBlock(List[AAct] path, Boolean inner) FOR ACreateAgents-»
+	for (int «id()»Count = 0; «id()»Count < «agentCount.expression(path, inner)»; «id()»Count++) {
+«ENDDEFINE»
 
 «DEFINE EndBlock(List[AAct] path, Boolean inner) FOR AAct-»
     «IF expandSpatialBlock()-»
@@ -527,7 +532,11 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
     «ENDIF-»«ENDDEFINE»
 «DEFINE EndSerialBlock(List[AAct] path, Boolean inner) FOR AAct-»«ENDDEFINE»
 «DEFINE EndSerialBlock(List[AAct] path, Boolean inner) FOR AControl-»
-	«IF expressIf(path, inner)-»}«ENDIF-»«ENDDEFINE»
+	«IF expressIf(path, inner)-»}«ENDIF-»
+«ENDDEFINE»
+«DEFINE EndBlock(List[AAct] path, Boolean inner) FOR ACreateAgents-»
+	}
+«ENDDEFINE»
 
 «DEFINE InnerEvaluation (List[AAct] path, Boolean inner) FOR AAct-»
     «EXPAND Evaluation({selected}, false) FOREACH allSources.select(a | a.selected == selected)-»«ENDDEFINE»
@@ -550,11 +559,6 @@ public «EXPAND ClassKeyword» «EXPAND ClassName» «EXPAND ClassInheiritance» {
 «ENDDEFINE»
 «DEFINE EndQueryBlock (List[AAct] path, Boolean inner) FOR AAct-»«ENDDEFINE»
 
-«DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR AAct-»
-	//*** No Act Defined: «id()»
-«ENDDEFINE»
-«DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR ASet-»
-«selected.selid().pre() + setterPath(attribute)»(«parameter.bind(path, inner)»);«ENDDEFINE»
 «DEFINE Evaluation (List[AAct] path, Boolean inner) FOR AAct-»«ENDDEFINE»
 «DEFINE Evaluation (List[AAct] path, Boolean inner) FOR AEvaluate-»
 «IF rootSelected.metaType != ADerive || !targets.isEmpty-»
@@ -586,6 +590,11 @@ return «EXPAND FunctionInnerBlock(path, inner)-»;
 	«ENDIF-»
 «ENDDEFINE»
 
+«DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR AAct-»
+	//*** No Act Defined: «id()»
+«ENDDEFINE»
+«DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR ASet-»
+«selected.selid().pre() + setterPath(attribute)»(«parameter.bind(path, inner)»);«ENDDEFINE»
 «DEFINE InnerBlock (List[AAct] path, Boolean inner) FOR AEvaluate-»
     «IF selected == rootSelected || allTargets.typeSelect(ASet).collect(e | e.parameter).size > 0-»
     	«IF function.multiValue-»

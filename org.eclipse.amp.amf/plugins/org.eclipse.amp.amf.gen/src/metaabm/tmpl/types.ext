@@ -13,6 +13,9 @@ cached IValue valueSource(IID value) :
 
 cached IValue valueSource(AInput input) :
 	input.value;
+	
+cached SContext actionManager(SAgent agent) :
+	agent.parent != null ? agent.parent : agent;	
        
 cached SAgent parent(EObject obj) :
     obj.eContainer;

@@ -89,7 +89,7 @@ cached String network(ANetwork net) :
 	"((" + pkgs() + "Graph) " + net.selected.getterPath(net.within, false) + ".getSpace()).";
 
 cached String spacePath(ASelect act, List[AAct] path, Boolean inner) :
-	act.selector().agent.getterPath(act.reference.parent, false) + ".get" + act.agent.scape().toFirstUpper() + "().getSpace()";
+	act.selected.agent.getterPath(act.reference.actionManager(), false) + ".get" + act.agent.scape().toFirstUpper() + "().getSpace()";
 
 cached String destTerm(ASelect sel) :
 	sel.agent != null
@@ -114,7 +114,7 @@ cached String call(AReplace act, List[AAct] path, Boolean inner) :
 		act.network() + "replaceNeighbor(" + act.actMover().expl() + ", " + act.findDest() + ", " + act.directed + ");";
 
 cached String call(AConnect act, List[AAct] path, Boolean inner) :
-		act.network() + "addNeighborSafe(" + act.selfrom().local(act.selfrom().id()).expl() + ", " + act.findDest() +", " + act.directed + ");";
+		act.network() + "addNeighborSafe(" + act.selfrom().local(act.selfrom().id()).expl() + ", " + act.destination.local(act.destination.id()).expl() +", " + act.directed + ");";
 
 cached String call(ADisconnect act, List[AAct] path, Boolean inner) :
 		act.network() + "clearNeighbors(" + act.actMover().expl() + ");";
@@ -141,7 +141,7 @@ cached List[AAct] conditionForState(AAct act) :
 	act.selector().targets.queries().nonSpatial().intersect(act.allSources.union({act}));
 		
 cached Boolean conditionForAscape(AControl act) :
-	(act.conditionFor() || act.convertToAgent() || !act.selector().isHost()) && !act.hasControl("here") && !act.selector().isRoot();
+	(act.conditionFor() || act.convertToAgent() || !act.selector().isHost()) && !act.hasControl("here") && !act.selector().isRoot() && act.selected.space.metaType != SNetwork;
         
 cached Boolean conditionForAscape(ASelect act) :
     act.conditionFor() || act.convertToAgent();
@@ -150,7 +150,7 @@ cached Boolean conditionForAscape(AAct act) :
     false;
 
 cached String findSpace(AAct act) :
-    act.selector().space != null
+		act.selector().space != null
     	? ((act.selector().space.metaType != SGrid && act.selector().space.metaType != SNetwork)
     		? act.selector().getterPath(act.selector().space, false) + ".getSpace()."
     		: "((org.ascape.model.space.Discrete)" + act.selector().getterPath(act.selector().space, false) + ".getSpace()).")
@@ -249,11 +249,14 @@ cached String withinTerm(AAct act) :
 cached String neighborTerm(AAct act) :
     act.hasControl("neighbor") && !act.hasMinMax() ? "Neighbor" : "";
 
+cached String pluralTerm(AAct act) :
+    act.selected.space.metaType == SNetwork && act.hasControl("all") ? "s" : "";
+
 cached String continuousTerm(AAct act) :
     act.selector().space.metaType == SContinuousSpace ? "Coordinate" : "";
 
 cached String findMethod(AAct act) :
-    "find" + act.nearestTerm() + act.randomTerm() + act.functionTerm() + act.availableTerm() + act.withinTerm() + act.neighborTerm();
+    "find" + act.nearestTerm() + act.randomTerm() + act.functionTerm() + act.availableTerm() + act.withinTerm() + act.neighborTerm() + act.pluralTerm();
 
 //        : (act.hasControl("here") 
 //        	? "(" + act.selector().selected.asHost().expl() + "==" + act.rootSelected.asHost().expl() + " ? " + act.selector().selected.selid().expl() + " : null);"
