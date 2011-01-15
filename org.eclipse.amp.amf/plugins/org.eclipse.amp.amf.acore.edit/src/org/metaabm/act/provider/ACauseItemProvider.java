@@ -99,7 +99,7 @@ public class ACauseItemProvider extends ACommandItemProvider implements IEditing
     public String getText(Object object) {
         ACause cause = (ACause) object;
         if (cause.getResult() != null) {
-            return "Cause " + cause.getResult();
+            return "Cause " + cause.getResult().getLabel();
         }
         return super.getText(object);
     }

@@ -15,13 +15,13 @@
 */
 package org.eclipse.amp.axf.space;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface IGraphProvider {
-    public HashMap getAdjacencyMap(Object graph);
+    public Map<Object, Object> getAdjacencyMap(Object graph);
 
-    public List getNeighborsFor(Object graph, Object source);
+    public List<Object> getNeighborsFor(Object graph, Object source);
 
     public boolean isGraph(Object graph);
 }

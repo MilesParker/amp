@@ -21,6 +21,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.amp.axf.core.ICompositionProvider;
 import org.eclipse.amp.axf.space.IGraphProvider;
@@ -67,7 +68,7 @@ public class ZestContentProvider implements IGraphEntityContentProvider {
         Collection allElements = new HashSet();
         graphs = collectGraphs(parent, new HashSet<Object>());
         for (Object graph : graphs) {
-            HashMap graphMap = graphProvider.getAdjacencyMap(graph);
+            Map<Object, Object> graphMap = graphProvider.getAdjacencyMap(graph);
             Collection values = graphMap.values();
             for (Object valueMember : values) {
                 allElements.addAll(((Collection) valueMember));

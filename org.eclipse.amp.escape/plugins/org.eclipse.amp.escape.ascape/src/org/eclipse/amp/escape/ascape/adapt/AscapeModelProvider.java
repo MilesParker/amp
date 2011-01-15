@@ -16,14 +16,8 @@
 package org.eclipse.amp.escape.ascape.adapt;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
-import org.eclipse.amp.axf.core.ICompositionProvider;
-import org.eclipse.amp.axf.space.IGraphProvider;
-import org.eclipse.amp.axf.space.ILocation;
-import org.eclipse.amp.axf.space.ILocation2D;
-import org.eclipse.amp.axf.space.ILocationProvider;
+import java.util.Map;
 
 import org.ascape.model.Agent;
 import org.ascape.model.CellOccupant;
@@ -37,6 +31,11 @@ import org.ascape.model.space.Graph;
 import org.ascape.model.space.Node;
 import org.ascape.model.space.Singleton;
 import org.ascape.model.space.Space;
+import org.eclipse.amp.axf.core.ICompositionProvider;
+import org.eclipse.amp.axf.space.IGraphProvider;
+import org.eclipse.amp.axf.space.ILocation;
+import org.eclipse.amp.axf.space.ILocation2D;
+import org.eclipse.amp.axf.space.ILocationProvider;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -109,8 +108,8 @@ public class AscapeModelProvider implements ILocationProvider, IGraphProvider, I
      * @return
      * @see org.eclipse.amp.axf.space.IGraphProvider#getAdjacencyMap(java.lang.Object)
      */
-    public HashMap getAdjacencyMap(Object scape) {
-        return ((Graph) ((Scape) scape).getSpace()).getAdjacencyMap();
+    public Map<Object, Object> getAdjacencyMap(Object scape) {
+        return (Map<Object, Object>) ((Graph) ((Scape) scape).getSpace()).getAdjacencyMap();
     }
 
     /**
@@ -119,8 +118,8 @@ public class AscapeModelProvider implements ILocationProvider, IGraphProvider, I
      * @return
      * @see org.eclipse.amp.axf.space.IGraphProvider#getNeighborsFor(java.lang.Object, java.lang.Object)
      */
-    public List getNeighborsFor(Object scape, Object source) {
-        return ((Graph) ((Scape) scape).getSpace()).getNeighborsFor((Node) source);
+    public List<Object> getNeighborsFor(Object scape, Object source) {
+        return (List<Object>) ((Graph) ((Scape) scape).getSpace()).getNeighborsFor((Node) source);
     }
 
     /**
@@ -137,7 +136,7 @@ public class AscapeModelProvider implements ILocationProvider, IGraphProvider, I
      * @return
      * @see org.eclipse.amp.axf.core.ICompositionProvider#getIteratable(java.lang.Object)
      */
-    public Iterable getIteratable(Object object) {
+    public Iterable<Object> getIteratable(Object object) {
         return getList(object);
     }
 
@@ -147,12 +146,12 @@ public class AscapeModelProvider implements ILocationProvider, IGraphProvider, I
      * @see org.eclipse.amp.axf.core.ICompositionProvider#getList(java.lang.Object)
      */
     @SuppressWarnings("unchecked")
-    public List getList(Object parent) {
+    public List<Object> getList(Object parent) {
         Scape scape = (Scape) parent;
         if (scape.isRoot()) {
-            List use = new ArrayList(scape);
-            List hosts = new ArrayList();
-            List graphs = new ArrayList();
+            List<Object> use = new ArrayList<Object>(scape);
+            List<Object> hosts = new ArrayList<Object>();
+            List<Object> graphs = new ArrayList<Object>();
             for (Object agent : scape) {
                 if (((Scape) agent).getPrototypeAgent() instanceof HostCell) {
                     hosts.add(agent);
@@ -175,9 +174,9 @@ public class AscapeModelProvider implements ILocationProvider, IGraphProvider, I
             use.addAll(graphs.size(), graphs);
             return use;
         } else if (scape.getSpace() instanceof List) {
-            return (List) scape.getSpace();
+            return (List<Object>) scape.getSpace();
         }
-        return new ArrayList(scape);
+        return new ArrayList<Object>(scape);
     }
 
     /**
@@ -203,7 +202,7 @@ public class AscapeModelProvider implements ILocationProvider, IGraphProvider, I
      * @return
      * @see org.eclipse.amp.axf.core.ICompositionProvider#getChildrenClass(java.lang.Object)
      */
-    public Class getChildrenClass(Object member) {
+    public Class<?> getChildrenClass(Object member) {
         Object childrenPrototype = getChildrenPrototype(member);
         if (childrenPrototype == null) {
             return Agent.class;
