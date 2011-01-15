@@ -52,7 +52,7 @@ import org.ascape.model.space.Location;
 import org.ascape.model.space.Singleton;
 import org.ascape.runtime.NonGraphicRunner;
 import org.ascape.util.Conditional;
-import org.ascape.util.data.DataPoint;
+import org.ascape.util.data.DataPoint; 
 import org.ascape.util.data.DataPointConcrete;
 import org.ascape.util.vis.ColorFeature;
 import org.ascape.util.vis.ColorFeatureConcrete;
