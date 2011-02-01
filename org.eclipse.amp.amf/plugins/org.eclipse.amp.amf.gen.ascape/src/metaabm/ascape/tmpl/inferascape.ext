@@ -25,7 +25,7 @@ cached String extendType(SAgent agent) :
 	: "LocatedAgent";
     
 cached String asHost(ASelect act) :
-    act.agent.isHost() 
+    (act.agent.isHost() || act.selected.agent == act.agent)
         ? act.selid()
         : act.selid().toHost();
     
@@ -55,7 +55,7 @@ cached Boolean convertToAgent(AAct act) :
     act.selector().space != null && act.selector().space.isHost() && !act.selector().isHost() && act.returnsHost();
 
 cached Boolean convertToHost(AAct act) :
-    (act.selector().space != null && act.selector().agent == act.reference && act.selector().space.isHost() && act.selector().isHost() && !act.returnsHost()) || (act.hasControl("here") && !act.selector().selected.agent.isHost() && act.selector().agent.isHost());
+    (act.selected.agent != act.selector().agent && act.selector().space != null && act.selector().agent == act.reference && act.selector().space.isHost() && act.selector().isHost() && !act.returnsHost()) || (act.hasControl("here") && !act.selector().selected.agent.isHost() && act.selector().agent.isHost());
 
 cached String convertedHost(AAct act, String wrapped) :
     act.convertToHost() ? wrapped.toHost() : wrapped;

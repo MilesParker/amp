@@ -17,9 +17,17 @@
 		return («owner.typeName()») getScape().getScape();
 	}
 	«ENDIF-»
-	«IF parent != null && !((SContext) parent).projections.typeSelect(SNetwork).isEmpty-»
-	public java.util.List getNetwork() {
-		return ((Graph) «((SContext) parent).getterName()»().«((SContext) parent).projections.typeSelect(SNetwork).get(0).getterName()»().getSpace()).getNeighborsFor(this);
+	«IF parent != null && !((SContext) parent).projections.typeSelect(SNetwork).isEmpty»
+	public List getNetwork() {
+		«IF buildGraphs().size > 0-»
+		List network = new ArrayList();
+		«FOREACH buildGraphs() AS graph-»
+		network.addAll(((Graph) «((SContext) parent).getterName()»().«graph.projection.getterName()»().getSpace()).getNeighborsFor(this));
+		«ENDFOREACH-»
+		return network;
+		«ELSE-»
+		return Collections.emptyList();
+		«ENDIF-»
 	}
 	«ENDIF-»
 	«FOREACH ((AGroup) rootActivity).roots AS root-»
@@ -88,7 +96,13 @@
      * Overide to customize the prototype, for example to change the views created for a member scape.
      */
     protected «agent.typeName()» create«agent.typeName()»Prototype() {
-    	return new «agent.typeName()»();
+    	«agent.typeName()» «agent.id()» = new «agent.typeName()»();
+    	«IF agent.buildGrid().exists(e|((SGrid) e.projection).dimensionality == 2)-»
+    	«agent.id()».setCoordinate(new Coordinate2DDiscrete(0, 0));
+    	«ELSEIF agent.buildSpace().exists(e|((SContinuousSpace) e.projection).dimensionality == 2)-»
+    	«agent.id()».setCoordinate(new Coordinate2DContinuous(0, 0));
+    	«ENDIF-»
+    	return «agent.id()»;
     }
 	«ENDIF-»
     «ENDFOREACH-»
@@ -239,7 +253,7 @@
 
 «DEFINE Setup FOR ACreateAgents-»
 	«IF !agent.isHost()-»
-		«agent.scape()».setSize(«agentCount.id()»);
+		«agent.scape()».setSize(«agentCount.bind({}, false)»);
 	«ENDIF-»
 «ENDDEFINE»
 «DEFINE Setup FOR IAct-»«ENDDEFINE»
@@ -260,7 +274,7 @@
 «DEFINE CreateScape(int stage) FOR ACreateAgents-»
 	«IF stage == 0-»
 	«IF !agent.isHost()-»
-		«agent.scape()».setSize(«agentCount.id()»);
+		«agent.scape()».setSize(«agentCount.bind({}, false)»);
 	«ENDIF-»
 	«ENDIF-»
 «ENDDEFINE»

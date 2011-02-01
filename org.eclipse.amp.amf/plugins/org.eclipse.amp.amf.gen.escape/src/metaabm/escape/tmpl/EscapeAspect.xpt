@@ -26,7 +26,9 @@ import org.eclipse.amp.escape.ascape.gef.HostCellEditPart;
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::Imports FOR SAgent-»
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.amp.agf.IGraphicsAdapted;
@@ -82,6 +84,8 @@ import org.ascape.view.vis.GraphView;
 «AROUND metaabm::tmpl::Java::Body FOR SContext-»
     
     «EXPAND metaabm::ascape::tmpl::ScapeAspect::ScapeBody-»
+    
+    «EXPAND CreateGraphicsMethods-»
 
 	public IGraphicsAdapter getGraphicsAdapter() {
         return «typeName()»GraphicsAdapter.getDefault();
@@ -103,19 +107,33 @@ import org.ascape.view.vis.GraphView;
     }
 «ENDAROUND»
 
-«AROUND metaabm::ascape::tmpl::ScapeAspect::ViewBuilder FOR AGroup-»
-	«IF reference.parent == null-»
-	ChartView chart = new ChartView();
-	«EXPAND BuildChartSelection FOREACH ((SContext) reference).agents-»
-    addView(chart);
-    «ENDIF-»
-    «IF reference.metaType == SContext && !((SContext) reference).projections.typeSelect(SNDimensional).isEmpty-»
-	addView(new GEFView());
-	«ENDIF-»
-    «IF reference.metaType == SContext»
-    	«FOREACH members.allTargets.typeSelect(ABuildNetwork) AS graphBuilder-»
+«DEFINE CreateGraphicsMethods FOR SContext»
+	protected void createChartViews() {
+		ChartView chart = new ChartView();
+		«EXPAND BuildChartSelection FOREACH agents-»
+	    addView(chart);
+	}
+
+	protected void create2DViews() {
+		addView(new GEFView());
+	}
+
+	protected void createGraphViews() {
+    	«FOREACH acts().typeSelect(ABuildNetwork) AS graphBuilder-»
 			«graphBuilder.projection.fieldName()».addView(new GraphView());
     	«ENDFOREACH-» 
+    }
+«ENDDEFINE»
+
+«AROUND metaabm::ascape::tmpl::ScapeAspect::ViewBuilder FOR AGroup-»
+	«IF reference.parent == null-»
+	createChartViews();
+    «ENDIF-»
+    «IF reference.metaType == SContext && !((SContext) reference).projections.typeSelect(SNDimensional).isEmpty-»
+	create2DViews();
+	«ENDIF-»
+    «IF reference.metaType == SContext && !((SContext) reference).projections.typeSelect(SNetwork).isEmpty»
+	createGraphViews();
 	«ENDIF-»
     «targetDef.proceed()-»
 «ENDAROUND»

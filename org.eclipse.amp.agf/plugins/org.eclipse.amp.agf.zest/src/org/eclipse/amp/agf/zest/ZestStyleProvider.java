@@ -29,6 +29,8 @@ IConnectionStyleProvider, org.eclipse.zest.core.viewers.IFigureProvider {
 
     public final static Color HIGHLIGHT_COLOR = Display.getCurrent().getSystemColor(org.eclipse.swt.SWT.COLOR_YELLOW);
 
+    public final static Color LINE_COLOR = Display.getCurrent().getSystemColor(org.eclipse.swt.SWT.COLOR_BLACK);
+
     IGraphicsAdapter graphicsAdapter;
 
     private Map<Object, IColorProvider> colorProviderFor = new HashMap<Object, IColorProvider>();
@@ -139,7 +141,7 @@ IConnectionStyleProvider, org.eclipse.zest.core.viewers.IFigureProvider {
      * @see org.eclipse.zest.core.viewers.IConnectionStyleProvider#getColor(java.lang.Object)
      */
     public Color getColor(Object rel) {
-        return null;
+        return LINE_COLOR;
     }
 
     /**
@@ -166,7 +168,7 @@ IConnectionStyleProvider, org.eclipse.zest.core.viewers.IFigureProvider {
      * @see org.eclipse.zest.core.viewers.IConnectionStyleProvider#getLineWidth(java.lang.Object)
      */
     public int getLineWidth(Object rel) {
-        return 3;
+        return 1;
     }
 
     public IFigure getFigure(Object element) {

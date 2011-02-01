@@ -15,6 +15,8 @@
  */
 package org.eclipse.amp.agf.zest;
 
+import javax.swing.LayoutStyle;
+
 import org.eclipse.amp.agf.IGraphicsAdapter;
 import org.eclipse.amp.agf.gef.AGFViewPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
@@ -25,6 +27,7 @@ import org.eclipse.amp.axf.view.ModelInput;
 import org.eclipse.amp.axf.view.SWTAsyncModelListener;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -36,7 +39,6 @@ import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.core.widgets.ZestStyles;
 import org.eclipse.zest.layouts.LayoutAlgorithm;
 import org.eclipse.zest.layouts.algorithms.RadialLayoutAlgorithm;
-import org.eclipse.zest.layouts.algorithms.SpringLayoutAlgorithm;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -44,253 +46,259 @@ import org.eclipse.zest.layouts.algorithms.SpringLayoutAlgorithm;
  */
 public class GraphViewPart extends AGFViewPart {
 
-    private GraphViewer viewer;
-    // private ZestSliderContribution gravitySlide;
-    private SpringLayoutAlgorithm springs;
-    IAction springCustomizer;
+	static int INTIIAL_ITERATIONS = 10000;
 
-    double gravity = 0.02;
-    double strain = 0.03;
-    double springLength = 0.8;
-    double springMove = 0.5;
+	static int RUNNING_ITERATIONS = 1000;
 
-    /**
-     * @param parent
-     * @see org.eclipse.amp.axf.view.ModelViewPart#createPartControl(org.eclipse.swt.widgets.Composite)
-     */
-    public void createPartControl(Composite parent) {
-        viewer = new GraphViewer(parent, ZestStyles.NONE);
+	private GraphViewer viewer;
+	// private ZestSliderContribution gravitySlide;
+	private SpringPartitionLayoutAlgorithm springs;
+	IAction springCustomizer;
 
-        viewer.getControl().setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_WHITE));
-        setLayoutAlgorithm(new RadialLayoutAlgorithm());
-        viewer.setNodeStyle(ZestStyles.NODES_NO_LAYOUT_RESIZE);
-        super.createPartControl(parent);
-    }
+	double gravity = 0.18;
+	double strain = 0.03;
+	double springLength = 0.8;
+	double springMove = 0.5;
 
-    /**
-     * Creates the spring layout.
-     * 
-     * @return the spring layout algorithm
-     */
-    public SpringLayoutAlgorithm createSpringLayout() {
-        if (springs == null) {
-            springs = new SpringLayoutAlgorithm();
-        }
-        springs.setSpringGravitation(gravity);
-        springs.setSpringStrain(strain);
-        springs.setSpringLength(springLength);
-        springs.setSpringMove(springMove);
-        springs.setSpringTimeout(1000);
-        return springs;
-    }
+	/**
+	 * @param parent
+	 * @see org.eclipse.amp.axf.view.ModelViewPart#createPartControl(org.eclipse.swt.widgets.Composite)
+	 */
+	public void createPartControl(Composite parent) {
+		viewer = new GraphViewer(parent, ZestStyles.NONE);
 
-    public void setInput(IEditorInput input) {
-        super.setInput(input);
-        final ModelInput modelInput = (ModelInput) input;
-        setModel(modelInput.getModel());
-        if (getModel() != null) {
-            IGraphProvider graphProvider = (IGraphProvider) Platform.getAdapterManager()
-            .getAdapter(getModel(), IGraphProvider.class);
-            ICompositionProvider compProvider = (ICompositionProvider) Platform.getAdapterManager()
-            .getAdapter(getModel(), ICompositionProvider.class);
-            ZestContentProvider contentProvider = new ZestContentProvider(graphProvider, compProvider);
-            Assert.isNotNull(graphProvider);
-            Assert.isNotNull(compProvider);
-            Assert.isNotNull(contentProvider);
-            viewer.setContentProvider(contentProvider);
-            IGraphicsAdapter graphicsAdapter = (IGraphicsAdapter) Platform.getAdapterManager()
-            .getAdapter(getModel().getRoot(), IGraphicsAdapter.class);
-            viewer.setLabelProvider(new ZestStyleProvider(getViewer(), getModel().getRoot(), compProvider,
-                                                          graphicsAdapter));
-            Object contents = null;
-            if (modelInput.getSelection() instanceof IStructuredSelection) {
-                contents = ((StructuredSelection) modelInput.getSelection()).getFirstElement();
-            } else {
-                contents = getModel();
-            }
-            viewer.setInput(contents);
-        }
-    }
+		viewer.getControl().setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_WHITE));
+		setLayoutAlgorithm(new SpringPartitionLayoutAlgorithm());
+		//viewer.setNodeStyle(ZestStyles.NODES_NO_LAYOUT_RESIZE);
+		super.createPartControl(parent);
+	}
 
-    /**
-     * 
-     * @see org.eclipse.amp.axf.view.ModelViewPart#createModelListeners()
-     */
-    public void createModelListeners() {
-        super.createModelListeners();
-        ILifeCycleListener refreshListener = new SWTAsyncModelListener(viewer.getControl(), "Refresh Graph") {
-            public void update(IModel model) {
-                viewer.refresh();
-                viewer.applyLayout();
-            }
-        };
-        addModelListener(refreshListener);
-    }
+	/**
+	 * Creates the spring layout.
+	 * 
+	 * @return the spring layout algorithm
+	 */
+	public SpringPartitionLayoutAlgorithm createSpringLayout() {
+		if (springs == null) {
+			springs = new SpringPartitionLayoutAlgorithm();
+		}
+		springs.setSpringGravitation(gravity);
+		springs.setSpringStrain(strain);
+		springs.setSpringLength(springLength);
+		springs.setSpringMove(springMove);
+		springs.setSpringTimeout(1000);
+		return springs;
+	}
 
-    /**
-     * Sets the focus.
-     * 
-     * @see org.eclipse.ui.IWorkbenchPart#setFocus()
-     */
-    public void setFocus() {
-        getViewer().getControl().setFocus();
-    }
+	public void setInput(IEditorInput input) {
+		super.setInput(input);
+		final ModelInput modelInput = (ModelInput) input;
+		setModel(modelInput.getModel());
+		if (getModel() != null) {
+			IGraphProvider graphProvider = (IGraphProvider) Platform.getAdapterManager()
+					.getAdapter(getModel(), IGraphProvider.class);
+			ICompositionProvider compProvider = (ICompositionProvider) Platform.getAdapterManager()
+					.getAdapter(getModel(), ICompositionProvider.class);
+			ZestContentProvider contentProvider = new ZestContentProvider(graphProvider, compProvider);
+			Assert.isNotNull(graphProvider);
+			Assert.isNotNull(compProvider);
+			Assert.isNotNull(contentProvider);
+			viewer.setContentProvider(contentProvider);
+			IGraphicsAdapter graphicsAdapter = (IGraphicsAdapter) Platform.getAdapterManager()
+					.getAdapter(getModel().getRoot(), IGraphicsAdapter.class);
+			viewer.setLabelProvider(new ZestStyleProvider(getViewer(), getModel().getRoot(), compProvider,
+				graphicsAdapter));
+			Object contents = null;
+			if (modelInput.getSelection() instanceof IStructuredSelection) {
+				contents = ((StructuredSelection) modelInput.getSelection()).getFirstElement();
+			} else {
+				contents = getModel();
+			}
+			viewer.getGraphControl().setScrollBarVisibility(FigureCanvas.NEVER);
+			viewer.setInput(contents);
+		}
+	}
 
-    /**
-     * Sets the layout algorithm.
-     * 
-     * @param layout the new layout algorithm
-     */
-    public void setLayoutAlgorithm(LayoutAlgorithm layout) {
-        viewer.setLayoutAlgorithm(layout, true);
-        // IToolBarManager toolbar = getViewSite().getActionBars().getToolBarManager();
-        // if (layout instanceof SpringLayoutAlgorithm) {
-        // if (gravitySlide == null) {
-        // gravitySlide = new ZestSliderContribution(viewer.getGraphControl());
-        // toolbar.add(gravitySlide);
-        // }
-        // } else {
-        // if (gravitySlide != null) {
-        // gravitySlide.setVisible(false);
-        // toolbar.remove(gravitySlide);
-        // }
-        // }
-        if (springCustomizer != null) {
-            springCustomizer.setEnabled(layout instanceof SpringLayoutAlgorithm);
-        }
-    }
+	/**
+	 * 
+	 * @see org.eclipse.amp.axf.view.ModelViewPart#createModelListeners()
+	 */
+	public void createModelListeners() {
+		super.createModelListeners();
+		ILifeCycleListener refreshListener = new SWTAsyncModelListener(viewer.getControl(), "Refresh Graph") {
+			public void update(IModel model) {
+				viewer.refresh();
+				viewer.applyLayout();
+			}
+		};
+		addModelListener(refreshListener);
+	}
 
-    /**
-     * @param type
-     * @return
-     * @see org.eclipse.amp.axf.view.ModelViewPart#getAdapter(java.lang.Class)
-     */
-    @Override
-    public Object getAdapter(Class type) {
-        if (type == ISelectionProvider.class) {
-            return viewer;
-        }
-        return super.getAdapter(type);
-    }
+	/**
+	 * Sets the focus.
+	 * 
+	 * @see org.eclipse.ui.IWorkbenchPart#setFocus()
+	 */
+	public void setFocus() {
+		getViewer().getControl().setFocus();
+	}
 
-    /**
-     * Gets the viewer.
-     * 
-     * @return the viewer
-     */
-    public GraphViewer getViewer() {
-        return viewer;
-    }
+	/**
+	 * Sets the layout algorithm.
+	 * 
+	 * @param layout the new layout algorithm
+	 */
+	public void setLayoutAlgorithm(LayoutAlgorithm layout) {
+		viewer.setLayoutAlgorithm(layout, true);
+		// IToolBarManager toolbar = getViewSite().getActionBars().getToolBarManager();
+		// if (layout instanceof SpringLayoutAlgorithm) {
+		// if (gravitySlide == null) {
+		// gravitySlide = new ZestSliderContribution(viewer.getGraphControl());
+		// toolbar.add(gravitySlide);
+		// }
+		// } else {
+		// if (gravitySlide != null) {
+		// gravitySlide.setVisible(false);
+		// toolbar.remove(gravitySlide);
+		// }
+		// }
+		if (springCustomizer != null) {
+			springCustomizer.setEnabled(layout instanceof SpringPartitionLayoutAlgorithm);
+		}
+	}
 
-    /**
-     * Gets the strain.
-     * 
-     * @return the strain
-     */
-    public double getStrain() {
-        return strain;
-    }
+	/**
+	 * @param type
+	 * @return
+	 * @see org.eclipse.amp.axf.view.ModelViewPart#getAdapter(java.lang.Class)
+	 */
+	@Override
+	public Object getAdapter(Class type) {
+		if (type == ISelectionProvider.class) {
+			return viewer;
+		}
+		return super.getAdapter(type);
+	}
 
-    /**
-     * Sets the strain.
-     * 
-     * @param strain the new strain
-     */
-    public void setStrain(double strain) {
-        this.strain = strain;
-        setLayoutAlgorithm(createSpringLayout());
-    }
+	/**
+	 * Gets the viewer.
+	 * 
+	 * @return the viewer
+	 */
+	public GraphViewer getViewer() {
+		return viewer;
+	}
 
-    /**
-     * Gets the spring length.
-     * 
-     * @return the spring length
-     */
-    public double getSpringLength() {
-        return springLength;
-    }
+	/**
+	 * Gets the strain.
+	 * 
+	 * @return the strain
+	 */
+	public double getStrain() {
+		return strain;
+	}
 
-    /**
-     * Sets the spring length.
-     * 
-     * @param length the new spring length
-     */
-    public void setSpringLength(double length) {
-        this.springLength = length;
-        setLayoutAlgorithm(createSpringLayout());
-    }
+	/**
+	 * Sets the strain.
+	 * 
+	 * @param strain the new strain
+	 */
+	public void setStrain(double strain) {
+		this.strain = strain;
+		setLayoutAlgorithm(createSpringLayout());
+	}
 
-    /**
-     * Gets the gravity.
-     * 
-     * @return the gravity
-     */
-    public double getGravity() {
-        return gravity;
-    }
+	/**
+	 * Gets the spring length.
+	 * 
+	 * @return the spring length
+	 */
+	public double getSpringLength() {
+		return springLength;
+	}
 
-    /**
-     * Sets the gravity.
-     * 
-     * @param gravity the new gravity
-     */
-    public void setGravity(double gravity) {
-        this.gravity = gravity;
-        setLayoutAlgorithm(createSpringLayout());
-    }
+	/**
+	 * Sets the spring length.
+	 * 
+	 * @param length the new spring length
+	 */
+	public void setSpringLength(double length) {
+		this.springLength = length;
+		setLayoutAlgorithm(createSpringLayout());
+	}
 
-    /**
-     * Gets the spring move.
-     * 
-     * @return the spring move
-     */
-    public double getSpringMove() {
-        return springMove;
-    }
+	/**
+	 * Gets the gravity.
+	 * 
+	 * @return the gravity
+	 */
+	public double getGravity() {
+		return gravity;
+	}
 
-    /**
-     * Sets the spring move.
-     * 
-     * @param springMove the new spring move
-     */
-    public void setSpringMove(double springMove) {
-        this.springMove = springMove;
-        setLayoutAlgorithm(createSpringLayout());
-    }
+	/**
+	 * Sets the gravity.
+	 * 
+	 * @param gravity the new gravity
+	 */
+	public void setGravity(double gravity) {
+		this.gravity = gravity;
+		setLayoutAlgorithm(createSpringLayout());
+	}
 
-    /**
-     * Gets the spring layout.
-     * 
-     * @return the spring layout
-     */
-    public SpringLayoutAlgorithm getSpringLayout() {
-        return springs;
-    }
+	/**
+	 * Gets the spring move.
+	 * 
+	 * @return the spring move
+	 */
+	public double getSpringMove() {
+		return springMove;
+	}
 
-    /**
-     * Gets the spring customizer.
-     * 
-     * @return the spring customizer
-     */
-    public IAction getSpringCustomizer() {
-        return springCustomizer;
-    }
+	/**
+	 * Sets the spring move.
+	 * 
+	 * @param springMove the new spring move
+	 */
+	public void setSpringMove(double springMove) {
+		this.springMove = springMove;
+		setLayoutAlgorithm(createSpringLayout());
+	}
 
-    /**
-     * Sets the spring customizer.
-     * 
-     * @param springCustomizer the new spring customizer
-     */
-    public void setSpringCustomizer(IAction springCustomizer) {
-        this.springCustomizer = springCustomizer;
-        springCustomizer.setEnabled(viewer.getGraphControl().getLayoutAlgorithm() instanceof SpringLayoutAlgorithm);
-    }
+	/**
+	 * Gets the spring layout.
+	 * 
+	 * @return the spring layout
+	 */
+	public SpringPartitionLayoutAlgorithm getSpringLayout() {
+		return springs;
+	}
 
-    /**
-     * @return
-     * @see org.eclipse.amp.agf.gef.AGFViewPart#getSelectionProvider()
-     */
-    protected ISelectionProvider getSelectionProvider() {
-        return viewer;
-    }
+	/**
+	 * Gets the spring customizer.
+	 * 
+	 * @return the spring customizer
+	 */
+	public IAction getSpringCustomizer() {
+		return springCustomizer;
+	}
+
+	/**
+	 * Sets the spring customizer.
+	 * 
+	 * @param springCustomizer the new spring customizer
+	 */
+	public void setSpringCustomizer(IAction springCustomizer) {
+		this.springCustomizer = springCustomizer;
+		springCustomizer
+				.setEnabled(viewer.getGraphControl().getLayoutAlgorithm() instanceof SpringPartitionLayoutAlgorithm);
+	}
+
+	/**
+	 * @return
+	 * @see org.eclipse.amp.agf.gef.AGFViewPart#getSelectionProvider()
+	 */
+	protected ISelectionProvider getSelectionProvider() {
+		return viewer;
+	}
 }

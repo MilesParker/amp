@@ -534,7 +534,16 @@ cached List[AAct] members(AGroup group) :
 	
 cached List[AAct] acts(SAgent agent) :
 	agent.rootActivity.members();
-		
+
+cached List[ABuildNetwork] buildGraphs(SAgent agent) :		
+	((SContext) agent.parent).acts().allTargets.typeSelect(ABuildNetwork).select(e|e.agents.contains(agent));		
+
+cached List[ABuildGrid] buildGrid(SAgent agent) :		
+	((SContext) agent.parent).acts().allTargets.typeSelect(ABuildGrid).select(e|e.agents.contains(agent));		
+	
+cached List[ABuildSpace] buildSpace(SAgent agent) :		
+	((SContext) agent.parent).acts().allTargets.typeSelect(ABuildSpace).select(e|e.agents.contains(agent));		
+			
 //ABuildProjection builder(SProjection space) :
 //	space.owner.acts().typeSelect(ABuildProjection).select(a | a.projection == space);
 	
