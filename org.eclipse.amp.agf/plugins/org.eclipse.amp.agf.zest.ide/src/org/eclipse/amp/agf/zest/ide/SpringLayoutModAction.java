@@ -16,6 +16,7 @@
 package org.eclipse.amp.agf.zest.ide;
 
 import org.eclipse.amp.agf.zest.GraphViewPart;
+import org.eclipse.amp.agf.zest.SpringPartitionLayoutAlgorithm;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -33,14 +34,14 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.zest.layouts.algorithms.AbstractLayoutAlgorithm;
-import org.eclipse.zest.layouts.algorithms.SpringLayoutAlgorithm;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class SpringLayoutModAction.
  */
 public class SpringLayoutModAction implements IViewActionDelegate {
-    SpringLayoutAlgorithm algorithm;
+
+	SpringPartitionLayoutAlgorithm algorithm;
 
     private boolean modified = false;
 

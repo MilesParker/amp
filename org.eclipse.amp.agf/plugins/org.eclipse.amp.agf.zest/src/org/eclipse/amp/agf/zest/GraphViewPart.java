@@ -15,8 +15,6 @@
  */
 package org.eclipse.amp.agf.zest;
 
-import javax.swing.LayoutStyle;
-
 import org.eclipse.amp.agf.IGraphicsAdapter;
 import org.eclipse.amp.agf.gef.AGFViewPart;
 import org.eclipse.amp.axf.core.ICompositionProvider;
@@ -38,7 +36,6 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.zest.core.viewers.GraphViewer;
 import org.eclipse.zest.core.widgets.ZestStyles;
 import org.eclipse.zest.layouts.LayoutAlgorithm;
-import org.eclipse.zest.layouts.algorithms.RadialLayoutAlgorithm;
 
 // TODO: Auto-generated Javadoc
 /**

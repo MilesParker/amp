@@ -60,6 +60,7 @@
 			</rm:uri>
 			<rm:property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git" />
 			<rm:property key="git.remote.name" value="org.eclipse.amp" />
+			<rm:property key="git.auto.fetch" value="true" />
 		</rm:provider>
 	</rm:searchPath>
 	<rm:searchPath name="amp.releng">
@@ -70,6 +71,7 @@
 			</rm:uri>
 			<rm:property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git" />
 			<rm:property key="git.remote.name" value="org.eclipse.amp" />
+			<rm:property key="git.auto.fetch" value="true" />
 		</rm:provider>
 	</rm:searchPath>
 
@@ -122,6 +124,7 @@
 			</rm:uri>
 			<rm:property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git" />
 			<rm:property key="git.remote.name" value="org.eclipse.amp" />
+			<rm:property key="git.auto.fetch" value="true" />
 		</rm:provider>
 		<rm:provider componentTypes="eclipse.feature" readerType="git" resolutionFilter="">
 			<rm:uri format="{0},{1}/features/{2}-feature">
@@ -139,6 +142,7 @@
 			</rm:uri>
 			<rm:property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git" />
 			<rm:property key="git.remote.name" value="org.eclipse.amp" />
+			<rm:property key="git.auto.fetch" value="true" />
 		</rm:provider>
 	</rm:searchPath>
 
@@ -158,6 +162,7 @@
 			</rm:uri>
 			<rm:property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git" />
 			<rm:property key="git.remote.name" value="org.eclipse.amp" />
+			<rm:property key="git.auto.fetch" value="true" />
 		</rm:provider>
 	</rm:searchPath>
 
@@ -177,6 +182,7 @@
 			</rm:uri>
 			<rm:property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git" />
 			<rm:property key="git.remote.name" value="org.eclipse.amp" />
+			<rm:property key="git.auto.fetch" value="true" />
 		</rm:provider>
 	</rm:searchPath>
 
@@ -204,6 +210,7 @@
 			</rm:uri>
 			<rm:property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git" />
 			<rm:property key="git.remote.name" value="org.eclipse.amp" />
+			<rm:property key="git.auto.fetch" value="true" />
 		</rm:provider>
 	</rm:searchPath>
 
@@ -239,6 +246,7 @@
 			</rm:uri>
 			<rm:property key="git.remote.uri" value="git://dev.eclipse.org/org.eclipse.amp/org.eclipse.amp.git" />
 			<rm:property key="git.remote.name" value="org.eclipse.amp" />
+			<rm:property key="git.auto.fetch" value="true" />
 		</rm:provider>
 	</rm:searchPath>
 	<rm:searchPath name="gef3d">
