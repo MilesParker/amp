@@ -9,6 +9,7 @@
   <rm:locator pattern="^org\.eclipse\.xtext(\..+)?" searchPathRef="eclipse" failOnError="false"/>
   <rm:locator pattern="^de\.itemis\.xtext\.antlr" searchPathRef="itemis"/>
   <rm:locator pattern="^org\.eclipse(\..+)?$" searchPathRef="eclipse" failOnError="false"/>
+  <rm:locator pattern="^org\.lwjgl(\..+)?" searchPathRef="lwjgl"/>
   <rm:locator pattern="^org\.ascape\.ui\.swing" searchPathRef="ascape.external"/>
   <rm:locator pattern="^org\.ascape\.common\.lib" searchPathRef="ascape.external"/>
   <rm:locator pattern="^org\.ascape\.core" searchPathRef="ascape.external"/>
@@ -100,7 +101,20 @@
       <rm:uri format="http://lwjgl.org/update"/>
     </rm:provider>
   </rm:searchPath>
-  	
+  	  <rm:searchPath name="gef3d">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="svn">
+      <rm:uri format="http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d/trunk/{0}?moduleAfterTag&amp;moduleAfterBranch">
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
+  <rm:searchPath name="gef3d-build">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="svn">
+      <rm:uri format="file:///svnroot/technology/org.eclipse.gef3d/trunk/{0}?moduleAfterTag&amp;moduleAfterBranch">
+        <bc:propertyRef key="buckminster.component"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
 	<!-- NOTE: ***We need to get 1.0.2 which is no longer on Indigo.*** -->
 	<rm:searchPath name="itemis">
 		<rm:provider readerType="p2" componentTypes="eclipse.feature,osgi.bundle" mutable="false" source="false">

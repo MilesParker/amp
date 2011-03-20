@@ -55,10 +55,6 @@
          id="org.eclipse.amp.doc"
          version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.gef3d.feature"
-         version="0.0.0"/>
-
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
    </requires>
