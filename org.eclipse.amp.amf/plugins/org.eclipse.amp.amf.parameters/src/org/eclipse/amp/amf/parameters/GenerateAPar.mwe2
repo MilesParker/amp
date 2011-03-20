@@ -11,6 +11,7 @@ var runtimeProject = "../${projectName}"
 
 Workflow {
     bean = StandaloneSetup {
+	    scanClassPath = true
 		platformUri = "${runtimeProject}/.."
 		registerEcoreFile="platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.ecore"
 	}
@@ -49,18 +50,12 @@ Workflow {
 				fileExtensions = file.extensions
 			}
 				
-			// the following fragment tries to use the Antlr Generator fragment which can be installed via update manager from http://download.itemis.com/updates/
-			fragment = AntlrDelegatingFragment {}
-			
-			/*
-			If you don't want to use the Antlr fragment for some reason, remove the antlr fragment and uncomment the packrat parser fragment below.
-			fragment = parser.PackratParserFragment {}
-			*/
-			
-			// check-based API for validation
-			/*
-			fragment = validation.CheckFragment {}
-			*/
+			// The antlr parser generator fragment.
+			fragment = parser.antlr.XtextAntlrGeneratorFragment {
+			//  options = {
+			//		backtrack = true
+			//	}
+			}
 			 
 			// java-based API for validation 
 			fragment = validation.JavaValidatorFragment {
@@ -68,9 +63,6 @@ Workflow {
                 composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
             }
 
-            
-			//fragment =org.eclipse.xtext.generator.scoping.JavaScopingFragment {}
-			            
 			// scoping and exporting API
 			fragment = scoping.ImportURIScopingFragment {}
 			fragment = exporting.SimpleNamesFragment {}
@@ -78,6 +70,13 @@ Workflow {
 			// scoping and exporting API 
 			//fragment = scoping.ImportNamespacesScopingFragment {}
 			//fragment = exporting.QualifiedNamesFragment {}
+			fragment = builder.BuilderIntegrationFragment {}
+			
+			// generator API
+			fragment = generator.GeneratorFragment {
+				generateMwe = true
+				generateJavaMain = true
+			}
 			
 			// formatter API 
 			fragment = formatting.FormatterFragment {}
@@ -86,32 +85,33 @@ Workflow {
 			fragment = labeling.LabelProviderFragment {}
 
 			// outline API 
-			fragment = outline.TransformerFragment {}
-			fragment = outline.OutlineNodeAdapterFactoryFragment {}
+			fragment = outline.OutlineTreeProviderFragment {}
 			fragment = outline.QuickOutlineFragment {}
 
-			// java-based API for content assistance 
+			// quickfix API 
+			fragment = quickfix.QuickfixProviderFragment {}
+
+			// content assist API  
 			fragment = contentAssist.JavaBasedContentAssistFragment {}
 			
-			// the following fragment tries to use the Antlr based content assist 
-			//     fragment which can be downloaded from http://www.itemis.com 
-			//     and will be ignored if it's not available. 
-			fragment = DelegatingGeneratorFragment { 
-				delegate = "de.itemis.xtext.antlr.XtextAntlrUiGeneratorFragment"
-			}
+			// rename refactoring  
+			fragment = refactoring.RefactorElementNameFragment {}
 
-			fragment = builder.BuilderIntegrationFragment {}
+			// generates a more lightweight Antlr parser and lexer tailored for content assist  
+			fragment = parser.antlr.XtextAntlrUiGeneratorFragment {}
+
+			// generates junit test support classes into Generator#pathTestProject
+			fragment = junit.Junit4Fragment {}
 
 			// project wizard (optional) 
-			/*
-			fragment = projectWizard.SimpleProjectWizardFragment {
-				generatorProjectName = "${projectName}.generator" 
-				modelFileExtension = file.extensions
-			}
-			*/
+			// fragment = projectWizard.SimpleProjectWizardFragment {
+			// 		generatorProjectName = "${projectName}.generator" 
+			//		modelFileExtension = file.extensions
+			// }
 			
-			// quickfix API 
-			fragment = quickfix.QuickfixProviderFragment {}			
+			fragment = types.TypesGeneratorFragment {}
+			// generates the required bindings only if the grammar inherits from Xbase
+			fragment = xbase.XbaseGeneratorFragment {}
 		}
 	}
 }

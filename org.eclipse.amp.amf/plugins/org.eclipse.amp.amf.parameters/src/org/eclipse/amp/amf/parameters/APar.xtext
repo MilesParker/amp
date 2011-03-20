@@ -28,5 +28,5 @@ SweepParameter :
 	attribute=[SAttribute|ID] "[" startValue=Value "," endValue=Value "," increment=Value "]";
 
 SweepLink :
-	"[" (parameters+=Parameter)* "]";
+	{SweepLink} "[" (parameters+=Parameter)* "]";
 	

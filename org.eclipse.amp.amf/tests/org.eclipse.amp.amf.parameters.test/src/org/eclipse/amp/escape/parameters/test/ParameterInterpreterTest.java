@@ -41,7 +41,6 @@ import org.eclipse.swtbot.eclipse.finder.widgets.SWTBotView;
 import org.eclipse.swtbot.swt.finder.exceptions.WidgetNotFoundException;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotTree;
 import org.eclipse.swtbot.swt.finder.widgets.SWTBotTreeItem;
-import org.junit.Test;
 import org.osgi.framework.Bundle;
 
 /**
@@ -73,7 +72,7 @@ public class ParameterInterpreterTest extends TestCase {
         copyFiles("TestModel.metaabm");
     }
 
-    @Test
+    //@Test
     public void testFileAccess() {
         // Note that for below actual ordering isn't significant so that can be relaxed as implementations change.
         subtestVars("Test.apar", new String[] { "StopPeriod=100", "TestSymbol=Hello", "TestFloat=1.234",

@@ -43,7 +43,7 @@
 			
             
 			<!-- scoping API -->
-			<fragment class="org.eclipse.xtext.generator.scoping.JavaScopingFragment"/>
+		<!-- 	<fragment class="org.eclipse.xtext.generator.scoping.JavaScopingFragment"/>-->
 			
 			<!-- formatter API -->
 			<fragment class="org.eclipse.xtext.generator.formatting.FormatterFragment"/>
@@ -52,8 +52,8 @@
 			<fragment class="org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment"/>
 
 			<!-- outline API -->
-			<fragment class="org.eclipse.xtext.ui.generator.outline.TransformerFragment"/>
-			<fragment class="org.eclipse.xtext.ui.generator.outline.OutlineNodeAdapterFactoryFragment"/>
+<!-- 			<fragment class="org.eclipse.xtext.ui.generator.outline.TransformerFragment"/>
+			<fragment class="org.eclipse.xtext.ui.generator.outline.OutlineNodeAdapterFactoryFragment"/> -->
 
 			
 			<!-- java-based API for content assistance -->

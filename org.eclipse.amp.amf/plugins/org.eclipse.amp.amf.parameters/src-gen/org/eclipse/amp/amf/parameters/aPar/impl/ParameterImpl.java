@@ -24,24 +24,24 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class ParameterImpl extends MinimalEObjectImpl.Container implements Parameter
 {
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   protected ParameterImpl()
   {
-		super();
-	}
+    super();
+  }
 
   /**
-	 * <!-- begin-user-doc -->
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
-	 */
+   * @generated
+   */
   @Override
   protected EClass eStaticClass()
   {
-		return AParPackage.Literals.PARAMETER;
-	}
+    return AParPackage.Literals.PARAMETER;
+  }
 
 } //ParameterImpl

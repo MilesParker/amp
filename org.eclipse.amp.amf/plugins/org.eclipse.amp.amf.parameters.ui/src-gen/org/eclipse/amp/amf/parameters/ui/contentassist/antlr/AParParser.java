@@ -57,7 +57,7 @@ public class AParParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSweepParameterAccess().getStartValueAssignment_2(), "rule__SweepParameter__StartValueAssignment_2");
 					put(grammarAccess.getSweepParameterAccess().getEndValueAssignment_4(), "rule__SweepParameter__EndValueAssignment_4");
 					put(grammarAccess.getSweepParameterAccess().getIncrementAssignment_6(), "rule__SweepParameter__IncrementAssignment_6");
-					put(grammarAccess.getSweepLinkAccess().getParametersAssignment_1(), "rule__SweepLink__ParametersAssignment_1");
+					put(grammarAccess.getSweepLinkAccess().getParametersAssignment_2(), "rule__SweepLink__ParametersAssignment_2");
 					put(grammarAccess.getIntValueAccess().getValueAssignment(), "rule__IntValue__ValueAssignment");
 					put(grammarAccess.getRealValueAccess().getValueAssignment(), "rule__RealValue__ValueAssignment");
 					put(grammarAccess.getStringValueAccess().getValueAssignment(), "rule__StringValue__ValueAssignment");

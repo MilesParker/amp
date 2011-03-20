@@ -8,23 +8,23 @@
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.amp.amf.abase.edit"
     editorPluginID="org.eclipse.amp.amf.abase.editor">
   <genPackages prefix="ABase" basePackage="org.eclipse.amp.amf.abase" disposableProviderFactory="true"
-      ecorePackage="ABase.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ABase.ecore#//BOOLEAN">
-      <genEnumLiterals ecoreEnumLiteral="ABase.ecore#//BOOLEAN/TRUE"/>
-      <genEnumLiterals ecoreEnumLiteral="ABase.ecore#//BOOLEAN/FALSE"/>
+      ecorePackage="platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//BOOLEAN">
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//BOOLEAN/TRUE"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//BOOLEAN/FALSE"/>
     </genEnums>
-    <genClasses ecoreClass="ABase.ecore#//Value"/>
-    <genClasses ecoreClass="ABase.ecore#//IntValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ABase.ecore#//IntValue/value"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//Value"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//IntValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//IntValue/value"/>
     </genClasses>
-    <genClasses ecoreClass="ABase.ecore#//RealValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ABase.ecore#//RealValue/value"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//RealValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//RealValue/value"/>
     </genClasses>
-    <genClasses ecoreClass="ABase.ecore#//StringValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ABase.ecore#//StringValue/value"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//StringValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//StringValue/value"/>
     </genClasses>
-    <genClasses ecoreClass="ABase.ecore#//BooleanValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ABase.ecore#//BooleanValue/value"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//BooleanValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//BooleanValue/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

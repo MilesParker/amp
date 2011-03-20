@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.amp.all"
       label="%featureName"
-      version="0.8.1.qualifier"
+      version="0.8.5.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.amp.all">
 
@@ -53,6 +53,10 @@
 
    <includes
          id="org.eclipse.amp.doc"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.gef3d.feature"
          version="0.0.0"/>
 
    <requires>

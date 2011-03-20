@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.amp.amf.testing.editor;singleton:=true
-Bundle-Version: 0.8.1.qualifier
+Bundle-Version: 0.8.5.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.amp.amf.testing.ares.presentation.AresEditorPlugin$Implementation
 Bundle-Vendor: %providerName
@@ -18,6 +18,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.ide;visibility:=reexport,
  org.eclipse.amp.amf.parameters.edit;visibility:=reexport,
  org.eclipse.amp.amf.acore.edit;visibility:=reexport,
- org.eclipse.amp.amf.abase;bundle-version="0.8.1",
- org.eclipse.amp.amf.abase.edit;bundle-version="0.8.1"
+ org.eclipse.amp.amf.abase;bundle-version="0.8.5",
+ org.eclipse.amp.amf.abase.edit;bundle-version="0.8.5"
 Bundle-ActivationPolicy: lazy

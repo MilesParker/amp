@@ -40,8 +40,6 @@ import org.eclipse.amp.amf.parameters.aPar.Incorporates;
 import org.eclipse.amp.amf.parameters.aPar.Model;
 import org.eclipse.amp.amf.parameters.aPar.Parameter;
 import org.eclipse.amp.amf.parameters.aPar.SingleParameter;
-import org.eclipse.amp.amf.parameters.aPar.SweepLink;
-import org.eclipse.amp.amf.parameters.aPar.SweepParameter;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Path;

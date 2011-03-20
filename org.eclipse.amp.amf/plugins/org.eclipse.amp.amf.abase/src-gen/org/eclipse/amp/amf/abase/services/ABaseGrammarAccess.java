@@ -26,10 +26,10 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cBooleanValueParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//Value:
-		//  IntValue|StringValue|RealValue|BooleanValue;
+		//	IntValue | StringValue | RealValue | BooleanValue;
 		public ParserRule getRule() { return rule; }
 
-		//IntValue|StringValue|RealValue|BooleanValue
+		//IntValue | StringValue | RealValue | BooleanValue
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//IntValue
@@ -51,7 +51,7 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueINTEGERTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//IntValue:
-		//  value=INTEGER;
+		//	value=INTEGER;
 		public ParserRule getRule() { return rule; }
 
 		//value=INTEGER
@@ -67,7 +67,7 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueREALTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//RealValue:
-		//  value=REAL;
+		//	value=REAL;
 		public ParserRule getRule() { return rule; }
 
 		//value=REAL
@@ -83,7 +83,7 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueSTRINGTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//StringValue:
-		//  value=STRING;
+		//	value=STRING;
 		public ParserRule getRule() { return rule; }
 
 		//value=STRING
@@ -99,7 +99,7 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueBOOLEANEnumRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//BooleanValue:
-		//  value=BOOLEAN;
+		//	value=BOOLEAN;
 		public ParserRule getRule() { return rule; }
 
 		//value=BOOLEAN
@@ -119,7 +119,7 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFALSEFalseKeyword_1_0 = (Keyword)cFALSEEnumLiteralDeclaration_1.eContents().get(0);
 		
 		//enum BOOLEAN:
-		//  TRUE="true" | FALSE="false";
+		//	TRUE="true" | FALSE="false";
 		public EnumRule getRule() { return rule; }
 
 		//TRUE="true" | FALSE="false"
@@ -170,7 +170,7 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Value:
-	//  IntValue|StringValue|RealValue|BooleanValue;
+	//	IntValue | StringValue | RealValue | BooleanValue;
 	public ValueElements getValueAccess() {
 		return (pValue != null) ? pValue : (pValue = new ValueElements());
 	}
@@ -180,7 +180,7 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IntValue:
-	//  value=INTEGER;
+	//	value=INTEGER;
 	public IntValueElements getIntValueAccess() {
 		return (pIntValue != null) ? pIntValue : (pIntValue = new IntValueElements());
 	}
@@ -190,7 +190,7 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RealValue:
-	//  value=REAL;
+	//	value=REAL;
 	public RealValueElements getRealValueAccess() {
 		return (pRealValue != null) ? pRealValue : (pRealValue = new RealValueElements());
 	}
@@ -200,7 +200,7 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StringValue:
-	//  value=STRING;
+	//	value=STRING;
 	public StringValueElements getStringValueAccess() {
 		return (pStringValue != null) ? pStringValue : (pStringValue = new StringValueElements());
 	}
@@ -210,7 +210,7 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BooleanValue:
-	//  value=BOOLEAN;
+	//	value=BOOLEAN;
 	public BooleanValueElements getBooleanValueAccess() {
 		return (pBooleanValue != null) ? pBooleanValue : (pBooleanValue = new BooleanValueElements());
 	}
@@ -220,7 +220,7 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum BOOLEAN:
-	//  TRUE="true" | FALSE="false";
+	//	TRUE="true" | FALSE="false";
 	public BOOLEANElements getBOOLEANAccess() {
 		return (unknownRuleBOOLEAN != null) ? unknownRuleBOOLEAN : (unknownRuleBOOLEAN = new BOOLEANElements());
 	}
@@ -230,64 +230,62 @@ public class ABaseGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal INTEGER:
-	//  "-"? "0".."9"+;
+	//	"-"? "0".."9"+;
 	public TerminalRule getINTEGERRule() {
 		return (tINTEGER != null) ? tINTEGER : (tINTEGER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "INTEGER"));
 	} 
 
 	//terminal REAL:
-	//  "-"? "0".."9"* "." "0".."9"*;
+	//	"-"? "0".."9"* "." "0".."9"*;
 	public TerminalRule getREALRule() {
 		return (tREAL != null) ? tREAL : (tREAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "REAL"));
 	} 
 
 	//terminal DESC_STRING:
-	//  "«" ("\\" ("b" | "t" | "n" | "f" | "r" | "«" | "»" | "\\") | !("\\" | "«" |
-	//  "»"))* "»";
+	//	"«" ("\\" ("b" | "t" | "n" | "f" | "r" | "«" | "»" | "\\") | !("\\" | "«" | "»"))* "»";
 	public TerminalRule getDESC_STRINGRule() {
 		return (tDESC_STRING != null) ? tDESC_STRING : (tDESC_STRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "DESC_STRING"));
 	} 
 
 	//terminal ID:
-	//  "^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
+	//	"^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
 	public TerminalRule getIDRule() {
 		return gaTerminals.getIDRule();
 	} 
 
 	//terminal INT returns ecore::EInt:
-	//  "0".."9"+;
+	//	"0".."9"+;
 	public TerminalRule getINTRule() {
 		return gaTerminals.getINTRule();
 	} 
 
 	//terminal STRING:
-	//  "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""
-	//  ))* "\"" | "\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !(
-	//  "\\" | "\'"))* "\'";
+	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"" | "\'" ("\\" ("b" | "t" |
+	//	"n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
 	public TerminalRule getSTRINGRule() {
 		return gaTerminals.getSTRINGRule();
 	} 
 
 	//terminal ML_COMMENT:
-	//  "/ *"->"* /";
+	//	"/ *"->"* /";
 	public TerminalRule getML_COMMENTRule() {
 		return gaTerminals.getML_COMMENTRule();
 	} 
 
 	//terminal SL_COMMENT:
-	//  "//" !("\n" | "\r")* ("\r"? "\n")?;
+	//	"//" !("\n" | "\r")* ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {
 		return gaTerminals.getSL_COMMENTRule();
 	} 
 
 	//terminal WS:
-	//  (" " | "\t" | "\r" | "\n")+;
+	//	(" " | "\t" | "\r" | "\n")+;
 	public TerminalRule getWSRule() {
 		return gaTerminals.getWSRule();
 	} 
 
 	//terminal ANY_OTHER:
-	//  .;
+	//	.;
 	public TerminalRule getANY_OTHERRule() {
 		return gaTerminals.getANY_OTHERRule();
 	} 

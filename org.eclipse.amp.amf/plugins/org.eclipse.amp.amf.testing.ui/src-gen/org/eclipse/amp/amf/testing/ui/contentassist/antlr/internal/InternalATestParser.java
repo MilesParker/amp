@@ -26,23 +26,47 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_DESC_STRING", "RULE_ID", "RULE_INTEGER", "RULE_REAL", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'Count'", "'Average'", "'Sum'", "'Minimum'", "'Maximum'", "'true'", "'false'", "'tests'", "'contains'", "'('", "'.'", "')'", "'='", "'['", "','", "']'"
     };
     public static final int RULE_ID=6;
-    public static final int RULE_STRING=4;
+    public static final int T__29=29;
+    public static final int T__28=28;
+    public static final int T__27=27;
+    public static final int T__26=26;
+    public static final int T__25=25;
+    public static final int T__24=24;
+    public static final int T__23=23;
+    public static final int T__22=22;
     public static final int RULE_ANY_OTHER=13;
+    public static final int T__21=21;
+    public static final int T__20=20;
+    public static final int RULE_SL_COMMENT=11;
+    public static final int EOF=-1;
+    public static final int RULE_ML_COMMENT=10;
+    public static final int T__19=19;
+    public static final int RULE_STRING=4;
+    public static final int T__16=16;
+    public static final int T__15=15;
+    public static final int T__18=18;
+    public static final int T__17=17;
+    public static final int T__14=14;
     public static final int RULE_INT=9;
     public static final int RULE_REAL=8;
     public static final int RULE_WS=12;
-    public static final int RULE_SL_COMMENT=11;
-    public static final int EOF=-1;
     public static final int RULE_DESC_STRING=5;
     public static final int RULE_INTEGER=7;
-    public static final int RULE_ML_COMMENT=10;
+
+    // delegates
+    // delegators
+
 
         public InternalATestParser(TokenStream input) {
-            super(input);
+            this(input, new RecognizerSharedState());
+        }
+        public InternalATestParser(TokenStream input, RecognizerSharedState state) {
+            super(input, state);
+             
         }
         
 
-    public String[] getTokenNames() { return tokenNames; }
+    public String[] getTokenNames() { return InternalATestParser.tokenNames; }
     public String getGrammarFileName() { return "../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g"; }
 
 
@@ -66,7 +90,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
 
 
 
-    // $ANTLR start entryRuleModel
+    // $ANTLR start "entryRuleModel"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:61:1: entryRuleModel : ruleModel EOF ;
     public final void entryRuleModel() throws RecognitionException {
         try {
@@ -76,7 +100,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getModelRule()); 
             pushFollow(FOLLOW_ruleModel_in_entryRuleModel61);
             ruleModel();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getModelRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleModel68); 
@@ -92,10 +117,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleModel
+    // $ANTLR end "entryRuleModel"
 
 
-    // $ANTLR start ruleModel
+    // $ANTLR start "ruleModel"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:70:1: ruleModel : ( ( rule__Model__Group__0 ) ) ;
     public final void ruleModel() throws RecognitionException {
 
@@ -114,7 +139,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Model__Group__0_in_ruleModel94);
             rule__Model__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -138,10 +164,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleModel
+    // $ANTLR end "ruleModel"
 
 
-    // $ANTLR start entryRuleTests
+    // $ANTLR start "entryRuleTests"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:89:1: entryRuleTests : ruleTests EOF ;
     public final void entryRuleTests() throws RecognitionException {
         try {
@@ -151,7 +177,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getTestsRule()); 
             pushFollow(FOLLOW_ruleTests_in_entryRuleTests121);
             ruleTests();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getTestsRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleTests128); 
@@ -167,10 +194,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleTests
+    // $ANTLR end "entryRuleTests"
 
 
-    // $ANTLR start ruleTests
+    // $ANTLR start "ruleTests"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:98:1: ruleTests : ( ( rule__Tests__ImportURIAssignment ) ) ;
     public final void ruleTests() throws RecognitionException {
 
@@ -189,7 +216,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Tests__ImportURIAssignment_in_ruleTests154);
             rule__Tests__ImportURIAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -213,10 +241,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleTests
+    // $ANTLR end "ruleTests"
 
 
-    // $ANTLR start entryRuleTestMember
+    // $ANTLR start "entryRuleTestMember"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:117:1: entryRuleTestMember : ruleTestMember EOF ;
     public final void entryRuleTestMember() throws RecognitionException {
         try {
@@ -226,7 +254,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getTestMemberRule()); 
             pushFollow(FOLLOW_ruleTestMember_in_entryRuleTestMember181);
             ruleTestMember();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getTestMemberRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleTestMember188); 
@@ -242,10 +271,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleTestMember
+    // $ANTLR end "entryRuleTestMember"
 
 
-    // $ANTLR start ruleTestMember
+    // $ANTLR start "ruleTestMember"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:126:1: ruleTestMember : ( ( rule__TestMember__ImportURIAssignment ) ) ;
     public final void ruleTestMember() throws RecognitionException {
 
@@ -264,7 +293,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__TestMember__ImportURIAssignment_in_ruleTestMember214);
             rule__TestMember__ImportURIAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -288,10 +318,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleTestMember
+    // $ANTLR end "ruleTestMember"
 
 
-    // $ANTLR start entryRuleConstraint
+    // $ANTLR start "entryRuleConstraint"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:145:1: entryRuleConstraint : ruleConstraint EOF ;
     public final void entryRuleConstraint() throws RecognitionException {
         try {
@@ -301,7 +331,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getConstraintRule()); 
             pushFollow(FOLLOW_ruleConstraint_in_entryRuleConstraint241);
             ruleConstraint();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getConstraintRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleConstraint248); 
@@ -317,10 +348,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleConstraint
+    // $ANTLR end "entryRuleConstraint"
 
 
-    // $ANTLR start ruleConstraint
+    // $ANTLR start "ruleConstraint"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:154:1: ruleConstraint : ( ( rule__Constraint__Group__0 ) ) ;
     public final void ruleConstraint() throws RecognitionException {
 
@@ -339,7 +370,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Constraint__Group__0_in_ruleConstraint274);
             rule__Constraint__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -363,10 +395,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleConstraint
+    // $ANTLR end "ruleConstraint"
 
 
-    // $ANTLR start entryRuleValue
+    // $ANTLR start "entryRuleValue"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:173:1: entryRuleValue : ruleValue EOF ;
     public final void entryRuleValue() throws RecognitionException {
         try {
@@ -376,7 +408,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getValueRule()); 
             pushFollow(FOLLOW_ruleValue_in_entryRuleValue301);
             ruleValue();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getValueRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleValue308); 
@@ -392,10 +425,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleValue
+    // $ANTLR end "entryRuleValue"
 
 
-    // $ANTLR start ruleValue
+    // $ANTLR start "ruleValue"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:182:1: ruleValue : ( ( rule__Value__Alternatives ) ) ;
     public final void ruleValue() throws RecognitionException {
 
@@ -414,7 +447,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Value__Alternatives_in_ruleValue334);
             rule__Value__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -438,10 +472,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleValue
+    // $ANTLR end "ruleValue"
 
 
-    // $ANTLR start entryRuleIntValue
+    // $ANTLR start "entryRuleIntValue"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:201:1: entryRuleIntValue : ruleIntValue EOF ;
     public final void entryRuleIntValue() throws RecognitionException {
         try {
@@ -451,7 +485,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getIntValueRule()); 
             pushFollow(FOLLOW_ruleIntValue_in_entryRuleIntValue361);
             ruleIntValue();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getIntValueRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleIntValue368); 
@@ -467,10 +502,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleIntValue
+    // $ANTLR end "entryRuleIntValue"
 
 
-    // $ANTLR start ruleIntValue
+    // $ANTLR start "ruleIntValue"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:210:1: ruleIntValue : ( ( rule__IntValue__ValueAssignment ) ) ;
     public final void ruleIntValue() throws RecognitionException {
 
@@ -489,7 +524,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__IntValue__ValueAssignment_in_ruleIntValue394);
             rule__IntValue__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -513,10 +549,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleIntValue
+    // $ANTLR end "ruleIntValue"
 
 
-    // $ANTLR start entryRuleRealValue
+    // $ANTLR start "entryRuleRealValue"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:229:1: entryRuleRealValue : ruleRealValue EOF ;
     public final void entryRuleRealValue() throws RecognitionException {
         try {
@@ -526,7 +562,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getRealValueRule()); 
             pushFollow(FOLLOW_ruleRealValue_in_entryRuleRealValue421);
             ruleRealValue();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getRealValueRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleRealValue428); 
@@ -542,10 +579,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleRealValue
+    // $ANTLR end "entryRuleRealValue"
 
 
-    // $ANTLR start ruleRealValue
+    // $ANTLR start "ruleRealValue"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:238:1: ruleRealValue : ( ( rule__RealValue__ValueAssignment ) ) ;
     public final void ruleRealValue() throws RecognitionException {
 
@@ -564,7 +601,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__RealValue__ValueAssignment_in_ruleRealValue454);
             rule__RealValue__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -588,10 +626,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleRealValue
+    // $ANTLR end "ruleRealValue"
 
 
-    // $ANTLR start entryRuleStringValue
+    // $ANTLR start "entryRuleStringValue"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:257:1: entryRuleStringValue : ruleStringValue EOF ;
     public final void entryRuleStringValue() throws RecognitionException {
         try {
@@ -601,7 +639,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getStringValueRule()); 
             pushFollow(FOLLOW_ruleStringValue_in_entryRuleStringValue481);
             ruleStringValue();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getStringValueRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleStringValue488); 
@@ -617,10 +656,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleStringValue
+    // $ANTLR end "entryRuleStringValue"
 
 
-    // $ANTLR start ruleStringValue
+    // $ANTLR start "ruleStringValue"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:266:1: ruleStringValue : ( ( rule__StringValue__ValueAssignment ) ) ;
     public final void ruleStringValue() throws RecognitionException {
 
@@ -639,7 +678,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__StringValue__ValueAssignment_in_ruleStringValue514);
             rule__StringValue__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -663,10 +703,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleStringValue
+    // $ANTLR end "ruleStringValue"
 
 
-    // $ANTLR start entryRuleBooleanValue
+    // $ANTLR start "entryRuleBooleanValue"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:285:1: entryRuleBooleanValue : ruleBooleanValue EOF ;
     public final void entryRuleBooleanValue() throws RecognitionException {
         try {
@@ -676,7 +716,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getBooleanValueRule()); 
             pushFollow(FOLLOW_ruleBooleanValue_in_entryRuleBooleanValue541);
             ruleBooleanValue();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getBooleanValueRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleBooleanValue548); 
@@ -692,10 +733,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleBooleanValue
+    // $ANTLR end "entryRuleBooleanValue"
 
 
-    // $ANTLR start ruleBooleanValue
+    // $ANTLR start "ruleBooleanValue"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:294:1: ruleBooleanValue : ( ( rule__BooleanValue__ValueAssignment ) ) ;
     public final void ruleBooleanValue() throws RecognitionException {
 
@@ -714,7 +755,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__BooleanValue__ValueAssignment_in_ruleBooleanValue574);
             rule__BooleanValue__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -738,10 +780,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleBooleanValue
+    // $ANTLR end "ruleBooleanValue"
 
 
-    // $ANTLR start ruleMeasure
+    // $ANTLR start "ruleMeasure"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:314:1: ruleMeasure : ( ( rule__Measure__Alternatives ) ) ;
     public final void ruleMeasure() throws RecognitionException {
 
@@ -760,7 +802,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Measure__Alternatives_in_ruleMeasure611);
             rule__Measure__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -784,10 +827,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleMeasure
+    // $ANTLR end "ruleMeasure"
 
 
-    // $ANTLR start ruleBOOLEAN
+    // $ANTLR start "ruleBOOLEAN"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:333:1: ruleBOOLEAN : ( ( rule__BOOLEAN__Alternatives ) ) ;
     public final void ruleBOOLEAN() throws RecognitionException {
 
@@ -806,7 +849,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__BOOLEAN__Alternatives_in_ruleBOOLEAN647);
             rule__BOOLEAN__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -830,17 +874,17 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleBOOLEAN
+    // $ANTLR end "ruleBOOLEAN"
 
 
-    // $ANTLR start rule__Model__Alternatives_2
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:351:1: rule__Model__Alternatives_2 : ( ( ( rule__Model__Group_2_0__0 ) ) | ( ( rule__Model__Group_2_1__0 ) ) );
-    public final void rule__Model__Alternatives_2() throws RecognitionException {
+    // $ANTLR start "rule__Model__Alternatives_3"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:351:1: rule__Model__Alternatives_3 : ( ( ( rule__Model__Group_3_0__0 ) ) | ( ( rule__Model__Group_3_1__0 ) ) );
+    public final void rule__Model__Alternatives_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:355:1: ( ( ( rule__Model__Group_2_0__0 ) ) | ( ( rule__Model__Group_2_1__0 ) ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:355:1: ( ( ( rule__Model__Group_3_0__0 ) ) | ( ( rule__Model__Group_3_1__0 ) ) )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -852,29 +896,30 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("351:1: rule__Model__Alternatives_2 : ( ( ( rule__Model__Group_2_0__0 ) ) | ( ( rule__Model__Group_2_1__0 ) ) );", 1, 0, input);
+                    new NoViableAltException("", 1, 0, input);
 
                 throw nvae;
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:356:1: ( ( rule__Model__Group_2_0__0 ) )
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:356:1: ( ( rule__Model__Group_3_0__0 ) )
                     {
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:356:1: ( ( rule__Model__Group_2_0__0 ) )
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:357:1: ( rule__Model__Group_2_0__0 )
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:356:1: ( ( rule__Model__Group_3_0__0 ) )
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:357:1: ( rule__Model__Group_3_0__0 )
                     {
-                     before(grammarAccess.getModelAccess().getGroup_2_0()); 
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:358:1: ( rule__Model__Group_2_0__0 )
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:358:2: rule__Model__Group_2_0__0
+                     before(grammarAccess.getModelAccess().getGroup_3_0()); 
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:358:1: ( rule__Model__Group_3_0__0 )
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:358:2: rule__Model__Group_3_0__0
                     {
-                    pushFollow(FOLLOW_rule__Model__Group_2_0__0_in_rule__Model__Alternatives_2682);
-                    rule__Model__Group_2_0__0();
-                    _fsp--;
+                    pushFollow(FOLLOW_rule__Model__Group_3_0__0_in_rule__Model__Alternatives_3682);
+                    rule__Model__Group_3_0__0();
+
+                    state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getModelAccess().getGroup_2_0()); 
+                     after(grammarAccess.getModelAccess().getGroup_3_0()); 
 
                     }
 
@@ -882,23 +927,24 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:362:6: ( ( rule__Model__Group_2_1__0 ) )
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:362:6: ( ( rule__Model__Group_3_1__0 ) )
                     {
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:362:6: ( ( rule__Model__Group_2_1__0 ) )
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:363:1: ( rule__Model__Group_2_1__0 )
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:362:6: ( ( rule__Model__Group_3_1__0 ) )
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:363:1: ( rule__Model__Group_3_1__0 )
                     {
-                     before(grammarAccess.getModelAccess().getGroup_2_1()); 
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:364:1: ( rule__Model__Group_2_1__0 )
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:364:2: rule__Model__Group_2_1__0
+                     before(grammarAccess.getModelAccess().getGroup_3_1()); 
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:364:1: ( rule__Model__Group_3_1__0 )
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:364:2: rule__Model__Group_3_1__0
                     {
-                    pushFollow(FOLLOW_rule__Model__Group_2_1__0_in_rule__Model__Alternatives_2700);
-                    rule__Model__Group_2_1__0();
-                    _fsp--;
+                    pushFollow(FOLLOW_rule__Model__Group_3_1__0_in_rule__Model__Alternatives_3700);
+                    rule__Model__Group_3_1__0();
+
+                    state._fsp--;
 
 
                     }
 
-                     after(grammarAccess.getModelAccess().getGroup_2_1()); 
+                     after(grammarAccess.getModelAccess().getGroup_3_1()); 
 
                     }
 
@@ -919,10 +965,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Alternatives_2
+    // $ANTLR end "rule__Model__Alternatives_3"
 
 
-    // $ANTLR start rule__Value__Alternatives
+    // $ANTLR start "rule__Value__Alternatives"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:373:1: rule__Value__Alternatives : ( ( ruleIntValue ) | ( ruleStringValue ) | ( ruleRealValue ) | ( ruleBooleanValue ) );
     public final void rule__Value__Alternatives() throws RecognitionException {
 
@@ -955,7 +1001,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("373:1: rule__Value__Alternatives : ( ( ruleIntValue ) | ( ruleStringValue ) | ( ruleRealValue ) | ( ruleBooleanValue ) );", 2, 0, input);
+                    new NoViableAltException("", 2, 0, input);
 
                 throw nvae;
             }
@@ -970,7 +1016,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getValueAccess().getIntValueParserRuleCall_0()); 
                     pushFollow(FOLLOW_ruleIntValue_in_rule__Value__Alternatives733);
                     ruleIntValue();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueAccess().getIntValueParserRuleCall_0()); 
 
@@ -988,7 +1035,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getValueAccess().getStringValueParserRuleCall_1()); 
                     pushFollow(FOLLOW_ruleStringValue_in_rule__Value__Alternatives750);
                     ruleStringValue();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueAccess().getStringValueParserRuleCall_1()); 
 
@@ -1006,7 +1054,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getValueAccess().getRealValueParserRuleCall_2()); 
                     pushFollow(FOLLOW_ruleRealValue_in_rule__Value__Alternatives767);
                     ruleRealValue();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueAccess().getRealValueParserRuleCall_2()); 
 
@@ -1024,7 +1073,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getValueAccess().getBooleanValueParserRuleCall_3()); 
                     pushFollow(FOLLOW_ruleBooleanValue_in_rule__Value__Alternatives784);
                     ruleBooleanValue();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueAccess().getBooleanValueParserRuleCall_3()); 
 
@@ -1047,10 +1097,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Value__Alternatives
+    // $ANTLR end "rule__Value__Alternatives"
 
 
-    // $ANTLR start rule__Measure__Alternatives
+    // $ANTLR start "rule__Measure__Alternatives"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:407:1: rule__Measure__Alternatives : ( ( ( 'Count' ) ) | ( ( 'Average' ) ) | ( ( 'Sum' ) ) | ( ( 'Minimum' ) ) | ( ( 'Maximum' ) ) );
     public final void rule__Measure__Alternatives() throws RecognitionException {
 
@@ -1087,7 +1137,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("407:1: rule__Measure__Alternatives : ( ( ( 'Count' ) ) | ( ( 'Average' ) ) | ( ( 'Sum' ) ) | ( ( 'Minimum' ) ) | ( ( 'Maximum' ) ) );", 3, 0, input);
+                    new NoViableAltException("", 3, 0, input);
 
                 throw nvae;
             }
@@ -1212,10 +1262,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Measure__Alternatives
+    // $ANTLR end "rule__Measure__Alternatives"
 
 
-    // $ANTLR start rule__BOOLEAN__Alternatives
+    // $ANTLR start "rule__BOOLEAN__Alternatives"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:452:1: rule__BOOLEAN__Alternatives : ( ( ( 'true' ) ) | ( ( 'false' ) ) );
     public final void rule__BOOLEAN__Alternatives() throws RecognitionException {
 
@@ -1234,7 +1284,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("452:1: rule__BOOLEAN__Alternatives : ( ( ( 'true' ) ) | ( ( 'false' ) ) );", 4, 0, input);
+                    new NoViableAltException("", 4, 0, input);
 
                 throw nvae;
             }
@@ -1295,10 +1345,10 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__BOOLEAN__Alternatives
+    // $ANTLR end "rule__BOOLEAN__Alternatives"
 
 
-    // $ANTLR start rule__Model__Group__0
+    // $ANTLR start "rule__Model__Group__0"
     // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:478:1: rule__Model__Group__0 : rule__Model__Group__0__Impl rule__Model__Group__1 ;
     public final void rule__Model__Group__0() throws RecognitionException {
 
@@ -1310,11 +1360,13 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Model__Group__0__Impl_in_rule__Model__Group__0991);
             rule__Model__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__Model__Group__1_in_rule__Model__Group__0994);
             rule__Model__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1331,24 +1383,99 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group__0
+    // $ANTLR end "rule__Model__Group__0"
 
 
-    // $ANTLR start rule__Model__Group__0__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:490:1: rule__Model__Group__0__Impl : ( ( rule__Model__NameAssignment_0 )? ) ;
+    // $ANTLR start "rule__Model__Group__0__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:490:1: rule__Model__Group__0__Impl : ( () ) ;
     public final void rule__Model__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:494:1: ( ( ( rule__Model__NameAssignment_0 )? ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:495:1: ( ( rule__Model__NameAssignment_0 )? )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:494:1: ( ( () ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:495:1: ( () )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:495:1: ( ( rule__Model__NameAssignment_0 )? )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:496:1: ( rule__Model__NameAssignment_0 )?
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:495:1: ( () )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:496:1: ()
             {
-             before(grammarAccess.getModelAccess().getNameAssignment_0()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:497:1: ( rule__Model__NameAssignment_0 )?
+             before(grammarAccess.getModelAccess().getModelAction_0()); 
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:497:1: ()
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:499:1: 
+            {
+            }
+
+             after(grammarAccess.getModelAccess().getModelAction_0()); 
+
+            }
+
+
+            }
+
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Model__Group__0__Impl"
+
+
+    // $ANTLR start "rule__Model__Group__1"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:509:1: rule__Model__Group__1 : rule__Model__Group__1__Impl rule__Model__Group__2 ;
+    public final void rule__Model__Group__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:513:1: ( rule__Model__Group__1__Impl rule__Model__Group__2 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:514:2: rule__Model__Group__1__Impl rule__Model__Group__2
+            {
+            pushFollow(FOLLOW_rule__Model__Group__1__Impl_in_rule__Model__Group__11052);
+            rule__Model__Group__1__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Model__Group__2_in_rule__Model__Group__11055);
+            rule__Model__Group__2();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Model__Group__1"
+
+
+    // $ANTLR start "rule__Model__Group__1__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:521:1: rule__Model__Group__1__Impl : ( ( rule__Model__NameAssignment_1 )? ) ;
+    public final void rule__Model__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:525:1: ( ( ( rule__Model__NameAssignment_1 )? ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:526:1: ( ( rule__Model__NameAssignment_1 )? )
+            {
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:526:1: ( ( rule__Model__NameAssignment_1 )? )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:527:1: ( rule__Model__NameAssignment_1 )?
+            {
+             before(grammarAccess.getModelAccess().getNameAssignment_1()); 
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:528:1: ( rule__Model__NameAssignment_1 )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1357,11 +1484,12 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             }
             switch (alt5) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:497:2: rule__Model__NameAssignment_0
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:528:2: rule__Model__NameAssignment_1
                     {
-                    pushFollow(FOLLOW_rule__Model__NameAssignment_0_in_rule__Model__Group__0__Impl1021);
-                    rule__Model__NameAssignment_0();
-                    _fsp--;
+                    pushFollow(FOLLOW_rule__Model__NameAssignment_1_in_rule__Model__Group__1__Impl1082);
+                    rule__Model__NameAssignment_1();
+
+                    state._fsp--;
 
 
                     }
@@ -1369,7 +1497,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
 
             }
 
-             after(grammarAccess.getModelAccess().getNameAssignment_0()); 
+             after(grammarAccess.getModelAccess().getNameAssignment_1()); 
 
             }
 
@@ -1388,26 +1516,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group__0__Impl
+    // $ANTLR end "rule__Model__Group__1__Impl"
 
 
-    // $ANTLR start rule__Model__Group__1
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:507:1: rule__Model__Group__1 : rule__Model__Group__1__Impl rule__Model__Group__2 ;
-    public final void rule__Model__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__Model__Group__2"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:538:1: rule__Model__Group__2 : rule__Model__Group__2__Impl rule__Model__Group__3 ;
+    public final void rule__Model__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:511:1: ( rule__Model__Group__1__Impl rule__Model__Group__2 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:512:2: rule__Model__Group__1__Impl rule__Model__Group__2
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:542:1: ( rule__Model__Group__2__Impl rule__Model__Group__3 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:543:2: rule__Model__Group__2__Impl rule__Model__Group__3
             {
-            pushFollow(FOLLOW_rule__Model__Group__1__Impl_in_rule__Model__Group__11052);
-            rule__Model__Group__1__Impl();
-            _fsp--;
+            pushFollow(FOLLOW_rule__Model__Group__2__Impl_in_rule__Model__Group__21113);
+            rule__Model__Group__2__Impl();
 
-            pushFollow(FOLLOW_rule__Model__Group__2_in_rule__Model__Group__11055);
-            rule__Model__Group__2();
-            _fsp--;
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Model__Group__3_in_rule__Model__Group__21116);
+            rule__Model__Group__3();
+
+            state._fsp--;
 
 
             }
@@ -1424,24 +1554,24 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group__1
+    // $ANTLR end "rule__Model__Group__2"
 
 
-    // $ANTLR start rule__Model__Group__1__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:519:1: rule__Model__Group__1__Impl : ( ( rule__Model__DescriptionAssignment_1 )? ) ;
-    public final void rule__Model__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Model__Group__2__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:550:1: rule__Model__Group__2__Impl : ( ( rule__Model__DescriptionAssignment_2 )? ) ;
+    public final void rule__Model__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:523:1: ( ( ( rule__Model__DescriptionAssignment_1 )? ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:524:1: ( ( rule__Model__DescriptionAssignment_1 )? )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:554:1: ( ( ( rule__Model__DescriptionAssignment_2 )? ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:555:1: ( ( rule__Model__DescriptionAssignment_2 )? )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:524:1: ( ( rule__Model__DescriptionAssignment_1 )? )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:525:1: ( rule__Model__DescriptionAssignment_1 )?
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:555:1: ( ( rule__Model__DescriptionAssignment_2 )? )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:556:1: ( rule__Model__DescriptionAssignment_2 )?
             {
-             before(grammarAccess.getModelAccess().getDescriptionAssignment_1()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:526:1: ( rule__Model__DescriptionAssignment_1 )?
+             before(grammarAccess.getModelAccess().getDescriptionAssignment_2()); 
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:557:1: ( rule__Model__DescriptionAssignment_2 )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1450,11 +1580,12 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             }
             switch (alt6) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:526:2: rule__Model__DescriptionAssignment_1
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:557:2: rule__Model__DescriptionAssignment_2
                     {
-                    pushFollow(FOLLOW_rule__Model__DescriptionAssignment_1_in_rule__Model__Group__1__Impl1082);
-                    rule__Model__DescriptionAssignment_1();
-                    _fsp--;
+                    pushFollow(FOLLOW_rule__Model__DescriptionAssignment_2_in_rule__Model__Group__2__Impl1143);
+                    rule__Model__DescriptionAssignment_2();
+
+                    state._fsp--;
 
 
                     }
@@ -1462,7 +1593,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
 
             }
 
-             after(grammarAccess.getModelAccess().getDescriptionAssignment_1()); 
+             after(grammarAccess.getModelAccess().getDescriptionAssignment_2()); 
 
             }
 
@@ -1481,22 +1612,23 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group__1__Impl
+    // $ANTLR end "rule__Model__Group__2__Impl"
 
 
-    // $ANTLR start rule__Model__Group__2
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:536:1: rule__Model__Group__2 : rule__Model__Group__2__Impl ;
-    public final void rule__Model__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__Model__Group__3"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:567:1: rule__Model__Group__3 : rule__Model__Group__3__Impl ;
+    public final void rule__Model__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:540:1: ( rule__Model__Group__2__Impl )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:541:2: rule__Model__Group__2__Impl
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:571:1: ( rule__Model__Group__3__Impl )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:572:2: rule__Model__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__Model__Group__2__Impl_in_rule__Model__Group__21113);
-            rule__Model__Group__2__Impl();
-            _fsp--;
+            pushFollow(FOLLOW_rule__Model__Group__3__Impl_in_rule__Model__Group__31174);
+            rule__Model__Group__3__Impl();
+
+            state._fsp--;
 
 
             }
@@ -1513,24 +1645,24 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group__2
+    // $ANTLR end "rule__Model__Group__3"
 
 
-    // $ANTLR start rule__Model__Group__2__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:547:1: rule__Model__Group__2__Impl : ( ( rule__Model__Alternatives_2 )? ) ;
-    public final void rule__Model__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Model__Group__3__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:578:1: rule__Model__Group__3__Impl : ( ( rule__Model__Alternatives_3 )? ) ;
+    public final void rule__Model__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:551:1: ( ( ( rule__Model__Alternatives_2 )? ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:552:1: ( ( rule__Model__Alternatives_2 )? )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:582:1: ( ( ( rule__Model__Alternatives_3 )? ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:583:1: ( ( rule__Model__Alternatives_3 )? )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:552:1: ( ( rule__Model__Alternatives_2 )? )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:553:1: ( rule__Model__Alternatives_2 )?
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:583:1: ( ( rule__Model__Alternatives_3 )? )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:584:1: ( rule__Model__Alternatives_3 )?
             {
-             before(grammarAccess.getModelAccess().getAlternatives_2()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:554:1: ( rule__Model__Alternatives_2 )?
+             before(grammarAccess.getModelAccess().getAlternatives_3()); 
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:585:1: ( rule__Model__Alternatives_3 )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1539,11 +1671,12 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             }
             switch (alt7) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:554:2: rule__Model__Alternatives_2
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:585:2: rule__Model__Alternatives_3
                     {
-                    pushFollow(FOLLOW_rule__Model__Alternatives_2_in_rule__Model__Group__2__Impl1140);
-                    rule__Model__Alternatives_2();
-                    _fsp--;
+                    pushFollow(FOLLOW_rule__Model__Alternatives_3_in_rule__Model__Group__3__Impl1201);
+                    rule__Model__Alternatives_3();
+
+                    state._fsp--;
 
 
                     }
@@ -1551,7 +1684,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
 
             }
 
-             after(grammarAccess.getModelAccess().getAlternatives_2()); 
+             after(grammarAccess.getModelAccess().getAlternatives_3()); 
 
             }
 
@@ -1570,26 +1703,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group__2__Impl
+    // $ANTLR end "rule__Model__Group__3__Impl"
 
 
-    // $ANTLR start rule__Model__Group_2_0__0
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:570:1: rule__Model__Group_2_0__0 : rule__Model__Group_2_0__0__Impl rule__Model__Group_2_0__1 ;
-    public final void rule__Model__Group_2_0__0() throws RecognitionException {
+    // $ANTLR start "rule__Model__Group_3_0__0"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:603:1: rule__Model__Group_3_0__0 : rule__Model__Group_3_0__0__Impl rule__Model__Group_3_0__1 ;
+    public final void rule__Model__Group_3_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:574:1: ( rule__Model__Group_2_0__0__Impl rule__Model__Group_2_0__1 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:575:2: rule__Model__Group_2_0__0__Impl rule__Model__Group_2_0__1
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:607:1: ( rule__Model__Group_3_0__0__Impl rule__Model__Group_3_0__1 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:608:2: rule__Model__Group_3_0__0__Impl rule__Model__Group_3_0__1
             {
-            pushFollow(FOLLOW_rule__Model__Group_2_0__0__Impl_in_rule__Model__Group_2_0__01177);
-            rule__Model__Group_2_0__0__Impl();
-            _fsp--;
+            pushFollow(FOLLOW_rule__Model__Group_3_0__0__Impl_in_rule__Model__Group_3_0__01240);
+            rule__Model__Group_3_0__0__Impl();
 
-            pushFollow(FOLLOW_rule__Model__Group_2_0__1_in_rule__Model__Group_2_0__01180);
-            rule__Model__Group_2_0__1();
-            _fsp--;
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Model__Group_3_0__1_in_rule__Model__Group_3_0__01243);
+            rule__Model__Group_3_0__1();
+
+            state._fsp--;
 
 
             }
@@ -1606,24 +1741,24 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group_2_0__0
+    // $ANTLR end "rule__Model__Group_3_0__0"
 
 
-    // $ANTLR start rule__Model__Group_2_0__0__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:582:1: rule__Model__Group_2_0__0__Impl : ( ( rule__Model__Group_2_0_0__0 )? ) ;
-    public final void rule__Model__Group_2_0__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Model__Group_3_0__0__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:615:1: rule__Model__Group_3_0__0__Impl : ( ( rule__Model__Group_3_0_0__0 )? ) ;
+    public final void rule__Model__Group_3_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:586:1: ( ( ( rule__Model__Group_2_0_0__0 )? ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:587:1: ( ( rule__Model__Group_2_0_0__0 )? )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:619:1: ( ( ( rule__Model__Group_3_0_0__0 )? ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:620:1: ( ( rule__Model__Group_3_0_0__0 )? )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:587:1: ( ( rule__Model__Group_2_0_0__0 )? )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:588:1: ( rule__Model__Group_2_0_0__0 )?
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:620:1: ( ( rule__Model__Group_3_0_0__0 )? )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:621:1: ( rule__Model__Group_3_0_0__0 )?
             {
-             before(grammarAccess.getModelAccess().getGroup_2_0_0()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:589:1: ( rule__Model__Group_2_0_0__0 )?
+             before(grammarAccess.getModelAccess().getGroup_3_0_0()); 
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:622:1: ( rule__Model__Group_3_0_0__0 )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1632,11 +1767,12 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             }
             switch (alt8) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:589:2: rule__Model__Group_2_0_0__0
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:622:2: rule__Model__Group_3_0_0__0
                     {
-                    pushFollow(FOLLOW_rule__Model__Group_2_0_0__0_in_rule__Model__Group_2_0__0__Impl1207);
-                    rule__Model__Group_2_0_0__0();
-                    _fsp--;
+                    pushFollow(FOLLOW_rule__Model__Group_3_0_0__0_in_rule__Model__Group_3_0__0__Impl1270);
+                    rule__Model__Group_3_0_0__0();
+
+                    state._fsp--;
 
 
                     }
@@ -1644,7 +1780,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
 
             }
 
-             after(grammarAccess.getModelAccess().getGroup_2_0_0()); 
+             after(grammarAccess.getModelAccess().getGroup_3_0_0()); 
 
             }
 
@@ -1663,22 +1799,23 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group_2_0__0__Impl
+    // $ANTLR end "rule__Model__Group_3_0__0__Impl"
 
 
-    // $ANTLR start rule__Model__Group_2_0__1
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:599:1: rule__Model__Group_2_0__1 : rule__Model__Group_2_0__1__Impl ;
-    public final void rule__Model__Group_2_0__1() throws RecognitionException {
+    // $ANTLR start "rule__Model__Group_3_0__1"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:632:1: rule__Model__Group_3_0__1 : rule__Model__Group_3_0__1__Impl ;
+    public final void rule__Model__Group_3_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:603:1: ( rule__Model__Group_2_0__1__Impl )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:604:2: rule__Model__Group_2_0__1__Impl
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:636:1: ( rule__Model__Group_3_0__1__Impl )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:637:2: rule__Model__Group_3_0__1__Impl
             {
-            pushFollow(FOLLOW_rule__Model__Group_2_0__1__Impl_in_rule__Model__Group_2_0__11238);
-            rule__Model__Group_2_0__1__Impl();
-            _fsp--;
+            pushFollow(FOLLOW_rule__Model__Group_3_0__1__Impl_in_rule__Model__Group_3_0__11301);
+            rule__Model__Group_3_0__1__Impl();
+
+            state._fsp--;
 
 
             }
@@ -1695,45 +1832,46 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group_2_0__1
+    // $ANTLR end "rule__Model__Group_3_0__1"
 
 
-    // $ANTLR start rule__Model__Group_2_0__1__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:610:1: rule__Model__Group_2_0__1__Impl : ( ( ( rule__Model__ContraintsAssignment_2_0_1 ) ) ( ( rule__Model__ContraintsAssignment_2_0_1 )* ) ) ;
-    public final void rule__Model__Group_2_0__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Model__Group_3_0__1__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:643:1: rule__Model__Group_3_0__1__Impl : ( ( ( rule__Model__ContraintsAssignment_3_0_1 ) ) ( ( rule__Model__ContraintsAssignment_3_0_1 )* ) ) ;
+    public final void rule__Model__Group_3_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:614:1: ( ( ( ( rule__Model__ContraintsAssignment_2_0_1 ) ) ( ( rule__Model__ContraintsAssignment_2_0_1 )* ) ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:615:1: ( ( ( rule__Model__ContraintsAssignment_2_0_1 ) ) ( ( rule__Model__ContraintsAssignment_2_0_1 )* ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:647:1: ( ( ( ( rule__Model__ContraintsAssignment_3_0_1 ) ) ( ( rule__Model__ContraintsAssignment_3_0_1 )* ) ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:648:1: ( ( ( rule__Model__ContraintsAssignment_3_0_1 ) ) ( ( rule__Model__ContraintsAssignment_3_0_1 )* ) )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:615:1: ( ( ( rule__Model__ContraintsAssignment_2_0_1 ) ) ( ( rule__Model__ContraintsAssignment_2_0_1 )* ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:616:1: ( ( rule__Model__ContraintsAssignment_2_0_1 ) ) ( ( rule__Model__ContraintsAssignment_2_0_1 )* )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:648:1: ( ( ( rule__Model__ContraintsAssignment_3_0_1 ) ) ( ( rule__Model__ContraintsAssignment_3_0_1 )* ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:649:1: ( ( rule__Model__ContraintsAssignment_3_0_1 ) ) ( ( rule__Model__ContraintsAssignment_3_0_1 )* )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:616:1: ( ( rule__Model__ContraintsAssignment_2_0_1 ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:617:1: ( rule__Model__ContraintsAssignment_2_0_1 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:649:1: ( ( rule__Model__ContraintsAssignment_3_0_1 ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:650:1: ( rule__Model__ContraintsAssignment_3_0_1 )
             {
-             before(grammarAccess.getModelAccess().getContraintsAssignment_2_0_1()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:618:1: ( rule__Model__ContraintsAssignment_2_0_1 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:618:2: rule__Model__ContraintsAssignment_2_0_1
+             before(grammarAccess.getModelAccess().getContraintsAssignment_3_0_1()); 
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:651:1: ( rule__Model__ContraintsAssignment_3_0_1 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:651:2: rule__Model__ContraintsAssignment_3_0_1
             {
-            pushFollow(FOLLOW_rule__Model__ContraintsAssignment_2_0_1_in_rule__Model__Group_2_0__1__Impl1267);
-            rule__Model__ContraintsAssignment_2_0_1();
-            _fsp--;
+            pushFollow(FOLLOW_rule__Model__ContraintsAssignment_3_0_1_in_rule__Model__Group_3_0__1__Impl1330);
+            rule__Model__ContraintsAssignment_3_0_1();
+
+            state._fsp--;
 
 
             }
 
-             after(grammarAccess.getModelAccess().getContraintsAssignment_2_0_1()); 
+             after(grammarAccess.getModelAccess().getContraintsAssignment_3_0_1()); 
 
             }
 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:621:1: ( ( rule__Model__ContraintsAssignment_2_0_1 )* )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:622:1: ( rule__Model__ContraintsAssignment_2_0_1 )*
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:654:1: ( ( rule__Model__ContraintsAssignment_3_0_1 )* )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:655:1: ( rule__Model__ContraintsAssignment_3_0_1 )*
             {
-             before(grammarAccess.getModelAccess().getContraintsAssignment_2_0_1()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:623:1: ( rule__Model__ContraintsAssignment_2_0_1 )*
+             before(grammarAccess.getModelAccess().getContraintsAssignment_3_0_1()); 
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:656:1: ( rule__Model__ContraintsAssignment_3_0_1 )*
             loop9:
             do {
                 int alt9=2;
@@ -1746,11 +1884,12 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
 
                 switch (alt9) {
             	case 1 :
-            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:623:2: rule__Model__ContraintsAssignment_2_0_1
+            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:656:2: rule__Model__ContraintsAssignment_3_0_1
             	    {
-            	    pushFollow(FOLLOW_rule__Model__ContraintsAssignment_2_0_1_in_rule__Model__Group_2_0__1__Impl1279);
-            	    rule__Model__ContraintsAssignment_2_0_1();
-            	    _fsp--;
+            	    pushFollow(FOLLOW_rule__Model__ContraintsAssignment_3_0_1_in_rule__Model__Group_3_0__1__Impl1342);
+            	    rule__Model__ContraintsAssignment_3_0_1();
+
+            	    state._fsp--;
 
 
             	    }
@@ -1761,7 +1900,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
                 }
             } while (true);
 
-             after(grammarAccess.getModelAccess().getContraintsAssignment_2_0_1()); 
+             after(grammarAccess.getModelAccess().getContraintsAssignment_3_0_1()); 
 
             }
 
@@ -1783,26 +1922,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group_2_0__1__Impl
+    // $ANTLR end "rule__Model__Group_3_0__1__Impl"
 
 
-    // $ANTLR start rule__Model__Group_2_0_0__0
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:638:1: rule__Model__Group_2_0_0__0 : rule__Model__Group_2_0_0__0__Impl rule__Model__Group_2_0_0__1 ;
-    public final void rule__Model__Group_2_0_0__0() throws RecognitionException {
+    // $ANTLR start "rule__Model__Group_3_0_0__0"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:671:1: rule__Model__Group_3_0_0__0 : rule__Model__Group_3_0_0__0__Impl rule__Model__Group_3_0_0__1 ;
+    public final void rule__Model__Group_3_0_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:642:1: ( rule__Model__Group_2_0_0__0__Impl rule__Model__Group_2_0_0__1 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:643:2: rule__Model__Group_2_0_0__0__Impl rule__Model__Group_2_0_0__1
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:675:1: ( rule__Model__Group_3_0_0__0__Impl rule__Model__Group_3_0_0__1 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:676:2: rule__Model__Group_3_0_0__0__Impl rule__Model__Group_3_0_0__1
             {
-            pushFollow(FOLLOW_rule__Model__Group_2_0_0__0__Impl_in_rule__Model__Group_2_0_0__01316);
-            rule__Model__Group_2_0_0__0__Impl();
-            _fsp--;
+            pushFollow(FOLLOW_rule__Model__Group_3_0_0__0__Impl_in_rule__Model__Group_3_0_0__01379);
+            rule__Model__Group_3_0_0__0__Impl();
 
-            pushFollow(FOLLOW_rule__Model__Group_2_0_0__1_in_rule__Model__Group_2_0_0__01319);
-            rule__Model__Group_2_0_0__1();
-            _fsp--;
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Model__Group_3_0_0__1_in_rule__Model__Group_3_0_0__01382);
+            rule__Model__Group_3_0_0__1();
+
+            state._fsp--;
 
 
             }
@@ -1819,103 +1960,25 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group_2_0_0__0
+    // $ANTLR end "rule__Model__Group_3_0_0__0"
 
 
-    // $ANTLR start rule__Model__Group_2_0_0__0__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:650:1: rule__Model__Group_2_0_0__0__Impl : ( 'tests' ) ;
-    public final void rule__Model__Group_2_0_0__0__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:654:1: ( ( 'tests' ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:655:1: ( 'tests' )
-            {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:655:1: ( 'tests' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:656:1: 'tests'
-            {
-             before(grammarAccess.getModelAccess().getTestsKeyword_2_0_0_0()); 
-            match(input,21,FOLLOW_21_in_rule__Model__Group_2_0_0__0__Impl1347); 
-             after(grammarAccess.getModelAccess().getTestsKeyword_2_0_0_0()); 
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end rule__Model__Group_2_0_0__0__Impl
-
-
-    // $ANTLR start rule__Model__Group_2_0_0__1
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:669:1: rule__Model__Group_2_0_0__1 : rule__Model__Group_2_0_0__1__Impl ;
-    public final void rule__Model__Group_2_0_0__1() throws RecognitionException {
+    // $ANTLR start "rule__Model__Group_3_0_0__0__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:683:1: rule__Model__Group_3_0_0__0__Impl : ( 'tests' ) ;
+    public final void rule__Model__Group_3_0_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:673:1: ( rule__Model__Group_2_0_0__1__Impl )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:674:2: rule__Model__Group_2_0_0__1__Impl
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:687:1: ( ( 'tests' ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:688:1: ( 'tests' )
             {
-            pushFollow(FOLLOW_rule__Model__Group_2_0_0__1__Impl_in_rule__Model__Group_2_0_0__11378);
-            rule__Model__Group_2_0_0__1__Impl();
-            _fsp--;
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-
-            	restoreStackSize(stackSize);
-
-        }
-        return ;
-    }
-    // $ANTLR end rule__Model__Group_2_0_0__1
-
-
-    // $ANTLR start rule__Model__Group_2_0_0__1__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:680:1: rule__Model__Group_2_0_0__1__Impl : ( ( rule__Model__TestsAssignment_2_0_0_1 ) ) ;
-    public final void rule__Model__Group_2_0_0__1__Impl() throws RecognitionException {
-
-        		int stackSize = keepStackSize();
-            
-        try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:684:1: ( ( ( rule__Model__TestsAssignment_2_0_0_1 ) ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:685:1: ( ( rule__Model__TestsAssignment_2_0_0_1 ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:688:1: ( 'tests' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:689:1: 'tests'
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:685:1: ( ( rule__Model__TestsAssignment_2_0_0_1 ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:686:1: ( rule__Model__TestsAssignment_2_0_0_1 )
-            {
-             before(grammarAccess.getModelAccess().getTestsAssignment_2_0_0_1()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:687:1: ( rule__Model__TestsAssignment_2_0_0_1 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:687:2: rule__Model__TestsAssignment_2_0_0_1
-            {
-            pushFollow(FOLLOW_rule__Model__TestsAssignment_2_0_0_1_in_rule__Model__Group_2_0_0__1__Impl1405);
-            rule__Model__TestsAssignment_2_0_0_1();
-            _fsp--;
-
-
-            }
-
-             after(grammarAccess.getModelAccess().getTestsAssignment_2_0_0_1()); 
+             before(grammarAccess.getModelAccess().getTestsKeyword_3_0_0_0()); 
+            match(input,21,FOLLOW_21_in_rule__Model__Group_3_0_0__0__Impl1410); 
+             after(grammarAccess.getModelAccess().getTestsKeyword_3_0_0_0()); 
 
             }
 
@@ -1934,26 +1997,23 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group_2_0_0__1__Impl
+    // $ANTLR end "rule__Model__Group_3_0_0__0__Impl"
 
 
-    // $ANTLR start rule__Model__Group_2_1__0
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:701:1: rule__Model__Group_2_1__0 : rule__Model__Group_2_1__0__Impl rule__Model__Group_2_1__1 ;
-    public final void rule__Model__Group_2_1__0() throws RecognitionException {
+    // $ANTLR start "rule__Model__Group_3_0_0__1"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:702:1: rule__Model__Group_3_0_0__1 : rule__Model__Group_3_0_0__1__Impl ;
+    public final void rule__Model__Group_3_0_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:705:1: ( rule__Model__Group_2_1__0__Impl rule__Model__Group_2_1__1 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:706:2: rule__Model__Group_2_1__0__Impl rule__Model__Group_2_1__1
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:706:1: ( rule__Model__Group_3_0_0__1__Impl )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:707:2: rule__Model__Group_3_0_0__1__Impl
             {
-            pushFollow(FOLLOW_rule__Model__Group_2_1__0__Impl_in_rule__Model__Group_2_1__01439);
-            rule__Model__Group_2_1__0__Impl();
-            _fsp--;
+            pushFollow(FOLLOW_rule__Model__Group_3_0_0__1__Impl_in_rule__Model__Group_3_0_0__11441);
+            rule__Model__Group_3_0_0__1__Impl();
 
-            pushFollow(FOLLOW_rule__Model__Group_2_1__1_in_rule__Model__Group_2_1__01442);
-            rule__Model__Group_2_1__1();
-            _fsp--;
+            state._fsp--;
 
 
             }
@@ -1970,25 +2030,35 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group_2_1__0
+    // $ANTLR end "rule__Model__Group_3_0_0__1"
 
 
-    // $ANTLR start rule__Model__Group_2_1__0__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:713:1: rule__Model__Group_2_1__0__Impl : ( 'contains' ) ;
-    public final void rule__Model__Group_2_1__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Model__Group_3_0_0__1__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:713:1: rule__Model__Group_3_0_0__1__Impl : ( ( rule__Model__TestsAssignment_3_0_0_1 ) ) ;
+    public final void rule__Model__Group_3_0_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:717:1: ( ( 'contains' ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:718:1: ( 'contains' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:717:1: ( ( ( rule__Model__TestsAssignment_3_0_0_1 ) ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:718:1: ( ( rule__Model__TestsAssignment_3_0_0_1 ) )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:718:1: ( 'contains' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:719:1: 'contains'
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:718:1: ( ( rule__Model__TestsAssignment_3_0_0_1 ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:719:1: ( rule__Model__TestsAssignment_3_0_0_1 )
             {
-             before(grammarAccess.getModelAccess().getContainsKeyword_2_1_0()); 
-            match(input,22,FOLLOW_22_in_rule__Model__Group_2_1__0__Impl1470); 
-             after(grammarAccess.getModelAccess().getContainsKeyword_2_1_0()); 
+             before(grammarAccess.getModelAccess().getTestsAssignment_3_0_0_1()); 
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:720:1: ( rule__Model__TestsAssignment_3_0_0_1 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:720:2: rule__Model__TestsAssignment_3_0_0_1
+            {
+            pushFollow(FOLLOW_rule__Model__TestsAssignment_3_0_0_1_in_rule__Model__Group_3_0_0__1__Impl1468);
+            rule__Model__TestsAssignment_3_0_0_1();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getModelAccess().getTestsAssignment_3_0_0_1()); 
 
             }
 
@@ -2007,22 +2077,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group_2_1__0__Impl
+    // $ANTLR end "rule__Model__Group_3_0_0__1__Impl"
 
 
-    // $ANTLR start rule__Model__Group_2_1__1
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:732:1: rule__Model__Group_2_1__1 : rule__Model__Group_2_1__1__Impl ;
-    public final void rule__Model__Group_2_1__1() throws RecognitionException {
+    // $ANTLR start "rule__Model__Group_3_1__0"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:734:1: rule__Model__Group_3_1__0 : rule__Model__Group_3_1__0__Impl rule__Model__Group_3_1__1 ;
+    public final void rule__Model__Group_3_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:736:1: ( rule__Model__Group_2_1__1__Impl )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:737:2: rule__Model__Group_2_1__1__Impl
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:738:1: ( rule__Model__Group_3_1__0__Impl rule__Model__Group_3_1__1 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:739:2: rule__Model__Group_3_1__0__Impl rule__Model__Group_3_1__1
             {
-            pushFollow(FOLLOW_rule__Model__Group_2_1__1__Impl_in_rule__Model__Group_2_1__11501);
-            rule__Model__Group_2_1__1__Impl();
-            _fsp--;
+            pushFollow(FOLLOW_rule__Model__Group_3_1__0__Impl_in_rule__Model__Group_3_1__01502);
+            rule__Model__Group_3_1__0__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Model__Group_3_1__1_in_rule__Model__Group_3_1__01505);
+            rule__Model__Group_3_1__1();
+
+            state._fsp--;
 
 
             }
@@ -2039,24 +2115,94 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group_2_1__1
+    // $ANTLR end "rule__Model__Group_3_1__0"
 
 
-    // $ANTLR start rule__Model__Group_2_1__1__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:743:1: rule__Model__Group_2_1__1__Impl : ( ( rule__Model__ContainsAssignment_2_1_1 )* ) ;
-    public final void rule__Model__Group_2_1__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Model__Group_3_1__0__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:746:1: rule__Model__Group_3_1__0__Impl : ( 'contains' ) ;
+    public final void rule__Model__Group_3_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:747:1: ( ( ( rule__Model__ContainsAssignment_2_1_1 )* ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:748:1: ( ( rule__Model__ContainsAssignment_2_1_1 )* )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:750:1: ( ( 'contains' ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:751:1: ( 'contains' )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:748:1: ( ( rule__Model__ContainsAssignment_2_1_1 )* )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:749:1: ( rule__Model__ContainsAssignment_2_1_1 )*
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:751:1: ( 'contains' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:752:1: 'contains'
             {
-             before(grammarAccess.getModelAccess().getContainsAssignment_2_1_1()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:750:1: ( rule__Model__ContainsAssignment_2_1_1 )*
+             before(grammarAccess.getModelAccess().getContainsKeyword_3_1_0()); 
+            match(input,22,FOLLOW_22_in_rule__Model__Group_3_1__0__Impl1533); 
+             after(grammarAccess.getModelAccess().getContainsKeyword_3_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Model__Group_3_1__0__Impl"
+
+
+    // $ANTLR start "rule__Model__Group_3_1__1"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:765:1: rule__Model__Group_3_1__1 : rule__Model__Group_3_1__1__Impl ;
+    public final void rule__Model__Group_3_1__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:769:1: ( rule__Model__Group_3_1__1__Impl )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:770:2: rule__Model__Group_3_1__1__Impl
+            {
+            pushFollow(FOLLOW_rule__Model__Group_3_1__1__Impl_in_rule__Model__Group_3_1__11564);
+            rule__Model__Group_3_1__1__Impl();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Model__Group_3_1__1"
+
+
+    // $ANTLR start "rule__Model__Group_3_1__1__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:776:1: rule__Model__Group_3_1__1__Impl : ( ( rule__Model__ContainsAssignment_3_1_1 )* ) ;
+    public final void rule__Model__Group_3_1__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:780:1: ( ( ( rule__Model__ContainsAssignment_3_1_1 )* ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:781:1: ( ( rule__Model__ContainsAssignment_3_1_1 )* )
+            {
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:781:1: ( ( rule__Model__ContainsAssignment_3_1_1 )* )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:782:1: ( rule__Model__ContainsAssignment_3_1_1 )*
+            {
+             before(grammarAccess.getModelAccess().getContainsAssignment_3_1_1()); 
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:783:1: ( rule__Model__ContainsAssignment_3_1_1 )*
             loop10:
             do {
                 int alt10=2;
@@ -2069,11 +2215,12 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
 
                 switch (alt10) {
             	case 1 :
-            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:750:2: rule__Model__ContainsAssignment_2_1_1
+            	    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:783:2: rule__Model__ContainsAssignment_3_1_1
             	    {
-            	    pushFollow(FOLLOW_rule__Model__ContainsAssignment_2_1_1_in_rule__Model__Group_2_1__1__Impl1528);
-            	    rule__Model__ContainsAssignment_2_1_1();
-            	    _fsp--;
+            	    pushFollow(FOLLOW_rule__Model__ContainsAssignment_3_1_1_in_rule__Model__Group_3_1__1__Impl1591);
+            	    rule__Model__ContainsAssignment_3_1_1();
+
+            	    state._fsp--;
 
 
             	    }
@@ -2084,7 +2231,7 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
                 }
             } while (true);
 
-             after(grammarAccess.getModelAccess().getContainsAssignment_2_1_1()); 
+             after(grammarAccess.getModelAccess().getContainsAssignment_3_1_1()); 
 
             }
 
@@ -2103,26 +2250,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group_2_1__1__Impl
+    // $ANTLR end "rule__Model__Group_3_1__1__Impl"
 
 
-    // $ANTLR start rule__Constraint__Group__0
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:764:1: rule__Constraint__Group__0 : rule__Constraint__Group__0__Impl rule__Constraint__Group__1 ;
+    // $ANTLR start "rule__Constraint__Group__0"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:797:1: rule__Constraint__Group__0 : rule__Constraint__Group__0__Impl rule__Constraint__Group__1 ;
     public final void rule__Constraint__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:768:1: ( rule__Constraint__Group__0__Impl rule__Constraint__Group__1 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:769:2: rule__Constraint__Group__0__Impl rule__Constraint__Group__1
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:801:1: ( rule__Constraint__Group__0__Impl rule__Constraint__Group__1 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:802:2: rule__Constraint__Group__0__Impl rule__Constraint__Group__1
             {
-            pushFollow(FOLLOW_rule__Constraint__Group__0__Impl_in_rule__Constraint__Group__01563);
+            pushFollow(FOLLOW_rule__Constraint__Group__0__Impl_in_rule__Constraint__Group__01626);
             rule__Constraint__Group__0__Impl();
-            _fsp--;
 
-            pushFollow(FOLLOW_rule__Constraint__Group__1_in_rule__Constraint__Group__01566);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Constraint__Group__1_in_rule__Constraint__Group__01629);
             rule__Constraint__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2139,29 +2288,30 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group__0
+    // $ANTLR end "rule__Constraint__Group__0"
 
 
-    // $ANTLR start rule__Constraint__Group__0__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:776:1: rule__Constraint__Group__0__Impl : ( ( rule__Constraint__MeasureAssignment_0 ) ) ;
+    // $ANTLR start "rule__Constraint__Group__0__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:809:1: rule__Constraint__Group__0__Impl : ( ( rule__Constraint__MeasureAssignment_0 ) ) ;
     public final void rule__Constraint__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:780:1: ( ( ( rule__Constraint__MeasureAssignment_0 ) ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:781:1: ( ( rule__Constraint__MeasureAssignment_0 ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:813:1: ( ( ( rule__Constraint__MeasureAssignment_0 ) ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:814:1: ( ( rule__Constraint__MeasureAssignment_0 ) )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:781:1: ( ( rule__Constraint__MeasureAssignment_0 ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:782:1: ( rule__Constraint__MeasureAssignment_0 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:814:1: ( ( rule__Constraint__MeasureAssignment_0 ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:815:1: ( rule__Constraint__MeasureAssignment_0 )
             {
              before(grammarAccess.getConstraintAccess().getMeasureAssignment_0()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:783:1: ( rule__Constraint__MeasureAssignment_0 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:783:2: rule__Constraint__MeasureAssignment_0
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:816:1: ( rule__Constraint__MeasureAssignment_0 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:816:2: rule__Constraint__MeasureAssignment_0
             {
-            pushFollow(FOLLOW_rule__Constraint__MeasureAssignment_0_in_rule__Constraint__Group__0__Impl1593);
+            pushFollow(FOLLOW_rule__Constraint__MeasureAssignment_0_in_rule__Constraint__Group__0__Impl1656);
             rule__Constraint__MeasureAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2185,26 +2335,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group__0__Impl
+    // $ANTLR end "rule__Constraint__Group__0__Impl"
 
 
-    // $ANTLR start rule__Constraint__Group__1
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:793:1: rule__Constraint__Group__1 : rule__Constraint__Group__1__Impl rule__Constraint__Group__2 ;
+    // $ANTLR start "rule__Constraint__Group__1"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:826:1: rule__Constraint__Group__1 : rule__Constraint__Group__1__Impl rule__Constraint__Group__2 ;
     public final void rule__Constraint__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:797:1: ( rule__Constraint__Group__1__Impl rule__Constraint__Group__2 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:798:2: rule__Constraint__Group__1__Impl rule__Constraint__Group__2
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:830:1: ( rule__Constraint__Group__1__Impl rule__Constraint__Group__2 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:831:2: rule__Constraint__Group__1__Impl rule__Constraint__Group__2
             {
-            pushFollow(FOLLOW_rule__Constraint__Group__1__Impl_in_rule__Constraint__Group__11623);
+            pushFollow(FOLLOW_rule__Constraint__Group__1__Impl_in_rule__Constraint__Group__11686);
             rule__Constraint__Group__1__Impl();
-            _fsp--;
 
-            pushFollow(FOLLOW_rule__Constraint__Group__2_in_rule__Constraint__Group__11626);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Constraint__Group__2_in_rule__Constraint__Group__11689);
             rule__Constraint__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2221,24 +2373,24 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group__1
+    // $ANTLR end "rule__Constraint__Group__1"
 
 
-    // $ANTLR start rule__Constraint__Group__1__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:805:1: rule__Constraint__Group__1__Impl : ( '(' ) ;
+    // $ANTLR start "rule__Constraint__Group__1__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:838:1: rule__Constraint__Group__1__Impl : ( '(' ) ;
     public final void rule__Constraint__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:809:1: ( ( '(' ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:810:1: ( '(' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:842:1: ( ( '(' ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:843:1: ( '(' )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:810:1: ( '(' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:811:1: '('
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:843:1: ( '(' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:844:1: '('
             {
              before(grammarAccess.getConstraintAccess().getLeftParenthesisKeyword_1()); 
-            match(input,23,FOLLOW_23_in_rule__Constraint__Group__1__Impl1654); 
+            match(input,23,FOLLOW_23_in_rule__Constraint__Group__1__Impl1717); 
              after(grammarAccess.getConstraintAccess().getLeftParenthesisKeyword_1()); 
 
             }
@@ -2258,26 +2410,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group__1__Impl
+    // $ANTLR end "rule__Constraint__Group__1__Impl"
 
 
-    // $ANTLR start rule__Constraint__Group__2
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:824:1: rule__Constraint__Group__2 : rule__Constraint__Group__2__Impl rule__Constraint__Group__3 ;
+    // $ANTLR start "rule__Constraint__Group__2"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:857:1: rule__Constraint__Group__2 : rule__Constraint__Group__2__Impl rule__Constraint__Group__3 ;
     public final void rule__Constraint__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:828:1: ( rule__Constraint__Group__2__Impl rule__Constraint__Group__3 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:829:2: rule__Constraint__Group__2__Impl rule__Constraint__Group__3
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:861:1: ( rule__Constraint__Group__2__Impl rule__Constraint__Group__3 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:862:2: rule__Constraint__Group__2__Impl rule__Constraint__Group__3
             {
-            pushFollow(FOLLOW_rule__Constraint__Group__2__Impl_in_rule__Constraint__Group__21685);
+            pushFollow(FOLLOW_rule__Constraint__Group__2__Impl_in_rule__Constraint__Group__21748);
             rule__Constraint__Group__2__Impl();
-            _fsp--;
 
-            pushFollow(FOLLOW_rule__Constraint__Group__3_in_rule__Constraint__Group__21688);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Constraint__Group__3_in_rule__Constraint__Group__21751);
             rule__Constraint__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2294,29 +2448,30 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group__2
+    // $ANTLR end "rule__Constraint__Group__2"
 
 
-    // $ANTLR start rule__Constraint__Group__2__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:836:1: rule__Constraint__Group__2__Impl : ( ( rule__Constraint__AgentAssignment_2 ) ) ;
+    // $ANTLR start "rule__Constraint__Group__2__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:869:1: rule__Constraint__Group__2__Impl : ( ( rule__Constraint__AgentAssignment_2 ) ) ;
     public final void rule__Constraint__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:840:1: ( ( ( rule__Constraint__AgentAssignment_2 ) ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:841:1: ( ( rule__Constraint__AgentAssignment_2 ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:873:1: ( ( ( rule__Constraint__AgentAssignment_2 ) ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:874:1: ( ( rule__Constraint__AgentAssignment_2 ) )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:841:1: ( ( rule__Constraint__AgentAssignment_2 ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:842:1: ( rule__Constraint__AgentAssignment_2 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:874:1: ( ( rule__Constraint__AgentAssignment_2 ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:875:1: ( rule__Constraint__AgentAssignment_2 )
             {
              before(grammarAccess.getConstraintAccess().getAgentAssignment_2()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:843:1: ( rule__Constraint__AgentAssignment_2 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:843:2: rule__Constraint__AgentAssignment_2
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:876:1: ( rule__Constraint__AgentAssignment_2 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:876:2: rule__Constraint__AgentAssignment_2
             {
-            pushFollow(FOLLOW_rule__Constraint__AgentAssignment_2_in_rule__Constraint__Group__2__Impl1715);
+            pushFollow(FOLLOW_rule__Constraint__AgentAssignment_2_in_rule__Constraint__Group__2__Impl1778);
             rule__Constraint__AgentAssignment_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2340,26 +2495,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group__2__Impl
+    // $ANTLR end "rule__Constraint__Group__2__Impl"
 
 
-    // $ANTLR start rule__Constraint__Group__3
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:853:1: rule__Constraint__Group__3 : rule__Constraint__Group__3__Impl rule__Constraint__Group__4 ;
+    // $ANTLR start "rule__Constraint__Group__3"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:886:1: rule__Constraint__Group__3 : rule__Constraint__Group__3__Impl rule__Constraint__Group__4 ;
     public final void rule__Constraint__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:857:1: ( rule__Constraint__Group__3__Impl rule__Constraint__Group__4 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:858:2: rule__Constraint__Group__3__Impl rule__Constraint__Group__4
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:890:1: ( rule__Constraint__Group__3__Impl rule__Constraint__Group__4 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:891:2: rule__Constraint__Group__3__Impl rule__Constraint__Group__4
             {
-            pushFollow(FOLLOW_rule__Constraint__Group__3__Impl_in_rule__Constraint__Group__31745);
+            pushFollow(FOLLOW_rule__Constraint__Group__3__Impl_in_rule__Constraint__Group__31808);
             rule__Constraint__Group__3__Impl();
-            _fsp--;
 
-            pushFollow(FOLLOW_rule__Constraint__Group__4_in_rule__Constraint__Group__31748);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Constraint__Group__4_in_rule__Constraint__Group__31811);
             rule__Constraint__Group__4();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2376,24 +2533,24 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group__3
+    // $ANTLR end "rule__Constraint__Group__3"
 
 
-    // $ANTLR start rule__Constraint__Group__3__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:865:1: rule__Constraint__Group__3__Impl : ( '.' ) ;
+    // $ANTLR start "rule__Constraint__Group__3__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:898:1: rule__Constraint__Group__3__Impl : ( '.' ) ;
     public final void rule__Constraint__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:869:1: ( ( '.' ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:870:1: ( '.' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:902:1: ( ( '.' ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:903:1: ( '.' )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:870:1: ( '.' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:871:1: '.'
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:903:1: ( '.' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:904:1: '.'
             {
              before(grammarAccess.getConstraintAccess().getFullStopKeyword_3()); 
-            match(input,24,FOLLOW_24_in_rule__Constraint__Group__3__Impl1776); 
+            match(input,24,FOLLOW_24_in_rule__Constraint__Group__3__Impl1839); 
              after(grammarAccess.getConstraintAccess().getFullStopKeyword_3()); 
 
             }
@@ -2413,26 +2570,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group__3__Impl
+    // $ANTLR end "rule__Constraint__Group__3__Impl"
 
 
-    // $ANTLR start rule__Constraint__Group__4
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:884:1: rule__Constraint__Group__4 : rule__Constraint__Group__4__Impl rule__Constraint__Group__5 ;
+    // $ANTLR start "rule__Constraint__Group__4"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:917:1: rule__Constraint__Group__4 : rule__Constraint__Group__4__Impl rule__Constraint__Group__5 ;
     public final void rule__Constraint__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:888:1: ( rule__Constraint__Group__4__Impl rule__Constraint__Group__5 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:889:2: rule__Constraint__Group__4__Impl rule__Constraint__Group__5
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:921:1: ( rule__Constraint__Group__4__Impl rule__Constraint__Group__5 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:922:2: rule__Constraint__Group__4__Impl rule__Constraint__Group__5
             {
-            pushFollow(FOLLOW_rule__Constraint__Group__4__Impl_in_rule__Constraint__Group__41807);
+            pushFollow(FOLLOW_rule__Constraint__Group__4__Impl_in_rule__Constraint__Group__41870);
             rule__Constraint__Group__4__Impl();
-            _fsp--;
 
-            pushFollow(FOLLOW_rule__Constraint__Group__5_in_rule__Constraint__Group__41810);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Constraint__Group__5_in_rule__Constraint__Group__41873);
             rule__Constraint__Group__5();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2449,29 +2608,30 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group__4
+    // $ANTLR end "rule__Constraint__Group__4"
 
 
-    // $ANTLR start rule__Constraint__Group__4__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:896:1: rule__Constraint__Group__4__Impl : ( ( rule__Constraint__AttributeAssignment_4 ) ) ;
+    // $ANTLR start "rule__Constraint__Group__4__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:929:1: rule__Constraint__Group__4__Impl : ( ( rule__Constraint__AttributeAssignment_4 ) ) ;
     public final void rule__Constraint__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:900:1: ( ( ( rule__Constraint__AttributeAssignment_4 ) ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:901:1: ( ( rule__Constraint__AttributeAssignment_4 ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:933:1: ( ( ( rule__Constraint__AttributeAssignment_4 ) ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:934:1: ( ( rule__Constraint__AttributeAssignment_4 ) )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:901:1: ( ( rule__Constraint__AttributeAssignment_4 ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:902:1: ( rule__Constraint__AttributeAssignment_4 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:934:1: ( ( rule__Constraint__AttributeAssignment_4 ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:935:1: ( rule__Constraint__AttributeAssignment_4 )
             {
              before(grammarAccess.getConstraintAccess().getAttributeAssignment_4()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:903:1: ( rule__Constraint__AttributeAssignment_4 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:903:2: rule__Constraint__AttributeAssignment_4
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:936:1: ( rule__Constraint__AttributeAssignment_4 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:936:2: rule__Constraint__AttributeAssignment_4
             {
-            pushFollow(FOLLOW_rule__Constraint__AttributeAssignment_4_in_rule__Constraint__Group__4__Impl1837);
+            pushFollow(FOLLOW_rule__Constraint__AttributeAssignment_4_in_rule__Constraint__Group__4__Impl1900);
             rule__Constraint__AttributeAssignment_4();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2495,26 +2655,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group__4__Impl
+    // $ANTLR end "rule__Constraint__Group__4__Impl"
 
 
-    // $ANTLR start rule__Constraint__Group__5
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:913:1: rule__Constraint__Group__5 : rule__Constraint__Group__5__Impl rule__Constraint__Group__6 ;
+    // $ANTLR start "rule__Constraint__Group__5"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:946:1: rule__Constraint__Group__5 : rule__Constraint__Group__5__Impl rule__Constraint__Group__6 ;
     public final void rule__Constraint__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:917:1: ( rule__Constraint__Group__5__Impl rule__Constraint__Group__6 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:918:2: rule__Constraint__Group__5__Impl rule__Constraint__Group__6
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:950:1: ( rule__Constraint__Group__5__Impl rule__Constraint__Group__6 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:951:2: rule__Constraint__Group__5__Impl rule__Constraint__Group__6
             {
-            pushFollow(FOLLOW_rule__Constraint__Group__5__Impl_in_rule__Constraint__Group__51867);
+            pushFollow(FOLLOW_rule__Constraint__Group__5__Impl_in_rule__Constraint__Group__51930);
             rule__Constraint__Group__5__Impl();
-            _fsp--;
 
-            pushFollow(FOLLOW_rule__Constraint__Group__6_in_rule__Constraint__Group__51870);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Constraint__Group__6_in_rule__Constraint__Group__51933);
             rule__Constraint__Group__6();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2531,24 +2693,24 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group__5
+    // $ANTLR end "rule__Constraint__Group__5"
 
 
-    // $ANTLR start rule__Constraint__Group__5__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:925:1: rule__Constraint__Group__5__Impl : ( ( rule__Constraint__Group_5__0 )? ) ;
+    // $ANTLR start "rule__Constraint__Group__5__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:958:1: rule__Constraint__Group__5__Impl : ( ( rule__Constraint__Group_5__0 )? ) ;
     public final void rule__Constraint__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:929:1: ( ( ( rule__Constraint__Group_5__0 )? ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:930:1: ( ( rule__Constraint__Group_5__0 )? )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:962:1: ( ( ( rule__Constraint__Group_5__0 )? ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:963:1: ( ( rule__Constraint__Group_5__0 )? )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:930:1: ( ( rule__Constraint__Group_5__0 )? )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:931:1: ( rule__Constraint__Group_5__0 )?
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:963:1: ( ( rule__Constraint__Group_5__0 )? )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:964:1: ( rule__Constraint__Group_5__0 )?
             {
              before(grammarAccess.getConstraintAccess().getGroup_5()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:932:1: ( rule__Constraint__Group_5__0 )?
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:965:1: ( rule__Constraint__Group_5__0 )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -2557,11 +2719,12 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
             }
             switch (alt11) {
                 case 1 :
-                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:932:2: rule__Constraint__Group_5__0
+                    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:965:2: rule__Constraint__Group_5__0
                     {
-                    pushFollow(FOLLOW_rule__Constraint__Group_5__0_in_rule__Constraint__Group__5__Impl1897);
+                    pushFollow(FOLLOW_rule__Constraint__Group_5__0_in_rule__Constraint__Group__5__Impl1960);
                     rule__Constraint__Group_5__0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -2588,26 +2751,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group__5__Impl
+    // $ANTLR end "rule__Constraint__Group__5__Impl"
 
 
-    // $ANTLR start rule__Constraint__Group__6
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:942:1: rule__Constraint__Group__6 : rule__Constraint__Group__6__Impl rule__Constraint__Group__7 ;
+    // $ANTLR start "rule__Constraint__Group__6"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:975:1: rule__Constraint__Group__6 : rule__Constraint__Group__6__Impl rule__Constraint__Group__7 ;
     public final void rule__Constraint__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:946:1: ( rule__Constraint__Group__6__Impl rule__Constraint__Group__7 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:947:2: rule__Constraint__Group__6__Impl rule__Constraint__Group__7
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:979:1: ( rule__Constraint__Group__6__Impl rule__Constraint__Group__7 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:980:2: rule__Constraint__Group__6__Impl rule__Constraint__Group__7
             {
-            pushFollow(FOLLOW_rule__Constraint__Group__6__Impl_in_rule__Constraint__Group__61928);
+            pushFollow(FOLLOW_rule__Constraint__Group__6__Impl_in_rule__Constraint__Group__61991);
             rule__Constraint__Group__6__Impl();
-            _fsp--;
 
-            pushFollow(FOLLOW_rule__Constraint__Group__7_in_rule__Constraint__Group__61931);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Constraint__Group__7_in_rule__Constraint__Group__61994);
             rule__Constraint__Group__7();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2624,24 +2789,24 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group__6
+    // $ANTLR end "rule__Constraint__Group__6"
 
 
-    // $ANTLR start rule__Constraint__Group__6__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:954:1: rule__Constraint__Group__6__Impl : ( ')' ) ;
+    // $ANTLR start "rule__Constraint__Group__6__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:987:1: rule__Constraint__Group__6__Impl : ( ')' ) ;
     public final void rule__Constraint__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:958:1: ( ( ')' ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:959:1: ( ')' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:991:1: ( ( ')' ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:992:1: ( ')' )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:959:1: ( ')' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:960:1: ')'
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:992:1: ( ')' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:993:1: ')'
             {
              before(grammarAccess.getConstraintAccess().getRightParenthesisKeyword_6()); 
-            match(input,25,FOLLOW_25_in_rule__Constraint__Group__6__Impl1959); 
+            match(input,25,FOLLOW_25_in_rule__Constraint__Group__6__Impl2022); 
              after(grammarAccess.getConstraintAccess().getRightParenthesisKeyword_6()); 
 
             }
@@ -2661,22 +2826,23 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group__6__Impl
+    // $ANTLR end "rule__Constraint__Group__6__Impl"
 
 
-    // $ANTLR start rule__Constraint__Group__7
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:973:1: rule__Constraint__Group__7 : rule__Constraint__Group__7__Impl ;
+    // $ANTLR start "rule__Constraint__Group__7"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1006:1: rule__Constraint__Group__7 : rule__Constraint__Group__7__Impl ;
     public final void rule__Constraint__Group__7() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:977:1: ( rule__Constraint__Group__7__Impl )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:978:2: rule__Constraint__Group__7__Impl
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1010:1: ( rule__Constraint__Group__7__Impl )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1011:2: rule__Constraint__Group__7__Impl
             {
-            pushFollow(FOLLOW_rule__Constraint__Group__7__Impl_in_rule__Constraint__Group__71990);
+            pushFollow(FOLLOW_rule__Constraint__Group__7__Impl_in_rule__Constraint__Group__72053);
             rule__Constraint__Group__7__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2693,29 +2859,30 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group__7
+    // $ANTLR end "rule__Constraint__Group__7"
 
 
-    // $ANTLR start rule__Constraint__Group__7__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:984:1: rule__Constraint__Group__7__Impl : ( ( rule__Constraint__Group_7__0 ) ) ;
+    // $ANTLR start "rule__Constraint__Group__7__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1017:1: rule__Constraint__Group__7__Impl : ( ( rule__Constraint__Group_7__0 ) ) ;
     public final void rule__Constraint__Group__7__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:988:1: ( ( ( rule__Constraint__Group_7__0 ) ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:989:1: ( ( rule__Constraint__Group_7__0 ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1021:1: ( ( ( rule__Constraint__Group_7__0 ) ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1022:1: ( ( rule__Constraint__Group_7__0 ) )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:989:1: ( ( rule__Constraint__Group_7__0 ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:990:1: ( rule__Constraint__Group_7__0 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1022:1: ( ( rule__Constraint__Group_7__0 ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1023:1: ( rule__Constraint__Group_7__0 )
             {
              before(grammarAccess.getConstraintAccess().getGroup_7()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:991:1: ( rule__Constraint__Group_7__0 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:991:2: rule__Constraint__Group_7__0
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1024:1: ( rule__Constraint__Group_7__0 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1024:2: rule__Constraint__Group_7__0
             {
-            pushFollow(FOLLOW_rule__Constraint__Group_7__0_in_rule__Constraint__Group__7__Impl2017);
+            pushFollow(FOLLOW_rule__Constraint__Group_7__0_in_rule__Constraint__Group__7__Impl2080);
             rule__Constraint__Group_7__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2739,26 +2906,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group__7__Impl
+    // $ANTLR end "rule__Constraint__Group__7__Impl"
 
 
-    // $ANTLR start rule__Constraint__Group_5__0
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1017:1: rule__Constraint__Group_5__0 : rule__Constraint__Group_5__0__Impl rule__Constraint__Group_5__1 ;
+    // $ANTLR start "rule__Constraint__Group_5__0"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1050:1: rule__Constraint__Group_5__0 : rule__Constraint__Group_5__0__Impl rule__Constraint__Group_5__1 ;
     public final void rule__Constraint__Group_5__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1021:1: ( rule__Constraint__Group_5__0__Impl rule__Constraint__Group_5__1 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1022:2: rule__Constraint__Group_5__0__Impl rule__Constraint__Group_5__1
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1054:1: ( rule__Constraint__Group_5__0__Impl rule__Constraint__Group_5__1 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1055:2: rule__Constraint__Group_5__0__Impl rule__Constraint__Group_5__1
             {
-            pushFollow(FOLLOW_rule__Constraint__Group_5__0__Impl_in_rule__Constraint__Group_5__02063);
+            pushFollow(FOLLOW_rule__Constraint__Group_5__0__Impl_in_rule__Constraint__Group_5__02126);
             rule__Constraint__Group_5__0__Impl();
-            _fsp--;
 
-            pushFollow(FOLLOW_rule__Constraint__Group_5__1_in_rule__Constraint__Group_5__02066);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Constraint__Group_5__1_in_rule__Constraint__Group_5__02129);
             rule__Constraint__Group_5__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2775,24 +2944,24 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group_5__0
+    // $ANTLR end "rule__Constraint__Group_5__0"
 
 
-    // $ANTLR start rule__Constraint__Group_5__0__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1029:1: rule__Constraint__Group_5__0__Impl : ( '=' ) ;
+    // $ANTLR start "rule__Constraint__Group_5__0__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1062:1: rule__Constraint__Group_5__0__Impl : ( '=' ) ;
     public final void rule__Constraint__Group_5__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1033:1: ( ( '=' ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1034:1: ( '=' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1066:1: ( ( '=' ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1067:1: ( '=' )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1034:1: ( '=' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1035:1: '='
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1067:1: ( '=' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1068:1: '='
             {
              before(grammarAccess.getConstraintAccess().getEqualsSignKeyword_5_0()); 
-            match(input,26,FOLLOW_26_in_rule__Constraint__Group_5__0__Impl2094); 
+            match(input,26,FOLLOW_26_in_rule__Constraint__Group_5__0__Impl2157); 
              after(grammarAccess.getConstraintAccess().getEqualsSignKeyword_5_0()); 
 
             }
@@ -2812,22 +2981,23 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group_5__0__Impl
+    // $ANTLR end "rule__Constraint__Group_5__0__Impl"
 
 
-    // $ANTLR start rule__Constraint__Group_5__1
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1048:1: rule__Constraint__Group_5__1 : rule__Constraint__Group_5__1__Impl ;
+    // $ANTLR start "rule__Constraint__Group_5__1"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1081:1: rule__Constraint__Group_5__1 : rule__Constraint__Group_5__1__Impl ;
     public final void rule__Constraint__Group_5__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1052:1: ( rule__Constraint__Group_5__1__Impl )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1053:2: rule__Constraint__Group_5__1__Impl
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1085:1: ( rule__Constraint__Group_5__1__Impl )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1086:2: rule__Constraint__Group_5__1__Impl
             {
-            pushFollow(FOLLOW_rule__Constraint__Group_5__1__Impl_in_rule__Constraint__Group_5__12125);
+            pushFollow(FOLLOW_rule__Constraint__Group_5__1__Impl_in_rule__Constraint__Group_5__12188);
             rule__Constraint__Group_5__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2844,29 +3014,30 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group_5__1
+    // $ANTLR end "rule__Constraint__Group_5__1"
 
 
-    // $ANTLR start rule__Constraint__Group_5__1__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1059:1: rule__Constraint__Group_5__1__Impl : ( ( rule__Constraint__QualifierAssignment_5_1 ) ) ;
+    // $ANTLR start "rule__Constraint__Group_5__1__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1092:1: rule__Constraint__Group_5__1__Impl : ( ( rule__Constraint__QualifierAssignment_5_1 ) ) ;
     public final void rule__Constraint__Group_5__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1063:1: ( ( ( rule__Constraint__QualifierAssignment_5_1 ) ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1064:1: ( ( rule__Constraint__QualifierAssignment_5_1 ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1096:1: ( ( ( rule__Constraint__QualifierAssignment_5_1 ) ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1097:1: ( ( rule__Constraint__QualifierAssignment_5_1 ) )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1064:1: ( ( rule__Constraint__QualifierAssignment_5_1 ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1065:1: ( rule__Constraint__QualifierAssignment_5_1 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1097:1: ( ( rule__Constraint__QualifierAssignment_5_1 ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1098:1: ( rule__Constraint__QualifierAssignment_5_1 )
             {
              before(grammarAccess.getConstraintAccess().getQualifierAssignment_5_1()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1066:1: ( rule__Constraint__QualifierAssignment_5_1 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1066:2: rule__Constraint__QualifierAssignment_5_1
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1099:1: ( rule__Constraint__QualifierAssignment_5_1 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1099:2: rule__Constraint__QualifierAssignment_5_1
             {
-            pushFollow(FOLLOW_rule__Constraint__QualifierAssignment_5_1_in_rule__Constraint__Group_5__1__Impl2152);
+            pushFollow(FOLLOW_rule__Constraint__QualifierAssignment_5_1_in_rule__Constraint__Group_5__1__Impl2215);
             rule__Constraint__QualifierAssignment_5_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2890,26 +3061,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group_5__1__Impl
+    // $ANTLR end "rule__Constraint__Group_5__1__Impl"
 
 
-    // $ANTLR start rule__Constraint__Group_7__0
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1080:1: rule__Constraint__Group_7__0 : rule__Constraint__Group_7__0__Impl rule__Constraint__Group_7__1 ;
+    // $ANTLR start "rule__Constraint__Group_7__0"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1113:1: rule__Constraint__Group_7__0 : rule__Constraint__Group_7__0__Impl rule__Constraint__Group_7__1 ;
     public final void rule__Constraint__Group_7__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1084:1: ( rule__Constraint__Group_7__0__Impl rule__Constraint__Group_7__1 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1085:2: rule__Constraint__Group_7__0__Impl rule__Constraint__Group_7__1
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1117:1: ( rule__Constraint__Group_7__0__Impl rule__Constraint__Group_7__1 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1118:2: rule__Constraint__Group_7__0__Impl rule__Constraint__Group_7__1
             {
-            pushFollow(FOLLOW_rule__Constraint__Group_7__0__Impl_in_rule__Constraint__Group_7__02186);
+            pushFollow(FOLLOW_rule__Constraint__Group_7__0__Impl_in_rule__Constraint__Group_7__02249);
             rule__Constraint__Group_7__0__Impl();
-            _fsp--;
 
-            pushFollow(FOLLOW_rule__Constraint__Group_7__1_in_rule__Constraint__Group_7__02189);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Constraint__Group_7__1_in_rule__Constraint__Group_7__02252);
             rule__Constraint__Group_7__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2926,24 +3099,24 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group_7__0
+    // $ANTLR end "rule__Constraint__Group_7__0"
 
 
-    // $ANTLR start rule__Constraint__Group_7__0__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1092:1: rule__Constraint__Group_7__0__Impl : ( '=' ) ;
+    // $ANTLR start "rule__Constraint__Group_7__0__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1125:1: rule__Constraint__Group_7__0__Impl : ( '=' ) ;
     public final void rule__Constraint__Group_7__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1096:1: ( ( '=' ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1097:1: ( '=' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1129:1: ( ( '=' ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1130:1: ( '=' )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1097:1: ( '=' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1098:1: '='
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1130:1: ( '=' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1131:1: '='
             {
              before(grammarAccess.getConstraintAccess().getEqualsSignKeyword_7_0()); 
-            match(input,26,FOLLOW_26_in_rule__Constraint__Group_7__0__Impl2217); 
+            match(input,26,FOLLOW_26_in_rule__Constraint__Group_7__0__Impl2280); 
              after(grammarAccess.getConstraintAccess().getEqualsSignKeyword_7_0()); 
 
             }
@@ -2963,26 +3136,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group_7__0__Impl
+    // $ANTLR end "rule__Constraint__Group_7__0__Impl"
 
 
-    // $ANTLR start rule__Constraint__Group_7__1
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1111:1: rule__Constraint__Group_7__1 : rule__Constraint__Group_7__1__Impl rule__Constraint__Group_7__2 ;
+    // $ANTLR start "rule__Constraint__Group_7__1"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1144:1: rule__Constraint__Group_7__1 : rule__Constraint__Group_7__1__Impl rule__Constraint__Group_7__2 ;
     public final void rule__Constraint__Group_7__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1115:1: ( rule__Constraint__Group_7__1__Impl rule__Constraint__Group_7__2 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1116:2: rule__Constraint__Group_7__1__Impl rule__Constraint__Group_7__2
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1148:1: ( rule__Constraint__Group_7__1__Impl rule__Constraint__Group_7__2 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1149:2: rule__Constraint__Group_7__1__Impl rule__Constraint__Group_7__2
             {
-            pushFollow(FOLLOW_rule__Constraint__Group_7__1__Impl_in_rule__Constraint__Group_7__12248);
+            pushFollow(FOLLOW_rule__Constraint__Group_7__1__Impl_in_rule__Constraint__Group_7__12311);
             rule__Constraint__Group_7__1__Impl();
-            _fsp--;
 
-            pushFollow(FOLLOW_rule__Constraint__Group_7__2_in_rule__Constraint__Group_7__12251);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Constraint__Group_7__2_in_rule__Constraint__Group_7__12314);
             rule__Constraint__Group_7__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2999,24 +3174,24 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group_7__1
+    // $ANTLR end "rule__Constraint__Group_7__1"
 
 
-    // $ANTLR start rule__Constraint__Group_7__1__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1123:1: rule__Constraint__Group_7__1__Impl : ( '[' ) ;
+    // $ANTLR start "rule__Constraint__Group_7__1__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1156:1: rule__Constraint__Group_7__1__Impl : ( '[' ) ;
     public final void rule__Constraint__Group_7__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1127:1: ( ( '[' ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1128:1: ( '[' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1160:1: ( ( '[' ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1161:1: ( '[' )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1128:1: ( '[' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1129:1: '['
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1161:1: ( '[' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1162:1: '['
             {
              before(grammarAccess.getConstraintAccess().getLeftSquareBracketKeyword_7_1()); 
-            match(input,27,FOLLOW_27_in_rule__Constraint__Group_7__1__Impl2279); 
+            match(input,27,FOLLOW_27_in_rule__Constraint__Group_7__1__Impl2342); 
              after(grammarAccess.getConstraintAccess().getLeftSquareBracketKeyword_7_1()); 
 
             }
@@ -3036,26 +3211,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group_7__1__Impl
+    // $ANTLR end "rule__Constraint__Group_7__1__Impl"
 
 
-    // $ANTLR start rule__Constraint__Group_7__2
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1142:1: rule__Constraint__Group_7__2 : rule__Constraint__Group_7__2__Impl rule__Constraint__Group_7__3 ;
+    // $ANTLR start "rule__Constraint__Group_7__2"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1175:1: rule__Constraint__Group_7__2 : rule__Constraint__Group_7__2__Impl rule__Constraint__Group_7__3 ;
     public final void rule__Constraint__Group_7__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1146:1: ( rule__Constraint__Group_7__2__Impl rule__Constraint__Group_7__3 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1147:2: rule__Constraint__Group_7__2__Impl rule__Constraint__Group_7__3
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1179:1: ( rule__Constraint__Group_7__2__Impl rule__Constraint__Group_7__3 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1180:2: rule__Constraint__Group_7__2__Impl rule__Constraint__Group_7__3
             {
-            pushFollow(FOLLOW_rule__Constraint__Group_7__2__Impl_in_rule__Constraint__Group_7__22310);
+            pushFollow(FOLLOW_rule__Constraint__Group_7__2__Impl_in_rule__Constraint__Group_7__22373);
             rule__Constraint__Group_7__2__Impl();
-            _fsp--;
 
-            pushFollow(FOLLOW_rule__Constraint__Group_7__3_in_rule__Constraint__Group_7__22313);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Constraint__Group_7__3_in_rule__Constraint__Group_7__22376);
             rule__Constraint__Group_7__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3072,29 +3249,30 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group_7__2
+    // $ANTLR end "rule__Constraint__Group_7__2"
 
 
-    // $ANTLR start rule__Constraint__Group_7__2__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1154:1: rule__Constraint__Group_7__2__Impl : ( ( rule__Constraint__MinValueAssignment_7_2 ) ) ;
+    // $ANTLR start "rule__Constraint__Group_7__2__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1187:1: rule__Constraint__Group_7__2__Impl : ( ( rule__Constraint__MinValueAssignment_7_2 ) ) ;
     public final void rule__Constraint__Group_7__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1158:1: ( ( ( rule__Constraint__MinValueAssignment_7_2 ) ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1159:1: ( ( rule__Constraint__MinValueAssignment_7_2 ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1191:1: ( ( ( rule__Constraint__MinValueAssignment_7_2 ) ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1192:1: ( ( rule__Constraint__MinValueAssignment_7_2 ) )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1159:1: ( ( rule__Constraint__MinValueAssignment_7_2 ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1160:1: ( rule__Constraint__MinValueAssignment_7_2 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1192:1: ( ( rule__Constraint__MinValueAssignment_7_2 ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1193:1: ( rule__Constraint__MinValueAssignment_7_2 )
             {
              before(grammarAccess.getConstraintAccess().getMinValueAssignment_7_2()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1161:1: ( rule__Constraint__MinValueAssignment_7_2 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1161:2: rule__Constraint__MinValueAssignment_7_2
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1194:1: ( rule__Constraint__MinValueAssignment_7_2 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1194:2: rule__Constraint__MinValueAssignment_7_2
             {
-            pushFollow(FOLLOW_rule__Constraint__MinValueAssignment_7_2_in_rule__Constraint__Group_7__2__Impl2340);
+            pushFollow(FOLLOW_rule__Constraint__MinValueAssignment_7_2_in_rule__Constraint__Group_7__2__Impl2403);
             rule__Constraint__MinValueAssignment_7_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3118,26 +3296,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group_7__2__Impl
+    // $ANTLR end "rule__Constraint__Group_7__2__Impl"
 
 
-    // $ANTLR start rule__Constraint__Group_7__3
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1171:1: rule__Constraint__Group_7__3 : rule__Constraint__Group_7__3__Impl rule__Constraint__Group_7__4 ;
+    // $ANTLR start "rule__Constraint__Group_7__3"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1204:1: rule__Constraint__Group_7__3 : rule__Constraint__Group_7__3__Impl rule__Constraint__Group_7__4 ;
     public final void rule__Constraint__Group_7__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1175:1: ( rule__Constraint__Group_7__3__Impl rule__Constraint__Group_7__4 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1176:2: rule__Constraint__Group_7__3__Impl rule__Constraint__Group_7__4
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1208:1: ( rule__Constraint__Group_7__3__Impl rule__Constraint__Group_7__4 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1209:2: rule__Constraint__Group_7__3__Impl rule__Constraint__Group_7__4
             {
-            pushFollow(FOLLOW_rule__Constraint__Group_7__3__Impl_in_rule__Constraint__Group_7__32370);
+            pushFollow(FOLLOW_rule__Constraint__Group_7__3__Impl_in_rule__Constraint__Group_7__32433);
             rule__Constraint__Group_7__3__Impl();
-            _fsp--;
 
-            pushFollow(FOLLOW_rule__Constraint__Group_7__4_in_rule__Constraint__Group_7__32373);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Constraint__Group_7__4_in_rule__Constraint__Group_7__32436);
             rule__Constraint__Group_7__4();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3154,24 +3334,24 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group_7__3
+    // $ANTLR end "rule__Constraint__Group_7__3"
 
 
-    // $ANTLR start rule__Constraint__Group_7__3__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1183:1: rule__Constraint__Group_7__3__Impl : ( ',' ) ;
+    // $ANTLR start "rule__Constraint__Group_7__3__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1216:1: rule__Constraint__Group_7__3__Impl : ( ',' ) ;
     public final void rule__Constraint__Group_7__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1187:1: ( ( ',' ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1188:1: ( ',' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1220:1: ( ( ',' ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1221:1: ( ',' )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1188:1: ( ',' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1189:1: ','
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1221:1: ( ',' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1222:1: ','
             {
              before(grammarAccess.getConstraintAccess().getCommaKeyword_7_3()); 
-            match(input,28,FOLLOW_28_in_rule__Constraint__Group_7__3__Impl2401); 
+            match(input,28,FOLLOW_28_in_rule__Constraint__Group_7__3__Impl2464); 
              after(grammarAccess.getConstraintAccess().getCommaKeyword_7_3()); 
 
             }
@@ -3191,26 +3371,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group_7__3__Impl
+    // $ANTLR end "rule__Constraint__Group_7__3__Impl"
 
 
-    // $ANTLR start rule__Constraint__Group_7__4
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1202:1: rule__Constraint__Group_7__4 : rule__Constraint__Group_7__4__Impl rule__Constraint__Group_7__5 ;
+    // $ANTLR start "rule__Constraint__Group_7__4"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1235:1: rule__Constraint__Group_7__4 : rule__Constraint__Group_7__4__Impl rule__Constraint__Group_7__5 ;
     public final void rule__Constraint__Group_7__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1206:1: ( rule__Constraint__Group_7__4__Impl rule__Constraint__Group_7__5 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1207:2: rule__Constraint__Group_7__4__Impl rule__Constraint__Group_7__5
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1239:1: ( rule__Constraint__Group_7__4__Impl rule__Constraint__Group_7__5 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1240:2: rule__Constraint__Group_7__4__Impl rule__Constraint__Group_7__5
             {
-            pushFollow(FOLLOW_rule__Constraint__Group_7__4__Impl_in_rule__Constraint__Group_7__42432);
+            pushFollow(FOLLOW_rule__Constraint__Group_7__4__Impl_in_rule__Constraint__Group_7__42495);
             rule__Constraint__Group_7__4__Impl();
-            _fsp--;
 
-            pushFollow(FOLLOW_rule__Constraint__Group_7__5_in_rule__Constraint__Group_7__42435);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__Constraint__Group_7__5_in_rule__Constraint__Group_7__42498);
             rule__Constraint__Group_7__5();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3227,29 +3409,30 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group_7__4
+    // $ANTLR end "rule__Constraint__Group_7__4"
 
 
-    // $ANTLR start rule__Constraint__Group_7__4__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1214:1: rule__Constraint__Group_7__4__Impl : ( ( rule__Constraint__MaxValueAssignment_7_4 ) ) ;
+    // $ANTLR start "rule__Constraint__Group_7__4__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1247:1: rule__Constraint__Group_7__4__Impl : ( ( rule__Constraint__MaxValueAssignment_7_4 ) ) ;
     public final void rule__Constraint__Group_7__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1218:1: ( ( ( rule__Constraint__MaxValueAssignment_7_4 ) ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1219:1: ( ( rule__Constraint__MaxValueAssignment_7_4 ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1251:1: ( ( ( rule__Constraint__MaxValueAssignment_7_4 ) ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1252:1: ( ( rule__Constraint__MaxValueAssignment_7_4 ) )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1219:1: ( ( rule__Constraint__MaxValueAssignment_7_4 ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1220:1: ( rule__Constraint__MaxValueAssignment_7_4 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1252:1: ( ( rule__Constraint__MaxValueAssignment_7_4 ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1253:1: ( rule__Constraint__MaxValueAssignment_7_4 )
             {
              before(grammarAccess.getConstraintAccess().getMaxValueAssignment_7_4()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1221:1: ( rule__Constraint__MaxValueAssignment_7_4 )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1221:2: rule__Constraint__MaxValueAssignment_7_4
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1254:1: ( rule__Constraint__MaxValueAssignment_7_4 )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1254:2: rule__Constraint__MaxValueAssignment_7_4
             {
-            pushFollow(FOLLOW_rule__Constraint__MaxValueAssignment_7_4_in_rule__Constraint__Group_7__4__Impl2462);
+            pushFollow(FOLLOW_rule__Constraint__MaxValueAssignment_7_4_in_rule__Constraint__Group_7__4__Impl2525);
             rule__Constraint__MaxValueAssignment_7_4();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3273,22 +3456,23 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group_7__4__Impl
+    // $ANTLR end "rule__Constraint__Group_7__4__Impl"
 
 
-    // $ANTLR start rule__Constraint__Group_7__5
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1231:1: rule__Constraint__Group_7__5 : rule__Constraint__Group_7__5__Impl ;
+    // $ANTLR start "rule__Constraint__Group_7__5"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1264:1: rule__Constraint__Group_7__5 : rule__Constraint__Group_7__5__Impl ;
     public final void rule__Constraint__Group_7__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1235:1: ( rule__Constraint__Group_7__5__Impl )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1236:2: rule__Constraint__Group_7__5__Impl
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1268:1: ( rule__Constraint__Group_7__5__Impl )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1269:2: rule__Constraint__Group_7__5__Impl
             {
-            pushFollow(FOLLOW_rule__Constraint__Group_7__5__Impl_in_rule__Constraint__Group_7__52492);
+            pushFollow(FOLLOW_rule__Constraint__Group_7__5__Impl_in_rule__Constraint__Group_7__52555);
             rule__Constraint__Group_7__5__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -3305,24 +3489,24 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group_7__5
+    // $ANTLR end "rule__Constraint__Group_7__5"
 
 
-    // $ANTLR start rule__Constraint__Group_7__5__Impl
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1242:1: rule__Constraint__Group_7__5__Impl : ( ']' ) ;
+    // $ANTLR start "rule__Constraint__Group_7__5__Impl"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1275:1: rule__Constraint__Group_7__5__Impl : ( ']' ) ;
     public final void rule__Constraint__Group_7__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1246:1: ( ( ']' ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1247:1: ( ']' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1279:1: ( ( ']' ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1280:1: ( ']' )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1247:1: ( ']' )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1248:1: ']'
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1280:1: ( ']' )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1281:1: ']'
             {
              before(grammarAccess.getConstraintAccess().getRightSquareBracketKeyword_7_5()); 
-            match(input,29,FOLLOW_29_in_rule__Constraint__Group_7__5__Impl2520); 
+            match(input,29,FOLLOW_29_in_rule__Constraint__Group_7__5__Impl2583); 
              after(grammarAccess.getConstraintAccess().getRightSquareBracketKeyword_7_5()); 
 
             }
@@ -3342,25 +3526,25 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__Group_7__5__Impl
+    // $ANTLR end "rule__Constraint__Group_7__5__Impl"
 
 
-    // $ANTLR start rule__Model__NameAssignment_0
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1274:1: rule__Model__NameAssignment_0 : ( RULE_STRING ) ;
-    public final void rule__Model__NameAssignment_0() throws RecognitionException {
+    // $ANTLR start "rule__Model__NameAssignment_1"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1307:1: rule__Model__NameAssignment_1 : ( RULE_STRING ) ;
+    public final void rule__Model__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1278:1: ( ( RULE_STRING ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1279:1: ( RULE_STRING )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1311:1: ( ( RULE_STRING ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1312:1: ( RULE_STRING )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1279:1: ( RULE_STRING )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1280:1: RULE_STRING
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1312:1: ( RULE_STRING )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1313:1: RULE_STRING
             {
-             before(grammarAccess.getModelAccess().getNameSTRINGTerminalRuleCall_0_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Model__NameAssignment_02568); 
-             after(grammarAccess.getModelAccess().getNameSTRINGTerminalRuleCall_0_0()); 
+             before(grammarAccess.getModelAccess().getNameSTRINGTerminalRuleCall_1_0()); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Model__NameAssignment_12631); 
+             after(grammarAccess.getModelAccess().getNameSTRINGTerminalRuleCall_1_0()); 
 
             }
 
@@ -3379,25 +3563,25 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__NameAssignment_0
+    // $ANTLR end "rule__Model__NameAssignment_1"
 
 
-    // $ANTLR start rule__Model__DescriptionAssignment_1
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1289:1: rule__Model__DescriptionAssignment_1 : ( RULE_DESC_STRING ) ;
-    public final void rule__Model__DescriptionAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__Model__DescriptionAssignment_2"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1322:1: rule__Model__DescriptionAssignment_2 : ( RULE_DESC_STRING ) ;
+    public final void rule__Model__DescriptionAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1293:1: ( ( RULE_DESC_STRING ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1294:1: ( RULE_DESC_STRING )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1326:1: ( ( RULE_DESC_STRING ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1327:1: ( RULE_DESC_STRING )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1294:1: ( RULE_DESC_STRING )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1295:1: RULE_DESC_STRING
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1327:1: ( RULE_DESC_STRING )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1328:1: RULE_DESC_STRING
             {
-             before(grammarAccess.getModelAccess().getDescriptionDESC_STRINGTerminalRuleCall_1_0()); 
-            match(input,RULE_DESC_STRING,FOLLOW_RULE_DESC_STRING_in_rule__Model__DescriptionAssignment_12599); 
-             after(grammarAccess.getModelAccess().getDescriptionDESC_STRINGTerminalRuleCall_1_0()); 
+             before(grammarAccess.getModelAccess().getDescriptionDESC_STRINGTerminalRuleCall_2_0()); 
+            match(input,RULE_DESC_STRING,FOLLOW_RULE_DESC_STRING_in_rule__Model__DescriptionAssignment_22662); 
+             after(grammarAccess.getModelAccess().getDescriptionDESC_STRINGTerminalRuleCall_2_0()); 
 
             }
 
@@ -3416,28 +3600,29 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__DescriptionAssignment_1
+    // $ANTLR end "rule__Model__DescriptionAssignment_2"
 
 
-    // $ANTLR start rule__Model__TestsAssignment_2_0_0_1
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1304:1: rule__Model__TestsAssignment_2_0_0_1 : ( ruleTests ) ;
-    public final void rule__Model__TestsAssignment_2_0_0_1() throws RecognitionException {
+    // $ANTLR start "rule__Model__TestsAssignment_3_0_0_1"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1337:1: rule__Model__TestsAssignment_3_0_0_1 : ( ruleTests ) ;
+    public final void rule__Model__TestsAssignment_3_0_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1308:1: ( ( ruleTests ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1309:1: ( ruleTests )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1341:1: ( ( ruleTests ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1342:1: ( ruleTests )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1309:1: ( ruleTests )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1310:1: ruleTests
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1342:1: ( ruleTests )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1343:1: ruleTests
             {
-             before(grammarAccess.getModelAccess().getTestsTestsParserRuleCall_2_0_0_1_0()); 
-            pushFollow(FOLLOW_ruleTests_in_rule__Model__TestsAssignment_2_0_0_12630);
+             before(grammarAccess.getModelAccess().getTestsTestsParserRuleCall_3_0_0_1_0()); 
+            pushFollow(FOLLOW_ruleTests_in_rule__Model__TestsAssignment_3_0_0_12693);
             ruleTests();
-            _fsp--;
 
-             after(grammarAccess.getModelAccess().getTestsTestsParserRuleCall_2_0_0_1_0()); 
+            state._fsp--;
+
+             after(grammarAccess.getModelAccess().getTestsTestsParserRuleCall_3_0_0_1_0()); 
 
             }
 
@@ -3456,28 +3641,29 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__TestsAssignment_2_0_0_1
+    // $ANTLR end "rule__Model__TestsAssignment_3_0_0_1"
 
 
-    // $ANTLR start rule__Model__ContraintsAssignment_2_0_1
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1319:1: rule__Model__ContraintsAssignment_2_0_1 : ( ruleConstraint ) ;
-    public final void rule__Model__ContraintsAssignment_2_0_1() throws RecognitionException {
+    // $ANTLR start "rule__Model__ContraintsAssignment_3_0_1"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1352:1: rule__Model__ContraintsAssignment_3_0_1 : ( ruleConstraint ) ;
+    public final void rule__Model__ContraintsAssignment_3_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1323:1: ( ( ruleConstraint ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1324:1: ( ruleConstraint )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1356:1: ( ( ruleConstraint ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1357:1: ( ruleConstraint )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1324:1: ( ruleConstraint )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1325:1: ruleConstraint
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1357:1: ( ruleConstraint )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1358:1: ruleConstraint
             {
-             before(grammarAccess.getModelAccess().getContraintsConstraintParserRuleCall_2_0_1_0()); 
-            pushFollow(FOLLOW_ruleConstraint_in_rule__Model__ContraintsAssignment_2_0_12661);
+             before(grammarAccess.getModelAccess().getContraintsConstraintParserRuleCall_3_0_1_0()); 
+            pushFollow(FOLLOW_ruleConstraint_in_rule__Model__ContraintsAssignment_3_0_12724);
             ruleConstraint();
-            _fsp--;
 
-             after(grammarAccess.getModelAccess().getContraintsConstraintParserRuleCall_2_0_1_0()); 
+            state._fsp--;
+
+             after(grammarAccess.getModelAccess().getContraintsConstraintParserRuleCall_3_0_1_0()); 
 
             }
 
@@ -3496,28 +3682,29 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__ContraintsAssignment_2_0_1
+    // $ANTLR end "rule__Model__ContraintsAssignment_3_0_1"
 
 
-    // $ANTLR start rule__Model__ContainsAssignment_2_1_1
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1334:1: rule__Model__ContainsAssignment_2_1_1 : ( ruleTestMember ) ;
-    public final void rule__Model__ContainsAssignment_2_1_1() throws RecognitionException {
+    // $ANTLR start "rule__Model__ContainsAssignment_3_1_1"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1367:1: rule__Model__ContainsAssignment_3_1_1 : ( ruleTestMember ) ;
+    public final void rule__Model__ContainsAssignment_3_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1338:1: ( ( ruleTestMember ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1339:1: ( ruleTestMember )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1371:1: ( ( ruleTestMember ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1372:1: ( ruleTestMember )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1339:1: ( ruleTestMember )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1340:1: ruleTestMember
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1372:1: ( ruleTestMember )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1373:1: ruleTestMember
             {
-             before(grammarAccess.getModelAccess().getContainsTestMemberParserRuleCall_2_1_1_0()); 
-            pushFollow(FOLLOW_ruleTestMember_in_rule__Model__ContainsAssignment_2_1_12692);
+             before(grammarAccess.getModelAccess().getContainsTestMemberParserRuleCall_3_1_1_0()); 
+            pushFollow(FOLLOW_ruleTestMember_in_rule__Model__ContainsAssignment_3_1_12755);
             ruleTestMember();
-            _fsp--;
 
-             after(grammarAccess.getModelAccess().getContainsTestMemberParserRuleCall_2_1_1_0()); 
+            state._fsp--;
+
+             after(grammarAccess.getModelAccess().getContainsTestMemberParserRuleCall_3_1_1_0()); 
 
             }
 
@@ -3536,24 +3723,24 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__ContainsAssignment_2_1_1
+    // $ANTLR end "rule__Model__ContainsAssignment_3_1_1"
 
 
-    // $ANTLR start rule__Tests__ImportURIAssignment
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1349:1: rule__Tests__ImportURIAssignment : ( RULE_STRING ) ;
+    // $ANTLR start "rule__Tests__ImportURIAssignment"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1382:1: rule__Tests__ImportURIAssignment : ( RULE_STRING ) ;
     public final void rule__Tests__ImportURIAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1353:1: ( ( RULE_STRING ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1354:1: ( RULE_STRING )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1386:1: ( ( RULE_STRING ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1387:1: ( RULE_STRING )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1354:1: ( RULE_STRING )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1355:1: RULE_STRING
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1387:1: ( RULE_STRING )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1388:1: RULE_STRING
             {
              before(grammarAccess.getTestsAccess().getImportURISTRINGTerminalRuleCall_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Tests__ImportURIAssignment2723); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Tests__ImportURIAssignment2786); 
              after(grammarAccess.getTestsAccess().getImportURISTRINGTerminalRuleCall_0()); 
 
             }
@@ -3573,24 +3760,24 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Tests__ImportURIAssignment
+    // $ANTLR end "rule__Tests__ImportURIAssignment"
 
 
-    // $ANTLR start rule__TestMember__ImportURIAssignment
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1364:1: rule__TestMember__ImportURIAssignment : ( RULE_STRING ) ;
+    // $ANTLR start "rule__TestMember__ImportURIAssignment"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1397:1: rule__TestMember__ImportURIAssignment : ( RULE_STRING ) ;
     public final void rule__TestMember__ImportURIAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1368:1: ( ( RULE_STRING ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1369:1: ( RULE_STRING )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1401:1: ( ( RULE_STRING ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1402:1: ( RULE_STRING )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1369:1: ( RULE_STRING )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1370:1: RULE_STRING
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1402:1: ( RULE_STRING )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1403:1: RULE_STRING
             {
              before(grammarAccess.getTestMemberAccess().getImportURISTRINGTerminalRuleCall_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__TestMember__ImportURIAssignment2754); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__TestMember__ImportURIAssignment2817); 
              after(grammarAccess.getTestMemberAccess().getImportURISTRINGTerminalRuleCall_0()); 
 
             }
@@ -3610,26 +3797,27 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__TestMember__ImportURIAssignment
+    // $ANTLR end "rule__TestMember__ImportURIAssignment"
 
 
-    // $ANTLR start rule__Constraint__MeasureAssignment_0
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1379:1: rule__Constraint__MeasureAssignment_0 : ( ruleMeasure ) ;
+    // $ANTLR start "rule__Constraint__MeasureAssignment_0"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1412:1: rule__Constraint__MeasureAssignment_0 : ( ruleMeasure ) ;
     public final void rule__Constraint__MeasureAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1383:1: ( ( ruleMeasure ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1384:1: ( ruleMeasure )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1416:1: ( ( ruleMeasure ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1417:1: ( ruleMeasure )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1384:1: ( ruleMeasure )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1385:1: ruleMeasure
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1417:1: ( ruleMeasure )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1418:1: ruleMeasure
             {
              before(grammarAccess.getConstraintAccess().getMeasureMeasureEnumRuleCall_0_0()); 
-            pushFollow(FOLLOW_ruleMeasure_in_rule__Constraint__MeasureAssignment_02785);
+            pushFollow(FOLLOW_ruleMeasure_in_rule__Constraint__MeasureAssignment_02848);
             ruleMeasure();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getConstraintAccess().getMeasureMeasureEnumRuleCall_0_0()); 
 
@@ -3650,28 +3838,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__MeasureAssignment_0
+    // $ANTLR end "rule__Constraint__MeasureAssignment_0"
 
 
-    // $ANTLR start rule__Constraint__AgentAssignment_2
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1394:1: rule__Constraint__AgentAssignment_2 : ( ( RULE_ID ) ) ;
+    // $ANTLR start "rule__Constraint__AgentAssignment_2"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1427:1: rule__Constraint__AgentAssignment_2 : ( ( RULE_ID ) ) ;
     public final void rule__Constraint__AgentAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1398:1: ( ( ( RULE_ID ) ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1399:1: ( ( RULE_ID ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1431:1: ( ( ( RULE_ID ) ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1432:1: ( ( RULE_ID ) )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1399:1: ( ( RULE_ID ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1400:1: ( RULE_ID )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1432:1: ( ( RULE_ID ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1433:1: ( RULE_ID )
             {
              before(grammarAccess.getConstraintAccess().getAgentSAgentCrossReference_2_0()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1401:1: ( RULE_ID )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1402:1: RULE_ID
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1434:1: ( RULE_ID )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1435:1: RULE_ID
             {
              before(grammarAccess.getConstraintAccess().getAgentSAgentIDTerminalRuleCall_2_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Constraint__AgentAssignment_22820); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Constraint__AgentAssignment_22883); 
              after(grammarAccess.getConstraintAccess().getAgentSAgentIDTerminalRuleCall_2_0_1()); 
 
             }
@@ -3695,28 +3883,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__AgentAssignment_2
+    // $ANTLR end "rule__Constraint__AgentAssignment_2"
 
 
-    // $ANTLR start rule__Constraint__AttributeAssignment_4
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1413:1: rule__Constraint__AttributeAssignment_4 : ( ( RULE_ID ) ) ;
+    // $ANTLR start "rule__Constraint__AttributeAssignment_4"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1446:1: rule__Constraint__AttributeAssignment_4 : ( ( RULE_ID ) ) ;
     public final void rule__Constraint__AttributeAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1417:1: ( ( ( RULE_ID ) ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1418:1: ( ( RULE_ID ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1450:1: ( ( ( RULE_ID ) ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1451:1: ( ( RULE_ID ) )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1418:1: ( ( RULE_ID ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1419:1: ( RULE_ID )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1451:1: ( ( RULE_ID ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1452:1: ( RULE_ID )
             {
              before(grammarAccess.getConstraintAccess().getAttributeSAttributeCrossReference_4_0()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1420:1: ( RULE_ID )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1421:1: RULE_ID
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1453:1: ( RULE_ID )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1454:1: RULE_ID
             {
              before(grammarAccess.getConstraintAccess().getAttributeSAttributeIDTerminalRuleCall_4_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Constraint__AttributeAssignment_42859); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Constraint__AttributeAssignment_42922); 
              after(grammarAccess.getConstraintAccess().getAttributeSAttributeIDTerminalRuleCall_4_0_1()); 
 
             }
@@ -3740,28 +3928,28 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__AttributeAssignment_4
+    // $ANTLR end "rule__Constraint__AttributeAssignment_4"
 
 
-    // $ANTLR start rule__Constraint__QualifierAssignment_5_1
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1432:1: rule__Constraint__QualifierAssignment_5_1 : ( ( RULE_ID ) ) ;
+    // $ANTLR start "rule__Constraint__QualifierAssignment_5_1"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1465:1: rule__Constraint__QualifierAssignment_5_1 : ( ( RULE_ID ) ) ;
     public final void rule__Constraint__QualifierAssignment_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1436:1: ( ( ( RULE_ID ) ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1437:1: ( ( RULE_ID ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1469:1: ( ( ( RULE_ID ) ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1470:1: ( ( RULE_ID ) )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1437:1: ( ( RULE_ID ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1438:1: ( RULE_ID )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1470:1: ( ( RULE_ID ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1471:1: ( RULE_ID )
             {
              before(grammarAccess.getConstraintAccess().getQualifierSStateValueCrossReference_5_1_0()); 
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1439:1: ( RULE_ID )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1440:1: RULE_ID
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1472:1: ( RULE_ID )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1473:1: RULE_ID
             {
              before(grammarAccess.getConstraintAccess().getQualifierSStateValueIDTerminalRuleCall_5_1_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Constraint__QualifierAssignment_5_12898); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Constraint__QualifierAssignment_5_12961); 
              after(grammarAccess.getConstraintAccess().getQualifierSStateValueIDTerminalRuleCall_5_1_0_1()); 
 
             }
@@ -3785,26 +3973,27 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__QualifierAssignment_5_1
+    // $ANTLR end "rule__Constraint__QualifierAssignment_5_1"
 
 
-    // $ANTLR start rule__Constraint__MinValueAssignment_7_2
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1451:1: rule__Constraint__MinValueAssignment_7_2 : ( ruleValue ) ;
+    // $ANTLR start "rule__Constraint__MinValueAssignment_7_2"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1484:1: rule__Constraint__MinValueAssignment_7_2 : ( ruleValue ) ;
     public final void rule__Constraint__MinValueAssignment_7_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1455:1: ( ( ruleValue ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1456:1: ( ruleValue )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1488:1: ( ( ruleValue ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1489:1: ( ruleValue )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1456:1: ( ruleValue )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1457:1: ruleValue
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1489:1: ( ruleValue )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1490:1: ruleValue
             {
              before(grammarAccess.getConstraintAccess().getMinValueValueParserRuleCall_7_2_0()); 
-            pushFollow(FOLLOW_ruleValue_in_rule__Constraint__MinValueAssignment_7_22933);
+            pushFollow(FOLLOW_ruleValue_in_rule__Constraint__MinValueAssignment_7_22996);
             ruleValue();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getConstraintAccess().getMinValueValueParserRuleCall_7_2_0()); 
 
@@ -3825,26 +4014,27 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__MinValueAssignment_7_2
+    // $ANTLR end "rule__Constraint__MinValueAssignment_7_2"
 
 
-    // $ANTLR start rule__Constraint__MaxValueAssignment_7_4
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1466:1: rule__Constraint__MaxValueAssignment_7_4 : ( ruleValue ) ;
+    // $ANTLR start "rule__Constraint__MaxValueAssignment_7_4"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1499:1: rule__Constraint__MaxValueAssignment_7_4 : ( ruleValue ) ;
     public final void rule__Constraint__MaxValueAssignment_7_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1470:1: ( ( ruleValue ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1471:1: ( ruleValue )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1503:1: ( ( ruleValue ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1504:1: ( ruleValue )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1471:1: ( ruleValue )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1472:1: ruleValue
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1504:1: ( ruleValue )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1505:1: ruleValue
             {
              before(grammarAccess.getConstraintAccess().getMaxValueValueParserRuleCall_7_4_0()); 
-            pushFollow(FOLLOW_ruleValue_in_rule__Constraint__MaxValueAssignment_7_42964);
+            pushFollow(FOLLOW_ruleValue_in_rule__Constraint__MaxValueAssignment_7_43027);
             ruleValue();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getConstraintAccess().getMaxValueValueParserRuleCall_7_4_0()); 
 
@@ -3865,24 +4055,24 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Constraint__MaxValueAssignment_7_4
+    // $ANTLR end "rule__Constraint__MaxValueAssignment_7_4"
 
 
-    // $ANTLR start rule__IntValue__ValueAssignment
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1481:1: rule__IntValue__ValueAssignment : ( RULE_INTEGER ) ;
+    // $ANTLR start "rule__IntValue__ValueAssignment"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1514:1: rule__IntValue__ValueAssignment : ( RULE_INTEGER ) ;
     public final void rule__IntValue__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1485:1: ( ( RULE_INTEGER ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1486:1: ( RULE_INTEGER )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1518:1: ( ( RULE_INTEGER ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1519:1: ( RULE_INTEGER )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1486:1: ( RULE_INTEGER )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1487:1: RULE_INTEGER
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1519:1: ( RULE_INTEGER )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1520:1: RULE_INTEGER
             {
              before(grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0()); 
-            match(input,RULE_INTEGER,FOLLOW_RULE_INTEGER_in_rule__IntValue__ValueAssignment2995); 
+            match(input,RULE_INTEGER,FOLLOW_RULE_INTEGER_in_rule__IntValue__ValueAssignment3058); 
              after(grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0()); 
 
             }
@@ -3902,24 +4092,24 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__IntValue__ValueAssignment
+    // $ANTLR end "rule__IntValue__ValueAssignment"
 
 
-    // $ANTLR start rule__RealValue__ValueAssignment
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1496:1: rule__RealValue__ValueAssignment : ( RULE_REAL ) ;
+    // $ANTLR start "rule__RealValue__ValueAssignment"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1529:1: rule__RealValue__ValueAssignment : ( RULE_REAL ) ;
     public final void rule__RealValue__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1500:1: ( ( RULE_REAL ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1501:1: ( RULE_REAL )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1533:1: ( ( RULE_REAL ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1534:1: ( RULE_REAL )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1501:1: ( RULE_REAL )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1502:1: RULE_REAL
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1534:1: ( RULE_REAL )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1535:1: RULE_REAL
             {
              before(grammarAccess.getRealValueAccess().getValueREALTerminalRuleCall_0()); 
-            match(input,RULE_REAL,FOLLOW_RULE_REAL_in_rule__RealValue__ValueAssignment3026); 
+            match(input,RULE_REAL,FOLLOW_RULE_REAL_in_rule__RealValue__ValueAssignment3089); 
              after(grammarAccess.getRealValueAccess().getValueREALTerminalRuleCall_0()); 
 
             }
@@ -3939,24 +4129,24 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__RealValue__ValueAssignment
+    // $ANTLR end "rule__RealValue__ValueAssignment"
 
 
-    // $ANTLR start rule__StringValue__ValueAssignment
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1511:1: rule__StringValue__ValueAssignment : ( RULE_STRING ) ;
+    // $ANTLR start "rule__StringValue__ValueAssignment"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1544:1: rule__StringValue__ValueAssignment : ( RULE_STRING ) ;
     public final void rule__StringValue__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1515:1: ( ( RULE_STRING ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1516:1: ( RULE_STRING )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1548:1: ( ( RULE_STRING ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1549:1: ( RULE_STRING )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1516:1: ( RULE_STRING )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1517:1: RULE_STRING
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1549:1: ( RULE_STRING )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1550:1: RULE_STRING
             {
              before(grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__StringValue__ValueAssignment3057); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__StringValue__ValueAssignment3120); 
              after(grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_0()); 
 
             }
@@ -3976,26 +4166,27 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__StringValue__ValueAssignment
+    // $ANTLR end "rule__StringValue__ValueAssignment"
 
 
-    // $ANTLR start rule__BooleanValue__ValueAssignment
-    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1526:1: rule__BooleanValue__ValueAssignment : ( ruleBOOLEAN ) ;
+    // $ANTLR start "rule__BooleanValue__ValueAssignment"
+    // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1559:1: rule__BooleanValue__ValueAssignment : ( ruleBOOLEAN ) ;
     public final void rule__BooleanValue__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1530:1: ( ( ruleBOOLEAN ) )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1531:1: ( ruleBOOLEAN )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1563:1: ( ( ruleBOOLEAN ) )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1564:1: ( ruleBOOLEAN )
             {
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1531:1: ( ruleBOOLEAN )
-            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1532:1: ruleBOOLEAN
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1564:1: ( ruleBOOLEAN )
+            // ../org.eclipse.amp.amf.testing.ui/src-gen/org/eclipse/amp/amf/testing/ui/contentassist/antlr/internal/InternalATest.g:1565:1: ruleBOOLEAN
             {
              before(grammarAccess.getBooleanValueAccess().getValueBOOLEANEnumRuleCall_0()); 
-            pushFollow(FOLLOW_ruleBOOLEAN_in_rule__BooleanValue__ValueAssignment3088);
+            pushFollow(FOLLOW_ruleBOOLEAN_in_rule__BooleanValue__ValueAssignment3151);
             ruleBOOLEAN();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getBooleanValueAccess().getValueBOOLEANEnumRuleCall_0()); 
 
@@ -4016,7 +4207,9 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__BooleanValue__ValueAssignment
+    // $ANTLR end "rule__BooleanValue__ValueAssignment"
+
+    // Delegated rules
 
 
  
@@ -4050,8 +4243,8 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__BooleanValue__ValueAssignment_in_ruleBooleanValue574 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Measure__Alternatives_in_ruleMeasure611 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__BOOLEAN__Alternatives_in_ruleBOOLEAN647 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Model__Group_2_0__0_in_rule__Model__Alternatives_2682 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Model__Group_2_1__0_in_rule__Model__Alternatives_2700 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Model__Group_3_0__0_in_rule__Model__Alternatives_3682 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Model__Group_3_1__0_in_rule__Model__Alternatives_3700 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleIntValue_in_rule__Value__Alternatives733 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleStringValue_in_rule__Value__Alternatives750 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleRealValue_in_rule__Value__Alternatives767 = new BitSet(new long[]{0x0000000000000002L});
@@ -4063,91 +4256,93 @@ public class InternalATestParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_18_in_rule__Measure__Alternatives901 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_19_in_rule__BOOLEAN__Alternatives937 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_20_in_rule__BOOLEAN__Alternatives958 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Model__Group__0__Impl_in_rule__Model__Group__0991 = new BitSet(new long[]{0x000000000067C022L});
+    public static final BitSet FOLLOW_rule__Model__Group__0__Impl_in_rule__Model__Group__0991 = new BitSet(new long[]{0x000000000067C030L});
     public static final BitSet FOLLOW_rule__Model__Group__1_in_rule__Model__Group__0994 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Model__NameAssignment_0_in_rule__Model__Group__0__Impl1021 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Model__Group__1__Impl_in_rule__Model__Group__11052 = new BitSet(new long[]{0x000000000067C002L});
+    public static final BitSet FOLLOW_rule__Model__Group__1__Impl_in_rule__Model__Group__11052 = new BitSet(new long[]{0x000000000067C030L});
     public static final BitSet FOLLOW_rule__Model__Group__2_in_rule__Model__Group__11055 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Model__DescriptionAssignment_1_in_rule__Model__Group__1__Impl1082 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Model__Group__2__Impl_in_rule__Model__Group__21113 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Model__Alternatives_2_in_rule__Model__Group__2__Impl1140 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Model__Group_2_0__0__Impl_in_rule__Model__Group_2_0__01177 = new BitSet(new long[]{0x000000000007C000L});
-    public static final BitSet FOLLOW_rule__Model__Group_2_0__1_in_rule__Model__Group_2_0__01180 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Model__Group_2_0_0__0_in_rule__Model__Group_2_0__0__Impl1207 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Model__Group_2_0__1__Impl_in_rule__Model__Group_2_0__11238 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Model__ContraintsAssignment_2_0_1_in_rule__Model__Group_2_0__1__Impl1267 = new BitSet(new long[]{0x000000000007C002L});
-    public static final BitSet FOLLOW_rule__Model__ContraintsAssignment_2_0_1_in_rule__Model__Group_2_0__1__Impl1279 = new BitSet(new long[]{0x000000000007C002L});
-    public static final BitSet FOLLOW_rule__Model__Group_2_0_0__0__Impl_in_rule__Model__Group_2_0_0__01316 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__Model__Group_2_0_0__1_in_rule__Model__Group_2_0_0__01319 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_rule__Model__Group_2_0_0__0__Impl1347 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Model__Group_2_0_0__1__Impl_in_rule__Model__Group_2_0_0__11378 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Model__TestsAssignment_2_0_0_1_in_rule__Model__Group_2_0_0__1__Impl1405 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Model__Group_2_1__0__Impl_in_rule__Model__Group_2_1__01439 = new BitSet(new long[]{0x0000000000000012L});
-    public static final BitSet FOLLOW_rule__Model__Group_2_1__1_in_rule__Model__Group_2_1__01442 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_rule__Model__Group_2_1__0__Impl1470 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Model__Group_2_1__1__Impl_in_rule__Model__Group_2_1__11501 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Model__ContainsAssignment_2_1_1_in_rule__Model__Group_2_1__1__Impl1528 = new BitSet(new long[]{0x0000000000000012L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__0__Impl_in_rule__Constraint__Group__01563 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__1_in_rule__Constraint__Group__01566 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__MeasureAssignment_0_in_rule__Constraint__Group__0__Impl1593 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__1__Impl_in_rule__Constraint__Group__11623 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__2_in_rule__Constraint__Group__11626 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_rule__Constraint__Group__1__Impl1654 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__2__Impl_in_rule__Constraint__Group__21685 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__3_in_rule__Constraint__Group__21688 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__AgentAssignment_2_in_rule__Constraint__Group__2__Impl1715 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__3__Impl_in_rule__Constraint__Group__31745 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__4_in_rule__Constraint__Group__31748 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_rule__Constraint__Group__3__Impl1776 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__4__Impl_in_rule__Constraint__Group__41807 = new BitSet(new long[]{0x0000000006000000L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__5_in_rule__Constraint__Group__41810 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__AttributeAssignment_4_in_rule__Constraint__Group__4__Impl1837 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__5__Impl_in_rule__Constraint__Group__51867 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__6_in_rule__Constraint__Group__51870 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_5__0_in_rule__Constraint__Group__5__Impl1897 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__6__Impl_in_rule__Constraint__Group__61928 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__7_in_rule__Constraint__Group__61931 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_rule__Constraint__Group__6__Impl1959 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group__7__Impl_in_rule__Constraint__Group__71990 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_7__0_in_rule__Constraint__Group__7__Impl2017 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_5__0__Impl_in_rule__Constraint__Group_5__02063 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_5__1_in_rule__Constraint__Group_5__02066 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_rule__Constraint__Group_5__0__Impl2094 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_5__1__Impl_in_rule__Constraint__Group_5__12125 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__QualifierAssignment_5_1_in_rule__Constraint__Group_5__1__Impl2152 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_7__0__Impl_in_rule__Constraint__Group_7__02186 = new BitSet(new long[]{0x0000000008000000L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_7__1_in_rule__Constraint__Group_7__02189 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_rule__Constraint__Group_7__0__Impl2217 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_7__1__Impl_in_rule__Constraint__Group_7__12248 = new BitSet(new long[]{0x0000000000180190L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_7__2_in_rule__Constraint__Group_7__12251 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_rule__Constraint__Group_7__1__Impl2279 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_7__2__Impl_in_rule__Constraint__Group_7__22310 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_7__3_in_rule__Constraint__Group_7__22313 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__MinValueAssignment_7_2_in_rule__Constraint__Group_7__2__Impl2340 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_7__3__Impl_in_rule__Constraint__Group_7__32370 = new BitSet(new long[]{0x0000000000180190L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_7__4_in_rule__Constraint__Group_7__32373 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_rule__Constraint__Group_7__3__Impl2401 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_7__4__Impl_in_rule__Constraint__Group_7__42432 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_7__5_in_rule__Constraint__Group_7__42435 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__MaxValueAssignment_7_4_in_rule__Constraint__Group_7__4__Impl2462 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Constraint__Group_7__5__Impl_in_rule__Constraint__Group_7__52492 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rule__Constraint__Group_7__5__Impl2520 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Model__NameAssignment_02568 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_DESC_STRING_in_rule__Model__DescriptionAssignment_12599 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTests_in_rule__Model__TestsAssignment_2_0_0_12630 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConstraint_in_rule__Model__ContraintsAssignment_2_0_12661 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTestMember_in_rule__Model__ContainsAssignment_2_1_12692 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Tests__ImportURIAssignment2723 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__TestMember__ImportURIAssignment2754 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMeasure_in_rule__Constraint__MeasureAssignment_02785 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Constraint__AgentAssignment_22820 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Constraint__AttributeAssignment_42859 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Constraint__QualifierAssignment_5_12898 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValue_in_rule__Constraint__MinValueAssignment_7_22933 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValue_in_rule__Constraint__MaxValueAssignment_7_42964 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INTEGER_in_rule__IntValue__ValueAssignment2995 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_REAL_in_rule__RealValue__ValueAssignment3026 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__StringValue__ValueAssignment3057 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBOOLEAN_in_rule__BooleanValue__ValueAssignment3088 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Model__NameAssignment_1_in_rule__Model__Group__1__Impl1082 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Model__Group__2__Impl_in_rule__Model__Group__21113 = new BitSet(new long[]{0x000000000067C030L});
+    public static final BitSet FOLLOW_rule__Model__Group__3_in_rule__Model__Group__21116 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Model__DescriptionAssignment_2_in_rule__Model__Group__2__Impl1143 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Model__Group__3__Impl_in_rule__Model__Group__31174 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Model__Alternatives_3_in_rule__Model__Group__3__Impl1201 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Model__Group_3_0__0__Impl_in_rule__Model__Group_3_0__01240 = new BitSet(new long[]{0x000000000027C000L});
+    public static final BitSet FOLLOW_rule__Model__Group_3_0__1_in_rule__Model__Group_3_0__01243 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Model__Group_3_0_0__0_in_rule__Model__Group_3_0__0__Impl1270 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Model__Group_3_0__1__Impl_in_rule__Model__Group_3_0__11301 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Model__ContraintsAssignment_3_0_1_in_rule__Model__Group_3_0__1__Impl1330 = new BitSet(new long[]{0x000000000027C002L});
+    public static final BitSet FOLLOW_rule__Model__ContraintsAssignment_3_0_1_in_rule__Model__Group_3_0__1__Impl1342 = new BitSet(new long[]{0x000000000027C002L});
+    public static final BitSet FOLLOW_rule__Model__Group_3_0_0__0__Impl_in_rule__Model__Group_3_0_0__01379 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__Model__Group_3_0_0__1_in_rule__Model__Group_3_0_0__01382 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_rule__Model__Group_3_0_0__0__Impl1410 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Model__Group_3_0_0__1__Impl_in_rule__Model__Group_3_0_0__11441 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Model__TestsAssignment_3_0_0_1_in_rule__Model__Group_3_0_0__1__Impl1468 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Model__Group_3_1__0__Impl_in_rule__Model__Group_3_1__01502 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__Model__Group_3_1__1_in_rule__Model__Group_3_1__01505 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_rule__Model__Group_3_1__0__Impl1533 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Model__Group_3_1__1__Impl_in_rule__Model__Group_3_1__11564 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Model__ContainsAssignment_3_1_1_in_rule__Model__Group_3_1__1__Impl1591 = new BitSet(new long[]{0x0000000000000012L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__0__Impl_in_rule__Constraint__Group__01626 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__1_in_rule__Constraint__Group__01629 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__MeasureAssignment_0_in_rule__Constraint__Group__0__Impl1656 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__1__Impl_in_rule__Constraint__Group__11686 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__2_in_rule__Constraint__Group__11689 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_rule__Constraint__Group__1__Impl1717 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__2__Impl_in_rule__Constraint__Group__21748 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__3_in_rule__Constraint__Group__21751 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__AgentAssignment_2_in_rule__Constraint__Group__2__Impl1778 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__3__Impl_in_rule__Constraint__Group__31808 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__4_in_rule__Constraint__Group__31811 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_rule__Constraint__Group__3__Impl1839 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__4__Impl_in_rule__Constraint__Group__41870 = new BitSet(new long[]{0x0000000006000000L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__5_in_rule__Constraint__Group__41873 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__AttributeAssignment_4_in_rule__Constraint__Group__4__Impl1900 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__5__Impl_in_rule__Constraint__Group__51930 = new BitSet(new long[]{0x0000000006000000L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__6_in_rule__Constraint__Group__51933 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_5__0_in_rule__Constraint__Group__5__Impl1960 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__6__Impl_in_rule__Constraint__Group__61991 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__7_in_rule__Constraint__Group__61994 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_rule__Constraint__Group__6__Impl2022 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group__7__Impl_in_rule__Constraint__Group__72053 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_7__0_in_rule__Constraint__Group__7__Impl2080 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_5__0__Impl_in_rule__Constraint__Group_5__02126 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_5__1_in_rule__Constraint__Group_5__02129 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_rule__Constraint__Group_5__0__Impl2157 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_5__1__Impl_in_rule__Constraint__Group_5__12188 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__QualifierAssignment_5_1_in_rule__Constraint__Group_5__1__Impl2215 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_7__0__Impl_in_rule__Constraint__Group_7__02249 = new BitSet(new long[]{0x0000000008000000L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_7__1_in_rule__Constraint__Group_7__02252 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_rule__Constraint__Group_7__0__Impl2280 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_7__1__Impl_in_rule__Constraint__Group_7__12311 = new BitSet(new long[]{0x0000000000180190L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_7__2_in_rule__Constraint__Group_7__12314 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_rule__Constraint__Group_7__1__Impl2342 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_7__2__Impl_in_rule__Constraint__Group_7__22373 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_7__3_in_rule__Constraint__Group_7__22376 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__MinValueAssignment_7_2_in_rule__Constraint__Group_7__2__Impl2403 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_7__3__Impl_in_rule__Constraint__Group_7__32433 = new BitSet(new long[]{0x0000000000180190L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_7__4_in_rule__Constraint__Group_7__32436 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_rule__Constraint__Group_7__3__Impl2464 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_7__4__Impl_in_rule__Constraint__Group_7__42495 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_7__5_in_rule__Constraint__Group_7__42498 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__MaxValueAssignment_7_4_in_rule__Constraint__Group_7__4__Impl2525 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Constraint__Group_7__5__Impl_in_rule__Constraint__Group_7__52555 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rule__Constraint__Group_7__5__Impl2583 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Model__NameAssignment_12631 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_DESC_STRING_in_rule__Model__DescriptionAssignment_22662 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTests_in_rule__Model__TestsAssignment_3_0_0_12693 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConstraint_in_rule__Model__ContraintsAssignment_3_0_12724 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTestMember_in_rule__Model__ContainsAssignment_3_1_12755 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Tests__ImportURIAssignment2786 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__TestMember__ImportURIAssignment2817 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMeasure_in_rule__Constraint__MeasureAssignment_02848 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Constraint__AgentAssignment_22883 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Constraint__AttributeAssignment_42922 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Constraint__QualifierAssignment_5_12961 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValue_in_rule__Constraint__MinValueAssignment_7_22996 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValue_in_rule__Constraint__MaxValueAssignment_7_43027 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INTEGER_in_rule__IntValue__ValueAssignment3058 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_REAL_in_rule__RealValue__ValueAssignment3089 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__StringValue__ValueAssignment3120 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBOOLEAN_in_rule__BooleanValue__ValueAssignment3151 = new BitSet(new long[]{0x0000000000000002L});
 
 }

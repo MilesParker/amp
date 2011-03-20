@@ -20,80 +20,83 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 	public class ModelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Model");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameSTRINGTerminalRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final Assignment cDescriptionAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cDescriptionDESC_STRINGTerminalRuleCall_1_0 = (RuleCall)cDescriptionAssignment_1.eContents().get(0);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
-		private final Group cGroup_2_0_0 = (Group)cGroup_2_0.eContents().get(0);
-		private final Keyword cTestsKeyword_2_0_0_0 = (Keyword)cGroup_2_0_0.eContents().get(0);
-		private final Assignment cTestsAssignment_2_0_0_1 = (Assignment)cGroup_2_0_0.eContents().get(1);
-		private final RuleCall cTestsTestsParserRuleCall_2_0_0_1_0 = (RuleCall)cTestsAssignment_2_0_0_1.eContents().get(0);
-		private final Assignment cContraintsAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
-		private final RuleCall cContraintsConstraintParserRuleCall_2_0_1_0 = (RuleCall)cContraintsAssignment_2_0_1.eContents().get(0);
-		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
-		private final Keyword cContainsKeyword_2_1_0 = (Keyword)cGroup_2_1.eContents().get(0);
-		private final Assignment cContainsAssignment_2_1_1 = (Assignment)cGroup_2_1.eContents().get(1);
-		private final RuleCall cContainsTestMemberParserRuleCall_2_1_1_0 = (RuleCall)cContainsAssignment_2_1_1.eContents().get(0);
+		private final Action cModelAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameSTRINGTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cDescriptionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cDescriptionDESC_STRINGTerminalRuleCall_2_0 = (RuleCall)cDescriptionAssignment_2.eContents().get(0);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Group cGroup_3_0 = (Group)cAlternatives_3.eContents().get(0);
+		private final Group cGroup_3_0_0 = (Group)cGroup_3_0.eContents().get(0);
+		private final Keyword cTestsKeyword_3_0_0_0 = (Keyword)cGroup_3_0_0.eContents().get(0);
+		private final Assignment cTestsAssignment_3_0_0_1 = (Assignment)cGroup_3_0_0.eContents().get(1);
+		private final RuleCall cTestsTestsParserRuleCall_3_0_0_1_0 = (RuleCall)cTestsAssignment_3_0_0_1.eContents().get(0);
+		private final Assignment cContraintsAssignment_3_0_1 = (Assignment)cGroup_3_0.eContents().get(1);
+		private final RuleCall cContraintsConstraintParserRuleCall_3_0_1_0 = (RuleCall)cContraintsAssignment_3_0_1.eContents().get(0);
+		private final Group cGroup_3_1 = (Group)cAlternatives_3.eContents().get(1);
+		private final Keyword cContainsKeyword_3_1_0 = (Keyword)cGroup_3_1.eContents().get(0);
+		private final Assignment cContainsAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
+		private final RuleCall cContainsTestMemberParserRuleCall_3_1_1_0 = (RuleCall)cContainsAssignment_3_1_1.eContents().get(0);
 		
 		//Model:
-		//  name=STRING? description=DESC_STRING? (("tests" tests=Tests)?
-		//  contraints+=Constraint+|"contains" contains+=TestMember*)?;
+		//	{Model} name=STRING? description=DESC_STRING? (("tests" tests=Tests)? contraints+=Constraint+ | "contains"
+		//	contains+=TestMember*)?;
 		public ParserRule getRule() { return rule; }
 
-		//name=STRING? description=DESC_STRING? (("tests" tests=Tests)?
-		//contraints+=Constraint+|"contains" contains+=TestMember*)?
+		//{Model} name=STRING? description=DESC_STRING? (("tests" tests=Tests)? contraints+=Constraint+ | "contains"
+		//contains+=TestMember*)?
 		public Group getGroup() { return cGroup; }
 
+		//{Model}
+		public Action getModelAction_0() { return cModelAction_0; }
+
 		//name=STRING?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
 
 		//STRING
-		public RuleCall getNameSTRINGTerminalRuleCall_0_0() { return cNameSTRINGTerminalRuleCall_0_0; }
+		public RuleCall getNameSTRINGTerminalRuleCall_1_0() { return cNameSTRINGTerminalRuleCall_1_0; }
 
 		//description=DESC_STRING?
-		public Assignment getDescriptionAssignment_1() { return cDescriptionAssignment_1; }
+		public Assignment getDescriptionAssignment_2() { return cDescriptionAssignment_2; }
 
 		//DESC_STRING
-		public RuleCall getDescriptionDESC_STRINGTerminalRuleCall_1_0() { return cDescriptionDESC_STRINGTerminalRuleCall_1_0; }
+		public RuleCall getDescriptionDESC_STRINGTerminalRuleCall_2_0() { return cDescriptionDESC_STRINGTerminalRuleCall_2_0; }
 
-		//(("tests" tests=Tests)? contraints+=Constraint+|"contains" contains+=TestMember*
-		//)?
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		//(("tests" tests=Tests)? contraints+=Constraint+ | "contains" contains+=TestMember*)?
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 
 		//("tests" tests=Tests)? contraints+=Constraint+
-		public Group getGroup_2_0() { return cGroup_2_0; }
+		public Group getGroup_3_0() { return cGroup_3_0; }
 
 		//("tests" tests=Tests)?
-		public Group getGroup_2_0_0() { return cGroup_2_0_0; }
+		public Group getGroup_3_0_0() { return cGroup_3_0_0; }
 
 		//"tests"
-		public Keyword getTestsKeyword_2_0_0_0() { return cTestsKeyword_2_0_0_0; }
+		public Keyword getTestsKeyword_3_0_0_0() { return cTestsKeyword_3_0_0_0; }
 
 		//tests=Tests
-		public Assignment getTestsAssignment_2_0_0_1() { return cTestsAssignment_2_0_0_1; }
+		public Assignment getTestsAssignment_3_0_0_1() { return cTestsAssignment_3_0_0_1; }
 
 		//Tests
-		public RuleCall getTestsTestsParserRuleCall_2_0_0_1_0() { return cTestsTestsParserRuleCall_2_0_0_1_0; }
+		public RuleCall getTestsTestsParserRuleCall_3_0_0_1_0() { return cTestsTestsParserRuleCall_3_0_0_1_0; }
 
 		//contraints+=Constraint+
-		public Assignment getContraintsAssignment_2_0_1() { return cContraintsAssignment_2_0_1; }
+		public Assignment getContraintsAssignment_3_0_1() { return cContraintsAssignment_3_0_1; }
 
 		//Constraint
-		public RuleCall getContraintsConstraintParserRuleCall_2_0_1_0() { return cContraintsConstraintParserRuleCall_2_0_1_0; }
+		public RuleCall getContraintsConstraintParserRuleCall_3_0_1_0() { return cContraintsConstraintParserRuleCall_3_0_1_0; }
 
 		//"contains" contains+=TestMember*
-		public Group getGroup_2_1() { return cGroup_2_1; }
+		public Group getGroup_3_1() { return cGroup_3_1; }
 
 		//"contains"
-		public Keyword getContainsKeyword_2_1_0() { return cContainsKeyword_2_1_0; }
+		public Keyword getContainsKeyword_3_1_0() { return cContainsKeyword_3_1_0; }
 
 		//contains+=TestMember*
-		public Assignment getContainsAssignment_2_1_1() { return cContainsAssignment_2_1_1; }
+		public Assignment getContainsAssignment_3_1_1() { return cContainsAssignment_3_1_1; }
 
 		//TestMember
-		public RuleCall getContainsTestMemberParserRuleCall_2_1_1_0() { return cContainsTestMemberParserRuleCall_2_1_1_0; }
+		public RuleCall getContainsTestMemberParserRuleCall_3_1_1_0() { return cContainsTestMemberParserRuleCall_3_1_1_0; }
 	}
 
 	public class TestsElements extends AbstractParserRuleElementFinder {
@@ -102,7 +105,7 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cImportURISTRINGTerminalRuleCall_0 = (RuleCall)cImportURIAssignment.eContents().get(0);
 		
 		//Tests:
-		//  importURI=STRING;
+		//	importURI=STRING;
 		public ParserRule getRule() { return rule; }
 
 		//importURI=STRING
@@ -118,7 +121,7 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cImportURISTRINGTerminalRuleCall_0 = (RuleCall)cImportURIAssignment.eContents().get(0);
 		
 		//TestMember:
-		//  importURI=STRING;
+		//	importURI=STRING;
 		public ParserRule getRule() { return rule; }
 
 		//importURI=STRING
@@ -158,13 +161,12 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_7_5 = (Keyword)cGroup_7.eContents().get(5);
 		
 		//Constraint:
-		//  measure=Measure "(" agent=[SAgent] "." attribute=[SAttribute] ("="
-		//  qualifier=[SStateValue])? ")" ("=" "[" minValue=Value "," maxValue=Value "]")
-		//;
+		//	measure=Measure "(" agent=[SAgent] "." attribute=[SAttribute] ("=" qualifier=[SStateValue])? ")" ("=" "["
+		//	minValue=Value "," maxValue=Value "]");
 		public ParserRule getRule() { return rule; }
 
-		//measure=Measure "(" agent=[SAgent] "." attribute=[SAttribute] ("=" qualifier=[
-		//SStateValue])? ")" ("=" "[" minValue=Value "," maxValue=Value "]")
+		//measure=Measure "(" agent=[SAgent] "." attribute=[SAttribute] ("=" qualifier=[SStateValue])? ")" ("=" "[" minValue=Value
+		//"," maxValue=Value "]")
 		public Group getGroup() { return cGroup; }
 
 		//measure=Measure
@@ -259,12 +261,10 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cMAXIMUMMaximumKeyword_4_0 = (Keyword)cMAXIMUMEnumLiteralDeclaration_4.eContents().get(0);
 		
 		//enum Measure:
-		//  COUNT="Count" | AVERAGE="Average" | SUM="Sum" | MINIMUM="Minimum" | MAXIMUM=
-		//  "Maximum";
+		//	COUNT="Count" | AVERAGE="Average" | SUM="Sum" | MINIMUM="Minimum" | MAXIMUM="Maximum";
 		public EnumRule getRule() { return rule; }
 
-		//COUNT="Count" | AVERAGE="Average" | SUM="Sum" | MINIMUM="Minimum" | MAXIMUM=
-		//"Maximum"
+		//COUNT="Count" | AVERAGE="Average" | SUM="Sum" | MINIMUM="Minimum" | MAXIMUM="Maximum"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//COUNT="Count"
@@ -326,8 +326,8 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Model:
-	//  name=STRING? description=DESC_STRING? (("tests" tests=Tests)?
-	//  contraints+=Constraint+|"contains" contains+=TestMember*)?;
+	//	{Model} name=STRING? description=DESC_STRING? (("tests" tests=Tests)? contraints+=Constraint+ | "contains"
+	//	contains+=TestMember*)?;
 	public ModelElements getModelAccess() {
 		return (pModel != null) ? pModel : (pModel = new ModelElements());
 	}
@@ -337,7 +337,7 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Tests:
-	//  importURI=STRING;
+	//	importURI=STRING;
 	public TestsElements getTestsAccess() {
 		return (pTests != null) ? pTests : (pTests = new TestsElements());
 	}
@@ -347,7 +347,7 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TestMember:
-	//  importURI=STRING;
+	//	importURI=STRING;
 	public TestMemberElements getTestMemberAccess() {
 		return (pTestMember != null) ? pTestMember : (pTestMember = new TestMemberElements());
 	}
@@ -357,9 +357,8 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Constraint:
-	//  measure=Measure "(" agent=[SAgent] "." attribute=[SAttribute] ("="
-	//  qualifier=[SStateValue])? ")" ("=" "[" minValue=Value "," maxValue=Value "]")
-	//;
+	//	measure=Measure "(" agent=[SAgent] "." attribute=[SAttribute] ("=" qualifier=[SStateValue])? ")" ("=" "["
+	//	minValue=Value "," maxValue=Value "]");
 	public ConstraintElements getConstraintAccess() {
 		return (pConstraint != null) ? pConstraint : (pConstraint = new ConstraintElements());
 	}
@@ -369,8 +368,7 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum Measure:
-	//  COUNT="Count" | AVERAGE="Average" | SUM="Sum" | MINIMUM="Minimum" | MAXIMUM=
-	//  "Maximum";
+	//	COUNT="Count" | AVERAGE="Average" | SUM="Sum" | MINIMUM="Minimum" | MAXIMUM="Maximum";
 	public MeasureElements getMeasureAccess() {
 		return (unknownRuleMeasure != null) ? unknownRuleMeasure : (unknownRuleMeasure = new MeasureElements());
 	}
@@ -380,7 +378,7 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Value:
-	//  IntValue|StringValue|RealValue|BooleanValue;
+	//	IntValue | StringValue | RealValue | BooleanValue;
 	public ABaseGrammarAccess.ValueElements getValueAccess() {
 		return gaABase.getValueAccess();
 	}
@@ -390,7 +388,7 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IntValue:
-	//  value=INTEGER;
+	//	value=INTEGER;
 	public ABaseGrammarAccess.IntValueElements getIntValueAccess() {
 		return gaABase.getIntValueAccess();
 	}
@@ -400,7 +398,7 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RealValue:
-	//  value=REAL;
+	//	value=REAL;
 	public ABaseGrammarAccess.RealValueElements getRealValueAccess() {
 		return gaABase.getRealValueAccess();
 	}
@@ -410,7 +408,7 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StringValue:
-	//  value=STRING;
+	//	value=STRING;
 	public ABaseGrammarAccess.StringValueElements getStringValueAccess() {
 		return gaABase.getStringValueAccess();
 	}
@@ -420,7 +418,7 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BooleanValue:
-	//  value=BOOLEAN;
+	//	value=BOOLEAN;
 	public ABaseGrammarAccess.BooleanValueElements getBooleanValueAccess() {
 		return gaABase.getBooleanValueAccess();
 	}
@@ -430,7 +428,7 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//enum BOOLEAN:
-	//  TRUE="true" | FALSE="false";
+	//	TRUE="true" | FALSE="false";
 	public ABaseGrammarAccess.BOOLEANElements getBOOLEANAccess() {
 		return gaABase.getBOOLEANAccess();
 	}
@@ -440,64 +438,62 @@ public class ATestGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal INTEGER:
-	//  "-"? "0".."9"+;
+	//	"-"? "0".."9"+;
 	public TerminalRule getINTEGERRule() {
 		return gaABase.getINTEGERRule();
 	} 
 
 	//terminal REAL:
-	//  "-"? "0".."9"* "." "0".."9"*;
+	//	"-"? "0".."9"* "." "0".."9"*;
 	public TerminalRule getREALRule() {
 		return gaABase.getREALRule();
 	} 
 
 	//terminal DESC_STRING:
-	//  "«" ("\\" ("b" | "t" | "n" | "f" | "r" | "«" | "»" | "\\") | !("\\" | "«" |
-	//  "»"))* "»";
+	//	"«" ("\\" ("b" | "t" | "n" | "f" | "r" | "«" | "»" | "\\") | !("\\" | "«" | "»"))* "»";
 	public TerminalRule getDESC_STRINGRule() {
 		return gaABase.getDESC_STRINGRule();
 	} 
 
 	//terminal ID:
-	//  "^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
+	//	"^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
 	public TerminalRule getIDRule() {
 		return gaABase.getIDRule();
 	} 
 
 	//terminal INT returns ecore::EInt:
-	//  "0".."9"+;
+	//	"0".."9"+;
 	public TerminalRule getINTRule() {
 		return gaABase.getINTRule();
 	} 
 
 	//terminal STRING:
-	//  "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""
-	//  ))* "\"" | "\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !(
-	//  "\\" | "\'"))* "\'";
+	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"" | "\'" ("\\" ("b" | "t" |
+	//	"n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
 	public TerminalRule getSTRINGRule() {
 		return gaABase.getSTRINGRule();
 	} 
 
 	//terminal ML_COMMENT:
-	//  "/ *"->"* /";
+	//	"/ *"->"* /";
 	public TerminalRule getML_COMMENTRule() {
 		return gaABase.getML_COMMENTRule();
 	} 
 
 	//terminal SL_COMMENT:
-	//  "//" !("\n" | "\r")* ("\r"? "\n")?;
+	//	"//" !("\n" | "\r")* ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {
 		return gaABase.getSL_COMMENTRule();
 	} 
 
 	//terminal WS:
-	//  (" " | "\t" | "\r" | "\n")+;
+	//	(" " | "\t" | "\r" | "\n")+;
 	public TerminalRule getWSRule() {
 		return gaABase.getWSRule();
 	} 
 
 	//terminal ANY_OTHER:
-	//  .;
+	//	.;
 	public TerminalRule getANY_OTHERRule() {
 		return gaABase.getANY_OTHERRule();
 	} 

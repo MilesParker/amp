@@ -30,6 +30,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.mwe.core.WorkflowEngine;
 import org.eclipse.emf.mwe.core.WorkflowRunner;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
@@ -78,7 +79,7 @@ public abstract class AbstractMWEBuilder extends IncrementalProjectBuilder {
         resourceLoader.addURL(url);
     }
 
-    private class GenerationRunner extends WorkflowRunner {
+    private class GenerationRunner extends WorkflowEngine {
         @Override
         public boolean executeWorkflow(Map<?, ?> externalSlotContents, Issues issues) {
             boolean result = false;
@@ -142,7 +143,7 @@ public abstract class AbstractMWEBuilder extends IncrementalProjectBuilder {
             modelMarkerHelper = new ModelMarkerHelper(resource);
             modelMarkerHelper.deleteMarkers();
         }
-        WorkflowRunner workflowRunner = new GenerationRunner();
+        WorkflowEngine workflowRunner = new GenerationRunner();
         ProgressMonitor workflowMonitor;
         if (currentMonitor != null) {
             workflowMonitor = new ProgressMonitorAdapter(currentMonitor);

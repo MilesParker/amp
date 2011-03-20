@@ -454,7 +454,7 @@ protected class Parameter_Alternatives extends AlternativesToken {
     @Override
 	public IEObjectConsumer tryConsume() {
 		if(getEObject().eClass() != grammarAccess.getSingleParameterRule().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getSweepLinkRule().getType().getClassifier() && 
+		   getEObject().eClass() != grammarAccess.getSweepLinkAccess().getSweepLinkAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getSweepParameterRule().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
@@ -556,7 +556,7 @@ protected class Parameter_SweepLinkParserRuleCall_2 extends RuleCallToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getSweepLinkRule().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getSweepLinkAccess().getSweepLinkAction_0().getType().getClassifier())
 			return null;
 		if(checkForRecursion(SweepLink_Group.class, eObjectConsumer)) return null;
 		return eObjectConsumer;
@@ -1023,11 +1023,11 @@ protected class SweepParameter_RightSquareBracketKeyword_7 extends KeywordToken 
 /************ begin Rule SweepLink ****************
  *
  * SweepLink:
- * 	"[" parameters+=Parameter* "]";
+ * 	{SweepLink} "[" parameters+=Parameter* "]";
  *
  **/
 
-// "[" parameters+=Parameter* "]"
+// {SweepLink} "[" parameters+=Parameter* "]"
 protected class SweepLink_Group extends GroupToken {
 	
 	public SweepLink_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1042,30 +1042,30 @@ protected class SweepLink_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new SweepLink_RightSquareBracketKeyword_2(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new SweepLink_RightSquareBracketKeyword_3(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getSweepLinkRule().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getSweepLinkAccess().getSweepLinkAction_0().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
 	}
 
 }
 
-// "["
-protected class SweepLink_LeftSquareBracketKeyword_0 extends KeywordToken  {
-	
-	public SweepLink_LeftSquareBracketKeyword_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+// {SweepLink}
+protected class SweepLink_SweepLinkAction_0 extends ActionToken  {
+
+	public SweepLink_SweepLinkAction_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getSweepLinkAccess().getLeftSquareBracketKeyword_0();
+	public Action getGrammarElement() {
+		return grammarAccess.getSweepLinkAccess().getSweepLinkAction_0();
 	}
 
     @Override
@@ -1075,18 +1075,45 @@ protected class SweepLink_LeftSquareBracketKeyword_0 extends KeywordToken  {
 		}	
 	}
 
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(!eObjectConsumer.isConsumed()) return null;
+		return eObjectConsumer;
+	}
+}
+
+// "["
+protected class SweepLink_LeftSquareBracketKeyword_1 extends KeywordToken  {
+	
+	public SweepLink_LeftSquareBracketKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getSweepLinkAccess().getLeftSquareBracketKeyword_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new SweepLink_SweepLinkAction_0(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
 }
 
 // parameters+=Parameter*
-protected class SweepLink_ParametersAssignment_1 extends AssignmentToken  {
+protected class SweepLink_ParametersAssignment_2 extends AssignmentToken  {
 	
-	public SweepLink_ParametersAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public SweepLink_ParametersAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getSweepLinkAccess().getParametersAssignment_1();
+		return grammarAccess.getSweepLinkAccess().getParametersAssignment_2();
 	}
 
     @Override
@@ -1105,7 +1132,7 @@ protected class SweepLink_ParametersAssignment_1 extends AssignmentToken  {
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getParameterRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getSweepLinkAccess().getParametersParameterParserRuleCall_1_0(); 
+				element = grammarAccess.getSweepLinkAccess().getParametersParameterParserRuleCall_2_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -1117,30 +1144,30 @@ protected class SweepLink_ParametersAssignment_1 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new SweepLink_ParametersAssignment_1(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new SweepLink_LeftSquareBracketKeyword_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new SweepLink_ParametersAssignment_2(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new SweepLink_LeftSquareBracketKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
 // "]"
-protected class SweepLink_RightSquareBracketKeyword_2 extends KeywordToken  {
+protected class SweepLink_RightSquareBracketKeyword_3 extends KeywordToken  {
 	
-	public SweepLink_RightSquareBracketKeyword_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public SweepLink_RightSquareBracketKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getSweepLinkAccess().getRightSquareBracketKeyword_2();
+		return grammarAccess.getSweepLinkAccess().getRightSquareBracketKeyword_3();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new SweepLink_ParametersAssignment_1(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new SweepLink_LeftSquareBracketKeyword_0(lastRuleCallOrigin, this, 1, inst);
+			case 0: return new SweepLink_ParametersAssignment_2(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new SweepLink_LeftSquareBracketKeyword_1(lastRuleCallOrigin, this, 1, inst);
 			default: return null;
 		}	
 	}

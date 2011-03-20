@@ -20,7 +20,7 @@ import org.eclipse.xtext.common.services.DefaultTerminalConverters;
 import org.eclipse.xtext.conversion.IValueConverter;
 import org.eclipse.xtext.conversion.ValueConverter;
 import org.eclipse.xtext.conversion.impl.AbstractNullSafeConverter;
-import org.eclipse.xtext.parsetree.AbstractNode;
+import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.util.Strings;
 
 /**
@@ -34,7 +34,7 @@ public class AMPTerminalConverters extends DefaultTerminalConverters {
     public IValueConverter<String> DESC_STRING() {
         return new AbstractNullSafeConverter<String>() {
             @Override
-            protected String internalToValue(String string, AbstractNode node) {
+            protected String internalToValue(String string, INode node) {
                 return string.substring(1, string.length() - 1);
             }
 

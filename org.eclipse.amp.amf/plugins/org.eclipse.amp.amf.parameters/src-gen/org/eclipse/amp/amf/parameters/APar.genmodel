@@ -6,34 +6,34 @@
     modelPluginID="org.eclipse.amp.amf.parameters" forceOverwrite="true" modelName="APar"
     updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.amp.amf.parameters.edit"
-    editorPluginID="org.eclipse.amp.amf.parameters.editor" usedGenPackages="../../../../../../../org.eclipse.amp.amf.acore/src/model/metaabm.genmodel#//metaabm ../../../../../../../org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.genmodel#//aBase">
+    editorPluginID="org.eclipse.amp.amf.parameters.editor" usedGenPackages="platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.genmodel#//metaabm platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.genmodel#//aBase">
   <genPackages prefix="APar" basePackage="org.eclipse.amp.amf.parameters" disposableProviderFactory="true"
-      ecorePackage="APar.ecore#/">
-    <genClasses ecoreClass="APar.ecore#//Model">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute APar.ecore#//Model/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference APar.ecore#//Model/model"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference APar.ecore#//Model/incorporates"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference APar.ecore#//Model/parameters"/>
+      ecorePackage="platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#/">
+    <genClasses ecoreClass="platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//Model">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//Model/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//Model/model"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//Model/incorporates"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//Model/parameters"/>
     </genClasses>
-    <genClasses ecoreClass="APar.ecore#//Import">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute APar.ecore#//Import/importURI"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//Import">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//Import/importURI"/>
     </genClasses>
-    <genClasses ecoreClass="APar.ecore#//Incorporates">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute APar.ecore#//Incorporates/importURI"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//Incorporates">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//Incorporates/importURI"/>
     </genClasses>
-    <genClasses ecoreClass="APar.ecore#//Parameter"/>
-    <genClasses ecoreClass="APar.ecore#//SingleParameter">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference APar.ecore#//SingleParameter/attribute"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference APar.ecore#//SingleParameter/value"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//Parameter"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//SingleParameter">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//SingleParameter/attribute"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//SingleParameter/value"/>
     </genClasses>
-    <genClasses ecoreClass="APar.ecore#//SweepParameter">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference APar.ecore#//SweepParameter/attribute"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference APar.ecore#//SweepParameter/startValue"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference APar.ecore#//SweepParameter/endValue"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference APar.ecore#//SweepParameter/increment"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//SweepParameter">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//SweepParameter/attribute"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//SweepParameter/startValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//SweepParameter/endValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//SweepParameter/increment"/>
     </genClasses>
-    <genClasses ecoreClass="APar.ecore#//SweepLink">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference APar.ecore#//SweepLink/parameters"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//SweepLink">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.amp.amf.parameters/src-gen/org/eclipse/amp/amf/parameters/APar.ecore#//SweepLink/parameters"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

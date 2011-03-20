@@ -232,29 +232,33 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 	public class SweepLinkElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SweepLink");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cParametersAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cParametersParameterParserRuleCall_1_0 = (RuleCall)cParametersAssignment_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Action cSweepLinkAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cParametersAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cParametersParameterParserRuleCall_2_0 = (RuleCall)cParametersAssignment_2.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//SweepLink:
-		//	"[" parameters+=Parameter* "]";
+		//	{SweepLink} "[" parameters+=Parameter* "]";
 		public ParserRule getRule() { return rule; }
 
-		//"[" parameters+=Parameter* "]"
+		//{SweepLink} "[" parameters+=Parameter* "]"
 		public Group getGroup() { return cGroup; }
 
+		//{SweepLink}
+		public Action getSweepLinkAction_0() { return cSweepLinkAction_0; }
+
 		//"["
-		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
 
 		//parameters+=Parameter*
-		public Assignment getParametersAssignment_1() { return cParametersAssignment_1; }
+		public Assignment getParametersAssignment_2() { return cParametersAssignment_2; }
 
 		//Parameter
-		public RuleCall getParametersParameterParserRuleCall_1_0() { return cParametersParameterParserRuleCall_1_0; }
+		public RuleCall getParametersParameterParserRuleCall_2_0() { return cParametersParameterParserRuleCall_2_0; }
 
 		//"]"
-		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
 	}
 	
 	
@@ -348,7 +352,7 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SweepLink:
-	//	"[" parameters+=Parameter* "]";
+	//	{SweepLink} "[" parameters+=Parameter* "]";
 	public SweepLinkElements getSweepLinkAccess() {
 		return (pSweepLink != null) ? pSweepLink : (pSweepLink = new SweepLinkElements());
 	}
@@ -448,8 +452,8 @@ public class AParGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal STRING:
-	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"" | "\'" ("\\" ("b" | "t" | "n" |
-	//	"f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
+	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"" | "\'" ("\\" ("b" | "t" |
+	//	"n" | "f" | "r" | "u" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
 	public TerminalRule getSTRINGRule() {
 		return gaABase.getSTRINGRule();
 	} 

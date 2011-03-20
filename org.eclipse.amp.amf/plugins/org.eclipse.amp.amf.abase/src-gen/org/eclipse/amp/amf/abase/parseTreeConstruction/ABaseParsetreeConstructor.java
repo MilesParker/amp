@@ -12,6 +12,7 @@ import org.eclipse.amp.amf.abase.services.ABaseGrammarAccess;
 
 import com.google.inject.Inject;
 
+@SuppressWarnings("all")
 public class ABaseParsetreeConstructor extends AbstractParseTreeConstructor {
 		
 	@Inject
@@ -44,11 +45,11 @@ protected class ThisRootNode extends RootToken {
 /************ begin Rule Value ****************
  *
  * Value:
- *   IntValue|StringValue|RealValue|BooleanValue;
+ * 	IntValue | StringValue | RealValue | BooleanValue;
  *
  **/
 
-// IntValue|StringValue|RealValue|BooleanValue
+// IntValue | StringValue | RealValue | BooleanValue
 protected class Value_Alternatives extends AlternativesToken {
 
 	public Value_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -234,7 +235,7 @@ protected class Value_BooleanValueParserRuleCall_3 extends RuleCallToken {
 /************ begin Rule IntValue ****************
  *
  * IntValue:
- *   value=INTEGER;
+ * 	value=INTEGER;
  *
  **/
 
@@ -279,7 +280,7 @@ protected class IntValue_ValueAssignment extends AssignmentToken  {
 /************ begin Rule RealValue ****************
  *
  * RealValue:
- *   value=REAL;
+ * 	value=REAL;
  *
  **/
 
@@ -324,7 +325,7 @@ protected class RealValue_ValueAssignment extends AssignmentToken  {
 /************ begin Rule StringValue ****************
  *
  * StringValue:
- *   value=STRING;
+ * 	value=STRING;
  *
  **/
 
@@ -369,7 +370,7 @@ protected class StringValue_ValueAssignment extends AssignmentToken  {
 /************ begin Rule BooleanValue ****************
  *
  * BooleanValue:
- *   value=BOOLEAN;
+ * 	value=BOOLEAN;
  *
  **/
 

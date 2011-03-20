@@ -4,17 +4,17 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="aBase"
     nsURI="http://www.eclipse.org/amp/amf/abase/ABase" nsPrefix="aBase">
   <eClassifiers xsi:type="ecore:EClass" name="Value"/>
-  <eClassifiers xsi:type="ecore:EClass" name="IntValue" eSuperTypes="#//Value">
+  <eClassifiers xsi:type="ecore:EClass" name="IntValue" eSuperTypes="platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//Value">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RealValue" eSuperTypes="#//Value">
+  <eClassifiers xsi:type="ecore:EClass" name="RealValue" eSuperTypes="platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//Value">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StringValue" eSuperTypes="#//Value">
+  <eClassifiers xsi:type="ecore:EClass" name="StringValue" eSuperTypes="platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//Value">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BooleanValue" eSuperTypes="#//Value">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//BOOLEAN"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanValue" eSuperTypes="platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//Value">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EEnum platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.ecore#//BOOLEAN"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="BOOLEAN">
     <eLiterals name="TRUE" literal="true"/>

@@ -19,11 +19,9 @@ import org.eclipse.xtext.parser.antlr.Lexer;
 @parser::header {
 package org.eclipse.amp.amf.testing.parser.antlr.internal; 
 
-import java.io.InputStream;
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.parser.*;
 import org.eclipse.xtext.parser.impl.*;
-import org.eclipse.xtext.parsetree.*;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.common.util.Enumerator;
@@ -31,7 +29,6 @@ import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.parser.antlr.AntlrDatatypeRuleToken;
-import org.eclipse.xtext.conversion.ValueConverterException;
 import org.eclipse.amp.amf.testing.services.ATestGrammarAccess;
 
 }
@@ -40,17 +37,10 @@ import org.eclipse.amp.amf.testing.services.ATestGrammarAccess;
 
  	private ATestGrammarAccess grammarAccess;
  	
-    public InternalATestParser(TokenStream input, IAstFactory factory, ATestGrammarAccess grammarAccess) {
+    public InternalATestParser(TokenStream input, ATestGrammarAccess grammarAccess) {
         this(input);
-        this.factory = factory;
-        registerRules(grammarAccess.getGrammar());
         this.grammarAccess = grammarAccess;
-    }
-    
-    @Override
-    protected InputStream getTokenFile() {
-    	ClassLoader classLoader = getClass().getClassLoader();
-    	return classLoader.getResourceAsStream("org/eclipse/amp/amf/testing/parser/antlr/internal/InternalATest.tokens");
+        registerRules(grammarAccess.getGrammar());
     }
     
     @Override
@@ -77,7 +67,7 @@ import org.eclipse.amp.amf.testing.services.ATestGrammarAccess;
 // Entry rule entryRuleModel
 entryRuleModel returns [EObject current=null] 
 	:
-	{ currentNode = createCompositeNode(grammarAccess.getModelRule(), currentNode); }
+	{ newCompositeNode(grammarAccess.getModelRule()); }
 	 iv_ruleModel=ruleModel 
 	 { $current=$iv_ruleModel.current; } 
 	 EOF 
@@ -85,137 +75,111 @@ entryRuleModel returns [EObject current=null]
 
 // Rule Model
 ruleModel returns [EObject current=null] 
-    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    @init { enterRule(); 
     }
-    @after { resetLookahead(); 
-    	lastConsumedNode = currentNode;
-    }:
+    @after { leaveRule(); }:
 ((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getModelAccess().getModelAction_0(),
+            $current);
+    }
+)(
 (
-		lv_name_0_0=RULE_STRING
+		lv_name_1_0=RULE_STRING
 		{
-			createLeafNode(grammarAccess.getModelAccess().getNameSTRINGTerminalRuleCall_0_0(), "name"); 
+			newLeafNode(lv_name_1_0, grammarAccess.getModelAccess().getNameSTRINGTerminalRuleCall_1_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getModelRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            $current = createModelElement(grammarAccess.getModelRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"name",
-	        		lv_name_0_0, 
-	        		"STRING", 
-	        		lastConsumedNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"name",
+        		lv_name_1_0, 
+        		"STRING");
 	    }
 
 )
 )?(
 (
-		lv_description_1_0=RULE_DESC_STRING
+		lv_description_2_0=RULE_DESC_STRING
 		{
-			createLeafNode(grammarAccess.getModelAccess().getDescriptionDESC_STRINGTerminalRuleCall_1_0(), "description"); 
+			newLeafNode(lv_description_2_0, grammarAccess.getModelAccess().getDescriptionDESC_STRINGTerminalRuleCall_2_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getModelRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            $current = createModelElement(grammarAccess.getModelRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"description",
-	        		lv_description_1_0, 
-	        		"DESC_STRING", 
-	        		lastConsumedNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"description",
+        		lv_description_2_0, 
+        		"DESC_STRING");
 	    }
 
 )
-)?(((	'tests' 
+)?(((	otherlv_3='tests' 
     {
-        createLeafNode(grammarAccess.getModelAccess().getTestsKeyword_2_0_0_0(), null); 
+    	newLeafNode(otherlv_3, grammarAccess.getModelAccess().getTestsKeyword_3_0_0_0());
     }
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getModelAccess().getTestsTestsParserRuleCall_2_0_0_1_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getModelAccess().getTestsTestsParserRuleCall_3_0_0_1_0()); 
 	    }
-		lv_tests_3_0=ruleTests		{
+		lv_tests_4_0=ruleTests		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getModelRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getModelRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"tests",
-	        		lv_tests_3_0, 
-	        		"Tests", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		set(
+       			$current, 
+       			"tests",
+        		lv_tests_4_0, 
+        		"Tests");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
 ))?(
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getModelAccess().getContraintsConstraintParserRuleCall_2_0_1_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getModelAccess().getContraintsConstraintParserRuleCall_3_0_1_0()); 
 	    }
-		lv_contraints_4_0=ruleConstraint		{
+		lv_contraints_5_0=ruleConstraint		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getModelRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getModelRule());
 	        }
-	        try {
-	       		add(
-	       			$current, 
-	       			"contraints",
-	        		lv_contraints_4_0, 
-	        		"Constraint", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		add(
+       			$current, 
+       			"contraints",
+        		lv_contraints_5_0, 
+        		"Constraint");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )+)
-    |(	'contains' 
+    |(	otherlv_6='contains' 
     {
-        createLeafNode(grammarAccess.getModelAccess().getContainsKeyword_2_1_0(), null); 
+    	newLeafNode(otherlv_6, grammarAccess.getModelAccess().getContainsKeyword_3_1_0());
     }
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getModelAccess().getContainsTestMemberParserRuleCall_2_1_1_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getModelAccess().getContainsTestMemberParserRuleCall_3_1_1_0()); 
 	    }
-		lv_contains_6_0=ruleTestMember		{
+		lv_contains_7_0=ruleTestMember		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getModelRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getModelRule());
 	        }
-	        try {
-	       		add(
-	       			$current, 
-	       			"contains",
-	        		lv_contains_6_0, 
-	        		"TestMember", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		add(
+       			$current, 
+       			"contains",
+        		lv_contains_7_0, 
+        		"TestMember");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -229,7 +193,7 @@ ruleModel returns [EObject current=null]
 // Entry rule entryRuleTests
 entryRuleTests returns [EObject current=null] 
 	:
-	{ currentNode = createCompositeNode(grammarAccess.getTestsRule(), currentNode); }
+	{ newCompositeNode(grammarAccess.getTestsRule()); }
 	 iv_ruleTests=ruleTests 
 	 { $current=$iv_ruleTests.current; } 
 	 EOF 
@@ -237,32 +201,24 @@ entryRuleTests returns [EObject current=null]
 
 // Rule Tests
 ruleTests returns [EObject current=null] 
-    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    @init { enterRule(); 
     }
-    @after { resetLookahead(); 
-    	lastConsumedNode = currentNode;
-    }:
+    @after { leaveRule(); }:
 (
 (
 		lv_importURI_0_0=RULE_STRING
 		{
-			createLeafNode(grammarAccess.getTestsAccess().getImportURISTRINGTerminalRuleCall_0(), "importURI"); 
+			newLeafNode(lv_importURI_0_0, grammarAccess.getTestsAccess().getImportURISTRINGTerminalRuleCall_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getTestsRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            $current = createModelElement(grammarAccess.getTestsRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"importURI",
-	        		lv_importURI_0_0, 
-	        		"STRING", 
-	        		lastConsumedNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"importURI",
+        		lv_importURI_0_0, 
+        		"STRING");
 	    }
 
 )
@@ -276,7 +232,7 @@ ruleTests returns [EObject current=null]
 // Entry rule entryRuleTestMember
 entryRuleTestMember returns [EObject current=null] 
 	:
-	{ currentNode = createCompositeNode(grammarAccess.getTestMemberRule(), currentNode); }
+	{ newCompositeNode(grammarAccess.getTestMemberRule()); }
 	 iv_ruleTestMember=ruleTestMember 
 	 { $current=$iv_ruleTestMember.current; } 
 	 EOF 
@@ -284,32 +240,24 @@ entryRuleTestMember returns [EObject current=null]
 
 // Rule TestMember
 ruleTestMember returns [EObject current=null] 
-    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    @init { enterRule(); 
     }
-    @after { resetLookahead(); 
-    	lastConsumedNode = currentNode;
-    }:
+    @after { leaveRule(); }:
 (
 (
 		lv_importURI_0_0=RULE_STRING
 		{
-			createLeafNode(grammarAccess.getTestMemberAccess().getImportURISTRINGTerminalRuleCall_0(), "importURI"); 
+			newLeafNode(lv_importURI_0_0, grammarAccess.getTestMemberAccess().getImportURISTRINGTerminalRuleCall_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getTestMemberRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            $current = createModelElement(grammarAccess.getTestMemberRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"importURI",
-	        		lv_importURI_0_0, 
-	        		"STRING", 
-	        		lastConsumedNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"importURI",
+        		lv_importURI_0_0, 
+        		"STRING");
 	    }
 
 )
@@ -323,7 +271,7 @@ ruleTestMember returns [EObject current=null]
 // Entry rule entryRuleConstraint
 entryRuleConstraint returns [EObject current=null] 
 	:
-	{ currentNode = createCompositeNode(grammarAccess.getConstraintRule(), currentNode); }
+	{ newCompositeNode(grammarAccess.getConstraintRule()); }
 	 iv_ruleConstraint=ruleConstraint 
 	 { $current=$iv_ruleConstraint.current; } 
 	 EOF 
@@ -331,156 +279,133 @@ entryRuleConstraint returns [EObject current=null]
 
 // Rule Constraint
 ruleConstraint returns [EObject current=null] 
-    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    @init { enterRule(); 
     }
-    @after { resetLookahead(); 
-    	lastConsumedNode = currentNode;
-    }:
+    @after { leaveRule(); }:
 ((
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getConstraintAccess().getMeasureMeasureEnumRuleCall_0_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getConstraintAccess().getMeasureMeasureEnumRuleCall_0_0()); 
 	    }
 		lv_measure_0_0=ruleMeasure		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getConstraintRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getConstraintRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"measure",
-	        		lv_measure_0_0, 
-	        		"Measure", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		set(
+       			$current, 
+       			"measure",
+        		lv_measure_0_0, 
+        		"Measure");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	'(' 
+)	otherlv_1='(' 
     {
-        createLeafNode(grammarAccess.getConstraintAccess().getLeftParenthesisKeyword_1(), null); 
+    	newLeafNode(otherlv_1, grammarAccess.getConstraintAccess().getLeftParenthesisKeyword_1());
     }
 (
 (
 		{
 			if ($current==null) {
-	            $current = factory.create(grammarAccess.getConstraintRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            $current = createModelElement(grammarAccess.getConstraintRule());
 	        }
         }
-	RULE_ID
+	otherlv_2=RULE_ID
 	{
-		createLeafNode(grammarAccess.getConstraintAccess().getAgentSAgentCrossReference_2_0(), "agent"); 
+		newLeafNode(otherlv_2, grammarAccess.getConstraintAccess().getAgentSAgentCrossReference_2_0()); 
 	}
 
 )
-)	'.' 
+)	otherlv_3='.' 
     {
-        createLeafNode(grammarAccess.getConstraintAccess().getFullStopKeyword_3(), null); 
+    	newLeafNode(otherlv_3, grammarAccess.getConstraintAccess().getFullStopKeyword_3());
     }
 (
 (
 		{
 			if ($current==null) {
-	            $current = factory.create(grammarAccess.getConstraintRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            $current = createModelElement(grammarAccess.getConstraintRule());
 	        }
         }
-	RULE_ID
+	otherlv_4=RULE_ID
 	{
-		createLeafNode(grammarAccess.getConstraintAccess().getAttributeSAttributeCrossReference_4_0(), "attribute"); 
+		newLeafNode(otherlv_4, grammarAccess.getConstraintAccess().getAttributeSAttributeCrossReference_4_0()); 
 	}
 
 )
-)(	'=' 
+)(	otherlv_5='=' 
     {
-        createLeafNode(grammarAccess.getConstraintAccess().getEqualsSignKeyword_5_0(), null); 
+    	newLeafNode(otherlv_5, grammarAccess.getConstraintAccess().getEqualsSignKeyword_5_0());
     }
 (
 (
 		{
 			if ($current==null) {
-	            $current = factory.create(grammarAccess.getConstraintRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            $current = createModelElement(grammarAccess.getConstraintRule());
 	        }
         }
-	RULE_ID
+	otherlv_6=RULE_ID
 	{
-		createLeafNode(grammarAccess.getConstraintAccess().getQualifierSStateValueCrossReference_5_1_0(), "qualifier"); 
+		newLeafNode(otherlv_6, grammarAccess.getConstraintAccess().getQualifierSStateValueCrossReference_5_1_0()); 
 	}
 
 )
-))?	')' 
+))?	otherlv_7=')' 
     {
-        createLeafNode(grammarAccess.getConstraintAccess().getRightParenthesisKeyword_6(), null); 
+    	newLeafNode(otherlv_7, grammarAccess.getConstraintAccess().getRightParenthesisKeyword_6());
     }
-(	'=' 
+(	otherlv_8='=' 
     {
-        createLeafNode(grammarAccess.getConstraintAccess().getEqualsSignKeyword_7_0(), null); 
+    	newLeafNode(otherlv_8, grammarAccess.getConstraintAccess().getEqualsSignKeyword_7_0());
     }
-	'[' 
+	otherlv_9='[' 
     {
-        createLeafNode(grammarAccess.getConstraintAccess().getLeftSquareBracketKeyword_7_1(), null); 
+    	newLeafNode(otherlv_9, grammarAccess.getConstraintAccess().getLeftSquareBracketKeyword_7_1());
     }
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getConstraintAccess().getMinValueValueParserRuleCall_7_2_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getConstraintAccess().getMinValueValueParserRuleCall_7_2_0()); 
 	    }
 		lv_minValue_10_0=ruleValue		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getConstraintRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getConstraintRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"minValue",
-	        		lv_minValue_10_0, 
-	        		"Value", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		set(
+       			$current, 
+       			"minValue",
+        		lv_minValue_10_0, 
+        		"Value");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	',' 
+)	otherlv_11=',' 
     {
-        createLeafNode(grammarAccess.getConstraintAccess().getCommaKeyword_7_3(), null); 
+    	newLeafNode(otherlv_11, grammarAccess.getConstraintAccess().getCommaKeyword_7_3());
     }
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getConstraintAccess().getMaxValueValueParserRuleCall_7_4_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getConstraintAccess().getMaxValueValueParserRuleCall_7_4_0()); 
 	    }
 		lv_maxValue_12_0=ruleValue		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getConstraintRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getConstraintRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"maxValue",
-	        		lv_maxValue_12_0, 
-	        		"Value", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		set(
+       			$current, 
+       			"maxValue",
+        		lv_maxValue_12_0, 
+        		"Value");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)	']' 
+)	otherlv_13=']' 
     {
-        createLeafNode(grammarAccess.getConstraintAccess().getRightSquareBracketKeyword_7_5(), null); 
+    	newLeafNode(otherlv_13, grammarAccess.getConstraintAccess().getRightSquareBracketKeyword_7_5());
     }
 ))
 ;
@@ -492,7 +417,7 @@ ruleConstraint returns [EObject current=null]
 // Entry rule entryRuleValue
 entryRuleValue returns [EObject current=null] 
 	:
-	{ currentNode = createCompositeNode(grammarAccess.getValueRule(), currentNode); }
+	{ newCompositeNode(grammarAccess.getValueRule()); }
 	 iv_ruleValue=ruleValue 
 	 { $current=$iv_ruleValue.current; } 
 	 EOF 
@@ -500,49 +425,47 @@ entryRuleValue returns [EObject current=null]
 
 // Rule Value
 ruleValue returns [EObject current=null] 
-    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    @init { enterRule(); 
     }
-    @after { resetLookahead(); 
-    	lastConsumedNode = currentNode;
-    }:
+    @after { leaveRule(); }:
 (
     { 
-        currentNode=createCompositeNode(grammarAccess.getValueAccess().getIntValueParserRuleCall_0(), currentNode); 
+        newCompositeNode(grammarAccess.getValueAccess().getIntValueParserRuleCall_0()); 
     }
     this_IntValue_0=ruleIntValue
     { 
         $current = $this_IntValue_0.current; 
-        currentNode = currentNode.getParent();
+        afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        currentNode=createCompositeNode(grammarAccess.getValueAccess().getStringValueParserRuleCall_1(), currentNode); 
+        newCompositeNode(grammarAccess.getValueAccess().getStringValueParserRuleCall_1()); 
     }
     this_StringValue_1=ruleStringValue
     { 
         $current = $this_StringValue_1.current; 
-        currentNode = currentNode.getParent();
+        afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        currentNode=createCompositeNode(grammarAccess.getValueAccess().getRealValueParserRuleCall_2(), currentNode); 
+        newCompositeNode(grammarAccess.getValueAccess().getRealValueParserRuleCall_2()); 
     }
     this_RealValue_2=ruleRealValue
     { 
         $current = $this_RealValue_2.current; 
-        currentNode = currentNode.getParent();
+        afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        currentNode=createCompositeNode(grammarAccess.getValueAccess().getBooleanValueParserRuleCall_3(), currentNode); 
+        newCompositeNode(grammarAccess.getValueAccess().getBooleanValueParserRuleCall_3()); 
     }
     this_BooleanValue_3=ruleBooleanValue
     { 
         $current = $this_BooleanValue_3.current; 
-        currentNode = currentNode.getParent();
+        afterParserOrEnumRuleCall();
     }
 )
 ;
@@ -554,7 +477,7 @@ ruleValue returns [EObject current=null]
 // Entry rule entryRuleIntValue
 entryRuleIntValue returns [EObject current=null] 
 	:
-	{ currentNode = createCompositeNode(grammarAccess.getIntValueRule(), currentNode); }
+	{ newCompositeNode(grammarAccess.getIntValueRule()); }
 	 iv_ruleIntValue=ruleIntValue 
 	 { $current=$iv_ruleIntValue.current; } 
 	 EOF 
@@ -562,32 +485,24 @@ entryRuleIntValue returns [EObject current=null]
 
 // Rule IntValue
 ruleIntValue returns [EObject current=null] 
-    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    @init { enterRule(); 
     }
-    @after { resetLookahead(); 
-    	lastConsumedNode = currentNode;
-    }:
+    @after { leaveRule(); }:
 (
 (
 		lv_value_0_0=RULE_INTEGER
 		{
-			createLeafNode(grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0(), "value"); 
+			newLeafNode(lv_value_0_0, grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getIntValueRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            $current = createModelElement(grammarAccess.getIntValueRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"value",
-	        		lv_value_0_0, 
-	        		"INTEGER", 
-	        		lastConsumedNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_0_0, 
+        		"INTEGER");
 	    }
 
 )
@@ -601,7 +516,7 @@ ruleIntValue returns [EObject current=null]
 // Entry rule entryRuleRealValue
 entryRuleRealValue returns [EObject current=null] 
 	:
-	{ currentNode = createCompositeNode(grammarAccess.getRealValueRule(), currentNode); }
+	{ newCompositeNode(grammarAccess.getRealValueRule()); }
 	 iv_ruleRealValue=ruleRealValue 
 	 { $current=$iv_ruleRealValue.current; } 
 	 EOF 
@@ -609,32 +524,24 @@ entryRuleRealValue returns [EObject current=null]
 
 // Rule RealValue
 ruleRealValue returns [EObject current=null] 
-    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    @init { enterRule(); 
     }
-    @after { resetLookahead(); 
-    	lastConsumedNode = currentNode;
-    }:
+    @after { leaveRule(); }:
 (
 (
 		lv_value_0_0=RULE_REAL
 		{
-			createLeafNode(grammarAccess.getRealValueAccess().getValueREALTerminalRuleCall_0(), "value"); 
+			newLeafNode(lv_value_0_0, grammarAccess.getRealValueAccess().getValueREALTerminalRuleCall_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getRealValueRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            $current = createModelElement(grammarAccess.getRealValueRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"value",
-	        		lv_value_0_0, 
-	        		"REAL", 
-	        		lastConsumedNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_0_0, 
+        		"REAL");
 	    }
 
 )
@@ -648,7 +555,7 @@ ruleRealValue returns [EObject current=null]
 // Entry rule entryRuleStringValue
 entryRuleStringValue returns [EObject current=null] 
 	:
-	{ currentNode = createCompositeNode(grammarAccess.getStringValueRule(), currentNode); }
+	{ newCompositeNode(grammarAccess.getStringValueRule()); }
 	 iv_ruleStringValue=ruleStringValue 
 	 { $current=$iv_ruleStringValue.current; } 
 	 EOF 
@@ -656,32 +563,24 @@ entryRuleStringValue returns [EObject current=null]
 
 // Rule StringValue
 ruleStringValue returns [EObject current=null] 
-    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    @init { enterRule(); 
     }
-    @after { resetLookahead(); 
-    	lastConsumedNode = currentNode;
-    }:
+    @after { leaveRule(); }:
 (
 (
 		lv_value_0_0=RULE_STRING
 		{
-			createLeafNode(grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_0(), "value"); 
+			newLeafNode(lv_value_0_0, grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_0()); 
 		}
 		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getStringValueRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode, $current);
+	            $current = createModelElement(grammarAccess.getStringValueRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"value",
-	        		lv_value_0_0, 
-	        		"STRING", 
-	        		lastConsumedNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_0_0, 
+        		"STRING");
 	    }
 
 )
@@ -695,7 +594,7 @@ ruleStringValue returns [EObject current=null]
 // Entry rule entryRuleBooleanValue
 entryRuleBooleanValue returns [EObject current=null] 
 	:
-	{ currentNode = createCompositeNode(grammarAccess.getBooleanValueRule(), currentNode); }
+	{ newCompositeNode(grammarAccess.getBooleanValueRule()); }
 	 iv_ruleBooleanValue=ruleBooleanValue 
 	 { $current=$iv_ruleBooleanValue.current; } 
 	 EOF 
@@ -703,32 +602,24 @@ entryRuleBooleanValue returns [EObject current=null]
 
 // Rule BooleanValue
 ruleBooleanValue returns [EObject current=null] 
-    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    @init { enterRule(); 
     }
-    @after { resetLookahead(); 
-    	lastConsumedNode = currentNode;
-    }:
+    @after { leaveRule(); }:
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getBooleanValueAccess().getValueBOOLEANEnumRuleCall_0(), currentNode); 
+	        newCompositeNode(grammarAccess.getBooleanValueAccess().getValueBOOLEANEnumRuleCall_0()); 
 	    }
 		lv_value_0_0=ruleBOOLEAN		{
 	        if ($current==null) {
-	            $current = factory.create(grammarAccess.getBooleanValueRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            $current = createModelElementForParent(grammarAccess.getBooleanValueRule());
 	        }
-	        try {
-	       		set(
-	       			$current, 
-	       			"value",
-	        		lv_value_0_0, 
-	        		"BOOLEAN", 
-	        		currentNode);
-	        } catch (ValueConverterException vce) {
-				handleValueConverterException(vce);
-	        }
-	        currentNode = currentNode.getParent();
+       		set(
+       			$current, 
+       			"value",
+        		lv_value_0_0, 
+        		"BOOLEAN");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
@@ -741,38 +632,36 @@ ruleBooleanValue returns [EObject current=null]
 
 // Rule Measure
 ruleMeasure returns [Enumerator current=null] 
-    @init { setCurrentLookahead(); resetLookahead(); }
-    @after { resetLookahead(); 
-    	lastConsumedNode = currentNode;
-    }:
-((	'Count' 
+    @init { enterRule(); }
+    @after { leaveRule(); }:
+((	enumLiteral_0='Count' 
 	{
         $current = grammarAccess.getMeasureAccess().getCOUNTEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-        createLeafNode(grammarAccess.getMeasureAccess().getCOUNTEnumLiteralDeclaration_0(), null); 
+        newLeafNode(enumLiteral_0, grammarAccess.getMeasureAccess().getCOUNTEnumLiteralDeclaration_0()); 
     }
 )
-    |(	'Average' 
+    |(	enumLiteral_1='Average' 
 	{
         $current = grammarAccess.getMeasureAccess().getAVERAGEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-        createLeafNode(grammarAccess.getMeasureAccess().getAVERAGEEnumLiteralDeclaration_1(), null); 
+        newLeafNode(enumLiteral_1, grammarAccess.getMeasureAccess().getAVERAGEEnumLiteralDeclaration_1()); 
     }
 )
-    |(	'Sum' 
+    |(	enumLiteral_2='Sum' 
 	{
         $current = grammarAccess.getMeasureAccess().getSUMEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-        createLeafNode(grammarAccess.getMeasureAccess().getSUMEnumLiteralDeclaration_2(), null); 
+        newLeafNode(enumLiteral_2, grammarAccess.getMeasureAccess().getSUMEnumLiteralDeclaration_2()); 
     }
 )
-    |(	'Minimum' 
+    |(	enumLiteral_3='Minimum' 
 	{
         $current = grammarAccess.getMeasureAccess().getMINIMUMEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-        createLeafNode(grammarAccess.getMeasureAccess().getMINIMUMEnumLiteralDeclaration_3(), null); 
+        newLeafNode(enumLiteral_3, grammarAccess.getMeasureAccess().getMINIMUMEnumLiteralDeclaration_3()); 
     }
 )
-    |(	'Maximum' 
+    |(	enumLiteral_4='Maximum' 
 	{
         $current = grammarAccess.getMeasureAccess().getMAXIMUMEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
-        createLeafNode(grammarAccess.getMeasureAccess().getMAXIMUMEnumLiteralDeclaration_4(), null); 
+        newLeafNode(enumLiteral_4, grammarAccess.getMeasureAccess().getMAXIMUMEnumLiteralDeclaration_4()); 
     }
 ));
 
@@ -780,20 +669,18 @@ ruleMeasure returns [Enumerator current=null]
 
 // Rule BOOLEAN
 ruleBOOLEAN returns [Enumerator current=null] 
-    @init { setCurrentLookahead(); resetLookahead(); }
-    @after { resetLookahead(); 
-    	lastConsumedNode = currentNode;
-    }:
-((	'true' 
+    @init { enterRule(); }
+    @after { leaveRule(); }:
+((	enumLiteral_0='true' 
 	{
         $current = grammarAccess.getBOOLEANAccess().getTRUEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-        createLeafNode(grammarAccess.getBOOLEANAccess().getTRUEEnumLiteralDeclaration_0(), null); 
+        newLeafNode(enumLiteral_0, grammarAccess.getBOOLEANAccess().getTRUEEnumLiteralDeclaration_0()); 
     }
 )
-    |(	'false' 
+    |(	enumLiteral_1='false' 
 	{
         $current = grammarAccess.getBOOLEANAccess().getFALSEEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-        createLeafNode(grammarAccess.getBOOLEANAccess().getFALSEEnumLiteralDeclaration_1(), null); 
+        newLeafNode(enumLiteral_1, grammarAccess.getBOOLEANAccess().getFALSEEnumLiteralDeclaration_1()); 
     }
 ));
 
@@ -809,7 +696,7 @@ RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
 RULE_INT : ('0'..'9')+;
 
-RULE_STRING : ('"' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'"')))* '"'|'\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'');
+RULE_STRING : ('"' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'"')))* '"'|'\'' ('\\' ('b'|'t'|'n'|'f'|'r'|'u'|'"'|'\''|'\\')|~(('\\'|'\'')))* '\'');
 
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 

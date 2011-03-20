@@ -3,5 +3,5 @@
   <mspec:property key="target.os" value="*"/>
   <mspec:property key="target.arch" value="*"/>
   <mspec:property key="target.ws" value="*"/>
-  <mspec:mspecNode namePattern="^org\.eclipse\.amp\.releng$" exclude="true"/>
+	<mspec:mspecNode namePattern="^org\.eclipse\.amp\.releng$" exclude="true"/>
 </mspec:mspec>

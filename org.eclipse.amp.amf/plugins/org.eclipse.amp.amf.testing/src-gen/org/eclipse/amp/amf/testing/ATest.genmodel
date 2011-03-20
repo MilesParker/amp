@@ -6,36 +6,36 @@
     modelPluginID="org.eclipse.amp.amf.testing" forceOverwrite="true" modelName="ATest"
     updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.amp.amf.testing.edit"
-    editorPluginID="org.eclipse.amp.amf.testing.editor" usedGenPackages="../../../../../../../org.eclipse.amp.amf.acore/src/model/metaabm.genmodel#//metaabm ../../../../../../../org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.genmodel#//aBase">
+    editorPluginID="org.eclipse.amp.amf.testing.editor" usedGenPackages="platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.genmodel#//metaabm platform:/resource/org.eclipse.amp.amf.abase/src-gen/org/eclipse/amp/amf/abase/ABase.genmodel#//aBase">
   <genPackages prefix="ATest" basePackage="org.eclipse.amp.amf.testing" disposableProviderFactory="true"
-      ecorePackage="ATest.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="ATest.ecore#//Measure">
-      <genEnumLiterals ecoreEnumLiteral="ATest.ecore#//Measure/COUNT"/>
-      <genEnumLiterals ecoreEnumLiteral="ATest.ecore#//Measure/AVERAGE"/>
-      <genEnumLiterals ecoreEnumLiteral="ATest.ecore#//Measure/SUM"/>
-      <genEnumLiterals ecoreEnumLiteral="ATest.ecore#//Measure/MINIMUM"/>
-      <genEnumLiterals ecoreEnumLiteral="ATest.ecore#//Measure/MAXIMUM"/>
+      ecorePackage="platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Measure">
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Measure/COUNT"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Measure/AVERAGE"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Measure/SUM"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Measure/MINIMUM"/>
+      <genEnumLiterals ecoreEnumLiteral="platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Measure/MAXIMUM"/>
     </genEnums>
-    <genClasses ecoreClass="ATest.ecore#//Model">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ATest.ecore#//Model/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ATest.ecore#//Model/description"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ATest.ecore#//Model/tests"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ATest.ecore#//Model/contraints"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ATest.ecore#//Model/contains"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Model">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Model/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Model/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Model/tests"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Model/contraints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Model/contains"/>
     </genClasses>
-    <genClasses ecoreClass="ATest.ecore#//Tests">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ATest.ecore#//Tests/importURI"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Tests">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Tests/importURI"/>
     </genClasses>
-    <genClasses ecoreClass="ATest.ecore#//TestMember">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ATest.ecore#//TestMember/importURI"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//TestMember">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//TestMember/importURI"/>
     </genClasses>
-    <genClasses ecoreClass="ATest.ecore#//Constraint">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ATest.ecore#//Constraint/measure"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ATest.ecore#//Constraint/agent"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ATest.ecore#//Constraint/attribute"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ATest.ecore#//Constraint/qualifier"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ATest.ecore#//Constraint/minValue"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ATest.ecore#//Constraint/maxValue"/>
+    <genClasses ecoreClass="platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Constraint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Constraint/measure"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Constraint/agent"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Constraint/attribute"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Constraint/qualifier"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Constraint/minValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference platform:/resource/org.eclipse.amp.amf.testing/src-gen/org/eclipse/amp/amf/testing/ATest.ecore#//Constraint/maxValue"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

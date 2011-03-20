@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.amp.all
-Bundle-Version: 0.8.1.qualifier
+Bundle-Version: 0.8.5.qualifier
 Bundle-Activator: org.eclipse.amp.Activator
 Require-Bundle: org.eclipse.core.runtime
 Bundle-ActivationPolicy: lazy

@@ -3,4 +3,5 @@
     <cq:rootRequest name="org.eclipse.amp.build" componentType="eclipse.feature"/>
     <cq:advisorNode namePattern="^org\.eclipse\.amp([\.].+)+\.source$" skipComponent="true"/>
     <cq:advisorNode namePattern="^org\.eclipse\.amp\.releng$" useMaterialization="false" useWorkspace="false"/>
+    <cq:advisorNode namePattern="^org\.apache([\.].+)+\.source$" skipComponent="true"/>
 </cq:componentQuery>

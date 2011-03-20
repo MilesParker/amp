@@ -6,7 +6,7 @@ import "http://www.eclipse.org/amp/amf/abase/ABase"
 import "platform:/resource/org.eclipse.amp.amf.acore/src/model/metaabm.ecore"
 
 Model :
-	(name=STRING)?
+	{Model} (name=STRING)?
 	(description=DESC_STRING)?
 	((('tests' tests=Tests)? (contraints+=Constraint)+) |
 	('contains' (contains+=TestMember)*))?;

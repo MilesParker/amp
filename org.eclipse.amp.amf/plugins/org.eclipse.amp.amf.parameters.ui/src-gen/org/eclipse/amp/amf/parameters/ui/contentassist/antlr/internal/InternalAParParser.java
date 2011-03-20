@@ -26,23 +26,39 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INTEGER", "RULE_REAL", "RULE_DESC_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'true'", "'false'", "'model'", "'incorporates'", "'='", "'['", "','", "']'"
     };
     public static final int RULE_ID=5;
-    public static final int RULE_STRING=4;
     public static final int RULE_ANY_OTHER=13;
+    public static final int T__21=21;
+    public static final int T__20=20;
+    public static final int EOF=-1;
+    public static final int RULE_SL_COMMENT=11;
+    public static final int RULE_ML_COMMENT=10;
+    public static final int T__19=19;
+    public static final int RULE_STRING=4;
+    public static final int T__16=16;
+    public static final int T__15=15;
+    public static final int T__18=18;
+    public static final int T__17=17;
+    public static final int T__14=14;
     public static final int RULE_INT=9;
     public static final int RULE_REAL=7;
     public static final int RULE_WS=12;
-    public static final int RULE_SL_COMMENT=11;
     public static final int RULE_DESC_STRING=8;
-    public static final int EOF=-1;
     public static final int RULE_INTEGER=6;
-    public static final int RULE_ML_COMMENT=10;
+
+    // delegates
+    // delegators
+
 
         public InternalAParParser(TokenStream input) {
-            super(input);
+            this(input, new RecognizerSharedState());
+        }
+        public InternalAParParser(TokenStream input, RecognizerSharedState state) {
+            super(input, state);
+             
         }
         
 
-    public String[] getTokenNames() { return tokenNames; }
+    public String[] getTokenNames() { return InternalAParParser.tokenNames; }
     public String getGrammarFileName() { return "../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g"; }
 
 
@@ -66,7 +82,7 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
 
 
 
-    // $ANTLR start entryRuleModel
+    // $ANTLR start "entryRuleModel"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:61:1: entryRuleModel : ruleModel EOF ;
     public final void entryRuleModel() throws RecognitionException {
         try {
@@ -76,7 +92,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getModelRule()); 
             pushFollow(FOLLOW_ruleModel_in_entryRuleModel61);
             ruleModel();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getModelRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleModel68); 
@@ -92,10 +109,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleModel
+    // $ANTLR end "entryRuleModel"
 
 
-    // $ANTLR start ruleModel
+    // $ANTLR start "ruleModel"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:70:1: ruleModel : ( ( rule__Model__Group__0 ) ) ;
     public final void ruleModel() throws RecognitionException {
 
@@ -114,7 +131,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Model__Group__0_in_ruleModel94);
             rule__Model__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -138,10 +156,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleModel
+    // $ANTLR end "ruleModel"
 
 
-    // $ANTLR start entryRuleImport
+    // $ANTLR start "entryRuleImport"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:89:1: entryRuleImport : ruleImport EOF ;
     public final void entryRuleImport() throws RecognitionException {
         try {
@@ -151,7 +169,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getImportRule()); 
             pushFollow(FOLLOW_ruleImport_in_entryRuleImport121);
             ruleImport();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getImportRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleImport128); 
@@ -167,10 +186,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleImport
+    // $ANTLR end "entryRuleImport"
 
 
-    // $ANTLR start ruleImport
+    // $ANTLR start "ruleImport"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:98:1: ruleImport : ( ( rule__Import__ImportURIAssignment ) ) ;
     public final void ruleImport() throws RecognitionException {
 
@@ -189,7 +208,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Import__ImportURIAssignment_in_ruleImport154);
             rule__Import__ImportURIAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -213,10 +233,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleImport
+    // $ANTLR end "ruleImport"
 
 
-    // $ANTLR start entryRuleIncorporates
+    // $ANTLR start "entryRuleIncorporates"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:117:1: entryRuleIncorporates : ruleIncorporates EOF ;
     public final void entryRuleIncorporates() throws RecognitionException {
         try {
@@ -226,7 +246,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getIncorporatesRule()); 
             pushFollow(FOLLOW_ruleIncorporates_in_entryRuleIncorporates181);
             ruleIncorporates();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getIncorporatesRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleIncorporates188); 
@@ -242,10 +263,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleIncorporates
+    // $ANTLR end "entryRuleIncorporates"
 
 
-    // $ANTLR start ruleIncorporates
+    // $ANTLR start "ruleIncorporates"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:126:1: ruleIncorporates : ( ( rule__Incorporates__ImportURIAssignment ) ) ;
     public final void ruleIncorporates() throws RecognitionException {
 
@@ -264,7 +285,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Incorporates__ImportURIAssignment_in_ruleIncorporates214);
             rule__Incorporates__ImportURIAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -288,10 +310,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleIncorporates
+    // $ANTLR end "ruleIncorporates"
 
 
-    // $ANTLR start entryRuleParameter
+    // $ANTLR start "entryRuleParameter"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:145:1: entryRuleParameter : ruleParameter EOF ;
     public final void entryRuleParameter() throws RecognitionException {
         try {
@@ -301,7 +323,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getParameterRule()); 
             pushFollow(FOLLOW_ruleParameter_in_entryRuleParameter241);
             ruleParameter();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getParameterRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleParameter248); 
@@ -317,10 +340,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleParameter
+    // $ANTLR end "entryRuleParameter"
 
 
-    // $ANTLR start ruleParameter
+    // $ANTLR start "ruleParameter"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:154:1: ruleParameter : ( ( rule__Parameter__Alternatives ) ) ;
     public final void ruleParameter() throws RecognitionException {
 
@@ -339,7 +362,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Parameter__Alternatives_in_ruleParameter274);
             rule__Parameter__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -363,10 +387,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleParameter
+    // $ANTLR end "ruleParameter"
 
 
-    // $ANTLR start entryRuleSingleParameter
+    // $ANTLR start "entryRuleSingleParameter"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:173:1: entryRuleSingleParameter : ruleSingleParameter EOF ;
     public final void entryRuleSingleParameter() throws RecognitionException {
         try {
@@ -376,7 +400,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getSingleParameterRule()); 
             pushFollow(FOLLOW_ruleSingleParameter_in_entryRuleSingleParameter301);
             ruleSingleParameter();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getSingleParameterRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleSingleParameter308); 
@@ -392,10 +417,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleSingleParameter
+    // $ANTLR end "entryRuleSingleParameter"
 
 
-    // $ANTLR start ruleSingleParameter
+    // $ANTLR start "ruleSingleParameter"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:182:1: ruleSingleParameter : ( ( rule__SingleParameter__Group__0 ) ) ;
     public final void ruleSingleParameter() throws RecognitionException {
 
@@ -414,7 +439,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SingleParameter__Group__0_in_ruleSingleParameter334);
             rule__SingleParameter__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -438,10 +464,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleSingleParameter
+    // $ANTLR end "ruleSingleParameter"
 
 
-    // $ANTLR start entryRuleSweepParameter
+    // $ANTLR start "entryRuleSweepParameter"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:201:1: entryRuleSweepParameter : ruleSweepParameter EOF ;
     public final void entryRuleSweepParameter() throws RecognitionException {
         try {
@@ -451,7 +477,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getSweepParameterRule()); 
             pushFollow(FOLLOW_ruleSweepParameter_in_entryRuleSweepParameter361);
             ruleSweepParameter();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getSweepParameterRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleSweepParameter368); 
@@ -467,10 +494,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleSweepParameter
+    // $ANTLR end "entryRuleSweepParameter"
 
 
-    // $ANTLR start ruleSweepParameter
+    // $ANTLR start "ruleSweepParameter"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:210:1: ruleSweepParameter : ( ( rule__SweepParameter__Group__0 ) ) ;
     public final void ruleSweepParameter() throws RecognitionException {
 
@@ -489,7 +516,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SweepParameter__Group__0_in_ruleSweepParameter394);
             rule__SweepParameter__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -513,10 +541,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleSweepParameter
+    // $ANTLR end "ruleSweepParameter"
 
 
-    // $ANTLR start entryRuleSweepLink
+    // $ANTLR start "entryRuleSweepLink"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:229:1: entryRuleSweepLink : ruleSweepLink EOF ;
     public final void entryRuleSweepLink() throws RecognitionException {
         try {
@@ -526,7 +554,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getSweepLinkRule()); 
             pushFollow(FOLLOW_ruleSweepLink_in_entryRuleSweepLink421);
             ruleSweepLink();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getSweepLinkRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleSweepLink428); 
@@ -542,10 +571,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleSweepLink
+    // $ANTLR end "entryRuleSweepLink"
 
 
-    // $ANTLR start ruleSweepLink
+    // $ANTLR start "ruleSweepLink"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:238:1: ruleSweepLink : ( ( rule__SweepLink__Group__0 ) ) ;
     public final void ruleSweepLink() throws RecognitionException {
 
@@ -564,7 +593,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SweepLink__Group__0_in_ruleSweepLink454);
             rule__SweepLink__Group__0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -588,10 +618,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleSweepLink
+    // $ANTLR end "ruleSweepLink"
 
 
-    // $ANTLR start entryRuleValue
+    // $ANTLR start "entryRuleValue"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:257:1: entryRuleValue : ruleValue EOF ;
     public final void entryRuleValue() throws RecognitionException {
         try {
@@ -601,7 +631,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getValueRule()); 
             pushFollow(FOLLOW_ruleValue_in_entryRuleValue481);
             ruleValue();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getValueRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleValue488); 
@@ -617,10 +648,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleValue
+    // $ANTLR end "entryRuleValue"
 
 
-    // $ANTLR start ruleValue
+    // $ANTLR start "ruleValue"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:266:1: ruleValue : ( ( rule__Value__Alternatives ) ) ;
     public final void ruleValue() throws RecognitionException {
 
@@ -639,7 +670,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Value__Alternatives_in_ruleValue514);
             rule__Value__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -663,10 +695,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleValue
+    // $ANTLR end "ruleValue"
 
 
-    // $ANTLR start entryRuleIntValue
+    // $ANTLR start "entryRuleIntValue"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:285:1: entryRuleIntValue : ruleIntValue EOF ;
     public final void entryRuleIntValue() throws RecognitionException {
         try {
@@ -676,7 +708,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getIntValueRule()); 
             pushFollow(FOLLOW_ruleIntValue_in_entryRuleIntValue541);
             ruleIntValue();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getIntValueRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleIntValue548); 
@@ -692,10 +725,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleIntValue
+    // $ANTLR end "entryRuleIntValue"
 
 
-    // $ANTLR start ruleIntValue
+    // $ANTLR start "ruleIntValue"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:294:1: ruleIntValue : ( ( rule__IntValue__ValueAssignment ) ) ;
     public final void ruleIntValue() throws RecognitionException {
 
@@ -714,7 +747,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__IntValue__ValueAssignment_in_ruleIntValue574);
             rule__IntValue__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -738,10 +772,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleIntValue
+    // $ANTLR end "ruleIntValue"
 
 
-    // $ANTLR start entryRuleRealValue
+    // $ANTLR start "entryRuleRealValue"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:313:1: entryRuleRealValue : ruleRealValue EOF ;
     public final void entryRuleRealValue() throws RecognitionException {
         try {
@@ -751,7 +785,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getRealValueRule()); 
             pushFollow(FOLLOW_ruleRealValue_in_entryRuleRealValue601);
             ruleRealValue();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getRealValueRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleRealValue608); 
@@ -767,10 +802,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleRealValue
+    // $ANTLR end "entryRuleRealValue"
 
 
-    // $ANTLR start ruleRealValue
+    // $ANTLR start "ruleRealValue"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:322:1: ruleRealValue : ( ( rule__RealValue__ValueAssignment ) ) ;
     public final void ruleRealValue() throws RecognitionException {
 
@@ -789,7 +824,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__RealValue__ValueAssignment_in_ruleRealValue634);
             rule__RealValue__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -813,10 +849,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleRealValue
+    // $ANTLR end "ruleRealValue"
 
 
-    // $ANTLR start entryRuleStringValue
+    // $ANTLR start "entryRuleStringValue"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:341:1: entryRuleStringValue : ruleStringValue EOF ;
     public final void entryRuleStringValue() throws RecognitionException {
         try {
@@ -826,7 +862,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getStringValueRule()); 
             pushFollow(FOLLOW_ruleStringValue_in_entryRuleStringValue661);
             ruleStringValue();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getStringValueRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleStringValue668); 
@@ -842,10 +879,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleStringValue
+    // $ANTLR end "entryRuleStringValue"
 
 
-    // $ANTLR start ruleStringValue
+    // $ANTLR start "ruleStringValue"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:350:1: ruleStringValue : ( ( rule__StringValue__ValueAssignment ) ) ;
     public final void ruleStringValue() throws RecognitionException {
 
@@ -864,7 +901,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__StringValue__ValueAssignment_in_ruleStringValue694);
             rule__StringValue__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -888,10 +926,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleStringValue
+    // $ANTLR end "ruleStringValue"
 
 
-    // $ANTLR start entryRuleBooleanValue
+    // $ANTLR start "entryRuleBooleanValue"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:369:1: entryRuleBooleanValue : ruleBooleanValue EOF ;
     public final void entryRuleBooleanValue() throws RecognitionException {
         try {
@@ -901,7 +939,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
              before(grammarAccess.getBooleanValueRule()); 
             pushFollow(FOLLOW_ruleBooleanValue_in_entryRuleBooleanValue721);
             ruleBooleanValue();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getBooleanValueRule()); 
             match(input,EOF,FOLLOW_EOF_in_entryRuleBooleanValue728); 
@@ -917,10 +956,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end entryRuleBooleanValue
+    // $ANTLR end "entryRuleBooleanValue"
 
 
-    // $ANTLR start ruleBooleanValue
+    // $ANTLR start "ruleBooleanValue"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:378:1: ruleBooleanValue : ( ( rule__BooleanValue__ValueAssignment ) ) ;
     public final void ruleBooleanValue() throws RecognitionException {
 
@@ -939,7 +978,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__BooleanValue__ValueAssignment_in_ruleBooleanValue754);
             rule__BooleanValue__ValueAssignment();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -963,10 +1003,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleBooleanValue
+    // $ANTLR end "ruleBooleanValue"
 
 
-    // $ANTLR start ruleBOOLEAN
+    // $ANTLR start "ruleBOOLEAN"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:398:1: ruleBOOLEAN : ( ( rule__BOOLEAN__Alternatives ) ) ;
     public final void ruleBOOLEAN() throws RecognitionException {
 
@@ -985,7 +1025,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__BOOLEAN__Alternatives_in_ruleBOOLEAN791);
             rule__BOOLEAN__Alternatives();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1009,10 +1050,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end ruleBOOLEAN
+    // $ANTLR end "ruleBOOLEAN"
 
 
-    // $ANTLR start rule__Parameter__Alternatives
+    // $ANTLR start "rule__Parameter__Alternatives"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:416:1: rule__Parameter__Alternatives : ( ( ruleSingleParameter ) | ( ruleSweepParameter ) | ( ruleSweepLink ) );
     public final void rule__Parameter__Alternatives() throws RecognitionException {
 
@@ -1034,7 +1075,7 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("416:1: rule__Parameter__Alternatives : ( ( ruleSingleParameter ) | ( ruleSweepParameter ) | ( ruleSweepLink ) );", 1, 1, input);
+                        new NoViableAltException("", 1, 1, input);
 
                     throw nvae;
                 }
@@ -1044,7 +1085,7 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("416:1: rule__Parameter__Alternatives : ( ( ruleSingleParameter ) | ( ruleSweepParameter ) | ( ruleSweepLink ) );", 1, 0, input);
+                    new NoViableAltException("", 1, 0, input);
 
                 throw nvae;
             }
@@ -1058,7 +1099,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getParameterAccess().getSingleParameterParserRuleCall_0()); 
                     pushFollow(FOLLOW_ruleSingleParameter_in_rule__Parameter__Alternatives826);
                     ruleSingleParameter();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getParameterAccess().getSingleParameterParserRuleCall_0()); 
 
@@ -1076,7 +1118,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getParameterAccess().getSweepParameterParserRuleCall_1()); 
                     pushFollow(FOLLOW_ruleSweepParameter_in_rule__Parameter__Alternatives843);
                     ruleSweepParameter();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getParameterAccess().getSweepParameterParserRuleCall_1()); 
 
@@ -1094,7 +1137,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getParameterAccess().getSweepLinkParserRuleCall_2()); 
                     pushFollow(FOLLOW_ruleSweepLink_in_rule__Parameter__Alternatives860);
                     ruleSweepLink();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getParameterAccess().getSweepLinkParserRuleCall_2()); 
 
@@ -1117,10 +1161,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Parameter__Alternatives
+    // $ANTLR end "rule__Parameter__Alternatives"
 
 
-    // $ANTLR start rule__Value__Alternatives
+    // $ANTLR start "rule__Value__Alternatives"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:444:1: rule__Value__Alternatives : ( ( ruleIntValue ) | ( ruleStringValue ) | ( ruleRealValue ) | ( ruleBooleanValue ) );
     public final void rule__Value__Alternatives() throws RecognitionException {
 
@@ -1153,7 +1197,7 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("444:1: rule__Value__Alternatives : ( ( ruleIntValue ) | ( ruleStringValue ) | ( ruleRealValue ) | ( ruleBooleanValue ) );", 2, 0, input);
+                    new NoViableAltException("", 2, 0, input);
 
                 throw nvae;
             }
@@ -1168,7 +1212,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getValueAccess().getIntValueParserRuleCall_0()); 
                     pushFollow(FOLLOW_ruleIntValue_in_rule__Value__Alternatives892);
                     ruleIntValue();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueAccess().getIntValueParserRuleCall_0()); 
 
@@ -1186,7 +1231,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getValueAccess().getStringValueParserRuleCall_1()); 
                     pushFollow(FOLLOW_ruleStringValue_in_rule__Value__Alternatives909);
                     ruleStringValue();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueAccess().getStringValueParserRuleCall_1()); 
 
@@ -1204,7 +1250,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getValueAccess().getRealValueParserRuleCall_2()); 
                     pushFollow(FOLLOW_ruleRealValue_in_rule__Value__Alternatives926);
                     ruleRealValue();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueAccess().getRealValueParserRuleCall_2()); 
 
@@ -1222,7 +1269,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
                      before(grammarAccess.getValueAccess().getBooleanValueParserRuleCall_3()); 
                     pushFollow(FOLLOW_ruleBooleanValue_in_rule__Value__Alternatives943);
                     ruleBooleanValue();
-                    _fsp--;
+
+                    state._fsp--;
 
                      after(grammarAccess.getValueAccess().getBooleanValueParserRuleCall_3()); 
 
@@ -1245,10 +1293,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Value__Alternatives
+    // $ANTLR end "rule__Value__Alternatives"
 
 
-    // $ANTLR start rule__BOOLEAN__Alternatives
+    // $ANTLR start "rule__BOOLEAN__Alternatives"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:478:1: rule__BOOLEAN__Alternatives : ( ( ( 'true' ) ) | ( ( 'false' ) ) );
     public final void rule__BOOLEAN__Alternatives() throws RecognitionException {
 
@@ -1267,7 +1315,7 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("478:1: rule__BOOLEAN__Alternatives : ( ( ( 'true' ) ) | ( ( 'false' ) ) );", 3, 0, input);
+                    new NoViableAltException("", 3, 0, input);
 
                 throw nvae;
             }
@@ -1328,10 +1376,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__BOOLEAN__Alternatives
+    // $ANTLR end "rule__BOOLEAN__Alternatives"
 
 
-    // $ANTLR start rule__Model__Group__0
+    // $ANTLR start "rule__Model__Group__0"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:504:1: rule__Model__Group__0 : rule__Model__Group__0__Impl rule__Model__Group__1 ;
     public final void rule__Model__Group__0() throws RecognitionException {
 
@@ -1343,11 +1391,13 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Model__Group__0__Impl_in_rule__Model__Group__01030);
             rule__Model__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__Model__Group__1_in_rule__Model__Group__01033);
             rule__Model__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1364,10 +1414,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group__0
+    // $ANTLR end "rule__Model__Group__0"
 
 
-    // $ANTLR start rule__Model__Group__0__Impl
+    // $ANTLR start "rule__Model__Group__0__Impl"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:516:1: rule__Model__Group__0__Impl : ( ( rule__Model__NameAssignment_0 )? ) ;
     public final void rule__Model__Group__0__Impl() throws RecognitionException {
 
@@ -1394,7 +1444,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
                     {
                     pushFollow(FOLLOW_rule__Model__NameAssignment_0_in_rule__Model__Group__0__Impl1060);
                     rule__Model__NameAssignment_0();
-                    _fsp--;
+
+                    state._fsp--;
 
 
                     }
@@ -1421,10 +1472,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group__0__Impl
+    // $ANTLR end "rule__Model__Group__0__Impl"
 
 
-    // $ANTLR start rule__Model__Group__1
+    // $ANTLR start "rule__Model__Group__1"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:533:1: rule__Model__Group__1 : rule__Model__Group__1__Impl rule__Model__Group__2 ;
     public final void rule__Model__Group__1() throws RecognitionException {
 
@@ -1436,11 +1487,13 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Model__Group__1__Impl_in_rule__Model__Group__11091);
             rule__Model__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__Model__Group__2_in_rule__Model__Group__11094);
             rule__Model__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1457,10 +1510,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group__1
+    // $ANTLR end "rule__Model__Group__1"
 
 
-    // $ANTLR start rule__Model__Group__1__Impl
+    // $ANTLR start "rule__Model__Group__1__Impl"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:545:1: rule__Model__Group__1__Impl : ( 'model' ) ;
     public final void rule__Model__Group__1__Impl() throws RecognitionException {
 
@@ -1494,10 +1547,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group__1__Impl
+    // $ANTLR end "rule__Model__Group__1__Impl"
 
 
-    // $ANTLR start rule__Model__Group__2
+    // $ANTLR start "rule__Model__Group__2"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:564:1: rule__Model__Group__2 : rule__Model__Group__2__Impl rule__Model__Group__3 ;
     public final void rule__Model__Group__2() throws RecognitionException {
 
@@ -1509,11 +1562,13 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Model__Group__2__Impl_in_rule__Model__Group__21153);
             rule__Model__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__Model__Group__3_in_rule__Model__Group__21156);
             rule__Model__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1530,10 +1585,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group__2
+    // $ANTLR end "rule__Model__Group__2"
 
 
-    // $ANTLR start rule__Model__Group__2__Impl
+    // $ANTLR start "rule__Model__Group__2__Impl"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:576:1: rule__Model__Group__2__Impl : ( ( rule__Model__ModelAssignment_2 ) ) ;
     public final void rule__Model__Group__2__Impl() throws RecognitionException {
 
@@ -1552,7 +1607,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Model__ModelAssignment_2_in_rule__Model__Group__2__Impl1183);
             rule__Model__ModelAssignment_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1576,10 +1632,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group__2__Impl
+    // $ANTLR end "rule__Model__Group__2__Impl"
 
 
-    // $ANTLR start rule__Model__Group__3
+    // $ANTLR start "rule__Model__Group__3"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:593:1: rule__Model__Group__3 : rule__Model__Group__3__Impl rule__Model__Group__4 ;
     public final void rule__Model__Group__3() throws RecognitionException {
 
@@ -1591,11 +1647,13 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Model__Group__3__Impl_in_rule__Model__Group__31213);
             rule__Model__Group__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__Model__Group__4_in_rule__Model__Group__31216);
             rule__Model__Group__4();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1612,10 +1670,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group__3
+    // $ANTLR end "rule__Model__Group__3"
 
 
-    // $ANTLR start rule__Model__Group__3__Impl
+    // $ANTLR start "rule__Model__Group__3__Impl"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:605:1: rule__Model__Group__3__Impl : ( ( rule__Model__Group_3__0 )* ) ;
     public final void rule__Model__Group__3__Impl() throws RecognitionException {
 
@@ -1646,7 +1704,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             	    {
             	    pushFollow(FOLLOW_rule__Model__Group_3__0_in_rule__Model__Group__3__Impl1243);
             	    rule__Model__Group_3__0();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -1676,10 +1735,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group__3__Impl
+    // $ANTLR end "rule__Model__Group__3__Impl"
 
 
-    // $ANTLR start rule__Model__Group__4
+    // $ANTLR start "rule__Model__Group__4"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:622:1: rule__Model__Group__4 : rule__Model__Group__4__Impl ;
     public final void rule__Model__Group__4() throws RecognitionException {
 
@@ -1691,7 +1750,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Model__Group__4__Impl_in_rule__Model__Group__41274);
             rule__Model__Group__4__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1708,10 +1768,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group__4
+    // $ANTLR end "rule__Model__Group__4"
 
 
-    // $ANTLR start rule__Model__Group__4__Impl
+    // $ANTLR start "rule__Model__Group__4__Impl"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:633:1: rule__Model__Group__4__Impl : ( ( rule__Model__ParametersAssignment_4 )* ) ;
     public final void rule__Model__Group__4__Impl() throws RecognitionException {
 
@@ -1742,7 +1802,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             	    {
             	    pushFollow(FOLLOW_rule__Model__ParametersAssignment_4_in_rule__Model__Group__4__Impl1301);
             	    rule__Model__ParametersAssignment_4();
-            	    _fsp--;
+
+            	    state._fsp--;
 
 
             	    }
@@ -1772,10 +1833,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group__4__Impl
+    // $ANTLR end "rule__Model__Group__4__Impl"
 
 
-    // $ANTLR start rule__Model__Group_3__0
+    // $ANTLR start "rule__Model__Group_3__0"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:660:1: rule__Model__Group_3__0 : rule__Model__Group_3__0__Impl rule__Model__Group_3__1 ;
     public final void rule__Model__Group_3__0() throws RecognitionException {
 
@@ -1787,11 +1848,13 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Model__Group_3__0__Impl_in_rule__Model__Group_3__01342);
             rule__Model__Group_3__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__Model__Group_3__1_in_rule__Model__Group_3__01345);
             rule__Model__Group_3__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1808,10 +1871,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group_3__0
+    // $ANTLR end "rule__Model__Group_3__0"
 
 
-    // $ANTLR start rule__Model__Group_3__0__Impl
+    // $ANTLR start "rule__Model__Group_3__0__Impl"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:672:1: rule__Model__Group_3__0__Impl : ( 'incorporates' ) ;
     public final void rule__Model__Group_3__0__Impl() throws RecognitionException {
 
@@ -1845,10 +1908,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group_3__0__Impl
+    // $ANTLR end "rule__Model__Group_3__0__Impl"
 
 
-    // $ANTLR start rule__Model__Group_3__1
+    // $ANTLR start "rule__Model__Group_3__1"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:691:1: rule__Model__Group_3__1 : rule__Model__Group_3__1__Impl ;
     public final void rule__Model__Group_3__1() throws RecognitionException {
 
@@ -1860,7 +1923,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Model__Group_3__1__Impl_in_rule__Model__Group_3__11404);
             rule__Model__Group_3__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1877,10 +1941,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group_3__1
+    // $ANTLR end "rule__Model__Group_3__1"
 
 
-    // $ANTLR start rule__Model__Group_3__1__Impl
+    // $ANTLR start "rule__Model__Group_3__1__Impl"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:702:1: rule__Model__Group_3__1__Impl : ( ( rule__Model__IncorporatesAssignment_3_1 ) ) ;
     public final void rule__Model__Group_3__1__Impl() throws RecognitionException {
 
@@ -1899,7 +1963,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__Model__IncorporatesAssignment_3_1_in_rule__Model__Group_3__1__Impl1431);
             rule__Model__IncorporatesAssignment_3_1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1923,10 +1988,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__Group_3__1__Impl
+    // $ANTLR end "rule__Model__Group_3__1__Impl"
 
 
-    // $ANTLR start rule__SingleParameter__Group__0
+    // $ANTLR start "rule__SingleParameter__Group__0"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:723:1: rule__SingleParameter__Group__0 : rule__SingleParameter__Group__0__Impl rule__SingleParameter__Group__1 ;
     public final void rule__SingleParameter__Group__0() throws RecognitionException {
 
@@ -1938,11 +2003,13 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SingleParameter__Group__0__Impl_in_rule__SingleParameter__Group__01465);
             rule__SingleParameter__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__SingleParameter__Group__1_in_rule__SingleParameter__Group__01468);
             rule__SingleParameter__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -1959,10 +2026,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SingleParameter__Group__0
+    // $ANTLR end "rule__SingleParameter__Group__0"
 
 
-    // $ANTLR start rule__SingleParameter__Group__0__Impl
+    // $ANTLR start "rule__SingleParameter__Group__0__Impl"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:735:1: rule__SingleParameter__Group__0__Impl : ( ( rule__SingleParameter__AttributeAssignment_0 ) ) ;
     public final void rule__SingleParameter__Group__0__Impl() throws RecognitionException {
 
@@ -1981,7 +2048,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SingleParameter__AttributeAssignment_0_in_rule__SingleParameter__Group__0__Impl1495);
             rule__SingleParameter__AttributeAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2005,10 +2073,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SingleParameter__Group__0__Impl
+    // $ANTLR end "rule__SingleParameter__Group__0__Impl"
 
 
-    // $ANTLR start rule__SingleParameter__Group__1
+    // $ANTLR start "rule__SingleParameter__Group__1"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:752:1: rule__SingleParameter__Group__1 : rule__SingleParameter__Group__1__Impl rule__SingleParameter__Group__2 ;
     public final void rule__SingleParameter__Group__1() throws RecognitionException {
 
@@ -2020,11 +2088,13 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SingleParameter__Group__1__Impl_in_rule__SingleParameter__Group__11525);
             rule__SingleParameter__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__SingleParameter__Group__2_in_rule__SingleParameter__Group__11528);
             rule__SingleParameter__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2041,10 +2111,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SingleParameter__Group__1
+    // $ANTLR end "rule__SingleParameter__Group__1"
 
 
-    // $ANTLR start rule__SingleParameter__Group__1__Impl
+    // $ANTLR start "rule__SingleParameter__Group__1__Impl"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:764:1: rule__SingleParameter__Group__1__Impl : ( '=' ) ;
     public final void rule__SingleParameter__Group__1__Impl() throws RecognitionException {
 
@@ -2078,10 +2148,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SingleParameter__Group__1__Impl
+    // $ANTLR end "rule__SingleParameter__Group__1__Impl"
 
 
-    // $ANTLR start rule__SingleParameter__Group__2
+    // $ANTLR start "rule__SingleParameter__Group__2"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:783:1: rule__SingleParameter__Group__2 : rule__SingleParameter__Group__2__Impl ;
     public final void rule__SingleParameter__Group__2() throws RecognitionException {
 
@@ -2093,7 +2163,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SingleParameter__Group__2__Impl_in_rule__SingleParameter__Group__21587);
             rule__SingleParameter__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2110,10 +2181,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SingleParameter__Group__2
+    // $ANTLR end "rule__SingleParameter__Group__2"
 
 
-    // $ANTLR start rule__SingleParameter__Group__2__Impl
+    // $ANTLR start "rule__SingleParameter__Group__2__Impl"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:794:1: rule__SingleParameter__Group__2__Impl : ( ( rule__SingleParameter__ValueAssignment_2 ) ) ;
     public final void rule__SingleParameter__Group__2__Impl() throws RecognitionException {
 
@@ -2132,7 +2203,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SingleParameter__ValueAssignment_2_in_rule__SingleParameter__Group__2__Impl1614);
             rule__SingleParameter__ValueAssignment_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2156,10 +2228,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SingleParameter__Group__2__Impl
+    // $ANTLR end "rule__SingleParameter__Group__2__Impl"
 
 
-    // $ANTLR start rule__SweepParameter__Group__0
+    // $ANTLR start "rule__SweepParameter__Group__0"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:817:1: rule__SweepParameter__Group__0 : rule__SweepParameter__Group__0__Impl rule__SweepParameter__Group__1 ;
     public final void rule__SweepParameter__Group__0() throws RecognitionException {
 
@@ -2171,11 +2243,13 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SweepParameter__Group__0__Impl_in_rule__SweepParameter__Group__01650);
             rule__SweepParameter__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__SweepParameter__Group__1_in_rule__SweepParameter__Group__01653);
             rule__SweepParameter__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2192,10 +2266,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__Group__0
+    // $ANTLR end "rule__SweepParameter__Group__0"
 
 
-    // $ANTLR start rule__SweepParameter__Group__0__Impl
+    // $ANTLR start "rule__SweepParameter__Group__0__Impl"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:829:1: rule__SweepParameter__Group__0__Impl : ( ( rule__SweepParameter__AttributeAssignment_0 ) ) ;
     public final void rule__SweepParameter__Group__0__Impl() throws RecognitionException {
 
@@ -2214,7 +2288,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SweepParameter__AttributeAssignment_0_in_rule__SweepParameter__Group__0__Impl1680);
             rule__SweepParameter__AttributeAssignment_0();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2238,10 +2313,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__Group__0__Impl
+    // $ANTLR end "rule__SweepParameter__Group__0__Impl"
 
 
-    // $ANTLR start rule__SweepParameter__Group__1
+    // $ANTLR start "rule__SweepParameter__Group__1"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:846:1: rule__SweepParameter__Group__1 : rule__SweepParameter__Group__1__Impl rule__SweepParameter__Group__2 ;
     public final void rule__SweepParameter__Group__1() throws RecognitionException {
 
@@ -2253,11 +2328,13 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SweepParameter__Group__1__Impl_in_rule__SweepParameter__Group__11710);
             rule__SweepParameter__Group__1__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__SweepParameter__Group__2_in_rule__SweepParameter__Group__11713);
             rule__SweepParameter__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2274,10 +2351,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__Group__1
+    // $ANTLR end "rule__SweepParameter__Group__1"
 
 
-    // $ANTLR start rule__SweepParameter__Group__1__Impl
+    // $ANTLR start "rule__SweepParameter__Group__1__Impl"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:858:1: rule__SweepParameter__Group__1__Impl : ( '[' ) ;
     public final void rule__SweepParameter__Group__1__Impl() throws RecognitionException {
 
@@ -2311,10 +2388,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__Group__1__Impl
+    // $ANTLR end "rule__SweepParameter__Group__1__Impl"
 
 
-    // $ANTLR start rule__SweepParameter__Group__2
+    // $ANTLR start "rule__SweepParameter__Group__2"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:877:1: rule__SweepParameter__Group__2 : rule__SweepParameter__Group__2__Impl rule__SweepParameter__Group__3 ;
     public final void rule__SweepParameter__Group__2() throws RecognitionException {
 
@@ -2326,11 +2403,13 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SweepParameter__Group__2__Impl_in_rule__SweepParameter__Group__21772);
             rule__SweepParameter__Group__2__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__SweepParameter__Group__3_in_rule__SweepParameter__Group__21775);
             rule__SweepParameter__Group__3();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2347,10 +2426,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__Group__2
+    // $ANTLR end "rule__SweepParameter__Group__2"
 
 
-    // $ANTLR start rule__SweepParameter__Group__2__Impl
+    // $ANTLR start "rule__SweepParameter__Group__2__Impl"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:889:1: rule__SweepParameter__Group__2__Impl : ( ( rule__SweepParameter__StartValueAssignment_2 ) ) ;
     public final void rule__SweepParameter__Group__2__Impl() throws RecognitionException {
 
@@ -2369,7 +2448,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SweepParameter__StartValueAssignment_2_in_rule__SweepParameter__Group__2__Impl1802);
             rule__SweepParameter__StartValueAssignment_2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2393,10 +2473,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__Group__2__Impl
+    // $ANTLR end "rule__SweepParameter__Group__2__Impl"
 
 
-    // $ANTLR start rule__SweepParameter__Group__3
+    // $ANTLR start "rule__SweepParameter__Group__3"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:906:1: rule__SweepParameter__Group__3 : rule__SweepParameter__Group__3__Impl rule__SweepParameter__Group__4 ;
     public final void rule__SweepParameter__Group__3() throws RecognitionException {
 
@@ -2408,11 +2488,13 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SweepParameter__Group__3__Impl_in_rule__SweepParameter__Group__31832);
             rule__SweepParameter__Group__3__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__SweepParameter__Group__4_in_rule__SweepParameter__Group__31835);
             rule__SweepParameter__Group__4();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2429,10 +2511,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__Group__3
+    // $ANTLR end "rule__SweepParameter__Group__3"
 
 
-    // $ANTLR start rule__SweepParameter__Group__3__Impl
+    // $ANTLR start "rule__SweepParameter__Group__3__Impl"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:918:1: rule__SweepParameter__Group__3__Impl : ( ',' ) ;
     public final void rule__SweepParameter__Group__3__Impl() throws RecognitionException {
 
@@ -2466,10 +2548,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__Group__3__Impl
+    // $ANTLR end "rule__SweepParameter__Group__3__Impl"
 
 
-    // $ANTLR start rule__SweepParameter__Group__4
+    // $ANTLR start "rule__SweepParameter__Group__4"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:937:1: rule__SweepParameter__Group__4 : rule__SweepParameter__Group__4__Impl rule__SweepParameter__Group__5 ;
     public final void rule__SweepParameter__Group__4() throws RecognitionException {
 
@@ -2481,11 +2563,13 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SweepParameter__Group__4__Impl_in_rule__SweepParameter__Group__41894);
             rule__SweepParameter__Group__4__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__SweepParameter__Group__5_in_rule__SweepParameter__Group__41897);
             rule__SweepParameter__Group__5();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2502,10 +2586,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__Group__4
+    // $ANTLR end "rule__SweepParameter__Group__4"
 
 
-    // $ANTLR start rule__SweepParameter__Group__4__Impl
+    // $ANTLR start "rule__SweepParameter__Group__4__Impl"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:949:1: rule__SweepParameter__Group__4__Impl : ( ( rule__SweepParameter__EndValueAssignment_4 ) ) ;
     public final void rule__SweepParameter__Group__4__Impl() throws RecognitionException {
 
@@ -2524,7 +2608,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SweepParameter__EndValueAssignment_4_in_rule__SweepParameter__Group__4__Impl1924);
             rule__SweepParameter__EndValueAssignment_4();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2548,10 +2633,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__Group__4__Impl
+    // $ANTLR end "rule__SweepParameter__Group__4__Impl"
 
 
-    // $ANTLR start rule__SweepParameter__Group__5
+    // $ANTLR start "rule__SweepParameter__Group__5"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:966:1: rule__SweepParameter__Group__5 : rule__SweepParameter__Group__5__Impl rule__SweepParameter__Group__6 ;
     public final void rule__SweepParameter__Group__5() throws RecognitionException {
 
@@ -2563,11 +2648,13 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SweepParameter__Group__5__Impl_in_rule__SweepParameter__Group__51954);
             rule__SweepParameter__Group__5__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__SweepParameter__Group__6_in_rule__SweepParameter__Group__51957);
             rule__SweepParameter__Group__6();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2584,10 +2671,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__Group__5
+    // $ANTLR end "rule__SweepParameter__Group__5"
 
 
-    // $ANTLR start rule__SweepParameter__Group__5__Impl
+    // $ANTLR start "rule__SweepParameter__Group__5__Impl"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:978:1: rule__SweepParameter__Group__5__Impl : ( ',' ) ;
     public final void rule__SweepParameter__Group__5__Impl() throws RecognitionException {
 
@@ -2621,10 +2708,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__Group__5__Impl
+    // $ANTLR end "rule__SweepParameter__Group__5__Impl"
 
 
-    // $ANTLR start rule__SweepParameter__Group__6
+    // $ANTLR start "rule__SweepParameter__Group__6"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:997:1: rule__SweepParameter__Group__6 : rule__SweepParameter__Group__6__Impl rule__SweepParameter__Group__7 ;
     public final void rule__SweepParameter__Group__6() throws RecognitionException {
 
@@ -2636,11 +2723,13 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SweepParameter__Group__6__Impl_in_rule__SweepParameter__Group__62016);
             rule__SweepParameter__Group__6__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__SweepParameter__Group__7_in_rule__SweepParameter__Group__62019);
             rule__SweepParameter__Group__7();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2657,10 +2746,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__Group__6
+    // $ANTLR end "rule__SweepParameter__Group__6"
 
 
-    // $ANTLR start rule__SweepParameter__Group__6__Impl
+    // $ANTLR start "rule__SweepParameter__Group__6__Impl"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1009:1: rule__SweepParameter__Group__6__Impl : ( ( rule__SweepParameter__IncrementAssignment_6 ) ) ;
     public final void rule__SweepParameter__Group__6__Impl() throws RecognitionException {
 
@@ -2679,7 +2768,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SweepParameter__IncrementAssignment_6_in_rule__SweepParameter__Group__6__Impl2046);
             rule__SweepParameter__IncrementAssignment_6();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2703,10 +2793,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__Group__6__Impl
+    // $ANTLR end "rule__SweepParameter__Group__6__Impl"
 
 
-    // $ANTLR start rule__SweepParameter__Group__7
+    // $ANTLR start "rule__SweepParameter__Group__7"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1026:1: rule__SweepParameter__Group__7 : rule__SweepParameter__Group__7__Impl ;
     public final void rule__SweepParameter__Group__7() throws RecognitionException {
 
@@ -2718,7 +2808,8 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SweepParameter__Group__7__Impl_in_rule__SweepParameter__Group__72076);
             rule__SweepParameter__Group__7__Impl();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2735,10 +2826,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__Group__7
+    // $ANTLR end "rule__SweepParameter__Group__7"
 
 
-    // $ANTLR start rule__SweepParameter__Group__7__Impl
+    // $ANTLR start "rule__SweepParameter__Group__7__Impl"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1037:1: rule__SweepParameter__Group__7__Impl : ( ']' ) ;
     public final void rule__SweepParameter__Group__7__Impl() throws RecognitionException {
 
@@ -2772,10 +2863,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__Group__7__Impl
+    // $ANTLR end "rule__SweepParameter__Group__7__Impl"
 
 
-    // $ANTLR start rule__SweepLink__Group__0
+    // $ANTLR start "rule__SweepLink__Group__0"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1072:1: rule__SweepLink__Group__0 : rule__SweepLink__Group__0__Impl rule__SweepLink__Group__1 ;
     public final void rule__SweepLink__Group__0() throws RecognitionException {
 
@@ -2787,11 +2878,13 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             {
             pushFollow(FOLLOW_rule__SweepLink__Group__0__Impl_in_rule__SweepLink__Group__02151);
             rule__SweepLink__Group__0__Impl();
-            _fsp--;
+
+            state._fsp--;
 
             pushFollow(FOLLOW_rule__SweepLink__Group__1_in_rule__SweepLink__Group__02154);
             rule__SweepLink__Group__1();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2808,35 +2901,35 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepLink__Group__0
+    // $ANTLR end "rule__SweepLink__Group__0"
 
 
-    // $ANTLR start rule__SweepLink__Group__0__Impl
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1084:1: rule__SweepLink__Group__0__Impl : ( '[' ) ;
+    // $ANTLR start "rule__SweepLink__Group__0__Impl"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1084:1: rule__SweepLink__Group__0__Impl : ( () ) ;
     public final void rule__SweepLink__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1088:1: ( ( '[' ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1089:1: ( '[' )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1088:1: ( ( () ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1089:1: ( () )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1089:1: ( '[' )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1090:1: '['
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1089:1: ( () )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1090:1: ()
             {
-             before(grammarAccess.getSweepLinkAccess().getLeftSquareBracketKeyword_0()); 
-            match(input,19,FOLLOW_19_in_rule__SweepLink__Group__0__Impl2182); 
-             after(grammarAccess.getSweepLinkAccess().getLeftSquareBracketKeyword_0()); 
+             before(grammarAccess.getSweepLinkAccess().getSweepLinkAction_0()); 
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1091:1: ()
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1093:1: 
+            {
+            }
+
+             after(grammarAccess.getSweepLinkAccess().getSweepLinkAction_0()); 
 
             }
 
 
             }
 
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
         }
         finally {
 
@@ -2845,10 +2938,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepLink__Group__0__Impl
+    // $ANTLR end "rule__SweepLink__Group__0__Impl"
 
 
-    // $ANTLR start rule__SweepLink__Group__1
+    // $ANTLR start "rule__SweepLink__Group__1"
     // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1103:1: rule__SweepLink__Group__1 : rule__SweepLink__Group__1__Impl rule__SweepLink__Group__2 ;
     public final void rule__SweepLink__Group__1() throws RecognitionException {
 
@@ -2858,13 +2951,15 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1107:1: ( rule__SweepLink__Group__1__Impl rule__SweepLink__Group__2 )
             // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1108:2: rule__SweepLink__Group__1__Impl rule__SweepLink__Group__2
             {
-            pushFollow(FOLLOW_rule__SweepLink__Group__1__Impl_in_rule__SweepLink__Group__12213);
+            pushFollow(FOLLOW_rule__SweepLink__Group__1__Impl_in_rule__SweepLink__Group__12212);
             rule__SweepLink__Group__1__Impl();
-            _fsp--;
 
-            pushFollow(FOLLOW_rule__SweepLink__Group__2_in_rule__SweepLink__Group__12216);
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__SweepLink__Group__2_in_rule__SweepLink__Group__12215);
             rule__SweepLink__Group__2();
-            _fsp--;
+
+            state._fsp--;
 
 
             }
@@ -2881,24 +2976,99 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepLink__Group__1
+    // $ANTLR end "rule__SweepLink__Group__1"
 
 
-    // $ANTLR start rule__SweepLink__Group__1__Impl
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1115:1: rule__SweepLink__Group__1__Impl : ( ( rule__SweepLink__ParametersAssignment_1 )* ) ;
+    // $ANTLR start "rule__SweepLink__Group__1__Impl"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1115:1: rule__SweepLink__Group__1__Impl : ( '[' ) ;
     public final void rule__SweepLink__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1119:1: ( ( ( rule__SweepLink__ParametersAssignment_1 )* ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1120:1: ( ( rule__SweepLink__ParametersAssignment_1 )* )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1119:1: ( ( '[' ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1120:1: ( '[' )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1120:1: ( ( rule__SweepLink__ParametersAssignment_1 )* )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1121:1: ( rule__SweepLink__ParametersAssignment_1 )*
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1120:1: ( '[' )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1121:1: '['
             {
-             before(grammarAccess.getSweepLinkAccess().getParametersAssignment_1()); 
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1122:1: ( rule__SweepLink__ParametersAssignment_1 )*
+             before(grammarAccess.getSweepLinkAccess().getLeftSquareBracketKeyword_1()); 
+            match(input,19,FOLLOW_19_in_rule__SweepLink__Group__1__Impl2243); 
+             after(grammarAccess.getSweepLinkAccess().getLeftSquareBracketKeyword_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__SweepLink__Group__1__Impl"
+
+
+    // $ANTLR start "rule__SweepLink__Group__2"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1134:1: rule__SweepLink__Group__2 : rule__SweepLink__Group__2__Impl rule__SweepLink__Group__3 ;
+    public final void rule__SweepLink__Group__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1138:1: ( rule__SweepLink__Group__2__Impl rule__SweepLink__Group__3 )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1139:2: rule__SweepLink__Group__2__Impl rule__SweepLink__Group__3
+            {
+            pushFollow(FOLLOW_rule__SweepLink__Group__2__Impl_in_rule__SweepLink__Group__22274);
+            rule__SweepLink__Group__2__Impl();
+
+            state._fsp--;
+
+            pushFollow(FOLLOW_rule__SweepLink__Group__3_in_rule__SweepLink__Group__22277);
+            rule__SweepLink__Group__3();
+
+            state._fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__SweepLink__Group__2"
+
+
+    // $ANTLR start "rule__SweepLink__Group__2__Impl"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1146:1: rule__SweepLink__Group__2__Impl : ( ( rule__SweepLink__ParametersAssignment_2 )* ) ;
+    public final void rule__SweepLink__Group__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1150:1: ( ( ( rule__SweepLink__ParametersAssignment_2 )* ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1151:1: ( ( rule__SweepLink__ParametersAssignment_2 )* )
+            {
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1151:1: ( ( rule__SweepLink__ParametersAssignment_2 )* )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1152:1: ( rule__SweepLink__ParametersAssignment_2 )*
+            {
+             before(grammarAccess.getSweepLinkAccess().getParametersAssignment_2()); 
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1153:1: ( rule__SweepLink__ParametersAssignment_2 )*
             loop7:
             do {
                 int alt7=2;
@@ -2911,11 +3081,12 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1122:2: rule__SweepLink__ParametersAssignment_1
+            	    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1153:2: rule__SweepLink__ParametersAssignment_2
             	    {
-            	    pushFollow(FOLLOW_rule__SweepLink__ParametersAssignment_1_in_rule__SweepLink__Group__1__Impl2243);
-            	    rule__SweepLink__ParametersAssignment_1();
-            	    _fsp--;
+            	    pushFollow(FOLLOW_rule__SweepLink__ParametersAssignment_2_in_rule__SweepLink__Group__2__Impl2304);
+            	    rule__SweepLink__ParametersAssignment_2();
+
+            	    state._fsp--;
 
 
             	    }
@@ -2926,7 +3097,7 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
                 }
             } while (true);
 
-             after(grammarAccess.getSweepLinkAccess().getParametersAssignment_1()); 
+             after(grammarAccess.getSweepLinkAccess().getParametersAssignment_2()); 
 
             }
 
@@ -2945,22 +3116,23 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepLink__Group__1__Impl
+    // $ANTLR end "rule__SweepLink__Group__2__Impl"
 
 
-    // $ANTLR start rule__SweepLink__Group__2
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1132:1: rule__SweepLink__Group__2 : rule__SweepLink__Group__2__Impl ;
-    public final void rule__SweepLink__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__SweepLink__Group__3"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1163:1: rule__SweepLink__Group__3 : rule__SweepLink__Group__3__Impl ;
+    public final void rule__SweepLink__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1136:1: ( rule__SweepLink__Group__2__Impl )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1137:2: rule__SweepLink__Group__2__Impl
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1167:1: ( rule__SweepLink__Group__3__Impl )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1168:2: rule__SweepLink__Group__3__Impl
             {
-            pushFollow(FOLLOW_rule__SweepLink__Group__2__Impl_in_rule__SweepLink__Group__22274);
-            rule__SweepLink__Group__2__Impl();
-            _fsp--;
+            pushFollow(FOLLOW_rule__SweepLink__Group__3__Impl_in_rule__SweepLink__Group__32335);
+            rule__SweepLink__Group__3__Impl();
+
+            state._fsp--;
 
 
             }
@@ -2977,25 +3149,25 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepLink__Group__2
+    // $ANTLR end "rule__SweepLink__Group__3"
 
 
-    // $ANTLR start rule__SweepLink__Group__2__Impl
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1143:1: rule__SweepLink__Group__2__Impl : ( ']' ) ;
-    public final void rule__SweepLink__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__SweepLink__Group__3__Impl"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1174:1: rule__SweepLink__Group__3__Impl : ( ']' ) ;
+    public final void rule__SweepLink__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1147:1: ( ( ']' ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1148:1: ( ']' )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1178:1: ( ( ']' ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1179:1: ( ']' )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1148:1: ( ']' )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1149:1: ']'
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1179:1: ( ']' )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1180:1: ']'
             {
-             before(grammarAccess.getSweepLinkAccess().getRightSquareBracketKeyword_2()); 
-            match(input,21,FOLLOW_21_in_rule__SweepLink__Group__2__Impl2302); 
-             after(grammarAccess.getSweepLinkAccess().getRightSquareBracketKeyword_2()); 
+             before(grammarAccess.getSweepLinkAccess().getRightSquareBracketKeyword_3()); 
+            match(input,21,FOLLOW_21_in_rule__SweepLink__Group__3__Impl2363); 
+             after(grammarAccess.getSweepLinkAccess().getRightSquareBracketKeyword_3()); 
 
             }
 
@@ -3014,24 +3186,24 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepLink__Group__2__Impl
+    // $ANTLR end "rule__SweepLink__Group__3__Impl"
 
 
-    // $ANTLR start rule__Model__NameAssignment_0
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1169:1: rule__Model__NameAssignment_0 : ( RULE_STRING ) ;
+    // $ANTLR start "rule__Model__NameAssignment_0"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1202:1: rule__Model__NameAssignment_0 : ( RULE_STRING ) ;
     public final void rule__Model__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1173:1: ( ( RULE_STRING ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1174:1: ( RULE_STRING )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1206:1: ( ( RULE_STRING ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1207:1: ( RULE_STRING )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1174:1: ( RULE_STRING )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1175:1: RULE_STRING
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1207:1: ( RULE_STRING )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1208:1: RULE_STRING
             {
              before(grammarAccess.getModelAccess().getNameSTRINGTerminalRuleCall_0_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Model__NameAssignment_02344); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Model__NameAssignment_02407); 
              after(grammarAccess.getModelAccess().getNameSTRINGTerminalRuleCall_0_0()); 
 
             }
@@ -3051,26 +3223,27 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__NameAssignment_0
+    // $ANTLR end "rule__Model__NameAssignment_0"
 
 
-    // $ANTLR start rule__Model__ModelAssignment_2
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1184:1: rule__Model__ModelAssignment_2 : ( ruleImport ) ;
+    // $ANTLR start "rule__Model__ModelAssignment_2"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1217:1: rule__Model__ModelAssignment_2 : ( ruleImport ) ;
     public final void rule__Model__ModelAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1188:1: ( ( ruleImport ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1189:1: ( ruleImport )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1221:1: ( ( ruleImport ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1222:1: ( ruleImport )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1189:1: ( ruleImport )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1190:1: ruleImport
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1222:1: ( ruleImport )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1223:1: ruleImport
             {
              before(grammarAccess.getModelAccess().getModelImportParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleImport_in_rule__Model__ModelAssignment_22375);
+            pushFollow(FOLLOW_ruleImport_in_rule__Model__ModelAssignment_22438);
             ruleImport();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getModelAccess().getModelImportParserRuleCall_2_0()); 
 
@@ -3091,26 +3264,27 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__ModelAssignment_2
+    // $ANTLR end "rule__Model__ModelAssignment_2"
 
 
-    // $ANTLR start rule__Model__IncorporatesAssignment_3_1
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1199:1: rule__Model__IncorporatesAssignment_3_1 : ( ruleIncorporates ) ;
+    // $ANTLR start "rule__Model__IncorporatesAssignment_3_1"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1232:1: rule__Model__IncorporatesAssignment_3_1 : ( ruleIncorporates ) ;
     public final void rule__Model__IncorporatesAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1203:1: ( ( ruleIncorporates ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1204:1: ( ruleIncorporates )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1236:1: ( ( ruleIncorporates ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1237:1: ( ruleIncorporates )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1204:1: ( ruleIncorporates )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1205:1: ruleIncorporates
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1237:1: ( ruleIncorporates )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1238:1: ruleIncorporates
             {
              before(grammarAccess.getModelAccess().getIncorporatesIncorporatesParserRuleCall_3_1_0()); 
-            pushFollow(FOLLOW_ruleIncorporates_in_rule__Model__IncorporatesAssignment_3_12406);
+            pushFollow(FOLLOW_ruleIncorporates_in_rule__Model__IncorporatesAssignment_3_12469);
             ruleIncorporates();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getModelAccess().getIncorporatesIncorporatesParserRuleCall_3_1_0()); 
 
@@ -3131,26 +3305,27 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__IncorporatesAssignment_3_1
+    // $ANTLR end "rule__Model__IncorporatesAssignment_3_1"
 
 
-    // $ANTLR start rule__Model__ParametersAssignment_4
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1214:1: rule__Model__ParametersAssignment_4 : ( ruleParameter ) ;
+    // $ANTLR start "rule__Model__ParametersAssignment_4"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1247:1: rule__Model__ParametersAssignment_4 : ( ruleParameter ) ;
     public final void rule__Model__ParametersAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1218:1: ( ( ruleParameter ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1219:1: ( ruleParameter )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1251:1: ( ( ruleParameter ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1252:1: ( ruleParameter )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1219:1: ( ruleParameter )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1220:1: ruleParameter
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1252:1: ( ruleParameter )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1253:1: ruleParameter
             {
              before(grammarAccess.getModelAccess().getParametersParameterParserRuleCall_4_0()); 
-            pushFollow(FOLLOW_ruleParameter_in_rule__Model__ParametersAssignment_42437);
+            pushFollow(FOLLOW_ruleParameter_in_rule__Model__ParametersAssignment_42500);
             ruleParameter();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getModelAccess().getParametersParameterParserRuleCall_4_0()); 
 
@@ -3171,24 +3346,24 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Model__ParametersAssignment_4
+    // $ANTLR end "rule__Model__ParametersAssignment_4"
 
 
-    // $ANTLR start rule__Import__ImportURIAssignment
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1229:1: rule__Import__ImportURIAssignment : ( RULE_STRING ) ;
+    // $ANTLR start "rule__Import__ImportURIAssignment"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1262:1: rule__Import__ImportURIAssignment : ( RULE_STRING ) ;
     public final void rule__Import__ImportURIAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1233:1: ( ( RULE_STRING ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1234:1: ( RULE_STRING )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1266:1: ( ( RULE_STRING ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1267:1: ( RULE_STRING )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1234:1: ( RULE_STRING )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1235:1: RULE_STRING
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1267:1: ( RULE_STRING )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1268:1: RULE_STRING
             {
              before(grammarAccess.getImportAccess().getImportURISTRINGTerminalRuleCall_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Import__ImportURIAssignment2468); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Import__ImportURIAssignment2531); 
              after(grammarAccess.getImportAccess().getImportURISTRINGTerminalRuleCall_0()); 
 
             }
@@ -3208,24 +3383,24 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Import__ImportURIAssignment
+    // $ANTLR end "rule__Import__ImportURIAssignment"
 
 
-    // $ANTLR start rule__Incorporates__ImportURIAssignment
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1244:1: rule__Incorporates__ImportURIAssignment : ( RULE_STRING ) ;
+    // $ANTLR start "rule__Incorporates__ImportURIAssignment"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1277:1: rule__Incorporates__ImportURIAssignment : ( RULE_STRING ) ;
     public final void rule__Incorporates__ImportURIAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1248:1: ( ( RULE_STRING ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1249:1: ( RULE_STRING )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1281:1: ( ( RULE_STRING ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1282:1: ( RULE_STRING )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1249:1: ( RULE_STRING )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1250:1: RULE_STRING
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1282:1: ( RULE_STRING )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1283:1: RULE_STRING
             {
              before(grammarAccess.getIncorporatesAccess().getImportURISTRINGTerminalRuleCall_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Incorporates__ImportURIAssignment2499); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__Incorporates__ImportURIAssignment2562); 
              after(grammarAccess.getIncorporatesAccess().getImportURISTRINGTerminalRuleCall_0()); 
 
             }
@@ -3245,28 +3420,28 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Incorporates__ImportURIAssignment
+    // $ANTLR end "rule__Incorporates__ImportURIAssignment"
 
 
-    // $ANTLR start rule__SingleParameter__AttributeAssignment_0
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1259:1: rule__SingleParameter__AttributeAssignment_0 : ( ( RULE_ID ) ) ;
+    // $ANTLR start "rule__SingleParameter__AttributeAssignment_0"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1292:1: rule__SingleParameter__AttributeAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__SingleParameter__AttributeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1263:1: ( ( ( RULE_ID ) ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1264:1: ( ( RULE_ID ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1296:1: ( ( ( RULE_ID ) ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1297:1: ( ( RULE_ID ) )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1264:1: ( ( RULE_ID ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1265:1: ( RULE_ID )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1297:1: ( ( RULE_ID ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1298:1: ( RULE_ID )
             {
              before(grammarAccess.getSingleParameterAccess().getAttributeSAttributeCrossReference_0_0()); 
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1266:1: ( RULE_ID )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1267:1: RULE_ID
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1299:1: ( RULE_ID )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1300:1: RULE_ID
             {
              before(grammarAccess.getSingleParameterAccess().getAttributeSAttributeIDTerminalRuleCall_0_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SingleParameter__AttributeAssignment_02534); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SingleParameter__AttributeAssignment_02597); 
              after(grammarAccess.getSingleParameterAccess().getAttributeSAttributeIDTerminalRuleCall_0_0_1()); 
 
             }
@@ -3290,26 +3465,27 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SingleParameter__AttributeAssignment_0
+    // $ANTLR end "rule__SingleParameter__AttributeAssignment_0"
 
 
-    // $ANTLR start rule__SingleParameter__ValueAssignment_2
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1278:1: rule__SingleParameter__ValueAssignment_2 : ( ruleValue ) ;
+    // $ANTLR start "rule__SingleParameter__ValueAssignment_2"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1311:1: rule__SingleParameter__ValueAssignment_2 : ( ruleValue ) ;
     public final void rule__SingleParameter__ValueAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1282:1: ( ( ruleValue ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1283:1: ( ruleValue )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1315:1: ( ( ruleValue ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1316:1: ( ruleValue )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1283:1: ( ruleValue )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1284:1: ruleValue
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1316:1: ( ruleValue )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1317:1: ruleValue
             {
              before(grammarAccess.getSingleParameterAccess().getValueValueParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleValue_in_rule__SingleParameter__ValueAssignment_22569);
+            pushFollow(FOLLOW_ruleValue_in_rule__SingleParameter__ValueAssignment_22632);
             ruleValue();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getSingleParameterAccess().getValueValueParserRuleCall_2_0()); 
 
@@ -3330,28 +3506,28 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SingleParameter__ValueAssignment_2
+    // $ANTLR end "rule__SingleParameter__ValueAssignment_2"
 
 
-    // $ANTLR start rule__SweepParameter__AttributeAssignment_0
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1293:1: rule__SweepParameter__AttributeAssignment_0 : ( ( RULE_ID ) ) ;
+    // $ANTLR start "rule__SweepParameter__AttributeAssignment_0"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1326:1: rule__SweepParameter__AttributeAssignment_0 : ( ( RULE_ID ) ) ;
     public final void rule__SweepParameter__AttributeAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1297:1: ( ( ( RULE_ID ) ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1298:1: ( ( RULE_ID ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1330:1: ( ( ( RULE_ID ) ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1331:1: ( ( RULE_ID ) )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1298:1: ( ( RULE_ID ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1299:1: ( RULE_ID )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1331:1: ( ( RULE_ID ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1332:1: ( RULE_ID )
             {
              before(grammarAccess.getSweepParameterAccess().getAttributeSAttributeCrossReference_0_0()); 
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1300:1: ( RULE_ID )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1301:1: RULE_ID
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1333:1: ( RULE_ID )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1334:1: RULE_ID
             {
              before(grammarAccess.getSweepParameterAccess().getAttributeSAttributeIDTerminalRuleCall_0_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SweepParameter__AttributeAssignment_02604); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SweepParameter__AttributeAssignment_02667); 
              after(grammarAccess.getSweepParameterAccess().getAttributeSAttributeIDTerminalRuleCall_0_0_1()); 
 
             }
@@ -3375,26 +3551,27 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__AttributeAssignment_0
+    // $ANTLR end "rule__SweepParameter__AttributeAssignment_0"
 
 
-    // $ANTLR start rule__SweepParameter__StartValueAssignment_2
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1312:1: rule__SweepParameter__StartValueAssignment_2 : ( ruleValue ) ;
+    // $ANTLR start "rule__SweepParameter__StartValueAssignment_2"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1345:1: rule__SweepParameter__StartValueAssignment_2 : ( ruleValue ) ;
     public final void rule__SweepParameter__StartValueAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1316:1: ( ( ruleValue ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1317:1: ( ruleValue )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1349:1: ( ( ruleValue ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1350:1: ( ruleValue )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1317:1: ( ruleValue )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1318:1: ruleValue
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1350:1: ( ruleValue )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1351:1: ruleValue
             {
              before(grammarAccess.getSweepParameterAccess().getStartValueValueParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleValue_in_rule__SweepParameter__StartValueAssignment_22639);
+            pushFollow(FOLLOW_ruleValue_in_rule__SweepParameter__StartValueAssignment_22702);
             ruleValue();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getSweepParameterAccess().getStartValueValueParserRuleCall_2_0()); 
 
@@ -3415,26 +3592,27 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__StartValueAssignment_2
+    // $ANTLR end "rule__SweepParameter__StartValueAssignment_2"
 
 
-    // $ANTLR start rule__SweepParameter__EndValueAssignment_4
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1327:1: rule__SweepParameter__EndValueAssignment_4 : ( ruleValue ) ;
+    // $ANTLR start "rule__SweepParameter__EndValueAssignment_4"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1360:1: rule__SweepParameter__EndValueAssignment_4 : ( ruleValue ) ;
     public final void rule__SweepParameter__EndValueAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1331:1: ( ( ruleValue ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1332:1: ( ruleValue )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1364:1: ( ( ruleValue ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1365:1: ( ruleValue )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1332:1: ( ruleValue )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1333:1: ruleValue
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1365:1: ( ruleValue )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1366:1: ruleValue
             {
              before(grammarAccess.getSweepParameterAccess().getEndValueValueParserRuleCall_4_0()); 
-            pushFollow(FOLLOW_ruleValue_in_rule__SweepParameter__EndValueAssignment_42670);
+            pushFollow(FOLLOW_ruleValue_in_rule__SweepParameter__EndValueAssignment_42733);
             ruleValue();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getSweepParameterAccess().getEndValueValueParserRuleCall_4_0()); 
 
@@ -3455,26 +3633,27 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__EndValueAssignment_4
+    // $ANTLR end "rule__SweepParameter__EndValueAssignment_4"
 
 
-    // $ANTLR start rule__SweepParameter__IncrementAssignment_6
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1342:1: rule__SweepParameter__IncrementAssignment_6 : ( ruleValue ) ;
+    // $ANTLR start "rule__SweepParameter__IncrementAssignment_6"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1375:1: rule__SweepParameter__IncrementAssignment_6 : ( ruleValue ) ;
     public final void rule__SweepParameter__IncrementAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1346:1: ( ( ruleValue ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1347:1: ( ruleValue )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1379:1: ( ( ruleValue ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1380:1: ( ruleValue )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1347:1: ( ruleValue )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1348:1: ruleValue
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1380:1: ( ruleValue )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1381:1: ruleValue
             {
              before(grammarAccess.getSweepParameterAccess().getIncrementValueParserRuleCall_6_0()); 
-            pushFollow(FOLLOW_ruleValue_in_rule__SweepParameter__IncrementAssignment_62701);
+            pushFollow(FOLLOW_ruleValue_in_rule__SweepParameter__IncrementAssignment_62764);
             ruleValue();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getSweepParameterAccess().getIncrementValueParserRuleCall_6_0()); 
 
@@ -3495,28 +3674,29 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepParameter__IncrementAssignment_6
+    // $ANTLR end "rule__SweepParameter__IncrementAssignment_6"
 
 
-    // $ANTLR start rule__SweepLink__ParametersAssignment_1
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1357:1: rule__SweepLink__ParametersAssignment_1 : ( ruleParameter ) ;
-    public final void rule__SweepLink__ParametersAssignment_1() throws RecognitionException {
+    // $ANTLR start "rule__SweepLink__ParametersAssignment_2"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1390:1: rule__SweepLink__ParametersAssignment_2 : ( ruleParameter ) ;
+    public final void rule__SweepLink__ParametersAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1361:1: ( ( ruleParameter ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1362:1: ( ruleParameter )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1394:1: ( ( ruleParameter ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1395:1: ( ruleParameter )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1362:1: ( ruleParameter )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1363:1: ruleParameter
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1395:1: ( ruleParameter )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1396:1: ruleParameter
             {
-             before(grammarAccess.getSweepLinkAccess().getParametersParameterParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleParameter_in_rule__SweepLink__ParametersAssignment_12732);
+             before(grammarAccess.getSweepLinkAccess().getParametersParameterParserRuleCall_2_0()); 
+            pushFollow(FOLLOW_ruleParameter_in_rule__SweepLink__ParametersAssignment_22795);
             ruleParameter();
-            _fsp--;
 
-             after(grammarAccess.getSweepLinkAccess().getParametersParameterParserRuleCall_1_0()); 
+            state._fsp--;
+
+             after(grammarAccess.getSweepLinkAccess().getParametersParameterParserRuleCall_2_0()); 
 
             }
 
@@ -3535,24 +3715,24 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__SweepLink__ParametersAssignment_1
+    // $ANTLR end "rule__SweepLink__ParametersAssignment_2"
 
 
-    // $ANTLR start rule__IntValue__ValueAssignment
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1372:1: rule__IntValue__ValueAssignment : ( RULE_INTEGER ) ;
+    // $ANTLR start "rule__IntValue__ValueAssignment"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1405:1: rule__IntValue__ValueAssignment : ( RULE_INTEGER ) ;
     public final void rule__IntValue__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1376:1: ( ( RULE_INTEGER ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1377:1: ( RULE_INTEGER )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1409:1: ( ( RULE_INTEGER ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1410:1: ( RULE_INTEGER )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1377:1: ( RULE_INTEGER )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1378:1: RULE_INTEGER
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1410:1: ( RULE_INTEGER )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1411:1: RULE_INTEGER
             {
              before(grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0()); 
-            match(input,RULE_INTEGER,FOLLOW_RULE_INTEGER_in_rule__IntValue__ValueAssignment2763); 
+            match(input,RULE_INTEGER,FOLLOW_RULE_INTEGER_in_rule__IntValue__ValueAssignment2826); 
              after(grammarAccess.getIntValueAccess().getValueINTEGERTerminalRuleCall_0()); 
 
             }
@@ -3572,24 +3752,24 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__IntValue__ValueAssignment
+    // $ANTLR end "rule__IntValue__ValueAssignment"
 
 
-    // $ANTLR start rule__RealValue__ValueAssignment
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1387:1: rule__RealValue__ValueAssignment : ( RULE_REAL ) ;
+    // $ANTLR start "rule__RealValue__ValueAssignment"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1420:1: rule__RealValue__ValueAssignment : ( RULE_REAL ) ;
     public final void rule__RealValue__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1391:1: ( ( RULE_REAL ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1392:1: ( RULE_REAL )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1424:1: ( ( RULE_REAL ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1425:1: ( RULE_REAL )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1392:1: ( RULE_REAL )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1393:1: RULE_REAL
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1425:1: ( RULE_REAL )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1426:1: RULE_REAL
             {
              before(grammarAccess.getRealValueAccess().getValueREALTerminalRuleCall_0()); 
-            match(input,RULE_REAL,FOLLOW_RULE_REAL_in_rule__RealValue__ValueAssignment2794); 
+            match(input,RULE_REAL,FOLLOW_RULE_REAL_in_rule__RealValue__ValueAssignment2857); 
              after(grammarAccess.getRealValueAccess().getValueREALTerminalRuleCall_0()); 
 
             }
@@ -3609,24 +3789,24 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__RealValue__ValueAssignment
+    // $ANTLR end "rule__RealValue__ValueAssignment"
 
 
-    // $ANTLR start rule__StringValue__ValueAssignment
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1402:1: rule__StringValue__ValueAssignment : ( RULE_STRING ) ;
+    // $ANTLR start "rule__StringValue__ValueAssignment"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1435:1: rule__StringValue__ValueAssignment : ( RULE_STRING ) ;
     public final void rule__StringValue__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1406:1: ( ( RULE_STRING ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1407:1: ( RULE_STRING )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1439:1: ( ( RULE_STRING ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1440:1: ( RULE_STRING )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1407:1: ( RULE_STRING )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1408:1: RULE_STRING
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1440:1: ( RULE_STRING )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1441:1: RULE_STRING
             {
              before(grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__StringValue__ValueAssignment2825); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__StringValue__ValueAssignment2888); 
              after(grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_0()); 
 
             }
@@ -3646,26 +3826,27 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__StringValue__ValueAssignment
+    // $ANTLR end "rule__StringValue__ValueAssignment"
 
 
-    // $ANTLR start rule__BooleanValue__ValueAssignment
-    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1417:1: rule__BooleanValue__ValueAssignment : ( ruleBOOLEAN ) ;
+    // $ANTLR start "rule__BooleanValue__ValueAssignment"
+    // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1450:1: rule__BooleanValue__ValueAssignment : ( ruleBOOLEAN ) ;
     public final void rule__BooleanValue__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1421:1: ( ( ruleBOOLEAN ) )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1422:1: ( ruleBOOLEAN )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1454:1: ( ( ruleBOOLEAN ) )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1455:1: ( ruleBOOLEAN )
             {
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1422:1: ( ruleBOOLEAN )
-            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1423:1: ruleBOOLEAN
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1455:1: ( ruleBOOLEAN )
+            // ../org.eclipse.amp.amf.parameters.ui/src-gen/org/eclipse/amp/amf/parameters/ui/contentassist/antlr/internal/InternalAPar.g:1456:1: ruleBOOLEAN
             {
              before(grammarAccess.getBooleanValueAccess().getValueBOOLEANEnumRuleCall_0()); 
-            pushFollow(FOLLOW_ruleBOOLEAN_in_rule__BooleanValue__ValueAssignment2856);
+            pushFollow(FOLLOW_ruleBOOLEAN_in_rule__BooleanValue__ValueAssignment2919);
             ruleBOOLEAN();
-            _fsp--;
+
+            state._fsp--;
 
              after(grammarAccess.getBooleanValueAccess().getValueBOOLEANEnumRuleCall_0()); 
 
@@ -3686,7 +3867,9 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__BooleanValue__ValueAssignment
+    // $ANTLR end "rule__BooleanValue__ValueAssignment"
+
+    // Delegated rules
 
 
  
@@ -3743,10 +3926,10 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__Model__Group__1__Impl_in_rule__Model__Group__11091 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_rule__Model__Group__2_in_rule__Model__Group__11094 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_16_in_rule__Model__Group__1__Impl1122 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Model__Group__2__Impl_in_rule__Model__Group__21153 = new BitSet(new long[]{0x00000000000A0022L});
+    public static final BitSet FOLLOW_rule__Model__Group__2__Impl_in_rule__Model__Group__21153 = new BitSet(new long[]{0x00000000000A0020L});
     public static final BitSet FOLLOW_rule__Model__Group__3_in_rule__Model__Group__21156 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Model__ModelAssignment_2_in_rule__Model__Group__2__Impl1183 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Model__Group__3__Impl_in_rule__Model__Group__31213 = new BitSet(new long[]{0x0000000000080022L});
+    public static final BitSet FOLLOW_rule__Model__Group__3__Impl_in_rule__Model__Group__31213 = new BitSet(new long[]{0x00000000000A0020L});
     public static final BitSet FOLLOW_rule__Model__Group__4_in_rule__Model__Group__31216 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Model__Group_3__0_in_rule__Model__Group__3__Impl1243 = new BitSet(new long[]{0x0000000000020002L});
     public static final BitSet FOLLOW_rule__Model__Group__4__Impl_in_rule__Model__Group__41274 = new BitSet(new long[]{0x0000000000000002L});
@@ -3787,30 +3970,32 @@ public class InternalAParParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__SweepParameter__IncrementAssignment_6_in_rule__SweepParameter__Group__6__Impl2046 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__SweepParameter__Group__7__Impl_in_rule__SweepParameter__Group__72076 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_21_in_rule__SweepParameter__Group__7__Impl2104 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SweepLink__Group__0__Impl_in_rule__SweepLink__Group__02151 = new BitSet(new long[]{0x0000000000280020L});
+    public static final BitSet FOLLOW_rule__SweepLink__Group__0__Impl_in_rule__SweepLink__Group__02151 = new BitSet(new long[]{0x0000000000080020L});
     public static final BitSet FOLLOW_rule__SweepLink__Group__1_in_rule__SweepLink__Group__02154 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_rule__SweepLink__Group__0__Impl2182 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SweepLink__Group__1__Impl_in_rule__SweepLink__Group__12213 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_rule__SweepLink__Group__2_in_rule__SweepLink__Group__12216 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__SweepLink__ParametersAssignment_1_in_rule__SweepLink__Group__1__Impl2243 = new BitSet(new long[]{0x0000000000080022L});
-    public static final BitSet FOLLOW_rule__SweepLink__Group__2__Impl_in_rule__SweepLink__Group__22274 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_rule__SweepLink__Group__2__Impl2302 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Model__NameAssignment_02344 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleImport_in_rule__Model__ModelAssignment_22375 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIncorporates_in_rule__Model__IncorporatesAssignment_3_12406 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleParameter_in_rule__Model__ParametersAssignment_42437 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Import__ImportURIAssignment2468 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__Incorporates__ImportURIAssignment2499 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__SingleParameter__AttributeAssignment_02534 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValue_in_rule__SingleParameter__ValueAssignment_22569 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__SweepParameter__AttributeAssignment_02604 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValue_in_rule__SweepParameter__StartValueAssignment_22639 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValue_in_rule__SweepParameter__EndValueAssignment_42670 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValue_in_rule__SweepParameter__IncrementAssignment_62701 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleParameter_in_rule__SweepLink__ParametersAssignment_12732 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INTEGER_in_rule__IntValue__ValueAssignment2763 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_REAL_in_rule__RealValue__ValueAssignment2794 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__StringValue__ValueAssignment2825 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBOOLEAN_in_rule__BooleanValue__ValueAssignment2856 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SweepLink__Group__1__Impl_in_rule__SweepLink__Group__12212 = new BitSet(new long[]{0x0000000000280020L});
+    public static final BitSet FOLLOW_rule__SweepLink__Group__2_in_rule__SweepLink__Group__12215 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_rule__SweepLink__Group__1__Impl2243 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SweepLink__Group__2__Impl_in_rule__SweepLink__Group__22274 = new BitSet(new long[]{0x0000000000280020L});
+    public static final BitSet FOLLOW_rule__SweepLink__Group__3_in_rule__SweepLink__Group__22277 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__SweepLink__ParametersAssignment_2_in_rule__SweepLink__Group__2__Impl2304 = new BitSet(new long[]{0x0000000000080022L});
+    public static final BitSet FOLLOW_rule__SweepLink__Group__3__Impl_in_rule__SweepLink__Group__32335 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_rule__SweepLink__Group__3__Impl2363 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Model__NameAssignment_02407 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleImport_in_rule__Model__ModelAssignment_22438 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIncorporates_in_rule__Model__IncorporatesAssignment_3_12469 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleParameter_in_rule__Model__ParametersAssignment_42500 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Import__ImportURIAssignment2531 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__Incorporates__ImportURIAssignment2562 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__SingleParameter__AttributeAssignment_02597 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValue_in_rule__SingleParameter__ValueAssignment_22632 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__SweepParameter__AttributeAssignment_02667 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValue_in_rule__SweepParameter__StartValueAssignment_22702 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValue_in_rule__SweepParameter__EndValueAssignment_42733 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValue_in_rule__SweepParameter__IncrementAssignment_62764 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleParameter_in_rule__SweepLink__ParametersAssignment_22795 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_INTEGER_in_rule__IntValue__ValueAssignment2826 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_REAL_in_rule__RealValue__ValueAssignment2857 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rule__StringValue__ValueAssignment2888 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBOOLEAN_in_rule__BooleanValue__ValueAssignment2919 = new BitSet(new long[]{0x0000000000000002L});
 
 }

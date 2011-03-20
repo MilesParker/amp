@@ -2,18 +2,19 @@
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
 	<rm:property key="checkout.location" value="${workspace.root}/org.eclipse.amp" />
 	<rm:property key="eclipse.download" value="http://download.eclipse.org" />
+	<rm:locator pattern="^org\.eclipse\.emf\.mwe(\..+)?" searchPathRef="mwe" />
 
-	<rm:locator pattern="^org\.eclipse\.amp\.releng$" searchPathRef="amp.releng.local" failOnError="false"  />
-	<rm:locator pattern="^org\.eclipse\.amp\.build$" searchPathRef="amp.build.local" failOnError="false"  />
-	<rm:locator pattern="^org\.eclipse\.amp([\.\-].+)\.test$" searchPathRef="amp.tests.local" failOnError="false"  />
+	<rm:locator pattern="^org\.eclipse\.amp\.releng$" searchPathRef="amp.releng.local" failOnError="false" />
+	<rm:locator pattern="^org\.eclipse\.amp\.build$" searchPathRef="amp.build.local" failOnError="false" />
+	<rm:locator pattern="^org\.eclipse\.amp([\.\-].+)\.test$" searchPathRef="amp.tests.local" failOnError="false" />
 	<rm:locator pattern="^org\.eclipse\.amp([\.\-].*)\.examples([\.\-].+)?" searchPathRef="amp.examples.local"
 		failOnError="false" />
 	<rm:locator pattern="^org\.eclipse\.amp([\.\-].+)?" searchPathRef="amp" failOnError="false" />
-	<rm:locator pattern="^org\.eclipse\.emf\.java" searchPathRef="amp.dependencies.local" failOnError="false"  />
-	<rm:locator pattern="^org\.eclipse\.amp\.doc" searchPathRef="amp.doc.local" failOnError="false"  />
-	<rm:locator pattern="^org\.eclipse\.amp\.ua" searchPathRef="amp.doc.local" failOnError="false"  />
-	<rm:locator pattern="^org\.eclipse\.amp(\..+)?" searchPathRef="amp.local" failOnError="false"  />
-	
+	<rm:locator pattern="^org\.eclipse\.emf\.java" searchPathRef="amp.dependencies.local" failOnError="false" />
+	<rm:locator pattern="^org\.eclipse\.amp\.doc" searchPathRef="amp.doc.local" failOnError="false" />
+	<rm:locator pattern="^org\.eclipse\.amp\.ua" searchPathRef="amp.doc.local" failOnError="false" />
+	<rm:locator pattern="^org\.eclipse\.amp(\..+)?" searchPathRef="amp.local" failOnError="false" />
+
 	<rm:locator pattern="^org\.eclipse\.amp\.releng$" searchPathRef="amp.releng" />
 	<rm:locator pattern="^org\.eclipse\.amp\.build$" searchPathRef="amp.build" />
 	<rm:locator pattern="^org\.eclipse\.amp([\.\-].+)\.test$" searchPathRef="amp.tests" />
@@ -24,13 +25,13 @@
 	<rm:locator pattern="^org\.eclipse\.amp\.doc" searchPathRef="amp.doc" />
 	<rm:locator pattern="^org\.eclipse\.amp\.ua" searchPathRef="amp.doc" />
 	<rm:locator pattern="^org\.eclipse\.amp(\..+)?" searchPathRef="amp" />
-	
+	<rm:locator pattern="^org\.eclipse\.xtext(\..+)?" searchPathRef="itemis" failOnError="false" />
+	<rm:locator pattern="^de\.itemis\.xtext\.antlr?" searchPathRef="itemis" />
+
 	<rm:locator pattern="^org\.eclipse\.gef3d(\..+)?" searchPathRef="gef3d" failOnError="false" />
-	<rm:locator pattern="^org\.eclipse\.gef3d(\..+)?" searchPathRef="gef3d-build" />
 	<rm:locator pattern="^org\.eclipse\.draw3d(\..+)?" searchPathRef="gef3d" failOnError="false" />
-	<rm:locator pattern="^org\.eclipse\.draw3d(\..+)?" searchPathRef="gef3d-build" />
-	<rm:locator pattern="^org\.ascape\.core" searchPathRef="amp"/>
-	<rm:locator pattern="^org\.ascape\.ui\.amp" searchPathRef="amp"/>
+	<rm:locator pattern="^org\.ascape\.core" searchPathRef="amp" />
+	<rm:locator pattern="^org\.ascape\.ui\.amp" searchPathRef="amp" />
 	<!-- Note: Third party *NOT* Eclipse IP approved for providing. Make sure that these don't show up in any delivered builds. -->
 	<rm:locator searchPathRef="lwjgl" pattern="^org\.lwjgl(\..+)?" />
 	<rm:locator searchPathRef="ascape.external" pattern="^org\.ascape\..*" />
@@ -249,6 +250,7 @@
 			<rm:property key="git.auto.fetch" value="true" />
 		</rm:provider>
 	</rm:searchPath>
+
 	<rm:searchPath name="gef3d">
 		<rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="svn" mutable="false">
 			<rm:uri format="http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d/trunk/{0}?moduleAfterTag&amp;moduleAfterBranch">
@@ -256,14 +258,11 @@
 			</rm:uri>
 		</rm:provider>
 	</rm:searchPath>
-	<rm:searchPath name="gef3d-build">
-		<rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="svn" mutable="false">
-			<rm:uri format="file:///svnroot/technology/org.eclipse.gef3d/trunk/{0}?moduleAfterTag&amp;moduleAfterBranch">
-				<bc:propertyRef key="buckminster.component" />
-			</rm:uri>
-		</rm:provider>
-	</rm:searchPath>
-	
+
+	<!-- <rm:searchPath name="gef3d"> <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" 
+		mutable="false"> <rm:uri format="file:/Volumes/Resources/Developer/workspaces/gef3d/buckminster.build.output/org.eclipse.gef3d.releng_1.0.0-eclipse.feature/site.p2"/> 
+		</rm:provider> </rm:searchPath> -->
+
 	<!-- NOTE: ***Not for inclusion in Eclipse provided builds. Only used for building tests and examples.*** -->
 	<rm:searchPath name="ascape.external">
 		<rm:provider readerType="p2" componentTypes="osgi.bundle" mutable="false" source="false">
@@ -280,9 +279,23 @@
 
 	<!-- NOTE: ***Not for inclusion in Eclipse provided builds. Provides support for externally hosted plugin dependencies.*** -->
 	<rm:searchPath name="lwjgl">
-		<rm:provider readerType="p2" componentTypes="osgi.bundle" mutable="false" source="false">
+		<rm:provider readerType="p2" componentTypes="eclipse.feature,osgi.bundle" mutable="false" source="false">
 			<rm:uri format="http://lwjgl.org/update" />
 		</rm:provider>
 	</rm:searchPath>
-	
+
+	<!-- NOTE: ***We need to get 1.0.2 which is no longer on Indigo.*** -->
+	<rm:searchPath name="itemis">
+		<rm:provider readerType="p2" componentTypes="eclipse.feature,osgi.bundle" mutable="false" source="false">
+			<rm:uri format="http://download.itemis.com/updates" />
+		</rm:provider>
+	</rm:searchPath>
+
+	<rm:searchPath name="mwe">
+		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<rm:uri format="${eclipse.download}/modeling/emft/mwe/updates/nightly">
+			</rm:uri>
+		</rm:provider>
+	</rm:searchPath>
+
 </rm:rmap>

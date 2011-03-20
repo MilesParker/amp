@@ -37,22 +37,22 @@ public class ATestParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getModelAccess().getAlternatives_2(), "rule__Model__Alternatives_2");
+					put(grammarAccess.getModelAccess().getAlternatives_3(), "rule__Model__Alternatives_3");
 					put(grammarAccess.getValueAccess().getAlternatives(), "rule__Value__Alternatives");
 					put(grammarAccess.getMeasureAccess().getAlternatives(), "rule__Measure__Alternatives");
 					put(grammarAccess.getBOOLEANAccess().getAlternatives(), "rule__BOOLEAN__Alternatives");
 					put(grammarAccess.getModelAccess().getGroup(), "rule__Model__Group__0");
-					put(grammarAccess.getModelAccess().getGroup_2_0(), "rule__Model__Group_2_0__0");
-					put(grammarAccess.getModelAccess().getGroup_2_0_0(), "rule__Model__Group_2_0_0__0");
-					put(grammarAccess.getModelAccess().getGroup_2_1(), "rule__Model__Group_2_1__0");
+					put(grammarAccess.getModelAccess().getGroup_3_0(), "rule__Model__Group_3_0__0");
+					put(grammarAccess.getModelAccess().getGroup_3_0_0(), "rule__Model__Group_3_0_0__0");
+					put(grammarAccess.getModelAccess().getGroup_3_1(), "rule__Model__Group_3_1__0");
 					put(grammarAccess.getConstraintAccess().getGroup(), "rule__Constraint__Group__0");
 					put(grammarAccess.getConstraintAccess().getGroup_5(), "rule__Constraint__Group_5__0");
 					put(grammarAccess.getConstraintAccess().getGroup_7(), "rule__Constraint__Group_7__0");
-					put(grammarAccess.getModelAccess().getNameAssignment_0(), "rule__Model__NameAssignment_0");
-					put(grammarAccess.getModelAccess().getDescriptionAssignment_1(), "rule__Model__DescriptionAssignment_1");
-					put(grammarAccess.getModelAccess().getTestsAssignment_2_0_0_1(), "rule__Model__TestsAssignment_2_0_0_1");
-					put(grammarAccess.getModelAccess().getContraintsAssignment_2_0_1(), "rule__Model__ContraintsAssignment_2_0_1");
-					put(grammarAccess.getModelAccess().getContainsAssignment_2_1_1(), "rule__Model__ContainsAssignment_2_1_1");
+					put(grammarAccess.getModelAccess().getNameAssignment_1(), "rule__Model__NameAssignment_1");
+					put(grammarAccess.getModelAccess().getDescriptionAssignment_2(), "rule__Model__DescriptionAssignment_2");
+					put(grammarAccess.getModelAccess().getTestsAssignment_3_0_0_1(), "rule__Model__TestsAssignment_3_0_0_1");
+					put(grammarAccess.getModelAccess().getContraintsAssignment_3_0_1(), "rule__Model__ContraintsAssignment_3_0_1");
+					put(grammarAccess.getModelAccess().getContainsAssignment_3_1_1(), "rule__Model__ContainsAssignment_3_1_1");
 					put(grammarAccess.getTestsAccess().getImportURIAssignment(), "rule__Tests__ImportURIAssignment");
 					put(grammarAccess.getTestMemberAccess().getImportURIAssignment(), "rule__TestMember__ImportURIAssignment");
 					put(grammarAccess.getConstraintAccess().getMeasureAssignment_0(), "rule__Constraint__MeasureAssignment_0");

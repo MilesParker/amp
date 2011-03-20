@@ -2,11 +2,13 @@
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
   <rm:property key="checkout.location" value="${workspace.root}/"/>
   <rm:property key="eclipse.download" value="file:/home/data/httpd/download.eclipse.org"/>
-  <rm:property key="xpand.p2.repository" value="${eclipse.download}/modeling/m2t/xpand/updates/nightly"/>
-  <rm:property key="mwe.p2.repository" value="${eclipse.download}/modeling/emft/mwe/updates/nightly"/>
   <rm:locator pattern="^org\.eclipse\.amp\.(releng|build)$" searchPathRef="local.releng"/>
+  <rm:locator pattern="^org\.eclipse\.mwe(\..+)?" searchPathRef="eclipse" failOnError="false"/>
+  <rm:locator pattern="^org\.eclipse\.xpand(\..+)?" searchPathRef="eclipse" failOnError="false"/>
+  <rm:locator pattern="^org\.eclipse\.xtend(\..+)?" searchPathRef="eclipse" failOnError="false"/>
+  <rm:locator pattern="^org\.eclipse\.xtext(\..+)?" searchPathRef="eclipse" failOnError="false"/>
+  <rm:locator pattern="^de\.itemis\.xtext\.antlr" searchPathRef="itemis"/>
   <rm:locator pattern="^org\.eclipse(\..+)?$" searchPathRef="eclipse" failOnError="false"/>
-  <rm:locator pattern="^org\.lwjgl(\..+)?" searchPathRef="lwjgl"/>
   <rm:locator pattern="^org\.ascape\.ui\.swing" searchPathRef="ascape.external"/>
   <rm:locator pattern="^org\.ascape\.common\.lib" searchPathRef="ascape.external"/>
   <rm:locator pattern="^org\.ascape\.core" searchPathRef="ascape.external"/>
@@ -14,7 +16,8 @@
   <rm:locator pattern="^org\.eclipse\.swtbot(\..+)?" searchPathRef="swtbot"/>
   <rm:locator searchPathRef="eclipse" failOnError="false"/>
   <rm:locator searchPathRef="platform" failOnError="false"/>
-  <rm:locator searchPathRef="orbit"/>
+  <rm:locator searchPathRef="orbit" failOnError="false"/>
+  <rm:locator searchPathRef="itemis"/>
   <rm:searchPath name="local.releng">
     <rm:provider componentTypes="buckminster" readerType="local" mutable="false">
       <rm:uri format="{0}/releng/{1}">
@@ -26,21 +29,27 @@
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
-  <rm:searchPath name="eclipse">
+  <rm:searchPath name="helios">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
       <rm:uri format="{0}/releases/helios?importType=binary">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
-  <rm:searchPath name="platform">
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/eclipse/updates/3.6">
+  <rm:searchPath name="eclipse">
+    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
+      <rm:uri format="{0}/releases/indigo?importType=binary">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
-
+  <rm:searchPath name="platform">
+    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+      <rm:uri format="{0}/eclipse/updates/3.7">
+        <bc:propertyRef key="eclipse.download"/>
+      </rm:uri>
+    </rm:provider>
+  </rm:searchPath>
   <rm:searchPath name="mwe">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
       <rm:uri format="{0}">
@@ -62,16 +71,9 @@
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
-  <rm:searchPath name="emf">
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/modeling/emf/emf/updates/2.6milestones">
-        <bc:propertyRef key="eclipse.download"/>
-      </rm:uri>
-    </rm:provider>
-  </rm:searchPath>
   <rm:searchPath name="orbit">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/tools/orbit/downloads/drops/R20100519200754/repository">
+      <rm:uri format="{0}/tools/orbit/downloads/drops/S20110304120314/repository">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
@@ -98,18 +100,12 @@
       <rm:uri format="http://lwjgl.org/update"/>
     </rm:provider>
   </rm:searchPath>
-  <rm:searchPath name="gef3d">
-    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="svn">
-      <rm:uri format="http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d/trunk/{0}?moduleAfterTag&amp;moduleAfterBranch">
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-  </rm:searchPath>
-  <rm:searchPath name="gef3d-build">
-    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="svn">
-      <rm:uri format="file:///svnroot/technology/org.eclipse.gef3d/trunk/{0}?moduleAfterTag&amp;moduleAfterBranch">
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-  </rm:searchPath>
+  	
+	<!-- NOTE: ***We need to get 1.0.2 which is no longer on Indigo.*** -->
+	<rm:searchPath name="itemis">
+		<rm:provider readerType="p2" componentTypes="eclipse.feature,osgi.bundle" mutable="false" source="false">
+			<rm:uri format="http://download.itemis.com/updates" />
+		</rm:provider>
+	</rm:searchPath>
+  
 </rm:rmap>

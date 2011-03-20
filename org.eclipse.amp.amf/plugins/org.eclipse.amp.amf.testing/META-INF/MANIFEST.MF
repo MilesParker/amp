@@ -2,31 +2,32 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
-Bundle-Version: 0.8.1.qualifier
+Bundle-Version: 0.8.5.qualifier
 Bundle-SymbolicName: org.eclipse.amp.amf.testing; singleton:=true
-Eclipse-RegisterBuddy: org.eclipse.xtext.log4j
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.xtext,
+Require-Bundle: org.eclipse.xtext;bundle-version="2.0.0";visibility:=reexport,
+ org.apache.log4j;bundle-version="1.2.15";visibility:=reexport,
+ org.apache.commons.logging;bundle-version="1.0.4";resolution:=optional;visibility:=reexport,
  org.eclipse.xtext.generator;resolution:=optional,
- de.itemis.xtext.antlr;resolution:=optional,
  org.eclipse.emf.codegen.ecore;resolution:=optional,
  org.eclipse.emf.mwe.utils;resolution:=optional,
- org.eclipse.emf.mwe.core;resolution:=optional,
- com.ibm.icu;resolution:=optional,
- org.eclipse.xtext.xtend;resolution:=optional,
+ org.eclipse.emf.mwe2.launch;resolution:=optional,
+ org.eclipse.xtext.util,
  org.eclipse.emf.ecore,
  org.eclipse.emf.common,
  org.antlr.runtime,
- org.eclipse.ui,
+ org.eclipse.xtext.common.types,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.amp.amf.acore,
  org.eclipse.amp.amf.abase,
- org.eclipse.amp.amf.parameters,
- org.eclipse.xtext.util,
- org.eclipse.emf.mwe2.launch;resolution:=optional
+ org.eclipse.amp.amf.parameters;bundle-version="0.8.5",
+ org.apache.commons.lang
+Import-Package: org.apache.log4j,
+ org.apache.commons.logging,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtext.xtend2.lib
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-ClassPath: .
 Export-Package: org.eclipse.amp.amf.testing,
  org.eclipse.amp.amf.testing.aTest,
  org.eclipse.amp.amf.testing.aTest.impl,
@@ -34,12 +35,14 @@ Export-Package: org.eclipse.amp.amf.testing,
  org.eclipse.amp.amf.testing.ares,
  org.eclipse.amp.amf.testing.ares.impl,
  org.eclipse.amp.amf.testing.ares.util,
+ org.eclipse.amp.amf.testing.ares.validation,
  org.eclipse.amp.amf.testing.formatting,
+ org.eclipse.amp.amf.testing.generator,
  org.eclipse.amp.amf.testing.parseTreeConstruction,
  org.eclipse.amp.amf.testing.parser.antlr,
  org.eclipse.amp.amf.testing.parser.antlr.internal,
  org.eclipse.amp.amf.testing.scoping,
  org.eclipse.amp.amf.testing.services,
  org.eclipse.amp.amf.testing.validation
+Bundle-ClassPath: .
 Bundle-Localization: plugin
-Import-Package: org.apache.commons.lang
