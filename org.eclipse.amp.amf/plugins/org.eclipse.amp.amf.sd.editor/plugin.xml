@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.amp.amf.sd.presentation.SdModelWizardID"
+            name="%_UI_SdModelWizard_label"
+            class="org.eclipse.amp.amf.sd.presentation.SdModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/SdModelFile.gif">
+         <description>%_UI_SdModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.amp.amf.sd.presentation.SdEditorID"
+            name="%_UI_SdEditor_label"
+            icon="icons/full/obj16/SdModelFile.gif"
+            extensions="sd"
+            class="org.eclipse.amp.amf.sd.presentation.SdEditor"
+            contributorClass="org.eclipse.amp.amf.sd.presentation.SdActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

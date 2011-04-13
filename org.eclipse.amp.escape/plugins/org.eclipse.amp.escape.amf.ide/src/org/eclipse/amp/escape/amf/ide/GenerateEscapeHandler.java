@@ -20,11 +20,9 @@ import org.eclipse.core.resources.IResource;
 
 public class GenerateEscapeHandler extends ResourceJobHandler {
 
-    @Override
-    public void execute(IResource resource) {
-        EscapeModelBuilder.getEscapeBuilderDefault().setCurrentMonitor(getMonitor());
-        EscapeModelBuilder.getEscapeBuilderDefault().handleModifiedResource(resource);
-        EscapeModel3DBuilder.getEscapeBuilderDefault().setCurrentMonitor(getMonitor());
-        EscapeModel3DBuilder.getEscapeBuilderDefault().handleModifiedResource(resource);
-    }
+	@Override
+	public void execute(IResource resource) {
+		EscapeModelBuilder.getEscapeBuilderDefault().setCurrentMonitor(getMonitor());
+		EscapeModelBuilder.getEscapeBuilderDefault().handleModifiedResource(resource);
+	}
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ASCII"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <xsd2ecore:XSD2EcoreMappingRoot xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsd2ecore="http://www.eclipse.org/emf/2002/XSD2Ecore" inputs="metaabm.ecore#/"
     outputs="MetaABMXMI.xsd#/">
@@ -74,6 +74,7 @@
       <nested inputs="metaabm.ecore#//SAttribute/derived" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDAttributeUse=5"/>
       <nested inputs="metaabm.ecore#//SAttribute/owner" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDAttributeUse=6"/>
       <nested inputs="metaabm.ecore#//SAttribute/owner" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDParticle/XSDModelGroup/XSDParticle"/>
+      <nested inputs="metaabm.ecore#//SAttribute/children" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDParticle/XSDModelGroup/XSDParticle=1"/>
     </nested>
     <nested inputs="metaabm.ecore#//ITyped/sType" outputs="MetaABMXMI.xsd#//SAttribute;XSDComplexTypeDefinition=9/XSDAttributeUse"/>
     <nested inputs="metaabm.ecore#//SAttribute" outputs="MetaABMXMI.xsd#//SAttribute;XSDElementDeclaration=9"/>
@@ -95,6 +96,7 @@
       <nested inputs="metaabm.ecore#//SAgent/styles" outputs="MetaABMXMI.xsd#//SAgent;XSDComplexTypeDefinition=13/XSDParticle/XSDModelGroup/XSDParticle=1"/>
       <nested inputs="metaabm.ecore#//SAgent/owner" outputs="MetaABMXMI.xsd#//SAgent;XSDComplexTypeDefinition=13/XSDAttributeUse"/>
       <nested inputs="metaabm.ecore#//SAgent/owner" outputs="MetaABMXMI.xsd#//SAgent;XSDComplexTypeDefinition=13/XSDParticle/XSDModelGroup/XSDParticle=2"/>
+      <nested inputs="metaabm.ecore#//SAgent/children" outputs="MetaABMXMI.xsd#//SAgent;XSDComplexTypeDefinition=13/XSDParticle/XSDModelGroup/XSDParticle=3"/>
     </nested>
     <nested inputs="metaabm.ecore#//SImplemented/implementation" outputs="MetaABMXMI.xsd#//SAgent;XSDComplexTypeDefinition=13/XSDParticle/XSDModelGroup/XSDParticle"/>
     <nested inputs="metaabm.ecore#//SAgent" outputs="MetaABMXMI.xsd#//SAgent;XSDElementDeclaration=13"/>
@@ -159,5 +161,17 @@
       <nested inputs="metaabm.ecore#//SImplementation/target" outputs="MetaABMXMI.xsd#//SImplementation;XSDComplexTypeDefinition=27/XSDParticle/XSDModelGroup/XSDParticle"/>
     </nested>
     <nested inputs="metaabm.ecore#//SImplementation" outputs="MetaABMXMI.xsd#//SImplementation;XSDElementDeclaration=27"/>
+    <nested inputs="metaabm.ecore#//IAgentChild" outputs="MetaABMXMI.xsd#//IAgentChild;XSDComplexTypeDefinition=28">
+      <nested inputs="metaabm.ecore#//IAgentChild/parent" outputs="MetaABMXMI.xsd#//IAgentChild;XSDComplexTypeDefinition=28/XSDAttributeUse"/>
+      <nested inputs="metaabm.ecore#//IAgentChild/parent" outputs="MetaABMXMI.xsd#//IAgentChild;XSDComplexTypeDefinition=28/XSDParticle/XSDModelGroup/XSDParticle"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//IAgentChild" outputs="MetaABMXMI.xsd#//IAgentChild;XSDElementDeclaration=28"/>
+    <nested inputs="metaabm.ecore#//IAttributeChild" outputs="MetaABMXMI.xsd#//IAttributeChild;XSDComplexTypeDefinition=29">
+      <nested inputs="metaabm.ecore#//IAttributeChild/parent" outputs="MetaABMXMI.xsd#//IAttributeChild;XSDComplexTypeDefinition=29/XSDAttributeUse"/>
+      <nested inputs="metaabm.ecore#//IAttributeChild/parent" outputs="MetaABMXMI.xsd#//IAttributeChild;XSDComplexTypeDefinition=29/XSDParticle/XSDModelGroup/XSDParticle"/>
+    </nested>
+    <nested inputs="metaabm.ecore#//IAttributeChild" outputs="MetaABMXMI.xsd#//IAttributeChild;XSDElementDeclaration=29"/>
+    <nested inputs="metaabm.ecore#//IModelExtension" outputs="MetaABMXMI.xsd#//IModelExtension;XSDComplexTypeDefinition=30"/>
+    <nested inputs="metaabm.ecore#//IModelExtension" outputs="MetaABMXMI.xsd#//IModelExtension;XSDElementDeclaration=30"/>
   </nested>
 </xsd2ecore:XSD2EcoreMappingRoot>

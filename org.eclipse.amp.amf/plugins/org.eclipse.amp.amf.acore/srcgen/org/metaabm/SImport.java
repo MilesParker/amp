@@ -16,22 +16,24 @@
  */
 package org.metaabm;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object
- * '<em><b>SImport</b></em>'. <!-- end-user-doc --> <p> The following features
- * are supported: <ul> <li>{@link org.metaabm.SImport#getURI <em>URI</em>}</li>
- * </ul> </p>
+/**
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>SImport</b></em>'. <!-- end-user-doc -->
+ * <p>
+ * The following features are supported:
+ * <ul>
+ * <li>{@link org.metaabm.SImport#getURI <em>URI</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @see org.metaabm.MetaABMPackage#getSImport()
  * @model
  * @generated
  */
 public interface SImport extends IArtifact {
 	/**
-	 * Returns the value of the '<em><b>Model</b></em>' attribute. <!--
-	 * begin-user-doc -->
+	 * Returns the value of the '<em><b>Model</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Model</em>' attribute isn't clear, there
-	 * really should be more of a description here...
+	 * If the meaning of the '<em>Model</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
@@ -44,11 +46,11 @@ public interface SImport extends IArtifact {
 	String getModel();
 
 	/**
-	 * Sets the value of the '{@link org.metaabm.SImport#getModel
-	 * <em>Model</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.metaabm.SImport#getModel <em>Model</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @param value
-	 *            the new value of the '<em>Model</em>' attribute.
+	 *          the new value of the '<em>Model</em>' attribute.
 	 * @see #getModel()
 	 * @generated
 	 */

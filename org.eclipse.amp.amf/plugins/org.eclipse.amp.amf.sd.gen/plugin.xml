@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="sdBuilder"
+         name="SD Builder"
+         point="org.eclipse.core.resources.builders">
+      <builder
+            callOnEmptyDelta="false"
+            hasNature="false">
+         <run
+               class="org.eclipse.amp.amf.sd.gen.builder.SDJavaBuilder">
+         </run>
+      </builder>
+   </extension>
+   <extension
+         point="org.eclipse.amp.amf.gen.ide.newProjectWizardConfigurations">
+      <newWizard
+            newWizardID="org.eclipse.amp.escape.amf.wizards.newProject">
+         <builder
+               builderID="org.eclipse.amp.amf.sd.gen.sdBuilder">
+         </builder>
+         <dependency
+               requiredBundleID="org.eclipse.amp.axf.sd">
+         </dependency>
+      </newWizard>
+   </extension>
+
+</plugin>

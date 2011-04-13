@@ -57,8 +57,7 @@ public class FMultiArgumentPrototypeTest extends FArgumentPrototypeTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(MetaABMFunctionFactory.eINSTANCE
-				.createFMultiArgumentPrototype());
+		setFixture(MetaABMFunctionFactory.eINSTANCE.createFMultiArgumentPrototype());
 	}
 
 	/**

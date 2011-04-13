@@ -41,141 +41,130 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SProjection;
 
-/*
- * This is the item provider adapter for a {@link org.metaabm.SProjection}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+/**
+ * This is the item provider adapter for a {@link org.metaabm.SProjection} object.
+ * <!-- begin-user-doc --> <!--
+ * end-user-doc -->
  * @generated
  */
-public class SProjectionItemProvider extends SAttributedItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
-    /**
-     * This constructs an instance from a factory and a notifier.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public SProjectionItemProvider(AdapterFactory adapterFactory) {
-        super(adapterFactory);
-    }
+public class SProjectionItemProvider extends SAttributedItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+	/**
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SProjectionItemProvider(AdapterFactory adapterFactory) {
+		super(adapterFactory);
+	}
 
-    /**
-     * This returns the property descriptors for the adapted class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-        if (itemPropertyDescriptors == null) {
-            super.getPropertyDescriptors(object);
+	/**
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-            addOwnerPropertyDescriptor(object);
-        }
-        return itemPropertyDescriptors;
-    }
+			addOwnerPropertyDescriptor(object);
+		}
+		return itemPropertyDescriptors;
+	}
 
-    /**
-     * @param domain
-     * @param owner
-     * @param feature
-     * @param value
-     * @return
-     * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createSetCommand(org.eclipse.emf.edit.domain.EditingDomain,
-     *      org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, java.lang.Object)
-     */
-    protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value) {
-        CompoundCommand cmd = new CompoundCommand();
-        if (feature == MetaABMPackage.Literals.IID__LABEL) {
-            SProjection proj = (SProjection) owner;
-            // List<Command> sugLabels = new ArrayList<Command>();
-            // for (AAct act : ((AGroup) proj.getOwner().getRootActivity()).getMembers()) {
-            // if (act instanceof ABuildProjection && ((ABuildProjection) act).getProjection() == proj) {
-            // sugLabels.add(new SuggestLabelCommand(domain, act));
-            // }
-            // }
+	/**
+	 * @param domain
+	 * @param owner
+	 * @param feature
+	 * @param value
+	 * @return
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createSetCommand(org.eclipse.emf.edit.domain.EditingDomain,
+	 *      org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, java.lang.Object)
+	 */
+	protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value) {
+		CompoundCommand cmd = new CompoundCommand();
+		if (feature == MetaABMPackage.Literals.IID__LABEL) {
+			SProjection proj = (SProjection) owner;
+			// List<Command> sugLabels = new ArrayList<Command>();
+			// for (AAct act : ((AGroup) proj.getOwner().getRootActivity()).getMembers()) {
+			// if (act instanceof ABuildProjection && ((ABuildProjection) act).getProjection() == proj) {
+			// sugLabels.add(new SuggestLabelCommand(domain, act));
+			// }
+			// }
 
-            cmd.append(super.createSetCommand(domain, owner, feature, value));
-            // for (AAct act : ((AGroup) proj.getOwner().getRootActivity()).getMembers()) {
-            // if (act instanceof ABuildProjection && ((ABuildProjection) act).getProjection() == proj) {
-            // cmd.append(new SuggestLabelCommand(domain, act));
-            // }
-            // }
-        } else {
-            cmd.append(super.createSetCommand(domain, owner, feature, value));
-        }
-        return cmd;
-    }
+			cmd.append(super.createSetCommand(domain, owner, feature, value));
+			// for (AAct act : ((AGroup) proj.getOwner().getRootActivity()).getMembers()) {
+			// if (act instanceof ABuildProjection && ((ABuildProjection) act).getProjection() == proj) {
+			// cmd.append(new SuggestLabelCommand(domain, act));
+			// }
+			// }
+		} else {
+			cmd.append(super.createSetCommand(domain, owner, feature, value));
+		}
+		return cmd;
+	}
 
-    /**
-     * This adds a property descriptor for the Owner feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addOwnerPropertyDescriptor(Object object) {
-        itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(),
-                                                  getString("_UI_SProjection_owner_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_SProjection_owner_feature", "_UI_SProjection_type"),
-                                                  MetaABMPackage.Literals.SPROJECTION__OWNER, false, false, false,
-                                                  null, getString("_UI_RelationsPropertyCategory"),
-                                                  new String[] { "org.eclipse.ui.views.properties.expert" }));
-    }
+	/**
+	 * This adds a property descriptor for the Owner feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOwnerPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_SProjection_owner_feature"), getString("_UI_PropertyDescriptor_description", "_UI_SProjection_owner_feature", "_UI_SProjection_type"), MetaABMPackage.Literals.SPROJECTION__OWNER, false, false, false, null, getString("_UI_RelationsPropertyCategory"), new String[] { "org.eclipse.ui.views.properties.expert" }));
+	}
 
-    /**
-     * This returns SProjection.gif.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/SProjection"));
-    }
+	/**
+	 * This returns SProjection.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/SProjection"));
+	}
 
-    /**
-     * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated NOT
-     */
-    @Override
-    public String getText(Object object) {
-        return super.getText(object);
-    }
+	/**
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public String getText(Object object) {
+		return super.getText(object);
+	}
 
-    /**
-     * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-     * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
-     * 
-     * @generated
-     */
-    @Override
-    public void notifyChanged(Notification notification) {
-        updateChildren(notification);
-        super.notifyChanged(notification);
-    }
+	/**
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void notifyChanged(Notification notification) {
+		updateChildren(notification);
+		super.notifyChanged(notification);
+	}
 
-    /**
-     * This adds to the collection of {@link org.eclipse.emf.edit.command.CommandParameter}s describing all of the
-     * children that can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated NOT
-     */
-    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-        // super.collectNewChildDescriptors(newChildDescriptors, object);
-    }
+	/**
+	 * This adds to the collection of {@link org.eclipse.emf.edit.command.CommandParameter}s describing all of the
+	 * children that can be created under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+		// super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
 
-    public boolean isAttributesConsistent(Object obj) {
-        return false;
-    }
+	public boolean isAttributesConsistent(Object obj) {
+		return false;
+	}
 
-    protected Command createRemoveCommand(EditingDomain domain, EObject owner, EStructuralFeature feature,
-            Collection<?> collection) {
-        if (feature == MetaABMPackage.eINSTANCE.getSAttributed_Attributes() && isAttributesConsistent(owner)) {
-            return UnexecutableCommand.INSTANCE;
-        } else {
-            return super.createRemoveCommand(domain, owner, feature, collection);
-        }
-    }
+	protected Command createRemoveCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Collection<?> collection) {
+		if (feature == MetaABMPackage.eINSTANCE.getSAttributed_Attributes() && isAttributesConsistent(owner)) {
+			return UnexecutableCommand.INSTANCE;
+		} else {
+			return super.createRemoveCommand(domain, owner, feature, collection);
+		}
+	}
 
 }

@@ -22,39 +22,42 @@ import org.metaabm.SAgent;
 import org.metaabm.SImplemented;
 import org.metaabm.SStyle2D;
 
-/*
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>SStyle2 D</b></em>'.
- * @author Miles Parker <!-- end-user-doc --> <p> </p>
+/**
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>SStyle2 D</b></em>'.
+ * 
+ * @author Miles Parker <!-- end-user-doc -->
+ * <p>
+ * </p>
+ *
  * @generated
  */
 public class SStyle2DImpl extends SStyleImpl implements SStyle2D {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected SStyle2DImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SStyle2DImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return MetaABMPackage.Literals.SSTYLE2_D;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return MetaABMPackage.Literals.SSTYLE2_D;
+	}
 
-    public SAgent getParent() {
-        return getAgent();
-    }
+	public SAgent getParent() {
+		return getAgent();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     */
-    public SImplemented basicGetParent() {
-        return getParent();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 */
+	public SImplemented basicGetParent() {
+		return getParent();
+	}
 
 } // SStyle2DImpl

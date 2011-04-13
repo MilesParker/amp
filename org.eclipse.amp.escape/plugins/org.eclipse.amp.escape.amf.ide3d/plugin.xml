@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.handlers">
+       <handler
+             class="org.eclipse.amp.escape.amf.ide3d.ExecuteAMF3DHandler"
+             commandId="org.eclipse.amp.escape.runtime.executeAMF3D">
+          <activeWhen>
+          <reference
+                definitionId="org.eclipse.amp.escape.amf.allowexecute">
+          </reference>
+          </activeWhen>
+          <enabledWhen>
+          <reference
+                definitionId="org.eclipse.amp.escape.amf.allowexecute">
+          </reference>
+          </enabledWhen>
+       </handler>
+       <handler
+             class="org.eclipse.amp.escape.amf.ide3d.GenerateEscape3DHandler"
+             commandId="org.eclipse.amp.amf.gen.escape.3D">
+       </handler>
+       
+   </extension>
+   
+	<extension id="escapeBuilder3D" name="Escape MetaABM 3D Builder" point="org.eclipse.core.resources.builders">
+       <builder hasNature="false">
+          <run class="org.eclipse.amp.escape.amf.ide3d.EscapeModel3DBuilder"/>
+       </builder>
+    </extension>
+ <extension
+       point="org.eclipse.amp.amf.gen.ide.newProjectWizardConfigurations">
+    <newWizard
+          newWizardID="org.eclipse.amp.escape.amf.wizards.newProject">
+       <builder
+             builderID="org.eclipse.amp.escape.amf.ide3d.escapeBuilder3D">
+       </builder>
+    </newWizard>
+ </extension>
+
+</plugin>

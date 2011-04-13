@@ -62,11 +62,11 @@ import org.ascape.util.Conditional;
 
 «AROUND metaabm::tmpl::Java::Body FOR SStyle-»
     «targetDef.proceed()»
-
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
 	enum Shapes {rectangle, oval, marker};
-	
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
 	Shapes shape = Shapes.rectangle;
-
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
     public void draw(Graphics g, Object object, int width, int height) {
 
 		«IF agent.isHost()-»

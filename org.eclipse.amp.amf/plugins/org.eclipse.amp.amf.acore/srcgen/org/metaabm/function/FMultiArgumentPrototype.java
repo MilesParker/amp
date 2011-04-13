@@ -16,9 +16,11 @@
  */
 package org.metaabm.function;
 
-/*
+/**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>FMulti
  * Argument Prototype</b></em>'. <!-- end-user-doc -->
+ *
+ *
  * @see org.metaabm.function.MetaABMFunctionPackage#getFMultiArgumentPrototype()
  * @model
  * @generated

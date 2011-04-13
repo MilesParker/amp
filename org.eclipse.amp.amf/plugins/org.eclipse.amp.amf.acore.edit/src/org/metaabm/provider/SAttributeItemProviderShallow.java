@@ -26,43 +26,46 @@ import org.metaabm.SAttribute;
 
 public class SAttributeItemProviderShallow extends SAttributeItemProvider {
 
-    SAttribute attr;
+	SAttribute attr;
 
-    public SAttributeItemProviderShallow(AdapterFactory adapterFactory, SAttribute attr) {
-        super(adapterFactory);
-        this.attr = attr;
-    }
+	public SAttributeItemProviderShallow(AdapterFactory adapterFactory, SAttribute attr) {
+		super(adapterFactory);
+		this.attr = attr;
+	}
 
-    @SuppressWarnings("unchecked")
-    public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-        return Collections.EMPTY_LIST;
-    }
+	@Override
+	@SuppressWarnings("unchecked")
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		return Collections.EMPTY_LIST;
+	}
 
-    public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain, Object sibling) {
-        return Collections.EMPTY_LIST;
-    }
+	@Override
+	public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain, Object sibling) {
+		return Collections.EMPTY_LIST;
+	}
 
-    public Collection<?> getChildren(Object object) {
-        return Collections.EMPTY_LIST;
-    }
+	@Override
+	public Collection<?> getChildren(Object object) {
+		return Collections.EMPTY_LIST;
+	}
 
-    @Override
-    public Object getEditableValue(Object object) {
-        return attr;
-    }
+	@Override
+	public Object getEditableValue(Object object) {
+		return attr;
+	}
 
-    @Override
-    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-        return super.getPropertyDescriptors(attr);
-    }
+	@Override
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+		return super.getPropertyDescriptors(attr);
+	}
 
-    @Override
-    public Object getParent(Object object) {
-        return super.getParent(attr);
-    }
+	@Override
+	public Object getParent(Object object) {
+		return super.getParent(attr);
+	}
 
-    @Override
-    public String getText(Object object) {
-        return super.getText(attr);
-    }
+	@Override
+	public String getText(Object object) {
+		return super.getText(attr);
+	}
 }

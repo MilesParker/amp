@@ -18,44 +18,47 @@ package org.metaabm.act;
 
 import org.metaabm.IValue;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>ASet</b></em>'.
- * @author Miles Parker <!-- end-user-doc --> <p> The following features are
- * supported: <ul> <li>{@link org.metaabm.act.ASet#getParameter
- * <em>Parameter</em>}</li> </ul> </p>
+/**
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>ASet</b></em>'.
+ * 
+ * @author Miles Parker <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.metaabm.act.ASet#getParameter <em>Parameter</em>}</li>
+ * </ul>
+ * </p>
+ *
  * @see org.metaabm.act.MetaABMActPackage#getASet()
  * @model
  * @generated
  */
 public interface ASet extends AAccessor, ACommand {
-    /**
-     * Returns the value of the '<em><b>Parameter</b></em>' reference. <!--
-     * begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Parameter</em>' reference isn't clear, there
-     * really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * 
-     * @return the value of the '<em>Parameter</em>' reference.
-     * @see #setParameter(IValue)
-     * @see org.metaabm.act.MetaABMActPackage#getASet_Parameter()
-     * @model required="true"
-     * @generated
-     */
-    IValue getParameter();
+	/**
+	 * Returns the value of the '<em><b>Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Parameter</em>' reference isn't clear, there really should be more of a description
+	 * here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parameter</em>' reference.
+	 * @see #setParameter(IValue)
+	 * @see org.metaabm.act.MetaABMActPackage#getASet_Parameter()
+	 * @model required="true"
+	 * @generated
+	 */
+	IValue getParameter();
 
-    /**
-     * Sets the value of the '{@link org.metaabm.act.ASet#getParameter
-     * <em>Parameter</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
-     * 
-     * @param value
-     *            the new value of the '<em>Parameter</em>' reference.
-     * @see #getParameter()
-     * @generated
-     */
-    void setParameter(IValue value);
+	/**
+	 * Sets the value of the '{@link org.metaabm.act.ASet#getParameter <em>Parameter</em>}' reference.
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Parameter</em>' reference.
+	 * @see #getParameter()
+	 * @generated
+	 */
+	void setParameter(IValue value);
 
 } // ASet

@@ -9,6 +9,7 @@
 -->
 
 <plugin>
+   <extension-point id="newProjectWizardConfigurations" name="New-Project-Wizard Configurations" schema="schema/newProjectWizardConfigurations.exsd"/>
     <extension point="org.eclipse.ui.newWizards">
     <category
           id="org.eclipse.amp.amf.ide.wizards"
@@ -185,5 +186,5 @@
        <initializer
              class="org.eclipse.amp.amf.gen.ide.prefs.PreferenceInitializer">
        </initializer>
-    </extension> 
+    </extension>
   </plugin>

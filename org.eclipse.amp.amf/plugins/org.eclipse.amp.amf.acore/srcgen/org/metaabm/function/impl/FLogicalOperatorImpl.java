@@ -30,32 +30,30 @@ import org.metaabm.function.MetaABMFunctionPackage;
  * @generated
  */
 public class FLogicalOperatorImpl extends FOperatorImpl implements FLogicalOperator {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected FLogicalOperatorImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FLogicalOperatorImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return MetaABMFunctionPackage.Literals.FLOGICAL_OPERATOR;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return MetaABMFunctionPackage.Literals.FLOGICAL_OPERATOR;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated NOT
-     */
-    public EList<SAttributeType> getAvailableTypes() {
-        return new EcoreEList.UnmodifiableEList.FastCompare<SAttributeType>(this,
-            MetaABMFunctionPackage.Literals.FFUNCTION__AVAILABLE_TYPES, SAttributeType.BOOLEAN_ACCEPTS.size(),
-            SAttributeType.BOOLEAN_ACCEPTS.toArray());
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	public EList<SAttributeType> getAvailableTypes() {
+		return new EcoreEList.UnmodifiableEList.FastCompare<SAttributeType>(this, MetaABMFunctionPackage.Literals.FFUNCTION__AVAILABLE_TYPES, SAttributeType.BOOLEAN_ACCEPTS.size(), SAttributeType.BOOLEAN_ACCEPTS.toArray());
+	}
 
 } // FLogicalOperatorImpl

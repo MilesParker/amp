@@ -18,9 +18,11 @@ package org.metaabm.function;
 
 import org.metaabm.ITypedArray;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>FArgument Array Prototype</b></em>'. <!-- end-user-doc -->
+/**
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>FArgument Array Prototype</b></em>'. <!--
+ * end-user-doc -->
+ *
+ *
  * @see org.metaabm.function.MetaABMFunctionPackage#getFArgumentArrayPrototype()
  * @model
  * @generated

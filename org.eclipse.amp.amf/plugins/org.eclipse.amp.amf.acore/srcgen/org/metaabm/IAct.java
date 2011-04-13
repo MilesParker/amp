@@ -16,10 +16,12 @@
  */
 package org.metaabm;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>IAct</b></em>'.
+/**
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>IAct</b></em>'.
+ * 
  * @author Miles Parker <!-- end-user-doc -->
+ *
+ *
  * @see org.metaabm.MetaABMPackage#getIAct()
  * @model interface="true" abstract="true"
  * @generated

@@ -27,26 +27,26 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
  * @generated
  */
 public class MetaABMFunctionResourceFactoryImpl extends ResourceFactoryImpl {
-    /**
-     * Creates an instance of the resource factory.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    public MetaABMFunctionResourceFactoryImpl() {
-        super();
-    }
+	/**
+	 * Creates an instance of the resource factory.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	public MetaABMFunctionResourceFactoryImpl() {
+		super();
+	}
 
-    /**
-     * Creates an instance of the resource.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Resource createResource(URI uri) {
-        Resource result = new MetaABMFunctionResourceImpl(uri);
-        return result;
-    }
+	/**
+	 * Creates an instance of the resource.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Resource createResource(URI uri) {
+		Resource result = new MetaABMFunctionResourceImpl(uri);
+		return result;
+	}
 
 } // MetaABMFunctionResourceFactoryImpl

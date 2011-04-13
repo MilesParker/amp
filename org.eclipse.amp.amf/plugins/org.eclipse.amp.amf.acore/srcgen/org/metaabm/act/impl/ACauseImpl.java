@@ -28,129 +28,129 @@ import org.metaabm.act.MetaABMActPackage;
  * @generated
  */
 public class ACauseImpl extends ACommandImpl implements ACause {
-    /**
-     * The cached value of the '{@link #getResult() <em>Result</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getResult()
-     * @generated
-     * @ordered
-     */
-    protected ARoot result;
+	/**
+	 * The cached value of the '{@link #getResult() <em>Result</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResult()
+	 * @generated
+	 * @ordered
+	 */
+	protected ARoot result;
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected ACauseImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ACauseImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return MetaABMActPackage.Literals.ACAUSE;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return MetaABMActPackage.Literals.ACAUSE;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ARoot getResult() {
-        if (result != null && result.eIsProxy()) {
-            InternalEObject oldResult = (InternalEObject) result;
-            result = (ARoot) eResolveProxy(oldResult);
-            if (result != oldResult) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetaABMActPackage.ACAUSE__RESULT,
-                        oldResult, result));
-            }
-        }
-        return result;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ARoot getResult() {
+		if (result != null && result.eIsProxy()) {
+			InternalEObject oldResult = (InternalEObject) result;
+			result = (ARoot) eResolveProxy(oldResult);
+			if (result != oldResult) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, MetaABMActPackage.ACAUSE__RESULT, oldResult, result));
+			}
+		}
+		return result;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ARoot basicGetResult() {
-        return result;
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ARoot basicGetResult() {
+		return result;
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setResult(ARoot newResult) {
-        ARoot oldResult = result;
-        result = newResult;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MetaABMActPackage.ACAUSE__RESULT, oldResult, result));
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResult(ARoot newResult) {
+		ARoot oldResult = result;
+		result = newResult;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetaABMActPackage.ACAUSE__RESULT, oldResult, result));
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case MetaABMActPackage.ACAUSE__RESULT:
-                if (resolve) return getResult();
-                return basicGetResult();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case MetaABMActPackage.ACAUSE__RESULT:
+				if (resolve)
+					return getResult();
+				return basicGetResult();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case MetaABMActPackage.ACAUSE__RESULT:
-                setResult((ARoot) newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case MetaABMActPackage.ACAUSE__RESULT:
+				setResult((ARoot) newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-            case MetaABMActPackage.ACAUSE__RESULT:
-                setResult((ARoot) null);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case MetaABMActPackage.ACAUSE__RESULT:
+				setResult((ARoot) null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case MetaABMActPackage.ACAUSE__RESULT:
-                return result != null;
-        }
-        return super.eIsSet(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case MetaABMActPackage.ACAUSE__RESULT:
+				return result != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } // ACauseImpl

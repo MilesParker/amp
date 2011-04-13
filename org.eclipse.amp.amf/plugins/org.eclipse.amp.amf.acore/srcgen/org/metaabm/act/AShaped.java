@@ -19,43 +19,48 @@ package org.metaabm.act;
 import org.eclipse.emf.ecore.EObject;
 import org.metaabm.SShapeType;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>AShaped</b></em>'. <!-- end-user-doc --> <p> The following features
- * are supported: <ul> <li>{@link org.metaabm.act.AShaped#getShape
- * <em>Shape</em>}</li> </ul> </p>
+/**
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>AShaped</b></em>'. <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.metaabm.act.AShaped#getShape <em>Shape</em>}</li>
+ * </ul>
+ * </p>
+ *
  * @see org.metaabm.act.MetaABMActPackage#getAShaped()
  * @model abstract="true"
  * @generated
  */
 public interface AShaped extends EObject {
-    /**
-     * Returns the value of the '<em><b>Shape</b></em>' attribute.
-     * The default value is <code>"POINT"</code>.
-     * The literals are from the enumeration {@link org.metaabm.SShapeType}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Shape</em>' attribute isn't clear, there
-     * really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Shape</em>' attribute.
-     * @see org.metaabm.SShapeType
-     * @see #setShape(SShapeType)
-     * @see org.metaabm.act.MetaABMActPackage#getAShaped_Shape()
-     * @model default="POINT" required="true"
-     * @generated
-     */
-    SShapeType getShape();
+	/**
+	 * Returns the value of the '<em><b>Shape</b></em>' attribute.
+	 * The default value is <code>"POINT"</code>.
+	 * The literals are from the enumeration {@link org.metaabm.SShapeType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Shape</em>' attribute isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Shape</em>' attribute.
+	 * @see org.metaabm.SShapeType
+	 * @see #setShape(SShapeType)
+	 * @see org.metaabm.act.MetaABMActPackage#getAShaped_Shape()
+	 * @model default="POINT" required="true"
+	 * @generated
+	 */
+	SShapeType getShape();
 
-    /**
-     * Sets the value of the '{@link org.metaabm.act.AShaped#getShape <em>Shape</em>}' attribute.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @param value the new value of the '<em>Shape</em>' attribute.
-     * @see org.metaabm.SShapeType
-     * @see #getShape()
-     * @generated
-     */
-    void setShape(SShapeType value);
+	/**
+	 * Sets the value of the '{@link org.metaabm.act.AShaped#getShape <em>Shape</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Shape</em>' attribute.
+	 * @see org.metaabm.SShapeType
+	 * @see #getShape()
+	 * @generated
+	 */
+	void setShape(SShapeType value);
 
 } // AShaped

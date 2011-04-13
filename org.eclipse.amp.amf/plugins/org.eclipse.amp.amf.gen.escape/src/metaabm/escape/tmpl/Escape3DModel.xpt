@@ -28,9 +28,8 @@ import org.eclipse.amp.escape.ascape.agf3d.GEF3DView;
 «AROUND metaabm::tmpl::Java::ClassInheiritance FOR SContext-»extends «typeName()»«ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ClassImplementation FOR IID-»
-
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
 	public void createGraphicViews() {
 		addView(new GEF3DView());
 	}
 «ENDAROUND»
-

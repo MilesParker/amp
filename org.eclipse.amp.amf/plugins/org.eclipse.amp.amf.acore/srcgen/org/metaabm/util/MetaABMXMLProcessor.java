@@ -23,16 +23,16 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
 import org.metaabm.MetaABMPackage;
 
-/*
- * This class contains helper methods to serialize and deserialize XML documents
- * <!-- begin-user-doc --> <!-- end-user-doc -->
+/**
+ * This class contains helper methods to serialize and deserialize XML documents <!-- begin-user-doc --> <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
 public class MetaABMXMLProcessor extends XMLProcessor {
 
 	/**
-	 * Public constructor to instantiate the helper. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Public constructor to instantiate the helper. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -42,8 +42,8 @@ public class MetaABMXMLProcessor extends XMLProcessor {
 	}
 
 	/**
-	 * Register for "*" and "xml" file extensions the MetaABMResourceFactoryImpl
-	 * factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Register for "*" and "xml" file extensions the MetaABMResourceFactoryImpl factory. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */

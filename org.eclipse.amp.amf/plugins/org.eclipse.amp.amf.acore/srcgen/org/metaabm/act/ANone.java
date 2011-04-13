@@ -16,10 +16,12 @@
  */
 package org.metaabm.act;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>ANone</b></em>'.
+/**
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>ANone</b></em>'.
+ * 
  * @author Miles Parker <!-- end-user-doc -->
+ *
+ *
  * @see org.metaabm.act.MetaABMActPackage#getANone()
  * @model
  * @generated

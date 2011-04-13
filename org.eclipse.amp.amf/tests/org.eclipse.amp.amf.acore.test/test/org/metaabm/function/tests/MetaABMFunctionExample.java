@@ -48,27 +48,19 @@ public class MetaABMFunctionExample {
 
 		// Register the appropriate resource factory to handle all file extensions.
 		//
-		resourceSet
-				.getResourceFactoryRegistry()
-				.getExtensionToFactoryMap()
-				.put(Resource.Factory.Registry.DEFAULT_EXTENSION,
-						new MetaABMFunctionResourceFactoryImpl());
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION, new MetaABMFunctionResourceFactoryImpl());
 
 		// Register the package to ensure it is available during loading.
 		//
-		resourceSet.getPackageRegistry().put(MetaABMFunctionPackage.eNS_URI,
-				MetaABMFunctionPackage.eINSTANCE);
+		resourceSet.getPackageRegistry().put(MetaABMFunctionPackage.eNS_URI, MetaABMFunctionPackage.eINSTANCE);
 
 		// If there are no arguments, emit an appropriate usage message.
 		//
 		if (args.length == 0) {
-			System.out
-					.println("Enter a list of file paths or URIs that have content like this:");
+			System.out.println("Enter a list of file paths or URIs that have content like this:");
 			try {
-				Resource resource = resourceSet.createResource(URI
-						.createURI("http:///My.metaabmfunction"));
-				FArgumentPrototype root = MetaABMFunctionFactory.eINSTANCE
-						.createFArgumentPrototype();
+				Resource resource = resourceSet.createResource(URI.createURI("http:///My.metaabmfunction"));
+				FArgumentPrototype root = MetaABMFunctionFactory.eINSTANCE.createFArgumentPrototype();
 				resource.getContents().add(root);
 				resource.save(System.out, null);
 			} catch (IOException exception) {
@@ -83,8 +75,7 @@ public class MetaABMFunctionExample {
 				// Otherwise, it's directly treated as a URL.
 				//
 				File file = new File(args[i]);
-				URI uri = file.isFile() ? URI.createFileURI(file
-						.getAbsolutePath()) : URI.createURI(args[i]);
+				URI uri = file.isFile() ? URI.createFileURI(file.getAbsolutePath()) : URI.createURI(args[i]);
 
 				try {
 					// Demand load resource for this file.
@@ -95,8 +86,7 @@ public class MetaABMFunctionExample {
 					// Validate the contents of the loaded resource.
 					//
 					for (EObject eObject : resource.getContents()) {
-						Diagnostic diagnostic = Diagnostician.INSTANCE
-								.validate(eObject);
+						Diagnostic diagnostic = Diagnostician.INSTANCE.validate(eObject);
 						if (diagnostic.getSeverity() != Diagnostic.OK) {
 							printDiagnostic(diagnostic, "");
 						}

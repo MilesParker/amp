@@ -18,35 +18,38 @@ package org.metaabm;
 
 import org.eclipse.emf.common.util.EList;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>SAttributed</b></em>'.
- * @author Miles Parker <!-- end-user-doc --> <p> The following features are
- * supported: <ul> <li>{@link org.metaabm.SAttributed#getAttributes
- * <em>Attributes</em>}</li> </ul> </p>
+/**
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>SAttributed</b></em>'.
+ * 
+ * @author Miles Parker <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.metaabm.SAttributed#getAttributes <em>Attributes</em>}</li>
+ * </ul>
+ * </p>
+ *
  * @see org.metaabm.MetaABMPackage#getSAttributed()
  * @model abstract="true"
  * @generated
  */
 public interface SAttributed extends SNamed {
-    /**
-     * Returns the value of the '<em><b>Attributes</b></em>' containment
-     * reference list. The list contents are of type
-     * {@link org.metaabm.SAttribute}. It is bidirectional and its opposite is '
-     * {@link org.metaabm.SAttribute#getOwner <em>Owner</em>}'. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @return the value of the '<em>Attributes</em>' containment reference
-     *         list.
-     * @see org.metaabm.MetaABMPackage#getSAttributed_Attributes()
-     * @see org.metaabm.SAttribute#getOwner
-     * @model opposite="owner" containment="true" keys="ID" ordered="false"
-     * @generated
-     */
-    EList<SAttribute> getAttributes();
+	/**
+	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
+	 * The list contents are of type {@link org.metaabm.SAttribute}.
+	 * It is bidirectional and its opposite is '{@link org.metaabm.SAttribute#getOwner <em>Owner</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @return the value of the '<em>Attributes</em>' containment reference list.
+	 * @see org.metaabm.MetaABMPackage#getSAttributed_Attributes()
+	 * @see org.metaabm.SAttribute#getOwner
+	 * @model opposite="owner" containment="true" keys="ID" ordered="false"
+	 * @generated
+	 */
+	EList<SAttribute> getAttributes();
 
-    SAttribute findAttribute(String id);
+	SAttribute findAttribute(String id);
 
-    boolean isReachable(IValue value);
+	boolean isReachable(IValue value);
 
 } // SAttributed

@@ -16,10 +16,12 @@
  */
 package org.metaabm.function;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>FLogical</b></em>'.
+/**
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>FLogical</b></em>'.
+ * 
  * @author Miles Parker <!-- end-user-doc -->
+ *
+ *
  * @see org.metaabm.function.MetaABMFunctionPackage#getFLogical()
  * @model interface="true" abstract="true"
  * @generated

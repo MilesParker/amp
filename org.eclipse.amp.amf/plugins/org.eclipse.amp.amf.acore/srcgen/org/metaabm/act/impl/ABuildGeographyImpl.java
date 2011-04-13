@@ -26,21 +26,21 @@ import org.metaabm.act.MetaABMActPackage;
  * @generated
  */
 public class ABuildGeographyImpl extends ABuildProjectionImpl implements ABuildGeography {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected ABuildGeographyImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ABuildGeographyImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return MetaABMActPackage.Literals.ABUILD_GEOGRAPHY;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return MetaABMActPackage.Literals.ABUILD_GEOGRAPHY;
+	}
 
 } // ABuildGeographyImpl

@@ -16,9 +16,11 @@
  */
 package org.metaabm.act;
 
-/*
+/**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>ABuild
  * Geography</b></em>'. <!-- end-user-doc -->
+ *
+ *
  * @see org.metaabm.act.MetaABMActPackage#getABuildGeography()
  * @model
  * @generated

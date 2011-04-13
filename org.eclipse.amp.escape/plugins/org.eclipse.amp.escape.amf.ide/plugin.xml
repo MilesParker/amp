@@ -439,20 +439,6 @@
           </enabledWhen>
        </handler>
        <handler
-             class="org.eclipse.amp.escape.amf.ide.ExecuteAMF3DHandler"
-             commandId="org.eclipse.amp.escape.runtime.executeAMF3D">
-          <activeWhen>
-          <reference
-                definitionId="org.eclipse.amp.escape.amf.allowexecute">
-          </reference>
-          </activeWhen>
-          <enabledWhen>
-          <reference
-                definitionId="org.eclipse.amp.escape.amf.allowexecute">
-          </reference>
-          </enabledWhen>
-       </handler>
-       <handler
              class="org.eclipse.amp.escape.amf.ide.ExecuteAMFHeadlessHandler"
              commandId="org.eclipse.amp.escape.runtime.executeAMFHeadless">
           <activeWhen>
@@ -535,10 +521,6 @@
              class="org.eclipse.amp.escape.amf.ide.GenerateEscapeHandler"
              commandId="org.eclipse.amp.amf.gen.escape">
        </handler>
-       <handler
-             class="org.eclipse.amp.escape.amf.ide.GenerateEscape3DHandler"
-             commandId="org.eclipse.amp.amf.gen.escape.3D">
-       </handler>
     </extension>
 	<extension
           id="escapeBuilder"
@@ -547,15 +529,6 @@
        <builder
              hasNature="false">
           <run class="org.eclipse.amp.escape.amf.ide.EscapeModelBuilder"/>
-       </builder>
-    </extension> 
-	<extension
-          id="escapeBuilder3D"
-          name="Escape MetaABM 3D Builder"
-          point="org.eclipse.core.resources.builders">
-       <builder
-             hasNature="false">
-          <run class="org.eclipse.amp.escape.amf.ide.EscapeModel3DBuilder"/>
        </builder>
     </extension> 
     <extension point="org.eclipse.ui.newWizards">

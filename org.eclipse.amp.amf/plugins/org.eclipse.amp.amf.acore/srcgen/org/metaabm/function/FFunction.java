@@ -21,67 +21,74 @@ import org.metaabm.IID;
 import org.metaabm.IValue;
 import org.metaabm.SAttributeType;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>FFunction</b></em>'.
- * @author Miles Parker <!-- end-user-doc --> <p> The following features are
- * supported: <ul> <li>{@link org.metaabm.function.FFunction#getAvailableTypes
- * <em>Available Types</em>}</li> <li>{@link
- * org.metaabm.function.FFunction#getInputPrototypes <em>Input
- * Prototypes</em>}</li> <li>{@link org.metaabm.function.FFunction#isMultiValue
- * <em>Multi Value</em>}</li> </ul> </p>
+/**
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>FFunction</b></em>'.
+ * 
+ * @author Miles Parker <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.metaabm.function.FFunction#getAvailableTypes <em>Available Types</em>}</li>
+ *   <li>{@link org.metaabm.function.FFunction#getInputPrototypes <em>Input Prototypes</em>}</li>
+ *   <li>{@link org.metaabm.function.FFunction#isMultiValue <em>Multi Value</em>}</li>
+ * </ul>
+ * </p>
+ *
  * @see org.metaabm.function.MetaABMFunctionPackage#getFFunction()
  * @model abstract="true"
  * @generated
  */
 public interface FFunction extends IID {
-    /**
-     * Returns the value of the '<em><b>Available Types</b></em>' attribute list.
-     * The list contents are of type {@link org.metaabm.SAttributeType}.
-     * The literals are from the enumeration {@link org.metaabm.SAttributeType}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Available Types</em>' attribute list isn't
-     * clear, there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Available Types</em>' attribute list.
-     * @see org.metaabm.SAttributeType
-     * @see org.metaabm.function.MetaABMFunctionPackage#getFFunction_AvailableTypes()
-     * @model transient="true" volatile="true" derived="true"
-     * @generated
-     */
-    EList<SAttributeType> getAvailableTypes();
+	/**
+	 * Returns the value of the '<em><b>Available Types</b></em>' attribute list. The list contents are of type
+	 * {@link org.metaabm.SAttributeType}. The literals are from the enumeration {@link org.metaabm.SAttributeType}. <!--
+	 * begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Available Types</em>' attribute list isn't clear, there really should be more of a
+	 * description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Available Types</em>' attribute list.
+	 * @see org.metaabm.SAttributeType
+	 * @see org.metaabm.function.MetaABMFunctionPackage#getFFunction_AvailableTypes()
+	 * @model transient="true" volatile="true" derived="true"
+	 * @generated
+	 */
+	EList<SAttributeType> getAvailableTypes();
 
-    /**
-     * Returns the value of the '<em><b>Input Prototypes</b></em>' containment reference list.
-     * The list contents are of type {@link org.metaabm.function.FArgumentPrototype}.
-     * It is bidirectional and its opposite is '{@link org.metaabm.function.FArgumentPrototype#getInputFunction <em>Input Function</em>}'.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Input Prototypes</em>' containment reference
-     * list isn't clear, there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Input Prototypes</em>' containment reference list.
-     * @see org.metaabm.function.MetaABMFunctionPackage#getFFunction_InputPrototypes()
-     * @see org.metaabm.function.FArgumentPrototype#getInputFunction
-     * @model opposite="inputFunction" containment="true"
-     * @generated
-     */
-    EList<FArgumentPrototype> getInputPrototypes();
+	/**
+	 * Returns the value of the '<em><b>Input Prototypes</b></em>' containment reference list.
+	 * The list contents are of type {@link org.metaabm.function.FArgumentPrototype}.
+	 * It is bidirectional and its opposite is '{@link org.metaabm.function.FArgumentPrototype#getInputFunction <em>Input Function</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Input Prototypes</em>' containment reference list isn't clear, there really should be
+	 * more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Input Prototypes</em>' containment reference list.
+	 * @see org.metaabm.function.MetaABMFunctionPackage#getFFunction_InputPrototypes()
+	 * @see org.metaabm.function.FArgumentPrototype#getInputFunction
+	 * @model opposite="inputFunction" containment="true"
+	 * @generated
+	 */
+	EList<FArgumentPrototype> getInputPrototypes();
 
-    public boolean accepts(IValue value, int place);
+	public boolean accepts(IValue value, int place);
 
-    boolean isMultiValue();
+	boolean isMultiValue();
 
-    /**
-     * Sets the value of the '{@link org.metaabm.function.FFunction#isMultiValue <em>Multi Value</em>}' attribute.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @param value the new value of the '<em>Multi Value</em>' attribute.
-     * @see #isMultiValue()
-     * @generated
-     */
-    void setMultiValue(boolean value);
-    // todo, needa a way to support key-value matching as well as place
+	/**
+	 * Sets the value of the '{@link org.metaabm.function.FFunction#isMultiValue <em>Multi Value</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *          the new value of the '<em>Multi Value</em>' attribute.
+	 * @see #isMultiValue()
+	 * @generated
+	 */
+	void setMultiValue(boolean value);
+	// todo, needa a way to support key-value matching as well as place
 } // FFunction

@@ -18,9 +18,10 @@ package org.metaabm.function;
 
 import org.metaabm.SNamed;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>FGeneric</b></em>'. <!-- end-user-doc -->
+/**
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>FGeneric</b></em>'. <!-- end-user-doc -->
+ *
+ *
  * @see org.metaabm.function.MetaABMFunctionPackage#getFGeneric()
  * @model abstract="true"
  * @generated

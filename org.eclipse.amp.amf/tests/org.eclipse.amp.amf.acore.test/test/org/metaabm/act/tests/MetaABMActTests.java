@@ -68,6 +68,7 @@ public class MetaABMActTests extends TestSuite {
 		suite.addTestSuite(ACauseTest.class);
 		suite.addTestSuite(ADiffuseTest.class);
 		suite.addTestSuite(APerformTest.class);
+		suite.addTestSuite(ADeriveTest.class);
 		return suite;
 	}
 

@@ -52,6 +52,8 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="derived" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//IAttributeChild" containment="true" eOpposite="#//IAttributeChild/parent"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SAttributeArray" eSuperTypes="#//SAttribute #//ITypedArray"/>
   <eClassifiers xsi:type="ecore:EEnum" name="SAttributeType">
@@ -76,6 +78,8 @@
         eType="#//SStyle" containment="true" eOpposite="#//SStyle/agent" eKeys="#//IID/ID"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="owner" eType="#//SContext"
         eOpposite="#//SContext/agents"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//IAgentChild" containment="true" eOpposite="#//IAgentChild/parent"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SContext" eSuperTypes="#//SAgent">
     <eStructuralFeatures xsi:type="ecore:EReference" name="agents" upperBound="-1"
@@ -192,6 +196,20 @@
     <eLiterals name="Point" value="1" literal="POINT"/>
     <eLiterals name="Line" value="2" literal="LINE"/>
     <eLiterals name="Polygon" value="3" literal="POLYGON"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IAgentChild" abstract="true" interface="true"
+      eSuperTypes="#//IModelExtension">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//SAgent"
+        eOpposite="#//SAgent/children"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IAttributeChild" abstract="true" interface="true"
+      eSuperTypes="#//IModelExtension">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parent" eType="#//SAttribute"
+        eOpposite="#//SAttribute/children"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IModelExtension" abstract="true" interface="true">
+    <eOperations name="getName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="getPackage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eSubpackages name="function" nsURI="http://metaabm.org/function" nsPrefix="function">
     <eClassifiers xsi:type="ecore:EClass" name="FArgumentPrototype" eSuperTypes="#//ITyped #//SNamed">

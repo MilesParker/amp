@@ -16,10 +16,12 @@
  */
 package org.metaabm.function;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>FLogical Operator</b></em>'.
+/**
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>FLogical Operator</b></em>'.
+ * 
  * @author Miles Parker <!-- end-user-doc -->
+ *
+ *
  * @see org.metaabm.function.MetaABMFunctionPackage#getFLogicalOperator()
  * @model
  * @generated

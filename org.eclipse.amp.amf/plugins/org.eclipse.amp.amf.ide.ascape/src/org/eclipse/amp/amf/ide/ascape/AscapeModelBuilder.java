@@ -15,32 +15,33 @@
 package org.eclipse.amp.amf.ide.ascape;
 
 import org.eclipse.amp.amf.gen.ide.MetaABMBuilder;
+import org.metaabm.gen.AMFGenPlugin;
 import org.metaabm.gen.ascape.AscapeGenActivator;
 
 public class AscapeModelBuilder extends MetaABMBuilder {
 
-    public final static String ASCAPE_BUILDER_ID = "ascapeBuilder";
+	public final static String ASCAPE_BUILDER_ID = "ascapeBuilder";
 
-    private static MetaABMBuilder ascapeBuilder;
+	private static MetaABMBuilder ascapeBuilder;
 
-    public AscapeModelBuilder() {
-        super("Generating Ascape", "org.eclipse.amp.amf.gen.ascape", "model/generate_ascape.mwe", true);
-    }
+	public AscapeModelBuilder() {
+		super("Generating Ascape", AMFGenPlugin.PLUGIN_ID + ".ascape", "model/generate_ascape.mwe", true);
+	}
 
-    public void loadPlugins() {
-        AscapeGenActivator.getDefault().getBundle();
-    }
+	public void loadPlugins() {
+		AscapeGenActivator.getDefault().getBundle();
+	}
 
-    /**
-     * Returns the shared instance
-     * 
-     * @return the shared instance
-     */
-    public static MetaABMBuilder getAscapeBuilderDefault() {
-        if (ascapeBuilder == null) {
-            ascapeBuilder = new AscapeModelBuilder();
-        }
-        return ascapeBuilder;
-    }
+	/**
+	 * Returns the shared instance
+	 * 
+	 * @return the shared instance
+	 */
+	public static MetaABMBuilder getAscapeBuilderDefault() {
+		if (ascapeBuilder == null) {
+			ascapeBuilder = new AscapeModelBuilder();
+		}
+		return ascapeBuilder;
+	}
 
 }

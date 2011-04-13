@@ -120,6 +120,6 @@
              </visibleWhen>
           </command>
        </menuContribution>
-    </extension> 
+    </extension>
 </plugin>
 

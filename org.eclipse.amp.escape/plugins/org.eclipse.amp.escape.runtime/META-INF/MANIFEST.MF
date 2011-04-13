@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.amp.escape.runtime
 Bundle-Version: 0.8.5.qualifier
-Bundle-Activator: org.eclipse.amp.escape.runtime.Activator
+Bundle-Activator: org.eclipse.amp.escape.runtime.EscapeRuntimePlugin
 Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
  org.eclipse.amp.axf.views;bundle-version="0.8.5";visibility:=reexport,
  org.eclipse.amp.axf.core;bundle-version="0.8.5";visibility:=reexport,
@@ -22,5 +22,7 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.escape.view.vis
+Export-Package: org.eclipse.amp.escape.runtime,
+ org.eclipse.amp.escape.runtime.extension,
+ org.escape.view.vis
 Bundle-ClassPath: .

@@ -20,28 +20,32 @@ import org.eclipse.emf.ecore.EClass;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SValueLayer;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>SValue
  * Layer</b></em>'.
- * @author Miles Parker <!-- end-user-doc --> <p> </p>
+ * 
+ * @author Miles Parker <!-- end-user-doc -->
+ * <p>
+ * </p>
+ *
  * @generated
  */
 public class SValueLayerImpl extends SNamedImpl implements SValueLayer {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected SValueLayerImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SValueLayerImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return MetaABMPackage.Literals.SVALUE_LAYER;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return MetaABMPackage.Literals.SVALUE_LAYER;
+	}
 
 } // SValueLayerImpl

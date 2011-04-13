@@ -26,41 +26,43 @@ import org.eclipse.amp.escape.ascape.gef.HostCellEditPart;
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::Imports FOR SAgent-»
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Collections;
-
-import org.eclipse.core.runtime.IAdapterFactory;
-import org.eclipse.amp.agf.IGraphicsAdapted;
-import org.eclipse.amp.agf.IGraphicsAdapter;
-
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.jface.viewers.IColorProvider;
-
-import org.ascape.model.Agent;
-import org.ascape.model.Cell;
-import org.ascape.model.CellOccupant;
-import org.ascape.model.HostCell;
-import org.ascape.model.LocatedAgent;
-import org.ascape.model.Scape;
-import org.ascape.model.event.ScapeEvent;
-import org.ascape.model.rule.Rule;
-import org.ascape.model.rule.ExecuteThenUpdate;
-import org.ascape.model.space.CollectionSpace;
-import org.ascape.model.space.Coordinate;
-import org.ascape.model.space.Coordinate2DDiscrete;
-import org.ascape.model.space.Graph;
-import org.ascape.model.space.Location;
-import org.ascape.model.space.Singleton;
-import org.ascape.runtime.NonGraphicRunner;
-import org.ascape.util.Conditional;
-import org.ascape.util.data.DataPoint; 
-import org.ascape.util.data.DataPointConcrete;
-import org.ascape.util.vis.ColorFeature;
-import org.ascape.util.vis.ColorFeatureConcrete;
-import org.ascape.view.vis.ChartView;
-import org.ascape.view.vis.GEFView;
-import org.ascape.view.vis.GraphView;
+	import java.util.ArrayList;
+	import java.util.List;
+	import java.util.Collections;
+	
+	import org.eclipse.core.runtime.IAdapterFactory;
+	import org.eclipse.amp.agf.IGraphicsAdapted;
+	import org.eclipse.amp.agf.IGraphicsAdapter;
+	
+	import org.eclipse.swt.graphics.Color;
+	import org.eclipse.jface.viewers.IColorProvider;
+	
+	import org.ascape.model.Agent;
+	import org.ascape.model.Cell;
+	import org.ascape.model.CellOccupant;
+	import org.ascape.model.HostCell;
+	import org.ascape.model.LocatedAgent;
+	import org.ascape.model.Scape;
+	import org.ascape.model.event.ScapeEvent;
+	import org.ascape.model.rule.Rule;
+	import org.ascape.model.rule.ExecuteThenUpdate;
+	import org.ascape.model.space.CollectionSpace;
+	import org.ascape.model.space.Coordinate;
+	import org.ascape.model.space.Coordinate2DDiscrete;
+	import org.ascape.model.space.Graph;
+	import org.ascape.model.space.Location;
+	import org.ascape.model.space.Singleton;
+	import org.ascape.runtime.NonGraphicRunner;
+	import org.ascape.util.Conditional;
+	import org.ascape.util.data.DataPoint; 
+	import org.ascape.util.data.DataPointConcrete;
+	import org.ascape.util.vis.ColorFeature;
+	import org.ascape.util.vis.ColorFeatureConcrete;
+	import org.ascape.view.vis.ChartView;
+	import org.ascape.view.vis.GEFView;
+	import org.ascape.view.vis.GraphView;
+	
+	«targetDef.proceed()»
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::ExtendType FOR SProjection-»Scape«ENDAROUND»
@@ -79,6 +81,8 @@ import org.ascape.view.vis.GraphView;
 «AROUND metaabm::tmpl::Java::Body FOR SAgent-»
 	«targetDef.proceed()-»
 	«EXPAND metaabm::ascape::tmpl::ScapeAspect::AgentBody-»
+	«EXPAND StartSimulationAgentChild»
+	«EXPAND CalculateTimeStep»
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::Body FOR SContext-»
@@ -87,10 +91,11 @@ import org.ascape.view.vis.GraphView;
     
     «EXPAND CreateGraphicsMethods-»
 
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
 	public IGraphicsAdapter getGraphicsAdapter() {
         return «typeName()»GraphicsAdapter.getDefault();
 	}
-
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
     private Color getInferredChartColor(Object agent,
         IColorProvider colorProvider) {
         Color color = colorProvider.getForeground(agent);
@@ -101,23 +106,66 @@ import org.ascape.view.vis.GraphView;
 		}
         return color;
     }
-    
+    «EXPAND metaabm::tmpl::Java::GenerateComment»
     public static void main(String[] args) {
         (new NonGraphicRunner()).openInstance("«implementation.qualifiedName»");
     }
+    
+    «EXPAND ExecIAgentChild»
+    
 «ENDAROUND»
 
+«DEFINE ExecIAgentChild FOR SContext»
+	«EXPAND metaabm::tmpl::Java::MethodComment»
+	@Override
+	public void executeOnMembers(){
+		int timeStep = getRunner().getPeriod();
+		startSimulationAgentChild(timeStep);
+		«FOREACH agents AS agent»
+			((«agent.implementation.className»)«agent.scape()».getPrototypeAgent()).startSimulationAgentChild(timeStep);
+		«ENDFOREACH»
+		super.executeOnMembers();
+		calculateTimeStep(timeStep);
+		«FOREACH agents AS agent»
+			((«agent.implementation.className»)«agent.scape()».getPrototypeAgent()).calculateTimeStep(timeStep);
+		«ENDFOREACH»
+	}
+«ENDDEFINE»
+
+«DEFINE StartSimulationAgentChild FOR SAgent»
+	«EXPAND metaabm::tmpl::Java::MethodComment»
+	public void startSimulationAgentChild(int timeStep){
+		if(timeStep == getRoot().getRunner().getEarliestPeriod()){
+			for(IAgentChild tmp:children){
+				tmp.startSimulation(timeStep);
+			}
+		}	
+	}
+«ENDDEFINE»
+
+«DEFINE CalculateTimeStep FOR SAgent»
+	«EXPAND metaabm::tmpl::Java::MethodComment»
+	public void calculateTimeStep(int timeStep){
+		for(IAgentChild tmp:children){
+			tmp.calculate(timeStep);
+		}
+	}
+«ENDDEFINE»
+
 «DEFINE CreateGraphicsMethods FOR SContext»
+    «EXPAND metaabm::tmpl::Java::GenerateComment»
 	protected void createChartViews() {
 		ChartView chart = new ChartView();
 		«EXPAND BuildChartSelection FOREACH agents-»
 	    addView(chart);
 	}
 
+    «EXPAND metaabm::tmpl::Java::GenerateComment»
 	protected void create2DViews() {
 		addView(new GEFView());
 	}
 
+    «EXPAND metaabm::tmpl::Java::GenerateComment»
 	protected void createGraphViews() {
     	«FOREACH acts().typeSelect(ABuildNetwork) AS graphBuilder-»
 			«graphBuilder.projection.fieldName()».addView(new GraphView());
@@ -143,8 +191,10 @@ import org.ascape.view.vis.GraphView;
     final «owner.typeName()» «id()»Scape = new «owner.typeName()»();
     «id()»Scape.setRunner(new NonGraphicRunner());
 	«typeName()» «id()» = new «typeName()»() {
+			«EXPAND metaabm::tmpl::Java::GenerateComment»
             public void requestUpdate() {
             }
+            «EXPAND metaabm::tmpl::Java::GenerateComment»
             public «owner.typeName()» get«owner.typeName()»() {
             	return «id()»Scape;
             }
@@ -152,6 +202,7 @@ import org.ascape.view.vis.GraphView;
     «id()»Scape.add(«id()»);
 	«IF !isHost() && isDiscrete()-»
 	HostCell «id()»Host = new HostCell() {
+			«EXPAND metaabm::tmpl::Java::GenerateComment»
             public void requestUpdate() {
             }
         };
@@ -237,14 +288,15 @@ import org.ascape.view.vis.GraphView;
 «AROUND metaabm::tmpl::Java::MethodPotential (metaabm::act::AAct within) FOR AQuery-»
 	«IF (function.id() == "minimize") || (function.id() == "maximize")-»
     /**
+     * <!-- begin-user-doc -->
      * A data point used within a search to find the «selected.agent.label» with the «function.id()»d «inputs.value.get(0).label» value.
+     * <!-- end-user-doc -->
+     * @generated
      */
     public final static DataPoint «dataPoint()» = new DataPointConcrete("«function.id().toFirstUpper()» «inputs.value.get(0).id()»") {
-        /**
-         * 
-         */
+		«EXPAND metaabm::tmpl::Java::GenerateComment»
         private static final long serialVersionUID = 3755810443335739012L;
-
+		«EXPAND metaabm::tmpl::Java::GenerateComment»
         public double getValue(Object o) {
             «EXPAND metaabm::tmpl::Java::InnerEvaluation(allSources.select(e|e.selected == this.selected), false)-»
             return ((«selected.agent.typeName()») o).«inputs.value.get(0).getterName()»();

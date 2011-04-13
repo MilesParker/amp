@@ -16,10 +16,13 @@
  */
 package org.metaabm;
 
-/*
+/**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>SValue
  * Layer</b></em>'.
+ * 
  * @author Miles Parker <!-- end-user-doc -->
+ *
+ *
  * @see org.metaabm.MetaABMPackage#getSValueLayer()
  * @model
  * @generated

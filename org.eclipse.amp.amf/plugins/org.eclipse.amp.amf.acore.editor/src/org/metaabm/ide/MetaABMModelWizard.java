@@ -85,10 +85,7 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<String> FILE_EXTENSIONS = Collections
-			.unmodifiableList(Arrays.asList(MetaModelerPlugin.INSTANCE
-					.getString("_UI_MetaABMEditorFilenameExtensions").split(
-							"\\s*,\\s*")));
+	public static final List<String> FILE_EXTENSIONS = Collections.unmodifiableList(Arrays.asList(MetaModelerPlugin.INSTANCE.getString("_UI_MetaABMEditorFilenameExtensions").split("\\s*,\\s*")));
 
 	/**
 	 * A formatted list of supported file extensions, suitable for display. <!-- begin-user-doc --> <!-- end-user-doc
@@ -96,9 +93,7 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 	 * 
 	 * @generated
 	 */
-	public static final String FORMATTED_FILE_EXTENSIONS = MetaModelerPlugin.INSTANCE
-			.getString("_UI_MetaABMEditorFilenameExtensions").replaceAll(
-					"\\s*,\\s*", ", ");
+	public static final String FORMATTED_FILE_EXTENSIONS = MetaModelerPlugin.INSTANCE.getString("_UI_MetaABMEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", ");
 
 	/**
 	 * This caches an instance of the model package.
@@ -112,8 +107,7 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected MetaABMFactory metaABMFactory = metaABMPackage
-			.getMetaABMFactory();
+	protected MetaABMFactory metaABMFactory = metaABMPackage.getMetaABMFactory();
 
 	/**
 	 * This is the file creation page.
@@ -161,9 +155,7 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 		this.workbench = workbench;
 		this.selection = selection;
 		setWindowTitle(MetaModelerPlugin.INSTANCE.getString("_UI_Wizard_label"));
-		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE
-				.getImageDescriptor(MetaModelerPlugin.INSTANCE
-						.getImage("full/wizban/NewMetaABM")));
+		setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(MetaModelerPlugin.INSTANCE.getImage("full/wizban/NewMetaABM")));
 	}
 
 	/**
@@ -183,8 +175,7 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 					}
 				}
 			}
-			Collections.sort(initialObjectNames,
-					CommonPlugin.INSTANCE.getComparator());
+			Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
 		}
 		return initialObjectNames;
 	}
@@ -195,9 +186,7 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
-		EClass eClass = (EClass) metaABMPackage
-				.getEClassifier(initialObjectCreationPage
-						.getInitialObjectName());
+		EClass eClass = (EClass) metaABMPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
 		EObject rootObject = metaABMFactory.create(eClass);
 		return rootObject;
 	}
@@ -226,8 +215,7 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 
 						// Get the URI of the model file.
 						//
-						URI fileURI = URI.createPlatformResourceURI(modelFile
-								.getFullPath().toString(), true);
+						URI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
 
 						// Create a resource for this file.
 						//
@@ -243,8 +231,7 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 						// Save the contents of the resource to the file system.
 						//
 						Map<Object, Object> options = new HashMap<Object, Object>();
-						options.put(XMLResource.OPTION_ENCODING,
-								initialObjectCreationPage.getEncoding());
+						options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
 						resource.save(options);
 					} catch (Exception exception) {
 						MetaModelerPlugin.INSTANCE.log(exception);
@@ -258,17 +245,14 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 
 			// Select the new file resource in the current view.
 			//
-			IWorkbenchWindow workbenchWindow = workbench
-					.getActiveWorkbenchWindow();
+			IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
 			IWorkbenchPage page = workbenchWindow.getActivePage();
 			final IWorkbenchPart activePart = page.getActivePart();
 			if (activePart instanceof ISetSelectionTarget) {
-				final ISelection targetSelection = new StructuredSelection(
-						modelFile);
+				final ISelection targetSelection = new StructuredSelection(modelFile);
 				getShell().getDisplay().asyncExec(new Runnable() {
 					public void run() {
-						((ISetSelectionTarget) activePart)
-								.selectReveal(targetSelection);
+						((ISetSelectionTarget) activePart).selectReveal(targetSelection);
 					}
 				});
 			}
@@ -276,18 +260,9 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 			// Open an editor on the new file.
 			//
 			try {
-				page.openEditor(
-						new FileEditorInput(modelFile),
-						workbench
-								.getEditorRegistry()
-								.getDefaultEditor(
-										modelFile.getFullPath().toString())
-								.getId());
+				page.openEditor(new FileEditorInput(modelFile), workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
 			} catch (PartInitException exception) {
-				MessageDialog.openError(workbenchWindow.getShell(),
-						MetaModelerPlugin.INSTANCE
-								.getString("_UI_OpenEditorError_label"),
-						exception.getMessage());
+				MessageDialog.openError(workbenchWindow.getShell(), MetaModelerPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage());
 				return false;
 			}
 
@@ -303,15 +278,13 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public class MetaABMModelWizardNewFileCreationPage extends
-			WizardNewFileCreationPage {
+	public class MetaABMModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
 		/**
 		 * Pass in the selection.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @generated
 		 */
-		public MetaABMModelWizardNewFileCreationPage(String pageId,
-				IStructuredSelection selection) {
+		public MetaABMModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
 			super(pageId, selection);
 		}
 
@@ -325,10 +298,8 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 			if (super.validatePage()) {
 				String extension = new Path(getFileName()).getFileExtension();
 				if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
-					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions"
-							: "_WARN_FilenameExtension";
-					setErrorMessage(MetaModelerPlugin.INSTANCE.getString(key,
-							new Object[] { FORMATTED_FILE_EXTENSIONS }));
+					String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension";
+					setErrorMessage(MetaModelerPlugin.INSTANCE.getString(key, new Object[] { FORMATTED_FILE_EXTENSIONS }));
 					return false;
 				}
 				return true;
@@ -341,8 +312,7 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		public IFile getModelFile() {
-			return ResourcesPlugin.getWorkspace().getRoot()
-					.getFile(getContainerFullPath().append(getFileName()));
+			return ResourcesPlugin.getWorkspace().getRoot().getFile(getContainerFullPath().append(getFileName()));
 		}
 	}
 
@@ -399,8 +369,7 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 
 			Label containerLabel = new Label(composite, SWT.LEFT);
 			{
-				containerLabel.setText(MetaModelerPlugin.INSTANCE
-						.getString("_UI_ModelObject"));
+				containerLabel.setText(MetaModelerPlugin.INSTANCE.getString("_UI_ModelObject"));
 
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
@@ -426,8 +395,7 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 
 			Label encodingLabel = new Label(composite, SWT.LEFT);
 			{
-				encodingLabel.setText(MetaModelerPlugin.INSTANCE
-						.getString("_UI_XMLEncoding"));
+				encodingLabel.setText(MetaModelerPlugin.INSTANCE.getString("_UI_XMLEncoding"));
 
 				GridData data = new GridData();
 				data.horizontalAlignment = GridData.FILL;
@@ -467,8 +435,7 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 		 * @generated
 		 */
 		protected boolean validatePage() {
-			return getInitialObjectName() != null
-					&& getEncodings().contains(encodingField.getText());
+			return getInitialObjectName() != null && getEncodings().contains(encodingField.getText());
 		}
 
 		/**
@@ -519,8 +486,7 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 		 */
 		protected String getLabel(String typeName) {
 			try {
-				return MetaABMEditPlugin.INSTANCE.getString("_UI_" + typeName
-						+ "_type");
+				return MetaABMEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type");
 			} catch (MissingResourceException mre) {
 				MetaModelerPlugin.INSTANCE.log(mre);
 			}
@@ -534,10 +500,7 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 		protected Collection<String> getEncodings() {
 			if (encodings == null) {
 				encodings = new ArrayList<String>();
-				for (StringTokenizer stringTokenizer = new StringTokenizer(
-						MetaModelerPlugin.INSTANCE
-								.getString("_UI_XMLEncodingChoices")); stringTokenizer
-						.hasMoreTokens();) {
+				for (StringTokenizer stringTokenizer = new StringTokenizer(MetaModelerPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens();) {
 					encodings.add(stringTokenizer.nextToken());
 				}
 			}
@@ -554,16 +517,10 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 	public void addPages() {
 		// Create a page, set the title, and the initial model file name.
 		//
-		newFileCreationPage = new MetaABMModelWizardNewFileCreationPage(
-				"Whatever", selection);
-		newFileCreationPage.setTitle(MetaModelerPlugin.INSTANCE
-				.getString("_UI_MetaABMModelWizard_label"));
-		newFileCreationPage.setDescription(MetaModelerPlugin.INSTANCE
-				.getString("_UI_MetaABMModelWizard_description"));
-		newFileCreationPage.setFileName(MetaModelerPlugin.INSTANCE
-				.getString("_UI_MetaABMEditorFilenameDefaultBase")
-				+ "."
-				+ FILE_EXTENSIONS.get(0));
+		newFileCreationPage = new MetaABMModelWizardNewFileCreationPage("Whatever", selection);
+		newFileCreationPage.setTitle(MetaModelerPlugin.INSTANCE.getString("_UI_MetaABMModelWizard_label"));
+		newFileCreationPage.setDescription(MetaModelerPlugin.INSTANCE.getString("_UI_MetaABMModelWizard_description"));
+		newFileCreationPage.setFileName(MetaModelerPlugin.INSTANCE.getString("_UI_MetaABMEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0));
 		addPage(newFileCreationPage);
 
 		// Try and get the resource selection to determine a current directory for the file dialog.
@@ -582,36 +539,26 @@ public class MetaABMModelWizard extends Wizard implements INewWizard {
 
 				// This gives us a directory...
 				//
-				if (selectedResource instanceof IFolder
-						|| selectedResource instanceof IProject) {
+				if (selectedResource instanceof IFolder || selectedResource instanceof IProject) {
 					// Set this for the container.
 					//
-					newFileCreationPage.setContainerFullPath(selectedResource
-							.getFullPath());
+					newFileCreationPage.setContainerFullPath(selectedResource.getFullPath());
 
 					// Make up a unique new name here.
 					//
-					String defaultModelBaseFilename = MetaModelerPlugin.INSTANCE
-							.getString("_UI_MetaABMEditorFilenameDefaultBase");
-					String defaultModelFilenameExtension = FILE_EXTENSIONS
-							.get(0);
-					String modelFilename = defaultModelBaseFilename + "."
-							+ defaultModelFilenameExtension;
-					for (int i = 1; ((IContainer) selectedResource)
-							.findMember(modelFilename) != null; ++i) {
-						modelFilename = defaultModelBaseFilename + i + "."
-								+ defaultModelFilenameExtension;
+					String defaultModelBaseFilename = MetaModelerPlugin.INSTANCE.getString("_UI_MetaABMEditorFilenameDefaultBase");
+					String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
+					String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension;
+					for (int i = 1; ((IContainer) selectedResource).findMember(modelFilename) != null; ++i) {
+						modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension;
 					}
 					newFileCreationPage.setFileName(modelFilename);
 				}
 			}
 		}
-		initialObjectCreationPage = new MetaABMModelWizardInitialObjectCreationPage(
-				"Whatever2");
-		initialObjectCreationPage.setTitle(MetaModelerPlugin.INSTANCE
-				.getString("_UI_MetaABMModelWizard_label"));
-		initialObjectCreationPage.setDescription(MetaModelerPlugin.INSTANCE
-				.getString("_UI_Wizard_initial_object_description"));
+		initialObjectCreationPage = new MetaABMModelWizardInitialObjectCreationPage("Whatever2");
+		initialObjectCreationPage.setTitle(MetaModelerPlugin.INSTANCE.getString("_UI_MetaABMModelWizard_label"));
+		initialObjectCreationPage.setDescription(MetaModelerPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description"));
 		addPage(initialObjectCreationPage);
 	}
 

@@ -120,6 +120,7 @@
       <xsd:extension base="metaabm:SNamed">
         <xsd:choice maxOccurs="unbounded" minOccurs="0">
           <xsd:element name="owner" type="metaabm:SAttributed"/>
+          <xsd:element name="children" type="metaabm:IAttributeChild"/>
         </xsd:choice>
         <xsd:attribute name="sType" type="metaabm:SAttributeType" use="required"/>
         <xsd:attribute name="gatherData" type="xsd:boolean"/>
@@ -170,6 +171,7 @@
           <xsd:element name="implementation" type="metaabm:SImplementation"/>
           <xsd:element name="styles" type="metaabm:SStyle"/>
           <xsd:element name="owner" type="metaabm:SContext"/>
+          <xsd:element name="children" type="metaabm:IAgentChild"/>
         </xsd:choice>
         <xsd:attribute name="owner" type="xsd:string"/>
       </xsd:extension>
@@ -306,4 +308,34 @@
     <xsd:attribute name="target" type="xsd:string"/>
   </xsd:complexType>
   <xsd:element name="SImplementation" type="metaabm:SImplementation"/>
+  <xsd:complexType abstract="true" name="IAgentChild">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:IModelExtension">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="parent" type="metaabm:SAgent"/>
+        </xsd:choice>
+        <xsd:attribute name="parent" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="IAgentChild" type="metaabm:IAgentChild"/>
+  <xsd:complexType abstract="true" name="IAttributeChild">
+    <xsd:complexContent>
+      <xsd:extension base="metaabm:IModelExtension">
+        <xsd:choice maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="parent" type="metaabm:SAttribute"/>
+        </xsd:choice>
+        <xsd:attribute name="parent" type="xsd:string"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:element name="IAttributeChild" type="metaabm:IAttributeChild"/>
+  <xsd:complexType abstract="true" name="IModelExtension">
+    <xsd:choice maxOccurs="unbounded" minOccurs="0">
+      <xsd:element ref="xmi:Extension"/>
+    </xsd:choice>
+    <xsd:attribute ref="xmi:id"/>
+    <xsd:attributeGroup ref="xmi:ObjectAttribs"/>
+  </xsd:complexType>
+  <xsd:element name="IModelExtension" type="metaabm:IModelExtension"/>
 </xsd:schema>

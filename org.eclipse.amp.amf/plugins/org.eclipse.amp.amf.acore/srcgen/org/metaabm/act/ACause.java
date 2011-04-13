@@ -23,29 +23,29 @@ package org.metaabm.act;
  */
 public interface ACause extends ACommand {
 
-    /**
-     * Returns the value of the '<em><b>Result</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Result</em>' reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Result</em>' reference.
-     * @see #setResult(ARoot)
-     * @see org.metaabm.act.MetaABMActPackage#getACause_Result()
-     * @model required="true"
-     * @generated
-     */
-    ARoot getResult();
+	/**
+	 * Returns the value of the '<em><b>Result</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Result</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Result</em>' reference.
+	 * @see #setResult(ARoot)
+	 * @see org.metaabm.act.MetaABMActPackage#getACause_Result()
+	 * @model required="true"
+	 * @generated
+	 */
+	ARoot getResult();
 
-    /**
-     * Sets the value of the '{@link org.metaabm.act.ACause#getResult <em>Result</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Result</em>' reference.
-     * @see #getResult()
-     * @generated
-     */
-    void setResult(ARoot value);
+	/**
+	 * Sets the value of the '{@link org.metaabm.act.ACause#getResult <em>Result</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Result</em>' reference.
+	 * @see #getResult()
+	 * @generated
+	 */
+	void setResult(ARoot value);
 } // ACause

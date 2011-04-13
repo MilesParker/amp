@@ -19,31 +19,36 @@ package org.metaabm.act;
 import org.eclipse.emf.common.util.EList;
 import org.metaabm.IValue;
 
-/*
+/**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>AMulti
- * Value</b></em>'. <!-- end-user-doc --> <p> The following features are
- * supported: <ul> <li>{@link org.metaabm.act.AMultiValue#getValues
- * <em>Values</em>}</li> </ul> </p>
+ * Value</b></em>'. <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.metaabm.act.AMultiValue#getValues <em>Values</em>}</li>
+ * </ul>
+ * </p>
+ *
  * @see org.metaabm.act.MetaABMActPackage#getAMultiValue()
  * @model
  * @generated
  */
 public interface AMultiValue extends ALiteral {
-    /**
-     * Returns the value of the '<em><b>Values</b></em>' reference list.
-     * The list contents are of type {@link org.metaabm.IValue}.
-     * <!-- begin-user-doc
-     * -->
-     * <p>
-     * If the meaning of the '<em>Values</em>' reference list isn't clear, there
-     * really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Values</em>' reference list.
-     * @see org.metaabm.act.MetaABMActPackage#getAMultiValue_Values()
-     * @model
-     * @generated
-     */
-    EList<IValue> getValues();
+	/**
+	 * Returns the value of the '<em><b>Values</b></em>' reference list.
+	 * The list contents are of type {@link org.metaabm.IValue}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Values</em>' reference list isn't clear, there really should be more of a description
+	 * here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Values</em>' reference list.
+	 * @see org.metaabm.act.MetaABMActPackage#getAMultiValue_Values()
+	 * @model
+	 * @generated
+	 */
+	EList<IValue> getValues();
 
 } // AMultiValue

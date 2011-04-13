@@ -18,9 +18,11 @@ package org.metaabm.function;
 
 import org.metaabm.SImplemented;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>FImplemented Library</b></em>'. <!-- end-user-doc -->
+/**
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>FImplemented Library</b></em>'. <!--
+ * end-user-doc -->
+ *
+ *
  * @see org.metaabm.function.MetaABMFunctionPackage#getFImplementedLibrary()
  * @model
  * @generated

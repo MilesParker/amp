@@ -57,8 +57,7 @@ public class FArgumentArrayPrototypeTest extends FArgumentPrototypeTest {
 	 */
 	@Override
 	protected void setUp() throws Exception {
-		setFixture(MetaABMFunctionFactory.eINSTANCE
-				.createFArgumentArrayPrototype());
+		setFixture(MetaABMFunctionFactory.eINSTANCE.createFArgumentArrayPrototype());
 	}
 
 	/**

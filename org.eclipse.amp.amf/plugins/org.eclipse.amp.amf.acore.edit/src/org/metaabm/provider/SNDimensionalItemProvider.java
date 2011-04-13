@@ -43,136 +43,116 @@ import org.metaabm.MetaABMPackage;
 import org.metaabm.SNDimensional;
 import org.metaabm.commands.SetDimensionalAttributesCommand;
 
-/*
- * This is the item provider adapter for a {@link org.metaabm.SNDimensional}
- * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+/**
+ * This is the item provider adapter for a {@link org.metaabm.SNDimensional} object.
+ * <!-- begin-user-doc --> <!--
+ * end-user-doc -->
  * @generated
  */
-public class SNDimensionalItemProvider extends SProjectionItemProvider implements IEditingDomainItemProvider,
-        IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource,
-        ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
-    /**
-     * This constructs an instance from a factory and a notifier.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public SNDimensionalItemProvider(AdapterFactory adapterFactory) {
-        super(adapterFactory);
-    }
+public class SNDimensionalItemProvider extends SProjectionItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, IItemColorProvider {
+	/**
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SNDimensionalItemProvider(AdapterFactory adapterFactory) {
+		super(adapterFactory);
+	}
 
-    /**
-     * This returns the property descriptors for the adapted class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-        if (itemPropertyDescriptors == null) {
-            super.getPropertyDescriptors(object);
+	/**
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-            addDimensionalityPropertyDescriptor(object);
-            addBorderRulePropertyDescriptor(object);
-        }
-        return itemPropertyDescriptors;
-    }
+			addDimensionalityPropertyDescriptor(object);
+			addBorderRulePropertyDescriptor(object);
+		}
+		return itemPropertyDescriptors;
+	}
 
-    /**
-     * This adds a property descriptor for the Dimensionality feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addDimensionalityPropertyDescriptor(Object object) {
-        itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(),
-                                                  getString("_UI_SNDimensional_dimensionality_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_SNDimensional_dimensionality_feature",
-                                                            "_UI_SNDimensional_type"),
-                                                  MetaABMPackage.Literals.SN_DIMENSIONAL__DIMENSIONALITY, true, false,
-                                                  false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-                                                  getString("_UI_ValuesPropertyCategory"), null));
-    }
+	/**
+	 * This adds a property descriptor for the Dimensionality feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDimensionalityPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_SNDimensional_dimensionality_feature"), getString("_UI_PropertyDescriptor_description", "_UI_SNDimensional_dimensionality_feature", "_UI_SNDimensional_type"), MetaABMPackage.Literals.SN_DIMENSIONAL__DIMENSIONALITY, true, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, getString("_UI_ValuesPropertyCategory"), null));
+	}
 
-    /**
-     * This adds a property descriptor for the Border Rule feature.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addBorderRulePropertyDescriptor(Object object) {
-        itemPropertyDescriptors
-                .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-                                                  getResourceLocator(),
-                                                  getString("_UI_SNDimensional_borderRule_feature"),
-                                                  getString("_UI_PropertyDescriptor_description",
-                                                            "_UI_SNDimensional_borderRule_feature",
-                                                            "_UI_SNDimensional_type"),
-                                                  MetaABMPackage.Literals.SN_DIMENSIONAL__BORDER_RULE, true, false,
-                                                  false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-    }
+	/**
+	 * This adds a property descriptor for the Border Rule feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addBorderRulePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_SNDimensional_borderRule_feature"), getString("_UI_PropertyDescriptor_description", "_UI_SNDimensional_borderRule_feature", "_UI_SNDimensional_type"), MetaABMPackage.Literals.SN_DIMENSIONAL__BORDER_RULE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
 
-    /**
-     * This returns the label text for the adapted class.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated NOT
-     */
-    @Override
-    public String getText(Object object) {
-        return super.getText(object);
-    }
+	/**
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated NOT
+	 */
+	@Override
+	public String getText(Object object) {
+		return super.getText(object);
+	}
 
-    /**
-     * This handles model notifications by calling {@link #updateChildren} to update any cached children and by creating
-     * a viewer notification, which it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
-     * 
-     * @generated
-     */
-    @Override
-    public void notifyChanged(Notification notification) {
-        updateChildren(notification);
+	/**
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void notifyChanged(Notification notification) {
+		updateChildren(notification);
 
-        switch (notification.getFeatureID(SNDimensional.class)) {
-            case MetaABMPackage.SN_DIMENSIONAL__DIMENSIONALITY:
-            case MetaABMPackage.SN_DIMENSIONAL__BORDER_RULE:
-                fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-                return;
-        }
-        super.notifyChanged(notification);
-    }
+		switch (notification.getFeatureID(SNDimensional.class)) {
+			case MetaABMPackage.SN_DIMENSIONAL__DIMENSIONALITY:
+			case MetaABMPackage.SN_DIMENSIONAL__BORDER_RULE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+		}
+		super.notifyChanged(notification);
+	}
 
-    public String suggestLabel(IID object) {
-        int dims = ((SNDimensional) object).getDimensionality();
+	public String suggestLabel(IID object) {
+		int dims = ((SNDimensional) object).getDimensionality();
 
-        String suggested = getString("_UI_" + object.eClass().getName() + "_type") + (dims > 0 ? " " + dims + "D" : "");
+		String suggested = getString("_UI_" + object.eClass().getName() + "_type") + (dims > 0 ? " " + dims + "D" : "");
 
-        return suggested;
-    }
+		return suggested;
+	}
 
-    protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value,
-            int index) {
-        if (feature == MetaABMPackage.Literals.SN_DIMENSIONAL__DIMENSIONALITY) {
-            return new SetDimensionalAttributesCommand(domain, owner, feature, value, index);
-        } else {
-            return super.createSetCommand(domain, owner, feature, value, index);
-        }
-    }
+	protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value, int index) {
+		if (feature == MetaABMPackage.Literals.SN_DIMENSIONAL__DIMENSIONALITY) {
+			return new SetDimensionalAttributesCommand(domain, owner, feature, value, index);
+		} else {
+			return super.createSetCommand(domain, owner, feature, value, index);
+		}
+	}
 
-    public boolean isAttributesConsistent(Object obj) {
-        SNDimensional proj = (SNDimensional) obj;
-        // attr for each dimension + dims itself
-        return proj.getDimensionality() == proj.getAttributes().size();
-    }
+	public boolean isAttributesConsistent(Object obj) {
+		SNDimensional proj = (SNDimensional) obj;
+		// attr for each dimension + dims itself
+		return proj.getDimensionality() == proj.getAttributes().size();
+	}
 
-    /**
-     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-     * that can be created under this object.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-        super.collectNewChildDescriptors(newChildDescriptors, object);
-    }
+	/**
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
 
 }

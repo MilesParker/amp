@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.amp.amf.gen.ide" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.amp.amf.gen.ide" id="newProjectWizardConfigurations" name="New-Project-Wizard Configurations"/>
+      </appInfo>
+      <documentation>
+         Configuration for a new-project-wizard.
+
+Builders registered to this extension point will be added during a new-project-wizard. Only builders that have already have been added to the org.eclipse.core.resources.builders extension point and only wizards that have been added to the org.eclipse.ui.newWizards extension point can be referenced.
+
+Dependencies that are registered will be added to the MANIFEST.MF file of the created project as required bundles.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <choice>
+            <element ref="newWizard" minOccurs="1" maxOccurs="unbounded"/>
+         </choice>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="newWizard">
+      <complexType>
+         <choice>
+            <element ref="builder" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="dependency" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="import" minOccurs="1" maxOccurs="unbounded"/>
+         </choice>
+         <attribute name="newWizardID" type="string" use="required">
+            <annotation>
+               <documentation>
+                  ID of the new-wizard to be configured.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.ui.newWizards/wizard/@id"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="builder">
+      <complexType>
+         <attribute name="builderID" type="string" use="required">
+            <annotation>
+               <documentation>
+                  ID of the builder to be added by the new-wizard to the created project.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="identifier" basedOn="org.eclipse.core.resources.builders/@id"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="dependency">
+      <complexType>
+         <attribute name="requiredBundleID" type="string" use="required">
+            <annotation>
+               <documentation>
+                  ID of a bundle that must available at runtime. This dependency will be added by the new-wizard to the MANIFEST.MF file of the created project. Version are not supported.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="import">
+      <complexType>
+         <attribute name="package" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Package that must be imported at runtime. This import will be added by the new-wizard to the MANIFEST.MF file of the created project.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         0.9.0.qualifier
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         &lt;!-- Preface: register builder as usual. --&gt;
+&lt;extension id=&quot;escapeBuilder3D&quot; name=&quot;Escape MetaABM 3D Builder&quot; point=&quot;org.eclipse.core.resources.builders&quot;&gt;
+  &lt;builder hasNature=&quot;false&quot;&gt;
+    &lt;run class=&quot;org.eclipse.amp.escape.amf.ide3d.EscapeModel3DBuilder&quot; /&gt;
+  &lt;/builder&gt;
+&lt;/extension&gt;
+
+&lt;!-- Preface: register new-wizard as usual. --&gt;
+&lt;extension point=&quot;org.eclipse.ui.newWizards&quot;&gt;
+  &lt;wizard
+          category=&quot;org.eclipse.amp.amf.ide.wizards&quot;
+          class=&quot;org.eclipse.amp.escape.amf.ide.EscapeAMFProjectWizard&quot;
+          descriptionImage=&quot;icons/etool16/generic_agent.gif&quot;
+          icon=&quot;icons/etool16/EscapeProject.gif&quot;
+          id=&quot;org.eclipse.amp.escape.amf.wizards.newProject&quot;
+          name=&quot;Agent Modeling Escape Project&quot;
+          project=&quot;true&quot;&gt;
+          &lt;description&gt;Creates a new project for generating Escape implementations from MetaABM models.&lt;/description&gt;
+  &lt;/wizard&gt;
+&lt;/extension&gt;
+
+&lt;!-- Configure the new-project-wizard: --&gt;
+&lt;extension point=&quot;org.eclipse.amp.amf.gen.ide.newProjectWizardConfigurations&quot;&gt;
+   &lt;newWizard newWizardID=&quot;org.eclipse.amp.escape.amf.wizards.newProject&quot;&gt;
+      &lt;builder builderID=&quot;org.eclipse.amp.amf.gen.ide.docBuilder&quot; /&gt;
+      &lt;builder builderID=&quot;org.eclipse.amp.escape.amf.ide.escapeBuilder&quot; /&gt;
+      &lt;dependency requiredBundleID=&quot;org.eclipse.amp.escape.runtime&quot; /&gt;
+   &lt;/newWizard&gt;
+&lt;/extension&gt;
+      </documentation>
+   </annotation>
+
+
+
+
+</schema>

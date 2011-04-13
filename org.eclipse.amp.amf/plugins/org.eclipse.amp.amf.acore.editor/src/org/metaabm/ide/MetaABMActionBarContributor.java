@@ -53,8 +53,7 @@ import org.eclipse.ui.PartInitException;
  * begin-user-doc --> <!-- end-user-doc -->
  * @generated
  */
-public class MetaABMActionBarContributor extends
-		EditingDomainActionBarContributor implements ISelectionChangedListener {
+public class MetaABMActionBarContributor extends EditingDomainActionBarContributor implements ISelectionChangedListener {
 	/**
 	 * This keeps track of the active editor.
 	 * <!-- begin-user-doc --> <!--
@@ -77,9 +76,7 @@ public class MetaABMActionBarContributor extends
 	 * end-user-doc -->
 	 * @generated
 	 */
-	protected IAction showPropertiesViewAction = new Action(
-			MetaModelerPlugin.INSTANCE
-					.getString("_UI_ShowPropertiesView_menu_item")) {
+	protected IAction showPropertiesViewAction = new Action(MetaModelerPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) {
 		@Override
 		public void run() {
 			try {
@@ -97,8 +94,7 @@ public class MetaABMActionBarContributor extends
 	 * 
 	 * @generated
 	 */
-	protected IAction refreshViewerAction = new Action(
-			MetaModelerPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
+	protected IAction refreshViewerAction = new Action(MetaModelerPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) {
 		@Override
 		public boolean isEnabled() {
 			return activeEditorPart instanceof IViewerProvider;
@@ -107,8 +103,7 @@ public class MetaABMActionBarContributor extends
 		@Override
 		public void run() {
 			if (activeEditorPart instanceof IViewerProvider) {
-				Viewer viewer = ((IViewerProvider) activeEditorPart)
-						.getViewer();
+				Viewer viewer = ((IViewerProvider) activeEditorPart).getViewer();
 				if (viewer != null) {
 					viewer.refresh();
 				}
@@ -185,9 +180,7 @@ public class MetaABMActionBarContributor extends
 	public void contributeToMenu(IMenuManager menuManager) {
 		super.contributeToMenu(menuManager);
 
-		IMenuManager submenuManager = new MenuManager(
-				MetaModelerPlugin.INSTANCE.getString("_UI_MetaABMEditor_menu"),
-				"org.metaabmMenuID");
+		IMenuManager submenuManager = new MenuManager(MetaModelerPlugin.INSTANCE.getString("_UI_MetaABMEditor_menu"), "org.metaabmMenuID");
 		menuManager.insertAfter("additions", submenuManager);
 		submenuManager.add(new Separator("settings"));
 		submenuManager.add(new Separator("actions"));
@@ -196,16 +189,12 @@ public class MetaABMActionBarContributor extends
 
 		// Prepare for CreateChild item addition or removal.
 		//
-		createChildMenuManager = new MenuManager(
-				MetaModelerPlugin.INSTANCE
-						.getString("_UI_CreateChild_menu_item"));
+		createChildMenuManager = new MenuManager(MetaModelerPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
 		submenuManager.insertBefore("additions", createChildMenuManager);
 
 		// Prepare for CreateSibling item addition or removal.
 		//
-		createSiblingMenuManager = new MenuManager(
-				MetaModelerPlugin.INSTANCE
-						.getString("_UI_CreateSibling_menu_item"));
+		createSiblingMenuManager = new MenuManager(MetaModelerPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
 		submenuManager.insertBefore("additions", createSiblingMenuManager);
 
 		// Force an update because Eclipse hides empty menus now.
@@ -244,8 +233,7 @@ public class MetaABMActionBarContributor extends
 			// Fake a selection changed event to update the menus.
 			//
 			if (selectionProvider.getSelection() != null) {
-				selectionChanged(new SelectionChangedEvent(selectionProvider,
-						selectionProvider.getSelection()));
+				selectionChanged(new SelectionChangedEvent(selectionProvider, selectionProvider.getSelection()));
 			}
 		}
 	}
@@ -276,13 +264,10 @@ public class MetaABMActionBarContributor extends
 		Collection<?> newSiblingDescriptors = null;
 
 		ISelection selection = event.getSelection();
-		if (selection instanceof IStructuredSelection
-				&& ((IStructuredSelection) selection).size() == 1) {
-			Object object = ((IStructuredSelection) selection)
-					.getFirstElement();
+		if (selection instanceof IStructuredSelection && ((IStructuredSelection) selection).size() == 1) {
+			Object object = ((IStructuredSelection) selection).getFirstElement();
 
-			EditingDomain domain = ((IEditingDomainProvider) activeEditorPart)
-					.getEditingDomain();
+			EditingDomain domain = ((IEditingDomainProvider) activeEditorPart).getEditingDomain();
 
 			newChildDescriptors = domain.getNewChildDescriptors(object, null);
 			newSiblingDescriptors = domain.getNewChildDescriptors(null, object);
@@ -290,18 +275,15 @@ public class MetaABMActionBarContributor extends
 
 		// Generate actions for selection; populate and redraw the menus.
 		//
-		createChildActions = generateCreateChildActions(newChildDescriptors,
-				selection);
-		createSiblingActions = generateCreateSiblingActions(
-				newSiblingDescriptors, selection);
+		createChildActions = generateCreateChildActions(newChildDescriptors, selection);
+		createSiblingActions = generateCreateSiblingActions(newSiblingDescriptors, selection);
 
 		if (createChildMenuManager != null) {
 			populateManager(createChildMenuManager, createChildActions, null);
 			createChildMenuManager.update(true);
 		}
 		if (createSiblingMenuManager != null) {
-			populateManager(createSiblingMenuManager, createSiblingActions,
-					null);
+			populateManager(createSiblingMenuManager, createSiblingActions, null);
 			createSiblingMenuManager.update(true);
 		}
 	}
@@ -312,13 +294,11 @@ public class MetaABMActionBarContributor extends
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<IAction> generateCreateChildActions(
-			Collection<?> descriptors, ISelection selection) {
+	protected Collection<IAction> generateCreateChildActions(Collection<?> descriptors, ISelection selection) {
 		Collection<IAction> actions = new ArrayList<IAction>();
 		if (descriptors != null) {
 			for (Object descriptor : descriptors) {
-				actions.add(new CreateChildAction(activeEditorPart, selection,
-						descriptor));
+				actions.add(new CreateChildAction(activeEditorPart, selection, descriptor));
 			}
 		}
 		return actions;
@@ -330,13 +310,11 @@ public class MetaABMActionBarContributor extends
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected Collection<IAction> generateCreateSiblingActions(
-			Collection<?> descriptors, ISelection selection) {
+	protected Collection<IAction> generateCreateSiblingActions(Collection<?> descriptors, ISelection selection) {
 		Collection<IAction> actions = new ArrayList<IAction>();
 		if (descriptors != null) {
 			for (Object descriptor : descriptors) {
-				actions.add(new CreateSiblingAction(activeEditorPart,
-						selection, descriptor));
+				actions.add(new CreateSiblingAction(activeEditorPart, selection, descriptor));
 			}
 		}
 		return actions;
@@ -350,8 +328,7 @@ public class MetaABMActionBarContributor extends
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void populateManager(IContributionManager manager,
-			Collection<? extends IAction> actions, String contributionID) {
+	protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions, String contributionID) {
 		if (actions != null) {
 			for (IAction action : actions) {
 				if (contributionID != null) {
@@ -370,8 +347,7 @@ public class MetaABMActionBarContributor extends
 	 * end-user-doc -->
 	 * @generated
 	 */
-	protected void depopulateManager(IContributionManager manager,
-			Collection<? extends IAction> actions) {
+	protected void depopulateManager(IContributionManager manager, Collection<? extends IAction> actions) {
 		if (actions != null) {
 			IContributionItem[] items = manager.getItems();
 			for (int i = 0; i < items.length; i++) {
@@ -379,15 +355,13 @@ public class MetaABMActionBarContributor extends
 				//
 				IContributionItem contributionItem = items[i];
 				while (contributionItem instanceof SubContributionItem) {
-					contributionItem = ((SubContributionItem) contributionItem)
-							.getInnerItem();
+					contributionItem = ((SubContributionItem) contributionItem).getInnerItem();
 				}
 
 				// Delete the ActionContributionItems with matching action.
 				//
 				if (contributionItem instanceof ActionContributionItem) {
-					IAction action = ((ActionContributionItem) contributionItem)
-							.getAction();
+					IAction action = ((ActionContributionItem) contributionItem).getAction();
 					if (actions.contains(action)) {
 						manager.remove(contributionItem);
 					}
@@ -407,15 +381,11 @@ public class MetaABMActionBarContributor extends
 		super.menuAboutToShow(menuManager);
 		MenuManager submenuManager = null;
 
-		submenuManager = new MenuManager(
-				MetaModelerPlugin.INSTANCE
-						.getString("_UI_CreateChild_menu_item"));
+		submenuManager = new MenuManager(MetaModelerPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"));
 		populateManager(submenuManager, createChildActions, null);
 		menuManager.insertBefore("edit", submenuManager);
 
-		submenuManager = new MenuManager(
-				MetaModelerPlugin.INSTANCE
-						.getString("_UI_CreateSibling_menu_item"));
+		submenuManager = new MenuManager(MetaModelerPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"));
 		populateManager(submenuManager, createSiblingActions, null);
 		menuManager.insertBefore("edit", submenuManager);
 	}

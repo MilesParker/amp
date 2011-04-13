@@ -16,6 +16,7 @@ package org.eclipse.amp.amf.gen.ide;
 
 import java.util.List;
 
+import org.eclipse.amp.amf.ide.AmfIDEPlugin;
 import org.eclipse.jdt.core.JavaCore;
 
 /**
@@ -26,14 +27,16 @@ import org.eclipse.jdt.core.JavaCore;
  */
 public class BasicProjectWizard extends PluginProjectWizard {
 
-    @Override
-    public void addBuilders(List<String> builderIDs) {
-        builderIDs.add("org.eclipse.amp.amf.ide." + MetaABMBuilder.BUILDER_ID);
-        builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + DocumentModelBuilder.DOCUMENT_BUILDER_ID);
-        builderIDs.add(JavaCore.BUILDER_ID);
-    }
+	@Override
+	public List<String> getBuilders() {
+		List<String> builderIDs = super.getBuilders();
+		builderIDs.add(AmfIDEPlugin.PLUGIN_ID + "." + MetaABMBuilder.BUILDER_ID);
+		builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + DocumentModelBuilder.DOCUMENT_BUILDER_ID);
+		builderIDs.add(JavaCore.BUILDER_ID);
+		return builderIDs;
+	}
 
-    public String getProjectTypeName() {
-        return "Basic";
-    }
+	public String getProjectTypeName() {
+		return "Basic";
+	}
 }

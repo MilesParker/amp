@@ -40,7 +40,7 @@ public class ProjectLoader extends URLClassLoader {
 
     public ClassLoader mainLoader;
 
-    private Bundle bundle;
+    private List<Bundle> bundles;
 
     /**
      * Instantiates a new project loader.
@@ -73,7 +73,9 @@ public class ProjectLoader extends URLClassLoader {
      * @throws LoaderCreationException the loader creation exception
      */
     public void activate() throws LoaderCreationException {
-        bundle = Platform.getBundle("org.eclipse.amp.escape.runtime");
+    	bundles = new ArrayList<Bundle>();
+        bundles.add(Platform.getBundle("org.eclipse.amp.escape.runtime"));
+        bundles.add(Platform.getBundle("ch.fhsg.ims.sdrt.core"));
         mainLoader = Thread.currentThread().getContextClassLoader();
         Thread.currentThread().setContextClassLoader(this);
     }
@@ -100,18 +102,32 @@ public class ProjectLoader extends URLClassLoader {
             Class<?> loadClass = super.loadClass(name);
             return loadClass;
         } catch (NoClassDefFoundError classNotFoundException) {
-            Class<?> loadClassI = bundle.loadClass(name);
+            Class<?> loadClassI = loadClassInternal(name);
             return loadClassI;
         } catch (NoSuchMethodError classNotFoundException) {
-            Class<?> loadClassI = bundle.loadClass(name);
+            Class<?> loadClassI = loadClassInternal(name);
             return loadClassI;
         } catch (ClassNotFoundException classNotFoundException) {
-            Class<?> loadClassI = bundle.loadClass(name);
+            Class<?> loadClassI = loadClassInternal(name);
             return loadClassI;
         } catch (UnsupportedClassVersionError classNotFoundException) {
             throw new RuntimeException("Bad class: " + name, classNotFoundException);
         } catch (Exception e) {
             throw new RuntimeException("Unexpected Exception for " + name, e);
         }
+    }
+    private Class<?> loadClassInternal(String name) throws ClassNotFoundException{
+    	ClassNotFoundException lastException = null;
+    	for(Bundle tmp:bundles){
+    		try{
+    			return tmp.loadClass(name);
+    		}catch(ClassNotFoundException e){
+    			lastException = e;
+    		}
+    	}
+    	if(lastException != null){
+    		throw lastException;
+    	}
+    	return null;
     }
 }

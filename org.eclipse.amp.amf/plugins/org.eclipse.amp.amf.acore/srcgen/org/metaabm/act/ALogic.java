@@ -16,9 +16,10 @@
  */
 package org.metaabm.act;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>ALogic</b></em>'. <!-- end-user-doc -->
+/**
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>ALogic</b></em>'. <!-- end-user-doc -->
+ *
+ *
  * @see org.metaabm.act.MetaABMActPackage#getALogic()
  * @model interface="true" abstract="true"
  * @generated

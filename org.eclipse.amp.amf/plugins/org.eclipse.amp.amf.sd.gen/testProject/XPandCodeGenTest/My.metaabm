@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:metaabm="http://metaabm.org/structure" xmlns:sd="sd" label="My" ID="my" pluralLabel="Mys">
+  <rootActivity xsi:type="act:AGroup" label="Actions" ID="actions" pluralLabel="Actionss"/>
+  <implementation package="XPandCodeGenTest" className="My" basePath=""/>
+  <children xsi:type="sd:SdModel" name="SdModel" comment="">
+    <abstractVariables xsi:type="sd:SdAuxVariable" name="AnAux" comment="">
+      <toElement name="AuxToFlow" toElement="//@children.0/@abstractVariables.2"/>
+    </abstractVariables>
+    <abstractVariables xsi:type="sd:SdStockVariable" name="AStock">
+      <toElement name="StockToFlow" toElement="//@children.0/@abstractVariables.2"/>
+    </abstractVariables>
+    <abstractVariables xsi:type="sd:SdFlowVariable" name="AFlow"/>
+  </children>
+</metaabm:SContext>

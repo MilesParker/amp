@@ -14,7 +14,7 @@
  */
 package org.eclipse.amp.amf.gen.ide;
 
-
+import org.metaabm.gen.AMFGenPlugin;
 
 /**
  * Generates default documentation for project models.
@@ -24,23 +24,23 @@ package org.eclipse.amp.amf.gen.ide;
  */
 public class DocumentModelBuilder extends MetaABMBuilder {
 
-    public final static String DOCUMENT_BUILDER_ID = "docBuilder";
+	public final static String DOCUMENT_BUILDER_ID = "docBuilder";
 
-    private static MetaABMBuilder docBuilder;
+	private static MetaABMBuilder docBuilder;
 
-    public DocumentModelBuilder() {
-        super("Generating HTML Documentation", "org.eclipse.amp.amf.gen", "model/generate_html_docs.mwe", false);
-    }
+	public DocumentModelBuilder() {
+		super("Generating HTML Documentation", AMFGenPlugin.PLUGIN_ID, "model/generate_html_docs.mwe", false);
+	}
 
-    /**
-     * Returns the shared instance
-     * 
-     * @return the shared instance
-     */
-    public static MetaABMBuilder getDocumentBuilderDefault() {
-        if (docBuilder == null) {
-            docBuilder = new DocumentModelBuilder();
-        }
-        return docBuilder;
-    }
+	/**
+	 * Returns the shared instance
+	 * 
+	 * @return the shared instance
+	 */
+	public static MetaABMBuilder getDocumentBuilderDefault() {
+		if (docBuilder == null) {
+			docBuilder = new DocumentModelBuilder();
+		}
+		return docBuilder;
+	}
 }

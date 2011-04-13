@@ -15,34 +15,41 @@
 package org.eclipse.amp.amf.ide.ascape;
 
 import java.util.List;
+import java.util.Set;
 
-import org.eclipse.amp.amf.gen.ide.DocumentModelBuilder;
-import org.eclipse.amp.amf.gen.ide.GenIDEPlugin;
 import org.eclipse.amp.amf.gen.ide.PluginTemplateProjectWizard;
-import org.eclipse.jdt.core.JavaCore;
 
 public class AscapeProjectWizard extends PluginTemplateProjectWizard {
 
-    public String getProjectTypeName() {
-        return "MetaABM for Ascape";
-    }
+	@Override
+	public String getProjectTypeName() {
+		return "MetaABM for Ascape";
+	}
 
-    @Override
-    public String[] getNatures() {
-        return new String[] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" };
-    }
+	@Override
+	public String getPluginID() {
+		return AscapeIDEActivator.PLUGIN_ID;
+	}
 
-    public String getPluginID() {
-        return AscapeIDEActivator.PLUGIN_ID;
-    }
+	@Override
+	public Set<String> getDependenciesForManifest() {
+		Set<String> dependencies = super.getDependenciesForManifest();
+		dependencies.add("org.ascape.ui.swing");
+		return dependencies;
+	}
 
-    public void addBuilders(List<String> builderIDs) {
-        builderIDs.add(AscapeIDEActivator.PLUGIN_ID + "." + AscapeModelBuilder.ASCAPE_BUILDER_ID);
-        builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + DocumentModelBuilder.DOCUMENT_BUILDER_ID);
-        super.addBuilders(builderIDs);
-    }
+	@Override
+	public Set<String> getImportsForManifest() {
+		Set<String> importsForManifest = super.getImportsForManifest();
+		importsForManifest.add("org.apache.commons.lang");
+		return importsForManifest;
+	}
 
-    public String getSourceDirName() {
-        return "srcgen";
-    }
+	@Override
+	public List<String> getBuilders() {
+		List<String> builderIDs = super.getBuilders();
+		builderIDs.add(AscapeIDEActivator.PLUGIN_ID + "." + AscapeModelBuilder.ASCAPE_BUILDER_ID);
+		return builderIDs;
+	}
+
 }

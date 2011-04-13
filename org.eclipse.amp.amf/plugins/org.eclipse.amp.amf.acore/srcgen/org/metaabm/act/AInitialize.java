@@ -18,10 +18,12 @@ package org.metaabm.act;
 
 import org.metaabm.SNamed;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>AInitialize</b></em>'.
+/**
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>AInitialize</b></em>'.
+ * 
  * @author Miles Parker <!-- end-user-doc -->
+ *
+ *
  * @see org.metaabm.act.MetaABMActPackage#getAInitialize()
  * @model
  * @generated

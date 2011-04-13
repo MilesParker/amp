@@ -16,10 +16,12 @@
  */
 package org.metaabm;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>SGeography</b></em>'.
+/**
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>SGeography</b></em>'.
+ * 
  * @author Miles Parker <!-- end-user-doc -->
+ *
+ *
  * @see org.metaabm.MetaABMPackage#getSGeography()
  * @model
  * @generated

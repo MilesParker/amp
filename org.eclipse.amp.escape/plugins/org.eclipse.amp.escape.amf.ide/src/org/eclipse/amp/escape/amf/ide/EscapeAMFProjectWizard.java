@@ -16,35 +16,35 @@
 package org.eclipse.amp.escape.amf.ide;
 
 import java.util.List;
+import java.util.Set;
 
-import org.eclipse.amp.amf.gen.ide.DocumentModelBuilder;
-import org.eclipse.amp.amf.gen.ide.GenIDEPlugin;
 import org.eclipse.amp.amf.gen.ide.PluginTemplateProjectWizard;
-import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.amp.escape.runtime.EscapeRuntimePlugin;
 
 public class EscapeAMFProjectWizard extends PluginTemplateProjectWizard {
 
-    public String getProjectTypeName() {
-        return "Escape AMF";
-    }
+	@Override
+	public String getProjectTypeName() {
+		return "Escape AMF";
+	}
 
-    @Override
-    public String[] getNatures() {
-        return new String[] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" };
-    }
+	@Override
+	public List<String> getBuilders() {
+		List<String> builderIds = super.getBuilders();
+		builderIds.add(EscapeAMFPlugin.PLUGIN_ID + "." + EscapeModelBuilder.ESCAPE_BUILDER_ID);
+		return builderIds;
+	}
 
-    public String getPluginID() {
-        return EscapeAMFPlugin.PLUGIN_ID;
-    }
+	@Override
+	public Set<String> getDependenciesForManifest() {
+		Set<String> dependencies = super.getDependenciesForManifest();
+		dependencies.add(EscapeRuntimePlugin.PLUGIN_ID);
+		return dependencies;
+	}
 
-    public void addBuilders(List<String> builderIDs) {
-        builderIDs.add(EscapeAMFPlugin.PLUGIN_ID + "." + EscapeModelBuilder.ESCAPE_BUILDER_ID);
-        builderIDs.add(EscapeAMFPlugin.PLUGIN_ID + "." + EscapeModel3DBuilder.ESCAPE_BUILDER_3D_ID);
-        builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + DocumentModelBuilder.DOCUMENT_BUILDER_ID);
-        super.addBuilders(builderIDs);
-    }
+	@Override
+	public String getPluginID() {
+		return EscapeAMFPlugin.PLUGIN_ID;
+	}
 
-    public String getSourceDirName() {
-        return "srcgen";
-    }
 }

@@ -23,8 +23,8 @@
   </genAnnotations>
   <foreignModel>metaabm.ecore</foreignModel>
   <genPackages prefix="MetaABM" basePackage="org" resource="XMI" disposableProviderFactory="true"
-      loadInitialization="true" presentationPackageSuffix="ide" contentTypeIdentifier=""
-      ecorePackage="metaabm.ecore#/">
+      loadInitialization="true" presentationPackageSuffix="ide" extensibleProviderFactory="true"
+      contentTypeIdentifier="" ecorePackage="metaabm.ecore#/">
     <genAnnotations source="http://www.eclipse.org/emf/2002/GenModel/exporter/org.eclipse.xsd.ecore.exporter">
       <genAnnotations source="metaabm.xsd"/>
     </genAnnotations>
@@ -103,6 +103,7 @@
       <genFeatures createChild="false" propertyCategory="Values" ecoreFeature="ecore:EAttribute metaabm.ecore#//SAttribute/units"/>
       <genFeatures createChild="false" propertyCategory="Values" ecoreFeature="ecore:EAttribute metaabm.ecore#//SAttribute/immutable"/>
       <genFeatures createChild="false" propertyCategory="Values" ecoreFeature="ecore:EAttribute metaabm.ecore#//SAttribute/derived"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metaabm.ecore#//SAttribute/children"/>
     </genClasses>
     <genClasses ecoreClass="metaabm.ecore#//SAttributeArray"/>
     <genClasses ecoreClass="metaabm.ecore#//SState">
@@ -118,6 +119,7 @@
           ecoreFeature="ecore:EReference metaabm.ecore#//SAgent/owner">
         <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
       </genFeatures>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metaabm.ecore#//SAgent/children"/>
     </genClasses>
     <genClasses provider="Stateful" ecoreClass="metaabm.ecore#//SContext">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference metaabm.ecore#//SContext/agents"/>
@@ -198,6 +200,16 @@
       <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute metaabm.ecore#//SImplementation/derivedSrcDir">
         <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
       </genFeatures>
+    </genClasses>
+    <genClasses image="false" ecoreClass="metaabm.ecore#//IAgentChild">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference metaabm.ecore#//IAgentChild/parent"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="metaabm.ecore#//IAttributeChild">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference metaabm.ecore#//IAttributeChild/parent"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="metaabm.ecore#//IModelExtension">
+      <genOperations ecoreOperation="metaabm.ecore#//IModelExtension/getName"/>
+      <genOperations ecoreOperation="metaabm.ecore#//IModelExtension/getPackage"/>
     </genClasses>
     <nestedGenPackages prefix="MetaABMFunction" basePackage="org.metaabm" resource="XML"
         disposableProviderFactory="true" loadInitialization="true" presentationPackageSuffix="ide"

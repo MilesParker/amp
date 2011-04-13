@@ -20,28 +20,31 @@ import org.eclipse.emf.ecore.EClass;
 import org.metaabm.MetaABMPackage;
 import org.metaabm.SGeography;
 
-/*
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>SGeography</b></em>'.
- * @author Miles Parker <!-- end-user-doc --> <p> </p>
+/**
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>SGeography</b></em>'.
+ * 
+ * @author Miles Parker <!-- end-user-doc -->
+ * <p>
+ * </p>
+ *
  * @generated
  */
 public class SGeographyImpl extends SProjectionImpl implements SGeography {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected SGeographyImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SGeographyImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return MetaABMPackage.Literals.SGEOGRAPHY;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return MetaABMPackage.Literals.SGEOGRAPHY;
+	}
 
 } // SGeographyImpl

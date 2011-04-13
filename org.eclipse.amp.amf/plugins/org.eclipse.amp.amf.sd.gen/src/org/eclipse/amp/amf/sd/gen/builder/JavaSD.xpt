@@ -1,0 +1,283 @@
+«IMPORT metaabm»
+«IMPORT sd»
+ 
+«EXTENSION metaabm::tmpl::infer»
+«EXTENSION metaabm::tmpl::types»
+«EXTENSION metaabm::tmpl::util»»
+«EXTENSION org::eclipse::amp::amf::sd::gen::builder::location»
+ 
+«AROUND metaabm::tmpl::Java::Model FOR SContext»
+	«EXPAND Entity FOREACH children»
+    «EXPAND metaabm::tmpl::Java::Model FOREACH agents»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::Model FOR SAgent»
+	«EXPAND Entity FOREACH children»
+«ENDAROUND»
+
+«AROUND metaabm::tmpl::Java::UtilBody FOR SImplemented»
+	«IF SContext.isInstance(this)»
+		«EXPAND UtilBody»
+	«ELSE »
+		«targetDef.proceed()»
+	«ENDIF»
+«ENDAROUND»
+
+«DEFINE SDFields FOR SAttributed»
+«ENDDEFINE»
+
+«DEFINE SDFields FOR SAgent»
+	«EXPAND metaabm::tmpl::Java::MethodComment»
+	private List<AbstractSDModel> sdModel;
+«ENDDEFINE»
+
+«DEFINE Entity FOR SdModel»
+	«LET (List[String]){} AS readAbstractVars»
+		«EXPAND FileCreate»
+		«EXPAND Entity(readAbstractVars) FOREACH abstractVariables»
+	«ENDLET»
+«ENDDEFINE»
+
+«DEFINE Entity FOR IAgentChild»
+«ENDDEFINE»
+
+«DEFINE Extends FOR SdModel»
+	extends AbstractSDModel
+«ENDDEFINE»
+
+«DEFINE Imports FOR SdModel»
+	import org.eclipse.amp.axf.sd.model.AbstractSDModel;
+	import org.eclipse.amp.axf.sd.model.AbstractVariable;
+	
+	import org.ascape.util.data.StatCollectorCSAMM;
+	import org.ascape.model.Scape;
+«ENDDEFINE»
+
+«DEFINE Entity(List[String] readAbstractVars) FOR SdAbstractVariable»
+	«IF !readAbstractVars.contains(this.name)»
+		«readAbstractVars.add(this.name)»
+		«EXPAND FileCreate»
+		«EXPAND Connection(readAbstractVars) FOREACH toElement»
+	«ENDIF»
+«ENDDEFINE»
+
+«DEFINE Connection(List[String] readAbstractVars) FOR SdConnector»
+	«EXPAND FileCreate»
+	«EXPAND Entity(readAbstractVars) FOR toElement» 
+«ENDDEFINE» 
+
+«DEFINE FileCreate FOR SdGeneratable»
+	«FILE getSrcGen(this) + "/" + getPackage(this).replaceAll("\\.", "/") + "/" + name + ".java"»
+		package «getPackage(this)»;
+
+	  	«EXPAND Imports»
+		«EXPAND metaabm::tmpl::Java::GenerateComment»
+		public class «name» «EXPAND Extends» {
+			«EXPAND Members»
+			«EXPAND Constructor»
+			
+			«EXPAND Methods»
+			
+			«EXPAND SDDataCollector»
+		}
+	«ENDFILE»
+«ENDDEFINE»
+
+«DEFINE Members FOR SdGeneratable»
+«ENDDEFINE»
+
+«DEFINE Members FOR SdAbstractVariable»
+	«FOREACH toElement AS elem»
+		«EXPAND metaabm::tmpl::Java::GenerateComment»
+		private «elem.name» var«elem.name»;
+	«ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE Methods FOR SdGeneratable»
+«ENDDEFINE»
+
+«DEFINE Methods FOR SdAbstractVariable»
+	«EXPAND MethodEquation»
+	«EXPAND MethodInit»
+	«EXPAND MethodHelper»
+«ENDDEFINE»
+
+«DEFINE Methods FOR SdModel»
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
+	public void  addDataCollectors(Object scape){
+		«FOREACH abstractVariables AS abVar»
+			((Scape)scape).addStatCollector(new SDDataCollector("«abVar.name»", this, (Scape)scape));
+		«ENDFOREACH»
+	}
+«ENDDEFINE»
+
+«DEFINE Methods FOR SdStockVariable»
+	«EXPAND MethodEquation»
+	«EXPAND MethodInitialState»
+	«EXPAND MethodInit»
+	«EXPAND MethodHelper»
+«ENDDEFINE»
+
+«DEFINE MethodInitialState FOR SdStockVariable»
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
+	public double getInitialValue() {
+		«EXPAND MethodBodyInfo»
+		«initialValue»
+	}
+«ENDDEFINE»
+
+«DEFINE MethodHelper FOR SdAbstractVariable»
+	«FOREACH toElement AS elem»
+		«EXPAND metaabm::tmpl::Java::GenerateComment»
+		public Double «elem.toElement.name»() {
+			«EXPAND MethodBodyInfo»
+			return ((«elem.toElement.name»)var«elem.name».getToElement()).calculate(getCurrentTime());
+		}
+	«ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE MethodEquation FOR SdEquationVariable»
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
+	@Override
+	public double equation() {
+		«EXPAND MethodBodyInfo»
+		«equation»
+	}
+«ENDDEFINE»
+
+«DEFINE MethodEquation FOR SdAbstractVariable»
+«ENDDEFINE»
+
+«DEFINE MethodEquation FOR SdStockVariable»
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
+	@Override
+	public double integral() {
+		«EXPAND MethodBodyInfo»
+		«integral»
+	}
+«ENDDEFINE»
+
+«DEFINE MethodInit FOR SdAbstractVariable»
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
+	@Override
+	public void init(AbstractSDModel parent) {
+		super.init(parent);
+		«EXPAND MethodBodyInfo»
+		«FOREACH toElement AS connection»
+			var«connection.name» = new «connection.name»(getParent().getVariable("«connection.toElement.name»"));
+		«ENDFOREACH»
+	}
+«ENDDEFINE»
+
+
+«DEFINE Constructor FOR SdAbstractVariable»
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
+    public «name»(){
+    	super();
+    	«EXPAND MethodBodyInfo»
+    	«EXPAND AddRelationShip»
+   	}«ENDDEFINE»
+
+«DEFINE Constructor FOR SdConnector»
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
+    public «name»(AbstractVariable target) {
+    	«EXPAND MethodBodyInfo»
+    	«EXPAND AddRelationShip»
+   	}«ENDDEFINE»
+
+«DEFINE Constructor FOR SdGeneratable»
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
+    public «name»() {
+    	«EXPAND MethodBodyInfo»
+    	«EXPAND AddRelationShip»
+   	}«ENDDEFINE»
+   	
+«DEFINE Constructor FOR SdModel»
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
+    public «name»() {
+    	«EXPAND MethodBodyInfo»
+    	«EXPAND AddRelationShip»
+   	}«ENDDEFINE»
+
+«DEFINE AddRelationShip FOR SdGeneratable»
+«ENDDEFINE»
+
+«DEFINE Imports FOR SdGeneratable»
+«ENDDEFINE»
+
+«DEFINE Extends FOR SdGeneratable»
+«ENDDEFINE»
+
+«DEFINE AddRelationShip FOR SdConnector»
+	setToElement(target);
+«ENDDEFINE»
+
+«DEFINE Imports FOR SdConnector»
+	import org.eclipse.amp.axf.sd.model.AbstractVariable;
+	import org.eclipse.amp.axf.sd.model.Connector;
+«ENDDEFINE»
+
+«DEFINE Extends FOR SdConnector»
+	extends Connector
+«ENDDEFINE»
+
+«DEFINE AddRelationShip FOR SdModel»
+	«FOREACH abstractVariables AS abVar»
+		addVariable(new «abVar.name»());
+	«ENDFOREACH»
+	for(AbstractVariable tmp:getVariable()) {
+		tmp.init(this);
+	}
+«ENDDEFINE»
+
+«DEFINE Imports FOR SdAbstractVariable»
+	import org.eclipse.amp.axf.sd.model.AbstractSDModel;
+	import org.eclipse.amp.axf.sd.model.AbstractVariable;
+«ENDDEFINE»
+
+«DEFINE Imports FOR SdStockVariable»
+	import org.eclipse.amp.axf.sd.model.AbstractSDModel;
+	import org.eclipse.amp.axf.sd.model.AbstractStock;
+«ENDDEFINE»
+
+«DEFINE Extends FOR SdAbstractVariable»
+	extends AbstractVariable
+«ENDDEFINE»
+
+«DEFINE Extends FOR SdStockVariable»
+	extends AbstractStock
+«ENDDEFINE»
+
+«DEFINE UtilBody FOR SImplemented»
+«ENDDEFINE»
+
+«DEFINE SDDataCollector FOR SdModel»
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
+	private class SDDataCollector extends StatCollectorCSAMM {
+		«EXPAND metaabm::tmpl::Java::GenerateComment»
+		private «getName()» sdModel;
+		«EXPAND metaabm::tmpl::Java::GenerateComment»		
+		private Scape scape;
+		«EXPAND metaabm::tmpl::Java::GenerateComment»
+		public SDDataCollector(String name, «getName()» sdModel, Scape scape) {
+			super(name);
+			this.sdModel = sdModel;
+			this.scape = scape;
+		}
+		«EXPAND metaabm::tmpl::Java::GenerateComment»
+		@Override
+		public double getValue(Object object) {
+			AbstractVariable var = sdModel.getVariable(getName());
+			int time = scape.getRunner().getPeriod();
+			double retValue = var.calculate(time);
+			return retValue;
+		}
+	}
+«ENDDEFINE»
+
+«DEFINE SDDataCollector FOR SdGeneratable»
+«ENDDEFINE»
+
+«DEFINE MethodBodyInfo FOR SdGeneratable»
+  /* To prevent manual changes in source code being overwritten by the generator, replace '@generated' with '@generated NOT' in the JavaDoc comment. */
+«ENDDEFINE»

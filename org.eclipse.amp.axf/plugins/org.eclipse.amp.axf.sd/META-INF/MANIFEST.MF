@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.eclipse.amp.axf.sd
+Bundle-SymbolicName: org.eclipse.amp.axf.sd
+Bundle-Version: 0.0.1.qualifier
+Bundle-Activator: org.eclipse.amp.axf.sd.SdRtActivator
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.amp.escape.runtime;bundle-version="0.8.1"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: org.eclipse.amp.axf.sd.model,
+ org.eclipse.amp.axf.sd.model.result

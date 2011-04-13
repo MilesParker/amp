@@ -16,10 +16,12 @@
  */
 package org.metaabm;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>SContinuous Space</b></em>'.
+/**
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>SContinuous Space</b></em>'.
+ * 
  * @author Miles Parker <!-- end-user-doc -->
+ *
+ *
  * @see org.metaabm.MetaABMPackage#getSContinuousSpace()
  * @model
  * @generated

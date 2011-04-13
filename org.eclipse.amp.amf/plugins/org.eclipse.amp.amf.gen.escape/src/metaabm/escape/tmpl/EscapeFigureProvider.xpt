@@ -58,10 +58,11 @@ import org.eclipse.amp.agf.gef.Shapes;
 «AROUND metaabm::tmpl::Java::Constructor FOR SContext-»«ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::Body FOR SStyle-»
-
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
     private static IFigureProvider singleton;
 
 	«REM»«IF !((AGroup) rootActivity).members.typeSelect(AEvaluate).exists(a | a.function.id().startsWith("shapeMarker"))»«ENDREM»
+    «EXPAND metaabm::tmpl::Java::GenerateComment»
     public IFigure getFigure(Object object) {
 		IFigure figure = null;
 		Color color = null;
@@ -97,7 +98,7 @@ import org.eclipse.amp.agf.gef.Shapes;
         return true;
     }
     «ENDIF»«ENDREM»
-    
+    «EXPAND metaabm::tmpl::Java::GenerateComment»
     public static IFigureProvider getDefault() {
         if (singleton == null) {
             singleton = new «typeName()»FigureProvider();

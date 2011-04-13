@@ -16,43 +16,48 @@
  */
 package org.metaabm;
 
-/*
+/**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>SStyle
- * Shape</b></em>'. <!-- end-user-doc --> <p> The following features are
- * supported: <ul> <li>{@link org.metaabm.SStyleShape#getShape
- * <em>Shape</em>}</li> </ul> </p>
+ * Shape</b></em>'. <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.metaabm.SStyleShape#getShape <em>Shape</em>}</li>
+ * </ul>
+ * </p>
+ *
  * @see org.metaabm.MetaABMPackage#getSStyleShape()
  * @model
  * @generated
  */
 public interface SStyleShape extends SStyle2D {
-    /**
-     * Returns the value of the '<em><b>Shape</b></em>' attribute. The literals
-     * are from the enumeration {@link org.metaabm.SShapeType}. <!--
-     * begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Shape</em>' attribute isn't clear, there
-     * really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * 
-     * @return the value of the '<em>Shape</em>' attribute.
-     * @see org.metaabm.SShapeType
-     * @see #setShape(SShapeType)
-     * @see org.metaabm.MetaABMPackage#getSStyleShape_Shape()
-     * @model required="true"
-     * @generated
-     */
-    SShapeType getShape();
+	/**
+	 * Returns the value of the '<em><b>Shape</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.metaabm.SShapeType}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Shape</em>' attribute isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Shape</em>' attribute.
+	 * @see org.metaabm.SShapeType
+	 * @see #setShape(SShapeType)
+	 * @see org.metaabm.MetaABMPackage#getSStyleShape_Shape()
+	 * @model required="true"
+	 * @generated
+	 */
+	SShapeType getShape();
 
-    /**
-     * Sets the value of the '{@link org.metaabm.SStyleShape#getShape <em>Shape</em>}' attribute.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @param value the new value of the '<em>Shape</em>' attribute.
-     * @see org.metaabm.SShapeType
-     * @see #getShape()
-     * @generated
-     */
-    void setShape(SShapeType value);
+	/**
+	 * Sets the value of the '{@link org.metaabm.SStyleShape#getShape <em>Shape</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Shape</em>' attribute.
+	 * @see org.metaabm.SShapeType
+	 * @see #getShape()
+	 * @generated
+	 */
+	void setShape(SShapeType value);
 
 } // SStyleShape

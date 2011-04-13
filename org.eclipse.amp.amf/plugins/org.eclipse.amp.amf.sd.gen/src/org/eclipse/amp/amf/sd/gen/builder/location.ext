@@ -1,0 +1,30 @@
+
+String getPackage(sd::SdModel obj):
+		doGetPackage(obj);
+
+String getSrcGen(sd::SdModel obj):
+		doGetSrcGen(obj);
+
+String getPackage(sd::SdAbstractVariable obj): 
+		doGetPackage(obj.parent);
+
+String getSrcGen(sd::SdAbstractVariable obj):
+		doGetSrcGen(obj.parent);
+		
+String getPackage(sd::SdConnector obj): 
+		doGetPackage(obj.toElement.parent);
+
+String getSrcGen(sd::SdConnector obj):
+		doGetSrcGen(obj.toElement.parent);
+
+String getPackage(sd::SdGeneratable obj): 
+		"";
+
+String getSrcGen(sd::SdGeneratable obj):
+		"";
+
+String doGetPackage(metaabm::IAgentChild obj): 
+		JAVA org.eclipse.amp.amf.sd.util.PackageGetter.getPackage(org.metaabm.IAgentChild);
+
+String doGetSrcGen(metaabm::IAgentChild obj):
+		JAVA org.eclipse.amp.amf.sd.util.SrcGenGetter.getSrcGen(org.metaabm.IAgentChild);

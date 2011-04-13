@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<merge:options xmlns:merge="http://www.eclipse.org/org/eclipse/emf/codegen/jmerge/Options">
+
+    <merge:dictionaryPattern
+      name="generatedMember" 
+      select="Member/getComment" 
+      match="@\s*(gen)erated\s*\n"/>
+
+
+    <!-- if target is generated, transfer -->
+    <!-- change to sourceMarkup if the source is the standard -->
+     
+    <merge:pull 
+      targetMarkup="^gen$"
+      sourceGet="Method/getBody"
+      targetPut="Method/setBody"/>
+
+    <!-- copy comments except between the begin-user-doc
+         and end-user-doc tags -->
+    <merge:pull 
+      sourceMarkup="^gen$"
+      sourceGet="Type/getComment"
+      sourceTransfer="(\s*&lt;!--\s*begin-user-doc.*?end-user-doc\s*-->\s*)\n"
+      targetMarkup="^gen$"
+      targetPut="Type/setComment"/>
+
+</merge:options>

@@ -33,106 +33,106 @@ import org.metaabm.act.MetaABMActPackage;
  * @generated
  */
 public class AMultiValueImpl extends ALiteralImpl implements AMultiValue {
-    /**
-     * The cached value of the '{@link #getValues() <em>Values</em>}' reference list.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see #getValues()
-     * @generated
-     * @ordered
-     */
-    protected EList<IValue> values;
+	/**
+	 * The cached value of the '{@link #getValues() <em>Values</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getValues()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<IValue> values;
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected AMultiValueImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AMultiValueImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return MetaABMActPackage.Literals.AMULTI_VALUE;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return MetaABMActPackage.Literals.AMULTI_VALUE;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public EList<IValue> getValues() {
-        if (values == null) {
-            values = new EObjectResolvingEList<IValue>(IValue.class, this, MetaABMActPackage.AMULTI_VALUE__VALUES);
-        }
-        return values;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<IValue> getValues() {
+		if (values == null) {
+			values = new EObjectResolvingEList<IValue>(IValue.class, this, MetaABMActPackage.AMULTI_VALUE__VALUES);
+		}
+		return values;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case MetaABMActPackage.AMULTI_VALUE__VALUES:
-                return getValues();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case MetaABMActPackage.AMULTI_VALUE__VALUES:
+				return getValues();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case MetaABMActPackage.AMULTI_VALUE__VALUES:
-                getValues().clear();
-                getValues().addAll((Collection<? extends IValue>) newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case MetaABMActPackage.AMULTI_VALUE__VALUES:
+				getValues().clear();
+				getValues().addAll((Collection<? extends IValue>) newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-            case MetaABMActPackage.AMULTI_VALUE__VALUES:
-                getValues().clear();
-                return;
-        }
-        super.eUnset(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case MetaABMActPackage.AMULTI_VALUE__VALUES:
+				getValues().clear();
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case MetaABMActPackage.AMULTI_VALUE__VALUES:
-                return values != null && !values.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case MetaABMActPackage.AMULTI_VALUE__VALUES:
+				return values != null && !values.isEmpty();
+		}
+		return super.eIsSet(featureID);
+	}
 
-    public boolean references(IValue value) {
-        for (IValue multiValue : getValues()) {
-            // assume no nesting
-            if (multiValue == value) {
-                return true;
-            }
-        }
-        return false;
-    }
+	public boolean references(IValue value) {
+		for (IValue multiValue : getValues()) {
+			// assume no nesting
+			if (multiValue == value) {
+				return true;
+			}
+		}
+		return false;
+	}
 } // AMultiValueImpl

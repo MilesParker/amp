@@ -13,11 +13,13 @@
 
 «DEFINE AgentBody FOR SAgent-»
 	«IF owner != null-»
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
 	public «owner.typeName()» «owner.getterName()»() {
 		return («owner.typeName()») getScape().getScape();
 	}
 	«ENDIF-»
 	«IF parent != null && !((SContext) parent).projections.typeSelect(SNetwork).isEmpty»
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
 	public List getNetwork() {
 		«IF buildGraphs().size > 0-»
 		List network = new ArrayList();
@@ -32,15 +34,19 @@
 	«ENDIF-»
 	«FOREACH ((AGroup) rootActivity).roots AS root-»
 	«IF root.metaType == ADiffuse»
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
 	private double «root.id()»Temp;
-	
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
 	public static final Rule «root.id().toUpperCase()»_RULE = new ExecuteThenUpdate("«root.label»") {
+			«EXPAND metaabm::tmpl::Java::GenerateComment»
 			private static final long serialVersionUID = 6846144446402098983L;
 		    /**
+		     * <!-- begin-user-doc -->
 		     * Calculate and store diffusion value to neighbors.
 		     * 
-		     * @param agent
-		     *            the playing agent
+		     * @param agent the playing agent
+		     * <!-- end-user-doc -->
+		     * @generated
 		     */
 		    public void execute(Agent agent) {
 		    	«typeName()» «id()» = («typeName()») agent;
@@ -65,11 +71,13 @@
 		        «id()».«root.id()»Temp = valueSum;
 		    }
 		    /**
+		     * <!-- begin-user-doc -->
 		     * Update diffusion value. Occurs only when all diffusion has been
 		     * calculated.
 		     * 
-		     * @param agent
-		     *            the agent
+		     * @param agent the agent
+		     * <!-- end-user-doc -->
+		     * @generated
 		     */
 		    public void update(Agent agent) {
 		    	«typeName()» «id()» = («typeName()») agent;
@@ -92,8 +100,11 @@
     «FOREACH agents AS agent-»
     «IF !agent.isHost()-»
     /**
+     * <!-- begin-user-doc -->
      * Create an instance of «agent.label» that will be used to populate the «agent.scape()».
      * Overide to customize the prototype, for example to change the views created for a member scape.
+     * <!-- end-user-doc -->
+     * @generated
      */
     protected «agent.typeName()» create«agent.typeName()»Prototype() {
     	«agent.typeName()» «agent.id()» = new «agent.typeName()»();
@@ -106,13 +117,17 @@
     }
 	«ENDIF-»
     «ENDFOREACH-»
-        
-    static int next_vm_id;
     
+    «EXPAND metaabm::tmpl::Java::GenerateComment»
+    static int next_vm_id;
+    «EXPAND metaabm::tmpl::Java::GenerateComment»
     int vm_unique_id;
     
 	/**
-	 * Creates the members of «label». 
+	 * <!-- begin-user-doc -->
+	 * Creates the members of «label».
+	 * <!-- end-user-doc --> 
+	 * @generated
 	 */
 	public void createScape() {
 		super.createScape();
@@ -149,10 +164,23 @@
 		«ENDIF-»
 		«EXPAND metaabm::tmpl::Java::Builder FOREACH projections-»
 		«EXPAND metaabm::tmpl::Java::Builder FOREACH agents-»
+		
+		for(IAgentChild tmp:children){
+			tmp.addDataCollectors(this);
+		}
+		
+		«FOREACH agents AS agent»
+			for(IAgentChild tmp:«agent.proto()».getChildren()){
+				tmp.addDataCollectors(this);
+			}
+		«ENDFOREACH»
 	}
 	
 	/**
+	 * <!-- begin-user-doc -->
 	 * Creates UI views for «label».
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public void createGraphicViews() {
 		super.createGraphicViews();
@@ -160,7 +188,7 @@
 			«EXPAND ViewBuilder FOR rootActivity-»
 		«ENDIF-»
 	}
-	
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
     public void scapeSetup(ScapeEvent scapeEvent) {
         //Set the size of the scape populations, e.g. for mutable scapes that need to have their size reset
         «EXPAND metaabm::tmpl::Java::ProtectedRegion("ScapeSetup")»
@@ -172,7 +200,10 @@
     «FOREACH agents AS agent-»
     «IF !agent.isHost()-»
 	/**
+	 * <!-- begin-user-doc -->
 	 * Returns the Scape containing «agent.pluralLabel».
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	public org.ascape.model.Scape «agent.getterName()»Scape() {
 		return «agent.scape()»;
@@ -182,6 +213,7 @@
 «ENDDEFINE»
 
 «DEFINE NameAccessor FOR SAgent-»
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
     public String getName() {
     	if (name == null) {
 	        return "«label» " + getUID();
@@ -194,7 +226,9 @@
 «DEFINE Conditional (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
     «IF conditionForAscape()-»
         Conditional «selector().id()»Condition = new Conditional() {
+        	«EXPAND metaabm::tmpl::Java::GenerateComment»
             private static final long serialVersionUID = 6846144446402098985L;
+            «EXPAND metaabm::tmpl::Java::GenerateComment»
             public boolean meetsCondition(Object «selector().id()»Cell) {
                 «IF findFromHost()-»
                     «selector().id()»Cell = «converted(selector().id() + "Cell")»;
@@ -355,6 +389,7 @@
 «DEFINE CreateScape(int stage) FOR IAct-»«ENDDEFINE»
 
 «DEFINE StatBuilderBody(SAttribute outer, String mod) FOR SAttribute-»
+			«EXPAND metaabm::tmpl::Java::GenerateComment»
             public final «statSig()»(Object «parent().id()») {
                 return «mod» «expression((List[AAct]) {}, true)»;
             }
@@ -375,6 +410,7 @@
 
 «DEFINE StatBuilderBody(SAttribute outer, String mod, String name) FOR SAttribute-»
     «((SAgent) parent()).fieldName()».addStatCollector(new org.ascape.util.data.StatCollector«outer(outer).statCondTerm()»(«name») {
+		«EXPAND metaabm::tmpl::Java::GenerateComment»
 		private static final long serialVersionUID = 6846144446402098985L;
 		«IF outer != this-»
 		«EXPAND StatBuilderBody (outer, mod) FOR outer-»
@@ -410,8 +446,9 @@
 «DEFINE StatBuilder FOR SAgent-»
 	«IF genStats() != "none"-»
         «scape()».addStatCollector(new org.ascape.util.data.StatCollectorCond(«scape()».getName() + " Population") {
+        		«EXPAND metaabm::tmpl::Java::GenerateComment»
 				private static final long serialVersionUID = 684614444640209893L;
-				
+				«EXPAND metaabm::tmpl::Java::GenerateComment»
                 @SuppressWarnings("unused")
                 public final boolean meetsCondition(Object object) {return true;}
         });
@@ -421,7 +458,9 @@
 
 «DEFINE ChildBuilder FOR ARule-»
 		«reference.scape()».addRule(new Rule("«label»") {
+			«EXPAND metaabm::tmpl::Java::GenerateComment»
 			private static final long serialVersionUID = 6846144446402098981L;
+			«EXPAND metaabm::tmpl::Java::GenerateComment»
 			public void execute(Agent a) {
 				((«reference.implementation.qualifiedName») a).«id()»();
 			}
@@ -442,7 +481,9 @@
 «DEFINE ChildBuilder FOR AInitialize-»
 		«REM»Initialize is automatically invoked by default from framework«ENDREM»
 		«reference.scape()».addInitialRule(new Rule("«label»") {
+			«EXPAND metaabm::tmpl::Java::GenerateComment»
 			private static final long serialVersionUID = 6846144446402098982L;
+			«EXPAND metaabm::tmpl::Java::GenerateComment»
 			public void execute(Agent a) {
 				((«reference.implementation.qualifiedName») a).«id()»();
 			}

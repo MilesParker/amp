@@ -32,36 +32,39 @@ import org.ascape.model.HostCell;
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::Imports FOR SAgent-»
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Collections;
-
-import org.ascape.model.Agent;
-import org.ascape.model.Cell;
-import org.ascape.model.CellOccupant;
-import org.ascape.model.HostCell;
-import org.ascape.model.LocatedAgent;
-import org.ascape.model.Scape;
-import org.ascape.model.event.ScapeEvent;
-import org.ascape.model.rule.Rule;
-import org.ascape.model.rule.ExecuteThenUpdate;
-import org.ascape.model.space.CollectionSpace;
-import org.ascape.model.space.Coordinate;
-import org.ascape.model.space.Coordinate2DDiscrete;
-import org.ascape.model.space.Graph;
-import org.ascape.model.space.Singleton;
-import org.ascape.model.space.Location;
-import org.ascape.util.Conditional;
+	import java.awt.Color;
+	import java.awt.Graphics;
+	import java.awt.image.BufferedImage;
+	
+	import java.util.ArrayList;
+	import java.util.List;
+	import java.util.Collections;
+	
+	import org.ascape.model.Agent;
+	import org.ascape.model.Cell;
+	import org.ascape.model.CellOccupant;
+	import org.ascape.model.HostCell;
+	import org.ascape.model.LocatedAgent;
+	import org.ascape.model.Scape;
+	import org.ascape.model.event.ScapeEvent;
+	import org.ascape.model.rule.Rule;
+	import org.ascape.model.rule.ExecuteThenUpdate;
+	import org.ascape.model.space.CollectionSpace;
+	import org.ascape.model.space.Coordinate;
+	import org.ascape.model.space.Coordinate2DDiscrete;
+	import org.ascape.model.space.Graph;
+	import org.ascape.model.space.Singleton;
+	import org.ascape.model.space.Location;
+	import org.ascape.util.Conditional;
+	
+	«targetDef.proceed()»
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::Body FOR SAgent-»
 	«targetDef.proceed()»
 	«EXPAND metaabm::ascape::tmpl::ScapeAspect::AgentBody-»
-
+	
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
     public Color getColor() {
     	return Color.LIGHT_GRAY;
     }
@@ -69,7 +72,8 @@ import org.ascape.util.Conditional;
 
 «AROUND metaabm::tmpl::Java::Body FOR SContext-»
     «EXPAND metaabm::ascape::tmpl::ScapeAspect::ScapeBody-»
-
+    
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
 	public static void main(String[] args) {
 		(new org.ascape.runtime.swing.SwingRunner()).open("«implementation.qualifiedName»", args);
 	}
@@ -77,6 +81,8 @@ import org.ascape.util.Conditional;
 
 «AROUND metaabm::tmpl::Java::Body FOR SStyle-»
 	«targetDef.proceed()»
+	
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
     public void draw(Graphics g, Object object, int width, int height) {
     	Shape shape = null;
 		«IF agent.isHost()-»
@@ -111,8 +117,10 @@ import org.ascape.util.Conditional;
     final «agent.owner.typeName()» «agent.id()»Scape = new «agent.owner.typeName()»();
     «agent.id()»Scape.setRunner(new org.ascape.runtime.NonGraphicRunner());
 	«agent.typeName()» «agent.id()» = new «agent.typeName()»() {
+				«EXPAND metaabm::tmpl::Java::GenerateComment»
                 public void requestUpdate() {
                 }
+                «EXPAND metaabm::tmpl::Java::GenerateComment»
                 public «agent.owner.typeName()» get«agent.owner.typeName()»() {
                 	return «agent.id()»Scape;
                 }
@@ -120,6 +128,7 @@ import org.ascape.util.Conditional;
     «agent.id()»Scape.add(«agent.id()»);
 	«IF !agent.isHost()-»
 	org.ascape.model.HostCell «agent.id()»Host = new org.ascape.model.HostCell() {
+				«EXPAND metaabm::tmpl::Java::GenerateComment»
                 public void requestUpdate() {
                 }
             };
@@ -252,14 +261,15 @@ import org.ascape.util.Conditional;
 «AROUND metaabm::tmpl::Java::MethodPotential (metaabm::act::AAct within) FOR AQuery-»
 	«IF (function.id() == "minimize") || (function.id() == "maximize")-»
     /**
+     * <!-- begin-user-doc -->
      * A data point used within a search to find the «selected.agent.label» with the «function.id()»d «inputs.value.get(0).label» value.
+     * <!-- end-user-doc -->
+     * @generated
      */
     public final static DataPoint «dataPoint()» = new DataPointConcrete("«function.id().toFirstUpper()» «inputs.value.get(0).id()»") {
-        /**
-         * 
-         */
+		«EXPAND metaabm::tmpl::Java::GenerateComment»
         private static final long serialVersionUID = 3755810443335739012L;
-
+		«EXPAND metaabm::tmpl::Java::GenerateComment»
         public double getValue(Object o) {
             «EXPAND metaabm::tmpl::Java::InnerEvaluation(allSources.select(e|e.selected == this.selected), false)-»
             return ((«selected.agent.typeName()») o).«inputs.value.get(0).getterName()»();
@@ -315,3 +325,4 @@ import org.ascape.util.Conditional;
 	«call(path, inner)»«ENDAROUND»
 «AROUND metaabm::tmpl::Java::InnerBlock (List[metaabm::act::AAct] path, Boolean inner) FOR ADisconnect»
 	«call(path, inner)»«ENDAROUND»
+	

@@ -16,10 +16,13 @@
  */
 package org.metaabm;
 
-/*
+/**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>SStyle2
  * D</b></em>'.
+ * 
  * @author Miles Parker <!-- end-user-doc -->
+ *
+ *
  * @see org.metaabm.MetaABMPackage#getSStyle2D()
  * @model
  * @generated

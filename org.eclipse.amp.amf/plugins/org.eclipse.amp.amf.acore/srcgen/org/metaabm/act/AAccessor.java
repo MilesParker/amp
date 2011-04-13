@@ -18,44 +18,48 @@ package org.metaabm.act;
 
 import org.metaabm.SAttribute;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object '
- * <em><b>AAccessor</b></em>'.
- * @author Miles Parker <!-- end-user-doc --> <p> The following features are
- * supported: <ul> <li>{@link org.metaabm.act.AAccessor#getAttribute
- * <em>Attribute</em>}</li> </ul> </p>
+/**
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>AAccessor</b></em>'.
+ * 
+ * @author Miles Parker <!-- end-user-doc -->
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.metaabm.act.AAccessor#getAttribute <em>Attribute</em>}</li>
+ * </ul>
+ * </p>
+ *
  * @see org.metaabm.act.MetaABMActPackage#getAAccessor()
  * @model abstract="true"
  * @generated
  */
 public interface AAccessor extends AAct {
 
-    /**
-     * Returns the value of the '<em><b>Attribute</b></em>' reference. <!--
-     * begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Attribute</em>' reference isn't clear, there
-     * really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * 
-     * @return the value of the '<em>Attribute</em>' reference.
-     * @see #setAttribute(SAttribute)
-     * @see org.metaabm.act.MetaABMActPackage#getAAccessor_Attribute()
-     * @model required="true"
-     * @generated
-     */
-    SAttribute getAttribute();
+	/**
+	 * Returns the value of the '<em><b>Attribute</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Attribute</em>' reference isn't clear, there really should be more of a description
+	 * here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Attribute</em>' reference.
+	 * @see #setAttribute(SAttribute)
+	 * @see org.metaabm.act.MetaABMActPackage#getAAccessor_Attribute()
+	 * @model required="true"
+	 * @generated
+	 */
+	SAttribute getAttribute();
 
-    /**
-     * Sets the value of the '{@link org.metaabm.act.AAccessor#getAttribute
-     * <em>Attribute</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
-     * -->
-     * 
-     * @param value
-     *            the new value of the '<em>Attribute</em>' reference.
-     * @see #getAttribute()
-     * @generated
-     */
-    void setAttribute(SAttribute value);
+	/**
+	 * Sets the value of the '{@link org.metaabm.act.AAccessor#getAttribute <em>Attribute</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *          the new value of the '<em>Attribute</em>' reference.
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	void setAttribute(SAttribute value);
 } // AAccessor

@@ -67,7 +67,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 «DEFINE RecurseProviderMethod(String providerType) FOR IID-»«ENDDEFINE»
 
 «AROUND metaabm::tmpl::Java::ClassImplementation FOR IID-»
-
+	«EXPAND metaabm::tmpl::Java::GenerateComment»
     private static IGraphicsAdapter singleton;
     
 	«EXPAND RecurseProviderInstance("Color")»
@@ -75,9 +75,12 @@ import org.eclipse.jface.viewers.ILabelProvider;
 	«EXPAND RecurseProviderInstance("Figure")»
  
     /**
+     * <!-- begin-user-doc -->
      * @param type
      * @return
      * @see org.eclipse.amp.agf.IGraphicsAdapter#getColorsForClass(java.lang.Class)
+     * <!-- end-user-doc -->
+     * @generated
      */
     public IColorProvider[] getColorsForClass(Class type) {
     	«EXPAND RecurseProviderMethod("Color")-»
@@ -85,9 +88,12 @@ import org.eclipse.jface.viewers.ILabelProvider;
     }
 
     /**
+     * <!-- begin-user-doc -->
      * @param type
      * @return
      * @see org.eclipse.amp.agf.IGraphicsAdapter#getFiguresForClass(java.lang.Class)
+     * <!-- end-user-doc -->
+     * @generated
      */
     public IFigureProvider[] getFiguresForClass(Class type) {
     	«EXPAND RecurseProviderMethod("Figure")-»
@@ -95,14 +101,17 @@ import org.eclipse.jface.viewers.ILabelProvider;
     }
 
     /**
+     * <!-- begin-user-doc -->
      * @param type
      * @return
      * @see org.eclipse.amp.agf.IGraphicsAdapter#getLabelsForClass(java.lang.Class)
+     * <!-- end-user-doc -->
+     * @generated
      */
     public ILabelProvider[] getLabelsForClass(Class type) {
     	return null;
     }
-    
+    «EXPAND metaabm::tmpl::Java::GenerateComment»
     public static IGraphicsAdapter getDefault() {
         if (singleton == null) {
             singleton = new «typeName()»GraphicsAdapter();

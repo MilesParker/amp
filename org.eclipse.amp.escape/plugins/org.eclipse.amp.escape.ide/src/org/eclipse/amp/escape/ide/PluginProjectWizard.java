@@ -40,106 +40,113 @@ import org.eclipse.ui.statushandlers.StatusManager;
 
 /**
  * Creates a generic AMF project; intended for specialization.
+ * 
  * @author milesparker
  */
 public abstract class PluginProjectWizard extends Wizard implements INewWizard {
 
-    private WizardNewProjectCreationPage projectPage;
+	private WizardNewProjectCreationPage projectPage;
 
-    public PluginProjectWizard() {
-        super();
-    }
+	public PluginProjectWizard() {
+		super();
+	}
 
-    public void init(IWorkbench workbench, IStructuredSelection selection) {
-    }
+	public void init(IWorkbench workbench, IStructuredSelection selection) {
+	}
 
-    public void addPages() {
-        projectPage = new WizardNewProjectCreationPage("Specify model name and location.");
-        addPage(projectPage);
-        setWindowTitle("Create a new " + getProjectTypeName() + " project.");
-        projectPage.setDescription(getWindowTitle());
-    }
+	@Override
+	public void addPages() {
+		projectPage = new WizardNewProjectCreationPage("Specify model name and location.");
+		addPage(projectPage);
+		setWindowTitle("Create a new " + getProjectTypeName() + " project.");
+		projectPage.setDescription(getWindowTitle());
+	}
 
-    public IProject getProject() {
-        IProject project;
-        IWorkspace workspace = ResourcesPlugin.getWorkspace();
-        project = workspace.getRoot().getProject(projectPage.getProjectName());
-        return project;
-    }
+	public IProject getProject() {
+		IProject project;
+		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+		project = workspace.getRoot().getProject(projectPage.getProjectName());
+		return project;
+	}
 
-    public boolean performFinish() {
-        try {
-            IJavaProject javaProject = JavaCore.create(getProject());
-            final IProjectDescription projectDescription = ResourcesPlugin.getWorkspace()
-            .newProjectDescription(projectPage.getProjectName());
-            projectDescription.setLocation(null);
+	@Override
+	public boolean performFinish() {
+		try {
+			IJavaProject javaProject = JavaCore.create(getProject());
+			final IProjectDescription projectDescription = ResourcesPlugin.getWorkspace().newProjectDescription(
+					projectPage.getProjectName());
+			if (projectPage.useDefaults()) {
+				projectDescription.setLocation(null);
+			} else {
+				projectDescription.setLocation(projectPage.getLocationPath());
+			}
 
-            getProject().create(projectDescription, null);
-            List<IClasspathEntry> classpathEntries = new ArrayList<IClasspathEntry>();
+			getProject().create(projectDescription, null);
+			List<IClasspathEntry> classpathEntries = new ArrayList<IClasspathEntry>();
 
-            projectDescription.setNatureIds(getNatures());
+			projectDescription.setNatureIds(getNatures());
 
-            List<String> builderIDs = new ArrayList<String>();
-            addBuilders(builderIDs);
-            ICommand[] buildCMDS = new ICommand[builderIDs.size()];
-            int i = 0;
-            for (String builderID : builderIDs) {
-                ICommand build = projectDescription.newCommand();
-                build.setBuilderName(builderID);
-                buildCMDS[i++] = build;
-            }
-            projectDescription.setBuildSpec(buildCMDS);
-            getProject().open(null);
-            getProject().setDescription(projectDescription, null);
+			List<String> builderIDs = new ArrayList<String>();
+			addBuilders(builderIDs);
+			ICommand[] buildCMDS = new ICommand[builderIDs.size()];
+			int i = 0;
+			for (String builderID : builderIDs) {
+				ICommand build = projectDescription.newCommand();
+				build.setBuilderName(builderID);
+				buildCMDS[i++] = build;
+			}
+			projectDescription.setBuildSpec(buildCMDS);
+			getProject().open(null);
+			getProject().setDescription(projectDescription, null);
 
-            addClasspaths(classpathEntries, getProject());
+			addClasspaths(classpathEntries, getProject());
 
-            javaProject.setRawClasspath(classpathEntries.toArray(new IClasspathEntry[classpathEntries.size()]), null);
-            javaProject.setOutputLocation(new Path("/" + projectPage.getProjectName() + "/bin"), null);
+			javaProject.setRawClasspath(classpathEntries.toArray(new IClasspathEntry[classpathEntries.size()]), null);
+			javaProject.setOutputLocation(new Path("/" + projectPage.getProjectName() + "/bin"), null);
 
-            createFiles();
-            return true;
-        } catch (Exception exception) {
-            StatusManager.getManager().handle(
-                                              new Status(IStatus.ERROR, getPluginID(), "Problem creating "
-                                                         + getProjectTypeName() + " project. Ignoring.", exception));
-            try {
-                getProject().delete(true, null);
-            } catch (Exception e) {
-                // TODO: handle exception
-            }
-            return false;
-        }
-    }
+			createFiles();
+			return true;
+		} catch (Exception exception) {
+			StatusManager.getManager().handle(
+					new Status(IStatus.ERROR, getPluginID(), "Problem creating " + getProjectTypeName() + " project. Ignoring.",
+							exception));
+			try {
+				getProject().delete(true, null);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			return false;
+		}
+	}
 
-    public String[] getNatures() {
-        return new String[] { JavaCore.NATURE_ID };
-    }
+	public String[] getNatures() {
+		return new String[] { JavaCore.NATURE_ID };
+	}
 
-    public void createFiles() throws CoreException, IOException {
-    }
+	public void createFiles() throws CoreException, IOException {
+	}
 
-    public String getProjectTypeName() {
-        return "Plugin";
-    }
+	public String getProjectTypeName() {
+		return "Plugin";
+	}
 
-    public String getPluginID() {
-        return EscapeIDEPlugin.PLUGIN_ID;
-    }
+	public String getPluginID() {
+		return EscapeIDEPlugin.PLUGIN_ID;
+	}
 
-    public void addClasspaths(List<IClasspathEntry> classpathEntries, IProject project) throws CoreException {
-        classpathEntries.add(JavaCore.newContainerEntry(new Path("org.eclipse.jdt.launching.JRE_CONTAINER")));
-        classpathEntries.add(JavaCore.newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins")));
-        IFolder srcFolder = project.getFolder(getSourceDirName());
-        classpathEntries.add(JavaCore.newSourceEntry(srcFolder.getFullPath()));
-        srcFolder.create(true, true, null);
-    }
+	public void addClasspaths(List<IClasspathEntry> classpathEntries, IProject project) throws CoreException {
+		classpathEntries.add(JavaCore.newContainerEntry(new Path("org.eclipse.jdt.launching.JRE_CONTAINER")));
+		classpathEntries.add(JavaCore.newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins")));
+		IFolder srcFolder = project.getFolder(getSourceDirName());
+		classpathEntries.add(JavaCore.newSourceEntry(srcFolder.getFullPath()));
+		srcFolder.create(true, true, null);
+	}
 
-    public String getSourceDirName() {
-        return "src";
-    }
+	public String getSourceDirName() {
+		return "src";
+	}
 
-    public void addBuilders(List<String> builderIDs) {
-        builderIDs.add(JavaCore.BUILDER_ID);
-    }
+	public void addBuilders(List<String> builderIDs) {
+		builderIDs.add(JavaCore.BUILDER_ID);
+	}
 }

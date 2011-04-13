@@ -30,31 +30,31 @@ import org.metaabm.act.MetaABMActPackage;
  */
 public class MetaABMActXMLProcessor extends XMLProcessor {
 
-    /**
-     * Public constructor to instantiate the helper.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public MetaABMActXMLProcessor() {
-        super((EPackage.Registry.INSTANCE));
-        MetaABMActPackage.eINSTANCE.eClass();
-    }
+	/**
+	 * Public constructor to instantiate the helper.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MetaABMActXMLProcessor() {
+		super((EPackage.Registry.INSTANCE));
+		MetaABMActPackage.eINSTANCE.eClass();
+	}
 
-    /**
-     * Register for "*" and "xml" file extensions the MetaABMActResourceFactoryImpl factory.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected Map<String, Resource.Factory> getRegistrations() {
-        if (registrations == null) {
-            super.getRegistrations();
-            registrations.put(XML_EXTENSION, new MetaABMActResourceFactoryImpl());
-            registrations.put(STAR_EXTENSION, new MetaABMActResourceFactoryImpl());
-        }
-        return registrations;
-    }
+	/**
+	 * Register for "*" and "xml" file extensions the MetaABMActResourceFactoryImpl factory.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected Map<String, Resource.Factory> getRegistrations() {
+		if (registrations == null) {
+			super.getRegistrations();
+			registrations.put(XML_EXTENSION, new MetaABMActResourceFactoryImpl());
+			registrations.put(STAR_EXTENSION, new MetaABMActResourceFactoryImpl());
+		}
+		return registrations;
+	}
 
 } // MetaABMActXMLProcessor

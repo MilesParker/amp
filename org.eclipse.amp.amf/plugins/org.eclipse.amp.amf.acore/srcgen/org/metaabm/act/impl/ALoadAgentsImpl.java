@@ -31,128 +31,128 @@ import org.metaabm.act.MetaABMActPackage;
  * @generated
  */
 public class ALoadAgentsImpl extends ACreateAgentsImpl implements ALoadAgents {
-    /**
-     * The default value of the '{@link #getSourceURL() <em>Source URL</em>}' attribute.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see #getSourceURL()
-     * @generated
-     * @ordered
-     */
-    protected static final String SOURCE_URL_EDEFAULT = null;
+	/**
+	 * The default value of the '{@link #getSourceURL() <em>Source URL</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getSourceURL()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String SOURCE_URL_EDEFAULT = null;
 
-    /**
-     * The cached value of the '{@link #getSourceURL() <em>Source URL</em>}' attribute.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @see #getSourceURL()
-     * @generated
-     * @ordered
-     */
-    protected String sourceURL = SOURCE_URL_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getSourceURL() <em>Source URL</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #getSourceURL()
+	 * @generated
+	 * @ordered
+	 */
+	protected String sourceURL = SOURCE_URL_EDEFAULT;
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected ALoadAgentsImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ALoadAgentsImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return MetaABMActPackage.Literals.ALOAD_AGENTS;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return MetaABMActPackage.Literals.ALOAD_AGENTS;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public String getSourceURL() {
-        return sourceURL;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSourceURL() {
+		return sourceURL;
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    public void setSourceURL(String newSourceURL) {
-        String oldSourceURL = sourceURL;
-        sourceURL = newSourceURL;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, MetaABMActPackage.ALOAD_AGENTS__SOURCE_URL,
-                oldSourceURL, sourceURL));
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSourceURL(String newSourceURL) {
+		String oldSourceURL = sourceURL;
+		sourceURL = newSourceURL;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MetaABMActPackage.ALOAD_AGENTS__SOURCE_URL, oldSourceURL, sourceURL));
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-            case MetaABMActPackage.ALOAD_AGENTS__SOURCE_URL:
-                return getSourceURL();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
+			case MetaABMActPackage.ALOAD_AGENTS__SOURCE_URL:
+				return getSourceURL();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-            case MetaABMActPackage.ALOAD_AGENTS__SOURCE_URL:
-                setSourceURL((String) newValue);
-                return;
-        }
-        super.eSet(featureID, newValue);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
+			case MetaABMActPackage.ALOAD_AGENTS__SOURCE_URL:
+				setSourceURL((String) newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-            case MetaABMActPackage.ALOAD_AGENTS__SOURCE_URL:
-                setSourceURL(SOURCE_URL_EDEFAULT);
-                return;
-        }
-        super.eUnset(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID) {
+		switch (featureID) {
+			case MetaABMActPackage.ALOAD_AGENTS__SOURCE_URL:
+				setSourceURL(SOURCE_URL_EDEFAULT);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-            case MetaABMActPackage.ALOAD_AGENTS__SOURCE_URL:
-                return SOURCE_URL_EDEFAULT == null ? sourceURL != null : !SOURCE_URL_EDEFAULT.equals(sourceURL);
-        }
-        return super.eIsSet(featureID);
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
+			case MetaABMActPackage.ALOAD_AGENTS__SOURCE_URL:
+				return SOURCE_URL_EDEFAULT == null ? sourceURL != null : !SOURCE_URL_EDEFAULT.equals(sourceURL);
+		}
+		return super.eIsSet(featureID);
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy()) return super.toString();
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
 
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (sourceURL: ");
-        result.append(sourceURL);
-        result.append(')');
-        return result.toString();
-    }
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (sourceURL: ");
+		result.append(sourceURL);
+		result.append(')');
+		return result.toString();
+	}
 
 } // ALoadAgentsImpl

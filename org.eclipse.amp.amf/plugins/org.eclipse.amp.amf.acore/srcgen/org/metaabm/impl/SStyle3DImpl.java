@@ -21,32 +21,35 @@ import org.metaabm.MetaABMPackage;
 import org.metaabm.SAgent;
 import org.metaabm.SStyle3D;
 
-/*
- * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>SStyle3 D</b></em>'.
- * @author Miles Parker <!-- end-user-doc --> <p> </p>
+/**
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>SStyle3 D</b></em>'.
+ * 
+ * @author Miles Parker <!-- end-user-doc -->
+ * <p>
+ * </p>
+ *
  * @generated
  */
 public class SStyle3DImpl extends SStyleImpl implements SStyle3D {
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    protected SStyle3DImpl() {
-        super();
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SStyle3DImpl() {
+		super();
+	}
 
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return MetaABMPackage.Literals.SSTYLE3_D;
-    }
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass() {
+		return MetaABMPackage.Literals.SSTYLE3_D;
+	}
 
-    public SAgent getParent() {
-        return getAgent();
-    }
+	public SAgent getParent() {
+		return getAgent();
+	}
 
 } // SStyle3DImpl
