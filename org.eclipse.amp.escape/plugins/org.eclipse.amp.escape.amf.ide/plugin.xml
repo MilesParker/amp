@@ -60,6 +60,23 @@
   		 </contextualLaunch>
       </shortcut>
    </extension>-->
+       <extension point="org.eclipse.ui.newWizards">
+    <category
+          id="org.eclipse.amp.amf.ide.wizards"
+          name="Agent Modeling">
+    </category>
+    <wizard
+          category="org.eclipse.amp.amf.ide.wizards"
+          class="org.eclipse.amp.escape.ide.BasicProjectWizard"
+          icon="icons/AMFProject.gif"
+          id="org.eclipse.amp.amf.gen.ide.wizards.newBaseProject"
+          name="Agent Modeling Basic Project"
+          project="true">
+       <description>
+          Creates a new project for MetaABM. Does not support any targets, e.g. it does not generate Repast or Ascape Java code, but it does allow full model editing and generation of common interfaces and test cases and so may be useful for DIY ABM projects.
+       </description>
+    </wizard>
+   </extension>
     <extension
           point="org.eclipse.ui.commands">
        <command

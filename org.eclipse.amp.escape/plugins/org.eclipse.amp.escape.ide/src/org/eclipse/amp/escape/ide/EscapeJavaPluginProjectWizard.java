@@ -13,32 +13,22 @@
  * </copyright>
  *
  */
-
 package org.eclipse.amp.escape.ide;
 
-import org.eclipse.jdt.core.JavaCore;
-
-/**
- * 
- * @author mparker
- *
- */
 public class EscapeJavaPluginProjectWizard extends PluginTemplateProjectWizard {
 
-    public String getProjectTypeName() {
-        return "Escape Java";
-    }
+	@Override
+	protected String getProjectTypeName() {
+		return "Escape Java";
+	}
 
-    @Override
-    public String[] getNatures() {
-        return new String[] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" };
-    }
+	@Override
+	protected String getSourceDirName() {
+		return "src";
+	}
 
-    public String getPluginID() {
-        return EscapeIDEPlugin.PLUGIN_ID;
-    }
-
-    public String getSourceDirName() {
-        return "src";
-    }
+	@Override
+	protected String getCurrentPluginID() {
+		return EscapeIDEPlugin.PLUGIN_ID;
+	}
 }

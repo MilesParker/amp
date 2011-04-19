@@ -14,7 +14,7 @@
       </builder>
    </extension>
    <extension
-         point="org.eclipse.amp.amf.gen.ide.newProjectWizardConfigurations">
+         point="org.eclipse.amp.escape.ide.newProjectWizardConfigurations">
       <newWizard
             newWizardID="org.eclipse.amp.escape.amf.wizards.newProject">
          <builder

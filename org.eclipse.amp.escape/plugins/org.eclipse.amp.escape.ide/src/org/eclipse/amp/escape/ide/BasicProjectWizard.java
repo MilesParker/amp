@@ -12,31 +12,28 @@
  *
  * </copyright> $Id: BasicProjectWizard.java,v 1.4 2010/08/04 01:54:01 mparker Exp $
  */
-package org.eclipse.amp.amf.gen.ide;
-
-import java.util.List;
-
-import org.eclipse.amp.amf.ide.AmfIDEPlugin;
-import org.eclipse.jdt.core.JavaCore;
+package org.eclipse.amp.escape.ide;
 
 /**
  * A simple AMF builder project. Creates basic documentations artifacts.
  * 
  * @author milesparker
- * 
+ * @author jonas.ruettimann
  */
-public class BasicProjectWizard extends PluginProjectWizard {
+public class BasicProjectWizard extends ProjectWizard {
 
 	@Override
-	public List<String> getBuilders() {
-		List<String> builderIDs = super.getBuilders();
-		builderIDs.add(AmfIDEPlugin.PLUGIN_ID + "." + MetaABMBuilder.BUILDER_ID);
-		builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + DocumentModelBuilder.DOCUMENT_BUILDER_ID);
-		builderIDs.add(JavaCore.BUILDER_ID);
-		return builderIDs;
+	protected String getProjectTypeName() {
+		return "Basic";
 	}
 
-	public String getProjectTypeName() {
-		return "Basic";
+	@Override
+	protected String getSourceDirName() {
+		return "src";
+	}
+
+	@Override
+	protected String getCurrentPluginID() {
+		return EscapeIDEPlugin.PLUGIN_ID;
 	}
 }

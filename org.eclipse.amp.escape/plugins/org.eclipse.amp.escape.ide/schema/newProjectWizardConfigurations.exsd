@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.amp.amf.gen.ide" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.amp.escape.ide" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
-      <appInfo>
-         <meta.schema plugin="org.eclipse.amp.amf.gen.ide" id="newProjectWizardConfigurations" name="New-Project-Wizard Configurations"/>
-      </appInfo>
+      <appinfo>
+         <meta.schema plugin="org.eclipse.amp.escape.ide" id="newProjectWizardConfigurations" name="New-Project-Wizard Configurations"/>
+      </appinfo>
       <documentation>
          Configuration for a new-project-wizard.
 
@@ -16,9 +16,9 @@ Dependencies that are registered will be added to the MANIFEST.MF file of the cr
 
    <element name="extension">
       <annotation>
-         <appInfo>
+         <appinfo>
             <meta.element />
-         </appInfo>
+         </appinfo>
       </annotation>
       <complexType>
          <choice>
@@ -43,9 +43,9 @@ Dependencies that are registered will be added to the MANIFEST.MF file of the cr
                <documentation>
                   
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute translatable="true"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>
@@ -63,9 +63,9 @@ Dependencies that are registered will be added to the MANIFEST.MF file of the cr
                <documentation>
                   ID of the new-wizard to be configured.
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute kind="identifier" basedOn="org.eclipse.ui.newWizards/wizard/@id"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>
@@ -78,9 +78,9 @@ Dependencies that are registered will be added to the MANIFEST.MF file of the cr
                <documentation>
                   ID of the builder to be added by the new-wizard to the created project.
                </documentation>
-               <appInfo>
+               <appinfo>
                   <meta.attribute kind="identifier" basedOn="org.eclipse.core.resources.builders/@id"/>
-               </appInfo>
+               </appinfo>
             </annotation>
          </attribute>
       </complexType>
@@ -111,18 +111,18 @@ Dependencies that are registered will be added to the MANIFEST.MF file of the cr
    </element>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="since"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          0.9.0.qualifier
       </documentation>
    </annotation>
 
    <annotation>
-      <appInfo>
+      <appinfo>
          <meta.section type="examples"/>
-      </appInfo>
+      </appinfo>
       <documentation>
          &lt;!-- Preface: register builder as usual. --&gt;
 &lt;extension id=&quot;escapeBuilder3D&quot; name=&quot;Escape MetaABM 3D Builder&quot; point=&quot;org.eclipse.core.resources.builders&quot;&gt;

@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: %project_name%
-Bundle-SymbolicName: %project_symbol%
-Bundle-Version: 1.0.0
-Require-Bundle: 
- org.ascape.ui.swing
-Import-Package: org.apache.commons.lang
