@@ -22,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -78,8 +79,9 @@ public abstract class PluginTemplateProjectWizard extends ProjectWizard implemen
 
 	@Override
 	protected List<String> getBuilders() {
-		List<String> builderIDs = super.getBuilders();
+		List<String> builderIDs = new ArrayList<String>();
 		builderIDs.addAll(findBuilderIdsForWizard(getWizardId()));
+		builderIDs.addAll(super.getBuilders());
 		return builderIDs;
 	}
 

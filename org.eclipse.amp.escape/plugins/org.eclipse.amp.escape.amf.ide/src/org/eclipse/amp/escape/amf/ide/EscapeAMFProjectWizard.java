@@ -15,6 +15,7 @@
  */
 package org.eclipse.amp.escape.amf.ide;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -40,10 +41,11 @@ public class EscapeAMFProjectWizard extends PluginTemplateProjectWizard {
 
 	@Override
 	protected List<String> getBuilders() {
-		List<String> builderIDs = super.getBuilders();
+		List<String> builderIDs = new ArrayList<String>();
 		builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + MetaABMBuilder.BUILDER_ID);
 		builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + DocumentModelBuilder.DOCUMENT_BUILDER_ID);
 		builderIDs.add(EscapeAMFPlugin.PLUGIN_ID + "." + EscapeModelBuilder.ESCAPE_BUILDER_ID);
+		builderIDs.addAll(super.getBuilders());
 		return builderIDs;
 	}
 

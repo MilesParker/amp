@@ -165,12 +165,12 @@
 		«EXPAND metaabm::tmpl::Java::Builder FOREACH projections-»
 		«EXPAND metaabm::tmpl::Java::Builder FOREACH agents-»
 		
-		for(IAgentChild tmp:children){
+		for (IAgentChild tmp : getChildren()) {
 			tmp.addDataCollectors(this);
 		}
 		
 		«FOREACH agents AS agent»
-			for(IAgentChild tmp:«agent.proto()».getChildren()){
+			for (IAgentChild tmp : «agent.proto()».getChildren()) {
 				tmp.addDataCollectors(this);
 			}
 		«ENDFOREACH»
