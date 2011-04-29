@@ -164,7 +164,8 @@
 		«ENDIF-»
 		«EXPAND metaabm::tmpl::Java::Builder FOREACH projections-»
 		«EXPAND metaabm::tmpl::Java::Builder FOREACH agents-»
-		
+
+«REM» Removed as was preventing proper generation of example models -MTP
 		for (IAgentChild tmp : getChildren()) {
 			tmp.addDataCollectors(this);
 		}
@@ -174,6 +175,7 @@
 				tmp.addDataCollectors(this);
 			}
 		«ENDFOREACH»
+«ENDREM»
 	}
 	
 	/**

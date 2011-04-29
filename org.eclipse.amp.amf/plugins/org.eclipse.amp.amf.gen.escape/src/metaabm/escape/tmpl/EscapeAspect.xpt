@@ -110,8 +110,9 @@ import org.eclipse.amp.escape.ascape.gef.HostCellEditPart;
     public static void main(String[] args) {
         (new NonGraphicRunner()).openInstance("«implementation.qualifiedName»");
     }
-    
+«REM» Removed as was preventing proper generation of example models -MTP
     «EXPAND ExecIAgentChild»
+«ENDREM»
     
 «ENDAROUND»
 

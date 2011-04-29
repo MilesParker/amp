@@ -599,7 +599,7 @@
     «IF expressIf(path, inner)-»if («expression(path, inner)») {«ENDIF-»
 «ENDDEFINE»
 «DEFINE BeginBlock(List[AAct] path, Boolean inner) FOR ACreateAgents-»
-	for (int «id()»Count = 0; «id()»Count < «agentCount.expression(path, inner)»; «id()»Count++) {
+	«IF agentCount != null»for (int «id()»Count = 0; «id()»Count < «agentCount.expression(path, inner)»; «id()»Count++) {«ENDIF»
 «ENDDEFINE»
 
 «DEFINE EndBlock(List[AAct] path, Boolean inner) FOR AAct-»
@@ -611,7 +611,7 @@
 	«IF expressIf(path, inner)-»}«ENDIF-»
 «ENDDEFINE»
 «DEFINE EndBlock(List[AAct] path, Boolean inner) FOR ACreateAgents-»
-	}
+	«IF agentCount != null»}«ENDIF»
 «ENDDEFINE»
 
 «DEFINE InnerEvaluation (List[AAct] path, Boolean inner) FOR AAct-»
