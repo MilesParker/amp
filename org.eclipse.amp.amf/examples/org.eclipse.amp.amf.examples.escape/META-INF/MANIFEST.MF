@@ -5,3 +5,16 @@ Bundle-SymbolicName: org.eclipse.amp.amf.examples.escape
 Bundle-Version: 0.8.0
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.amp.escape.runtime
+Export-Package: edu.brook,
+ name.milesparker.epi,
+ name.milesparker.epi.contact,
+ name.milesparker.epi.plague,
+ name.milesparker.epi.region,
+ name.milesparker.infon,
+ name.milesparker.markets,
+ org.eclipse.amp.amf.examples.escape,
+ org.eclipse.amp.examples.heatbugs,
+ org.metaabm.examples.stupid1,
+ org.metaabm.examples.stupid2,
+ org.metaabm.examples.stupid3,
+ org.metaabm.examples.stupid5
