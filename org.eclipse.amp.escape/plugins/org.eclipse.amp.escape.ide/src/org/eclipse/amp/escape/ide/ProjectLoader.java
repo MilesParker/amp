@@ -104,7 +104,7 @@ public class ProjectLoader extends URLClassLoader {
 			}
 
 			String optional = requiredBundle.getDirective(Constants.RESOLUTION_DIRECTIVE);
-			if (optional == null || !optional.equals(Constants.RESOLUTION_OPTIONAL)) {
+			if (optional != null && !optional.equals(Constants.RESOLUTION_OPTIONAL)) {
 				String message = "Bundle cannot be found: ";
 				message += symbolicName;
 				if (version != null) {
