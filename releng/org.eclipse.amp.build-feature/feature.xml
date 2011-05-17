@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.amp.build"
       label="Eclipse AMP Site"
-      version="0.8.1.qualifier"
+      version="0.8.5.qualifier"
       provider-name="Eclipse Agent Modeling Project">
 
    <description url="http://eclipse.org/amp">
