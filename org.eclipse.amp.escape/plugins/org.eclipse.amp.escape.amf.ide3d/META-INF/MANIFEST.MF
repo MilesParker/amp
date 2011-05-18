@@ -3,8 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.amp.escape.amf.ide3d;singleton:=true
 Bundle-Version: 0.8.1.qualifier
-Bundle-Activator: org.eclipse.amp.escape.amf.ide3d.EscapeAMFPlugin3d
-Require-Bundle: org.eclipse.amp.escape.amf.ide;bundle-version="0.8.1";visibility:=reexport
+Bundle-Activator: org.eclipse.amp.escape.amf.ide3d.EscapeAMF3DPlugin
+Require-Bundle: org.eclipse.amp.escape.amf.ide;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName

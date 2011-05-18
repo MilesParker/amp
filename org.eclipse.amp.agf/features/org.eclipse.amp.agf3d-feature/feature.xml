@@ -20,28 +20,27 @@
 
    <url>
       <update label="%AMPUpdateSiteName" url="http://eclipse.org/amp/updates/release"/>
-      <!-- Removed update site reference per policy <discovery label="LWJGL Support for GEF3D" url="http://lwjgl.org/update"/> -->
    </url>
 
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>
-      <import plugin="org.eclipse.amp.axf.core"/>
-      <import plugin="org.eclipse.amp.axf.views"/>
-      <import plugin="org.eclipse.amp.agf.core"/>
-      <import plugin="org.lwjgl"/>
       <import plugin="org.ascape.core"/>
-      <import plugin="org.ascape.ui.amp" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.amp.escape.ascape"/>
-      <import plugin="org.eclipse.amp.agf3d"/>
-      <import plugin="org.eclipse.gef3d"/>
-      <import plugin="org.eclipse.draw3d.geometry"/>
-      <import plugin="org.eclipse.draw3d.lwjgl"/>
       <import plugin="org.eclipse.draw2d"/>
-      <import plugin="org.eclipse.draw3d"/>
       <import plugin="org.eclipse.gef"/>
-      <import plugin="org.eclipse.draw3d.graphics3d"/>
-      <import plugin="org.eclipse.draw3d.ui"/>
+      <import plugin="org.eclipse.amp.axf.core" version="0.8.5" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.axf.views" version="0.8.5" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.agf.core" version="0.8.5" match="greaterOrEqual"/>
+      <import plugin="org.ascape.ui.amp" version="0.8.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.escape.ascape" version="0.8.5" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.draw3d.geometry" version="0.8.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.core.runtime" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.draw3d.graphics3d" version="0.8.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.draw2d" version="3.4.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jface" version="3.5.2" match="greaterOrEqual"/>
+      <import plugin="org.lwjgl" version="2.0.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.draw3d" version="0.8.1" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.draw3d.ui" version="0.8.1" match="greaterOrEqual"/>
    </requires>
 
    <plugin
@@ -53,13 +52,6 @@
 
    <plugin
          id="org.eclipse.amp.escape.ascape.agf3d"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.amp.agf3d"
          download-size="0"
          install-size="0"
          version="0.0.0"
@@ -81,13 +73,6 @@
 
    <plugin
          id="org.eclipse.draw3d.graphics3d"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.eclipse.amp.escape.amf.ide3d"
          download-size="0"
          install-size="0"
          version="0.0.0"

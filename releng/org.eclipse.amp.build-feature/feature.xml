@@ -29,7 +29,13 @@
    <includes
          id="org.eclipse.amp.test"
          version="0.0.0"/>
-	<includes
+
+   <includes
          id="org.eclipse.amp.agf3d"
          version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.amp.amf.target.escape3d"
+         version="0.0.0"/>
+
 </feature>

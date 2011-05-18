@@ -6,18 +6,18 @@ import org.osgi.framework.BundleContext;
 /**
  * The activator class controls the plug-in life cycle
  */
-public class EscapeAMFPlugin3d extends AbstractUIPlugin {
+public class EscapeAMF3DPlugin extends AbstractUIPlugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipse.amp.escape.amf.ide3d"; //$NON-NLS-1$
 
 	// The shared instance
-	private static EscapeAMFPlugin3d plugin;
+	private static EscapeAMF3DPlugin plugin;
 
 	/**
 	 * The constructor
 	 */
-	public EscapeAMFPlugin3d() {
+	public EscapeAMF3DPlugin() {
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class EscapeAMFPlugin3d extends AbstractUIPlugin {
 	 * 
 	 * @return the shared instance
 	 */
-	public static EscapeAMFPlugin3d getDefault() {
+	public static EscapeAMF3DPlugin getDefault() {
 		return plugin;
 	}
 
