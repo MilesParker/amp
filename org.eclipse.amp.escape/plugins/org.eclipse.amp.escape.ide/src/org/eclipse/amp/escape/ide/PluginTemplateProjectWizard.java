@@ -58,7 +58,6 @@ public abstract class PluginTemplateProjectWizard extends ProjectWizard implemen
 
 	private IConfigurationElement wizardConfiguration;
 
-	@Override
 	public void setInitializationData(IConfigurationElement config, String propertyName, Object data) throws CoreException {
 		this.wizardConfiguration = config;
 	}

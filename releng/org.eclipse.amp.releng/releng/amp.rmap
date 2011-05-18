@@ -2,7 +2,6 @@
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
 	<rm:property key="checkout.location" value="${workspace.root}/org.eclipse.amp" />
 	<rm:property key="eclipse.download" value="http://download.eclipse.org" />
-	<rm:locator pattern="^org\.eclipse\.emf\.mwe(\..+)?" searchPathRef="mwe" />
 
 	<rm:locator pattern="^org\.eclipse\.amp\.releng$" searchPathRef="amp.releng.local" failOnError="false" />
 	<rm:locator pattern="^org\.eclipse\.amp\.build$" searchPathRef="amp.build.local" failOnError="false" />
@@ -284,18 +283,9 @@
 		</rm:provider>
 	</rm:searchPath>
 
-	<!-- NOTE: ***We need to get 1.0.2 which is no longer on Indigo.*** -->
 	<rm:searchPath name="itemis">
 		<rm:provider readerType="p2" componentTypes="eclipse.feature,osgi.bundle" mutable="false" source="false">
 			<rm:uri format="http://download.itemis.com/updates" />
 		</rm:provider>
 	</rm:searchPath>
-
-	<rm:searchPath name="mwe">
-		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<rm:uri format="${eclipse.download}/modeling/emft/mwe/updates/nightly">
-			</rm:uri>
-		</rm:provider>
-	</rm:searchPath>
-
 </rm:rmap>
