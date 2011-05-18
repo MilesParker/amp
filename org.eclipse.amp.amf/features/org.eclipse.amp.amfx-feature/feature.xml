@@ -20,9 +20,6 @@
 
    <url>
       <update label="%AMPUpdateSiteName" url="http://eclipse.org/amp/updates/release"/>
-      <discovery label="TMF Interim" url="http://download.eclipse.org/modeling/tmf/updates/interim/"/>
-      <discovery label="M2T Interim" url="http://download.eclipse.org/modeling/m2t/updates/interim"/>
-      <discovery label="EMFT Interim" url="http://download.eclipse.org/modeling/emft/updates/interim/"/>
    </url>
 
    <requires>

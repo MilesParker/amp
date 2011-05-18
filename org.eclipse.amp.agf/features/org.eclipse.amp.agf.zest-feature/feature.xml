@@ -21,7 +21,6 @@ using GEF Zest framework.
 
    <url>
       <update label="%AMPUpdateSiteName" url="http://eclipse.org/amp/updates/release"/>
-      <discovery label="GEF Update Site" url="http://download.eclipse.org/tools/gef/updates/milestones/"/>
    </url>
 
    <requires>

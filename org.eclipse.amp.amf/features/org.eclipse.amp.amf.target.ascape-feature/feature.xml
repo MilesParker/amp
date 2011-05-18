@@ -20,7 +20,6 @@
 
    <url>
       <update label="%AMPUpdateSiteName" url="http://eclipse.org/amp/updates/release"/>
-      <!-- Removed update site reference per policy <discovery label="Ascape Support" url="http://ascape. sourceforge.net/eclipse"/> -->
    </url>
 
    <requires>

@@ -19,7 +19,6 @@
 
    <url>
       <update url="http://eclipse.org/amp/updates/release"/>
-      <discovery label="%modelingUpdateSiteName" url="http://www.eclipse.org/modeling/updates/"/>
    </url>
 
    <includes
