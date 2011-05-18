@@ -3,10 +3,6 @@
   <rm:property key="checkout.location" value="${workspace.root}/"/>
   <rm:property key="eclipse.download" value="file:/home/data/httpd/download.eclipse.org"/>
   <rm:locator pattern="^org\.eclipse\.amp\.(releng|build)$" searchPathRef="local.releng"/>
-  <rm:locator pattern="^org\.eclipse\.mwe(\..+)?" searchPathRef="eclipse" failOnError="false"/>
-  <rm:locator pattern="^org\.eclipse\.xpand(\..+)?" searchPathRef="eclipse" failOnError="false"/>
-  <rm:locator pattern="^org\.eclipse\.xtend(\..+)?" searchPathRef="eclipse" failOnError="false"/>
-  <rm:locator pattern="^org\.eclipse\.xtext(\..+)?" searchPathRef="eclipse" failOnError="false"/>
   <rm:locator pattern="^de\.itemis\.xtext\.antlr" searchPathRef="itemis"/>
   <rm:locator pattern="^org\.eclipse(\..+)?$" searchPathRef="eclipse" failOnError="false"/>
   <rm:locator pattern="^org\.lwjgl(\..+)?" searchPathRef="lwjgl"/>
@@ -30,13 +26,6 @@
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
-  <rm:searchPath name="helios">
-    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/releases/helios?importType=binary">
-        <bc:propertyRef key="eclipse.download"/>
-      </rm:uri>
-    </rm:provider>
-  </rm:searchPath>
   <rm:searchPath name="eclipse">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
       <rm:uri format="{0}/releases/indigo?importType=binary">
@@ -47,27 +36,6 @@
   <rm:searchPath name="platform">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
       <rm:uri format="{0}/eclipse/updates/3.7milestones">
-        <bc:propertyRef key="eclipse.download"/>
-      </rm:uri>
-    </rm:provider>
-  </rm:searchPath>
-  <rm:searchPath name="mwe">
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}">
-        <bc:propertyRef key="mwe.p2.repository"/>
-      </rm:uri>
-    </rm:provider>
-  </rm:searchPath>
-  <rm:searchPath name="xpand">
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}">
-        <bc:propertyRef key="xpand.p2.repository"/>
-      </rm:uri>
-    </rm:provider>
-  </rm:searchPath>
-  <rm:searchPath name="birt">
-    <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <rm:uri format="http://download.eclipse.org/birt/update-site/4.0-interim/">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
