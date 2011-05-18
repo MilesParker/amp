@@ -283,10 +283,10 @@
 		</rm:provider>
 	</rm:searchPath>
 
+	<!-- NOTE: For product build, we want the ANTLR parser. -->
 	<rm:searchPath name="itemis">
 		<rm:provider readerType="p2" componentTypes="eclipse.feature,osgi.bundle" mutable="false" source="false">
 			<rm:uri format="http://download.itemis.com/updates" />
 		</rm:provider>
 	</rm:searchPath>
-
 </rm:rmap>

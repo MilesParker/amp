@@ -52,7 +52,6 @@ public abstract class ProjectWizard extends Wizard implements INewWizard {
 		super();
 	}
 
-	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		// Override if needed.
 	}
