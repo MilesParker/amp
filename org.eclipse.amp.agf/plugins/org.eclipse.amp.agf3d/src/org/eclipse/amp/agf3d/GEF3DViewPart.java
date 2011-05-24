@@ -45,6 +45,11 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 
+/**
+ * Support for 3D visualization of AMP models.
+ * @author milesparker
+ *
+ */
 public class GEF3DViewPart extends EditPartViewPart {
 
     public static Vector3fImpl UP_VECTOR = new Vector3fImpl(0, 0, -1);
