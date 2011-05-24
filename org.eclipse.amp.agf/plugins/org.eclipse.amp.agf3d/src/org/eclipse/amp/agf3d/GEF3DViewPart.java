@@ -256,7 +256,7 @@ public class GEF3DViewPart extends EditPartViewPart {
             }.start();
         } else {
             final ICamera camera = getCamera();
-            camera.moveTo(endPoint.getX(), endPoint.getY(), endPoint.getZ());
+            camera.moveTo(endPoint);
             camera.lookAt(endLookPoint, UP_VECTOR);
         }
     }
@@ -314,7 +314,7 @@ public class GEF3DViewPart extends EditPartViewPart {
     private void moveToNow(final Vector3f movePoint) {
         Display.getDefault().syncExec(new Runnable() {
             public void run() {
-                getCamera().moveTo(movePoint.getX(), movePoint.getY(), movePoint.getZ());
+                getCamera().moveTo(movePoint);
             }
         });
     }
