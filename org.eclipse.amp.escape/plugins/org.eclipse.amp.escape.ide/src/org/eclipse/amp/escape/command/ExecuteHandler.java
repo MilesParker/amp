@@ -45,11 +45,15 @@ public abstract class ExecuteHandler extends ResourceHandler {
         this.setHeadless(headless);
     }
 
-    /*
-     * (non-Javadoc)
+    /**
+     * Starts a new job with a {@link EclipseEscapeRunner} that executes 
+     * the scape.
      * 
-     * @see org.eclipse.amp.escape.command.ResourceHandler#execute(java.lang.Object, java.lang.String)
+     * @param executed scape resource/class name to execute
+     * @param name scape name
+     * @throws ExecutionException if problem executing
      */
+    @Override
     public final void execute(final Object executed, String name) throws ExecutionException {
         final EclipseEscapeRunner eclipseRunner = createRunner();
         if (isHeadless()) {
@@ -83,7 +87,7 @@ public abstract class ExecuteHandler extends ResourceHandler {
      * Execute open.
      * 
      * @param eclipseRunner the eclipse runner
-     * @param executed the executed
+     * @param executed the executed scape resource/name
      * @param monitor the monitor
      */
     protected abstract void executeOpen(final EclipseEscapeRunner eclipseRunner, final Object executed,

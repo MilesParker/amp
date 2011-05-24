@@ -15,6 +15,7 @@
  */
 package org.eclipse.amp.escape.ide;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,7 @@ import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.event.ScapeListener;
 import org.ascape.model.rule.PropogateScapeOnly;
 import org.ascape.runtime.NonGraphicRunner;
+import org.ascape.runtime.Runner;
 import org.eclipse.amp.axf.core.IEngine;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
 import org.eclipse.amp.axf.core.IModel;
@@ -37,7 +39,6 @@ import org.eclipse.amp.axf.time.TimeGranularity;
 import org.eclipse.amp.escape.ascape.wrap.ModelWrapperScapeListener;
 import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
 import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModelListener;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -50,7 +51,8 @@ import org.eclipse.ui.statushandlers.StatusManager;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class EclipseEscapeRunner.
+ * Create a new instance of a model (scape) and start it running in the eclipse
+ * environment.
  */
 public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 
@@ -62,8 +64,6 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 
 	IModel model;
 
-	IProject project;
-
 	private IStatus finishStatus = Status.OK_STATUS;
 
 	TimeGranularity updateGranularity = TimeGranularity.DEFAULT_GRANULARITY;
@@ -73,67 +73,66 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 	// would be nice to have this in Ascape proper but not worth IP submission
 	private boolean closeOnStop = false;
 
+
 	/**
-	 * Open.
+	 * {@link #open(String, String, String[], boolean) Open} a workspace model
+	 * with no args. Sets up the {@link ProjectLoader} class loader that loads
+	 * workspace resources. Waits until execution has stopped before returning
+	 * (ie: this method blocks).
 	 * 
 	 * @param modelResource
 	 *            the model resource
-	 * @param modelClassName
+	 * @param scapeClassName
 	 *            the model class name
-	 * @param modelName
+	 * @param scapeName
 	 *            the model name
 	 */
 	public void open(final IResource modelResource,
-			final String modelClassName, String modelName) {
-		open(modelResource, modelClassName, modelName, new String[0]);
+			final String scapeClassName, String scapeName) {
+		open(modelResource, scapeClassName, scapeName, new String[0]);
 	}
 
 	/**
-	 * Open. Wait until execution has stopped to return.
+	 * {@link #open(String, String, String[], boolean) Open} a workspace model
+	 * with supplied args. Sets up the {@link ProjectLoader} class loader that
+	 * loads workspace resources. Waits until execution has stopped before
+	 * returning (ie: this method blocks).
 	 * 
 	 * @param projectResource
 	 *            the project resource
-	 * @param modelClassName
-	 *            the model class name
-	 * @param modelName
-	 *            the model name
+	 * @param scapeClassName
+	 *            the scape class name
+	 * @param scapeName
+	 *            the scape name
 	 * @param args
-	 *            the args
+	 *            parameter arguments for the scape
 	 */
 	public void open(final IResource projectResource,
-			final String modelClassName, String modelName, String[] args) {
-		open(projectResource, modelClassName, modelName, args, true);
+			final String scapeClassName, String scapeName, String[] args) {
+		open(projectResource, scapeClassName, scapeName, args, true);
 	}
 
 	/**
-	 * Open.
+	 * {@link #open(String, String, String[], boolean) Open} a workspace model
+	 * with supplied args. Sets up the {@link ProjectLoader} class loader that
+	 * loads workspace resources.
 	 * 
 	 * @param projectResource
 	 *            the project resource
-	 * @param modelClassName
-	 *            the model class name
-	 * @param modelName
-	 *            the model name
+	 * @param scapeClassName
+	 *            the scape class name
+	 * @param scapeName
+	 *            the scape name
 	 * @param args
-	 *            the args
+	 *            parameter arguments for the scape
 	 * @param block
 	 *            true if this method should only return on execution
 	 *            completion.
 	 */
 	public void open(final IResource projectResource,
-			final String modelClassName, String modelName, String[] args,
+			final String scapeClassName, String scapeName, String[] args,
 			boolean block) {
-		this.project = projectResource.getProject();
-		setStartOnOpen(false);
-		setAutoRestart(false);
-		final MessageConsole eclipseConsole = new MessageConsole("Run "
-				+ modelName, null);
-		getEnvironment().getConsole().setIMessageStream(
-				new MessageAdapter(eclipseConsole));
-		IConsole[] consules = { eclipseConsole };
-		ConsolePlugin.getDefault().getConsoleManager().addConsoles(consules);
-		eclipseConsole.activate();
-		AscapeRuntimePlugin.getDefault();
+
 		try {
 			delegateLoader = new ProjectLoader(projectResource.getProject());
 		} catch (LoaderCreationException e) {
@@ -141,31 +140,112 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 					.getManager()
 					.handle(new Status(
 							Status.WARNING,
-							project.getName(),
-							"Couldn't create project classloader; falling back to default loader",
-							e));
-		}
-		Scape newAgent;
-		try {
-			newAgent = (Scape) instanceFromName(modelClassName);
-		} catch (RuntimeException e) {
+							scapeName,
+							"Couldn't create project classloader; falling back to default loader", e));
+		} catch (MalformedURLException e) {
 			StatusManager
 					.getManager()
 					.handle(new Status(
-							Status.ERROR,
-							project.getName(),
-							"Could not read class: "
-									+ modelClassName
-									+ ". Please ensure that the class exists in class path.",
-							e), StatusManager.SHOW | StatusManager.LOG);
+							Status.WARNING,
+							scapeName,
+							"Couldn't create project classloader; falling back to default loader",
+							e));
+		}
+		open(scapeClassName, scapeName, args, block);
+	}
+
+	/**
+	 * {@link #open(String, String, String[], boolean) Open} a model with no
+	 * args. Waits until execution has stopped before returning (ie: this method
+	 * blocks).
+	 * 
+	 * @param scapeClassName
+	 *            the scape class name
+	 * @param scapeName
+	 *            the scape name
+	 */
+	public void open(final String scapeClassName, String scapeName) {
+		open(scapeClassName, scapeName, new String[0]);
+	}
+
+	/**
+	 * {@link #open(String, String, String[], boolean) Open} a model with
+	 * supplied args. Waits until execution has stopped before returning (ie:
+	 * this method blocks).
+	 * 
+	 * @param scapeClassName
+	 *            the scape class name
+	 * @param scapeName
+	 *            the scape name
+	 * @param args
+	 *            parameter arguments for the scape
+	 */
+	public void open(final String scapeClassName, String scapeName,
+			String[] args) {
+		open(scapeClassName, scapeName, args, true);
+	}
+
+	/**
+	 * Open a model. A instance of the scape specified is created using the
+	 * using the current thread's context class loader. This will be
+	 * {@link ProjectLoader} if
+	 * {@link #open(IResource, String, String, String[], boolean) open} is used
+	 * or otherwise {@link org.eclipse.core.runtime.internal.adaptor.ContextFinder}.
+	 * <p>
+	 * If the {@link org.eclipse.core.runtime.internal.adaptor.ContextFinder} class 
+	 * loader is in use then this <a href=
+	 * "http://wiki.eclipse.org/index.php/Context_Class_Loader_Enhance2ments#Search_Order"
+	 * > search logic</a> is used to locate the scape class. For this to work
+	 * the bundle containing the scape class ought to have the following in its
+	 * MANIFEST.MF:
+	 * 
+	 * <pre>
+	 * Eclipse-RegisterBuddy: org.ascape.core
+	 * Import-Package: org.ascape.runtime
+	 * </pre>
+	 * 
+	 * @param scapeClassName
+	 *            the class name of the scape
+	 * @param scapeName
+	 *            the name of the scape
+	 * @param args
+	 *            parameter arguments for the scape
+	 * @param block
+	 *            true if this method should only return on execution
+	 *            completion.
+	 */
+    public void open(final String scapeClassName, String scapeName, 
+    		String[] args, boolean block) {
+		setStartOnOpen(false);
+		setAutoRestart(false);
+        final MessageConsole eclipseConsole = new MessageConsole("Run " + scapeName, null);
+        getEnvironment().getConsole().setIMessageStream(new MessageAdapter(eclipseConsole));
+		IConsole[] consules = { eclipseConsole };
+		ConsolePlugin.getDefault().getConsoleManager().addConsoles(consules);
+		eclipseConsole.activate();
+		AscapeRuntimePlugin.getDefault();
+        
+        Scape newScape;
+        try {
+        	// create instance using the current thread's context class loader
+        	// this will be ProjectLoader or ContextFinder 
+            newScape = (Scape) instanceFromName(scapeClassName);
+        } catch (RuntimeException e) {
+            StatusManager.getManager().handle(
+                                              new Status(Status.ERROR, scapeName, "Could not read class: "
+                                                         + scapeClassName
+                                                         + ". Please ensure that the class exists in class path.", e),
+                                                         StatusManager.SHOW | StatusManager.LOG);
 			dispose();
 			throw e;
 		}
-		newAgent.setName(modelName);
-		setRootScape(newAgent);
+        newScape.setName(scapeName);
+        setRootScape(newScape);
 		model = new ScapeWrapperModel(getRootScape());
-		AXFWorkbenchPlugin.getDefault().getManager()
-				.register(model, this, getRootScape());
+        
+        // register this model with the ModelViewManager
+        AXFWorkbenchPlugin.getDefault().getManager().register(model, this, getRootScape());
+        
 		// getModel().addModelListener(new ModelMonitorView(modelMonitor));
 		// getModel().addModelListener(new ControlViewProxy());
 		try {
@@ -203,6 +283,41 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 		}
 	}
 
+    /**
+     * Create an object instance using loadclass on the current thread's context class loader.
+     * If that fails, use Class.forName.
+     * 
+     * NB:
+     * This is a duplicate of {@link Runner#instanceFromName(String)} from org.ascape.core.
+     * It is duplicated here so that the Eclipse-BuddyPolicy of org.eclipse.amp.escape.ide
+     * is used instead of the Eclipse-BuddyPolicy of org.ascape.core.
+     * 
+     * @param className class name of object to create
+     * @return new instance of className
+     */
+    @Override
+    public Object instanceFromName(String className) {
+        Object newObject;
+        try {
+            newObject = Thread.currentThread().getContextClassLoader().loadClass(className).newInstance();
+        } catch (NullPointerException e) {
+            throw new RuntimeException("An error ocurred while attempting to read " + className + ": " + e.getMessage(), e);
+        } catch (InstantiationException e) {
+            throw new RuntimeException("An error ocurred while attempting to read " + className + ": " + e.getMessage(), e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException("An error ocurred while attempting to read " + className + ": " + e.getMessage(), e);
+        } catch (ClassNotFoundException e) {
+            try {
+                Class c = Class.forName(className);
+                newObject = c.newInstance();
+            } catch (Exception e2) {
+                throw new RuntimeException("Couldn't find class: " + className);
+            }
+        }
+        return newObject;
+    }
+    
+    
 	private void removeModel() {
 		if (AXFWorkbenchPlugin.getDefault().getManager() != null) {
 			new Thread() {
@@ -274,12 +389,9 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 				} catch (RuntimeException e) {
 					String message = "An exception occurred: ";
 					if (model != null) {
-						message = "An exception occurred when running: "
-								+ getModel().getName();
-					}
-					StatusManager.getManager().handle(
-							new Status(Status.ERROR, project.getName(),
-									message, e),
+                        message = "An exception occurred when running: " + getModel().getName();
+                    }
+                    StatusManager.getManager().handle(new Status(Status.ERROR, getModel().getName(), message, e),
 							StatusManager.SHOW | StatusManager.LOG);
 					if (closeOnStop) {
 						close();
@@ -559,9 +671,9 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 	}
 
 	/**
-	 * @return
-	 * @see org.eclipse.amp.axf.core.IEngine#getUpdateGranularity()
-	 */
+     * @return granularity
+     * @see org.eclipse.amp.axf.core.IEngine#getUpdateGranularity()
+     */
 	public ITimeGranularity getUpdateGranularity() {
 		return updateGranularity;
 	}
@@ -572,10 +684,6 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 	 */
 	public void setUpdateGranularity(ITimeGranularity granularity) {
 		this.updateGranularity = (TimeGranularity) granularity;
-	}
-
-	public IProject getExecutingProject() {
-		return project;
 	}
 
 	/**

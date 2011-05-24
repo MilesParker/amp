@@ -16,6 +16,7 @@
 package org.eclipse.amp.escape.ide;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -40,13 +41,19 @@ import org.osgi.framework.Constants;
  * class-loader for all other classes. Overriding a specific class loader seems
  * to be the only model that works. Decorator pattern does not find new classes.
  * 
+ * Resources (such as the 'About this model' file displayed by {@link InfoView})
+ * can be placed in the same folder as their class, or in a placed in a "res"
+ * source folder in the model project directory in a parallel directory path to
+ * the Java class package. For example, an about file for a model defined by the
+ * scape "edu.brook.norms.Norms" could be placed at
+ * "res/edu/brook/norms/AboutNorms.html".
+ * 
  * @author milesparker
  */
 public class ProjectLoader extends URLClassLoader {
 
 	private IProject project;
-
-	private ClassLoader mainLoader;
+    private ClassLoader mainLoader;
 
 	private List<Bundle> bundles;
 
@@ -58,12 +65,21 @@ public class ProjectLoader extends URLClassLoader {
 	 * 
 	 * @throws LoaderCreationException
 	 *           the loader creation exception
+     * @throws MalformedURLException if can't get URL to project resource dir
 	 */
-	public ProjectLoader(IProject project) throws LoaderCreationException {
-		super(new URL[0]);
+	public ProjectLoader(IProject project) throws LoaderCreationException,
+			MalformedURLException {
+		// add the project's res directory to this URL search path so
+		// getResource calls will look here
+		super(
+				new URL[] { new URL(project.getLocationURI().toString()
+						+ "/res/") });
 		this.project = project;
+		
 		try {
-			project.open(null);
+        	// get the project's output locations, eg: bin dir
+        	// and add them to the search path
+            project.open(null);
 			IJavaProject javaProject = JavaCore.create(project);
 			List<URL> outputURL = new ArrayList<URL>();
 			outputURL.add(new File(project.getLocation() + "/" + javaProject.getOutputLocation().removeFirstSegments(1) + "/").toURI().toURL());
@@ -138,7 +154,7 @@ public class ProjectLoader extends URLClassLoader {
 	}
 
 	/**
-	 * Restore.
+     * Restore.
 	 */
 	public void restore() {
 		Thread.currentThread().setContextClassLoader(mainLoader);

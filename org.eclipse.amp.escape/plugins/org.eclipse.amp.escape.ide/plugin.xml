@@ -23,6 +23,17 @@
         id="org.eclipse.amp.escape.runtime.executeHeadless"
         name="Execute Headless">
 		</command>
+  <command
+        defaultHandler="org.eclipse.amp.escape.command.ExecuteJavaByClassNameHandler"
+        description="Execute a Java Model by Class Name"
+        id="org.eclipse.amp.escape.runtime.executeClassName"
+        name="Execute a Java Model by Class Name">
+     <commandParameter
+           id="scapeClassName"
+           name="scape class name"
+           optional="false">
+     </commandParameter>
+  </command>
 	</extension>
 	<extension point="org.eclipse.ui.menus">
 		<menuContribution locationURI="popup:org.eclipse.ui.popup.any">

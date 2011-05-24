@@ -44,12 +44,15 @@ public abstract class ResourceHandler extends AbstractHandler {
      */
     public Object execute(ExecutionEvent event) throws ExecutionException {
         try {
+        	// if command has an elementRef parameter, execute that
             IJavaElement javaElement = (IJavaElement) event.getObjectParameterForExecution("elementRef");
             executeForObject(event, javaElement);
             return null;
         } catch (ExecutionException e) {
             // we can safely ignore..the sub-class may not have defined this parameter..
         }
+        
+        // execute on the current selection
         ISelection selection = HandlerUtil.getCurrentSelection(event);
         if (selection != null && !selection.isEmpty() && selection instanceof IStructuredSelection) {
             IStructuredSelection structuredSelection = (IStructuredSelection) selection;
