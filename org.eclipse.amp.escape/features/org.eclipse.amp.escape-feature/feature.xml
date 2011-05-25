@@ -40,7 +40,7 @@
       <import plugin="org.eclipse.amp.axf.views" version="0.8.5" match="greaterOrEqual"/>
       <import plugin="org.eclipse.amp.axf.ide" version="0.8.5" match="greaterOrEqual"/>
       <import plugin="org.eclipse.amp.agf.core" version="0.8.5" match="greaterOrEqual"/>
-      <import plugin="org.ascape.ui.amp" version="0.8.5" match="greaterOrEqual"/>
+      <import plugin="org.ascape.ui.amp" match="greaterOrEqual"/>
       <import plugin="org.eclipse.jface" version="3.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.ui.ide" version="3.5.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.debug.ui" version="3.5.0" match="greaterOrEqual"/>

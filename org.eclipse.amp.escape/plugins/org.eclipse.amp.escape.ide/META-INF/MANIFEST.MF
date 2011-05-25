@@ -13,7 +13,7 @@ Import-Package: org.apache.commons.lang
 Export-Package: org.eclipse.amp.escape.command,
  org.eclipse.amp.escape.help,
  org.eclipse.amp.escape.ide
-Require-Bundle: org.ascape.ui.amp;bundle-version="0.8.0",
+Require-Bundle: org.ascape.ui.amp,
  org.eclipse.core.resources,
  org.eclipse.core.runtime,
  org.eclipse.jface,
