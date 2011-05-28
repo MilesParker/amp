@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
-  <rm:property key="checkout.location" value="${workspace.root}/"/>
+  <rm:property key="checkout.location" value="${workspace.root}/org.eclipse.amp.git"/>
   <rm:property key="eclipse.download" value="file:/home/data/httpd/download.eclipse.org"/>
-  <rm:locator pattern="^org\.eclipse\.amp\.(releng|build)$" searchPathRef="local.releng"/>
+  <rm:locator pattern="^org\.eclipse\.amp\.releng" searchPathRef="local.releng" failOnError="false"/>
+  <rm:locator pattern="^org\.eclipse\.amp\.releng" searchPathRef="releng"/>
   <rm:locator pattern="^de\.itemis\.xtext\.antlr" searchPathRef="itemis"/>
   <rm:locator pattern="^org\.eclipse(\..+)?$" searchPathRef="eclipse" failOnError="false"/>
   <rm:locator pattern="^org\.lwjgl(\..+)?" searchPathRef="lwjgl"/>
@@ -15,17 +16,28 @@
   <rm:locator searchPathRef="platform" failOnError="false"/>
   <rm:locator searchPathRef="orbit" failOnError="false"/>
   <rm:locator searchPathRef="itemis"/>
+  
   <rm:searchPath name="local.releng">
     <rm:provider componentTypes="buckminster" readerType="local" mutable="false">
       <rm:uri format="{0}/releng/{1}">
         <bc:propertyRef key="checkout.location"/>
-		<bc:replace>
-			<bc:propertyRef key="buckminster.component" />
-			<bc:match pattern="org\.eclipse\.amp\.build" replacement="org.eclipse.amp.build-feature" />
-		</bc:replace>
+		<bc:propertyRef key="buckminster.component" />
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
+	<rm:searchPath name="releng">
+		<rm:provider componentTypes="buckminster" readerType="git"
+			resolutionFilter="">
+			<rm:uri format="{0},releng/{1}">
+				<bc:propertyRef key="checkout.location" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri"
+				value="git://git.eclipse.org/gitroot/amp/org.eclipse.amp.git" />
+			<rm:property key="git.remote.name" value="origin" />
+			<rm:property key="git.auto.fetch" value="true" />
+		</rm:provider>
+	</rm:searchPath>
   <rm:searchPath name="eclipse">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
       <rm:uri format="{0}/releases/indigo?importType=binary">
