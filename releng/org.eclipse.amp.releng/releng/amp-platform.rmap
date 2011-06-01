@@ -14,8 +14,7 @@
   <rm:locator pattern="^org\.eclipse\.swtbot(\..+)?" searchPathRef="swtbot"/>
   <rm:locator searchPathRef="eclipse" failOnError="false"/>
   <rm:locator searchPathRef="platform" failOnError="false"/>
-  <rm:locator searchPathRef="orbit" failOnError="false"/>
-  <rm:locator searchPathRef="itemis"/>
+  <rm:locator searchPathRef="orbit"/>
   
   <rm:searchPath name="local.releng">
     <rm:provider componentTypes="buckminster" readerType="local" mutable="false">
