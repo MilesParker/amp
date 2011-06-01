@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
-Bundle-Version: 0.8.5.qualifier
+Bundle-Version: 0.9.0.qualifier
 Bundle-SymbolicName: org.eclipse.amp.amf.testing; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext;bundle-version="2.0.0";visibility:=reexport,
@@ -21,7 +21,7 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.0.0";visibility:=reexport,
  org.eclipse.core.resources,
  org.eclipse.amp.amf.acore,
  org.eclipse.amp.amf.abase,
- org.eclipse.amp.amf.parameters;bundle-version="0.8.5",
+ org.eclipse.amp.amf.parameters;bundle-version="0.9.0",
  org.apache.commons.lang
 Import-Package: org.apache.log4j,
  org.apache.commons.logging,

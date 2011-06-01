@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.amp.doc"
       label="%featureName"
-      version="0.8.5.qualifier"
+      version="0.9.0.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.amp.doc">
 

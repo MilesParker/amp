@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.amp.amf.parameters.editor;singleton:=true
-Bundle-Version: 0.8.5.qualifier
+Bundle-Version: 0.9.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.amp.amf.parameters.aPar.presentation.AParEditorPlugin$Implementation
 Bundle-Vendor: %providerName
@@ -16,5 +16,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
  org.eclipse.amp.amf.acore.edit;visibility:=reexport,
- org.eclipse.amp.amf.abase.edit;bundle-version="0.8.5"
+ org.eclipse.amp.amf.abase.edit;bundle-version="0.9.0"
 Bundle-ActivationPolicy: lazy

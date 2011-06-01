@@ -14,7 +14,7 @@ Copyright 2009, Miles Parker. Released under Eclipse Public License. All uses sh
 					<h2>Parameters</h2>
 						
 		
-				<H5>Individual Count  (int, default: 1500)</H5>
+				<H5>Individual Count  (int, default: 0)</H5>
 				<i>The number of individuals to create.</i><BR/>
 		
 				<H5>Initial Infection Probability  (double, default: .05)</H5>
@@ -52,6 +52,15 @@ Copyright 2009, Miles Parker. Released under Eclipse Public License. All uses sh
 		
 				<H5>Movement Probability  (double, default: .5)</H5>
 				<i>The chance that an agent will move within a given period. May be any value between 0.0 and 1.0.</i><BR/>
+		
+				<H5>Flea Count  (int, default: 30)</H5>
+				<i>The number of fleas to create.</i><BR/>
+		
+				<H5>Rat Count  (int, default: 40)</H5>
+				<i>The number of rats to create.</i><BR/>
+		
+				<H5>Flea Range  (int, default: 3)</H5>
+				<i></i><BR/>
 		
 
 					<h2><ul>Agents</ul></h2>
@@ -97,6 +106,37 @@ Copyright 2009, Miles Parker. Released under Eclipse Public License. All uses sh
 		
 				<H5>Exposure</H5>
 				<i>Watch for changes in Status.</i><BR/>
+		
+
+						
+							<H3>Flea</H3>
+							
+							<H4>Attributes</H4>
+							
+		
+
+							<H4>Behaviors</H4>
+							
+		
+				<H5>Initialize</H5>
+				<i>Initialize Initialization. Executed once at the beginning of each model run.</i><BR/>
+		
+				<H5>Flea Movement</H5>
+				<i>Flea Movement Rule. Executed every period.</i><BR/>
+		
+
+						
+							<H3>Rat</H3>
+							
+							<H4>Attributes</H4>
+							
+		
+
+							<H4>Behaviors</H4>
+							
+		
+				<H5>Initialize</H5>
+				<i>Initialize Initialization. Executed once at the beginning of each model run.</i><BR/>
 		
 
 						

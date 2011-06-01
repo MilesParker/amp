@@ -2,22 +2,27 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.amp.escape.runtime
-Bundle-Version: 0.8.5.qualifier
+Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: org.eclipse.amp.escape.runtime.EscapeRuntimePlugin
 Require-Bundle: org.eclipse.core.runtime;visibility:=reexport,
- org.eclipse.amp.axf.views;bundle-version="0.8.5";visibility:=reexport,
- org.eclipse.amp.axf.core;bundle-version="0.8.5";visibility:=reexport,
- org.eclipse.amp.agf.core;bundle-version="0.8.5";visibility:=reexport,
- org.eclipse.amp.escape.ascape;bundle-version="0.8.5";visibility:=reexport,
+ org.eclipse.amp.axf.views;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.amp.axf.core;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.amp.agf.core;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.amp.escape.ascape;bundle-version="0.9.0";visibility:=reexport,
  org.ascape.ui.amp;visibility:=reexport,
- org.eclipse.amp.agf.chart;bundle-version="0.8.5";visibility:=reexport,
- org.eclipse.amp.escape.ascape.chart;bundle-version="0.8.5";visibility:=reexport,
- org.eclipse.birt.chart.engine;visibility:=reexport,
+ org.eclipse.amp.agf.chart;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.amp.agf.zest;bundle-version="0.9.0";resolution:=optional,
+ org.eclipse.amp.escape.ascape.chart;bundle-version="0.9.0";visibility:=reexport,
+ org.eclipse.amp.escape.ascape.agf3d;bundle-version="0.9.0";resolution:=optional;visibility:=reexport,
  org.eclipse.jface;visibility:=reexport,
  org.apache.commons.lang;resolution:=optional;visibility:=reexport,
- org.eclipse.amp.escape.ascape.agf3d;bundle-version="0.8.5";resolution:=optional;visibility:=reexport,
- org.apache.commons.collections;bundle-version="3.2.0";resolution:=optional;visibility:=reexport,
- org.eclipse.amp.agf.zest;bundle-version="0.8.5";resolution:=optional
+ org.apache.commons.collections;resolution:=optional;visibility:=reexport,
+ org.eclipse.birt.chart.engine;visibility:=reexport,
+ org.eclipse.birt.chart.device.extension,
+ org.eclipse.birt.chart.device.swt,
+ org.eclipse.birt.chart.engine.extension,
+ org.eclipse.birt.chart.ui,
+ org.eclipse.birt.chart.ui.extension
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName

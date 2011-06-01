@@ -3,7 +3,7 @@ Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.amp.agf.chart;singleton:=true
-Bundle-Version: 0.8.5.qualifier
+Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: org.eclipse.amp.agf.chart.ide.AGFChartPlugin
 Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.views,

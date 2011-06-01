@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-SymbolicName: org.eclipse.amp.agf.core;singleton:=true
-Bundle-Version: 0.8.5.qualifier
+Bundle-Version: 0.9.0.qualifier
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.ui.views,
@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gef;visibility:=reexport,
  org.eclipse.amp.axf.core,
  org.eclipse.amp.axf.views,
- org.eclipse.amp.axf.ide;bundle-version="0.8.5"
+ org.eclipse.amp.axf.ide;bundle-version="0.9.0"
 Export-Package: org.eclipse.amp.agf,
  org.eclipse.amp.agf.gef,
  org.eclipse.amp.agf.tree;

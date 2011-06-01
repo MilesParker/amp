@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.amp.amf.target.repast"
       label="%featureName"
-      version="0.8.5.qualifier"
+      version="0.9.0.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.amp.amf.ide.repast">
 
@@ -33,8 +33,8 @@
       <import plugin="org.eclipse.jdt.debug.ui"/>
       <import plugin="org.eclipse.jdt.debug"/>
       <import plugin="org.eclipse.jdt.core" version="3.5.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.amp.amf.ide" version="0.8.5" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.amp.amf.gen.ide" version="0.8.5" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.ide" version="0.9.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.amp.amf.gen.ide" version="0.9.0" match="greaterOrEqual"/>
       <import plugin="repast.simphony.score" version="1.0.0" match="greaterOrEqual"/>
    </requires>
 

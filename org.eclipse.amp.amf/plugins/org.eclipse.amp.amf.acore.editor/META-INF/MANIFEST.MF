@@ -10,7 +10,7 @@ Require-Bundle:
  org.eclipse.emf.java;bundle-version="2.5.0",
  org.eclipse.ui.views.properties.tabbed
 Bundle-SymbolicName: org.eclipse.amp.amf.acore.editor;singleton=true
-Bundle-Version: 0.8.5.qualifier
+Bundle-Version: 0.9.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Provide-Package: org.metaabm.act.ide,
