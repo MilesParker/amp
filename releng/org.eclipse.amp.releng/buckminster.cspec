@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cs:cspec xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0" name="org.eclipse.amp.releng" componentType="buckminster" version="0.8.5.qualifier">
+<cs:cspec xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0" name="org.eclipse.amp.releng" componentType="buckminster" version="0.9.0.qualifier">
     <cs:dependencies>
+        <cs:dependency name="de.itemis.xtext.antlr" componentType="osgi.bundle"/>
         <cs:dependency name="org.apache.commons.collections" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.birt" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.emf" componentType="eclipse.feature"/>
@@ -14,7 +15,6 @@
         <cs:dependency name="org.eclipse.zest" componentType="eclipse.feature"/>
         <cs:dependency name="org.junit" componentType="osgi.bundle"/>
         <cs:dependency name="org.junit4" componentType="osgi.bundle"/>
-        <cs:dependency name="de.itemis.xtext.antlr" componentType="osgi.bundle"/>
     </cs:dependencies>
     <cs:actions>
         <cs:public name="setup.promoter" actor="ant">
