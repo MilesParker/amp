@@ -319,7 +319,7 @@
 	<rm:searchPath name="itemis">
 		<rm:provider readerType="p2" componentTypes="eclipse.feature,osgi.bundle"
 			mutable="false" source="false">
-			<rm:uri format="http://download.itemis.com/updates" />
+			<rm:uri format="http://download.itemis.com/updates/milestones" />
 		</rm:provider>
 	</rm:searchPath>
 </rm:rmap>
