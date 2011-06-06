@@ -40,7 +40,7 @@
 	</rm:searchPath>
   <rm:searchPath name="eclipse">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/releases/indigo?importType=binary">
+      <rm:uri format="{0}/releases/staging?importType=binary">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
@@ -98,7 +98,7 @@
 	<!-- NOTE: ***We need to get 1.0.2 which is no longer on Indigo.*** -->
 	<rm:searchPath name="itemis">
 		<rm:provider readerType="p2" componentTypes="eclipse.feature,osgi.bundle" mutable="false" source="false">
-			<rm:uri format="http://download.itemis.com/updates/milestones" />
+			<rm:uri format="http://download.itemis.com/updates" />
 		</rm:provider>
 	</rm:searchPath>
   
