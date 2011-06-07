@@ -18,7 +18,7 @@
    </license>
 
    <url>
-      <update url="http://eclipse.org/amp/updates/release"/>
+      <update url="http://download.eclipse.org/amp/updates/releases/indigo"/>
    </url>
 
    <includes
