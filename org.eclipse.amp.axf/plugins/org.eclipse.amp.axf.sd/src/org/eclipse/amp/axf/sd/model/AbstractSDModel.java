@@ -28,7 +28,9 @@ public abstract class AbstractSDModel implements IAgentChild {
 
 	public AbstractVariable getVariable(String className) {
 		for (AbstractVariable tmp : variables) {
-			if (tmp.getClass().getName().endsWith(className)) {
+			String name = tmp.getClass().getName();
+			name = name.substring(name.lastIndexOf(".")+1, name.length());
+			if (name.equals(className)) {
 				return tmp;
 			}
 		}
