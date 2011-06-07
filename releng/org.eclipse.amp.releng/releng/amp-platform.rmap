@@ -12,7 +12,8 @@
   <rm:locator pattern="^org\.eclipse\.swtbot(\..+)?" searchPathRef="swtbot"/>
   <rm:locator searchPathRef="eclipse" failOnError="false"/>
   <rm:locator searchPathRef="platform" failOnError="false"/>
-  <rm:locator pattern="^org\.antlr\.gen" searchPathRef="orbit"/>
+  <rm:locator pattern="^org\.antlr\.gen" searchPathRef="orbit" failOnError="false"/>
+  <rm:locator pattern="^org\.antlr\.gen" searchPathRef="itemis"/>
   <rm:locator pattern="^de\.itemis\.xtext\.antlr" searchPathRef="itemis"/>
   <rm:locator pattern="^org\.lwjgl(\..+)?" searchPathRef="lwjgl"/>
   <rm:locator searchPathRef="orbit"/>
