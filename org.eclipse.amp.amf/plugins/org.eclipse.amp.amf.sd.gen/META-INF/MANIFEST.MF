@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.eclipse.amp.amf.sd.gen
 Bundle-SymbolicName: org.eclipse.amp.amf.sd.gen;singleton:=true
-Bundle-Version: 0.0.1.qualifier
+Bundle-Version: 0.9.0.qualifier
 Require-Bundle: org.eclipse.core.resources,
  org.eclipse.core.runtime,
  org.eclipse.ui,
@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.core.resources,
  org.eclipse.emf.common.ui,
  org.eclipse.ui.ide,
  org.eclipse.xtend,
- org.eclipse.xtend.typesystem.emf;bundle-version="1.0.1",
+ org.eclipse.xtend.typesystem.emf,
  org.eclipse.amp.amf.gen.ide,
  org.eclipse.amp.amf.sd,
  org.eclipse.amp.amf.gen.ascape,
@@ -20,7 +20,7 @@ Require-Bundle: org.eclipse.core.resources,
  org.eclipse.emf.codegen,
  org.eclipse.xpand,
  org.junit;bundle-version="3.8.2",
- org.eclipse.core.filesystem;bundle-version="1.3.1",
+ org.eclipse.core.filesystem,
  org.eclipse.amp.escape.runtime,
  org.eclipse.amp.escape.amf.ide;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

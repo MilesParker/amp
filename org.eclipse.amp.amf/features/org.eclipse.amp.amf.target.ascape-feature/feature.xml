@@ -31,10 +31,10 @@
       <import plugin="org.eclipse.jdt.launching"/>
       <import plugin="org.eclipse.jdt.debug.ui"/>
       <import plugin="org.ascape.core"/>
-      <import plugin="org.eclipse.jdt.core" version="3.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.jdt.core"/>
       <import plugin="org.eclipse.amp.amf.ide" version="0.9.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.amp.amf.gen.ide" version="0.9.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.ecore" version="2.5.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.ecore"/>
    </requires>
 
    <plugin
