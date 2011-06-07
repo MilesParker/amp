@@ -22,25 +22,25 @@ import java.util.Set;
 import org.eclipse.amp.amf.gen.ide.DocumentModelBuilder;
 import org.eclipse.amp.amf.gen.ide.GenIDEPlugin;
 import org.eclipse.amp.amf.gen.ide.MetaABMBuilder;
-import org.eclipse.amp.escape.ide.PluginTemplateProjectWizard;
+import org.eclipse.amp.amf.gen.ide.PluginTemplateProjectWizard;
 import org.eclipse.amp.escape.runtime.EscapeRuntimePlugin;
 
 public class EscapeAMFProjectWizard extends PluginTemplateProjectWizard {
 
 	@Override
-	protected String getProjectTypeName() {
+	public String getProjectTypeName() {
 		return "Escape AMF";
 	}
 
 	@Override
-	protected Set<String> getDependenciesForManifest() {
+	public Set<String> getDependenciesForManifest() {
 		Set<String> dependencies = super.getDependenciesForManifest();
 		dependencies.add(EscapeRuntimePlugin.PLUGIN_ID);
 		return dependencies;
 	}
 
 	@Override
-	protected List<String> getBuilders() {
+	public List<String> getBuilders() {
 		List<String> builderIDs = new ArrayList<String>();
 		builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + MetaABMBuilder.BUILDER_ID);
 		builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + DocumentModelBuilder.DOCUMENT_BUILDER_ID);
@@ -50,12 +50,12 @@ public class EscapeAMFProjectWizard extends PluginTemplateProjectWizard {
 	}
 
 	@Override
-	protected String getSourceDirName() {
+	public String getSourceDirName() {
 		return "srcgen";
 	}
 
 	@Override
-	protected String getCurrentPluginID() {
+	public String getPluginID() {
 		return EscapeAMFPlugin.PLUGIN_ID;
 	}
 

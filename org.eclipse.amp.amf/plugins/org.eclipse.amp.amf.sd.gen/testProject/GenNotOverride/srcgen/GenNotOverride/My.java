@@ -50,8 +50,20 @@ import org.eclipse.amp.escape.runtime.extension.IAgentChild;
  */
 public class My extends Scape implements IGraphicsAdapted {
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private List<IAgentChild> children;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public List<IAgentChild> getChildren() {
 		return children;
 	}
@@ -152,10 +164,6 @@ public class My extends Scape implements IGraphicsAdapted {
 
 		setName("My");
 
-		for (IAgentChild tmp : children) {
-			tmp.addDataCollectors(this);
-		}
-
 	}
 
 	/**
@@ -244,23 +252,6 @@ public class My extends Scape implements IGraphicsAdapted {
 	 */
 	public static void main(String[] args) {
 		(new NonGraphicRunner()).openInstance("GenNotOverride.My");
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-
-	@Override
-	public void executeOnMembers() {
-		int timeStep = getRunner().getPeriod();
-		startSimulationAgentChild(timeStep);
-
-		super.executeOnMembers();
-		calculateTimeStep(timeStep);
-
 	}
 
 	/**

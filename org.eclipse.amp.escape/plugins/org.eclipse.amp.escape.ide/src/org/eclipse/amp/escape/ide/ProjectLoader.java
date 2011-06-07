@@ -16,7 +16,6 @@
 package org.eclipse.amp.escape.ide;
 
 import java.io.File;
-import java.net.MalformedURLException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -41,19 +40,13 @@ import org.osgi.framework.Constants;
  * class-loader for all other classes. Overriding a specific class loader seems
  * to be the only model that works. Decorator pattern does not find new classes.
  * 
- * Resources (such as the 'About this model' file displayed by {@link InfoView})
- * can be placed in the same folder as their class, or in a placed in a "res"
- * source folder in the model project directory in a parallel directory path to
- * the Java class package. For example, an about file for a model defined by the
- * scape "edu.brook.norms.Norms" could be placed at
- * "res/edu/brook/norms/AboutNorms.html".
- * 
  * @author milesparker
  */
 public class ProjectLoader extends URLClassLoader {
 
 	private IProject project;
-    private ClassLoader mainLoader;
+
+	private ClassLoader mainLoader;
 
 	private List<Bundle> bundles;
 
@@ -65,28 +58,16 @@ public class ProjectLoader extends URLClassLoader {
 	 * 
 	 * @throws LoaderCreationException
 	 *           the loader creation exception
-     * @throws MalformedURLException if can't get URL to project resource dir
 	 */
-	public ProjectLoader(IProject project) throws LoaderCreationException,
-			MalformedURLException {
-		// add the project's res directory to this URL search path so
-		// getResource calls will look here
-		super(
-				new URL[] { new URL(project.getLocationURI().toString()
-						+ "/res/") });
+	public ProjectLoader(IProject project) throws LoaderCreationException {
+		super(new URL[0]);
 		this.project = project;
-		
 		try {
-        	// get the project's output locations, eg: bin dir
-        	// and add them to the search path
-            project.open(null);
+			project.open(null);
 			IJavaProject javaProject = JavaCore.create(project);
-			List<URL> outputURL = new ArrayList<URL>();
-			outputURL.add(new File(project.getLocation() + "/" + javaProject.getOutputLocation().removeFirstSegments(1) + "/").toURI().toURL());
-			for (URL url : outputURL) {
-				addURL(url);
-			}
-			bundles = readDependencies();
+			addURL(new File(project.getLocation() + "/" + javaProject.getOutputLocation().removeFirstSegments(1) + "/").toURI().toURL());
+
+			bundles = readDependencies(openStream("META-INF/MANIFEST.MF"));
 
 			mainLoader = Thread.currentThread().getContextClassLoader();
 			Thread.currentThread().setContextClassLoader(this);
@@ -98,39 +79,59 @@ public class ProjectLoader extends URLClassLoader {
 
 	/**
 	 * Read all dependencies in the given Manifest file and put them into a list
-	 * of needed Bundles.
+	 * of needed Bundles. Only the most current of all available bundles with a
+	 * given name will be added.
 	 * 
+	 * @param manifestFileStream
 	 * @return a list of all dependencies from the Manifest file
 	 * @throws BundleException
+	 *           if the manifest file cannot be parsed
 	 * @throws IOException
+	 *           if the Manifest file cannot be loaded
+	 * @throws IllegalStateException
+	 *           if a required bundle is not available
 	 */
-	private List<Bundle> readDependencies() throws BundleException, IOException {
+	public static List<Bundle> readDependencies(InputStream manifestFileStream) throws BundleException, IOException, IllegalStateException {
 		List<Bundle> dependencies = new ArrayList<Bundle>();
 
-		Map<String, String> manifest = ManifestElement.parseBundleManifest(openStream("META-INF/MANIFEST.MF"), null);
-		ManifestElement[] requiredBundles = ManifestElement.parseHeader(Constants.REQUIRE_BUNDLE, manifest.get(Constants.REQUIRE_BUNDLE));
-		for (ManifestElement requiredBundle : requiredBundles) {
+		Map<String, String> manifest = ManifestElement.parseBundleManifest(manifestFileStream, null);
+		ManifestElement[] bundleElements = ManifestElement.parseHeader(Constants.REQUIRE_BUNDLE, manifest.get(Constants.REQUIRE_BUNDLE));
+		for (ManifestElement bundleElement : bundleElements) {
 
-			String symbolicName = requiredBundle.getValue();
-			String version = requiredBundle.getAttribute(Constants.BUNDLE_VERSION_ATTRIBUTE);
+			String symbolicName = bundleElement.getValue();
+			String version = bundleElement.getAttribute(Constants.BUNDLE_VERSION_ATTRIBUTE);
 			Bundle[] availableBundles = Platform.getBundles(symbolicName, version);
 			if (availableBundles != null && availableBundles.length > 0) {
-				// The most current version the first one in the list.
+				// The most current version is assumed to be the first one in the list.
 				dependencies.add(availableBundles[0]);
-			}
 
-			String optional = requiredBundle.getDirective(Constants.RESOLUTION_DIRECTIVE);
-			if (optional != null && !optional.equals(Constants.RESOLUTION_OPTIONAL)) {
-				String message = "Bundle cannot be found: ";
-				message += symbolicName;
+			} else if (!isOptional(bundleElement)) {
+				String missingBundle = "Bundle cannot be found: " + symbolicName;
 				if (version != null) {
-					message += " " + version;
+					missingBundle += " " + version;
 				}
-				throw new IllegalStateException(message);
+				throw new IllegalStateException(missingBundle);
 			}
 		}
 
 		return dependencies;
+	}
+
+	/**
+	 * The "Optional" property on a bundle element is not a mandatory field. So it
+	 * can exist or not. By default, a bundle <emph>is</emph> mandatory. It should
+	 * only be assumed to be optional if that property has been defined and if
+	 * it's set to <code>true</code>.
+	 * 
+	 * @param bundleElement
+	 * @return <code>true</code> given bundle element is marked as optional
+	 */
+	private static boolean isOptional(ManifestElement bundleElement) {
+		String optional = bundleElement.getDirective(Constants.RESOLUTION_DIRECTIVE);
+		if (optional != null && optional.equals(Constants.RESOLUTION_OPTIONAL)) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -154,7 +155,7 @@ public class ProjectLoader extends URLClassLoader {
 	}
 
 	/**
-     * Restore.
+	 * Restore.
 	 */
 	public void restore() {
 		Thread.currentThread().setContextClassLoader(mainLoader);

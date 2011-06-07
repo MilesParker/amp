@@ -158,8 +158,10 @@ public class ModelViewManager implements IAdapterFactory {
     }
 
     public static final String EXECUTION_PERSPECTIVE_ID = "org.eclipse.amp.axf.ExecutionPerspective";
-
-    private IContextService contextService;
+    /**The perspective ID to execute the simulation*/
+    private String executionPerspective = EXECUTION_PERSPECTIVE_ID;
+    
+		private IContextService contextService;
 
     private IContextActivation ideContext;
 
@@ -553,7 +555,7 @@ public class ModelViewManager implements IAdapterFactory {
         statusLineView = StatusLineView.getDefault();
         getPage().addPartListener(statusLineView);
         getActiveModelListeners().addListener(statusLineView);
-        activatePerspective(wb, EXECUTION_PERSPECTIVE_ID, false);
+        activatePerspective(wb, executionPerspective, false);
 
         wb.getDisplay().syncExec(new Runnable() {
             public void run() {
@@ -598,7 +600,7 @@ public class ModelViewManager implements IAdapterFactory {
                         .getActivePage() : null;
                         if (activePage != null) {
                             if (priorPerspectiveID == null
-                                    || !activePage.getPerspective().getId().equals(EXECUTION_PERSPECTIVE_ID)) {
+                                    || !activePage.getPerspective().getId().equals(executionPerspective)) {
                                 priorPerspectiveID = activePage.getPerspective().getId();
                             }
                             activePage.setPerspective(perspective);
@@ -707,5 +709,16 @@ public class ModelViewManager implements IAdapterFactory {
     public void setManagerViewPart(ModelManagerViewPart managerViewPart) {
         this.managerViewPart = managerViewPart;
     }
-
+    /**
+     * @return {@link #executionPerspective}
+     */
+    public String getExecutionPerspective() {
+			return executionPerspective;
+		}
+    /**
+     * @param executionPerspective  {@link #executionPerspective}
+     */
+		public void setExecutionPerspective(String executionPerspective) {
+			this.executionPerspective = executionPerspective;
+		}
 }

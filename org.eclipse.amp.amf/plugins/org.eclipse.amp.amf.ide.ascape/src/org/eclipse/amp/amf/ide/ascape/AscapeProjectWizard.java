@@ -20,31 +20,31 @@ import java.util.Set;
 import org.eclipse.amp.amf.gen.ide.DocumentModelBuilder;
 import org.eclipse.amp.amf.gen.ide.GenIDEPlugin;
 import org.eclipse.amp.amf.gen.ide.MetaABMBuilder;
-import org.eclipse.amp.escape.ide.PluginTemplateProjectWizard;
+import org.eclipse.amp.amf.gen.ide.PluginTemplateProjectWizard;
 
 public class AscapeProjectWizard extends PluginTemplateProjectWizard {
 
 	@Override
-	protected String getProjectTypeName() {
+	public String getProjectTypeName() {
 		return "MetaABM for Ascape";
 	}
 
 	@Override
-	protected Set<String> getDependenciesForManifest() {
+	public Set<String> getDependenciesForManifest() {
 		Set<String> dependencies = super.getDependenciesForManifest();
 		dependencies.add("org.ascape.ui.swing");
 		return dependencies;
 	}
 
 	@Override
-	protected Set<String> getImportsForManifest() {
+	public Set<String> getImportsForManifest() {
 		Set<String> importsForManifest = super.getImportsForManifest();
 		importsForManifest.add("org.apache.commons.lang");
 		return importsForManifest;
 	}
 
 	@Override
-	protected List<String> getBuilders() {
+	public List<String> getBuilders() {
 		List<String> builderIDs = super.getBuilders();
 		builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + MetaABMBuilder.BUILDER_ID);
 		builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + DocumentModelBuilder.DOCUMENT_BUILDER_ID);
@@ -53,12 +53,12 @@ public class AscapeProjectWizard extends PluginTemplateProjectWizard {
 	}
 
 	@Override
-	protected String getSourceDirName() {
+	public String getSourceDirName() {
 		return "srcgen";
 	}
 
 	@Override
-	protected String getCurrentPluginID() {
+	public String getPluginID() {
 		return AscapeIDEActivator.PLUGIN_ID;
 	}
 

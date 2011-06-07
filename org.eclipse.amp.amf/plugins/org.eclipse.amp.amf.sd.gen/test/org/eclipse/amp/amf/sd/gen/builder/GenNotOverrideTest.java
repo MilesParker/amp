@@ -46,5 +46,14 @@ public class GenNotOverrideTest extends AbstractJavaSDTest {
 		assertTrue("Code generator did not merge constructor body correctly.", text.contains("// This part should not be overwritten by the generator!"));
 		checkNoCompilationErrors(MODEL_JAVA_FILE);
 	}
-
+	/**
+	 * Can a methode be overriden?
+	 * @throws IOException 
+	 * @throws CoreException 
+	 */
+	public void testCheckOverride() throws IOException, CoreException{
+		String text = getFileText(MODEL_JAVA_FILE);
+		assertFalse("The methode has no generated NOT tag but would not be overriden", text.contains("Can be overriden"));
+		checkNoCompilationErrors(MODEL_JAVA_FILE);
+	}
 }

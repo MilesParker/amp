@@ -113,8 +113,9 @@
 «ENDDEFINE»
 
 «DEFINE Extension FOR SAgent»
+	«EXPAND GenerateComment»
 	private List<IAgentChild> children;
-	
+	«EXPAND GenerateComment»
 	public List<IAgentChild> getChildren(){
 		return children;
 	}

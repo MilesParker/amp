@@ -86,7 +86,7 @@ import org.eclipse.amp.escape.ascape.gef.HostCellEditPart;
 «ENDAROUND»
 
 «AROUND metaabm::tmpl::Java::Body FOR SContext-»
-    
+
     «EXPAND metaabm::ascape::tmpl::ScapeAspect::ScapeBody-»
     
     «EXPAND CreateGraphicsMethods-»
@@ -110,9 +110,8 @@ import org.eclipse.amp.escape.ascape.gef.HostCellEditPart;
     public static void main(String[] args) {
         (new NonGraphicRunner()).openInstance("«implementation.qualifiedName»");
     }
-«REM» Removed as was preventing proper generation of example models -MTP
+
     «EXPAND ExecIAgentChild»
-«ENDREM»
     
 «ENDAROUND»
 
@@ -123,15 +122,62 @@ import org.eclipse.amp.escape.ascape.gef.HostCellEditPart;
 		int timeStep = getRunner().getPeriod();
 		startSimulationAgentChild(timeStep);
 		«FOREACH agents AS agent»
-			((«agent.implementation.className»)«agent.scape()».getPrototypeAgent()).startSimulationAgentChild(timeStep);
+			«IF !agent.isHost()»
+				//A normal movable agent
+				((«agent.implementation.className»)«agent.scape()».getPrototypeAgent()).startSimulationAgentChild(timeStep);
+			«ELSE»
+				//this is an agent that represent a cell and cannot move.
+				«EXPAND HostAgentStart(agent.implementation.className) FOR rootActivity»
+			«ENDIF»
 		«ENDFOREACH»
 		super.executeOnMembers();
 		calculateTimeStep(timeStep);
 		«FOREACH agents AS agent»
-			((«agent.implementation.className»)«agent.scape()».getPrototypeAgent()).calculateTimeStep(timeStep);
+			«IF !agent.isHost()»
+				//A normal movable agent
+				((«agent.implementation.className»)«agent.scape()».getPrototypeAgent()).calculateTimeStep(timeStep);
+			«ELSE»
+				//this is an agent that represent a cell and cannot move.
+				«EXPAND HostAgentCalc(agent.implementation.className) FOR rootActivity»
+			«ENDIF»
 		«ENDFOREACH»
 	}
 «ENDDEFINE»
+
+«REM» START; check is hostCell and set the start time on the IAgentChild (traverse the three to the ABuildGrid)«ENDREM»
+«DEFINE HostAgentStart(String typeName) FOR IAct»
+«ENDDEFINE»
+
+«DEFINE HostAgentStart(String typeName) FOR AGroup»
+	«EXPAND HostAgentStart(typeName) FOREACH roots»
+«ENDDEFINE»
+
+«DEFINE HostAgentStart(String typeName) FOR ABuild»
+	«EXPAND HostAgentStart(typeName) FOREACH targets»
+«ENDDEFINE»
+
+«DEFINE HostAgentStart(String typeName) FOR ABuildGrid»
+	((«typeName») «this.projection.fieldName()».getPrototypeAgent()).startSimulationAgentChild(timeStep);
+«ENDDEFINE»
+«REM»END set start time «ENDREM»
+
+«REM» START; check is hostCell and start the calculation on the IAgentChild (traverse the three to the ABuildGrid)«ENDREM»
+«DEFINE HostAgentCalc(String typeName) FOR IAct»
+«ENDDEFINE»
+
+«DEFINE HostAgentCalc(String typeName) FOR AGroup»
+	«EXPAND HostAgentCalc(typeName) FOREACH roots»
+«ENDDEFINE»
+
+«DEFINE HostAgentCalc(String typeName) FOR ABuild»
+	«EXPAND HostAgentCalc(typeName) FOREACH targets»
+«ENDDEFINE»
+
+«DEFINE HostAgentCalc(String typeName) FOR ABuildGrid»
+	((«typeName») «this.projection.fieldName()».getPrototypeAgent()).calculateTimeStep(timeStep);
+«ENDDEFINE»
+«REM»END calculate «ENDREM»
+
 
 «DEFINE StartSimulationAgentChild FOR SAgent»
 	«EXPAND metaabm::tmpl::Java::MethodComment»

@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import org.eclipse.amp.amf.sd.gen.SDActivator;
 import org.eclipse.emf.codegen.merge.java.JControlModel;
 import org.eclipse.emf.codegen.merge.java.JMerger;
-import org.eclipse.emf.codegen.merge.java.facade.jdom.JDOMFacadeHelper;
+import org.eclipse.emf.codegen.merge.java.facade.ast.ASTFacadeHelper;
 import org.eclipse.xpand2.output.FileHandle;
 import org.eclipse.xpand2.output.OutputImpl;
 
@@ -17,7 +17,7 @@ public class Merge extends OutputImpl {
 	public void closeFile() {
 		FileHandle fi = getFileHandles().peek();
 		JControlModel controlModel = new JControlModel();
-		JDOMFacadeHelper helper = new JDOMFacadeHelper();
+		ASTFacadeHelper helper = new ASTFacadeHelper();
 		String uri = SDActivator.getAbsoluteDir("jMerge/merge.xml");
 		controlModel.initialize(helper, uri);
 		JMerger jMerge = new JMerger(controlModel);

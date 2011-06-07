@@ -1,4 +1,4 @@
-package org.eclipse.amp.escape.ide;
+package org.eclipse.amp.amf.gen.ide;
 
 /**
  * <copyright>
@@ -47,14 +47,14 @@ import org.osgi.framework.Constants;
  * @author milesparker
  * @author jonas.ruettimann
  */
-public abstract class PluginTemplateProjectWizard extends ProjectWizard implements IExecutableExtension {
+public abstract class PluginTemplateProjectWizard extends PluginProjectWizard implements IExecutableExtension {
 
 	private static final String MANIFEST_MF = "MANIFEST.MF";
 
 	private static final String META_INF = "META-INF";
 
 	/** ID of the new-wizard configuration extension point. */
-	public static final String CONF_EXTPOINT_ID = EscapeIDEPlugin.PLUGIN_ID + ".newProjectWizardConfigurations";
+	public static final String CONF_EXTPOINT_ID = GenIDEPlugin.PLUGIN_ID + ".newProjectWizardConfigurations";
 
 	private IConfigurationElement wizardConfiguration;
 
@@ -67,7 +67,7 @@ public abstract class PluginTemplateProjectWizard extends ProjectWizard implemen
 	 * values with those of project.
 	 */
 	@Override
-	protected void createFiles() throws CoreException, IOException {
+	public void createFiles() throws CoreException, IOException {
 		try {
 			createManifest();
 			createProperties();
@@ -77,7 +77,7 @@ public abstract class PluginTemplateProjectWizard extends ProjectWizard implemen
 	}
 
 	@Override
-	protected List<String> getBuilders() {
+	public List<String> getBuilders() {
 		List<String> builderIDs = new ArrayList<String>();
 		builderIDs.addAll(findBuilderIdsForWizard(getWizardId()));
 		builderIDs.addAll(super.getBuilders());
@@ -85,7 +85,7 @@ public abstract class PluginTemplateProjectWizard extends ProjectWizard implemen
 	}
 
 	@Override
-	protected List<String> getNatures() {
+	public List<String> getNatures() {
 		List<String> natures = super.getNatures();
 		natures.add("org.eclipse.pde.PluginNature");
 		return natures;
@@ -132,7 +132,7 @@ public abstract class PluginTemplateProjectWizard extends ProjectWizard implemen
 	 */
 	private void createManifest() throws IOException, CoreException, FileNotFoundException {
 		// Copy versions from existing:
-		Manifest original = new Manifest(openStream(getCurrentPluginID(), META_INF + "/" + MANIFEST_MF));
+		Manifest original = new Manifest(openStream(getPluginID(), META_INF + "/" + MANIFEST_MF));
 		String manifestVersion = original.getMainAttributes().getValue(Attributes.Name.MANIFEST_VERSION);
 		String bundleManifestVersion = original.getMainAttributes().getValue(Constants.BUNDLE_MANIFESTVERSION);
 		String bundleVersion = original.getMainAttributes().getValue(MergeableManifest.BUNDLE_VERSION);

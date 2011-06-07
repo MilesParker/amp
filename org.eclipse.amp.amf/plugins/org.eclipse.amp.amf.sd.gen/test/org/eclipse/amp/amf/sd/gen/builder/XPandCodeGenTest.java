@@ -76,7 +76,7 @@ public class XPandCodeGenTest extends AbstractJavaSDTest {
 		assertTrue(text.contains("tmp.calculate(timeStep);"));
 
 		checkNoCompilationErrors(MY_JAVA);
-		assertEquals(22, countGeneratedTags(MY_JAVA));
+		assertEquals(23, countGeneratedTags(MY_JAVA));
 	}
 
 	public void testAux() throws IOException, CoreException {
