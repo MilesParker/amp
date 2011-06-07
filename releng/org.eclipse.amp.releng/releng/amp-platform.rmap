@@ -4,9 +4,7 @@
   <rm:property key="eclipse.download" value="file:/home/data/httpd/download.eclipse.org"/>
   <rm:locator pattern="^org\.eclipse\.amp\.releng" searchPathRef="local.releng" failOnError="false"/>
   <rm:locator pattern="^org\.eclipse\.amp\.releng" searchPathRef="releng"/>
-  <rm:locator pattern="^de\.itemis\.xtext\.antlr" searchPathRef="itemis"/>
   <rm:locator pattern="^org\.eclipse(\..+)?$" searchPathRef="eclipse" failOnError="false"/>
-  <rm:locator pattern="^org\.lwjgl(\..+)?" searchPathRef="lwjgl"/>
   <rm:locator pattern="^org\.ascape\.ui\.swing" searchPathRef="ascape.external"/>
   <rm:locator pattern="^org\.ascape\.common\.lib" searchPathRef="ascape.external"/>
   <rm:locator pattern="^org\.ascape\.core" searchPathRef="ascape.external"/>
@@ -14,7 +12,9 @@
   <rm:locator pattern="^org\.eclipse\.swtbot(\..+)?" searchPathRef="swtbot"/>
   <rm:locator searchPathRef="eclipse" failOnError="false"/>
   <rm:locator searchPathRef="platform" failOnError="false"/>
-  <rm:locator pattern="^org\.antlr\.gen" searchPathRef="itemis"/>
+  <rm:locator pattern="^org\.antlr\.gen" searchPathRef="orbit"/>
+  <rm:locator pattern="^de\.itemis\.xtext\.antlr" searchPathRef="itemis"/>
+  <rm:locator pattern="^org\.lwjgl(\..+)?" searchPathRef="lwjgl"/>
   <rm:locator searchPathRef="orbit"/>
   
   <rm:searchPath name="local.releng">

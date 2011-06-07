@@ -3,7 +3,7 @@
     <cs:dependencies>
         <cs:dependency name="de.itemis.xtext.antlr" componentType="osgi.bundle"/>
         <cs:dependency name="org.apache.commons.collections" componentType="osgi.bundle"/>
-        <cs:dependency name="org.eclipse.birt" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.birt.chart" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.emf" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.gef" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.swtbot" componentType="eclipse.feature"/>
