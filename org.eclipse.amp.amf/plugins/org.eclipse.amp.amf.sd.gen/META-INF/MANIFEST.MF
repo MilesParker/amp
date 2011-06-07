@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.eclipse.amp.amf.sd.gen
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.amp.amf.sd.gen;singleton:=true
 Bundle-Version: 0.9.0.qualifier
 Require-Bundle: org.eclipse.core.resources,
@@ -27,3 +27,4 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.amp.amf.sd.gen.builder
 Bundle-Activator: org.eclipse.amp.amf.sd.gen.SDActivator
 Bundle-ActivationPolicy: lazy
+Bundle-Vendor: %providerName
