@@ -35,10 +35,6 @@
 	<rm:locator pattern="^org\.eclipse\.amp\.ua" searchPathRef="amp.doc" />
 	<rm:locator pattern="^org\.eclipse\.amp(\..+)?"
 		searchPathRef="amp" />
-	<rm:locator pattern="^org\.eclipse\.xtext(\..+)?"
-		searchPathRef="itemis" failOnError="false" />
-	<rm:locator pattern="^de\.itemis\.xtext\.antlr?"
-		searchPathRef="itemis" />
 
 	<rm:locator pattern="^org\.eclipse\.gef3d(\..+)?"
 		searchPathRef="gef3d" failOnError="false" />
@@ -313,13 +309,6 @@
 		<rm:provider readerType="p2" componentTypes="eclipse.feature,osgi.bundle"
 			mutable="false" source="false">
 			<rm:uri format="http://lwjgl.org/update" />
-		</rm:provider>
-	</rm:searchPath>
-
-	<rm:searchPath name="itemis">
-		<rm:provider readerType="p2" componentTypes="eclipse.feature,osgi.bundle"
-			mutable="false" source="false">
-			<rm:uri format="http://download.itemis.com/updates/milestones" />
 		</rm:provider>
 	</rm:searchPath>
 </rm:rmap>

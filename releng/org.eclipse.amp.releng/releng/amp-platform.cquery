@@ -5,4 +5,5 @@
     <cq:property key="target.os" value="*"/>
     <cq:property key="target.ws" value="*"/>
     <cq:advisorNode namePattern="^org\.apache([\.].+)+\.source$" skipComponent="true"/>
+    <cq:advisorNode namePattern="de\.itemis\.xtext\.antlr" componentType="osgi.bundle" skipComponent="true"/>
 </cq:componentQuery>

@@ -2,7 +2,14 @@
 <cs:cspec xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0" name="org.eclipse.amp.releng" componentType="buckminster" version="0.9.0.qualifier">
     <cs:dependencies>
         <cs:dependency name="org.apache.commons.collections" componentType="osgi.bundle"/>
-        <cs:dependency name="org.eclipse.birt" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.birt.chart.device.extension" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.birt.chart.device.swt" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.birt.chart.engine" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.birt.chart.engine.extension" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.birt.chart.ui" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.birt.chart.ui.extension" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.birt.core" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.birt.core.ui" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.emf" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.gef" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.swtbot" componentType="eclipse.feature"/>
@@ -14,6 +21,8 @@
         <cs:dependency name="org.eclipse.zest" componentType="eclipse.feature"/>
         <cs:dependency name="org.junit" componentType="osgi.bundle"/>
         <cs:dependency name="org.junit4" componentType="osgi.bundle"/>
+        <cs:dependency name="org.eclipse.jdt" componentType="eclipse.feature"/>
+        <cs:dependency name="org.eclipse.pde" componentType="eclipse.feature"/>
     </cs:dependencies>
     <cs:actions>
         <cs:public name="setup.promoter" actor="ant">
