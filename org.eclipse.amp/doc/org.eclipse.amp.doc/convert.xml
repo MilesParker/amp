@@ -9,8 +9,8 @@
 
 
 	<property name="vendor" value="Eclipse.org" />
-	<property name="specification.version" value="0.7.0" />
-	<property name="implementation.version" value="0.7.0" />
+	<property name="specification.version" value="0.9.0" />
+	<property name="implementation.version" value="0.9.0" />
 
 	<property name="implementation.vendor" value="${vendor}" />
 	<property name="specification.vendor" value="${vendor}" />
@@ -18,7 +18,7 @@
 	<property name="build.javadoc" value="build" />
 	<property name="dest.javadoc" value="docs/javadoc" />
 
-	<property name="jdk.style" value="1.5" />
+	<property name="jdk.style" value="1.6" />
 
 	<target name="javadoc">
 
@@ -30,81 +30,13 @@
 
 		<path id="srcpath">
 			<pathelement
-				path="../../../org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.chart/src" />
+				path="../../../org.eclipse.amp.agf/plugins/**/src" />
 			<pathelement
-				path="../../../org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.core/src" />
+				path="../../../org.eclipse.amp.amf/plugins/**/src" />
 			<pathelement
-				path="../../../org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.ide/src" />
+				path="../../../org.eclipse.amp.axf/plugins/**/src" />
 			<pathelement
-				path="../../../org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.zest/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.agf/plugins/org.eclipse.amp.agf.zest.ide/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.agf/plugins/org.eclipse.amp.agf3d/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase.edit/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase.editor/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase/srcgen" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase.edit/srcgen" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase.editor/srcgen" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.abase.ui/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore.edit/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore.editor/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.acore/srcgen" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen.ascape/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen.escape/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen.extras/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen.ide/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.gen.repast/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.ide/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.ide.ascape/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.ide.repast/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.parameters/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.parameters.edit/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.parameters.editor/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.parameters.ui/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.testing/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.testing.edit/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.testing.editor/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.amf/plugins/org.eclipse.amp.amf.testing.ui/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.axf/plugins/org.eclipse.amp.axf.core/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.axf/plugins/org.eclipse.amp.axf.ide/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.axf/plugins/org.eclipse.amp.axf.views/src" />
-			<pathelement
-				path="../../../org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.amf.ide/src" />
+				path="../../../org.eclipse.amp.escape/plugins/**/src" />
 			<pathelement
 				path="../../../org.eclipse.amp.escape/plugins/org.eclipse.amp.escape.ascape/src" />
 			<pathelement
@@ -126,7 +58,7 @@
 			noindex="false" nonavbar="false" notree="false" source="1.5"
 			splitindex="true" use="true" version="true"
 
-			bottom="Copyright (C) 2007-2010 Metascape, LLC, 2009 Miles Parker, 2006-2007 Argonne National Labs, and Contributors"
+			bottom="Copyright (C) 2011 Metascape, LLC, 2011 Miles Parker, 2006-2007 Argonne National Labs, and Contributors"
 			windowtitle="${ant.project.name} ${specification.version} API"
 
 			classpath="${dir.eclipse}">

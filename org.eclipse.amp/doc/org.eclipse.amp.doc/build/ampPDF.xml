@@ -3037,7 +3037,7 @@ Count(Individual.Status=SymptomInfectious)=[0,0]
 							</imageobject>
 						</mediaobject>
 					</para>
-					<para>You'll see a model creation wizard from which you can name the model. Just give it the name "StupidModel.metaabm".</para>
+					<para>You'll see a model creation wizard from which you can name the model. Just give it the name "StupidModel1.metaabm".</para>
 					<para>
 						<mediaobject>
 							<imageobject>
@@ -3819,8 +3819,8 @@ https://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.brook
 	</chapter>
 	<chapter id="New_and_Noteworthy">
 		<title>New and Noteworthy</title>
-		<section id="Release_0.8.5">
-			<title>Release 0.8.5</title>
+		<section id="Release_0.8.0">
+			<title>Release 0.8.0</title>
 			<para>The first official release of AMP includes many new or expanded features in addition to overall quality and usability improvements. The highlights are listed below.</para>
 			<section id="Model_Visualization">
 				<title>Model Visualization</title>
@@ -3958,7 +3958,7 @@ https://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.brook
 						<td rowspan="1" colspan="1">
 							<emphasis role="bold">Parameter Management Support</emphasis>
 						</td>
-						<td rowspan="1" colspan="1">AMP now has full support for editing and launching of parameter files, including code completion. There is also support for creation of tests and analysis of test results. Finally, data can now be generated to a common EMD based (adata) data format.</td>
+						<td rowspan="1" colspan="1">AMP now has full support for editing and launching of parameter files, including code completion and all of the other editor niceties.</td>
 					</tr>
 					<tr>
 						<td rowspan="1" colspan="1"> </td>
@@ -4133,9 +4133,19 @@ https://ascape.svn.sourceforge.net/svnroot/ascape/org.ascape.escape.models.brook
 		</section>
 		<section id="Get_Involved">
 			<title>Get Involved</title>
-			<para>If you find this tool valuable, please be aware that most of its development occurred through volunteer contributions from individuals and companies that have received no direct funding. You can support continual development efforts financially by purchasing related software tools from companies and organizations that help develop it, including funding for developer time in grant proposals. You can support the Eclipse platform in general by becoming a member organization of Eclipse. But the most important thing that you can contribute is your own time and enthusiasm, either through directly contributing to AMP or by promoting its use in blogs and other social media. For more detailed information about contributing to AMP, please see 
-				<ulink url="http://wiki.eclipse.org/AMP/Getting_Involved">our wiki</ulink>.
-			</para>
+			<para>If you find this tool valuable, please be aware that most of its development occurred through volunteer contributions from individuals and companies that have received no direct funding. You can support continual development efforts financially by purchasing related software tools from companies and organizations that help develop it, including funding for developer time in grant proposals. You can support the Eclipse platform in general by becoming a member organization of Eclipse. But the most important thing that you can contribute is your own time and enthusiasm, either through directly contributing to AMP or by promoting its use in blogs and other social media. For more detailed information about contributing to AMP, the following sections.</para>
+			<section id="Improve_this_Documentation.21">
+				<title>Improve this Documentation!</title>
+				<para>This documentation was produced using the excellent Eclispe integrated Mylyn documentation tools. Please see 
+					<ulink url="http://wiki.eclipse.org/AMP/Building">this page</ulink> for how to help with documentation.
+				</para>
+			</section>
+			<section id="Contribute_to_AMP">
+				<title>Contribute to AMP</title>
+				<para>Please see this document for some things that we could use help on: 
+					<ulink url="http://wiki.eclipse.org/AMP/Getting_Involved">our wiki</ulink>. But the best thing is to look at the bugzilla. Find bugs that you can help with, or add your own ideas for helpful features.
+				</para>
+			</section>
 		</section>
 	</chapter>
 </book>
