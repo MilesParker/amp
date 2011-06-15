@@ -23,6 +23,18 @@ public abstract class AbstractJavaSDTest extends TestCase {
 
 	private IProject project;
 
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		emptyProjectDir("bin");
+	}
+
+	@Override
+	protected void tearDown() throws Exception {
+		super.tearDown();
+		emptyProjectDir("bin");
+	}
+
 	protected AbstractJavaSDTest(String projectName) throws Exception {
 		IProjectDescription description = ResourcesPlugin.getWorkspace().loadProjectDescription(new Path(SDActivator.getAbsoluteDir(TEST_PROJECTS_DIR + projectName) + ".project"));
 		project = ResourcesPlugin.getWorkspace().getRoot().getProject(description.getName());
@@ -117,7 +129,8 @@ public abstract class AbstractJavaSDTest extends TestCase {
 	}
 
 	/**
-	 * Remove all entries of a directory. The directory itself will not be deleted.
+	 * Remove all entries of a directory. The directory itself will not be
+	 * deleted.
 	 * 
 	 * @param relativePath
 	 * @return <code>true</code> if successful
@@ -130,12 +143,13 @@ public abstract class AbstractJavaSDTest extends TestCase {
 		return true;
 	}
 
-	private String getProjectFilePath(String relativePath) {
+	protected String getProjectFilePath(String relativePath) {
 		return SDActivator.getAbsoluteDir(TEST_PROJECTS_DIR + project.getName() + "/" + relativePath);
 	}
 
 	/**
-	 * Delete a file or or folder. In case of a directory, all entries need to be deleted first.
+	 * Delete a file or or folder. In case of a directory, all entries need to be
+	 * deleted first.
 	 * 
 	 * @param file
 	 *          a file or a directory

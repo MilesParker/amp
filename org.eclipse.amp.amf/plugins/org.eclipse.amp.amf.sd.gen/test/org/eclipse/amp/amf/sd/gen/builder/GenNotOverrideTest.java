@@ -28,12 +28,6 @@ public class GenNotOverrideTest extends AbstractJavaSDTest {
 		doGenerate("/bin/GenNotOverride/my_SD/SDModel.class");
 	}
 
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
-		emptyProjectDir("bin");
-	}
-
 	/**
 	 * Methods with "generated NOT" annotations must <emph>not</emph> be overwritten by the code generator.
 	 * 

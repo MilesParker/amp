@@ -1,15 +1,18 @@
 package org.eclipse.amp.amf.sd.gen.builder;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.eclipse.amp.escape.runtime.extension.IAgentChild;
 import org.eclipse.core.runtime.CoreException;
 
 /**
- * Check basic code generation issues. Are system dynamic Java classes being generated? The tests in this class are very
- * fragmentary. If there's a better way to test this, please go ahead.
+ * Check basic code generation issues. Are system dynamic Java classes being
+ * generated? The tests in this class are very fragmentary. If there's a better
+ * way to test this, please go ahead.
  * <p/>
- * Usually, you'll need to increase PermGenSpace to run this test! Use <code>-XX:MaxPermSize=128m</code> as VM argument.
+ * Usually, you'll need to increase PermGenSpace to run this test! Use
+ * <code>-XX:MaxPermSize=128m</code> as VM argument.
  * 
  * @author fei
  */
@@ -40,8 +43,12 @@ public class XPandCodeGenTest extends AbstractJavaSDTest {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
+		String projectFilePath = getProjectFilePath("");
+		File dir = new File(projectFilePath, "srcgen");
+		if (!dir.exists()) {
+			dir.mkdir();
+		}
 		emptyProjectDir("srcgen");
-		emptyProjectDir("bin");
 
 		String[] expectedFilesToBeGenerated = new String[javaFiles.length * 2];
 		for (int i = 0; i < javaFiles.length; i++) {
@@ -58,7 +65,6 @@ public class XPandCodeGenTest extends AbstractJavaSDTest {
 	protected void tearDown() throws Exception {
 		super.tearDown();
 		emptyProjectDir("srcgen");
-		emptyProjectDir("bin");
 	}
 
 	public void testMy() throws IOException, CoreException {
