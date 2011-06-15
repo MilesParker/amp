@@ -14,7 +14,7 @@ import org.eclipse.core.runtime.CoreException;
  */
 public class GenNotOverrideTest extends AbstractJavaSDTest {
 
-	private static final String MODEL_JAVA_FILE = "/srcgen/GenNotOverride/myagent_SD/SDModel.java";
+	private static final String MODEL_JAVA_FILE = "/srcgen/GenNotOverride/my_SD/SDModel.java";
 
 	public GenNotOverrideTest() throws Exception {
 		super("GenNotOverride");
@@ -25,7 +25,7 @@ public class GenNotOverrideTest extends AbstractJavaSDTest {
 		super.setUp();
 		emptyProjectDir("bin");
 
-		doGenerate("/bin/GenNotOverride/myagent_SD/SDModel.class");
+		doGenerate("/bin/GenNotOverride/my_SD/SDModel.class");
 	}
 
 	@Override

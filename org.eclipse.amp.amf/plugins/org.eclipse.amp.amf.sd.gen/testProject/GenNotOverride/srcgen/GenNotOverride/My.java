@@ -36,7 +36,7 @@ import org.ascape.view.vis.ChartView;
 import org.ascape.view.vis.GEFView;
 import org.ascape.view.vis.GraphView;
 
-import GenNotOverride.myagent_SD.SDModel;
+import GenNotOverride.my_SD.SDModel;
 
 import org.eclipse.amp.escape.runtime.extension.IAgentChild;
 
@@ -164,6 +164,9 @@ public class My extends Scape implements IGraphicsAdapted {
 
 		setName("My");
 
+		for (IAgentChild tmp : getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 	}
 
 	/**
@@ -252,6 +255,23 @@ public class My extends Scape implements IGraphicsAdapted {
 	 */
 	public static void main(String[] args) {
 		(new NonGraphicRunner()).openInstance("GenNotOverride.My");
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+
+	@Override
+	public void executeOnMembers() {
+		int timeStep = getRunner().getPeriod();
+		startSimulationAgentChild(timeStep);
+
+		super.executeOnMembers();
+		calculateTimeStep(timeStep);
+
 	}
 
 	/**

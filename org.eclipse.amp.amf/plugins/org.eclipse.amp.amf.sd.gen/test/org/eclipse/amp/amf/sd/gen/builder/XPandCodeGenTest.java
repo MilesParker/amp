@@ -19,17 +19,17 @@ public class XPandCodeGenTest extends AbstractJavaSDTest {
 
 	private static final String MY_JAVA = SRCGEN_PATH + "My.java";
 
-	private static final String AUX_JAVA = SRCGEN_PATH + "myagent_SD/AnAux.java";
+	private static final String AUX_JAVA = SRCGEN_PATH + "my_SD/AnAux.java";
 
-	private static final String AUX_TO_FLOW_JAVA = SRCGEN_PATH + "myagent_SD/AuxToFlow.java";
+	private static final String AUX_TO_FLOW_JAVA = SRCGEN_PATH + "my_SD/AuxToFlow.java";
 
-	private static final String STOCK_TO_FLOW_JAVA = SRCGEN_PATH + "myagent_SD/StockToFlow.java";
+	private static final String STOCK_TO_FLOW_JAVA = SRCGEN_PATH + "my_SD/StockToFlow.java";
 
-	private static final String FLOW_JAVA = SRCGEN_PATH + "myagent_SD/AFlow.java";
+	private static final String FLOW_JAVA = SRCGEN_PATH + "my_SD/AFlow.java";
 
-	private static final String SD_MODEL_JAVA = SRCGEN_PATH + "myagent_SD/SdModel.java";
+	private static final String SD_MODEL_JAVA = SRCGEN_PATH + "my_SD/SdModel.java";
 
-	private static final String STOCK_JAVA = SRCGEN_PATH + "myagent_SD/AStock.java";
+	private static final String STOCK_JAVA = SRCGEN_PATH + "my_SD/AStock.java";
 
 	private static final String[] javaFiles = { MY_JAVA, AUX_JAVA, AUX_TO_FLOW_JAVA, FLOW_JAVA, SD_MODEL_JAVA, STOCK_JAVA, STOCK_TO_FLOW_JAVA };
 
@@ -76,7 +76,7 @@ public class XPandCodeGenTest extends AbstractJavaSDTest {
 		assertTrue(text.contains("tmp.calculate(timeStep);"));
 
 		checkNoCompilationErrors(MY_JAVA);
-		assertEquals(23, countGeneratedTags(MY_JAVA));
+		assertEquals(24, countGeneratedTags(MY_JAVA));
 	}
 
 	public void testAux() throws IOException, CoreException {

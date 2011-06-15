@@ -1,4 +1,4 @@
-package GenNotOverride.myagent_SD;
+package GenNotOverride.my_SD;
 
 import org.eclipse.amp.axf.sd.model.AbstractSDModel;
 import org.eclipse.amp.axf.sd.model.AbstractVariable;
