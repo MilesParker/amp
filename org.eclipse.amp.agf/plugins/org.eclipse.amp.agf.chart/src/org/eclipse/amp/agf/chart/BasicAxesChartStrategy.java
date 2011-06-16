@@ -19,110 +19,119 @@ import org.eclipse.birt.chart.model.data.impl.SeriesDefinitionImpl;
 import org.eclipse.birt.chart.model.data.impl.TextDataSetImpl;
 import org.eclipse.birt.chart.model.impl.ChartWithAxesImpl;
 
-
 public abstract class BasicAxesChartStrategy extends BasicChartStrategy {
 
-    public void update() {
-    }
+	/** Size of the numbers next to the ticks on the axis. */
+	private static final float AXIS_FONT_SIZE = 9f;
 
-    public Chart createChart(IDataProvider dataProvider, Object dataSource) {
-        this.dataProvider = dataProvider;
-        this.dataSource = dataSource;
-        ChartWithAxes chart = ChartWithAxesImpl.create();
-        setChart(chart);
-        chart.setUnitSpacing(20);
+	public void update() {
+	}
 
-        // X-Axis
-        Axis xAxisPrimary = getXAxisPrimary();
-        xAxisPrimary.setType(AxisType.TEXT_LITERAL);
-        xAxisPrimary.getTitle().getCaption().setValue("Period");
-        xAxisPrimary.getTitle().setVisible(true);
-        xAxisPrimary.getMajorGrid().setTickStyle(TickStyle.BELOW_LITERAL);
-        xAxisPrimary.getOrigin().setType(IntersectionType.VALUE_LITERAL);
-        createXSeriesDefinition();
+	public Chart createChart(IDataProvider newDataProvider, Object newDataSource) {
+		this.dataProvider = newDataProvider;
+		this.dataSource = newDataSource;
+		ChartWithAxes chart = ChartWithAxesImpl.create();
+		setChart(chart);
+		chart.setUnitSpacing(20);
 
-        Axis yAxisPrimary = getYAxisPrimary();
-        yAxisPrimary.getMajorGrid().setTickStyle(TickStyle.LEFT_LITERAL);
-        yAxisPrimary.setType(AxisType.LINEAR_LITERAL);
-        yAxisPrimary.getLabel().getCaption().getFont().setRotation(90);
-        createYSeriesDefinition();
+		// X-Axis
+		Axis xAxisPrimary = getXAxisPrimary();
+		xAxisPrimary.setType(AxisType.TEXT_LITERAL);
+		xAxisPrimary.getTitle().getCaption().setValue("Period");
+		xAxisPrimary.getTitle().setVisible(true);
+		xAxisPrimary.getMajorGrid().setTickStyle(TickStyle.BELOW_LITERAL);
+		xAxisPrimary.getOrigin().setType(IntersectionType.VALUE_LITERAL);
+		xAxisPrimary.getLabel().getCaption().getFont().setSize(AXIS_FONT_SIZE);
+		createXSeriesDefinition();
 
-        DataSet periods = TextDataSetImpl.create(dataProvider.getCategoryLabels(dataSource));
-        SeriesDefinition xSeriesDefinition = getXSeriesDefinition();
-        xSeriesDefinition.getSeries().get(0).setDataSet(periods);
-        return chart;
-    }
+		// Y-Axis
+		Axis yAxisPrimary = getYAxisPrimary();
+		yAxisPrimary.getMajorGrid().setTickStyle(TickStyle.LEFT_LITERAL);
+		yAxisPrimary.setType(AxisType.LINEAR_LITERAL);
+		/*
+		 * Changing the rotation on the Y-Axis seems to cause a bug in Birt to
+		 * appear: the format will change and instead of numbers some weird letters
+		 * will appear on the label. Customizing the font size seems to prevent this
+		 * bug from appearing. So setting the font is a fancy workaround.
+		 */
+		yAxisPrimary.getLabel().getCaption().getFont().setRotation(90);
+		yAxisPrimary.getLabel().getCaption().getFont().setSize(AXIS_FONT_SIZE);
+		createYSeriesDefinition();
 
-    public void createLegend() {
-        super.createLegend();
-        getLegend().setItemType(LegendItemType.SERIES_LITERAL);
-    }
+		DataSet periods = TextDataSetImpl.create(newDataProvider.getCategoryLabels(newDataSource));
+		getXSeriesDefinition().getSeries().get(0).setDataSet(periods);
+		return chart;
+	}
 
-    protected abstract void addValueSet(Object valueSet);
+	@Override
+	public void createLegend() {
+		super.createLegend();
+		getLegend().setItemType(LegendItemType.SERIES_LITERAL);
+	}
 
-    public void updateSelection() {
-        List valueSets = dataProvider.getValueSets(dataSource);
-        getValueSetsDefinition().getSeries().clear();
-        for (Object valueSet : valueSets) {
-            addValueSet(valueSet);
-        }
-    }
+	protected abstract void addValueSet(Object valueSet);
 
-    private void createXSeriesDefinition() {
-        SeriesDefinition xSeriesDefinition = SeriesDefinitionImpl.create();
-        Axis xAxisPrimary = getXAxisPrimary();
-        xAxisPrimary.getSeriesDefinitions().clear();
-        xAxisPrimary.getSeriesDefinitions().add(xSeriesDefinition);
-        xSeriesDefinition.getSeriesPalette().shift(0);
+	public void updateSelection() {
+		List valueSets = dataProvider.getValueSets(dataSource);
+		getValueSetsDefinition().getSeries().clear();
+		for (Object valueSet : valueSets) {
+			addValueSet(valueSet);
+		}
+	}
 
-        Series xSeriesCategory = SeriesImpl.create();
-        xSeriesDefinition.getSeries().clear();
-        xSeriesDefinition.getSeries().add(xSeriesCategory);
-    }
+	private void createXSeriesDefinition() {
+		SeriesDefinition xSeriesDefinition = SeriesDefinitionImpl.create();
+		Axis xAxisPrimary = getXAxisPrimary();
+		xAxisPrimary.getSeriesDefinitions().clear();
+		xAxisPrimary.getSeriesDefinitions().add(xSeriesDefinition);
+		xSeriesDefinition.getSeriesPalette().shift(0);
 
-    private void createYSeriesDefinition() {
-        SeriesDefinition ySeriesDefinition = SeriesDefinitionImpl.create();
-        Axis yAxisPrimary = getYAxisPrimary();
-        yAxisPrimary.getSeriesDefinitions().clear();
-        yAxisPrimary.getSeriesDefinitions().add(ySeriesDefinition);
-        ySeriesDefinition.setSeriesPalette(PaletteImpl.create(0, true));
-    }
+		Series xSeriesCategory = SeriesImpl.create();
+		xSeriesDefinition.getSeries().clear();
+		xSeriesDefinition.getSeries().add(xSeriesCategory);
+	}
 
-    protected void addValueSeries(Series series, Object valueSet) {
-        DataSet data = NumberDataSetImpl.create(dataProvider.getValues(valueSet));
-        series.setDataSet(data);
-        getValueSetsDefinition().getSeries().add(series);
-        series.getLabel().setVisible(false);
-        series.setSeriesIdentifier(dataProvider.getText(valueSet));
-    }
+	private void createYSeriesDefinition() {
+		SeriesDefinition ySeriesDefinition = SeriesDefinitionImpl.create();
+		Axis yAxisPrimary = getYAxisPrimary();
+		yAxisPrimary.getSeriesDefinitions().clear();
+		yAxisPrimary.getSeriesDefinitions().add(ySeriesDefinition);
+		ySeriesDefinition.setSeriesPalette(PaletteImpl.create(0, true));
+	}
 
-    /**
-     * @return
-     * @see org.eclipse.amp.agf.chart.IChartDesignStrategy#isInitialized()
-     */
-    public boolean isInitialized() {
-        return getXSeriesDefinition().getSeries().size() > 0
-        && getXSeriesDefinition().getSeries().get(0).getDataSet() != null
-            && !((List) getXSeriesDefinition().getSeries().get(0).getDataSet().getValues()).isEmpty();
-    }
+	protected void addValueSeries(Series series, Object valueSet) {
+		DataSet data = NumberDataSetImpl.create(dataProvider.getValues(valueSet));
+		series.setDataSet(data);
+		getValueSetsDefinition().getSeries().add(series);
+		series.getLabel().setVisible(false);
+		series.setSeriesIdentifier(dataProvider.getText(valueSet));
+	}
 
-    private Axis getXAxisPrimary() {
-        return ((ChartWithAxes) getChart()).getPrimaryBaseAxes()[0];
-    }
+	/**
+	 * @return
+	 * @see org.eclipse.amp.agf.chart.IChartDesignStrategy#isInitialized()
+	 */
+	public boolean isInitialized() {
+		return getXSeriesDefinition().getSeries().size() > 0 && getXSeriesDefinition().getSeries().get(0).getDataSet() != null && !((List) getXSeriesDefinition().getSeries().get(0).getDataSet().getValues()).isEmpty();
+	}
 
-    private Axis getYAxisPrimary() {
-        return ((ChartWithAxes) getChart()).getPrimaryOrthogonalAxis(getXAxisPrimary());
-    }
+	private Axis getXAxisPrimary() {
+		return ((ChartWithAxes) getChart()).getPrimaryBaseAxes()[0];
+	}
 
-    private SeriesDefinition getYSeriesDefinition() {
-        return getYAxisPrimary().getSeriesDefinitions().get(0);
-    }
+	private Axis getYAxisPrimary() {
+		return ((ChartWithAxes) getChart()).getPrimaryOrthogonalAxis(getXAxisPrimary());
+	}
 
-    private SeriesDefinition getXSeriesDefinition() {
-        return getXAxisPrimary().getSeriesDefinitions().get(0);
-    }
+	private SeriesDefinition getYSeriesDefinition() {
+		return getYAxisPrimary().getSeriesDefinitions().get(0);
+	}
 
-    public SeriesDefinition getValueSetsDefinition() {
-        return getYSeriesDefinition();
-    }
+	private SeriesDefinition getXSeriesDefinition() {
+		return getXAxisPrimary().getSeriesDefinitions().get(0);
+	}
+
+	public SeriesDefinition getValueSetsDefinition() {
+		return getYSeriesDefinition();
+	}
 }
