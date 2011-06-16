@@ -275,7 +275,7 @@ public class SImplementationTest extends TestCase {
     }
 
     public void testLookup() {
-        char sc = File.separatorChar;
+        char sc = SImplementationImpl.sc;
         // basic
         assertEquals(SImplementationImpl.addDir("", ""), "");
         assertEquals(SImplementationImpl.addDir("a", ""), "a");
