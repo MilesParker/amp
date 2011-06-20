@@ -51,14 +51,18 @@ public class ExecuteJavaHandler extends ExecuteHandler {
      * @see org.eclipse.amp.escape.command.ExecuteHandler#executeOpen(org.eclipse.amp.escape.ide.EclipseEscapeRunner,
      * java.lang.Object, org.eclipse.core.runtime.IProgressMonitor)
      */
-    protected void executeOpen(final EclipseEscapeRunner eclipseRunner, final Object executed, IProgressMonitor monitor) {
+    @Override
+		protected EclipseEscapeRunner executeOpen(final Object executed, IProgressMonitor monitor) {
         // brain dead Java strikes again..
         if (isSupertype(executed, "org.ascape.model.Scape")) {
             IType javaClass = getType(executed);
             IJavaProject javaProject = javaClass.getJavaProject();
+            EclipseEscapeRunner eclipseRunner = createRunner();
             eclipseRunner.open(javaProject.getProject(), javaClass.getFullyQualifiedName(), javaClass
                                .getElementName());
+            return eclipseRunner;
         }
+        return null;
     }
 
     /*
@@ -66,7 +70,8 @@ public class ExecuteJavaHandler extends ExecuteHandler {
      * 
      * @see org.eclipse.amp.escape.command.ExecuteHandler#handleSelect(java.lang.Object)
      */
-    protected boolean handleSelect(Object sel) {
+    @Override
+		protected boolean handleSelect(Object sel) {
         return sel instanceof ICompilationUnit || sel instanceof IType;
     }
 
@@ -89,6 +94,7 @@ public class ExecuteJavaHandler extends ExecuteHandler {
                 }
             }
         } catch (JavaModelException e) {
+        	//
         }
         return false;
     }

@@ -55,28 +55,31 @@ public abstract class ExecuteHandler extends ResourceHandler {
      */
     @Override
     public final void execute(final Object executed, String name) throws ExecutionException {
-        final EclipseEscapeRunner eclipseRunner = createRunner();
-        if (isHeadless()) {
-            eclipseRunner.setUpdateGranularity(TimeGranularity.createFrequencyGranularity(Integer.MAX_VALUE));
-        }
         Job escapeRun = new Job("Run " + name) {
-            protected IStatus run(IProgressMonitor monitor) {
+        	private EclipseEscapeRunner eclipseRunner;
+            @Override
+						protected IStatus run(IProgressMonitor monitor) {
                 setMonitor(monitor);
-                eclipseRunner.setMonitor(monitor);
                 try {
-                    executeOpen(eclipseRunner, executed, monitor);
-
+                    eclipseRunner = executeOpen(executed, monitor);
                 } catch (RuntimeException e) {
                     setMonitor(null);
                     throw e;
                 }
                 setMonitor(null);
-                return eclipseRunner.getFinishStatus();
+                if(eclipseRunner != null){
+                	return eclipseRunner.getFinishStatus();
+                }else{
+                	return Status.CANCEL_STATUS;
+                }
             }
 
-            protected void canceling() {
+            @Override
+						protected void canceling() {
+            	if(eclipseRunner != null){
                 eclipseRunner.setFinishStatus(Status.CANCEL_STATUS);
                 eclipseRunner.closeFinally();
+            	}
             }
         };
         escapeRun.setPriority(Job.LONG);
@@ -86,11 +89,10 @@ public abstract class ExecuteHandler extends ResourceHandler {
     /**
      * Execute open.
      * 
-     * @param eclipseRunner the eclipse runner
      * @param executed the executed scape resource/name
      * @param monitor the monitor
      */
-    protected abstract void executeOpen(final EclipseEscapeRunner eclipseRunner, final Object executed,
+    protected abstract EclipseEscapeRunner executeOpen(final Object executed,
             IProgressMonitor monitor);
 
     /**

@@ -17,6 +17,7 @@ package org.eclipse.amp.escape.amf.ide;
 
 import org.eclipse.amp.amf.parameters.AParFactory;
 import org.eclipse.amp.amf.parameters.AParInterpreter;
+import org.eclipse.amp.axf.time.TimeGranularity;
 import org.eclipse.amp.escape.command.ExecuteHandler;
 import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
 import org.eclipse.core.resources.IProject;
@@ -58,26 +59,36 @@ public class ExecuteParameterHandler extends ExecuteHandler {
      * @see org.eclipse.amp.escape.command.ExecuteHandler#executeOpen(org.eclipse.amp.escape.ide.EclipseEscapeRunner,
      * java.lang.Object, org.eclipse.core.runtime.IProgressMonitor)
      */
-    protected void executeOpen(EclipseEscapeRunner eclipseRunner, Object executed, IProgressMonitor monitor) {
+    @Override
+		protected EclipseEscapeRunner executeOpen(Object executed, IProgressMonitor monitor) {
         if (executed instanceof IResource) {
             modelResource = (IResource) executed;
             IProject project = modelResource.getProject();
             if (modelResource.getFileExtension().equals("apar")) {
                 // a bit awkward..
                 setInterpreter((AParInterpreter) AParFactory.create(null).getInterpreter(modelResource));
-                eclipseRunner.setAutoRestart(false);
                 model = getInterpreter().getRootContext();
+                //If you create the runner sooner the member model and modelResource are null. So the headless run in the output file throw an assertion 
+                EclipseEscapeRunner eclipseRunner = createRunner();
+                if (isHeadless()) {
+                    eclipseRunner.setUpdateGranularity(TimeGranularity.createFrequencyGranularity(Integer.MAX_VALUE));
+                }
+                eclipseRunner.setMonitor(monitor);
+                eclipseRunner.setAutoRestart(false);
                 eclipseRunner.open(project, model.getImplementation().getQualifiedName(),
                                    getInterpreter().getRunName(), getInterpreter().getArgs());
+                return eclipseRunner;
             }
         }
+        return null;
     }
 
     /**
      * @return
      * @see org.eclipse.amp.escape.command.ExecuteHandler#createRunner()
      */
-    protected EclipseEscapeRunner createRunner() {
+    @Override
+		protected EclipseEscapeRunner createRunner() {
         Runner.setDisplayGraphics(!isHeadless());
         EclipseEscapeRunner runner = new EclipseEscapeRunner() {
             private static final long serialVersionUID = 1L;
@@ -87,7 +98,8 @@ public class ExecuteParameterHandler extends ExecuteHandler {
              * @param block
              * @see org.ascape.runtime.Runner#openImplementation(java.lang.String[], boolean)
              */
-            public void openImplementation(String[] args, boolean block) {
+            @Override
+						public void openImplementation(String[] args, boolean block) {
                 getInterpreter().assignValues(new Object[] { getRootScape(), this }, null);
                 super.openImplementation(args, block);
             }
@@ -101,7 +113,8 @@ public class ExecuteParameterHandler extends ExecuteHandler {
      * 
      * @see org.eclipse.amp.escape.command.ExecuteHandler#handleSelect(java.lang.Object)
      */
-    protected boolean handleSelect(Object sel) {
+    @Override
+		protected boolean handleSelect(Object sel) {
         return sel instanceof IResource && ((IResource) sel).getFileExtension() != null
         && ((IResource) sel).getFileExtension().equals("apar");
     }

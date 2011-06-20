@@ -12,11 +12,11 @@ final class EclipseEMFOutputRunner extends EclipseEscapeRunner {
 	/**
 	 * 
 	 */
-	private final SContext model;
+	private SContext model;
 
-	private final IResource resource;
+	private IResource resource;
 
-	private final AParInterpreter aParInterpreter;
+	private AParInterpreter aParInterpreter;
 
 	public EclipseEMFOutputRunner(SContext model, IResource resource,
 			AParInterpreter aParInterpreter) {
@@ -34,6 +34,7 @@ final class EclipseEMFOutputRunner extends EclipseEscapeRunner {
 	 * 
 	 * @see org.ascape.runtime.Runner#run()
 	 */
+	@Override
 	public synchronized void run() {
 		boolean found = false;
 		ArrayList scapeListeners = new ArrayList(getScape().getScapeListeners());
@@ -55,6 +56,7 @@ final class EclipseEMFOutputRunner extends EclipseEscapeRunner {
 	 * @see org.ascape.runtime.Runner#openImplementation(java.lang.String[],
 	 *      boolean)
 	 */
+	@Override
 	public void openImplementation(String[] args, boolean block) {
 		if (aParInterpreter != null) {
 			aParInterpreter.assignValues(new Object[] { getRootScape(), this },
