@@ -1,0 +1,14 @@
+<project name="mirror amp indigo" default="mirror">
+	<taskdef ></taskdef>
+        <property name="localRepoLocation" value="indigo_b3"/>
+        <property name="eclipseRepoLocation" value="http://download.eclipse.org/amp/updates/releases/indigo"/>
+
+        <target name="mirror" >
+                <echo message="Mirror from ${eclipseRepoLocation} to ${localRepoLocation}" />
+                <p2.mirror destination="file:${localRepoLocation}" ignoreerrors="true">
+                        <source location="${eclipseRepoLocation}" />
+                        <slicingOptions includeOptional="false" includeNonGreedy="false" latestVersionOnly="true"/>
+                        <iu id="org.eclipse.amp.all"/>
+                </p2.mirror>
+        </target>
+</project>
