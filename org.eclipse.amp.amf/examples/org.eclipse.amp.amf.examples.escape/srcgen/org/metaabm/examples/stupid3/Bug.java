@@ -56,8 +56,20 @@ public class Bug extends CellOccupant {
 	 */
 	private int size = 0;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private List<IAgentChild> children;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public List<IAgentChild> getChildren() {
 		return children;
 	}

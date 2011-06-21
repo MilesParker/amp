@@ -70,8 +70,20 @@ public class Trader extends CellOccupant {
 	 */
 	private int instrumentCount = 0;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private List<IAgentChild> children;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public List<IAgentChild> getChildren() {
 		return children;
 	}
@@ -160,9 +172,9 @@ public class Trader extends CellOccupant {
 	 */
 	public List getNetwork() {
 		List network = new ArrayList();
-		network.addAll(((Graph) getMarkets().getInstrumentHolders().getSpace())
-				.getNeighborsFor(this));
 		network.addAll(((Graph) getMarkets().getTargetBuyFirms().getSpace())
+				.getNeighborsFor(this));
+		network.addAll(((Graph) getMarkets().getInstrumentHolders().getSpace())
 				.getNeighborsFor(this));
 		return network;
 	}

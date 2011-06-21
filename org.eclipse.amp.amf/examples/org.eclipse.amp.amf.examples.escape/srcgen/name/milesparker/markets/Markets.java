@@ -168,8 +168,20 @@ public class Markets extends Scape implements IGraphicsAdapted {
 	 */
 	private Scape targetBuyFirms = null;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private List<IAgentChild> children;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public List<IAgentChild> getChildren() {
 		return children;
 	}
@@ -310,16 +322,31 @@ public class Markets extends Scape implements IGraphicsAdapted {
 		traderScape.setName("Traders");
 		traderScape.setPrototypeAgent(traderProto);
 		traderScape.setExecutionOrder(Scape.RULE_ORDER);
+
+		for (IAgentChild tmp : traderProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
+
 		Firm firmProto = createFirmPrototype();
 		firmScape = new Scape();
 		firmScape.setName("Firms");
 		firmScape.setPrototypeAgent(firmProto);
 		firmScape.setExecutionOrder(Scape.RULE_ORDER);
+
+		for (IAgentChild tmp : firmProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
+
 		Instrument instrumentProto = createInstrumentPrototype();
 		instrumentScape = new Scape();
 		instrumentScape.setName("Instruments");
 		instrumentScape.setPrototypeAgent(instrumentProto);
 		instrumentScape.setExecutionOrder(Scape.RULE_ORDER);
+
+		for (IAgentChild tmp : instrumentProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
+
 		traderScape.setSize(getTraderCount());
 		firmScape.setSize(getFirmCount());
 		instrumentHolders = new Scape(new org.ascape.model.space.Graph());
@@ -334,9 +361,21 @@ public class Markets extends Scape implements IGraphicsAdapted {
 
 		add(traderScape);
 
+		for (IAgentChild tmp : traderProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
+
 		add(firmScape);
 
+		for (IAgentChild tmp : firmProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
+
 		add(instrumentScape);
+
+		for (IAgentChild tmp : instrumentProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		traderScape
 				.addStatCollector(new org.ascape.util.data.StatCollectorCond(
@@ -406,6 +445,10 @@ public class Markets extends Scape implements IGraphicsAdapted {
 						return ((Trader) trader).getInstrumentCount();
 					}
 				});
+
+		for (IAgentChild tmp : traderProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		firmScape.addStatCollector(new org.ascape.util.data.StatCollectorCond(
 				firmScape.getName() + " Population") {
@@ -516,6 +559,10 @@ public class Markets extends Scape implements IGraphicsAdapted {
 				return ((Firm) firm).getSharesInternal();
 			}
 		});
+
+		for (IAgentChild tmp : firmProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		instrumentScape
 				.addStatCollector(new org.ascape.util.data.StatCollectorCond(
@@ -657,6 +704,10 @@ public class Markets extends Scape implements IGraphicsAdapted {
 						return ((Instrument) instrument).getTotalPrice();
 					}
 				});
+
+		for (IAgentChild tmp : instrumentProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		traderScape.addInitialRule(new Rule("Initialize") {
 
@@ -821,6 +872,9 @@ public class Markets extends Scape implements IGraphicsAdapted {
 			}
 		});
 
+		for (IAgentChild tmp : getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 	}
 
 	/**
@@ -1080,6 +1134,45 @@ public class Markets extends Scape implements IGraphicsAdapted {
 	public static void main(String[] args) {
 		(new NonGraphicRunner())
 				.openInstance("name.milesparker.markets.Markets");
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+
+	@Override
+	public void executeOnMembers() {
+		int timeStep = getRunner().getPeriod();
+		startSimulationAgentChild(timeStep);
+
+		//A normal movable agent
+		((Trader) traderScape.getPrototypeAgent())
+				.startSimulationAgentChild(timeStep);
+
+		//A normal movable agent
+		((Firm) firmScape.getPrototypeAgent())
+				.startSimulationAgentChild(timeStep);
+
+		//A normal movable agent
+		((Instrument) instrumentScape.getPrototypeAgent())
+				.startSimulationAgentChild(timeStep);
+
+		super.executeOnMembers();
+		calculateTimeStep(timeStep);
+
+		//A normal movable agent
+		((Trader) traderScape.getPrototypeAgent()).calculateTimeStep(timeStep);
+
+		//A normal movable agent
+		((Firm) firmScape.getPrototypeAgent()).calculateTimeStep(timeStep);
+
+		//A normal movable agent
+		((Instrument) instrumentScape.getPrototypeAgent())
+				.calculateTimeStep(timeStep);
+
 	}
 
 	/**

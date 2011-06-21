@@ -70,8 +70,20 @@ public class Individual extends CellOccupant {
 	 */
 	private double wealth = 0.0;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private List<IAgentChild> children;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public List<IAgentChild> getChildren() {
 		return children;
 	}

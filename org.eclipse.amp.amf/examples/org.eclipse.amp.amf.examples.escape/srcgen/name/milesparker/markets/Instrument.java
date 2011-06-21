@@ -84,8 +84,20 @@ public class Instrument extends CellOccupant {
 	 */
 	private double firmPriceEarningsRatio = 0.0;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private List<IAgentChild> children;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public List<IAgentChild> getChildren() {
 		return children;
 	}
@@ -174,9 +186,9 @@ public class Instrument extends CellOccupant {
 	 */
 	public List getNetwork() {
 		List network = new ArrayList();
-		network.addAll(((Graph) getMarkets().getInstrumentHolders().getSpace())
-				.getNeighborsFor(this));
 		network.addAll(((Graph) getMarkets().getFirmInstruments().getSpace())
+				.getNeighborsFor(this));
+		network.addAll(((Graph) getMarkets().getInstrumentHolders().getSpace())
 				.getNeighborsFor(this));
 		return network;
 	}

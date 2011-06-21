@@ -177,8 +177,20 @@ public class DemographicPrisonersDilemma extends Scape
 	 */
 	private Scape gameSpace = null;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private List<IAgentChild> children;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public List<IAgentChild> getChildren() {
 		return children;
 	}
@@ -298,10 +310,15 @@ public class DemographicPrisonersDilemma extends Scape
 		playerScape.setPrototypeAgent(playerProto);
 		playerScape.setExecutionOrder(Scape.RULE_ORDER);
 
+		for (IAgentChild tmp : playerProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
+
 		playerScape.setSize(getPlayerCount());
 		gameSpace = new Scape(new org.ascape.model.space.Array2DVonNeumann());
 		gameSpace.setExecutionOrder(Scape.RULE_ORDER);
-		gameSpace.setPrototypeAgent(new PlayCell());
+		PlayCell protoPlayCell = new PlayCell();
+		gameSpace.setPrototypeAgent(protoPlayCell);
 		gameSpace.setExtent(new org.ascape.model.space.Coordinate2DDiscrete(
 				getGameSpaceWidth(), getGameSpaceHeight()));
 
@@ -309,8 +326,15 @@ public class DemographicPrisonersDilemma extends Scape
 		((CollectionSpace) gameSpace.getSpace()).setPeriodic(true);
 		add(gameSpace);
 		org.ascape.model.Scape playCellScape = gameSpace;
+		for (IAgentChild tmp : protoPlayCell.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		add(playerScape);
+
+		for (IAgentChild tmp : playerProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		playerProto.setHostScape(gameSpace);
 		gameSpace.getRules().clear();
@@ -430,6 +454,10 @@ public class DemographicPrisonersDilemma extends Scape
 						return ((Player) player).getWealth();
 					}
 				});
+
+		for (IAgentChild tmp : playerProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		playerScape.addInitialRule(new Rule("Initialize") {
 
@@ -593,6 +621,9 @@ public class DemographicPrisonersDilemma extends Scape
 			}
 		});
 
+		for (IAgentChild tmp : getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 	}
 
 	/**
@@ -770,6 +801,39 @@ public class DemographicPrisonersDilemma extends Scape
 	public static void main(String[] args) {
 		(new NonGraphicRunner())
 				.openInstance("edu.brook.DemographicPrisonersDilemma");
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+
+	@Override
+	public void executeOnMembers() {
+		int timeStep = getRunner().getPeriod();
+		startSimulationAgentChild(timeStep);
+
+		//A normal movable agent
+		((Player) playerScape.getPrototypeAgent())
+				.startSimulationAgentChild(timeStep);
+
+		//this is an agent that represent a cell and cannot move.
+
+		((PlayCell) gameSpace.getPrototypeAgent())
+				.startSimulationAgentChild(timeStep);
+
+		super.executeOnMembers();
+		calculateTimeStep(timeStep);
+
+		//A normal movable agent
+		((Player) playerScape.getPrototypeAgent()).calculateTimeStep(timeStep);
+
+		//this is an agent that represent a cell and cannot move.
+
+		((PlayCell) gameSpace.getPrototypeAgent()).calculateTimeStep(timeStep);
+
 	}
 
 	/**

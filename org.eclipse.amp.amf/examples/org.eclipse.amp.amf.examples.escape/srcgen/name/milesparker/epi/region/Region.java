@@ -182,8 +182,20 @@ public class Region extends Scape implements IGraphicsAdapted {
 	 */
 	private Scape regionalMap = null;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private List<IAgentChild> children;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public List<IAgentChild> getChildren() {
 		return children;
 	}
@@ -302,10 +314,15 @@ public class Region extends Scape implements IGraphicsAdapted {
 		cityScape.setPrototypeAgent(cityProto);
 		cityScape.setExecutionOrder(Scape.RULE_ORDER);
 
+		for (IAgentChild tmp : cityProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
+
 		cityScape.setSize(getCityCount());
 		regionalMap = new Scape(new org.ascape.model.space.Array2DMoore());
 		regionalMap.setExecutionOrder(Scape.RULE_ORDER);
-		regionalMap.setPrototypeAgent(new RegionalLocation());
+		RegionalLocation protoRegionalLocation = new RegionalLocation();
+		regionalMap.setPrototypeAgent(protoRegionalLocation);
 		regionalMap.setExtent(new org.ascape.model.space.Coordinate2DDiscrete(
 				getRegionalMapWidth(), getRegionalMapHeight()));
 
@@ -313,8 +330,15 @@ public class Region extends Scape implements IGraphicsAdapted {
 		((CollectionSpace) regionalMap.getSpace()).setPeriodic(true);
 		add(regionalMap);
 		org.ascape.model.Scape regionalLocationScape = regionalMap;
+		for (IAgentChild tmp : protoRegionalLocation.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		add(cityScape);
+
+		for (IAgentChild tmp : cityProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		cityProto.setHostScape(regionalMap);
 		regionalMap.getRules().clear();
@@ -344,6 +368,10 @@ public class Region extends Scape implements IGraphicsAdapted {
 		cityScape.setAutoCreate(false);
 		cityScape.createScape();
 
+		for (IAgentChild tmp : cityProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
+
 		cityScape.addInitialRule(new Rule("Setup Location") {
 
 			/**
@@ -365,6 +393,9 @@ public class Region extends Scape implements IGraphicsAdapted {
 			}
 		});
 
+		for (IAgentChild tmp : getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 	}
 
 	/**
@@ -506,6 +537,40 @@ public class Region extends Scape implements IGraphicsAdapted {
 	public static void main(String[] args) {
 		(new NonGraphicRunner())
 				.openInstance("name.milesparker.epi.region.Region");
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+
+	@Override
+	public void executeOnMembers() {
+		int timeStep = getRunner().getPeriod();
+		startSimulationAgentChild(timeStep);
+
+		//A normal movable agent
+		((City) cityScape.getPrototypeAgent())
+				.startSimulationAgentChild(timeStep);
+
+		//this is an agent that represent a cell and cannot move.
+
+		((RegionalLocation) regionalMap.getPrototypeAgent())
+				.startSimulationAgentChild(timeStep);
+
+		super.executeOnMembers();
+		calculateTimeStep(timeStep);
+
+		//A normal movable agent
+		((City) cityScape.getPrototypeAgent()).calculateTimeStep(timeStep);
+
+		//this is an agent that represent a cell and cannot move.
+
+		((RegionalLocation) regionalMap.getPrototypeAgent())
+				.calculateTimeStep(timeStep);
+
 	}
 
 	/**

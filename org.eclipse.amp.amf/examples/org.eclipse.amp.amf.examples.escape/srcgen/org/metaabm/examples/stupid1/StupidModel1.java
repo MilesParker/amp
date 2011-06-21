@@ -98,8 +98,20 @@ public class StupidModel1 extends Scape implements IGraphicsAdapted {
 	 */
 	private Scape grid2D = null;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private List<IAgentChild> children;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public List<IAgentChild> getChildren() {
 		return children;
 	}
@@ -218,10 +230,15 @@ public class StupidModel1 extends Scape implements IGraphicsAdapted {
 		bugScape.setPrototypeAgent(bugProto);
 		bugScape.setExecutionOrder(Scape.RULE_ORDER);
 
+		for (IAgentChild tmp : bugProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
+
 		bugScape.setSize(getBugCount());
 		grid2D = new Scape(new org.ascape.model.space.Array2DMoore());
 		grid2D.setExecutionOrder(Scape.RULE_ORDER);
-		grid2D.setPrototypeAgent(new Habitat());
+		Habitat protoHabitat = new Habitat();
+		grid2D.setPrototypeAgent(protoHabitat);
 		grid2D.setExtent(new org.ascape.model.space.Coordinate2DDiscrete(
 				getGrid2DWidth(), getGrid2DHeight()));
 
@@ -229,8 +246,15 @@ public class StupidModel1 extends Scape implements IGraphicsAdapted {
 		((CollectionSpace) grid2D.getSpace()).setPeriodic(true);
 		add(grid2D);
 		org.ascape.model.Scape habitatScape = grid2D;
+		for (IAgentChild tmp : protoHabitat.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		add(bugScape);
+
+		for (IAgentChild tmp : bugProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		bugProto.setHostScape(grid2D);
 		grid2D.getRules().clear();
@@ -257,6 +281,10 @@ public class StupidModel1 extends Scape implements IGraphicsAdapted {
 				return true;
 			}
 		});
+
+		for (IAgentChild tmp : bugProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		bugScape.addInitialRule(new Rule("Initialize") {
 
@@ -299,6 +327,9 @@ public class StupidModel1 extends Scape implements IGraphicsAdapted {
 			}
 		});
 
+		for (IAgentChild tmp : getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 	}
 
 	/**
@@ -466,6 +497,39 @@ public class StupidModel1 extends Scape implements IGraphicsAdapted {
 	public static void main(String[] args) {
 		(new NonGraphicRunner())
 				.openInstance("org.metaabm.examples.stupid1.StupidModel1");
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+
+	@Override
+	public void executeOnMembers() {
+		int timeStep = getRunner().getPeriod();
+		startSimulationAgentChild(timeStep);
+
+		//A normal movable agent
+		((Bug) bugScape.getPrototypeAgent())
+				.startSimulationAgentChild(timeStep);
+
+		//this is an agent that represent a cell and cannot move.
+
+		((Habitat) grid2D.getPrototypeAgent())
+				.startSimulationAgentChild(timeStep);
+
+		super.executeOnMembers();
+		calculateTimeStep(timeStep);
+
+		//A normal movable agent
+		((Bug) bugScape.getPrototypeAgent()).calculateTimeStep(timeStep);
+
+		//this is an agent that represent a cell and cannot move.
+
+		((Habitat) grid2D.getPrototypeAgent()).calculateTimeStep(timeStep);
+
 	}
 
 	/**

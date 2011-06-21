@@ -29,7 +29,7 @@ import org.ascape.runtime.NonGraphicRunner;
 import org.eclipse.amp.axf.core.IEngine;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
+import org.eclipse.amp.axf.ide.ModelViewManager;
 import org.eclipse.amp.axf.ide.view.DelayView;
 import org.eclipse.amp.axf.ide.view.RunMonitorView;
 import org.eclipse.amp.axf.time.ITimeGranularity;
@@ -48,7 +48,6 @@ import org.eclipse.ui.console.IConsole;
 import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.statushandlers.StatusManager;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class EclipseEscapeRunner.
  */
@@ -139,9 +138,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 		newAgent.setName(modelName);
 		setRootScape(newAgent);
 		model = new ScapeWrapperModel(getRootScape());
-		AXFWorkbenchPlugin.getDefault().getManager().register(model, this, getRootScape());
-		// getModel().addModelListener(new ModelMonitorView(modelMonitor));
-		// getModel().addModelListener(new ControlViewProxy());
+		ModelViewManager.getInstance().register(model, this, getRootScape());
 		try {
 			open(args, true);
 		} catch (RuntimeException e) {
@@ -185,51 +182,23 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 	}
 
 	private void removeModel() {
-		if (AXFWorkbenchPlugin.getDefault().getManager() != null) {
-			new Thread() {
-				/**
-				 * 
-				 * @see java.lang.Thread#run()
-				 */
-				public void run() {
-					if (AXFWorkbenchPlugin.getDefault().getManager().getModels().contains(model)) {
-						AXFWorkbenchPlugin.getDefault().getManager().remove(model);
-					}
-				}
-			}.start();
+		if (ModelViewManager.getInstance().getModels().contains(model)) {
+			ModelViewManager.getInstance().remove(model);
 		}
 		modelShutdown = true;
 	}
 
 	private void dispose() {
-		// if (AXFWorkbenchPlugin.getDefault().getManager() != null) {
-		// new Thread() {
-		// /**
-		// *
-		// * @see java.lang.Thread#run()
-		// */
-		// public void run() {
-		// AXFWorkbenchPlugin.getDefault().getManager().remove(model);
-		// }
-		// }.start();
-		// }
 		if (delegateLoader != null) {
 			delegateLoader.restore();
 		}
 		delegateLoader = null;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.ascape.runtime.Runner#start()
-	 */
-	/**
-	 * 
-	 * @see org.ascape.runtime.Runner#start()
-	 */
+	@Override
 	public void start() {
 		escapeRun = new Job("Run " + getModel().getName()) {
+			@Override
 			protected IStatus run(IProgressMonitor runMonitor) {
 				try {
 					setMonitor(runMonitor);
@@ -240,7 +209,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 					// do {
 					try {
 						EclipseEscapeRunner.this.run();
-						if (closeOnStop) {
+						if (isCloseOnStop()) {
 							close();
 						}
 					} catch (RuntimeException e) {
@@ -255,7 +224,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 						message = "An exception occurred when running: " + getModel().getName();
 					}
 					StatusManager.getManager().handle(new Status(Status.ERROR, project.getName(), message, e), StatusManager.SHOW | StatusManager.LOG);
-					if (closeOnStop) {
+					if (isCloseOnStop()) {
 						close();
 					} else {
 						stop();
@@ -264,6 +233,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 				return Status.OK_STATUS;
 			}
 
+			@Override
 			protected void canceling() {
 				close();
 			}
@@ -276,11 +246,6 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 
 	private Job escapeRun;
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.ascape.runtime.Runner#close()
-	 */
 	/**
 	 * 
 	 * @see org.ascape.runtime.Runner#close()
@@ -291,6 +256,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 		if (!isCloseRequested()) {
 			setCloseRequested(true);
 			Thread closeThread = new Thread(this, "Close Escape Model") {
+				@Override
 				public void run() {
 					setPaused(false);
 					EclipseEscapeRunner.super.close();
@@ -325,10 +291,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 		modelShutdown = true;
 	}
 
-	/**
-	 * 
-	 * @see org.ascape.runtime.Runner#closeFinally()
-	 */
+	@Override
 	public void closeFinally() {
 		super.closeFinally();
 		modelShutdown = true;
@@ -356,41 +319,15 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 		this.finishStatus = finishStatus;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.amp.axf.core.IEngine#getModel()
-	 */
-	/**
-	 * 
-	 * @see org.eclipse.amp.axf.core.IEngine#getModel()
-	 */
 	public IModel getModel() {
 		return model;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.amp.axf.core.IEngine#getIterationsPerRedraw()
-	 */
-	/**
-	 * 
-	 * @see org.eclipse.amp.axf.core.IEngine#getIterationsPerRedraw()
-	 */
 	public int getIterationsPerRedraw() {
 		return getScape().getIterationsPerRedraw();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.ascape.runtime.Runner#respondControl(org.ascape.model.event.ControlEvent )
-	 */
-	/**
-	 * 
-	 * @see org.ascape.runtime.Runner#respondControl(org.ascape.model.event.ControlEvent)
-	 */
+	@Override
 	public void respondControl(final org.ascape.model.event.ControlEvent control) {
 		new Thread(new Runnable() {
 			public void run() {
@@ -399,11 +336,6 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 		}).start();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.amp.axf.core.IEngine#control(org.eclipse.amp.axf.core. EngineControl)
-	 */
 	/**
 	 * 
 	 * @see org.eclipse.amp.axf.core.IEngine#control(org.eclipse.amp.axf.core.EngineControl)
@@ -448,32 +380,11 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 		return new org.ascape.model.event.ControlEvent(getScape(), id);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.ascape.runtime.Runner#notify(org.ascape.model.event.ScapeEvent, org.ascape.model.event.ScapeListener)
-	 */
-	/**
-	 * 
-	 * @see org.ascape.runtime.Runner#notify(org.ascape.model.event.ScapeEvent, org.ascape.model.event.ScapeListener)
-	 */
+	@Override
 	public void notify(final ScapeEvent event, final ScapeListener listener) {
-		// new Thread() {
-		// public void run() {
 		listener.scapeNotification(event);
-		// }
-		// }.start();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.amp.axf.core.IEngine#setIterationsPerRedraw(int)
-	 */
-	/**
-	 * 
-	 * @see org.eclipse.amp.axf.core.IEngine#setIterationsPerRedraw(int)
-	 */
 	public void setIterationsPerRedraw(int iterations) {
 		getScape().setIterationsPerRedraw(iterations);
 	}
@@ -506,11 +417,6 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 		this.modelMonitor = modelMonitor;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.amp.axf.core.IEngine#observationComplete(org.eclipse.amp. axf.core.ILifeCycleListener)
-	 */
 	/**
 	 * 
 	 * @see org.eclipse.amp.axf.core.IEngine#observationComplete(org.eclipse.amp.axf.core.ILifeCycleListener)
@@ -551,15 +457,20 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 	}
 
 	/**
-	 * Specifies whether the runner should exit upon a model stop. The default behavior is false, which leaves the model
-	 * open (and typically able to restart) until explicitly closed. For batch runs we don't want the model to stay open
-	 * as that requires a view notification and response to close it. It's probably cleaner to allow the runner to exit
-	 * immediately rather than wait for a listener to trigger one.
+	 * Specifies whether the runner should exit upon a model stop. The default
+	 * behavior is false, which leaves the model open (and typically able to
+	 * restart) until explicitly closed. For batch runs we don't want the model to
+	 * stay open as that requires a view notification and response to close it.
+	 * It's probably cleaner to allow the runner to exit immediately rather than
+	 * wait for a listener to trigger one.
 	 * 
-	 * Note that the model will not stop in the case where a restart has been requested, and listener's will be notified
-	 * of a model stop before actually closing. This gives output control listeners -- for a parameter sweep control, for
-	 * example -- an opportunity to set restart to request a restart. It also implies that it makes no sense to have
-	 * autoRestart true if this value is also true. Since auto-restart is by default true, be sure to set it to false.
+	 * Note that the model will not stop in the case where a restart has been
+	 * requested, and listener's will be notified of a model stop before actually
+	 * closing. This gives output control listeners -- for a parameter sweep
+	 * control, for example -- an opportunity to set restart to request a restart.
+	 * It also implies that it makes no sense to have autoRestart true if this
+	 * value is also true. Since auto-restart is by default true, be sure to set
+	 * it to false.
 	 * 
 	 * This setting can be safely changed during a model run.
 	 * 
@@ -570,29 +481,4 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 		this.closeOnStop = closeOnStop;
 	}
 
-	// public Object getAdapter(Object adaptableObject, Class adapterType) {
-	// if (adapterType == IExecutor.class) {
-	// return runnerForModel.get(adaptableObject);
-	// } else if (adapterType == IModel.class) {
-	// return modelForRunner.get(adaptableObject);
-	// }
-	// return null;
-	// }
-	//
-	// public Class[] getAdapterList() {
-	// return new Class[]{Scape.class, IModel.class};
-	// }
-
-	// public static boolean listenerRegister(Model target, Object listener) {
-	// return registeredListeners.put(target, listener.getClass()) == null;
-	// }
-	//
-	// public static void addSingletonViewers(Model target, EditPart registor) {
-	// if (!listenerRegister(target, ControlViewProxy.class)) {
-	// model.addView(new ControlViewProxy(registor));
-	// }
-	// IStatusLineManager status =
-	// getEditorSite().getActionBars().getStatusLineManager();
-	// model.addView(new StatusLineView(status));
-	// }
 }

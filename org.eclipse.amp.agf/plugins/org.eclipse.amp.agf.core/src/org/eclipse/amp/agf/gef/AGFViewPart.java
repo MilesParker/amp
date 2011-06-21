@@ -17,7 +17,6 @@
 package org.eclipse.amp.agf.gef;
 
 import org.eclipse.amp.agf.EditPartSelectionSynchronizer;
-import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
 import org.eclipse.amp.axf.ide.ModelViewManager;
 import org.eclipse.amp.axf.view.ModelViewPart;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -29,78 +28,61 @@ import org.eclipse.swt.widgets.Composite;
 /**
  * 
  * @author mparker
- *
+ * @author jonas.ruettimann
  */
 public abstract class AGFViewPart extends ModelViewPart {
 
-    class PropertySelectionListener implements ISelectionChangedListener {
-        public void selectionChanged(SelectionChangedEvent event) {
-            if (!event.getSelection().isEmpty() && event.getSelection() instanceof StructuredSelection) {
-                StructuredSelection sel = (StructuredSelection) event.getSelection();
-                propertySheetPage.selectionChanged(AGFViewPart.this,
-                                                   new StructuredSelection(sel.getFirstElement()));
-            }
-        }
-    }
+	class PropertySelectionListener implements ISelectionChangedListener {
+		public void selectionChanged(SelectionChangedEvent event) {
+			if (!event.getSelection().isEmpty() && event.getSelection() instanceof StructuredSelection) {
+				StructuredSelection sel = (StructuredSelection) event.getSelection();
+				getPropertySheetPage().selectionChanged(AGFViewPart.this, new StructuredSelection(sel.getFirstElement()));
+			}
+		}
+	}
 
-    private PropertySelectionListener selectionListener;
-    /**
-     * 
-     */
-    public AGFViewPart() {
-        super();
-    }
+	private PropertySelectionListener selectionListener;
 
-    /**
-     * @param parent
-     * @see org.eclipse.amp.axf.view.ModelViewPart#createPartControl(org.eclipse.swt.widgets.Composite)
-     */
-    public void createPartControl(Composite parent) {
-        super.createPartControl(parent);
-        createSelectionSynchronizer();
-    }
+	public AGFViewPart() {
+		super();
+	}
 
-    protected void createSelectionListener(ISelectionProvider provider) {
-        super.createSelectionListener(provider);
-        selectionListener = new PropertySelectionListener();
-        provider.addSelectionChangedListener(selectionListener);
-    }
+	@Override
+	public void createPartControl(Composite parent) {
+		super.createPartControl(parent);
+		createSelectionSynchronizer();
+	}
 
-    public void createSelectionSynchronizer() {
-        new Thread() {
-            public void run() {
-                AXFWorkbenchPlugin default1 = AXFWorkbenchPlugin.getDefault();
-                while (default1 == null) {
-                    try {
-                        Thread.sleep(30);
-                    } catch (InterruptedException e) {
-                    }
-                    default1 = AXFWorkbenchPlugin.getDefault();
-                }
-                ModelViewManager manager = default1.getManager();
-                if (!(manager.getSelectionSynchronizer() instanceof EditPartSelectionSynchronizer)) {
-                    manager.setSelectionSynchronizer(new EditPartSelectionSynchronizer());
-                }
-                manager.getSelectionSynchronizer().addViewer(getSelectionProvider());
-                getSite().setSelectionProvider(getSelectionProvider());
-            }
+	@Override
+	protected void createSelectionListener(ISelectionProvider provider) {
+		super.createSelectionListener(provider);
+		selectionListener = new PropertySelectionListener();
+		provider.addSelectionChangedListener(selectionListener);
+	}
 
-        }.start();
-    }
+	public void createSelectionSynchronizer() {
+		ModelViewManager manager = ModelViewManager.getInstance();
+		if (!(manager.getSelectionSynchronizer() instanceof EditPartSelectionSynchronizer)) {
+			manager.setSelectionSynchronizer(new EditPartSelectionSynchronizer());
+		}
+		manager.getSelectionSynchronizer().addViewer(getSelectionProvider());
+		getSite().setSelectionProvider(getSelectionProvider());
+	}
 
-    @Override
-    public Object getAdapter(Class type) {
-        if (type == ISelectionProvider.class) {
-            return getSelectionProvider();
-        }
-        return super.getAdapter(type);
-    }
+	@Override
+	public Object getAdapter(Class type) {
+		if (type == ISelectionProvider.class) {
+			return getSelectionProvider();
+		}
+		return super.getAdapter(type);
+	}
 
-    public void dispose() {
-        super.dispose();
-        removeSelectionListener(getSelectionProvider());
-        getSelectionProvider().removeSelectionChangedListener(selectionListener);
-    }
+	@Override
+	public void dispose() {
+		super.dispose();
+		removeSelectionListener(getSelectionProvider());
+		getSelectionProvider().removeSelectionChangedListener(selectionListener);
+	}
 
-    protected abstract ISelectionProvider getSelectionProvider();
+	protected abstract ISelectionProvider getSelectionProvider();
 }

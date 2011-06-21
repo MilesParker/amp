@@ -172,8 +172,20 @@ public class Epidemic extends Scape implements IGraphicsAdapted {
 	 */
 	private Scape city = null;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private List<IAgentChild> children;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public List<IAgentChild> getChildren() {
 		return children;
 	}
@@ -291,10 +303,16 @@ public class Epidemic extends Scape implements IGraphicsAdapted {
 		individualScape.setName("Individuals");
 		individualScape.setPrototypeAgent(individualProto);
 		individualScape.setExecutionOrder(Scape.RULE_ORDER);
+
+		for (IAgentChild tmp : individualProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
+
 		individualScape.setSize(getIndividualCount());
 		city = new Scape(new org.ascape.model.space.Array2DEuclidian());
 		city.setExecutionOrder(Scape.RULE_ORDER);
-		city.setPrototypeAgent(new HostCell());
+		HostCell protoHostCell = new HostCell();
+		city.setPrototypeAgent(protoHostCell);
 		city.setExtent(new org.ascape.model.space.Coordinate2DDiscrete(
 				getCityWidth(), getCityHeight()));
 
@@ -303,6 +321,11 @@ public class Epidemic extends Scape implements IGraphicsAdapted {
 		add(city);
 
 		add(individualScape);
+
+		for (IAgentChild tmp : individualProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
+
 		individualProto.setHostScape(city);
 		city.getRules().clear();
 
@@ -520,6 +543,10 @@ public class Epidemic extends Scape implements IGraphicsAdapted {
 					}
 				});
 
+		for (IAgentChild tmp : individualProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
+
 		individualScape.addInitialRule(new Rule("Initialize Location") {
 
 			/**
@@ -622,6 +649,9 @@ public class Epidemic extends Scape implements IGraphicsAdapted {
 			}
 		});
 
+		for (IAgentChild tmp : getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 	}
 
 	/**
@@ -797,6 +827,35 @@ public class Epidemic extends Scape implements IGraphicsAdapted {
 	 */
 	public static void main(String[] args) {
 		(new NonGraphicRunner()).openInstance("name.milesparker.epi.Epidemic");
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * A simple model of epidemic dynamics. We define individual agents with different disease states. The progression of disease moves from succeptible to exposed to infectious (either symptomatic or asymptomatic) to some outcome state. Agents can transmit infection to their immediate neighbors.
+
+	For some background on the general approach, see Joshua M. Epstein. "Generative Social Science". 2006. Princeton. 
+
+	Copyright 2009, Miles Parker. Released under Eclipse Public License. All uses should be attributed.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+
+	@Override
+	public void executeOnMembers() {
+		int timeStep = getRunner().getPeriod();
+		startSimulationAgentChild(timeStep);
+
+		//A normal movable agent
+		((Individual) individualScape.getPrototypeAgent())
+				.startSimulationAgentChild(timeStep);
+
+		super.executeOnMembers();
+		calculateTimeStep(timeStep);
+
+		//A normal movable agent
+		((Individual) individualScape.getPrototypeAgent())
+				.calculateTimeStep(timeStep);
+
 	}
 
 	/**

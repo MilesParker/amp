@@ -109,8 +109,20 @@ public class City extends Scape implements IGraphicsAdapted {
 	 */
 	private Scape map = null;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private List<IAgentChild> children;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public List<IAgentChild> getChildren() {
 		return children;
 	}
@@ -243,10 +255,15 @@ public class City extends Scape implements IGraphicsAdapted {
 		individualScape.setPrototypeAgent(individualProto);
 		individualScape.setExecutionOrder(Scape.RULE_ORDER);
 
+		for (IAgentChild tmp : individualProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
+
 		individualScape.setSize(getIndividualCount());
 		map = new Scape(new org.ascape.model.space.Array2DMoore());
 		map.setExecutionOrder(Scape.RULE_ORDER);
-		map.setPrototypeAgent(new Place());
+		Place protoPlace = new Place();
+		map.setPrototypeAgent(protoPlace);
 		map.setExtent(new org.ascape.model.space.Coordinate2DDiscrete(
 				getMapWidth(), getMapHeight()));
 
@@ -254,8 +271,15 @@ public class City extends Scape implements IGraphicsAdapted {
 		((CollectionSpace) map.getSpace()).setPeriodic(false);
 		add(map);
 		org.ascape.model.Scape placeScape = map;
+		for (IAgentChild tmp : protoPlace.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		add(individualScape);
+
+		for (IAgentChild tmp : individualProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		individualProto.setHostScape(map);
 		map.getRules().clear();
@@ -475,6 +499,10 @@ public class City extends Scape implements IGraphicsAdapted {
 					}
 				});
 
+		for (IAgentChild tmp : individualProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
+
 		individualScape.addInitialRule(new Rule("Initialize Location") {
 
 			/**
@@ -598,6 +626,9 @@ public class City extends Scape implements IGraphicsAdapted {
 			}
 		});
 
+		for (IAgentChild tmp : getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 	}
 
 	/**
@@ -774,6 +805,43 @@ public class City extends Scape implements IGraphicsAdapted {
 	public static void main(String[] args) {
 		(new NonGraphicRunner())
 				.openInstance("name.milesparker.epi.region.City");
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * A simple model of epidemic dynamics. We define individual agents with different disease states. The progression of disease moves from succeptible to exposed to infectious (either symptomatic or asymptomatic) to some outcome state. Agents can transmit infection to their immediate neighbors.
+
+	For some background on the general approach, see Joshua M. Epstein. "Generative Social Science". 2006. Princeton. 
+
+	Copyright 2009, Miles Parker. Released under Eclipse Public License. All uses should be attributed.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+
+	@Override
+	public void executeOnMembers() {
+		int timeStep = getRunner().getPeriod();
+		startSimulationAgentChild(timeStep);
+
+		//A normal movable agent
+		((Individual) individualScape.getPrototypeAgent())
+				.startSimulationAgentChild(timeStep);
+
+		//this is an agent that represent a cell and cannot move.
+
+		((Place) map.getPrototypeAgent()).startSimulationAgentChild(timeStep);
+
+		super.executeOnMembers();
+		calculateTimeStep(timeStep);
+
+		//A normal movable agent
+		((Individual) individualScape.getPrototypeAgent())
+				.calculateTimeStep(timeStep);
+
+		//this is an agent that represent a cell and cannot move.
+
+		((Place) map.getPrototypeAgent()).calculateTimeStep(timeStep);
+
 	}
 
 	/**

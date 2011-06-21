@@ -98,8 +98,20 @@ public class WikiExample extends Scape implements IGraphicsAdapted {
 	 */
 	private Scape city = null;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private List<IAgentChild> children;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public List<IAgentChild> getChildren() {
 		return children;
 	}
@@ -218,10 +230,15 @@ public class WikiExample extends Scape implements IGraphicsAdapted {
 		individualScape.setPrototypeAgent(individualProto);
 		individualScape.setExecutionOrder(Scape.RULE_ORDER);
 
+		for (IAgentChild tmp : individualProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
+
 		individualScape.setSize(getIndividualCount());
 		city = new Scape(new org.ascape.model.space.Array2DMoore());
 		city.setExecutionOrder(Scape.RULE_ORDER);
-		city.setPrototypeAgent(new Block());
+		Block protoBlock = new Block();
+		city.setPrototypeAgent(protoBlock);
 		city.setExtent(new org.ascape.model.space.Coordinate2DDiscrete(
 				getCityWidth(), getCityHeight()));
 
@@ -229,8 +246,15 @@ public class WikiExample extends Scape implements IGraphicsAdapted {
 		((CollectionSpace) city.getSpace()).setPeriodic(false);
 		add(city);
 		org.ascape.model.Scape blockScape = city;
+		for (IAgentChild tmp : protoBlock.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		add(individualScape);
+
+		for (IAgentChild tmp : individualProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		individualProto.setHostScape(city);
 		city.getRules().clear();
@@ -258,6 +282,10 @@ public class WikiExample extends Scape implements IGraphicsAdapted {
 						return true;
 					}
 				});
+
+		for (IAgentChild tmp : individualProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		individualScape.addRule(new Rule("Find Partner") {
 
@@ -325,6 +353,9 @@ public class WikiExample extends Scape implements IGraphicsAdapted {
 			}
 		});
 
+		for (IAgentChild tmp : getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 	}
 
 	/**
@@ -466,6 +497,39 @@ public class WikiExample extends Scape implements IGraphicsAdapted {
 	public static void main(String[] args) {
 		(new NonGraphicRunner())
 				.openInstance("org.eclipse.amp.amf.examples.escape.WikiExample");
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+
+	@Override
+	public void executeOnMembers() {
+		int timeStep = getRunner().getPeriod();
+		startSimulationAgentChild(timeStep);
+
+		//A normal movable agent
+		((Individual) individualScape.getPrototypeAgent())
+				.startSimulationAgentChild(timeStep);
+
+		//this is an agent that represent a cell and cannot move.
+
+		((Block) city.getPrototypeAgent()).startSimulationAgentChild(timeStep);
+
+		super.executeOnMembers();
+		calculateTimeStep(timeStep);
+
+		//A normal movable agent
+		((Individual) individualScape.getPrototypeAgent())
+				.calculateTimeStep(timeStep);
+
+		//this is an agent that represent a cell and cannot move.
+
+		((Block) city.getPrototypeAgent()).calculateTimeStep(timeStep);
+
 	}
 
 	/**

@@ -15,65 +15,58 @@ import java.util.TooManyListenersException;
 import org.ascape.model.event.DefaultScapeListener;
 import org.ascape.model.event.ScapeEvent;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.core.IObservationProvider;
-import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
+import org.eclipse.amp.axf.ide.ModelViewManager;
 import org.eclipse.amp.axf.view.ModelInput;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.jface.viewers.StructuredSelection;
 
 public abstract class ModelScapeView extends DefaultScapeListener implements IAdaptable {
 
-    private static final long serialVersionUID = -2831280332433751678L;
+	private static final long serialVersionUID = -2831280332433751678L;
 
-    private String name;
+	private String primaryID;
 
-    private String primaryID;
-    private String secondaryID;
+	private IModel model;
 
-    private IModel model;
+	public ModelScapeView(String primaryID, String secondaryID, String name) {
+		super();
+		this.primaryID = primaryID;
 
-    public ModelScapeView(String primaryID, String secondaryID, String name) {
-        super();
-        this.primaryID = primaryID;
-        this.secondaryID = secondaryID;
-        this.name = name;
-        if (name == null) {
-            this.name = primaryID + (secondaryID != null ? ":" + secondaryID : "");
-        }
-    }
+		if (name == null) {
+			setName(primaryID + (secondaryID != null ? ":" + secondaryID : ""));
+		} else {
+			setName(name);
+		}
+	}
 
-    public ModelScapeView(String primaryID) {
-        this(primaryID, null, null);
-    }
+	public ModelScapeView(String primaryID) {
+		this(primaryID, null, null);
+	}
 
-    public Object getAdapter(Class key) {
-        if (key == IModel.class) {
-            IObservationProvider model = (IObservationProvider) AXFWorkbenchPlugin.getDefault().getManager()
-            .getAdapter(getScape().getRoot(), IModel.class);
-            return model;
-        }
-        return null;
-    }
+	public Object getAdapter(Class key) {
+		if (key == IModel.class) {
+			return ModelViewManager.getInstance().getAdapter(getScape().getRoot(), key);
+		}
+		return null;
+	}
 
-    public ModelInput createInput() {
-        return new ModelInput(getModel(), new StructuredSelection(getScape()));
-    }
+	public ModelInput createInput() {
+		return new ModelInput(getModel(), new StructuredSelection(getScape()));
+	}
 
-    public void scapeAdded(ScapeEvent scapeEvent) throws TooManyListenersException {
-        super.scapeAdded(scapeEvent);
-        model = (IModel) AXFWorkbenchPlugin.getDefault().getManager().getAdapter(getScape().getRoot(), IModel.class);
-        AXFWorkbenchPlugin.getDefault().getManager().createViewPart(primaryID, createInput(), name);
-    }
+	@Override
+	public void scapeAdded(ScapeEvent scapeEvent) throws TooManyListenersException {
+		super.scapeAdded(scapeEvent);
+		model = (IModel) getAdapter(IModel.class);
+		ModelViewManager.getInstance().createViewPart(primaryID, createInput(), getName());
+	}
 
-    public IModel getModel() {
-        return model;
-    }
+	public IModel getModel() {
+		return model;
+	}
 
-    public String getName() {
-        return name;
-    }
-
-    public String toString() {
-        return getName() + " View";
-    }
+	@Override
+	public String toString() {
+		return getName() + " View";
+	}
 }

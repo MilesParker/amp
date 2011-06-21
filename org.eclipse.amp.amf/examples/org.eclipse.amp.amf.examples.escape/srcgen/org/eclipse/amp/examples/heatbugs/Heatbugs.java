@@ -126,8 +126,20 @@ public class Heatbugs extends Scape implements IGraphicsAdapted {
 	 */
 	private Scape heatGrid = null;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private List<IAgentChild> children;
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public List<IAgentChild> getChildren() {
 		return children;
 	}
@@ -246,10 +258,15 @@ public class Heatbugs extends Scape implements IGraphicsAdapted {
 		heatBugScape.setPrototypeAgent(heatBugProto);
 		heatBugScape.setExecutionOrder(Scape.RULE_ORDER);
 
+		for (IAgentChild tmp : heatBugProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
+
 		heatBugScape.setSize(getHeatBugCount());
 		heatGrid = new Scape(new org.ascape.model.space.Array2DMoore());
 		heatGrid.setExecutionOrder(Scape.RULE_ORDER);
-		heatGrid.setPrototypeAgent(new HeatCell());
+		HeatCell protoHeatCell = new HeatCell();
+		heatGrid.setPrototypeAgent(protoHeatCell);
 		heatGrid.setExtent(new org.ascape.model.space.Coordinate2DDiscrete(
 				getHeatGridWidth(), getHeatGridHeight()));
 
@@ -257,8 +274,15 @@ public class Heatbugs extends Scape implements IGraphicsAdapted {
 		((CollectionSpace) heatGrid.getSpace()).setPeriodic(false);
 		add(heatGrid);
 		org.ascape.model.Scape heatCellScape = heatGrid;
+		for (IAgentChild tmp : protoHeatCell.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		add(heatBugScape);
+
+		for (IAgentChild tmp : heatBugProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		heatBugProto.setHostScape(heatGrid);
 
@@ -307,6 +331,10 @@ public class Heatbugs extends Scape implements IGraphicsAdapted {
 						return ((HeatBug) heatBug).getUnhappiness();
 					}
 				});
+
+		for (IAgentChild tmp : heatBugProto.getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 
 		heatBugScape.addInitialRule(new Rule("Initialize") {
 
@@ -373,6 +401,9 @@ public class Heatbugs extends Scape implements IGraphicsAdapted {
 		});
 		heatCellScape.addRule(HeatCell.DIFFUSE_RULE);
 
+		for (IAgentChild tmp : getChildren()) {
+			tmp.addDataCollectors(this);
+		}
 	}
 
 	/**
@@ -540,6 +571,40 @@ public class Heatbugs extends Scape implements IGraphicsAdapted {
 	public static void main(String[] args) {
 		(new NonGraphicRunner())
 				.openInstance("org.eclipse.amp.examples.heatbugs.Heatbugs");
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * 
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+
+	@Override
+	public void executeOnMembers() {
+		int timeStep = getRunner().getPeriod();
+		startSimulationAgentChild(timeStep);
+
+		//A normal movable agent
+		((HeatBug) heatBugScape.getPrototypeAgent())
+				.startSimulationAgentChild(timeStep);
+
+		//this is an agent that represent a cell and cannot move.
+
+		((HeatCell) heatGrid.getPrototypeAgent())
+				.startSimulationAgentChild(timeStep);
+
+		super.executeOnMembers();
+		calculateTimeStep(timeStep);
+
+		//A normal movable agent
+		((HeatBug) heatBugScape.getPrototypeAgent())
+				.calculateTimeStep(timeStep);
+
+		//this is an agent that represent a cell and cannot move.
+
+		((HeatCell) heatGrid.getPrototypeAgent()).calculateTimeStep(timeStep);
+
 	}
 
 	/**

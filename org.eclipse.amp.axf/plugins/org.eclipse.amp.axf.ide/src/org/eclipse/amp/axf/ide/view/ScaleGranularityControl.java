@@ -18,8 +18,8 @@ package org.eclipse.amp.axf.ide.view;
 
 import org.eclipse.amp.axf.core.IEngine;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
 import org.eclipse.amp.axf.ide.IModelWorkbenchListener;
+import org.eclipse.amp.axf.ide.ModelViewManager;
 import org.eclipse.amp.axf.time.TimeGranularity;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -34,7 +34,7 @@ import org.eclipse.ui.menus.WorkbenchWindowControlContribution;
 /**
  * 
  * @author mparker
- * 
+ * @author jonas.ruettimann
  */
 public class ScaleGranularityControl extends WorkbenchWindowControlContribution implements IModelWorkbenchListener {
 
@@ -49,11 +49,7 @@ public class ScaleGranularityControl extends WorkbenchWindowControlContribution 
 	// Around the center area we want to have scale snap to middle.
 	private static int CENTER_RANGE = 5;
 
-	/**
-	 * @param parent
-	 * @return
-	 * @see org.eclipse.jface.action.ControlContribution#createControl(org.eclipse.swt.widgets.Composite)
-	 */
+	@Override
 	protected Control createControl(Composite parent) {
 		scale = new Scale(parent, SWT.HORIZONTAL);
 		scale.setMaximum(SCALE_MAX);
@@ -66,15 +62,12 @@ public class ScaleGranularityControl extends WorkbenchWindowControlContribution 
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 		});
-		new Thread() {
-			public void run() {
-				AXFWorkbenchPlugin.getDefault().getManager().getManagerListeners().addModelManagerListener(ScaleGranularityControl.this);
-			};
-		}.start();
+
+		ModelViewManager.getInstance().getManagerListeners().addModelManagerListener(ScaleGranularityControl.this);
 		return scale;
 	}
 
-	private void scaleToEngineGranularity() {
+	void scaleToEngineGranularity() {
 		TimeGranularity newGranularity = null;
 
 		if (Math.abs(scale.getSelection() - SCALE_MID) > CENTER_RANGE) {
