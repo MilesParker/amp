@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
-*/
+ */
 package org.metaabm.gen.test.share;
 
 import junit.framework.TestCase;
@@ -23,36 +23,37 @@ import org.junit.Assert;
 
 public abstract class AgentTestCase extends TestCase {
 
-    private String projectName;
+	private String projectName;
 
-    private String agentQualifiedName;
+	private String agentQualifiedName;
 
-    protected Object agentLoaded;
+	protected Object agentLoaded;
 
-    public static boolean targetMode = false;
+	public static boolean targetMode = false;
 
-    public AgentTestCase(String projectName, String testName, String agentFullPath) {
-        this.agentQualifiedName = agentFullPath;
-        this.projectName = projectName;
-    }
+	public AgentTestCase(String projectName, String testName, String agentFullPath) {
+		this.agentQualifiedName = agentFullPath;
+		this.projectName = projectName;
+	}
 
-    protected void setUp() throws Exception {
-        if (targetMode) {
-            IProject testProject = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
-            ProjectLoader loader = new ProjectLoader(testProject);
-            try {
-                Class<?> loadClass = Thread.currentThread().getContextClassLoader().loadClass(agentQualifiedName);
-                agentLoaded = loadClass.newInstance();
-                Assert.assertNotNull(agentLoaded);
-                loader.restore();
-            } catch (Exception e) {
-                loader.restore();
-                throw new RuntimeException(e);
-            }
-        }
-    }
+	@Override
+	protected void setUp() throws Exception {
+		if (targetMode) {
+			IProject testProject = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+			ProjectLoader loader = new ProjectLoader(testProject);
+			try {
+				Class<?> loadClass = Thread.currentThread().getContextClassLoader().loadClass(agentQualifiedName);
+				agentLoaded = loadClass.newInstance();
+				Assert.assertNotNull(agentLoaded);
+				loader.restore();
+			} catch (Exception e) {
+				loader.restore();
+				throw new RuntimeException(e);
+			}
+		}
+	}
 
-    public void setAgentLoaded(Object agentLoaded) {
-        this.agentLoaded = agentLoaded;
-    }
+	public void setAgentLoaded(Object agentLoaded) {
+		this.agentLoaded = agentLoaded;
+	}
 }
