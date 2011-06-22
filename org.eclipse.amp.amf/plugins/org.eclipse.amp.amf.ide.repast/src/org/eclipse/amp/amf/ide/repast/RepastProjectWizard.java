@@ -19,9 +19,7 @@ import java.util.List;
 import org.eclipse.amp.amf.gen.ide.DocumentModelBuilder;
 import org.eclipse.amp.amf.gen.ide.GenIDEPlugin;
 import org.eclipse.amp.amf.gen.ide.PluginProjectWizard;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.JavaCore;
@@ -29,30 +27,35 @@ import org.eclipse.ui.INewWizard;
 
 public class RepastProjectWizard extends PluginProjectWizard implements INewWizard {
 
-    public static String REPAST_HOME = "REPAST_HOME";
+	public static String REPAST_HOME = "REPAST_HOME";
 
-    public RepastProjectWizard() {
-        super();
-    }
+	public RepastProjectWizard() {
+		super();
+	}
 
-    public void addClasspaths(List<IClasspathEntry> classpathEntries, IProject project) throws CoreException {
-        super.addClasspaths(classpathEntries, project);
-        IPath repastPath = new Path(RepastRuntimeConfigurator.REPAST_SUPPORT_PATH);
-        classpathEntries.add(JavaCore.newContainerEntry(repastPath, true));
-    }
+	@Override
+	public List<IClasspathEntry> getClasspathsEntries() throws CoreException {
+		List<IClasspathEntry> classpathsEntries = super.getClasspathsEntries();
+		classpathsEntries.add(JavaCore.newContainerEntry(new Path(RepastRuntimeConfigurator.REPAST_SUPPORT_PATH), true));
+		return classpathsEntries;
+	}
 
-    public void addBuilders(List<String> builderIDs) {
-        builderIDs.add(RepastIDEActivator.PLUGIN_ID + "." + RepastModelBuilder.REPAST_BUILDER_ID);
-        builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + DocumentModelBuilder.DOCUMENT_BUILDER_ID);
-        super.addBuilders(builderIDs);
-    }
+	@Override
+	public List<String> getBuilders() {
+		List<String> builderIDs = super.getBuilders();
+		builderIDs.add(RepastIDEActivator.PLUGIN_ID + "." + RepastModelBuilder.REPAST_BUILDER_ID);
+		builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + DocumentModelBuilder.DOCUMENT_BUILDER_ID);
+		return builderIDs;
+	}
 
-    public String getSourceDirName() {
-        return "srcgen";
-    }
+	@Override
+	public String getSourceDirName() {
+		return "srcgen";
+	}
 
-    public String getProjectTypeName() {
-        return "MetaABM for Repast";
-    }
+	@Override
+	public String getProjectTypeName() {
+		return "MetaABM for Repast";
+	}
 
 }

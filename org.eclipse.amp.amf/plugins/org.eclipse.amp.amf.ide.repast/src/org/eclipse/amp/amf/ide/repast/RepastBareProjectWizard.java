@@ -14,16 +14,19 @@
  */
 package org.eclipse.amp.amf.ide.repast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RepastBareProjectWizard extends RepastProjectWizard {
 
-    @Override
-    public void addBuilders(List<String> builderIDs) {
-        // Do nothing as we don't want any metaabm builders included.
-    }
+	@Override
+	public List<String> getBuilders() {
+		// Do nothing as we don't want any metaabm builders included.
+		return new ArrayList<String>();
+	}
 
-    public String getSourceDirName() {
-        return "src";
-    }
+	@Override
+	public String getSourceDirName() {
+		return "src";
+	}
 }
