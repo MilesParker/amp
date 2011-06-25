@@ -36,8 +36,7 @@
 
    <includes
          id="org.eclipse.amp.escape"
-         version="0.0.0"
-         optional="true"/>
+         version="0.0.0"/>
 
    <includes
          id="org.eclipse.amp.amfx"
