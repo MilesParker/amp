@@ -69,17 +69,17 @@ public class EditPartPartListenerTest {
 		}
 		
 		@Override
-		void refresh() {
+		protected void refresh() {
 			refreshed = true;
 		}
 
 		@Override
-		String getId() {
+		protected String getId() {
 			return id;
 		}
 
 		@Override
-		void removePartListener(IPartListener2 lis) {
+		protected void removePartListener(IPartListener2 lis) {
 			removed = true;
 		}
 		

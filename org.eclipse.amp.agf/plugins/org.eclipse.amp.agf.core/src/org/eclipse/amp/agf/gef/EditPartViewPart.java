@@ -55,7 +55,7 @@ public abstract class EditPartViewPart extends AGFViewPart{
         setEditDomain(new DefaultEditDomain(null));
     }
 
-    void refresh(){
+    protected void refresh(){
     	viewer.getContents().refresh();
     }
     
@@ -221,11 +221,11 @@ public abstract class EditPartViewPart extends AGFViewPart{
         return viewer;
     }
     
-    String getId(){
+    protected String getId(){
     	return getSite().getId();
     }
     
-    void removePartListener(IPartListener2 lis){
+    protected void removePartListener(IPartListener2 lis){
     	getSite().getPage().removePartListener(lis);
     }
 }
