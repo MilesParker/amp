@@ -41,14 +41,12 @@ public abstract class AbstractSDModel implements IAgentChild {
 		return Collections.unmodifiableList(variables);
 	}
 
-	@Override
 	public void calculate(int time) {
 		calculateAux(time);
 		calculateStock(time);
 		calculateFlow(time);
 	}
 
-	@Override
 	public void startSimulation(int time) {
 		for (AbstractVariable tmp : variables) {
 			tmp.startSimulation();

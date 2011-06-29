@@ -11,12 +11,10 @@ public class SdRtActivator implements BundleActivator {
 		return context;
 	}
 
-	@Override
 	public void start(BundleContext bundleContext) throws Exception {
 		SdRtActivator.context = bundleContext;
 	}
 
-	@Override
 	public void stop(BundleContext bundleContext) throws Exception {
 		SdRtActivator.context = null;
 	}

@@ -39,8 +39,9 @@ import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IPartListener2;
 
-public abstract class EditPartViewPart extends AGFViewPart {
+public abstract class EditPartViewPart extends AGFViewPart{
 
     private DefaultEditDomain editDomain;
     protected EditPartViewer viewer;
@@ -54,7 +55,12 @@ public abstract class EditPartViewPart extends AGFViewPart {
         setEditDomain(new DefaultEditDomain(null));
     }
 
-    public void createPartControl(Composite parent) {
+    void refresh(){
+    	viewer.getContents().refresh();
+    }
+    
+    @Override
+		public void createPartControl(Composite parent) {
         viewer = createViewer();
         viewer.createControl(parent);
         getEditDomain().addViewer(viewer);
@@ -62,6 +68,7 @@ public abstract class EditPartViewPart extends AGFViewPart {
             throw new RuntimeException("Viewer is null for: " + this);
         }
         super.createPartControl(parent);
+        getSite().getPage().addPartListener(new EditPartPartListener(this));
     }
 
     protected EditPartViewer createViewer() {
@@ -70,7 +77,8 @@ public abstract class EditPartViewPart extends AGFViewPart {
 
     public abstract RootEditPart createRoot();
 
-    public void setInput(IEditorInput input) {
+    @Override
+		public void setInput(IEditorInput input) {
         super.setInput(input);
         final ModelEditPartInput modelInput = (ModelEditPartInput) input;
         // setPartName(getName());
@@ -78,7 +86,7 @@ public abstract class EditPartViewPart extends AGFViewPart {
             rootEditPart = createRoot();
             if (rootEditPart != null) {
                 viewer.setRootEditPart(rootEditPart);
-                createZoomer(rootEditPart);
+                createZoomer();
             }
             Object contents = null;
             if (modelInput.getSelection() instanceof IStructuredSelection) {
@@ -94,9 +102,7 @@ public abstract class EditPartViewPart extends AGFViewPart {
             viewer.setEditPartFactory(factory);
             if (factory instanceof ISelectionProvider) {
                 ISelectionProvider provider = (ISelectionProvider) factory;
-                if (provider != null) {
-                    getViewSite().setSelectionProvider(provider);
-                }
+                getViewSite().setSelectionProvider(provider);
             }
             viewer.setContents(contents);
         } else {
@@ -113,7 +119,7 @@ public abstract class EditPartViewPart extends AGFViewPart {
         return provider.getEditPartFactory(contents);
     }
 
-    protected void createZoomer(RootEditPart rootEditPart) {
+    protected void createZoomer() {
         if (rootEditPart instanceof ScalableFreeformRootEditPart) {
             zoomer = ((ScalableFreeformRootEditPart) rootEditPart).getZoomManager();
             zoomer.setZoomLevels(ZOOM_LEVELS);
@@ -121,7 +127,8 @@ public abstract class EditPartViewPart extends AGFViewPart {
         }
     }
 
-    public void createModelListeners() {
+    @Override
+		public void createModelListeners() {
         super.createModelListeners();
         rootListener = new EditPartListener(this);
         rootListener.setWaitForUpdate(true);
@@ -131,13 +138,14 @@ public abstract class EditPartViewPart extends AGFViewPart {
         }
         viewer.getControl().addPaintListener(new PaintListener() {
             public void paintControl(PaintEvent e) {
-                rootListener.endPainting();
+                getRootListener().endPainting();
             }
         });
     }
 
     public EditPart getEditPart() {
-        List children = viewer.getRootEditPart().getChildren();
+        @SuppressWarnings("rawtypes")
+				List children = viewer.getRootEditPart().getChildren();
         if (children.size() > 0) {
             return (EditPart) children.get(0);
         }
@@ -145,7 +153,7 @@ public abstract class EditPartViewPart extends AGFViewPart {
     }
 
     @Override
-    public Object getAdapter(Class type) {
+    public Object getAdapter(@SuppressWarnings("rawtypes") Class type) {
         if (type == EditPartViewer.class) {
             return getViewer();
         }
@@ -208,8 +216,16 @@ public abstract class EditPartViewPart extends AGFViewPart {
      * @return
      * @see org.eclipse.amp.agf.gef.AGFViewPart#getSelectionProvider()
      */
-    protected ISelectionProvider getSelectionProvider() {
+    @Override
+		protected ISelectionProvider getSelectionProvider() {
         return viewer;
     }
-
+    
+    String getId(){
+    	return getSite().getId();
+    }
+    
+    void removePartListener(IPartListener2 lis){
+    	getSite().getPage().removePartListener(lis);
+    }
 }
