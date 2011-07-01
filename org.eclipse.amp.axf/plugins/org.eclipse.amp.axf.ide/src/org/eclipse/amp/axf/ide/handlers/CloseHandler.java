@@ -17,25 +17,20 @@ package org.eclipse.amp.axf.ide.handlers;
 
 import org.eclipse.amp.axf.core.EngineControl;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class CloseHandler.
+ * Stop and close the simulation.
+ * 
+ * @author jonas.ruettimann
  */
 public class CloseHandler extends ModelRunHandler {
 
-    /**
-     * Instantiates a new close handler.
-     */
-    public CloseHandler() {
-        super(EngineControl.CLOSE);
-    }
+	public CloseHandler() {
+		super(EngineControl.CLOSE);
+	}
 
-    /**
-     * @return
-     * @see org.eclipse.amp.axf.ide.handlers.ModelRunHandler#isEnabled()
-     */
-    public boolean isEnabled() {
-        return super.isEnabled() || getRunner() != null && getRunner().getModelThread() != null
-            && getRunner().getModelThread().isAlive();
-    }
+	@Override
+	public boolean isEnabled() {
+		assert super.isEnabled() || getRunner() != null && getRunner().isThreadAlive() : "Obviously, this command was declarately enabled not the way it's ment to be.";
+		return super.isEnabled();
+	}
 }

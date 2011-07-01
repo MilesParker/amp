@@ -30,9 +30,6 @@ import org.ascape.model.Scape;
  */
 public abstract class DefaultScapeListener implements ScapeListener, Serializable {
 
-	/**
-     * 
-     */
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -97,6 +94,9 @@ public abstract class DefaultScapeListener implements ScapeListener, Serializabl
 	 *          the scape event
 	 */
 	public void scapeStopped(ScapeEvent scapeEvent) {
+	}
+
+	public void scapePaused(ScapeEvent scapeEvent) {
 	}
 
 	/**
@@ -213,6 +213,8 @@ public abstract class DefaultScapeListener implements ScapeListener, Serializabl
 			scapeDeserialized(scapeEvent);
 		} else if (scapeEvent.getID() == ScapeEvent.REQUEST_CLOSE) {
 			scapeClosing(scapeEvent);
+		} else if (scapeEvent.getID() == ScapeEvent.TICK) {
+			scapePaused(scapeEvent);
 		}
 		if (isNotifyScapeAutomatically()) {
 			notifyScapeUpdated();
@@ -304,11 +306,7 @@ public abstract class DefaultScapeListener implements ScapeListener, Serializabl
 		this.name = name;
 	}
 
-	/**
-	 * Clones this object.
-	 * 
-	 * @return the object
-	 */
+	@Override
 	public Object clone() {
 		try {
 			DefaultScapeListener clone = (DefaultScapeListener) super.clone();
@@ -324,6 +322,7 @@ public abstract class DefaultScapeListener implements ScapeListener, Serializabl
 	 * 
 	 * @return the string
 	 */
+	@Override
 	public String toString() {
 		return getName();
 	}

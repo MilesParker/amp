@@ -12,29 +12,25 @@
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.axf.ide.handlers;
 
 import org.eclipse.amp.axf.core.EngineControl;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class StepHandler.
+ * Run a single time step of the simulation.
+ * 
+ * @author jonas.ruettimann
  */
 public class StepHandler extends ModelRunHandler {
 
-    /**
-     * Instantiates a new step handler.
-     */
-    public StepHandler() {
-        super(EngineControl.STEP);
-    }
+	public StepHandler() {
+		super(EngineControl.STEP);
+	}
 
-    /**
-     * @return
-     * @see org.eclipse.amp.axf.ide.handlers.ModelRunHandler#isEnabled()
-     */
-    public boolean isEnabled() {
-        return super.isEnabled() && getRunner().isRunning() && getRunner().isPaused();
-    }
+	@Override
+	public boolean isEnabled() {
+		assert getRunner().isRunning() && getRunner().isPaused() : "Obviously, this command was declarately enabled not the way it's ment to be.";
+		return super.isEnabled();
+	}
 }

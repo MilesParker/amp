@@ -12,31 +12,25 @@
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.axf.ide.handlers;
 
 import org.eclipse.amp.axf.core.EngineControl;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class ResumeHandler.
+ * Resume the simulation execution.
+ * 
+ * @author jonas.ruettimann
  */
 public class ResumeHandler extends ModelRunHandler {
 
-    /**
-     * Instantiates a new resume handler.
-     */
-    public ResumeHandler() {
-        super(EngineControl.RESUME);
-    }
+	public ResumeHandler() {
+		super(EngineControl.RESUME);
+	}
 
-    /**
-     * @return
-     * @see org.eclipse.amp.axf.ide.handlers.ModelRunHandler#isEnabled()
-     */
-    @Override
-    public boolean isEnabled() {
-        // TODO Auto-generated method stub
-        return super.isEnabled() && getRunner().isPaused();
-    }
+	@Override
+	public boolean isEnabled() {
+		assert getRunner().isPaused() : "Obviously, this command was declarately enabled not the way it's ment to be.";
+		return super.isEnabled();
+	}
 }

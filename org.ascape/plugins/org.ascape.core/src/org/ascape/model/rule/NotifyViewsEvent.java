@@ -21,37 +21,37 @@ import org.ascape.model.event.ScapeEvent;
  */
 public class NotifyViewsEvent extends PropogateScapeOnly {
 
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 1L;
-    /**
-     * The event.
-     */
-    private ScapeEvent event;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * Instantiates a new notify views event.
-     * 
-     * @param event
-     *            the event
-     */
-    public NotifyViewsEvent(ScapeEvent event) {
-        super("Notify Views id: " + event);
-        this.event = event;
-    }
+	/**
+	 * The event.
+	 */
+	private ScapeEvent event;
 
-    /**
-     * Notify all views of state update.
-     * 
-     * @param agent
-     *            the agent (scape) to notify veiws
-     * @see org.ascape.model.Scape#notifyViews
-     */
-    public void execute(Agent agent) {
-        //if (!((((Scape) agent).getPrototypeAgent()) instanceof AgentScape)) {
-        ((Scape) agent).notifyViews(event);
-        super.execute(agent);
-        //}
-    }
+	/**
+	 * Instantiates a new notify views event.
+	 * 
+	 * @param event
+	 *          the event
+	 */
+	public NotifyViewsEvent(ScapeEvent event) {
+		super("Notify Views id: " + event);
+		this.event = event;
+	}
+
+	/**
+	 * Notify all views of state update.
+	 * 
+	 * @param agent
+	 *          the agent (scape) to notify veiws
+	 * @see org.ascape.model.Scape#notifyListeners(ScapeEvent)
+	 */
+	@Override
+	public void execute(Agent agent) {
+		// if (!((((Scape) agent).getPrototypeAgent()) instanceof AgentScape)) {
+		((Scape) agent).notifyListeners(event);
+		super.execute(agent);
+		// }
+	}
+
 }

@@ -12,12 +12,12 @@
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.axf.core;
 
 /**
  * The Enum LifeCycleState.
  */
 public enum LifeCycleState {
-    OBSERVED, CREATE, INITIALIZE, SETUP, START, UPDATE, STOP, ENDING, END
+	OBSERVED, CREATE, INITIALIZE, SETUP, START, UPDATE, PAUSED, STOP, ENDING, END
 }

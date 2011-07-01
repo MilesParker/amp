@@ -269,7 +269,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 		}
 		try {
 			long elapsed = 0;
-			while (isCloseRequested() && getModelThread() != null && getModelThread().isAlive() && elapsed <= KILL_AFTER_NO_RESPONSE_TIME) {
+			while (isCloseRequested() && isThreadAlive() && elapsed <= KILL_AFTER_NO_RESPONSE_TIME) {
 				if (elapsed >= KILL_AFTER_NO_RESPONSE_TIME) {
 					if (modelMonitor != null) {
 						modelMonitor.setTaskName("Forcing Close");
@@ -479,6 +479,11 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 	 */
 	public void setCloseOnStop(boolean closeOnStop) {
 		this.closeOnStop = closeOnStop;
+	}
+
+	@Override
+	public boolean isThreadAlive() {
+		return isModelThreadAlive();
 	}
 
 }

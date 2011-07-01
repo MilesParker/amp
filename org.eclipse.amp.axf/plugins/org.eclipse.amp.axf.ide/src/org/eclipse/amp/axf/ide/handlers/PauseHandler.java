@@ -12,30 +12,32 @@
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.axf.ide.handlers;
 
 import org.eclipse.amp.axf.core.EngineControl;
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class PauseHandler.
+ * Pause the simulation.
+ * 
+ * @author jonas.ruettimann
  */
 public class PauseHandler extends ModelRunHandler {
 
-    /**
-     * Instantiates a new pause handler.
-     */
-    public PauseHandler() {
-        super(EngineControl.PAUSE);
-    }
+	public PauseHandler() {
+		super(EngineControl.PAUSE);
+	}
 
-    /**
-     * @return
-     * @see org.eclipse.amp.axf.ide.handlers.ModelRunHandler#isEnabled()
-     */
-    @Override
-    public boolean isEnabled() {
-        return super.isEnabled() && !getRunner().isPaused();
-    }
+	@Override
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		return super.execute(event);
+	}
+
+	@Override
+	public boolean isEnabled() {
+		assert !getRunner().isPaused() : "Obviously, this command was declarately enabled not the way it's ment to be.";
+		return super.isEnabled();
+	}
 }

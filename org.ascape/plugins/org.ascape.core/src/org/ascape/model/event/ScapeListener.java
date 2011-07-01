@@ -30,140 +30,147 @@ import org.ascape.util.HasName;
  */
 public interface ScapeListener extends EventListener, HasName, Cloneable {
 
-    /**
-     * Called immediatly after the scape is initialized.
-     * 
-     * @param scapeEvent
-     *            the scape event
-     */
-    public void scapeInitialized(ScapeEvent scapeEvent);
+	/**
+	 * Called immediatly after the scape is initialized.
+	 * 
+	 * @param scapeEvent
+	 *          the scape event
+	 */
+	public void scapeInitialized(ScapeEvent scapeEvent);
 
-    /**
-     * Called immediatly after the scape is started.
-     * 
-     * @param scapeEvent
-     *            the scape event
-     */
-    public void scapeStarted(ScapeEvent scapeEvent);
+	/**
+	 * Called immediatly after the scape is started.
+	 * 
+	 * @param scapeEvent
+	 *          the scape event
+	 */
+	public void scapeStarted(ScapeEvent scapeEvent);
 
-    /**
-     * Called immediatly after the scape is stopped.
-     * 
-     * @param scapeEvent
-     *            the scape event
-     */
-    public void scapeStopped(ScapeEvent scapeEvent);
+	/**
+	 * Called immediatly after the scape is stopped.
+	 * 
+	 * @param scapeEvent
+	 *          the scape event
+	 */
+	public void scapeStopped(ScapeEvent scapeEvent);
 
-    /**
-     * Called immediatly after scape is iterated.
-     * 
-     * @param scapeEvent
-     *            the scape event
-     */
-    public void scapeIterated(ScapeEvent scapeEvent);
+	/**
+	 * Called immediately after the scape has been set to pause.
+	 * 
+	 * @param scapeEvent
+	 */
+	public void scapePaused(ScapeEvent scapeEvent);
 
-    /**
-     * Method called when the scape is ready for setup. That is, the scape has
-     * been created (or it has just finished its previous run) but it has not
-     * yet been initialized. This is an appropriate place to change model
-     * paramters, persent user's with options, etc.
-     * 
-     * @param scapeEvent
-     *            the scape event
-     */
-    public void scapeSetup(ScapeEvent scapeEvent);
+	/**
+	 * Called immediatly after scape is iterated.
+	 * 
+	 * @param scapeEvent
+	 *          the scape event
+	 */
+	public void scapeIterated(ScapeEvent scapeEvent);
 
-    /**
-     * Method called as the scape is about to be closed. Allows any final view
-     * cleanup.
-     * 
-     * @param scapeEvent
-     *            the scape event
-     */
-    public void scapeClosing(ScapeEvent scapeEvent);
+	/**
+	 * Method called when the scape is ready for setup. That is, the scape has
+	 * been created (or it has just finished its previous run) but it has not yet
+	 * been initialized. This is an appropriate place to change model paramters,
+	 * persent user's with options, etc.
+	 * 
+	 * @param scapeEvent
+	 *          the scape event
+	 */
+	public void scapeSetup(ScapeEvent scapeEvent);
 
-    /**
-     * Method called as the environment is about to quit. Note that this method
-     * may not actually be called by a scape at all. Allows any final view
-     * cleanup.
-     * 
-     * @param scapeEvent
-     *            the scape event
-     */
-    public void environmentQuiting(ScapeEvent scapeEvent);
+	/**
+	 * Method called as the scape is about to be closed. Allows any final view
+	 * cleanup.
+	 * 
+	 * @param scapeEvent
+	 *          the scape event
+	 */
+	public void scapeClosing(ScapeEvent scapeEvent);
 
-    /**
-     * Method called immediatly after a model is deserialized.
-     * 
-     * @param scapeEvent
-     *            the scape event
-     */
-    public void scapeDeserialized(ScapeEvent scapeEvent);
+	/**
+	 * Method called as the environment is about to quit. Note that this method
+	 * may not actually be called by a scape at all. Allows any final view
+	 * cleanup.
+	 * 
+	 * @param scapeEvent
+	 *          the scape event
+	 */
+	public void environmentQuiting(ScapeEvent scapeEvent);
 
-    /**
-     * Informs the listener that the agent scape has some kind of notification
-     * for the listener,.
-     * 
-     * @param scapeEvent
-     *            the scape setup event
-     */
-    public void scapeNotification(ScapeEvent scapeEvent);
+	/**
+	 * Method called immediatly after a model is deserialized.
+	 * 
+	 * @param scapeEvent
+	 *          the scape event
+	 */
+	public void scapeDeserialized(ScapeEvent scapeEvent);
 
-    /**
-     * Notifies the listener that the scape has added it. This is in affect a
-     * call back from the scape after adding the listener. At this point, the
-     * listener is responsible for responding back to the scape upon any
-     * notifications. A listener <i>typically</i> has one and only one scape,
-     * see below. A "good citizen" listener will typically make certain that it
-     * isn't added to more than one scape at a time, but one can also imagine
-     * cases where a listener might be interested in the activities of many
-     * scapes and this would be a perfectly legitimate usage pattern.
-     * 
-     * @param scapeEvent
-     *            the scape add event
-     * @throws TooManyListenersException
-     *             the too many listeners exception
-     */
-    public void scapeAdded(ScapeEvent scapeEvent) throws TooManyListenersException;
+	/**
+	 * Informs the listener that the agent scape has some kind of notification for
+	 * the listener,.
+	 * 
+	 * @param scapeEvent
+	 *          the scape setup event
+	 */
+	public void scapeNotification(ScapeEvent scapeEvent);
 
-    /**
-     * Removes the scape from this view. Typically there should ony be one scape
-     * to remove. This method must be called whenever a listener is destroyed or
-     * becomes unresponsive; otherwise the model will wait indefinetly for the
-     * listener's updated response.
-     * 
-     * @param scapeEvent
-     *            the scape removed event
-     * @see scapeAdded
-     */
-    public void scapeRemoved(ScapeEvent scapeEvent);
+	/**
+	 * Notifies the listener that the scape has added it. This is in affect a call
+	 * back from the scape after adding the listener. At this point, the listener
+	 * is responsible for responding back to the scape upon any notifications. A
+	 * listener <i>typically</i> has one and only one scape, see below. A
+	 * "good citizen" listener will typically make certain that it isn't added to
+	 * more than one scape at a time, but one can also imagine cases where a
+	 * listener might be interested in the activities of many scapes and this
+	 * would be a perfectly legitimate usage pattern.
+	 * 
+	 * @param scapeEvent
+	 *          the scape add event
+	 * @throws TooManyListenersException
+	 *           the too many listeners exception
+	 */
+	public void scapeAdded(ScapeEvent scapeEvent) throws TooManyListenersException;
 
-    /**
-     * Returns true if the listener is a graphical user interface component.
-     * 
-     * @return true, if is graphic
-     */
-    public boolean isGraphic();
+	/**
+	 * Removes the scape from this view. Typically there should ony be one scape
+	 * to remove. This method must be called whenever a listener is destroyed or
+	 * becomes unresponsive; otherwise the model will wait indefinetly for the
+	 * listener's updated response.
+	 * 
+	 * @param scapeEvent
+	 *          the scape removed event
+	 * @see scapeAdded
+	 */
+	public void scapeRemoved(ScapeEvent scapeEvent);
 
-    /**
-     * Returns true if the listener is intended to be used only for the current
-     * scape; typical of all but control related listeners.
-     * 
-     * @return true, if is life of scape
-     */
-    public boolean isLifeOfScape();
+	/**
+	 * Returns true if the listener is a graphical user interface component.
+	 * 
+	 * @return true, if is graphic
+	 */
+	public boolean isGraphic();
 
-    /**
-     * Returns the Scape being viewed.
-     * 
-     * @return the scape
-     */
-    public Scape getScape();
+	/**
+	 * Returns true if the listener is intended to be used only for the current
+	 * scape; typical of all but control related listeners.
+	 * 
+	 * @return true, if is life of scape
+	 */
+	public boolean isLifeOfScape();
 
-    /**
-     * Require public access for clone.
-     * 
-     * @return the object
-     */
-    public Object clone();
+	/**
+	 * Returns the Scape being viewed.
+	 * 
+	 * @return the scape
+	 */
+	public Scape getScape();
+
+	/**
+	 * Require public access for clone.
+	 * 
+	 * @return the object
+	 */
+	public Object clone();
 }

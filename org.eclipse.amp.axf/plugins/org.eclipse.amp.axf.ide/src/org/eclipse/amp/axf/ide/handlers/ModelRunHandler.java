@@ -33,82 +33,57 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**
- * The Class ModelRunHandler.
+ * Super class for all {@link AbstractHandler}s to control the {@link IEngine}
+ * execution.
+ * 
+ * @author jonas.ruettimann
  */
 public abstract class ModelRunHandler extends AbstractHandler implements ILifeCycleListener, IModelWorkbenchListener {
-
-	private IModel model;
 
 	private EngineControl control;
 
 	private IStateListener delegate;
 
-	/**
-	 * Instantiates a new model run handler.
-	 * 
-	 * @param control
-	 *          the control
-	 */
 	public ModelRunHandler(EngineControl control) {
 		this.control = control;
 		delegate = new LifecycleObservationAdapter(this);
 	}
 
-	/**
-	 * @param event
-	 * @return
-	 * @throws ExecutionException
-	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
-	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		getRunner().control(control);
-		ModelViewManager.getInstance().getHandlers().notifyHandlers();
 		return null;
 	}
 
-	/**
-	 * Gets the runner.
-	 * 
-	 * @return the runner
-	 */
-	public IEngine getRunner() {
-		return model != null ? model.getEngine() : null;
+	protected IEngine getRunner() {
+		IModel model = ModelViewManager.getInstance().getActiveModel();
+		if (model == null) {
+			return null;
+		}
+		return model.getEngine();
 	}
 
-	/**
-	 * @return
-	 * @see org.eclipse.core.commands.AbstractHandler#isEnabled()
-	 */
+	@Override
 	public boolean isEnabled() {
-		return getRunner() != null && !getRunner().isCloseRequested();
+		assert getRunner() != null && !getRunner().isCloseRequested() : "Obviously, this command was declarately enabled not the way it's ment to be.";
+		return super.isEnabled();
 	}
 
-	/**
-	 * Notify change.
-	 */
 	public void notifyChange() {
 		// its possible we've already left workbench
 		if (AXFWorkbenchPlugin.getDefault() != null) {
 			IWorkbench workbench = AXFWorkbenchPlugin.getDefault().getWorkbench();
-			if (model != null && workbench.getDisplay() != null && !workbench.getDisplay().isDisposed()) {
+			if (workbench.getDisplay() != null && !workbench.getDisplay().isDisposed()) {
 				workbench.getDisplay().asyncExec(new Runnable() {
 					public void run() {
-						fireHandlerChanged(new HandlerEvent(ModelRunHandler.this, true, false));
+						fireChangeEvent();
 					}
 				});
 			}
 		}
 	}
 
-	public synchronized void observing(IObservationProvider model) {
-		this.model = (IModel) model;
-	}
-
-	public synchronized void observationEnd(IObservationProvider model) {
-		// we may have a lagging model notification from another model
-		if (model == this.model) {
-			this.model = null;
-		}
+	protected void fireChangeEvent() {
+		fireHandlerChanged(new HandlerEvent(this, true, false));
 	}
 
 	public void stateChange(Object key, Object updated) {
@@ -117,8 +92,13 @@ public abstract class ModelRunHandler extends AbstractHandler implements ILifeCy
 	}
 
 	public synchronized void modelActivated(IModel model) {
-		this.model = model;
 		notifyChange();
+	}
+
+	public synchronized void observing(IObservationProvider model) {
+	}
+
+	public synchronized void observationEnd(IObservationProvider model) {
 	}
 
 	public void modelAdded(IModel model) {

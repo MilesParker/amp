@@ -9,6 +9,7 @@ package org.ascape.model.rule;
 
 import org.ascape.model.Agent;
 import org.ascape.model.Scape;
+import org.ascape.model.event.ScapeEvent;
 
 /**
  * A rule causing the target to notify its views that an update has occured.
@@ -21,44 +22,37 @@ import org.ascape.model.Scape;
  */
 public class NotifyViews extends PropogateScapeOnly {
 
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 1L;
-    /**
-     * The id.
-     */
-    private int id;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * Instantiates a new notify views.
-     * 
-     * @param id
-     *            the id
-     */
-    public NotifyViews(int id) {
-        super("Notify Views id: " + id);
-        this.id = id;
-    }
+	/**
+	 * The id.
+	 */
+	private int id;
 
-    /**
-     * Notify all views of state update.
-     * 
-     * @param agent
-     *            the agent (scape) to notify veiws
-     * @see Scape#notifyViews
-     */
-    public void execute(Agent agent) {
-        //if (!((((Scape) agent).getPrototypeAgent()) instanceof AgentScape)) {
-        ((Scape) agent).notifyViews(id);
-        super.execute(agent);
-        //}
-    }
+	/**
+	 * Instantiates a new notify views.
+	 * 
+	 * @param id
+	 *          the id
+	 */
+	public NotifyViews(int id) {
+		super("Notify Views id: " + id);
+		this.id = id;
+	}
 
-    /**
-     * Only scapes can have views.
-     */
-    //public boolean isScapeOnly() {
-    //    return true;
-    //}
+	/**
+	 * Notify all views of state update.
+	 * 
+	 * @param agent
+	 *          the agent (scape) to notify veiws
+	 * @see Scape#notifyListeners(ScapeEvent)
+	 */
+	@Override
+	public void execute(Agent agent) {
+		// if (!((((Scape) agent).getPrototypeAgent()) instanceof AgentScape)) {
+		((Scape) agent).notifyListeners(id);
+		super.execute(agent);
+		// }
+	}
+
 }

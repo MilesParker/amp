@@ -24,14 +24,6 @@ import java.util.Map.Entry;
 import org.eclipse.amp.axf.core.IEngine;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.core.IObservationProvider;
-import org.eclipse.amp.axf.ide.handlers.CloseHandler;
-import org.eclipse.amp.axf.ide.handlers.ModelRunHandler;
-import org.eclipse.amp.axf.ide.handlers.PauseHandler;
-import org.eclipse.amp.axf.ide.handlers.RestartHandler;
-import org.eclipse.amp.axf.ide.handlers.ResumeHandler;
-import org.eclipse.amp.axf.ide.handlers.StartHandler;
-import org.eclipse.amp.axf.ide.handlers.StepHandler;
-import org.eclipse.amp.axf.ide.handlers.StopHandler;
 import org.eclipse.amp.axf.ide.view.StatusLineView;
 import org.eclipse.amp.axf.view.IModelPart;
 import org.eclipse.amp.axf.view.ModelInput;
@@ -60,52 +52,50 @@ import org.eclipse.ui.statushandlers.StatusManager;
 @SuppressWarnings("restriction")
 public class ModelViewManager implements IAdapterFactory {
 
-	private static ModelViewManager instance;
-
 	public static final String EXECUTION_PERSPECTIVE_ID = "org.eclipse.amp.axf.ExecutionPerspective";
 
-	/** The perspective ID to execute the simulation */
-	private String executionPerspective = EXECUTION_PERSPECTIVE_ID;
+	private static ModelViewManager instance;
 
-	private IContextService contextService;
+	boolean updated;
 
-	private IContextActivation ideContext;
-
-	private IContextActivation partContext;
-
-	List<IModel> models = new ArrayList<IModel>();
-
-	List<IViewPart> views = new ArrayList<IViewPart>();
-
-	Map<IModel, IEngine> runnerForModel;
-
-	Map<IEngine, IModel> modelForRunner = new HashMap<IEngine, IModel>();
-
-	Map<Object, IModel> modelForArbitrary = new HashMap<Object, IModel>();
+	String priorPerspectiveID;
 
 	Map<IModel, List<IViewPart>> viewsForModel;
 
-	LifeCycleListeners activeModelListeners;
-
 	ModelManagerListeners managerListeners = new ModelManagerListeners();
 
-	HandlerManager handlers = new HandlerManager();
+	/** The perspective ID to execute the simulation */
+	String executionPerspective = EXECUTION_PERSPECTIVE_ID;
 
-	IModel activeModel;
+	IContextService contextService;
 
-	IPartListener modelActivationListener;
+	IContextActivation ideContext;
+
+	IContextActivation partContext;
+
+	private List<IModel> models = new ArrayList<IModel>();
+
+	private List<IViewPart> views = new ArrayList<IViewPart>();
+
+	private Map<IModel, IEngine> runnerForModel;
+
+	private Map<IEngine, IModel> modelForRunner = new HashMap<IEngine, IModel>();
+
+	private Map<Object, IModel> modelForArbitrary = new HashMap<Object, IModel>();
+
+	private LifeCycleListeners activeModelListeners = new LifeCycleListeners();
+
+	private IModel activeModel;
+
+	private IPartListener modelActivationListener;
 
 	private IObservationProvider[] modelSlots = new IObservationProvider[16];
 
 	private SelectionSynchronizer editSelection;
 
-	private String priorPerspectiveID;
-
 	private StatusLineView statusLineView;
 
 	private ModelManagerViewPart managerViewPart;
-
-	boolean updated;
 
 	private ModelViewManager() {
 	}
@@ -223,7 +213,7 @@ public class ModelViewManager implements IAdapterFactory {
 	 * 
 	 * @return the active model
 	 */
-	public IObservationProvider getActiveModel() {
+	public IModel getActiveModel() {
 		return activeModel;
 	}
 
@@ -240,6 +230,7 @@ public class ModelViewManager implements IAdapterFactory {
 		}
 		final IModel oldModel = this.activeModel;
 		this.activeModel = newModel;
+
 		if (newModel != oldModel) {
 			getActiveModelListeners().replaceModel(oldModel, newModel);
 			if (newModel != null) {
@@ -525,34 +516,14 @@ public class ModelViewManager implements IAdapterFactory {
 			public void run() {
 				try {
 					contextService = (IContextService) wb.getService(IContextService.class);
-					// for (Object o : contextService.getActiveContextIds()) {
-					// System.err.pri0ntln(o);
-					// contextService
-					// contextService.deactivateContext();
-					// }
 					ideContext = contextService.activateContext("org.eclipse.amp.axf.executionContext");
 					partContext = contextService.activateContext("org.eclipse.amp.axf.activeEditorContext");
-					// contextService.deactivateContext(ideContext);
 
 				} catch (Exception e) {
 					throw new RuntimeException("Couldn't activate services.", e);
 				}
 			}
 		});
-		handlers.activate();
-		addHandler("org.eclipse.amp.axf.ui.start", new StartHandler());
-		addHandler("org.eclipse.amp.axf.ui.stop", new StopHandler());
-		addHandler("org.eclipse.amp.axf.ui.pause", new PauseHandler());
-		addHandler("org.eclipse.amp.axf.ui.resume", new ResumeHandler());
-		addHandler("org.eclipse.amp.axf.ui.restart", new RestartHandler());
-		addHandler("org.eclipse.amp.axf.ui.close", new CloseHandler());
-		addHandler("org.eclipse.amp.axf.ui.step", new StepHandler());
-	}
-
-	public void addHandler(String id, ModelRunHandler handler) {
-		handlers.addHandler(id, handler);
-		getActiveModelListeners().addListener(handler);
-		getManagerListeners().addModelManagerListener(handler);
 	}
 
 	private void activatePerspective(final IWorkbench wb, final String perspectiveID, final boolean editors) {
@@ -582,7 +553,6 @@ public class ModelViewManager implements IAdapterFactory {
 						contextService.deactivateContext(ideContext);
 						contextService.deactivateContext(partContext);
 					}
-					handlers.deactivate();
 				}
 			});
 			getPage().removePartListener(modelActivationListener);
@@ -656,10 +626,6 @@ public class ModelViewManager implements IAdapterFactory {
 		return activeModelListeners;
 	}
 
-	public HandlerManager getHandlers() {
-		return handlers;
-	}
-
 	/**
 	 * @return the managerViewPart
 	 */
@@ -689,4 +655,5 @@ public class ModelViewManager implements IAdapterFactory {
 	public void setExecutionPerspective(String executionPerspective) {
 		this.executionPerspective = executionPerspective;
 	}
+
 }

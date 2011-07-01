@@ -10,7 +10,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.core.expressions,
  org.eclipse.amp.axf.core,
- org.eclipse.amp.axf.views
+ org.eclipse.amp.axf.views,
+ org.junit;bundle-version="4.8.1"
 Export-Package: org.eclipse.amp.axf.ide,
    org.eclipse.amp.axf.ide.handlers,
  org.eclipse.amp.axf.ide.view

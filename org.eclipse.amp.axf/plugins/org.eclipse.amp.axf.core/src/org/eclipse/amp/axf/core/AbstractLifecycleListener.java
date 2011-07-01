@@ -15,10 +15,10 @@
  */
 package org.eclipse.amp.axf.core;
 
-// TODO: Auto-generated Javadoc
 /**
- * The listener interface for receiving abstractModel events. The class that is interested in processing a abstractModel
- * event implements this interface, and the object created with that class is registered with a component using the
+ * The listener interface for receiving abstractModel events. The class that is
+ * interested in processing a abstractModel event implements this interface, and
+ * the object created with that class is registered with a component using the
  * component's <code>addAbstractModelListener<code> method. When
  * the abstractModel event occurs, that object's appropriate
  * method is invoked.
@@ -27,122 +27,122 @@ package org.eclipse.amp.axf.core;
  */
 public class AbstractLifecycleListener implements ILifeCycleListener {
 
-    private String name;
+	private String name;
 
-    private IStateListener listener;
+	private IStateListener listener;
 
-    /**
-     * Instantiates a new abstract model listener.
-     */
-    public AbstractLifecycleListener() {
-        listener = new LifecycleObservationAdapter(this);
-    }
+	/**
+	 * Instantiates a new abstract model listener.
+	 */
+	public AbstractLifecycleListener() {
+		listener = new LifecycleObservationAdapter(this);
+	}
 
-    /**
-     * Instantiates a new abstract model listener.
-     * 
-     * @param name the name
-     */
-    public AbstractLifecycleListener(String name) {
-        this();
-        this.name = name;
-    }
+	/**
+	 * Instantiates a new abstract model listener.
+	 * 
+	 * @param name
+	 *          the name
+	 */
+	public AbstractLifecycleListener(String name) {
+		this();
+		this.name = name;
+	}
 
-    /**
-     * @param observed
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observationEnd(org.eclipse.amp.axf.core.IObservationProvider)
-     */
-    public void observationEnd(IObservationProvider observed) {
-    }
+	/**
+	 * @param observed
+	 * @see org.eclipse.amp.axf.core.ILifeCycleListener#observationEnd(org.eclipse.amp.axf.core.IObservationProvider)
+	 */
+	public void observationEnd(IObservationProvider observed) {
+	}
 
-    /**
-     * @param observed
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observationEnding(org.eclipse.amp.axf.core.IObservationProvider)
-     */
-    public void observationEnding(IObservationProvider observed) {
-    }
+	/**
+	 * @param observed
+	 * @see org.eclipse.amp.axf.core.ILifeCycleListener#observationEnding(org.eclipse.amp.axf.core.IObservationProvider)
+	 */
+	public void observationEnding(IObservationProvider observed) {
+	}
 
-    /**
-     * @param observed
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeCreate(org.eclipse.amp.axf.core.IObservationProvider)
-     */
-    public void observeCreate(IObservationProvider observed) {
-    }
+	/**
+	 * @param observed
+	 * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeCreate(org.eclipse.amp.axf.core.IObservationProvider)
+	 */
+	public void observeCreate(IObservationProvider observed) {
+	}
 
-    /**
-     * @param observed
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeInitialize(org.eclipse.amp.axf.core.IObservationProvider)
-     */
-    public void observeInitialize(IObservationProvider observed) {
-    }
+	/**
+	 * @param observed
+	 * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeInitialize(org.eclipse.amp.axf.core.IObservationProvider)
+	 */
+	public void observeInitialize(IObservationProvider observed) {
+	}
 
-    /**
-     * @param observed
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeStart(org.eclipse.amp.axf.core.IObservationProvider)
-     */
-    public void observeStart(IObservationProvider observed) {
-    }
+	/**
+	 * @param observed
+	 * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeStart(org.eclipse.amp.axf.core.IObservationProvider)
+	 */
+	public void observeStart(IObservationProvider observed) {
+	}
 
-    /**
-     * @param observed
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeStop(org.eclipse.amp.axf.core.IObservationProvider)
-     */
-    public void observeStop(IObservationProvider observed) {
-    }
+	/**
+	 * @param observed
+	 * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeStop(org.eclipse.amp.axf.core.IObservationProvider)
+	 */
+	public void observeStop(IObservationProvider observed) {
+	}
 
-    /**
-     * @param observed
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeUpdate(org.eclipse.amp.axf.core.IObservationProvider)
-     */
-    public void observeUpdate(IObservationProvider observed) {
-    }
+	/**
+	 * @param observed
+	 * @see org.eclipse.amp.axf.core.ILifeCycleListener#observeUpdate(org.eclipse.amp.axf.core.IObservationProvider)
+	 */
+	public void observeUpdate(IObservationProvider observed) {
+	}
 
-    /**
-     * @param observed
-     * @see org.eclipse.amp.axf.core.ILifeCycleListener#observing(org.eclipse.amp.axf.core.IObservationProvider)
-     */
-    public void observing(IObservationProvider observed) {
-    }
+	/**
+	 * @param observed
+	 * @see org.eclipse.amp.axf.core.ILifeCycleListener#observing(org.eclipse.amp.axf.core.IObservationProvider)
+	 */
+	public void observing(IObservationProvider observed) {
+	}
 
-    /**
-     * @param key
-     * @param updated
-     * @see org.eclipse.amp.axf.core.IStateListener#stateChange(java.lang.Object, java.lang.Object)
-     */
-    public void stateChange(Object key, Object updated) {
-        listener.stateChange(key, updated);
-    }
+	/**
+	 * @param key
+	 * @param updated
+	 * @see org.eclipse.amp.axf.core.IStateListener#stateChange(java.lang.Object,
+	 *      java.lang.Object)
+	 */
+	public void stateChange(Object key, Object updated) {
+		listener.stateChange(key, updated);
+	}
 
-    /**
-     * @return the listener
-     */
-    public IStateListener getListener() {
-        return listener;
-    }
+	/**
+	 * @return the listener
+	 */
+	public IStateListener getListener() {
+		return listener;
+	}
 
-    /**
-     * Gets the name.
-     * 
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
+	/**
+	 * Gets the name.
+	 * 
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * Sets the name.
-     * 
-     * @param name the new name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
+	/**
+	 * Sets the name.
+	 * 
+	 * @param name
+	 *          the new name
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    /**
-     * @return
-     * @see java.lang.Object#toString()
-     */
-    public String toString() {
-        return name;
-    }
+	@Override
+	public String toString() {
+		return name;
+	}
 }

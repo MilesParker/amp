@@ -12,29 +12,25 @@
  *
  * </copyright>
  *
-*/
+ */
 package org.eclipse.amp.axf.ide.handlers;
 
 import org.eclipse.amp.axf.core.EngineControl;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class StopHandler.
+ * Stop the simulation.
+ * 
+ * @author jonas.ruettimann
  */
 public class StopHandler extends ModelRunHandler {
 
-    /**
-     * Instantiates a new stop handler.
-     */
-    public StopHandler() {
-        super(EngineControl.STOP);
-    }
+	public StopHandler() {
+		super(EngineControl.STOP);
+	}
 
-    /**
-     * @return
-     * @see org.eclipse.amp.axf.ide.handlers.ModelRunHandler#isEnabled()
-     */
-    public boolean isEnabled() {
-        return super.isEnabled() && getRunner().isRunning();
-    }
+	@Override
+	public boolean isEnabled() {
+		assert getRunner().isRunning() : "Obviously, this command was declarately enabled not the way it's ment to be.";
+		return super.isEnabled();
+	}
 }
