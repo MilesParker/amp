@@ -3,6 +3,7 @@ package org.eclipse.amp.amf.sd.gen.builder;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import junit.framework.TestCase;
@@ -86,20 +87,27 @@ public abstract class AbstractJavaSDTest extends TestCase {
 	protected String getFileText(String relativePath) throws IOException {
 		String path = getProjectFilePath(relativePath);
 		byte[] buffer = new byte[(int) new File(path).length()];
-		BufferedInputStream f = null;
+		BufferedInputStream stream = null;
 		try {
-			f = new BufferedInputStream(new FileInputStream(path));
-			f.read(buffer);
+			stream = new BufferedInputStream(new FileInputStream(path));
+			stream.read(buffer);
 		} finally {
-			if (f != null) {
+			if (stream != null) {
 				try {
-					f.close();
+					stream.close();
 				} catch (IOException e) {
 					// Ignore closing exception.
 				}
 			}
 		}
 		return new String(buffer);
+	}
+
+	protected void writeToFile(String contents, String relativePath) throws IOException {
+		FileWriter writer = new FileWriter(getProjectFilePath(relativePath));
+		writer.write(contents);
+		writer.flush();
+		writer.close();
 	}
 
 	/**
