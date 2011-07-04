@@ -103,8 +103,9 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 	}
 
 	/**
-	 * The listener interface for receiving chartModel events. The class that is interested in processing a chartModel
-	 * event implements this interface, and the object created with that class is registered with a component using the
+	 * The listener interface for receiving chartModel events. The class that is
+	 * interested in processing a chartModel event implements this interface, and
+	 * the object created with that class is registered with a component using the
 	 * component's <code>addChartModelListener<code> method. When
 	 * the chartModel event occurs, that object's appropriate
 	 * method is invoked.
@@ -169,7 +170,9 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 			// nextOpenPaletteIndex = 0;
 			// }
 			// cd = (ColorDefinition) palette.get(nextOpenPaletteIndex);
-			// Color lineColor = new Color(org.eclipse.swt.widgets.Display.getCurrent(), cd.getRed(), cd.getGreen(), cd
+			// Color lineColor = new
+			// Color(org.eclipse.swt.widgets.Display.getCurrent(), cd.getRed(),
+			// cd.getGreen(), cd
 			// .getBlue());
 			if (seriesColorProvider instanceof CachedColorProvider) {
 				cd = (ColorDefinition) genericPalette.getEntries().get(nextOpenPaletteIndex++);
@@ -228,7 +231,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 				regenerateChart();
 			}
 		});
-		
+
 		return newFigure;
 	}
 
@@ -253,7 +256,8 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 		chartListener = new ChartModelListener();
 		((IModel) model).addModelListener(chartListener);
 		IAdapterManager adapterManager = Platform.getAdapterManager();
-		// We seem to need to force loading of the data provider, at least in the exemplar case
+		// We seem to need to force loading of the data provider, at least in the
+		// exemplar case
 		Object provider = adapterManager.loadAdapter(this.getModel(), "org.eclipse.amp.agf.chart.IDataProvider");
 
 		if (!(provider instanceof IDataProvider)) {
@@ -383,7 +387,8 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 
 	/**
 	 * 
-	 * @see org.eclipse.birt.chart.device.ICallBackNotifier#callback(java.lang.Object, java.lang.Object,
+	 * @see org.eclipse.birt.chart.device.ICallBackNotifier#callback(java.lang.Object,
+	 *      java.lang.Object,
 	 *      org.eclipse.birt.chart.model.attribute.CallBackValue)
 	 */
 	public void callback(Object arg0, Object arg1, CallBackValue arg2) {
@@ -481,20 +486,21 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 	ResourceManager getResourceManager() {
 		return resourceManager;
 	}
+
 	/**
-	 * Encapsulate the dispose of gc and image
+	 * Encapsulate disposing of {@link GC} and {@link Image} resources.
+	 * 
 	 * @author fei
-	 *
 	 */
-	class ResourceManager implements DisposeListener{
+	class ResourceManager implements DisposeListener {
 		private GC gc;
 
 		private Image image;
-		
-		private Control attachedToDispose;
+
+		private Control disposeEventProvider;
 
 		public ResourceManager() {
-			// 
+			//
 		}
 
 		void setGc(GC gc) {
@@ -504,19 +510,32 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 			this.gc = gc;
 			addDisposeListener();
 		}
-		
+
 		GC getGc() {
 			return gc;
 		}
 
-		private void addDisposeListener(){
-			assert attachedToDispose == null || attachedToDispose.equals(getViewer().getControl());
-			if(attachedToDispose == null && getViewer() != null){
-				attachedToDispose = getViewer().getControl();
-				attachedToDispose.addDisposeListener(this);
+		private void removeDisposeListener() {
+			if (disposeEventProvider != null) {
+				if (!disposeEventProvider.isDisposed()) {
+					if (getViewer() != null && disposeEventProvider.equals(getViewer().getControl())) {
+						return;
+					}
+
+					disposeEventProvider.removeDisposeListener(this);
+				}
+				disposeEventProvider = null;
 			}
 		}
-		
+
+		private void addDisposeListener() {
+			removeDisposeListener();
+			if (disposeEventProvider == null && getViewer() != null && getViewer().getControl() != null && !getViewer().getControl().isDisposed()) {
+				disposeEventProvider = getViewer().getControl();
+				disposeEventProvider.addDisposeListener(this);
+			}
+		}
+
 		Image getImage() {
 			return image;
 		}
@@ -532,6 +551,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 		public void widgetDisposed(DisposeEvent arg0) {
 			setImage(null);
 			setGc(null);
+			removeDisposeListener();
 		}
 	}
 }
