@@ -24,83 +24,89 @@ import org.eclipse.ui.IViewPart;
 
 public class ModelManagerListeners {
 
-    List<IModelWorkbenchListener> manangerListeners = new ArrayList<IModelWorkbenchListener>();
-    /**
-     * @param modelViewManager
-     */
-    ModelManagerListeners() {
-    }
+	private List<IModelWorkbenchListener> manangerListeners = new ArrayList<IModelWorkbenchListener>();
 
-    /**
-     * Adds the model manager listener.
-     * 
-     * @param listener the listener
-     */
-    public synchronized void addModelManagerListener(IModelWorkbenchListener listener) {
-        manangerListeners.add(listener);
-    }
+	/**
+	 * Adds the model manager listener.
+	 * 
+	 * @param listener
+	 *          the listener
+	 */
+	public synchronized void addModelManagerListener(IModelWorkbenchListener listener) {
+		manangerListeners.add(listener);
+	}
 
-    /**
-     * Removes the model manager listener.
-     * 
-     * @param listener the listener
-     */
-    public synchronized void removeModelManagerListener(IModelWorkbenchListener listener) {
-        manangerListeners.remove(listener);
-    }
+	/**
+	 * Removes the model manager listener.
+	 * 
+	 * @param listener
+	 *          the listener
+	 */
+	public synchronized void removeModelManagerListener(IModelWorkbenchListener listener) {
+		manangerListeners.remove(listener);
+	}
 
-    /**
-     * Notify view added.
-     * 
-     * @param showViewPart the show view part
-     */
-    protected synchronized void notifyViewAdded(final IViewPart showViewPart) {
-        for (IModelWorkbenchListener viewListener : manangerListeners) {
-            viewListener.viewAdded(showViewPart);
-        }
-    };
+	/**
+	 * Notify view added.
+	 * 
+	 * @param showViewPart
+	 *          the show view part
+	 */
+	protected synchronized void notifyViewAdded(final IViewPart showViewPart) {
+		for (IModelWorkbenchListener listener : manangerListeners) {
+			listener.viewAdded(showViewPart);
+		}
+	}
 
-    /**
-     * Notify view removed.
-     * 
-     * @param showViewPart the show view part
-     */
-    protected synchronized void notifyViewRemoved(final IViewPart showViewPart) {
-        for (IModelWorkbenchListener viewListener : manangerListeners) {
-            viewListener.viewRemoved(showViewPart);
-        }
-    };
+	/**
+	 * Notify view removed.
+	 * 
+	 * @param showViewPart
+	 *          the show view part
+	 */
+	protected synchronized void notifyViewRemoved(final IViewPart showViewPart) {
+		for (IModelWorkbenchListener listener : manangerListeners) {
+			listener.viewRemoved(showViewPart);
+		}
+	}
 
-    /**
-     * Notify view removed.
-     * 
-     * @param showViewPart the show view part
-     */
-    protected synchronized void notifyModelActivated(final IModel model) {
-        for (IModelWorkbenchListener viewListener : manangerListeners) {
-            viewListener.modelActivated(model);
-        }
-    };
+	/**
+	 * Notify view removed.
+	 * 
+	 * @param showViewPart
+	 *          the show view part
+	 */
+	protected synchronized void notifyModelActivated(final IModel model) {
+		for (IModelWorkbenchListener listener : manangerListeners) {
+			listener.modelActivated(model);
+		}
+	}
 
-    /**
-     * Notify view removed.
-     * 
-     * @param showViewPart the show view part
-     */
-    protected synchronized void notifyModelAdded(final IModel model) {
-        for (IModelWorkbenchListener viewListener : manangerListeners) {
-            viewListener.modelAdded(model);
-        }
-    };
+	/**
+	 * Notify view removed.
+	 * 
+	 * @param showViewPart
+	 *          the show view part
+	 */
+	protected synchronized void notifyModelAdded(final IModel model) {
+		for (IModelWorkbenchListener listener : manangerListeners) {
+			listener.modelAdded(model);
+		}
+	}
 
-    /**
-     * Notify view removed.
-     * 
-     * @param showViewPart the show view part
-     */
-    protected synchronized void notifyModelRemoved(final IModel model) {
-        for (IModelWorkbenchListener viewListener : manangerListeners) {
-            viewListener.modelRemoved(model);
-        }
-    };
+	/**
+	 * Notify view removed.
+	 * 
+	 * @param showViewPart
+	 *          the show view part
+	 */
+	protected synchronized void notifyModelRemoved(final IModel model) {
+		for (IModelWorkbenchListener listener : manangerListeners) {
+			listener.modelRemoved(model);
+		}
+	}
+
+	public boolean isListening(IModelWorkbenchListener listener) {
+		return manangerListeners.contains(listener);
+	}
 }

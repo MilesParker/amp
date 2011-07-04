@@ -29,7 +29,6 @@ import org.eclipse.swtbot.swt.finder.widgets.SWTBotTreeItem;
 /**
  * 
  * @author mparker
- * 
  */
 public class TestExecutionTest extends TestCase {
 

@@ -44,7 +44,7 @@ public class EngineStateServiceTest {
 	 */
 	@Test
 	public void testEngineStateService() {
-		ModelViewManager.getInstance().getManagerListeners().manangerListeners.contains(classToTest);
+		ModelViewManager.getInstance().getManagerListeners().isListening(classToTest);
 	}
 
 	/**
