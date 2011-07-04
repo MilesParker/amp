@@ -25,7 +25,7 @@ import org.eclipse.ui.IWorkbenchPart;
 public class EngineStateService extends AbstractSourceProvider implements IModelWorkbenchListener, ILifeCycleListener {
 	public static final String ID = "org.eclipse.amp.axf.ide.engine.state";
 
-	/** Simulation has been stopped or not even started. */
+	/** Simulation has not been started at all or is in undefined state. */
 	public static final String IDLE = "IDLE";
 
 	/** Simulation is currently running. */
@@ -34,8 +34,11 @@ public class EngineStateService extends AbstractSourceProvider implements IModel
 	/** Simulation was running but has been set to pause. */
 	public static final String PAUSED = "PAUSED";
 
-	/** Simulation has stopped running, but the {@link Thread} is still alive. */
-	public static final String ZOMBIE = "ZOMBIE";
+	/** Simulation run has finished and stopped. */
+	public static final String STOPPED = "STOPPED";
+
+	/** Simulation was running but has been requested to be closed. */
+	public static final String CLOSING = "CLOSING";
 
 	private IModel activeModel = null;
 
@@ -56,15 +59,19 @@ public class EngineStateService extends AbstractSourceProvider implements IModel
 	}
 
 	private String getEngineState() {
-		if (activeModel != null && activeModel.getEngine() != null && !activeModel.getEngine().isCloseRequested()) {
-			if (activeModel.isPaused()) {
-				return PAUSED;
-			}
-			if (activeModel.isRunning()) {
+		if (activeModel != null) {
+			if (activeModel.isInitialized() && activeModel.isCreated() && activeModel.isActive() && activeModel.isRunning()) {
+				if (activeModel.isPaused()) {
+					return PAUSED;
+				}
 				return RUNNING;
 			}
-			if (activeModel.getEngine().isThreadAlive()) {
-				return ZOMBIE;
+
+			if (activeModel.isInitialized() && activeModel.isStopped()) {
+				if (activeModel.isEnding()) {
+					return CLOSING;
+				}
+				return STOPPED;
 			}
 		}
 
@@ -164,5 +171,5 @@ public class EngineStateService extends AbstractSourceProvider implements IModel
 	public void observationEnd(IObservationProvider observed) {
 		//
 	}
- 
+
 }

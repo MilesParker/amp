@@ -29,7 +29,7 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.HandlerEvent;
-import org.eclipse.ui.IWorkbench;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**
@@ -62,18 +62,12 @@ public abstract class ModelRunHandler extends AbstractHandler implements ILifeCy
 		return model.getEngine();
 	}
 
-	@Override
-	public boolean isEnabled() {
-		assert getRunner() != null && !getRunner().isCloseRequested() : "Obviously, this command was declarately enabled not the way it's ment to be.";
-		return super.isEnabled();
-	}
-
 	public void notifyChange() {
 		// its possible we've already left workbench
 		if (AXFWorkbenchPlugin.getDefault() != null) {
-			IWorkbench workbench = AXFWorkbenchPlugin.getDefault().getWorkbench();
-			if (workbench.getDisplay() != null && !workbench.getDisplay().isDisposed()) {
-				workbench.getDisplay().asyncExec(new Runnable() {
+			Display display = AXFWorkbenchPlugin.getDefault().getWorkbench().getDisplay();
+			if (display != null && !display.isDisposed()) {
+				display.asyncExec(new Runnable() {
 					public void run() {
 						fireChangeEvent();
 					}

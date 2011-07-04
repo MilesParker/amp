@@ -8,13 +8,13 @@ public class RestartHandlerTest extends ModelRunHandlerTest {
 	}
 
 	@Override
-	protected boolean needsRunningStateToBeEnabled() {
-		return true;
+	protected TestRunningState[] getEnabledStates() {
+		return new TestRunningState[] { STATE_RUNNING, STATE_PAUSED };
 	}
 
 	@Override
-	protected boolean needsPauseStateToBeEnabled() {
-		return false;
+	protected TestRunningState[] getDisabledStates() {
+		return new TestRunningState[] { STATE_IDLE, STATE_STOPPED, STATE_ENDING };
 	}
 
 }

@@ -8,13 +8,13 @@ public class StartHandlerTest extends ModelRunHandlerTest {
 	}
 
 	@Override
-	protected boolean needsRunningStateToBeEnabled() {
-		return false;
+	protected TestRunningState[] getEnabledStates() {
+		return new TestRunningState[] { STATE_STOPPED };
 	}
 
 	@Override
-	protected boolean needsPauseStateToBeEnabled() {
-		return false;
+	protected TestRunningState[] getDisabledStates() {
+		return new TestRunningState[] { STATE_IDLE, STATE_RUNNING, STATE_PAUSED, STATE_ENDING };
 	}
 
 }

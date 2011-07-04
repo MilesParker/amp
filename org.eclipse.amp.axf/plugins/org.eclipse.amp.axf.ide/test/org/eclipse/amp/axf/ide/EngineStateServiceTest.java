@@ -9,13 +9,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.amp.axf.core.EngineControl;
 import org.eclipse.amp.axf.core.IEngine;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.core.IObservationProvider;
 import org.eclipse.amp.axf.core.LifeCycleState;
-import org.eclipse.amp.axf.time.ITimeGranularity;
 import org.eclipse.ui.ISourceProvider;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.services.ISourceProviderService;
@@ -88,24 +85,27 @@ public class EngineStateServiceTest {
 		classToTest.modelActivated(model);
 		assertEquals(EngineStateService.IDLE, classToTest.getCurrentState().get(EngineStateService.ID));
 
-		model.running = true;
-		assertEquals(EngineStateService.RUNNING, classToTest.getCurrentState().get(EngineStateService.ID));
+		model.initialized = true;
+		model.stopped = true;
+		assertEquals(EngineStateService.STOPPED, classToTest.getCurrentState().get(EngineStateService.ID));
 
-		model.getEngine().closeRequested = true;
-		assertEquals(EngineStateService.IDLE, classToTest.getCurrentState().get(EngineStateService.ID));
-		model.getEngine().closeRequested = false;
+		model.initialized = true;
+		model.created = true;
+		model.active = true;
+		model.running = true;
+		model.stopped = false;
+		assertEquals(EngineStateService.RUNNING, classToTest.getCurrentState().get(EngineStateService.ID));
 
 		model.paused = true;
 		assertEquals(EngineStateService.PAUSED, classToTest.getCurrentState().get(EngineStateService.ID));
 
-		model.paused = false;
-		assertEquals(EngineStateService.RUNNING, classToTest.getCurrentState().get(EngineStateService.ID));
-
+		model.created = false;
+		model.active = false;
 		model.running = false;
-		assertEquals(EngineStateService.IDLE, classToTest.getCurrentState().get(EngineStateService.ID));
-
-		model.getEngine().alive = true;
-		assertEquals(EngineStateService.ZOMBIE, classToTest.getCurrentState().get(EngineStateService.ID));
+		model.initialized = true;
+		model.stopped = true;
+		model.ending = true;
+		assertEquals(EngineStateService.CLOSING, classToTest.getCurrentState().get(EngineStateService.ID));
 	}
 
 	/**
@@ -124,7 +124,8 @@ public class EngineStateServiceTest {
 		assertFalse(classToTest.isNotificationFired());
 
 		// Changing the state should cause notification:
-		model.running = true;
+		model.initialized = true;
+		model.stopped = true;
 		classToTest.stateChange(LifeCycleState.UPDATE, "");
 		assertTrue(classToTest.isNotificationFired());
 
@@ -205,27 +206,37 @@ public class EngineStateServiceTest {
 
 	private class DummyModel implements IModel {
 
+		boolean initialized = false;
+
+		boolean created = false;
+
+		boolean active = false;
+
 		boolean running = false;
 
 		boolean paused = false;
 
-		private List<ILifeCycleListener> listeners = new ArrayList<ILifeCycleListener>();
+		boolean stopped = false;
 
-		private DummyEngine engine = new DummyEngine();
+		boolean ending = false;
+
+		boolean ended = false;
+
+		private List<ILifeCycleListener> listeners = new ArrayList<ILifeCycleListener>();
 
 		public DummyModel() {
 		}
 
 		public boolean isCreated() {
-			return false;
+			return created;
 		}
 
 		public boolean isInitialized() {
-			return false;
+			return initialized;
 		}
 
 		public boolean isStopped() {
-			return false;
+			return stopped;
 		}
 
 		public boolean isRunning() {
@@ -237,15 +248,15 @@ public class EngineStateServiceTest {
 		}
 
 		public boolean isActive() {
-			return false;
+			return active;
 		}
 
 		public boolean isEnding() {
-			return false;
+			return ending;
 		}
 
 		public boolean isEnded() {
-			return false;
+			return ended;
 		}
 
 		public void addModelListener(ILifeCycleListener listener) {
@@ -264,8 +275,8 @@ public class EngineStateServiceTest {
 			return null;
 		}
 
-		public DummyEngine getEngine() {
-			return engine;
+		public IEngine getEngine() {
+			return null;
 		}
 
 		public Object getRoot() {
@@ -283,58 +294,6 @@ public class EngineStateServiceTest {
 		public int getStopPeriod() {
 			return 0;
 		}
-	}
-
-	private class DummyEngine implements IEngine {
-		boolean closeRequested = false;
-
-		boolean alive = false;
-
-		public DummyEngine() {
-		}
-
-		public void close() {
-		}
-
-		public void closeFinally() {
-		}
-
-		public boolean isCloseRequested() {
-			return closeRequested;
-		}
-
-		public boolean isThreadAlive() {
-			return alive;
-		}
-
-		public boolean isRunning() {
-			return false;
-		}
-
-		public boolean isPaused() {
-			return false;
-		}
-
-		public void stop() {
-		}
-
-		public void control(EngineControl ModelControl) {
-		}
-
-		public void observationComplete(ILifeCycleListener observer) {
-		}
-
-		public IObservationProvider getModel() {
-			return null;
-		}
-
-		public void setUpdateGranularity(ITimeGranularity granularity) {
-		}
-
-		public ITimeGranularity getUpdateGranularity() {
-			return null;
-		}
-
 	}
 
 }

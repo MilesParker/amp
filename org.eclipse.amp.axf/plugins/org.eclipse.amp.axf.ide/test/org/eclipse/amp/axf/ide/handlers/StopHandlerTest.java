@@ -1,5 +1,10 @@
 package org.eclipse.amp.axf.ide.handlers;
 
+/**
+ * Stopping should be enabled when paused or running.
+ * 
+ * @author jonas.ruettimann
+ */
 public class StopHandlerTest extends ModelRunHandlerTest {
 
 	@Override
@@ -8,13 +13,13 @@ public class StopHandlerTest extends ModelRunHandlerTest {
 	}
 
 	@Override
-	protected boolean needsRunningStateToBeEnabled() {
-		return true;
+	protected TestRunningState[] getEnabledStates() {
+		return new TestRunningState[] { STATE_RUNNING, STATE_PAUSED };
 	}
 
 	@Override
-	protected boolean needsPauseStateToBeEnabled() {
-		return false;
+	protected TestRunningState[] getDisabledStates() {
+		return new TestRunningState[] { STATE_IDLE, STATE_STOPPED, STATE_ENDING };
 	}
 
 }

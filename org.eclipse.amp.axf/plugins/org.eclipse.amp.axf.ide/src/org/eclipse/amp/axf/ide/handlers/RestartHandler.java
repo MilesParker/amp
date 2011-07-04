@@ -28,9 +28,4 @@ public class RestartHandler extends ModelRunHandler {
 		super(EngineControl.RESTART);
 	}
 
-	@Override
-	public boolean isEnabled() {
-		assert getRunner().isRunning() : "Obviously, this command was declarately enabled not the way it's ment to be.";
-		return super.isEnabled();
-	}
 }

@@ -28,9 +28,4 @@ public class ResumeHandler extends ModelRunHandler {
 		super(EngineControl.RESUME);
 	}
 
-	@Override
-	public boolean isEnabled() {
-		assert getRunner().isPaused() : "Obviously, this command was declarately enabled not the way it's ment to be.";
-		return super.isEnabled();
-	}
 }

@@ -28,9 +28,4 @@ public class StepHandler extends ModelRunHandler {
 		super(EngineControl.STEP);
 	}
 
-	@Override
-	public boolean isEnabled() {
-		assert getRunner().isRunning() && getRunner().isPaused() : "Obviously, this command was declarately enabled not the way it's ment to be.";
-		return super.isEnabled();
-	}
 }

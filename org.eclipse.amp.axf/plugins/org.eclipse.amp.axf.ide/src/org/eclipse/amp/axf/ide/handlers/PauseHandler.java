@@ -16,8 +16,6 @@
 package org.eclipse.amp.axf.ide.handlers;
 
 import org.eclipse.amp.axf.core.EngineControl;
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
 
 /**
  * Pause the simulation.
@@ -30,14 +28,4 @@ public class PauseHandler extends ModelRunHandler {
 		super(EngineControl.PAUSE);
 	}
 
-	@Override
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		return super.execute(event);
-	}
-
-	@Override
-	public boolean isEnabled() {
-		assert !getRunner().isPaused() : "Obviously, this command was declarately enabled not the way it's ment to be.";
-		return super.isEnabled();
-	}
 }

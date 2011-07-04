@@ -467,7 +467,7 @@
              <with
                    variable="org.eclipse.amp.axf.ide.engine.state">
                 <equals
-                      value="IDLE">
+                      value="STOPPED">
                 </equals>
              </with>
           </enabledWhen>
@@ -478,9 +478,14 @@
           <enabledWhen>
              <with
                    variable="org.eclipse.amp.axf.ide.engine.state">
-                <equals
-                      value="RUNNING">
-                </equals>
+                <or>
+                   <equals
+                         value="RUNNING">
+                   </equals>
+                   <equals
+                         value="PAUSED">
+                   </equals>
+                </or>
              </with>
           </enabledWhen>
        </handler>
@@ -492,6 +497,18 @@
                    variable="org.eclipse.amp.axf.ide.engine.state">
                 <equals
                       value="RUNNING">
+                </equals>
+             </with>
+          </enabledWhen>
+       </handler>
+       <handler
+             class="org.eclipse.amp.axf.ide.handlers.StepHandler"
+             commandId="org.eclipse.amp.axf.ui.step">
+          <enabledWhen>
+             <with
+                   variable="org.eclipse.amp.axf.ide.engine.state">
+                <equals
+                      value="PAUSED">
                 </equals>
              </with>
           </enabledWhen>
@@ -514,9 +531,14 @@
           <enabledWhen>
              <with
                    variable="org.eclipse.amp.axf.ide.engine.state">
-                <equals
-                      value="RUNNING">
-                </equals>
+                <or>
+                   <equals
+                         value="RUNNING">
+                   </equals>
+                   <equals
+                         value="PAUSED">
+                   </equals>
+                </or>
              </with>
           </enabledWhen>
        </handler>
@@ -529,23 +551,17 @@
                 <or>
                    <equals
                          value="IDLE">
+                   </equals>ls>
+                   <equals
+                         value="PAUSED">
                    </equals>
                    <equals
-                         value="ZOMBIE">
+                         value="RUNNING">
+                   </equals>
+                   <equals
+                         value="STOPPED">
                    </equals>
                 </or>
-             </with>
-          </enabledWhen>
-       </handler>
-       <handler
-             class="org.eclipse.amp.axf.ide.handlers.StepHandler"
-             commandId="org.eclipse.amp.axf.ui.step">
-          <enabledWhen>
-             <with
-                   variable="org.eclipse.amp.axf.ide.engine.state">
-                <equals
-                      value="PAUSED">
-                </equals>
              </with>
           </enabledWhen>
        </handler>

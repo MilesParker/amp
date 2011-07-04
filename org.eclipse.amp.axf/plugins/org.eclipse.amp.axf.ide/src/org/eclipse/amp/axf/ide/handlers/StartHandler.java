@@ -18,7 +18,7 @@ package org.eclipse.amp.axf.ide.handlers;
 import org.eclipse.amp.axf.core.EngineControl;
 
 /**
- * Start the simulation.
+ * Start the simulation from zero.
  * 
  * @author jonas.ruettimann
  */
@@ -28,9 +28,4 @@ public class StartHandler extends ModelRunHandler {
 		super(EngineControl.START);
 	}
 
-	@Override
-	public boolean isEnabled() {
-		assert !getRunner().isRunning() : "Obviously, this command was declarately enabled not the way it's ment to be.";
-		return super.isEnabled();
-	}
 }

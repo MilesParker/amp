@@ -28,9 +28,4 @@ public class CloseHandler extends ModelRunHandler {
 		super(EngineControl.CLOSE);
 	}
 
-	@Override
-	public boolean isEnabled() {
-		assert super.isEnabled() || getRunner() != null && getRunner().isThreadAlive() : "Obviously, this command was declarately enabled not the way it's ment to be.";
-		return super.isEnabled();
-	}
 }
