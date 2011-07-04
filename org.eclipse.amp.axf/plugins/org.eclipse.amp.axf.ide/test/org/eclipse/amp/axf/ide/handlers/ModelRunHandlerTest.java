@@ -92,85 +92,68 @@ public abstract class ModelRunHandlerTest {
 		public DummyModel() {
 		}
 
-		@Override
 		public boolean isCreated() {
 			return false;
 		}
 
-		@Override
 		public boolean isInitialized() {
 			return false;
 		}
 
-		@Override
 		public boolean isStopped() {
 			return false;
 		}
 
-		@Override
 		public boolean isRunning() {
 			return running;
 		}
 
-		@Override
 		public boolean isPaused() {
 			return paused;
 		}
 
-		@Override
 		public boolean isActive() {
 			return false;
 		}
 
-		@Override
 		public boolean isEnding() {
 			return false;
 		}
 
-		@Override
 		public boolean isEnded() {
 			return false;
 		}
 
-		@Override
 		public void addModelListener(ILifeCycleListener listener) {
 		}
 
-		@Override
 		public Collection<ILifeCycleListener> getModelListeners() {
 			return null;
 		}
 
-		@Override
 		public void removeModelListener(ILifeCycleListener listener) {
 		}
 
-		@Override
 		public String getTimeDescription() {
 			return null;
 		}
 
-		@Override
 		public DummyEngine getEngine() {
 			return engine;
 		}
 
-		@Override
 		public Object getRoot() {
 			return null;
 		}
 
-		@Override
 		public String getName() {
 			return null;
 		}
 
-		@Override
 		public int getPeriod() {
 			return 0;
 		}
 
-		@Override
 		public int getStopPeriod() {
 			return 0;
 		}
@@ -184,56 +167,44 @@ public abstract class ModelRunHandlerTest {
 			this.dummyModel = model;
 		}
 
-		@Override
 		public void close() {
 		}
 
-		@Override
 		public void closeFinally() {
 		}
 
-		@Override
 		public boolean isCloseRequested() {
 			return false;
 		}
 
-		@Override
 		public boolean isThreadAlive() {
 			return false;
 		}
 
-		@Override
 		public boolean isRunning() {
 			return getModel().isRunning();
 		}
 
-		@Override
 		public boolean isPaused() {
 			return getModel().isPaused();
 		}
 
-		@Override
 		public void stop() {
 		}
 
-		@Override
 		public void control(EngineControl ModelControl) {
 		}
 
-		@Override
 		public void observationComplete(ILifeCycleListener observer) {
 		}
 
-		@Override
 		public IObservationProvider getModel() {
 			return dummyModel;
 		}
 
-		@Override
 		public void setUpdateGranularity(ITimeGranularity granularity) {
 		}
 
-		@Override
 		public ITimeGranularity getUpdateGranularity() {
 			return null;
 		}

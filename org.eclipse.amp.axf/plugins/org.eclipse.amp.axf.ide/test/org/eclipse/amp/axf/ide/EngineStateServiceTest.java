@@ -216,87 +216,70 @@ public class EngineStateServiceTest {
 		public DummyModel() {
 		}
 
-		@Override
 		public boolean isCreated() {
 			return false;
 		}
 
-		@Override
 		public boolean isInitialized() {
 			return false;
 		}
 
-		@Override
 		public boolean isStopped() {
 			return false;
 		}
 
-		@Override
 		public boolean isRunning() {
 			return running;
 		}
 
-		@Override
 		public boolean isPaused() {
 			return paused;
 		}
 
-		@Override
 		public boolean isActive() {
 			return false;
 		}
 
-		@Override
 		public boolean isEnding() {
 			return false;
 		}
 
-		@Override
 		public boolean isEnded() {
 			return false;
 		}
 
-		@Override
 		public void addModelListener(ILifeCycleListener listener) {
 			listeners.add(listener);
 		}
 
-		@Override
 		public Collection<ILifeCycleListener> getModelListeners() {
 			return listeners;
 		}
 
-		@Override
 		public void removeModelListener(ILifeCycleListener listener) {
 			listeners.remove(listener);
 		}
 
-		@Override
 		public String getTimeDescription() {
 			return null;
 		}
 
-		@Override
 		public DummyEngine getEngine() {
 			return engine;
 		}
 
-		@Override
 		public Object getRoot() {
 			return null;
 		}
 
-		@Override
 		public String getName() {
 			return null;
 		}
 
-		@Override
 		public int getPeriod() {
 			return 0;
 		}
 
-		@Override
 		public int getStopPeriod() {
 			return 0;
 		}
@@ -310,56 +293,44 @@ public class EngineStateServiceTest {
 		public DummyEngine() {
 		}
 
-		@Override
 		public void close() {
 		}
 
-		@Override
 		public void closeFinally() {
 		}
 
-		@Override
 		public boolean isCloseRequested() {
 			return closeRequested;
 		}
 
-		@Override
 		public boolean isThreadAlive() {
 			return alive;
 		}
 
-		@Override
 		public boolean isRunning() {
 			return false;
 		}
 
-		@Override
 		public boolean isPaused() {
 			return false;
 		}
 
-		@Override
 		public void stop() {
 		}
 
-		@Override
 		public void control(EngineControl ModelControl) {
 		}
 
-		@Override
 		public void observationComplete(ILifeCycleListener observer) {
 		}
 
-		@Override
 		public IObservationProvider getModel() {
 			return null;
 		}
 
-		@Override
 		public void setUpdateGranularity(ITimeGranularity granularity) {
 		}
 
-		@Override
 		public ITimeGranularity getUpdateGranularity() {
 			return null;
 		}

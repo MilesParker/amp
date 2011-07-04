@@ -481,7 +481,6 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 		this.closeOnStop = closeOnStop;
 	}
 
-	@Override
 	public boolean isThreadAlive() {
 		return isModelThreadAlive();
 	}

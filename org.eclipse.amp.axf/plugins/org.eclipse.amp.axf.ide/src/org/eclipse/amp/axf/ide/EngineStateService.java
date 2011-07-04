@@ -45,14 +45,12 @@ public class EngineStateService extends AbstractSourceProvider implements IModel
 		ModelViewManager.getInstance().getManagerListeners().addModelManagerListener(this);
 	}
 
-	@Override
 	public Map<String, String> getCurrentState() {
 		Map<String, String> map = new HashMap<String, String>(1);
 		map.put(ID, getEngineState());
 		return map;
 	}
 
-	@Override
 	public String[] getProvidedSourceNames() {
 		return new String[] { ID };
 	}
@@ -73,7 +71,6 @@ public class EngineStateService extends AbstractSourceProvider implements IModel
 		return IDLE; // used as default
 	}
 
-	@Override
 	public void stateChange(Object key, Object updated) {
 		if (key instanceof LifeCycleState) {
 			possibleStateChange();
@@ -97,12 +94,10 @@ public class EngineStateService extends AbstractSourceProvider implements IModel
 		fireSourceChanged(ISources.WORKBENCH, ID, currentState);
 	}
 
-	@Override
 	public void dispose() {
 		unregister();
 	}
 
-	@Override
 	public void modelActivated(IModel newModel) {
 		unregister();
 
@@ -118,56 +113,56 @@ public class EngineStateService extends AbstractSourceProvider implements IModel
 		}
 	}
 
-	@Override
 	public void modelAdded(IModel model) {
+		//
 	}
 
-	@Override
 	public void modelRemoved(IModel model) {
+		//
 	}
 
-	@Override
 	public void viewAdded(IWorkbenchPart part) {
+		//
 	}
 
-	@Override
 	public void viewRemoved(IWorkbenchPart part) {
+		//
 	}
 
-	@Override
 	public void viewActivated(IWorkbenchPart part) {
+		//
 	}
 
-	@Override
 	public void observing(IObservationProvider observed) {
+		//
 	}
 
-	@Override
 	public void observeCreate(IObservationProvider observed) {
+		//
 	}
 
-	@Override
 	public void observeInitialize(IObservationProvider observed) {
+		//
 	}
 
-	@Override
 	public void observeStart(IObservationProvider observed) {
+		//
 	}
 
-	@Override
 	public void observeUpdate(IObservationProvider observed) {
+		//
 	}
 
-	@Override
 	public void observeStop(IObservationProvider observed) {
+		//
 	}
 
-	@Override
 	public void observationEnding(IObservationProvider observed) {
+		//
 	}
 
-	@Override
 	public void observationEnd(IObservationProvider observed) {
+		//
 	}
-
+ 
 }
