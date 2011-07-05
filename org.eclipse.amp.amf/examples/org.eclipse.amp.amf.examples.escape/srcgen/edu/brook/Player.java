@@ -1,41 +1,5 @@
 package edu.brook;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Collections;
-
-import org.eclipse.core.runtime.IAdapterFactory;
-import org.eclipse.amp.agf.IGraphicsAdapted;
-import org.eclipse.amp.agf.IGraphicsAdapter;
-
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.jface.viewers.IColorProvider;
-
-import org.ascape.model.Agent;
-import org.ascape.model.Cell;
-import org.ascape.model.CellOccupant;
-import org.ascape.model.HostCell;
-import org.ascape.model.LocatedAgent;
-import org.ascape.model.Scape;
-import org.ascape.model.event.ScapeEvent;
-import org.ascape.model.rule.Rule;
-import org.ascape.model.rule.ExecuteThenUpdate;
-import org.ascape.model.space.CollectionSpace;
-import org.ascape.model.space.Coordinate;
-import org.ascape.model.space.Coordinate2DDiscrete;
-import org.ascape.model.space.Graph;
-import org.ascape.model.space.Location;
-import org.ascape.model.space.Singleton;
-import org.ascape.runtime.NonGraphicRunner;
-import org.ascape.util.Conditional;
-import org.ascape.util.data.DataPoint;
-import org.ascape.util.data.DataPointConcrete;
-import org.ascape.util.vis.ColorFeature;
-import org.ascape.util.vis.ColorFeatureConcrete;
-import org.ascape.view.vis.ChartView;
-import org.ascape.view.vis.GEFView;
-import org.ascape.view.vis.GraphView;
-
 import org.eclipse.amp.escape.runtime.extension.IAgentChild;
 
 /**
@@ -46,7 +10,7 @@ import org.eclipse.amp.escape.runtime.extension.IAgentChild;
  * <!-- end-user-doc -->
  * @generated
  */
-public class Player extends CellOccupant {
+public class Player {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -156,44 +120,6 @@ public class Player extends CellOccupant {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DemographicPrisonersDilemma getDemographicPrisoner_sDilemma() {
-		return (DemographicPrisonersDilemma) getScape().getScape();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-
-	public void startSimulationAgentChild(int timeStep) {
-		if (timeStep == getRoot().getRunner().getEarliestPeriod()) {
-			for (IAgentChild tmp : children) {
-				tmp.startSimulation(timeStep);
-			}
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-
-	public void calculateTimeStep(int timeStep) {
-		for (IAgentChild tmp : children) {
-			tmp.calculate(timeStep);
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * Initialize Initialization. Executed once at the beginning of each model run.
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -202,7 +128,7 @@ public class Player extends CellOccupant {
 		setWealth(getDemographicPrisoner_sDilemma().getInitialWealth());
 		int randomToMaxAge = randomToLimit(getDemographicPrisoner_sDilemma()
 				.getMaximumAge());
-		boolean randomStrategy = getRandom().nextBoolean();
+		boolean randomStrategy = true;
 		setAge(randomToMaxAge);
 		setCooperate(randomStrategy);
 	}
@@ -213,15 +139,11 @@ public class Player extends CellOccupant {
 	 * @generated
 	 */
 	public void moveToRandomLocation() {
-		PlayCell randomCell2 = (PlayCell) ((org.ascape.model.space.Discrete) getDemographicPrisoner_sDilemma()
-				.getGameSpace().getSpace()).findRandomAvailable();
-		if (randomCell2 != null) {
-			if (getHostScape() != ((Agent) randomCell2).getScape()) {
-				die();
-				getDemographicPrisoner_sDilemma().getPlayerScape().add(this);
-			}
-			moveTo(randomCell2);
-		}
+		/*
+		Spatial Functions:
+		[available]
+		 */
+		PlayCell randomCell2 = new PlayCell();
 	}
 	/**
 	 * <!-- begin-user-doc -->
@@ -230,17 +152,11 @@ public class Player extends CellOccupant {
 	 * @generated
 	 */
 	public void randomWalk() {
-		PlayCell randomNeighbor = (PlayCell) ((org.ascape.model.space.Discrete) getDemographicPrisoner_sDilemma()
-				.getGameSpace().getSpace())
-				.findRandomAvailableNeighbor(((org.ascape.model.CellOccupant) this)
-						.getHostCell());
-		if (randomNeighbor != null) {
-			if (getHostScape() != ((Agent) randomNeighbor).getScape()) {
-				die();
-				getDemographicPrisoner_sDilemma().getPlayerScape().add(this);
-			}
-			moveTo(randomNeighbor);
-		}
+		/*
+		Spatial Functions:
+		[available, neighbor]
+		 */
+		PlayCell randomNeighbor = new PlayCell();
 	}
 	/**
 	 * <!-- begin-user-doc -->
@@ -249,75 +165,49 @@ public class Player extends CellOccupant {
 	 * @generated
 	 */
 	public void playNeighbor() {
-		Conditional otherPlayerCondition = new Conditional() {
-
-			/**
-			 * <!-- begin-user-doc -->
-			 * 
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			private static final long serialVersionUID = 6846144446402098985L;
-
-			/**
-			 * <!-- begin-user-doc -->
-			 * 
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
-			public boolean meetsCondition(Object otherPlayerCell) {
-				if (otherPlayerCell instanceof Player) {
-					return true;
-				} else {
-					return false;
-				}
-			}
-		};
-		Player otherPlayer = (Player) ((org.ascape.model.space.Discrete) getDemographicPrisoner_sDilemma()
-				.getGameSpace().getSpace()).findRandomNeighbor(this,
-				otherPlayerCondition);
-		if (otherPlayer != null) {
-			if ((otherPlayer.isCooperate() && isCooperate())) {
-				int valueWealthAddPayoffCooperateCooperate = getWealth()
-						+ getDemographicPrisoner_sDilemma().getPayoffCC();
-				int valueWealthAddPayoffCooperateCooperateCopy = otherPlayer
-						.getWealth()
-						+ otherPlayer.getDemographicPrisoner_sDilemma()
-								.getPayoffCC();
-				setWealth(valueWealthAddPayoffCooperateCooperate);
-				otherPlayer
-						.setWealth(valueWealthAddPayoffCooperateCooperateCopy);
-			}
-			if ((otherPlayer.isCooperate() && !isCooperate())) {
-				int valueWealthAddPayoffDefectCooperate = getWealth()
-						+ getDemographicPrisoner_sDilemma().getPayoffDC();
-				int valueWealthAddPayoffCooperateDefectCopy = otherPlayer
-						.getWealth()
-						+ otherPlayer.getDemographicPrisoner_sDilemma()
-								.getPayoffCD();
-				setWealth(valueWealthAddPayoffDefectCooperate);
-				otherPlayer.setWealth(valueWealthAddPayoffCooperateDefectCopy);
-			}
-			if ((!otherPlayer.isCooperate() && isCooperate())) {
-				int valueWealthAddPayoffCooperateDefect = getWealth()
-						+ getDemographicPrisoner_sDilemma().getPayoffCD();
-				int valueWealthAddPayoffDefectCooperateCopy = otherPlayer
-						.getWealth()
-						+ otherPlayer.getDemographicPrisoner_sDilemma()
-								.getPayoffDC();
-				setWealth(valueWealthAddPayoffCooperateDefect);
-				otherPlayer.setWealth(valueWealthAddPayoffDefectCooperateCopy);
-			}
-			if ((!isCooperate() && !otherPlayer.isCooperate())) {
-				int valueWealthAddPayoffDefectDefect = getWealth()
-						+ getDemographicPrisoner_sDilemma().getPayoffDD();
-				int valueWealthAddPayoffDefectDefectCopy = otherPlayer
-						.getWealth()
-						+ otherPlayer.getDemographicPrisoner_sDilemma()
-								.getPayoffDD();
-				setWealth(valueWealthAddPayoffDefectDefect);
-				otherPlayer.setWealth(valueWealthAddPayoffDefectDefectCopy);
-			}
+		/*
+		Spatial Functions:
+		[neighbor]
+		 */
+		Player otherPlayer = new Player();
+		if ((otherPlayer.isCooperate() && isCooperate())) {
+			int valueWealthAddPayoffCooperateCooperate = getWealth()
+					+ getDemographicPrisoner_sDilemma().getPayoffCC();
+			int valueWealthAddPayoffCooperateCooperateCopy = otherPlayer
+					.getWealth()
+					+ otherPlayer.getDemographicPrisoner_sDilemma()
+							.getPayoffCC();
+			setWealth(valueWealthAddPayoffCooperateCooperate);
+			otherPlayer.setWealth(valueWealthAddPayoffCooperateCooperateCopy);
+		}
+		if ((otherPlayer.isCooperate() && !isCooperate())) {
+			int valueWealthAddPayoffDefectCooperate = getWealth()
+					+ getDemographicPrisoner_sDilemma().getPayoffDC();
+			int valueWealthAddPayoffCooperateDefectCopy = otherPlayer
+					.getWealth()
+					+ otherPlayer.getDemographicPrisoner_sDilemma()
+							.getPayoffCD();
+			setWealth(valueWealthAddPayoffDefectCooperate);
+			otherPlayer.setWealth(valueWealthAddPayoffCooperateDefectCopy);
+		}
+		if ((!otherPlayer.isCooperate() && isCooperate())) {
+			int valueWealthAddPayoffCooperateDefect = getWealth()
+					+ getDemographicPrisoner_sDilemma().getPayoffCD();
+			int valueWealthAddPayoffDefectCooperateCopy = otherPlayer
+					.getWealth()
+					+ otherPlayer.getDemographicPrisoner_sDilemma()
+							.getPayoffDC();
+			setWealth(valueWealthAddPayoffCooperateDefect);
+			otherPlayer.setWealth(valueWealthAddPayoffDefectCooperateCopy);
+		}
+		if ((!isCooperate() && !otherPlayer.isCooperate())) {
+			int valueWealthAddPayoffDefectDefect = getWealth()
+					+ getDemographicPrisoner_sDilemma().getPayoffDD();
+			int valueWealthAddPayoffDefectDefectCopy = otherPlayer.getWealth()
+					+ otherPlayer.getDemographicPrisoner_sDilemma()
+							.getPayoffDD();
+			setWealth(valueWealthAddPayoffDefectDefect);
+			otherPlayer.setWealth(valueWealthAddPayoffDefectDefectCopy);
 		}
 	}
 	/**
@@ -337,39 +227,28 @@ public class Player extends CellOccupant {
 	 * @generated
 	 */
 	public void fissionRule() {
-		if (getWealth() >= getDemographicPrisoner_sDilemma().getFissionWealth()) {
-			PlayCell birthLocation = (PlayCell) ((org.ascape.model.space.Discrete) getDemographicPrisoner_sDilemma()
-					.getGameSpace().getSpace())
-					.findRandomAvailableNeighbor(((org.ascape.model.CellOccupant) this)
-							.getHostCell());
-			if (birthLocation != null) {
+		if (getWealth() >= getDemographicPrisoner_sDilemma().getFissionWealth()) { /*
+																					Spatial Functions:
+																					[neighbor, available]
+																					 */
+			PlayCell birthLocation = new PlayCell();
 
-				Player createAgents = (Player) getDemographicPrisoner_sDilemma()
-						.getPlayerScape().getSpace().newLocation(false);
-				if (createAgents.getHostScape() != ((Agent) birthLocation)
-						.getScape()) {
-					die();
-					getDemographicPrisoner_sDilemma().getPlayerScape().add(
-							createAgents);
-				}
-				createAgents.moveTo(birthLocation);
-				createAgents.setWealth(getDemographicPrisoner_sDilemma()
-						.getInheiritedWealth());
-				double valueRandomUnit = getRandom().nextDouble();
-				int wealthChildWealth = getWealth()
-						- createAgents.getDemographicPrisoner_sDilemma()
-								.getInheiritedWealth();
-				if (valueRandomUnit < createAgents
-						.getDemographicPrisoner_sDilemma().getMutationRate()) {
-					boolean valueRandomBoolean = getRandom().nextBoolean();
-					createAgents.setCooperate(valueRandomBoolean);
-				}
-				if (!(valueRandomUnit < createAgents
-						.getDemographicPrisoner_sDilemma().getMutationRate())) {
-					createAgents.setCooperate(isCooperate());
-				}
-				setWealth(wealthChildWealth);
+			createAgents.setWealth(getDemographicPrisoner_sDilemma()
+					.getInheiritedWealth());
+			double valueRandomUnit = randomUnit();
+			int wealthChildWealth = getWealth()
+					- createAgents.getDemographicPrisoner_sDilemma()
+							.getInheiritedWealth();
+			if (valueRandomUnit < createAgents
+					.getDemographicPrisoner_sDilemma().getMutationRate()) {
+				boolean valueRandomBoolean = true;
+				createAgents.setCooperate(valueRandomBoolean);
 			}
+			if (!(valueRandomUnit < createAgents
+					.getDemographicPrisoner_sDilemma().getMutationRate())) {
+				createAgents.setCooperate(isCooperate());
+			}
+			setWealth(wealthChildWealth);
 		}
 	}
 	/**
@@ -380,7 +259,6 @@ public class Player extends CellOccupant {
 	 */
 	public void dieAtAge() {
 		if (getAge() > getDemographicPrisoner_sDilemma().getDeathAge()) {
-			die();
 		}
 	}
 	/**
@@ -391,7 +269,6 @@ public class Player extends CellOccupant {
 	 */
 	public void dieAtWealth0() {
 		if (getWealth() < 0) {
-			die();
 		}
 	}
 	/**
@@ -463,17 +340,4 @@ public class Player extends CellOccupant {
 		wealth = _wealth;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		if (name == null) {
-			return "Player " + getUID();
-		} else {
-			return name;
-		}
-	}
 }

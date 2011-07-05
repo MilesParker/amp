@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <metaabm:SContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:act="http://metaabm.org/act" xmlns:function="http://metaabm.org/function" xmlns:metaabm="http://metaabm.org/structure" label="Root Context" ID="rootContext" pluralLabel="Root Contexts">
-  <attributes label="Root Context Agent Count" ID="rootContextAgentCount" pluralLabel="Root Context Agent Counts" description="The number of root context agents to create." sType="INTEGER"/>
-  <attributes label="Root Context Context Count" ID="rootContextContextCount" pluralLabel="Root Context Context Counts" description="The number of root context contexts to create." sType="INTEGER"/>
+  <attributes label="Root Context Agent Count" ID="rootContextAgentCount" pluralLabel="Root Context Agent Counts" description="The number of root context agents to create."/>
+  <attributes label="Root Context Context Count" ID="rootContextContextCount" pluralLabel="Root Context Context Counts" description="The number of root context contexts to create."/>
   <rootActivity xsi:type="act:AGroup" label="Actions" ID="actions" pluralLabel="Actionss">
     <members xsi:type="act:ABuild" label="Build Root Context" ID="buildRootContext" targets="//@rootActivity/@members[ID='createRootContextAgents'] //@rootActivity/@members[ID='createRootContextContexts']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="/" pluralLabel="Build Root Contexts"/>
     <members xsi:type="act:ACreateAgents" label="Create Root Context Agents" ID="createRootContextAgents" sources="//@rootActivity/@members[ID='buildRootContext']" selected="//@rootActivity/@members[ID='buildRootContext']" agent="//@agents[ID='rootContextAgent']" agentCount="//@attributes[ID='rootContextAgentCount']"/>
@@ -19,9 +19,21 @@
       </members>
     </rootActivity>
     <implementation className="RootContextAgent"/>
+    <styles xsi:type="metaabm:SStyle2D" label="Root Context Agent Style 2D" ID="rootContextAgentStyle2D" pluralLabel="Root Context Agent Style 2Ds">
+      <rootActivity xsi:type="act:AGroup" label="Actions" ID="actions" pluralLabel="Actionss">
+        <members xsi:type="act:ARule" label="Default Root Context Agent Style" ID="defaultRootContextAgentStyle" selected="//@agents[ID='rootContextAgent']/@styles[ID='rootContextAgentStyle2D']/@rootActivity/@members[ID='defaultRootContextAgentStyle']" agent="//@agents[ID='rootContextAgent']" pluralLabel="Default Root Context Agent Styles"/>
+      </rootActivity>
+      <implementation className="RootContextAgentStyle2D"/>
+    </styles>
   </agents>
   <agents xsi:type="metaabm:SContext" label="Root Context Context" ID="rootContextContext" pluralLabel="Root Context Contexts">
     <rootActivity xsi:type="act:AGroup" label="Actions" ID="actions" pluralLabel="Actionss"/>
     <implementation className="RootContextContext"/>
+    <styles xsi:type="metaabm:SStyle2D" label="Root Context Context Style 2D" ID="rootContextContextStyle2D" pluralLabel="Root Context Context Style 2Ds">
+      <rootActivity xsi:type="act:AGroup" label="Actions" ID="actions" pluralLabel="Actionss">
+        <members xsi:type="act:ARule" label="Default Root Context Context Style" ID="defaultRootContextContextStyle" selected="//@agents[ID='rootContextContext']/@styles[ID='rootContextContextStyle2D']/@rootActivity/@members[ID='defaultRootContextContextStyle']" agent="//@agents[ID='rootContextContext']" pluralLabel="Default Root Context Context Styles"/>
+      </rootActivity>
+      <implementation className="RootContextContextStyle2D"/>
+    </styles>
   </agents>
 </metaabm:SContext>
