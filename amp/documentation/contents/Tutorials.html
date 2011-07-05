@@ -1,0 +1,896 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Chapter&nbsp;4.&nbsp;Tutorials</title>
+<link href="book.css" type="text/css" rel="stylesheet">
+<meta content="DocBook XSL Stylesheets V1.76.0" name="generator">
+<link rel="home" href="index.html" title="Agent Modeling Guide">
+<link rel="up" href="index.html" title="Agent Modeling Guide">
+<link rel="prev" href="User_Guide.html" title="Chapter&nbsp;3.&nbsp;User Guide">
+<link rel="next" href="Programer_Guide.html" title="Chapter&nbsp;5.&nbsp;Programer Guide">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table summary="Navigation header" width="100%">
+<tr>
+<th align="center" colspan="3">Chapter&nbsp;4.&nbsp;Tutorials</th>
+</tr>
+<tr>
+<td align="left" width="20%"><a accesskey="p" href="User_Guide.html">Prev</a>&nbsp;</td><th align="center" width="60%">&nbsp;</th><td align="right" width="20%">&nbsp;<a accesskey="n" href="Programer_Guide.html">Next</a></td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter" title="Chapter&nbsp;4.&nbsp;Tutorials">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="Tutorials"></a>Chapter&nbsp;4.&nbsp;Tutorials</h2>
+</div>
+</div>
+</div>
+<div class="toc">
+<dl>
+<dt>
+<span class="section"><a href="Tutorials.html#Designing_a_Model">Designing a Model</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="Tutorials.html#Model_Goals">Model Goals</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="Tutorials.html#Model_Implementation">Model Implementation</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="Tutorials.html#Setup">Setup</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="Tutorials.html#Open_Agent_Modeling_Perspective">Open Agent Modeling Perspective</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Tutorials.html#Create_Project">Create Project</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Tutorials.html#Name_project">Name project</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Tutorials.html#Create_Model">Create Model</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="Tutorials.html#Structure_3">Structure</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="Tutorials.html#Bug_Agent">Bug Agent</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Tutorials.html#Grid_Space">Grid Space</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="Tutorials.html#Actions_Part_I">Actions Part I</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="Tutorials.html#Create_Initialize_Rule">Create Initialize Rule</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Tutorials.html#Run_Initial_Model">Run Initial Model</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="Tutorials.html#Styles_2">Styles</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="Tutorials.html#Create_Bug_Style">Create Bug Style</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="Tutorials.html#Actions_Part_II">Actions Part II</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="Tutorials.html#Create_Select_and_Query_Actions"></a></span>
+</dt>
+<dt>
+<span class="section"><a href="Tutorials.html#Run_Final_Model">Run Final Model</a></span>
+</dt>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" title="Designing a Model">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Designing_a_Model"></a>Designing a Model</h2>
+</div>
+</div>
+</div>
+<p>In this tutorial, we'll walk through the creation of a complete model. While the tutorial seems lengthy, that's because we've tried to be thorough in describing each step. As we demonstrate in an online video, the actual model can be created in just a couple of minutes.</p>
+<div class="section" title="Model Goals">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Model_Goals"></a>Model Goals</h3>
+</div>
+</div>
+</div>
+<p>Before beginning a modeling project it is important to have a clear idea of what is being modeled and how it should be modeled. We need to know a bit about where we are going before we start. For our target, we'll use a model described in a paper written by Railsback, Lytien and Grimm. They describe "Stupid Model", a model that could be used to provide a common standard to demonstrated features of different Agent-Based Modeling platforms. See 
+					<a class="ulink" href="http://condor.depaul.edu/~slytinen/abm/StupidModelFormulation.pdf" target="_new">http://condor.depaul.edu/~slytinen/abm/StupidModelFormulation.pdf</a> for the complete specification. Here are the key specifications for the basic model.
+				</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>The space is a two-dimensional grid of dimensions 100 x 100. The space is toroidal, meaning that if bugs move off one edge of the grid they appear on the opposite edge.</p>
+</li>
+<li class="listitem">
+<p>100 bug agents are created. They have one behavior: moving to a randomly chosen grid location within +/- 4 cells of their current location, in both the X and Y directions. If there already is a bug at the location (including the moving bug itself, bugs are not allowed to stay at their current location unless none of the neighborhood cells are vacant), then another new location is chosen. This action is executed once per time step.</p>
+</li>
+<li class="listitem">
+<p>The bugs are displayed on the space. Bugs are drawn as red circles. The display is updated at the end of each time step.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" title="Model Implementation">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Model_Implementation"></a>Model Implementation</h2>
+</div>
+</div>
+</div>
+<div class="section" title="Setup">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Setup"></a>Setup</h3>
+</div>
+</div>
+</div>
+<div class="section" title="Open Agent Modeling Perspective">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Open_Agent_Modeling_Perspective"></a>Open Agent Modeling Perspective</h4>
+</div>
+</div>
+</div>
+<p>A special Agent Modeling 
+						<span class="bold"><strong>Perspective</strong></span> can be used to setup your 
+						<span class="bold"><strong>Workspace</strong></span> for modeling. Depending on your how you installed the agent modeling tools, you can simply pick the perspective from the choices in the upper-right hand of your workbench:
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial0Perspective.png"></div>
+<p>
+					
+</p>
+<p>Or, if you can't see it there, you can access it by selecting the menu '''Open Perspective &gt; Other... and then selecting the Agent Modeling perspective from the provided options:</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial0Perspective2.png"></div>
+<p>
+					
+</p>
+</div>
+<div class="section" title="Create Project">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Create_Project"></a>Create Project</h4>
+</div>
+</div>
+</div>
+<p>Before doing anything else, we need a project -- a folder to organize our models within. Right-click in the Package Explorer and select 
+						<span class="bold"><strong>New &gt; Agent Modeling Escape Project</strong></span>.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial1.png"></div>
+<p>
+					
+</p>
+</div>
+<div class="section" title="Name project">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Name_project"></a>Name project</h4>
+</div>
+</div>
+</div>
+<p>We'll get a dialog allowing us to name the project. Let's call it something simple.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial2.png"></div>
+<p>
+					
+</p>
+</div>
+<div class="section" title="Create Model">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Create_Model"></a>Create Model</h4>
+</div>
+</div>
+</div>
+<p>We'll need a model as well. This is the container for all of the the agents and behaviors we'll be defining. Right-click on the project folder and choose 
+						<span class="bold"><strong>New &gt; Agent Model</strong></span>.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial3CreateModel.png"></div>
+<p>
+					
+</p>
+<p>You'll see a model creation wizard from which you can name the model. Just give it the name "StupidModel1.metaabm".</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial4CreateModel.png"></div>
+<p>
+					
+</p>
+<p>Click 
+						<span class="bold"><strong>Next</strong></span> to see some other options. We don't need to change any of this:
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial5CreatePage2.png"></div>
+<p>
+					
+</p>
+<p>So just click the 
+						<span class="bold"><strong>Finish</strong></span> button and we're ready to move on with the tutorial.
+					</p>
+</div>
+</div>
+<div class="section" title="Structure">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Structure_3"></a>Structure</h3>
+</div>
+</div>
+</div>
+<div class="section" title="Bug Agent">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Bug_Agent"></a>Bug Agent</h4>
+</div>
+</div>
+</div>
+<div class="section" title="Create New Agent">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Create_New_Agent"></a>Create New Agent</h5>
+</div>
+</div>
+</div>
+<p>Our first step is to create an agent. The root contexts and a number of neccessary model components were already created automatically. So right-click on the root "StupidModel1" context and select 
+							<span class="bold"><strong>Create Member &gt; Agent</strong></span>.
+						</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial6Createagent.png"></div>
+<p>
+						
+</p>
+</div>
+<div class="section" title="Name Agent">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Name_Agent"></a>Name Agent</h5>
+</div>
+</div>
+</div>
+<p>Let's call it "Bug". In the lower left-hand corner you should see the 
+							<span class="bold"><strong>Properties</strong></span> View. This is where you'll edit model values when working with the tree editor. The properties view -- as with any other view--- can be moved anywhere within the workbench and if you can't find it -- or any other views -- you can always lcoate it through 
+							<span class="bold"><strong>Window &gt; Show View &gt; Other</strong></span>. Find the "Label" property and type our new name into it. You'll see that all of the related name properites are also updated.
+						</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial6NameBug.png"></div>
+<p>
+						
+</p>
+</div>
+<div class="section" title="The Create Agent Action">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="The_Create_Agent_Action"></a>The Create Agent Action</h5>
+</div>
+</div>
+</div>
+<p>While we've been making these changes, the modeling framework has also been doing some work behind the scenes. For example, it has created an attribute and a rule to create the agents. Open the Actions node and the Attributes node to see these changes. If we look at the attributes for the model, we can see that an attribute specifying the number of agents has been created called "Bug Count". Select it, then enter "100" as the default value. The default value is the value the model will use if no value is specified anywhere else (like in the parameter launcher).</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial10AgentCount.png"></div>
+<p>
+						
+</p>
+<p>You might want to take a look at the Create Bugs rule, but there isn't anything we need to change there.</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial11BuildAgents.png"></div>
+<p>
+						
+</p>
+</div>
+</div>
+<div class="section" title="Grid Space">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Grid_Space"></a>Grid Space</h4>
+</div>
+</div>
+</div>
+<div class="section" title="Create Grid">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Create_Grid"></a>Create Grid</h5>
+</div>
+</div>
+</div>
+<p>Next, we'll create a grid for the Bugs to move around upon. Right-click on the StupidModel1 context and choose 
+							<span class="bold"><strong>New &gt; Grid</strong></span>.
+						</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial7CreateGrid.png"></div>
+<p>
+						
+</p>
+</div>
+<div class="section" title="Set Grid Parameters">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Set_Grid_Parameters"></a>Set Grid Parameters</h5>
+</div>
+</div>
+</div>
+<p>Now, looking at the properties for the Grid we've just created, we can see that there are a number of properties to set. We want to make a number of changes.</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>Set the space's "Border Rule" property to be "Periodic" -- the edges wrap around from one ege to the other.</p>
+</li>
+<li class="listitem">
+<p>Set the "Neighborhood" property to be "Moore" -- that's how we are going to interpret the statement "in the X and Y directions".</p>
+</li>
+<li class="listitem">
+<p>Set the dimensionality to "2". (You might need to enlarge the Property view or use the scroll bar to see the Dimensionality property.)</p>
+</li>
+</ol>
+</div>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial8GridParameters.png"></div>
+<p>
+						
+</p>
+<p>Again, the framework has taken care of some things for us automatically. If we now open the Grid node, we can see that "Width" and "Height" attributes have been created based on the dimensionality we've just defined. We'll set each of them to "100", so that we end up with a 100 x 100 grid. (Which is pretty large for a model of this kind, but we want to go with the basic specification.)</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial9GridDims.png"></div>
+<p>
+						
+</p>
+</div>
+<div class="section" title="The Build Grid Action">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="The_Build_Grid_Action"></a>The Build Grid Action</h5>
+</div>
+</div>
+</div>
+<p>The Agent Modeling Framework has also created a Build Gird Action for us. If you navigate to the StupidModel1 context Actions node again, you can see the Action. If you click on it you should see the following properties set:</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial14BuildGridParams.png"></div>
+<p>
+						
+</p>
+<p>If you click on the 
+							<span class="bold"><strong>...</strong></span> button next to the "Agents" property you'll see see the Bug, which is the agent that will be moving around upon the grid.
+						</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial13BuildGridAgents.png"></div>
+<p>
+						
+</p>
+</div>
+</div>
+</div>
+<div class="section" title="Actions Part I">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Actions_Part_I"></a>Actions Part I</h3>
+</div>
+</div>
+</div>
+<div class="section" title="Create Initialize Rule">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Create_Initialize_Rule"></a>Create Initialize Rule</h4>
+</div>
+</div>
+</div>
+<p>Now we can make these bugs do something. Let's create our first rule. In this case we're going to create a special Initialize Action that executes once when the model is first created for each agent. All Actions begin from the agent (or style) Actions list and there are only a few Actions that can serve as roots. See the Design section of this guide for much more on that. Open the Bug node by clicking the triangle icon, right-click on the Actions node and select the '''Create Member &gt; Initialize Action.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial15CreateInitialize.png"></div>
+<p>
+					
+</p>
+<div class="section" title="Create Select Action">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Create_Select_Action"></a>Create Select Action</h5>
+</div>
+</div>
+</div>
+<p>Next, right click on the new Initialize node and choose 
+							<span class="bold"><strong>Create Member &gt; Select</strong></span> to create a Select target.
+						</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial16CreateSelect.png"></div>
+<p>
+						
+</p>
+<p>Selects are the central building blocks of model actions and define the basis for Query and Logic Actions that can be modified and used in subsequent targets. Targets are actions that "follow from" other actions. With this Select we are going to be searching for places for the Bug to move to at the very start of the model run. Here we need to specify the space we will be looking for cells within, so we set the Space property to "Grid 2D". Normally, we'd specify an agent as well, but as the Grid 2D cells don't have any attributes, we don't need to define them explicitly. So we just need to make sure that the Agent property is null (blank).</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial165Select2.png"></div>
+<p>
+						
+</p>
+</div>
+<div class="section" title="Create Query Action">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Create_Query_Action"></a>Create Query Action</h5>
+</div>
+</div>
+</div>
+<p>Next, we create a Query Action. A query is really a query term; we're specifying some aspect of the search that we're interested in.</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial17CreateQuery.png"></div>
+<p>
+						
+</p>
+<p>In this case we want a special kind of query, a query within space for any agents that are available; that is unoccupied by another agent. So we select "Spatial: Available" form the drop down list of query functions.</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial18QueryFunction.png"></div>
+<p>
+						
+</p>
+</div>
+<div class="section" title="Create Move Action">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Create_Move_Action"></a>Create Move Action</h5>
+</div>
+</div>
+</div>
+<p>Finally, as the last part of the initial action specification, we'll create a Move Action using 
+							<span class="bold"><strong>Create Member &gt; Move</strong></span>. (Not shown.) The properties should be correct, but check to make sure that the selection property is "Initialize" (the root), and the destination property is "Bug" (the Select Action we've defined above). Like this:
+						</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial19Move.png"></div>
+<p>
+						
+</p>
+</div>
+</div>
+<div class="section" title="Run Initial Model">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Run_Initial_Model"></a>Run Initial Model</h4>
+</div>
+</div>
+</div>
+<p>That's all we have to do to create our first working model! Now, go to the 
+						<span class="bold"><strong>Package Explorer</strong></span> and select the StupidModel1.metaabm file. Right-click on it and select 
+						<span class="bold"><strong>Execute</strong></span>. Or click on the first "m" button in the toolbar. (Again, we've simplified the toolbar for this tutorial, so you may have more buttons appearing then we're showing here.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial20ExecuteModel.png"></div>
+<p>
+					
+</p>
+<p>A new perspective for "Agent Execution" will automatically open up and you can see that the agents have placed themselves in the grid. They don't do anything else yet.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial21Execute2.png "></div>
+<p>
+					
+</p>
+</div>
+</div>
+<div class="section" title="Styles">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Styles_2"></a>Styles</h3>
+</div>
+</div>
+</div>
+<div class="section" title="Create Bug Style">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Create_Bug_Style"></a>Create Bug Style</h4>
+</div>
+</div>
+</div>
+<div class="section" title="Create Style">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Create_Style"></a>Create Style</h5>
+</div>
+</div>
+</div>
+<p>While Escape assigns a default color of black for the agents, we'll want something more interesting -- so let's make the Bugs red. Agent visualization is accomplished using the same mechanism as ordinary agent rules. So first, let's create a new Style. Right click on the "Styles" node and select '''</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial22CreateStyle.png "></div>
+<p>
+						
+</p>
+<p>By default the style will be called BugStyle2D. Open the Style to the Actions node and create a rule.</p>
+</div>
+<div class="section" title="Create Style Rule">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Create_Style_Rule"></a>Create Style Rule</h5>
+</div>
+</div>
+</div>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial23CreateStyleRule.png "></div>
+<p>
+						
+</p>
+<p>Now we need to create a series of evaluations. An Evaluation is like a Query in that it performs some kind of function in the broadest sense, but unlike a Query, it does not affect whether target (downstream) Acts are performed. For Styles we have a set of Graphic functions that we will chain together to draw a figure. First we create the Evaluation.</p>
+</div>
+<div class="section" title="Create Evaluations">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Create_Evaluations"></a>Create Evaluations</h5>
+</div>
+</div>
+</div>
+<p>We make the first Evaluation define a Color of "Red". Right click on the new Rule, and select 
+							<span class="bold"><strong>New &gt; Command &gt; Evaluate</strong></span> (not shown) to create an Evaluation. Then in the function property, select "Graphic: Color Red".
+						</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial24EvaluationFunction.png "></div>
+<p>
+						
+</p>
+<p>We'll create two more evaluation targets. Right-click on the "Color Red" evaluation and create an Evaluation. Pick the "Graphic: Draw Oval" fill. For the last part of our style, we need to actually draw the figure. To do this we create a last Evaluation target for "Draw Oval" and give it the "Graphic: Fill Shape" function. By now it should be clear how to do this. "Fill" or "Outline" will always come last in a chain of graphic evaluations, but otherwise the order shouldn't matter. See the Demographic Prisoner's Dilemma model for an example of how this can be used to selectively pick Colors and or Shapes. You should end up with something like this:</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial25FinishStyle.png "></div>
+<p>
+						
+</p>
+</div>
+</div>
+</div>
+<div class="section" title="Actions Part II">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Actions_Part_II"></a>Actions Part II</h3>
+</div>
+</div>
+</div>
+<p>To make our agents move randomly every iteration, we will create a Rule. (For those familiar with Repast or other scheduling oriented AM platforms, a rule is just a schedule that gets activated each and every period for all agents.) At this point in the tutorial, we'll show screenshots only for aspects of the modeling process that haven't already been covered.</p>
+<div class="section">
+<div class="titlepage"></div>
+<div class="section" title="Create Select and Query Actions">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="N11208"></a>Create Select and Query Actions</h5>
+</div>
+</div>
+</div>
+<p>The first part of the Bug Rule is exactly the same as the Initialize rule. Create a Selection Action. As before, we'll make the Select statement "Agent" property blank, as we want to move to a cell. As before, we want to make sure the Cell is free before we try to move in, so we'll select a "Spatial: Available" Query function.(By the way, to make scrolling through the list easier, you can type the first letters of the selection, in this case "SP".)</p>
+<p>But now, instead of moving 
+							<span class="italic">anywhere</span> we want to move nearby. So now, we create a 
+							<span class="italic">parallel</span> or "sibling" Query from the same Select root. Because this new Query Action is a child of the Select Action and not the "Space Available" Query we've just created, we'll right-click on the 
+							<span class="italic">Select</span> Action and choose 
+							<span class="bold"><strong>Create Target &gt; Select &gt; Query</strong></span>. Like so:
+						</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial26CreateQuery2.png "></div>
+<p>
+						
+</p>
+<p>Often, we would pick the "Spatial: Neighbor" function to take a random walk, but according to the specification, we actually want to move into some random Cell within distance four (4). So we will pick "Spatial: Within" from the list of functions.</p>
+</div>
+<div class="section" title="Fixing Model Errors">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Fixing_Model_Errors"></a>Fixing Model Errors</h5>
+</div>
+</div>
+</div>
+<p>Instead of specifying the actual distance now, let's see how the Agent Modeling Framework error checking capabilities can help us in model development. Save the model by selecting 
+							<span class="bold"><strong>File &gt; Save</strong></span> from the application menu. Notice that a red marker appears next to the StupidModel1.metaabm file. If you reveal the 
+							<span class="bold"><strong>Problems View</strong></span> you'll see a list of current errors and warnings and if you open the errors node in that list, you'll see an item reporting that the input has no value. If you double-click on that item, you'll be taken to the input for the Within query and you'll be able to edit it.
+						</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial27NoValue.png "></div>
+<p>
+						
+</p>
+<p>In addition to error markers, metaABM provides warnings designed to help you avoid common design mistakes. For example, a warning will be issued if you attempt to move an agent from its selection to the same selection; this is not strictly speaking an error, but it doesn't make much sense. You'll also receive a warning for default values that have not been specified. You might notice that the Demographic Prisonner's Dilemma model has warning markers, this is because we were happy with the '0' default values for the attributes and didn't provide any. (By the way, you might also notice a number of Java warnings. By default the Eclipse IDE is very conservative when it comes to warnings, and expects the usage of language constructs that we choose not to use. A full discussion of all of this is beyond the scope of the tutorial, but see the Eclipse documentation on problem views for more ideas about how to customize these views.)</p>
+<p>To fix this error we just need to assign a value for search distance. We 
+							<span class="bold"><strong>could</strong></span> simply create a literal for the Spatial: Within Query but that isn't really good practice. (Originally the Agent Modeling Framework didn't even support Literal values, but we added them for convenience.) Now, we will create our first Attribute. In this case, we want the Attribute to belong to the Stupid Model as it will be the same value for all Agents for now. So right-click on the Stupid Model context Attributes node and create a new one.
+						</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial28CreateAttribute.png "></div>
+<p>
+						
+</p>
+<p>Name the Attribute -- "Bug Vision" seems descriptive -- give it a type of Integer, and assign it a default value of 4. This will allow most ABM platforms to provide the ability to change vision at runtime or through batch definitions, something we couldn't do if we had used a literal value.</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial29AttributeValues.png "></div>
+<p>
+						
+</p>
+<p>Finally, we assign the Vision attribute to the "Input" node in our Spatial: Within Query.</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial30AttributeInput.png "></div>
+<p>
+						
+</p>
+</div>
+<div class="section" title="Create Intersection Action">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Create_Intersection_Action"></a>Create Intersection Action</h5>
+</div>
+</div>
+</div>
+<p>Now, we need to combine the requirement that the cell be available with the requirement that it be within 4 cell's distance. To accomplish this, we'll add an Intersection Action. The Logical Actions, including "Intersection", "Union" and "None" define how Query Actions work together. The Intersection Action needs to be a target of 
+							<span class="italic">both</span> the Available and Within targets. This means that the action has two sources. See the Modeler's Guide for more information about how action flow works.
+						</p>
+<p>Editing actions with multiple sources and targets is the most complex aspect of the model editor so you may need to work with this example a bit in order to get a feel for how it should work. First, we create the Intersection Action as a target of the Spatial Available Query. (Not the Within Query).</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial31Intersect.png "></div>
+<p>
+						
+</p>
+<p>Then we need to make the Intersection Action a target of the Within Query as well. To accomplish this, we drag the Intersection Action over the Within Query while holding down the ctrl-key. Depending on your environment, you may need to begin dragging before you click the control key -- otherwise, your initial control click will bring up the context menu. It's a bit hard to see this in a static image, but you simply need to click on the Intersection Action, begin dragging, hold down the ctrl key, move the mouse so that it is over the Within target, and release the mouse. It sounds more complicated then it is!</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial32IntersectAdd.png "></div>
+<p>
+						
+</p>
+</div>
+<div class="section" title="Add Move Action">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Add_Move_Action"></a>Add Move Action</h5>
+</div>
+</div>
+</div>
+<p>Finally, add a Move target to the Intersection.</p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial33Move.png "></div>
+<p>
+						
+</p>
+<p>A few notes on the screenshot above. To make things a bit clearer, we've edited the names for the final panel. Also, the Intersection node might not appear in the same place. We've expanded the nodes so that you can see that while the actions are all listed together, they are actually defined as a tree structure internally. You can follow that tree to see all of the actions that might be the result of any of the actions in the list. To help understand the structure at a glance, the labels include an &lt;- indicator showing the immediate sources of each of the nodes. 
+							<span class="italic">Note especially than while the targets for actions often appear immediately following their source actions, this is not always the case.</span>
+						
+</p>
+</div>
+</div>
+<div class="section" title="Run Final Model">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Run_Final_Model"></a>Run Final Model</h4>
+</div>
+</div>
+</div>
+<p>Now, we can select the model in the 
+						<span class="bold"><strong>Package Navigator</strong></span> again, and run the model. It doesn't look much different in a snapshot, but those agents should now be moving around. We have built a complete Ascape model from our model.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/edit_tutorial/SimpleTutorial34RunFinal.png "></div>
+<p>
+					
+</p>
+<p>We hope this tutorial has enabled you to get up and running and given you some familiarity with the basic Agent Modeling Framework approach. The example models include the other "stupid models" from the paper, as well as a number of other interesting models.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table summary="Navigation footer" width="100%">
+<tr>
+<td align="left" width="40%"><a accesskey="p" href="User_Guide.html">Prev</a>&nbsp;</td><td align="center" width="20%">&nbsp;</td><td align="right" width="40%">&nbsp;<a accesskey="n" href="Programer_Guide.html">Next</a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="40%">Chapter&nbsp;3.&nbsp;User Guide&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html">Home</a></td><td valign="top" align="right" width="40%">&nbsp;Chapter&nbsp;5.&nbsp;Programer Guide</td>
+</tr>
+</table>
+</div>
+</body>
+</html>
