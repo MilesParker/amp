@@ -53,9 +53,8 @@ public class SDActivator extends AbstractUIPlugin {
 	}
 
 	/**
-	 * @param currentPlugin
 	 * @param relativPath
-	 * @return die URL to the relative path
+	 * @return URL to the relative path
 	 */
 	public static URL getURL(String relativPath) {
 		return FileLocator.find(getDefault().getBundle(), new Path(relativPath), null);

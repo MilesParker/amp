@@ -132,27 +132,29 @@ public abstract class AbstractJavaSDTest extends TestCase {
 
 		// Check if generated files exist:
 		for (String generatedFile : expectedFiles) {
-			assertNotNull(getProjectFilePath(generatedFile));
+			File file = new File(getProjectFilePath(generatedFile));
+			assertTrue(file.exists());
 		}
 	}
 
 	/**
 	 * Remove all entries of a directory. The directory itself will not be
-	 * deleted.
+	 * deleted. If it doesn't exist, it will be created.
 	 * 
 	 * @param relativePath
 	 * @return <code>true</code> if successful
 	 */
 	protected boolean emptyProjectDir(String relativePath) {
-		String dir = getProjectFilePath(relativePath);
-		if (dir != null) {
-			return delete(new File(dir), false);
+		String absolutePath = getProjectFilePath(relativePath);
+		File dir = new File(absolutePath);
+		if (!dir.exists()) {
+			return dir.mkdir();
 		}
-		return true;
+		return delete(dir, false);
 	}
 
 	protected String getProjectFilePath(String relativePath) {
-		return SDActivator.getAbsoluteDir(TEST_PROJECTS_DIR + project.getName() + "/" + relativePath);
+		return SDActivator.getAbsoluteDir(TEST_PROJECTS_DIR + project.getName()) + relativePath;
 	}
 
 	/**
@@ -164,6 +166,10 @@ public abstract class AbstractJavaSDTest extends TestCase {
 	 * @return <code>true</code> if deletion was successful
 	 */
 	private boolean delete(File file, boolean deleteRoot) {
+		if (!file.exists()) {
+			return true;
+		}
+
 		if (file.isDirectory()) {
 			for (File child : file.listFiles()) {
 				if (!delete(child, true)) {
