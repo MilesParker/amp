@@ -17,10 +17,6 @@
       %license
    </license>
 
-   <url>
-      <update url="http://download.eclipse.org/amp/updates/releases/indigo"/>
-   </url>
-
    <includes
          id="org.eclipse.amp.all"
          version="0.0.0"/>
@@ -36,5 +32,19 @@
    <includes
          id="org.eclipse.amp.amf.target.escape3d"
          version="0.0.0"/>
+
+   <plugin
+         id="org.apache.commons.lang"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.apache.commons.collections"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
 
 </feature>
