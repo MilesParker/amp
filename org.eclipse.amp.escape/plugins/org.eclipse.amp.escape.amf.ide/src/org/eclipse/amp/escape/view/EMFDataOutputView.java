@@ -70,6 +70,7 @@ public class EMFDataOutputView extends DataView {
 	private ResourceSet resourceSet;
 
 	private Catalog catalog;
+
 	private Run currentRun;
 
 	Map<DataSeries, Measurement> measureForSeries = new HashMap<DataSeries, Measurement>();

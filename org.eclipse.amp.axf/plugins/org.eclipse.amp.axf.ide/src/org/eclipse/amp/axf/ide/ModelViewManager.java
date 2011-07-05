@@ -56,8 +56,6 @@ public class ModelViewManager implements IAdapterFactory {
 
 	private static ModelViewManager instance;
 
-	boolean updated;
-
 	String priorPerspectiveID;
 
 	Map<IModel, List<IViewPart>> viewsForModel;
@@ -107,6 +105,16 @@ public class ModelViewManager implements IAdapterFactory {
 		return instance;
 	}
 
+	/**
+	 * Only used for Unittests.
+	 * 
+	 * @return
+	 */
+	static ModelViewManager createNewInstance() {
+		instance = null;
+		return getInstance();
+	}
+
 	private final class PartCreator implements Runnable {
 		private final String name;
 
@@ -116,7 +124,7 @@ public class ModelViewManager implements IAdapterFactory {
 
 		IViewPart part;
 
-		private PartCreator(String name, ModelInput editorInput, String id) {
+		PartCreator(String name, ModelInput editorInput, String id) {
 			this.name = name;
 			this.editorInput = editorInput;
 			this.id = id;
@@ -149,13 +157,12 @@ public class ModelViewManager implements IAdapterFactory {
 						}
 					}.start();
 				} else if (part instanceof ErrorViewPart) {
+					//
 				} else {
 					throw new RuntimeException("Couldn't create model view part.");
 				}
 			} catch (org.eclipse.ui.PartInitException e) {
 				throw new RuntimeException("Couldn't instantiate model view " + this, e);
-			} finally {
-				updated = true;
 			}
 		}
 
@@ -168,7 +175,7 @@ public class ModelViewManager implements IAdapterFactory {
 	 * 
 	 * @author mparker
 	 */
-	private final class ActivationListener implements IPartListener {
+	final class ActivationListener implements IPartListener {
 		private void assignPart(final IWorkbenchPart part) {
 			if (part instanceof IModelPart && ((IModelPart) part).getAdapter(IModel.class) != null) {
 				new Thread() {
@@ -201,6 +208,7 @@ public class ModelViewManager implements IAdapterFactory {
 		}
 
 		public void partDeactivated(IWorkbenchPart part) {
+			//
 		}
 
 		public void partOpened(IWorkbenchPart part) {
@@ -393,16 +401,8 @@ public class ModelViewManager implements IAdapterFactory {
 	 *          the name
 	 */
 	public IViewPart createViewPart(final String id, final ModelInput editorInput, final String name) {
-		updated = false;
 		PartCreator creator = new PartCreator(name, editorInput, id);
-		PlatformUI.getWorkbench().getDisplay().asyncExec(creator);
-		while (!updated) {
-			try {
-				Thread.sleep(50);
-
-			} catch (InterruptedException e) {
-			}
-		}
+		PlatformUI.getWorkbench().getDisplay().syncExec(creator);
 		return creator.getPart();
 	}
 
@@ -487,6 +487,7 @@ public class ModelViewManager implements IAdapterFactory {
 
 		wb.addWorkbenchListener(new IWorkbenchListener() {
 			public void postShutdown(IWorkbench workbench) {
+				//
 			}
 
 			public boolean preShutdown(IWorkbench workbench, boolean forced) {
@@ -572,8 +573,7 @@ public class ModelViewManager implements IAdapterFactory {
 	 * @param adaptableObject
 	 * @param adapterType
 	 * @return
-	 * @see org.eclipse.core.runtime.IAdapterFactory#getAdapter(java.lang.Object,
-	 *      java.lang.Class)
+	 * @see org.eclipse.core.runtime.IAdapterFactory#getAdapter(java.lang.Object, java.lang.Class)
 	 */
 	public Object getAdapter(Object adaptableObject, Class adapterType) {
 		if (adapterType == IEngine.class && adaptableObject instanceof IModel) {
@@ -592,6 +592,7 @@ public class ModelViewManager implements IAdapterFactory {
 	 * @return
 	 * @see org.eclipse.core.runtime.IAdapterFactory#getAdapterList()
 	 */
+	@SuppressWarnings("rawtypes")
 	public Class[] getAdapterList() {
 		return new Class[] { IEngine.class, IModel.class };
 	}

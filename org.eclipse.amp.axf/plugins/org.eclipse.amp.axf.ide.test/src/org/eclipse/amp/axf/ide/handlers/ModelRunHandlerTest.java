@@ -148,6 +148,7 @@ public abstract class ModelRunHandlerTest {
 		}
 
 		public void addModelListener(ILifeCycleListener listener) {
+			//
 		}
 
 		public Collection<ILifeCycleListener> getModelListeners() {
@@ -155,6 +156,7 @@ public abstract class ModelRunHandlerTest {
 		}
 
 		public void removeModelListener(ILifeCycleListener listener) {
+			//
 		}
 
 		public String getTimeDescription() {
@@ -180,58 +182,52 @@ public abstract class ModelRunHandlerTest {
 		public IEngine getEngine() {
 			return new IEngine() {
 
-				@Override
 				public void stop() {
+					//
 				}
 
-				@Override
 				public void setUpdateGranularity(ITimeGranularity granularity) {
+					//
 				}
 
-				@Override
 				public void observationComplete(ILifeCycleListener observer) {
+					//
 				}
 
-				@Override
 				public boolean isThreadAlive() {
 					return false;
 				}
 
-				@Override
 				public boolean isRunning() {
 					return false;
 				}
 
-				@Override
 				public boolean isPaused() {
 					return false;
 				}
 
-				@Override
 				public boolean isCloseRequested() {
 					return false;
 				}
 
-				@Override
 				public ITimeGranularity getUpdateGranularity() {
 					return null;
 				}
 
-				@Override
 				public IObservationProvider getModel() {
 					return DummyModel.this;
 				}
 
-				@Override
 				public void control(EngineControl ModelControl) {
+					//
 				}
 
-				@Override
 				public void closeFinally() {
+					//
 				}
 
-				@Override
 				public void close() {
+					//
 				}
 			};
 		}

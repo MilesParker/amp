@@ -15,6 +15,7 @@ import java.util.HashSet;
 import org.ascape.util.data.DataSelection;
 import org.eclipse.amp.agf.chart.CachedColorProvider;
 import org.eclipse.amp.agf.chart.ChartEditPart;
+import org.eclipse.amp.agf.chart.ChartViewPart;
 import org.eclipse.amp.escape.ascape.view.EditPartScapeView;
 import org.eclipse.gef.EditPart;
 import org.eclipse.swt.graphics.Color;
@@ -29,7 +30,7 @@ public class ChartView extends EditPartScapeView {
     CachedColorProvider seriesColorProvider = new CachedColorProvider();
 
     public ChartView() {
-        super("org.eclipse.amp.view.ChartView", null, "Chart View");
+        super(ChartViewPart.VIEW_ID, null, "Chart View");
     }
 
     public EditPart createEditPart(EditPart context, Object model) {

@@ -25,8 +25,6 @@ import org.ascape.util.data.StatCollector;
 import org.eclipse.amp.agf.chart.ChartEditPart;
 import org.eclipse.amp.agf.chart.ChartViewPart;
 import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.draw2d.SWTGraphics;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CheckboxCellEditor;
@@ -44,24 +42,19 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Table;
-import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.part.ViewPart;
-import org.eclipse.ui.statushandlers.StatusManager;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class ChartCustomizer.
- */
+
 public class ChartCustomizer extends ViewPart {
+	
+	public static final String VIEW_ID = "org.eclipse.amp.view.customizer.Chart";
 
 	protected Scape scape;
 	protected DataSelection dataSelection;
@@ -148,7 +141,7 @@ public class ChartCustomizer extends ViewPart {
 		protected CellEditor getCellEditor(final Object element) {
 			CheckboxCellEditor checkboxCellEditor = checkBoxFor.get(element);
 			if (checkboxCellEditor == null) {
-				checkboxCellEditor = new CheckboxCellEditor(selectTable
+				checkboxCellEditor = new CheckboxCellEditor(getSelectTable()
 						.getTable());
 			}
 			return checkboxCellEditor;
@@ -185,13 +178,13 @@ public class ChartCustomizer extends ViewPart {
 				getSite().getShell().getDisplay().syncExec(new Runnable() {
 					public void run() {
 						chartEditPart.refresh();
-					};
+					}
 				});
 				getSite().getShell().getDisplay().asyncExec(new Runnable() {
 					public void run() {
-						selectTable.getTable().deselectAll();
-						selectTable.refresh(true);
-					};
+						getSelectTable().getTable().deselectAll();
+						getSelectTable().refresh(true);
+					}
 				});
 			}
 		}
@@ -222,6 +215,7 @@ public class ChartCustomizer extends ViewPart {
 		 * @return
 		 * @see org.eclipse.jface.viewers.ColumnLabelProvider#getText(java.lang.Object)
 		 */
+		@Override
 		public String getText(Object element) {
 			return null;
 		}
@@ -263,6 +257,7 @@ public class ChartCustomizer extends ViewPart {
 		 * @return
 		 * @see org.eclipse.jface.viewers.ColumnLabelProvider#getBackground(java.lang.Object)
 		 */
+		@Override
 		public Color getBackground(Object element) {
 			DataSeries dataSeries = getDataSeries(element);
 			if (dataSeries == null) {
@@ -291,6 +286,7 @@ public class ChartCustomizer extends ViewPart {
 	 * @param parent
 	 * @see org.eclipse.ui.part.WorkbenchPart#createPartControl(org.eclipse.swt.widgets.Composite)
 	 */
+	@Override
 	public void createPartControl(Composite parent) {
 		// Overall
 		control = new Composite(parent, SWT.HORIZONTAL);
@@ -370,15 +366,19 @@ public class ChartCustomizer extends ViewPart {
 			}
 
 			public void partBroughtToTop(IWorkbenchPart part) {
+				//
 			}
 
 			public void partClosed(IWorkbenchPart part) {
+				//
 			}
 
 			public void partDeactivated(IWorkbenchPart part) {
+				//
 			}
 
 			public void partOpened(IWorkbenchPart part) {
+				//
 			}
 
 		});
@@ -403,6 +403,7 @@ public class ChartCustomizer extends ViewPart {
 				SWT.LEFT);
 		statNameColumn.getColumn().setText("Name");
 		statNameColumn.setLabelProvider(new ColumnLabelProvider() {
+			@Override
 			public String getText(Object element) {
 				return ((StatCollector) element).getName();
 			}
@@ -466,15 +467,7 @@ public class ChartCustomizer extends ViewPart {
 	 */
 	@Override
 	public void setFocus() {
-	}
-
-	/**
-	 * Sets the action bars.
-	 * 
-	 * @param actionBars
-	 *            the new action bars
-	 */
-	public void setActionBars(IActionBars actionBars) {
+		//
 	}
 
 	public ChartEditPart getChartEditPart() {
@@ -483,5 +476,9 @@ public class ChartCustomizer extends ViewPart {
 
 	public void refresh() {
 		selectTable.refresh();
+	}
+	
+	TableViewer getSelectTable() {
+		return selectTable;
 	}
 }

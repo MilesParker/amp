@@ -59,18 +59,22 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 
 	protected IProgressMonitor modelMonitor;
 
-	IModel model;
+	private IModel model;
 
-	IProject project;
+	private IProject project;
 
 	private IStatus finishStatus = Status.OK_STATUS;
 
-	TimeGranularity updateGranularity = TimeGranularity.DEFAULT_GRANULARITY;
+	private ITimeGranularity updateGranularity = TimeGranularity.DEFAULT_GRANULARITY;
 
 	public final static long KILL_AFTER_NO_RESPONSE_TIME = 5000;
 
 	// would be nice to have this in Ascape proper but not worth IP submission
 	private boolean closeOnStop = false;
+
+	boolean modelShutdown = false;
+
+	private Job escapeRun;
 
 	/**
 	 * Open.
@@ -117,6 +121,26 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 	 *          true if this method should only return on execution completion.
 	 */
 	public void open(final IResource projectResource, final String modelClassName, String modelName, String[] args, boolean block) {
+		openNotStart(projectResource, modelClassName, modelName, args);
+		start();
+		if (block) {
+			while (!modelShutdown) {
+				try {
+					Thread.sleep(30L);
+				} catch (InterruptedException e) {
+					//
+				}
+			}
+		}
+	}
+	/**
+	 * Open all Files and initialize the Simulation, but don't run it.
+	 * @param projectResource
+	 * @param modelClassName
+	 * @param modelName
+	 * @param args
+	 */
+	public void openNotStart(final IResource projectResource, final String modelClassName, String modelName, String[] args){
 		this.project = projectResource.getProject();
 		setStartOnOpen(false);
 		setAutoRestart(false);
@@ -162,17 +186,8 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 				model.addModelListener(listenerWrapper);
 			}
 		}
-		start();
-		if (block) {
-			while (!modelShutdown) {
-				try {
-					Thread.sleep(30L);
-				} catch (InterruptedException e) {
-				}
-			}
-		}
 	}
-
+	
 	protected void addConsole(String modelName) {
 		final MessageConsole eclipseConsole = new MessageConsole("Run " + modelName, null);
 		getEnvironment().getConsole().setIMessageStream(new MessageAdapter(eclipseConsole));
@@ -242,10 +257,6 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 		escapeRun.schedule();
 	}
 
-	boolean modelShutdown = false;
-
-	private Job escapeRun;
-
 	/**
 	 * 
 	 * @see org.ascape.runtime.Runner#close()
@@ -284,6 +295,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 				elapsed += 30;
 			}
 		} catch (InterruptedException e) {
+			//
 		}
 		if (modelMonitor != null) {
 			modelMonitor.setTaskName("Closed");
@@ -439,7 +451,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 	 * @see org.eclipse.amp.axf.core.IEngine#setUpdateGranularity(org.eclipse.amp.axf.time.ITimeGranularity)
 	 */
 	public void setUpdateGranularity(ITimeGranularity granularity) {
-		this.updateGranularity = (TimeGranularity) granularity;
+		this.updateGranularity = granularity;
 	}
 
 	public IProject getExecutingProject() {
@@ -484,5 +496,8 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 	public boolean isThreadAlive() {
 		return isModelThreadAlive();
 	}
-
+	
+	public Job getEscapeRun() {
+		return escapeRun;
+	}
 }

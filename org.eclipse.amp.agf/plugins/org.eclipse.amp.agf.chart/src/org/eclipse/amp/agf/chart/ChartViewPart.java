@@ -25,37 +25,43 @@ import org.eclipse.gef.editparts.ScalableRootEditPart;
  * The Class ChartViewPart.
  */
 public class ChartViewPart extends EditPartViewPart {
-    CachedColorProvider seriesColorProvider = new CachedColorProvider();
 
-    public RootEditPart createRoot() {
-        return new ScalableRootEditPart() {
-            public void refresh() {
-                ((EditPart) getChildren().get(0)).refresh();
-            }
-        };
-    }
+	public static final String VIEW_ID = "org.eclipse.amp.view.ChartView";
 
-    /**
-     * 
-     * @see org.eclipse.amp.agf.gef.EditPartViewPart#createModelListeners()
-     */
-    public void createModelListeners() {
-        // super.createModelListeners();
-        // getRootListener().setWaitForUpdate(false);
-    }
+	CachedColorProvider seriesColorProvider = new CachedColorProvider();
 
-    @Override
-    public EditPartFactory createFactory(Object contents) {
-        return new EditPartFactory() {
-            public EditPart createEditPart(EditPart context, Object object) {
-                ChartEditPart chartPart = new ChartEditPart();
+	@Override
+	public RootEditPart createRoot() {
+		return new ScalableRootEditPart() {
+			@Override
+			public void refresh() {
+				((EditPart) getChildren().get(0)).refresh();
+			}
+		};
+	}
 
-                chartPart.setSeriesColorProvider(seriesColorProvider);
+	/**
+	 * 
+	 * @see org.eclipse.amp.agf.gef.EditPartViewPart#createModelListeners()
+	 */
+	@Override
+	public void createModelListeners() {
+		// super.createModelListeners();
+		// getRootListener().setWaitForUpdate(false);
+	}
 
-                chartPart.setModel(getModel());
-                return chartPart;
-            };
-        };
-    }
+	@Override
+	public EditPartFactory createFactory(Object contents) {
+		return new EditPartFactory() {
+			public EditPart createEditPart(EditPart context, Object object) {
+				ChartEditPart chartPart = new ChartEditPart();
+
+				chartPart.setSeriesColorProvider(seriesColorProvider);
+
+				chartPart.setModel(getModel());
+				return chartPart;
+			}
+		};
+	}
 
 }
