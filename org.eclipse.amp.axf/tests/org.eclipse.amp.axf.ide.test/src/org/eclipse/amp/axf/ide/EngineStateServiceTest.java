@@ -19,6 +19,9 @@ import org.eclipse.ui.services.ISourceProviderService;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * @author jonas.ruettimann
+ */
 public class EngineStateServiceTest {
 
 	private EngineStateServiceMock classToTest;
