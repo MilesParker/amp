@@ -19,10 +19,6 @@ using GEF Zest framework.
       %license
    </license>
 
-   <url>
-      <update label="%AMPUpdateSiteName" url="http://download.eclipse.org/amp/updates/releases/indigo"/>
-   </url>
-
    <requires>
       <import plugin="org.eclipse.ui"/>
       <import plugin="org.eclipse.core.runtime"/>

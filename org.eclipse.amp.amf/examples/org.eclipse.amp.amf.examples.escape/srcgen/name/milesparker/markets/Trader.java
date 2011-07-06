@@ -172,9 +172,9 @@ public class Trader extends CellOccupant {
 	 */
 	public List getNetwork() {
 		List network = new ArrayList();
-		network.addAll(((Graph) getMarkets().getTargetBuyFirms().getSpace())
-				.getNeighborsFor(this));
 		network.addAll(((Graph) getMarkets().getInstrumentHolders().getSpace())
+				.getNeighborsFor(this));
+		network.addAll(((Graph) getMarkets().getTargetBuyFirms().getSpace())
 				.getNeighborsFor(this));
 		return network;
 	}

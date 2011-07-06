@@ -1,0 +1,4237 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Chapter&nbsp;2.&nbsp;Modeler Guide</title>
+<link href="book.css" type="text/css" rel="stylesheet">
+<meta content="DocBook XSL Stylesheets V1.76.0" name="generator">
+<link rel="home" href="index.html" title="Agent Modeling Guide">
+<link rel="up" href="index.html" title="Agent Modeling Guide">
+<link rel="prev" href="Introduction.html" title="Chapter&nbsp;1.&nbsp;Introduction">
+<link rel="next" href="User_Guide.html" title="Chapter&nbsp;3.&nbsp;User Guide">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<div class="navheader">
+<table summary="Navigation header" width="100%">
+<tr>
+<th align="center" colspan="3">Chapter&nbsp;2.&nbsp;Modeler Guide</th>
+</tr>
+<tr>
+<td align="left" width="20%"><a accesskey="p" href="Introduction.html">Prev</a>&nbsp;</td><th align="center" width="60%">&nbsp;</th><td align="right" width="20%">&nbsp;<a accesskey="n" href="User_Guide.html">Next</a></td>
+</tr>
+</table>
+<hr>
+</div>
+<div class="chapter" title="Chapter&nbsp;2.&nbsp;Modeler Guide">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title">
+<a name="Modeler_Guide"></a>Chapter&nbsp;2.&nbsp;Modeler Guide</h2>
+</div>
+</div>
+</div>
+<div class="toc">
+<dl>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Overview">Overview</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Agent_Modeling_Framework">Agent Modeling Framework</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Structure">Structure</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Overview_2">Overview</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Details">Details</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#General">General</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Agents">Agents</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Attributes_2">Attributes</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Spaces_2">Spaces</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Reference">Reference</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Diagrams">Diagrams</a></span>
+</dt>
+</dl>
+</dd>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Actions_2">Actions</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Overview_3">Overview</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Concepts">Concepts</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Kinds_of_Actions">Kinds of Actions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Flow">Flow</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Selections">Selections</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Weaving">Weaving</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Details_3">Details</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Selections_2">Selections</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Root_Actions">Root Actions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Builders">Builders</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Commands">Commands</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Other">Other</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Query_and_Evaluation_Inputs">Query and Evaluation Inputs</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Reference_2">Reference</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Diagrams_2">Diagrams</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Example">Example</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Functions">Functions</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Overview_4">Overview</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Details_5">Details</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#General_Functions">General Functions</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Logical_Operators">Logical Operators</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Numeric_Operators">Numeric Operators</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Spatial">Spatial</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Random">Random</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Graphic">Graphic</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Time">Time</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Math">Math</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#List">List</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Distribution">Distribution</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Examples">Examples</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Spatial_2">Spatial</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Graphic_2">Graphic</a></span>
+</dt>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Distribution_2">Distribution</a></span>
+</dt>
+</dl>
+</dd>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Reference_3">Reference</a></span>
+</dt>
+<dd>
+<dl>
+<dt>
+<span class="section"><a href="Modeler_Guide.html#Diagrams_3">Diagrams</a></span>
+</dt>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" title="Overview">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Overview"></a>Overview</h2>
+</div>
+</div>
+</div>
+<p>In this section we present the design of the Agent Modeling Framework and explain how it can be used to create models that are transparent, composable and adaptable. Fundamentally, an agent-based model, or "ABM", is composed of five pieces: Agents and Context Agents, Attributes, Spaces, and Actions. The first three refer to structural components, whereas Actions define behavior. Agent models also have styles, which are a special kind of Action used to determine how to portray an agent in a visualization. Finally Actions make use of Functions. We'll describe of these components in a separate section.</p>
+<div class="section" title="Agent Modeling Framework">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Agent_Modeling_Framework"></a>Agent Modeling Framework</h3>
+</div>
+</div>
+</div>
+<p>The Eclipse Platform provides many unique features that make it ideal for an ABM platform. AMF provides easy to use and powerful tools and techniques for designing Agent-Based Models, including a common representation, editors, generators and development environment.</p>
+<p>The Agent Modeling Framework (AMF) provides high level representations for common ABM constructs, and introduces novel ways of representing agents and their behaviors. As detailed in other documentation sections, the Agent Modeling Framework and related tools have been designed to allow researchers to explore complex models in an intuitive way. One of our major design goals has been to create tools that non-programmers can use to create sophisticated models. It has been our experience that using Model-Driven Software Development (MDSD) techniques increase productivity for all developers regardless of skill level. </p>
+<p>The foundation of the Agent Modeling Framework is "Acore". The current version uses an interim version of Acore called "MetaABM". We refer to the AMF models as "meta-models" because they are used to define 
+					<span class="italic">how</span> Agent-Based Models are themselves modeled. For those familiar with Eclipse Model-Driven Development tools, AMF is analogous to EMF but is targeted toward the design and execution of models composed of agents. Acore and MetaABM are defined in Ecore but provide a more direct and high-level ABM representation of agents, including spatial, behavioral and functional features sufficient to generate complete executable models for the target platforms. AMF is fully integrated with the Eclipse IDE platform, but Acore models themselves need have no dependencies on any particular technology beyond XML/XSD.
+				</p>
+<p>Models designed in AMF are transparently converted to Java code for leading Agent-Based Modeling tools, such as the Escape tools which are included in AMP and allow direct execution of models within the AMP environment, and Repast Simphony, another popular Java based ABM tool. These tools create Java code that can then be compiled, executed and event modified in these environments just as with any other Java program. AMF's generative capability is designed to be pluggable and modular so that other developers can create AMF generators for their own tools. In fact, targets can be designed that have no inherent dependencies on Eclipse or even on a traditional platform.</p>
+<p>The Acore / MetaABM meta-model is made up of three main packages. This is all based on MetaABM, and while names and important details will change for Acore, the core design should be quite similar.</p>
+</div>
+</div>
+<div class="section" title="Structure">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Structure"></a>Structure</h2>
+</div>
+</div>
+</div>
+<div class="section" title="Overview">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Overview_2"></a>Overview</h3>
+</div>
+</div>
+</div>
+<p>The basic structure of an agent-based model can be quite simple. While there are many subtle complexities  -- beyond the scope of this manual -- we can construct most models following some straightforward and elegant design principles. And in fact, one of the main goals of the Agent Modeling Framework is to provide a consistent framework that can support using those principles to support the creation of models that can be easily understood, shared, and that can be used interchangeably as components in other models.</p>
+<p>Unlike the approach of a traditional Object Oriented environment, the dominant organizing principal for agents within AMF follows a compositional hierarchical model, not an inheritance model. (Inheritance-like behavior will be supported in forthcoming versions of Acore, but in a more sophisticated, flexible and dynamic way than is supported by traditional programming languages such as Java.) Contexts -- also referred to as "Swarms" or "Scapes", are simply Agents that are capable of containing other agents. With this basic construct -- known as a Composition in design pattern language -- agents are able to contain other agents.</p>
+</div>
+<div class="section" title="Details">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Details"></a>Details</h3>
+</div>
+</div>
+</div>
+<div class="section" title="General">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="General"></a>General</h4>
+</div>
+</div>
+</div>
+<p>Everything represented in an Acore model needs to be referred to in some way. Just as software classes have names, Acore provides a way to label and describe every entity, but in a richer and more maintainable way. All entities in Acore -- including Actions and Functions which we describe in the next two sections -- have a number of shared values.</p>
+<div class="section" title="Named Entities">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Named_Entities"></a>Named Entities</h5>
+</div>
+</div>
+</div>
+<div class="section" title="Label">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Label"></a>Label</h6>
+</div>
+</div>
+</div>
+<p>A reasonably short, human readable name for the agent. For example, "Timber Wolf", "Exchange Trader" or "Movement Probability". These should be defined so that they fit in well with auto-generated documentation. Note that Labels must be unique throughout the model. (This may change in future releases for Action names.) If you try to provide an object with a name that is already in use, "Copy" will be appended to the end of the name. </p>
+</div>
+<div class="section" title="ID">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="ID"></a>ID</h6>
+</div>
+</div>
+</div>
+<p>An ID is an identifier that can be used to represent the object in a software program. This means that it must follow certain rules such as no-spaces or non alpha-numeric characters. The editing tools will help make sure that this value is legal. Note that when you enter a label, a legal ID is automatically created for you! Usually you won't need to change this, but you might if for example you want the value to match up with some database or other external representation. So reasonable values here might be "timberWolf" or perhaps "MVMNT_PRB" if say you're trying to match up to some old statistics records you have. (Note that currently IDs by default use "camel case", i.e. "thisIsAnExampleOfCamelCase" to match with Java variable naming conventions, but this is likely to change.) Like labels, IDs need to be unique across the model, and the editing tools will assign a different id if you attempt to give two entities the same id.</p>
+<p>And most entities also define:</p>
+</div>
+<div class="section" title="Description">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Description"></a>Description</h6>
+</div>
+</div>
+</div>
+<p>A complete textual description of the object. Don't overlook this -- it is the most important part of your model. The description will show up in your auto-generated html documentation, software documentation and even in your running model. You should include enough information that model users will understand what the entity is for and what it does without referring elsewhere. This is also where any attributions and references should go. You can put html tags in here -- such as href's to external papers, but keep those to a minimum as they won't be rendered as html in all contexts.</p>
+</div>
+<div class="section" title="Plural Label">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Plural_Label"></a>Plural Label</h6>
+</div>
+</div>
+</div>
+<p>The plural representation of an entity. This can be a surprisingly useful thing to have in generated documentation and software code, so it's worth maintaining. The editor will automatically add an "s" at the end of the label you've entered above, but you change it to whatever is appropriate. For example "Person", or "Timber Wolves".</p>
+</div>
+</div>
+</div>
+<div class="section" title="Agents">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Agents"></a>Agents</h4>
+</div>
+</div>
+</div>
+<div class="section" title="Simple Agents">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Simple_Agents"></a>Simple Agents</h5>
+</div>
+</div>
+</div>
+<p>An Agent is simply a software object that has autonomous behavior and (generally speaking) exists within some set of spaces. By autonomous, we mean that agents make the choice about when and how to execute a behavior, as opposed to have that controlled from "above", so to speak. Like any software objects, agents have attributes (fields) and actions (methods) associated with them.</p>
+<div class="section" title="Attributes">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Attributes"></a>Attributes</h6>
+</div>
+</div>
+</div>
+<p>As described in the attribute sections above.</p>
+</div>
+<div class="section" title="Actions">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Actions"></a>Actions</h6>
+</div>
+</div>
+</div>
+<p>Described in the "Actions" section.</p>
+</div>
+<div class="section" title="Styles">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Styles"></a>Styles</h6>
+</div>
+</div>
+</div>
+<p>Special actions that are used to define how to draw an agent graphically as also described in the "Actions" section and detailed in the "Functions" section.</p>
+</div>
+</div>
+<div class="section" title="Context Agents (Contexts)">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Context_Agents_.28Contexts.29"></a>Context Agents (Contexts)</h5>
+</div>
+</div>
+</div>
+<p>As detailed above, agents also form the basic structural component of an agent-based model. To get an idea for how this works, have a look at the "EpidemicRegional.metaabm" model. Note that in future releases, we will probably refer to Contexts as "Scapes".</p>
+<div class="section" title="Agents">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Agents_2"></a>Agents</h6>
+</div>
+</div>
+</div>
+<p>The agents that are contained within this context. For example, a context representing a city might contain an Individual Agent for defining all individuals in the model, and a Vehicle agent defining all vehicles. Note that when we refer to an agent in this context, we mean a general type or class of agent, not the agent itself.</p>
+</div>
+<div class="section" title="Spaces">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Spaces"></a>Spaces</h6>
+</div>
+</div>
+</div>
+<p>The set of all spaces contained or subsumed by the agent. For example, a context representing a city might contain a geographical space and a transportation network space.</p>
+</div>
+</div>
+</div>
+<div class="section" title="Attributes">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Attributes_2"></a>Attributes</h4>
+</div>
+</div>
+</div>
+<p>Agents need some way to represent their internal state. For example, an agent in an economic model might have a wealth attribute, and an agent in an ecology model might have a quantity of food and a particular vision range. These states are represented as attributes just as all software objects do. In an agent model, we keep richer information about these attributes and generally represent them at a higher level. For example, rather than specify that a real value is a "double", a "float" or a "big number", we represent them as "Reals" so that they can be implemented and tested in different environments. This might allow us for instance to ensure that a model's behavior is not dependent on a particular machine implementation of floating point arithmetic. Also, note that attributes only represent so-called "primitive" values -- that is, actual measurable features of a particular agent but not an agent's relationship to other agents or objects. See the discussion about networks for more on this key topic.</p>
+<p>Here are the basic types of attributes available in Acore models:</p>
+<div class="section" title="Basic Attributes">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Basic_Attributes"></a>Basic Attributes</h5>
+</div>
+</div>
+</div>
+<p>Attributes are single values that a given agent contains. For example, an agent might have an "Age" attribute. In this section we go over the values you can set for the attributes. For those with a tecnical bent, note that we are technically describing the meta-attributes for the meta-class "SAttribute". But it is far too confusing to refer to the attributes of attributes! So we'll just refer to the attributes that any of our model components as "values".</p>
+<div class="section" title="Type">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Type"></a>Type</h6>
+</div>
+</div>
+</div>
+<p>These can be anyone of the following: </p>
+<div class="variablelist">
+<dl>
+<dt>
+<span class="term">
+										<span class="bold"><strong>Boolean</strong></span>
+									</span>
+</dt>
+<dd>
+<p>A value that is simply true or false. Note that unless this value really is a simple binary value, you should consider using state instead. (See details below.) For example, rather than representing gender as a 'Female' boolean value, define a 'Gender' state with values 'Male' and "Female'. Generated artifacts and documentation will be much clearer, and you'll be able to easily modify the model later if for example you discover that there are more than two potential gender categories that are relevant to your model.</p>
+</dd>
+<dt>
+<span class="term">
+										<span class="bold"><strong>Integer</strong></span>
+									</span>
+</dt>
+<dd>
+<p>A discrete whole number value, such as "100", "-1", "10029920". It's generally a good idea to represent any value that can never have a decimal value as an integer.</p>
+</dd>
+<dt>
+<span class="term">
+										<span class="bold"><strong>Real</strong></span>
+									</span>
+</dt>
+<dd>
+<p>A continuous number value. While these are typically represented in software as floating point numbers, they can conceivably represent numbers at any arbitrary precision and in any scheme. Note that while technically speaking we should be representing irrational numbers, this is not currently supported for default values and users should simply use the closest decimal approximation.</p>
+</dd>
+<dt>
+<span class="term">
+										<span class="bold"><strong>Symbol</strong></span>
+									</span>
+</dt>
+<dd>
+<p>A string representing some state. More precisely, a computationally arbitrary value with contextual meaning. This could be any kind of identifier. For example, you might use it to store some kind of input coding from data that is then converted into an object state. Or it could simply be an agent's name. But theoretically (though this is not currently supported) one could imagine a symbol using an idiogram, an icon or even a sound that identifies or represents the agent in question.</p>
+</dd>
+</dl>
+</div>
+<p>(Undefined and Numeric types should not be used within a well-defined model.)</p>
+</div>
+<div class="section" title="Default Value">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Default_Value"></a>Default Value</h6>
+</div>
+</div>
+</div>
+<p>The value that should be assigned to the attribute at the beginning of any model run. The attribute may of course be assigned a different value in an Initialize rule, but its a good idea to specify one here. It's OK to leave it blank, in which case a sensible 'empty' value will be assigned, i.e. false for Boolean, 0 for Integers and Reals, and an empty string for Symbol.</p>
+</div>
+<div class="section" title="Gather Data">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Gather_Data"></a>Gather Data</h6>
+</div>
+</div>
+</div>
+<p>Here you can specify whether executing models should collect aggregate values for the data. For example, if you select this value as true for a 'Wealth' attribute, Escape will automatically keep track of minimum, maximum, average, sum and optionally standard deviation and variance across all agents for each model execution period. All of these statistics will then be selectable with a mouse click to appear in your model charts at runtime.</p>
+</div>
+<div class="section" title="Immutable">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Immutable"></a>Immutable</h6>
+</div>
+</div>
+</div>
+<p>This value indicates whether you expect the model value to change. If you know that it won't or shouldn't, this value should be true.</p>
+</div>
+<div class="section" title="Derived">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Derived"></a>Derived</h6>
+</div>
+</div>
+</div>
+<p>A derived attribute is one whose value is detemrined solely based on other agent attributes. A derived value is always associated with a Derive root action which is created automatically by the editor. See the documentation on the Derive action for more details. An attribute cannot be both derived and immutable.</p>
+</div>
+<div class="section" title="Units">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Units"></a>Units</h6>
+</div>
+</div>
+</div>
+<p>Specifies what the attribute is actually measuring. For example, if you're defining an attribute for "Wealth" in the context of a model of the world economy, you might specify "USD". If you're defining "Age", you might specify "Years", for "Mass" "Kg". Like description, this value is often overlooked, but can be critically important to allowing yourself and others to understand and correctly calibrate a model. Note that this will also allow you to simplify variable names -- instead of using "Age in Years", you can simply specify "Age" and the appropriate unit. It may be obvious to you that your model is concerned with age in years, but a user who needs to specify a different granularity will be grateful for more clarity.</p>
+</div>
+</div>
+<div class="section" title="Arrays">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Arrays"></a>Arrays</h5>
+</div>
+</div>
+</div>
+<p>Arrays are simply attributes with zero or more entries. For example, you might have an array of three Real numbers representing the Red Green and Blue color components for an object. Note that if you find yourself defining very complex sets of arrays, its likely that what you really want to define is a new agent with attributes for each array. In addition to what is defined above, arrays specify:</p>
+<div class="section" title="Size">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Size"></a>Size</h6>
+</div>
+</div>
+</div>
+<p>The number of values that the array attribute will contain.</p>
+</div>
+</div>
+<div class="section" title="States">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="States"></a>States</h5>
+</div>
+</div>
+</div>
+<p>States represent any agent quality that may take on one of a number of well defined values. For example, an "Ice Cream Consumer" Agent might contain a state of "Ice Cream Preference" with options of "Chocolate", "Vanilla" and "Ginger".</p>
+<div class="section" title="State Options">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="State_Options"></a>State Options</h6>
+</div>
+</div>
+</div>
+<p>Create new options for states by adding them to the state node. States are simple described items. Don't forget to provide a description! States also have</p>
+</div>
+<div class="section" title="Default Option">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Default_Option"></a>Default Option</h6>
+</div>
+</div>
+</div>
+<p>unlike for regular attributes, this option is not optional! Simply pick a state option to be assigned that the agent will take if no other option has been assigned.</p>
+</div>
+</div>
+</div>
+<div class="section" title="Spaces">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Spaces_2"></a>Spaces</h4>
+</div>
+</div>
+</div>
+<p>All contexts can contain spaces. Spaces provide an environment in which agents can have a physical or notional location and upon which they can interact with one another and their environment. Agents can exist in more than one space at a time, and a given agent need not exist in every space. (Note that this is different from the Repast Simphony notion of projections, though the two representational approaches are generally compatible.) Agents need not represent explicit, "real" spatial structures such as a landscape, though this is of course the most common use. They can also represent relational and state information, such as a belief space or a social network. There are four kinds of space represented:</p>
+<div class="section" title="Space (Continuous)">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Space_.28Continuous.29"></a>Space (Continuous)</h5>
+</div>
+</div>
+</div>
+<p>In the modeling tools, we simply refer to this as a "Space" as it is represents the general concept of a space. A space is simply something that contains objects with certain locations and extents and has a certain number of dimensions. The space is continuous, in the sense that objects can be placed anywhere with arbitrary position. Spaces hold attributes, which simply define their dimensions-- see below.</p>
+<div class="section" title="Border Rule">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Border_Rule"></a>Border Rule</h6>
+</div>
+</div>
+</div>
+<p>A value representing what happens to an agent when that agent is asked to move beyond its extent.</p>
+<div class="variablelist">
+<dl>
+<dt>
+<span class="term">
+										<span class="bold"><strong>Periodic</strong></span>
+									</span>
+</dt>
+<dd>
+<p>When encountering an edge, the agent will treat the space as wrapping around to the other side of the space. For example, if the agent at location {1,2} (0-based) within a Moore space (see grid discussion below) of size {10,10} is asked to find some other agent within distance 3, the agent look in the square defined between {8,9} and {4,5}. An agent asked to move beyond the confines of the space will simply stop when it reaches the edge. You can imagine this as taking a piece of graph paper and connecting the opposite edges. You can't actually do that with paper, but if you could you would have a toroidal (donut) shape in three dimensions defining the shape in two.</p>
+</dd>
+<dt>
+<span class="term">
+										<span class="bold"><strong>APeriodic</strong></span>
+									</span>
+</dt>
+<dd>
+<p>When encountering an edge, the agent treats it as the edge of the space. For example, if the agent at location {1,2} is asked to find some other agent within distance 3, the agent look between {0,0} and {4,5}. An agent asked to move beyond the confines of the space will simply stop when it reaches the edge.</p>
+</dd>
+</dl>
+</div>
+<p>The "Strict" and "Bouncy" values are obsolete and should not be used.</p>
+</div>
+<div class="section" title="Dimensionality">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Dimensionality"></a>Dimensionality</h6>
+</div>
+</div>
+</div>
+<p>The number of dimensions that the space has. After selecting a dimensionality, attributes will be added to represent each dimension. For example, if you enter 3 here, you will have an attribute for X, Y, and Z. Be sure to enter default values here, as they will be used to specify the actual size of the space.</p>
+</div>
+</div>
+<div class="section" title="Grid">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Grid"></a>Grid</h5>
+</div>
+</div>
+</div>
+<p>A grid is technically a regular lattice structure. Currently, only rectilinear structures are supported, i.e. a One-dimensional vector, a two-dimensional grid, a three-dimensional cube and so on. (Though none of the current target platforms support n-d spaces yet.) </p>
+<p>Like continuous spaces, a grid has a border rule and dimensionality. A grid has a couple of other important values:</p>
+<div class="section" title="Multi-Occupant">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Multi-Occupant"></a>Multi-Occupant</h6>
+</div>
+</div>
+</div>
+<p>Does the grid allow more than one agent to occupy it at a time? This value may be replaced with another mechanism in future releases.</p>
+</div>
+<div class="section" title="Neighborhood">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Neighborhood"></a>Neighborhood</h6>
+</div>
+</div>
+</div>
+<p>This value determines what constitutes a region within a particular distance from the agent. The value for this is often critical in obtaining particular behavior from a model, and shouldn't be overlooked. There are three possible values:</p>
+<div class="variablelist">
+<dl>
+<dt>
+<span class="term">
+										<span class="bold"><strong>Euclidean</strong></span>
+									</span>
+</dt>
+<dd>
+<p>The distance between any two cells is taken to be the "real" distance. For example, if an agent was within a chess board, and we wanted to find all agents within distance three of it, we could determine that by taking a string of length 3, tacking it to the center of the source square, and including all cells whose centers we can reach with the other string end. Note that although Euclidean space may seem the most reasonable neighborhood configuration to choose, this really isn't the case. Euclidean space is continuous whereas grid space is discrete, and mapping the two to each other can create unexpected issues. Still, this is a good choice for models representing notional real spaces.</p>
+</dd>
+<dt>
+<span class="term">
+										<span class="bold"><strong>Moore</strong></span>
+									</span>
+</dt>
+<dd>
+<p>Here, the distance between any two cells is defined by the number of edge 
+											<span class="italic">or</span> corner adjacent cells crossed to get between them. To continue the chess board analogy, this is the set of moves that a king can make. Note that this does not map well to real space at all, as a cell at distance 1 in a moore space is at distance sqrt(2) in "real" space.
+										</p>
+</dd>
+<dt>
+<span class="term">
+										<span class="bold"><strong>Von-Neumann</strong></span>
+									</span>
+</dt>
+<dd>
+<p>Here, the distance between any two cells is defined by the number of edge adjacent cells crossed to get between them. This is the set of moves that a rook might make on a chess board -- if a rook could only move one square at a time. It is also often referred to as a Manhattan distance for the self-evident reason.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="section" title="Network">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Network"></a>Network</h5>
+</div>
+</div>
+</div>
+<p>A network represents a set of relationships between agents, in a graph structure. The concept is pretty simple, but note that a network is actually a critical part of many AMF models. This is because we use networks to represent any kind of references between agents. You may have noticed in the discussion about attributes that there is no generic "object" type for an attribute. In fact, attributes only contain primitive values. So we will use networks to do the kinds of things that we would often use object references for in a traditional Object-Oriented model. For example, if an agent is a member of a family, rather than have that agent have a member attribute of "family" with a reference to the "Family" object, the modeler would create a "Family Members" network and connect agent's to their families as appropriate. This implies that network members can contain members of many different types.</p>
+<p>A network has only one value to specify:</p>
+<div class="section" title="Directed">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Directed"></a>Directed</h6>
+</div>
+</div>
+</div>
+<p>This indicates whether connections between agents are one-way or two-way. If this value is false, then if a connection is made between an agent A and an agent B, and agent B searches within distance 1, agent B will find agent A. If this value is true, agent A can find agent B, but agent B can not find agent A. (Unless of course some other path leads B to A.)</p>
+</div>
+</div>
+<div class="section" title="Geography">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Geography"></a>Geography</h5>
+</div>
+</div>
+</div>
+<p>A geography represents a physical landscape. Here we assume that that landscape is going to be defined by an external data source and representational scheme -- typically a Geographical Information System. We'll describe how to work with GIS in more detail when we discuss builder actions.</p>
+</div>
+</div>
+</div>
+<div class="section" title="Reference">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Reference"></a>Reference</h3>
+</div>
+</div>
+</div>
+<div class="section" title="Diagrams">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Diagrams"></a>Diagrams</h4>
+</div>
+</div>
+</div>
+<p>For readers familiar with UML and meta-modeling, the following diagrams give more detail on the structural design.</p>
+<div class="section" title="Meta-Classes">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Meta-Classes"></a>Meta-Classes</h5>
+</div>
+</div>
+</div>
+<p>Our first diagram depicts the core structural design of the model. </p>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/structure/StructureComplexDiagram.png"></div>
+<p> 
+						
+</p>
+<div class="literallayout">
+<p>There&nbsp;seems&nbsp;to&nbsp;be&nbsp;a&nbsp;lot&nbsp;going&nbsp;on&nbsp;here,&nbsp;but&nbsp;the&nbsp;basic&nbsp;components&nbsp;are&nbsp;pretty&nbsp;straightforward&nbsp;as&nbsp;we&nbsp;can&nbsp;see&nbsp;in&nbsp;the&nbsp;next&nbsp;diagram.<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Key Collaborations">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Key_Collaborations"></a>Key Collaborations</h5>
+</div>
+</div>
+</div>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/structure/StructureSimpleDiagram.png"></div>
+<p>
+						
+</p>
+<div class="literallayout">
+<p>Core&nbsp;interactions&nbsp;are&nbsp;in&nbsp;Red.&nbsp;The&nbsp;meta-model&nbsp;structure&nbsp;is&nbsp;essentially&nbsp;a&nbsp;Composite&nbsp;pattern.&nbsp;<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Details">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Details_2"></a>Details</h5>
+</div>
+</div>
+</div>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>Every model has at its root a Context (Scape). Contexts are Agents that are capable of containing other Agents (including other contexts, naturally). </p>
+</li>
+<li class="listitem">
+<p>(Meta-level) Contexts contain (meta-level) Agents at the model (design-time) level.  At runtime, (model-level) Context instances defined in a (meta-level) SContext will contain (model-level) agent instances of the defined (meta-level) SAgent. This sounds more complicated than it is, so let's look at a simple example. Suppose we create a new Context, and give it a label of "Wiki Example". Within that Context, we create an Agent and give it a label of "Individual" and another Agent with the label "Block". At runtime when we are actually executing the model we will have one WikiExample model instance  which contains a number of Individuals.</p>
+</li>
+<li class="listitem">
+<p>Agents contain Attributes, such as Vision and Age. Context attributes often represent input parameters for contained agents. For example, our Wiki Agent Context might contain an Individual Count as well as a Minimum Age and Maximum Age.</p>
+</li>
+<li class="listitem">
+<p>Contexts can contain Projections (Spaces), which represent some kind of spatial or structural interaction space for the agents; either a grid, a continuous (euclidean) space, or a network (graph) or geographic space of some kind. For example, we might want to have a City that contains Blocks and that an Individual can move around within.</p>
+</li>
+<li class="listitem">
+<p>Agents are Actable and thus can contain any number of behaviors called "Actions", described in detail in the next section. Actions can describe individual behavior, and at the Context (Scape) level can define how member Agents and Projections are created.</p>
+</li>
+<li class="listitem">
+<p>Styles provide a mechanism for defining generic visualization behavior for Agents and so are also Actable. For example, an Agent might have an Action that says effectively "draw a red circle shaded red for the wealth of the agent".</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" title="Actions">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Actions_2"></a>Actions</h2>
+</div>
+</div>
+</div>
+<p>Actions are the most important part of an agent model. While Agents, Attributes and Spaces define what we're modeling, it is Actions that give the models life.</p>
+<div class="section" title="Overview">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Overview_3"></a>Overview</h3>
+</div>
+</div>
+</div>
+<p>Actions allow the definition of behavior for agents at a very high level. You can think of actions as being analogous to methods in a traditional object-oriented model but that analogy only goes so far. In the same way that methods are defined as part of objects, actions belong to particular agents. (Though even more expressive ways of defining actions are contemplated in future releases.) In the next section we go into detail about what Actions are and how they can be used to define all agent behavior. They are also conceptually more challenging as unlike with structure they have no direct analogies to past agent representations.</p>
+<p>An action provides simple, well-defined details that a model can use to determine what steps to take in model execution. That definition seems general enough to be almost useless, but its important to understand that an action is not equivalent to an instruction, a method or a query. In fact, actions can have aspects of all of these. But an action is not in itself an instruction specifying exactly 
+					<span class="italic">how</span> the modeling engine should do something -- instead an action represents 
+					<span class="italic">what</span> the modeler intends for the agents to do. (Technically, we might say that Actions takes a "declarative" approach instead of an 'imperative' approach, but that's not quite true, because actions do allow us to define behavior in a richer way than most declarative approaches, and many action constructs map directly to imperative approaches.)
+				</p>
+<p>Actions are connected together in a series of sources and targets. (Technically, an acyclic directed graph.) In an abstract sense that is similar to the way any programming language is defined although that structure isn't usually obvious because of the constraints of textual representations. But unlike a typical programming language, in Actions it is not the execution thread (the processor) that moves from one instruction to the next, but the result of the previous action. In this way, action results "flow" from the output of one action into the next action.</p>
+<p>Why are these distinctions between traditional Object-Oriented and the Action approaches important? They give us the advantages of simplicity, clarity and flexibility that 
+					<a class="ulink" href="/wiki/http://en.wikipedia.org/wiki/Dataflow_programming" target="_new">data-flow approaches</a> like spreadsheets and some query languages have, but with less restrictions. At the same time, they can bring us much of the power and expressiveness of 
+					<a class="ulink" href="/wiki/http://en.wikipedia.org/wiki/Functional_programming" target="_new">functional languages</a> like Lisp or 
+					<a class="ulink" href="/wiki/http://en.wikipedia.org/wiki/Logical_programming" target="_new">logical languages</a> like Prolog, but without the level of complexity and obscurity that such languages can have.
+				</p>
+<p>We can get a better idea for how Actions work by thinking about how a spreadsheet works. In a spreadsheet, we might define a cell A that adds up a row of data, say "Income". We might define another cell C ("Profit") that takes A and adds it to another cell B that adds up another row of data ("Expenses"). Now, if we change a value in any of the rows, all of the other rows are added up and we get the results in A and B updated automatically. We never had to write code that said something like "for each cell in row X, where...". In fact, we don't really care 
+					<span class="italic">how</span> our Spreadsheet program adds up the numbers -- it could have added them all up at once but in backward order, or stored a running total somewhere and updated just the difference in value for the cell we changed -- what we care about is 
+					<span class="italic">what</span> the result is, and whether it is correct.
+				</p>
+<p>But Actions are much more powerful than a spreadsheet, because what is flowing from Action A to Action B is not just a number, but any model component such as a space or a set of agents that we need to use in target actions.</p>
+</div>
+<div class="section" title="Concepts">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Concepts"></a>Concepts</h3>
+</div>
+</div>
+</div>
+<p>In this section, we'll describe how modelers can assemble actions into sets of behavior that accomplish complex tasks on interrelated agents and spaces over time.</p>
+<div class="section" title="Kinds of Actions">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Kinds_of_Actions"></a>Kinds of Actions</h4>
+</div>
+</div>
+</div>
+<table id="N102B9">
+<tr>
+							
+<td>Before getting into the details of how each Actions work together, or the various kinds of Actions, it will be helpful to take a broad overview of how they all fit together. As discussed above, actions are strung together in a sequence or flow. They're always composed of two parts, though those parts can be assembled and intermixed in many different ways. First, we search for a collection of agents, and then we do something with that selection. We refer to these two parts as Selections and Commands. (For the technically minded, another useful way of looking at the Actions approach is as a Query Transformation language, as with SQL and Stored Procedures.  Except again, the results of the queries along with the transformations flow through from one query to the next.) Selections find the agents we want to do something with, and the commands do it. We need some way to start the whole chain of actions off, and so we have a kind of Selection called a Root Selection, or simply a Root. Secondly, we need some way to actually make the agents exist in the model in the first place, so we have a Create Agents action. Finally, we have special commands called builders that allow us to create the spaces that the agents will occupy. The various actions are discussed in depth in the Details section. The diagram at the right depicts how actions relate to one another -- it does not include some actions that have been added more recently.</td>
+							<td>
+								
+<div class="mediaobject">
+<img src="images/actions/ActionsBlocks.png"></div> 
+							
+</td>
+						
+</tr>
+</table>
+</div>
+<div class="section" title="Flow">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Flow"></a>Flow</h4>
+</div>
+</div>
+</div>
+<p>First, let's look at how actions define the basic path that agents take during a model run. As with any programming language, the path we take through the program specification is what determines our state when we get there. In a pure object oriented program, the path just defines the control flow -- what we are doing. The actual state of our model is defined within the object itself. If we call a method B from another method A, we'll be relying on method A to set the values that we need into the object state itself. In a purely functional program the path defines how we are going to deal with whatever has been explicitly passed in to a function that has been called, that is the function parameters. In fact, most languages such as Java combine aspects of both approaches.</p>
+<p>In Actions, the path itself implicitly carries all of the context of prior execution with it. This means that we don't have to worry about storing context in the object -- as we would in an object-oriented language -- or passing the correct values from one method call to the next as we would in a functional language. Instead, Actions can use the implicit context of the path of flow to determine what the current state of execution is.
+						An important aspect of the Actions design is that loop structures are not allowed -- that is, flows are acyclic. An action can never have an ancestor target (that is targets, targets of targets, etc..) that has as one of its ancestors that same action. As you'll see, actions don't typically 
+						<span class="italic">need</span> loop structures. By far the most common use of loops in conventional programming langauges is to loop through collections of objects. As selections (see below) refer to the entire collection of agents, any actions on a selection apply to all members of that collection. Recursive structures are needed for some particular usages and will be supported in future releases, but not through an explicit looping construct.
+					</p>
+<table id="N102D7">
+<tr>
+							
+<td>Again, behaviors in Actions are always defined by a set of 
+								<span class="italic">selections</span> and 
+								<span class="italic">queries</span>. In the diagram to the right, we can see the pattern. First, we define a Root Selection for a Rule, Schedule or other triggering event. Then, we might add a series of Query and Logic Actions to define the specific agents that we are interested in. These are all part of the Selection. Next, we might define a series of Commands to determine what to do with those agents. Or, we could use the result of that selection to immediately define another selection, for example if we are searching for an agent that is near another agent.
+							</td>
+							<td>
+								
+<div class="mediaobject">
+<img src="images/actions/ActionsSequence.png"></div>
+							
+</td>
+						
+</tr>
+</table>
+<table id="N102F1">
+<tr>
+							
+<td>The diagram to the right depicts a simple example. Here, we create a rule, and then check the results of two queries. For any agents that meet those criteria, we'll evaluate some function based on their state, and then set some value on them.</td>
+							<td>
+								
+<div class="mediaobject">
+<img src="images/actions/ActionsSimpleSequence.png"></div>
+							
+</td>
+						
+</tr>
+</table>
+<table id="N10303">
+<tr>
+							
+<td>In this next example, we'll first create the rule, and then create a new selection with a set of criteria. Finally, we'll do a move based on those queries.</td>
+							<td>
+								
+<div class="mediaobject">
+<img src="images/actions/ActionsSimpleSequence2.png"></div>
+							
+</td>
+						
+</tr>
+</table>
+<p>In the following example, we've defined a set of actions and their relationships. We have a selection, a few queries and a couple of logic operators leading to a Set Action. We'll describe in detail below how Logic Actions are used in conjunction with other actions to assemble any kind of query structure needed. But for now, we'll focus on the control flow itself.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/actions/ActionsFlowSimple.png"></div>
+<p>
+					
+</p>
+<p>As you have probably already guessed, the agents that have the Set Action applied to them could take one of two paths through the Action flow. Readers with experience with programming or formal logic will note that this looks just like a parse tree, and while that's basically what it is, there are important differences. For example, if we looked at the following structure as a definition of control flow for a single agent we'd take them to be equivalent. Both would evaluate the statement (Query 1 AND Query 2) OR Query 3 for each agent.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/actions/ActionsFlowUnion.png"></div>
+<p>
+					
+</p>
+<p>Within Actions in many cases these two approaches will also act equivalently. If we are simply setting a value, it doesn't matter how an agent gets to that Set Action, as long as it gets there. All sources that flow into a given target Action act like a logical union since any of the paths might reach that target. But note that we have two flows moving in parallel in the flow on the right. What happens when the conditions for 
+						<span class="italic">both</span> branches are true? As the set of agents flow through each branch the Set Action on the left will be evaluated once, while the one on the right will be evaluated twice. Again, this often ends up with the same behavior, but not always. If for example, the evaluate Action uses the value of the attribute that we are setting as input, we can get different results. Of course, you can write code in any language that accomplishes the same thing, but the code will look quite different. For example, if we wrote the same basic logic in Java, in the first case we'd have something like:
+					</p>
+<div class="literallayout">
+<p>if&nbsp;((query1.evaluate()&nbsp;&amp;&amp;&nbsp;query2.evaluate())&nbsp;||&nbsp;query3.evaluate())&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;doSomething();<br>
+}<br>
+
+</p>
+</div>
+<p>In the second we'd have:</p>
+<div class="literallayout">
+<p>if&nbsp;(query1.evaluate()&nbsp;&amp;&amp;&nbsp;query2.evaluate())&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;doSomething();<br>
+}<br>
+if&nbsp;(query3.evaluate())&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;doSomething();<br>
+}<br>
+
+</p>
+</div>
+<p>This is a simple example, but with multiple branches such code design issues can quickly grow complex. The flow approach allows us to express things in a way that is often more natural and expressive. The important thing to keep in mind when desiging action flows is to see the flow as representing a selection of agents moving through streams independently. In the Actions example we expressed both approaches in nearly the same way, except in the case on the left we used a Union Action to bring the two branches of flow back together.</p>
+</div>
+<div class="section" title="Selections">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Selections"></a>Selections</h4>
+</div>
+</div>
+</div>
+<p>Selections are a key concept in Actions. Put simply, selections define what we are searching for and where. They are defined by a combination of Select, Query and Logic Actions. Each time we create a new Select Action, we define a new selection. Queries can be used to further refine selections either immediately after or later in the Action flow, as described in the next section. Logic Actions are used to combine and organize the Action flow defined by Query Actions. In order to understand how these three pieces work together, we need to understand the idea of selection boundaries.</p>
+<table id="N1033F">
+<tr>
+							
+<td>A selection boundary determines the set of selection actions that are used to determine what agents to apply target actions to. For example, in the following diagram, we can see the extent of the boundary for a straightforward selection.</td>
+							<td>
+								
+<div class="mediaobject">
+<img src="images/actions/ActionsSelBoundarySimple.png"></div>
+							
+</td>
+						
+</tr>
+</table>
+<table id="N10351">
+<tr>
+							
+<td>Each time we create a new selection, we define a new set of boundaries. In the diagram to the right, Selection 1 and Selection 2 eaach start with a new Select Action. </td>
+							<td>
+								
+<div class="mediaobject">
+<img src="images/actions/ActionsSelBoundary2Parts.png"></div> 
+							
+</td>
+						
+</tr>
+</table>
+<p>But boundaries can be defined for a group of actions by a Query Actions as well. This is because Query Actions can be directly part of a selection definition, but they can also refine selections. We'll see how that works below. So where does one selection boundary end and the next one begin? The simple rule is that the end of the boundary is defined for a given Action by the place where:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>A Query Action is not followed by a Logic Action, or</p>
+</li>
+<li class="listitem">
+<p>A Logic Action is not followed by another Logic Action</p>
+</li>
+</ol>
+</div>
+<table id="N1036E">
+<tr>
+							
+<td>In other words, as soon as a Logic Action occurs in a path leading to an Action, any following Query will define a new boundary, as shown in the example to the right. </td>
+							<td>
+								
+<div class="mediaobject">
+<img src="images/actions/ActionsSelBoundary11A.png"></div>
+							
+</td>
+						
+</tr>
+</table>
+<p>Note that we refer to "Selection 1" and Selection 1A". This is because Selection 1A is a refinement of Selection 1 along its particular path of flow. When a query appears for the same selection but past a particular boundary, you can think of it as a sort of filter on the selection contents. We don't have a "Selection 2" here because any Actions that refer to "Selection 1" along the current path of flow will be acting on the selection defined by Selection 1 and Selection 1A.</p>
+<p>These rules allow actions to be defined in the simplest possible way, but it is important to understand their implication as they result in behavior that can be different from what someone used to and imperative programming environment such as Java might expect. In a simple case the distinction might not matter. For example, if we are using a Query 1 to test whether an agent's attribute a == x and attribute b == y, we would get the same outcome if we placed intersected the queries as if we simply put them in sequence. Internally we would actually be searching for agents with a == x, and 
+						<span class="italic">then</span> taking those agents and choosing those agents with b==y, but the outcome would be the same. But consider a more sophisticated case, where we are searching for neighboring available cells.
+					</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/actions/ActionsSelBoundaryComplex.png"></div>
+<p>
+					
+</p>
+<p>In the first case, we execute a search for all agents that meet the two criteria. This means that if there are 
+						<span class="italic">any</span> neighboring cells which are available, we're guaranteed to find one (random) cell. In the second case, we first search for all cells that are neighbors. This will match any agents that include both available and non available agents. Now, at this point since our search returns one agent (in the current AMF design -- richer behavior will be supported in the future) the randomly selected agent could be either available or not. So in the second case, we might end up with no cell to move to, and thus make no move at all. This then becomes an important aspect of model design. For example, if one were defining a model where neighbors played a game with each other, one might want to instruct agents to play the game only with neighbors that have a certain wealth threshold. In the real-world situation that we are modeling, we might simply search for neighbors who are over a given wealth threshold and then play the game with them. This would imply that information about other agent's wealth is open knowledge. Or, we might simply select a random neighbor, and ask that neighbor to play a game with us. Upon discovering that our neighbor does not meet our wealth criteria, we would then choose not to play with them. Here we are modeling a cost in time to obtain information about another agent's wealth, because we might miss an opportunity to play the game with another agent on that round.
+					</p>
+</div>
+<div class="section" title="Weaving">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Weaving"></a>Weaving</h4>
+</div>
+</div>
+</div>
+<table id="N10399">
+<tr>
+							
+<td>Now, let's put the concepts of Actions sequences and boundaries together to see how we can easily define complex interactions between multiple selections. When we define a Select, the state of its selection flows through and with any subsequent selections. So for example, if we have a Root Action rule, and then do a selection based on it, we'll have access to the agent from the original context as well as all of the subsequent selections. We can refer to any previous selection for any subsequent action. For example, instead of setting the value for the rule agent, we might instead set a value for an agent we've found in a target selection.</td>
+							<td>
+								
+<div class="mediaobject">
+<img src="images/actions/ActionsWeavingSetAnother.png"></div>
+							
+</td>
+						
+</tr>
+</table>
+<table id="N103AB">
+<tr>
+							
+<td>Inputs to functions also use selections. (We'll discuss more details in the functions section.) In the following example, we're adding the wealth of the Selection 1 agent to the wealth of the Selection 2 agent and using that value to set some other value. (Here, perhaps we are modeling an agent in a winner takes all game, in which case we'd also add a Set Action on Selection 2 and set the second agent's wealth to 0.)</td>
+							<td>
+								
+<div class="mediaobject">
+<img src="images/actions/ActionsWeavingEvaluate.png"></div>
+							
+</td>
+						
+</tr>
+</table>
+<table id="N103BD">
+<tr>
+							
+<td>But we can also use selections in defining Query Actions themselves. So in the following example, we select a neighbor agent and then compare the age of our Rule agent with the age of the Selection 2 agent. If and only if those ages are the same will we execute the target Set Action. This example also demonstrates why we refer to the data flow as weaving. Query Actions can be used to refine selections at any point in the data flow. Selections and their uses are interwoven throughout an action sequence.</td>
+							<td>
+								
+<div class="mediaobject">
+<img src="images/actions/ActionsWeaving1A.png"></div>
+							
+</td>
+						
+</tr>
+</table>
+<table id="N103CF">
+<tr>
+							
+<td>Finally, we can put all of these concepts together by weaving selections together with flows. As we discussed in the flow section, if we use multiple paths in the Query, the agents that flow through from any prior Query can follow multiple paths at once. And as we discussed in the selection section, the selection and its boundaries determine what agents we will be working with at any given evaluation point in the flow. Consider the example to the right. As we'll see in the detailed explanation of each Action below, Transformation Actions such as Move or Connect take multiple selections. The first selection defines the set of agents that will be performing the action. In the case of a Move agent, this refers to the mover. The second selection, which for Move we call "destination", refers to the selection that will be receiving the action. In the case of movement this is the agent or location that the Rule agent will be moving to. If we follow the flows through, we can note two important outcomes of our model design -- a Rule agent might move twice if it meets the criteria for both the blue path and the red path and that it might move to a different location each time.</td>
+							<td>
+								
+<div class="mediaobject">
+<img src="images/actions/ActionsWeaving2.png"></div>
+							
+</td>
+						
+</tr>
+</table>
+</div>
+</div>
+<div class="section" title="Details">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Details_3"></a>Details</h3>
+</div>
+</div>
+</div>
+<table id="N103E5">
+<tr>
+						
+<td>In this section, we'll dig into the specific role of each of the Actions. From the design discussion we hopefully have some sense of how these all fit together in general. Again, the block diagram to the right provides an overview of how the various actions are related, but it is missing some of the more recent actions such as Diffusion, Perform, Derive and Cause. You might want to take a look at the meta-class diagrams in the reference section as well.</td>
+						<td>
+							
+<div class="mediaobject">
+<img src="images/actions/ActionsBlocks.png"></div> 
+						
+</td>
+					
+</tr>
+</table>
+<div class="section" title="Selections">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Selections_2"></a>Selections</h4>
+</div>
+</div>
+</div>
+<p>A selection defines a particular set of agents that we want to do something with. Selections are made up of the Select action itself, along with Query and Logic actions. When we refer to a selection in any target command, we are referring to the selection in the context of where we have defined the behavior.</p>
+<div class="section" title="Select">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Select"></a>Select</h5>
+</div>
+</div>
+</div>
+<p>As we discussed above, when we refer to a Select, we're actually referring to the selection as a whole leading up to the current action. The Select Action itself is used to define what we are searching for (Agent), where we are searching for it (Space), and from whose perspective we are doing it (Selection). Create Actions are a special kind of Select Action that are used to create agents. See the description in the Builders section below for more information.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection that we are searching "from". This seems to be the concept that new users have the most difficulty with, but it is key to understanding how Actions works. Just as with any other Action -- a Move command for example -- a selection needs to know what set of agents that it is working with. For example, if we want to define a selection B that finds the cells neighboring a rule B's agent, we would set selection B's selection to A.</p>
+</div>
+<div class="section" title="Agent">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Agent"></a>Agent</h6>
+</div>
+</div>
+</div>
+<p>Here we define what agent we will be looking for. In order for this to make sense, the agent has to be related in some meaningful way to the agent whose behavior we are defining. For example, it might be a partner agent or a location that we might want to move to. An agent must be specified unless we are searching within a continuous space, in which case this value should be empty, and the result of the selection will represent some location in that space. In the current version of the framework, we treat destination cell locations as agents, and require that location to be specified as a target agent, but in a future version we'll allow searches without defining an agent within grid spaces as well.</p>
+</div>
+<div class="section" title="Space">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Space"></a>Space</h6>
+</div>
+</div>
+</div>
+<p>The space that we want to search within. Of course, this must be specified if we use any spatial query terms (see below), but if we simply want to search across all agents it should not be specified.</p>
+<p>Represent Queries (Controls) on agents and Transformations, or Commands, on the result of those queries. Queries, Transformations and other  in which each child target carries the execution and data context for it's particular path.</p>
+</div>
+<div class="section" title="For">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="For"></a>For</h6>
+</div>
+</div>
+</div>
+<p>This value is obsolete and will be replaced with a different mechanism in the next version of the modeling environment.</p>
+</div>
+</div>
+<div class="section" title="Query">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Query"></a>Query</h5>
+</div>
+</div>
+</div>
+<p>A Query represents a concrete criteria for our search. The name is a bit confusing because of potential for confusion with a generic query. Queries -- along with their cousin Evaluators -- define a function that is evaluated and that can take Agent attributes and the results of other Actions as input. Queries are combined with each other and with the logic actions to determine the results of a selection for their direct target actions. </p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_2"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>As with all other actions, evaluations specify a selection, and just as with the other actions, this determines the set of agents that the evaluation occurs for, but the input selections determine what agent is used for the calculation itself.</p>
+</div>
+<div class="section" title="Function">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Function"></a>Function</h6>
+</div>
+</div>
+</div>
+<p>A query function is evaluated to determine the results of a particular selection. Functions can represent very simple search criteria such as "My Age == Your Age", but they can also represent complex and inter-related concepts such as spatial relationships. They must return logical values. See the functions section for more information on specific functions.</p>
+</div>
+<div class="section" title="Inputs">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Inputs"></a>Inputs</h6>
+</div>
+</div>
+</div>
+<p>The set of values that will be used to determine the result, in the order specified by the function prototype. Inputs can specify any source evaluation and any agent state or agent parent context state. They can also be literal values -- see the section on literals below. The selection determines which agent's will be used to determine the value, and different inputs can specify different selections.</p>
+</div>
+</div>
+<div class="section" title="Logic">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Logic"></a>Logic</h5>
+</div>
+</div>
+</div>
+<p>These Actions provide us with the ability to combine queries with one another, and follow the basic rules of set logic. But as we've seen above, it is important to understand that there are important differences between Logic Actions and typical programming logic. Most importantly, they apply not to individual agents per se, but to the set of agents that move through them. Also, there is not neccesarily short circuit execution (it's not needed) and much richer criteria can be joined together because of the action flow design.</p>
+</div>
+<div class="section" title="Intersection">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Intersection"></a>Intersection</h5>
+</div>
+</div>
+</div>
+<p>An intersection contains only those agents that match all of its source actions. This is essentially equivalent to a logical AND statement and has similarities to an &amp;&amp; operator in a java "if" statement. An agent must be able to flow through all incoming actions in order to flow out of an Intersection Action.</p>
+</div>
+<div class="section" title="Union">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Union"></a>Union</h5>
+</div>
+</div>
+</div>
+<p>A union contains all agents that match any of its source actions. This shares similiarities to a logical OR statement and the || operator in a java "if" statement. It does mroe than that however, as it acts to join multiple flows of action. That is, as set logic implies, an agent will never appear in the result of a union more than once.</p>
+</div>
+<div class="section" title="Difference">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Difference"></a>Difference</h5>
+</div>
+</div>
+</div>
+<p>A difference contains all agents that do not match any of its source actions. This essentially equivalent to a logical NOT statement, and has similarities to the Java else statement. Like the Union Action, difference implies that a given agent will only appear once in any subsequent targets. No agents that reach a Difference Action will flow through to the next action(s), and all agents (that meet the definition of the Select Action) that cannot reach that action will.</p>
+</div>
+</div>
+<div class="section" title="Root Actions">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Root_Actions"></a>Root Actions</h4>
+</div>
+</div>
+</div>
+<p>Root actions are a special case of a selection. These represent behaviors that are defined for all members of agents; these are the highest granularity of an agent's behavior, such as "Find Partners" or "Eat" or "Reproduce". When you want to create a new set of Actions, you have the following choices.</p>
+<div class="section" title="Build">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Build"></a>Build</h5>
+</div>
+</div>
+</div>
+<p>The Build Action is a specialized action that allow the construction of member agents and spaces within a parent context. A Build Action executes once for each context before any initialization actions occur for any children agents of that context. Currently it is undefined whether a context's own Initialize Action is executed before the Build Action occurs, so implementors should not rely on any initialized values being available at build time.</p>
+</div>
+<div class="section" title="Initialize">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Initialize"></a>Initialize</h5>
+</div>
+</div>
+</div>
+<p>An Initialize action is executed once and only once for every agent when the model is first started -- at time 0. Initialize Actions are guaranteed to execute before any other non-builder action occurs.</p>
+</div>
+<div class="section" title="Rule">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Rule"></a>Rule</h5>
+</div>
+</div>
+</div>
+<p>A Rule executes once for every agent for every iteration of the model. An important note is that the actual sequence of rules is technically undefined. An implementor should not rely on the fact that a rule occurs before another rule in the list of agent actions though typically the order in which the rules were actually created is respected.</p>
+</div>
+<div class="section" title="Schedule">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Schedule"></a>Schedule</h5>
+</div>
+</div>
+</div>
+<p>A schedule is executed on a recurring basis, according to the values detailed below. Note that schedules are often overused. In most agent-based models it makes sense to have any behaviors occur at the same granularity using a Rule. Please note that Schedules are not currently supported in the Escap target, but that support should be available soon. In the following descriptions we refer to period as the current iteration of the model, that is where time == t.</p>
+<div class="section" title="Start">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Start"></a>Start</h6>
+</div>
+</div>
+</div>
+<p>The period that the schedule will first be invoked. For example, if this value is 100, and interval is 1, the schedue will be executed at times 100,101,102..</p>
+</div>
+<div class="section" title="Interval">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Interval"></a>Interval</h6>
+</div>
+</div>
+</div>
+<p>How often the schedule is invoked. For example, if this value is 3 and start is 1, the schedule will be executed at times 1,4,7..</p>
+</div>
+<div class="section" title="Priority">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Priority"></a>Priority</h6>
+</div>
+</div>
+</div>
+<p>Where the rule will be placed in the execution queue for a given time period. For example, if Schedule A's priority is set to 3 and Schedule B's is set to 2, Schedule B will be executed for all agents before Schedule B is executed for any agents.</p>
+</div>
+<div class="section" title="Pick">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Pick"></a>Pick</h6>
+</div>
+</div>
+</div>
+<p>Controls how many agents to execute the schedule against. While this value will have an effect on the Repast target, it is not recommended to be used for general models and is likely to be replaced by another approach.</p>
+</div>
+</div>
+<div class="section" title="Watch">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Watch"></a>Watch</h5>
+</div>
+</div>
+</div>
+<p>A Watch is executed any time the watched value is set for any agent. Note that the Action will be triggerred even if the state is simply set back to the value that it already has. It is important to be careful about creating Watches that might set the values of other Watch actions which might in turn trigger this watch. To clarify, if a modeler creates a Watch A for attribute a, and creates a target Set for it for attribute b, and Watch B is watching attribute b, then if Watch B has a target Set for attribute A, a circular execution could occur. This would cause the model to get stuck in its current iteration. To help model developers avoid this case, a warning will be provided if such a set of circular watch dependencies is created.</p>
+<div class="section" title="Attribute">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Attribute"></a>Attribute</h6>
+</div>
+</div>
+</div>
+<p>The attribute that will be monitored for change.</p>
+</div>
+</div>
+<div class="section" title="Derive">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Derive"></a>Derive</h5>
+</div>
+</div>
+</div>
+<p>A Derive action is a unique kind of root that is used to determine that value of a derived attribute. There can be one and only one Derive action for each such attribute. One of the benefits of a derived action is that unlike a standard attribute, it only needs to be calculated when the value is actually needed and its inputs have also been changes -- allowing signifcant performance optimizations to be made. Derived actions can also make model behavior much more clear. Derive actions are especially useful for calculating dependent measures for model agents. These in turn can be used directly in charting and data output tools -- leaving no need to configure your chart view calculations seperatly. Developers need not worry about overhead and should feel free to create as many derived attributes as might be neccessary. The "gather data" value of the derived attribute can always be set to false to prevent data collection overhead when they aren't needed.</p>
+<p>The derived value will always simply be the value of the last evaluation in a particular flow. You can mix queries and even selections on seperate agents into a derived value. The only restriction is that the type of the last Evaluate actions(s) must match the type of the value. If there is no path leading to an Evalutate action for a particular agent state, the attributes default value will be used.</p>
+<div class="section" title="Attribute">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Attribute_2"></a>Attribute</h6>
+</div>
+</div>
+</div>
+<p>The attribute that will be derived.</p>
+</div>
+</div>
+<div class="section" title="Diffuse">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Diffuse"></a>Diffuse</h5>
+</div>
+</div>
+</div>
+<p>The diffuse action provides high level support for the common behavior of diffusing some value across some lattice space. For example, heat may spread over time from one grid cell to the next. (There are actually significant issues involved in implementing this through lower level actions.) To specify that a value should diffuse through a space you simply need to provide the following values. This action does not need and shouldn't include target actions. The "Heatbugs" model in the org.eclipse.amp.amf.examples.escape project provides a good example for how diffusion can be easily implemented into any grid model.</p>
+<div class="section" title="Diffused">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Diffused"></a>Diffused</h6>
+</div>
+</div>
+</div>
+<p>The attribute whose value is to be diffused.</p>
+</div>
+<div class="section" title="Diiffusion Rate=">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Diiffusion_Rate.3D"></a>Diiffusion Rate=</h6>
+</div>
+</div>
+</div>
+<p>The rate at which any given cell's attribute value is transferred to surrounding cells.</p>
+</div>
+<div class="section" title="Evaporation Rate">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Evaporation_Rate"></a>Evaporation Rate</h6>
+</div>
+</div>
+</div>
+<p>An optional rate by which each cells value is reduced for each period. This is useful for a model where agents are creating energy within the environment.</p>
+</div>
+</div>
+<div class="section" title="Perform">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Perform"></a>Perform</h5>
+</div>
+</div>
+</div>
+<p>A Perform root action simply defines a set of actions that have no independent trigger. The only way Perform actions can occur is if a Cause action specifes one as a result. Performs then are similar to sub-calls or helper methods within a traditonal procedural or OO language, and can be very helpful in organizing and simlplifying code. Note that whenever you use a Perform instead of directly specifying a set of targets you lose the context of the selection. You couldn't use a Perform to directly trigger a move as the selection source for the move would not be available.</p>
+</div>
+</div>
+<div class="section" title="Builders">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Builders"></a>Builders</h4>
+</div>
+</div>
+</div>
+<p>Builders are a special category of actions that are used to create spaces. They should not be confused with the Build Action itself which is a root selection that defines the time at which builder actions should occur. Generally speaking, specific Builder Actions for spaces and Create Actions for agents are targets of Build Actions.</p>
+<div class="section" title="Create Agents">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Create_Agents"></a>Create Agents</h5>
+</div>
+</div>
+</div>
+<p>Agents are crete using the Create Agent action. The Create Agent Action is actually a special kind of Select Action that is used to actually create agents rather than simply search for them. Other than this capability, a Create Agent action can be used just like any other action except that Query and Logic actions aren't needed or genrally appropriate as this action defines a set number of agents to perform an action against. Create Agent actions have the special feature of being usable from the containing context, so that contexts can create initial agent populations before any agents exist within the context to perform actions against. But they can also be used directly within agent rules, for example to create a child agent as the result of a reproducation rule. Note that Initialize Actions are 
+							<span class="italic">not</span> performed on agents that have been created within a model during regular (non-initialization time) execution. If the model creates actions during the regular model run, any state initialization should be handled by the targets of this action directly. (Naturally, if the enclosing context is used to create agents at the beginning of a model run, then the Initialize action is used as part of the normal model life-cycle.)
+						</p>
+<div class="section" title="Agent">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Agent_2"></a>Agent</h6>
+</div>
+</div>
+</div>
+<p>The kind of agent to create.</p>
+</div>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_3"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection to use as the basic for this selection. This is generally not important except to define control flow.</p>
+</div>
+<div class="section" title="Space">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Space_2"></a>Space</h6>
+</div>
+</div>
+</div>
+<p>Not generally relevant for agent actions, as agents are not placed into a space unless explicitly moved to that space. Potential associations between agents and spaces are defined by the space building actions.</p>
+</div>
+<div class="section" title="Agent Count">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Agent_Count"></a>Agent Count</h6>
+</div>
+</div>
+</div>
+<p>The number of agents to create. If used as part of an enclosing context's Initialize Action(s) an Attribute parameter will automatically be created. If not, then an evaluation or agent attribute should be used to define this number.</p>
+</div>
+<div class="section" title="For">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="For_2"></a>For</h6>
+</div>
+</div>
+</div>
+<p>Deprected. Should not be used.</p>
+</div>
+</div>
+<div class="section" title="Create Shaped Agent">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Create_Shaped_Agent"></a>Create Shaped Agent</h5>
+</div>
+</div>
+</div>
+<p>Creates an agent that has a particular shape extent within some continuous (i.e. vector as opposed to raster) space. This action performs just like a Create Action except for the following attribute:</p>
+<div class="section" title="Shape">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Shape"></a>Shape</h6>
+</div>
+</div>
+</div>
+<p>Determines how each agent's spatial extent will be defined. The actual form of that shape is implementation specific. For example, in a GIS space (the immediate rationale for this Action) a polygon represents a region on a map and the extent of that shape might be determined by a .shape file. The available shape types are:</p>
+<div class="variablelist">
+<dl>
+<dt>
+<span class="term">Point</span>
+</dt>
+<dd>
+<p>A simple point in space, fully equivalent to a standard continuous space location.</p>
+</dd>
+<dt>
+<span class="term">Line</span>
+</dt>
+<dd>
+<p>A single line within a continuous space. Technically this represents a line segment as it is expected to have a beginning and ending point. In the future, this might refer more generically to planes in three dimensional space and hypersurfaces in n-dimensional spaces, but this is currently not supported by any AMF target implementations.</p>
+</dd>
+<dt>
+<span class="term">Polygon</span>
+</dt>
+<dd>
+<p>A region within a space defined by an arbitrarily large set of line segments. Potentially this could be used to refer to polyhedrons in three-dimeensional space, or even more genrally as polytopes, but this is currently not supported by any AMF target implementations.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="section" title="Load Agents">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Load_Agents"></a>Load Agents</h5>
+</div>
+</div>
+</div>
+<p>Imports and creates a set of agents from some input file. The actual form and manner of the import is implementation specific but should be inferrable from any source file based on the URL provided, assuming that the target platform or the AMF platform supports the appropriate imput type. For example, a Tab-CR delimited file might be used to populate a set of agents with various attributes. Additional meta-data could be provided by the URL, but we will likely add additional extensible meta-data to this action to better support the definition of expected input types and routines from within an AMF model itself. This action is equivalent to the Create Agents action except for:</p>
+<div class="section" title="Source URL">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Source_URL"></a>Source URL</h6>
+</div>
+</div>
+</div>
+<p>The location of the input file or set of meta-data used to determine the location and type of the input file.</p>
+</div>
+</div>
+<div class="section" title="Load Shaped Agents">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Load_Shaped_Agents"></a>Load Shaped Agents</h5>
+</div>
+</div>
+</div>
+<p>Combines the properties of the Create Shaped Agent and Load Agent Actions. The source url should of course specify an input format that supports the shape type specified. See the descriptions of the related actions for more details.</p>
+</div>
+<div class="section" title="Build Network">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Build_Network"></a>Build Network</h5>
+</div>
+</div>
+</div>
+<p>Creates a network, i.e. a graph structure, supporting the establishment of edges between arbitrary nodes.</p>
+<div class="section" title="Agents">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Agents_3"></a>Agents</h6>
+</div>
+</div>
+</div>
+<p>Specifies the set of agents that can exist within this network. Agents must be included here in order for them to make connections within the network but agents included here are not required to have connections within the network, nor are such connections created for them. (See important note regarding network types below.)</p>
+</div>
+<div class="section" title="Attributes">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Attributes_3"></a>Attributes</h6>
+</div>
+</div>
+</div>
+<p>Not currently used for networks.</p>
+</div>
+<div class="section" title="Network Type">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Network_Type"></a>Network Type</h6>
+</div>
+</div>
+</div>
+<p>Deprecated. This feature is only currently supported for Repast targets and is likely to be removed from future versions of the AMF meta-model. Future AMF implementations are likely will provide a different mechanism for instantiating and importing network structures either within the network defintion or through other Action definitions. Instead of using this feature, modelers should create specific networks by building them up with Connect Actions for indivdual agents. For example to create a small world netowrk, a modeler might create random links between agents and then replace or augment those connections.</p>
+</div>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_4"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>Not relevant for network builders except as part of normal control flow.</p>
+</div>
+</div>
+<div class="section" title="Build Grid">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Build_Grid"></a>Build Grid</h5>
+</div>
+</div>
+</div>
+<p>Creates a grid space.</p>
+<div class="section" title="Agents">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Agents_4"></a>Agents</h6>
+</div>
+</div>
+</div>
+<p>The set of agents that might exist as occupants of this grid; that is, members of individual cells within a given grid. Agents must be included here in order for instances to exist within the space, but agents included here do not actually have to exist within the space. (In the Repast implementation, all agents technically are memebers of the spatial projection, but are not required to have valid coordinates within that space.) For example, in an agriculture model these might represent agents moving about and harvesting plots of land.</p>
+</div>
+<div class="section" title="Fill Agent">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Fill_Agent"></a>Fill Agent</h6>
+</div>
+</div>
+</div>
+<p>The agent that will be used to populate the grid itself. A gird is guranteed to contain one and only one fill agent within each grid locaiton. The grid will be populated with instances of the specified agent and these agents cannot move, leave or die within this space. This value need not be specified -- if left blank a default cell without any state will be used. For example, in an agriculture model, this agent might represent a single plot of land.</p>
+</div>
+<div class="section" title="Space Type">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Space_Type"></a>Space Type</h6>
+</div>
+</div>
+</div>
+<p>Deprecated. Should not be used.</p>
+</div>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_5"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>Not relevant for builders except as part of normal control flow.</p>
+</div>
+<div class="section" title="Attributes">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Attributes_4"></a>Attributes</h6>
+</div>
+</div>
+</div>
+<p>Not currently used for spaces.</p>
+</div>
+</div>
+<div class="section" title="Build Space">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Build_Space"></a>Build Space</h5>
+</div>
+</div>
+</div>
+<p>Creates a continous space. The actual dimensionality and other qualities of the space are currently defined in the space itself though this might change in future versions. All other values are used in the same way as for the gird and other builder actions.</p>
+<div class="section" title="Agents">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Agents_5"></a>Agents</h6>
+</div>
+</div>
+</div>
+<p>The set of agents that might be a part of this space. Agents must be included here in order for instances to exist within the space, but agents included here do not actually have to exist within the space. (In the Repast implementation, all agents technically are memebers of the spatial projection, but are not required to have valid coordinates within that space.)</p>
+</div>
+</div>
+<div class="section" title="Build Geography">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Build_Geography"></a>Build Geography</h5>
+</div>
+</div>
+</div>
+<p>Constructs a geographical space. All details of this space are specfied by the implementation, i.e. a specific geographical imported space. Generally these would be defined by a Create Agents action; that is a set of imported agents representing US states would also represent the overall space of interest.</p>
+</div>
+</div>
+<div class="section" title="Commands">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Commands"></a>Commands</h4>
+</div>
+</div>
+</div>
+<div class="section" title="Evaluate">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Evaluate"></a>Evaluate</h5>
+</div>
+</div>
+</div>
+<p>Evaluate Actions define some calculation on a function based on the model state and a set of input(s). The inputs that an Evaluate Action can take is determined by its functions and can be either agent attributes, prior evaluations or literals. The result is then determined based on those inputs. In some cases Evaluate functions can be used to determine some action indirectly, such as with a graphics fill, but they can never be used to directly change model state.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_6"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>As with all other actions, evaluations specify a selection, and just as with the other actions, this determines the set of agents that the evaluation occurs for, but the input selections determine what agent is used for the calculation itself.</p>
+</div>
+<div class="section" title="Function">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Function_2"></a>Function</h6>
+</div>
+</div>
+</div>
+<p>A with queries, a function is evaluated against its input set. Functions can represent simple operators as well as complex functions. See the functions section for more information on specific functions.</p>
+</div>
+<div class="section" title="Inputs">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Inputs_2"></a>Inputs</h6>
+</div>
+</div>
+</div>
+<p>The set of values that will be used to determine the result, in the order of the function prototype. Inputs can specify any source evaluation and any agent state or agent parent context state. They can also be literal values -- see the discussion in the Tools section. The selection determines which agent's will be used to determine the value, and different inputs can specify different selections.</p>
+</div>
+</div>
+<div class="section" title="Set">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Set"></a>Set</h5>
+</div>
+</div>
+</div>
+<p>The Set Action assigns some value to another value.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_7"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>Here the selection refers to the agent that we want to change. This does not have to be the immediatly preceeding selection but can be any accessible selection.</p>
+</div>
+<div class="section" title="Attribute">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Attribute_3"></a>Attribute</h6>
+</div>
+</div>
+</div>
+<p>The attribute to modify. It must be a member of this action's agent or of that agent's parent context.</p>
+</div>
+<div class="section" title="Parameter">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Parameter"></a>Parameter</h6>
+</div>
+</div>
+</div>
+<p>The value to assign to the attribute. Here, we can use either another agent attribute, or the results of a source evaluation. </p>
+</div>
+</div>
+<div class="section" title="Cause">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Cause"></a>Cause</h5>
+</div>
+</div>
+</div>
+<p>A Cause Action "causes" some Root Action to occur upon the specified selection. This action can be extremely useful for organizing model behavior and preventing the need for creating duplicate action definitions.</p>
+<p>Cause actions also support recursive functionality and "WHILE" behavior. These can be used to mimic loop strucutres. For example, you might want an agent to execute some behavior as long as that agent has energy remaining. To accomplish this, you could create a query for "energy &gt; 0" and then create a Cause target with the root action as its results.</p>
+<p>Note that you should be cautious and thoughtful when using the Cause action. Remember that selections represent sets of agents and thus get rid of the need for collection loop strucutures -- such as Java "for each" -- common in traditional programming languages. You should be able to do almost anything that might require a loop strucutre using the selection mechanism itself. Also, just as with a traditional language, you should be careful about defining cause actions that trigger their own root actions or that cause other actions to in turn trigger the orginal root action. You can easily end up defining infinite loops in this way. (In the current implementation this will eventually trigger a stack overflow error as cause invocations are recursive, but future implementations will be able to infer target language loop strcutures to prevent stack depth issues.)</p>
+<div class="section" title="Result">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Result"></a>Result</h6>
+</div>
+</div>
+</div>
+<p>The root aciton that should be trigerred for every memeber of the current selection. This is typically a Perform action but it can be any kind of root action except for "Derived". (Which doesn't make any sense to do.)</p>
+</div>
+</div>
+<div class="section" title="Move">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Move"></a>Move</h5>
+</div>
+</div>
+</div>
+<p>The Move Action causes an agent to change its location in some space or network. The agent will leave whatever location it was in before within the selection space, and move to its new destination.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_8"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>As in any other action, the selection determines what agent is affected -- in this case the agent that is being moved.</p>
+</div>
+<div class="section" title="Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Destination"></a>Destination</h6>
+</div>
+</div>
+</div>
+<p>Specifies the target agent or location for the movement.</p>
+</div>
+</div>
+<div class="section" title="Leave">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Leave"></a>Leave</h5>
+</div>
+</div>
+</div>
+<p>Causes the agent to leave a particular space.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_9"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines what agent will be leaving and what space the agent will be leaving. If the agent doesn't exist in that space nothing will happen.</p>
+</div>
+<div class="section" title="Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Destination_2"></a>Destination</h6>
+</div>
+</div>
+</div>
+<p>The destination is irrelevant for a leave action and should not be specified.</p>
+</div>
+</div>
+<div class="section" title="Die">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Die"></a>Die</h5>
+</div>
+</div>
+</div>
+<p>Causes the agent to cease to exist within the model as a whole.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_10"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines what space the agent to remove.</p>
+</div>
+<div class="section" title="Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Destination_3"></a>Destination</h6>
+</div>
+</div>
+</div>
+<p>The destination is irrelevant in this case and will probably be removed.</p>
+</div>
+</div>
+<div class="section" title="Connect">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Connect"></a>Connect</h5>
+</div>
+</div>
+</div>
+<p>Connects two agents within a network space. This Action is not applicable for any other kinds of spaces. Note that unlike with other transformational commands, we do not use the destination space to determine the space that will be impacted by the Action. This provides a more efficient representation without any loss in generality, because it allows us to search for a source and target agent within other spaces and then create a connection without creating a separate selection. As the important structural feature of networks are the relationships themselves, not the nodes this provides a more direct way to specify these relationships.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_11"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.</p>
+</div>
+<div class="section" title="=Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name=".3DDestination"></a>=Destination</h6>
+</div>
+</div>
+</div>
+<p>The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.</p>
+</div>
+<div class="section" title="Within">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Within"></a>Within</h6>
+</div>
+</div>
+</div>
+<p>Specifies the network that the connection will be created within.</p>
+</div>
+</div>
+<div class="section" title="Directed">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Directed_2"></a>Directed</h5>
+</div>
+</div>
+</div>
+<p>Determines whether the connection made is directed or not. If true, selections from source agents will include the target, but target agent selections will not include the source agents (unless they are connected through some other path).</p>
+</div>
+<div class="section" title="Disconnect">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Disconnect"></a>Disconnect</h5>
+</div>
+</div>
+</div>
+<p>Removes the connection between agents within a network space. See the description of the Connect Action for important details.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_12"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines one side of the agent relationship that will be disconnected.</p>
+</div>
+<div class="section" title="Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Destination_4"></a>Destination</h6>
+</div>
+</div>
+</div>
+<p>The selection determines one other side of the agent relationship that will be disconnected.</p>
+</div>
+<div class="section" title="Within">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Within_2"></a>Within</h6>
+</div>
+</div>
+</div>
+<p>Specifies the network that the connection will be created within.</p>
+</div>
+</div>
+<div class="section" title="Replace">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Replace"></a>Replace</h5>
+</div>
+</div>
+</div>
+<p>Functions in the same way as a Connect Action excepth that all other connections to other agents will first be removed.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_13"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines the agent that will be connected to another agent. In the case of a directed graph, this is the source node.</p>
+</div>
+<div class="section" title="Destination">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Destination_5"></a>Destination</h6>
+</div>
+</div>
+</div>
+<p>The destination determines the agent that the selection agent will be connected to. In the case of a directed graph, this is the target node.</p>
+</div>
+<div class="section" title="Within">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Within_3"></a>Within</h6>
+</div>
+</div>
+</div>
+<p>Specifies the network that the connection will be created within.</p>
+</div>
+</div>
+<div class="section" title="Directed">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Directed_3"></a>Directed</h5>
+</div>
+</div>
+</div>
+<p>Determines whether the connection made is directed or not. See the Connect description for more details.</p>
+</div>
+</div>
+<div class="section" title="Other">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Other"></a>Other</h4>
+</div>
+</div>
+</div>
+<div class="section" title="Method">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Method"></a>Method</h5>
+</div>
+</div>
+</div>
+<p>The Method action supports inclusion of arbitrary code within a generated method. Generally, this will be Java code as all of the current target platforms are Java-based but there is no technical requirement that it must be. For example, if a target has been developed to produce code for Swarm running on an iPad (and no, there are no current plans to support such a thing, though it would certainly be cool!) then the modeler could define Objective C code for the method.</p>
+<p>Please note that the Method Action should be avoided whenever possible. You should consider using it only in the case where there doesn't appear to be a way to construct equivalent functionality using the native Actions framework, such as when interfacing with third party APIs.  The aim of Actions is to provide the most general support for Agent Modeling possible without compromising the core design. Any use of native Java code strongly limits the set of platforms that your model will be able to generate code for and prevents you from using the AMF edit tools to explore the model behavior. In the case where you wish to construct a model feature and believe that it isn't possible or practical to do it with Actions, please contact us (see support section) so that we can suggest how you can accomplish what you want within Actions. If that is not possible, we'll consider developing new features that will support what you want to do.</p>
+<p>On the other hand, you may simply wish to use the Agent Modeling Framework to build a scaffolding for your model -- perhaps using your own custom Java framework for example -- and Method would be a good way to accomplish that. Also, note there are a number of other approaches to mixing hand-crafted Java together with AMF generated code. Please see the Programmer's Guide section "Integrating Java and AMF Models" for more on that.</p>
+<p>If you do decide to use the Method Action, keep in mind the following design practice recommendations:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>Keep your usage of external API references to a minimum. If you can use only code provied by the core Java classes as well as the Apache Collections library, your code should work on every current Java target. On the other hand, if you make use of a specific ABM platform APIs your code will obviously only compile and run against that target.</p>
+</li>
+<li class="listitem">
+<p>Code should be in the form of a method body, excluding the signature. A single Java method is created using this code body. There is no support for input parameters -- if you need access to evaluated values from source actions, create agent attributes for them, set their values for the selected agents, and use them as sources for your Method Action.</p>
+</li>
+<li class="listitem">
+<p>All Java class references should be fully qualified. For example, if you wish to use the eclipse Draw2D Graphics class, you should refer to "org.eclipse.draw2d.Graphics", not simply "Graphics". If classes are not fully qualified, you will recieve compile errors. You can usually easily fix these by selecting your source code directory and choosing 
+									<span class="bold"><strong>Source &gt; Organize Imports..</strong></span> but it prevents automatic code generation.
+								</p>
+</li>
+<li class="listitem">
+<p>The method interface has no support for code completion, syntax checking or other common Java development environment features. You can avoid code maintenance and even support targetting multiple APIs by using the following technique. From your method body, call a helper method in a seperate class. The referred class could use a static method call, or you could instantiate the class and call a method against it, passing in the agent class so that the helper class can reference the agent's state. For example, if you wanted to use some custom java code to import agents from a specialized input file, you could put the following code in the Method Action body for the root Context:</p>
+</li>
+</ol>
+</div>
+<div class="literallayout">
+<p>(new&nbsp;org.me.SpecialFileLoader()).load(this);<br>
+
+</p>
+</div>
+<p>Then create a new source directory in your project called "src" (
+							<span class="bold"><strong>New &gt; Source Folder...</strong></span>) and create the class for the specialized file loader including the following method:
+						</p>
+<div class="literallayout">
+<p>public&nbsp;void&nbsp;load(MyRootModel&nbsp;model)&nbsp;{...}<br>
+
+</p>
+</div>
+<p>This approach allows you to a) maintain the working code using the Java Development Environment, b) avoid changes to the Method Action within the model, and most importantly, c) allow other implementations of the code using multiple APIs. For example, if you need to create a specialized graphics routine, you could create seperate implementations for your Escape (Eclipse Draw 2D), Ascape (Java Swing), and Repast (Simphony API) and place them in the appropriate projects. As long as the different Java source files have the same names and signatures, they will all compile correctly and execute the appropriate behavior.</p>
+<div class="section" title="Selection">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Selection_14"></a>Selection</h6>
+</div>
+</div>
+</div>
+<p>The selection determines what Agent class the code will be created within and the set of agents the method will be called upon.</p>
+</div>
+<div class="section" title="Body">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Body"></a>Body</h6>
+</div>
+</div>
+</div>
+<p>The actual code to insert in the method body. See the detailed recommendations for code use above.</p>
+</div>
+<div class="section" title="Generate">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="Generate"></a>Generate</h6>
+</div>
+</div>
+</div>
+<p>Determines wether the code is actually inserted. If this is false, a bare method body will be constructed instead. This can be useful if you wish to turn off method generation in certain model implementaitons without removing the actual code.</p>
+</div>
+</div>
+</div>
+<div class="section" title="Query and Evaluation Inputs">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Query_and_Evaluation_Inputs"></a>Query and Evaluation Inputs</h4>
+</div>
+</div>
+</div>
+<p>Query and Evaluation Actions are both "Sinks" which means that they are capable of containing inputs. When you select a function, the appropriate number of inputs will be created. After selecting a function, you can view and select the inputs. The choices for the inputs will be constrained by the type of the function and the other operands you've selected.</p>
+<div class="section">
+<div class="titlepage"></div>
+<div class="section" title="Input Literals">
+<div class="titlepage">
+<div>
+<div>
+<h6 class="title">
+<a name="N10689"></a>Input Literals</h6>
+</div>
+</div>
+</div>
+<p>Inputs can take literal values; that is values that you specify simply by entering them directly into the query. In general it is useful to think of literals as similar to local variables in a conventional programming language, whereas attributes are analogous to member variables. (And this is how they are represented in the generated Java code.) As with local variables in model code, literals are not recommended for any values that can change model behavior. The value cannot be easily accessed or changed by other model users. For greater transparency, you should instead create an Attribute with an appropriate default value, setting the "immutable" value to true. Still, literals can be useful for values that are special cases related to the evaluation or query, such as an input code, and for quickly prototyping functionality.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" title="Reference">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Reference_2"></a>Reference</h3>
+</div>
+</div>
+</div>
+<div class="section" title="Diagrams">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Diagrams_2"></a>Diagrams</h4>
+</div>
+</div>
+</div>
+<p>The following diagram may be helpful to readers familiar with UML and Meta-modeling:</p>
+<div class="section" title="Meta-Classes">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Meta-Classes_2"></a>Meta-Classes</h5>
+</div>
+</div>
+</div>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/actions/ActionsDiagram.png"></div>
+<p>
+						
+</p>
+</div>
+<div class="section" title="Details">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Details_4"></a>Details</h5>
+</div>
+</div>
+</div>
+<p>In the diagram above, all meta-objects except for Input, Literal, and the enumerators (lists of options) are Actions. Blue meta-classes are concrete (you can create and use them directly). Red meta-classes are key collaborations.</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>An Act is anything that might happen during the execution of an Agent-Based Model.</p>
+</li>
+<li class="listitem">
+<p>All Actions have as their root-most source action a Root. These are added first to any agent behavior and act as triggers for all target behavior. For example, a Watch will execute any time the watched attribute is modified. (As the diagrams do not refer to elements outside of the current package, we cannot see here that Accessor includes a reference to some Attribute, but it does. To see these kinds of relationships you will want to refer to the metaabm.ecore file itself.)#Actions are targets and sources of one another, but an Act can never have itself as a source. (That is, Actions are acyclic, but branches can re-converge. When we refer to an Act source or target, we typically mean to include all ancestors or descendants, not just the immediately connected Act.)</p>
+</li>
+<li class="listitem">
+<p>All Actions (except for root Actions) reference a Select, referred to as the "selected" relation. An ASelect represents the model aspects that the Act is working within; that is, the spatial, temporal and type (agent) "world" that is currently being selected.</p>
+</li>
+<li class="listitem">
+<p>Commands trigger some model state change (Set) or spatial transformation (Transform).</p>
+</li>
+<li class="listitem">
+<p>Controls determine whether target Actions are executed and against what agents. They are in some sense query terms and include Query actions and Logic Actions.</p>
+</li>
+<li class="listitem">
+<p>Transforms also specify a "destination" Select. This represents aspects that the selected agent(s) will transform to. For example, a Move may use a Rule to select all SugarAgents (type) in the SugarGrid (space) every period (time) and move them to a destination of a neighboring SugarCell (type) in the SugarGrid (space, with time implicit).</p>
+</li>
+<li class="listitem">
+<p>Sinks are Actions which use some Function (see next section) to interpret state in the form of Inputs. Inputs can come from selected agent attributes, other Actions, or literal values.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="section" title="Example">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Example"></a>Example</h3>
+</div>
+</div>
+</div>
+<p>In this section, we'll look at an example that should make clear how the basic Actions approach works in a model. Say we want to define a behavior like:</p>
+<div class="literallayout">
+<p>"Search&nbsp;for&nbsp;a&nbsp;random&nbsp;agent&nbsp;within&nbsp;my&nbsp;vision&nbsp;that&nbsp;is&nbsp;the&nbsp;same&nbsp;age&nbsp;as&nbsp;I&nbsp;am.&nbsp;Find&nbsp;a&nbsp;location&nbsp;next&nbsp;to&nbsp;that&nbsp;agent&nbsp;that&nbsp;is&nbsp;not&nbsp;already&nbsp;occupied&nbsp;and&nbsp;move&nbsp;to&nbsp;it."<br>
+
+</p>
+</div>
+<p>Here, we create a sequence of actions like so:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>Select every agent for every period of the model. ("Find Partner" Rule)</p>
+</li>
+<li class="listitem">
+<p>For every member of that selection, search for other agents of the same age within vision distance. ("Partner" selection.)</p>
+</li>
+<li class="listitem">
+<p>From "Partners" find a random member and search for a neighboring locations. ("Partner Neighbor" selection.)</p>
+</li>
+<li class="listitem">
+<p>Finally, move the agent in "Find Partner" to the "Partner Neighbor" location.</p>
+</li>
+</ol>
+</div>
+<p>Now, notice that although it's convenient to speak as if there is only one "Find Partner" and one "Partner Neighbor" in step 4 above, in fact selections are flowing through for each of the results of each of the previous action sequences, and we can refer to each of the directly. We could represent these behaviors in many different ways. For example, we might want to specify the model in a (hand-drawn) graphical language or in a (made-up) textual language:</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/actions/ActionsExample.png"></div>
+<p>
+				
+</p>
+<p>This is how it looks in an actual model:</p>
+<p>
+					
+</p>
+<div class="mediaobject">
+<img src="images/actions/ActionsExampleNew.png"></div>
+<p>
+				
+</p>
+<p>And here is how this works in detail:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>Create a Rule that will trigger the behavior. In this case, we want this rule to apply to all "Individual" agents within the model. (Space isn't relevant in this case.</p>
+</li>
+<li class="listitem">
+<p>Create a child Select Action that will find our partner. Two important things to note here:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="a">
+<li class="listitem">
+<p>The selection occurs based on the "Find Partner" selection. This means that for each Individual in the model, we'll be searching from the point of view of that agent to some other selection of agents.</p>
+</li>
+<li class="listitem">
+<p>We also need to define what type of agent we want and in this case the space does matter. We want to find an agent that is nearby within the City space. If instead we wanted to find a partner in a social network, we'd specify that instead.</p>
+</li>
+</ol>
+</div>
+</li>
+<li class="listitem">
+<p>Create two child Query Actions:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="a">
+<li class="listitem">
+<p>We want to search for someone who is the same age as us. This highlights the importance of the idea of the Selection in the Actions design. We're qualifying Age by the rule agent's partner for the first input and by the rule agent for the second. The selection carries throughout the flow of execution and this context is an explicit part of the entire structure. Note that this is very different from the way control flow works in a traditional imperative language such as Java.</p>
+</li>
+<li class="listitem">
+<p>We also want to search using a function for nearness, "within", which takes a parameter of vision. Note that the spatial functions are all polymorphic -- if we decided later on that we would rather search within say "Kevin Bacon space", that is a graph structure representation of space, we would only need to change the space we've defined in Select Partner.</p>
+</li>
+</ol>
+</div>
+</li>
+<li class="listitem">
+<p>Intersect the results of these two query components. This delineates the end of the selection definition for any target Actions.</p>
+</li>
+<li class="listitem">
+<p>Select a neighbor. Again, we can see the importance of Selections. Here, we are selecting from the point of view of the partner, not the initial agent that the current Rule is being executed for. Note that this time our target agent is a "Block", that is, a location within the city.</p>
+</li>
+<li class="listitem">
+<p>As above, define some queries. This time we want only those agents that are:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="a">
+<li class="listitem">
+<p>available, and</p>
+</li>
+<li class="listitem">
+<p>neighbors of our partner.</p>
+</li>
+</ol>
+</div>
+</li>
+<li class="listitem">
+<p>And another intersection..</p>
+</li>
+<li class="listitem">
+<p>Finally, we move to the location we've found. All that's required at this point is to specify:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="a">
+<li class="listitem">
+<p>The movement selection, or those agents that are moving, which in this case is the original agent we're executing the rule for, and</p>
+</li>
+<li class="listitem">
+<p>The destination, which is the cell that we've found. Note that the framework infers from the space definition that the Block agent is capable of hosting the Individual.</p>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" title="Functions">
+<div class="titlepage">
+<div>
+<div>
+<h2 class="title" style="clear: both">
+<a name="Functions"></a>Functions</h2>
+</div>
+</div>
+</div>
+<div class="section" title="Overview">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Overview_4"></a>Overview</h3>
+</div>
+</div>
+</div>
+<p>Functions are relatively simple in terms of model design, but we need to understand how particular functions work in order to develop models. Functions are divided in two ways. By type:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>Operators are simple calculations sharing the same type.</p>
+</li>
+<li class="listitem">
+<p>Functions that can represent any general function that takes some well-defined input(s) and returns some well-defined output(s).</p>
+</li>
+</ol>
+</div>
+<p>And by usage:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>Generics can return any value and are used in Evaluate actions.</p>
+</li>
+<li class="listitem">
+<p>Logicals return some boolean result and are used by Query actions to decide whether target Actions apply to a particular selection, and by Evaluate actions just as with any other functions. Input types should be defined as generally as possible.</p>
+</li>
+</ol>
+</div>
+<p>These overlap, so we have operators, logical operators, functions and logical functions. Functions are also divided into categories. We'll go through each of these in depth below.</p>
+<p>The most important thing to point out about functions is that - as we've seen with other Acore concepts -- they provide richer sets of functionality than traditional approaches. Many functions are designed to collaborate with one another as we'll see when looking at Spatial and Graphical functions. Functions can also trigger the creation of related model artifacts as we'll see with the Distribution functions.</p>
+<p>A technical note: conceptually, functions can return multi-values, but that is not currently implemented in the reference targets because of limitations of the target language Java.</p>
+</div>
+<div class="section" title="Details">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Details_5"></a>Details</h3>
+</div>
+</div>
+</div>
+<div class="section" title="General Functions">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="General_Functions"></a>General Functions</h4>
+</div>
+</div>
+</div>
+<p>Naturally, the Modeling tools provide general functions for performing calculations, comparisons and more complex mathematical expressions. The function library can be easily extended, and we'll be adding additional capabilities over time. As always, we welcome feedback and we'd like to hear what functions you need that aren't covered here.</p>
+</div>
+<div class="section" title="Logical Operators">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Logical_Operators"></a>Logical Operators</h4>
+</div>
+</div>
+</div>
+<p>Logical operators allow comparison between values. They are typically used in Query terms but may be used in Evaluate actions as well.</p>
+<div class="section" title="Not">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Not"></a>Not</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression !X.</p>
+</div>
+<div class="section" title="Equal">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Equal"></a>Equal</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression X==Y.</p>
+</div>
+<div class="section" title="Identical">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Identical"></a>Identical</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression X==Y.</p>
+</div>
+<div class="section" title="Greater">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Greater"></a>Greater</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression X&gt;Y.</p>
+</div>
+<div class="section" title="Lesser">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Lesser"></a>Lesser</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression X&lt;Y.</p>
+</div>
+<div class="section" title="Greater or Equal">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Greater_or_Equal"></a>Greater or Equal</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression X&gt;=Y.</p>
+</div>
+<div class="section" title="Lesser or Equal">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Lesser_or_Equal"></a>Lesser or Equal</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression X&lt;=Y.</p>
+</div>
+<div class="section" title="True">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="True"></a>True</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression true.</p>
+</div>
+<div class="section" title="False">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="False"></a>False</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression false.</p>
+</div>
+<div class="section" title="Identity">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Identity"></a>Identity</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression X.</p>
+</div>
+<div class="section" title="Different">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Different"></a>Different</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression X!=Y.</p>
+</div>
+</div>
+<div class="section" title="Numeric Operators">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Numeric_Operators"></a>Numeric Operators</h4>
+</div>
+</div>
+</div>
+<p>Numeric operators support all of the basic operators used in evaluations.</p>
+<div class="section" title="Negative Value">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Negative_Value"></a>Negative Value</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression -X.</p>
+</div>
+<div class="section" title="Add">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Add"></a>Add</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression X+Y.</p>
+</div>
+<div class="section" title="Subtract">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Subtract"></a>Subtract</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression X-Y.</p>
+</div>
+<div class="section" title="Multiply">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Multiply"></a>Multiply</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression X*Y.</p>
+</div>
+<div class="section" title="Divide">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Divide"></a>Divide</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression X/Y.</p>
+</div>
+<div class="section" title="Power">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Power"></a>Power</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression X^Y.</p>
+</div>
+<div class="section" title="Modulo">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Modulo"></a>Modulo</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression X%Y.</p>
+</div>
+<div class="section" title="Increment">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Increment"></a>Increment</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression ++X.</p>
+</div>
+<div class="section" title="Decrement">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Decrement"></a>Decrement</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression --X.</p>
+</div>
+<div class="section" title="Unit Value">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Unit_Value"></a>Unit Value</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression 1.</p>
+</div>
+<div class="section" title="Zero Value">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Zero_Value"></a>Zero Value</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression 0.</p>
+</div>
+<div class="section" title="Original Value">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Original_Value"></a>Original Value</h5>
+</div>
+</div>
+</div>
+<p>The result of the expression o.</p>
+</div>
+</div>
+<div class="section" title="Spatial">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Spatial"></a>Spatial</h4>
+</div>
+</div>
+</div>
+<p>Spatial functions provide the core functionality for Agent Models. Spatial functions are polymorphic, which basically means that they don't care what space they are operating on as long as that space is suitable for them. Spatial functions are designed to collaborate with one another. For example, by intersecting the "Neighbor", "Available" and "Toward" functions, we can design a rule that causes the agent to move to the next neighboring cell that get's it closer to some target agent. See the function details for more information.</p>
+<div class="section" title="Nearest">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Nearest"></a>Nearest</h5>
+</div>
+</div>
+</div>
+<p>Represents the nearest agents (including gird cells) or locations to this agent. If more than one agent or location is the same distance away they will all be considered. Note that while this function is defined for the selection of an agent, the result of this function is defined by the context within which it is used. If the selection specifies another agent within a space, this function will represent the nearest agent in that space. If the selection specifies a Cell within a grid space, this function will represent that cell.</p>
+</div>
+<div class="section" title="Toward">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Toward"></a>Toward</h5>
+</div>
+</div>
+</div>
+<p>Represents a location that is on the shortest path to a particular agent or location from the source agent (that is, the selection's selection's agent). This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction towards some objective.</p>
+</div>
+<div class="section" title="Within">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Within_4"></a>Within</h5>
+</div>
+</div>
+</div>
+<p>Represents a limit to the distance of a spatial search. When used in combination with other spatial functions such as "nearest" requires that all agents or locations must be within the distance specified by the input value.</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Numeral]&nbsp;<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Neighbor">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Neighbor"></a>Neighbor</h5>
+</div>
+</div>
+</div>
+<p>Represents any agents that are nearest neighbors to the agent, that is nominally of distance 1. This function is only relevant in discrete spaces -- grids and networks -- where there are immediate neighboring cells as defined by the geometry of the selection's space.</p>
+</div>
+<div class="section" title="Include Self">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Include_Self"></a>Include Self</h5>
+</div>
+</div>
+</div>
+<p>Specifies whether the agent that we are searching from -- that is, the agent of the selection for this Query Action's selection -- is included in the results of the search.</p>
+</div>
+<div class="section" title="Within 2D Boundary">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Within_2D_Boundary"></a>Within 2D Boundary</h5>
+</div>
+</div>
+</div>
+<p>Represents agents or locations that exist within the boundary specified by the inputs.</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Numeral]&nbsp;<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Here">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Here"></a>Here</h5>
+</div>
+</div>
+</div>
+<p>Represents the location of the searching agent. For example, if a selection is defined for an agent cell, and that selection's selection's agent is an occupant of a cell, the cell that the agent is occupying will be used. </p>
+</div>
+<div class="section" title="Available">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Available"></a>Available</h5>
+</div>
+</div>
+</div>
+<p>Represents cells which are not currently occupied. This function is only relevant for grids which are not multi-occupant.</p>
+</div>
+<div class="section" title="Distance">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Distance"></a>Distance</h5>
+</div>
+</div>
+</div>
+<p>The distance between the source agent and an agent represented by this selection. If more than one agent is represented by the other functions in the selection, this function will the distance to an arbitrary (randomly selected) agent as defined by those other functions.</p>
+<div class="literallayout">
+<p>Outputs:<br>
+[Real]&nbsp;<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Away">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Away"></a>Away</h5>
+</div>
+</div>
+</div>
+<p>Represents a location that is on the path that will take the source agent (that is, the selection's selection's agent) the farthest distance from the agent(s) represented by the search. This function collaborates with the within and neighbor functions to allow the agent to move in a particular direction away from some location or agent.</p>
+</div>
+<div class="section" title="Minimize">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Minimize"></a>Minimize</h5>
+</div>
+</div>
+</div>
+<p>Finds the agent with the lowest value for the specified input. For example, if we created a Select for HeatCell, created a Minimize Query Term with Heat as the input Query Term, created Neighbor and Available Query Terms and set an Intersect as the target for all of those Queries, the result would be the the neighboring available cell with the lowest heat level.</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Real]&nbsp;The&nbsp;value&nbsp;we&nbsp;will&nbsp;minimize&nbsp;for.<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Maximize">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Maximize"></a>Maximize</h5>
+</div>
+</div>
+</div>
+<p>Finds the agent with the highest value for the specified input. For example, if we created a Select for HeatCell, created a Maximize Query Term with Heat as the input Query Term, created Neighbor and Available Query Terms and set an Intersect as the target for all of those Queries, the result would be the the neighboring available cell with the highest heat level.</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Real]&nbsp;The&nbsp;value&nbsp;we&nbsp;will&nbsp;maximize&nbsp;for.<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Location 2D">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Location_2D"></a>Location 2D</h5>
+</div>
+</div>
+</div>
+<p>Represents the location of the current agent for use in subsequent selections.</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Real]&nbsp;<br>
+[Real]&nbsp;<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Boundary 2D">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Boundary_2D"></a>Boundary 2D</h5>
+</div>
+</div>
+</div>
+<p>Represents a two-dimensional boundary within a space. (Not currently relevant for any general usages.)</p>
+<div class="literallayout">
+<p>Outputs:<br>
+[Real]&nbsp;<br>
+[Real]&nbsp;<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="All">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="All"></a>All</h5>
+</div>
+</div>
+</div>
+<p>Causes all agents that meet the other query terms to be included in a selection. Without this query term, a single random agent is picked out of all agents matching the query terms.</p>
+</div>
+</div>
+<div class="section" title="Random">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Random"></a>Random</h4>
+</div>
+</div>
+</div>
+<p>Random functions are especially significant for agent models. Of particular interest are the weighted membership and random state and boolean value functions. You should be familiar with these functions so that you don't have to create more complex Action flows to accomplish the same thing.</p>
+<p>Note that we only have support for uniform distributions as of this release. We're working on a collaborative design for evaluations that allow easy mixing and matching of random functions and distributions.</p>
+<div class="section" title="Random In Range">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Random_In_Range"></a>Random In Range</h5>
+</div>
+</div>
+</div>
+<p>A pseudo-random value within that numeric range specified as drawn from a uniform distribution. The minimum values are inclusive. The maximum values are inclusive for integer inputs and exclusive for Real inputs.</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Numeral]&nbsp;The&nbsp;minimum&nbsp;value&nbsp;(inclusive).<br>
+[Numeral]&nbsp;The&nbsp;maximum&nbsp;value&nbsp;(inclusive).<br>
+Outputs:<br>
+[Numeral]&nbsp;The&nbsp;random&nbsp;number.<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Random To Limit">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Random_To_Limit"></a>Random To Limit</h5>
+</div>
+</div>
+</div>
+<p>A pseudo-random value between zero and the value specified by the (non-zero) input and drawn from a uniform range. That value is inclusive for Integers and exclusive for Reals. (Note that as with the random in range function in the context of real numbers the distinction between an exclusive and inclusive limit is essentially meaningless.)</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Numeral]&nbsp;The&nbsp;maximum&nbsp;value&nbsp;(inclusive).<br>
+Outputs:<br>
+[Numeral]&nbsp;The&nbsp;result.<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Random Unit">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Random_Unit"></a>Random Unit</h5>
+</div>
+</div>
+</div>
+<p>A pseudo-random Real value between 0 and 1 drawn from a uniform distribution. (The distinction between inclusive and exclusive range is essentially meaningless in this context and we can assume that the result will never be greater or equal to 1.)</p>
+<div class="literallayout">
+<p>Outputs:<br>
+[Real]&nbsp;<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Random Boolean">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Random_Boolean"></a>Random Boolean</h5>
+</div>
+</div>
+</div>
+<p>A value that is randomly true or false, i.e. a fair coin toss.</p>
+</div>
+<div class="section" title="Random Weighted">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Random_Weighted"></a>Random Weighted</h5>
+</div>
+</div>
+</div>
+<p>An indexed value weighted against a probability distribution. The total probability must sum to 1.0. For example, an input of {.1,.2,.7} under a uniform distribution would would have 10% probability of producing "0" , 20%  for "1" and 70% for "2". This function can then be used with Item to return a biased result from another list.</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Real]&nbsp;A&nbsp;list&nbsp;of&nbsp;values&nbsp;that&nbsp;will&nbsp;determine&nbsp;the&nbsp;resulting&nbsp;weighted&nbsp;index.<br>
+Outputs:<br>
+[Integer]&nbsp;A&nbsp;resulting&nbsp;indexed&nbsp;value&nbsp;bounded&nbsp;by&nbsp;0&nbsp;and&nbsp;the&nbsp;length&nbsp;of&nbsp;the&nbsp;input&nbsp;list&nbsp;-&nbsp;1.<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Random Member">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Random_Member"></a>Random Member</h5>
+</div>
+</div>
+</div>
+<p>Represents a random value drawn from the set of Real values specified.</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Real]&nbsp;Returns&nbsp;a&nbsp;random&nbsp;member&nbsp;of&nbsp;the&nbsp;supplied&nbsp;list&nbsp;of&nbsp;numbers.<br>
+Outputs:<br>
+[Generic]&nbsp;The&nbsp;value&nbsp;of&nbsp;the&nbsp;item&nbsp;at&nbsp;a&nbsp;random&nbsp;index.<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Random State">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Random_State"></a>Random State</h5>
+</div>
+</div>
+</div>
+<p>A random specified value (option) from the specified state.</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Generic]&nbsp;The&nbsp;state&nbsp;to&nbsp;select&nbsp;items&nbsp;from.&nbsp;All&nbsp;items&nbsp;are&nbsp;included.<br>
+Outputs:<br>
+[Integer]&nbsp;The&nbsp;resulting&nbsp;option.&nbsp;<br>
+
+</p>
+</div>
+</div>
+</div>
+<div class="section" title="Graphic">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Graphic"></a>Graphic</h4>
+</div>
+</div>
+</div>
+<p>Graphic functions are combined within Style Evaluate Actions to determine how to draw an agent within a visualization. One nice aspect of this approach is that the same style definition can be used in multiple places without changing any code. For example, the same style could be used to draw an agent on a two-dimensional grid within Escape, a three-dimensional shape within Escape, a Java Swing based visualization in Ascape, and an XML configured visualizaiton in Repast Simphony.</p>
+<p>To define a graphic style for an agent, design a flow in which you create Evaluate Actions for color and shape, and then create an Evaluate Action with the graphic fill or outline function as a target of these.</p>
+<div class="section" title="Shape Oval">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Shape_Oval"></a>Shape Oval</h5>
+</div>
+</div>
+</div>
+<p>Draw a generic oval.</p>
+</div>
+<div class="section" title="Shape Rectangle">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Shape_Rectangle"></a>Shape Rectangle</h5>
+</div>
+</div>
+</div>
+<p>Draws a rectangular shape.</p>
+</div>
+<div class="section" title="Shape Inset">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Shape_Inset"></a>Shape Inset</h5>
+</div>
+</div>
+</div>
+<p>Shrinks the current shape by the input amount. (The overall scale is currently unspecified, but in most implementations should be 20.)</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Integer]&nbsp;Number&nbsp;of&nbsp;nominal&nbsp;pixels&nbsp;to&nbsp;inset.<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Shape Marker">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Shape_Marker"></a>Shape Marker</h5>
+</div>
+</div>
+</div>
+<p>Draw a marker, that is a graphical indicator that can be used to add an additional que about the object state. For example, in a two-dimensional graphics representation this might be a small shape drawn inset at the corner of the larger shape. </p>
+</div>
+<div class="section" title="Shape Marker 2">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Shape_Marker_2"></a>Shape Marker 2</h5>
+</div>
+</div>
+</div>
+<p>Represents a marker placed in a different location from the other shape markers.</p>
+</div>
+<div class="section" title="Shape Marker 3">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Shape_Marker_3"></a>Shape Marker 3</h5>
+</div>
+</div>
+</div>
+<p>Represents a marker placed in a different location from the other shape markers.</p>
+</div>
+<div class="section" title="Color RGB">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Color_RGB"></a>Color RGB</h5>
+</div>
+</div>
+</div>
+<p>A color specified by the three inputs for Red, Green and Blue color components. Those inputs are expected to be in the range 0..1.</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Real]&nbsp;A&nbsp;value&nbsp;from&nbsp;0.0&nbsp;to&nbsp;1.0.<br>
+[Real]&nbsp;A&nbsp;value&nbsp;from&nbsp;0.0&nbsp;to&nbsp;1.0.<br>
+[Real]&nbsp;A&nbsp;value&nbsp;from&nbsp;0.0&nbsp;to&nbsp;1.0.<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Color Red">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Color_Red"></a>Color Red</h5>
+</div>
+</div>
+</div>
+<p>The color red.</p>
+</div>
+<div class="section" title="Color Yellow">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Color_Yellow"></a>Color Yellow</h5>
+</div>
+</div>
+</div>
+<p>The color yellow.</p>
+</div>
+<div class="section" title="Color Blue">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Color_Blue"></a>Color Blue</h5>
+</div>
+</div>
+</div>
+<p>The color blue.</p>
+</div>
+<div class="section" title="Color Orange">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Color_Orange"></a>Color Orange</h5>
+</div>
+</div>
+</div>
+<p>The color orange.</p>
+</div>
+<div class="section" title="Color Green">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Color_Green"></a>Color Green</h5>
+</div>
+</div>
+</div>
+<p>The color green.</p>
+</div>
+<div class="section" title="Color Purple">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Color_Purple"></a>Color Purple</h5>
+</div>
+</div>
+</div>
+<p>The color purple.</p>
+</div>
+<div class="section" title="Color Black">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Color_Black"></a>Color Black</h5>
+</div>
+</div>
+</div>
+<p>The color black.</p>
+</div>
+<div class="section" title="Color White">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Color_White"></a>Color White</h5>
+</div>
+</div>
+</div>
+<p>The color white.</p>
+</div>
+<div class="section" title="Color Gray">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Color_Gray"></a>Color Gray</h5>
+</div>
+</div>
+</div>
+<p>The color gray.</p>
+</div>
+<div class="section" title="Graphic Outline">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Graphic_Outline"></a>Graphic Outline</h5>
+</div>
+</div>
+</div>
+<p>Draws an outline of the last evaluated shape, using the last specified color or the default color (usually black) if none has been specified.</p>
+</div>
+<div class="section" title="Graphic Fill">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Graphic_Fill"></a>Graphic Fill</h5>
+</div>
+</div>
+</div>
+<p>Fills the last evaluated shape with the last specified color or the default color (usually black) if none has been specified.</p>
+</div>
+</div>
+<div class="section" title="Time">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Time"></a>Time</h4>
+</div>
+</div>
+</div>
+<p>Time functions return values related to model execution time. </p>
+<div class="section" title="Now">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Now"></a>Now</h5>
+</div>
+</div>
+</div>
+<p>The current simulation period, that is the number of iterations that the model has gone through, or in the case of models with callibrarted time, the number of iterations added to the model's nominal start time.</p>
+<div class="literallayout">
+<p>Outputs:<br>
+[Integer]&nbsp;The&nbsp;current&nbsp;period.<br>
+
+</p>
+</div>
+</div>
+</div>
+<div class="section" title="Math">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Math"></a>Math</h4>
+</div>
+</div>
+</div>
+<p>The math functions use the extremely well specified and tested routines form the Java Math library. (Because of copyright restrictions, we aren't able to include the exact definitions here. Click on the links to get more details on each function.)</p>
+<div class="section" title="Sine">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Sine"></a>Sine</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sin(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sin(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Cosine">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Cosine"></a>Cosine</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cos(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cos(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Tangent">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Tangent"></a>Tangent</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tan(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tan(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Arc Sine">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Arc_Sine"></a>Arc Sine</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#asin(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#asin(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Arc Cosine">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Arc_Cosine"></a>Arc Cosine</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#acos(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#acos(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Arc Tangent">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Arc_Tangent"></a>Arc Tangent</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Convert Degree to Radians">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Convert_Degree_to_Radians"></a>Convert Degree to Radians</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toRadians(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toRadians(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Convert Radians to Degrees">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Convert_Radians_to_Degrees"></a>Convert Radians to Degrees</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toDegrees(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#toDegrees(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Exp">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Exp"></a>Exp</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#exp(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#exp(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Log">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Log"></a>Log</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Log b10">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Log_b10"></a>Log b10</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log10(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log10(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Square Root">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Square_Root"></a>Square Root</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#squareRoot(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#squareRoot(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Cube Root">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Cube_Root"></a>Cube Root</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cbrt(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cbrt(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Remainder">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Remainder"></a>Remainder</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#iEEEremainder(double,%20double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#iEEEremainder(double,%20double)</a>
+						
+</p>
+</div>
+<div class="section" title="Ceiling">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Ceiling"></a>Ceiling</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ceil(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ceil(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Floor">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Floor"></a>Floor</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#floor(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#floor(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Rount">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Rount"></a>Rount</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#rint(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#rint(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Arc Tangent Rectangular">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Arc_Tangent_Rectangular"></a>Arc Tangent Rectangular</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan2(double,%20double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#atan2(double,%20double)</a>
+						
+</p>
+</div>
+<div class="section" title="Power">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Power_2"></a>Power</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#pow(double,%20double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#pow(double,%20double)</a>
+						
+</p>
+</div>
+<div class="section" title="Absolute Value">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Absolute_Value"></a>Absolute Value</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#abs(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#abs(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Maximum">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Maximum"></a>Maximum</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#max(double,%20double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#max(double,%20double)</a>
+						
+</p>
+</div>
+<div class="section" title="Minimum">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Minimum"></a>Minimum</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#min(double,%20double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#min(double,%20double)</a>
+						
+</p>
+</div>
+<div class="section" title="ULP">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="ULP"></a>ULP</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ulp(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#ulp(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Sign">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Sign"></a>Sign</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#signum(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#signum(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Hyperbolic Sine">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Hyperbolic_Sine"></a>Hyperbolic Sine</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sinh(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#sinh(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Hyperbolic Cosine">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Hyperbolic_Cosine"></a>Hyperbolic Cosine</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cosh(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#cosh(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Hyperbolic Tan">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Hyperbolic_Tan"></a>Hyperbolic Tan</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tanh(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#tanh(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Hypotuneuse">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Hypotuneuse"></a>Hypotuneuse</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#hypotuneuse(double,%20double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#hypotuneuse(double,%20double)</a>
+						
+</p>
+</div>
+<div class="section" title="Expm1">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Expm1"></a>Expm1</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#expm1(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#expm1(double)</a>
+						
+</p>
+</div>
+<div class="section" title="Log1p">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Log1p"></a>Log1p</h5>
+</div>
+</div>
+</div>
+<p>See JavaDoc: 
+							<a class="ulink" href="http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log1p(double)" target="_new">http://java.sun.com/javase/6/docs/api/java/lang/Math.html#log1p(double)</a>
+						
+</p>
+</div>
+</div>
+<div class="section" title="List">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="List"></a>List</h4>
+</div>
+</div>
+</div>
+<p>List functions are used for working with arrays and other functions that have lists as output.</p>
+<div class="section" title="Item">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Item"></a>Item</h5>
+</div>
+</div>
+</div>
+<p>Returns the item at the specified index from the list of items provided. Those items will typically be input primitives such as Integer or Real values.</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Generic]&nbsp;<br>
+[Integer]&nbsp;<br>
+Outputs:<br>
+[Generic]&nbsp;<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Length">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Length"></a>Length</h5>
+</div>
+</div>
+</div>
+<p>The number of items in the provided list of items.</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Generic]&nbsp;<br>
+Outputs:<br>
+[Integer]&nbsp;<br>
+
+</p>
+</div>
+</div>
+</div>
+<div class="section" title="Distribution">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Distribution"></a>Distribution</h4>
+</div>
+</div>
+</div>
+<p>One of the most common tasks in the Agent Modeling process is the creation of agents with particular states drawn from a distribution. For example, you might want to create a number of agents with wealth randomly distributed between some minimum and maximum values. The distribution functions greatly ease the process of setting up those initializations and their associated parameters.</p>
+<div class="section" title="Uniform Cross Distribution">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Uniform_Cross_Distribution"></a>Uniform Cross Distribution</h5>
+</div>
+</div>
+</div>
+<p>A random number taken from a distribution of values as defined by a cross of all values. (See Cross Distribution.) This funciton then returns a value drawn from the minimum and maximum values as determined by the current agent state. In the cross distribution, each of the values is treated independently so that an input attribute is created for every potential combination of states.</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Generic]&nbsp;The&nbsp;list&nbsp;of&nbsp;states&nbsp;to&nbsp;factor&nbsp;into&nbsp;the&nbsp;distribution.&nbsp;This&nbsp;is&nbsp;a&nbsp;multi-argument,&nbsp;which&nbsp;means&nbsp;that&nbsp;you&nbsp;can&nbsp;specify&nbsp;any&nbsp;number&nbsp;of&nbsp;attributes&nbsp;as&nbsp;arguments.<br>
+[Real]&nbsp;The&nbsp;set&nbsp;of&nbsp;attributes&nbsp;that&nbsp;will&nbsp;determine&nbsp;the&nbsp;minimum&nbsp;value&nbsp;of&nbsp;the&nbsp;function&nbsp;result&nbsp;based&nbsp;on&nbsp;the&nbsp;current&nbsp;state&nbsp;of&nbsp;the&nbsp;agent.&nbsp;Note&nbsp;that&nbsp;this&nbsp;list&nbsp;is&nbsp;automatically&nbsp;created&nbsp;and&nbsp;maintained.&nbsp;These&nbsp;values&nbsp;don't&nbsp;need&nbsp;to&nbsp;be&nbsp;and&nbsp;should&nbsp;not&nbsp;be&nbsp;manually&nbsp;edited.<br>
+[Real]&nbsp;The&nbsp;set&nbsp;of&nbsp;attributes&nbsp;that&nbsp;will&nbsp;determine&nbsp;the&nbsp;maximum&nbsp;value&nbsp;of&nbsp;the&nbsp;function&nbsp;result&nbsp;based&nbsp;on&nbsp;the&nbsp;current&nbsp;state&nbsp;of&nbsp;the&nbsp;agent.&nbsp;Note&nbsp;that&nbsp;this&nbsp;list&nbsp;is&nbsp;automatically&nbsp;created&nbsp;and&nbsp;maintained.&nbsp;These&nbsp;values&nbsp;don't&nbsp;need&nbsp;to&nbsp;be&nbsp;and&nbsp;should&nbsp;not&nbsp;be&nbsp;manually&nbsp;edited.<br>
+Outputs:<br>
+[Real]&nbsp;The&nbsp;resulting&nbsp;random&nbsp;number&nbsp;based&nbsp;on&nbsp;the&nbsp;current&nbsp;agent&nbsp;state&nbsp;and&nbsp;the&nbsp;input&nbsp;parameters.<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Uniform Additive Distribution">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Uniform_Additive_Distribution"></a>Uniform Additive Distribution</h5>
+</div>
+</div>
+</div>
+<p>A random number taken from a distribution of values in which each of the minimum and maximum values are added to determine a total minimum and maximum value. (See Additive Distribution.) In the additive distribution, each of the values is treated as dependent on the others so that an input attribute is only created for each seperate state.</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Generic]&nbsp;The&nbsp;list&nbsp;of&nbsp;states&nbsp;to&nbsp;factor&nbsp;into&nbsp;the&nbsp;distribution.&nbsp;This&nbsp;is&nbsp;a&nbsp;multi-argument,&nbsp;which&nbsp;means&nbsp;that&nbsp;you&nbsp;can&nbsp;specify&nbsp;any&nbsp;number&nbsp;of&nbsp;attributes&nbsp;as&nbsp;arguments.<br>
+[Real]&nbsp;The&nbsp;set&nbsp;of&nbsp;attributes&nbsp;that&nbsp;will&nbsp;determine&nbsp;the&nbsp;minimum&nbsp;value&nbsp;of&nbsp;the&nbsp;function&nbsp;result&nbsp;based&nbsp;on&nbsp;the&nbsp;current&nbsp;state&nbsp;of&nbsp;the&nbsp;agent.&nbsp;Note&nbsp;that&nbsp;this&nbsp;list&nbsp;is&nbsp;automatically&nbsp;created&nbsp;and&nbsp;maintained.&nbsp;These&nbsp;values&nbsp;don't&nbsp;need&nbsp;to&nbsp;be&nbsp;and&nbsp;should&nbsp;not&nbsp;be&nbsp;manually&nbsp;edited.<br>
+[Real]&nbsp;The&nbsp;set&nbsp;of&nbsp;attributes&nbsp;that&nbsp;will&nbsp;determine&nbsp;the&nbsp;maximum&nbsp;value&nbsp;of&nbsp;the&nbsp;function&nbsp;result&nbsp;based&nbsp;on&nbsp;the&nbsp;current&nbsp;state&nbsp;of&nbsp;the&nbsp;agent.&nbsp;Note&nbsp;that&nbsp;this&nbsp;list&nbsp;is&nbsp;automatically&nbsp;created&nbsp;and&nbsp;maintained.&nbsp;These&nbsp;values&nbsp;don't&nbsp;need&nbsp;to&nbsp;be&nbsp;and&nbsp;should&nbsp;not&nbsp;be&nbsp;manually&nbsp;edited.<br>
+Outputs:<br>
+[Real]&nbsp;The&nbsp;resulting&nbsp;random&nbsp;number&nbsp;based&nbsp;on&nbsp;the&nbsp;current&nbsp;agent&nbsp;state&nbsp;and&nbsp;the&nbsp;input&nbsp;parameters.<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Cross Distribution">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Cross_Distribution"></a>Cross Distribution</h5>
+</div>
+</div>
+</div>
+<p>A value taken from a set of (auto-generated) attributes based on the value of each state included. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create separate input attributes for AI, AII, BI and BII. Then for an agent with States A and II this function would return the value specified by the AII input attribute.</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Generic]&nbsp;The&nbsp;list&nbsp;of&nbsp;states&nbsp;to&nbsp;factor&nbsp;into&nbsp;the&nbsp;distribution.&nbsp;This&nbsp;is&nbsp;a&nbsp;multi-argument,&nbsp;which&nbsp;means&nbsp;that&nbsp;you&nbsp;can&nbsp;specify&nbsp;any&nbsp;number&nbsp;of&nbsp;attributes&nbsp;as&nbsp;arguments.<br>
+[Real]&nbsp;The&nbsp;set&nbsp;of&nbsp;attributes&nbsp;that&nbsp;when&nbsp;multiplied&nbsp;against&nbsp;each&nbsp;other&nbsp;will&nbsp;determine&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;function&nbsp;result&nbsp;based&nbsp;on&nbsp;the&nbsp;current&nbsp;state&nbsp;of&nbsp;the&nbsp;agent.&nbsp;Note&nbsp;that&nbsp;this&nbsp;list&nbsp;is&nbsp;automatically&nbsp;created&nbsp;and&nbsp;maintained.&nbsp;These&nbsp;values&nbsp;don't&nbsp;need&nbsp;to&nbsp;be&nbsp;and&nbsp;should&nbsp;not&nbsp;be&nbsp;manually&nbsp;edited.<br>
+Outputs:<br>
+[Real]&nbsp;The&nbsp;resulting&nbsp;value&nbsp;based&nbsp;on&nbsp;the&nbsp;current&nbsp;agent&nbsp;state&nbsp;and&nbsp;the&nbsp;input&nbsp;parameters.<br>
+
+</p>
+</div>
+</div>
+<div class="section" title="Additive Distribution">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Additive_Distribution"></a>Additive Distribution</h5>
+</div>
+</div>
+</div>
+<p>A value taken from a set of (auto-generated) attributes based on the combined values of the states provided. For example, if the multi-values included a state X with values A and B and a state Y with values I and II, this distribution would create input attributes for A, B, I and II. Those values would then be added together, so that for an Agent with state A and II this function would return A + II.</p>
+<div class="literallayout">
+<p>Inputs:<br>
+[Generic]&nbsp;The&nbsp;states&nbsp;to&nbsp;include&nbsp;in&nbsp;the&nbsp;distribution.&nbsp;This&nbsp;is&nbsp;a&nbsp;multi-argument,&nbsp;which&nbsp;means&nbsp;that&nbsp;you&nbsp;can&nbsp;specify&nbsp;any&nbsp;number&nbsp;of&nbsp;attributes&nbsp;as&nbsp;arguments.<br>
+[Real]&nbsp;The&nbsp;set&nbsp;of&nbsp;attributes&nbsp;that&nbsp;when&nbsp;combined&nbsp;with&nbsp;each&nbsp;other&nbsp;determine&nbsp;the&nbsp;value&nbsp;of&nbsp;the&nbsp;function&nbsp;result&nbsp;based&nbsp;on&nbsp;the&nbsp;current&nbsp;state&nbsp;of&nbsp;the&nbsp;agent.&nbsp;Note&nbsp;that&nbsp;this&nbsp;list&nbsp;is&nbsp;automatically&nbsp;created&nbsp;and&nbsp;maintained.&nbsp;These&nbsp;values&nbsp;don't&nbsp;need&nbsp;to&nbsp;be&nbsp;and&nbsp;should&nbsp;not&nbsp;be&nbsp;manually&nbsp;edited.<br>
+Outputs:<br>
+[Real]&nbsp;The&nbsp;resulting&nbsp;value&nbsp;based&nbsp;on&nbsp;the&nbsp;current&nbsp;agent&nbsp;state&nbsp;and&nbsp;the&nbsp;input&nbsp;parameters.<br>
+
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" title="Examples">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Examples"></a>Examples</h3>
+</div>
+</div>
+</div>
+<div class="section" title="Spatial">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Spatial_2"></a>Spatial</h4>
+</div>
+</div>
+</div>
+<p>For examples of how spatial functions can be used within action flows to provide agents with complex movement behaviors, see the Modelers Guide actions examples. In the following example from that section, we define an action that causes a partner agent to move to an available neighboring space.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/actions/ActionsExampleNew.png"></div>
+<p>
+					
+</p>
+</div>
+<div class="section" title="Graphic">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Graphic_2"></a>Graphic</h4>
+</div>
+</div>
+</div>
+<p>In the following action flow for the epidemic style, we've create Query Actions to determine each agent's current state, picked a color based on that, and then used a shared target to select a shape for the agent style and fill it:</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/functions/GraphicsFunctionExampleDesign.png"></div>
+<p>
+					
+</p>
+<p>After saving the model we can execute the two and three dimensional visualizations. Note something really nice -- even the charts have used the colors we've defined!</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/functions/GraphicsFunctionExampleRun.png"></div>
+<p>
+					
+</p>
+</div>
+<div class="section" title="Distribution">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Distribution_2"></a>Distribution</h4>
+</div>
+</div>
+</div>
+<p>In the following example, we walk through the process of using a distribution functions, demonstrating how we can easily modify the Epidemic model so that instead of simply setting an initial exposed population, we can define factors that take together will determine an individuals initial exposure state. We simply:</p>
+<div class="orderedlist">
+<ol class="orderedlist" type="1">
+<li class="listitem">
+<p>Create an Evaluate Action called "Initial Status". </p>
+</li>
+<li class="listitem">
+<p>Set the function to "Cross Distribution"</p>
+</li>
+<li class="listitem">
+<p>Opened the "Multiple Value" node in the editor, and clicked the "Multiple Values" item within it.</p>
+</li>
+<li class="listitem">
+<p>Selected the "Status" attribute.</p>
+</li>
+</ol>
+</div>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/functions/DistributionDesignChoice.png"></div>
+<p> 
+					
+</p>
+<p>The appropriate attributes are automatically added to the model, as you can see below.</p>
+<p>
+						
+</p>
+<div class="mediaobject">
+<img src="images/functions/DistributionDesign.png"></div>
+<p> 
+					
+</p>
+<p>In order to assign these values to the agent, we'd simply need to assign the results of this Evaluate Action to the agent.</p>
+</div>
+</div>
+<div class="section" title="Reference">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title">
+<a name="Reference_3"></a>Reference</h3>
+</div>
+</div>
+</div>
+<div class="section" title="Diagrams">
+<div class="titlepage">
+<div>
+<div>
+<h4 class="title">
+<a name="Diagrams_3"></a>Diagrams</h4>
+</div>
+</div>
+</div>
+<p>The following diagram may be helpful to readers familiar with UML and Meta-modeling:</p>
+<div class="section" title="Meta-Classes">
+<div class="titlepage">
+<div>
+<div>
+<h5 class="title">
+<a name="Meta-Classes_3"></a>Meta-Classes</h5>
+</div>
+</div>
+</div>
+<p>
+							
+</p>
+<div class="mediaobject">
+<img src="images/functions/FunctionsDiagram.png"></div>
+<p>
+						
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table summary="Navigation footer" width="100%">
+<tr>
+<td align="left" width="40%"><a accesskey="p" href="Introduction.html">Prev</a>&nbsp;</td><td align="center" width="20%">&nbsp;</td><td align="right" width="40%">&nbsp;<a accesskey="n" href="User_Guide.html">Next</a></td>
+</tr>
+<tr>
+<td valign="top" align="left" width="40%">Chapter&nbsp;1.&nbsp;Introduction&nbsp;</td><td align="center" width="20%"><a accesskey="h" href="index.html">Home</a></td><td valign="top" align="right" width="40%">&nbsp;Chapter&nbsp;3.&nbsp;User Guide</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

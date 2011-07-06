@@ -17,10 +17,6 @@
       %license
    </license>
 
-   <url>
-      <update label="%AMPUpdateSiteName" url="http://download.eclipse.org/amp/updates/releases/indigo"/>
-   </url>
-
    <plugin
          id="org.eclipse.amp.amf.examples.escape"
          download-size="0"

@@ -186,9 +186,9 @@ public class Instrument extends CellOccupant {
 	 */
 	public List getNetwork() {
 		List network = new ArrayList();
-		network.addAll(((Graph) getMarkets().getFirmInstruments().getSpace())
-				.getNeighborsFor(this));
 		network.addAll(((Graph) getMarkets().getInstrumentHolders().getSpace())
+				.getNeighborsFor(this));
+		network.addAll(((Graph) getMarkets().getFirmInstruments().getSpace())
 				.getNeighborsFor(this));
 		return network;
 	}

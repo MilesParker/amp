@@ -17,10 +17,6 @@
       %license
    </license>
 
-   <url>
-      <update label="%AMPUpdateSiteName" url="http://download.eclipse.org/amp/updates/releases/indigo"/>
-   </url>
-
    <includes
          id="org.eclipse.amp.agf3d"
          version="0.0.0"/>
