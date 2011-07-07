@@ -29,8 +29,7 @@ import org.eclipse.amp.axf.core.LifeCycleState;
  * The listener interface for receiving modelWrapperScape events. The class that
  * is interested in processing a modelWrapperScape event implements this
  * interface, and the object created with that class is registered with a
- * component using the component's
- * <code>addModelWrapperScapeListener<code> method. When
+ * component using the component's <code>addModelWrapperScapeListener<code> method. When
  * the modelWrapperScape event occurs, that object's appropriate
  * method is invoked.
  * 
@@ -89,11 +88,6 @@ public class ModelWrapperScapeListener extends DefaultScapeListener {
 	@Override
 	public void scapeIterated(ScapeEvent scapeEvent) {
 		wrapped.stateChange(LifeCycleState.UPDATE, model);
-	}
-
-	@Override
-	public void scapePaused(ScapeEvent scapeEvent) {
-		wrapped.stateChange(LifeCycleState.PAUSED, model);
 	}
 
 	@Override

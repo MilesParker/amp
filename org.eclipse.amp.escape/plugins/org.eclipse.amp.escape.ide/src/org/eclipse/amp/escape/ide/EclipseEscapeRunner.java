@@ -120,7 +120,8 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 	 * @param block
 	 *          true if this method should only return on execution completion.
 	 */
-	public void open(final IResource projectResource, final String modelClassName, String modelName, String[] args, boolean block) {
+	public void open(final IResource projectResource, final String modelClassName, String modelName, String[] args,
+			boolean block) {
 		openNotStart(projectResource, modelClassName, modelName, args);
 		start();
 		if (block) {
@@ -133,14 +134,16 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 			}
 		}
 	}
+
 	/**
 	 * Open all Files and initialize the Simulation, but don't run it.
+	 * 
 	 * @param projectResource
 	 * @param modelClassName
 	 * @param modelName
 	 * @param args
 	 */
-	public void openNotStart(final IResource projectResource, final String modelClassName, String modelName, String[] args){
+	public void openNotStart(final IResource projectResource, final String modelClassName, String modelName, String[] args) {
 		this.project = projectResource.getProject();
 		setStartOnOpen(false);
 		setAutoRestart(false);
@@ -149,13 +152,17 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 		try {
 			delegateLoader = new ProjectLoader(projectResource.getProject());
 		} catch (LoaderCreationException e) {
-			StatusManager.getManager().handle(new Status(Status.WARNING, project.getName(), "Couldn't create project classloader; falling back to default loader", e));
+			StatusManager.getManager().handle(
+					new Status(Status.WARNING, project.getName(),
+							"Couldn't create project classloader; falling back to default loader", e));
 		}
 		Scape newAgent;
 		try {
 			newAgent = (Scape) instanceFromName(modelClassName);
 		} catch (RuntimeException e) {
-			StatusManager.getManager().handle(new Status(Status.ERROR, project.getName(), "Could not read class: " + modelClassName + ". Please ensure that the class exists in class path.", e), StatusManager.SHOW | StatusManager.LOG);
+			StatusManager.getManager().handle(
+					new Status(Status.ERROR, project.getName(), "Could not read class: " + modelClassName
+							+ ". Please ensure that the class exists in class path.", e), StatusManager.SHOW | StatusManager.LOG);
 			dispose();
 			throw e;
 		}
@@ -171,6 +178,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 		}
 		final List<ScapeListener> newListeners = new ArrayList<ScapeListener>();
 		getRootScape().executeOnRoot(new PropogateScapeOnly() {
+
 			private static final long serialVersionUID = -6277857634508661314L;
 
 			@SuppressWarnings("unchecked")
@@ -187,7 +195,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 			}
 		}
 	}
-	
+
 	protected void addConsole(String modelName) {
 		final MessageConsole eclipseConsole = new MessageConsole("Run " + modelName, null);
 		getEnvironment().getConsole().setIMessageStream(new MessageAdapter(eclipseConsole));
@@ -213,6 +221,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 	@Override
 	public void start() {
 		escapeRun = new Job("Run " + getModel().getName()) {
+
 			@Override
 			protected IStatus run(IProgressMonitor runMonitor) {
 				try {
@@ -238,7 +247,8 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 					if (model != null) {
 						message = "An exception occurred when running: " + getModel().getName();
 					}
-					StatusManager.getManager().handle(new Status(Status.ERROR, project.getName(), message, e), StatusManager.SHOW | StatusManager.LOG);
+					StatusManager.getManager().handle(new Status(Status.ERROR, project.getName(), message, e),
+							StatusManager.SHOW | StatusManager.LOG);
 					if (isCloseOnStop()) {
 						close();
 					} else {
@@ -267,6 +277,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 		if (!isCloseRequested()) {
 			setCloseRequested(true);
 			Thread closeThread = new Thread(this, "Close Escape Model") {
+
 				@Override
 				public void run() {
 					setPaused(false);
@@ -342,6 +353,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 	@Override
 	public void respondControl(final org.ascape.model.event.ControlEvent control) {
 		new Thread(new Runnable() {
+
 			public void run() {
 				EclipseEscapeRunner.super.respondControl(control);
 			}
@@ -494,9 +506,9 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 	}
 
 	public boolean isThreadAlive() {
-		return isModelThreadAlive();
+		return getModelThread() != null && getModelThread().isAlive();
 	}
-	
+
 	public Job getEscapeRun() {
 		return escapeRun;
 	}
