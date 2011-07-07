@@ -162,7 +162,7 @@ public class ModelViewManager implements IAdapterFactory {
 					throw new RuntimeException("Couldn't create model view part.");
 				}
 			} catch (org.eclipse.ui.PartInitException e) {
-				throw new RuntimeException("Couldn't instantiate model view " + this, e);
+				throw new RuntimeException("Couldn't instantiate model view " + id, e);
 			}
 		}
 
@@ -573,7 +573,8 @@ public class ModelViewManager implements IAdapterFactory {
 	 * @param adaptableObject
 	 * @param adapterType
 	 * @return
-	 * @see org.eclipse.core.runtime.IAdapterFactory#getAdapter(java.lang.Object, java.lang.Class)
+	 * @see org.eclipse.core.runtime.IAdapterFactory#getAdapter(java.lang.Object,
+	 *      java.lang.Class)
 	 */
 	public Object getAdapter(Object adaptableObject, Class adapterType) {
 		if (adapterType == IEngine.class && adaptableObject instanceof IModel) {

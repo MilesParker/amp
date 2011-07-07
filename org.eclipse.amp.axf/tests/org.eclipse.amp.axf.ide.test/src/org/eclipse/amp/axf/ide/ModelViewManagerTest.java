@@ -42,7 +42,7 @@ public class ModelViewManagerTest {
 		ObserverThread thread = new ObserverThread();
 		thread.mainThread = Thread.currentThread();
 		thread.start();
-		classToTest.createViewPart(EmptyView.VIEW_ID, modelInput, "viewName");
+		classToTest.createViewPart(EmptyView.VIEW_ID, modelInput, "empty view");
 		if (thread.mainThreadInterrupted) {
 			fail("Deadlock in createViewPart?");
 		}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<fragment>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="true"
+            class="org.eclipse.amp.axf.ide.EmptyView"
+            id="org.eclipse.amp.axf.ide.EmptyView"
+            name="empty view"
+            restorable="true">
+      </view>
+   </extension>
+
+</fragment>
