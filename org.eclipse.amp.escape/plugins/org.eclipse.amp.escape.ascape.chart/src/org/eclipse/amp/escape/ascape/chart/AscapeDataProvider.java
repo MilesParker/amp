@@ -32,14 +32,12 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
 // TODO: Auto-generated Javadoc
-/**
- * The Class AscapeDataProvider.
- */
+
 public class AscapeDataProvider implements IDataProvider, ILabelProvider {
 
-    Map<Scape, DataSelection> dataSelectionForScape = new HashMap<Scape, DataSelection>();
+    private Map<Scape, DataSelection> dataSelectionForScape = new HashMap<Scape, DataSelection>();
 
-    Map<IDataSelectionListener, Observer> observerForListener = new HashMap<IDataSelectionListener, Observer>();
+    private Map<IDataSelectionListener, Observer> observerForListener = new HashMap<IDataSelectionListener, Observer>();
 
     /**
      * @param model
@@ -136,6 +134,7 @@ public class AscapeDataProvider implements IDataProvider, ILabelProvider {
      * @see org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.jface.viewers.ILabelProviderListener)
      */
     public void addListener(ILabelProviderListener listener) {
+    	//
     }
 
     /**
@@ -143,6 +142,7 @@ public class AscapeDataProvider implements IDataProvider, ILabelProvider {
      * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
      */
     public void dispose() {
+    	//
     }
 
     /**
@@ -160,5 +160,6 @@ public class AscapeDataProvider implements IDataProvider, ILabelProvider {
      * @see org.eclipse.jface.viewers.IBaseLabelProvider#removeListener(org.eclipse.jface.viewers.ILabelProviderListener)
      */
     public void removeListener(ILabelProviderListener listener) {
+    	//
     }
 }

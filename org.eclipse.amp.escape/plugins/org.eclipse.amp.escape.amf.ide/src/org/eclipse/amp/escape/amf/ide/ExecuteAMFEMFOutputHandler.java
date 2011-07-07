@@ -16,7 +16,7 @@
 package org.eclipse.amp.escape.amf.ide;
 
 import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
-import org.eclipse.amp.escape.view.EMFDataOutputView;
+import org.eclipse.amp.escape.view.FileEMFSimDataCollector;
 
 import org.ascape.runtime.Runner;
 

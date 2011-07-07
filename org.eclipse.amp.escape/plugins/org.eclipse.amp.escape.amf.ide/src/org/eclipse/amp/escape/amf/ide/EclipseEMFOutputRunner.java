@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.eclipse.amp.amf.parameters.AParInterpreter;
 import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
-import org.eclipse.amp.escape.view.EMFDataOutputView;
+import org.eclipse.amp.escape.view.FileEMFSimDataCollector;
 import org.eclipse.core.resources.IResource;
 import org.metaabm.SContext;
 
@@ -39,13 +39,13 @@ final class EclipseEMFOutputRunner extends EclipseEscapeRunner {
 		boolean found = false;
 		ArrayList scapeListeners = new ArrayList(getScape().getScapeListeners());
 		for (Object l : scapeListeners) {
-			if (l instanceof EMFDataOutputView) {
+			if (l instanceof FileEMFSimDataCollector) {
 				found = true;
 				break;
 			}
 		}
 		if (!found) {
-			getScape().addView(new EMFDataOutputView(resource, model));
+			getScape().addView(new FileEMFSimDataCollector(resource, model));
 		}
 		super.run();
 	}

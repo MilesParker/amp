@@ -117,7 +117,8 @@ public class HistogramStrategy extends BasicChartStrategy {
         }
     }
 
-    public void createLegend() {
+    @Override
+		public void createLegend() {
         super.createLegend();
         getLegend().setItemType(LegendItemType.CATEGORIES_LITERAL);
     }

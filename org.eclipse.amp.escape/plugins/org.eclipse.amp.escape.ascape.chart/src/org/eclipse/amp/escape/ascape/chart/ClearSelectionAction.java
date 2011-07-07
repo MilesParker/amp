@@ -21,39 +21,37 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IViewActionDelegate;
 import org.eclipse.ui.IViewPart;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class DisplayLegendAction.
- */
+
 public class ClearSelectionAction implements IViewActionDelegate {
 
-    ChartCustomizer customizer;
+	private ChartCustomizer customizer;
 
-    /**
-     * 
-     * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
-     */
-    public void run(IAction action) {
-        DataSelection selection = (DataSelection) ((AscapeDataProvider) customizer.getChartEditPart().getDataProvider())
-        .getDataSource(customizer.getChartEditPart().getModel());
-        selection.clearSelection();
-        customizer.refresh();
-    }
+	/**
+	 * 
+	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
+	 */
+	public void run(IAction action) {
+		DataSelection selection = (DataSelection) ((AscapeDataProvider) customizer.getChartEditPart().getDataProvider())
+				.getDataSource(customizer.getChartEditPart().getModel());
+		selection.clearSelection();
+		customizer.refresh();
+	}
 
-    /**
-     * 
-     * @see org.eclipse.ui.IViewActionDelegate#init(org.eclipse.ui.IViewPart)
-     */
-    public void init(IViewPart view) {
-        customizer = (ChartCustomizer) view;
-    }
+	/**
+	 * 
+	 * @see org.eclipse.ui.IViewActionDelegate#init(org.eclipse.ui.IViewPart)
+	 */
+	public void init(IViewPart view) {
+		customizer = (ChartCustomizer) view;
+	}
 
-    /**
-     * 
-     * @see org.eclipse.ui.IActionDelegate#selectionChanged(org.eclipse.jface.action.IAction,
-     *      org.eclipse.jface.viewers.ISelection)
-     */
-    public void selectionChanged(IAction action, ISelection selection) {
-    }
+	/**
+	 * 
+	 * @see org.eclipse.ui.IActionDelegate#selectionChanged(org.eclipse.jface.action.IAction,
+	 *      org.eclipse.jface.viewers.ISelection)
+	 */
+	public void selectionChanged(IAction action, ISelection selection) {
+		//
+	}
 
 }

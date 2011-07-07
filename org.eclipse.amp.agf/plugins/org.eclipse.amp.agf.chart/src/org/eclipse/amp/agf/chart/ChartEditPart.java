@@ -258,7 +258,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 		IAdapterManager adapterManager = Platform.getAdapterManager();
 		// We seem to need to force loading of the data provider, at least in the
 		// exemplar case
-		Object provider = adapterManager.loadAdapter(this.getModel(), "org.eclipse.amp.agf.chart.IDataProvider");
+		Object provider = adapterManager.loadAdapter(this.getModel(), IDataProvider.ID);
 
 		if (!(provider instanceof IDataProvider)) {
 			throw new RuntimeException("Couldn't find data provider for chart model. Please ensure that a data provider adapter has been defined for the class: " + this.getModel().getClass());
