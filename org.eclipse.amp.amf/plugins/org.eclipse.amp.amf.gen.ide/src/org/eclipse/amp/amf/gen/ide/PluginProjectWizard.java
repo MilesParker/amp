@@ -38,7 +38,8 @@ import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.ui.statushandlers.StatusManager;
 
 /**
- * Creates a generic AMF project; intended for specialization.
+ * Creates a generic AMF project; intended for specialization. Caution: this
+ * code is duplicated at "org.eclipse.amp.escape.ide.ProjectWizard"!
  * 
  * @author milesparker
  */
@@ -70,8 +71,7 @@ public abstract class PluginProjectWizard extends Wizard implements INewWizard {
 	public boolean performFinish() {
 		try {
 			IJavaProject javaProject = JavaCore.create(getProject());
-			final IProjectDescription projectDescription = ResourcesPlugin.getWorkspace().newProjectDescription(
-					projectPage.getProjectName());
+			final IProjectDescription projectDescription = ResourcesPlugin.getWorkspace().newProjectDescription(projectPage.getProjectName());
 			if (projectPage.useDefaults()) {
 				projectDescription.setLocation(null);
 			} else {
@@ -101,9 +101,7 @@ public abstract class PluginProjectWizard extends Wizard implements INewWizard {
 			createFiles();
 			return true;
 		} catch (Exception exception) {
-			StatusManager.getManager().handle(
-					new Status(IStatus.ERROR, getPluginID(), "Problem creating " + getProjectTypeName() + " project. Ignoring.",
-							exception));
+			StatusManager.getManager().handle(new Status(IStatus.ERROR, getPluginID(), "Problem creating " + getProjectTypeName() + " project. Ignoring.", exception));
 			try {
 				getProject().delete(true, null);
 			} catch (Exception e) {

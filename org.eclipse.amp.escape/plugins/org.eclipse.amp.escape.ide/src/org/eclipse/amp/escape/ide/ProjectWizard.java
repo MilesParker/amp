@@ -40,6 +40,8 @@ import org.eclipse.ui.statushandlers.StatusManager;
 
 /**
  * Creates a generic project with code generation; intended for specialization.
+ * Caution: this code is duplicated at
+ * "org.eclipse.amp.amf.gen.ide.PluginProjectWizard"!
  * 
  * @author milesparker
  * @author jonas.ruettimann
