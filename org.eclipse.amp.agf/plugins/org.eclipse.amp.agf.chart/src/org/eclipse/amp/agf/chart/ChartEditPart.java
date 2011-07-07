@@ -483,7 +483,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 		return seriesColorProvider;
 	}
 
-	ResourceManager getResourceManager() {
+	public ResourceManager getResourceManager() {
 		return resourceManager;
 	}
 
@@ -492,7 +492,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 	 * 
 	 * @author fei
 	 */
-	class ResourceManager implements DisposeListener {
+	public class ResourceManager implements DisposeListener {
 		private GC gc;
 
 		private Image image;
@@ -503,7 +503,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 			//
 		}
 
-		void setGc(GC gc) {
+		public void setGc(GC gc) {
 			if (this.gc != null && !this.gc.isDisposed()) {
 				this.gc.dispose();
 			}
@@ -540,7 +540,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 			return image;
 		}
 
-		void setImage(Image image) {
+		public void setImage(Image image) {
 			if (this.image != null && !this.image.isDisposed()) {
 				this.image.dispose();
 			}

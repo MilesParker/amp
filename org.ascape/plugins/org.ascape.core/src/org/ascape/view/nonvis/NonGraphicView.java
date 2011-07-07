@@ -22,36 +22,35 @@ import org.ascape.model.event.DefaultScapeListener;
  */
 public class NonGraphicView extends DefaultScapeListener {
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructs a non-graphic view.
-	 */
-	public NonGraphicView() {
-		this("Non-graphic view");
-	}
+    /**
+     * Constructs a non-graphic view.
+     */
+    public NonGraphicView() {
+        this("Non-graphic view");
+    }
 
-	/**
-	 * Constructs a non-graphic view.
-	 * 
-	 * @param name
-	 *          a user relevant name for this view
-	 */
-	public NonGraphicView(String name) {
-		super(name);
-		setNotifyScapeAutomatically(true);
-	}
+    /**
+     * Constructs a non-grahpic view.
+     * 
+     * @param name
+     *            a user relevant name for this view
+     */
+    public NonGraphicView(String name) {
+        this.name = name;
+        setNotifyScapeAutomatically(true);
+    }
 
-	/**
-	 * Returns false, by definition non graphic views have no gui.
-	 * 
-	 * @return true, if is graphic
-	 */
-	@Override
-	public final boolean isGraphic() {
-		return false;
-	}
+    /**
+     * Returns false, by definition non graphic views have no gui.
+     * 
+     * @return true, if is graphic
+     */
+    public final boolean isGraphic() {
+        return false;
+    }
 }

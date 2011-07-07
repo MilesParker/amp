@@ -1,41 +1,5 @@
 package name.milesparker.epi;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Collections;
-
-import org.eclipse.core.runtime.IAdapterFactory;
-import org.eclipse.amp.agf.IGraphicsAdapted;
-import org.eclipse.amp.agf.IGraphicsAdapter;
-
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.jface.viewers.IColorProvider;
-
-import org.ascape.model.Agent;
-import org.ascape.model.Cell;
-import org.ascape.model.CellOccupant;
-import org.ascape.model.HostCell;
-import org.ascape.model.LocatedAgent;
-import org.ascape.model.Scape;
-import org.ascape.model.event.ScapeEvent;
-import org.ascape.model.rule.Rule;
-import org.ascape.model.rule.ExecuteThenUpdate;
-import org.ascape.model.space.CollectionSpace;
-import org.ascape.model.space.Coordinate;
-import org.ascape.model.space.Coordinate2DDiscrete;
-import org.ascape.model.space.Graph;
-import org.ascape.model.space.Location;
-import org.ascape.model.space.Singleton;
-import org.ascape.runtime.NonGraphicRunner;
-import org.ascape.util.Conditional;
-import org.ascape.util.data.DataPoint;
-import org.ascape.util.data.DataPointConcrete;
-import org.ascape.util.vis.ColorFeature;
-import org.ascape.util.vis.ColorFeatureConcrete;
-import org.ascape.view.vis.ChartView;
-import org.ascape.view.vis.GEFView;
-import org.ascape.view.vis.GraphView;
-
 import org.eclipse.amp.escape.runtime.extension.IAgentChild;
 
 /**
@@ -46,7 +10,7 @@ import org.eclipse.amp.escape.runtime.extension.IAgentChild;
  * <!-- end-user-doc -->
  * @generated
  */
-public class Individual extends CellOccupant {
+public class Individual {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -170,58 +134,16 @@ public class Individual extends CellOccupant {
 
 	/**
 	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Epidemic getEpidemic() {
-		return (Epidemic) getScape().getScape();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-
-	public void startSimulationAgentChild(int timeStep) {
-		if (timeStep == getRoot().getRunner().getEarliestPeriod()) {
-			for (IAgentChild tmp : children) {
-				tmp.startSimulation(timeStep);
-			}
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-
-	public void calculateTimeStep(int timeStep) {
-		for (IAgentChild tmp : children) {
-			tmp.calculate(timeStep);
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
 	 * Initialize Location Initialization. Executed once at the beginning of each model run.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializeLocation() {
-		Object cityLocation = (Object) ((org.ascape.model.space.Discrete) getEpidemic()
-				.getCity().getSpace()).findRandomAvailable();
-		if (cityLocation != null) {
-			if (getHostScape() != ((Agent) cityLocation).getScape()) {
-				die();
-				getEpidemic().getIndividualScape().add(this);
-			}
-			moveTo(((HostCell) cityLocation));
-		}
+		/*
+		Spatial Functions:
+		[available]
+		 */
+		Object cityLocation = new Object();
 	}
 	/**
 	 * <!-- begin-user-doc -->
@@ -230,22 +152,15 @@ public class Individual extends CellOccupant {
 	 * @generated
 	 */
 	public void movement() {
-		double movementDraw = getRandom().nextDouble();
+		double movementDraw = randomUnit();
 		if ((getStatus() != StatusEnum.dead
 				&& movementDraw < getEpidemic().getMovementProbability()
 				&& getStatus() != StatusEnum.symptomInfectious && movementDraw < getEpidemic()
-				.getMovementProbability())) {
-			Object neighboringLocation = (Object) ((org.ascape.model.space.Discrete) getEpidemic()
-					.getCity().getSpace())
-					.findRandomAvailableNeighbor(((org.ascape.model.CellOccupant) this)
-							.getHostCell());
-			if (neighboringLocation != null) {
-				if (getHostScape() != ((Agent) neighboringLocation).getScape()) {
-					die();
-					getEpidemic().getIndividualScape().add(this);
-				}
-				moveTo(((HostCell) neighboringLocation));
-			}
+				.getMovementProbability())) { /*
+												Spatial Functions:
+												[available, neighbor]
+												 */
+			Object neighboringLocation = new Object();
 		}
 	}
 	/**
@@ -255,7 +170,7 @@ public class Individual extends CellOccupant {
 	 * @generated
 	 */
 	public void initializeState() {
-		double infectionDraw = getRandom().nextDouble();
+		double infectionDraw = randomUnit();
 		double individualTransmissionRate = randomInRange(getEpidemic()
 				.getMinContactTransmissionProbability(), getEpidemic()
 				.getMaxContactTransmissionProbability());
@@ -271,41 +186,16 @@ public class Individual extends CellOccupant {
 	 * @generated
 	 */
 	public void transmission() {
-		if ((getStatus() == StatusEnum.symptomInfectious || getStatus() == StatusEnum.asymptomInfectious)) {
-			Conditional potentialExposureCondition = new Conditional() {
-
-				/**
-				 * <!-- begin-user-doc -->
-				 * 
-				 * <!-- end-user-doc -->
-				 * @generated
-				 */
-				private static final long serialVersionUID = 6846144446402098985L;
-
-				/**
-				 * <!-- begin-user-doc -->
-				 * 
-				 * <!-- end-user-doc -->
-				 * @generated
-				 */
-				public boolean meetsCondition(Object potentialExposureCell) {
-					if (potentialExposureCell instanceof Individual) {
-						return true;
-					} else {
-						return false;
-					}
-				}
-			};
-			Individual potentialExposure = (Individual) ((org.ascape.model.space.Discrete) getEpidemic()
-					.getCity().getSpace()).findRandomNeighbor(this,
-					potentialExposureCondition);
-			if (potentialExposure != null) {
-				if (potentialExposure.getStatus() == StatusEnum.susceptible) {
-					double transmissionDraw = getRandom().nextDouble();
-					if (transmissionDraw < potentialExposure
-							.getContactTransmissionProbability()) {
-						potentialExposure.setStatus(StatusEnum.exposed);
-					}
+		if ((getStatus() == StatusEnum.symptomInfectious || getStatus() == StatusEnum.asymptomInfectious)) { /*
+																												Spatial Functions:
+																												[neighbor]
+																												 */
+			Individual potentialExposure = new Individual();
+			if (potentialExposure.getStatus() == StatusEnum.susceptible) {
+				double transmissionDraw = randomUnit();
+				if (transmissionDraw < potentialExposure
+						.getContactTransmissionProbability()) {
+					potentialExposure.setStatus(StatusEnum.exposed);
 				}
 			}
 		}
@@ -317,12 +207,12 @@ public class Individual extends CellOccupant {
 	 * @generated
 	 */
 	public void progression() {
-		int currentPeriod = getScape().getPeriod();
+		int currentPeriod = timeNow();
 		if ((getExposureEndPeriod() != getAsymptomaticEndPeriod() && currentPeriod == getExposureEndPeriod())) {
 			setStatus(StatusEnum.asymptomInfectious);
 		}
 		if (currentPeriod == getOutcomePeriod()) {
-			double mortalityDraw = getRandom().nextDouble();
+			double mortalityDraw = randomUnit();
 			if (mortalityDraw < getEpidemic().getCaseMortalityRate()) {
 				setStatus(StatusEnum.dead);
 			}
@@ -345,7 +235,7 @@ public class Individual extends CellOccupant {
 	 */
 	public void exposure() {
 		if (getStatus() == StatusEnum.exposed) {
-			int exposureNow = getScape().getPeriod();
+			int exposureNow = timeNow();
 			int exposureLength = randomInRange(getEpidemic()
 					.getMinPeriodExposure(), getEpidemic()
 					.getMaxPeriodExposure());
@@ -480,17 +370,4 @@ public class Individual extends CellOccupant {
 		contactTransmissionProbability = _contactTransmissionProbability;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * 
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getName() {
-		if (name == null) {
-			return "Individual " + getUID();
-		} else {
-			return name;
-		}
-	}
 }
