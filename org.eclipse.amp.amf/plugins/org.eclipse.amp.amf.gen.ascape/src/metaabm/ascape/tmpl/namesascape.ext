@@ -77,6 +77,9 @@ cached String coordinateType(SNDimensional proj) :
 cached String scape(SAgent agent) :
 	agent.id() + "Scape";
 
+cached String scape(SContext agent) :
+	agent.parent != null ? agent.id() + "Scape" : agent.id() + "Manager";
+
 cached String fieldName(SAgent agent) :
 	agent.scape();
 	

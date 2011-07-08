@@ -85,7 +85,7 @@ cached Boolean firstSelection(ASelect sel) :
 	firstSelection(sel, sel.agent);
 	
 cached String accessPathInner(IID value, SImplemented owner, Boolean inner) :
-	inner ? "((" + owner.implementation.className + ")" + owner.innerValue().id() + ")." : "";
+	inner  && owner.parent != null ? "((" + owner.implementation.className + ")" + owner.innerValue().id() + ")." : "";
 
 cached Boolean ancestor(Void parent, SAgent child) : 
 	false;

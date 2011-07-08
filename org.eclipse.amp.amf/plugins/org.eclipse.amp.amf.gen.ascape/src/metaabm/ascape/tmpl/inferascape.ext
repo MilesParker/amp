@@ -290,7 +290,9 @@ cached String statCondTerm(SAttribute typed) :
 	statCond(typed) ? "Cond" : "CSAMM";
 
 cached String statLabel(SAttribute inner, SAttribute outer, String desc) :
-	(inner.parent().parent().parent() != null ? "getName() + \" " : "\"") + inner.parent().label + " " + desc.spaceTrail() + (outer != inner ? outer.label.spaceTrail() : "") + inner.label + "\"";
+	(inner.parent().parent() != null && inner.parent().parent().parent() != null 
+		? "getName() + \" " 
+		: "\"") + inner.parent().label + " " + desc.spaceTrail() + (outer != inner ? outer.label.spaceTrail() : "") + inner.label + "\"";
 
 cached int gridDimSize(SGrid grid) : 
 	grid.attributes.size > 1 ? grid.attributes.get(1).defaultValue.asInteger() : 20;
@@ -312,3 +314,5 @@ cached List setterSpace(SAttribute attr) :
 	
 cached List setterSpace(SStyle style) :
 	style.agent.attributes.setterSpace();
+	
+	
