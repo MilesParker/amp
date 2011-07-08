@@ -561,6 +561,9 @@
                    <equals
                          value="STOPPED">
                    </equals>
+                   <equals
+                         value="CLOSING">
+                   </equals>
                 </or>
              </with>
           </enabledWhen>
