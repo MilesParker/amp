@@ -46,7 +46,6 @@ public class AscapeProjectWizard extends PluginTemplateProjectWizard {
 	@Override
 	public List<String> getBuilders() {
 		List<String> builderIDs = super.getBuilders();
-		builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + MetaABMBuilder.BUILDER_ID);
 		builderIDs.add(GenIDEPlugin.PLUGIN_ID + "." + DocumentModelBuilder.DOCUMENT_BUILDER_ID);
 		builderIDs.add(AscapeIDEActivator.PLUGIN_ID + "." + AscapeModelBuilder.ASCAPE_BUILDER_ID);
 		return builderIDs;
