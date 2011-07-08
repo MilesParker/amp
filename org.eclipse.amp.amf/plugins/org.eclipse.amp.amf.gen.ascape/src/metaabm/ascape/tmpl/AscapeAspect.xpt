@@ -229,7 +229,7 @@ import org.ascape.model.HostCell;
     «ELSEIF function.id() == "uniformDistribution"-»
         randomInRange(«inputs.expression(path, inner).toString(", ")»);
 	«ELSEIF function.id() == "timeNow"-»
-		«path.last().accessPath(this, inner)»getScape().getPeriod()
+		«path.last().accessPath(this, inner)»«reference.owner.parent != null ? "getScape()." : ""»getPeriod()
     «ELSEIF function.id() == "available"-»
         isAvailable()
     «ELSEIF function.id() == "withinBoundaries"-»

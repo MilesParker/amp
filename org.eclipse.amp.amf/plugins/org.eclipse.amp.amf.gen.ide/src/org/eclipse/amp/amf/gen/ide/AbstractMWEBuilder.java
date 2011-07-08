@@ -160,6 +160,9 @@ public abstract class AbstractMWEBuilder extends IncrementalProjectBuilder {
         boolean success = true;
         for (String workflow : workflowPaths) {
             success &= workflowRunner.run(workflow, workflowMonitor, getGenProperties(), slotContents);
+            if (!success) {
+            	break;
+            }
         }
         LogWorkflow.setSuccess(success);
         LogWorkflow.report(pluginName, fullTaskDescription, false);
