@@ -9,6 +9,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 public class SDActivator extends AbstractUIPlugin {
+	public static final String PLUGIN_ID = "org.eclipse.amp.amf.sd.gen";
 	// The shared instance.
 	private static SDActivator plugin;
 

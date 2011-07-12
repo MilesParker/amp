@@ -24,7 +24,7 @@ public class EscapeModel3DBuilder extends MetaABMBuilder {
 	private static MetaABMBuilder escapeBuilder;
 
 	public EscapeModel3DBuilder() {
-		super("Generating Escape 3D Styles", "org.eclipse.amp.escape.gen", "model/generate_escape_3D.mwe", true);
+		super("Generating Escape 3D Styles", EscapeAMF3DPlugin.PLUGIN_ID, "model/generate_escape_3D.mwe", true);
 	}
 
 	@Override
