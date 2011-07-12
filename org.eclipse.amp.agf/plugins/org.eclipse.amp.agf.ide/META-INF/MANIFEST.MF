@@ -7,10 +7,8 @@ Bundle-Version: 0.9.0.qualifier
 Bundle-Activator: org.eclipse.amp.agf.ide.AGFIDEPlugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
- org.eclipse.gef,
  org.eclipse.amp.agf.core,
- org.eclipse.amp.axf.views,
- org.eclipse.amp.axf.ide
+ org.eclipse.amp.axf.views;bundle-version="0.9.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Localization: plugin
