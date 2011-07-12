@@ -3,11 +3,12 @@ package org.eclipse.amp.axf.ide;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.amp.axf.core.EngineStateAdapter;
+import org.eclipse.amp.axf.core.EngineStateAdapter.EngineState;
 import org.eclipse.amp.axf.core.IEngine;
-import org.eclipse.amp.axf.core.ILifeCycleListener;
+import org.eclipse.amp.axf.core.IEngineObserver;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.core.IObservationProvider;
-import org.eclipse.amp.axf.core.LifeCycleState;
+import org.eclipse.core.commands.IHandler;
 import org.eclipse.ui.AbstractSourceProvider;
 import org.eclipse.ui.ISourceProvider;
 import org.eclipse.ui.ISources;
@@ -15,34 +16,19 @@ import org.eclipse.ui.IWorkbenchPart;
 
 /**
  * This {@link ISourceProvider} defines states that can be used to enable or
- * disable handlers. The states are related to the execution of only the active
- * {@link IModel}s. Execution states are {@link #IDLE}, {@link #RUNNING} and
- * {@link #PAUSED}. This is a simplification of all {@link IEngine} states that
- * are possible.
+ * disable {@link IHandler}s or other GUI elements. The states are related to
+ * the execution of only the active {@link IModel}. They are a simplification of
+ * all possible states of an {@link IEngine}.
  * 
  * @author jonas.ruettimann
  */
-public class EngineStateService extends AbstractSourceProvider implements IModelWorkbenchListener, ILifeCycleListener {
+public class EngineStateService extends AbstractSourceProvider implements IModelWorkbenchListener, IEngineObserver {
+
 	public static final String ID = "org.eclipse.amp.axf.ide.engine.state";
-
-	/** Simulation has not been started at all or is in undefined state. */
-	public static final String IDLE = "IDLE";
-
-	/** Simulation is currently running. */
-	public static final String RUNNING = "RUNNING";
-
-	/** Simulation was running but has been set to pause. */
-	public static final String PAUSED = "PAUSED";
-
-	/** Simulation run has finished and stopped. */
-	public static final String STOPPED = "STOPPED";
-
-	/** Simulation was running but has been requested to be closed. */
-	public static final String CLOSING = "CLOSING";
 
 	private IModel activeModel = null;
 
-	private String lastState;
+	private EngineState lastState = EngineState.IDLE;
 
 	public EngineStateService() {
 		ModelViewManager.getInstance().getManagerListeners().addModelManagerListener(this);
@@ -50,7 +36,7 @@ public class EngineStateService extends AbstractSourceProvider implements IModel
 
 	public Map<String, String> getCurrentState() {
 		Map<String, String> map = new HashMap<String, String>(1);
-		map.put(ID, getEngineState());
+		map.put(ID, lastState.toString());
 		return map;
 	}
 
@@ -58,35 +44,12 @@ public class EngineStateService extends AbstractSourceProvider implements IModel
 		return new String[] { ID };
 	}
 
-	private String getEngineState() {
-		if (activeModel != null) {
-			if (activeModel.isInitialized() && activeModel.isCreated() && activeModel.isActive() && activeModel.isRunning()) {
-				if (activeModel.isPaused()) {
-					return PAUSED;
-				}
-				return RUNNING;
-			}
-
-			if (activeModel.isInitialized() && activeModel.isStopped()) {
-				if (activeModel.isEnding()) {
-					return CLOSING;
-				}
-				return STOPPED;
-			}
-		}
-
-		return IDLE; // used as default
+	public void engineStateChanged(IEngine engine, EngineState state) {
+		possibleStateChange(state);
 	}
 
-	public void stateChange(Object key, Object updated) {
-		if (key instanceof LifeCycleState) {
-			possibleStateChange();
-		}
-	}
-
-	private void possibleStateChange() {
-		String currentState = getEngineState();
-		if (!currentState.equals(lastState)) {
+	private void possibleStateChange(EngineState currentState) {
+		if (currentState != lastState) {
 			lastState = currentState;
 			notifyObservers(currentState);
 		}
@@ -97,27 +60,30 @@ public class EngineStateService extends AbstractSourceProvider implements IModel
 	 * 
 	 * @param currentState
 	 */
-	protected void notifyObservers(String currentState) {
-		fireSourceChanged(ISources.WORKBENCH, ID, currentState);
+	protected void notifyObservers(EngineState currentState) {
+		fireSourceChanged(ISources.WORKBENCH, ID, currentState.toString());
 	}
 
-	public void dispose() {
-		unregister();
+	private void unregister() {
+		if (activeModel != null) {
+			assert activeModel.getEngine() != null : "Engine occurs to be null.";
+			activeModel.getEngine().removeEngineObserver(this);
+			activeModel = null;
+		}
 	}
 
 	public void modelActivated(IModel newModel) {
 		unregister();
 
-		newModel.addModelListener(this);
+		IEngine engine = newModel.getEngine();
+		assert engine != null : "Engine occurs to be null.";
+
+		engine.addEngineObserver(this);
 		activeModel = newModel;
 
-		possibleStateChange();
-	}
-
-	private void unregister() {
-		if (activeModel != null) {
-			activeModel.removeModelListener(this);
-		}
+		// There is no stepping state. Use pause instead, that has the same effect.
+		boolean isStepping = engine.isPaused();
+		possibleStateChange(new EngineStateAdapter(engine.isRunning(), isStepping, engine.isPaused()).getState());
 	}
 
 	public void modelAdded(IModel model) {
@@ -125,7 +91,10 @@ public class EngineStateService extends AbstractSourceProvider implements IModel
 	}
 
 	public void modelRemoved(IModel model) {
-		//
+		if (model == activeModel) {
+			unregister();
+			possibleStateChange(EngineState.IDLE);
+		}
 	}
 
 	public void viewAdded(IWorkbenchPart part) {
@@ -140,36 +109,8 @@ public class EngineStateService extends AbstractSourceProvider implements IModel
 		//
 	}
 
-	public void observing(IObservationProvider observed) {
-		//
-	}
-
-	public void observeCreate(IObservationProvider observed) {
-		//
-	}
-
-	public void observeInitialize(IObservationProvider observed) {
-		//
-	}
-
-	public void observeStart(IObservationProvider observed) {
-		//
-	}
-
-	public void observeUpdate(IObservationProvider observed) {
-		//
-	}
-
-	public void observeStop(IObservationProvider observed) {
-		//
-	}
-
-	public void observationEnding(IObservationProvider observed) {
-		//
-	}
-
-	public void observationEnd(IObservationProvider observed) {
-		//
+	public void dispose() {
+		unregister();
 	}
 
 }

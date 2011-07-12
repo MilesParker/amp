@@ -1,5 +1,7 @@
 package org.eclipse.amp.axf.ide.handlers;
 
+import org.eclipse.amp.axf.core.EngineStateAdapter;
+
 /**
  * Pausing should be enabled whenever a simulation is running and
  * <emph>not</emph> in pause state.
@@ -14,13 +16,13 @@ public class PauseHandlerTest extends ModelRunHandlerTest {
 	}
 
 	@Override
-	protected TestRunningState[] getEnabledStates() {
-		return new TestRunningState[] { STATE_RUNNING };
+	protected EngineStateAdapter[] getEnabledStates() {
+		return new EngineStateAdapter[] { STATE_RUNNING };
 	}
 
 	@Override
-	protected TestRunningState[] getDisabledStates() {
-		return new TestRunningState[] { STATE_IDLE, STATE_STOPPED, STATE_PAUSED, STATE_ENDING };
+	protected EngineStateAdapter[] getDisabledStates() {
+		return new EngineStateAdapter[] { STATE_IDLE, STATE_PAUSED };
 	}
 
 }

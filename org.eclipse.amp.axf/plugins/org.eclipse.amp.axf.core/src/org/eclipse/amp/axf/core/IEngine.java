@@ -72,6 +72,10 @@ public interface IEngine {
 	 */
 	void control(EngineControl ModelControl);
 
+	public void addEngineObserver(IEngineObserver observer);
+
+	public void removeEngineObserver(IEngineObserver observer);
+
 	/**
 	 * Observation complete.
 	 * 

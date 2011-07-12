@@ -17,39 +17,28 @@ package org.eclipse.amp.axf.ide.handlers;
 
 import org.eclipse.amp.axf.core.EngineControl;
 import org.eclipse.amp.axf.core.IEngine;
-import org.eclipse.amp.axf.core.ILifeCycleListener;
 import org.eclipse.amp.axf.core.IModel;
-import org.eclipse.amp.axf.core.IObservationProvider;
-import org.eclipse.amp.axf.core.IStateListener;
-import org.eclipse.amp.axf.core.LifecycleObservationAdapter;
-import org.eclipse.amp.axf.ide.AXFWorkbenchPlugin;
-import org.eclipse.amp.axf.ide.IModelWorkbenchListener;
 import org.eclipse.amp.axf.ide.ModelViewManager;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.HandlerEvent;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IWorkbenchPart;
 
 /**
- * Super class for all {@link AbstractHandler}s to control the {@link IEngine}
- * execution.
+ * Super class for all {@link AbstractHandler}s to control the {@link IEngine} execution.
  * 
  * @author jonas.ruettimann
  */
-public abstract class ModelRunHandler extends AbstractHandler implements ILifeCycleListener, IModelWorkbenchListener {
+public abstract class ModelRunHandler extends AbstractHandler {
 
 	private EngineControl control;
 
-	private IStateListener delegate;
-
 	public ModelRunHandler(EngineControl control) {
 		this.control = control;
-		delegate = new LifecycleObservationAdapter(this);
 	}
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+		assert getRunner() != null : "There is no active runner!";
+
 		getRunner().control(control);
 		return null;
 	}
@@ -62,69 +51,4 @@ public abstract class ModelRunHandler extends AbstractHandler implements ILifeCy
 		return model.getEngine();
 	}
 
-	public void notifyChange() {
-		// its possible we've already left workbench
-		if (AXFWorkbenchPlugin.getDefault() != null) {
-			Display display = AXFWorkbenchPlugin.getDefault().getWorkbench().getDisplay();
-			if (display != null && !display.isDisposed()) {
-				display.asyncExec(new Runnable() {
-					public void run() {
-						fireChangeEvent();
-					}
-				});
-			}
-		}
-	}
-
-	protected void fireChangeEvent() {
-		fireHandlerChanged(new HandlerEvent(this, true, false));
-	}
-
-	public void stateChange(Object key, Object updated) {
-		delegate.stateChange(key, updated);
-		notifyChange();
-	}
-
-	public synchronized void modelActivated(IModel model) {
-		notifyChange();
-	}
-
-	public synchronized void observing(IObservationProvider model) {
-	}
-
-	public synchronized void observationEnd(IObservationProvider model) {
-	}
-
-	public void modelAdded(IModel model) {
-	}
-
-	public void modelRemoved(IModel model) {
-	}
-
-	public void viewActivated(IWorkbenchPart part) {
-	}
-
-	public void viewAdded(IWorkbenchPart part) {
-	}
-
-	public void viewRemoved(IWorkbenchPart part) {
-	}
-
-	public void observationEnding(IObservationProvider observed) {
-	}
-
-	public void observeCreate(IObservationProvider observed) {
-	}
-
-	public void observeInitialize(IObservationProvider observed) {
-	}
-
-	public void observeStart(IObservationProvider observed) {
-	}
-
-	public void observeStop(IObservationProvider observed) {
-	}
-
-	public void observeUpdate(IObservationProvider observed) {
-	}
 }

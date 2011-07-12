@@ -26,7 +26,9 @@ import org.ascape.model.event.ScapeEvent;
 import org.ascape.model.event.ScapeListener;
 import org.ascape.model.rule.PropogateScapeOnly;
 import org.ascape.runtime.NonGraphicRunner;
+import org.eclipse.amp.axf.core.EngineStateAdapter;
 import org.eclipse.amp.axf.core.IEngine;
+import org.eclipse.amp.axf.core.IEngineObserver;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.ide.ModelViewManager;
@@ -75,6 +77,10 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 	boolean modelShutdown = false;
 
 	private Job escapeRun;
+
+	private ArrayList<IEngineObserver> observers = new ArrayList<IEngineObserver>();
+
+	private EngineStateAdapter engineStateAdapter = new EngineStateAdapter(isRunning(), isStep(), isPaused());
 
 	/**
 	 * Open.
@@ -360,12 +366,57 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 		}).start();
 	}
 
-	/**
-	 * 
-	 * @see org.eclipse.amp.axf.core.IEngine#control(org.eclipse.amp.axf.core.EngineControl)
-	 */
 	public void control(org.eclipse.amp.axf.core.EngineControl control) {
 		super.respondControl(adaptEngineControl(control));
+	}
+
+	@Override
+	public void waitForViewsUpdate() {
+		super.waitForViewsUpdate();
+
+		/*
+		 * Running, paused and step are not all update using setter methods. So this
+		 * is a workaround to not miss any state changes.
+		 */
+		updateStateAdapter();
+	}
+
+	@Override
+	public void setPaused(boolean paused) {
+		super.setPaused(paused);
+		updateStateAdapter();
+	}
+
+	@Override
+	public void setStep(boolean step) {
+		super.setStep(step);
+		updateStateAdapter();
+	}
+
+	@Override
+	public void setRunning(boolean running) {
+		super.setRunning(running);
+		updateStateAdapter();
+	}
+
+	private void updateStateAdapter() {
+		if (engineStateAdapter.update(isRunning(), isStep(), isPaused())) {
+			for (IEngineObserver observer : observers) {
+				observer.engineStateChanged(this, engineStateAdapter.getState());
+			}
+		}
+	}
+
+	public void addEngineObserver(IEngineObserver observer) {
+		if (!observers.contains(observer)) {
+			observers.add(observer);
+		}
+	}
+
+	public void removeEngineObserver(IEngineObserver observer) {
+		if (observers.contains(observer)) {
+			observers.remove(observer);
+		}
 	}
 
 	private ControlEvent adaptEngineControl(org.eclipse.amp.axf.core.EngineControl control) {

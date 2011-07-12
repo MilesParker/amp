@@ -1,5 +1,12 @@
 package org.eclipse.amp.axf.ide.handlers;
 
+import org.eclipse.amp.axf.core.EngineStateAdapter;
+
+/**
+ * Restarting should be enabled while running or paused.
+ * 
+ * @author jonas.ruettimann
+ */
 public class RestartHandlerTest extends ModelRunHandlerTest {
 
 	@Override
@@ -8,13 +15,13 @@ public class RestartHandlerTest extends ModelRunHandlerTest {
 	}
 
 	@Override
-	protected TestRunningState[] getEnabledStates() {
-		return new TestRunningState[] { STATE_RUNNING, STATE_PAUSED };
+	protected EngineStateAdapter[] getEnabledStates() {
+		return new EngineStateAdapter[] { STATE_RUNNING, STATE_PAUSED };
 	}
 
 	@Override
-	protected TestRunningState[] getDisabledStates() {
-		return new TestRunningState[] { STATE_IDLE, STATE_STOPPED, STATE_ENDING };
+	protected EngineStateAdapter[] getDisabledStates() {
+		return new EngineStateAdapter[] { STATE_IDLE };
 	}
 
 }

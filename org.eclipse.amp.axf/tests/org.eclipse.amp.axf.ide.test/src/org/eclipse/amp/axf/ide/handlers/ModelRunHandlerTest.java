@@ -6,11 +6,12 @@ import static org.junit.Assert.fail;
 import java.util.Collection;
 
 import org.eclipse.amp.axf.core.EngineControl;
+import org.eclipse.amp.axf.core.EngineStateAdapter;
 import org.eclipse.amp.axf.core.IEngine;
+import org.eclipse.amp.axf.core.IEngineObserver;
 import org.eclipse.amp.axf.core.ILifeCycleListener;
 import org.eclipse.amp.axf.core.IModel;
 import org.eclipse.amp.axf.core.IObservationProvider;
-import org.eclipse.amp.axf.core.LifeCycleState;
 import org.eclipse.amp.axf.ide.EngineStateService;
 import org.eclipse.amp.axf.ide.ModelViewManager;
 import org.eclipse.amp.axf.time.ITimeGranularity;
@@ -26,15 +27,21 @@ import org.junit.Test;
 
 public abstract class ModelRunHandlerTest {
 
-	static final TestRunningState STATE_IDLE = new TestRunningState("IDLE", false, false, false, false, false, true, false, false);
+	/**
+	 * Using the adapter as a state container. This is kind of a hack.
+	 */
+	static final EngineStateAdapter STATE_IDLE = new EngineStateAdapter(false, false, false);
 
-	static final TestRunningState STATE_STOPPED = new TestRunningState("STOPPED", true, false, false, false, false, true, false, false);
+	/**
+	 * Using the adapter as a state container. This is kind of a hack.
+	 */
+	static final EngineStateAdapter STATE_RUNNING = new EngineStateAdapter(true, false, false);
 
-	static final TestRunningState STATE_RUNNING = new TestRunningState("RUNNING", true, true, true, true, false, false, false, false);
-
-	static final TestRunningState STATE_PAUSED = new TestRunningState("PAUSED", true, true, true, true, true, false, false, false);
-
-	static final TestRunningState STATE_ENDING = new TestRunningState("ENDING", true, false, false, false, false, true, true, false);
+	/**
+	 * Using the adapter as a state container. This is kind of a hack. The {@link IEngine} is paused. Instead we could
+	 * have used the "step" state with the same effects.
+	 */
+	static final EngineStateAdapter STATE_PAUSED = new EngineStateAdapter(true, true, false);
 
 	private DummyModel model;
 
@@ -44,15 +51,16 @@ public abstract class ModelRunHandlerTest {
 
 	protected abstract String getCommandToTestId();
 
-	protected abstract TestRunningState[] getEnabledStates();
+	protected abstract EngineStateAdapter[] getEnabledStates();
 
-	protected abstract TestRunningState[] getDisabledStates();
+	protected abstract EngineStateAdapter[] getDisabledStates();
 
 	@Before
 	public void setUp() {
 		model = new DummyModel();
 
-		ISourceProviderService sourceProviderService = (ISourceProviderService) PlatformUI.getWorkbench().getService(ISourceProviderService.class);
+		ISourceProviderService sourceProviderService = (ISourceProviderService) PlatformUI.getWorkbench().getService(
+				ISourceProviderService.class);
 		stateService = (EngineStateService) sourceProviderService.getSourceProvider(EngineStateService.ID);
 
 		handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
@@ -63,25 +71,25 @@ public abstract class ModelRunHandlerTest {
 
 	@Test
 	public void testEnabled() {
-		for (TestRunningState state : getEnabledStates()) {
+		for (EngineStateAdapter state : getEnabledStates()) {
 			applyTestState(state);
 			try {
 				handlerService.executeCommand(getCommandToTestId(), null);
 				assertTrue(true); // There should not be an Exception.
 
 			} catch (Exception e) {
-				fail("Exception during state " + state + ": " + e.getMessage());
+				fail("Exception during state " + state.getState() + ": " + e.getMessage());
 			}
 		}
 	}
 
 	@Test
 	public void testDisabled() throws ExecutionException, NotDefinedException, NotHandledException {
-		for (TestRunningState state : getDisabledStates()) {
+		for (EngineStateAdapter state : getDisabledStates()) {
 			applyTestState(state);
 			try {
 				handlerService.executeCommand(getCommandToTestId(), null);
-				fail(getCommandToTestId() + " should not be enabled during state " + state + ".");
+				fail(getCommandToTestId() + " should not be enabled during state " + state.getState() + ".");
 
 			} catch (NotEnabledException e) {
 				assertTrue(true); // This is expected to happen.
@@ -89,62 +97,54 @@ public abstract class ModelRunHandlerTest {
 		}
 	}
 
-	private void applyTestState(TestRunningState testState) {
-		testState.applyTo(model);
-		stateService.stateChange(LifeCycleState.UPDATE, ""); // Cause state update.
+	private void applyTestState(EngineStateAdapter testState) {
+		model.getEngine().running = testState.isRunning();
+		model.getEngine().paused = testState.isPausing();
+		stateService.engineStateChanged(model.getEngine(), testState.getState()); // Enforce a state update.
 	}
 
 	private class DummyModel implements IModel {
 
-		boolean initialized = false;
-
-		boolean created = false;
-
-		boolean active = false;
-
-		boolean running = false;
-
-		boolean paused = false;
-
-		boolean stopped = false;
-
-		boolean ending = false;
-
-		boolean ended = false;
+		private DummyEngine engine;
 
 		public DummyModel() {
+			engine = new DummyEngine();
+		}
+
+		public DummyEngine getEngine() {
+			return engine;
 		}
 
 		public boolean isCreated() {
-			return created;
+			return false;
 		}
 
 		public boolean isInitialized() {
-			return initialized;
+			return false;
 		}
 
 		public boolean isStopped() {
-			return stopped;
+			return false;
 		}
 
 		public boolean isRunning() {
-			return running;
+			return false;
 		}
 
 		public boolean isPaused() {
-			return paused;
+			return false;
 		}
 
 		public boolean isActive() {
-			return active;
+			return false;
 		}
 
 		public boolean isEnding() {
-			return ending;
+			return false;
 		}
 
 		public boolean isEnded() {
-			return ended;
+			return false;
 		}
 
 		public void addModelListener(ILifeCycleListener listener) {
@@ -155,7 +155,7 @@ public abstract class ModelRunHandlerTest {
 			return null;
 		}
 
-		public void removeModelListener(ILifeCycleListener listener) {
+		public void removeModelListener(ILifeCycleListener view) {
 			//
 		}
 
@@ -178,106 +178,71 @@ public abstract class ModelRunHandlerTest {
 		public int getStopPeriod() {
 			return 0;
 		}
-
-		public IEngine getEngine() {
-			return new IEngine() {
-
-				public void stop() {
-					//
-				}
-
-				public void setUpdateGranularity(ITimeGranularity granularity) {
-					//
-				}
-
-				public void observationComplete(ILifeCycleListener observer) {
-					//
-				}
-
-				public boolean isThreadAlive() {
-					return false;
-				}
-
-				public boolean isRunning() {
-					return false;
-				}
-
-				public boolean isPaused() {
-					return false;
-				}
-
-				public boolean isCloseRequested() {
-					return false;
-				}
-
-				public ITimeGranularity getUpdateGranularity() {
-					return null;
-				}
-
-				public IObservationProvider getModel() {
-					return DummyModel.this;
-				}
-
-				public void control(EngineControl ModelControl) {
-					//
-				}
-
-				public void closeFinally() {
-					//
-				}
-
-				public void close() {
-					//
-				}
-			};
-		}
 	}
 
-	static class TestRunningState {
-		private String name;
+	private class DummyEngine implements IEngine {
 
-		private boolean initialized;
+		boolean running = false;
 
-		private boolean created;
+		boolean paused = false;
 
-		private boolean active;
-
-		private boolean running;
-
-		private boolean paused;
-
-		private boolean stopped;
-
-		private boolean ending;
-
-		private boolean ended;
-
-		public TestRunningState(String name, boolean initialized, boolean created, boolean active, boolean running, boolean paused, boolean stopped, boolean ending, boolean ended) {
-			this.name = name;
-			this.initialized = initialized;
-			this.created = created;
-			this.active = active;
-			this.running = running;
-			this.paused = paused;
-			this.stopped = stopped;
-			this.ending = ending;
-			this.ended = ended;
+		public DummyEngine() {
 		}
 
-		public void applyTo(DummyModel model) {
-			model.initialized = initialized;
-			model.created = created;
-			model.active = active;
-			model.running = running;
-			model.paused = paused;
-			model.stopped = stopped;
-			model.ending = ending;
-			model.ended = ended;
+		public void close() {
+			//
 		}
 
-		@Override
-		public String toString() {
-			return name;
+		public void closeFinally() {
+			//
+		}
+
+		public boolean isCloseRequested() {
+			return false;
+		}
+
+		public boolean isThreadAlive() {
+			return false;
+		}
+
+		public boolean isRunning() {
+			return running;
+		}
+
+		public boolean isPaused() {
+			return paused;
+		}
+
+		public void stop() {
+			//
+		}
+
+		public void control(EngineControl ModelControl) {
+			//
+		}
+
+		public void addEngineObserver(IEngineObserver observer) {
+			//
+		}
+
+		public void removeEngineObserver(IEngineObserver observer) {
+			//
+		}
+
+		public void observationComplete(ILifeCycleListener observer) {
+			//
+		}
+
+		public IObservationProvider getModel() {
+			return null;
+		}
+
+		public void setUpdateGranularity(ITimeGranularity granularity) {
+			//
+		}
+
+		public ITimeGranularity getUpdateGranularity() {
+			return null;
 		}
 	}
 

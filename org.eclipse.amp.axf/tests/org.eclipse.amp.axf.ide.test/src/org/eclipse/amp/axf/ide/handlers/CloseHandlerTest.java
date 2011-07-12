@@ -1,12 +1,11 @@
 package org.eclipse.amp.axf.ide.handlers;
 
-import org.eclipse.amp.axf.ide.EngineStateService;
+import org.eclipse.amp.axf.core.EngineStateAdapter;
+import org.eclipse.amp.axf.core.EngineStateAdapter.EngineState;
 
 /**
- * Closing should be enabled when {@link EngineStateService#IDLE},
- * {@link EngineStateService#RUNNING}, {@link EngineStateService#PAUSED},
- * {@link EngineStateService#STOPPED} and {@link EngineStateService#CLOSING}. So
- * basically at all times, except when already closing.
+ * Closing should be enabled when {@link EngineState#IDLE}, {@link EngineState#RUNNING}, {@link EngineState#PAUSED}.
+ * basically at all times.
  * 
  * @author jonas.ruettimann
  */
@@ -18,13 +17,13 @@ public class CloseHandlerTest extends ModelRunHandlerTest {
 	}
 
 	@Override
-	protected TestRunningState[] getEnabledStates() {
-		return new TestRunningState[] { STATE_IDLE, STATE_PAUSED, STATE_RUNNING, STATE_STOPPED, STATE_ENDING };
+	protected EngineStateAdapter[] getEnabledStates() {
+		return new EngineStateAdapter[] { STATE_IDLE, STATE_PAUSED, STATE_RUNNING };
 	}
 
 	@Override
-	protected TestRunningState[] getDisabledStates() {
-		return new TestRunningState[] {};
+	protected EngineStateAdapter[] getDisabledStates() {
+		return new EngineStateAdapter[] {};
 	}
 
 }
