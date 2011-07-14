@@ -55,6 +55,7 @@ public class ScaleGranularityControl extends WorkbenchWindowControlContribution 
 		scale.setMaximum(SCALE_MAX);
 		scale.setSelection(SCALE_MID);
 		scale.addSelectionListener(new SelectionListener() {
+
 			public void widgetSelected(SelectionEvent e) {
 				scaleToEngineGranularity();
 			}
@@ -74,7 +75,8 @@ public class ScaleGranularityControl extends WorkbenchWindowControlContribution 
 			if (scale.getSelection() == scale.getMaximum()) {
 				newGranularity = TimeGranularity.createFrequencyGranularity(Integer.MAX_VALUE);
 			} else if (scale.getSelection() > SCALE_MID) {
-				newGranularity = TimeGranularity.createFrequencyGranularity((scale.getSelection() - SCALE_MID - CENTER_RANGE) * 2);
+				newGranularity = TimeGranularity
+						.createFrequencyGranularity((scale.getSelection() - SCALE_MID - CENTER_RANGE) * 2);
 			} else {
 				if (scale.getSelection() > 0) {
 					newGranularity = TimeGranularity.createDelayGranularity((SCALE_MID - scale.getSelection()) * 50);
@@ -113,8 +115,11 @@ public class ScaleGranularityControl extends WorkbenchWindowControlContribution 
 
 	protected void setScaleSelection(final int value) {
 		Display.getDefault().asyncExec(new Runnable() {
+
 			public void run() {
-				scale.setSelection(value);
+				if (scale != null && !scale.isDisposed()) {
+					scale.setSelection(value);
+				}
 			}
 		});
 	}
@@ -126,8 +131,11 @@ public class ScaleGranularityControl extends WorkbenchWindowControlContribution 
 	public void modelActivated(IModel model) {
 		if (model != null) {
 			Display.getDefault().asyncExec(new Runnable() {
+
 				public void run() {
-					scale.setEnabled(true);
+					if (scale != null && !scale.isDisposed()) {
+						scale.setEnabled(true);
+					}
 				}
 			});
 			engine = model.getEngine();
@@ -135,8 +143,11 @@ public class ScaleGranularityControl extends WorkbenchWindowControlContribution 
 		} else {
 			engine = null;
 			Display.getDefault().asyncExec(new Runnable() {
+
 				public void run() {
-					scale.setEnabled(false);
+					if (scale != null && !scale.isDisposed()) {
+						scale.setEnabled(false);
+					}
 				}
 			});
 		}
