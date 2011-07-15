@@ -81,9 +81,14 @@ public class EngineStateService extends AbstractSourceProvider implements IModel
 		engine.addEngineObserver(this);
 		activeModel = newModel;
 
-		// There is no stepping state. Use pause instead, that has the same effect.
-		boolean isStepping = engine.isPaused();
-		possibleStateChange(new EngineStateAdapter(engine.isRunning(), isStepping, engine.isPaused()).getState());
+		boolean isStepping = engine.isPaused(); // There is no stepping state. Use pause instead, that has the same effect.
+		boolean isEnded = activeModel.isEnded(); // The engine does not know whether it's stopped. Lets ask the model.
+
+		/*
+		 * Just before executing a model it's being activated. So a state that is generated right here might not be as
+		 * relevant since it will be changed to running in a few instances anyway.
+		 */
+		possibleStateChange(new EngineStateAdapter(engine.isRunning(), isStepping, engine.isPaused(), isEnded).getState());
 	}
 
 	public void modelAdded(IModel model) {

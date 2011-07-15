@@ -30,18 +30,24 @@ public abstract class ModelRunHandlerTest {
 	/**
 	 * Using the adapter as a state container. This is kind of a hack.
 	 */
-	static final EngineStateAdapter STATE_IDLE = new EngineStateAdapter(false, false, false);
+	static final EngineStateAdapter STATE_IDLE = new EngineStateAdapter(false, false, false, false);
 
 	/**
 	 * Using the adapter as a state container. This is kind of a hack.
 	 */
-	static final EngineStateAdapter STATE_RUNNING = new EngineStateAdapter(true, false, false);
+	static final EngineStateAdapter STATE_RUNNING = new EngineStateAdapter(true, false, false, false);
 
 	/**
 	 * Using the adapter as a state container. This is kind of a hack. The {@link IEngine} is paused. Instead we could
 	 * have used the "step" state with the same effects.
 	 */
-	static final EngineStateAdapter STATE_PAUSED = new EngineStateAdapter(true, true, false);
+	static final EngineStateAdapter STATE_PAUSED = new EngineStateAdapter(true, true, false, false);
+
+	/**
+	 * Using the adapter as a state container. This is kind of a hack. The {@link IEngine} is has stopped executing since
+	 * it has reached the simulation end period.
+	 */
+	static final EngineStateAdapter STATE_ENDED = new EngineStateAdapter(false, false, false, true);
 
 	private DummyModel model;
 

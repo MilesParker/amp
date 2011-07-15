@@ -18,7 +18,7 @@ public class CloseHandlerTest extends ModelRunHandlerTest {
 
 	@Override
 	protected EngineStateAdapter[] getEnabledStates() {
-		return new EngineStateAdapter[] { STATE_IDLE, STATE_PAUSED, STATE_RUNNING };
+		return new EngineStateAdapter[] { STATE_IDLE, STATE_PAUSED, STATE_RUNNING, STATE_ENDED };
 	}
 
 	@Override

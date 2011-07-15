@@ -463,9 +463,14 @@
           <enabledWhen>
              <with
                    variable="org.eclipse.amp.axf.ide.engine.state">
-                <equals
-                      value="IDLE">
-                </equals>
+                <or>
+                   <equals
+                         value="IDLE">
+                   </equals>
+                   <equals
+                         value="ENDED">
+                   </equals>
+                </or>
              </with>
           </enabledWhen>
        </handler>
@@ -535,6 +540,9 @@
                    <equals
                          value="PAUSED">
                    </equals>
+                   <equals
+                         value="ENDED">
+                   </equals>
                 </or>
              </with>
           </enabledWhen>
@@ -554,6 +562,9 @@
                    </equals>
                    <equals
                          value="RUNNING">
+                   </equals>
+                   <equals
+                         value="ENDED">
                    </equals>
                 </or>
              </with>

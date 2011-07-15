@@ -80,7 +80,8 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 
 	private ArrayList<IEngineObserver> observers = new ArrayList<IEngineObserver>();
 
-	private EngineStateAdapter engineStateAdapter = new EngineStateAdapter(isRunning(), isStep(), isPaused());
+	private EngineStateAdapter engineStateAdapter = new EngineStateAdapter(isRunning(), isStep(), isPaused(),
+			getPeriod() == getStopPeriod());
 
 	/**
 	 * Open.
@@ -400,7 +401,7 @@ public class EclipseEscapeRunner extends NonGraphicRunner implements IEngine {
 	}
 
 	private void updateStateAdapter() {
-		if (engineStateAdapter.update(isRunning(), isStep(), isPaused())) {
+		if (engineStateAdapter.update(isRunning(), isStep(), isPaused(), getPeriod() == getStopPeriod())) {
 			for (IEngineObserver observer : observers) {
 				observer.engineStateChanged(this, engineStateAdapter.getState());
 			}

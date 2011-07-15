@@ -21,7 +21,7 @@ public class StepHandlerTest extends ModelRunHandlerTest {
 
 	@Override
 	protected EngineStateAdapter[] getDisabledStates() {
-		return new EngineStateAdapter[] { STATE_IDLE, STATE_RUNNING };
+		return new EngineStateAdapter[] { STATE_IDLE, STATE_RUNNING, STATE_ENDED };
 	}
 
 }

@@ -22,7 +22,7 @@ public class PauseHandlerTest extends ModelRunHandlerTest {
 
 	@Override
 	protected EngineStateAdapter[] getDisabledStates() {
-		return new EngineStateAdapter[] { STATE_IDLE, STATE_PAUSED };
+		return new EngineStateAdapter[] { STATE_IDLE, STATE_PAUSED, STATE_ENDED };
 	}
 
 }

@@ -5,9 +5,6 @@ package org.eclipse.amp.axf.core;
  * in a complex inner state. Instead we want to be informed if a simulation is running, stopped or paused. That's what
  * this adapter does for you. It simplifies the inner state of an {@link IEngine} and keeps track of the former state.
  * That way state changes can be detected.
- * <p/>
- * Obviously, there is no state "STOPPED". Why not? - It's just not needed at this point in time. If you need it,
- * implement it!
  * 
  * @author jonas.ruettimann
  */
@@ -21,11 +18,14 @@ public class EngineStateAdapter {
 		RUNNING,
 
 		/** Simulation was running but has been set to pause. */
-		PAUSED
+		PAUSED,
+
+		/** Simulation has reached its stop period. */
+		ENDED
 	}
 
-	public EngineStateAdapter(boolean isRunning, boolean isStepping, boolean isPausing) {
-		update(isRunning, isStepping, isPausing);
+	public EngineStateAdapter(boolean isRunning, boolean isStepping, boolean isPausing, boolean isEndReached) {
+		update(isRunning, isStepping, isPausing, isEndReached);
 	}
 
 	private boolean running;
@@ -34,23 +34,31 @@ public class EngineStateAdapter {
 
 	private boolean pausing;
 
+	private boolean endReached;
+
 	/**
 	 * @param isRunning
 	 * @param isStepping
 	 * @param isPausing
+	 * @param isEndReached
 	 * @return <code>true</code> if a new {@link EngineState} is detected
 	 */
-	public boolean update(boolean isRunning, boolean isStepping, boolean isPausing) {
+	public boolean update(boolean isRunning, boolean isStepping, boolean isPausing, boolean isEndReached) {
 		EngineState stateBefore = getState();
 
 		this.running = isRunning;
 		this.stepping = isStepping;
 		this.pausing = isPausing;
+		this.endReached = isEndReached;
 
 		return stateBefore != getState();
 	}
 
 	public EngineState getState() {
+		if (isEndReached()) {
+			return EngineState.ENDED;
+		}
+
 		if (!isRunning()) {
 			return EngineState.IDLE;
 		}
@@ -72,6 +80,10 @@ public class EngineStateAdapter {
 
 	public boolean isStepping() {
 		return stepping;
+	}
+
+	public boolean isEndReached() {
+		return endReached;
 	}
 
 }
