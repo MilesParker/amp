@@ -41,191 +41,199 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPartListener2;
 
-public abstract class EditPartViewPart extends AGFViewPart{
+public abstract class EditPartViewPart extends AGFViewPart {
 
-    private DefaultEditDomain editDomain;
-    protected EditPartViewer viewer;
-    private EditPartListener rootListener;
-    public static double[] ZOOM_LEVELS = { .125, .25, .5, .75, 1.0, 1.25, 1.5, 2.0, 2.5, 3, 4, 6, 8 };
-    private ZoomManager zoomer;
-    private RootEditPart rootEditPart;
+	private DefaultEditDomain editDomain;
 
-    public EditPartViewPart() {
-        super();
-        setEditDomain(new DefaultEditDomain(null));
-    }
+	protected EditPartViewer viewer;
 
-    protected void refresh(){
-    	viewer.getContents().refresh();
-    }
-    
-    @Override
-		public void createPartControl(Composite parent) {
-        viewer = createViewer();
-        viewer.createControl(parent);
-        getEditDomain().addViewer(viewer);
-        if (viewer == null) {
-            throw new RuntimeException("Viewer is null for: " + this);
-        }
-        super.createPartControl(parent);
-        getSite().getPage().addPartListener(new EditPartPartListener(this));
-    }
+	private EditPartListener rootListener;
 
-    protected EditPartViewer createViewer() {
-        return new ScrollingGraphicalViewer();
-    }
+	public static double[] ZOOM_LEVELS = { .125, .25, .5, .75, 1.0, 1.25, 1.5, 2.0, 2.5, 3, 4, 6, 8 };
 
-    public abstract RootEditPart createRoot();
+	private ZoomManager zoomer;
 
-    @Override
-		public void setInput(IEditorInput input) {
-        super.setInput(input);
-        final ModelEditPartInput modelInput = (ModelEditPartInput) input;
-        // setPartName(getName());
-        if (input != null) {
-            rootEditPart = createRoot();
-            if (rootEditPart != null) {
-                viewer.setRootEditPart(rootEditPart);
-                createZoomer();
-            }
-            Object contents = null;
-            if (modelInput.getSelection() instanceof IStructuredSelection) {
-                contents = ((StructuredSelection) modelInput.getSelection()).getFirstElement();
-            } else {
-                contents = getModel();
-            }
-            EditPartFactory factory = modelInput.getFactory();
-            if (factory == null) {
-                factory = createFactory(getModel());
-            }
-            Assert.isNotNull(factory, "Could not find factory for: " + this);
-            viewer.setEditPartFactory(factory);
-            if (factory instanceof ISelectionProvider) {
-                ISelectionProvider provider = (ISelectionProvider) factory;
-                getViewSite().setSelectionProvider(provider);
-            }
-            viewer.setContents(contents);
-        } else {
-            // viewer.setContents(null);
-        }
-    }
+	private RootEditPart rootEditPart;
 
-    protected EditPartFactory createFactory(Object contents) {
-        IModelFactoryProvider provider = (IModelFactoryProvider) Platform.getAdapterManager()
-        .getAdapter(contents, IModelFactoryProvider.class);
-        if (provider == null) {
-            throw new RuntimeException("No model factory provider defined for: " + contents);
-        }
-        return provider.getEditPartFactory(contents);
-    }
+	public EditPartViewPart() {
+		super();
+		setEditDomain(new DefaultEditDomain(null));
+	}
 
-    protected void createZoomer() {
-        if (rootEditPart instanceof ScalableFreeformRootEditPart) {
-            zoomer = ((ScalableFreeformRootEditPart) rootEditPart).getZoomManager();
-            zoomer.setZoomLevels(ZOOM_LEVELS);
-            zoomer.setZoomLevelContributions(Collections.singletonList(ZoomManager.FIT_ALL));
-        }
-    }
+	protected void refresh() {
+		if (viewer.getContents() != null) {
+			viewer.getContents().refresh();
+		}
+	}
 
-    @Override
-		public void createModelListeners() {
-        super.createModelListeners();
-        rootListener = new EditPartListener(this);
-        rootListener.setWaitForUpdate(true);
-        addModelListener(rootListener);
-        if (viewer.getContents() instanceof IModelPart) {
-            ((IModelPart) viewer.getContents()).createModelListeners();
-        }
-        viewer.getControl().addPaintListener(new PaintListener() {
-            public void paintControl(PaintEvent e) {
-                getRootListener().endPainting();
-            }
-        });
-    }
+	@Override
+	public void createPartControl(Composite parent) {
+		viewer = createViewer();
+		viewer.createControl(parent);
+		getEditDomain().addViewer(viewer);
+		if (viewer == null) {
+			throw new RuntimeException("Viewer is null for: " + this);
+		}
+		super.createPartControl(parent);
+		getSite().getPage().addPartListener(new EditPartPartListener(this));
+	}
 
-    public EditPart getEditPart() {
-        @SuppressWarnings("rawtypes")
-				List children = viewer.getRootEditPart().getChildren();
-        if (children.size() > 0) {
-            return (EditPart) children.get(0);
-        }
-        return null;
-    }
+	protected EditPartViewer createViewer() {
+		return new ScrollingGraphicalViewer();
+	}
 
-    @Override
-    public Object getAdapter(@SuppressWarnings("rawtypes") Class type) {
-        if (type == EditPartViewer.class) {
-            return getViewer();
-        }
-        // TODO -- this should really be the child..
-        if (type == EditPart.class && getViewer() != null) {
-            return getViewer().getRootEditPart();
-        }
-        if (type == IFigure.class && getViewer() != null) {
-            return ((GraphicalEditPart) getViewer().getRootEditPart()).getFigure();
-        }
-        if (type == ZoomManager.class) {
-            return getZoomer();
-        }
-        return super.getAdapter(type);
-    }
+	public abstract RootEditPart createRoot();
 
-    public EditPartViewer getViewer() {
-        return viewer;
-    }
+	@Override
+	public void setInput(IEditorInput input) {
+		super.setInput(input);
+		final ModelEditPartInput modelInput = (ModelEditPartInput) input;
+		// setPartName(getName());
+		if (input != null) {
+			rootEditPart = createRoot();
+			if (rootEditPart != null) {
+				viewer.setRootEditPart(rootEditPart);
+				createZoomer();
+			}
+			Object contents = null;
+			if (modelInput.getSelection() instanceof IStructuredSelection) {
+				contents = ((StructuredSelection) modelInput.getSelection()).getFirstElement();
+			} else {
+				contents = getModel();
+			}
+			EditPartFactory factory = modelInput.getFactory();
+			if (factory == null) {
+				factory = createFactory(getModel());
+			}
+			Assert.isNotNull(factory, "Could not find factory for: " + this);
+			viewer.setEditPartFactory(factory);
+			if (factory instanceof ISelectionProvider) {
+				ISelectionProvider provider = (ISelectionProvider) factory;
+				getViewSite().setSelectionProvider(provider);
+			}
+			viewer.setContents(contents);
+		} else {
+			// viewer.setContents(null);
+		}
+	}
 
-    public EditPartListener getRootListener() {
-        return rootListener;
-    }
+	protected EditPartFactory createFactory(Object contents) {
+		IModelFactoryProvider provider = (IModelFactoryProvider) Platform.getAdapterManager().getAdapter(contents,
+				IModelFactoryProvider.class);
+		if (provider == null) {
+			throw new RuntimeException("No model factory provider defined for: " + contents);
+		}
+		return provider.getEditPartFactory(contents);
+	}
 
-    /**
-     * Sets the EditDomain for this EditorPart.
-     * 
-     * @param ed the domain
-     */
-    protected void setEditDomain(DefaultEditDomain ed) {
-        this.editDomain = ed;
-    }
+	protected void createZoomer() {
+		if (rootEditPart instanceof ScalableFreeformRootEditPart) {
+			zoomer = ((ScalableFreeformRootEditPart) rootEditPart).getZoomManager();
+			zoomer.setZoomLevels(ZOOM_LEVELS);
+			zoomer.setZoomLevelContributions(Collections.singletonList(ZoomManager.FIT_ALL));
+		}
+	}
 
-    /**
-     * Returns the edit domain.
-     * 
-     * @return the edit domain
-     */
-    protected DefaultEditDomain getEditDomain() {
-        return editDomain;
-    }
+	@Override
+	public void createModelListeners() {
+		super.createModelListeners();
+		rootListener = new EditPartListener(this);
+		rootListener.setWaitForUpdate(true);
+		addModelListener(rootListener);
+		if (viewer.getContents() instanceof IModelPart) {
+			((IModelPart) viewer.getContents()).createModelListeners();
+		}
+		viewer.getControl().addPaintListener(new PaintListener() {
 
-    public ZoomManager getZoomer() {
-        if (rootEditPart instanceof ScalableFreeformRootEditPart) {
-            return ((ScalableFreeformRootEditPart) rootEditPart).getZoomManager();
-        } else if (rootEditPart instanceof ScalableRootEditPart) {
-            return ((ScalableRootEditPart) rootEditPart).getZoomManager();
-        }
-        return null;
-    }
+			public void paintControl(PaintEvent e) {
+				getRootListener().endPainting();
+			}
+		});
+	}
 
-    /**
-     * @return the rootEditPart
-     */
-    public RootEditPart getRootEditPart() {
-        return rootEditPart;
-    }
+	public EditPart getEditPart() {
+		@SuppressWarnings("rawtypes")
+		List children = viewer.getRootEditPart().getChildren();
+		if (children.size() > 0) {
+			return (EditPart) children.get(0);
+		}
+		return null;
+	}
 
-    /**
-     * @return
-     * @see org.eclipse.amp.agf.gef.AGFViewPart#getSelectionProvider()
-     */
-    @Override
-		protected ISelectionProvider getSelectionProvider() {
-        return viewer;
-    }
-    
-    protected String getId(){
-    	return getSite().getId();
-    }
-    
-    protected void removePartListener(IPartListener2 lis){
-    	getSite().getPage().removePartListener(lis);
-    }
+	@Override
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class type) {
+		if (type == EditPartViewer.class) {
+			return getViewer();
+		}
+		// TODO -- this should really be the child..
+		if (type == EditPart.class && getViewer() != null) {
+			return getViewer().getRootEditPart();
+		}
+		if (type == IFigure.class && getViewer() != null) {
+			return ((GraphicalEditPart) getViewer().getRootEditPart()).getFigure();
+		}
+		if (type == ZoomManager.class) {
+			return getZoomer();
+		}
+		return super.getAdapter(type);
+	}
+
+	public EditPartViewer getViewer() {
+		return viewer;
+	}
+
+	public EditPartListener getRootListener() {
+		return rootListener;
+	}
+
+	/**
+	 * Sets the EditDomain for this EditorPart.
+	 * 
+	 * @param ed the domain
+	 */
+	protected void setEditDomain(DefaultEditDomain ed) {
+		this.editDomain = ed;
+	}
+
+	/**
+	 * Returns the edit domain.
+	 * 
+	 * @return the edit domain
+	 */
+	protected DefaultEditDomain getEditDomain() {
+		return editDomain;
+	}
+
+	public ZoomManager getZoomer() {
+		if (rootEditPart instanceof ScalableFreeformRootEditPart) {
+			return ((ScalableFreeformRootEditPart) rootEditPart).getZoomManager();
+		} else if (rootEditPart instanceof ScalableRootEditPart) {
+			return ((ScalableRootEditPart) rootEditPart).getZoomManager();
+		}
+		return null;
+	}
+
+	/**
+	 * @return the rootEditPart
+	 */
+	public RootEditPart getRootEditPart() {
+		return rootEditPart;
+	}
+
+	/**
+	 * @return
+	 * @see org.eclipse.amp.agf.gef.AGFViewPart#getSelectionProvider()
+	 */
+	@Override
+	protected ISelectionProvider getSelectionProvider() {
+		return viewer;
+	}
+
+	protected String getId() {
+		return getSite().getId();
+	}
+
+	protected void removePartListener(IPartListener2 lis) {
+		getSite().getPage().removePartListener(lis);
+	}
 }
