@@ -1,0 +1,6 @@
+#Thu Jul 07 14:32:22 CEST 2011
+eclipse.preferences.version=1
+org.moreunit.prefixes=
+org.moreunit.test_type=junit4
+org.moreunit.unitsourcefolder=org.eclipse.amp.escape.ide\:src\:org.eclipse.amp.escape.ide\:src
+org.moreunit.useprojectsettings=true

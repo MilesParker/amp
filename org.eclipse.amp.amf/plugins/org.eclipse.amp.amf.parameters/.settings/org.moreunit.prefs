@@ -1,0 +1,6 @@
+#Wed Jul 06 08:44:51 CEST 2011
+eclipse.preferences.version=1
+org.moreunit.prefixes=
+org.moreunit.test_type=junit4
+org.moreunit.unitsourcefolder=org.eclipse.amp.amf.parameters\:xtend-gen\:org.eclipse.amp.amf.parameters.test\:src
+org.moreunit.useprojectsettings=true

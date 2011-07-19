@@ -1,0 +1,6 @@
+#Tue Jul 12 10:07:27 CEST 2011
+eclipse.preferences.version=1
+org.moreunit.prefixes=
+org.moreunit.test_type=junit4
+org.moreunit.unitsourcefolder=org.eclipse.amp.axf.core\:src\:org.eclipse.amp.axf.core.test\:src
+org.moreunit.useprojectsettings=true
