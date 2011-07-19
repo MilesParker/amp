@@ -3,9 +3,9 @@ package org.eclipse.amp.axf.ide;
 import static org.junit.Assert.fail;
 
 import org.ascape.model.Scape;
-import org.eclipse.amp.agf.gef.ModelEditPartInput;
 import org.eclipse.amp.axf.core.IEngine;
 import org.eclipse.amp.axf.core.IModel;
+import org.eclipse.amp.axf.view.ModelInput;
 import org.eclipse.amp.escape.ascape.wrap.ScapeWrapperModel;
 import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
 import org.junit.Before;
@@ -15,12 +15,13 @@ public class ModelViewManagerTest {
 
 	private ModelViewManager classToTest;
 
-	private ModelEditPartInput modelInput;
+	private DummyModelInput modelInput;
 
 	@Before
 	public void setUp() throws Exception {
 		classToTest = ModelViewManager.createNewInstance();
 		EclipseEscapeRunner runner = new EclipseEscapeRunner() {
+
 			@Override
 			public void close() {
 				//
@@ -29,7 +30,7 @@ public class ModelViewManagerTest {
 		SimpleModel model = new SimpleModel(new Scape());
 		model.engine = runner;
 		classToTest.register(model, runner);
-		modelInput = new ModelEditPartInput(model, null);
+		modelInput = new DummyModelInput(model);
 	}
 
 	/**
@@ -50,6 +51,7 @@ public class ModelViewManagerTest {
 	}
 
 	private class ObserverThread extends Thread {
+
 		Thread mainThread;
 
 		boolean mainThreadInterrupted = false;
@@ -71,6 +73,7 @@ public class ModelViewManagerTest {
 	}
 
 	private class SimpleModel extends ScapeWrapperModel implements IModel {
+
 		IEngine engine;
 
 		public SimpleModel(Scape scape) {
@@ -80,6 +83,14 @@ public class ModelViewManagerTest {
 		@Override
 		public IEngine getEngine() {
 			return engine;
+		}
+
+	}
+
+	private class DummyModelInput extends ModelInput {
+
+		public DummyModelInput(IModel model) {
+			super(model);
 		}
 
 	}

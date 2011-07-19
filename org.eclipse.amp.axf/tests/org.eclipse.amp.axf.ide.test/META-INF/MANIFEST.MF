@@ -5,11 +5,7 @@ Bundle-SymbolicName: org.eclipse.amp.axf.ide.test;singleton:=true
 Bundle-Version: 0.9.0
 Fragment-Host: org.eclipse.amp.axf.ide
 Require-Bundle: org.eclipse.swtbot.eclipse.finder,
- org.eclipse.swtbot.swt.finder,
  org.eclipse.core.resources,
- org.eclipse.amp.agf.chart,
- org.eclipse.amp.agf.core,
- org.eclipse.amp.agf.ide,
  org.eclipse.amp.escape.ide,
  org.eclipse.amp.escape.ascape,
  org.ascape.core,
