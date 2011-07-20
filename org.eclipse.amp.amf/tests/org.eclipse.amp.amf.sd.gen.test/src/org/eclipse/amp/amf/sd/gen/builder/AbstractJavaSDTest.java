@@ -16,10 +16,10 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 
 public abstract class AbstractJavaSDTest extends TestCase {
+
 	private static final String TEST_PROJECTS_DIR = "testProject/";
 
 	private IProject project;
@@ -37,7 +37,8 @@ public abstract class AbstractJavaSDTest extends TestCase {
 	}
 
 	protected AbstractJavaSDTest(String projectName) throws Exception {
-		IProjectDescription description = ResourcesPlugin.getWorkspace().loadProjectDescription(new Path(SDActivator.getAbsoluteDir(TEST_PROJECTS_DIR + projectName) + ".project"));
+		Path projectDescriptionFile = new Path(SDActivator.getAbsoluteDir(TEST_PROJECTS_DIR + projectName) + ".project");
+		IProjectDescription description = ResourcesPlugin.getWorkspace().loadProjectDescription(projectDescriptionFile);
 		project = ResourcesPlugin.getWorkspace().getRoot().getProject(description.getName());
 		if (!project.exists()) {
 			project.create(description, null);
@@ -52,15 +53,15 @@ public abstract class AbstractJavaSDTest extends TestCase {
 	 */
 	protected int countGeneratedTags(String fileName) throws IOException {
 		String text = getFileText(fileName);
-		int retValue = 0;
+		int count = 0;
 		String searchString = "* @generated";
 		int foundIndex = text.indexOf(searchString);
 		while (foundIndex > -1) {
-			retValue++;
+			count++;
 			text = text.substring(foundIndex + searchString.length());
 			foundIndex = text.indexOf(searchString);
 		}
-		return retValue;
+		return count;
 	}
 
 	/**
@@ -118,22 +119,12 @@ public abstract class AbstractJavaSDTest extends TestCase {
 	protected void doGenerate(String... expectedFiles) throws Exception {
 		project.deleteMarkers(IMarker.PROBLEM, true, IResource.DEPTH_INFINITE);
 
-		JobFinishedIndicator clean = new JobFinishedIndicator();
-		project.build(IncrementalProjectBuilder.CLEAN_BUILD, clean);
-		while (!clean.jobIsFinished()) {
-			Thread.sleep(10);
-		}
-
-		JobFinishedIndicator fullBuild = new JobFinishedIndicator();
-		project.build(IncrementalProjectBuilder.FULL_BUILD, fullBuild);
-		while (!fullBuild.jobIsFinished()) {
-			Thread.sleep(10);
-		}
+		project.build(IncrementalProjectBuilder.FULL_BUILD, null);
 
 		// Check if generated files exist:
 		for (String generatedFile : expectedFiles) {
 			File file = new File(getProjectFilePath(generatedFile));
-			assertTrue(file.exists());
+			assertTrue("This file seems to not have been generated: " + file.toString(), file.exists());
 		}
 	}
 
@@ -147,9 +138,11 @@ public abstract class AbstractJavaSDTest extends TestCase {
 		String absolutePath = getProjectFilePath(relativePath);
 		File dir = new File(absolutePath);
 		if (!dir.exists()) {
-			assert dir.mkdir() : "Directory could not be created: " + dir;
+			boolean created = dir.mkdir();
+			assert created : "Unable to create directory: " + dir;
 		}
-		assert delete(dir, false) : "Directory could not be cleaned out: " + dir;
+		boolean deleted = delete(dir, false);
+		assert deleted : "Unable to clean out directory: " + dir;
 	}
 
 	protected String getProjectFilePath(String relativePath) {
@@ -184,17 +177,4 @@ public abstract class AbstractJavaSDTest extends TestCase {
 		return file.delete();
 	}
 
-}
-
-class JobFinishedIndicator extends NullProgressMonitor {
-	private boolean done = false;
-
-	@Override
-	public void done() {
-		done = true;
-	}
-
-	public boolean jobIsFinished() {
-		return done || isCanceled();
-	}
 }
