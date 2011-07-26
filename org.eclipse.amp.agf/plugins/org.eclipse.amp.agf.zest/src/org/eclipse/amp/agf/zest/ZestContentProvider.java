@@ -31,59 +31,62 @@ import org.eclipse.zest.core.viewers.IGraphEntityContentProvider;
 /**
  * 
  * @author mparker
- *
+ * 
  */
 public class ZestContentProvider implements IGraphEntityContentProvider {
 
-    IGraphProvider graphProvider;
+	IGraphProvider graphProvider;
 
-    ICompositionProvider compostionProvider;
+	ICompositionProvider compostionProvider;
 
-    private Collection<Object> graphs;
+	private Collection<Object> graphs;
 
-    public ZestContentProvider(IGraphProvider graphProvider, ICompositionProvider compostionProvider) {
-        this.graphProvider = graphProvider;
-        this.compostionProvider = compostionProvider;
-    }
+	public ZestContentProvider(IGraphProvider graphProvider, ICompositionProvider compostionProvider) {
+		this.graphProvider = graphProvider;
+		this.compostionProvider = compostionProvider;
+	}
 
-    public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-    }
+	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+	}
 
-    public void dispose() {
-    }
+	public void dispose() {
+	}
 
-    Collection<Object> collectGraphs(Object parent, Collection<Object> buildCollection) {
-        if (graphProvider.isGraph(parent)) {
-            buildCollection.add(parent);
-        }
-        if (compostionProvider.isChildrenComposition(parent)) {
-            for (Object child : compostionProvider.getIteratable(parent)) {
-                collectGraphs(child, buildCollection);
-            }
-        }
-        return buildCollection;
-    }
+	Collection<Object> collectGraphs(Object parent, Collection<Object> buildCollection) {
+		if (graphProvider.isGraph(parent)) {
+			buildCollection.add(parent);
+		}
+		if (compostionProvider.isChildrenComposition(parent)) {
+			for (Object child : compostionProvider.getIteratable(parent)) {
+				collectGraphs(child, buildCollection);
+			}
+		}
+		return buildCollection;
+	}
 
-    public Object[] getElements(Object parent) {
-        Collection allElements = new HashSet();
-        graphs = collectGraphs(parent, new HashSet<Object>());
-        for (Object graph : graphs) {
-            Map<Object, Object> graphMap = graphProvider.getAdjacencyMap(graph);
-            Collection values = graphMap.values();
-            for (Object valueMember : values) {
-                allElements.addAll(((Collection) valueMember));
-            }
-            allElements.addAll(graphMap.keySet());
-        }
-        return allElements.toArray();
-    }
+	public Object[] getElements(Object parent) {
+		Collection allElements = new HashSet();
+		graphs = collectGraphs(parent, new HashSet<Object>());
+		for (Object graph : graphs) {
+			Map<Object, Object> graphMap = graphProvider.getAdjacencyMap(graph);
+			Collection values = graphMap.values();
+			for (Object valueMember : values) {
+				Collection collection = (Collection) valueMember;
+				if (!collection.isEmpty() && collection.iterator().next() != null) {
+					allElements.addAll(collection);
+				}
+			}
+			allElements.addAll(graphMap.keySet());
+		}
+		return allElements.toArray();
+	}
 
-    public Object[] getConnectedTo(Object object) {
-        List neighborsFor = new ArrayList();
-        // TODO one graph optimization
-        for (Object graph : graphs) {
-            neighborsFor.addAll(graphProvider.getNeighborsFor(graph, object));
-        }
-        return neighborsFor.toArray();
-    }
+	public Object[] getConnectedTo(Object object) {
+		List neighborsFor = new ArrayList();
+		// TODO one graph optimization
+		for (Object graph : graphs) {
+			neighborsFor.addAll(graphProvider.getNeighborsFor(graph, object));
+		}
+		return neighborsFor.toArray();
+	}
 };
