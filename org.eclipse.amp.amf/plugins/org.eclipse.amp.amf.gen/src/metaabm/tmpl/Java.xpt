@@ -585,9 +585,6 @@
 	«EXPAND BeginSerialBlock (newPath, inner)-»
 	«EXPAND SerialBlock (newPath, inner, true)-»
 	«EXPAND EndSerialBlock (newPath, inner)-»
-	«IF genNegate-»
-	«EXPAND SerialBlock(expansionNegate(newPath), newPath, inner, false)-»
-	«ENDIF-»
 	«ENDLET-»«ENDDEFINE»
 
 «DEFINE BeginBlock(List[AAct] path, Boolean inner) FOR AAct-»
@@ -606,7 +603,14 @@
 «DEFINE EndBlock(List[AAct] path, Boolean inner) FOR AAct-»
     «IF expandSpatialBlock()-»
         «IF queryFor()-»«EXPAND EndQueryBlock(path, inner)-»«ENDIF-»
-    «ENDIF-»«ENDDEFINE»
+    «ENDIF-»
+        «IF !targets.typeSelect(ANone).isEmpty-»else {
+        «FOREACH targets.typeSelect(ANone) AS none-»
+        «EXPAND Block((List[AAct]) path.add(none), inner, true) FOR none-»
+        «ENDFOREACH-»
+        }
+        «ENDIF-»
+«ENDDEFINE»
 «DEFINE EndSerialBlock(List[AAct] path, Boolean inner) FOR AAct-»«ENDDEFINE»
 «DEFINE EndSerialBlock(List[AAct] path, Boolean inner) FOR AControl-»
 	«IF expressIf(path, inner)-»}«ENDIF-»

@@ -206,21 +206,7 @@ public class SIR extends Scape implements IGraphicsAdapted {
 		sIRAgentScape
 				.addStatCollector(new org.ascape.util.data.StatCollectorCond(
 						sIRAgentScape.getName() + " Population") {
-
-					/**
-					 * <!-- begin-user-doc -->
-					 * 
-					 * <!-- end-user-doc -->
-					 * @generated
-					 */
 					private static final long serialVersionUID = 1L;
-
-					/**
-					 * <!-- begin-user-doc -->
-					 * 
-					 * <!-- end-user-doc -->
-					 * @generated
-					 */
 					@SuppressWarnings("unused")
 					public final boolean meetsCondition(Object object) {
 						return true;

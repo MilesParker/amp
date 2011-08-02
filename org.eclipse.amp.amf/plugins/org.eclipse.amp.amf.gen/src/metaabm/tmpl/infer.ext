@@ -219,7 +219,13 @@ cached List[AControl] allControls(AAct act) :
 cached List[AControl] spatial(Collection[AAct] candidates) :
 	candidates.select(e | e.isSpatialControl());
 
+cached List[AControl] outerConditional(Collection[AAct] candidates) :
+	candidates.select(e | e.isSpatialControl() || e.selected != e.rootSelected);
+	
 cached List[AControl] nonSpatial(List[AAct] candidates) :
+	candidates.select(e | !e.isSpatialControl());
+
+cached List[AControl] innerConditional(List[AAct] candidates) :
 	candidates.select(e | !e.isSpatialControl());
 
 cached List[AControl] logic(List[AAct] candidates) :
@@ -251,6 +257,9 @@ cached List[AControl] priorSpaceControl(AAct act, ASelect sel) :
 
 cached Boolean expressIf(AAct act, List[AAct] path, Boolean inner) :
 	(act.expression(path, inner) != "") && act.targetStatements().size > 0 && act.controlCompound().spatial().isEmpty;
+    
+cached Boolean expressIf(ANone act, List[AAct] path, Boolean inner) :
+	false;
 
 cached int depth(AAct act, List[AAct] candidates) :
 	candidates.contains(act.sources) ? act.sources.intersect(candidates).collect( a | a.depth(candidates)).sortBy(e | e).last() : 0;
@@ -276,7 +285,7 @@ cached int queryOrder(ASink act, List[AAct] candidates) :
 
 cached List[AAct] expansionOrder(List[AAct] candidates) :
     candidates.sortBy(a | a.queryOrder(candidates));
-
+    
 cached Boolean expandSpatialBlock(AAct act) : false;
 
 cached Boolean expandSpatialBlock(AControl act) :
@@ -294,26 +303,31 @@ cached Boolean expand(AAct act, List[AAct] path) :
 cached Boolean expand(AControl act, List[AAct] path) :
 	path.contains(act.selected);// && (act.sources.typeSelect(ALogic).size == 0 || act.sources.select(a | a.selected == act.selected || a == act.selected).last() == path.last());
 
+cached Boolean expand(ANone act, List[AAct] path) :
+	false;
+
 cached Boolean expand(ALogic act, List[AAct] path) :
 	path.contains(act.selected) && (act.sources.select(a | a.selected == act.selected || a == act.selected).last() == path.last());
            
 cached Boolean conditionFor(AAct act) :
-    !act.controlCompound().nonSpatial().typeSelect(AQuery).isEmpty;
+    !act.controlCompound().innerConditional().typeSelect(AQuery).isEmpty;
            
 cached Boolean conditionFor(ASelect act) :
-    !act.targets.nonSpatial().typeSelect(AQuery).isEmpty;
+    !act.targets.innerConditional().typeSelect(AQuery).isEmpty;
 
+    	
 cached Boolean queryFor(AAct act) :
     !act.selector().isRoot() || (!act.isRoot() && act.controlCompound().isEmpty);
-    	
+    
 cached List[AAct] expansionSerial(AAct act, List[AAct] path) :
 	act.targets.union(act.targets.controlLeafs().flatten()).typeReject(ANone).select(a | a.expand(path)).toList().expansionOrder();
 
 cached Collection[AAct] typeReject(Collection[AAct] candidates, Object rejectType) :
     candidates.select(e | e.metaType != rejectType);
-
-cached List[AAct] expansionNegate(AAct act, List[AAct] path) :
-	act.targets.typeSelect(AControl).controlCompound().select(a | a.controlTerminal() && a.metaType == ANone && a.expand(path)).toList().expansionOrder();
+    
+//cached List[AAct] expansionNegate(AAct act, List[AAct] path) :
+//	act.targets.union(act.targets.controlLeafs().flatten()).select(a | a.expand(path)).typeSelect(ANone).toList().expansionOrder();
+//	act.targets.typeSelect(AControl).controlCompound().select(a | a.controlTerminal() && a.metaType == ANone && a.expand(path)).toList().expansionOrder();
 
 cached List[AAct] priorSelect(AAct act, ASelect sel) :
 	act.sources.collect(e | (e.selected == sel ? e : e.priorSelect(sel))).flatten();
@@ -328,8 +342,8 @@ cached AAct findQueryPoint(AAct act, List[AAct] path) :
 
 //Set of target controls wth no further target controls
 cached List[AControl] controlLeafs(AControl act) :
-	act.targetControls().logic().size == 0 ? {act} : act.targetControls().controlLeafs().flatten();
-
+	act.targetControls().logic().typeReject(ANone).isEmpty ? {act} : act.targetControls().controlLeafs().flatten();
+	
 //Set of target controls wth no further target controls
 cached List[AControl] controlLeafs(AAct act) :
     {};
@@ -378,24 +392,6 @@ cached List[AAct] targetStatements(AAct act) :
 
 cached List[AControl] targetControls(AAct act) :
 	act.targets.typeSelect(AControl).inSelection(act.selected);
-
-cached List[ANone] nones(AAct act) :
-	act.targets.typeSelect(ANone);
-
-cached List[AAct] nextNegate(AAct act) :
-	act.nones().addAll(act.targets.without(act.nones()).nextNegate()).toSet().toList();
-
-cached List[AAct] nextControls(AAct act) :
-	act.targetControls().select(t | t.targetStatements().size > 0).addAll(act.targetControls().nextControls()).toSet().toList();
-
-cached List[AAct] previousControls(AAct act) :
-	act.sourceControls().select(t | t.sourceStatements().size > 0).addAll(act.sourceControls().previousControls()).toSet().toList();
-	
-cached List[AAct] nextStatements(AAct act) :
-	act.targetStatements().addAll(act.targetControls().nextStatements()).toSet().toList();
-	
-cached List[AControl] previousStatements(AAct act) :
-	act.sourceStatements().addAll(act.controls().flow().previousStatements()).toSet().toList();
 
 cached List[AAct] allActs(SAgent agent) :
 	((AGroup) agent.rootActivity).members;

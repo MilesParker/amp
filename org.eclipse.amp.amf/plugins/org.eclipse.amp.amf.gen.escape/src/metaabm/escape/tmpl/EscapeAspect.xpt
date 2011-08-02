@@ -238,10 +238,8 @@ import org.eclipse.amp.escape.ascape.gef.HostCellEditPart;
     final «owner.typeName()» «id()»Scape = new «owner.typeName()»();
     «id()»Scape.setRunner(new NonGraphicRunner());
 	«typeName()» «id()» = new «typeName()»() {
-			«EXPAND metaabm::tmpl::Java::GenerateComment»
             public void requestUpdate() {
             }
-            «EXPAND metaabm::tmpl::Java::GenerateComment»
             public «owner.typeName()» get«owner.typeName()»() {
             	return «id()»Scape;
             }
@@ -249,7 +247,6 @@ import org.eclipse.amp.escape.ascape.gef.HostCellEditPart;
     «id()»Scape.add(«id()»);
 	«IF !isHost() && isDiscrete()-»
 	HostCell «id()»Host = new HostCell() {
-			«EXPAND metaabm::tmpl::Java::GenerateComment»
             public void requestUpdate() {
             }
         };
@@ -341,9 +338,7 @@ import org.eclipse.amp.escape.ascape.gef.HostCellEditPart;
      * @generated
      */
     public final static DataPoint «dataPoint()» = new DataPointConcrete("«function.id().toFirstUpper()» «inputs.value.get(0).id()»") {
-		«EXPAND metaabm::tmpl::Java::GenerateComment»
-        private static final long serialVersionUID = 3755810443335739012L;
-		«EXPAND metaabm::tmpl::Java::GenerateComment»
+        private static final long serialVersionUID = 3L;
         public double getValue(Object o) {
             «EXPAND metaabm::tmpl::Java::InnerEvaluation(allSources.select(e|e.selected == this.selected), false)-»
             return ((«selected.agent.typeName()») o).«inputs.value.get(0).getterName()»();

@@ -223,10 +223,8 @@
 
 «DEFINE Conditional (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
     «IF conditionForAscape()-»
-        Conditional «selector().id()»Condition = new Conditional() {
-        	«EXPAND metaabm::tmpl::Java::GenerateComment»
-            private static final long serialVersionUID = 6846144446402098985L;
-            «EXPAND metaabm::tmpl::Java::GenerateComment»
+       Conditional «selector().id()»Condition = new Conditional() {
+            private static final long serialVersionUID = 1L;
             public boolean meetsCondition(Object «selector().id()»Cell) {
                 «IF findFromHost()-»
                     «selector().id()»Cell = «converted(selector().id() + "Cell")»;
@@ -248,11 +246,11 @@
 
 «DEFINE BeginQuerySingle (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
     «IF convert()-»
-    Location «selector().id()»Location = «findAgentStatement(path)»;
+    final Location «selector().id()»Location = «findAgentStatement(path)»;
     if («selector().id()»Location != null) {
-        «selector().typeName()» «selector().id()» = («selector().typeName()») «converted(selector().id() + "Location")»;
+        final «selector().typeName()» «selector().id()» = («selector().typeName()») «converted(selector().id() + "Location")»;
     «ELSE-»
-    «selector().typeName()» «selector().id()» = («selector().typeName()») «findAgentStatement(path)»;
+    final «selector().typeName()» «selector().id()» = («selector().typeName()») «findAgentStatement(path)»;
     «ENDIF-»
     if («selector().id()» «metaType != ANone ? "!=" : "=="» null) {
     «IF expression(path, inner) != "" && hasControl("here") && !selector().isRoot()-»
@@ -260,9 +258,12 @@
     «ENDIF-»
 «ENDDEFINE»
 
+«DEFINE BeginQuerySingle (List[metaabm::act::AAct] path, Boolean inner) FOR ANone-»
+«ENDDEFINE»
+
 «DEFINE BeginQuery (List[metaabm::act::AAct] path, Boolean inner) FOR AAct-»
     «IF findIsList()-»
-    List «selector().id()»List = «findStatement(path)»;
+    final List «selector().id()»List = «findStatement(path)»;
     for(Object next«selector().id().toFirstUpper()» : «selector().id()»List) {
     «ENDIF-»
 	«EXPAND BeginQuerySingle(path, inner)-»
@@ -272,6 +273,9 @@
     «IF convert()-»}«ENDIF-»
     «IF expression(path, inner) != "" && hasControl("here") && !selector().isRoot()-»}«ENDIF-»
     }
+«ENDDEFINE»
+
+«DEFINE EndQuerySingle (List[metaabm::act::AAct] path, Boolean inner) FOR ANone-»
 «ENDDEFINE»
 
 «DEFINE BeginSerial(List[AAct] path, Boolean inner) FOR AControl-»
@@ -396,7 +400,6 @@
 «DEFINE CreateScape(int stage) FOR IAct-»«ENDDEFINE»
 
 «DEFINE StatBuilderBody(SAttribute outer, String mod) FOR SAttribute-»
-			«EXPAND metaabm::tmpl::Java::GenerateComment»
             public final «statSig()»(Object «parent().id()») {
                 return «mod» «expression((List[AAct]) {}, true)»;
             }
@@ -419,9 +422,7 @@
 	«IF genStats() != "none"-»
 		«IF parent != null-»
         «scape()».addStatCollector(new org.ascape.util.data.StatCollectorCond(«scape()».getName() + " Population") {
-        		«EXPAND metaabm::tmpl::Java::GenerateComment»
 				private static final long serialVersionUID = 1L;
-				«EXPAND metaabm::tmpl::Java::GenerateComment»
                 @SuppressWarnings("unused")
                 public final boolean meetsCondition(Object object) {return true;}
         });
@@ -431,7 +432,6 @@
 «ENDDEFINE»
 «DEFINE StatBuilderBody(SAttribute outer, String mod, String name) FOR SAttribute-»
     «((SAgent) parent()).fieldName()».addStatCollector(new org.ascape.util.data.StatCollector«outer(outer).statCondTerm()»(«name») {
-		«EXPAND metaabm::tmpl::Java::GenerateComment»
 		private static final long serialVersionUID = 1L;
 		«IF outer != this-»
 		«EXPAND StatBuilderBody (outer, mod) FOR outer-»
@@ -467,8 +467,7 @@
 
 «DEFINE ChildBuilder FOR ARule-»
 		«reference.scape()».addRule(new Rule("«label»") {
-			«EXPAND metaabm::tmpl::Java::GenerateComment»
-			private static final long serialVersionUID = 6846144446402098981L;
+			private static final long serialVersionUID = 1L;
 			«EXPAND metaabm::tmpl::Java::GenerateComment»
 			public void execute(Agent a) {
 				((«reference.implementation.qualifiedName») a).«id()»();
@@ -477,7 +476,7 @@
 «ENDDEFINE»
 «DEFINE ChildBuilderProxy FOR ARule-»
 		«reference.fieldName()».addRule(new Rule("«label»") {
-			private static final long serialVersionUID = 6846144446402098981L;
+			private static final long serialVersionUID = 1L;
 			public void execute(Agent a) {
 				((«this.typeName()») a.getScape()).«id()»();
 			}
@@ -490,8 +489,7 @@
 «DEFINE ChildBuilder FOR AInitialize-»
 		«REM»Initialize is automatically invoked by default from framework«ENDREM»
 		«reference.scape()».addInitialRule(new Rule("«label»") {
-			«EXPAND metaabm::tmpl::Java::GenerateComment»
-			private static final long serialVersionUID = 6846144446402098982L;
+			private static final long serialVersionUID = 1L;
 			«EXPAND metaabm::tmpl::Java::GenerateComment»
 			public void execute(Agent a) {
 				((«reference.implementation.qualifiedName») a).«id()»();
