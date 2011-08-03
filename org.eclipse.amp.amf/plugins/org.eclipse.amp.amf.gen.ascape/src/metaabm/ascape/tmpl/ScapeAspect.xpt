@@ -167,11 +167,7 @@
 		«ENDIF-»
 		«EXPAND metaabm::tmpl::Java::Builder FOREACH projections-»
 		«EXPAND metaabm::tmpl::Java::Builder FOREACH agents-»
-
-
-		for (IAgentChild tmp : getChildren()) {
-			tmp.addDataCollectors(this);
-		}
+		createExtensions(this);
 	}
 	
 	/**
@@ -349,9 +345,7 @@
 				add(«projection.fieldName()»);
 				«IF fillAgent != null-»
 					org.ascape.model.Scape «fillAgent.fieldName()» = «projection.id()»;
-					for (IAgentChild tmp :proto«fillAgentType()».getChildren()) {
-						tmp.addDataCollectors(this);
-					}
+					createExtensions(proto«fillAgentType()»);
 				«ENDIF-»
         «IF fillAgent.metaType == SContext-»
         	«projection.fieldName()».setAutoCreate(false);
@@ -363,7 +357,7 @@
 	      «ENDFOREACH-»
         «IF fillAgent == null || ((AGroup) fillAgent.rootActivity).members.isEmpty-»
 					«projection.fieldName()».getRules().clear();
-				«ENDIF-»
+		«ENDIF-»
     «ENDIF-»
 «ENDDEFINE»
 «DEFINE CreateScape(int stage) FOR SAgent-»
@@ -389,9 +383,7 @@
 		«ENDIF-»
 	«ENDIF-»
 	«IF !isHost()»
-		for (IAgentChild tmp : «proto()».getChildren()) {
-				tmp.addDataCollectors(this);
-		}
+		createExtensions(«proto()»);
 	«ENDIF»
 «ENDDEFINE»
 «DEFINE CreateScape(int stage) FOR AGroup-»

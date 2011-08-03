@@ -37,6 +37,7 @@ import org.ascape.view.vis.GEFView;
 import org.ascape.view.vis.GraphView;
 
 import org.eclipse.amp.escape.runtime.extension.IAgentChild;
+import org.eclipse.amp.escape.runtime.extension.IAgentChildProvider;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,7 +47,7 @@ import org.eclipse.amp.escape.runtime.extension.IAgentChild;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SIRAgent extends CellOccupant {
+public class SIRAgent extends CellOccupant implements IAgentChildProvider {
 
 	/**
 	 * <!-- begin-user-doc -->

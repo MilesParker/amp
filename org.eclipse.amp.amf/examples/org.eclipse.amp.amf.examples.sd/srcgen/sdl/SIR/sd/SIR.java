@@ -36,9 +36,10 @@ import org.ascape.view.vis.ChartView;
 import org.ascape.view.vis.GEFView;
 import org.ascape.view.vis.GraphView;
 
-import sdl.SIR.sd.sir_SD.SD;
-
 import org.eclipse.amp.escape.runtime.extension.IAgentChild;
+import org.eclipse.amp.escape.runtime.extension.IAgentChildProvider;
+
+import sdl.SIR.sd.sir_SD.SD;
 
 /**
  * <!-- begin-user-doc -->
@@ -48,7 +49,7 @@ import org.eclipse.amp.escape.runtime.extension.IAgentChild;
  * <!-- end-user-doc -->
  * @generated
  */
-public class SIR extends Scape implements IGraphicsAdapted {
+public class SIR extends Scape implements IGraphicsAdapted, IAgentChildProvider {
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -83,6 +84,10 @@ public class SIR extends Scape implements IGraphicsAdapted {
 	 * @generated
 	 */
 	public SIR() {
+
+		children = new ArrayList<IAgentChild>();
+
+		children.add(new SD());
 
 		children = new ArrayList<IAgentChild>();
 
@@ -191,17 +196,13 @@ public class SIR extends Scape implements IGraphicsAdapted {
 		sIRAgentScape.setPrototypeAgent(sIRAgentProto);
 		sIRAgentScape.setExecutionOrder(Scape.RULE_ORDER);
 
-		for (IAgentChild tmp : sIRAgentProto.getChildren()) {
-			tmp.addDataCollectors(this);
-		}
+		createExtensions(sIRAgentProto);
 
 		sIRAgentScape.setSize(getSIRAgentCount());
 
 		add(sIRAgentScape);
 
-		for (IAgentChild tmp : sIRAgentProto.getChildren()) {
-			tmp.addDataCollectors(this);
-		}
+		createExtensions(sIRAgentProto);
 
 		sIRAgentScape
 				.addStatCollector(new org.ascape.util.data.StatCollectorCond(
@@ -213,13 +214,9 @@ public class SIR extends Scape implements IGraphicsAdapted {
 					}
 				});
 
-		for (IAgentChild tmp : sIRAgentProto.getChildren()) {
-			tmp.addDataCollectors(this);
-		}
+		createExtensions(sIRAgentProto);
 
-		for (IAgentChild tmp : getChildren()) {
-			tmp.addDataCollectors(this);
-		}
+		createExtensions(this);
 	}
 
 	/**
@@ -267,35 +264,14 @@ public class SIR extends Scape implements IGraphicsAdapted {
 		final SIR sIRAgentScape = new SIR();
 		sIRAgentScape.setRunner(new NonGraphicRunner());
 		SIRAgent sIRAgent = new SIRAgent() {
-
-			/**
-			 * <!-- begin-user-doc -->
-			 * 
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
 			public void requestUpdate() {
 			}
-
-			/**
-			 * <!-- begin-user-doc -->
-			 * 
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
 			public SIR getSIR() {
 				return sIRAgentScape;
 			}
 		};
 		sIRAgentScape.add(sIRAgent);
 		HostCell sIRAgentHost = new HostCell() {
-
-			/**
-			 * <!-- begin-user-doc -->
-			 * 
-			 * <!-- end-user-doc -->
-			 * @generated
-			 */
 			public void requestUpdate() {
 			}
 		};
@@ -383,6 +359,14 @@ public class SIR extends Scape implements IGraphicsAdapted {
 		((SIRAgent) sIRAgentScape.getPrototypeAgent())
 				.calculateTimeStep(timeStep);
 
+	}
+
+	public void createExtensions(Object object) {
+		if (object instanceof IAgentChildProvider) {
+			for (IAgentChild tmp : ((IAgentChildProvider) object).getChildren()) {
+				tmp.addDataCollectors(this);
+			}
+		}
 	}
 
 	/**

@@ -96,9 +96,7 @@
 	«FOREACH children AS child»
 		import «child.getPackage()».«child.getName()»;
 	«ENDFOREACH»
-	import org.eclipse.amp.escape.runtime.extension.IAgentChild;
 «ENDDEFINE»
-
 
 «DEFINE ClassImplementation FOR IID»
     «EXPAND Fields-»
@@ -113,12 +111,6 @@
 «ENDDEFINE»
 
 «DEFINE Extension FOR SAgent»
-	«EXPAND GenerateComment»
-	private List<IAgentChild> children;
-	«EXPAND GenerateComment»
-	public List<IAgentChild> getChildren(){
-		return children;
-	}
 «ENDDEFINE»
 
 «DEFINE ClassImplementation FOR SState-»
@@ -449,7 +441,6 @@
 «DEFINE ConstructorBody FOR SContext-»
 	«EXPAND ConstructorBody FOREACH attributes-»
 	«EXPAND ConstructorBody FOREACH projections-»
-	«EXPAND ConstrAgentChildren»
 «ENDDEFINE»
 «DEFINE ConstructorBody FOR SAttribute-»
 	«IF !fieldExists() && (defaultValue().length > 0)-»
@@ -459,18 +450,7 @@
 «DEFINE ConstructorBody FOR SProjection-»
 	«EXPAND ConstructorBody FOREACH attributes-»
 «ENDDEFINE»
-
-«DEFINE ConstructorBody FOR SAgent-»
-	«EXPAND ConstrAgentChildren»
-«ENDDEFINE»
-
-«DEFINE ConstrAgentChildren FOR SAgent»
-	children = new ArrayList<IAgentChild>();
-	«FOREACH children AS child»
-		children.add(new «child.getName()»());
-	«ENDFOREACH»
-«ENDDEFINE»
-
+«DEFINE ConstructorBody FOR SAgent-»«ENDDEFINE»
 «DEFINE ConstructorBody FOR IID-»«ENDDEFINE»
 
 «DEFINE UtilBody FOR IID-»«ENDDEFINE»

@@ -72,6 +72,9 @@ import org.ascape.model.HostCell;
 
 «AROUND metaabm::tmpl::Java::Body FOR SContext-»
     «EXPAND metaabm::ascape::tmpl::ScapeAspect::ScapeBody-»
+
+	public void createExtensions(Object object) {
+	}
     
 	«EXPAND metaabm::tmpl::Java::GenerateComment»
 	public static void main(String[] args) {
@@ -229,7 +232,7 @@ import org.ascape.model.HostCell;
     «ELSEIF function.id() == "uniformDistribution"-»
         randomInRange(«inputs.expression(path, inner).toString(", ")»);
 	«ELSEIF function.id() == "timeNow"-»
-		«path.last().accessPath(this, inner)»«reference.owner.parent != null ? "getScape()." : ""»getPeriod()
+		«path.last().accessPath(this, inner)»«reference.owner != null ? "getScape()." : ""»getPeriod()
     «ELSEIF function.id() == "available"-»
         isAvailable()
     «ELSEIF function.id() == "withinBoundaries"-»
