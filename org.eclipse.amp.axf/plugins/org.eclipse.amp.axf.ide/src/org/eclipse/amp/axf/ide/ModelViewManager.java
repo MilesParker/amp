@@ -30,6 +30,7 @@ import org.eclipse.amp.axf.view.ModelInput;
 import org.eclipse.amp.axf.view.ModelViewPart;
 import org.eclipse.amp.axf.view.SelectionSynchronizer;
 import org.eclipse.core.runtime.IAdapterFactory;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IPartListener;
@@ -110,12 +111,13 @@ public class ModelViewManager implements IAdapterFactory {
 	 * 
 	 * @return
 	 */
-	static ModelViewManager createNewInstance() {
+	public static ModelViewManager createNewInstance() {
 		instance = null;
 		return getInstance();
 	}
 
 	private final class PartCreator implements Runnable {
+
 		private final String name;
 
 		private final ModelInput editorInput;
@@ -151,6 +153,7 @@ public class ModelViewManager implements IAdapterFactory {
 					((ModelViewPart) part).createModelListeners();
 					getViews(editorInput.getModel()).add(part);
 					new Thread() {
+
 						@Override
 						public void run() {
 							managerListeners.notifyViewAdded(part);
@@ -176,9 +179,11 @@ public class ModelViewManager implements IAdapterFactory {
 	 * @author mparker
 	 */
 	final class ActivationListener implements IPartListener {
+
 		private void assignPart(final IWorkbenchPart part) {
 			if (part instanceof IModelPart && ((IModelPart) part).getAdapter(IModel.class) != null) {
 				new Thread() {
+
 					@Override
 					public void run() {
 						IModel model = (IModel) ((IModelPart) part).getAdapter(IModel.class);
@@ -199,6 +204,7 @@ public class ModelViewManager implements IAdapterFactory {
 		public void partClosed(final IWorkbenchPart part) {
 			if (part instanceof IModelPart && ((IModelPart) part).getAdapter(IModel.class) != null) {
 				new Thread() {
+
 					@Override
 					public void run() {
 						removed((IViewPart) part);
@@ -293,7 +299,9 @@ public class ModelViewManager implements IAdapterFactory {
 			}
 			i++;
 		}
-		StatusManager.getManager().handle(new Status(Status.WARNING, "org.eclipse.amp.axf.ui", "Currently, the execution engine only supports " + modelSlots.length + " slots. The UI may not perform properly."));
+		StatusManager.getManager().handle(
+				new Status(IStatus.WARNING, "org.eclipse.amp.axf.ui", "Currently, the execution engine only supports "
+						+ modelSlots.length + " slots. The UI may not perform properly."));
 		return -1;
 	}
 
@@ -402,7 +410,7 @@ public class ModelViewManager implements IAdapterFactory {
 	 */
 	public IViewPart createViewPart(final String id, final ModelInput editorInput, final String name) {
 		PartCreator creator = new PartCreator(name, editorInput, id);
-		PlatformUI.getWorkbench().getDisplay().syncExec(creator);
+		PlatformUI.getWorkbench().getDisplay().asyncExec(creator);
 		return creator.getPart();
 	}
 
@@ -417,6 +425,7 @@ public class ModelViewManager implements IAdapterFactory {
 			Display display = PlatformUI.getWorkbench().getDisplay();
 			if (!display.isDisposed()) {
 				display.asyncExec(new Runnable() {
+
 					public void run() {
 						IWorkbench workbench = PlatformUI.getWorkbench();
 						IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
@@ -428,6 +437,7 @@ public class ModelViewManager implements IAdapterFactory {
 			}
 		} else {
 			new Thread() {
+
 				@Override
 				public void run() {
 					removed(part);
@@ -471,7 +481,9 @@ public class ModelViewManager implements IAdapterFactory {
 				deactivate();
 			}
 		} else {
-			StatusManager.getManager().handle(new Status(Status.WARNING, "org.eclipse.amp.axf.ui", "Removing a model that no longer exists:" + model, new Exception()));
+			StatusManager.getManager().handle(
+					new Status(IStatus.WARNING, "org.eclipse.amp.axf.ui", "Removing a model that no longer exists:" + model,
+							new Exception()));
 		}
 	}
 
@@ -486,6 +498,7 @@ public class ModelViewManager implements IAdapterFactory {
 		final IWorkbench wb = AXFWorkbenchPlugin.getDefault().getWorkbench();
 
 		wb.addWorkbenchListener(new IWorkbenchListener() {
+
 			public void postShutdown(IWorkbench workbench) {
 				//
 			}
@@ -513,7 +526,8 @@ public class ModelViewManager implements IAdapterFactory {
 		getActiveModelListeners().addListener(statusLineView);
 		activatePerspective(wb, executionPerspective, false);
 
-		wb.getDisplay().syncExec(new Runnable() {
+		wb.getDisplay().asyncExec(new Runnable() {
+
 			public void run() {
 				try {
 					contextService = (IContextService) wb.getService(IContextService.class);
@@ -528,11 +542,13 @@ public class ModelViewManager implements IAdapterFactory {
 	}
 
 	private void activatePerspective(final IWorkbench wb, final String perspectiveID, final boolean editors) {
-		wb.getDisplay().syncExec(new Runnable() {
+		wb.getDisplay().asyncExec(new Runnable() {
+
 			public void run() {
 				IPerspectiveDescriptor perspective = wb.getPerspectiveRegistry().findPerspectiveWithId(perspectiveID);
 				if (perspective != null) {
-					IWorkbenchPage activePage = wb.getActiveWorkbenchWindow() != null ? wb.getActiveWorkbenchWindow().getActivePage() : null;
+					IWorkbenchPage activePage = wb.getActiveWorkbenchWindow() != null ? wb.getActiveWorkbenchWindow()
+							.getActivePage() : null;
 					if (activePage != null) {
 						if (priorPerspectiveID == null || !activePage.getPerspective().getId().equals(executionPerspective)) {
 							priorPerspectiveID = activePage.getPerspective().getId();
@@ -542,6 +558,7 @@ public class ModelViewManager implements IAdapterFactory {
 					}
 				}
 			}
+
 		});
 	}
 
@@ -549,6 +566,7 @@ public class ModelViewManager implements IAdapterFactory {
 		final IWorkbench wb = AXFWorkbenchPlugin.getDefault().getWorkbench();
 		if (wb != null) {
 			wb.getDisplay().asyncExec(new Runnable() {
+
 				public void run() {
 					if (contextService != null) {
 						contextService.deactivateContext(ideContext);
@@ -573,8 +591,7 @@ public class ModelViewManager implements IAdapterFactory {
 	 * @param adaptableObject
 	 * @param adapterType
 	 * @return
-	 * @see org.eclipse.core.runtime.IAdapterFactory#getAdapter(java.lang.Object,
-	 *      java.lang.Class)
+	 * @see org.eclipse.core.runtime.IAdapterFactory#getAdapter(java.lang.Object, java.lang.Class)
 	 */
 	public Object getAdapter(Object adaptableObject, Class adapterType) {
 		if (adapterType == IEngine.class && adaptableObject instanceof IModel) {
