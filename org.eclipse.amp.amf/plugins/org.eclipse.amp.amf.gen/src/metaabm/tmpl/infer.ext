@@ -23,6 +23,12 @@ cached Boolean isHost(SProjection proj) :
 cached Boolean isHost(SGrid proj) :
 	true;
 
+cached SContext rootContext(SContext agent) :
+	agent.owner != null ? agent.owner.rootContext() : agent;
+
+cached SContext rootContext(SAgent agent) :
+	agent.owner.rootContext();
+
 cached Boolean isHost(SAgent agent) :
 	!hosts(agent).isEmpty;
 	
