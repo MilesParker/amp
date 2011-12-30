@@ -64,12 +64,7 @@ public class ScaleGranularityControl extends WorkbenchWindowControlContribution 
 			}
 		});
 
-		IModel activeModel = ModelViewManager.getInstance().getActiveModel();
-		if (activeModel != null) {
-			engine = activeModel.getEngine();
-		}
-
-		ModelViewManager.getInstance().getManagerListeners().addModelManagerListener(this);
+		ModelViewManager.getInstance().getManagerListeners().addModelManagerListener(ScaleGranularityControl.this);
 		return scale;
 	}
 

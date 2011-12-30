@@ -71,12 +71,17 @@ public class ScapeWrapperModel implements IModel {
 	}
 
 	public void addModelListener(final ILifeCycleListener listener) {
-		listeners.add(listener);
-		if (!(listener instanceof ScapeWrapperModelListener)) {
-			ModelWrapperScapeListener wrapper = new ModelWrapperScapeListener(ScapeWrapperModel.this, getScape(), listener);
-			getScape().addView(wrapper);
-			wrapperForListener.put(listener, wrapper);
-		}
+		new Thread() {
+			@Override
+			public void run() {
+				listeners.add(listener);
+				if (!(listener instanceof ScapeWrapperModelListener)) {
+					ModelWrapperScapeListener wrapper = new ModelWrapperScapeListener(ScapeWrapperModel.this, getScape(), listener);
+					getScape().addView(wrapper);
+					wrapperForListener.put(listener, wrapper);
+				}
+			}
+		}.start();
 	}
 
 	public Collection<ILifeCycleListener> getModelListeners() {
@@ -84,11 +89,16 @@ public class ScapeWrapperModel implements IModel {
 	}
 
 	public void removeModelListener(final ILifeCycleListener listener) {
-		listeners.remove(listener);
-		if (listener instanceof ScapeWrapperModelListener) {
-			getScape().removeScapeListener(((ScapeWrapperModelListener) listener).getWrapped());
-		}
-		listener.observationEnd(ScapeWrapperModel.this);
+		new Thread() {
+			@Override
+			public void run() {
+				listeners.remove(listener);
+				if (listener instanceof ScapeWrapperModelListener) {
+					getScape().removeScapeListener(((ScapeWrapperModelListener) listener).getWrapped());
+				}
+				listener.observationEnd(ScapeWrapperModel.this);
+			}
+		}.start();
 	}
 
 	public boolean isInitialized() {

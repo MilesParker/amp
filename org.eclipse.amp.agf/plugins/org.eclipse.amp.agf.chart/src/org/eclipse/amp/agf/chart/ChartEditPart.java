@@ -49,7 +49,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.swt.events.DisposeEvent;
@@ -91,7 +90,6 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 	 * Instantiates a new chart edit part.
 	 */
 	public ChartEditPart() {
-		chartStrategy = getInitStrategie();
 		resourceManager = new ResourceManager();
 		PlatformConfig config = new PlatformConfig();
 		try {
@@ -102,10 +100,6 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 		}
 		genericPalette = PaletteImpl.create(0, true);
 		genericPalette.shift(0);
-	}
-
-	IChartDesignStrategy getInitStrategie() {
-		return ChartType.TIME_SERIES.createStrategy();
 	}
 
 	/**
@@ -119,7 +113,6 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 	 * @see ChartModelEvent
 	 */
 	class ChartModelListener extends SWTAsyncModelListener {
-
 		/**
 		 * Instantiates a new chart model listener.
 		 */
@@ -129,7 +122,15 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 
 		@Override
 		public void observing(IObservationProvider observed) {
-			setChartStrategy(getInitStrategie());
+			// wait for data source to be available from model set..
+			while (getDataProvider() == null) {
+				try {
+					Thread.sleep(25);
+				} catch (InterruptedException e) {
+					//
+				}
+			}
+			setChartStrategy(ChartType.TIME_SERIES.createStrategy());
 		}
 
 		@Override
@@ -200,7 +201,6 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 		chartListener.setWidget(getViewer().getControl());
 
 		final Figure newFigure = new Figure() {
-
 			@Override
 			public void paintFigure(Graphics graphics) {
 				if (getResourceManager().getImage() != null) {
@@ -212,7 +212,6 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 			}
 		};
 		newFigure.setLayoutManager(new AbstractLayout() {
-
 			@Override
 			public Dimension getMinimumSize(IFigure container, int hintWidth, int hintHeight) {
 				return new Dimension(hintWidth < 1 ? 1 : hintWidth, hintHeight < 1 ? 1 : hintHeight);
@@ -228,7 +227,6 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 			}
 		});
 		newFigure.addFigureListener(new FigureListener() {
-
 			public void figureMoved(IFigure source) {
 				regenerateChart();
 			}
@@ -244,7 +242,12 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 
 	@Override
 	public void refresh() {
-		regenerateChart(true);
+		new Thread() {
+			@Override
+			public void run() {
+				regenerateChart(true);
+			}
+		}.run();
 	}
 
 	@Override
@@ -258,9 +261,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 		Object provider = adapterManager.loadAdapter(this.getModel(), IDataProvider.ID);
 
 		if (!(provider instanceof IDataProvider)) {
-			throw new RuntimeException(
-					"Couldn't find data provider for chart model. Please ensure that a data provider adapter has been defined for the class: "
-							+ this.getModel().getClass());
+			throw new RuntimeException("Couldn't find data provider for chart model. Please ensure that a data provider adapter has been defined for the class: " + this.getModel().getClass());
 		}
 
 		setDataProvider((IDataProvider) provider);
@@ -305,8 +306,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 				chartListener.endPainting();
 			}
 		} catch (ChartException ce) {
-			StatusManager.getManager().handle(
-					new Status(Status.WARNING, AGFChartPlugin.PLUGIN_ID, "Couldn't generate chart.", ce));
+			StatusManager.getManager().handle(new Status(Status.WARNING, AGFChartPlugin.PLUGIN_ID, "Couldn't generate chart.", ce));
 			chartListener.endPainting();
 		}
 	}
@@ -322,6 +322,14 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 			resourceManager.setGc(new GC(resourceManager.getImage()));
 			renderer.setProperty(IDeviceRenderer.GRAPHICS_CONTEXT, resourceManager.getGc());
 		}
+	}
+
+	/**
+	 * Creates the chart.
+	 */
+	public synchronized void createChart() {
+		chart = chartStrategy.createChart(dataProvider, dataSource);
+		chart.getTitle().getLabel().setVisible(false);
 	}
 
 	/**
@@ -379,7 +387,8 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 
 	/**
 	 * 
-	 * @see org.eclipse.birt.chart.device.ICallBackNotifier#callback(java.lang.Object, java.lang.Object,
+	 * @see org.eclipse.birt.chart.device.ICallBackNotifier#callback(java.lang.Object,
+	 *      java.lang.Object,
 	 *      org.eclipse.birt.chart.model.attribute.CallBackValue)
 	 */
 	public void callback(Object arg0, Object arg1, CallBackValue arg2) {
@@ -438,12 +447,10 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 		this.dataProvider = dataProvider;
 		dataSource = dataProvider.getDataSource(getModel());
 		dataListener = new IDataSelectionListener() {
-
 			public void selectionChanged(Object dataSet) {
 				if (getParent() != null && getRoot() != null && getViewer() != null && getChart() != null) {
 					updateChartSelection();
 					getViewer().getControl().getDisplay().asyncExec(new Runnable() {
-
 						public void run() {
 							regenerateChart(true);
 						}
@@ -452,24 +459,14 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 			}
 		};
 		dataProvider.addListener(dataSource, dataListener);
-		createAndInitChart();
 	}
 
 	public void setChartStrategy(IChartDesignStrategy chartStrategy) {
 		this.chartStrategy = chartStrategy;
-		createAndInitChart();
-	}
-
-	private void createAndInitChart() {
-		if(dataProvider == null){
-			return;
-		}
-		chart = chartStrategy.createChart(dataProvider, dataSource);
-		chart.getTitle().getLabel().setVisible(false);
+		createChart();
 		updateChartSelection();
-		if (getViewer() != null && getViewer().getControl() != null && !getViewer().getControl().isDisposed()) {
+		if (getViewer().getControl().getDisplay() != null) {
 			getViewer().getControl().getDisplay().asyncExec(new Runnable() {
-
 				public void run() {
 					repaintChart();
 				}
@@ -496,7 +493,6 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 	 * @author fei
 	 */
 	public class ResourceManager implements DisposeListener {
-
 		private GC gc;
 
 		private Image image;
@@ -534,8 +530,7 @@ public class ChartEditPart extends AbstractGraphicalEditPart implements ICallBac
 
 		private void addDisposeListener() {
 			removeDisposeListener();
-			if (disposeEventProvider == null && getViewer() != null && getViewer().getControl() != null
-					&& !getViewer().getControl().isDisposed()) {
+			if (disposeEventProvider == null && getViewer() != null && getViewer().getControl() != null && !getViewer().getControl().isDisposed()) {
 				disposeEventProvider = getViewer().getControl();
 				disposeEventProvider.addDisposeListener(this);
 			}
