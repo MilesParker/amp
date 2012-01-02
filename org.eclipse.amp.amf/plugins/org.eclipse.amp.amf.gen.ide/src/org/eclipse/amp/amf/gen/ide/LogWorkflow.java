@@ -36,11 +36,11 @@ public class LogWorkflow implements Log {
     private static final long serialVersionUID = 9181448189753075665L;
 
     // TODO this will all have to be reworked if parallel generation is supported..class loader issues are very involved
-    static List<MWEDiagnostic> errors;
+    static List<MWEDiagnostic> errors = new ArrayList<MWEDiagnostic>();
 
-    static List<MWEDiagnostic> warnings;
+    static List<MWEDiagnostic> warnings = new ArrayList<MWEDiagnostic>();
 
-    static List<MWEDiagnostic> fatals;
+    static List<MWEDiagnostic> fatals = new ArrayList<MWEDiagnostic>();
 
     static StringBuffer info;
 

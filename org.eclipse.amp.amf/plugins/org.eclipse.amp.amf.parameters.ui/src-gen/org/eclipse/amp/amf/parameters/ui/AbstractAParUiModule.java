@@ -39,9 +39,9 @@ public abstract class AbstractAParUiModule extends DefaultUiModule {
 	}
 
 	// contributed by org.eclipse.xtext.generator.exporting.SimpleNamesFragment
-	public Class<? extends org.eclipse.xtext.ui.refactoring.IDependentElementsCalculator> bindIDependentElementsCalculator() {
-		return org.eclipse.xtext.ui.refactoring.IDependentElementsCalculator.Null.class;
-	}
+//	public Class<? extends org.eclipse.xtext.ui.refactoring.IDependentElementsCalculator> bindIDependentElementsCalculator() {
+//		return org.eclipse.xtext.ui.refactoring.IDependentElementsCalculator.Null.class;
+//	}
 
 	// contributed by org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
 	public void configureIResourceDescriptionsBuilderScope(com.google.inject.Binder binder) {
