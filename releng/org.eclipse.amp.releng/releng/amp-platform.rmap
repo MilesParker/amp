@@ -10,8 +10,14 @@
   <rm:locator pattern="^org\.ascape\.core" searchPathRef="ascape.external"/>
   <rm:locator pattern="repast\.simphony\.score" searchPathRef="repast"/>
   <rm:locator pattern="^org\.eclipse\.swtbot(\..+)?" searchPathRef="swtbot"/>
+  <rm:locator pattern="^org\.eclipse\.birt(\..+)?" searchPathRef="birt"/>
+  <rm:locator pattern="^org\.mozilla(\..+)?" searchPathRef="birt"/>
   <rm:locator searchPathRef="eclipse" failOnError="false"/>
   <rm:locator searchPathRef="platform" failOnError="false"/>
+  <rm:locator pattern="^org\.eclipse\.emf(\..+)?" searchPathRef="emf"/>
+  <rm:locator pattern="^org\.eclipse\.xtext(\..+)?" searchPathRef="xtext"/>
+  <rm:locator pattern="^org\.eclipse\.xpand(\..+)?" searchPathRef="xpand"/>
+  <rm:locator pattern="^org\.eclipse\.xtend(\..+)?" searchPathRef="xpand"/>
   <rm:locator pattern="^org\.antlr(\..+)?$" searchPathRef="orbit" failOnError="false"/>
   <rm:locator pattern="^org\.antlr(\..+)?$" searchPathRef="itemis"/>
   <rm:locator pattern="^de\.itemis(\..+)?$" searchPathRef="itemis"/>
@@ -41,14 +47,14 @@
 	</rm:searchPath>
   <rm:searchPath name="eclipse">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/releases/staging?importType=binary">
+      <rm:uri format="{0}/releases/indigo?importType=binary">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="platform">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/eclipse/updates/3.7milestones">
+      <rm:uri format="{0}/eclipse/updates/3.7">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
@@ -82,20 +88,28 @@
       <rm:uri format="http://lwjgl.org/update"/>
     </rm:provider>
   </rm:searchPath>
-  	  <rm:searchPath name="gef3d">
-    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="svn">
-      <rm:uri format="http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d/trunk/{0}?moduleAfterTag&amp;moduleAfterBranch">
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-  </rm:searchPath>
-  <rm:searchPath name="gef3d-build">
-    <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="svn">
-      <rm:uri format="file:///svnroot/technology/org.eclipse.gef3d/trunk/{0}?moduleAfterTag&amp;moduleAfterBranch">
-        <bc:propertyRef key="buckminster.component"/>
-      </rm:uri>
-    </rm:provider>
-  </rm:searchPath>
+	<rm:searchPath name="emf">
+		<rm:provider readerType="p2" componentTypes="eclipse.feature,osgi.bundle" mutable="false" source="false">
+			<rm:uri format="http://download.eclipse.org/modeling/emf/emf/updates/2.7.x" />
+		</rm:provider>
+	</rm:searchPath>
+	<rm:searchPath name="xtext">
+		<rm:provider readerType="p2" componentTypes="eclipse.feature,osgi.bundle" mutable="false" source="false">
+			<rm:uri format="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/" />
+		</rm:provider>
+	</rm:searchPath>
+	<rm:searchPath name="xpand">
+		<rm:provider readerType="p2" componentTypes="eclipse.feature,osgi.bundle" mutable="false" source="false">
+			<rm:uri format="http://download.eclipse.org/modeling/m2t/xpand/updates/releases/" />
+		</rm:provider>
+	</rm:searchPath>
+	<rm:searchPath name="birt">
+		<rm:provider readerType="p2" componentTypes="eclipse.feature,osgi.bundle" mutable="false" source="false">
+			<rm:uri format="http://download.eclipse.org/birt/update-site/3.7/" />
+		</rm:provider>
+	</rm:searchPath>
+  
+  
 	<!-- NOTE: ***We need to get 1.0.2 which is no longer on Indigo.*** -->
 	<rm:searchPath name="itemis">
 		<rm:provider readerType="p2" componentTypes="eclipse.feature,osgi.bundle" mutable="false" source="false">

@@ -2,6 +2,7 @@
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0"
 	xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
 	<rm:property key="checkout.location" value="${workspace.root}/org.eclipse.amp.git" />
+	<rm:property key="gef3d.checkout.location" value="${workspace.root}/org.eclipse.gef3d.git" />
 	<rm:property key="eclipse.download" value="http://download.eclipse.org" />
 
 	<rm:locator pattern="^org\.eclipse\.amp\.build$"
@@ -36,6 +37,10 @@
 	<rm:locator pattern="^org\.eclipse\.amp(\..+)?"
 		searchPathRef="amp" />
 
+	<rm:locator pattern="^org\.eclipse\.gef3d(\..+)?"
+		searchPathRef="gef3d.local" failOnError="false" />
+	<rm:locator pattern="^org\.eclipse\.draw3d(\..+)?"
+		searchPathRef="gef3d.local" failOnError="false" />
 	<rm:locator pattern="^org\.eclipse\.gef3d(\..+)?"
 		searchPathRef="gef3d" failOnError="false" />
 	<rm:locator pattern="^org\.eclipse\.draw3d(\..+)?"
@@ -269,17 +274,30 @@
 			<rm:property key="git.auto.fetch" value="true" />
 		</rm:provider>
 	</rm:searchPath>
-
+	
 	<rm:searchPath name="gef3d">
-		<rm:provider componentTypes="osgi.bundle,eclipse.feature"
-			readerType="svn" mutable="false">
-			<rm:uri
-				format="http://dev.eclipse.org/svnroot/technology/org.eclipse.gef3d/trunk/{0}?moduleAfterTag&amp;moduleAfterBranch">
+		<rm:provider componentTypes="osgi.bundle" readerType="git"
+			resolutionFilter="">
+			<rm:uri format="{0},plugins/{1}">
+				<bc:propertyRef key="gef3d.checkout.location" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri"
+				value="git://git.eclipse.org/gitroot/gef3d/org.eclipse.gef3d.git" />
+			<rm:property key="git.remote.name" value="origin" />
+			<rm:property key="git.auto.fetch" value="true" />
+		</rm:provider>
+	</rm:searchPath>
+	
+	<rm:searchPath name="gef3d.local">
+		<rm:provider componentTypes="osgi.bundle" readerType="local">
+			<rm:uri format="{0}/plugins/{1}">
+				<bc:propertyRef key="checkout.location" />
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
 		</rm:provider>
 	</rm:searchPath>
-
+	
 	<!-- <rm:searchPath name="gef3d"> <rm:provider componentTypes="eclipse.feature,osgi.bundle" 
 		readerType="p2" source="false" mutable="false"> <rm:uri format="file:/Volumes/Resources/Developer/workspaces/gef3d/buckminster.build.output/org.eclipse.gef3d.releng_1.0.0-eclipse.feature/site.p2"/> 
 		</rm:provider> </rm:searchPath> -->
