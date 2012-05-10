@@ -14,13 +14,13 @@
   <rm:locator pattern="^org\.mozilla(\..+)?" searchPathRef="birt"/>
   <rm:locator searchPathRef="eclipse" failOnError="false"/>
   <rm:locator searchPathRef="platform" failOnError="false"/>
-  <rm:locator pattern="^org\.eclipse\.emf(\..+)?" searchPathRef="emf"/>
+<!--  <rm:locator pattern="^org\.eclipse\.emf(\..+)?" searchPathRef="emf"/>
   <rm:locator pattern="^org\.eclipse\.xtext(\..+)?" searchPathRef="xtext"/>
   <rm:locator pattern="^org\.eclipse\.xpand(\..+)?" searchPathRef="xpand"/>
   <rm:locator pattern="^org\.eclipse\.xtend(\..+)?" searchPathRef="xpand"/>
-  <rm:locator pattern="^org\.antlr(\..+)?$" searchPathRef="orbit" failOnError="false"/>
   <rm:locator pattern="^org\.antlr(\..+)?$" searchPathRef="itemis"/>
-  <rm:locator pattern="^de\.itemis(\..+)?$" searchPathRef="itemis"/>
+  <rm:locator pattern="^org\.antlr(\..+)?$" searchPathRef="orbit" failOnError="false"/>
+  <rm:locator pattern="^de\.itemis(\..+)?$" searchPathRef="itemis"/> -->
   <rm:locator pattern="^org\.lwjgl(\..+)?" searchPathRef="lwjgl"/>
   <rm:locator searchPathRef="orbit"/>
   
@@ -47,14 +47,14 @@
 	</rm:searchPath>
   <rm:searchPath name="eclipse">
     <rm:provider componentTypes="osgi.bundle,eclipse.feature" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/releases/indigo?importType=binary">
+      <rm:uri format="{0}/releases/juno?importType=binary">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
   </rm:searchPath>
   <rm:searchPath name="platform">
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-      <rm:uri format="{0}/eclipse/updates/3.7">
+      <rm:uri format="{0}/eclipse/updates/3.8milestones?importType=binary">
         <bc:propertyRef key="eclipse.download"/>
       </rm:uri>
     </rm:provider>
@@ -105,7 +105,7 @@
 	</rm:searchPath>
 	<rm:searchPath name="birt">
 		<rm:provider readerType="p2" componentTypes="eclipse.feature,osgi.bundle" mutable="false" source="false">
-			<rm:uri format="http://download.eclipse.org/birt/update-site/3.7/" />
+			<rm:uri format="http://download.eclipse.org/birt/update-site/4.2-interim/" />
 		</rm:provider>
 	</rm:searchPath>
   
