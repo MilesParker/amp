@@ -7,9 +7,6 @@
         <cs:dependency name="org.eclipse.gef" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.jdt" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.pde" componentType="eclipse.feature"/>
-        <cs:dependency name="org.eclipse.swtbot" componentType="eclipse.feature"/>
-        <cs:dependency name="org.eclipse.swtbot.eclipse" componentType="eclipse.feature"/>
-        <cs:dependency name="org.eclipse.swtbot.eclipse.gef" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.xpand" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.xtend" componentType="eclipse.feature"/>
         <cs:dependency name="org.eclipse.xtext.sdk" componentType="eclipse.feature"/>
