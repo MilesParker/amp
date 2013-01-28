@@ -15,17 +15,15 @@
  */
 package org.eclipse.amp.escape.command;
 
-import org.eclipse.amp.axf.time.TimeGranularity;
+import org.ascape.runtime.Runner;
 import org.eclipse.amp.escape.ide.EclipseEscapeRunner;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.expressions.EvaluationContext;
+import org.eclipse.core.expressions.IEvaluationContext;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.viewers.IStructuredSelection;
-
-import org.ascape.runtime.Runner;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -114,7 +112,7 @@ public abstract class ExecuteHandler extends ResourceHandler {
      */
     @Override
     public void setEnabled(Object evaluationContext) {
-        EvaluationContext ctx = (EvaluationContext) evaluationContext;
+        IEvaluationContext ctx = (IEvaluationContext) evaluationContext;
         Object selection = ctx.getVariable("selection");
         if (selection instanceof IStructuredSelection) {
             boolean enabled = false;
